@@ -1,2 +1,2 @@
-# fundament_mathematik
+# Fundament Mathematik
 Mathematik TU Wien Code &amp; shit
