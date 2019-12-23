@@ -1,0 +1,31 @@
+\begin{lemma}
+    Wenn $\mathfrak{S}$ eine Sigmaalgebra über der Grundmenge $\Omega$ ist und $C \subset \Omega$ dann ist
+    \begin{align*}
+        \mathfrak{A}_\sigma(\mathfrak{S} \cup \{C\})=\{(A\cap C)\cup(B \cap C^C)\mid A,B \in \mathfrak{S}\}
+    \end{align*}
+\end{lemma}
+
+\begin{proof}[Beweis.]
+    Zuerst definieren wir eine gute Menge 
+    \begin{align*}
+        M:=\{U\subset\Omega\mid \exists A,B \in \mathfrak{S}: U = (A\cap C)\cup (B\cap C^C)\}.
+    \end{align*}
+    Wir wollen nun $M\supset\mathfrak{A}_\sigma(\mathfrak{S}\cup \{C\})$ zeigen. Dafür wählen wir zuerst $U\in \mathfrak{S}\cup\{C\}$ beliebig. Nun gibt es ein $V\in \mathfrak{S}:U=V\cup C$ und es gilt
+    \begin{align*}
+        (\Omega\cap C)\cup(V\cap C^C)&=C\cup(V\cap C^C) = (C\cup V)\cap(C\cup C^C)\\
+        &=(C\cup V)\cap\Omega = U.
+    \end{align*}
+    Man erkennt also, dass $U\in M$ ist und damit $\mathfrak{S}\cup\{C\}\subset M$. Nun wollen wir noch zeigen, dass M eine $\sigma$-Algebra ist. Dafür sei zuerst bemerkt, dass $\Omega=(\Omega\cap C)\cup(\Omega\cap C^C)\in M$. Wählen wir als nächstes $U=(U_1\cap C)\cup(U_2\cap C^C)\in M$ beliegbig, wobei mit $U_1,U_2\in\mathfrak{S}$ natürlich auch $U_1^C,U_2^C\in\mathfrak{S}$, so ist auch
+    \begin{align*}
+        U^C&=((U_1\cap C)\cup(U_2\cap C^C))^C=(U_1^C\cup C^C)\cap(U_2^C\cup C)\\
+        &=(U_1^C\cap U_2^C)\cup(U_1^C\cap C)\cup(U_2^C\cap C^C)\cup(C\cap C^C)\\
+        &=(U_1^C\cap C)\cup(U_2^C\cap C^C)\in M.
+    \end{align*}
+    Wählen wir zuletzt noch eine Folge $\forall n\in\mathbb{N}:(U_n)\in M$, wobei $\forall n\in\mathbb{N}:U_n=(U_{n_1}\cap C)\cup(U_{n_2}\cap C^C)$ mit $U_{n_1},U_{n_2}\in\mathfrak{S}$, so ist
+    \begin{align*}
+        \bigcup_{n\in\mathbb{N}}U_n&=\bigcup_{n\in\mathbb{N}}((U_{n_1}\cap C)\cup(U_{n_2}\cap C^C))\\
+        &= \left(\left(\bigcup_{n\in\mathbb{N}}U_{n_1}\right)\cap C\right)\cup\left(\left(\bigcup_{n\in\mathbb{N}}U_{n_2}\right)\cap C^C\right)\in M,
+    \end{align*}
+    weil natürlich $\bigcup_{n\in\mathbb{N}}U_{n_1}, \bigcup_{n\in\mathbb{N}}U_{n_2}\in\mathfrak{S}$. Nun haben wir nachgewiesen, dass $M$ eine $\sigma$-Algebra ist, also muss $\mathfrak{A}_\sigma(\mathfrak{S}\cup\{C\})\subset M$ gelten. Damit haben wir auch schon die erste Teilmengeninklusion unseres Lemmas, nämlich $\mathfrak{A}_\sigma(\mathfrak{S}\cup\{C\})\subset\{(A\cap C)\cup(B \cap C^C)\mid A,B \in \mathfrak{S}\}$, gezeigt. \newline
+    Sind $A,B\in\mathfrak{S}$, dann ist die Menge $(A\cap C)\cup(B \cap C^C)\in\mathfrak{A}_\sigma(\mathfrak{S}\cup\{C\})$, weil $A,B,C\in\mathfrak{S}\cup\{C\}$ und damit auch $C^C\in\mathfrak{A}_\sigma(\mathfrak{S}\cup\{C\})$. Folglich gilt $M\subset\mathfrak{A}_\sigma(\mathfrak{S}\cup\{C\})$.
+\end{proof}
