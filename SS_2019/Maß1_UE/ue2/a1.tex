@@ -1,0 +1,11 @@
+\begin{lemma}
+    Für ein durchschnittstabiles Mengensystem $\mathfrak{C}$ gilt $\mathfrak{A}_\sigma(\mathfrak{C})=\mathfrak{D}(\mathfrak{C})$.
+\end{lemma}
+
+\begin{proof}[Beweis.]
+    Da $\mathfrak{A}_\sigma(\mathfrak{C})$ ein Dynkin-System ist gilt klarerweise $\mathfrak{D}(\mathfrak{C})\subset \mathfrak{A}_\sigma(\mathfrak{C})$.
+
+    Für die andere Teilmengeninklusion wählen wir zuerst ein beliebiges $A\in\mathfrak{C}$ und definieren die Menge $M_A:=\{C\subset\Omega\mid C\cap A\in\mathfrak{D}(\mathfrak{C})\}$. Nun gilt $\Omega\in M_A$, weil $\Omega\cap A=A\in\mathfrak{D}(\mathfrak{C})$. Für $B,C\in M_A$ mit $B\subset C$ gilt $B\cap A,C\cap A\in\mathfrak{D}(\mathfrak{C})$ und $B\cap A\subset C\cap A$ und damit $\mathfrak{D}(\mathfrak{C})\ni(C\cap A)\cap(B\cap A)^C=C\cap A\cap(B^C\cup A^C)=(C\cap A\cap B^C)\cup(C\cap A\cap A^C)=(C\cap B^C)\cap A$, also $C\setminus B\in M_A$. Außerdem gilt für eine disjunkte Mengenfolge $(B_n)_{n\in\mathbb{N}}\in M_A$, dass $\forall n\in\mathbb{N}:B_n\cap A\in\mathfrak{D}(\mathfrak{C})$ und damit auch $\mathfrak{D}(\mathfrak{C})\ni\sum_{n\in\mathbb{N}}\left(B_n\cap A\right)=\left(\sum_{n\in\mathbb{N}}B_n\right)\cap A$, also $\sum_{n\in\mathbb{N}}B_n\in M_A$. Insgesamt ergibt sich nun, dass $M_A$ ein Dynkin-System ist und wegen der Durchschnittstabilität von $\mathfrak{C}$ ist $\mathfrak{C}\subset M_A$ leicht erkennbar, also muss auch $\mathfrak{D}(\mathfrak{C})\subset M_A$ gelten. 
+    
+    Nun wollen wir $B\in\mathfrak{D}(\mathfrak{C})$ beliebig setzen und $M_B:=\{C\subset\Omega\mid C\cap B\in\mathfrak{D}(\mathfrak{C})\}$. Aus dem eben gezeigten folgt nun $B\in M_A$ und damit auch $A\in M_B$. Da $A\in\mathfrak{C}$ beliebig war gilt also $\mathfrak{C}\subset M_B$. Genau wie oben kann man nun zeigen, dass $M_B$ ein Dynkin-System ist und erhält damit $\mathfrak{D}(\mathfrak{C})\subset M_B$. Das bedeutet für ein beliebgiges $C\in\mathfrak{D}(\mathfrak{C})$, dass $C\in M_B$ also $C\cap B \in\mathfrak{D}(\mathfrak{C})$. Da $B,C\in\mathfrak{D}(\mathfrak{C})$ beliebig waren ist also $\mathfrak{D}(\mathfrak{C})$ durchschnittstabil und damit nach Satz 2.75 bereits eine Sigmaalgebra. Damit gilt auch \cite{zbMATH06257850} $\mathfrak{D}(\mathfrak{C})\supset \mathfrak{A}_\sigma(\mathfrak{C})$.
+\end{proof}
