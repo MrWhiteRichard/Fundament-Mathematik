@@ -1,0 +1,22 @@
+\begin{lemma}
+    Wenn $\mu$ ein Maß auf einem Sigmaring $\mathfrak{R}$ über der Grundmenge $\Omega$ ist, dann ist durch 
+    \begin{align*}
+        \tilde{\mu}:\mathfrak{A}_\sigma(\mathfrak{R})\rightarrow\overline{\mathbb{R}}:A\mapsto\sup\{\mu(B)\mid B\in\mathfrak{R}\land B\subset A\}
+    \end{align*}
+    ein Maß auf $\mathfrak{A}_\sigma(\mathfrak{R})$ definiert.
+\end{lemma}
+\begin{proof}[Beweis.]
+    Offensichtlich sind die ersten beiden Eigenschaften $\tilde{\mu}(\emptyset)=0$ und $\forall A\in\mathfrak{A}_\sigma(\mathfrak{R}):\tilde{\mu}(A)\geq 0$ eines Maßes erfüllt. Für die Sigmaadditivität betrachten wir ein disjunkte Mengenfolge $(A_n)_{n\in\mathbb{N}}$ aus $\mathfrak{A}_\sigma(\mathfrak{R})$ und ein beliebiges $\epsilon>0$. Für jedes $n\in\mathbb{N}$ gibt es nun ein $C_n\in\mathfrak{R}:C_n\subset A_n$ welches $\tilde{\mu}(A_n)-\frac{\epsilon}{2^n}\leq\mu(C_n)$ erfüllt. Damit erhalten wir
+    \begin{align*}
+        \sum_{n\in\mathbb{N}}\tilde{\mu}(A_n)-\epsilon&=\sum_{n\in\mathbb{N}}\left(\tilde{\mu}(A_n)-\frac{\epsilon}{2^n}\right)\leq\sum_{n\in\mathbb{N}}\mu(C_n)\\
+        &=\mu\left(\sum_{n\in\mathbb{N}}C_n\right)\leq\tilde{\mu}\left(\sum_{n\in\mathbb{N}}A_n\right).
+    \end{align*}
+    
+    Es gibt auch ein $B\in\mathfrak{R}:B\subset\sum_{n\in\mathbb{N}}A_n$ mit $\mu(B)\geq\tilde{\mu}\left(\sum_{n\in\mathbb{N}}A_n\right)-\epsilon$. Von Aufgabe 6 aus der ersten Übung wissen wir bereits, dass $\mathfrak{A}_\sigma(\mathfrak{R})=\mathfrak{A}(\mathfrak{R})=\{A\subset\Omega\mid A\in\mathfrak{R}\lor A^C\in\mathfrak{R}\}$, also für ein beliebiges $k\in\mathbb{N}$ entweder $A_k\in\mathfrak{R}$ oder $A_k^C\in\mathfrak{R}$ gilt. Falls $A_k\in\mathfrak{R}$ ist, dann ist sicher auch $B\cap A_k\in\mathfrak{R}$. Ist $A_k^C\in\mathfrak{R}$, dann ist $B\cap A_k=B\setminus A_k^C$ ebenfalls in $\mathfrak{R}$. Mit dieser Tatsache folgt
+    \begin{align*}
+        \sum_{n\in\mathbb{N}}\tilde{\mu}(A_n)&\geq\sum_{n\in\mathbb{N}}\mu(A_n\cap B)=\mu\left(\sum_{n\in\mathbb{N}}(A_n\cap B)\right)\\
+        &=\mu(B)\geq\tilde{\mu}\left(\sum_{n\in\mathbb{N}}A_n\right)-\epsilon
+    \end{align*}
+
+    In beiden Ungleichungen war $\epsilon$ beliebig, also haben wir insgesamt die Sigamadditivität bewiesen und damit, dass $\tilde{\mu}$ ein Maß auf $\mathfrak{A}_\sigma(\mathfrak{R})$ ist.
+\end{proof}

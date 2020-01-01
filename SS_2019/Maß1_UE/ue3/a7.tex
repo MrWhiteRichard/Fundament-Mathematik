@@ -1,0 +1,19 @@
+\begin{lemma}
+    Es gelten folgende Aussagen:
+    \begin{itemize}
+        \item[(a)] Das Urbild eines monotonen Systems $\mathfrak{M}$ ist im Allgemeinen kein monotones System.
+        \item[(b)] Das Urbild eines Semirings $\mathfrak{T}$ ist ein Semiring.
+        \item[(c)] Das Urbild eines Dynkinsystems $\mathfrak{D}$ ist im Allgemeinen kein Dynkinsystem.  
+    \end{itemize}
+\end{lemma}
+
+\begin{proof}[Beweis.]
+    Ich glaube für (a) und (c) gibt es geeignete Beispiele, bin aber nicht sicher, es könnte auch sein, dass die Aussagen falsch sind.
+    
+    Um (b) zu beweisen betrachten wir beliebige $f^{-1}(A),f^{-1}(B)\in f^{-1}(\mathfrak{T})$, also sind $A,B\in\mathfrak{T}$. Es gilt $f^{-1}(A)\cap f^{-1}(B)=f^{-1}(A\cap B)\in f^{-1}(\mathfrak{T})$. Nun wählen wir wieder $f^{-1}(A),f^{-1}(B)\in f^{-1}(\mathfrak{T})$ beliebig, diesmal aber mit $f^{-1}(A)\subset f^{-1}(B)$. Wir wissen, dass 
+    \begin{align*}
+        \exists n\in\mathbb{N}:\exists C_1,\dots,C_n\in\mathfrak{T}:\biggl(&\forall i\neq j\in\{1,\dots,n\}:C_i\cap C_j=\emptyset\\
+        &\land\forall k\in\{1,\dots,n\}:A\cup\bigcup_{i=1}^kC_i\in\mathfrak{T}\land B\setminus A=\bigcup_{i=1}^nC_i\biggr).
+    \end{align*}
+    Diese Mengen nehmen wir und erkennen, dass $f^{-1}(C_1),\dots,f^{-1}(C_n)\in f^{-1}(\mathfrak{T})$ die Leiter zwischen unseren Mengen $f^{-1}(A)$ und $f^{-1}(B)$ bilden. Damit ist gezeigt, dass $f^{-1}(\mathfrak{T})$ ein Semiring ist.
+\end{proof}
