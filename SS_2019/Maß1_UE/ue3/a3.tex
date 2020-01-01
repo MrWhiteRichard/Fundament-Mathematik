@@ -1,0 +1,12 @@
+\begin{lemma}
+    Für ein endliches Maß $\mu$ auf dem Sigmaring $\mathfrak{R}$ gilt:
+    \begin{itemize}
+        \item[(a)] $\mu$ ist beschränkt.
+        \item[(b)] $\mu$ lässt sich zu einem endlichen Maß $\tilde{\mu}$ auf $\mathfrak{A}_\sigma(\mathfrak{R})$ fortsetzen.
+    \end{itemize}
+\end{lemma}
+\begin{proof}[Beweis.]
+    Um (a) zu beweisen nehmen wir an $\mu$ wäre unbeschränkt. Dann gilt jedenfalls $\forall n\in\mathbb{N}:\exists A_n\in\mathfrak{R}:\mu(A_n)>n$. Da es sich bei $\mathfrak{R}$ um einen Sigmaring handelt ist auch $A:=\bigcup_{n\in\mathbb{N}}A_n\in\mathfrak{R}$ und damit gilt $\forall k\in\mathbb{N}:\mu(A)>k$, also $\mu(A)=\infty$, was im Widerspruch zur Endlichkeit von $\mu$ steht.
+
+    Um (b) zu beweisen machen wir gleich Gebrauch von (a) und setzen $\tilde{\mu}(\Omega):=\sup\{\mu(A)\mid A\in\mathfrak{R}\}<\infty$. Von Aufgabe 6 aus der ersten Übung wissen wir bereits, dass $\mathfrak{A}_\sigma(\mathfrak{R})=\mathfrak{A}(\mathfrak{R})=\{A\subset\Omega\mid A\in\mathfrak{R}\lor A^C\in\mathfrak{R}\}$, es ist also sofort ersichtlich, dass die Definition von $\tilde{\mu}(\Omega)$ ausreicht um $\tilde{\mu}$ auf ganz $\mathfrak{A}_\sigma(\mathfrak{R})$ festzulegen. Nun bleibt noch nachzuweisen, dass es sich tatsächlich um ein Maß handelt.
+\end{proof}
