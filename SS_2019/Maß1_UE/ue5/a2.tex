@@ -1,0 +1,8 @@
+\begin{lemma}
+    Wenn $\mathfrak{S}$ eine Sigmaalgebra über $\Omega$ ist mit $\forall\omega\in\Omega:\{\omega\}\in\mathfrak{S}$ und $\mu$ ein endliches Maß auf dem Messraum $(\Omega,\mathfrak{S})$, dann gibt es auf eben jenem Messraum ein diskretes Maß $\mu_d$ und ein stetiges Maß $\mu_c$, die $\mu=\mu_d+\mu_c$ erfüllen.
+\end{lemma}
+\begin{proof}[Beweis.]
+    Für den Beweis definieren wir zuerst $D:=\{\omega\in\Omega\mid\mu(\{\omega\})>0\}$. Nun nehmen wir an es gelte $card(D)>\aleph_0$. Das bedeutet $\exists\epsilon>0:card(\{\omega\in\Omega\mid\mu(\{\omega\})>\epsilon\})=\aleph_0$. Das führt aber direkt zu einem Widerspruch zur Endlichkeit von $\mu$, also muss $card(D)\leq\aleph_0$ gelten und damit natürlich auch $D\in\mathfrak{S}$.
+
+    Nun definieren wir $\mu_d:\mathfrak{S}\rightarrow\mathbb{R}:A\mapsto\mu(A\cap D)$ und $\mu_c:\mathfrak{S}\rightarrow\mathbb{R}:A\mapsto\mu(A\setminus D)$. Diese Maße erfüllen offensichtlich die gewünschten Eigenschaften.
+\end{proof}
