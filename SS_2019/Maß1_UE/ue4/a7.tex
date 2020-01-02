@@ -1,0 +1,29 @@
+\begin{lemma}
+    Wenn $\Omega_1$ und $\Omega_2$ nichtleere Mengen sind und $f:\Omega_1\rightarrow\Omega_2$, dann gelten folgende Aussagen:
+    \begin{itemize}
+        \item[(a)] Für alle $A\subset\Omega_2:f(f^{-1}(A))=A\cap f(\Omega_1)$
+        \item[(b)] Wenn $\mu_2^*$ ein äußeres Maß über $\Omega_2$ ist, dann ist $\mu_1^*:2^{\Omega_1}\rightarrow\overline{\mathbb{R}}:A\mapsto\mu_2^*(f(A))$ ein äußeres Maß über $\Omega_1$ und für eine $\mu_2^*$-messbare Menge $A\subset\Omega_2$ gilt, dass $f^{-1}(A)$ eine $\mu_1^*$-messbare Menge ist.
+    \end{itemize}
+\end{lemma}
+\begin{proof}[Beweis.]
+    Es ist schnell nachzuweisen, dass (a) gilt.
+
+    Nun weisen wir nach, dass $\mu_1^*$ ein äußeres Maß ist. Da $f(\emptyset)=\emptyset$, gilt klarerweise $\mu_1^*(\emptyset)=0$. 
+
+    Die Nichtnegativität von $\mu_1^*$ folgt sofort aus der Nichtnegativität von $\mu_2^*$. 
+
+    Ist $A\subset B\subset\Omega_1$ so ist $f(A)\subset f(B)\subset\Omega_2$ und die Monotonie von $\mu^*_1$ ist klarerweise erfüllt.
+
+    Für $A\subset\bigcup_{n\in\mathbb{N}}B_n\subset\Omega_1$ gilt
+    \begin{align*}
+        \mu_1^*(A)=\mu_2^*(f(A))\leq\sum_{n\in\mathbb{N}}\mu_2^*(f(B_n))=\sum_{n\in\mathbb{N}}\mu_1^*(B_n)
+    \end{align*}
+
+    Sei zuletzt $A\subset\Omega_2$ eine beliebige $\mu_2^*$-messbare Menge. Wir wählen $B\subset\Omega_1$ beliebig und erhalten unter Benützung von (a), dass
+    \begin{align*}
+        \mu_1^*(B)&=\mu_2^*(f(B))=\mu_2^*(f(B)\cap A)+\mu_2^*(f(B)\setminus A)\\
+        &=\mu_2^*\left(f(B)\cap f\left(f^{-1}(A)\right)\right)+\mu_2^*\left(f(B)\cap f\left(f^{-1}\left(A^C\right)\right)\right)\\
+        &=\mu_1^*\left(B\cap f^{-1}(A)\right)+\mu_1^*\left(B\setminus f^{-1}(A)\right)
+    \end{align*}
+    gilt, also $f^{-1}(A)$ eine $\mu_1^*$-messbare Menge ist.
+\end{proof}
