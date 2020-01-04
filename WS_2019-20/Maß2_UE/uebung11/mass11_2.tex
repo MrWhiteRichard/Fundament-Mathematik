@@ -1,0 +1,38 @@
+\begin{definition}
+    Eine Folge von Wahrscheinlichkeitsmaßen $P_n$ auf dem Messraum $(\Omega,\mathfrak{S})$ heißt stark konvergent gegen $P$, wenn für alle $A\in\mathfrak{S}$
+    \begin{align}
+        \lim_{n\to\infty}P_n(A)=P(A)
+    \end{align}
+    gilt.
+\end{definition}
+\begin{lemma}
+    Wenn $\forall n\in\mathbb{N}:P_n$ sowie $P$ Wahrscheinlichkeitsmaße auf dem Messraum $(\Omega,\mathfrak{S})$ sind und $P_n\to P$ stark, dann gilt für jede beschränkte und messbare Funktion $f:(\Omega,\mathfrak{S})\to(\mathbb{R},\mathfrak{B})$
+    \begin{align*}
+        \lim_{n\to\infty}\int f\mathrm{d}P_n=\int f\mathrm{d}P.
+    \end{align*}
+\end{lemma}
+\begin{proof}[Beweis.]
+    Wir wählen eine beliebige beschränkte und messbare Funktion $f:(\Omega,\mathfrak{S})\to(\mathbb{R},\mathfrak{B})$ und ein beliebiges $\epsilon>0$. Zuerst spalten wir die Funktion in einen Positivteil und einen Negativteil auf.
+    \begin{align*}
+        \left\vert\int f\mathrm{d}P_n-\int f\mathrm{d}P\right\vert\leq\left\vert\int f^+\mathrm{d}P_n-\int f^+\mathrm{d}P\right\vert+\left\vert\int f^-\mathrm{d}P_n-\int f^-\mathrm{d}P\right\vert
+    \end{align*}
+    Gemäß \cite[Satz 7.30]{zbMATH06257850} gibt es eine monoton steigende Folge von nichtnegativen Treppenfunktionen $(t_k)_{k\in\mathbb{N}}$ so, dass $t_k\to f^+$ gleichmäßig, wobei $t_k=\sum_{i=1}^{l_k}x_i\mathbf{1}_{[t_k=x_i]}$ ist. Jetzt verwenden wir abermals die Dreiecksungleichung und erhalten
+    \begin{align*}
+        &\left\vert\int f^+\mathrm{d}P_n-\int f^+\mathrm{d}P\right\vert\\
+        &\leq\left\vert\int\left(f^+-t_k\right)\mathrm{d}P_n\right\vert+\left\vert\int\left(f^+-t_k\right)\mathrm{d}P\right\vert+\left\vert\int t_k\mathrm{d}P_n-\int t_k\mathrm{d}P\right\vert
+    \end{align*}
+    Wegen der gleichmäßigen Konvergenz $t_k\to f^+$ können wir ein $K\in\mathbb{N}$ finden so, dass für alle $k\geq K:$
+    \begin{align*}
+        \forall n\in\mathbb{N}:\left\vert\int\left(f^+-t_k\right)\mathrm{d}P_n\right\vert<\frac{\epsilon}{6}\land\left\vert\int\left(f^+-t_k\right)\mathrm{d}P\right\vert<\frac{\epsilon}{6}
+    \end{align*}
+    Jetzt können wir die $P_n\to P$ stark nützen, was es uns erlaubt ein $N^+\in\mathbb{N}$ zu finden, so, dass für alle $n\geq N^+$:
+    \begin{align*}
+        \left\vert\int t_k\mathrm{d}P_n-\int t_k\mathrm{d}P\right\vert&=\left\vert\sum_{i=1}^{l_k}x_iP_n(t_k=x_i)-\sum_{i=1}^{l_k} x_iP(t_k=x_i)\right\vert\\
+        &=\left\vert\sum_{i=1}^{l_k}x_i\left(P_n(t_k=x_i)-P(t_k=x_i)\right)\right\vert<\frac{\epsilon}{6}
+    \end{align*}
+    gilt. Da man das Integral des Negativteils analog abschätzen kann gilt also insgesamt, dass $\exists N\in\mathbb{N}:\forall n\geq N:$
+    \begin{align*}
+        \left\vert\int f\mathrm{d}P_n-\int f\mathrm{d}P\right\vert<\epsilon
+    \end{align*}
+    und damit ist die Behauptung bewiesen.
+\end{proof}
