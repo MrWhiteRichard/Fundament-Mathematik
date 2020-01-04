@@ -1,0 +1,23 @@
+\begin{lemma}
+    Sei $(\mathbb{R},\mathfrak{B},\mu)$ ein sigmaendlicher Maßraum und und seien $P_n,n\in\mathbb{N}$ und $P$ bezüglich $\mu$ absolutstetige Wahrscheinlichkeitsmaße auf $(\mathbb{R},\mathfrak{B})$ mit den Dichten $f_n$ und $f$ und gelte weiters $f_n\to f$ punktweise. Dann gelten folgende Aussagen:
+    \begin{itemize}
+        \item[(a)] $P_n\to P$ schwach
+        \item[(b)] $P_n\to P$ stark 
+    \end{itemize}
+\end{lemma}
+\begin{proof}[Beweis.]
+    Der Satz von Radon Nikodym \cite[Satz 11.19]{zbMATH06257850} garantiert die Existenz der Dichten und deren Nichtnegativität sowie die Tatsache, dass $\forall n\in\mathbb{N}:f_n$ und $f$ $\mu$-fast überall reellwertig sind.
+    Wir betrachten zuerst den Fall, dass $\mu$ endlich ist. Nun definieren wir eine Funktion
+    \begin{align*}
+        g:\mathbb{R}\to\overline{\mathbb{R}}:x\mapsto\sup\{f_n(x)\mid n\in\mathbb{N}\}
+    \end{align*}
+    Zuerst wollen wir (b) beweisen und in einem ersten Schritt $\int g\mathrm{d}\mu<\infty$ zeigen. Dafür nehmen wir an, es gäbe ein $B\in\mathfrak{B}:\left(\forall x\in B:g(x)=\infty\land\mu(B)>0\right)$. Nun betrachten wir $\tilde{B}:=B\setminus\bigcup_{n\in\mathbb{N}}\left\{x\in\mathbb{R}\mid f_n(x)=\infty\right\}$, wobei hier nur Nullmengen abgezogen werden also $\mu\left(\tilde{B}\right)>0$ gilt. Gilt nun aber für ein $x\in\mathbb{R}$, dass $g(x)=\sup\{f_n(x)\mid n\in\mathbb{N}\}=\infty$, dann muss auch $\lim_{n\to\infty}f_n(x)=f(x)=\infty$ gelten. Da das auf ganz $\tilde{B}$, einer Menge mit positivem Maß, gilt, steht das im Widerspruch dazu, dass $\mu$-fast überall $f$ reellwertig ist. 
+    
+    Also muss $\mu$-fast überall $g<\infty$ und weil $\mu$ endlich ist auch $\int g\mathrm{d}\mu<\infty$ gelten. Klarerweise gilt auch $\forall n\in\mathbb{N}:f_n\leq g$. Damit sind alle Voraussetzungen des Satzes von Lebesgue \cite[Satz 9.33]{zbMATH06257850} erfüllt und wir können diesen verwenden um für ein beliebiges $A\in\mathfrak{B}$
+    \begin{align*}
+        \lim_{n\to\infty}P_n(A)=\lim_{n\to\infty}\int_Af_n\mathrm{d}\mu=\int_A f\mathrm{d}\mu=P(A)
+    \end{align*}
+    und damit $P_n\to P$ stark zu erhalten. Damit erhalten wir nach Aufgabe 2 auch unmittelbar für den Fall eines endlichen $\mu$, dass $P_n\to P$ schwach.
+
+    Der zweite Fall, nämlich jener mit einem $\mu$ das nicht endlich ist, muss noch gezeigt werden.
+\end{proof}
