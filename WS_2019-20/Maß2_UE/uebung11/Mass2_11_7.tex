@@ -1,0 +1,34 @@
+\begin{lemma}
+    Die Levy-Prokhorov-Metrik ist eine Metrik auf der Menge $M:=\{F:\mathbb{R}\to\mathbb{R}\mid F \text{ ist eine Verteilungsfunktion}\}$.
+    \begin{center}
+        $d(F,G) := \inf\{\epsilon > 0~|~ \forall x \in \mathbb{R}: F(x-\epsilon) - \epsilon \leq G(x) \leq F(x+\epsilon) + \epsilon \}.$ 
+    \end{center}
+\end{lemma}
+\begin{proof}[Beweis.] Es sind drei Eigenschaften nachzuweisen.
+    \begin{description}
+    \item[(M1)] $d(F,G) = 0 \Leftrightarrow F = G$.
+
+    Aus $d(F,G) = 0$ folgt definitionsgemäß $F(x-\epsilon) - \epsilon \leq G(x) \leq F(x+\epsilon) + \epsilon$ für beliebig kleine $\epsilon > 0$. Da $F$ monoton nichtfallend ist, existieren der links- und rechtsseitige Grenzwert bei $x$ und mit $\epsilon \rightarrow 0$ erhält man $F(x-) \leq G(x) \leq F(x+)$. $F$ und $G$ stimmen also an allen Stetigkeitspunkten von $F$ überein. $F$ und $G$ haben als Verteilungsfunktionen nur abzählbar viele Unstetigkeitsstellen. Für jedes $x \in \mathbb{R}$ gibt es eine Folge $x_{k} \searrow x$, die nur aus Stetigkeitsstellen von F und G besteht. Daher gilt $F(x) = \lim\limits_{k}{F(x_k)} = \lim\limits_{k}{G(x_k)} = G(x)$.\newline Die andere Richtung ist klar.
+
+    \item[(M2)] $d(F,G) = d(G,F)$.
+
+    $E_{FG} := \{\epsilon > 0~|~\forall x \in \mathbb{R}: F(x-\epsilon) - \epsilon \leq G(x) \leq F(x+\epsilon) + \epsilon\},\newline E_{GF} := \{\epsilon > 0~|~\forall x \in \mathbb{R}: G(x-\epsilon) - \epsilon \leq F(x) \leq G(x+\epsilon) + \epsilon\}$.
+
+    Für alle $x \in \mathbb{R}$ gilt $G(x-\epsilon) - \epsilon \leq F(x) \Leftrightarrow G(x) \leq F(x+\epsilon) + \epsilon$; das erhält man sofort durch beidseitige Addition resp. Subtraktion von $\epsilon$, der Rechtsstetigkeit von $G$ und der Monotonie von $F$:
+    $G(x) = G(x-\epsilon) \leq F(x) + \epsilon \leq F(x+\epsilon) + \epsilon.$
+
+    Analog zeigt man $F(x-\epsilon) - \epsilon \leq G(x) \Leftrightarrow F(x) \leq G(x+\epsilon) + \epsilon$. Daher gilt $E_{FG}$ = $E_{GF}$ und folglich 
+    \begin{center}
+        $d(F,G) = \inf(E_{FG}) = \inf(E_{GF}) = d(G,F).$
+    \end{center}
+
+    \item[(M3)] $d(F,H) + d(H,G) \geq d(F,G)$.
+
+    Sei $d(F,H) \leq \epsilon_1$, $d(H,G) \leq \epsilon_2$. Dann gilt 
+
+    $F(x - \epsilon_1 - \epsilon_2) - \epsilon_1 - \epsilon_2 \leq H(x - \epsilon_2) + \epsilon_2 \leq G(x) \leq H(x + \epsilon_2) +\epsilon_2 \leq F(x + \epsilon_1 + \epsilon_2) + \epsilon_1 + \epsilon_2$, also $\epsilon_1+\epsilon_2 \in E_{FG}$ und somit $\epsilon_1 +\epsilon_2 \geq d(F,G)$.
+
+    Nun gilt $d(F,H) + d(H,G) = \inf\limits_{\epsilon_1 \in E_{FH}} \epsilon_1 + \inf\limits_{\epsilon_2 \in E_{HF}} \epsilon_2 = \inf\limits_{\epsilon_1 \in E_{FH},~\epsilon_2 \in E_{HF}} \epsilon_1 + \epsilon_2$. Infima erhalten Ungleichungen und wir die gewünschte Aussage.
+    \end{description}
+\end{proof}
+

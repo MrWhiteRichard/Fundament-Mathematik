@@ -2,20 +2,5 @@
     Wenn $(X_n)_{n\in\mathbb{N}}$ eine Folge von Zufallsvariablen auf dem Maßraum $(\Omega,\mathfrak{S},\mathbb{P})$ mit $\forall n\in\mathbb{N}:X_n:\Omega\to\mathbb{Z}$ ist dann konvergiert $X_n$ in Verteilung genau dann, wenn für alle $k\in\mathbb{Z}$ der Grenzwert $p_k:=\lim_{n\to\infty}\mathbb{P}(X_n=k)$ existiert und $\sum_{k\in\mathbb{Z}}p_k=1$ gilt.
 \end{lemma}
 \begin{proof}[Beweis.]
-    Zuerst wollen wir davon ausgehen, dass $X_n\to X$ in Verteilung gilt. Wählen wir nun ein beliebiges $k\in\mathbb{Z}$, dann gilt für alle $t\in]k-1,k[$, dass $F_{X_n}(t)=\mathbb{P}(X_n\leq t)=\mathbb{P}(X_n\leq(k-1))=F_{X_n}(k-1)$, also ist $F_{X_n}$ auf $]k-1,k[$ konstant und damit stetig und da $k$ beliebig ist können wir schließen, dass $F_{X_n}$ auf ganz $\mathbb{R}\setminus\mathbb{Z}$ stetig ist. Verwenden wir nun \cite[Satz 12.5]{GrillSkript}, so gilt
-    \begin{align*}
-        p_k:=\lim_{n\to\infty}\mathbb{P}(X_n=k)&=\lim_{n\to\infty}\left(F_{X_n}(k)-F_{X_n}(k-0)\right)\\
-        &=\lim_{n\to\infty}\left(F_{X_n}\left(k+\frac{1}{2}\right)-F_{X_n}\left(k-\frac{1}{2}\right)\right)\\
-        &=F_{X}\left(k+\frac{1}{2}\right)-F_{X}\left(k-\frac{1}{2}\right)\\
-        &=F_{X}(k)-F_{X}(k-0)=\mathbb{P}(X=k)\leq 1
-    \end{align*}
-    Außerdem gilt
-    \begin{align*}
-        \sum_{k\in\mathbb{Z}}p_k=\sum_{k\in\mathbb{Z}}\mathbb{P}(X=k)=\mathbb{P}\left(\sum_{k\in\mathbb{Z}}[X=k]\right)=\mathbb{P}(\Omega)=1
-    \end{align*}
-    Damit ist die eine Richtung (vielleicht nicht besonders schön und unter Umständen falsch) bewiesen.
-
-    Nun soll für alle $k\in\mathbb{Z}$ der Grenzwert $p_k:=\lim_{n\to\infty}\mathbb{P}(X_n=k)$ existieren und $\sum_{k\in\mathbb{Z}}p_k=1$ gelten. Die zweite Richtung fehlt.
-
-    Der ganze Beweis - soweit er bis jetzt geführt ist - sollte wohl nocheinmal überarbeitet werden.
+    Ausständig
 \end{proof}
