@@ -7,18 +7,4 @@
 \end{lemma}
 \begin{proof}[Beweis.]
     Der Satz von Radon Nikodym \cite[Satz 11.19]{zbMATH06257850} garantiert die Existenz der Dichten und deren Nichtnegativität sowie die Tatsache, dass $\mu$-fast überall $\forall n\in\mathbb{N}:f_n$ und $f$ reellwertig sind.
-    
-    Wir betrachten zuerst den Fall, dass $\mu$ endlich ist. Nun definieren wir eine Funktion
-    \begin{align*}
-        g:\mathbb{R}\to\overline{\mathbb{R}}:x\mapsto\sup\{f_n(x)\mid n\in\mathbb{N}\}
-    \end{align*}
-    Zuerst wollen wir (b) beweisen und in einem ersten Schritt $\int g\mathrm{d}\mu<\infty$ zeigen. Wir nehmen an $\esssup g=\infty$, das heißt $\forall c\in\mathbb{R}:\mu(g>c)>0$. Das heißt allerdings, dass wir für ein beliebiges $c\in\mathbb{R}$ für jedes $x\in[g>c]$ ein $n_x\in\mathbb{N}$ mit $f_{n_x}(x)\geq c$ wählen können. Nun können wir $[g>c]=\sum_{n\in\mathbb{N}}\{x\in\mathbb{R}\mid f_{n_x}>c\}$ schreiben und erkennen, dass es also ein $n_c\in\mathbb{N}$ und eine zugehörige Menge $B_c\in\mathfrak{B}$ mit $\mu(B_c)>0$ so geben muss, dass $\forall x\in B_c:f_{n_c}(x)\geq c$. Es gilt für alle $n\in\mathbb{N}:\int f_n\mathrm{d}\mu=1$, also $\esssup f_n<\infty$. Das heißt, dass mit größer werdendem $c$ sich auch das $n_c$ verändern muss. Das resultiert dann aber in $\esssup f=\infty$, was im Widerspruch zu $\int f\mathrm{d}\mu=1$ steht. 
-    
-    Also muss $\esssup g<\infty$ und weil $\mu$ endlich ist auch $\int g\mathrm{d}\mu<\infty$ gelten. Klarerweise gilt auch $\forall n\in\mathbb{N}:f_n\leq g$. Damit sind alle Voraussetzungen des Satzes von Lebesgue \cite[Satz 9.33]{zbMATH06257850} erfüllt und wir können diesen verwenden um für ein beliebiges $A\in\mathfrak{B}$
-    \begin{align*}
-        \lim_{n\to\infty}P_n(A)=\lim_{n\to\infty}\int_Af_n\mathrm{d}\mu=\int_A f\mathrm{d}\mu=P(A)
-    \end{align*}
-    und damit $P_n\to P$ stark zu erhalten. Damit erhalten wir nach Aufgabe 2 auch unmittelbar für den Fall eines endlichen $\mu$, dass $P_n\to P$ schwach.
-
-    Der zweite Fall, nämlich jener mit einem $\mu$ das nicht endlich ist, muss noch gezeigt werden.
 \end{proof}
