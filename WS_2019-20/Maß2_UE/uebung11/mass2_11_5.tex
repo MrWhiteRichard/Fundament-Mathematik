@@ -22,24 +22,26 @@ Zu zeigen: $\exists n_0 \in \mathbb{N}: \forall n > n_0, \forall x: | F_n(x) - F
 Wähle $n_0: \forall x: F(x - \epsilon) - \epsilon \leq F_n(x) \leq F(x + \epsilon) $ und vice versa.
 Mit der Dreiecksungleichung erhalten wir:
 \begin{align*}
-  &\forall x: | F(x) - F_n(x)| \leq | F(x) - F(x + \epsilon) | + | F(x + \epsilon) - F_n(x) | \\
+  &\forall x: | F(x) - F_n(x)| \leq | F(x) - F(x + \delta) | + | F(x + \delta) - F_n(x) | \\
 \end{align*}
-Da $F_n$ als Verteilungsfunktion rechtsstetig ist, konvergiert der zweite Ausdruck für $\lim_{\epsilon \rightarrow 0}$ gegen Null.
-Das ist doch alles Blödsinn, was soll denn das. Das hat ja nix mit gleichmäßiger Konvergenz zu tun. :( \\
-Naja, sagen wir halt es ist gleichmäßig stetig. Weiter geht's! \\
-Betrachten wir nun den ersten Term. Mit einigen Umformungen erhalten wir aus der Konvergenz der Lèvy-Prohorov-Metrik:
+Wir wissen aus der Analysis, dass stetige, monotone, beschränkte Funktionen sogar gleichmäßig stetig sind. Da $F$ eine solche Funktion ist können wir den ersten Term gleichmäßig klein machen, wenn wir $\delta$ hinreichend klein wählen.
+
+Betrachten wir nun den zweiten Term. Mit einigen Umformungen erhalten wir aus der Konvergenz der Lèvy-Prohorov-Metrik:
 \begin{align*}
- \forall x: F(x) - F_n(x + \epsilon) < \epsilon \tag{\textit{iii}} \label{eq:third} \\
- \forall x: F_n(x + \epsilon) - F(x + 2\epsilon) < \epsilon \tag{\textit{iv}} \label{eq:forth} \\
+ \forall x: F(x) - F_n(x + \delta) \leq \delta \tag{\textit{iii}} \label{eq:third} \\
+ \forall x: F(x)\leq F_n(x+\delta)+\delta\Leftrightarrow 0<\delta\leq F_n(x+\delta)-F(x)\tag{\textit{iv}} \label{eq:forth} \\
 \end{align*}
-Wir wissen aus der Analysis, dass stetige, monotone, beschränkte Funktionen sogar gleichmäßig stetig sind.
-Also ist $F$ gleichmäßig stetig und:
+Nun gilt wegen 
 \begin{align*}
-  \forall x: F(x) - F(x - 2\epsilon) < \epsilon_1
+  \forall x: F_n(x+\delta)-\delta\leq F(x+2\delta)\Leftrightarrow F_n(x+\delta)\leq F(x+2\delta)+\delta
 \end{align*}
-Daraus folgt schließlich:
+auch
 \begin{align*}
-  \forall x: | F(x) - F_n(x + \epsilon) | < \epsilon + \epsilon_1
+  \forall x: 0<F_n(x+\delta)-F(x)\leq F(x+2\delta)+\delta-F(x)
 \end{align*}
-Und somit haben wir die gleichmäßige Konvergenz gezeigt.
+Wegen der gleichmäßigen Setigkeit von $F$ können wir nun auch diesen Ausdruck für hinreichend kleines $\delta$ klein machen, also erhalten wir gemeinsam mit \ref{eq:third}
+\begin{align*}
+  \forall x:\vert F(x+\delta)-F_n(x)\vert<\frac{\epsilon}{2}
+\end{align*}
+Damit haben wir auch den zweiten Term gleichmäßig abgeschätzt und erhalten insgesamt die gleichmäßige Konvergenz.
 \end{proof}
