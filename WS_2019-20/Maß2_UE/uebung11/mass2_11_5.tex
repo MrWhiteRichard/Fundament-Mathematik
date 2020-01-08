@@ -1,0 +1,45 @@
+\begin{lemma}
+    Zeigen Sie: Wenn $F$ eine stetige Verteilungsfunktion ist, dann konvergiert die Folge $(F_n)_{n \in \mathbb{N}}$ genau dann
+    schwach gegen $F$, wenn sie gleichmäßig konvergiert.
+\end{lemma}
+\begin{proof}[Beweis.]
+    Laut Satz 12.5 des Vorlesungsskript ist die schwache Konvergenz äquivalent zu
+
+    \begin{align*}
+    &\forall x \in \mathcal{C}(F): \lim_{n \rightarrow \infty} F_n(x) = F(x) \tag{\textit{i}} \label{eq:first} \\
+    &\lim_{n \rightarrow \infty} d(F_n,F) := \inf \{\epsilon \geq 0: \forall x: F_n(x - \epsilon) - \epsilon \leq F(x) \leq F_n(x + \epsilon) + \epsilon\} = 0, \tag{\textit{ii}} \label{eq:second} \\
+\end{align*}
+    wobei $\mathcal{C}(F)$ die Menge aller Stetigkeitspunkte von F bezeichnet.
+    Aus \ref{eq:second} erhalten wir:
+\begin{align*}
+    &\forall \delta > 0~ \exists n_0 \in \mathbb{N}: \forall n > n_0: d(F_n,F) < \delta\\
+    \Longleftrightarrow \hspace{10mm} &\forall \delta > 0~ \exists n_0 \in \mathbb{N}: \exists \epsilon_0 < \delta: \forall \epsilon > \epsilon_0: \forall x: F_n(x - \epsilon) - \epsilon \leq F(x) \leq F_n(x + \epsilon) \\
+    \Longleftrightarrow \hspace{10mm} &\forall \delta > 0~ \exists n_0 \in \mathbb{N}: \exists \epsilon_0 < \delta: \forall \epsilon > \epsilon_0: \forall x: F(x - \epsilon) - \epsilon \leq F_n(x) \leq F(x + \epsilon) \\
+\end{align*}
+Also reicht es aus zu zeigen, dass aus der punktweisen Konvergenz der $(F_n)_{n \in \mathbb{N}}$ die gleichmäßige Konvergenz jener Folge folgt.
+Sei $\epsilon > 0$ beliebig. \\
+Zu zeigen: $\exists n_0 \in \mathbb{N}: \forall n > n_0, \forall x: | F_n(x) - F(x) | < \epsilon $\\
+Wähle $n_0: \forall x: F(x - \epsilon) - \epsilon \leq F_n(x) \leq F(x + \epsilon) $ und vice versa.
+Mit der Dreiecksungleichung erhalten wir:
+\begin{align*}
+  &\forall x: | F(x) - F_n(x)| \leq | F(x) - F_n(x + \epsilon | + | F_n(x + \epsilon) - F_n(x) | \\
+\end{align*}
+Da $F_n$ als Verteilungsfunktion rechtsstetig ist, konvergiert der zweite Ausdruck für $\lim_{\epsilon \rightarrow 0}$ gegen Null.
+Das ist doch alles Blödsinn, was soll denn das. Das hat ja nix mit gleichmäßiger Konvergenz zu tun. :( \\
+Naja, sagen wir halt es ist gleichmäßig stetig. Weiter geht's! \\
+Betrachten wir nun den ersten Term. Mit einigen Umformungen erhalten wir aus der Konvergenz der Lèvy-Prohorov-Metrik:
+\begin{align*}
+ \forall x: F(x) - F_n(x + \epsilon) < \epsilon \tag{\textit{iii}} \label{eq:third} \\
+ \forall x: F_n(x + \epsilon) - F(x + 2\epsilon) < \epsilon \tag{\textit{iv}} \label{eq:forth} \\
+\end{align*}
+Wir wissen aus der Analysis, dass stetige, monotone, beschränkte Funktionen sogar gleichmäßig stetig sind.
+Also ist $F$ gleichmäßig stetig und:
+\begin{align*}
+  \forall x: F(x) - F(x - 2\epsilon) < \epsilon_1
+\end{align*}
+Daraus folgt schließlich:
+\begin{align*}
+  \forall x: | F(x) - F_n(x + \epsilon) | < \epsilon + \epsilon_1
+\end{align*}
+Und somit haben wir die gleichmäßige Konvergenz gezeigt.
+\end{proof}
