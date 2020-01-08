@@ -1,0 +1,47 @@
+\begin{align}
+\begin{array}{cccccc}
+    Q_{h_0}^{(1)}(f) = a_{0,0}
+    &&&&& \\
+    & \searrow &&&& \\
+    Q_{h_1}^{(1)}(f) = a_{1,0}
+    & \rightarrow &
+    a_{0,1}
+    &&& \\
+    & \searrow && \searrow && \\
+    Q_{h_2}^{(1)}(f) = a_{2,0}
+    & \rightarrow &
+    a_{1,1}
+    & \rightarrow &
+    a_{0,2}
+    & \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{array}
+\label{neville_aitken}
+\end{align}
+
+\begin{align}
+    a_{j, 0}
+    & = Q_{h_j}^{(1)}(f),
+    & j \in \N_0
+    \label{rekursions_basis} \\
+    a_{j, i}
+    & = a_{j, i-1} +
+    \frac
+    {
+        a_{i, i-1} -
+        a_{j+1, i-1}
+    }{
+        \pbraces
+        {
+            \frac
+            {
+                h_{j+i}
+            }{
+                h_j
+            }
+        }^2 -
+        1
+    },
+    & i \in \N, \quad j \in \N_0
+    \label{rekursions_schritt}
+\end{align}

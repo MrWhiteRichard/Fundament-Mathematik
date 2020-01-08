@@ -1,0 +1,58 @@
+\begin{align*}
+    Q_{h_1}^{(1)}(f)
+    & = \frac{h_1}{2}
+        \pbraces
+        {
+            f(a) +
+            2 \sum_{i=1}^{n_1 - 1} f(y_i) +
+            f(b)
+        } \\
+    & = \frac{h_0}{4}
+        \pbraces
+        {
+            f(a) +
+            2 \sum_{i=1}^{2 n_0 - 1} f(y_i) +
+            f(b)
+        } \\
+    & = \frac{h_0}{4}
+        \pbraces
+        {
+            f(a) +
+            2 \pbraces
+            {
+                \sum_{i=1}^{n_0 - 1} f(y_{2i}) +
+                \sum_{i=1}^{n_0} f(y_{2i-1})
+            }
+            f(b)
+        } \\
+    & = \frac{h_0}{4}
+        \pbraces
+        {
+            f(a) +
+            2 \pbraces
+            {
+                \sum_{i=1}^{n_0 - 1} f(x_i) +
+                \sum_{i=1}^{n_0} f \pbraces{\frac{x_{i-1} - x_i}{2}}
+            } +
+            f(b)
+        } \\
+    & = \frac{1}{2}
+        \pbraces
+        {
+            \frac{h_0}{2}
+            \pbraces
+            {
+            f(a) +
+            2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+            f(b)
+            } +
+            h_0 \sum_{i=1}^{n_0} f \pbraces{\frac{x_{i-1} - x_i}{2}}
+        } \\
+    & = \frac{1}{2}
+        \pbraces
+        {
+            Q_{h_0}^{(1)}(f) +
+            h_0 \sum_{i=1}^{n_0} f \pbraces{\frac{x_{i-1} - x_i}{2}}
+        }
+    \label{effiziente_extrapolation}
+\end{align*}

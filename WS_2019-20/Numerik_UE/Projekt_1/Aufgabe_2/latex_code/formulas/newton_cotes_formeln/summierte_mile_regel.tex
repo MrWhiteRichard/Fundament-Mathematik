@@ -1,0 +1,86 @@
+\begin{align*}
+    & Q_h^{(4)}(f) \\
+    & = \sum_{i=1}^n Q^{(4)}(f|_{[x_{i-1}, x_i]}) \\
+    & = \sum_{i=1}^n
+        \frac{x_i - x_{i-1}}{90}
+        \pbraces
+        {
+            7  f(x_{i-1}) + 
+            32 f \pbraces{\frac{3 x_{i-1} + x_i}{4}} +
+            12 f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+            32 f \pbraces{\frac{x_{i-1} + 3 x_i}{4}} +
+            7  f(x_i)
+        } \\
+    & = \frac{h}{90}
+        \pbraces
+        {
+            7  \sum_{i=1}^n f(x_{i-1}) + 
+            32 \sum_{i=1}^n f \pbraces{\frac{3 x_{i-1} + x_i}{4}} +
+            12 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+            32 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + 3 x_i}{4}} +
+            7  \sum_{i=1}^n f(x_i)
+        } \\
+    & = \frac{1}{15}
+        \Bigg (
+            \frac{7h}{6}
+            \pbraces
+            {
+                  \sum_{i=1}^n f(x_{i-1}) +
+                4 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+                  \sum_{i=1}^n f(x_i)
+            } \\
+    & +
+            \frac{h}{6}
+            \pbraces
+            {
+                32 \sum_{i=1}^n f \pbraces{\frac{3 x_{i-1} + x_i}{4}} -
+                16 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+                32 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + 3 x_i}{4}}
+            }
+        \Bigg ) \\
+    & = \frac{1}{15}
+        \Bigg (
+            7 Q_h^{(2)}(f) \\
+    & +
+            \frac{h}{6}
+            \pbraces
+            {
+                32 \sum_{i=1}^n f \pbraces{\frac{3 x_{i-1} + x_i}{4}} -
+                16 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+                32 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + 3 x_i}{4}}
+            }
+        \Bigg )
+\end{align*}
+
+\begin{align*}
+    & Q_h^{(4)}(f) \\
+    & = \frac{1}{15}
+        \Bigg (
+            \frac{h}{6}
+            \pbraces
+            {
+                f(a) +
+                4 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+                2 \sum_{i=1}^{n-1} f(x_i) +
+                f(b)
+            } \\
+    & +
+            \frac{h}{6}
+            \pbraces
+            {
+                32 \sum_{i=1}^n f \pbraces{\frac{3 x_{i-1} + x_i}{4}} -
+                16 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+                32 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + 3 x_i}{4}}
+            }
+        \Bigg ) \\
+    & = \frac{h}{90}
+        \pbraces
+        {
+            7 f(a) +
+            32 \sum_{i=1}^n f \pbraces{\frac{3 x_{i-1} + x_i}{4}} +
+            12 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + x_i}{2}} +
+            14 \sum_{i=1}^{n-1} f(x_i) +
+            32 \sum_{i=1}^n f \pbraces{\frac{x_{i-1} + 3 x_i}{4}} +
+            7 f(b)
+        }
+\end{align*}
