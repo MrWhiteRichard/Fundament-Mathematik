@@ -16,11 +16,11 @@
     \begin{align*}
         F:\mathbb{R}\to\mathbb{R}:x\mapsto\sum_{k=-\infty}^{\lfloor x\rfloor}p_k
     \end{align*}
-    Es gilt (hoffentlich) für alle $x\in\mathbb{R}$
+    Wir wählen zusätzlich $k_n \in \mathbb{Z}$, sodass: $\lim_{n\to\infty}F(k_n) = 0$. \\
+    Es gilt für alle $x\in\mathbb{R}$
     \begin{align*}
-        \lim_{n\to\infty}F_n(x)&=\lim_{n\to\infty}\sum_{k=-\infty}^{\lfloor x\rfloor}P(X_n=k)\\
-        &=\sum_{k=-\infty}^{\lfloor x\rfloor}\lim_{n\to\infty}P(X_n=k)\\
-        &=\sum_{k=-\infty}^{\lfloor x\rfloor}p_k=F(x),
+        \lim_{n\to\infty}| F_n(x) - F(x) | &=|\lim_{n\to\infty}\sum_{k=-\infty}^{k_n}P(X_n=k) - p_k + \sum_{k= k_n + 1}^{\lfloor x\rfloor}P(X_n=k) + p_k |\\
+        &=\sum_{k= k_n + 1}^{\lfloor x\rfloor}\lim_{n\to\infty}P(X_n=k) - p_k = \sum_{k= k_n + 1}^{\lfloor x\rfloor}0
     \end{align*}
-    wobei die Grenzwertvertauschung wegen ??????(manche behaupten Fubini, ich habs noch nicht verstanden) gemacht werden darf. Da weiters $F(-\infty)=0$ und $F(\infty)=1$ ist $F$ eine Verteilungsfunktion im engeren Sinn und $F_n\to F$ in allen Stetigkeitspunkten von $F$. Also gilt für $X\sim F$, dass $X_n\to X$ in Verteilung.
+Da weiters $F(-\infty)=0$ und $F(\infty)=1$ ist $F$ eine Verteilungsfunktion im engeren Sinn und $F_n\to F$ in allen Stetigkeitspunkten von $F$. Also gilt für $X\sim F$, dass $X_n\to X$ in Verteilung.
 \end{proof}
