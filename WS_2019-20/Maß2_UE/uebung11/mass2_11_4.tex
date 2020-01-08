@@ -11,4 +11,16 @@
         &=F(k)-F(k-1)=P(X=k)=:p_k
     \end{align*}
     Da $P$ ein Wahrscheinlichkeitsmaß ist und $X$ nach unseren obigen Überlegungen nur Werte in $\mathbb{Z}$ annehmen kann gilt $\sum_{k\in\mathbb{Z}}p_k=1$
+
+    Um die andere Richtung zu beweisen definieren wir eine Verteilungsfunktion
+    \begin{align*}
+        F:\mathbb{R}\to\mathbb{R}:x\mapsto\sum_{k=-\infty}^{\lfloor x\rfloor}p_k
+    \end{align*}
+    Es gilt (hoffentlich) für alle $x\in\mathbb{R}$
+    \begin{align*}
+        \lim_{n\to\infty}F_n(x)&=\lim_{n\to\infty}\sum_{k=-\infty}^{\lfloor x\rfloor}P(X_n=k)\\
+        &=\sum_{k=-\infty}^{\lfloor x\rfloor}\lim_{n\to\infty}P(X_n=k)\\
+        &=\sum_{k=-\infty}^{\lfloor x\rfloor}p_k=F(x),
+    \end{align*}
+    wobei die Grenzwertvertauschung wegen ??????(manche behaupten Fubini, ich habs noch nicht verstanden) gemacht werden darf. Da weiters $F(-\infty)=0$ und $F(\infty)=1$ ist $F$ eine Verteilungsfunktion im engeren Sinn und $F_n\to F$ in allen Stetigkeitspunkten von $F$. Also gilt für $X\sim F$, dass $X_n\to X$ in Verteilung.
 \end{proof}
