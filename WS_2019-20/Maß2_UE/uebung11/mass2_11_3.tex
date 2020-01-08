@@ -7,4 +7,15 @@
 \end{lemma}
 \begin{proof}[Beweis.]
     Der Satz von Radon Nikodym \cite[Satz 11.19]{zbMATH06257850} garantiert die Existenz der Dichten und deren Nichtnegativität sowie die Tatsache, dass $\mu$-fast überall $\forall n\in\mathbb{N}:f_n$ und $f$ reellwertig sind.
+
+    Wir erhalten zuerst
+    \begin{align*}
+        \lim_{n\to\infty}\Vert f_n\Vert_1=\lim_{n\to\infty}\int f_n\mathrm{d}\mu=\lim_{n\to\infty}1=1=\int f\mathrm{d}\mu=\Vert f\Vert_1.
+    \end{align*}
+    Nach \cite[Satz 13.24]{zbMATH06257850} gilt demnach $\lim_{n\to\infty}\int \vert f_n-f\vert\mathrm{d}\mu=0$. Nun können wir für ein beliebiges $A\in\mathfrak{B}$
+    \begin{align*}
+        \left\vert P_n(A)-P(A)\right\vert&=\left\vert \int_Af_n\mathrm{d}\mu-\int_Af\mathrm{d}\mu\right\vert=\left\vert \int_A(f_n-f)\mathrm{d}\mu\right\vert\\
+        &\leq\int_A\vert f_n-f\vert\mathrm{d}\mu\leq\int\vert f_n-f\vert\mathrm{d}\mu
+    \end{align*}
+    Der letzte Term wird für hinreichend große $n$ beliebig klein, weshalb $\lim_{n\to\infty}P_n(A)=P(A)$, also $P_n\to P$ stark und damit (b) folgt. Aus Aufgabe 2 wissen wir nun, dass unmittelbar auch $P_n\to P$ schwach, also (a) gilt.
 \end{proof}

@@ -2,8 +2,13 @@
     Wenn $(X_n)_{n\in\mathbb{N}}$ eine Folge von Zufallsvariablen auf dem Maßraum $(\Omega,\mathfrak{S},\mathbb{P})$ mit $\forall n\in\mathbb{N}:X_n:\Omega\to\mathbb{Z}$ ist dann konvergiert $X_n$ in Verteilung genau dann, wenn für alle $k\in\mathbb{Z}$ der Grenzwert $p_k:=\lim_{n\to\infty}\mathbb{P}(X_n=k)$ existiert und $\sum_{k\in\mathbb{Z}}p_k=1$ gilt.
 \end{lemma}
 \begin{proof}[Beweis.]
-    Wir zeigen zuerst die Hinrichtung, also $\Rightarrow$. Betrachte dazu
+    Wir zeigen zuerst die Hinrichtung, also "$\Rightarrow$". In einem ersten Schritt wollen wir zeigen, dass $F$ auf ganz $\mathbb{R}\setminus\mathbb{Z}$ stetig ist. Dafür wählen wir ein beliebiges $x\in\mathbb{R}\setminus\mathbb{Z}$ und ein $\epsilon>0$ so, dass $U_\epsilon(x)\cap\mathbb{Z}=\emptyset$ gilt. Da die $X_n$ nur Werte in $\mathbb{Z}$ annehmen muss für alle $n\in\mathbb{N}$ gelten, dass $F_n\vert_{U_\epsilon(x)}$ konstant ist. Aus der Charakterisierung der Stetigkeit durch die Levy-Metrik wissen wir, dass es für alle $\delta>0$ ein $n_0\in\mathbb{N}$ so gibt, das für alle $n\geq n_0:F_n(x-\delta)-\delta\leq F(x)\leq F_n(x+\delta)+\delta$ gilt. Daraus erhält man unmittelbar $F_n(x)\to F(x)$ und da die $F_n\vert_{U_\epsilon(x)}$ konstant ist muss auch der Grenzwert für alle Punkte der gleiche sein, also $F\vert_{U_\epsilon(x)}$ konstant und damit $F$ auf $\mathbb{R}\setminus\mathbb{Z}$ stetig. Die Werte von $F$ in $\mathbb{Z}$ ergeben sich nun schon automatisch durch die Rechtsstetigkeit von $F$. Betrachte dazu
     \begin{align*}
-        \lim_{n\to\infty} P(X_n = k) =
+        \lim_{n\to\infty}P(X_n = k)&=\lim_{n\to\infty}\left(\sum_{j=-\infty}^kP(X_n=j)-\sum_{j=-\infty}^{k-1}P(X_n=j)\right)\\
+        &=\lim_{n\to\infty}\left(F_n(k)-F_n(k-1)\right)\\
+        &=\lim_{n\to\infty}\left(F_n\left(k+\frac{1}{2}\right)-F_n\left(k-\frac{1}{2}\right)\right)\\
+        &=F\left(k+\frac{1}{2}\right)-F\left(k-\frac{1}{2}\right)\\
+        &=F(k)-F(k-1)=P(X=k)=:p_k
     \end{align*}
+    Da $P$ ein Wahrscheinlichkeitsmaß ist und $X$ nach unseren obigen Überlegungen nur Werte in $\mathbb{Z}$ annehmen kann gilt $\sum_{k\in\mathbb{Z}}p_k=1$
 \end{proof}
