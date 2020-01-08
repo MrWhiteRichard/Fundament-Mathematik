@@ -3,6 +3,60 @@
     \begin{itemize}
         \item[(a)] Seien $(X_n)$ und $(Y_n)$ Folgen von Zufallsvariablen sowie $X$ eine Zufallsvariable auf dem Maßraum $(\Omega,\mathfrak{S},P)$. Es gelte $X_n\to X$ in Verteilung und $Y_n\to 0$ in Wahrscheinlichkeit. Dann gilt $X_n+Y_n\to X$ in Verteilung.
         \item[(b)] Konvergiert eine Folge $X_n$ auf dem Maßraum $(\Omega,\mathfrak{S},P)$ in Wahrscheinlichkeit gegen $X$, so gilt auch $X_n\to X$ in Verteilung.
-        \item[(c)] Eine Folge $X_n$ auf dem Maßraum $(\Omega,\mathfrak{S},P)$ konvergiert in Verteilung gegen $0$ genau dann, wenn $X_n$ in Verteilung konvergiert.  
+        \item[(c)] Eine Folge $X_n$ auf dem Maßraum $(\Omega,\mathfrak{S},P)$ konvergiert in Verteilung gegen $0$ genau dann, wenn $X_n$ in Verteilung gegen 0 konvergiert.
     \end{itemize}
 \end{lemma}
+\begin{proof}[Beweis.]
+(a): \\
+Durch Einsetzen in die Definition, sowie Satz 12.5 erhalten wir:
+\begin{align*}
+&\forall \epsilon > 0:  \lim_{n \rightarrow \infty} \mathbb{P}(| Y_n | > \epsilon) = 0  \tag{\textit{i}} \label{eq:first} \\
+&\lim_{n \rightarrow \infty} d(X_n,X) := \inf \{\epsilon \geq 0: \forall x: X_n(x - \epsilon) - \epsilon \leq X(x) \leq X_n(x + \epsilon) + \epsilon\} = 0 \tag{\textit{ii}} \label{eq:second} \\
+\end{align*}
+Wir zeigen:
+\begin{align*}
+  \forall x \in \mathcal{C}(F_X): \lim_{n \rightarrow \infty} F_{X_n}(x) + F_{Y_n}(x) = F_X(x)& \\
+  | F_{X_n}(x) + F_{Y_n}(x) - F_X(x) | = | \mathbb{P}(X_n + Y_n \leq x) - \mathbb{P}(X \leq x) | &\leq \\
+  | \mathbb{P}(X_n + Y_n \leq x) - \mathbb{P}(X_n \leq x) | + | \mathbb{P}(X_n \leq x) - \mathbb{P}(X \leq x) |
+\end{align*}
+Der zweite Term lässt sich dabei aufgrund der schwachen Konvergenz von $X_n$ gegen $X$ zu Null diskutieren.
+\begin{align*}
+  | &\mathbb{P}(X_n + Y_n \leq x) - \mathbb{P}(X_n \leq x) | &\leq \\
+  | &\mathbb{P}([X_n + Y_n \leq x] \cap [|Y_n| < \epsilon]) - \mathbb{P}([X_n \leq x] \cap [|Y_n| \geq \epsilon]) | &\leq \\
+  | &\mathbb{P}([|Y_n| < \epsilon]) | + | \mathbb{P}([X_n \leq x + \epsilon]\backslash ([X_n + Y_n \leq x] \cap [|Y_n| < \epsilon])) |
+  + | \mathbb{P}([X_n \leq x]) - \mathbb{P}([X_n \leq x + \epsilon]) |
+\end{align*}
+Jetzt wird der Ausdruck schon wieder ziemlich lang, Zeit Ballast abzuwerfen: \\
+Der erste Ausdruck konvergiert aufgrund \ref{eq:first} gegen 0 und der letzte wegen der Rechtsstetigkeit von Verteilungsfunktionen. \\
+Und munter weiter:
+\begin{align*}
+  | \mathbb{P}([X_n \leq x + \epsilon] \backslash ([X_n + Y_n \leq x] \cap [|Y_n| \leq \epsilon])) | &\leq \\
+  | \mathbb{P}([X_n \leq x + \epsilon] \cap [X_n + Y_n > x]) + \mathbb{P}([X_n \leq x + \epsilon] \cap [|Y_n| > \epsilon]) | &
+\end{align*}
+Mal wieder lassen wir den zweiten Ausdruck verschwinden.
+\begin{align*}
+  | \mathbb{P}([X_n \leq x + \epsilon] \cap [X_n + Y_n > x])| &\leq \\
+  | \mathbb{P}([x - Y_n < X_n \leq x + \epsilon] \cap [|Y_n| \leq \epsilon]) +  \mathbb{P}([x - Y_n < X_n \leq x + \epsilon] \cap [|Y_n| > \epsilon])|
+\end{align*}
+Selber Trick wie immer.
+\begin{align*}
+  | \mathbb{P}([x - Y_n < X_n \leq x + \epsilon] \cap [|Y_n| \leq \epsilon]) | &\leq \\
+  | \mathbb{P}([x - \epsilon \leq X_n \leq x + \epsilon]) | &= \\
+  | F_{X_n}(x + \epsilon) - F_{X_n}(x - \epsilon) |
+\end{align*}
+Um diese letzte Hürde noch zu bezwingen müssen wir wieder die Lèvy-Prohorov-Metrik zurate ziehen:
+\begin{align*}
+  | F_{X_n}(x + \epsilon) - F_{X_n}(x - \epsilon) | &\leq \\
+  | 2\epsilon + F_X(x + 2\epsilon) - F_X(x -2\epsilon) |
+\end{align*}
+Und dieser Ausdruck verschwindet schließlich, da wir $x$ als Stetigkeitspunkt von $F_X$ vorausgesetzt haben. \\
+(b): \\
+Folgt direkt aus (a), wenn man für die Folge $X_n$ die konstante Nullfolge wählt. \\
+(c): \\
+Aus (b) erhalten wir die Rückrichtung der Aussage, Satz 17.5. Kusolitsch liefert uns die Hinrichtung:
+\begin{satz}\textbf{17.5.}\\
+Sind $X_n$ Zufallsvariablen auf beliebigen Wahrscheinlichkeitsräumen $(\Omega_n, \Sigma_n, \mathbb{P}_n)$, dann folgt aus
+$X_n \implies a, a \in \mathbb{R} $ auch
+\[\forall \epsilon > 0: \lim_{n \rightarrow \infty} \mathbb{P}_n(|X_n - a| > \epsilon) = 0 \]
+\end{satz}
+\end{proof}
