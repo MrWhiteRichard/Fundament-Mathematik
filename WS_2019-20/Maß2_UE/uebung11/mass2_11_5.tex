@@ -28,13 +28,12 @@ Wir wissen aus der Analysis, dass stetige, monotone, beschränkte Funktionen sog
 
 Betrachten wir nun den zweiten Term. Mit einigen Umformungen erhalten wir aus der Konvergenz der Lèvy-Prohorov-Metrik:
 \begin{align*}
- \forall x: F(x) - F_n(x + \delta) \leq \delta \tag{\textit{iii}} \label{eq:third} \\
- \forall x: F_n(x+\delta)-\delta\leq F(x+2\delta)\Leftrightarrow F_n(x+\delta)\leq F(x+2\delta)+\delta\tag{\textit{iv}} \label{eq:forth} \\
+ \forall x: F_n(x)- F(x+\delta)\leq \delta \tag{\textit{iii}} \label{eq:third} \\
+ \forall x: F(x-\delta)-\delta\leq F_n(x)\tag{\textit{iv}} \label{eq:forth} \\
 \end{align*}
-Nun gilt wegen \eqref{eq:forth}
-auch
+Nun gilt wegen \eqref{eq:forth} auch
 \begin{align*}
-  \forall x: F_n(x+\delta)-F(x)\leq F(x+2\delta)+\delta-F(x)
+  \forall x: F(x+\delta)-F_n(x)\leq F(x+\delta)-(F(x-\delta)-\delta)=F(x+\delta)-F(x-\delta)+\delta
 \end{align*}
 Wegen der gleichmäßigen Setigkeit von $F$ können wir nun auch diesen Ausdruck für hinreichend kleines $\delta$ gleichmäßig klein machen, also erhalten wir gemeinsam mit \eqref{eq:third}
 \begin{align*}
