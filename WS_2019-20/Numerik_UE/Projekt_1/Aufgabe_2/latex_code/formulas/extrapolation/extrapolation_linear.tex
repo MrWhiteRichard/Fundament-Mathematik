@@ -1,0 +1,102 @@
+\begin{align*}
+    a_{0,1}
+    & = Q_{h_0}^{(1)}(f) +
+        \frac
+        {Q_{h_0}^{(1)}(f) - Q_{h_1}^{(1)}(f)}
+        {\pbraces{\frac{1}{2}}^2 - 1} \\
+    & = \frac{1}{3}
+        \pbraces
+        {
+            - Q_{h_0}^{(1)}(f)
+            + 4 Q_{h_1}^{(1)}(f)
+        } \\
+    & = \frac{1}{3}
+        \pbraces
+        {
+            - \frac{h_0}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+                f(b)
+            }
+            + 4 \frac{h_1}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{n_1 - 1} f(y_i) +
+                f(b)
+            }
+        } \\
+    & = \frac{1}{3}
+        \pbraces
+        {
+            - \frac{h_0}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+                f(b)
+            }
+            + \frac{2 h_0}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{2 n_0 - 1} f(y_i) +
+                f(b)
+            }
+        } \\
+    & = \frac{h_0}{3}
+        \pbraces
+        {
+            - \frac{1}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+                f(b)
+            }
+            + \pbraces
+            {
+                f(a) +
+                2 \pbraces
+                {
+                    \sum_{i=1}^{n_0} f(y_{2i-1}) +
+                    \sum_{i=1}^{n_0-1} f(y_{2i})
+                } +
+                f(b)
+            }
+        } \\
+    & = \frac{h_0}{3}
+        \pbraces
+        {
+            - \frac{1}{2}
+            \pbraces
+            {
+                f(a) +
+                2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+                f(b)
+            }
+            + \pbraces
+            {
+                f(a) +
+                2 \pbraces
+                {
+                    \sum_{i=1}^{n_0}
+                    f \pbraces{\frac{x_{i-1} - x_i}{2}} +
+                    \sum_{i=1}^{n_0-1} f(x_i)
+                } +
+                f(b)
+            }
+        } \\
+    & = \frac{h_0}{6}
+        \pbraces
+        {
+            f(a) +
+            4 \sum_{i=1}^{n_0}
+            f \pbraces{\frac{x_{i-1} - x_i}{2}} +
+            2 \sum_{i=1}^{n_0 - 1} f(x_i) +
+            f(b)
+        } \\
+    & = Q_{h_0}^{(2)}(f)
+\end{align*}

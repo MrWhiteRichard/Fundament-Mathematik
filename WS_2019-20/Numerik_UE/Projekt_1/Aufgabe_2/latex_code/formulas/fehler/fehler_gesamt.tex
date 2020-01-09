@@ -1,0 +1,32 @@
+\begin{align*}
+    \epsilon_h^{(1)}(g_1)
+    & = \vbraces
+        {
+            Q(g_1) - Q_h^{(1)}(g_1)
+        }
+    =   \vbraces
+        {
+            \sum_{i=0}^{n-1} Q(g_1|_{[hi, h(i+1)]}) -
+            \sum_{i=0}^{n-1} Q^{(1)}(g_1|_{[hi, h(i+1)]})
+        } \\
+    & \leq
+        \sum_{i=0}^{n-1} \vbraces
+        {
+            Q(g_1|_{[hi, h(i+1)]}) -
+            Q^{(1)}(g_1|_{[hi, h(i+1)]})
+        }
+    =   \epsilon_h^{(1)}(g_1|_{[0, h]}) +
+        \sum_{i=1}^{n-1} \epsilon_h^{(1)}(g_1|_{[hi, h(i+1)]}) \\
+    & \leq
+        \frac{1}{6} \sqrt{h}^3 +
+        \sum_{i=1}^{n-1} \frac{\sqrt{h}^3}{48 \sqrt{i}^3}
+    =   \underbrace
+        {
+            \frac{1}{6}
+            \pbraces
+            {
+                1 + \frac{1}{8} \sum_{i=1}^{n-1} \frac{1}{i^\frac{3}{2}}
+            }
+        }_{ =: \, C}
+        \sqrt{h}^3
+\end{align*}
