@@ -12,26 +12,41 @@ in $C[-1,1]$ gibt.
 
 \begin{solution}
 
-Setzen wir
+Betrachte die, auf dem vollständigen metrischen Raum $(C[-1, 1], d_\infty)$ lebende, Selbstabbildung
+
 \begin{equation*}
-  T(u) :=  x + \frac{1}{2}\sin(u(x)+x)
+  T: u \mapsto \pbraces{x \mapsto x + \frac{1}{2}\sin(u(x)+x)}.
 \end{equation*}
-so sehen wir dass $T: C[-1,1] \rightarrow C[-1,1]$.
-Aus dem MWS der Differentialrechnung erhalten wir für $a,b \in \R$
-(Da $\sin^\prime = \cos$)
+
+Da $\sin^\prime = \cos$, erhalten wir aus dem MWS der Differentialrechnung, dass $\Forall a, b \in \R: \Exists \xi \in [-1,1]:$
+
 \begin{align*}
-  \exists \xi \in [-1,1]:
-  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} = \vbraces{\cos(\xi)} \Rightarrow
-  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} \leq 1 \Leftrightarrow
+  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} = \vbraces{\cos(\xi)} \leq 1 \Leftrightarrow
   \vbraces{\sin(a)-\sin(b)} \leq \vbraces{a-b}
 \end{align*}
-Seien nun $u,v \in C[-1,1]$ so gilt
+
+Damit gilt $\Forall u, v \in C[-1, 1]:$
+
 \begin{align*}
-  d(T(u),T(v)) = \norm{\frac{1}{2}(\sin(u(x)+x)-\sin(v(x)+x))}{\infty}
-  \leq \frac{1}{2}\norm{u(x)+x-(v(x)+x)}{\infty}
-  = \frac{1}{2}\norm{u(x)-v(x)}{\infty}
+  d_\infty(T(u),T(v))
+  & = \sup_{x \in [-1, 1]} \vbraces
+  {
+    \pbraces{x + \frac{1}{2} \sin(u(x) + x)} -
+    \pbraces{x + \frac{1}{2} \sin(v(x) + x)}
+  } \\
+  & = \frac{1}{2} \sup_{x \in [-1, 1]} \vbraces
+  {
+    \sin(u(x) + x) -
+    \sin(v(x) + x)
+  } \\
+  & \leq \frac{1}{2}
+         \sup_{x \in [-1, 1]}
+         \vbraces{u(x) + x - (v(x) + x)} \\
+  & = \frac{1}{2}
+      d_\infty(u, v).
 \end{align*}
-Somit ist die Abbildung eine Kontraktion mit Kontraktionsfaktor
-$\kappa = \frac{1}{2}$ und es existiert laut Banach'schem Fixpunktsatz eine
+
+Somit ist die Selbstabbildung $T$ eine Kontraktion mit Kontraktionsfaktor $\frac{1}{2}$. Es existiert also, laut Banach'schem Fixpunktsatz, eine
 eindeutige Lösung.
+
 \end{solution}
