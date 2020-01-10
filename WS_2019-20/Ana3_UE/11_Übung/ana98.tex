@@ -12,6 +12,26 @@ in $C[-1,1]$ gibt.
 
 \begin{solution}
 
-Trivial!
-
+Setzen wir
+\begin{equation*}
+  T(x) :=  x + \frac{1}{2}\sin(u(x)+x)
+\end{equation*}
+so sehen wir dass $T: C[-1,1] \rightarrow C[-1,1]$.
+Aus dem MWS der Differentialrechnung erhalten wir für $a,b \in \R$
+(Da $\sin^\prime = \cos$)
+\begin{align*}
+  \exists \xi \in [-1,1]:
+  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} = \vbraces{\cos(\xi)} \Rightarrow
+  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} \leq 1 \Leftrightarrow
+  \vbraces{\sin(a)-\sin(b)} \leq \vbraces{a-b}
+\end{align*}
+Seien nun $u,v \in C[-1,1]$ so gilt
+\begin{align*}
+  d(T(u),T(v)) = \norm{\frac{1}{2}(\sin(u(x)+x)-\sin(v(x)+x))}{\infty}
+  \leq \frac{1}{2}\norm{u(x)+x-(v(x)+x)}{\infty}
+  = \frac{1}{2}\norm{u(x)-v(x)}{\infty}
+\end{align*}
+Somit ist die Abbildung eine Kontraktion mit Kontraktionsfaktor
+$\kappa = \frac{1}{2}$ und es existiert laut Banach'schem Fixpunktsatz eine
+eindeutige Lösung.
 \end{solution}
