@@ -6,6 +6,38 @@ Ist $X$ ein Fixpunktraum und $Y$ ein Retrakt von $X$, so ist $Y$ ein Fixpunktrau
 
 \begin{solution}
 
-Trivial!
+Dass $X$ \textbf{Fixpunktraum} ist heißt, $X$ ist ein topologischer Raum, auf dem jede stetige Selbstabbildung einen Fixpunkt besitzt.
+
+\begin{equation*}
+  X \, \text{topologischer Raum}:
+  \Forall T_X \in C(X, X):
+  \Exists x \in X:
+  T_X(x) = x
+\end{equation*}
+
+Eine Teilmenge $Y$ eines topologischen Raumes $X$ heißt \textbf{Retrakt}, wenn es eine stetige Abbildung (\textbf{Retraktion}) $R$ von $X$ auf $Y$ mit $R|_Y = \id_Y$ gibt.
+
+\begin{equation*}
+  Y \subseteq X,
+  \Exists R \in C(X, Y):
+  R|_Y = \id_Y
+\end{equation*}
+
+Sei $R$ die besagte Retraktion und $T_Y \in C(Y, Y)$ beliebig. Die wohldefinierte Komposition dieser stetigen Funktionen, ist stetig.
+
+\begin{equation*}
+  T_X :=
+  T_Y \circ R
+  \in C(X, Y)
+  \subseteq C(X, X).
+\end{equation*}
+
+Nun besitzt $T_X$ also laut Voraussetzung einen Fixpunkt, also $\Exists x \in X:$
+
+\begin{equation*}
+  T_Y(R(x)) = T_X(x) = x.
+\end{equation*}
+
+Weil $T_X(Y) \subseteq Y$, muss $x \in Y$. Wegen $R|_Y = \id_Y$, gilt $x = R|_Y(x) = R(x) =: y$. Zuletzt, erhält man $T_Y(y) = y$, also einen Fixpunkt $y$ von $T_Y$.
 
 \end{solution}
