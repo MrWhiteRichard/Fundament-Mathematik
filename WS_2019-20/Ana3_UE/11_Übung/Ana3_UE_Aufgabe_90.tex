@@ -1,6 +1,6 @@
 \begin{exercise}
 
-Sind $u,v \in W^{1,2}(\Omega)$, so ist $uv \in W^{1,1}(\Omega)$ mit $D_i(uv) = D_iuv + uD_iv$
+Sind $\Omega\subseteq\mathbb{R}^n$ und $u,v \in W^{1,2}(\Omega)$, so ist $uv \in W^{1,1}(\Omega)$ mit $D_i(uv) = D_iuv + uD_iv$
 
 \end{exercise}
 
@@ -19,10 +19,25 @@ Für den zweiten Teil wollen wir zuerst den Fall betrachten, dass $u\in W^{1,2}(
     &=\int D_iuv\Phi\mathrm{d}\lambda-\int D_iuv\Phi\mathrm{d}\lambda-\int uvD_i\Phi \mathrm{d}\lambda\\
     &=-\int uvD_i\Phi \mathrm{d}\lambda
 \end{align*}
-Damit folgt bereits unmittelbar die gewünschte Aussage $D_i(uv)=D_iuv+uD_iv$.
+Wieder ganz einfach mit der Linearität des Integrals und der Ungleichung von Hölder erhalten wir $D_iuv+uD_iv\in L^1(\Omega)$ und damit folgt bereits unmittelbar die gewünschte Aussage $D_i(uv)=D_iuv+uD_iv$.
 
-Nun betrachten wir den Allgemeinen Fall, nämlich $u,v\in W^{1,2}(\Omega)$. Nach dem Satz von Meyers-Serrin (siehe Analysis 3 Skriptum Blümlinger Satz 6.2.8) wissen wir, dass $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ dicht in $W^{1,2}(\Omega)$ liegt. Deshalb können wir eine Folge $(v_n)$ aus $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ finden mit $lim_{n\to\infty}v_n=v$ in $W^{1,2}(\Omega)$. Es gilt allerdings weiter
+Nun betrachten wir den Allgemeinen Fall, nämlich $u,v\in W^{1,2}(\Omega)$. Nach dem Satz von Meyers-Serrin (siehe Analysis 3 Skriptum Blümlinger Satz 6.2.8) wissen wir, dass $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ dicht in $W^{1,2}(\Omega)$ liegt. Deshalb können wir eine Folge $(v_l)$ aus $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ finden mit $lim_{l\to\infty}v_l=v$ in $W^{1,2}(\Omega)$. Natürlich ist $(v_l)$ in $W^{1,2}(\Omega)$ auch eine Cauchy-Folge und daher gilt für ein beliebiges $\epsilon>0$ und hinreichend große $m,l\in\mathbb{N}$ unter Benützung der Ungleichung von Hölder
 \begin{align*}
-    \pbraces{\forall n\in\mathbb{N}uv_n}
+    \norm[1]{uv_l-uv_m}&\leq\norm[2]{u}\norm[2]{v_l-v_m}\leq\norm[1,2]{u}\norm[1,2]{v_l-v_m}<\frac{\epsilon}{n+1},\\
+    \norm[1]{D_i(uv_l-uv_m)}&\leq\norm[1]{D_iuv_l-D_iuv_m}+\norm[1]{uD_iv_l-uD_iv_m}\\
+    &\leq\norm[2]{D_iu}\norm[1,2]{v_l-v_m}+\norm[1,2]{u}\norm[1,2]{v_l-v_m}<\frac{\epsilon}{n+1}
 \end{align*}
+Damit folgt sofort
+\begin{align*}
+    \norm[1,1]{uv_l-uv_m}^\sim=\norm[1]{uv_l-uv_m}+\sum_{i=1}^n\norm[1]{D_i(uv_l-uv_m)}<\epsilon,
+\end{align*}
+also dass $uv_l$ eine Cauchy-Folge in $W^{1,1}(\Omega)$ ist. Da nach Satz 6.2.3 gilt, dass $W^{1,1}(\Omega)$ ein Banachraum ist konvergiert also $uv_l\to u\tilde{v}\in W^{1,1}(\Omega)$. Wieder mit der Ungleichung von Hölder erkennt man, dass $u\tilde{v}=uv$ gelten muss (hab ich nicht nachgeprüft). Also wissen wir jetzt, dass $uv\in W^{1,1}(\Omega)$ gilt. Genauso kann man zeigen, dass $D_iuv_l+uD_iv_l$ im Banachraum $L^1(\Omega)$ gegen $D_iuv+uD_iv$ konvergiert (hab ich nicht nachgeprüft). Nun können wir nützen, dass für eine beliebige Testfunktion $\Phi \in C_c^\infty$ die Funktion $\zeta:W^{1,1}(\Omega)\to\mathbb{R}:u\mapsto\int u\Phi\mathrm{d}\lambda$ eine stetiges lineares Funktional auf $W^{1,1}(\Omega)$ ist (vgl. Analysis 3 Skriptum Blümlinger Seite 131). Mit der Ungleichung von Hölder erkennt man auch leicht, dass $\xi:L^1(\Omega)\to\mathbb{R}:u\mapsto\int u\Phi\mathrm{d}\lambda$ ein stetiges lineares Funktional auf $L^1(\Omega)$ ist. Damit sind die folgenden Grenzwertvertauschungen erlaubt und wir dürfen
+\begin{align*}
+    \int (D_iuv+uD_iv)\Phi\mathrm{d}\lambda&=\int \lim_{n\to\infty}(D_iuv_n+uD_iv_n)\Phi\mathrm{d}\lambda\\
+    &=\lim_{n\to\infty}\int D_i(uv_n)\Phi\mathrm{d}\lambda\\
+    &=\lim_{n\to\infty}\int uv_nD_i\Phi\mathrm{d}\lambda\\
+    &=\int\lim_{n\to\infty}uv_nD_i\Phi\mathrm{d}\lambda\\
+    &=\int uvD_i\Phi\mathrm{d}\lambda
+\end{align*} 
+schreiben und sind damit fertig.
 \end{solution}
