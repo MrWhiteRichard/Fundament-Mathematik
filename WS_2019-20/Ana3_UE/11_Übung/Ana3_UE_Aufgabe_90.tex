@@ -6,6 +6,71 @@ Sind $u,v \in W^{1,2}(\Omega)$, so ist $uv \in W^{1,1}(\Omega)$ mit $D_i(uv) = D
 
 \begin{solution}
 
-Trivial!
+Durch die Hölder-Ungleichung und $u, v \in L^2(\Omega)$, erhält man unmittelbar, dass $\norm[1]{uv} \leq \norm[2]{u} + \norm[2]{v} < \infty$, also $uv \in L^1(\Omega)$. \\
+
+Laut Meyers, Serrin, liegt der Unterraum $W^{m, p}(\Omega) \cap C^\infty(\Omega)$, für $1 \leq p < \infty$ und $\Omega$ offen in $\R^n$, dicht in $W^{m, p}(\Omega)$. $u, v$ lassen sich also durch glatte Funktionen, in der Sobolevnorm $\norm[m, p]{\cdot}$, approximieren.
+
+\begin{align*}
+  \norm[m, p, \Omega]{f} =
+  \norm[m, p]{f} & =
+  \pbraces
+  {
+    \sum_{|\alpha| \leq m}
+    \norm[p]{D^\alpha f}^p
+  }^\frac{1}{p} \:
+  \text{für} \:
+  1 \leq p < \infty, \\
+  \norm[m, \infty]{f} & =
+  \max_{|\alpha| \leq m}
+  \norm[\infty]{D^\alpha f}
+\end{align*}
+
+\begin{align*}
+  \Exists (u_k), (v_k) \in C^\infty(\Omega):
+  \lim_{k \to \infty} u_k = u, \:
+  \lim_{k \to \infty} v_k = v
+\end{align*}
+
+Die oberen Limitten rutschen aber ins Integral rein, weil aufgrund der Hölder-Ungleichung und $q := \frac{p}{1 - p}$ gilt $\Forall \phi \in C^\infty(\Omega): \Forall (f_k) \in C^\infty(\Omega), \: \lim_{k \to \infty} f_k = f:$
+
+\begin{align*}
+  \vbraces
+  {
+    \int f         \phi d \lambda^n -
+    \int f_k       \phi d \lambda^n
+  } \leq
+  \norm[1]{(f - f_k) \phi} \leq
+  \norm[p]{f - f_k}
+  \norm[q]{\phi} \leq
+  \norm[m, p]{f - f_k}
+  \norm[q]{\phi}
+  \xrightarrow[k \to \infty]{} 0.
+\end{align*}
+
+Hat $f$ eine schwache Ableitung $Df$, so können wir damit, und partieller Integration, weil $\supp \phi$ beschränkt ist, weiter schließen, dass
+
+\begin{align*}
+  \lim_{k \to \infty}   \Int{D_i f_k \phi}{\lambda^n} =
+  \lim_{k \to \infty} - \Int{f_k D_i \phi}{\lambda^n} =
+  - \Int{f D_i \phi}{\lambda^n} =
+    \Int{D_i f \phi}{\lambda^n}.
+\end{align*}
+
+Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durchaus gilt, erhält man, nochmal mit partieller Integration
+
+\begin{align*}
+  - \Int{uv D_i \phi}{\lambda^n}
+  & = \lim_{k \to \infty} - \Int{u_k v_k D_i \phi}{\lambda^n} \\
+  & = \lim_{k \to \infty} \Int{D_i(u_k v_k)}{\lambda^n} \\
+  & = \lim_{k \to \infty}
+      \pbraces
+      {
+        \Int{D_i u_k v_k \phi}{\lambda^n} +
+        \Int{u_k D_i v_k \phi}{\lambda^n}
+      } \\
+  & = \Int{D_i u v \phi}{\lambda^n} +
+      \Int{u D_i v \phi}{\lambda^n} \\
+  & = \Int{(D_i u v + u D_i v) \phi}{\lambda^n}.
+\end{align*}
 
 \end{solution}
