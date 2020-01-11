@@ -8,7 +8,31 @@ im Beweis von 6.1.4. dargestellt werden kann und berechnen Sie $\int x^k\xi^{(l)
 \end{exercise}
 
 \begin{solution}
+    Zuerst wollen wir für eine beliebige Testfunktion $\Phi\in C_c^\infty$  und ein beliebiges $m\in\mathbb{N}$ und eine weitere Testfunktion $\Psi_0\in C_c^\infty$ mit $\int \Psi_0d\lambda=1$ zeigen, dass es ein $\zeta\in C_c^\infty$ und $\alpha_0,\dots,\alpha_{m-1}$ aus $\mathbb{R}$ gibt welche $\Phi=\zeta^{(m)}+\sum_{l=0}^{m-1}\alpha_l\Psi_0^{(l)}$ erfüllen. Wir gehen induktiv vor und erkennen unmittelbar, dass für $m=0$ die Aussage richtig ist. Für den Induktionsschritt gehen wir davon aus, dass wir eine Darstellung $\Phi=\theta^{(m)}+\sum_{l=0}^{m-1}\alpha_l\Psi_0^{(l)}$ mit einer Testfunktion $\theta\in C_c^\infty$ haben. Aus dem Beweis von Satz 6.1.4 im Analysis 3 Skriptum Blümlinger wissen wir dass
+    \begin{align*}
+        \eta:=\theta-\int\theta d\lambda\Psi_0\in C_c^\infty
+    \end{align*} 
+    eine Testfunktion mit
+    \begin{align*}
+        \int\eta d\lambda=0
+    \end{align*} 
+    ist. Nun ist klar, dass dann auch
+    \begin{align*}
+        C_c^\infty\ni\zeta:\mathbb{R}\to\mathbb{R}:x\mapsto\int_{-\infty}^x\eta d\lambda
+    \end{align*}
+    eine Testfunktion sein muss. Wegen $\zeta^{\prime}=\eta$ und der Definition von $\zeta$ erhalten wir die Darstellung 
+    \begin{align*}
+        \theta=\zeta^{\prime}+\int\theta d\lambda\Psi_0.
+    \end{align*}
+    Mit der Definition $\alpha_m:=\int\theta d\lambda$ erhalten wir so durch einsetzten unserer gewonnen Darstellung von $\theta$ die gewünschte Darstellung $\Phi=\zeta^{(m+1)}+\sum_{l=0}^{m}\alpha_l\Psi_0^{(l)}$.
 
-Trivial!
-
+    Nun können wir uns der eigentlichen Aufgabe widmen. Dafür definieren wir ein Polynom 
+    \begin{align*}
+        p:\mathbb{R}\to\mathbb{R}:x\mapsto\sum_{j=0}^{n-1}\beta_jx^j
+    \end{align*}
+    Da wir das Fundamentallemma der Variationsrechnung bereits kennen wäre es ausreichend Koeffizienten $\beta_0,\dots,\beta_{n-1}$ zu finden, für die für alle Testfunktionen $\Phi\in C_c^\infty$
+    \begin{align*}
+        \int (f-p)\Phi d\lambda=0
+    \end{align*}
+    gilt. Allerdings weiß ich nicht ob das zum Ziel führt.
 \end{solution}
