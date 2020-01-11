@@ -5,9 +5,10 @@ Sind $\Omega\subseteq\mathbb{R}^n$ und $u,v \in W^{1,2}(\Omega)$, so ist $uv \in
 \end{exercise}
 
 \begin{solution}
+
 Durch die Hölder-Ungleichung und $u, v \in L^2(\Omega)$, erhält man unmittelbar, dass $\norm[1]{uv} \leq \norm[2]{u} \norm[2]{v} < \infty$, also $uv \in L^1(\Omega)$. \\
 
-Laut Meyers, Serrin, liegt der Unterraum $W^{m, p}(\Omega) \cap C^\infty(\Omega)$, für $1 \leq p < \infty$ und $\Omega$ offen in $\R^n$, dicht in $W^{m, p}(\Omega)$. $u, v$ lassen sich also durch glatte Funktionen, in der Sobolevnorm $\norm[m, p]{\cdot}$, approximieren.
+Laut Blümlinger Satz 6.2.8 bzw. Meyers, Serrin, liegt der Unterraum $W^{m, p}(\Omega) \cap C^\infty(\Omega)$, für $1 \leq p < \infty$ und $\Omega$ offen in $\R^n$, dicht in $W^{m, p}(\Omega)$. $u, v$ lassen sich also durch glatte Funktionen, in der Sobolevnorm $\norm[m, p]{\cdot}$, approximieren.
 
 \begin{align*}
   \norm[m, p, \Omega]{f} =
@@ -30,32 +31,50 @@ Laut Meyers, Serrin, liegt der Unterraum $W^{m, p}(\Omega) \cap C^\infty(\Omega)
   \lim_{k \to \infty} v_k = v
 \end{align*}
 
-Die oberen Limitten rutschen aber ins Integral rein, weil aufgrund der Hölder-Ungleichung und $q := \frac{p}{1 - p}$ gilt $\Forall \phi \in C^\infty(\Omega): \Forall (f_k) \in C^\infty(\Omega), \: \lim_{k \to \infty} f_k = f:$
+Eine, zur Sobolevnorm $\norm[m, p]{\cdot}$, äquivalente Norm $\norm[m, p]{\cdot}^\sim$, ist, laut Blümlinger Korollar 6.2.2, gegeben durch
 
 \begin{align*}
-  \vbraces
-  {
-    \int f         \phi d \lambda^n -
-    \int f_k       \phi d \lambda^n
-  } \leq
-  \norm[1]{(f - f_k) \phi} \leq
-  \norm[p]{f - f_k}
-  \norm[q]{\phi} \leq
-  \norm[m, p]{f - f_k}
-  \norm[q]{\phi}
-  \xrightarrow[k \to \infty]{} 0.
+  \norm[m, p]{f}^\sim :=
+  \sum_{|\alpha| \leq m}
+  \norm[p]{D^\alpha f}.
 \end{align*}
 
-Hat $f$ eine schwache Ableitung $Df$, so können wir damit, und partieller Integration, weil $\supp \phi$ beschränkt ist, weiter schließen, dass
+Weil $(u_k), (v_k)$ bezüglich der Sobolevnorm $\norm[1, 2]{\cdot}$ konvergieren, folgt mit der Hölder-Ungleichung auch, dass
 
 \begin{align*}
-  \lim_{k \to \infty}   \Int{D_i f_k \phi}{\lambda^n} =
-  \lim_{k \to \infty} - \Int{f_k D_i \phi}{\lambda^n} =
-  - \Int{f D_i \phi}{\lambda^n} =
-    \Int{D_i f \phi}{\lambda^n}.
+  \norm[1]{D_i u_k v_k - D_i uv}
+  & \leq \norm[1]{D_i u_k v_k - D_i u_k v} +
+        \norm[1]{D_i u_k v - D_i uv} \\
+  & \leq \norm[1]{D_i u_k (v_k - v)} +
+         \norm[1]{(D_i u_k - D_i u) v} \\
+  & \leq \norm[2]{D_i u_k}
+         \norm[2]{v_k - v} +
+         \norm[2]{v}
+         \norm[2]{D_i u_k - D_i u}
+         \xrightarrow{k \to \infty} 0.
 \end{align*}
 
-Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durchaus gilt, erhält man, nochmal mit partieller Integration
+Analog erhält man auch
+
+\begin{align*}
+  \norm[1]{u_k D_i v_k - u D_i v}
+  \xrightarrow{k \to \infty} 0, \:
+  \norm[1]{u_k v_k - uv}
+  \xrightarrow{k \to \infty} 0.
+\end{align*}
+
+Laut Kusolitsch Satz 13.25 gilt: Ist $(\Omega, \mathfrak{S}, \mu)$ ein Maßraum und $1 \leq p < \infty$, so konvergiert eine Folge $(f_n)$ aus $\mathcal{L}_p$ genau dann im $p$-ten Mittel, wenn $(f_n)$ im Maß gegen ein $f \in \mathcal{L}_p$ konvergiert und gilt $\lim_n \norm[p]{f_n} = \norm[p]{f}$.
+
+\begin{align*}
+  \norm[p]{f - f_n}
+  \xrightarrow{n \to \infty} 0
+  \Leftrightarrow
+  \Forall \epsilon > 0:
+  \lim_{n \to \infty} \mu(|f - f_n| > \epsilon) = 0, \:
+  \lim_{n \to \infty} \norm[p]{f_n} = \norm[p]{f}
+\end{align*}
+
+Daher sind die folgenden Grenzwertvertauschungen gerechtfertigt. Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durchaus gilt, erhält man also
 
 \begin{align*}
   - \Int{uv D_i \phi}{\lambda^n}
@@ -72,10 +91,10 @@ Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durc
   & = \Int{(D_i u v + u D_i v) \phi}{\lambda^n}.
 \end{align*}
 
-
 \end{solution}
+
 \begin{solution}
-    Um zu zeigen, dass $uv\in L^1(\Omega)$ ist benötigt man nur einmal die Ungleichung von Hölder (siehe Kusolitsch Satz 13.4) um 
+    Um zu zeigen, dass $uv\in L^1(\Omega)$ ist benötigt man nur einmal die Ungleichung von Hölder (siehe Kusolitsch Satz 13.4) um
 \begin{align*}
     \norm[1]{uv}\leq\norm[2]{u}\norm[2]{v}<\infty
 \end{align*}
@@ -108,6 +127,6 @@ also dass $uv_l$ eine Cauchy-Folge in $W^{1,1}(\Omega)$ ist. Da nach Satz 6.2.3 
     &=\lim_{n\to\infty}\int uv_nD_i\Phi\mathrm{d}\lambda\\
     &=\int\lim_{n\to\infty}uv_nD_i\Phi\mathrm{d}\lambda\\
     &=\int uvD_i\Phi\mathrm{d}\lambda
-\end{align*} 
+\end{align*}
 schreiben und sind fertig.
 \end{solution}
