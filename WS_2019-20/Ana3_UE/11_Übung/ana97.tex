@@ -3,8 +3,8 @@
 Zeigen Sie, dass das Gleichungssystem
 
 \begin{align*}
-  \frac{1}{2}x_1^3 - \frac{1}{8}x_2^3 = x_1 \\
-  \frac{1}{2}x_1^5 + \frac{1}{4}x_1^2x_2^4 + \frac{1}{4} = x_2
+  \frac{1}{2} x_1^3 - \frac{1}{8} x_2^3 = x_1 \\
+  \frac{1}{2} x_1^5 + \frac{1}{4} x_1^2 x_2^4 + \frac{1}{4} = x_2
 \end{align*}
 
 eine Lösung besitzt.
@@ -13,6 +13,30 @@ eine Lösung besitzt.
 
 \begin{solution}
 
-Trivial!
+$[-1, 1]^2 \in \R^2$!!! Es ist kompakt, es ist konvex, es ist ein ... (laut Brouwer) ... ein Fixpunktraum! $T$ besitzt darin einen Fixpunkt.
+
+\begin{align*}
+  T:
+  \begin{cases}
+    [-1, 1]^2 & \to [-1, 1]^2 \\
+    x         & \mapsto
+    \begin{pmatrix}
+      \frac{1}{2} x_1^3 - \frac{1}{8} x_2^3 \\
+      \frac{1}{2} x_1^5 + \frac{1}{4} x_1^2 x_2^4 + \frac{1}{4}
+    \end{pmatrix}
+  \end{cases}
+\end{align*}
+
+Lieblingsfrage: "Wieso existiert das $T$?" \\
+Antwort: Dreiecksungleichung, d.h. $\Forall x \in [-1, 1]^2:$
+
+\begin{align*}
+  \vbraces{\abraces{e_1, T(x)}} & \leq
+  \frac{1}{2} + \frac{1}{8} \leq
+  1, \\
+  \vbraces{\abraces{e_2, T(x)}} & \leq
+  \frac{1}{2} + \frac{1}{4} + \frac{1}{4} \leq
+  1.
+\end{align*}
 
 \end{solution}
