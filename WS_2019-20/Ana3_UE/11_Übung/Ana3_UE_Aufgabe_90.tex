@@ -81,7 +81,17 @@ Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durc
 \end{align*}
 einzusehen.
 
- Nun betrachten wir den Allgemeinen Fall, nämlich $u,v\in W^{1,2}(\Omega)$. Nach dem Satz von Meyers-Serrin (siehe Analysis 3 Skriptum Blümlinger Satz 6.2.8) wissen wir, dass $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ dicht in $W^{1,2}(\Omega)$ liegt. Deshalb können wir eine Folge $(v_l)$ aus $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ finden mit $lim_{l\to\infty}v_l=v$ in $W^{1,2}(\Omega)$. Natürlich ist $(v_l)$ in $W^{1,2}(\Omega)$ auch eine Cauchy-Folge und daher gilt für ein beliebiges $\epsilon>0$ und hinreichend große $m,l\in\mathbb{N}$ unter Benützung der Ungleichung von Hölder
+Für den zweiten Teil wollen wir zuerst den Fall betrachten, dass $u\in W^{1,2}(\Omega)$ und $v\in W^{1,2}\Omega\cap C^\infty(\Omega)$. Wählen wir eine beliebige Testfunktion $\Phi\in C_c^\infty(\Omega)$ so gilt auch $v\Phi\in C_c^\infty(\Omega)$ und daher auch $D_i(c\Phi)\in C_c^\infty(\Omega)$. Mit diesem Wissen und Proposition 6.2.6 aus dem Analysis 3 Skriptum vom Professor Blümlinger, das es erlaubt $D_i(v\Phi)=D_iv\Phi+vD_i\Phi$ zu schreiben, erhalten wir
+\begin{align*}
+    \int(D_iuv+uD_iv)\Phi\mathrm{d}\lambda&=\int(D_iuv\Phi+uD_iv\Phi)\mathrm{d}\lambda\\
+    &=\int(D_iuv\Phi+uD_i(v\Phi)-uvD_i\Phi)\mathrm{d}\lambda\\
+    &=\int D_iuv\Phi\mathrm{d}\lambda+\int uD_i(v\Phi)\mathrm{d}\lambda-\int uvD_i\Phi\mathrm{d}\lambda\\
+    &=\int D_iuv\Phi\mathrm{d}\lambda-\int D_iuv\Phi\mathrm{d}\lambda-\int uvD_i\Phi \mathrm{d}\lambda\\
+    &=-\int uvD_i\Phi \mathrm{d}\lambda
+\end{align*}
+Damit folgt bereits unmittelbar die gewünschte Aussage $D_i(uv)=D_iuv+uD_iv$.
+
+Nun betrachten wir den Allgemeinen Fall, nämlich $u,v\in W^{1,2}(\Omega)$. Nach dem Satz von Meyers-Serrin (siehe Analysis 3 Skriptum Blümlinger Satz 6.2.8) wissen wir, dass $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ dicht in $W^{1,2}(\Omega)$ liegt. Deshalb können wir eine Folge $(v_l)$ aus $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ finden mit $lim_{l\to\infty}v_l=v$ in $W^{1,2}(\Omega)$. Natürlich ist $(v_l)$ in $W^{1,2}(\Omega)$ auch eine Cauchy-Folge und daher gilt für ein beliebiges $\epsilon>0$ und hinreichend große $m,l\in\mathbb{N}$ unter Benützung der Ungleichung von Hölder
 \begin{align*}
     \norm[1]{uv_l-uv_m}&\leq\norm[2]{u}\norm[2]{v_l-v_m}\leq\norm[1,2]{u}\norm[1,2]{v_l-v_m}<\frac{\epsilon}{n+1},\\
     \norm[1]{D_i(uv_l-uv_m)}&\leq\norm[1]{D_iuv_l-D_iuv_m}+\norm[1]{uD_iv_l-uD_iv_m}\\
