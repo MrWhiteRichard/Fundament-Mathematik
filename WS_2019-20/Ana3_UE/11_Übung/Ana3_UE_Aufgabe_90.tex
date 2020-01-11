@@ -4,6 +4,8 @@ Sind $\Omega\subseteq\mathbb{R}^n$ und $u,v \in W^{1,2}(\Omega)$, so ist $uv \in
 
 \end{exercise}
 
+% erste Lösung:
+
 \begin{solution}
 
 Durch die Hölder-Ungleichung und $u, v \in L^2(\Omega)$, erhält man unmittelbar, dass $\norm[1]{uv} \leq \norm[2]{u} \norm[2]{v} < \infty$, also $uv \in L^1(\Omega)$. \\
@@ -39,27 +41,27 @@ Eine, zur Sobolevnorm $\norm[m, p]{\cdot}$, äquivalente Norm $\norm[m, p]{\cdot
   \norm[p]{D^\alpha f}.
 \end{align*}
 
-Weil $(u_k), (v_k)$ bezüglich der Sobolevnorm $\norm[1, 2]{\cdot}$ konvergieren, folgt mit der Hölder-Ungleichung auch, dass
+Weil $(u_k), (v_k)$ bezüglich der Sobolevnorm $\norm[1, 2]{\cdot}$ konvergieren, folgt mit der Hölder-Ungleichung auch, dass $\Forall \phi \in C_c^\infty(\Omega):$
 
 \begin{align*}
-  \norm[1]{D_i u_k v_k - D_i uv}
-  & \leq \norm[1]{D_i u_k v_k - D_i u_k v} +
-        \norm[1]{D_i u_k v - D_i uv} \\
-  & \leq \norm[1]{D_i u_k (v_k - v)} +
-         \norm[1]{(D_i u_k - D_i u) v} \\
-  & \leq \norm[2]{D_i u_k}
+  \norm[1]{D_i u_k v_k \phi - D_i uv \phi}
+  & \leq \norm[1]{D_i u_k v_k \phi - D_i u_k v \phi} +
+        \norm[1]{D_i u_k v \phi - D_i uv \phi} \\
+  & \leq \norm[1]{D_i u_k \phi (v_k - v)} +
+         \norm[1]{(D_i u_k - D_i u) v \phi} \\
+  & \leq \norm[2]{D_i u_k \phi}
          \norm[2]{v_k - v} +
-         \norm[2]{v}
          \norm[2]{D_i u_k - D_i u}
+         \norm[2]{v \phi}
          \xrightarrow{k \to \infty} 0.
 \end{align*}
 
 Analog erhält man auch
 
 \begin{align*}
-  \norm[1]{u_k D_i v_k - u D_i v}
+  \norm[1]{u_k D_i v_k \phi - u D_i v \phi}
   \xrightarrow{k \to \infty} 0, \:
-  \norm[1]{u_k v_k - uv}
+  \norm[1]{u_k v_k \phi - uv \phi}
   \xrightarrow{k \to \infty} 0.
 \end{align*}
 
@@ -74,12 +76,12 @@ Laut Kusolitsch Satz 13.25 gilt: Ist $(\Omega, \mathfrak{S}, \mu)$ ein Maßraum 
   \lim_{n \to \infty} \norm[p]{f_n} = \norm[p]{f}
 \end{align*}
 
-Daher sind die folgenden Grenzwertvertauschungen gerechtfertigt. Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durchaus gilt, erhält man also
+Daher sind die folgenden Grenzwertvertauschungen gerechtfertigt. Nachdem, wegen der Produktregel, $D_i(u_k v_k) = D_i u_k v_k + u_k D_i v_k$ durchaus gilt, erhält man also $\Forall \phi \in C_c^\infty(\Omega):$
 
 \begin{align*}
   - \Int{uv D_i \phi}{\lambda^n}
   & = \lim_{k \to \infty} - \Int{u_k v_k D_i \phi}{\lambda^n} \\
-  & = \lim_{k \to \infty} \Int{D_i(u_k v_k)}{\lambda^n} \\
+  & = \lim_{k \to \infty} \Int{D_i(u_k v_k) \phi}{\lambda^n} \\
   & = \lim_{k \to \infty}
       \pbraces
       {
@@ -92,6 +94,8 @@ Daher sind die folgenden Grenzwertvertauschungen gerechtfertigt. Nachdem, wegen 
 \end{align*}
 
 \end{solution}
+
+% zweite Lösung:
 
 \begin{solution}
     Um zu zeigen, dass $uv\in L^1(\Omega)$ ist benötigt man nur einmal die Ungleichung von Hölder (siehe Kusolitsch Satz 13.4) um
