@@ -5,7 +5,24 @@ Sind $u,v \in W^{1,2}(\Omega)$, so ist $uv \in W^{1,1}(\Omega)$ mit $D_i(uv) = D
 \end{exercise}
 
 \begin{solution}
+Um zu zeigen, dass $uv\in L^1(\Omega)$ ist benötigt man nur einmal die Ungleichung von Hölder (siehe Kusolitsch Satz 13.4) um 
+\begin{align*}
+    \norm[1]{uv}\leq\norm[2]{u}\norm[2]{v}<\infty
+\end{align*}
+einzusehen.
 
-Trivial!
+Für den zweiten Teil wollen wir zuerst den Fall betrachten, dass $u\in W^{1,2}(\Omega)$ und $v\in W^{1,2}\Omega\cap C^\infty(\Omega)$. Wählen wir eine beliebige Testfunktion $\Phi\in C_c^\infty(\Omega)$ so gilt auch $v\Phi\in C_c^\infty(\Omega)$ und daher auch $D_i(c\Phi)\in C_c^\infty(\Omega)$. Mit diesem Wissen und Proposition 6.2.6 aus dem Analysis 3 Skriptum vom Professor Blümlinger, das es erlaubt $D_i(v\Phi)=D_iv\Phi+vD_i\Phi$ zu schreiben, erhalten wir
+\begin{align*}
+    \int(D_iuv+uD_iv)\Phi\mathrm{d}\lambda&=\int(D_iuv\Phi+uD_iv\Phi)\mathrm{d}\lambda\\
+    &=\int(D_iuv\Phi+uD_i(v\Phi)-uvD_i\Phi)\mathrm{d}\lambda\\
+    &=\int D_iuv\Phi\mathrm{d}\lambda+\int uD_i(v\Phi)\mathrm{d}\lambda-\int uvD_i\Phi\mathrm{d}\lambda\\
+    &=\int D_iuv\Phi\mathrm{d}\lambda-\int D_iuv\Phi\mathrm{d}\lambda-\int uvD_i\Phi \mathrm{d}\lambda\\
+    &=-\int uvD_i\Phi \mathrm{d}\lambda
+\end{align*}
+Damit folgt bereits unmittelbar die gewünschte Aussage $D_i(uv)=D_iuv+uD_iv$.
 
+Nun betrachten wir den Allgemeinen Fall, nämlich $u,v\in W^{1,2}(\Omega)$. Nach dem Satz von Meyers-Serrin (siehe Analysis 3 Skriptum Blümlinger Satz 6.2.8) wissen wir, dass $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ dicht in $W^{1,2}(\Omega)$ liegt. Deshalb können wir eine Folge $(v_n)$ aus $W^{1,2}(\Omega)\cap C^\infty(\Omega)$ finden mit $lim_{n\to\infty}v_n=v$ in $W^{1,2}(\Omega)$. Es gilt allerdings weiter
+\begin{align*}
+    \pbraces{\forall n\in\mathbb{N}uv_n}
+\end{align*}
 \end{solution}
