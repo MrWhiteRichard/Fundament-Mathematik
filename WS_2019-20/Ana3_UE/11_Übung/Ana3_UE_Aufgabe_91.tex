@@ -31,8 +31,40 @@ im Beweis von 6.1.4. dargestellt werden kann und berechnen Sie $\int x^k\xi^{(l)
         p:\mathbb{R}\to\mathbb{R}:x\mapsto\sum_{j=0}^{n-1}\beta_jx^j
     \end{align*}
     Da wir das Fundamentallemma der Variationsrechnung bereits kennen wäre es ausreichend Koeffizienten $\beta_0,\dots,\beta_{n-1}$ zu finden, für die für alle Testfunktionen $\Phi\in C_c^\infty$
+    \begin{align}
+        \int (f-p)\Phi d\lambda=0\label{eq:wunsch}
+    \end{align}
+    gilt. Unter der Annahme, dass für $i>j$ und eine beliebige Testfunktion $\xi$
     \begin{align*}
-        \int (f-p)\Phi d\lambda=0
+        \int x^j\xi^{(i)}(x)d\lambda(x) = 0
     \end{align*}
-    gilt. Allerdings weiß ich nicht ob das zum Ziel führt.
+    gilt rechnen wir
+    \begin{align*}
+        \int (f-p)\Phi d\lambda&=\int\pbraces{f-p}\zeta^{(n)}d\lambda+\sum_{i=0}^{n-1}\alpha_i\int(f-p)\Psi_0^{(i)}d\lambda
+    \end{align*}
+    Der erste Summand wird nach Voraussetzung Null und wenn wir uns \eqref{eq:wunsch} wünschen, dann muss $p$
+    \begin{align*}
+        \sum_{i=0}^{n-1}\alpha_i\int f\Psi_0^{(i)}d\lambda=\sum_{i=0}^{n-1}\alpha_i\int p\Psi_0^{(i)}d\lambda
+    \end{align*}
+    erfüllen, also beispielsweise für alle $i\in\{0,\dots,n-1\}$ die Gleichheit
+    \begin{align*}
+        \int f\Psi_0^{(i)}d\lambda=\int p\Psi_0^{(i)}d\lambda=\sum_{j=0}^{n-1}\beta_j\int x^j\Psi_0^{(i)}(x)d\lambda(x)
+    \end{align*} 
+    Dies führt uns auf das Gleichungssystem
+    \begin{align*}
+        \begin{pmatrix}
+            \int f\Psi_0^{(0)}d\lambda\\
+            \vdots\\
+            \int f\Psi_0^{(n-1)}d\lambda
+        \end{pmatrix} 
+        =
+        \begin{pmatrix}
+            \int x^0\Psi_0^{(0)}(x)d\lambda(x) & * & \cdots & \cdots & * \\
+            0 & \int x^1\Psi_1^{(1)}(x)d\lambda(x) & * & \cdots & * \\
+            \vdots & \ddots & \ddots & \ddots &\vdots \\
+            0 & \cdots &  0 & \int x^{n-1}\Psi_0^{(n-1)}(x)d\lambda(x) & * \\
+            0 & \cdots & \cdots & 0 & \int x^{n-1}\Psi_0^{(n-1)}(x)d\lambda(x)
+        \end{pmatrix}
+    \end{align*}
+    Nun stellt sich natürlich die Frage ob diese ganzen Nuller tatsächlich entstehen (ich bin schon müde und kann nicht mehr gut denken) und überhaupt ob das Gleichungssystem lösbar ist.
 \end{solution}
