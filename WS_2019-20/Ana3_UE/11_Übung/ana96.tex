@@ -1,11 +1,35 @@
 \begin{exercise}
 
-Zeigen Sie (Satz von Perron-Frobenius): Jede $n\times n$ Matrix $A = (a_{i,j})$ mit $a_{i,j} \geq 0$ für $1 \leq i, j \leq n$ hat einen Eigenwert $\lambda \geq 0$ mit zugehörigem Eigenvektor $x = (x_1,\dots,x_n)$ mit $x_i \geq 0, 1 \leq i \leq n$.
+Zeigen Sie (Satz von Perron-Frobenius): Jede $n\times n$ Matrix $A = (a_{i,j})$ mit $a_{i,j} \geq 0$ für $1 \leq i, j \leq n$ hat einen Eigenwert $\lambda \geq 0$ mit zugehörigem Eigenvektor $x = (x_1,\dots,x_n)$ mit $x_i \geq 0, 1 \leq i \leq n$. \\
+
+Hinw.: Betrachten Sie die Abbildung $\zeta: x \to \frac{1}{\norm[1]{Ax}} Ax$ auf dem Simplex $\Delta := \Bbraces{x \in \R^n: x_i \geq 0, \sum_{i=1}^n x_i = 1}$.
 
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+$\zeta$ ist tatsächlich eine Selbstabbildung in $(\Delta, \norm[1]{\cdot})$, weil $\Forall x \in \Delta:$
+
+\begin{align*}
+  A, x \geq 0
+  \Rightarrow
+  Ax \geq 0
+  \Rightarrow
+  \zeta(x) = \frac{Ax}{\norm[1]{Ax}} \geq 0, \\
+  \sum_{i=1}^n \abraces{e_i, \zeta(x)}
+  = \norm[1]{\zeta(x)}
+  = \norm[1]{\frac{Ax}{\norm[1]{Ax}}}
+  = 1.
+\end{align*}
+
+Nachdem $A \in L(\R^n, \R^n) = C(\R^n, \R^n)$ und $\norm[1]{\cdot} \in C(\R^n)$, muss $\zeta \in C(\Delta, \Delta)$ ebenfalls stetig sein. Laut dem Fixpunktsatz von Brouwer, ist unsere (offensichtlich) kompakt und konvexe Menge $\Delta \subseteq \R^n$ ein Fixpunktraum, und $\zeta$ besitzt einen Fixpunkt $\Exists x \in \Delta:$
+
+\begin{equation*}
+  x = \zeta(x) = \frac{1}{\norm[1]{Ax}} Ax
+  \Leftrightarrow
+  \lambda x = Ax,
+\end{equation*}
+
+wobei $\lambda := \norm[1]{Ax} \geq 0$ und $x \geq 0$.
 
 \end{solution}
