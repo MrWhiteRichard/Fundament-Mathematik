@@ -74,13 +74,19 @@ Um $f = p$ zu zeigen, genügt es, laut Blümlinger Lemma 6.1.1 bzw. dem Fundamen
     \int (f-p) \Phi d \lambda = 0. \label{eq:wunsch}
 \end{align}
 
-Für $i>j$ und eine beliebige Testfunktion $\xi \in C_c^\infty$, gelte
+Da für $i>j$ und eine beliebige Testfunktion $\xi \in C_c^\infty$ aufgrund n-facher partieller Integration
 
 \begin{align*}
     \int x^j \xi^{(i)}(x) d \lambda(x) = 0.
 \end{align*}
 
-gilt rechnen wir
+und
+
+\begin{align*}
+    \int f \xi^{(n)}(x) d \lambda(x) = 0.
+\end{align*}
+
+gilt, erhalten wir:
 
 \begin{align*}
   \int (f-p) \Phi d \lambda
@@ -90,7 +96,7 @@ gilt rechnen wir
   \stackrel{!}{=} 0
 \end{align*}
 
-Der erste Summand Verschwindet laut Voraussetzung. Damit das auch für die anderen gilt, muss
+Der erste Summand Verschwindet wegen obiger Überlegung. Damit das auch für die anderen gilt, muss
 
 \begin{align*}
     \sum_{i=0}^{n-1} \alpha_i
@@ -115,7 +121,7 @@ Dies führt uns auf das lösbare Gleichungssystem $A \beta = b$, wobei
 \begin{align*}
   A =
   \begin{pmatrix}
-    a_{11} & \cdots & a_{1, n-1}   \\
+    a_{00} & \cdots & a_{0, n-1}   \\
            & \ddots & \vdots       \\
     0      &        & a_{n-1, n-1}
   \end{pmatrix}, \:
@@ -132,5 +138,11 @@ Dies führt uns auf das lösbare Gleichungssystem $A \beta = b$, wobei
     b_{n-1}
   \end{pmatrix}.
 \end{align*}
+
+ Dabei ist die Matrix A regulär, da für alle Hauptdiagonaleinträge $a_{ii}$ gilt:
+
+ \begin{equation*}
+   a_{ii} = (-1)^ii!\int\Psi_0 d\lambda(x) = (-1)^ii!
+ \end{equation*}
 
 \end{solution}
