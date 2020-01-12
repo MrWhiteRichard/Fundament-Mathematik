@@ -1,0 +1,51 @@
+\begin{exercise}
+
+Zeigen Sie, dass es eine eindeutige Lösung $u$ der Gleichung
+
+\begin{equation*}
+  u(x) = x + \frac{1}{2}\sin(u(x)+x)
+\end{equation*}
+
+in $C[-1,1]$ gibt.
+
+\end{exercise}
+
+\begin{solution}
+
+Betrachte die, auf dem vollständigen metrischen Raum $(C[-1, 1], d_\infty)$ lebende, Selbstabbildung
+
+\begin{equation*}
+  T: u \mapsto \pbraces{x \mapsto x + \frac{1}{2}\sin(u(x)+x)}.
+\end{equation*}
+
+Da $\sin^\prime = \cos$, erhalten wir aus dem MWS der Differentialrechnung, dass $\Forall a, b \in \R: \Exists \xi \in [-1,1]:$
+
+\begin{align*}
+  \vbraces{\frac{\sin(a)-\sin(b)}{a-b}} = \vbraces{\cos(\xi)} \leq 1 \Leftrightarrow
+  \vbraces{\sin(a)-\sin(b)} \leq \vbraces{a-b}
+\end{align*}
+
+Damit gilt $\Forall u, v \in C[-1, 1]:$
+
+\begin{align*}
+  d_\infty(T(u),T(v))
+  & = \sup_{x \in [-1, 1]} \vbraces
+  {
+    \pbraces{x + \frac{1}{2} \sin(u(x) + x)} -
+    \pbraces{x + \frac{1}{2} \sin(v(x) + x)}
+  } \\
+  & = \frac{1}{2} \sup_{x \in [-1, 1]} \vbraces
+  {
+    \sin(u(x) + x) -
+    \sin(v(x) + x)
+  } \\
+  & \leq \frac{1}{2}
+         \sup_{x \in [-1, 1]}
+         \vbraces{u(x) + x - (v(x) + x)} \\
+  & = \frac{1}{2}
+      d_\infty(u, v).
+\end{align*}
+
+Somit ist die Selbstabbildung $T$ eine Kontraktion des vollständigen metrischen Raumes $(C[-1, 1], d_\infty)$ mit Kontraktionsfaktor $ \kappa := \frac{1}{2} < 1$. Es existiert also, laut Blümlinger Satz 7.1.1 bzw. dem Banach'schen Fixpunktsatz, eine eindeutige Lösung.
+
+\end{solution}

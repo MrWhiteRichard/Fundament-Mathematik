@@ -1,0 +1,66 @@
+\begin{exercise}
+
+Ein Punkt $x \in \mathbb{R}^n$ heißt \textit{Dichtepunkt} einer messbaren Teilmenge $E$ von $\mathbb{R}^n$, wenn $x$ Lebesguepunkt der Funktion $\mathbbm{1}_{E\cup\{x\}}$ ist. \\
+
+Zeigen Sie: Ist jeder Punkt $x \in [0,1]^n$ ein Dichtepunkt einer messbaren Teilmenge $E$ von $\mathbb{R}^n$, so gilt $\lambda^n(E) \geq 1$. \\
+
+Gibt es eine messbare Teilmenge $E$ von $\mathbb{R}$, für die $\mathbb{R}\backslash\{0\}$ die Menge der Dichtepunkte von $E$ ist?
+
+\end{exercise}
+
+\begin{solution}
+Aus dem Differenzierbarkeitssatz von Lebesgue (siehe Analysis 3 Skriptum Blümlinger, Satz 6.3.6) wissen wir, dass $\lambda^n$-fast alle Punkte aus $E$ Dichtepunkte von $E$ sind und $\lambda^n$-fast alle Punkte aus $\mathbb{R}^n\setminus E$ die Gleichheit 
+\begin{align*}
+    \lim_{r\searrow 0}\frac{\lambda^n(E\cap B(x,r))}{r^n\omega_n}=0
+\end{align*}
+erfüllen, wobei $\omega_n$ das Volumen der $n$-dimensionalen Einheitskugel bezeichnet. Mit diesem Wissen wollen wir unseren Widerspruchsbeweis beginnen indem wir annehmen
+\begin{align*}
+    \lambda^n([0,1]^n\setminus E)>0.
+\end{align*}
+Etwa mit Lemma 6.3.5 aus dem Skriptum kann man (hoffentlich) auch
+\begin{align*}
+    \lambda^n(E\cap[0,1]^n)>0
+\end{align*}
+einsehen. Um später Schreibarbeit zu sparen setzen wir für beliebiges $r>0$
+\begin{align*}
+    d_r:\mathbb{R}^n\to\mathbb{R}:x\mapsto\frac{\lambda^n(E\cap B(x,r))}{r^n\omega_n}.
+\end{align*}
+Nun wissen wir unseren obigen Überlegungen, dass wir einen Punkt $y_1\in [0,1]^n\setminus E$ finden können, der 
+\begin{align*}
+    \lim_{r\searrow 0}d_r(y_1)=0
+\end{align*}
+erfüllt. Ebenso finden wir einen Punkt $z_1\in[0,1]^n\cap E$ welcher 
+\begin{align*}
+    \lim_{r\searrow 0}d_r(z_1)=1
+\end{align*}
+erfüllt. Das bedeteutet es gibt ein $r_1>0$ das $B(y_1,r_1)\subseteq[0,1]^n$ und $B(z_1,r_1)\subseteq[0,1]^n$ sowie \begin{align*}
+    d_{r_1}(y_1)<\frac{1}{4}\land d_{r_1}(z_1)>\frac{3}{4}
+\end{align*}
+erfüllt.
+Jetzt definieren wir eine Funktion
+\begin{align*}
+    f_{r_1}:[0,1]\to\mathbb{R}:t\mapsto d_{r_1}(y_1(1-t)+z_1t)
+\end{align*}
+Diese Funktion $f_{r_1}$ ist stetig, weshalb es nach dem Zwischenwertsatz (siehe Fundament Analysis Korollar 6.2.6) und wegen der Konvexität von $[0,1]^n$ ein $x_1\in[0,1]^n$ geben muss, das $d_{r_1}(x_1)=\frac{1}{2}$ erfüllt und außerdem $B(x_1,r_1)\subseteq[0,1]^n$ gilt. Nehmen wir nun an wir haben für ein $l\in\mathbb{N}$ einen Punkt $x_l\in[0,1]^n$ und einen Radius $r_l\in\mathbb{R}^+$ mit $B(x_l,r_l)\subseteq[0,1]^n$ für die $d_{r_l}(x_l)=\frac{1}{2}$ gilt. Schreiben wir das gemäß Definition auf erhalten wir
+\begin{align*}
+    \lambda^n(E\cap B(x_l,r_l))=\frac{r_l^n\omega_n}{2}>0
+\end{align*}
+sowie
+\begin{align*}
+    \lambda^n(B(x_l,r_l)\setminus E)=\lambda^n(B(x_l,r_l))-\lambda^n(E\cap B(x_l,r_l))=r_l^n\omega_n-\frac{r_l^n\omega_n}{2}=\frac{r_l^n\omega_n}{2}>0
+\end{align*}
+Also können wir das gleiche Spiel wie davor durchführen und wählen also $y_{l+1}\in B(x_l,r_l)\setminus E$ und $z_{l+1}\in B(x_l,r_l)\in B(x_l,r_l)\cap B$ und ein hinreichend kleines $r_{l+1}\in\mathbb{R}^+$ mit
+\begin{align*}
+    d_{r_{l+1}}(y_1)<\frac{1}{4}\land d_{r_{l+1}}(z_1)>\frac{3}{4},
+\end{align*}
+wobei auch noch $r_{l+1}<\frac{r_l}{2}$ gelten soll. Nun definieren wir wieder eine (hoffentlich) stetige Funktion
+\begin{align*}
+    f_{r_{l+1}}:[0,1]\to\mathbb{R}:t\mapsto d_{r_{l+1}}(y_l(1-t)+z_lt)
+\end{align*}
+und finden wegen dem Zwischenwertsatz und der Konvexität von $B(x_l,r_l)$ einen Punkt $x_{l+1}\in B(x_l,r_l)$ mit $d_{r_{l+1}}(x_{l+1})=\frac{1}{2}$. Wir wollen unter Umständen $r_{l+1}$ noch einmal kleiner machen, nämlich so, dass $B(x_{l+1},r_{l+1})\subseteq B(x_l,r_l)$ gilt. Nun haben wir zwei Folgen $(r_k)$ und $(x_k)$ definiert mit $r_k\to 0$ und wenn man $\{\tilde{x}\}=\bigcap_{l\in\mathbb{N}}\overline{B(x_l,r_l)}$ schreibt $x_k\to\tilde{x}\in[0,1]^n$. Nun endlich können wir den Widerspruch herbeiführen, da $\tilde(x)$ ein Dichtepunkt von $E$ ist wissen wir 
+\begin{align*}
+    1&=\lim_{k\to\infty}\frac{\lambda^n(B(\tilde{x},2r_k)\cap(E\cup{\tilde{x}}))}{2^nr_k^n\omega_n}\leq\lim_{k\to\infty}\frac{\lambda^n(B(\tilde{x},2r_k))+\lambda^n(B(x_k,2r_k)\cap E)}{2^nr_k^n\omega_n}\\
+    &=\lim_{k\to\infty}\frac{2^nr_k^n\omega_n+\frac{2^nr_k^n\omega_n}{2}}{2^nr_k^n\omega_n}=\lim_{k\to\infty}\frac{3}{2}=\frac{3}{2}<1
+\end{align*}
+Nun haben wir den Widerspruch also muss $\lambda^n([0,1]^n\setminus E)=0$ gelten und damit $\lambda^n(E)\geq\lambda^n(E\cap[0,1]^n)=\lambda^n([0,1]^n)-\lambda^n([0,1]^n\setminus E)=1$
+\end{solution}

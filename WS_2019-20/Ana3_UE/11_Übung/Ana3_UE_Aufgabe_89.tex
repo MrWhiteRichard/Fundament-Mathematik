@@ -1,0 +1,101 @@
+\begin{exercise}
+
+Bis zu welcher Ordnung sind die Funktionen $f: \mathbb{R} \mapsto \mathbb{R}$
+
+\begin{equation*}
+    f(x) = |x|, \hspace{10pt} f(x) =
+    \begin{cases}
+    0 & x \leq 0, \\
+    x^2 & 0 < x < 1, \\
+    ax - 1 & x \geq 1, \\
+    \end{cases}
+\end{equation*}
+
+$a \in \mathbb{R}$ schwach differenzierbar? Berechnen Sie die schwachen Ableitungen. \\
+
+Zeigen Sie: Für $u(\textbf{x}) = \log|\textbf{x}|$ und $\nu_i(\textbf{x}) = \frac{x_i}{|\textbf{x}|^2}$ ist $\nu_i$ die schwache Ableitung $D^iu$ in $\mathbb{R}^n$.
+
+\end{exercise}
+
+\begin{solution}
+
+Widmen wir uns vorerst der Betragsfunktion $f(x) = |x|$ und erraten ihre schwache Ableitung $\sgn$. Nachdem $\id$ sogar klassisch differenzierbar ist, so auch schwach, laut Blümlinger Proposition 6.1.3. Wir rechnen die Definition der schwachen Ableigung nach, also $\Forall \phi \in C_c^\infty(\R):$
+
+\begin{align*}
+  \Int{\sgn(x) \phi(x)}{\lambda(x)}
+  & = - \Int[\R^-]{\phi(x)}{\lambda(x)}
+      + \Int[\R^+]{\phi(x)}{\lambda(x)} \\
+  & = \Int[\R^-]{x \phi^\prime(x)}{\lambda(x)} +
+      \Int[\R^+]{x \phi^\prime(x)}{\lambda(x)} \\
+  & = - \Int{|x| \phi^\prime(x)}{\lambda(x)}.
+\end{align*}
+
+Laut Blümlinger Proposition 6.1.4 gilt: Für $n = 1$ ist eine Funktion genau dann schwach differnezierbar, wenn sie f.ü. mit einer lokal absolut stetigen Funktion übereinstimmt. In diesem Fall ist die schwache Ableitung genau die f.ü. existierende lokal integrierbare Ableitung dieser lokal absolut stetigen Funktion.
+
+\begin{align*}
+  f \: \text{schwach differenzierbar}
+  \Leftrightarrow
+  \Exists g \: \text{lokal absolut stetig}: g = f \: \fastueberall
+\end{align*}
+
+\begin{align*}
+  f \: \text{lokal absolut stetig}
+  : \Leftrightarrow
+  \Forall K \subseteq \R, \: \text{kompakt}:
+  f|_K \: \text{absolut stetig}
+\end{align*}
+
+\begin{align*}
+  g|_K \: \text{absolut stetig}
+  : \Leftrightarrow
+  \Forall \epsilon > 0: \Exists \delta > 0:
+  \Forall (]a_i, b_i[)_{i=1}^n \subseteq K^n, \: \text{disjunkt}: \\
+  \sum_{i=1}^n |b_i - a_i| < \delta
+  \Rightarrow
+  \sum_{i=1}^n |g|_K(b_i) - g|_K(a_i)| < \epsilon
+\end{align*}
+
+Daraus folgt, dass $\sgn$ nicht mehr schwach differenzierbar ist. Sei sonst $g = f$ f.ü., $\delta > 0$ beliebig und $K := [-1, 1]$. Seinen weiters $N := (- \delta/2, 0)$ und $P := (0, \delta/2)$. \\
+
+Wegen $\lambda(P), \lambda(N) = \frac{\delta}{2} > 0$, sind $P$ und $N$ keine $\lambda$-Nullmengen. Die Wahl $\epsilon \leq 2$ schließt somit die absolute Stetigkeit von $g|_K$ aus, weil $\Forall a \in N, \Forall b \in P:$
+
+\begin{align*}
+  |g|_K(b) - g|_K(a)| = |\sgn(b) - \sgn(a)| = 2 \nless \epsilon.
+\end{align*}
+
+\\
+
+Für $a \neq 2$ stimmt die Funktion nie f.ü. mit einer lokal absolut stetigen
+Funktion überein, wie man ähnlich überprüfen kann. Für $a=2$ erhalten wir
+dagegen die schwache Ableitung nach Proposition 6.1.3 aus der klassischen
+Ableitung, also:
+
+\begin{align*}
+  Df=
+  \begin{cases}
+  0 & x \leq 0, \\
+  2x & 0 < x < 1, \\
+  2 & x \geq 1, \\
+  \end{cases}
+\end{align*}
+
+Diese Funktion ist lokal absolutstetig, daher können wir auch die zweite (schwache)
+Ableitung berechnen:
+
+\begin{align*}
+  D^2f=
+  \begin{cases}
+  0 & x \leq 0, \\
+  2 & 0 < x < 1, \\
+  0 & x \geq 1, \\
+  \end{cases}
+\end{align*}
+
+Die schwache Ableitung zweiter Ordnung ist die höchste Ordnung die existiert,
+da in $x=0$ bzw. $x=1$ Sprungstellen ähnlich dem ersten Bsp existieren.
+
+\\
+
+
+
+\end{solution}
