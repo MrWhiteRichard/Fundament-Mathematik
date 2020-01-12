@@ -8,67 +8,129 @@ im Beweis von 6.1.4. dargestellt werden kann und berechnen Sie $\int x^k\xi^{(l)
 \end{exercise}
 
 \begin{solution}
-    Zuerst wollen wir für eine beliebige Testfunktion $\Phi\in C_c^\infty$  und ein beliebiges $m\in\mathbb{N}$ und eine weitere Testfunktion $\Psi_0\in C_c^\infty$ mit $\int \Psi_0d\lambda=1$ zeigen, dass es ein $\zeta\in C_c^\infty$ und $\alpha_0,\dots,\alpha_{m-1}$ aus $\mathbb{R}$ gibt welche $\Phi=\zeta^{(m)}+\sum_{l=0}^{m-1}\alpha_l\Psi_0^{(l)}$ erfüllen. Wir gehen induktiv vor und erkennen unmittelbar, dass für $m=0$ die Aussage richtig ist. Für den Induktionsschritt gehen wir davon aus, dass wir eine Darstellung $\Phi=\theta^{(m)}+\sum_{l=0}^{m-1}\alpha_l\Psi_0^{(l)}$ mit einer Testfunktion $\theta\in C_c^\infty$ haben. Aus dem Beweis von Satz 6.1.4 im Analysis 3 Skriptum Blümlinger wissen wir dass
-    \begin{align*}
-        \eta:=\theta-\int\theta d\lambda\Psi_0\in C_c^\infty
-    \end{align*} 
-    eine Testfunktion mit
-    \begin{align*}
-        \int\eta d\lambda=0
-    \end{align*} 
-    ist. Nun ist klar, dass dann auch
-    \begin{align*}
-        C_c^\infty\ni\zeta:\mathbb{R}\to\mathbb{R}:x\mapsto\int_{-\infty}^x\eta d\lambda
-    \end{align*}
-    eine Testfunktion sein muss. Wegen $\zeta^{\prime}=\eta$ und der Definition von $\zeta$ erhalten wir die Darstellung 
-    \begin{align*}
-        \theta=\zeta^{\prime}+\int\theta d\lambda\Psi_0.
-    \end{align*}
-    Mit der Definition $\alpha_m:=\int\theta d\lambda$ erhalten wir so durch einsetzten unserer gewonnen Darstellung von $\theta$ die gewünschte Darstellung $\Phi=\zeta^{(m+1)}+\sum_{l=0}^{m}\alpha_l\Psi_0^{(l)}$.
 
-    Nun können wir uns der eigentlichen Aufgabe widmen. Dafür definieren wir ein Polynom 
-    \begin{align*}
-        p:\mathbb{R}\to\mathbb{R}:x\mapsto\sum_{j=0}^{n-1}\beta_jx^j
-    \end{align*}
-    Da wir das Fundamentallemma der Variationsrechnung bereits kennen wäre es ausreichend Koeffizienten $\beta_0,\dots,\beta_{n-1}$ zu finden, für die für alle Testfunktionen $\Phi\in C_c^\infty$
-    \begin{align}
-        \int (f-p)\Phi d\lambda=0\label{eq:wunsch}
-    \end{align}
-    gilt. Unter der Annahme, dass für $i>j$ und eine beliebige Testfunktion $\xi$
-    \begin{align*}
-        \int x^j\xi^{(i)}(x)d\lambda(x) = 0
-    \end{align*}
-    gilt rechnen wir
-    \begin{align*}
-        \int (f-p)\Phi d\lambda&=\int\pbraces{f-p}\zeta^{(n)}d\lambda+\sum_{i=0}^{n-1}\alpha_i\int(f-p)\Psi_0^{(i)}d\lambda
-    \end{align*}
-    Der erste Summand wird nach Voraussetzung Null und wenn wir uns \eqref{eq:wunsch} wünschen, dann muss $p$
-    \begin{align*}
-        \sum_{i=0}^{n-1}\alpha_i\int f\Psi_0^{(i)}d\lambda=\sum_{i=0}^{n-1}\alpha_i\int p\Psi_0^{(i)}d\lambda
-    \end{align*}
-    erfüllen, also beispielsweise für alle $i\in\{0,\dots,n-1\}$ die Gleichheit
-    \begin{align*}
-        \int f\Psi_0^{(i)}d\lambda=\int p\Psi_0^{(i)}d\lambda=\sum_{j=0}^{n-1}\beta_j\int x^j\Psi_0^{(i)}(x)d\lambda(x)
-    \end{align*} 
-    Dies führt uns auf das Gleichungssystem
-    \begin{align*}
-        \begin{pmatrix}
-            \int f\Psi_0^{(0)}d\lambda\\
-            \vdots\\
-            \int f\Psi_0^{(n-1)}d\lambda
-        \end{pmatrix} 
-        =
-        \begin{pmatrix}
-            \int x^0\Psi_0^{(0)}(x)d\lambda(x) & * & \cdots & \cdots & * \\
-            0 & \int x^1\Psi_1^{(1)}(x)d\lambda(x) & * & \cdots & * \\
-            \vdots & \ddots & \ddots & \ddots &\vdots \\
-            0 & \cdots &  0 & \int x^{n-2}\Psi_0^{(n-2)}(x)d\lambda(x) & * \\
-            0 & \cdots & \cdots & 0 & \int x^{n-1}\Psi_0^{(n-1)}(x)d\lambda(x)
-        \end{pmatrix}
-        \begin{pmatrix}
-            \beta_0\\
-            \vdots\\
-            \beta_{n-1}
-        \end{pmatrix}
-    \end{align*}
+Es seinen $\Phi \in C_c^\infty$ eine beliebige Testfunktion und $m \in \N$. Sei $\Psi_0 \in C_c^\infty$ eine weitere Testfunktion mit $\int \Psi_0 d \lambda = 1$. Wir zeigen, dass $\Exists \zeta \in C_c^\infty: \Exists \alpha_0, \ldots, \alpha_{m-1} \in \R:$
+
+\begin{align*}
+  \Phi =
+  \zeta^{(m)} +
+  \sum_{l=0}^{m-1}
+  \alpha_l \Psi_0^{(l)}.
+\end{align*}
+
+Wir benützen vollständige Induktion. Für $m = 0$, ist die Aussage richtig. Es gebe eine Darstellung
+
+\begin{align*}
+  \Phi =
+  \theta^{(m)} +
+  \sum_{l=0}^{m-1}
+  \alpha_l \Psi_0^{(l)}, \:
+  \theta \in C_c^\infty.
+\end{align*}
+
+Laut dem Beweis von Blümlinger Satz 6.1.4, ist folgendes $\eta \in C_c^\infty$ eine Testfunktion mit
+
+\begin{align*}
+    \eta :=
+    \theta -
+    \int \theta d \lambda \Psi_0, \:
+    \int \eta d \lambda = 0.
+\end{align*}
+
+Deren Stammfunktion $\zeta \in C_c^\infty$ ist auch eine Testfunktion.
+
+\begin{align*}
+  \zeta: x \mapsto \int_{-\infty}^x \eta d \lambda
+\end{align*}
+
+Wegen $\zeta^{\prime}=\eta$ und der Definition von $\eta$ erhalten wir
+
+\begin{align*}
+    \theta =
+    \zeta^{\prime} + \int \theta d \lambda\Psi_0.
+\end{align*}
+
+Mit $\alpha_m:=\int\theta d\lambda$ erhalten wir durch die Induktionsvoraussetzung
+
+\begin{align*}
+  \Phi
+  = \theta^{(m)} +
+    \sum_{l=0}^{m-1}
+    \alpha_l \Psi_0^{(l)}
+  = \zeta^{(m+1)} +
+    \sum_{l=0}^{m}
+    \alpha_l \Psi_0^{(l)}.
+\end{align*}
+
+Nun können wir uns der eigentlichen Aufgabe widmen. Dafür definieren wir ein Polynom
+
+\begin{align*}
+    p: \R \to \R: x \mapsto \sum_{j=0}^{n-1} \beta_j x^j
+\end{align*}
+
+Um $f = p$ zu zeigen, genügt es, laut Blümlinger Lemma 6.1.1 bzw. dem Fundamentallemma der Variationsrechnung, wenn $\Exists \beta_0, \dots, \beta_{n-1}: \Forall \Phi \in C_c^\infty:$
+
+\begin{align}
+    \int (f-p) \Phi d \lambda = 0. \label{eq:wunsch}
+\end{align}
+
+Für $i>j$ und eine beliebige Testfunktion $\xi \in C_c^\infty$, gelte
+
+\begin{align*}
+    \int x^j \xi^{(i)}(x) d \lambda(x) = 0.
+\end{align*}
+
+gilt rechnen wir
+
+\begin{align*}
+  \int (f-p) \Phi d \lambda
+  = \underbrace{\int (f-p) \zeta^{(n)} d \lambda}_0 +
+    \sum_{i=0}^{n-1} \alpha_i
+    \underbrace{\int(f-p) \Psi_0^{(i)} d \lambda}_0
+  \stackrel{!}{=} 0
+\end{align*}
+
+Der erste Summand Verschwindet laut Voraussetzung. Damit das auch für die anderen gilt, muss
+
+\begin{align*}
+    \sum_{i=0}^{n-1} \alpha_i
+    \int f \Psi_0^{(i)} d \lambda =
+    \sum_{i=0}^{n-1}
+    \alpha_i
+    \int p \Psi_0^{(i)} d \lambda.
+\end{align*}
+
+Summandenweise heißt das $\Forall i = 0, \dots, n-1:$
+
+\begin{align*}
+    \underbrace{\int f \Psi_0^{(i)} d \lambda}_{=: b_i}
+    = \int p \Psi_0^{(i)} d \lambda
+    = \sum_{j=0}^{n-1}
+      \beta_j
+      \underbrace{\int x^j \Psi_0^{(i)}(x) d \lambda(x)}_{=: a_{ij}}.
+\end{align*}
+
+Dies führt uns auf das lösbare Gleichungssystem $A \beta = b$, wobei
+
+\begin{align*}
+  A =
+  \begin{pmatrix}
+    a_{11} & \cdots & a_{1, n-1}   \\
+           & \ddots & \vdots       \\
+    0      &        & a_{n-1, n-1}
+  \end{pmatrix}, \:
+  \beta =
+  \begin{pmatrix}
+  \beta_0 \\
+  \vdots  \\
+  \beta_{n-1}
+  \end{pmatrix}, \:
+  b =
+  \begin{pmatrix}
+    b_0    \\
+    \vdots \\
+    b_{n-1}
+  \end{pmatrix}.
+\end{align*}
+
 \end{solution}
