@@ -1,6 +1,6 @@
 \begin{exercise}
 
-Zeigen Sie, dass $f \in L^p(\Omega), 1 < p < \infty$ genau dann in $W^{m,p}(\Omega)$ liegt, wenn die Abbildungen $\varphi \mapsto \int_{\Omega}fD^{\alpha}\varphi d\lambda^n$ fpr $|\alpha| \leq m$ stetig vom Raum der Testfunktionen versehen mit der $L^q$-Norm nach $\mathbb{R}$ ist. \\
+Zeigen Sie, dass $f \in L^p(\Omega), 1 < p < \infty$ genau dann in $W^{m,p}(\Omega)$ liegt, wenn die Abbildungen $\kappa: \varphi \mapsto \int_{\Omega}fD^{\alpha}\varphi d\lambda^n$ für $|\alpha| \leq m$ stetig vom Raum der Testfunktionen versehen mit der $L^q$-Norm nach $\mathbb{R}$ ist. \\
 
 Hinweis: Verwenden Sie, dass der Dualraum von $L^p$ der $L^q$ ist, das heißt jede beschränkte lineare Abbildung von einem dichten Teilraum des $L^p$ nach $\mathbb{C}$ ist von der Form $\varphi \mapsto \int \varphi g$ mit $g \in L^q$.
 
@@ -17,5 +17,33 @@ und erhalten:
   \norm[p]{D^{\alpha}f}\norm[q]{\varphi}
 \end{equation*}
 Somit ist die Abbildung in der $q$-Norm stetig. \\ \\
-Um nun $\Leftarrow$ zu zeigen, verwenden wir
+Um nun $\Leftarrow$ zu zeigen, definieren wir für $g\in L^q$ und
+$\varphi_n \in C^{\infty}_c$:
+\begin{equation*}
+  \xi(g)=\lim_{n\to\infty}\kappa(\varphi_n)
+\end{equation*}
+Wobei $g =\lim_{n\to\infty}\varphi_n$. Das ist möglich da laut Satz 2.5.1
+$C^{\infty}_c$ dicht in $L^q$ liegt. (Dieser Grenzwert ist als GW in der
+$\norm[q]{\cdot}$ zu verstehen.) \\
+Aus der Stetigkeit von $\kappa$ und der Tatsache, dass $\varphi_n$ eine
+Cauchyfolge ist, folgt, dass auch $\kappa(\varphi_n)$ eine CF-Folge ist und somit
+konvergent. Dass dieser GW eindeutig ist, folgt direkt aus der Linearität von
+$\kappa$. Somit ist die Abbildung $\xi$ wohldefiniert. \\
+Da $\xi$ eine Verkettung zweier Linearer Abbildungen ist (Linearität des Limes
+nach Bibel Kapitel 9), ist auch $\xi$ linear. Ebenfalls in dem Kaptiel ist
+erwähnt, dass aus der Stetigkeit von $\kappa$ auch die Beschränktheit
+(im Sinne der Abbildungsnorm) folgt.
+Somit ist auch $\xi$ beschränkt, da der Grenzübergang die Ungleichung erhält. \\
+Nach dem Hinweis (Darstellungssatz von Riesz) gibt es nun zu
+$(-1)^{\vbraces{\alpha}}\xi$ eine Funktion $h \in L^p$, sodass
+\begin{equation*}
+  \forall g \in L^q: (-1)^{\vbraces{\alpha}}\xi(g)=\int_{\Omega}hgd\lambda^n
+\end{equation*}
+Da erst recht alle Testfunktionen in $L^q$ liegen und für diese auch
+$\xi(\varphi) = \kappa(\varphi)$ gilt, haben wir also:
+\begin{equation*}
+  \forall \varphi\in C^{\infty}_c:(-1)^{\vbraces{\alpha}}\int_{\Omega}
+  fD^{\alpha}\varphi d\lambda^n = \int_{\Omega}h\varphi d\lambda^n
+\end{equation*}
+Somit ist $h$ die schwache Ableitung zu $f$ und $f\in W^{m,p}(\Omega)$.
 \end{solution}
