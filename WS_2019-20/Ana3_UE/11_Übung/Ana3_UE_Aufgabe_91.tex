@@ -70,33 +70,28 @@ Nun können wir uns der eigentlichen Aufgabe widmen. Dafür definieren wir ein P
 
 Um $f = p$ zu zeigen, genügt es, laut Blümlinger Lemma 6.1.1 bzw. dem Fundamentallemma der Variationsrechnung, wenn $\Exists \beta_0, \dots, \beta_{n-1}: \Forall \Phi \in C_c^\infty:$
 
-\begin{align}
-    \int (f-p) \Phi d \lambda = 0. \label{eq:wunsch}
-\end{align}
-
-Da für $i>j$ und eine beliebige Testfunktion $\xi \in C_c^\infty$ aufgrund n-facher partieller Integration
-
 \begin{align*}
-    \int x^j \xi^{(i)}(x) d \lambda(x) = 0.
+    \int (f-p) \Phi d \lambda = 0.
 \end{align*}
 
-und
+Aufgrund $n$-facher partieller Integration bzw. $D^n f = 0$, folgt für $i>j$, dass $ \Forall \xi \in C_c^\infty:$
 
 \begin{align*}
+    \int x^j \xi^{(i)}(x) d \lambda(x) = 0, \quad
     \int f \xi^{(n)}(x) d \lambda(x) = 0.
 \end{align*}
 
-gilt, erhalten wir:
+Mit dem Induktionsresultat, erhalten wir
 
 \begin{align*}
   \int (f-p) \Phi d \lambda
   = \underbrace{\int (f-p) \zeta^{(n)} d \lambda}_0 +
     \sum_{i=0}^{n-1} \alpha_i
     \int(f-p) \Psi_0^{(i)} d \lambda
-  \stackrel{!}{=} 0
+  \stackrel{!}{=} 0.
 \end{align*}
 
-Der erste Summand Verschwindet wegen obiger Überlegung. Damit das auch für die anderen gilt, muss
+Der erste Summand verschwindet aufgrund der obigen Überlegungen, weil $f-p \in \text{span} \Bbraces{x^0, \ldots, x^{n-1}, f}$. Damit das auch für die anderen gilt, muss
 
 \begin{align*}
     \sum_{i=0}^{n-1} \alpha_i
