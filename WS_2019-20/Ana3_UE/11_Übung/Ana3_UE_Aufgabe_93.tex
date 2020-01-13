@@ -58,3 +58,33 @@ $\xi(\varphi) = \kappa(\varphi)$ gilt, haben wir also:
 Somit ist $h$ die schwache Ableitung zu $f$ und $f\in W^{m,p}(\Omega)$.
 
 \end{solution}
+
+\begin{solution}
+
+"$\Rightarrow$": Durch die Hölder-Ungleichung erhält man $\Forall \varphi, \phi \in C_c^\infty(\Omega):$
+
+\begin{equation*}
+  \vbraces{\kappa(\varphi) - \kappa(\phi)} =
+  \vbraces
+  {
+    \int D^\alpha f \varphi d \lambda^n -
+    \int D^\alpha f \phi d \lambda^n
+  } \leq
+  \norm[1]{D^\alpha f (\varphi - \phi)} \leq
+  \norm[p]{D^\alpha f}
+  \norm[q]{\varphi - \phi},
+\end{equation*}
+
+und damit die Stetigkeit von $\kappa$ in der $\norm[q]{\cdot}$. \\
+
+"$\Leftarrow$": Laut Blümlinger Satz 2.5.1, liegt $C_c^\infty$ dicht in $L^q$. Weil $\kappa$ linear und stetig ist, so auch beschränkt im Sinne der Abbildungsnorm. Laut Hinweis bzw. dem Darstellungssatz von Riesz, folgt dass $\Forall |\alpha| \leq m: \Exists g \in L^p: \Forall \varphi \in C_c^\infty:$
+
+\begin{align*}
+  \Int{g \varphi}{\lambda^n} =
+  (-1)^{|\alpha|} \kappa(\varphi) =
+  (-1)^{|\alpha|} \Int{f D^\alpha \varphi}{\lambda^n}.
+\end{align*}
+
+Daher ist $g$ die f.ü. eindeutige schwache Ableitung von $f \in W^{m, p}(\Omega)$.
+
+\end{solution}
