@@ -8,8 +8,35 @@ Wie oft muss man würfeln, damit die Wahrscheinlichkeit dafür, dass die Summe d
 
 Jetzt suchen wir das kleinste $n \in \mathbb{N}$ für das 
 \begin{align*}
-    \mathbb{P}(X^(n) > 200) \geq \frac{9}{10}
+    \mathbb{P}_n(X_n > 200) \geq \frac{9}{10}
 \end{align*}
 gilt. 
+\begin{align*}
+    \mathbb{P}_n(X_n > 200) \geq \frac{9}{10} &\Leftrightarrow \mathbb{P}_n\pbraces{\frac{X_n-n\frac{7}{2}}{\sqrt{n\frac{35}{12}}} > \frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}} \geq \frac{9}{10} \\
+    &\Leftrightarrow \mathbb{P}_n\pbraces{\frac{X_n-n\frac{7}{2}}{\sqrt{n\frac{35}{12}}} \leq \frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}} < \frac{1}{10}
+\end{align*}
+
+Nun können wir wegen ??? diese Wahrscheinlichkeit approximieren durch
+
+\begin{align*}
+    \mathbb{P}_n\pbraces{\frac{X_n-n\frac{7}{2}}{\sqrt{n\frac{35}{12}}} \leq \frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}} \approx \Phi\pbraces{\frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}}
+\end{align*}
+
+Und berechnen nun unter Benützung der Symmetrie der Standardnormalverteilung
+\begin{align*}
+    \Phi\pbraces{\frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}} < \frac{1}{10} \Leftrightarrow \Phi\pbraces{-\frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}}} > \frac{9}{10}
+\end{align*}
+
+Schlägt man das in der Tabelle nach dann erhält man ungefähr
+
+\begin{align*}
+    -\frac{200 -n\frac{7}{2}}{\sqrt{n\frac{35}{12}}} > 1.28.
+\end{align*}
+
+Wolfram-Alpha liefert als Lösung
+
+\begin{align*}
+    n > \frac{16(9407+8\sqrt{9391})}{2625} \approx 62.06.
+\end{align*}
 
 \end{solution}
