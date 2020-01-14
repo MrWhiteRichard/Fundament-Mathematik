@@ -7,49 +7,59 @@ Wie oft muss man würfeln, damit die Wahrscheinlichkeit dafür, mindestens $100$
 \begin{solution}
 
 Für diese Aufgabe definieren wir eine neue Zufallsvariable
+
 \begin{align*}
-    Y:(\Omega,2^\Omega) \to (\mathbb{R},\mathfrak{B}): \omega \mapsto 
+    Y:(\Omega,2^\Omega) \to (\R,\B): \omega \mapsto
     \begin{cases}
-        0 &, \omega < 6 \\
-        1 &, \omega = 6
-    \end{cases}.
+        0, & \omega < 6, \\
+        1, & \omega = 6.
+    \end{cases}
 \end{align*}
 
 Für n-maliges Würfeln brauchen wir wieder
 
 \begin{align*}
-    Y_n:(\Omega^n,2^{\Omega^n}) \to (\mathbb{R}, \mathfrak{B}): (\omega_1,\dots,\omega_n)^T \mapsto \sum_{k=1}^n Y(\omega_k)
+    Y_n:(\Omega^n,2^{\Omega^n}) \to (\R, \B): (\omega_1,\dots,\omega_n)^T \mapsto \sum_{k=1}^n Y(\omega_k)
 \end{align*}
 
-Nun wollen wir das kleinste $n\in\mathbb{N}$ finden, für das 
+Nun wollen wir das kleinste $n \in \N$ finden, für das
+
 \begin{align*}
-    \mathbb{P}_n(Y_n \geq 100) > \frac{9}{10}
+    \P_n(Y_n \geq 100) > \frac{9}{10}.
 \end{align*}
 
 Zuerst brauchen wir wieder Erwartungswert und Varianz von $Y_n$. Wir berechnen also
+
 \begin{align*}
-    \mathbb{E}(Y_n) &= \sum_{k=1}^n\mathbb{E}(Y) = n\frac{1}{6} \\
-    \mathbb{V}(Y_n) &= \sum_{k=1}^n\mathbb{V}(Y) = \sum_{k=1}^n \frac{1}{6}\pbraces{5\pbraces{0-\frac{1}{6}}^2 + \pbraces{1-\frac{1}{6}}^2} = n\frac{5}{36}.
+    \E(Y_n) &= \sum_{k=1}^n\E(Y) = n\frac{1}{6} \\
+    \V(Y_n) &= \sum_{k=1}^n\V(Y) = \sum_{k=1}^n \frac{1}{6}\pbraces{5\pbraces{0-\frac{1}{6}}^2 + \pbraces{1-\frac{1}{6}}^2} = n\frac{5}{36}.
 \end{align*}
 
 Wir erhalten also mit einer Stetigkeitskorrektur
-\begin{align*}
-    \mathbb{P}_n(Y_n \geq 100) &= 1 - \mathbb{P}\pbraces{\frac{Y_n-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}} < \frac{100-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}}} \approx 1 - \mathbb{P}\pbraces{\frac{Y_n-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}} \leq \frac{99.5-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}}} \\
-    &\approx 1 - \Phi\pbraces{\frac{99.5-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}}} = \Phi\pbraces{-\frac{99.5-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}}}
-\end{align*}
-
-Schauen wir nun in der Tabelle den kleinsten Wert nach, für den 
 
 \begin{align*}
-    \Phi\pbraces{-\frac{99.5-\mathbb{E}(Y_n)}{\sqrt{\mathbb{V}(Y_n)}}} = \Phi\pbraces{-\frac{99.5-n\frac{1}{6}}{\sqrt{n\frac{5}{36}}}} > \frac{9}{10}
+    \P_n(Y_n \geq 100) &= 1 - \P\pbraces{\frac{Y_n-\E(Y_n)}{\sqrt{\V(Y_n)}} < \frac{100-\E(Y_n)}{\sqrt{\V(Y_n)}}} \approx 1 - \P\pbraces{\frac{Y_n-\E(Y_n)}{\sqrt{\V(Y_n)}} \leq \frac{99.5-\E(Y_n)}{\sqrt{\V(Y_n)}}} \\
+    &\approx 1 - \Phi\pbraces{\frac{99.5-\E(Y_n)}{\sqrt{\V(Y_n)}}} = \Phi\pbraces{-\frac{99.5-\E(Y_n)}{\sqrt{\V(Y_n)}}}
 \end{align*}
+
+Schauen wir nun in der Tabelle den kleinsten Wert nach, für den
+
+\begin{align*}
+    \Phi\pbraces{-\frac{99.5-\E(Y_n)}{\sqrt{\V(Y_n)}}} = \Phi\pbraces{-\frac{99.5-n\frac{1}{6}}{\sqrt{n\frac{5}{36}}}} > \frac{9}{10}
+\end{align*}
+
 gilt, so erhalten wir wie vorhin
+
 \begin{align*}
     -\frac{99.5-n\frac{1}{6}}{\sqrt{n\frac{5}{36}}} > 1.28.
 \end{align*}
+
 Wolfram Alpha ist so nett uns dafür das Ergebnis
+
 \begin{align*}
     n > \frac{75137 + 32\sqrt{74881}}{125} \approx 671.15
 \end{align*}
+
 zu liefern.
+
 \end{solution}

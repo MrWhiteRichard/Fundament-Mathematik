@@ -6,6 +6,108 @@ Zeigen Sie: Wenn für ein $t \neq 0$ $\phi_X(t) = 1$ gilt, dann nimmt $X$ mit Wa
 
 \begin{solution}
 
-Trivial
+Für die erste Aussage ist zu zeigen, dass
+
+\begin{align*}
+  \P(X \in \frac{2 \pi}{t} \Z) = 1.
+\end{align*}
+
+Man betrachte folgende Gleichungskette, wobei der letzte Summand wegfällt, weil $1 \in \R$.
+
+\begin{align}
+  1
+  = \phi_X(t)
+  = \E(e^{iXt})
+  = \Int{e^{iX(\omega)t}}{\P(\omega)}
+  = \Int{\cos(X(\omega)t)}{\P(\omega)} +
+    i \underbrace{\Int{\sin(X(\omega)t)}{\P(\omega)}}_0
+  \label{a_2_eq_1}
+\end{align}
+
+Es ist bekanntlich $\cos^{-1}(\Bbraces{1}) = 2 \pi \Z$. Angenommen, $\Exists N \in \S: \P(N) > 0, \: \Forall \omega \in N:$
+
+\begin{align*}
+  X(\omega) \not \in \frac{2 \pi}{t} \Z
+  \Rightarrow
+  \cos(X(\omega)t) < 1.
+\end{align*}
+
+Dann gilt aber für das Integral über $N$, dass
+
+\begin{align*}
+  \Int[N]{\cos(X(\omega)t)}{\P(\omega)} <
+  \Int[N]{}{\P(\omega)} =
+  \P(N).
+\end{align*}
+
+Man setzt die obere Gleichungskette \eqref{a_2_eq_1} fort und erhält einen Widerspruch.
+
+\begin{align*}
+  \Int[N]{\cos(X(\omega)t)}{\P(\omega)} +
+  \Int[N^c]{\cos(X(\omega)t)}{\P(\omega)} <
+  P(N) + P(N^c) = P(\Omega) = 1
+\end{align*}
+
+Somit lässt sich \eqref{a_2_eq_1} richtig weiterführen.
+
+\begin{align*}
+  \Int[\bbraces{X \in \frac{2 \pi}{t} \Z}]{\cos(X(\omega)t)}{\P(\omega)}
+  = \Int[\bbraces{X \in \frac{2 \pi}{t} \Z}]{}{\P}
+  = \P(X \in \frac{2 \pi}{t} \Z)
+\end{align*}
+
+Für die zweite Aussage ist zu zeigen, dass
+
+\begin{align*}
+  \P(X = 0) = 1.
+\end{align*}
+
+Laut Vorher, gilt für $t = t_1, t_2$, dass
+
+\begin{align*}
+  \sum_{n \in \Z} \P(X = \frac{2 \pi}{t} n)
+  = \P(X \in \frac{2 \pi}{t} \Z)
+  = 1.
+\end{align*}
+
+Also
+
+\begin{align*}
+  \Exists N_1 \in \S: \P(N_1^c) = 0, \:
+  \Forall \omega \in N_1:
+  \Exists n_1 \in \Z:
+  X(\omega) = \frac{2 \pi n_1}{t_1}, \\
+  \Exists N_2 \in \S: \P(N_2^c) = 0, \:
+  \Forall \omega \in N_2:
+  \Exists n_2 \in \Z:
+  X(\omega) = \frac{2 \pi n_2}{t_2}.
+\end{align*}
+
+Wir wollen eine Aussage über die Elemente des Schnittes $N := N_1 \cap N_2 \in \S$ dieser Mengen treffen.
+
+\begin{align*}
+  \frac{2 \pi n_1}{t_1} = \frac{2 \pi n_2}{t_2}
+  \Rightarrow
+  n_1 = \underbrace{t_1/t_2}_{\in \R \setminus \Q} n_2
+  \Rightarrow
+  n_1, n_2 = 0
+\end{align*}
+
+Dazu brauchen wir aber auch noch, dass
+
+\begin{align*}
+  \P(N^c) =
+  \P((N_1 \cap N_2)^c) =
+  \P(N_1^c \cup N_2^c) \leq
+  \P(N_1^c) + \P(N_2^c) = 0.
+\end{align*}
+
+Somit erhält man,
+
+\begin{align*}
+  \Exists N \in \S: \P(N^c) = 0, \:
+  \Forall \omega \in N:
+  X(\omega) = 0.
+\end{align*}
 
 \end{solution}
