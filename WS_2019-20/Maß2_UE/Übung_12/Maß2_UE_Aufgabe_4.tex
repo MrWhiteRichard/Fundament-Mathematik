@@ -18,21 +18,21 @@ und dann auf dem Wahrcheinlichkeitsraum $(\Omega,2^\Omega,\mathbb{P})$ für alle
 \begin{align*}
     X_k:(\Omega,2^\Omega) \to (\mathbb{R},\mathfrak{B}): \omega \mapsto \omega.
 \end{align*}
-Nun soll
+Nun soll für alle $n \in \mathbb{N}$
 \begin{align*}
-    X:(\Omega^{100},2^{\Omega^{100}}) \to (\mathbb{R},\mathfrak{B}): (\omega_1,\dots,\omega_{100})^T \mapsto \sum_{k=1}^{100} X_k(\omega_k)
+    X^{(n)}:(\Omega^n,2^{\Omega^n}) \to (\mathbb{R},\mathfrak{B}): (\omega_1,\dots,\omega_{100})^T \mapsto \sum_{k=1}^{n} X_k(\omega_k)
 \end{align*}
 unseren Versuch beschreiben. Wir berechnen zuerst
 \begin{align*}
-    \mathbb{E}(X) = \sum_{k=1}^{100} \mathbb{E}(X_k) = 100\frac{7}{2} = 350
+    \mathbb{E}(X^{(100)}) = \sum_{k=1}^{100} \mathbb{E}(X_k) = 100\frac{7}{2} = 350
 \end{align*}
 sowie unter Benützung der Unabhängigkeit der $X_k$
 \begin{align*}
-    \mathbb{V}(X) = \sum_{k=1}^{100} \mathbb{V}(X_k) = \sum_{k=1}^{100} \frac{1}{6} \pbraces{\pbraces{1-\frac{7}{2}}^2+\cdots+\pbraces{6-\frac{7}{2}}^2} = 100 \frac{35}{12} = \frac{875}{3}
+    \mathbb{V}(X^{(100)}) = \sum_{k=1}^{100} \mathbb{V}(X_k) = \sum_{k=1}^{100} \frac{1}{6} \pbraces{\pbraces{1-\frac{7}{2}}^2+\cdots+\pbraces{6-\frac{7}{2}}^2} = 100 \frac{35}{12} = \frac{875}{3}
 \end{align*}
 Nun verwenden wir (den lokalen Grenzwertsatz???) um
 \begin{align*}
-    \mathbb{P}(X > 375) &= 1 - \mathbb{P}(X \leq 375) = 1 - \mathbb{P}\pbraces{\frac{X - \mathbb{E}(X)}{\sqrt{\mathbb{V}(X)}} \leq \frac{375 - \mathbb{E}(X)}{\sqrt{\mathbb{V}(X)}}} \\
-    &= 1 - \mathbb{P}\pbraces{\frac{X - \mathbb{E}(X)}{\sqrt{\mathbb{V}(X)}} \leq \frac{25\sqrt{3}}{\sqrt{875}}} \approx 1 - \Phi(1.464) \approx 1 - 0.92785 = 0.07215
+    \mathbb{P}(X^{(100)} > 375) &= 1 - \mathbb{P}(X^{(100)} \leq 375) = 1 - \mathbb{P}\pbraces{\frac{X^{(100)} - \mathbb{E}(X^{(100)})}{\sqrt{\mathbb{V}(X^{(100)})}} \leq \frac{375 - \mathbb{E}(X^{(100)})}{\sqrt{\mathbb{V}(X^{(100)})}}} \\
+    &= 1 - \mathbb{P}\pbraces{\frac{X^{(100)} - \mathbb{E}(X^{(100)})}{\sqrt{\mathbb{V}(X^{(100)})}} \leq \frac{25\sqrt{3}}{\sqrt{875}}} \approx 1 - \Phi(1.464) \approx 1 - 0.92785 = 0.07215
 \end{align*}
 \end{solution}
