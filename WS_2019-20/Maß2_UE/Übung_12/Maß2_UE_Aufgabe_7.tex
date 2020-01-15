@@ -6,6 +6,28 @@ Ein anderer Weg, das vorige Beispiel zu lösen: die Anzahl der Versuche hat eine
 
 \begin{solution}
 
-Trivial
-
+Sei $X$ die Zufallsvariable, welche die Anzahl der Veruche angibt, um 100 Sechser zu erreichen.
+\begin{align*}
+Y_k:(\Omega,2^\Omega) \to (\R,\B): \omega \mapsto
+\begin{cases}
+    0, & \omega < 6, \\
+    1, & \omega = 6.
+\end{cases} \\
+    X:(\Omega^\N,2^{\Omega^\N}) \to (\R, \B): (\omega_n)_{n\in\N} \mapsto \min\{k\in\N: \sum_{n = 0}^kY_k = 100\}
+\end{align*}
+$X$ ist negativ binomialverteilt, also:
+\begin{align*}
+  P(X=x) = {x - 1\choose 99}(\frac{1}{6})^{100}(\frac{5}{6})^{x-100}
+\end{align*}
+Diese negative Binomialverteilung lässt sich schließlich als Summe 100 unabhängiger, geometrisch verteilter Zufallsvariablen darstellen:
+\begin{align*}
+  X \sim \sum_{k=1}^{100}X_k,
+\end{align*}
+wobei $X_k$ geometrisch verteilte Zufallsvariablen mit Parameter $1/6$ sind.
+Darauf können wir abermals den zentralen Grenzwertsatz anwenden:
+\begin{align*}
+  \P(X \leq x) = \P(\sum_{k=1}^{100}\frac{X_k - 600}{\sqrt{30*100}} \leq \frac{x-600}{\sqrt{30*100}}) &\approx \Phi\pbraces{\frac{x-\frac{100}{6}}{\sqrt{30*100}}}  > \frac{9}{10} \\
+  \frac{x-\frac{100}{6}}{\sqrt{30*100}} > 1.28 \\
+  x > 670.108
+\end{align*}
 \end{solution}
