@@ -16,6 +16,106 @@ Hier könnte Ihre Werbung stehen!
 
 \begin{solution}
 
-Trivial
+(a) Die verallgemeinerte Inverse wird definiert für $p \in (0, 1]$.
+
+\begin{align*}
+  F^{-1}(p) := \inf \Bbraces{x \in \R: p \leq F(x)}
+\end{align*}
+
+Wir benennen die folgenden Mengen.
+
+\begin{align*}
+  A  & := \Bbraces
+  {
+    \epsilon > 0:
+    \Forall x \in \R:
+    F(x - \epsilon) - \epsilon \leq
+    G(x) \leq
+    F(x + \epsilon) + \epsilon
+  } \\
+  B & := \Bbraces
+  {
+    \epsilon > 0:
+    \Forall x \in \R:
+    F^{-1}(x - \epsilon) - \epsilon \leq
+    G^{-1}(x) \leq
+    F^{-1}(x + \epsilon) + \epsilon
+  }
+\end{align*}
+
+Für $\inf B \leq \inf A$, genügt es $A \subseteq B$ zu zeigen. Sei also $\epsilon \in A$, dann gilt $\epsilon > 0$ und $\Forall x \in \R:$
+
+\begin{align*}
+  F(x - \epsilon) - \epsilon \leq
+  G(x) \leq
+  F(x + \epsilon) + \epsilon.
+\end{align*}
+
+Wir wollen zeigen, dass
+
+\begin{align*}
+  F^{-1}(x - \epsilon) - \epsilon \leq
+  G^{-1}(x) \leq
+  F^{-1}(x + \epsilon) + \epsilon.
+\end{align*}
+
+Wir zeigen die erste Ungleichung; die zweite geht (wahrscheinlich) analog. Für die letzte Ungleichung beachte man $M \subseteq N$.
+
+\begin{align*}
+  \inf \Bbraces{y \in \R: x - \epsilon \leq F(y)} - \epsilon
+  & = \inf \Bbraces{y - \epsilon \in \R: x - \epsilon \leq F(y)} \\
+  & = \inf \Bbraces{z \in \R: x - \epsilon \leq F(z + \epsilon)} \\
+  & = \inf \underbrace
+      {
+        \Bbraces{z \in \R: x \leq F(z + \epsilon) + \epsilon}
+      }_{=: N} \\
+  & \leq \inf \underbrace
+      {
+        \Bbraces{y \in \R: x \leq G(y)}
+      }_{=: M}
+\end{align*}
+
+(b) Wir betrachten den Wahrscheinlichkeitsraum $(]0, 1[, \B(]0, 1[), \lambda)$ und bemerken, dass $F_n, F: \R \to [0, 1]$. Die verallgemeinerten Inversen $F_n^{-1}, F^{-1}$ sind monoton und somit messbar, also $X_n := F_n^{-1}, X := F^{-1}$ Zufallsvariablen. \\
+
+\say{$\Rightarrow$}: Es ist zu zeigen, dass
+
+\begin{align*}
+  \P(X_n \xrightarrow{n \to \infty} X) = 1.
+\end{align*}
+
+Schwache Konvergenz ist bekanntlich äquivalent zur Konvergenz in der Lévy-Prohorov-Metrik.
+
+\begin{align*}
+  F_n \xrightarrow[\text{schwach}]{n \to \infty} F
+  \Leftrightarrow
+  d(F_n, F) \xrightarrow{n \to \infty} 0.
+\end{align*}
+
+Laut (a) wissen wir also bereits, dass
+
+\begin{align*}
+  d(X_n, X) =
+  d(F_n^{-1}, F^{-1}) \leq
+  d(F_n, F) \xrightarrow{n \to \infty} 0.
+  \label{schwache_konvergenz}
+\end{align*}
+
+Eine weitere Äquivalenz zur schwach Konvergenz, erlaubt $\Forall \omega \in \mathcal{C}(X):$
+
+\begin{align*}
+  X_n(\omega) \xrightarrow{n \to \infty} X(\omega).
+\end{align*}
+
+Weil in jedem Intervall eine rationale Zahl ist und $|\Q| = \aleph_0$, gibt es nur abzählbar viele $F_n$- bzw. $F$-konstante Bereiche. $X_n, X$ haben genau dort ihre Sprungstellen, also ebenfalls nur abzählbar viele, also bilden sie eine $\lambda$-Nullmenge. Q.E.D. \\
+
+\say{$\Leftarrow$}: $\lambda$ ist auf unserem Wahrscheinlichkeitsraum endlich, also folgt mit dem Satz von Egorov und Übung 11, Beispiel 6, dass
+
+\begin{align*}
+  X_n \xrightarrow[\text{f.s.}]{n \to \infty} X
+  \Rightarrow
+  X_n \xrightarrow[\text{in WSK}]{n \to \infty} X
+  \Rightarrow
+  F_n \xrightarrow[\text{schwach}]{n \to \infty} F.
+\end{align*}
 
 \end{solution}
