@@ -1,2 +1,3 @@
 # Fundament Mathematik
-Mathematik TU Wien Code &amp; shit
+
+6 aspirierende Studenten der Technischen Universität Wien teilen, im Rahmen des Baechelor Studiums "Technische Mathematik", dieses Repository.
