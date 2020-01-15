@@ -6,6 +6,7 @@ Ein anderer Weg, das vorige Beispiel zu lösen: die Anzahl der Versuche hat eine
 
 \begin{solution}
 
+<<<<<<< HEAD
 Sei $X$ die Zufallsvariable, welche die Anzahl der Veruche angibt, um 100 Sechser zu erreichen.
 \begin{align*}
 Y_k:(\Omega,2^\Omega) \to (\R,\B): \omega \mapsto
@@ -30,4 +31,62 @@ Darauf können wir abermals den zentralen Grenzwertsatz anwenden:
   \frac{x-\frac{100}{6}}{\sqrt{30*100}} > 1.28 \\
   x > 670.108
 \end{align*}
+=======
+Eine Zufallsvariable $X$ ist negativ Binomialverteilt $B_{neg} (r,p)$, wobei
+$r$ die Anzahl der erfolgreichen Versuche und $p$ die Wahrscheinlichkeit
+des Erfolges ist, wenn sie sich durch die Wahrscheinlichkeitsfunktion
+
+\begin{align*}
+  \P(X=n) = \binom{n-1}{r-1}p^r(1-p)^{n-r}
+\end{align*}
+
+angeben lässt. Dabei gelten für Erwartungswert und Varianz
+
+\begin{align*}
+  \E(X) &= \frac{r(1-p)}{p} \\
+  \V(X) &= \frac{r(1-p)}{p^2}
+\end{align*}
+
+Wir wollen wissen wie oft wir Würfeln müssen um $r=100$ (wobei also $r$ die
+Anzahl der $6$en ist) und erhalten also:
+
+\begin{align*}
+  \P(X=n) &= \binom{n-1}{99}\pbraces{\frac{1}{6}}^{100}\pbraces{\frac{5}{6}}^{n-100} \\
+  &\text{und suchen} \\
+  \P(X \leq n) &> 0,9
+\end{align*}
+
+Für $r=1$, also für einen erfolgreichen Versuch, nennt man die Verteilung auch
+geometrische Verteilung. Für diese gilt
+
+\begin{align*}
+  \P(X=n)=\frac{1}{6}\pbraces{\frac{5}{6}}^{n-r}
+\end{align*}
+
+Betrachten wir die Anzahl der Würfe bis zum nächsten Erfolg, ist diese wieder
+geometrisch verteilt, wir können die Anzahl der Würfe bis $100$ $6$er geworfen
+werden, als
+
+\begin{align*}
+  S_{100} = \sum_{i=1}^{100}X_i
+\end{align*}
+
+schreiben, wobei $X_i$ geometrisch verteilte ZV sind. Für Erwartungswert und
+Varianz erhalten wir \\
+$\E(X_i)=6, \V(X_i)=30$ und der zentrale Grenzwertsatz erlaubt uns nun, folgende
+Wahrscheinlichkeit durch die Standard-Normalverteilung zu approximieren:
+
+\begin{align*}
+  \P(\frac{S_{100}-600}{10\sqrt{30}} \leq \frac{n-600}{10\sqrt{30}}) \thickapprox
+  \Phi(\frac{n-600}{10\sqrt{30}}) > 0,9
+\end{align*}
+
+Nachschlagen gibt uns $\Phi(1,28)=0,9$ somit erhalten wir
+
+\begin{align*}
+  \frac{n-600}{10\sqrt{30}} > 1,28 \Leftrightarrow
+  n > 12,8 \cdot \sqrt{30} + 600 = 670,1
+\end{align*}
+Somit $n=671$ (fast) wie im vorherigen Bsp.
+>>>>>>> 9c1e9e03b5cb9e0376f57573526d83fafd8c39c3
 \end{solution}
