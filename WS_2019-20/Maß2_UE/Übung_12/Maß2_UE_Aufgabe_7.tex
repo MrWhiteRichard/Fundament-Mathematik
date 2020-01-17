@@ -6,7 +6,7 @@ Ein anderer Weg, das vorige Beispiel zu lösen: die Anzahl der Versuche hat eine
 
 \begin{solution}
 
-<<<<<<< HEAD
+Lösung: Florian \\
 Sei $X$ die Zufallsvariable, welche die Anzahl der Veruche angibt, um 100 Sechser zu erreichen.
 \begin{align*}
 &Y_k:(\Omega,2^\Omega) \to (\R,\B): \omega \mapsto
@@ -31,7 +31,8 @@ Darauf können wir abermals den zentralen Grenzwertsatz anwenden:
   \frac{x-\frac{100}{6}}{\sqrt{30*100}} > 1.28 \\
   x > 670.108
 \end{align*}
-=======
+
+Lösung: Salli \\
 Eine Zufallsvariable $X$ ist negativ Binomialverteilt $B_{neg} (r,p)$, wobei
 $r$ die Anzahl der erfolgreichen Versuche und $p$ die Wahrscheinlichkeit
 des Erfolges ist, wenn sie sich durch die Wahrscheinlichkeitsfunktion
@@ -44,7 +45,7 @@ angeben lässt. Dabei gelten für Erwartungswert und Varianz
 
 \begin{align}
   \E(X) &= \frac{r(1-p)}{p} \nonumber \\
-  \V(X) &= \frac{r(1-p)}{p^2} 
+  \V(X) &= \frac{r(1-p)}{p^2}
 \end{align}
 
 Wir wollen wissen wie oft wir Würfeln müssen um $r=100$ (wobei also $r$ die
@@ -89,8 +90,6 @@ Nachschlagen gibt uns $\Phi(1,28)=0,9$ somit erhalten wir
 \end{align*}
 Somit $n=671$ (fast) wie im vorherigen Bsp.
 
-
->>>>>>> 9c1e9e03b5cb9e0376f57573526d83fafd8c39c3
 
 Anmerkung: eine heuristische Erklärung (die für mich Sinn macht), nichts Formales: Die negative Binomialverteilung $B_{neg}\pbraces{100,\frac{1}{6}}$ gibt an, wie oft man nicht $6$ gewürfelt hat, bis man $100$ Mal $6$ gewürfelt hat. Das heißt $\mathbb{P}(X=n)$ ist die Wahrscheinlichkeit $n$ Mal nicht Sechs gewürfelt zu haben, bis man $100$ Mal 6 gewürfelt hat. Ist nun also eine Zufallsvariable $S_{100} \sim B_{neg}\pbraces{100,\frac{1}{6}}$ negativ binomialverteilt (ist eventuell leider ein wenig ein anderes $S_{100}$ also oben) und $Y_n$ (aus Aufgabe 6) gibt mir die Anzahl der $6$er nach $n$ Würfen, so modellieren wir nun $Y_n \approx n - S_{100}$, also Anzahl der Sechser $Y_n$ ist ist Anzahl der Würfe $n$ minus Anzahl der nicht Sechser $S_{100}$. Wir schreiben also $\mathbb{P}\pbraces{Y_n \geq 100} = \mathbb{P}\pbraces{n - S_{100} \geq 100} = \mathbb{P}\pbraces{S_{100} \leq n - 100} = \mathbb{P}\pbraces{\frac{S_{100} - \mathbb{E}(S_{100})}{\sqrt{\mathbb{V}(S_{100})}} \leq \frac{(n-100) - \mathbb{E}(S_{100})}{\sqrt{\mathbb{V}(S_{100})}}}$, wobei $\mathbb{E}(S_{100}),\mathbb{V}(S_{100})$ nach (2) berechnet werden können. Danach gehts so weiter wie oben.
 \end{solution}
