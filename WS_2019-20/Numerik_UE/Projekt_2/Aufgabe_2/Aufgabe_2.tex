@@ -10,9 +10,9 @@ Das Projekt beschäftigt sich mit den Eigenschwingeungen einer fest eingespannte
 
 für alle $x \in (0, 1)$ und $t \in \R$ beschrieben, wobei $c$ die Ausbreitungsgeschwindigkeit der Welle ist. Wenn die Saite an beiden Enden fest eingespannt ist, so gelten die Randbedingungen
 
-\begin{align} \label{Randbedingungen}
+\begin{align*}
   u(t, 0) = u(t, 1) = 0
-\end{align}
+\end{align*}
 
 für alle $t \in \R$. \\
 
@@ -31,17 +31,17 @@ mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion
 
 mit der unbekannten Wellenzahl $\kappa := \frac{\omega}{c}$ und den Randbedingungen
 
-\begin{align} \label{Helmholz-Randbedingungen}
+\begin{align} \label{Randbedingungen}
   v(0) = v(1) = 0.
 \end{align}
 
 \subsection{Analytische Lösung}
 
-\begin{align*}
+\begin{align}
   v_\kappa(x) = C_1 \cos{(\kappa x)} + C_2 \sin{(\kappa x)}, \qquad
   x \in [0, 1],
   \label{Analytische_Lösung}
-\end{align*}
+\end{align}
 
 mit beliebigen Konstanten $C_1, C_2$ löst die Helmholz-Gleichung \eqref{Helmholz-Gleichung}. Das erkennt man durch stumpfes Einsetzen.
 
@@ -56,7 +56,7 @@ mit beliebigen Konstanten $C_1, C_2$ löst die Helmholz-Gleichung \eqref{Helmhol
   = \kappa^2 v_\kappa(x)
 \end{multline*}
 
-Wir fragen uns, für welche $\kappa > 0$, Konstanten $C_1$ und $C_2$ existieren, sodass $v_\kappa$ auch die Randbedingungen \eqref{Helmholz-Randbedingungen} erfüllt.
+Wir fragen uns, für welche $\kappa > 0$, Konstanten $C_1$ und $C_2$ existieren, sodass $v_\kappa$ auch die Randbedingungen \eqref{Randbedingungen} erfüllt.
 
 \begin{align*}
   0 \stackrel{!}{=}
@@ -136,7 +136,7 @@ Nachdem $v$ hinreichend glatt ist, gilt nach dem Satz von Taylor, dass $\Forall 
   \Landau{h^{n+3}}.
 \end{align*}
 
-Man beachte, dass sich die Summanden der oberen Taylor-Polynome für ungerade $\ell \in 2 \N - 1$ aufheben. Damit erhalten wir für den Differenzenquotient $D_h v(x_j)$, $j = 1, \ldots, n-1$ eine asymptotische Entwicklung.
+Man beachte, dass sich die ungeraden Summanden, der oberen Taylor-Polynome, sich gegenseitig aufheben. Damit erhalten wir für den Differenzenquotient $D_h v(x_j)$, $j = 1, \ldots, n-1$ eine asymptotische Entwicklung.
 
 \begin{align*}
   D_h v(x_j)
@@ -148,13 +148,13 @@ Man beachte, dass sich die Summanden der oberen Taylor-Polynome für ungerade $\
       {
         2 v(x_j) +
         h^2 v^\primeprime(x_j) +
-        \sum_{ell = 4}^{n+2}
+        \sum_{\substack{\ell = 4 \\ \ell \in 2 \N}}^{n+2}
         \frac{h^\ell}{\ell !}
         v^{(\ell)}(x_j)
-        (1 + (-1)^\ell)
+        (1 + (-1)^\ell) -
+        2 v(x_j)
       } +
-      \Landau{h^{n+3}} -
-      2 v(x_j) \\
+      \Landau{h^{n+3}} \\
   & = v^\primeprime(x_j) +
       2 \sum_{\ell = 1}^\floor{\frac{n}{2}}
       \frac{h^{2 \ell}}{(2 \ell + 2)!}
@@ -185,7 +185,7 @@ Es wird eine Matrix $A_n$ gesucht, die den Differenzenquotienten $D_h v(x_j)$ au
   \in \R^{(n-1) \times (n-1)}.
 \end{align*}
 
-Weil nun die Randbedingungen \eqref{Helmholz-Randbedingungen} gelten, d.h. $v(x_0), v(x_n) = 0$, leistet diese Matrix $A_n$ tatsächlich das Gewünschte.
+Weil nun die Randbedingungen \eqref{Randbedingungen} gelten, d.h. $v(x_0), v(x_n) = 0$, leistet diese Matrix $A_n$ tatsächlich das Gewünschte.
 
 \begin{align*}
   A_n \vec v =
@@ -206,13 +206,13 @@ Weil nun die Randbedingungen \eqref{Helmholz-Randbedingungen} gelten, d.h. $v(x_
 
 Das Eigenwertproblem wurde mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. Wir vergleichen die Eigenwerte und Eigenvektoren mit den analytischen Ergebnissen. \\
 
-Betrachtet man die, unten aufgelisteten, Eigenwerte, der ersten paar Matrizen $A_2, \ldots, A_{10}$, so legen diese ein gewisses (quadratisches) Konvergenzverhalten nahe. Die Matrix $A_n$ besitzt also scheinbar $n-1$ paarweise verschiedene Eigenwerte $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, welche jeweils gegen $\lambda_j := -(\pi j)^2$, $j \in \N$ konvergieren.
+Betrachtet man die, unten aufgelisteten, Eigenwerte, der ersten paar Matrizen $A_2, \ldots, A_{10}$, so legen diese ein gewisses (quadratisches) Konvergenzverhalten nahe. Die Matrix $A_n$ besitzt also scheinbar $n-1$ paarweise verschiedene Eigenwerte $\lambda_{1, n} > \cdots > \lambda_{n-1, n}$, welche jeweils gegen $\lambda_j := -(\pi j)^2$, $j \in \N$ konvergieren.
 
-% \begin{align*}
-%   \lambda_{j, n}
-%   \xrightarrow{n \to \infty}
-%   \lambda_j
-% \end{align*}
+\begin{align*}
+  \lambda_{j, n}
+  \xrightarrow{n \to \infty}
+  \lambda_j
+\end{align*}
 
 \begin{multicols}{3}
 \begin{verbatim}
@@ -306,7 +306,7 @@ n -> inf
 \end{verbatim}
 \end{multicols}
 
-Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $j$-ten Eigenwertes. In der folgenden Abbildung wurde dieser für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. Allem Anschein nach, verschwindet $\epsilon_j$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. \\
+Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $j$-ten Eigenwertes. In der folgenden Abbildung wurde dieser für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. Allem Anschein nach, verschwindet $\epsilon_j$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $j$-te Eigenwert erst ab einer Matrix $A_n$, $n > j$ existiert. Daher fangen die plots von $\epsilon_j$ desto später an, je größer $j$ ist.\\
 
 \begin{figure}[h!]
   \centering
@@ -314,3 +314,190 @@ Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldo
   \caption{Konvergenz-Fehler der Eigenwerte von $A_n$}
   \label{Konvergenz-Fehler_EW}
 \end{figure}
+
+\textbf{Wenn wir mit dem plot von den Eigenvektoren fertig sind, dann kommt der auch noch hier her!}
+
+\subsection{verallgemeinerte Eigenschwingungen}
+
+Die Ausbreitungsgeschwindigkeit $c$ in \eqref{Wellengleichung} hängt vom Material der Saite ab. Bisher haben wir sie als konstant angenommen, d.h. die Saite bestand aus einem Material. Sei nun für $c_0, c_1 \in \R$
+
+\begin{align} \label{Material-Funktion}
+  c(x) :=
+  \begin{cases}
+    c_0, x \in (0, 1/2) \\
+    c_1, x \in (1/2, 1)
+  \end{cases}.
+\end{align}
+
+Zuerst leiten wir eine zur Helmholz-Gleichung \eqref{Helmholz-Gleichung} ähnliche Gleichung her und geben einen \eqref{Analytische_Lösung} entsprechenden Lösungsansatz an, wenn die Lösung $v$ auf $(0, 1)$ stetig differenzierbar sein soll.
+Dabei betrachten wir eine angepasste Version der Wellengleichung \eqref{Wellengleichung}.
+
+\begin{align*}
+  \frac{\partial^2 u}{\partial x^2} (t, x) =
+  \frac{1}{c^2(x)}
+  \frac{\partial^2 u}{\partial t^2} (t, x), \qquad
+  x \in (0, 1), \qquad
+  t \in \R
+\end{align*}
+
+Wir verwenden jedoch den selben Ansatz, wie Vorher. Das war $u(x, t) = \mathfrak{R} (v(x) e^{-i \omega t})$, mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. \\
+
+Einsetzen und analoges Nachrechnen, gibt mit der unbekannten Wellenzahl $\kappa(x) := \frac{\omega}{c(x)}$, die Randbedingungen \eqref{Randbedingungen} und
+
+\begin{align} \label{Helmholz-Gleichung}
+  -v^\primeprime(x) = \kappa^2(x) v(x), \qquad
+  x \in (0, 1).
+\end{align}
+
+Um Probleme mit der Differenzierbarkeit von $\kappa$ zu vermeiden, führen wir die Abkürzungen $\kappa_0 := \frac{\omega}{c_0}$, $\kappa_1 := \frac{\omega}{c_1}$ ein. Wir definieren den Lösungsansatz durch Fallunterscheidung und mit (vorerst) beliebigen Konstanten $C_{01}, C_{02}, C_{11}, C_{12}$.
+
+\begin{align*}
+  v(x) :=
+  \begin{cases}
+    C_{01} \cos{(\kappa_0 x)} + C_{(02)} \sin{(\kappa_0 x)},
+    & x \in (0, 1/2) \\
+    C_{11} \cos{(\kappa_1 x)} + C_{(12)} \sin{(\kappa_1 x)},
+    & x \in (1/2, 1)
+  \end{cases}
+\end{align*}
+
+Durch Berücksichtigung der Randbedingungen \eqref{Randbedingungen}, erhält man (fast analog zu Vorher)
+
+\begin{align*}
+  C_{01} = 0, \qquad
+  C_{11} \cos{\kappa_1} + C_{12} \sin{kappa_1} = 0.
+\end{align*}
+
+Soll $v$ auf $1/2$ stetig fortgesetzt werden, so müssen dessen links- und rechts-seitiger Grenzwert übereinstimmen.
+
+\begin{align*}
+  C_{02} \sin(\kappa_0/2)
+  = \lim_{x \to 1/2-} v(x)
+  = \lim_{x \to 1/2+} v(x)
+  = C_{11} \cos(\kappa_1/2) + C_{12} \sin(\kappa_1/2)
+\end{align*}
+
+Um stetige Differenzierbarkeit zu erhalten, muss auch die Ableitung
+
+\begin{align*}
+  v^\prime(x) =
+  \begin{cases}
+    C_{02} \kappa_0 \cos(\kappa_0 x),
+    & x \in (0, 1/2) \\
+    - C_{11} \kappa_1 \sin(\kappa_1 x) + C_{12} \kappa_1 \cos(\kappa_1 x),
+    & x \in (1/2, 1)
+  \end{cases}
+\end{align*}
+
+auf $1/2$ stetig fortgesetzt werden.
+
+\begin{align*}
+  \kappa_0 C_{02} \cos(\kappa_0/2)
+  = \lim_{x \to 1/2-} v^\prime(x)
+  = \lim_{x \to 1/2+} v^\prime(x)
+  = - C_{11} \kappa_1 \sin(\kappa_1/2) + C_{12} \kappa_1 \cos(\kappa_1/2)
+\end{align*}
+
+Aus den Randbedingungen und stetigen Fortsetzungen, ergibt sich also das homogene lineare Gleichungssystem $R \vec C = 0$, mit
+
+\begin{align*}
+  R :=
+  \begin{pmatrix}
+    \sin(\kappa_0/2)          & -\cos(\kappa_1/2)         & -\sin(\kappa_1/2) \\
+    \kappa_0 \cos(\kappa_0/2) & \kappa_1 \sin(\kappa_1/2) & - \kappa_1 \cos(\kappa_1/2) \\
+    0                         & \cos{\kappa_1}            & \sin{\kappa_1}
+  \end{pmatrix}
+  \in \R^{3 \times 3}, \qquad
+  \vec C :=
+  \begin{pmatrix}
+    C_{02} \\
+    C_{11} \\
+    C_{12}
+  \end{pmatrix}
+  \in \R^{3 \times 1}.
+\end{align*}
+
+Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$. Andernfalls, gilt genau dann $\det{R} = 0$. Mit SymPy berechnet man
+
+\begin{align*}
+  \det{R} =
+  \sin{\left(\frac{{\kappa}_{0}}{2} \right)} \cos{\left(\frac{{\kappa}_{1}}{2} \right)} {\kappa}_{1} + \sin{\left(\frac{{\kappa}_{1}}{2} \right)} \cos{\left(\frac{{\kappa}_{0}}{2} \right)} {\kappa}_{0}.
+\end{align*}
+
+Über $\kappa_0 = \frac{\omega}{c_0}$, $\kappa_1 = \frac{\omega}{c_1}$ lässt sich $\omega$, für gegebene $c_0$, $c_1$ als (nicht eindeutige) Nullstelle einer Funktion $f$ charakterisieren. Diese Überlegung, wird, in Form von folgender Funktion, implementiert.
+
+\lstinputlisting
+[language = Python]
+{Aufgabe_2/python_code/get_zero_function.py}
+
+Nun können wir $f$ für fixe $c_0, c_1$ plotten lassen. Dann bekommen wir ein besseres Verständnis dafür, welchen Startwert wir wählen sollen, um die Gleichung $f(\omega) = 0$, mit \verb|fsolve| aus \verb|scipy.optimize|, lösen zu lassen. \\
+
+Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbiträren Werte $c_0 = 100$, $c_1 = 1$ gewählt. Die Funktion $f$ ist scheinbar gerade, d.h. symmetrisch bzgl. der $y$-Achse.
+
+\begin{figure}[h!]
+  \centering
+  \subfloat[auf dem Intervall $(-16, 16)$]{
+    \includegraphics[width=65mm]{Aufgabe_2/zero_function_plot_c_0_100_c_1_1}
+  }
+  \subfloat[auf dem Intervall $(0, 100)$ und gezoomt]{
+    \includegraphics[width=65mm]{Aufgabe_2/zero_function_plot_c_0_100_c_1_1_zoomed}
+  }
+  \hspace{0mm}
+  \caption{Plots von $f$ für $c_0 = 100$, $c_1 = 1$}
+  \label{fig:zero_function}
+\end{figure}
+
+Dementsprechend, können passende Startwerte für iterative Verfahren gewählt werden. Die Ergebnisse vom, bereits erwähnten, \verb|fsolve| folgen. Warum die Quadrate dieser Ergebnisse eine Rolle spielen, wird später noch erwähnt.
+
+\begin{multicols}{2}
+\begin{verbatim}
+solutions when guessing \omega = 0:
+[0.]
+squared:
+[0.]
+
+solutions when guessing \omega = 5:
+[4.05742465]
+squared:
+[16.46269482]
+
+solutions when guessing \omega = 10:
+[9.82605835]
+squared:
+[96.55142264]
+
+solutions when guessing \omega = 15:
+[15.9568155]
+squared:
+[254.61996082]
+\end{verbatim}
+\end{multicols}
+
+Wir wollen nun den Differenzenquotienten $D_h v(x_j)$, um ein verallgemeintertes Eigenwertproblem der Form $A \vec v = \lambda B \vec v$ mit Matrizen $A, B \in \R^{(n-1) \times (n-1)}$ herzuleiten. \\
+
+Sei abermals $x_j := jh$, $j = 0, \ldots, n$ unsere Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die Matrix $A_n$, für den Differenzenquotienten $D_h v(x_j)$, bleibt ebenfalls nach wie vor so, wie sie ist. \\
+
+$B_n \lambda$ soll nun, analog zu Vorher, $-\kappa^2$ repräsentieren. Diesmal jedoch, ist $\kappa$ als Funktion zu verstehen. Also wird die Matrix $B_n$ deren Fallunterscheidungen übernehmen und $\lambda$ bleibt konstant. \\
+
+\begin{align*}
+  B_n :=
+  \diag^{-1}
+  (
+    \underbrace{c_0, \ldots, c_0}_{\floor{\frac{n-1}{2}} \text{-mal}},
+    \underbrace{c_1, \ldots, c_1}_{\ceil {\frac{n-1}{2}} \text{-mal}}
+  ), \qquad
+  \lambda := -\omega^2.
+\end{align*}
+
+Wenn wir davon ausgehen, dass $c_0, c_1 \neq 0$, so ist $B_n$ wohldefiniert als Diagonalmatrix deren Reziproke. Damit lässt sich dieses verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$, mit nahezu keinem Aufwand, in ein konkretes $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. \\
+
+Dieses Eigenwertproblem wurde ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. Wir vergleichen die Eigenwerte und Eigenvektoren mit den oberen \say{analytischen} Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Dass die Eigenwerte gegen $-\omega^2$ konvergieren, überrascht wenig. \\
+
+\begin{verbatim}
+n = 1000
+-----
+Eigenvalues:
+-16.36765487049704
+-95.77791479172302
+-252.4289978568357
+\end{verbatim}
