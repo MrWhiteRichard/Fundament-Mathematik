@@ -76,7 +76,7 @@ Das sind die gesuchten $\kappa > 0$. Sei nun eines dieser $\kappa$ fest. Offensi
 
 \subsection{Numerische Approximation}
 
-Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerische Verfahren zur+ckgegriffen wird, welche möglichst gute Näherungen an die exakten Lösungen berechnen sollen. Als einfachstes Mittel dienen sogenannte Differenzenverfahren. Sei dazu $x_j := jh$, $j = 0, \ldots, n$ eine Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die zweite Ableitung in \eqref{Helmholz-Gleichung} wird approximiert durch den Differenzenquotienten
+Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerische Verfahren zurückgegriffen wird, welche möglichst gute Näherungen an die exakten Lösungen berechnen sollen. Als einfachstes Mittel dienen sogenannte Differenzenverfahren. Sei dazu $x_j := jh$, $j = 0, \ldots, n$ eine Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die zweite Ableitung in \eqref{Helmholz-Gleichung} wird approximiert durch den Differenzenquotienten
 
 \begin{align} %\label{Differenzenquotient}
   v^\primeprime(x_j) \approx
@@ -354,9 +354,9 @@ Um Probleme mit der Differenzierbarkeit von $\kappa$ zu vermeiden, führen wir d
 \begin{align*}
   v(x) :=
   \begin{cases}
-    C_{01} \cos{(\kappa_0 x)} + C_{(02)} \sin{(\kappa_0 x)},
+    C_{01} \cos{(\kappa_0 x)} + C_{02} \sin{(\kappa_0 x)},
     & x \in (0, 1/2) \\
-    C_{11} \cos{(\kappa_1 x)} + C_{(12)} \sin{(\kappa_1 x)},
+    C_{11} \cos{(\kappa_1 x)} + C_{12} \sin{(\kappa_1 x)},
     & x \in (1/2, 1)
   \end{cases}
 \end{align*}
@@ -365,7 +365,7 @@ Durch Berücksichtigung der Randbedingungen \eqref{Randbedingungen}, erhält man
 
 \begin{align*}
   C_{01} = 0, \qquad
-  C_{11} \cos{\kappa_1} + C_{12} \sin{kappa_1} = 0.
+  C_{11} \cos{\kappa_1} + C_{12} \sin{\kappa_1} = 0.
 \end{align*}
 
 Soll $v$ auf $1/2$ stetig fortgesetzt werden, so müssen dessen links- und rechts-seitiger Grenzwert übereinstimmen.
@@ -417,7 +417,9 @@ Aus den Randbedingungen und stetigen Fortsetzungen, ergibt sich also das homogen
   \in \R^{3 \times 1}.
 \end{align*}
 
-Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$. Andernfalls, gilt genau dann $\det{R} = 0$. Mit SymPy berechnet man
+Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$.
+Dieser Fall wäre jedoch wieder der trivialfall, darum betrachten wir den anderen Fall,
+also dass $\det{R} = 0$ gilt. Mit SymPy berechnet man
 
 \begin{align*}
   \det{R} =
