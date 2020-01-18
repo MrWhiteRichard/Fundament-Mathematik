@@ -38,7 +38,29 @@
     &\cos(z) := \frac{\exp(\mathrm{i}z) + \exp(-\mathrm{i}z)}{2} = \sum_{k=0}^\infty (-1)^k \frac{z^{2k}}{(2k)!} &  f:\mathbb{R} \to \mathbb{R}: x \mapsto \frac{1}{1 + x^2} \Rightarrow \int f = \arctan  \\
     &\sin(x + y) = \sin(x)\cos(y) + \cos(x)\sin(y) & \cos(x + y) = \cos(x)\cos(y) - \sin(x)\sin(y) \\
     &\forall z \in \mathbb{C}: \vert z \vert < 1 \Rightarrow \sum_{k=0}^n z^k = \frac{1 - z^{n+1}}{1-z} &  \forall x \in \mathbb{R}^+\cup\{0\}: \arctan(x) \leq x \\
-    &\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6} & g:\mathbb{R} \to \mathbb{R}: t \mapsto \mathrm{e}^{-\vert t \vert} \Rightarrow \hat{g}: \mathbb{R} \to \mathbb{R}: x \mapsto \frac{1}{1 + x^2} \sqrt{\frac{2}{\pi}} 
+    &\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6} & g:\mathbb{R} \to \mathbb{R}: t \mapsto \mathrm{e}^{-\vert t \vert} \Rightarrow \hat{g}: \mathbb{R} \to \mathbb{R}: x \mapsto \frac{1}{1 + x^2} \sqrt{\frac{2}{\pi}}
 \end{align*}
-
+\section*{Wichtige Stammfunktionen}
+\begin{align*}
+  &\int kx^n dx = \begin{cases} \frac{k}{n+1}x^{n+1}, & \text{wenn } n \neq -1, \\
+  k\ln (|x|), & \text{wenn } n = -1.
+\end{cases}
+ &\int a^x dx = \frac{a^x}{\ln (a)} \\
+ &\int x^x(1+\ln(x)) dx = x^x
+ &\int \log_a(x) dx = \frac{1}{\ln(a)}(x\ln(x) - x) \\
+ &\int \sqrt{a^2-x^2} dx = \frac{a^2}{2}\arcsin(\frac{x}{a}) + \frac{x}{2}\sqrt{a^2-x^2}
+ &\int \sqrt{a^2+x^2} dx = \frac{a^2}{2}\arsinh(\frac{x}{a}) + \frac{x}{2}\sqrt{a^2+x^2} \\
+ &\int \sin(x) dx = -\cos(x)
+ &\int \cos(x) dx = \sin(x) \\
+ &\int \sin^2(x) dx = \frac{1}{2}(x - \sin(x)\cos(x))
+ &\int \cos^2(x) dx = \frac{1}{2}(x + \sin(x)\cos(x)) \\
+ &\int \tan(x) dx = -\ln(|\cos(x)|)
+ &\int \cot(x) dx = \ln(|\sin(x)|) \\
+ &\int \frac{1}{\cos^2(x)} dx = \tan(x)
+ &\int \frac{-1}{\sin^2(x)} dx = \cot(x) \\
+ &\int \frac{1}{\sqrt{1-x^2}} dx = \arcsin(x)
+ &\int \frac{-1}{\sqrt{1-x^2}} dx = \arccos(x) \\
+ &\int \frac{1}{x^2 + 1} dx =  \arctan(x)
+ &\int \frac{x^2}{x^2 + 1} dx = x - \arctan(x) \\
+\end{align*}
 \end{document}
