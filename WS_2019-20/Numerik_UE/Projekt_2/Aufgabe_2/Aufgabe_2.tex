@@ -306,7 +306,9 @@ n -> inf
 \end{verbatim}
 \end{multicols}
 
-Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $j$-ten Eigenwertes. In der folgenden Abbildung wurde dieser für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. Allem Anschein nach, verschwindet $\epsilon_j$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $j$-te Eigenwert erst ab einer Matrix $A_n$, $n > j$ existiert. Daher fangen die plots von $\epsilon_j$ desto später an, je größer $j$ ist.\\
+Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $j$-ten Eigenwertes. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW} wurde dieser für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. \\
+
+Allem Anschein nach, verschwindet $\epsilon_j$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $j$-te Eigenwert erst ab einer Matrix $A_n$, $n > j$ existiert. Daher fangen die plots von $\epsilon_j$ desto später an, je größer $j$ ist. Für größeres $j$ ist auch der intitiale Fehler größer. Obwohl dieser ebenfalls quadratisch konvergiert, werden mehr Rechenoperationen für ein genaues Ergebnis benötigt. \\
 
 \begin{figure}[h!]
   \centering
@@ -417,9 +419,7 @@ Aus den Randbedingungen und stetigen Fortsetzungen, ergibt sich also das homogen
   \in \R^{3 \times 1}.
 \end{align*}
 
-Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$.
-Dieser Fall wäre jedoch wieder der trivialfall, darum betrachten wir den anderen Fall,
-also dass $\det{R} = 0$ gilt. Mit SymPy berechnet man
+Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$. Dieser Fall wäre jedoch wieder der trivialfall, darum betrachten wir den anderen Fall, also dass $\det{R} = 0$ gilt. Mit SymPy berechnet man
 
 \begin{align*}
   \det{R} =
@@ -477,13 +477,13 @@ squared:
 
 Wir wollen nun den Differenzenquotienten $D_h v(x_j)$, um ein verallgemeintertes Eigenwertproblem der Form $A \vec v = \lambda B \vec v$ mit Matrizen $A, B \in \R^{(n-1) \times (n-1)}$ herzuleiten. \\
 
-Sei abermals $x_j := jh$, $j = 0, \ldots, n$ unsere Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die Matrix $A_n$, für den Differenzenquotienten $D_h v(x_j)$, bleibt ebenfalls nach wie vor so, wie sie ist. \\
+Sei abermals $x_j := jh$, $j = 0, \ldots, n$ unsere Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die Matrix $A_n$, für den Differenzenquotienten $D_h v(x_j)$ und der Vektor $\vec v := (v(x_1), \ldots, v(x_{n-1}))^T$, bleiben ebenfalls nach wie vor so, wie sie waren. \\
 
 $B_n \lambda$ soll nun, analog zu Vorher, $-\kappa^2$ repräsentieren. Diesmal jedoch, ist $\kappa$ als Funktion zu verstehen. Also wird die Matrix $B_n$ deren Fallunterscheidungen übernehmen und $\lambda$ bleibt konstant. \\
 
 \begin{align*}
   B_n :=
-  \diag^{-1}
+  \diag^{-2}
   (
     \underbrace{c_0, \ldots, c_0}_{\floor{\frac{n-1}{2}} \text{-mal}},
     \underbrace{c_1, \ldots, c_1}_{\ceil {\frac{n-1}{2}} \text{-mal}}
@@ -491,7 +491,15 @@ $B_n \lambda$ soll nun, analog zu Vorher, $-\kappa^2$ repräsentieren. Diesmal j
   \lambda := -\omega^2.
 \end{align*}
 
-Wenn wir davon ausgehen, dass $c_0, c_1 \neq 0$, so ist $B_n$ wohldefiniert als Diagonalmatrix deren Reziproke. Damit lässt sich dieses verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$, mit nahezu keinem Aufwand, in ein konkretes $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. \\
+Die Wahl von $B_n$ lässt sich wie folgt begründen: Für zwei Vektoren $a, b$, ist die Matrix-Vektor-Multiplikation $\cdot$, mit der Diagonalmatrix von $a$, äquivalent zur komponentenweisen Multiplikaiton $\odot$, d.h. $\diag(a) \cdot b = a \odot b$. Bei dem vorherigen Eigenwert-Problem wäre $B_n$ als die Einheits-Matrix $I_n$ zu betrachten, nachdem der Eigenwert $\lambda$ gleich ganz $-\kappa^2$ (konstant) übernehmen konnte. Da $-\kappa^2$ nun zwei Werte
+
+\begin{align*}
+  -\pbraces{\frac{\omega}{c_0}}^2, -\pbraces{\frac{\omega}{c_1}}^2
+\end{align*}
+
+annimmt, muss diese Eigenschaft von Diagonalmatrizen ausgenutzt werden, um die Unterscheidung zwischen $x_j < 1/2$ und $x_j \geq 1/2$ zu realisieren. \\
+
+Wenn wir davon ausgehen, dass $c_0, c_1 \neq 0$, so ist $B_n$ wohldefiniert als Diagonalmatrix deren quadratische Kehrwerte. Damit lässt sich dieses verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$, mit nahezu keinem Aufwand, in ein konkretes $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. \\
 
 Dieses Eigenwertproblem wurde ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. Wir vergleichen die Eigenwerte und Eigenvektoren mit den oberen \say{analytischen} Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Dass die Eigenwerte gegen $-\omega^2$ konvergieren, überrascht wenig. \\
 
@@ -499,7 +507,7 @@ Dieses Eigenwertproblem wurde ebenfalls mit \verb|np.linalg.eig|, für beliebige
 n = 1000
 -----
 Eigenvalues:
--16.36765487049704
--95.77791479172302
--252.4289978568357
+-16.44054324040394
+-96.3725475394107
+-254.1214683324469
 \end{verbatim}

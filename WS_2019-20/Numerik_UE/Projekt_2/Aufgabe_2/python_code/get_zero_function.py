@@ -19,7 +19,8 @@ def get_zero_function(c):
     # substitute for kappa_0 and kappa_1:
     kappa_0 = omega/c[0]
     kappa_1 = omega/c[1]
-    det = det.subs({kappa[0]: kappa_0, kappa[1]: kappa_1})
+    substitution = {kappa[0]: kappa_0, kappa[1]: kappa_1}
+    det = det.subs(substitution)
 
     # transform expression det into proper numpy function:
     zero_function = sp.lambdify(omega, det, 'numpy')
