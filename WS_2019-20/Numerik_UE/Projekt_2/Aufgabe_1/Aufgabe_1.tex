@@ -96,3 +96,114 @@ Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhal
   d_{n+1} = r_{n+1} + \beta_nd_n = r_{n+1}^* + \beta_n^*d_n^* = d_{n+1}^*
 \end{align*}
 Und der Beweis ist vollständig.
+
+\subsection*{c)}
+Dünn besetzte Matrizen erlauben effizientere Implementierungen als voll besetzte, indem beim Speichern und Rechnen
+nur Einträge die ungleich Null sind berücksichtigt werden. Eine Möglichkeit einer solchen Implementierung ist das sogenannte
+\textit{compressed sparse row} Format. Anstelle aller Einträge $A_{ij}, i,j = 1,dots,n$ einer Matrix $A \in \mathbb{R}^{n\times n}$
+werden ein Vektor $v \in \mathbb{R}^{n\times n}$ aller Einträge ungleich Null, ein Vektor $J \in \mathbb{N}_0^m$ von Spaltenindizes
+und ein Vektor $I \in \mathbb{N}_0^{n+1}$ von Zeigern gespeichert. Die $i$-te Zeile von $A$ ist dann gegeben durch
+\begin{align*}
+  A_{ij} = \begin{cases}
+    v_{k(j)}, & \text{falls}~ j \in \{J_{I_i}, J_{I_i} + 1, \dots, J_{I_i + 1} - 1\} \\
+    0, & \text{sonst}
+  \end{cases}
+\end{align*}
+Implementierung in Python: \\
+\begin{lstlisting}[language=Python]
+class Sparse:
+
+    def __init__(self,b,v, J = np.zeros(0), I = np.zeros(0)):
+        if b:
+            self.v = np.array(v)
+            self.J = np.array(J)
+            self.I = np.array(I)
+            self.n = len(self.I)-1
+        else:
+            self.v, self.J, self.I = self.fromdense(v)
+            self.n = len(self.I)-1
+
+    def __matmult__(self,b):
+        d = np.zeros(self.n)
+        for i in range(self.n):
+            x = np.array(self.J[self.I[i]:self.I[i+1]]).astype(int)
+            d[i] = self.v[self.I[i]:self.I[i+1]]@b[x]
+        return d
+
+
+    def todense(self):
+        A = np.zeros([self.n,self.n])
+        for i in range(self.n):
+            for j in range(self.I[i],self.I[i+1]):
+                A[i][self.J[j]] = self.v[j]
+        return A
+
+    def fromdense(self,A):
+        v,J = np.zeros(0), np.zeros(0)
+        I = np.array([0])
+        c = 0
+        for i in range(np.shape(A)[0]):
+            for j in range((np.shape(A))[0]):
+                if A[i][j] != 0:
+                    v = np.append(v,A[i][j])
+                    J = np.append(J,j)
+                    c += 1
+            I = np.append(I,c)
+        return v, J, I
+\end{lstlisting}
+
+\subsection*{d)}
+Kombinieren Sie Ihre CG-Implementierung mit Ihrer \textbf{sparse} Klasse und testen Sie die Effizienz: \\
+Implementierung:
+\begin{lstlisting}[language=Python]
+def Scg(A,b,x0,tol):
+    xt = x0
+    r0 = b - A.__matmult__(xt)
+    d = r0
+    c = 0
+    while(np.linalg.norm(r0) > tol):
+        prod = np.dot(np.transpose(r0),r0)
+        prod2 = A.__matmult__(d)
+        alpha = prod/np.dot(np.transpose(d),prod2)
+        xt = xt + alpha*d
+        r0 = r0 - alpha*prod2
+        beta = np.dot(np.transpose(r0),r0)/prod
+        d = r0 + beta*d
+        c += 1
+    print(c)
+    return xt
+\end{lstlisting}
+Schlechte Nachrichten: Die Effizienz ist gesunken!
+
+\subsection*{e)}
+Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
+Um die Konvergenzgeschwindigkeit zu erhöhen löst man das vorkonditionierte System
+\begin{align*}
+  D^{-1}AD^{-1T} = D^{-1}b
+\end{align*}
+und gewinnt die Lösung $x$ dann durch $x = D^{-1T}y$. Die Matrix $D$ wird dabei so gewählt, dass
+\begin{itemize}
+\item für beliebige Vektoren $z \in \mathbb{R}^n$ der Vektor $D^{-1T}D^{-1}z$ einfach zu berechen ist und
+\item $\text{cond}(D^{-1}AD^{-1T}) < \text{cond}(A)$.
+\end{itemize}
+Implementierung des vorkonditionierten CG-Verfahrens:
+\begin{lstlisting}[language=Python]
+def vcg(A,b,x0,P,tol):
+    r0 = b - A.__matmult__(x0)
+    P_inv = np.linalg.inv(P)
+    z0 = P_inv@r0
+    d = r0
+    c = 0
+    while(np.linalg.norm(r0) > tol):
+        prod = np.dot(np.transpose(z0),r0)
+        prod2 = A.__matmult__(d)
+        alpha = np.dot(np.transpose(r0),z0)/np.dot(np.transpose(d),prod2)
+        x0 = x0 + alpha*d
+        r0 = r0 - alpha*prod2
+        z0 = P_inv@r0
+        beta = np.dot(np.transpose(z0),r0)/prod
+        d = r0 + beta*d
+        c += 1
+    return xt
+\end{lstlisting}
+Wieder schlechte Nachrichten: Der Scheiß kovergiert nicht!
