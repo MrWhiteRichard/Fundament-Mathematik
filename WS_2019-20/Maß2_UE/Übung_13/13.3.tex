@@ -9,7 +9,31 @@ mit Parameter 1.
 \end{itemize}
 \end{exercise}
 \begin{solution}
+  Hier könnte Ihre Werbung stehen!
+  \begin{itemize}
+    \item[(a)] Wir wählen $x \in \mathbb{R}$ beliebig und berechnen die Verteilungsfunktion in diesem Punkt.
+      \begin{align*}
+        F_{Y_n}(x) = \mathbb{P}\pbraces{Y_n \leq x} = \mathbb{P}\pbraces{\bigcap_{i=1}^n [X_i \leq x]} \stackrel{\text{unabh.}}{=} \prod_{i=1}^n \mathbb{P}\pbraces{X_i \leq x} = \prod_{i=1}^n F_X(x) = \pbraces{1 - \exp(-x)}^n \mathbf{1}_{]0,\infty[}(x).
+      \end{align*}
 
-Trivial
-
+    \item[(b)] Wir nehmen ein beliebiges $x \in \mathbb{R}$, hoffen, dass es ein Stetigkeitspunkt der Grenzverteilungsfunktion unserer Folge von Verteilungsfunktionen ist und rechnen
+      \begin{align*}
+        F_{Y_n - \log(n)}(x) &= \mathbb{P}\pbraces{Y_n - \log(n) \leq x} = \mathbb{P}\pbraces{Y_n \leq \log(n) + x} = \pbraces{1 - \exp(-\pbraces{\log(n) + x})}^n \mathbf{1}_{]0,\infty[}(\log(n) + x) \\ 
+        &= \pbraces{1 + \frac{-\exp(-x)}{n}}^n \mathbf{1}_{]0,\infty[}(\log(n) + x) \xrightarrow{n \to \infty} \exp\pbraces{-\exp(-x)} =: F(x)
+      \end{align*} 
+      Also gilt 
+      \begin{align*}
+        Y_n - \log(n) \xrightarrow{schwach} Y \sim F
+      \end{align*}
+    \item[(c)] Zuerst sei bemerkt, dass die Dichtefunktion von $Y$ gegeben ist durch die Ableitung der Verteilungsfunktion $F$, also die Form
+    \begin{align*}
+      f:\mathbb{R} \to \mathbb{R}: x \mapsto \exp(-x) \exp\pbraces{-\exp(-x)}
+    \end{align*}
+    hat. Wie wir in der Rechnung sehen werden gilt für $t < 1$
+      \begin{align*}
+        \mathbb{E}(\exp(Yt)) &\stackrel{Trafo}{=} \int_{\R} \exp(xt) \mathrm{d}\mathbb{P}Y^{-1}(x) = \int_\R \exp(xt) f(x) \mathrm{d}\lambda(x) = \int_\R \exp\pbraces{-\exp(-x)} \exp(-x) \exp(xt) \mathrm{d}\lambda(x) \\
+        &\stackrel{u = \exp(-x)}{=} \int_{\R^+} \exp(-u) \exp\pbraces{-\log(u)t} \mathrm{d}\lambda(x) = \int_{\R^+} \exp(-u) u^{-t} \mathrm{d}\lambda(x) \\
+        &= \int_{\R^+} \exp(-u) u^{(1 - t) - 1} \mathrm{d}\lambda(x) = \Gamma(1 - t). 
+      \end{align*}
+  \end{itemize}
 \end{solution}
