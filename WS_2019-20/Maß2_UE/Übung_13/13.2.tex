@@ -4,7 +4,16 @@ mit der Dichte $f(x) = \frac{1}{2}e^{-|x|}$.
 \end{exercise}
 
 \begin{solution}
-
-Trivial
-
+Die Momente (mit Transformationssatz für Integrale):
+\begin{align*}
+  M_n = \E(X^n) = \int X^nd\P = \int x^nd\P_X = \frac{1}{2}\int_{-\infty}^{+\infty} x^n\exp(-|x|) d\lambda(x) &=\\
+  = \frac{1}{2}\left(\int_{0}^{+\infty} x^n\exp(-x) d\lambda(x) +(-1)^n\int_{0}^{+\infty} x^n\exp(-x) d\lambda(x)\right) &= \\
+  = \frac{1}{2}(\Gamma(n+1)+(-1)^n\Gamma(n+1))&
+\end{align*}
+Die Momentenerzeugende für $|t| < 1$ (sonst existiert das Integral nicht):
+\begin{align*}
+  M(t) = \E (\exp(Xt)) = \int\exp(Xt)d\P = \int \exp (xt)d\P_X = \frac{1}{2}\int_{-\infty}^{+\infty} \exp(xt -|x|) d\lambda (x) &=\\
+  = \frac{1}{2}\left(\int_{0}^{+\infty} \exp(-x(1-t)) d\lambda(x) + \int_{0}^{+\infty}\exp(-x(t+1)) d\lambda(x)\right) &= \\
+  = \frac{1}{2}\left(\frac{1}{1-t}+\frac{1}{1+t}\right) = \frac{1}{1-t^2}&
+\end{align*}
 \end{solution}
