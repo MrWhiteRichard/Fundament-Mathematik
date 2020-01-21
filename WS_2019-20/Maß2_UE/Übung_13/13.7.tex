@@ -1,3 +1,5 @@
+\newcommand{\kum}[1]{\E((X-\E(X))^{#1})}
+\newcommand{\ergebnis}[1]{\frac{\left(\frac{b-a}{2}\right)^{#1} - \left(\frac{a-b}{2}\right)^{#1}}{#1(b-a)}}
 \begin{exercise}
 Bestimmen Sie die Schiefe
 \begin{align*}
@@ -7,11 +9,58 @@ und die Kurtosis
 \begin{align*}
   \frac{\kappa_4}{\kappa_2^2}
 \end{align*}
-für die stetige Gleichverteilung, die Exponentialverteilung und die Laplaceverteilung.
+für die
+\begin{itemize}
+  \item[a)] stetige Gleichverteilung,
+  \item[b)] die Exponentialverteilung
+  \item[c)] und die Laplaceverteilung.
+\end{itemize}
 \end{exercise}
 
 \begin{solution}
+Vorbemerkungen: \\
+Das n-te zentrale Moment: $m_n = \E((X-\E(X))^n)$ \\
+Formeln für die ersten Kumulanten: \\
+\begin{align*}
+  \kappa_2 = m_2,\quad \kappa_3 = m_3,\quad \kappa_4 = m_4 - 3m_2^2
+\end{align*}
+\begin{itemize}
 
-Trivial
+  \item[a)] Stetige Gleichverteilung: \\
+  Dichtefunktion: $f(x) = \begin{cases} \frac{1}{b-a}, & a \leq x \leq b \\ 0, & \text{sonst} \end{cases}$ \\
+  Erwartungswert: $\E(x) = \frac{a+b}{2}$
+  \begin{align*}
+    &\kappa_2 = m_2 = \kum{2} = \int_a^b\left(x-\frac{a+b}{2}\right)^2\frac{1}{b-a}d\lambda(x) = \ergebnis{3} = \frac{(a-b)^2}{12} \\
+    &\kappa_3 = m_3 = \kum{3} = \ergebnis{4} = 0\\
+    &\kappa_4 = m_4 - 3m_2^2 = \ergebnis{5} - 3\frac{(a-b)^4}{144} = (a-b)^4(\frac{1}{80}-\frac{3}{144})
+  \end{align*}
+  Schiefe: $\frac{\kappa_3}{\kappa_2^{3/2}} = 0$ \\
+  Kurtosis: $\frac{\kappa_4}{\kappa_2^2} = \frac{(a-b)^4(\frac{1}{80}-\frac{3}{144})}{\frac{(a-b)^4}{144}} = \frac{9}{5} - 3 = -\frac{6}{5}$
+  \item[b)]Exponentialverteilung: \\
+  Dichtefunktion: $f(x) = \begin{cases} \lambda\exp(-\lambda x), & x \geq 0 \\ 0, & x < 0 \end{cases}$ \\
+  Erwartungswert: $\E(x) = \frac{1}{\lambda}$
+  \begin{align*}
+    &\kappa_2 = m_2 = \kum{2} = \int_0^{\infty}\lambda\exp(-\lambda x)\left(x-\frac{1}{\lambda}\right)^2d\lambda(x) = \\
+    &-\exp(-\lambda x)(x-\frac{1}{\lambda})^2\Big|_0^{\infty} +2\left(\int_0^{\infty}\exp(-\lambda x)(x-\frac{1}{\lambda})d\lambda(x)\right) = \\
+    &\frac{1}{\lambda^2} - 2\left(\frac{1}{\lambda}\exp(-\lambda x)\Big|_0^{\infty} + \frac{1}{\lambda}\int_0^{\infty}\exp(-\lambda x)d\lambda(x)) - \frac{1}{\lambda}\int_0^{\infty}\exp(-\lambda x)d\lambda(x))\right) = \frac{1}{\lambda^2} \\
+    &\kappa_3 = m_3 = \kum{3} = \int_0^{\infty}\lambda\exp(-\lambda x)\left(x-\frac{1}{\lambda}\right)^3d\lambda(x) =\\
+    &-\exp(-\lambda x)(x-\frac{3}{\lambda})^3\Big|_0^{\infty} + \frac{3}{\lambda}\kappa_2 = -\frac{1}{\lambda^3} + \frac{3}{\lambda^3} =  \frac{2}{\lambda^3} \\
+    &\kappa_4 = m_4 - 3m_2^2 = \frac{1}{\lambda^4} +\frac{4}{\lambda}\kappa_3 - 3\kappa_2^2 = \frac{9}{\lambda^4} - \frac{3}{\lambda^4} =
+    \frac{6}{\lambda^4}
+  \end{align*}
+  Schiefe: $\frac{\kappa_3}{\kappa_2^{\frac{3}{2}}} = \frac{\frac{2}{\lambda^3}}{\left(\frac{1}{\lambda^2}\right)^{\frac{3}{2}}} = 2$ \\
+  Kurtosis: $\frac{\kappa_4}{\kappa_2^2} = \frac{\frac{6}{\lambda^4}}{\frac{1}{\lambda^4}} = 6$
+  \item[c)] Laplaceverteilung: \\
+  Dichtefunktion: $f(x) =  \frac{1}{2\sigma}\exp(-\frac{|x-\mu|}{\sigma})$ \\
+  Erwartungswert: $\E(x) = \mu$
+  \begin{align*}
+    \kappa_k =
+    \begin{cases} 2(k-1)!\sigma^k, & k~ \text{gerade} \\
+    0, & k~ \text{ungerade}
+    \end{cases}
+  \end{align*}
+  Schiefe: $0$ \\
+  Kurtosis: $6$
+\end{itemize}
 
 \end{solution}
