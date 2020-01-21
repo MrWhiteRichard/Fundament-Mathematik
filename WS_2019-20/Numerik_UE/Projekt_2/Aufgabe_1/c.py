@@ -1,10 +1,9 @@
 import numpy as np
 import time
 import matplotlib.pyplot as plt
-from time import sleep as wichtige_funktion
 
 class Sparse:
-    
+
     def __init__(self,b,v, J = np.zeros(0), I = np.zeros(0)):
         if b:
             self.v = np.array(v)
@@ -14,22 +13,22 @@ class Sparse:
         else:
             self.v, self.J, self.I = self.fromdense(v)
             self.n = len(self.I)-1
-    
+
     def __matmult__(self,b):
         d = np.zeros(self.n)
         for i in range(self.n):
             x = np.array(self.J[self.I[i]:self.I[i+1]]).astype(int)
-            d[i] = self.v[self.I[i]:self.I[i+1]]@b[x]      
+            d[i] = self.v[self.I[i]:self.I[i+1]]@b[x]
         return d
-    
-    
+
+
     def todense(self):
         A = np.zeros([self.n,self.n])
         for i in range(self.n):
             for j in range(self.I[i],self.I[i+1]):
                 A[i][self.J[j]] = self.v[j]
         return A
-    
+
     def fromdense(self,A):
         v,J = np.zeros(0), np.zeros(0)
         I = np.array([0])
@@ -57,7 +56,6 @@ def cg(A,b,x0,tol):
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
         c += 1
-        wichtige_funktion(0.01)
     print(c)
     return xt
 
@@ -99,10 +97,10 @@ def Scg(A,b,x0,tol):
     print(c)
     return xt
 
-  
-if __name__ == "__main__":  
+
+if __name__ == "__main__":
     x = Sparse(True, [1,2,3,4,5,6],[2,0,1,0,4,4],[0,1,3,5,5,6])
-    
+
     n = 1000
     z = 20
     b = np.random.rand(n)
@@ -117,14 +115,14 @@ if __name__ == "__main__":
                 A[i][j] = np.random.rand(1)
     A = A + A.T + np.diag(np.random.rand(n)*1000)
     end = time.process_time()
-    print(end-start)
+    print("Random-Erstellungszeit:{}".format(end-start))
     start = time.process_time()
-    xt = cg(A,b,x0,tol)
+    xt1 = cg(A,b,x0,tol)
     end = time.process_time()
+    print("Standard-cg-Rechenzeit:{}".format(end - start))
     A = Sparse(False, A)
-    print(end - start)
     start = time.process_time()
-    xt = Scg(A,b,x0, tol)
+    xt2 = Scg(A,b,x0, tol)
     end = time.process_time()
-    print(end - start)
-    print(np.linalg.norm(A.__matmult__(xt)-b))
+    print("Sparse-cg-Rechenzeit:{}".format(end - start))
+    print(np.linalg.norm(A.__matmult__(xt1)-b),np.linalg.norm(A.__matmult__(xt2)-b))
