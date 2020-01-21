@@ -54,11 +54,21 @@ Formeln für die ersten Kumulanten: \\
   Dichtefunktion: $f(x) =  \frac{1}{2\sigma}\exp(-\frac{|x-\mu|}{\sigma})$ \\
   Erwartungswert: $\E(x) = \mu$
   \begin{align*}
-    \kappa_k =
-    \begin{cases} 2(k-1)!\sigma^k, & k~ \text{gerade} \\
-    0, & k~ \text{ungerade}
-    \end{cases}
+    &\kappa_2 = m_2 = \int_{-\infty}^{+\infty}\frac{1}{2\sigma}\exp(-\frac{|x-\mu|}{\sigma})(x-\mu)^2d\lambda(x) = \\
+    &\int_{-\mu}^{+\mu}\frac{1}{2\sigma}\exp(\frac{x-\mu}{\sigma})(x-\mu)^2d\lambda(x) +
+    2\int_{\mu}^{+\infty}\frac{1}{2\sigma}\exp(-\frac{x-\mu}{\sigma})(x-\mu)^2d\lambda(x) = 2\sigma^2\\
+    &\kappa_3 = m_3 = \int_{-\mu}^{+\mu}\frac{1}{2\sigma}\exp(\frac{x-\mu}{\sigma})(x-\mu)^3d\lambda(x) +\\
+    &\int_{\mu}^{+\infty}\frac{1}{2\sigma}\exp(-\frac{x-\mu}{\sigma})(x-\mu)^3d\lambda(x)
+    - \int_{\mu}^{+\infty}\frac{1}{2\sigma}\exp(-\frac{x-\mu}{\sigma})(x-\mu)^3d\lambda(x) = 0\\
+    &\kappa_4 = m_4 = 3\sigma(2\sigma(m_2)) = 12\sigma^4 \\
   \end{align*}
+  allgemein $k \geq 2$:
+  \begin{align*}
+  &\kappa_k =
+  \begin{cases} 2(k-1)!\sigma^k, & k~ \text{gerade} \\ 0, & k~ \text{ungerade}
+  \end{cases}
+  \end{align*}
+
   Schiefe: $0$ \\
   Kurtosis: $6$
 \end{itemize}
