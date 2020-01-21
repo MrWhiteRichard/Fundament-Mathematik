@@ -1,51 +1,130 @@
 \begin{exercise}
+
 Bestimmen Sie die Momente
+
 \begin{align*}
   M_n = \mathbb{E}(X^n)
 \end{align*}
+
 und die Momentenerzeugende
+
 \begin{align*}
   M(t) = \mathbb{E}(e^{Xt})
 \end{align*}
+
 für die Gammaverteilung.
+
 \end{exercise}
+
 \begin{solution}
 
-  Die Dichte der Gammaverteilung ist gegeben durch
-  $
-  f(y) = \frac{ \lambda^{\alpha}{y^{\alpha-1}}}{\Gamma(\alpha)} \mathrm{e}^{-\lambda y} [x>0]
-  $.
+Die Dichte der Gammaverteilung ist gegeben durch
 
-  Es gilt
-  \begin{align*}
+\begin{align*}
+  f(y) =
+  \frac
+  {
+    \lambda^\alpha
+    y^{\alpha - 1}
+  }{
+    \Gamma(\alpha)
+  }
+  e^{-\lambda y}
+  [y > 0].
+\end{align*}
+
+Rechnung 1:
+
+\begin{multline*}
   M_n
-         = \mathbb{E}(X^n)
-         = \int X^n d\mathbb{P}
-         = \int \mathrm{id}^n d\mathbb{P}_X
-         = \int_{-\infty}^{\infty} y^n f(y)~d\lambda(y)
-         = \int_{0}^{\infty} \frac{\lambda^{\alpha} y^{n+\alpha -1}}{\Gamma(\alpha)} \mathrm{e}^{-\lambda y}~d\lambda(y)
-         \\= \frac{\lambda^{\alpha}}{\Gamma(\alpha)} \int_{0}^{\infty} y^{n+\alpha -1} \mathrm{e}^{-\lambda y}~d\lambda(y)
-         = \left[ u = \lambda y \right]
-           \frac{\lambda^{\alpha}}{\Gamma(\alpha)} \int_{0}^{\infty} \left(\frac{u}{\lambda}\right)^{n+\alpha -1}
-                \mathrm{e}^{-u} \frac{d\lambda(u)}{\lambda}
-         = \frac{\lambda^{n}}{\Gamma(\alpha)} \int_{0}^{\infty} u^{n+\alpha-1} \mathrm{e}^{-u}
-         = \frac{\lambda^{n}}{\Gamma(\alpha)} \Gamma(n+\alpha).
-  \end{align*}
+  = \E(X^n)
+  = \Int{X^n}{\P}
+  = \Int{\id^n}{\P_X}
+  = \Int[-\infty][\infty]{y^n f(y)}{\lambda(y)}
+  = \Int[0][\infty]
+  {
+    \frac
+    {\lambda^\alpha y^{n + \alpha - 1}}
+    {
+      \Gamma(\alpha)
+      e^{-\lambda y}
+    }
+  }{\lambda(y)}
+  = \frac
+    {\lambda^\alpha}
+    {\Gamma(\alpha)}
+    \Int[0][\infty]
+    {
+      y^{n + \alpha - 1}
+      e^{-\lambda y}
+    }
+    {\lambda(y)} \\
+  \stackrel{u = \lambda y}{=}
+    \frac
+    {\lambda^\alpha}
+    {\Gamma(\alpha)}
+    \Int[0][\infty]
+    {
+      \pbraces{\frac{u}{\lambda}}^{n + \alpha - 1}
+      e^{-u}
+      \frac{1}{\lambda}
+    }
+    {\lambda(u)}
+  = \frac{\lambda^n}{\Gamma(\alpha)}
+    \Int[0][\infty]{u^{n + \alpha - 1} e^{-u}}{\lambda(u)}
+  = \frac
+    {\lambda^n}
+    {\Gamma(\alpha)}
+    \Gamma(n + \alpha)
+\end{multline*}
 
+Rechnung 2:
 
-
-  Die Momenterzeugende berechnet sich über
-
-  \begin{align*}
-  M(t) = \mathbb{E}(\mathrm{e}^{Xt})
-       = \int \mathrm{e}^{ty} f(y) d\mathbb{P}_X
-       = \int_{0}^{\infty} \mathrm{e}^{ty} \frac{\lambda^{\alpha} y^{\alpha -1}}{\Gamma(\alpha)} \mathrm{e}^{-\lambda y}~d\lambda(y)
-       = \frac{\lambda^\alpha}{(\lambda-t)^\alpha}
-         \underbrace{
-         \int_{0}^{\infty} \frac{(\lambda - t)^\alpha y^{\alpha-1}}{\Gamma(\alpha)} \mathrm{e}^{-(\lambda-t)y} d\lambda(y)
-         }_{=~1}
-       = \left(\frac{\lambda}{\lambda-t}\right)^\alpha.
-  \end{align*}
-
+\begin{multline*}
+  M(t)
+  = \E(e^{Xt})
+  = \Int{e^{ty} f(y)}{\P_X}
+  = \Int[0][\infty]
+    {
+      e^{ty}
+      \frac
+      {\lambda^\alpha y^{\alpha -1}}
+      {\Gamma(\alpha)}
+      e^{-\lambda y}
+    }
+    {\lambda(y)}
+  = \frac
+    {\lambda^\alpha}
+    {
+      \Gamma(\alpha)
+      (\lambda - t)^{\alpha - 1}
+    }
+    \Int[0][\infty]
+    {
+      (\lambda - t)^{\alpha - 1}
+      y^{\alpha - 1}
+      e^{-(\lambda - t) y}
+    }
+    {\lambda(y)} \\
+  \stackrel{u = (\lambda - t) y}{=}
+    \frac
+    {\lambda^\alpha}
+    {
+      \Gamma(\alpha)
+      (\lambda - t)^\alpha
+    }
+    \Int[0][\infty]
+    {
+      u^{\alpha - 1}
+      e^{-u}
+    }
+    {\lambda(u)}
+  = \pbraces
+    {
+      \frac
+      {\lambda}
+      {\lambda-t}
+    }^\alpha
+\end{multline*}
 
 \end{solution}
