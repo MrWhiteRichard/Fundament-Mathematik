@@ -1,13 +1,84 @@
 \begin{exercise}
-$X$ und $Y$ seien unabhängige Zufallsvariablen.  Zeigen Sie, dass $X + Y$ genau
+$X$ und $Y$ seien unabhängige Zufallsvariablen. Zeigen Sie, dass $X + Y$ genau
 dann integrierbar ist, wenn $X$ und $Y$ integrierbar sind. (Schätzen Sie in
-$\mathbb{E}(Y[|X| < M]),~ |Y|$ mit der Dreiecksungleichung ab; damit kann man
-zeigen, dass in der Bedingung für die Existenz von $\mathbb{E}(X)$ der Realteil
+$\E(Y[|X| < M])$, $|Y|$ mit der Dreiecksungleichung ab; damit kann man
+zeigen, dass in der Bedingung für die Existenz von $\E(X)$ der Realteil
 von $\phi_X$ durch den Betrag ersetzt werden kann).
 \end{exercise}
 
 \begin{solution}
 
-Trivial
+Für "$\Rightarrow$", zeigen wir zuerst folgendes Integrierbarkeits-Kriterium, für eine Zufallsvariable $Z$.
+
+\begin{align*}
+  \E(|Z|) \leq
+  \sum_{n=0}^\infty \P(|Z| > n) \leq
+  \E(|Z|) + 1
+\end{align*}
+
+Erster Schritt:
+
+\begin{align*}
+  |Z|
+  = \Int[0][|Z|]{}{x}
+  = \Int[0][\infty]{\1_\bbraces{|Z| > x}}{x}
+\end{align*}
+
+Zweiter Schritt:
+
+\begin{multline*}
+  \E(|Z|)
+  \stackrel{\text{Fubini}}{=}
+    \Int[0][\infty]{\E(\1_\bbraces{|Z| > x})}{x}
+  = \Int[0][\infty]{\P(|Z| > x)}{x}
+  \leq
+    \Int[0][\infty]{\P(|Z| > \floor{x})}{x} \\
+  = \sum_{n=0}^\infty \P(|Z| > n)
+  = 1 + \sum_{n=1}^\infty \P(|Z| > n)
+  = 1 + \Int[0][\infty]{\P(|Z| > \ceil{x})}{x}
+  \leq
+    1 + \underbrace{\Int[0][\infty]{\P(|Z| > x)}{x}}_{\E(|Z|)}
+\end{multline*}
+
+Zurück zu unserem Beispiel. Mit der Dreiecksungleichung nach unten und der Unabhängigkeit von $X, Y$, folgt
+
+\begin{align*}
+  \P(|X + Y| > n)
+  \geq
+    \P(|X| - |Y| > n)
+  \geq
+    \P(|X| > n + m, -|Y| > -m)
+  = \P(|X| > n + m) \cdot \P(|Y| < m).
+\end{align*}
+
+Es muss $\Exists m \in \N: \P(|Y| < m) > 0$. Damit folgt
+
+\begin{align*}
+  \sum_{n=m}^\infty \P(|X| > n)
+  = \sum_{n=0}^\infty \P(|X| > n + m)
+  \leq
+    \Frac
+    {\P(|Y| < m)}
+    {\sum_{n=0}^\infty \P(|X + Y| > n)}
+  < \infty.
+\end{align*}
+
+Mit unserem Integrierbarkeits-Kriterium, erhalten wir
+
+\begin{align*}
+  \E(|X|)
+  \leq
+    \sum_{n=0}^\infty \P(|X| > n)
+  \leq
+    \sum_{n=0}^{m-1} \P(|X| > n) +
+    \sum_{n=m}^\infty \P(|X| > n)
+  < \infty.
+\end{align*}
+
+Analog, zeigt man $Y \in L^1$. "$\Leftarrow$" ist trivial.
+
+\begin{align*}
+  \E(X + Y) = \E(X) + \E(Y) < \infty
+\end{align*}
 
 \end{solution}
