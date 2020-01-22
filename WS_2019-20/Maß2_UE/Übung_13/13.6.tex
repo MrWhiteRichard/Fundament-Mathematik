@@ -1,23 +1,124 @@
 \begin{exercise}
+
 Die kumulantenerzeugende Funktion einer Zufallsvariable $X$ ist
+
 \begin{align*}
   K_X(t) = \log(M_X(t)).
 \end{align*}
+
 Wenn $M_X$ in einer Umgebung von 0 existiert, dann kann man $K_X$ als Potenzreihe schreiben:
+
 \begin{align*}
   K_X(t) = \sum_n\frac{\kappa_nt^n}{n!}.
 \end{align*}
-Die Koeffizienten $\kappa_n$ heißen die Kumulanten von $X$. Drücken Sie $\kappa_n,
-n = 2,\dots,5$ durch die zentralen Momente
+Die Koeffizienten $\kappa_n$ heißen die Kumulanten von $X$. Drücken Sie $\kappa_n, n = 2, \ldots, 5$ durch die zentralen Momente
+
 \begin{align*}
   m_n = \mathbb{E}((X-\mathbb{E}(X))^n)
 \end{align*}
+
 von $X - \mathbb{E}(X)$ aus. (mit $\mu = \mathbb{E}(X)$ und $Y = X - \mu$ gilt
-$K_X(t) = \mu t + K_Y(t)$; diese Darstellung der Kumulanten ist einfacher als die
-durch die gewöhnlichen Momente, die allerdings im Internet leichter zu finden ist).
+$K_X(t) = \mu t + K_Y(t)$; diese Darstellung der Kumulanten ist einfacher als die durch die gewöhnlichen Momente, die allerdings im Internet leichter zu finden ist).
+
 \end{exercise}
+
 \begin{solution}
 
-Trivial
+Wir berechnen vorerst die Momenterzeugende von $Y$.
+
+\begin{align*}
+  M_Y(t)
+  = \E(e^{tY})
+  = \E(e^{t (x - \mu)})
+  = e^{-\mu t} \E(e^{tX})
+  = e^{-\mu t} M_X(t)
+\end{align*}
+
+Damit erhalten wir $M_X(t) = e^{\mu t} M_Y(t)$ und mit dem Satz von Taylor, dass
+
+\begin{align*}
+  K_X(t)
+  = \log(e^{\mu t} M_Y(t))
+  = \mu t + \log(M_Y(t))
+  = \sum_{n=0}^\infty
+    \underbrace
+    {
+      \frac{d^n}{dt^n}
+      \pbraces{\mu t + \log(M_Y(t))} \Bigg|_{t=0}
+    }_{=: \kappa_n}
+    \frac{t^n}{n!}.
+\end{align*}
+
+Wir brauchen noch folgende Darstellung.
+
+\begin{align*}
+  M_Y(t)
+  = \E(e^{tY})
+  = \E
+    \pbraces
+    {
+      \sum_{n=0}^\infty
+      \frac{(tY)^n}{n!}
+    }
+  = \sum_{n=0}^\infty \frac{t^n}{n!} \E(Y^n)
+  = \sum_{n=0}^\infty \frac{t^n}{n!} m_n
+\end{align*}
+
+Wir berechnen die erste Ableitung.
+
+\begin{align*}
+  \frac{d}{dt}
+  \pbraces{\mu t + \log \pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_n}}
+  = \mu + \Frac
+    {\sum_{n=0}^\infty \frac{t^n}{n!} m_n}
+    {\sum_{n=1}^\infty \frac{t^{n-1}}{(n-1)!} m_n}
+  = \mu + \Frac
+    {\sum_{n=0}^\infty \frac{t^n}{n!} m_n}
+    {\sum_{n=0}^\infty \frac{t^n}{n!} m_{n+1}}
+\end{align*}
+
+Wir brauchen vorerst noch
+
+\begin{align*}
+  m_0 & = \E((X - \E(X))^0) = \E(1) = 1, \\
+  m_1 & = \E((X - \E(X))^1) = \E(X) - \E(\E(X)) = \E(X) (1 - \E(1)) = 0.
+\end{align*}
+
+Daraus foltgt der erste Kumulant.
+
+\begin{align*}
+  \kappa_1 = \mu + \frac{m_1}{m_0} = \mu
+\end{align*}
+
+Wir berechnen die zweite Ableitung.
+
+\begin{align*}
+  \frac{d^2}{dt^2}
+  \pbraces{\mu t + \log \pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_n}}
+  = \Frac
+    {\pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_n}^2}
+    {
+      \pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_{n+2}}
+      \pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_n} -
+      \pbraces{\sum_{n=0}^\infty \frac{t^n}{n!} m_{n+1}}^2
+    }
+\end{align*}
+
+Daraus foltgt der zweite Kumulant.
+
+\begin{align*}
+  \kappa_2 = \Frac{m_0}{m_2 m_0 - m_1^2} = m_2
+\end{align*}
+
+Der Rest folgt analog.
+
+\begin{align*}
+  \kappa_3 & =
+  \Frac{m_0^3}{m_0^2 m_3 + 2 m_1^3 - 3 m_0 m_1 m_2} = m_3 \\
+  \kappa_4 & =
+  \Frac{m_0^4}{- 6 m_1^4 + m_0^2 (m_0 m_4 - 3 m_2^2) - 4 m_0^2 m_3 m_1 + 12 m_0 m_1^2 m_2} = m_4 - 3 m_2^2 \\
+  \kappa_5 & =
+  \Frac{m_0^5}{m_0^4 m_5 + 24 m_1^5 - 5 m_0^3 m_4 m_1 - 10 m_0^3 m_3 m_2 + 20 m_0^2 m_3 m_1^2 - 60 m_0 m_1^3 m_2 + 30 m_0^2 m_1 m_2^2} = m_5 - 10 m_3 m_2
+\end{align*}
 
 \end{solution}
