@@ -215,95 +215,21 @@ Betrachtet man die, unten aufgelisteten, Eigenwerte, der ersten paar Matrizen $A
 \end{align*}
 
 \begin{multicols}{3}
+
+\verbatiminput{Aufgabe_2/data/get_my_eigen_info(n_min=2,n_max=10,j_max=10).txt}
+
 \begin{verbatim}
-n = 2
------
--8.0
-
-n = 3
------
--9.0
--27.0
-
-n = 4
------
--9.372583002030478
--31.999999999999996
--54.62741699796946
-
-n = 5
------
--9.549150281252611
--34.54915028125264
--65.45084971874735
--90.45084971874735
-
-n = 6
------
--9.646170927520402
--35.99999999999999
--71.99999999999997
--108.00000000000001
--134.35382907247953
-n = 7
------
--9.705050945562961
--36.89799941784412
--76.19294847228122
--119.80705152771888
--159.10200058215582
--186.29494905443664
-
-n = 8
------
--9.743419838555344
--37.49033200812192
--79.01652065726852
--127.9999999999999
--176.98347934273144
--218.50966799187793
--246.25658016144442
-
-n = 9
------
--9.769795432682793
--37.90080021472559
--80.99999999999997
--133.8689952179573
--190.13100478204277
--243.00000000000014
--286.09919978527444
--314.2302045673173
-n = 10
------
--9.788696740969272
--38.19660112501045
--82.44294954150533
--138.1966011250105
--200.00000000000006
--261.80339887498934
--317.5570504584944
--361.8033988749895
--390.2113032590302
-
 .
 .
 .
+\end{verbatim}
 
-n -> inf
---------
--(1 * pi)^2 = -9.869604401089358
--(2 * pi)^2 = -39.47841760435743
--(3 * pi)^2 = -88.82643960980423
--(4 * pi)^2 = -157.91367041742973
--(5 * pi)^2 = -246.74011002723395
--(6 * pi)^2 = -355.3057584392169
--(7 * pi)^2 = -483.61061565337855
--(8 * pi)^2 = -631.6546816697189
--(9 * pi)^2 = -799.437956488238
+\verbatiminput{Aufgabe_2/data/get_my_eigen_limits(j_max=9).txt}
 
+\begin{verbatim}
 ...
 \end{verbatim}
+
 \end{multicols}
 
 Wir bezeichnen mit $\epsilon_j(n) := |\lambda_j - \lambda_{j, n}|$, $j = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $j$-ten Eigenwertes. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW} wurde dieser für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. \\
@@ -312,7 +238,7 @@ Allem Anschein nach, verschwindet $\epsilon_j$ quadratisch. Das korreliert mit d
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width = 0.5 \textwidth]{Aufgabe_2/Konvergenz-Fehler_der_Eigenwerte_von_A_n}
+  \includegraphics[width = 0.5 \textwidth]{Aufgabe_2/images/plot_eigen_values(n_max = 16, eigen_amount = 3)}
   \caption{Konvergenz-Fehler der Eigenwerte von $A_n$}
   \label{Konvergenz-Fehler_EW}
 \end{figure}
@@ -439,10 +365,10 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
 \begin{figure}[h!]
   \centering
   \subfloat[auf dem Intervall $(-16, 16)$]{
-    \includegraphics[width=65mm]{Aufgabe_2/zero_function_plot_c_0_100_c_1_1}
+    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas(c = (100, 1), interval = (-16, 16))}
   }
-  \subfloat[auf dem Intervall $(0, 100)$ und gezoomt]{
-    \includegraphics[width=65mm]{Aufgabe_2/zero_function_plot_c_0_100_c_1_1_zoomed}
+  \subfloat[auf dem Intervall $(0, 64)$ und herangezoomt]{
+    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas(c = (100, 1), interval = (0, 32), limits = (-1, 1))}
   }
   \hspace{0mm}
   \caption{Plots von $f$ für $c_0 = 100$, $c_1 = 1$}
@@ -452,27 +378,7 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
 Dementsprechend, können passende Startwerte für iterative Verfahren gewählt werden. Die Ergebnisse vom, bereits erwähnten, \verb|fsolve| folgen. Warum die Quadrate dieser Ergebnisse eine Rolle spielen, wird später noch erwähnt.
 
 \begin{multicols}{2}
-\begin{verbatim}
-solutions when guessing \omega = 0:
-[0.]
-squared:
-[0.]
-
-solutions when guessing \omega = 5:
-[4.05742465]
-squared:
-[16.46269482]
-
-solutions when guessing \omega = 10:
-[9.82605835]
-squared:
-[96.55142264]
-
-solutions when guessing \omega = 15:
-[15.9568155]
-squared:
-[254.61996082]
-\end{verbatim}
+\verbatiminput{Aufgabe_2/data/find_omegas(c=(100, 1),guesses=[0, 5, 10, 15, 20, 25, 30],tol=1e-08).txt}
 \end{multicols}
 
 Wir wollen nun den Differenzenquotienten $D_h v(x_j)$, um ein verallgemeintertes Eigenwertproblem der Form $A \vec v = \lambda B \vec v$ mit Matrizen $A, B \in \R^{(n-1) \times (n-1)}$ herzuleiten. \\
