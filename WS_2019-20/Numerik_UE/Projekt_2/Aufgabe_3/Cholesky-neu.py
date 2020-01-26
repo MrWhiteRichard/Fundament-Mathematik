@@ -38,6 +38,7 @@ def chol1(A):
             L[i][k] = (A[i][k] - L[i]@L[k])/L[k][k]
     return L
 
+
 def chol2(A):
      n = len(A)
 
@@ -56,7 +57,7 @@ def chol2_unten(A):
          A[k][k] = np.sqrt(A[k][k])
          A[k+1:n,k] = A[k+1:n,k]/A[k][k]
          for i in range(k+1,n):
-             A[i:,i] -= A[i,k]*A[i:,k]  ##aufwändiger?
+             A[i:,i] -= A[i,k]*A[i:,k]
 
      for i in range(n):
          for j in range(i+1,n):
@@ -70,15 +71,15 @@ def eff(n):
     chol1(A)
     end1 = time.clock()
 
-#    start2 = time.clock()
-#    chol2(A)
-#    end2 = time.clock()
+    start2 = time.clock()
+    efficientChol(A)
+    end2 = time.clock()
 
     start3 = time.clock()
     chol2_unten(A)
     end3 = time.clock()
 
-    return end1-start1, end3-start3 #...
+    return end1-start1, end2-start2 #...
 
 def M(n):
 
@@ -100,6 +101,16 @@ def solve(n,y):
 
     return x, np.linalg.norm(C@np.transpose(C)@x-y)
 
+def efficientCholBlock(n):  #Effizienz nur aus den Nullern unter A, nicht aus den in A
+    A = M(n)
+    L = np.zeros((n**2,n**2))
+    for k in range(n**2):
+        L[k][k] = np.sqrt((A[k][k] - L[k]@L[k]))
+        m = min(k+n,n**2-1) #k=0 m=2
+        for i in range(k+1,m+1): #1,3
+             L[i][k] = (A[i][k] - L[i]@L[k])/L[k][k]
+
+    return L
 
 
 def makeN(n):
@@ -150,16 +161,35 @@ def sort(A):
     return A, p
 
 
-def nuller(A):
+def nichtnuller(A):
+    n = len(A)
     J = []
-    for i in range(len(A)):
+    for i in range(n):
         c = 0
         j = 0
         while(A[i][j] == 0):
             c += 1
             j += 1
         J += [c]
-    return J
+    I = []
+    for k in range(n):
+        Ik = []
+        for j in range(k+1,n):
+            if J[j] <= k:
+                Ik += [j]
+        I += [Ik]
+    return I
+
+def efficientChol(A):  #Effizienz nur aus den Nullern unter A, nicht aus den in A
+    n = len(A)
+    L = np.zeros((n,n))
+    I = nichtnuller(A)
+    for k in range(n):
+        L[k][k] = np.sqrt((A[k][k] - L[k]@L[k]))
+        for i in I[k]:
+             L[i][k] = (A[i][k] - L[i]@L[k])/L[k][k]
+
+    return L
 
 n=9
 
