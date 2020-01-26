@@ -27,8 +27,8 @@ A_base = zufallsmatrix(5000,100)
 \end{figure}
 Wie in Abbildung 1 ersichtlich verhält sich die Rechenzeit kubisch in Relation zur Problemgröße.
 Zum Testen wurde eine Zufallsmatrix mit 100 Nicht-Null-Einträgen pro Zeile (nicht exakt, da die Symmetriesierung den Wert pro
-Zeile verzerrt) und einer Gesamtgröße von 500 erstellt. Der direkte Löser wurde schließlich auf die $(k200 \times k200)$-dimensionalen,
-rechts oberen Untermatrizen angewandt ($2 \leq k \leq 25$).
+Zeile verzerrt) und einer Gesamtgröße von 5000 erstellt. Der direkte Löser wurde schließlich auf die $(200k \times 200k)$-dimensionalen Ausschnitte der oberen rechten Ecke angewandt ($2 \leq k \leq 25$). Wie man sieht erreichen wir damit schon langsam die Grenze
+des akzeptabel Berechenbaren, für die volle $5000\times5000$-Matrix braucht der Algorithmus schon über 10 Sekunden.
 \FloatBarrier
 \subsection*{b)}
 Implementierung des CG-Verfahrens:
@@ -95,8 +95,47 @@ Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhal
   = \frac{r_{n+1}{*T}r_{n+1}^*}{r_n^{*T}r_n^*} = \beta_n^* \\
   d_{n+1} = r_{n+1} + \beta_nd_n = r_{n+1}^* + \beta_n^*d_n^* = d_{n+1}^*
 \end{align*}
-Und der Beweis ist vollständig.
+Und der Beweis ist vollständig. \\
 
+Rechenschritte pro Schleifendurchlauf: \\
+Am aufwändigsten ist natürlich die Matrix-Vektor-Multiplikation, wovon wir in unserem Algorithmus
+im Gegensatz zu jenem aus dem Skript nur eine pro Schleifendurchlauf benötigen.
+Zusätzlich dazu brauchen wir 3 Vektor-Vektor-Multiplikationen und 4 Vektor-Skalar-Operationen. \\
+Damit erhalten wir insgesamt $n^2+7n$ Flops pro Durchlauf. \\
+Im Vergleich dazu verwendet der Algorithmus aus dem Numerik-Skript pro Iteration zwei Matrix-Vektor-Multiplikationen
+und ist daher aus Effizienzgründen unterlegen. \\
+
+Die Theorie besagt, dass das CG-Verfahren spätentens nach $n$ Durchläufen die exakte Lösung liefert und für die Iterierten
+folgende Fehlerabschätzung gilt:
+\begin{align*}
+  \Vbraces{x^{(t)}-A^{-1}b}_A \leq 2\left(\frac{1-1/\sqrt{\kappa}}{1+1/\sqrt{\kappa}}\right)^t\Vbraces{x^{(0)}-A^{-1}b}_A, \quad t \in \N,
+\end{align*}
+mit der spektralen Konditionszahl $\kappa = \text{cond}_2(A)$. \\
+Also sollte das Verfahren exponentiell kovergieren ($\Landau{AB^t}$) mit Konstanten\\
+$A = 2\Vbraces{x^{(0)}-A^{-1}b}_A, \quad B = \frac{1-1/\sqrt{\kappa}}{1+1/\sqrt{\kappa}}$\\
+Wie in untenstehender Grafik ersichtlich scheint bei unseren Zufallsmatrizen der Wert von $B$ sich in etwa bei $0.92$ einzupendeln
+und unsere vorgegebene Toleranz von $10^{-8}$ wird bereits nach etwa $350$ Iterationen erreicht, noch weit vor dem theoretisch
+(bis auf Rechenfehler) gariantierten exakten Resultat nach $n = 5000$ Durchläufen.
+Ansonsten verhält sich der Fehler wie wir ihn erwarten würden. \\
+Unsere Testwerte: \\
+
+\begin{lstlisting}[language=Python]
+n = 5000
+A = np.random.rand(n,n)
+A = np.dot(A,np.transpose(A))
+A += 10*np.diag(abs(np.random.random(n)))
+b = np.random.rand(n)
+tol = 10**(-8)
+x0 = np.random.rand(n)*10
+\end{lstlisting}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/plot_b.png}
+    \caption{Residuum abhängig von der Anzahl an Iterationen}
+    \label{fig:my_label}
+\end{figure}
+\FloatBarrier
 \subsection*{c)}
 Dünn besetzte Matrizen erlauben effizientere Implementierungen als voll besetzte, indem beim Speichern und Rechnen
 nur Einträge die ungleich Null sind berücksichtigt werden. Eine Möglichkeit einer solchen Implementierung ist das sogenannte

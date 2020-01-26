@@ -17,8 +17,11 @@ def zufallsmatrix(n, nonzeros):
 	return A + A.T + np.diag(np.random.rand(n)*10)
 
 
-A_base = zufallsmatrix(5000,100)
-x = [i for i in range(400,5001,200)]
+ax1 = plt.subplot2grid((1,6),(0,0),colspan = 4)
+ax2 = plt.subplot2grid((1,6),(0,4))
+n = 5000
+A_base = zufallsmatrix(n,100)
+x = [i for i in range(400,n+1,200)]
 y = []
 for n in x:
 	A = A_base[:n,:n]
@@ -27,9 +30,11 @@ for n in x:
 	z = np.linalg.solve(A,b)
 	end = time.process_time()
 	y.append(end-start)
-plt.loglog(x,y, label = "Solving Time")
-plt.loglog(x, (np.array(x)/1000)**3, label = "O(n^3)")
-plt.legend()
-plt.ylabel("Time in seconds")
-plt.xlabel("Matrix size")
+ax1.loglog(x,y, label = "Rechenzeit")
+ax1.loglog(x, (np.array(x)/1000)**3, label = "O(n^3)", linestyle = "dotted")
+ax1.legend()
+ax1.set_ylabel("Sekunden")
+ax1.set_xlabel("Matrix-Dimension")
+ax2.axis("Off")
+tab = ax2.table(cellText=[[i] for i in y], rowLabels=x, colLabels=["Zeit"], loc = "right")
 plt.show()
