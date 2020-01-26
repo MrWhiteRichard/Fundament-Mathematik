@@ -251,7 +251,7 @@ Wir bezeichnen mit $\epsilon_i(n) := |\lambda_i - \lambda_{i, n}|$, $i = 1, \ldo
 
 Allem Anschein nach, verschwindet $\epsilon_i$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $i$-te Eigenwert erst ab einer Matrix $A_n$, $n > i$ existiert. Daher fangen die plots von $\epsilon_i$ desto später an, je größer $i$ ist. Für größeres $i$ ist auch der intitiale Fehler größer. Obwohl dieser ebenfalls quadratisch konvergiert, werden mehr Rechenoperationen für ein genaues Ergebnis benötigt. \\
 
-Seien $\vec v^{(1, n)}, \ldots, \vec v^{(n-1, n)}$ die Eigenvektoren (eigentlich Eigenräume), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Folgende Abbildungen sollen dies veranschaulichen.
+Seien $\vec v^{(1, n)}, \ldots, \vec v^{(n-1, n)}$ die Eigenvektoren (modulo Vielfache), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Folgende Abbildungen sollen dies veranschaulichen.
 
 \begin{figure}[H]
 \centering
@@ -483,7 +483,7 @@ Bei dem vorherigen Eigenwertproblem wäre $B_n$ als Einheits-Matrix $I_n$ zu int
   \pbraces{\frac{\omega}{c_1}}^2
 \end{align*}
 
-annehmen kann, müssen wir die obere Eigenschaft \eqref{Diagonalmatrizen} von Diagonalmatrizen ausnutzen. Damit realisieren wir die Fallunterscheidung zwischen $x_j < 1/2$ und $x_j \geq 1/2$. Für $x_j = 1/2$, was nur bei $n-1 \in 2 \N$ auftritt, wird gemittelt. \\
+annehmen kann, müssen wir die obere Eigenschaft \eqref{Diagonalmatrizen} von Diagonalmatrizen ausnutzen. Damit realisieren wir die Fallunterscheidung zwischen $x_j < 1/2$ und $x_j > 1/2$. Für $x_j = 1/2$, was genau bei $n-1 \in 2 \N$ auftritt, wird gemittelt. \\
 
 Nachdem die Inverse einer Diagonalmatrix genau die Matrix selbst mit komponentenweise Kehrwerten ist, lassen sich gleich $B_n$ und $B_n^{-1}$ leicht implementieren. Die zuständigen Funktionen besitzen die kreativen Namen \verb|my_other_numpy_matrix| bzw. \verb|my_other_numpy_matrix_inverse|. \\
 
@@ -493,14 +493,14 @@ Nachdem die Inverse einer Diagonalmatrix genau die Matrix selbst mit komponenten
 
 Das verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$ werden wir zunächst auf $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. Dieses kann nun ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst werden. \\
 
-Die Matrix $B_n^{-1} A_n$ besitzt hoffentilch wieder $n-1$ paarweise verschiedene Eigenwerte $\lambda^c_{1, n} < \cdots < \lambda^c_{n-1, n}$, welche jeweils vielleicht konvergieren. \\
+Die Matrix $B_n^{-1} A_n$ besitzt hoffentilch wieder $n-1$ paarweise verschiedene Eigenwerte $\lambda^c_{1, n} < \cdots < \lambda^c_{n-1, n}$, die jeweils konvergieren. \\
 
-Um einen ersten Eindruck des möglichen Konvergenz-Verhaltens zu bekommen, vergleichen wir die Eigenwerte mit den oberen semi-analytischen Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Es folgt eine zur Oberen analoge Tabelle mit Eigenwerten. Die Ergebnisse lassen zwar zu wünschen übrig, aber immerhin pendelt sich die Größenordnung rasch ein. \\
+Um einen ersten Eindruck des möglichen Konvergenz-Verhaltens zu bekommen, vergleichen wir die Eigenwerte mit den oberen semi-analytischen Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Es folgt eine zur oberen analoge Tabelle mit Eigenwerten. Die Ergebnisse lassen zwar zu wünschen übrig, aber immerhin pendelt sich die Größenordnung rasch ein. \\
 
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
 \vspace{10pt}
 
-Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lambda_{i, n}^c|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. $\lambda_i^c$ erhalten wir durch $\omega^2$ von \verb|scipy.optimize.fsolve|, wobei $\tilde \omega := \lambda_{i, n}^c$ als Startwert für das iterative Verfahren gewählt wird. Theoretisch hängt $\lambda_i^c$ also noch von $n$ ab. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} wurde $\epsilon^c_i$ mit der Vergleich-Geraden $\id^2$, doppelt logarithmisch, geplottet. \\
+Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lambda_{i, n}^c|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. $\lambda_i^c$ erhalten wir durch $\omega^2$ von \verb|scipy.optimize.fsolve|, wobei $\tilde \omega := \sqrt{\lambda_{i, n}^c}$ als Startwert für das iterative Verfahren gewählt wird. Theoretisch hängt $\lambda_i^c$ also noch von $n$ ab. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} wurde $\epsilon^c_i$ mit der Vergleich-Geraden $\id^2$, doppelt logarithmisch, geplottet. \\
 
 \begin{figure}[H]
 \centering
@@ -523,9 +523,9 @@ Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lam
 \label{fig:Konvergenz-Fehler_EW_allgemein}
 \end{figure}
 
-Es macht Sinn, dass Abbildung \ref{subfig:Konvergenz-Fehler_EW} mit Abbildung \ref{fig:Konvergenz-Fehler_EW} korreliert. Diese \Quote{Bergsteiger-Konvergenz} steigt anscheinend mit dem Verhältnis $c_0/c_1$ (no pun intended). Auch das macht einigermaßen Sinn, aber es pendelt sich die Oszillation interessanterweise ein und wird nicht drastisch stärker. Die Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} bleibt übrigens unverändert, wenn man die Komponenten von $c$ vertauscht. \\
+Es macht Sinn, dass Abbildung \ref{subfig:Konvergenz-Fehler_EW} mit Abbildung \ref{fig:Konvergenz-Fehler_EW} korreliert. Diese \Quote{Bergsteiger-Konvergenz} steigt anscheinend mit dem Verhältnis $c_0/c_1$ (no pun intended). Auch das macht einigermaßen Sinn, aber die Oszillation pendelt sich interessanterweise ein und wird nicht drastisch stärker. Die Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} bleibt übrigens unverändert, wenn man die Komponenten von $c$ vertauscht. \\
 
-Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (eigentlich Eigenräume), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\vec v^{(i, n_i), c}$ geplottet, wobei
+Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (modulo Vielfache), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten, als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\vec v^{(i, n_i), c}$, normiert bzgl. $\norm[\infty]{\cdot}$, geplottet, wobei
 
 \begin{align*}
   c_{\text{max}} & = 4, &
@@ -539,6 +539,6 @@ Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (eig
   } =: N_i.
 \end{align*}
 
-Dabei wurden die Vektoren $\vec v^{(i, n), c}$, $n \in N_i$ jeweils zusammengefasst. Nachdem wir dadurch auf $128$ Bilder kommen, werden wir nicht alle herzeigen. Außerdem,  sieht nur ein Bruchteil davon \Quote{schön} aus. \\
+Dabei wurden die Vektoren $\Bbraces{\vec v^{(i, n), c}: n \in N_i}$ jeweils zu einem Bild zusammengefasst. Nachdem wir dadurch auf $128$ Bilder kommen, werden wir nicht alle herzeigen. Außerdem,  sieht nur ein Bruchteil davon \Quote{schön} aus. \\
 
 \textbf{To be continued!!!}
