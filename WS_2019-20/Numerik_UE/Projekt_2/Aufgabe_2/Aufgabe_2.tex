@@ -1,4 +1,4 @@
-\subsection{Aufgabestellung}
+\subsection{Problembeschreibung}
 
 Das Projekt beschäftigt sich mit den Eigenschwingeungen einer fest eingespannten Saite. Sei dazu $u(t, x)$ die vertikale Auslenkung der Saite an der Position $x \in [0, 1]$ zur Zeit $t$. $u$ wird näherungsweise durch die sogenannte Wellengleichung
 
@@ -19,7 +19,7 @@ für alle $t \in \R$. \\
 Zur Berechnung der Eigenschwingungen suchen wir nach Lösungen $u$, die in der Zeit harmonisch schwingen. Solche erfüllen folgenden Ansatz
 
 \begin{align*}
-  u(x, t) = \mathfrak{R} (v(x) e^{-i \omega t})
+  u(x, t) = \Re (v(x) e^{-i \omega t})
 \end{align*}
 
 mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. Durch Einsetzen erhalten wir für $v$ die sogenannte Helmholz-Gleichung
@@ -218,42 +218,33 @@ Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert.
 
 Das Eigenwertproblem wurde mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. \verb|np.linalg.eig| retourniert die Eigenwerte und Eigenvektoren nicht zwangsläufig, der größe der Eigenwerte nach, sortiert. Nachdem der Zusammenhang zwischen Eigenwert und Eigenvektor nicht verloren gehen soll, erfordert dies einigen logistischen Aufwand. Das ist aber nicht wesentlich und wird daher nicht weiter erklärt. Wir vergleichen lieber die Eigenwerte und Eigenvektoren mit den analytischen Ergebnissen. \\
 
-Betrachtet man die, unten aufgelisteten, Eigenwerte, der ersten paar Matrizen $A_2, \ldots, A_{10}$, so legen diese ein gewisses, laut \eqref{quadratische_Konvergenz} vielleicht sogar quadratisches, Konvergenzverhalten nahe.
+In der folgenden Tabelle, sind die $3$ Eigenwerte (sollten diese bereits existieren), der Matrizen $A_2, \ldots, A_{10}$, aufgelistet. Diese Tabelle ist analog zu \eqref{Konvergenz_EW} zu verstehen. \\
 
-\begin{multicols}{3}
+\input{Aufgabe_2/data/show_my_eigen_value_matrix(n_max = 10, i_max = 3).tex}
+\vspace{10pt}
 
-\verbatiminput{Aufgabe_2/data/get_my_eigen_info(n_min = 2, n_max = 10, i_max = 10).txt}
+Diese Werte legen diese ein gewisses, laut \eqref{quadratische_Konvergenz} vielleicht sogar quadratisches, Konvergenzverhalten nahe.
 
-\begin{verbatim}
-.
-.
-.
-\end{verbatim}
+\verbatiminput{Aufgabe_2/data/show_my_eigen_limits(i_max = 3).txt}
 
-\verbatiminput{Aufgabe_2/data/get_my_eigen_limits(i_max = 9).txt}
+Die Matrix $A_n$ besitzt also scheinbar $n-1$ paarweise verschiedene Eigenwerte $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, welche jeweils gegen $\lambda_i := (i \pi)^2$, $i \in \N$ konvergieren.
 
-\begin{verbatim}
-...
-\end{verbatim}
-
-\end{multicols}
-
-Die Matrix $A_n$ besitzt also scheinbar $n-1$ paarweise verschiedene Eigenwerte $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, welche jeweils gegen $\lambda_i := (i \pi)^2$, $i \in \N$ konvergieren. Nachdem $\Bbraces{\sqrt{\lambda_i}: i \in \N_0} = \pi \N_0 \subsetneq \pi \Z$, könnte man sich nun fragen, wo die andere Hälfte der analytischen Ergebnisse steckt. Die Erklärung ist ganz unspektakulär $\lambda := (\pm \kappa)^2$.
-
-\begin{align*}
+\begin{align} \label{Konvergenz_EW}
 \begin{array}{ccccccccc}
 \lambda_{1, 2} & \rightarrow & \lambda_{1, 3} & \rightarrow & \cdots & \rightarrow & \lambda_{1, n} & \xrightarrow{n \to \infty}   & \lambda_1 = (1 \pi)^2 \\
                &             & \lambda_{2, 3} & \rightarrow & \cdots & \rightarrow & \lambda_{2, n} & \xrightarrow{n \to \infty}   & \lambda_2 = (2 \pi)^2 \\
                &             &                &             & \ddots & \ddots      & \vdots         & \vdots                       & \vdots                \\
                &             &                &             &        &             & \lambda_{i, n} & \xrightarrow[n \to \infty]{} & \lambda_i = (i \pi)^2
 \end{array}
-\end{align*}
+\end{align}
 
-Wir bezeichnen mit $\epsilon_i(n) := |\lambda_i - \lambda_{i, n}|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW} wurde $\epsilon_i$ für $j = 1, 2, 3$ gegen $\id^2$, doppelt logarithmisch, geplottet. \\
+Nachdem $\Bbraces{\sqrt{\lambda_i}: i \in \N_0} = \pi \N_0 \subsetneq \pi \Z$, könnte man sich nun fragen, wo die andere Hälfte der analytischen Ergebnisse steckt. Die Erklärung ist ganz unspektakulär $\lambda := (\pm \kappa)^2$. \\
+
+Wir bezeichnen mit $\epsilon_i(n) := |\lambda_i - \lambda_{i, n}|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW} wurde $\epsilon_i$ mit der Vergleich-Geraden $\id^2$, doppelt logarithmisch, geplottet. \\
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width = 0.5 \textwidth]{Aufgabe_2/images/plot_eigen_values(n_max = 16, eigen_amount = 3)}
+  \includegraphics[width = 0.5 \textwidth]{Aufgabe_2/images/plot_eigen_value_errors(n_max = 16, i_max = 3)}
   \caption{Konvergenz-Fehler der Eigenwerte von $A_n$}
   \label{fig:Konvergenz-Fehler_EW}
 \end{figure}
@@ -265,32 +256,41 @@ Seien $\vec v^{(1, n)}, \ldots, \vec v^{(n-1, n)}$ die Eigenvektoren (eigentlich
 \begin{figure}[H]
 \centering
 \subfloat[Eigenvektoren $v^{(1, n)}$, $n = 2, 4, 8, 32$]{
-  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors(n_array = [2, 4, 8, 32], eigen_number = 0).png}
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [2, 4, 8, 16], i = 1).png}
 }
 \subfloat[Eigenvektoren $v^{(2, n)}$, $n = 4, 8, 16, 64$]{
-  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors(n_array = [4, 8, 16, 64], eigen_number = 1).png}
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [4, 8, 16, 32], i = 2).png}
 }
 \hspace{0mm}
 \subfloat[Eigenvektoren $v^{(3, n)}$, $n = 8, 16, 32, 64$]{
-  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors(n_array = [8, 16, 32, 64], eigen_number = 2).png}
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [4, 8, 16, 32], i = 3).png}
 }
 \subfloat[Eigenvektoren $v^{(4, n)}$, $n = 8, 16, 32, 64$]{
-  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors(n_array = [8, 16, 32, 64], eigen_number = 3).png}
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [8, 16, 32, 64], i = 4).png}
 }
 \hspace{0mm}
 \caption{Eigenvektoren $v^{(i, n)}$, $i = 1, \ldots, 4$ der Matrizen $A_n$}
 \label{fig:Eigenvektoren}
 \end{figure}
 
-Erstaunlicherweise, gibt es keinen Konvergenz-Fehler, da die Eigenvektoren scheinbar direkt an den Grenzfunktionen liegen. Mit anderen Worten, $\Forall n \in \N, \Forall i, j = 1, \ldots n-1:$
+Erstaunlicherweise, gibt es scheinbar keinen Konvergenz-Fehler, da die Eigenvektoren direkt an den Grenzfunktionen liegen. Mit anderen Worten, $\Forall n \in \N, \Forall i, j = 1, \ldots n-1:$
 
 \begin{align*}
   \vec v^{(i, n)}_j = v_{\kappa_i}(x_j).
 \end{align*}
 
-Gemeinsam mit der Polynom-Interpolation, liefert das eine hervorragende Approximation. Dies wird hier jedoch nicht weiter behandelt.
+Anschaulich, erhält man ein zu \eqref{Konvergenz_EW} analoges Schema.
 
-\subsection{verallgemeinerte Eigenschwingungen}
+\begin{align} \label{Konvergenz_EV}
+\begin{array}{ccccccccc}
+\vec v^{(1, 2)} & \rightarrow & \vec v^{(1, 3)} & \rightarrow & \cdots & \rightarrow & \vec v^{(1, n)} & \xrightarrow{n \to \infty}   & v_{\kappa_1} \\
+                &             & \vec v^{(2, 3)} & \rightarrow & \cdots & \rightarrow & \vec v^{(2, n)} & \xrightarrow{n \to \infty}   & v_{\kappa_2} \\
+                &             &                 &             & \ddots & \ddots      & \vdots          & \vdots                       & \vdots       \\
+                &             &                 &             &        &             & \vec v^{(i, n)} & \xrightarrow[n \to \infty]{} & v_{\kappa_i}
+\end{array}
+\end{align}
+
+\subsection{Verallgemeinerte Problembeschreibung}
 
 Die Ausbreitungsgeschwindigkeit $c$ in \eqref{Wellengleichung} hängt vom Material der Saite ab. Bisher haben wir sie als konstant angenommen, d.h. die Saite bestand aus einem Material. Sei nun für $c_0, c_1 \in \R$
 
@@ -301,6 +301,8 @@ Die Ausbreitungsgeschwindigkeit $c$ in \eqref{Wellengleichung} hängt vom Materi
     c_1, x \in (1/2, 1)
   \end{cases}.
 \end{align}
+
+\subsection{Verallgemeinerte Analytische Lösung}
 
 Zuerst leiten wir eine zur Helmholz-Gleichung \eqref{Helmholz-Gleichung} ähnliche Gleichung her und geben einen \eqref{Analytische_Lösung} entsprechenden Lösungsansatz an, wenn die Lösung $v$ auf $(0, 1)$ stetig differenzierbar sein soll.
 Dabei betrachten wir eine angepasste Version der Wellengleichung \eqref{Wellengleichung}.
@@ -313,16 +315,16 @@ Dabei betrachten wir eine angepasste Version der Wellengleichung \eqref{Wellengl
   t \in \R
 \end{align*}
 
-Wir verwenden jedoch den selben Ansatz, wie Vorher. Das war $u(x, t) = \mathfrak{R} (v(x) e^{-i \omega t})$, mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. \\
+Wir verwenden jedoch den selben Ansatz, wie Vorher. Das war $u(x, t) = \Re (v(x) e^{-i \omega t})$, mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. \\
 
-Einsetzen und analoges Nachrechnen, gibt mit der unbekannten Wellenzahl $\kappa(x) := \frac{\omega}{c(x)}$, die Randbedingungen \eqref{Randbedingungen} und
+Einsetzen und analoges Nachrechnen, gibt, mit der unbekannten Wellenzahl $\kappa(x) := \frac{\omega}{c(x)}$, die Randbedingungen \eqref{Randbedingungen} und
 
 \begin{align*}
   -v^\primeprime(x) = \kappa^2(x) v(x), \qquad
   x \in (0, 1).
 \end{align*}
 
-Um Probleme mit der Differenzierbarkeit von $\kappa$ zu vermeiden, führen wir die Abkürzungen $\kappa_0 := \frac{\omega}{c_0}$, $\kappa_1 := \frac{\omega}{c_1}$ ein. Wir definieren den Lösungsansatz durch Fallunterscheidung und mit (vorerst) beliebigen Konstanten $C_{01}, C_{02}, C_{11}, C_{12}$.
+Um Probleme mit der Differenzierbarkeit von $\kappa$ zu vermeiden, führen wir die Abkürzungen $\kappa_0 := \frac{\omega}{c_0}$, $\kappa_1 := \frac{\omega}{c_1}$ ein, und definieren den Lösungsansatz durch Fallunterscheidung und mit (vorerst) beliebigen Konstanten $C_{01}, C_{02}, C_{11}, C_{12}$.
 
 \begin{align*}
   v(x) :=
@@ -365,7 +367,7 @@ Um stetige Differenzierbarkeit zu erhalten, muss auch die Ableitung
 auf $1/2$ stetig fortgesetzt werden.
 
 \begin{align*}
-  \kappa_0 C_{02} \cos(\kappa_0/2)
+  C_{02} \kappa_0 \cos(\kappa_0/2)
   = \lim_{x \to 1/2-} v^\prime(x)
   = \lim_{x \to 1/2+} v^\prime(x)
   = - C_{11} \kappa_1 \sin(\kappa_1/2) + C_{12} \kappa_1 \cos(\kappa_1/2)
@@ -390,75 +392,153 @@ Aus den Randbedingungen und stetigen Fortsetzungen, ergibt sich also das homogen
   \in \R^{3 \times 1}.
 \end{align*}
 
-Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$. Dieser Fall wäre jedoch wieder der trivialfall, darum betrachten wir den anderen Fall, also dass $\det{R} = 0$ gilt. Mit SymPy berechnet man
+Sei $R \in \GL[3]{\R}$ regulär, so ist deren Kern trivial, d.h. $\ker{R} = \Bbraces{0}$, und somit auch die Lösung $\vec C = 0$. Dieser Trivialfall wurde jedoch vorhin bereits ausgeschlossen. Darum betrachten wir $\det{R} = 0$. Mit SymPy berechnet man
 
-\begin{align*}
-  \det{R} =
-  \sin{\left(\frac{{\kappa}_{0}}{2} \right)} \cos{\left(\frac{{\kappa}_{1}}{2} \right)} {\kappa}_{1} + \sin{\left(\frac{{\kappa}_{1}}{2} \right)} \cos{\left(\frac{{\kappa}_{0}}{2} \right)} {\kappa}_{0}.
-\end{align*}
+\begin{align} \label{Nullfunktion}
+  \nonumber
+  \det{R}
+  & = \sin{\left(\frac{{\kappa}_{0}}{2} \right)} \cos{\left(\frac{{\kappa}_{1}}{2} \right)} {\kappa}_{1} + \sin{\left(\frac{{\kappa}_{1}}{2} \right)} \cos{\left(\frac{{\kappa}_{0}}{2} \right)} {\kappa}_{0} \\
+  & = \sin{\pbraces{\frac{\omega}{2 c_0}}}
+      \cos{\pbraces{\frac{\omega}{2 c_1}}}
+      \frac{\omega}{c_1} +
+      \sin{\pbraces{\frac{\omega}{2 c_1}}}
+      \cos{\pbraces{\frac{\omega}{2 c_0}}}
+      \frac{\omega}{c_0} =: f_c(\omega)
+\end{align}
 
-Über $\kappa_0 = \frac{\omega}{c_0}$, $\kappa_1 = \frac{\omega}{c_1}$ lässt sich $\omega$, für gegebene $c_0$, $c_1$ als (nicht eindeutige) Nullstelle einer Funktion $f$ charakterisieren. Diese Überlegung, wird, in Form von folgender Funktion, implementiert.
+Für feste $c_0$, $c_1$, lässt sich das gewünschte $\omega$, als (nicht eindeutige) Nullstelle dieser Funktion $f_c$, charakterisieren.
+
+\subsection{Verallgemeinerte Semi-Analytische Lösung}
+
+Das Ergebnis aus \eqref{Nullfunktion} wurde, in Form von folgender Funktion, implementiert.
 
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/get_zero_function.py}
 
-Nun können wir $f$ für fixe $c_0, c_1$ plotten lassen. Dann bekommen wir ein besseres Verständnis dafür, welchen Startwert wir wählen sollen, um die Gleichung $f(\omega) = 0$, mit \verb|fsolve| aus \verb|scipy.optimize|, lösen zu lassen. \\
+Nun können wir $f_c$ für fixe $c_0, c_1$ plotten lassen. Dann bekommen wir ein besseres Verständnis dafür, welchen Startwert wir wählen sollen, um die Gleichung $f_c(\omega) = 0$, mit \verb|scipy.optimize.fsolve| lösen zu lassen. \\
 
-Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbiträren Werte $c_0 = 100$, $c_1 = 1$ gewählt. Die Funktion $f$ ist scheinbar gerade, d.h. symmetrisch bzgl. der $y$-Achse.
+Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbiträren Werte $c_0 = 100$, $c_1 = 1$ gewählt. Die davon abhängige Funktion $f_c$ ist scheinbar gerade. Das liegt an \eqref{Nullfunktion}, sowie dass $\cos$ gerade und $\sin$ ungerade ist.
 
 \begin{figure}[H]
   \centering
   \subfloat[auf dem Intervall $(-16, 16)$]{
-    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas(c = (100, 1), interval = (-16, 16))}
+    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas/plot_omegas(c = (100, 1), interval = (-16, 16))}
   }
   \subfloat[auf dem Intervall $(0, 64)$ und herangezoomt]{
-    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas(c = (100, 1), interval = (0, 32), limits = (-1, 1))}
+    \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas/plot_omegas(c = (100, 1), interval = (0, 32), limits = (-1, 1))}
   }
   \hspace{0mm}
-  \caption{Plots von $f$ für $c_0 = 100$, $c_1 = 1$}
+  \caption{Plots von $f_c$ für $c_0 = 100$, $c_1 = 1$}
   \label{fig:zero_function}
 \end{figure}
 
-Dementsprechend, können passende Startwerte für iterative Verfahren gewählt werden. Die Ergebnisse vom, bereits erwähnten, \verb|fsolve| folgen. Warum die Quadrate dieser Ergebnisse eine Rolle spielen, wird später noch erwähnt.
+Dementsprechend, können passende Startwerte $\tilde \omega$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte des nächsten Unterkapitels. \\
 
-\begin{multicols}{2}
-\verbatiminput{Aufgabe_2/data/find_omegas(c=(100, 1),guesses=[0, 5, 10, 15, 20, 25, 30],tol=1e-08).txt}
-\end{multicols}
+\input{Aufgabe_2/data/find_omegas(c = (100, 1), guesses = [5, 10, 15, 20, 25, 30], tol = 1e-08)}
+\vspace{10pt}
 
-Wir wollen nun den Differenzenquotienten $D_h v(x_j)$, um ein verallgemeintertes Eigenwertproblem der Form $A \vec v = \lambda B \vec v$ mit Matrizen $A, B \in \R^{(n-1) \times (n-1)}$ herzuleiten. \\
+\subsection{Verallgemeinertes Eigenwertproblem}
 
-Sei abermals $x_j := jh$, $j = 0, \ldots, n$ unsere Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die Matrix $A_n$, für den Differenzenquotienten $D_h v(x_j)$ und der Vektor $\vec v := (v(x_1), \ldots, v(x_{n-1}))^T$, bleiben ebenfalls nach wie vor so, wie sie waren. \\
+Wir wollen nun den Differenzenquotienten $D_h v(x_j)$ verwenden, um ein verallgemeintertes Eigenwertproblem der Form $A \vec v = \lambda B \vec v$ mit Matrizen $A, B \in \R^{(n-1) \times (n-1)}$ herzuleiten. \\
 
-$B_n \lambda$ soll nun, analog zu Vorher, $-\kappa^2$ repräsentieren. Diesmal jedoch, ist $\kappa$ als Funktion zu verstehen. Also wird die Matrix $B_n$ deren Fallunterscheidungen übernehmen und $\lambda$ bleibt konstant. \\
+Sei abermals $x_j := jh$, $j = 0, \ldots, n$ unsere Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die Matrix $-A_n$, für den Differenzenquotienten $D_h v(x_j)$, und der Vektor $\vec v^{(n)} := (v(x_1), \ldots, v(x_{n-1}))^T$, bleiben ebenfalls nach wie vor so, wie sie waren. \\
+
+$B_n \lambda$ soll nun, analog zu Vorher, $\kappa^2$ repräsentieren. Diesmal, ist $\kappa$ jedoch als (stückweise konstante) Funktion zu verstehen. Also wird die Matrix $B_n$ deren Fallunterscheidungen übernehmen und $\lambda$ konstant bleiben. Es läuft darauf hinaus, dass \\
 
 \begin{align*}
   B_n :=
-  \diag^{-2}
-  (
-    \underbrace{c_0, \ldots, c_0}_{\floor{\frac{n-1}{2}} \text{-mal}},
-    \underbrace{c_1, \ldots, c_1}_{\ceil {\frac{n-1}{2}} \text{-mal}}
-  ), \qquad
-  \lambda := -\omega^2.
+  \begin{cases}
+    \diag^{-2}
+    (
+      c_0, \ldots, c_0,
+      c_1, \ldots, c_1,
+    ), & n-1 \in 2 \N \\
+    \diag^{-2}
+    (
+      c_0, \ldots, c_0,
+      \frac{c_0 + c_1}{2},
+      c_1, \ldots, c_1,
+    ), & n-1 \in 2 \N + 1
+  \end{cases},
+  \qquad
+  \lambda := \omega^2,
 \end{align*}
 
-Die Wahl von $B_n$ lässt sich wie folgt begründen: Für zwei Vektoren $a, b$, ist die Matrix-Vektor-Multiplikation $\cdot$, mit der Diagonalmatrix von $a$, äquivalent zur komponentenweisen Multiplikaiton $\odot$, d.h. $\diag(a) \cdot b = a \odot b$. Bei dem vorherigen Eigenwertproblem wäre $B_n$ als die Einheits-Matrix $I_n$ zu betrachten, nachdem der Eigenwert $\lambda$ gleich ganz $-\kappa^2$ (konstant) übernehmen konnte. Da $-\kappa^2$ nun zwei Werte
+wobei $c_0, c_1$ in $B_n \in \GL[n-1]{\R}$ jeweils $\floor{\frac{n-1}{2}}$-mal vorkommen. Dabei sei vorausgesetzt, dass $c_0, c_1 \neq 0$ und $c_0 + c_1 \neq 0$. Die Wahl von $B_n$ lässt sich wie folgt begründen. \\
+
+Seien $\vec a, \vec b$ Vektoren mit gleich vielen Komponenten. Dann ist die Matrix-Vektor-Multiplikation $\cdot$, mit einer erzeugten Diagonalmatrix, äquivalent zur komponentenweisen Multiplikaiton $\odot$.
+
+\begin{align} \label{Diagonalmatrizen}
+  \diag(\vec a) \cdot \vec b =
+  \vec a \odot \vec b =
+  \vec b \odot \vec a =
+  \diag(\vec b) \cdot \vec a
+\end{align}
+
+Bei dem vorherigen Eigenwertproblem wäre $B_n$ als Einheits-Matrix $I_n$ zu interpretieren. Der Eigenwert $\lambda$ konnte gleich ganz $\kappa^2$ approximieren, weil dieser Wert konstant war. Man hätte aber freilich auch mit der Skalarmatrix $(I_n c)^{-2}$ und $\omega^2$ anstelle von $\kappa^2$ arbeiten können. Da $\kappa^2$ nun aber, als Funktion, zwei unterschiedliche Werte
 
 \begin{align*}
-  -\pbraces{\frac{\omega}{c_0}}^2, -\pbraces{\frac{\omega}{c_1}}^2
+  \pbraces{\frac{\omega}{c_0}}^2,
+  \pbraces{\frac{\omega}{c_1}}^2
 \end{align*}
 
-annimmt, muss diese Eigenschaft von Diagonalmatrizen ausgenutzt werden, um die Unterscheidung zwischen $x_j < 1/2$ und $x_j \geq 1/2$ zu realisieren. \\
+annehmen kann, müssen wir die obere Eigenschaft \eqref{Diagonalmatrizen} von Diagonalmatrizen ausnutzen. Damit realisieren wir die Fallunterscheidung zwischen $x_j < 1/2$ und $x_j \geq 1/2$. Für $x_j = 1/2$, was nur bei $n-1 \in 2 \N$ auftritt, wird gemittelt. \\
 
-Wenn wir davon ausgehen, dass $c_0, c_1 \neq 0$, so ist $B_n$ wohldefiniert als Diagonalmatrix deren quadratische Kehrwerte. Damit lässt sich dieses verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$, mit nahezu keinem Aufwand, in ein konkretes $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. \\
+Nachdem die Inverse einer Diagonalmatrix genau die Matrix selbst mit komponentenweise Kehrwerten ist, lassen sich gleich $B_n$ und $B_n^{-1}$ leicht implementieren. Die zuständigen Funktionen besitzen die kreativen Namen \verb|my_other_numpy_matrix| bzw. \verb|my_other_numpy_matrix_inverse|. \\
 
-Dieses Eigenwertproblem wurde ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. Wir vergleichen die Eigenwerte und Eigenvektoren mit den oberen semi-analytischen Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Dass die Eigenwerte gegen $-\omega^2$ konvergieren, überrascht wenig. \\
+\lstinputlisting
+[language = Python]
+{Aufgabe_2/python_code/my_other_numpy_matrices.py}
 
-\begin{verbatim}
-n = 1000
------
-Eigenvalues:
--16.44054324040394
--96.3725475394107
--254.1214683324469
-\end{verbatim}
+Das verallgemeinerte Eigenwertproblem $A_n \vec v = \lambda B_n \vec v$ werden wir zunächst auf $B_n^{-1} A_n \vec v = \lambda \vec v$ umformulieren. Dieses kann nun ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst werden. \\
+
+Die Matrix $B_n^{-1} A_n$ besitzt hoffentilch wieder $n-1$ paarweise verschiedene Eigenwerte $\lambda^c_{1, n} < \cdots < \lambda^c_{n-1, n}$, welche jeweils vielleicht konvergieren. \\
+
+Um einen ersten Eindruck des möglichen Konvergenz-Verhaltens zu bekommen, vergleichen wir die Eigenwerte mit den oberen semi-analytischen Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Es folgt eine zur Oberen analoge Tabelle mit Eigenwerten. Die Ergebnisse lassen zwar zu wünschen übrig, aber immerhin pendelt sich die Größenordnung rasch ein. \\
+
+\input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
+\vspace{10pt}
+
+Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lambda_{i, n}^c|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. $\lambda_i^c$ erhalten wir durch $\omega^2$ von \verb|scipy.optimize.fsolve|, wobei $\tilde \omega := \lambda_{i, n}^c$ als Startwert für das iterative Verfahren gewählt wird. Theoretisch hängt $\lambda_i^c$ also noch von $n$ ab. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} wurde $\epsilon^c_i$ mit der Vergleich-Geraden $\id^2$, doppelt logarithmisch, geplottet. \\
+
+\begin{figure}[H]
+\centering
+\subfloat[für $c = (1, 1)$]{
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_value_errors_general/plot_eigen_value_errors_general(n_max = 32, i_max = 3, c = (1, 1)).png}
+  \label{subfig:Konvergenz-Fehler_EW}
+}
+\subfloat[für $c = (1.1, 1)$]{
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_value_errors_general/plot_eigen_value_errors_general(n_max = 32, i_max = 3, c = (1.1, 1)).png}
+}
+\hspace{0mm}
+\subfloat[für $c = (2, 1)$]{
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_value_errors_general/plot_eigen_value_errors_general(n_max = 32, i_max = 3, c = (2, 1)).png}
+}
+\subfloat[für $c = (100, 1)$]{
+  \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_value_errors_general/plot_eigen_value_errors_general(n_max = 32, i_max = 3, c = (100, 1)).png}
+}
+\hspace{0mm}
+\caption{Konvergenz-Fehler der Eigenwerte von $B_n^{-1} A_n$}
+\label{fig:Konvergenz-Fehler_EW_allgemein}
+\end{figure}
+
+Es macht Sinn, dass Abbildung \ref{subfig:Konvergenz-Fehler_EW} mit Abbildung \ref{fig:Konvergenz-Fehler_EW} korreliert. Diese \Quote{Bergsteiger-Konvergenz} steigt anscheinend mit dem Verhältnis $c_0/c_1$ (no pun intended). Auch das macht einigermaßen Sinn, aber es pendelt sich die Oszillation interessanterweise ein und wird nicht drastisch stärker. Die Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} bleibt übrigens unverändert, wenn man die Komponenten von $c$ vertauscht. \\
+
+Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (eigentlich Eigenräume), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\vec v^{(i, n_i), c}$ geplottet, wobei
+
+\begin{align*}
+  c_{\text{max}} & = 4, &
+  c & \in \Bbraces{(c_0, c_1): c_0, c_1 = 1, \ldots, c_{\text{max}}}, \\
+  i & = 1, \ldots, 2 c_{\text{max}}, &
+  n_i & \in \Bbraces
+  {
+    2^{p_{\text{min}} + p_{\text{add}}}: \:
+    p_{\text{min}} = \ceil{\log_2(i+1)}, \:
+    p_{\text{add}} = 0, \ldots, 3
+  } =: N_i.
+\end{align*}
+
+Dabei wurden die Vektoren $\vec v^{(i, n), c}$, $n \in N_i$ jeweils zusammengefasst. Nachdem wir dadurch auf $128$ Bilder kommen, werden wir nicht alle herzeigen. Außerdem,  sieht nur ein Bruchteil davon \Quote{schön} aus. \\
+
+\textbf{To be continued!!!}
