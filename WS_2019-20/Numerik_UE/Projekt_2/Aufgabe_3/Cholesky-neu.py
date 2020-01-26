@@ -199,18 +199,20 @@ def efffinal(N):
         for k in range(n):
             C[k] = np.random.rand(n)
         for i in range(n):
-            while(abs(C[i][i]) < 1/n):
+            while(abs(C[i][i]) < 0.5):
                 C[i][i] *= 2 # dadurch strikte Diagonaldominanz
             for k in range(n):
-                if(k != i and abs(C[k][i])>(1.0/n**2)):
+                if(k != i and abs(C[k][i])>(0.5/n)):  # (n*n-n)*(0.5/n) + n konvergiert gegen 1.5n, also 1.5n Nichtnuller
                     C[k][i]=0
-        C = C@np.transpose(C)
+        C = C@np.transpose(C) # anscheinend bei 1.5n Nichtnullern in C 2n Nichtnuller in C@C^T
         #bis dahin wird nur eine random schwach besetzte pos def. symmetrische Matrix C e R^(nxn) erzeugt
         c = 0
         for i in range(n):
             for j in range(n):
                 if(C[i][j] == 0):
                     c += 1
+        nuller = c
+        nichtnuller = n*n-c
         c = c/(n*n) # prozentualer Anteil der Nuller von C
 
         A = np.copy(C)
@@ -223,7 +225,7 @@ def efffinal(N):
         end2 = time.clock()
         t1 = end1-start1
         t2 = end2-start2
-        L += [[n, c, t2/t1]]
+        L += [[n, c, nichtnuller/n, t2/t1]]
     return L
 
 
