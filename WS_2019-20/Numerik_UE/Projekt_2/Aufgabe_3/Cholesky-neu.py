@@ -195,15 +195,14 @@ def efffinal(N):
     L = []
     T = [2**i for i in range(2,N)]
     for n in T:
-        while(True):
-            C = np.zeros((n,n))
-            for k in range(n):
-                C[k] = np.random.rand(n)
-            if(abs(np.linalg.det(C)) > 0.001):
-                break
+        C = np.zeros((n,n))
+        for k in range(n):
+            C[k] = np.random.rand(n)
         for i in range(n):
+            while(abs(C[i][i]) < 1/n):
+                C[i][i] *= 2 # dadurch strikte Diagonaldominanz
             for k in range(n):
-                if k != i and C[k][i]<(1-3.0/n):
+                if(k != i and abs(C[k][i])>(1.0/n**2)):
                     C[k][i]=0
         C = C@np.transpose(C)
         #bis dahin wird nur eine random schwach besetzte pos def. symmetrische Matrix C e R^(nxn) erzeugt
@@ -228,4 +227,4 @@ def efffinal(N):
     return L
 
 
-print(efffinal(11))
+print(efffinal(13))
