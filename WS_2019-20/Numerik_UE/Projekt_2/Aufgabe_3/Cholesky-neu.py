@@ -191,23 +191,41 @@ def efficientChol(A):  #Effizienz nur aus den Nullern unter A, nicht aus den in 
 
     return L
 
-n=9
+def efffinal(N):
+    L = []
+    T = [2**i for i in range(2,N)]
+    for n in T:
+        while(True):
+            C = np.zeros((n,n))
+            for k in range(n):
+                C[k] = np.random.rand(n)
+            if(abs(np.linalg.det(C)) > 0.001):
+                break
+        for i in range(n):
+            for k in range(n):
+                if k != i and C[k][i]<(1-3.0/n):
+                    C[k][i]=0
+        C = C@np.transpose(C)
+        #bis dahin wird nur eine random schwach besetzte pos def. symmetrische Matrix C e R^(nxn) erzeugt
+        c = 0
+        for i in range(n):
+            for j in range(n):
+                if(C[i][j] == 0):
+                    c += 1
+        c = c/(n*n) # prozentualer Anteil der Nuller von C
 
-C = np.zeros((n,n))
-for k in range(n):
-    C[k] = np.random.rand(n)
-    for i in range(n):
-        if k != i and C[k][i]<0.6:
-            C[k][i]=0
-        else:
-            C[k][i] = 1
+        A = np.copy(C)
+        B = np.copy(C)
+        start1 = time.clock()
+        chol1(A)
+        end1 = time.clock()
+        start2 = time.clock()
+        efficientChol(B)
+        end2 = time.clock()
+        t1 = end1-start1
+        t2 = end2-start2
+        L += [[n, c, t2/t1]]
+    return L
 
-for k in range(n):
-    for i in range(k):
-        C[i][k] = C[k][i]
 
-
-Y = np.array([[1,6,2,0],[6,1,0,3],[2,0,1,0], [0,3,0,1]])
-Z = sort(Y)[0]
-print(Z)
-print(nuller(Z))
+print(efffinal(11))
