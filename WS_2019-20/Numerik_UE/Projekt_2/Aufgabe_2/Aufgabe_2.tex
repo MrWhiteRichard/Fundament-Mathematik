@@ -249,9 +249,9 @@ Wir bezeichnen mit $\epsilon_i(n) := |\lambda_i - \lambda_{i, n}|$, $i = 1, \ldo
   \label{fig:Konvergenz-Fehler_EW}
 \end{figure}
 
-Allem Anschein nach, verschwindet $\epsilon_i$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $i$-te Eigenwert erst ab einer Matrix $A_n$, $n > i$ existiert. Daher fangen die plots von $\epsilon_i$ desto später an, je größer $i$ ist. Für größeres $i$ ist auch der intitiale Fehler größer. Obwohl dieser ebenfalls quadratisch konvergiert, werden mehr Rechenoperationen für ein genaues Ergebnis benötigt. \\
+Allem Anschein nach, verschwindet $\epsilon_i$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $i$-te Eigenwert erst ab einer Matrix $A_n$, $n > i$ existiert. Daher fangen die Plots von $\epsilon_i$ desto später an, je größer $i$ ist. Für größeres $i$ ist auch der intitiale Fehler größer. Obwohl dieser ebenfalls quadratisch konvergiert, werden mehr Rechenoperationen für ein genaues Ergebnis benötigt. \\
 
-Seien $\vec v^{(1, n)}, \ldots, \vec v^{(n-1, n)}$ die Eigenvektoren (modulo Vielfache), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Folgende Abbildungen sollen dies veranschaulichen.
+Seien $\vec v^{(1, n)}, \ldots, \vec v^{(n-1, n)}$ die Eigenvektoren ($\mod$ Konstante), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Folgende Abbildungen sollen dies veranschaulichen.
 
 \begin{figure}[H]
 \centering
@@ -525,12 +525,14 @@ Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lam
 
 Es macht Sinn, dass Abbildung \ref{subfig:Konvergenz-Fehler_EW} mit Abbildung \ref{fig:Konvergenz-Fehler_EW} korreliert. Diese \Quote{Bergsteiger-Konvergenz} steigt anscheinend mit dem Verhältnis $c_0/c_1$ (no pun intended). Auch das macht einigermaßen Sinn, aber die Oszillation pendelt sich interessanterweise ein und wird nicht drastisch stärker. Die Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} bleibt übrigens unverändert, wenn man die Komponenten von $c$ vertauscht. \\
 
-Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (modulo Vielfache), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten, als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\vec v^{(i, n_i), c}$, normiert bzgl. $\norm[\infty]{\cdot}$, geplottet, wobei
+\textbf{RELATIVER FEHLER FEHLT}
+
+Seien $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren ($\mod$ Konstante), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten, als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\vec v^{(i, n_i), c}$, normiert bzgl. $\norm[\infty]{\cdot}$, geplottet, wobei
 
 \begin{align*}
-  c_{\text{max}} & = 4, &
-  c & \in \Bbraces{(c_0, c_1): c_0, c_1 = 1, \ldots, c_{\text{max}}}, \\
-  i & = 1, \ldots, 2 c_{\text{max}}, &
+  c_{\mathrm{max}} & = 4, &
+  c & \in \Bbraces{(c_0, c_1): c_0, c_1 = 1, \ldots, c_{\mathrm{max}}}, \\
+  i & = 1, \ldots, 2 c_{\mathrm{max}}, &
   n_i & \in \Bbraces
   {
     2^{p_{\text{min}} + p_{\text{add}}}: \:
@@ -539,6 +541,45 @@ Seien  $\vec v^{(1, n), c}, \ldots, \vec v^{(n-1, n), c}$ die Eigenvektoren (mod
   } =: N_i.
 \end{align*}
 
-Dabei wurden die Vektoren $\Bbraces{\vec v^{(i, n), c}: n \in N_i}$ jeweils zu einem Bild zusammengefasst. Nachdem wir dadurch auf $128$ Bilder kommen, werden wir nicht alle herzeigen. Außerdem,  sieht nur ein Bruchteil davon \Quote{schön} aus. \\
+Dabei wurden die Vektoren $\Bbraces{\vec v^{(i, n), c}: n \in N_i}$ jeweils zu einem Bild zusammengefasst. Nachdem wir dadurch auf $128$ Bilder kommen, werden wir nicht alle herzeigen. Außerdem, sieht nur ein Bruchteil davon \Quote{schön} aus. \\
 
-\textbf{To be continued!!!}
+% Bilder
+
+Mit \Quote{schön} ist gemeint, dass die Grenzfunktionen bzgl. $n$ der Eigenvektoren $\vec v^{(i, n), c}$ keine Knicke haben. Das tritt auf, weil im oberen Gleichungssystem $R \vec C = 0$ zwar Stetigkeit, aber keine Glattheit gefordert wurde. Man fragt sich nun vielleicht, für welche Ausbreitungsgeschwindigkeiten $c$ und Eigenpaar-Nummerierung $i$ diese Grenzfunktionen \Quote{schön} aussehen. \\
+
+Dazu bemerken wir zuerst, dass die selben Plots herauskommen, wenn $c^{(1)}, c^{(2)}$ bis auf eine Konstante übereinstimmen. Wegen der Normierung bzgl. $\norm[\infty]{\cdot}$, sieht man das durch hinschauen (auf $A \vec v = \lambda B \vec v$), also eigentilch auch bereits a priori.
+
+\begin{align*}
+  v^{(i, n), c^{(1)}} = v^{(i, n), c^{(2)}}, \:
+  \text{für} \:
+  c^{(1)} \equiv c^{(2)} \mod \text{Konstante}.
+\end{align*}
+
+% Bilder
+
+A posteriori hingegen, bemerken wir, dass zwei Plots mit $(c_0, c_1)$ bzw. $(c_1, c_0)$ auch graphisch zusammenhängen. Die erste und zweite Hälft der Grenzfunktionen tauschen, wenn man zwischen den Plots wechselt. \\
+
+% Bilder
+
+Es sticht aber noch etwas Anderes ins Auge. Wenn man irgendeinen dieser Plots betrachtet, dann geht die Grenzfunktion genau dann durch den ausgezeichneten Punkt $1/2$, wenn $\tilde c_0 + \tilde c_1 \: | \: i$, wobei $\tilde c_0 : \tilde c_1 = c_0 : c_1$ vollständig gekürzt ist. \\
+
+% Bilder
+
+Das kann man heuristisch so begründen, dass die Ausbreitungsgeschwindigkeiten $c$, gemeinsam mit $i$, für die relativen Anzahlen der Schwingungsperioden verantwortlich sind; d.h, diese stehen diese im reziproken Verhältnis zu einander. Für $i = 3$, $c = (1, 2)$
+% aus Abbildung sowieso
+zum Beispiel, schwingt die erste Hälfte doppelt so schnell, wie die zweite. Dasselbe geschieht für $i = 6$, wobei die Grenzfunktion als Ganzes doppelt so schnell schwingt, wie bei $i = 3$. Durch dieses Zwischenspiel von $c$ und $i$, finden wir die meisten \Quote{schönen} Funktionen. \\
+
+Was ist aber mit dem \Quote{künstlich verallgemeinerten} Fall $c = (1, 1) = \cdots = (c_{\mathrm{max}}, c_{\mathrm{max}})$, $i \in \N - 1$? Wieso sieht der so \Quote{schön} aus? Um eine Erklärung zu finden, verallgemeinern wir fröhlich weiter und betrachten die Material-Funktion $c = (c_0, \ldots, c_m) \in (\Q^+)^{m+1}$, wobei diese, analog zu \eqref{Material-Funktion}, bzgl. $1/(m+1)$ äquidistant zu verstehen ist.
+
+\begin{align*}
+  c(x) :=
+  \begin{cases}
+    c_0,   & x \in (0, 1/(m+1)) \\
+    \vdots & \vdots \\
+    c_m,   & x \in (m/(m+1), 1)
+  \end{cases}
+\end{align*}
+
+Wir stellen fest, dass sich die naheliegende Verallgemeinerung der oberen Regel für diese Fälle gilt. Die Grenzfunktion geht genau dann durch die ausgezeichneten äquidistanten Punkte $\Bbraces{k/(m+1)}_{k=0}^{m+1}$, wenn $|\tilde c| := \tilde c_0 + \cdots + \tilde c_m \: | \: i$, wobei $\tilde c_k : \tilde c_\ell = c_k : c_\ell$, $k, \ell = 0, \ldots, m$ paarweise vollständig gekürzt sind. \\
+
+Tatsächlich gibt es im \Quote{künstlich verallgemeinerten} Fall mit beliebigem $i$ ein $m$, sodass für $c \in (\Q^+)^{m+1}$ gilt $|\tilde c| = m+1 \: | \: i$. Dieser Fall liefert übrigens, wegen der bereits angesprochenen Skalarmatrix, immer dasselbe Resultat.
