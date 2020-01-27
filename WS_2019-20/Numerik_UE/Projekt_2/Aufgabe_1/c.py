@@ -46,7 +46,6 @@ def cg(A,b,x0,tol):
     xt = x0
     r0 = b - np.dot(A,xt)
     d = r0
-    c = 0
     while(np.linalg.norm(r0) > tol):
         prod = np.dot(np.transpose(r0),r0)
         prod2 = np.dot(A,d)
@@ -55,8 +54,6 @@ def cg(A,b,x0,tol):
         r0 = r0 - alpha*prod2
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
-        c += 1
-    print(c)
     return xt
 
 
@@ -76,14 +73,12 @@ def vcg(A,b,x0,P,tol):
         beta = np.dot(np.transpose(z0),r0)/prod
         d = z0 + beta*d
         c += 1
-    print(c)
     return x0
 
 def Scg(A,b,x0,tol):
     xt = x0
     r0 = b - A.__matmult__(xt)
     d = r0
-    c = 0
     while(np.linalg.norm(r0) > tol):
         prod = np.dot(np.transpose(r0),r0)
         prod2 = A.__matmult__(d)
@@ -92,15 +87,13 @@ def Scg(A,b,x0,tol):
         r0 = r0 - alpha*prod2
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
-        c += 1
-    print(c)
     return xt
 
 
 if __name__ == "__main__":
     x = Sparse(True, [1,2,3,4,5,6],[2,0,1,0,4,4],[0,1,3,5,5,6])
 
-    n = 5000
+    n = 14000
     z = 20
     b = np.random.rand(n)
     x0 = np.random.rand(n)
