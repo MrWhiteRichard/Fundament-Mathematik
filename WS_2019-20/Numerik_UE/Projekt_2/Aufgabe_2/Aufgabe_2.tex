@@ -730,7 +730,7 @@ Die untere Implementierung, \verb|vector_iteration_shifted|, der Vektor-Iteratio
 {Aufgabe_2/python_code/vector_iteration_shifted.py}
 \vspace{10pt}
 
-Angenommen, wir wüssten bereits, dass all unsere Eigenwerte $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c \in \R^+$ reell und positiv sind und es immer genau $n-1$ viele gibt. \verb|vector_iteration_simple| liefert uns den Eigenvektor mit dem betragsgrößten Eigenwert und \verb|vector_iteration_shifted| den Eigenvektor mit dem Eigenwert, der am nähesten bei $\rho$ liegt. Nun können wir mit einer binären Suche, ähnlich zum Bisektionsverfahren, alle Eigenwerte finden und ein eigenes \verb|np.linalg.eig| programmieren. \\
+Angenommen, wir wüssten bereits, dass all unsere Eigenwerte $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c \in \R^+$ reell und positiv sind. \verb|vector_iteration_simple| liefert uns den Eigenvektor mit dem betragsgrößten Eigenwert und \verb|vector_iteration_shifted| den Eigenvektor mit dem Eigenwert, der am nähesten bei $\rho$ liegt. Nun können wir mit einer binären Suche, ähnlich zum Bisektionsverfahren, alle Eigenwerte finden und ein eigenes \verb|np.linalg.eig| programmieren. \\
 
 \lstinputlisting
 [language = Python]
@@ -746,3 +746,29 @@ Zum Vergleich, zeigen wir nochmal die Eigenwerte via \verb|np.linalg.eig|. Betra
 
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
 \vspace{10pt}
+
+Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$ tatsächlich alle positiv und reell sind. Sonst wäre ja der Algorithmus, aus mathematische Sicht, wertlos. Eine Möglichkeit bietet die explizite Darstellung von Eigenpaaren von Tridiagonalmatrizen. Wir wissen aber, dass das Gewünschte genau dann gilt, wenn $B_n^{-1} A_n$ positiv definit ist. Das können wir mit dem Hauptminoren-Kriterium locker überprüfen.
+
+\begin{align*}
+  A_n^\prime :=
+  \begin{pmatrix}
+     2 &  -1     &        &    \\
+    -1 &  \ddots & \ddots &    \\
+       &  \ddots & \ddots & -1 \\
+       &         & -1     &  2
+  \end{pmatrix}
+\end{align*}
+
+Zuerst berechnen wir die Determinante der Matrix $A_n^\prime$. Dazu induzieren wir $\det(A_n^\prime) = n$. Der Induktionsanfang, $n = 2, 3$, ist trivial. Für den Induktionsschritt muss man einmal nach der letzten Spalte und dann Zeile entwickeln (oder umgekehrt). \\
+
+Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $B_n^{-1} > 0$ ist eine Diagonalmatrix mit positiven Einträgen. Weil die Determinante solcher Matrizen bloß das Produkt ihrer Komponenten ist, sind alle Hauptminoren dieser Matrizen positiv. Unsere Matrizen sind also tatsächlich positiv definit. Deren Produkt und Vielfaches $A_n$ ist es also auch, weil
+
+\begin{align*}
+  0 < x^\ast A x, x^\ast B x
+  \Rightarrow
+  0 < x^\ast A x x^\ast B x =
+  x^\ast A \abraces{x, x} B x =
+  x^\ast A \norm{x}^2 B x
+  \Rightarrow
+  0 < x^\ast AB x.
+\end{align*}
