@@ -78,7 +78,7 @@ Das sind die gesuchten $\kappa > 0$. Sei nun eines dieser $\kappa$ fest. Offensi
 
 Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerische Verfahren zurückgegriffen wird, welche möglichst gute Näherungen an die exakten Lösungen berechnen sollen. Als einfachstes Mittel dienen sogenannte Differenzenverfahren. Sei dazu $x_j := jh$, $j = 0, \ldots, n$ eine Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die zweite Ableitung in \eqref{Helmholz-Gleichung} wird approximiert durch den Differenzenquotienten
 
-\begin{align} %\label{Differenzenquotient}
+\begin{align} \label{Differenzenquotient}
   v^\primeprime(x_j) \approx
   D_h v(x_j) :=
   \frac{1}{h^2} (v(x_{j-1}) - 2 v(x_j) + v(x_{j+1})), \qquad
@@ -210,11 +210,12 @@ Wenn nun die Randbedingungen \eqref{Randbedingungen} gelten sollen, d.h. $v(x_0)
   -v^\primeprime
 \end{align*}
 
-Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert.
+Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert. \\
 
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/my_numpy_matrix.py}
+\vspace{10pt}
 
 Das Eigenwertproblem wurde mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst. \verb|np.linalg.eig| retourniert die Eigenwerte und Eigenvektoren nicht zwangsläufig, der größe der Eigenwerte nach, sortiert. Nachdem der Zusammenhang zwischen Eigenwert und Eigenvektor nicht verloren gehen soll, erfordert dies einigen logistischen Aufwand. Das ist aber nicht wesentlich und wird daher nicht weiter erklärt. Wir vergleichen lieber die Eigenwerte und Eigenvektoren mit den analytischen Ergebnissen. \\
 
@@ -222,10 +223,6 @@ In der folgenden Tabelle, sind die $3$ Eigenwerte (sollten diese bereits existie
 
 \input{Aufgabe_2/data/show_my_eigen_value_matrix(n_max = 10, i_max = 3).tex}
 \vspace{10pt}
-
-Diese Werte legen diese ein gewisses, laut \eqref{quadratische_Konvergenz} vielleicht sogar quadratisches, Konvergenzverhalten nahe.
-
-\verbatiminput{Aufgabe_2/data/show_my_eigen_limits(i_max = 3).txt}
 
 Die Matrix $A_n$ besitzt also scheinbar $n-1$ paarweise verschiedene Eigenwerte $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, welche jeweils gegen $\lambda_i := (i \pi)^2$, $i \in \N$ konvergieren.
 
@@ -279,7 +276,7 @@ Erstaunlicherweise, gibt es scheinbar keinen Konvergenz-Fehler, da die Eigenvekt
   \mathbf{v}^{(i, n)}_j = v_{\kappa_i}(x_j).
 \end{align*}
 
-Anschaulich, erhält man ein zu \eqref{Konvergenz_EW} analoges Schema.
+Anschaulich, erhält man ein zu \eqref{Konvergenz_EW} analoges Schema \eqref{Konvergenz_EV}.
 
 \begin{align} \label{Konvergenz_EV}
 \begin{array}{ccccccccc}
@@ -410,11 +407,12 @@ Für feste $c_0$, $c_1$, lässt sich das gewünschte $\omega$, als (nicht eindeu
 
 \subsection{Verallgemeinerte Semi-Analytische Lösung}
 
-Das Ergebnis aus \eqref{Nullfunktion} wurde, in Form von folgender Funktion, implementiert.
+Das Ergebnis aus \eqref{Nullfunktion} wurde, in Form von folgender Funktion, implementiert. \\
 
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/get_zero_function.py}
+\vspace{10pt}
 
 Nun können wir $f_c$ für fixe $c_0, c_1$ plotten lassen. Dann bekommen wir ein besseres Verständnis dafür, welchen Startwert wir wählen sollen, um die Gleichung $f_c(\omega) = 0$, mit \verb|scipy.optimize.fsolve| lösen zu lassen. \\
 
@@ -490,6 +488,7 @@ Nachdem die Inverse einer Diagonalmatrix genau die Matrix selbst mit komponenten
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/my_other_numpy_matrices.py}
+\vspace{10pt}
 
 Das verallgemeinerte Eigenwertproblem $A_n \mathbf{v} = \lambda B_n \mathbf{v}$ werden wir zunächst auf $B_n^{-1} A_n \mathbf{v} = \lambda \mathbf{v}$ umformulieren. Dieses kann nun ebenfalls mit \verb|np.linalg.eig|, für beliebige $n \geq 2$, gelöst werden. \\
 
@@ -689,11 +688,12 @@ Sei $\rho > 0$. Wir Verwenden die Vektor-Iteration angewendet auf das Eigenwertp
 
 mit den Matrizen $A$ und $B$ aus dem vorigen Unterkapitel. \\
 
-Das macht man, weil die, unten implementierte, Vektor-Iteration in ihrer einfachsten Form nur den Eigenvektor mit dem betragsgrößten Eigenwert liefert.
+Das macht man, weil die Vektor-Iteration in ihrer einfachsten Form, \verb|vector_iteration_simple|, nur den Eigenvektor mit dem betragsgrößten Eigenwert liefert. \\
 
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/vector_iteration_simple.py}
+\vspace{10pt}
 
 Es besteht ein Zusammenhang zwischen den Eigenpaaren $(\mu, \tilde{\mathbf{v}})$ und den Eigenpaaren $(\lambda, \mathbf{v})$ aus der vorigen Aufgabe. Für $\mu \neq 0$, ist dieser $\lambda = \rho + \frac{1}{\mu}$, weil dann
 
@@ -702,9 +702,9 @@ Es besteht ein Zusammenhang zwischen den Eigenpaaren $(\mu, \tilde{\mathbf{v}})$
   \Leftrightarrow
     A \mathbf{v} = \pbraces{\rho + \frac{1}{\mu}} B \mathbf{v}
   \Leftrightarrow
-    B \mathbf{v} = \mu (A + \rho B) \mathbf{v}
+    B \mathbf{v} = \mu (A - \rho B) \mathbf{v}
   \Leftrightarrow
-    (A + \rho B)^{-1} B \mathbf{v} = \mu \mathbf{v}.
+    (A - \rho B)^{-1} B \mathbf{v} = \mu \mathbf{v}.
 \end{align*}
 
 Bei der Vektor-Iteration wird der potentielle Eigenvektor $\mathbf{v}$ ständig normiert. Damit kann man wegen $A \mathbf{v} = \lambda \mathbf{v}$ sehr rasch auf den zugehörigen Eigenwert $\lambda$ kommen.
@@ -716,10 +716,33 @@ Bei der Vektor-Iteration wird der potentielle Eigenvektor $\mathbf{v}$ ständig 
   = \lambda
 \end{align*}
 
-Damit können wir ein schlauereres Abbruch-Kriterium wählen. Die Vektor-Iteration soll terminieren, wenn die Änderung der Eigenwerte hinreichend klein ist. \\
+Jetzt können wir auch ein schlauereres Abbruch-Kriterium wählen. Die Vektor-Iteration soll terminieren, wenn die Änderung der Eigenwerte hinreichend klein ist. Die Implementierung, die diese Überlegungen beherzigt, folgt mit \verb|vector_iteration_unshifted|. \\
 
-Die untere Implementierung der Vektor-Iteration des geshifteten Eigenwertproblems \eqref{geshiftetes_Eigenwertproblem} ist ein gutes Beispiel eines sinnvollen Einsatzes der $LU$-Zerlegung. Diese ist zwar aufwändig, aber nachdem sie in jedem Iterationsschritt verwendet werden kann, zahlt sich dieser einmalige Aufwand aus.
+\lstinputlisting
+[language = Python]
+{Aufgabe_2/python_code/vector_iteration_unshifted.py}
+\vspace{10pt}
+
+Die untere Implementierung, \verb|vector_iteration_shifted|, der Vektor-Iteration des geshifteten Eigenwertproblems \eqref{geshiftetes_Eigenwertproblem}, ist ein gutes Beispiel eines sinnvollen Einsatzes der $LU$-Zerlegung. Diese ist zwar aufwändig, aber nachdem sie in jedem Iterationsschritt verwendet werden kann, zahlt sich dieser einmalige Aufwand aus. \\
 
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/vector_iteration_shifted.py}
+\vspace{10pt}
+
+Angenommen, wir wüssten bereits, dass all unsere Eigenwerte $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c \in \R^+$ reell und positiv sind und es immer genau $n-1$ viele gibt. \verb|vector_iteration_simple| liefert uns den Eigenvektor mit dem betragsgrößten Eigenwert und \verb|vector_iteration_shifted| den Eigenvektor mit dem Eigenwert, der am nähesten bei $\rho$ liegt. Nun können wir mit einer binären Suche, ähnlich zum Bisektionsverfahren, alle Eigenwerte finden und ein eigenes \verb|np.linalg.eig| programmieren. \\
+
+\lstinputlisting
+[language = Python]
+{Aufgabe_2/python_code/binary_search.py}
+\vspace{10pt}
+
+Das Abbruch-Kriterium ist aber anscheinend noch immer suboptimal, weil die damit berechneten Eigenwerte, sogar für \verb|tol = 1e-15|, nicht ganz denen von \verb|np.linalg.eig| entsprechen. \\
+
+\input{Aufgabe_2/data/show_my_eigen_value_matrix_general_homemade(n_max = 6, i_max = 4, c = (100, 1)).tex}
+\vspace{10pt}
+
+Zum Vergleich, zeigen wir nochmal die Eigenwerte via \verb|np.linalg.eig|. Betrachtet man die Eigenwerte $\lambda_{3, 5}^{(100, 1)}, \lambda_{4, 6}^{(100, 1)}$, so merkt man, dass Ungenauigkeiten beim vorletzten, d.h. zweitgrößten, Eigenpaar auftreten, wenn $n$ groß ist. Offensichtlich, lässt sich diese Eigenwertsuche noch optimieren, das würde aber den Rahmen dieses Projektes sprengen. \\
+
+\input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
+\vspace{10pt}

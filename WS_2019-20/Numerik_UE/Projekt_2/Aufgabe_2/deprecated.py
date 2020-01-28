@@ -329,3 +329,64 @@ get_my_eigen_info_general(n_min, n_max, i_max, c, blacklist = blacklist)
 
 # ---------------------------------------------------------------- #
 # ---------------------------------------------------------------- #
+
+def plot_eigen_vector_general(n, i, c):
+
+    # there are n_max-1 eigen values/vectors at max
+    assert i < n
+
+    # matrix B would not be regular
+    assert c[0] != 0 and c[1] != 0
+
+    # get matrix
+    B_inverse_A = my_general_numpy_matrix(n, c)
+
+    # get sorted eigen vectors
+    eigen_vectors = get_sorted_eigen_vectors(B_inverse_A)
+
+    # which eigen vector to plot
+    eigen_vector = eigen_vectors[i-1]
+
+    # get plot pair from eigen vector
+    x, y = get_plot_pair_from_eigen_vector(eigen_vector)
+
+    # mandatory for adding labels
+    fig, ax = plt.subplots()
+
+    # do actual plotting
+    plt.plot(x, y, color = 'black')
+
+    # add labels
+    ax.set_xlabel("Partitionierung")
+    ax.set_ylabel("Eigenvektor mit Randbedingungen")
+
+    # add grid
+    plt.grid(linestyle = ':')
+ 
+    # save me
+    file_path = 'images/'
+    file_name = 'plot_eigen_vector_general(n = {}, i = {}, c = {})'.format(n, i, c)
+    plt.savefig(file_path + file_name + '.png')
+
+    # showtime
+    plt.show()
+
+# ---------------------------------------------------------------- #
+
+def foo(n_max, i_max, c):
+    for i in range(1, i_max+1):
+        for n in range(i+1, n_max+1):
+            if m.log(n, 2).is_integer():
+                print("n =", n)
+                print("i =", i)
+                print("c =", c)
+                plot_eigen_vector_general(n, i, c)
+
+n_max = 128
+i_max = 4
+c = (6, 1)
+
+#foo(n_max, i_max, c)
+
+# ---------------------------------------------------------------- #
+# ---------------------------------------------------------------- #

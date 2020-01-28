@@ -17,12 +17,12 @@ def vector_iteration_shifted(n, c, rho, tol):
     M = A - rho*B
     P, L, U = lu(M)
 
+    # used to get eigen value of randy
+    M = np.linalg.inv(A - rho*B) @ B
+
     # stop iteration when differences are small enough
     eigen_randy_old = -tol
     eigen_randy_new = tol
-
-    # used to get eigen value of randy
-    M = np.linalg.inv(A - rho*B) @ B
 
     while abs(eigen_randy_old - eigen_randy_new) > tol:
 
@@ -45,7 +45,7 @@ def vector_iteration_shifted(n, c, rho, tol):
         # get eigen values of randy
         eigen_randy_new = np.dot(M @ randy, randy)
 
-    # use best approximation
+    # use best approximation of eigen value
     eigen_randy = eigen_randy_new
 
     # get eigen pair of shifted problem
