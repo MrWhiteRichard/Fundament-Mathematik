@@ -25,7 +25,7 @@ Zur Berechnung der Eigenschwingungen suchen wir nach Lösungen $u$, die in der Z
 mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. Durch Einsetzen erhalten wir für $v$ die sogenannte Helmholz-Gleichung
 
 \begin{align} \label{Helmholz-Gleichung}
-  -v^\primeprime(x) = \kappa^2 v(x), \qquad
+  -\mathbf{v}^\primeprime(x) = \kappa^2 v(x), \qquad
   x \in (0, 1),
 \end{align}
 
@@ -43,7 +43,7 @@ mit der unbekannten Wellenzahl $\kappa := \frac{\omega}{c}$ und den Randbedingun
   \label{Analytische_Lösung}
 \end{align}
 
-mit beliebigen Konstanten $C_1, C_2$ löst die Helmholz-Gleichung \eqref{Helmholz-Gleichung}. Das erkennt man durch stumpfes Einsetzen.
+mit beliebigen Konstanten $C_1, C_2$, löst die Helmholz-Gleichung \eqref{Helmholz-Gleichung}. Das erkennt man durch stumpfes Einsetzen.
 
 \begin{multline*}
   - v_\kappa^\primeprime(x)
@@ -79,7 +79,7 @@ Das sind die gesuchten $\kappa > 0$. Sei nun eines dieser $\kappa$ fest. Offensi
 Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerische Verfahren zurückgegriffen wird, welche möglichst gute Näherungen an die exakten Lösungen berechnen sollen. Als einfachstes Mittel dienen sogenannte Differenzenverfahren. Sei dazu $x_j := jh$, $j = 0, \ldots, n$ eine Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die zweite Ableitung in \eqref{Helmholz-Gleichung} wird approximiert durch den Differenzenquotienten
 
 \begin{align} \label{Differenzenquotient}
-  v^\primeprime(x_j) \approx
+  \mathbf{v}^\primeprime(x_j) \approx
   D_h v(x_j) :=
   \frac{1}{h^2} (v(x_{j-1}) - 2 v(x_j) + v(x_{j+1})), \qquad
   j = 1, \ldots, n-1.
@@ -88,11 +88,11 @@ Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerisc
 Es sei angemerkt, dass \eqref{Differenzenquotient} tatsächlich einen Differenzenquotienten beschreibt. Um das einzusehen, verwenden wir den links- und rechts-seitigen Differenzenquotient erster Ordnung, sowie $x_{j-1} = x_j - h$, $x_{j+1} = x_j + h$. Wir erhalten $\Forall j = 1, \ldots, n-1:$
 
 \begin{align*}
-  v^\primeprime(x_j)
+  \mathbf{v}^\primeprime(x_j)
   & = \lim_{h \to 0}
       \Frac{h}
       {
-        v^\prime(x_j + h) - v^\prime(x_j)
+        \mathbf{v}^\prime(x_j + h) - \mathbf{v}^\prime(x_j)
       } \\
   & = \lim_{h \to 0}
       \Frac{h}
@@ -120,7 +120,7 @@ Es sei angemerkt, dass \eqref{Differenzenquotient} tatsächlich einen Differenze
 Für hinreichend glatte Funktionen $v$ mit einer geeigneten Konstanten $C > 0$ wird der Approximationsfehler quadratisch in $h$ klein, d.h. dass
 
 \begin{align} \label{quadratische_Konvergenz}
-  \vbraces{v^\primeprime(x_j) - D_h v(x_j)} \leq C h^2.
+  \vbraces{\mathbf{v}^\primeprime(x_j) - D_h v(x_j)} \leq C h^2.
 \end{align}
 
 Nachdem $v$ hinreichend glatt ist, gilt nach dem Satz von Taylor, dass $\Forall j = 1, \ldots, n-1:$
@@ -129,12 +129,12 @@ Nachdem $v$ hinreichend glatt ist, gilt nach dem Satz von Taylor, dass $\Forall 
   v(x_j + h) & =
   \sum_{\ell = 0}^{n+2}
   \frac{h^\ell}{\ell !}
-  v^{(\ell)}(x_j) +
+  \mathbf{v}^{(\ell)}(x_j) +
   \Landau{h^{n+3}}, \\
   v(x_j - h) & =
   \sum_{\ell = 0}^{n+2}
   \frac{(-h)^\ell}{\ell !}
-  v^{(\ell)}(x_j) +
+  \mathbf{v}^{(\ell)}(x_j) +
   \Landau{h^{n+3}}.
 \end{align*}
 
@@ -149,25 +149,25 @@ Man beachte, dass sich die ungeraden Summanden, der oberen Taylor-Polynome, gege
   & = \Frac{h^2}
       {
         2 v(x_j) +
-        h^2 v^\primeprime(x_j) +
+        h^2 \mathbf{v}^\primeprime(x_j) +
         \sum_{\substack{\ell = 4 \\ \ell \in 2 \N}}^{n+2}
         \frac{h^\ell}{\ell !}
-        v^{(\ell)}(x_j)
+        \mathbf{v}^{(\ell)}(x_j)
         (1 + (-1)^\ell) -
         2 v(x_j)
       } +
       \Landau{h^{n+3}} \\
-  & = v^\primeprime(x_j) +
+  & = \mathbf{v}^\primeprime(x_j) +
       2 \sum_{\ell = 1}^\floor{\frac{n}{2}}
       \frac{h^{2 \ell}}{(2 \ell + 2)!}
-      v^{(2 \ell)}(x_j) +
+      \mathbf{v}^{(2 \ell)}(x_j) +
       \Landau{h^{n+1}}
 \end{align*}
 
 Daraus folgt unmittelbar die quadratische Konvergenz \eqref{quadratische_Konvergenz}, d.h. $\Forall j = 1, \ldots, n-1:$
 
 \begin{align*}
-  D_h v(x_j) - v^\primeprime(x_j) = \Landau{h^2}, \qquad
+  D_h v(x_j) - \mathbf{v}^\primeprime(x_j) = \Landau{h^2}, \qquad
   h \to 0.
 \end{align*}
 
@@ -207,7 +207,7 @@ Wenn nun die Randbedingungen \eqref{Randbedingungen} gelten sollen, d.h. $v(x_0)
     D_h v(x_{n-1})
   \end{pmatrix}
   \xrightarrow{n \to \infty}
-  -v^\primeprime
+  -\mathbf{v}^\primeprime
 \end{align*}
 
 Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert. \\
@@ -252,21 +252,21 @@ Seien $\mathbf{v}^{(1, n)}, \ldots, \mathbf{v}^{(n-1, n)}$ die Eigenvektoren (mo
 
 \begin{figure}[H]
   \centering
-  \subfloat[Eigenvektoren $v^{(1, n)}$, $n = 2, 4, 8, 32$]{
+  \subfloat[Eigenvektoren $\mathbf{v}^{(1, n)}$, $n = 2, 4, 8, 32$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [2, 4, 8, 16], i = 1).png}
   }
-  \subfloat[Eigenvektoren $v^{(2, n)}$, $n = 4, 8, 16, 64$]{
+  \subfloat[Eigenvektoren $\mathbf{v}^{(2, n)}$, $n = 4, 8, 16, 64$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [4, 8, 16, 32], i = 2).png}
   }
   \hspace{0mm}
-  \subfloat[Eigenvektoren $v^{(3, n)}$, $n = 8, 16, 32, 64$]{
+  \subfloat[Eigenvektoren $\mathbf{v}^{(3, n)}$, $n = 8, 16, 32, 64$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [4, 8, 16, 32], i = 3).png}
   }
-  \subfloat[Eigenvektoren $v^{(4, n)}$, $n = 8, 16, 32, 64$]{
+  \subfloat[Eigenvektoren $\mathbf{v}^{(4, n)}$, $n = 8, 16, 32, 64$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors/plot_eigen_vectors(n_array = [8, 16, 32, 64], i = 4).png}
   }
   \hspace{0mm}
-  \caption{Eigenvektoren $v^{(i, n)}$, $i = 1, \ldots, 4$ der Matrizen $A_n$}
+  \caption{Eigenvektoren $\mathbf{v}^{(i, n)}$, $i = 1, \ldots, 4$ der Matrizen $A_n$}
   \label{fig:Eigenvektoren}
 \end{figure}
 
@@ -317,7 +317,7 @@ Wir verwenden jedoch den selben Ansatz, wie Vorher. Das war $u(x, t) = \Re (v(x)
 Einsetzen und analoges Nachrechnen, gibt, mit der unbekannten Wellenzahl $\kappa(x) := \frac{\omega}{c(x)}$, die Randbedingungen \eqref{Randbedingungen} und
 
 \begin{align*}
-  -v^\primeprime(x) = \kappa^2(x) v(x), \qquad
+  -\mathbf{v}^\primeprime(x) = \kappa^2(x) v(x), \qquad
   x \in (0, 1).
 \end{align*}
 
@@ -352,7 +352,7 @@ Soll $v$ auf $1/2$ stetig fortgesetzt werden, so müssen dessen links- und recht
 Um stetige Differenzierbarkeit zu erhalten, muss auch die Ableitung
 
 \begin{align*}
-  v^\prime(x) =
+  \mathbf{v}^\prime(x) =
   \begin{cases}
     C_{02} \kappa_0 \cos(\kappa_0 x),
     & x \in (0, 1/2) \\
@@ -365,8 +365,8 @@ auf $1/2$ stetig fortgesetzt werden.
 
 \begin{align*}
   C_{02} \kappa_0 \cos(\kappa_0/2)
-  = \lim_{x \to 1/2-} v^\prime(x)
-  = \lim_{x \to 1/2+} v^\prime(x)
+  = \lim_{x \to 1/2-} \mathbf{v}^\prime(x)
+  = \lim_{x \to 1/2+} \mathbf{v}^\prime(x)
   = - C_{11} \kappa_1 \sin(\kappa_1/2) + C_{12} \kappa_1 \cos(\kappa_1/2)
 \end{align*}
 
@@ -593,7 +593,7 @@ Dabei wurden die Vektoren $\Bbraces{\mathbf{v}^{(i, n), c}: n \in N_i}$ jeweils 
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(2, 3), (3, 2)/plot_eigen_vectors_general(n_array = [8, 16, 32, 64], i = 5, c = (2, 3)).png}
   }
   \hspace{0mm}
-  \caption{Eigenvektoren $v^{(i, n), c}$ der Matrizen $B_n^{-1} A_n$}
+  \caption{Eigenvektoren $\mathbf{v}^{(i, n), c}$ der Matrizen $B_n^{-1} A_n$}
   \label{fig:Eigenvektoren_general}
 \end{figure}
 
@@ -602,7 +602,7 @@ Mit \Quote{schön} ist gemeint, dass die Grenzfunktionen bzgl. $n$ der Eigenvekt
 Dazu bemerken wir zuerst, dass die selben Plots herauskommen, wenn $c^{(1)}, c^{(2)}$ bis auf eine Konstante übereinstimmen. Wegen der Normierung bzgl. $\norm[\infty]{\cdot}$, sieht man das durch hinschauen (auf $A \mathbf{v} = \lambda B \mathbf{v}$), also eigentilch auch bereits a priori.
 
 \begin{align*}
-  v^{(i, n), c^{(1)}} = v^{(i, n), c^{(2)}}, \:
+  \mathbf{v}^{(i, n), c^{(1)}} = \mathbf{v}^{(i, n), c^{(2)}}, \:
   \text{für} \:
   c^{(1)} \equiv c^{(2)} \Mod \text{Konstante}.
 \end{align*}
@@ -617,7 +617,7 @@ Dazu bemerken wir zuerst, dass die selben Plots herauskommen, wenn $c^{(1)}, c^{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(1, 2), (2, 1)/plot_eigen_vectors_general(n_array = [4, 8, 16, 32], i = 3, c = (2, 4)).png}
   }
   \hspace{0mm}
-  \caption{Eigenvektoren $v^{(3, n), c}$ der Matrizen $B_n^{-1} A_n$, mit $n = 8, 16, 32, 64$ und}
+  \caption{Eigenvektoren $\mathbf{v}^{(3, n), c}$ der Matrizen $B_n^{-1} A_n$, mit $n = 8, 16, 32, 64$ und}
   \label{fig:Eigenvektoren_general_Vielfache}
 \end{figure}
 
@@ -633,7 +633,7 @@ A posteriori hingegen, bemerken wir, dass zwei Plots mit $(c_0, c_1)$ bzw. $(c_1
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(1, 3), (3, 1)/plot_eigen_vectors_general(n_array = [16, 32, 64, 128], i = 8, c = (3, 1)).png}
   }
   \hspace{0mm}
-  \caption{Eigenvektoren $v^{(8, n), c}$ der Matrizen $B_n^{-1} A_n$, mit $n = 16, 32, 64, 128$ und}
+  \caption{Eigenvektoren $\mathbf{v}^{(8, n), c}$ der Matrizen $B_n^{-1} A_n$, mit $n = 16, 32, 64, 128$ und}
   \label{fig:Eigenvektoren_general_vertauscht}
 \end{figure}
 
@@ -657,7 +657,7 @@ Es sticht aber noch etwas Anderes ins Auge. Wenn man irgendeinen dieser Plots be
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(3, 4), (4, 3)/plot_eigen_vectors_general(n_array = [8, 16, 32, 64], i = 7, c = (3, 4)).png}
   }
   \hspace{0mm}
-  \caption{Eigenvektoren $v^{(i, n), c}$ der Matrizen $B_n^{-1} A_n$}
+  \caption{Eigenvektoren $\mathbf{v}^{(i, n), c}$ der Matrizen $B_n^{-1} A_n$}
   \label{fig:Eigenvektoren_general_nice}
 \end{figure}
 
@@ -742,12 +742,12 @@ Das Abbruch-Kriterium ist aber anscheinend noch immer suboptimal, weil die damit
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general_homemade(n_max = 6, i_max = 4, c = (100, 1)).tex}
 \vspace{10pt}
 
-Zum Vergleich, zeigen wir nochmal die Eigenwerte via \verb|np.linalg.eig|. Betrachtet man die Eigenwerte $\lambda_{3, 5}^{(100, 1)}, \lambda_{4, 6}^{(100, 1)}$, so merkt man, dass Ungenauigkeiten beim vorletzten, d.h. zweitgrößten, Eigenpaar auftreten, wenn $n$ groß ist. Offensichtlich, lässt sich diese Eigenwertsuche noch optimieren, das würde aber den Rahmen dieses Projektes sprengen. \\
+Zum Vergleich, zeigen wir nochmal die Eigenwerte via \verb|np.linalg.eig|. Betrachtet man die Eigenwerte $\lambda_{3, 5}^{(100, 1)}, \lambda_{4, 6}^{(100, 1)}$, so merkt man, dass Ungenauigkeiten beim vorletzten Eigenpaar, d.h. Eigenpaar mit betragsmäßig zweitgrößten Eigenwert, auftreten, wenn $n$ groß ist. Offensichtlich, lässt sich diese Eigenwertsuche noch optimieren, das würde aber den Rahmen dieses Projektes sprengen. \\
 
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
 \vspace{10pt}
 
-Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$ tatsächlich alle positiv und reell sind. Sonst wäre ja der Algorithmus, aus mathematische Sicht, wertlos. Eine Möglichkeit bietet die explizite Darstellung von Eigenpaaren von Tridiagonalmatrizen. Wir wissen aber, dass das Gewünschte genau dann gilt, wenn $B_n^{-1} A_n$ positiv definit ist. Das können wir mit dem Hauptminoren-Kriterium locker überprüfen.
+Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$ tatsächlich alle positiv und reell sind. Sonst wäre der Algorithmus ja, aus mathematische Sicht, wertlos. Eine Möglichkeit bietet die explizite Darstellung von Eigenpaaren von Tridiagonalmatrizen. Wir wissen aber, dass das Gewünschte genau dann gilt, wenn $B_n^{-1} A_n$ positiv definit ist. Das können wir mit dem Hauptminoren-Kriterium locker überprüfen.
 
 \begin{align*}
   A_n^\prime :=
@@ -761,14 +761,14 @@ Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$
 
 Zuerst berechnen wir die Determinante der Matrix $A_n^\prime$. Dazu induzieren wir $\det(A_n^\prime) = n$. Der Induktionsanfang, $n = 2, 3$, ist trivial. Für den Induktionsschritt muss man einmal nach der letzten Spalte und dann Zeile entwickeln (oder umgekehrt). \\
 
-Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $B_n^{-1} > 0$ ist eine Diagonalmatrix mit positiven Einträgen. Weil die Determinante solcher Matrizen bloß das Produkt ihrer Komponenten ist, sind alle Hauptminoren dieser Matrizen positiv. Unsere Matrizen sind also tatsächlich positiv definit. Deren Produkt und Vielfaches $A_n$ ist es also auch, weil
+Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $B_n^{-1} > 0$ ist eine Diagonalmatrix mit positiven Einträgen. Weil die Determinante solcher Matrizen bloß das Produkt ihrer Komponenten ist, sind alle Hauptminoren unserer Matrizen positiv. Sie sind also tatsächlich positiv definit. Deren Produkt und Vielfaches $A_n$ ist es also auch, weil
 
 \begin{align*}
-  0 < x^\ast A x, x^\ast B x
+  0 < \mathbf{x}^\ast A \mathbf{x}, \mathbf{x}^\ast B \mathbf{x}
   \Rightarrow
-  0 < x^\ast A x x^\ast B x =
-  x^\ast A \abraces{x, x} B x =
-  x^\ast A \norm{x}^2 B x
+  0 < \mathbf{x}^\ast A \mathbf{x} \mathbf{x}^\ast B \mathbf{x} =
+  \mathbf{x}^\ast A \abraces{\mathbf{x}, \mathbf{x}} B \mathbf{x} =
+  \mathbf{x}^\ast A \norm{\mathbf{x}}^2 B \mathbf{x}
   \Rightarrow
-  0 < x^\ast AB x.
+  0 < \mathbf{x}^\ast AB \mathbf{x}.
 \end{align*}
