@@ -37,7 +37,6 @@ def cg(A,b,x0,tol):
     xt = x0
     r0 = b - np.dot(A,xt)
     d = r0
-    count = 0
     while(np.linalg.norm(r0) > tol):
         prod = np.dot(np.transpose(r0),r0)
         prod2 = np.dot(A,d)
@@ -46,10 +45,8 @@ def cg(A,b,x0,tol):
         r0 = r0 - alpha*prod2
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
-        count += 1
-    print(count)
     return xt
-\end{lstlisting}
+\end{lstlisting} \label{cg}
 Beweis der Äquivalenz obigen Algorithmus zu Algorithmus 8.10 im Numerik-Skript: \\
 Wir führen den Beweis mittels Induktion: \\
 Dabei bezeichnen wir mit * die Variablen aus unserem Algorithmus und ohne * die Variablen des Algorithmus
@@ -191,6 +188,18 @@ class Sparse:
         return v, J, I
 \end{lstlisting}
 
+Da wir bei diesem Projekt uns nur auf das cg-Verfahren konzentrieren, haben wir nur die Matrix-Vektor Multiplikation für die Klasse Sparse implementiert.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/matmult_plot.png}
+    \caption{Vergleich Numpy Matrixmultiplikation vs. Sparse Matrixmultiplikation}
+    \label{fig:my_label}
+\end{figure}
+\FloatBarrier
+
+Hier sehen wir, dass erst ab einer gewissen Größe die Sparse-Multiplikation effizienter gegenüber der Numpy-Multiplikation ist.
+
 \subsection*{d)}
 Kombinieren Sie Ihre CG-Implementierung mit Ihrer \textbf{sparse} Klasse und testen Sie die Effizienz: \\
 Implementierung:
@@ -199,7 +208,6 @@ def Scg(A,b,x0,tol):
     xt = x0
     r0 = b - A.__matmult__(xt)
     d = r0
-    c = 0
     while(np.linalg.norm(r0) > tol):
         prod = np.dot(np.transpose(r0),r0)
         prod2 = A.__matmult__(d)
@@ -208,12 +216,23 @@ def Scg(A,b,x0,tol):
         r0 = r0 - alpha*prod2
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
-        c += 1
-    print(c)
     return xt
 \end{lstlisting}
-Schlechte Nachrichten: Die Effizienz ist gesunken!
 
+Bei dieser CG-Implementierung verwenden wir anstelle der Numpy-Matrix-Vektor-Multiplikation die Implementierung von der Sparse-Klasse.
+Zu beachten ist, dass die Matrix A ein Objekt der Klasse Sparse sein muss, damit die Funktion durchgeführt werden kann.
+Ansonsten ist die Implementierung ident zum vorherigen cg-Verfahren.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/Cg_Scg.png}
+    \caption{cg-Verfahren vs. cg-Verfahren mit Klasse Sparse}
+    \label{fig:my_label}
+\end{figure}
+\FloatBarrier
+
+Ab einer Matrixgröße von ca. 1000 ist das Scg-Verfahren effizienter als die übliche Implementierung.
+Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}$
 \subsection*{e)}
 Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
 Um die Konvergenzgeschwindigkeit zu erhöhen löst man das vorkonditionierte System
@@ -227,22 +246,20 @@ und gewinnt die Lösung $x$ dann durch $x = D^{-1T}y$. Die Matrix $D$ wird dabei
 \end{itemize}
 Implementierung des vorkonditionierten CG-Verfahrens:
 \begin{lstlisting}[language=Python]
-def vcg(A,b,x0,P,tol):
-    r0 = b - A.__matmult__(x0)
-    P_inv = np.linalg.inv(P)
-    z0 = P_inv@r0
-    d = r0
-    c = 0
-    while(np.linalg.norm(r0) > tol):
-        prod = np.dot(np.transpose(z0),r0)
-        prod2 = A.__matmult__(d)
-        alpha = np.dot(np.transpose(r0),z0)/np.dot(np.transpose(d),prod2)
-        x0 = x0 + alpha*d
-        r0 = r0 - alpha*prod2
+    def vcg(A,b,x0,P,tol):
+        r0 = b - A.__matmult__(x0)
+        P_inv = np.linalg.inv(P)
         z0 = P_inv@r0
-        beta = np.dot(np.transpose(z0),r0)/prod
-        d = r0 + beta*d
-        c += 1
-    return xt
+        d = z0
+        while(np.linalg.norm(r0) > tol):
+            prod = np.dot(np.transpose(z0),r0)
+            prod2 = A.__matmult__(d)
+            alpha = np.dot(np.transpose(r0),z0)/np.dot(np.transpose(d),prod2)
+            x0 = x0 + alpha*d
+            r0 = r0 - alpha*prod2
+            z0 = P_inv@r0
+            beta = np.dot(np.transpose(z0),r0)/prod
+            d = z0 + beta*d
+    return x0
 \end{lstlisting}
-Wieder schlechte Nachrichten: Der Scheiß kovergiert nicht!
+Wieder schlechte Nachrichten: Der Scheiß kovergiert!
