@@ -62,15 +62,15 @@ Wir fragen uns, für welche $\kappa > 0$, Konstanten $C_1$ und $C_2$ existieren,
   0 \stackrel{!}{=}
   \begin{cases}
     v_\kappa(0)
-    = C_1 \cos{0} + C_2 \sin{0}
+    = C_1 \cos{(0)} + C_2 \sin{(0)}
     = C_1 \\
     v_\kappa(1)
-    = C_1 \cos{\kappa} + C_2 \sin{\kappa}
-    = C_2 \sin{\kappa}
+    = C_1 \cos{(\kappa)} + C_2 \sin{(\kappa)}
+    = C_2 \sin{(\kappa)}
   \end{cases}
 \end{align*}
 
-Nachdem $\cos{0} = 1$ und $\sin{0} = 0$, erhält man, aus der oberen Gleichung, $C_1 = 0$. Mit der unteren Gleichung folgt aber auch $C_2 \sin{\kappa} = 0$. Wenn nun auch $C_2 = 0$, dann erhielte man die triviale Lösung $v_\kappa = 0$. Für eine realistischere Modellierung, d.h. $v_\kappa \neq 0$, müsste $\sin{\kappa} = 0$, also $\kappa \in \pi \Z$. \\
+Nachdem $\cos{(0)} = 1$ und $\sin{(0)} = 0$ erhält man aus der oberen Gleichung $C_1 = 0$. Mit der unteren Gleichung folgt aber auch $C_2 \sin{(\kappa)} = 0$. Wenn nun auch $C_2 = 0$, dann erhielte man die triviale Lösung $v_\kappa = 0$. Für eine realistischere Modellierung, d.h. $v_\kappa \neq 0$, müsste $\sin{(\kappa)} = 0$, also $\kappa \in \pi \Z$. \\
 
 Das sind die gesuchten $\kappa > 0$. Sei nun eines dieser $\kappa$ fest. Offensichtlich ist $C_1 = 0$ eindeutig, $C_2 \in \R$ jedoch beliebig.
 
@@ -337,7 +337,7 @@ Durch Berücksichtigung der Randbedingungen \eqref{Randbedingungen}, erhält man
 
 \begin{align*}
   C_{01} = 0, \qquad
-  C_{11} \cos{\kappa_1} + C_{12} \sin{\kappa_1} = 0.
+  C_{11} \cos{(\kappa_1)} + C_{12} \sin{(\kappa_1)} = 0.
 \end{align*}
 
 Soll $v$ auf $1/2$ stetig fortgesetzt werden, so müssen dessen links- und rechts-seitiger Grenzwert übereinstimmen.
@@ -423,7 +423,7 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
   \subfloat[auf dem Intervall $(-16, 16)$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas/plot_omegas(c = (100, 1), interval = (-16, 16))}
   }
-  \subfloat[auf dem Intervall $(0, 64)$ und herangezoomt]{
+  \subfloat[auf dem Intervall $(0, 30)$ und herangezoomt]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_omegas/plot_omegas(c = (100, 1), interval = (0, 32), limits = (-1, 1))}
   }
   \hspace{0mm}
@@ -431,7 +431,7 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
   \label{fig:zero_function}
 \end{figure}
 
-Dementsprechend, können passende Startwerte $\tilde{\omega}$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte des nächsten Unterkapitels. \\
+Dementsprechend, können passende Startwerte $\tilde{\omega}$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte, die wir im nächsten Unterkapitel betrachten. \\
 
 \input{Aufgabe_2/data/find_omegas(c = (100, 1), guesses = [5, 10, 15, 20, 25, 30], tol = 1e-08)}
 \vspace{10pt}
@@ -647,11 +647,11 @@ Es sticht aber noch etwas Anderes ins Auge. Wenn man irgendeinen dieser Plots be
   }
   \subfloat[mit $i = 4$, $n = 8, 16, 32, 64$, und $c = (1, 3)$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(1, 3), (3, 1)/plot_eigen_vectors_general(n_array = [8, 16, 32, 64], i = 4, c = (1, 3)).png}
+    \label{subfig:double_trouble}
   }
   \hspace{0mm}
   \subfloat[mit $i = 8$, $n = 8, 16, 32, 64$, und $c = (1, 3)$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(1, 3), (3, 1)/plot_eigen_vectors_general(n_array = [16, 32, 64, 128], i = 8, c = (1, 3)).png}
-    \label{subfig:double_trouble}
   }
   \subfloat[mit $i = 7$, $n = 8, 16, 32, 64$, und $c = (3, 4)$]{
     \includegraphics[width=65mm]{Aufgabe_2/images/plot_eigen_vectors_general/(3, 4), (4, 3)/plot_eigen_vectors_general(n_array = [8, 16, 32, 64], i = 7, c = (3, 4)).png}
