@@ -1,6 +1,8 @@
 Eine häufige Problemstellung in der Numerischen Mathematik lautet lineare Gleichungssysteme mit großen, dünn besetzten Matrizen zu lösen.
 Dabei kommen meist iterative Verfahren zum Einsatz, die in diesm Projekt effizient implementiert werden.
 \subsection*{a)}
+Zuerst testen wir als Basis wie aufwändig der direkte Löser (numpy.linalg.solve) ist um später einen Maßstab für unsere
+Effizienzsteigerungen zu haben.
 Wir generieren eine symmetrisch positiv definite Zufallsmatrix $A \in \mathbb{R}^{n\times n}$, wobei pro Zeile eine fixe Anzahl an Einträgen
 ungleich Null sind und testen für eine zufällige rechte Seite $b \in \mathbb{R}^n$ bis zu welcher Größe $n$ das lineare
 Gleichungssystem
@@ -14,7 +16,7 @@ def zufallsmatrix(n, nonzeros):
 	A = np.concatenate((np.zeros((n,nonzeros)), np.random.rand(n, n-nonzeros)), axis = 1)
 	for i in range(n):
 		np.random.shuffle(A[i])
-	return A + A.T + np.diag(np.random.rand(n)*10)
+	return A + A.T + np.diag(np.random.rand(n)*n)
 
 A_base = zufallsmatrix(5000,100)
 
@@ -57,7 +59,21 @@ def cg(A,b,x0,tol):
         d = r0 + beta*d
     return xt
 \end{lstlisting} \label{cg}
-Der Algorithmus ähnelt in vielen Schritten Algorithmus 8.10 aus dem Numerik-Skript, weist aber durchaus einige Unterschiede auf.
+Im Vergleich dazu Algorithmus 8.10 aus dem Numerik-Skript:
+\begin{flalign*}
+&1: t = 0 &\\
+&2: r^{(0)} = b - Ax^{(0)} &\\
+&3: d^{(0)} = r^{(0)} &\\
+&4: \textbf{while}~ \vbraces{r^{(t)}} > \textbf{TOL} do &\\
+&5:\quad \alpha_t = \frac{r^{(t)}*d^{(t)}}{d^{(t)}*Ad^{(t)}} &\\
+&6:\quad x^{(t+1)} = x^{(t)} + \alpha_td^{(t)} &\\
+&7:\quad t = t + 1 &\\
+&8:\quad r^{(t)} = b - Ax^{(t)} &\\
+&9:\quad \beta_{t-1} = -\frac{r^{(t)}*Ad^{(t-1)}}{d^{(t-1)}*Ad^{(t-1)}} &\\
+&10:\quad d^{(t)} = r^{(t)} + \beta_{t-1}d^{(t-1)} &\\
+&11: \textbf{end while}&
+\end{flalign*}
+Die Algorithmen ähneln sich in vielen Schritten, weisen aber durchaus einige Unterschiede auf.
 Daher müssen wir noch beweisen, dass die beiden Algorithmen wirklich äquivalent sind.
 Wir führen den Beweis mittels Induktion über die Anzahl der Iterationen. \\
 Dabei bezeichnen wir mit * die Variablen aus unserem Algorithmus und ohne * die Variablen des Algorithmus
@@ -105,7 +121,7 @@ Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhal
 \end{align*}
 Und der Beweis ist vollständig. \\
 
-Nun stellt sich natürlich die Frage, welcher der beiden Algorithmen zu bevorzugen wäre.
+Nun stellt sich natürlich die Frage, welcher der beiden Algorithmen zu bevorzugen ist.
 Nachdem sie mathematisch äquivalent sind, bleibt nur noch die Frage nach dem Aufwand zu überprüfen.
 Am aufwändigsten ist natürlich die Matrix-Vektor-Multiplikation, wovon wir in unserem Algorithmus
 im Gegensatz zu jenem aus dem Skript nur eine pro Schleifendurchlauf benötigen.
@@ -128,25 +144,23 @@ Wir haben das Verfahren mit diagonaldominanten , symmetrisch, positiv definiten 
 Möglichkeit wäre gewesen, eine Zufallsmatrix $A$ zu erstellen und das CG-Verfahren auf $A\cdot A^T$ anzuwenden. Allerdings ist
 im letzteren Fall die Konditionszahl deutlich schlechter und teilweise erreichen wir die gewünschte Toleranz erst nach über $n$
 Schritten, wo wir in der Theorie ohne Rechenfehler bereits exakt sein sollten. Also haben wir uns für erstere Methode entschieden.
-Wie in untenstehender Grafik ersichtlich scheint bei unseren Zufallsmatrizen der Wert von $B$ sich in etwa bei $0.92$ einzupendeln
-und unsere vorgegebene Toleranz von $10^{-8}$ wird bereits nach etwa $350$ Iterationen erreicht, noch weit vor dem theoretisch
+Interessanterweise konvergiert der Fehler wesentlich schneller gegen 0 als die obere Schranke des theoretischen Fehlerschätzers
+vermuten lassen würde und unsere vorgegebene Toleranz von $10^{-8}$ wird bereits
+nach etwa $500$ Iterationen erreicht, noch weit vor dem theoretisch
 (bis auf Rechenfehler) garantierten exakten Resultat nach $n = 5000$ Durchläufen.
-Ansonsten verhält sich der Fehler wie wir ihn erwarten würden. \\
 Unsere Testwerte: \\
 
 \begin{lstlisting}[language=Python]
 n = 5000
-A = np.random.rand(n,n)
-A = np.dot(A,np.transpose(A))
-A += 10*np.diag(abs(np.random.random(n)))
+A = zufallsmatrix(n,20)
 b = np.random.rand(n)
 tol = 10**(-8)
-x0 = np.random.rand(n)*10
+x0 = np.random.rand(n)
 \end{lstlisting}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Aufgabe_1/plot_b.png}
+    \includegraphics[width=\linewidth]{Aufgabe_1/c.png}
     \caption{Residuum abhängig von der Anzahl an Iterationen}
     \label{fig:my_label}
 \end{figure}
@@ -255,12 +269,12 @@ Der letzte Schritt zur Effizienz-Optimierung ist nun noch die Matrix selbst noch
 Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
 Um die Konvergenzgeschwindigkeit zu erhöhen löst man das vorkonditionierte System
 \begin{align*}
-  D^{-1}AD^{-1T} = D^{-1}b
+  D^{-1}AD^{-T} = D^{-1}b
 \end{align*}
-und gewinnt die Lösung $x$ dann durch $x = D^{-1T}y$. Die Matrix $D$ wird dabei so gewählt, dass
+und gewinnt die Lösung $x$ dann durch $x = D^{-T}y$. Die Matrix $D$ wird dabei so gewählt, dass
 \begin{itemize}
-\item für beliebige Vektoren $z \in \mathbb{R}^n$ der Vektor $D^{-1T}D^{-1}z$ einfach zu berechen ist und
-\item $\text{cond}(D^{-1}AD^{-1T}) < \text{cond}(A)$.
+\item für beliebige Vektoren $z \in \mathbb{R}^n$ der Vektor $D^{-T}D^{-1}z$ einfach zu berechen ist und
+\item $\text{cond}(D^{-1}AD^{-T}) < \text{cond}(A)$.
 \end{itemize}
 \begin{lstlisting}[language=Python]
     def vcg(A,b,x0,P,tol):
@@ -285,17 +299,47 @@ Wenn wir schließlich das vorkonditionierte CG-Verfahren mit $P = \text{diag}(A_
 Zufallsmatrizen mit positiven Diagonaleinträgen und an beliebigen symmetrisch, positiv definiten Zufallsmatrizen testen, sehen
 wir unseren finalen Effizienzschub in diesem Projekt. \\
 Wie in untenstehenden Grafik ersichtlich konnte mit der Vorkonditionierung die Anzahl der benötigten Iterationen
-zur Erreichung der erwünschten Toleranz massiv gesenkt werden. Der Zeitgewinn schlägt sich leider nicht ganz so deutlich wieder,
+zur Erreichung der erwünschten Toleranz massiv gesenkt werden. Bei bereits strikt diagonaldominanten Matrizen mit positiven
+Diagonaleinträgen ist die Konditionszahl
+bereits relativ niedrig und somit kann die Vorkonditionierung nicht mehr so viel verbessern wie bei den normalen symmetrisch,
+postiv definiten Zufallsmatrizen. Der Zeitgewinn schlägt sich leider nicht ganz so deutlich wieder,
 aber ist dennoch vorhanden und merkbar.
+Unsere Testwerte: Strikt diagonaldominant mit positiven Diagonaleinträgen: \\
+\begin{lstlisting}[language=Python]
+A = np.zeros((n,n))
+row_sum = []
+for i in range(n):
+    non_zeros = np.random.rand(z)
+    zeros = np.zeros(n-z)
+    A[i] = np.concatenate((non_zeros, zeros))
+    np.random.shuffle(A[i])
+    row_sum.append(abs(np.sum(A[i]))+1)
+A = A + A.T + np.diag(row_sum)
+\end{lstlisting}
+Standard s.s.d. Matrix:
+\begin{lstlisting}[language=Python]
+A = np.zeros((n,n))
+for i in range(n):
+    non_zeros = np.random.rand(z)
+    zeros = np.zeros(n-z)
+    A[i] = np.concatenate((non_zeros, zeros))
+    np.random.shuffle(A[i])
+A = A + A.T + np.diag(np.random.rand(n)*10)
+\end{lstlisting}
+\FloatBarrier
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Aufgabe_1/f.png}
-    \caption{Vergleich Anzahl Interationen}
-    \label{fig:my_label}
+    \includegraphics[width=\linewidth]{Aufgabe_1/f_strikt.png}
+    \caption{strikt diagonaldominante Matrix}
 \end{figure}
 \begin{figure}
     \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/f.png}
+    \caption{s.s.d. Matrix}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=\linewidth]{Aufgabe_1/vcg.png}
-    \caption{Vergleich Zeit}
-    \label{fig:my_label}
+    \caption{Zeitvergleich s.s.d. Matrix}
 \end{figure}
