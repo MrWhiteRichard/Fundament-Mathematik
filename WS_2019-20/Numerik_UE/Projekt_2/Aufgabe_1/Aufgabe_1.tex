@@ -1,14 +1,13 @@
 Eine häufige Problemstellung in der Numerischen Mathematik lautet lineare Gleichungssysteme mit großen, dünn besetzten Matrizen zu lösen.
 Dabei kommen meist iterative Verfahren zum Einsatz, die in diesm Projekt effizient implementiert werden.
 \subsection*{a)}
-Generieren Sie eine symmetrisch positiv definite Zufallsmatrix $A \in \mathbb{R}^{n\times n}$, wobei pro Zeile eine fixe Anzahl an Einträgen
-ungleich Null sind. Testen Sie für eine zufällige rechte Seite $b \in \mathbb{R}^n$ bis zu welcher Größe $n$ das lineare
+Wir generieren eine symmetrisch positiv definite Zufallsmatrix $A \in \mathbb{R}^{n\times n}$, wobei pro Zeile eine fixe Anzahl an Einträgen
+ungleich Null sind und testen für eine zufällige rechte Seite $b \in \mathbb{R}^n$ bis zu welcher Größe $n$ das lineare
 Gleichungssystem
 \begin{align*}
   Ax = b
 \end{align*}
 mit einem direkten Löser (numpy.linalg.solve) in akzeptabler Zeit gelöst werden kann.
-Welchen Aufwand erwarten Sie abhängig von n? Plotten Sie die Rechenzeit in Abhängigkeit von der Problemgröße.
 \begin{lstlisting}[language=Python]
 
 def zufallsmatrix(n, nonzeros):
@@ -18,6 +17,16 @@ def zufallsmatrix(n, nonzeros):
 	return A + A.T + np.diag(np.random.rand(n)*10)
 
 A_base = zufallsmatrix(5000,100)
+
+x = [i for i in range(400,n+1,200)]
+y = []
+for n in x:
+	A = A_base[:n,:n]
+	b = np.random.rand(n)
+	start = time.process_time()
+	z = np.linalg.solve(A,b)
+	end = time.process_time()
+	y.append(end-start)
 \end{lstlisting}
 \begin{figure}
     \centering
@@ -31,7 +40,8 @@ Zeile verzerrt) und einer Gesamtgröße von 5000 erstellt. Der direkte Löser wu
 des akzeptabel Berechenbaren, für die volle $5000\times5000$-Matrix braucht der Algorithmus schon über 10 Sekunden.
 \FloatBarrier
 \subsection*{b)}
-Implementierung des CG-Verfahrens:
+Um die Effizienz der Problemlösung zu steigern greifen wir also nicht mehr auf den direkten Löser zurück,
+sondern implementieren eine optimierte Version des CG-Verfahrens.
 \begin{lstlisting}[language=Python]
 def cg(A,b,x0,tol):
     xt = x0
@@ -47,10 +57,12 @@ def cg(A,b,x0,tol):
         d = r0 + beta*d
     return xt
 \end{lstlisting} \label{cg}
-Wir beweisen die Äquivalenz des obigen Algorithmus zu Algorithmus 8.10 im Numerik-Skript mittels Induktion: \\
+Der Algorithmus ähnelt in vielen Schritten Algorithmus 8.10 aus dem Numerik-Skript, weist aber durchaus einige Unterschiede auf.
+Daher müssen wir noch beweisen, dass die beiden Algorithmen wirklich äquivalent sind.
+Wir führen den Beweis mittels Induktion über die Anzahl der Iterationen. \\
 Dabei bezeichnen wir mit * die Variablen aus unserem Algorithmus und ohne * die Variablen des Algorithmus
 aus dem Skript. \\
-Induktionsanfang: \\
+Starten wir mit dem Induktionsanfang. \\
 \begin{align*}
    &A = A^*, b = b^*, x_0 = x_0^* \\
    &r_0 = b - Ax_o = b^* - A^*x_0^* = r_0^* \\
@@ -93,14 +105,17 @@ Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhal
 \end{align*}
 Und der Beweis ist vollständig. \\
 
-Rechenschritte pro Schleifendurchlauf: \\
+Nun stellt sich natürlich die Frage, welcher der beiden Algorithmen zu bevorzugen wäre.
+Nachdem sie mathematisch äquivalent sind, bleibt nur noch die Frage nach dem Aufwand zu überprüfen.
 Am aufwändigsten ist natürlich die Matrix-Vektor-Multiplikation, wovon wir in unserem Algorithmus
 im Gegensatz zu jenem aus dem Skript nur eine pro Schleifendurchlauf benötigen.
 Zusätzlich dazu brauchen wir 3 Vektor-Vektor-Multiplikationen und 4 Vektor-Skalar-Operationen. \\
 Damit erhalten wir insgesamt $n^2+7n$ Flops pro Durchlauf. \\
 Im Vergleich dazu verwendet der Algorithmus aus dem Numerik-Skript pro Iteration zwei Matrix-Vektor-Multiplikationen
-und ist daher aus Effizienzgründen unterlegen. \\
+und ist daher aus Effizienzgründen unterlegen, da wir damit alleine schon $2n^2$ Flops pro Durchlauf brauchen. \\
 
+Nachdem geklärt ist, in welcher Version der Algorithmus implementiert werden soll, ist es noch essentiell sich mit der
+Konvergenztheorie dahinter zu beschäftigen.
 Die Theorie besagt, dass das CG-Verfahren spätentens nach $n$ Durchläufen die exakte Lösung liefert und für die Iterierten
 folgende Fehlerabschätzung gilt:
 \begin{align*}
@@ -109,6 +124,10 @@ folgende Fehlerabschätzung gilt:
 mit der spektralen Konditionszahl $\kappa = \text{cond}_2(A)$. \\
 Also sollte das Verfahren exponentiell kovergieren ($\Landau{AB^t}$) mit Konstanten\\
 $A = 2\Vbraces{x^{(0)}-A^{-1}b}_A, \quad B = \frac{1-1/\sqrt{\kappa}}{1+1/\sqrt{\kappa}}$\\
+Wir haben das Verfahren mit diagonaldominanten , symmetrisch, positiv definiten Zufallsmatrizen getestet. Eine weitere
+Möglichkeit wäre gewesen, eine Zufallsmatrix $A$ zu erstellen und das CG-Verfahren auf $A\cdot A^T$ anzuwenden. Allerdings ist
+im letzteren Fall die Konditionszahl deutlich schlechter und teilweise erreichen wir die gewünschte Toleranz erst nach über $n$
+Schritten, wo wir in der Theorie ohne Rechenfehler bereits exakt sein sollten. Also haben wir uns für erstere Methode entschieden.
 Wie in untenstehender Grafik ersichtlich scheint bei unseren Zufallsmatrizen der Wert von $B$ sich in etwa bei $0.92$ einzupendeln
 und unsere vorgegebene Toleranz von $10^{-8}$ wird bereits nach etwa $350$ Iterationen erreicht, noch weit vor dem theoretisch
 (bis auf Rechenfehler) garantierten exakten Resultat nach $n = 5000$ Durchläufen.
@@ -133,6 +152,9 @@ x0 = np.random.rand(n)*10
 \end{figure}
 \FloatBarrier
 \subsection*{c)}
+Um die Effizienz weiter zu steigern, müssen wir natürlich noch irgendwie die dünne Besetzheit ausnutzen.
+Dies bewerkstelligen wir mit einer eigens geschrieben Klasse in Python, welche die Matrix-Vektor-Multiplikation
+deutlich effizienter ausführen sollte als die Standard-Multiplikation.
 Dünn besetzte Matrizen erlauben effizientere Implementierungen als voll besetzte, indem beim Speichern und Rechnen
 nur Einträge die ungleich Null sind berücksichtigt werden. Eine Möglichkeit einer solchen Implementierung ist das sogenannte
 \textit{compressed sparse row} Format. Anstelle aller Einträge $A_{ij}, i,j = 1,\dots,n$ einer Matrix $A \in \mathbb{R}^{n\times n}$
@@ -144,7 +166,6 @@ und ein Vektor $I \in \mathbb{N}_0^{n+1}$ von Zeigern gespeichert. Die $i$-te Ze
     0, & \text{sonst}
   \end{cases}
 \end{align*}
-Implementierung in Python: \\
 \begin{lstlisting}[language=Python]
 class Sparse:
 
@@ -187,7 +208,6 @@ class Sparse:
         return v, J, I
 \end{lstlisting}
 
-Da wir bei diesem Projekt uns nur auf das cg-Verfahren konzentrieren, haben wir nur die Matrix-Vektor Multiplikation für die Klasse Sparse implementiert.
 
 \begin{figure}
     \centering
@@ -197,11 +217,9 @@ Da wir bei diesem Projekt uns nur auf das cg-Verfahren konzentrieren, haben wir 
 \end{figure}
 \FloatBarrier
 
-Hier sehen wir, dass erst ab einer gewissen Größe die Sparse-Multiplikation effizienter gegenüber der Numpy-Multiplikation ist.
 
 \subsection*{d)}
-Kombinieren Sie Ihre CG-Implementierung mit Ihrer \textbf{sparse} Klasse und testen Sie die Effizienz: \\
-Implementierung:
+Jetzt können wir unsere neue Klasse noch mit der bereits vorhandenen CG-Implementierung kombinieren. \\
 \begin{lstlisting}[language=Python]
 def Scg(A,b,x0,tol):
     xt = x0
@@ -229,10 +247,11 @@ Ansonsten ist die Implementierung ident zum vorherigen cg-Verfahren.
     \label{fig:my_label}
 \end{figure}
 \FloatBarrier
-
+Wie erhofft liefert die Kombinierung mit der Sparse-Klasse ab einer gewissen Größe noch einen zusätzlichen Effizienzschub.
 Ab einer Matrixgröße von ca. 1000 ist das Scg-Verfahren effizienter als die übliche Implementierung.
-Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}$
+Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}$ haben.
 \subsection*{e)}
+Der letzte Schritt zur Effizienz-Optimierung ist nun noch die Matrix selbst noch für unsere Zwecke zu verbessern.
 Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
 Um die Konvergenzgeschwindigkeit zu erhöhen löst man das vorkonditionierte System
 \begin{align*}
@@ -243,7 +262,6 @@ und gewinnt die Lösung $x$ dann durch $x = D^{-1T}y$. Die Matrix $D$ wird dabei
 \item für beliebige Vektoren $z \in \mathbb{R}^n$ der Vektor $D^{-1T}D^{-1}z$ einfach zu berechen ist und
 \item $\text{cond}(D^{-1}AD^{-1T}) < \text{cond}(A)$.
 \end{itemize}
-Implementierung des vorkonditionierten CG-Verfahrens:
 \begin{lstlisting}[language=Python]
     def vcg(A,b,x0,P,tol):
         r0 = b - A.__matmult__(x0)
@@ -263,8 +281,12 @@ Implementierung des vorkonditionierten CG-Verfahrens:
 \end{lstlisting}
 
 \subsection*{f)}
-Wie in untenstehender Grafik ersichtlich wurde mit der Vorkonditionierung die Anzahl der benötigten Iterationen
-zur Erreichung der erwünschten Toleranz exorbitant gesenkt.
+Wenn wir schließlich das vorkonditionierte CG-Verfahren mit $P = \text{diag}(A_{11},\dots,A_{nn})$ an strikt diagonaldominanten
+Zufallsmatrizen mit positiven Diagonaleinträgen und an beliebigen symmetrisch, positiv definiten Zufallsmatrizen testen, sehen
+wir unseren finalen Effizienzschub in diesem Projekt. \\
+Wie in untenstehenden Grafik ersichtlich konnte mit der Vorkonditionierung die Anzahl der benötigten Iterationen
+zur Erreichung der erwünschten Toleranz massiv gesenkt werden. Der Zeitgewinn schlägt sich leider nicht ganz so deutlich wieder,
+aber ist dennoch vorhanden und merkbar.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Aufgabe_1/f.png}
@@ -274,6 +296,6 @@ zur Erreichung der erwünschten Toleranz exorbitant gesenkt.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{Aufgabe_1/vcg.png}
-    \caption{Vergleich Anzahl Interationen}
+    \caption{Vergleich Zeit}
     \label{fig:my_label}
 \end{figure}
