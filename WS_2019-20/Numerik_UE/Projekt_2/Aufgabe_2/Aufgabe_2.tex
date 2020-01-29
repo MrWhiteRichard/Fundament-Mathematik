@@ -212,6 +212,8 @@ Wenn nun die Randbedingungen \eqref{Randbedingungen} gelten sollen, d.h. $v(x_0)
 
 Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert. \\
 
+\newpage
+
 \lstinputlisting
 [language = Python]
 {Aufgabe_2/python_code/my_numpy_matrix.py}
@@ -418,6 +420,7 @@ Nun können wir $f_c$ für fixe $c_0, c_1$ plotten lassen. Dann bekommen wir ein
 
 Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbiträren Werte $c_0 = 100$, $c_1 = 1$ gewählt. Die davon abhängige Funktion $f_c$ ist scheinbar gerade. Das liegt an \eqref{Nullfunktion}, sowie dass $\cos$ gerade und $\sin$ ungerade ist.
 
+
 \begin{figure}[H]
   \centering
   \subfloat[auf dem Intervall $(-16, 16)$]{
@@ -432,9 +435,11 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
 \end{figure}
 
 Dementsprechend, können passende Startwerte $\tilde{\omega}$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte, die wir im nächsten Unterkapitel betrachten. \\
+\begin{center}
 
 \input{Aufgabe_2/data/find_omegas(c = (100, 1), guesses = [5, 10, 15, 20, 25, 30], tol = 1e-08)}
 \vspace{10pt}
+\end{center}
 
 \subsection{Verallgemeinertes Eigenwertproblem}
 
@@ -496,8 +501,11 @@ Die Matrix $B_n^{-1} A_n$ besitzt hoffentilch wieder $n-1$ paarweise verschieden
 
 Um einen ersten Eindruck des möglichen Konvergenz-Verhaltens zu bekommen, vergleichen wir die Eigenwerte mit den oberen semi-analytischen Ergebnissen mit $c_0 = 100$, $c_1 = 1$. Es folgt eine zur oberen analoge Tabelle mit Eigenwerten. Die Ergebnisse lassen zwar zu wünschen übrig, aber immerhin pendelt sich die Größenordnung rasch ein. \\
 
+\begin{center}
+
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
 \vspace{10pt}
+\end{center}
 
 Wir bezeichnen (optimistischerweise) mit $\epsilon_i^c(n) := |\lambda_i^c - \lambda_{i, n}^c|$, $i = 1, \ldots, n-1$ den absoluten Konvergenz-Fehler des $i$-ten Eigenwertes. $\lambda_i^c$ erhalten wir durch $\omega^2$ von \verb|scipy.optimize.fsolve|, wobei $\tilde{\omega} := \sqrt{\lambda_{i, n}^c}$ als Startwert für das iterative Verfahren gewählt wird. Theoretisch hängt $\lambda_i^c$ also noch von $n$ ab. In der folgenden Abbildung \ref{fig:Konvergenz-Fehler_EW_allgemein} wurde $\epsilon^c_i$ mit der Vergleich-Geraden $\id^2$, doppelt logarithmisch, geplottet. \\
 
@@ -560,7 +568,7 @@ Wenn man für $c = (100, 1)$ gerade und ungerade betrachtet, so bemerkt man, das
   \end{cases}
 \end{align*}
 
-Seien $\mathbf{v}^{(1, n), c}, \ldots, \mathbf{v}^{(n-1, n), c}$ die Eigenvektoren (modulo Konstante), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten, als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Nichts desto trotz, wurden die Eigenvektoren $\mathbf{v}^{(i, n_i), c}$, normiert bzgl. $\norm[\infty]{\cdot}$, geplottet, wobei
+Seien $\mathbf{v}^{(1, n), c}, \ldots, \mathbf{v}^{(n-1, n), c}$ die Eigenvektoren (modulo Konstante), zu den Eigenwerten $\lambda_{1, n}^c < \cdots < \lambda_{n-1, n}^c$, der Matrix $B_n^{-1} A_n$. Wir antizipieren ein weniger schönes Konvergenz-Verhalten, als das der Eigenvektoren der Matrizen $(A_n)_{n \in \N}$. Dennoch wurden die Eigenvektoren $\mathbf{v}^{(i, n_i), c}$, normiert bzgl. $\norm[\infty]{\cdot}$, geplottet, wobei
 
 \begin{align*}
   c_{\mathrm{max}} & = 4, &
@@ -739,13 +747,17 @@ Angenommen, wir wüssten bereits, dass all unsere Eigenwerte $\lambda_{1, n}^c <
 
 Das Abbruch-Kriterium ist aber anscheinend noch immer suboptimal, weil die damit berechneten Eigenwerte, sogar für \verb|tol = 1e-15|, nicht ganz denen von \verb|np.linalg.eig| entsprechen. \\
 
+\begin{center}
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general_homemade(n_max = 6, i_max = 4, c = (100, 1)).tex}
 \vspace{10pt}
+\end{center}
 
 Zum Vergleich, zeigen wir nochmal die Eigenwerte via \verb|np.linalg.eig|. Betrachtet man die Eigenwerte $\lambda_{3, 5}^{(100, 1)}, \lambda_{4, 6}^{(100, 1)}$, so merkt man, dass Ungenauigkeiten beim vorletzten Eigenpaar, d.h. Eigenpaar mit betragsmäßig zweitgrößten Eigenwert, auftreten, wenn $n$ groß ist. Offensichtlich, lässt sich diese Eigenwertsuche noch optimieren, das würde aber den Rahmen dieses Projektes sprengen. \\
 
+\begin{center}
 \input{Aufgabe_2/data/show_my_eigen_value_matrix_general(n_max = 6, i_max = 4, c = (100, 1))}
 \vspace{10pt}
+\end{center}
 
 Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$ tatsächlich alle positiv und reell sind. Sonst wäre der Algorithmus ja, aus mathematische Sicht, wertlos. Eine Möglichkeit bietet die explizite Darstellung von Eigenpaaren von Tridiagonalmatrizen. Wir wissen aber, dass das Gewünschte genau dann gilt, wenn $B_n^{-1} A_n$ positiv definit ist. Das können wir mit dem Hauptminoren-Kriterium locker überprüfen.
 
@@ -772,3 +784,5 @@ Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $\det(B_n^{-1}) > 0$, da wir 
   \Rightarrow
   0 < \mathbf{x}^\ast AB \mathbf{x}.
 \end{align*}
+
+\newpage
