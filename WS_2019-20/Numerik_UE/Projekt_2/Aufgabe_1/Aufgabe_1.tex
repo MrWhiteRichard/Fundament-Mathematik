@@ -1,5 +1,5 @@
 Eine häufige Problemstellung in der Numerischen Mathematik lautet lineare Gleichungssysteme mit großen, dünn besetzten Matrizen zu lösen.
-Dabei kommen meist iterative Verfahren zum Einsatz, die in diesm Projekt effizient implementiert werden.
+Dabei kommen meist iterative Verfahren zum Einsatz, die in diesem Projekt effizient implementiert werden.
 \subsection*{a)}
 Zuerst testen wir als Basis wie aufwändig der direkte Löser (numpy.linalg.solve) ist um später einen Maßstab für unsere
 Effizienzsteigerungen zu haben.
@@ -106,7 +106,7 @@ und setzen $\alpha_0^* = \frac{r_0^{*T}r_0^*}{d_0^{*T}Ad_0^*}$ ein:
 Damit haben wir die Gleichheit der Variablen nach dem ersten Schleifendurchlauf gezeigt. \\
 Sei nun nach $n$ Schleifendurchläufen die Gleichheit aller vorhergehenden Variablen vorausgesetzt: \\
 \begin{align*}
-  \alpha_{n-1} = \alpha_{n-1}*, x_n = x_n^*, r_n = r_n^*, \beta_{n-1} = \beta_{n-1}*, d_n = d_n^* \\
+  \alpha_{n-1} = \alpha_{n-1}*, x_n = x_n^*, r_n = r_n^*, \beta_{n-1} = \beta_{n-1}^*, d_n = d_n^* \\
   \alpha_n = \frac{r_n^Td_n}{d_n^TAd_n} = \frac{r_n^{*T}d_n^*}{d_n^{*T}A^*d_n^*} = \frac{r_n^{*T}(r_n^* + \beta_{n-1}^*d_{n-1}^*)}{d_n^{*T}A^*d_n^*} \\
 \end{align*}
 Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhalten:
@@ -166,7 +166,7 @@ x0 = np.random.rand(n)
 \end{figure}
 \FloatBarrier
 \subsection*{c)}
-Um die Effizienz weiter zu steigern, müssen wir natürlich noch irgendwie die dünne Besetzheit ausnutzen.
+Um die Effizienz weiter zu steigern, müssen wir natürlich noch die dünne Besetztheit ausnutzen.
 Dies bewerkstelligen wir mit einer eigens geschrieben Klasse in Python, welche die Matrix-Vektor-Multiplikation
 deutlich effizienter ausführen sollte als die Standard-Multiplikation.
 Dünn besetzte Matrizen erlauben effizientere Implementierungen als voll besetzte, indem beim Speichern und Rechnen
@@ -225,11 +225,14 @@ class Sparse:
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Aufgabe_1/matmult_plot.png}
+    \includegraphics[width=0.8\linewidth]{Aufgabe_1/matmult_plot.png}
     \caption{Vergleich Numpy Matrixmultiplikation vs. Sparse Matrixmultiplikation}
-    \label{fig:my_label}
+    \label{mul}
 \end{figure}
 \FloatBarrier
+
+In Abbildung \ref{mul} sehen wir, dass die Sparse-Matrix-Vektor-Multiplikation schneller ist, als die Implementierung in numpy.
+Wir starten erst ab einer Matrixgröße $n=3000$, da der Messfehler bei einer kleineren Größe überwiegt und der Plot nicht aussagekräftig wäre.
 
 
 \subsection*{d)}
@@ -253,17 +256,29 @@ def Scg(A,b,x0,tol):
 Bei dieser CG-Implementierung verwenden wir anstelle der Numpy-Matrix-Vektor-Multiplikation die Implementierung von der Sparse-Klasse.
 Zu beachten ist, dass die Matrix A ein Objekt der Klasse Sparse sein muss, damit die Funktion durchgeführt werden kann.
 Ansonsten ist die Implementierung ident zum vorherigen cg-Verfahren.
-
+\newpage
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Aufgabe_1/Cg_Scg.png}
+    \includegraphics[width=0.9\linewidth]{Aufgabe_1/Cg_Scg.png}
     \caption{cg-Verfahren vs. cg-Verfahren mit Klasse Sparse}
-    \label{fig:my_label}
+    \label{scg}
 \end{figure}
 \FloatBarrier
 Wie erhofft liefert die Kombinierung mit der Sparse-Klasse ab einer gewissen Größe noch einen zusätzlichen Effizienzschub.
 Ab einer Matrixgröße von ca. 1000 ist das Scg-Verfahren effizienter als die übliche Implementierung.
-Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}$ haben.
+Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}$ (siehe Abb. \ref{scg}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Aufgabe_1/Scg_npsolve.png}
+    \caption{Vergleich numpy.linalg.solve mit cg-Verfahren aus Klasse Sparse}
+    \label{linalgvs}
+\end{figure}
+\FloatBarrier
+
+In Abbildung \ref{linalgvs}  sieht man, dass bei kleiner Matrixgröße das Verfahren in numpy deutlich schneller als das cg-Verfahren ist, aber bei zunehmender Größe benötigt das cg-Verfahren weniger Zeit.
+Das liegt daran, dass die numpy-Implementierung eine Laufzeit von $\Landau{n^3}$ hat, wohingegen das cg-Verfahren $\Landau{n^2}$ hat.
+
 \subsection*{e)}
 Der letzte Schritt zur Effizienz-Optimierung ist nun noch die Matrix selbst noch für unsere Zwecke zu verbessern.
 Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
@@ -276,6 +291,7 @@ und gewinnt die Lösung $x$ dann durch $x = D^{-T}y$. Die Matrix $D$ wird dabei 
 \item für beliebige Vektoren $z \in \mathbb{R}^n$ der Vektor $D^{-T}D^{-1}z$ einfach zu berechen ist und
 \item $\text{cond}(D^{-1}AD^{-T}) < \text{cond}(A)$.
 \end{itemize}
+Implementierung des vorkonditionierten CG-Verfahrens:
 \begin{lstlisting}[language=Python]
     def vcg(A,b,x0,P,tol):
         r0 = b - A.__matmult__(x0)
