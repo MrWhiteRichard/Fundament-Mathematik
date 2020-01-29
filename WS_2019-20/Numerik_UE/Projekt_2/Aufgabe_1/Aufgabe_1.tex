@@ -1,6 +1,6 @@
 Eine häufige Problemstellung in der Numerischen Mathematik lautet lineare Gleichungssysteme mit großen, dünn besetzten Matrizen zu lösen.
 Dabei kommen meist iterative Verfahren zum Einsatz, die in diesem Projekt effizient implementiert werden.
-\subsection*{a)}
+\subsection{Direkter Löser}
 Zuerst testen wir als Basis wie aufwändig der direkte Löser (numpy.linalg.solve) ist um später einen Maßstab für unsere
 Effizienzsteigerungen zu haben.
 Wir generieren eine symmetrisch positiv definite Zufallsmatrix $A \in \mathbb{R}^{n\times n}$, wobei pro Zeile eine fixe Anzahl an Einträgen
@@ -41,7 +41,7 @@ Zum Testen wurde eine Zufallsmatrix mit 100 Nicht-Null-Einträgen pro Zeile (nic
 Zeile verzerrt) und einer Gesamtgröße von 5000 erstellt. Der direkte Löser wurde schließlich auf die $(200k \times 200k)$-dimensionalen Ausschnitte der oberen rechten Ecke angewandt ($2 \leq k \leq 25$). Wie man sieht erreichen wir damit schon langsam die Grenze
 des akzeptabel Berechenbaren, für die volle $5000\times5000$-Matrix braucht der Algorithmus schon über 10 Sekunden.
 \FloatBarrier
-\subsection*{b)}
+\subsection{CG-Verfahren}
 Um die Effizienz der Problemlösung zu steigern greifen wir also nicht mehr auf den direkten Löser zurück,
 sondern implementieren eine optimierte Version des CG-Verfahrens.
 \begin{lstlisting}[language=Python]
@@ -165,7 +165,7 @@ x0 = np.random.rand(n)
     \label{fig:my_label}
 \end{figure}
 \FloatBarrier
-\subsection*{c)}
+\subsection{Sparse-Klasse}
 Um die Effizienz weiter zu steigern, müssen wir natürlich noch die dünne Besetztheit ausnutzen.
 Dies bewerkstelligen wir mit einer eigens geschrieben Klasse in Python, welche die Matrix-Vektor-Multiplikation
 deutlich effizienter ausführen sollte als die Standard-Multiplikation.
@@ -235,7 +235,7 @@ In Abbildung \ref{mul} sehen wir, dass die Sparse-Matrix-Vektor-Multiplikation s
 Wir starten erst ab einer Matrixgröße $n=3000$, da der Messfehler bei einer kleineren Größe überwiegt und der Plot nicht aussagekräftig wäre.
 
 
-\subsection*{d)}
+\subsection{CG-Verfahren kombiniert mit Sparse-Klasse}
 Jetzt können wir unsere neue Klasse noch mit der bereits vorhandenen CG-Implementierung kombinieren. \\
 \begin{lstlisting}[language=Python]
 def Scg(A,b,x0,tol):
@@ -278,7 +278,7 @@ Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}
 
 In Abbildung \ref{linalgvs}  sieht man, dass bei kleiner Matrixgröße das Verfahren in numpy deutlich schneller als das cg-Verfahren ist, aber bei zunehmender Größe benötigt das cg-Verfahren weniger Zeit.
 
-\subsection*{e)}
+\subsection{Vorkonditioniertes CG-Verfahren}
 Der letzte Schritt zur Effizienz-Optimierung ist nun noch die Matrix selbst noch für unsere Zwecke zu verbessern.
 Die Konvergenzgeschwindigkeit des CG-Verfahrens ist durch die spektrale Konditionszahl cond($A$) der Matrix $A$ bestimmt.
 Um die Konvergenzgeschwindigkeit zu erhöhen löst man das vorkonditionierte System
@@ -309,7 +309,6 @@ Implementierung des vorkonditionierten CG-Verfahrens:
     return x0
 \end{lstlisting}
 
-\subsection*{f)}
 Wenn wir schließlich das vorkonditionierte CG-Verfahren mit $P = \text{diag}(A_{11},\dots,A_{nn})$ an strikt diagonaldominanten
 Zufallsmatrizen mit positiven Diagonaleinträgen und an beliebigen symmetrisch, positiv definiten Zufallsmatrizen testen, sehen
 wir unseren finalen Effizienzschub in diesem Projekt. \\

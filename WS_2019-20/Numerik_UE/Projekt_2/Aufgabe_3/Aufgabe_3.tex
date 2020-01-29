@@ -1,13 +1,10 @@
-\tableofcontents{}
-\newpage
-
-\section{Projektbeschreibung}
+\subsection{Projektbeschreibung}
 
 Sei $A$ eine symmetrische, positiv definite Matrix. Von einer \textit{Cholesky-Zerlegung} der Matrix spricht man, wenn eine untere Dreiecksmatrix
 $L$ vorliegt mit $A = LL^{T}$; die Matrix $L$ und ihre Transponierte nennt man dann \textit{Choleskyfaktoren} von $A$. Ziel dieses Projekts ist die Optimierung von Algorithmen zur Berechnung einer solchen Zerlegung für schwach besetzte Matrizen (\textit{sparse matrices}).
 \newline
 
-\section{Lösung linearer Gleichungssysteme mit Vorwärts- und Rückwärtssubstitution}
+\subsection{Lösung linearer Gleichungssysteme mit Vorwärts- und Rückwärtssubstitution}
 
 Der Sinn dieser Zerlegung ist als Spezialfall einer LU-Zerlegung, dass sich das Problem $Ax=y$ auf die zwei Gleichungssysteme
 \begin{align*}
@@ -57,8 +54,8 @@ def rueckw(L,b):
     return x
 \end{lstlisting}
 
-\section{Berechnung der Cholesky-Zerlegung}
-\subsection{Zwei Varianten der Zerlegung}
+\subsection{Berechnung der Cholesky-Zerlegung}
+\subsubsection{Zwei Varianten der Zerlegung}
 
 Nun wollen wir für eine symmetrische, positiv definite Matrix $A$ ihren Choleskyfaktor $L$ berechnen. Hierfür stehen uns zwei Möglichkeiten zur Verfügung.
 
@@ -138,12 +135,12 @@ Betrachten wir nun eine beliebige Spalte $m \leq n$ und nehmen als Induktionsvor
 In der $m$-ten Schleife wird nun wieder das bis dahin berechnete Diagonalelement $A_{mm}^{(1)} = A_{mm}-\sum_{k=1}^{m-1}L_{mk}^{2}$ mit der Wurzel überschrieben und die jeweiligen $A_{jm}^{(1)}$ durch das neue, korrekte Diagonalelement geteilt. Nun entspricht also auch die $m$-te Spalte von $A$ der $m$-ten Spalten des Choleskyfaktors.
 
 
-\subsection{Vergleich des Aufwands}
+\subsubsection{Vergleich des Aufwands}
 Beim Vergleich der Effizienz beider Varianten stellt sich heraus, dass die erste Variante schneller ist. Würden wir mit Matrizen im Standardspaltenformat arbeiten, könnten wir uns eine verbesserte Effizienz durch die zweite Variante erwarten. Da uns aber wie bereits erwähnt mit Python zeilenweise gespeicherte Matrizen vorliegen, ist der Aufwand durch den Zugriff auf gesamte Spalten sogar größer.
 
 Daher haben wir uns entschieden, das Projekt mit der ersten Variante der Cholesky-Zerlegung weiterzuführen.
 
-\section{Steigerung der Effizienz bei gegebenen Blockmatrizen}
+\subsection{Steigerung der Effizienz bei gegebenen Blockmatrizen}
 
 Unseren Code möchten wir nun testen, indem wir das Gleichungssystem $Mx=b$ für beliebige rechte Seiten $b$ mittels Choleskyzerlegung lösen. Dabei sei $M \in \R^{n^{2} \times n^{2}}$, $n \in \N$ eine Blockmatrix
 \begin{align*}
@@ -235,7 +232,7 @@ Wie man der folgenden Tabelle entnehmen kann, wirkt sich der Verzicht auf die Be
 
 Für $n=64$, also eine Blockmatrix mit ca. 16 Millionen Einträgen, reduziert sich der Aufwand demnach um fast 97 Prozent.
 
-\section{Theoretische Überlegungen zu schwach besetzten Matrizen}
+\subsection{Theoretische Überlegungen zu schwach besetzten Matrizen}
 
 Die obigen Beobachtungen lassen vermuten, dass im Allgemeinen schwach besetzte Matrizen auch schwach besetzte Choleskyfaktoren besitzen. Dies gilt nicht notwendigerweise, allerdings ist es in bestimmten Fällen möglich, die Besetzungsstruktur der Matrix auszunutzen, um den Aufwand der Zerlegung zu reduzieren. Als theoretische Grundlage dazu dient folgende Überlegung:
 
@@ -255,7 +252,7 @@ Ist $j < J_i(A)$ und ist die Behauptung bereits für alle $k < j$ erfüllt, so g
 Aus $L_{jj} \neq 0$ schließen wir $L_{ij} = 0$.
 \end{proof}
 
-\section{Cholesky-Zerlegung von "`Pfeil-Matrizen"'}
+\subsection{Cholesky-Zerlegung von "`Pfeil-Matrizen"'}
 
 Gegeben seien die Matrizen $M,N \in \R^{n \times n}$ mit den Besetzungsstrukturen
 
@@ -316,7 +313,7 @@ $M=P^{-1}NP$.
 
 Die Implementierung dieser Permutation mithilfe einer Matrix $P$ würde natürlich unnötigen Speicher verbrauchen, daher bemerken wir, dass die Permutation der Umnummerierung $N_{ij} = M_{n+1-i,n+1-j}$ entspricht.
 
-\section{Cholesky-Zerlegung von beliebigen schwach besetzten Matrizen}
+\subsection{Cholesky-Zerlegung von beliebigen schwach besetzten Matrizen}
 
 Sei $M$ eine beliebige schwach besetzte, positiv definite symmetrische Matrix. Ähnlich wie bei den Pfeilmatrizen suchen wir eine Strategie, um durch Permutationen möglichst viele der Nuller "`linksbündig"' zu machen, um schwach besetzte Choleskyfaktoren zu erhalten und so bei der Zerlegung Aufwand zu sparen.
 
