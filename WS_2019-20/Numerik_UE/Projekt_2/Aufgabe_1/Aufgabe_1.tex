@@ -277,7 +277,6 @@ Man sieht außerdem, dass beide Algorithmen eine Laufzeit von etwa $\Landau{n^2}
 \FloatBarrier
 
 In Abbildung \ref{linalgvs}  sieht man, dass bei kleiner Matrixgröße das Verfahren in numpy deutlich schneller als das cg-Verfahren ist, aber bei zunehmender Größe benötigt das cg-Verfahren weniger Zeit.
-Das liegt daran, dass die numpy-Implementierung eine Laufzeit von $\Landau{n^3}$ hat, wohingegen das cg-Verfahren $\Landau{n^2}$ hat.
 
 \subsection*{e)}
 Der letzte Schritt zur Effizienz-Optimierung ist nun noch die Matrix selbst noch für unsere Zwecke zu verbessern.
@@ -318,8 +317,10 @@ Wie in untenstehenden Grafik ersichtlich konnte mit der Vorkonditionierung die A
 zur Erreichung der erwünschten Toleranz massiv gesenkt werden. Bei bereits strikt diagonaldominanten Matrizen mit positiven
 Diagonaleinträgen ist die Konditionszahl
 bereits relativ niedrig und somit kann die Vorkonditionierung nicht mehr so viel verbessern wie bei den normalen symmetrisch,
-postiv definiten Zufallsmatrizen. Der Zeitgewinn schlägt sich leider nicht ganz so deutlich wieder,
-aber ist dennoch vorhanden und merkbar.
+postiv definiten Zufallsmatrizen. Der Zeitgewinn schlägt sich bei den s.s.d. Matrizen leider nicht ganz so deutlich wieder,
+aber ist dennoch vorhanden und merkbar. Bei den bereits strikt diagonaldominanten Matrizen braucht das vorkonditionierte CG-Verfahren
+sogar deutlich mehr Zeit, da die Ersparnis der geringeren Anzahl an Schleifendurchläufen in diesem Fall eher minimal ist und
+allerdings durch die Vorkonditionierung in jedem Iterationsschritt mehr Aufwand steckt. \\
 Unsere Testwerte: Strikt diagonaldominant mit positiven Diagonaleinträgen: \\
 \begin{lstlisting}[language=Python]
 A = np.zeros((n,n))
@@ -358,4 +359,10 @@ A = A + A.T + np.diag(np.random.rand(n)*10)
     \centering
     \includegraphics[width=\linewidth]{Aufgabe_1/vcg.png}
     \caption{Zeitvergleich s.s.d. Matrix}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/vcg_strikt.png}
+    \caption{Zeitvergleich strikt diagonaldominante Matrix}
 \end{figure}
