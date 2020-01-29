@@ -73,12 +73,13 @@ def vcg(A,b,x0,P,tol):
         beta = np.dot(np.transpose(z0),r0)/prod
         d = z0 + beta*d
         c += 1
-    return x0
+    return x0, c
 
 def Scg(A,b,x0,tol):
     xt = x0
     r0 = b - A.__matmult__(xt)
     d = r0
+    c = 0
     while(np.linalg.norm(r0) > tol):
         prod = np.dot(np.transpose(r0),r0)
         prod2 = A.__matmult__(d)
@@ -87,7 +88,8 @@ def Scg(A,b,x0,tol):
         r0 = r0 - alpha*prod2
         beta = np.dot(np.transpose(r0),r0)/prod
         d = r0 + beta*d
-    return xt
+        c += 1
+    return xt, c
 
 
 if __name__ == "__main__":

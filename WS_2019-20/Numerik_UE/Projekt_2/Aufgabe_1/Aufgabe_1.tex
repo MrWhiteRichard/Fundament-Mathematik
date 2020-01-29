@@ -47,8 +47,7 @@ def cg(A,b,x0,tol):
         d = r0 + beta*d
     return xt
 \end{lstlisting} \label{cg}
-Beweis der Äquivalenz obigen Algorithmus zu Algorithmus 8.10 im Numerik-Skript: \\
-Wir führen den Beweis mittels Induktion: \\
+Wir beweisen die Äquivalenz des obigen Algorithmus zu Algorithmus 8.10 im Numerik-Skript mittels Induktion: \\
 Dabei bezeichnen wir mit * die Variablen aus unserem Algorithmus und ohne * die Variablen des Algorithmus
 aus dem Skript. \\
 Induktionsanfang: \\
@@ -262,4 +261,19 @@ Implementierung des vorkonditionierten CG-Verfahrens:
             d = z0 + beta*d
     return x0
 \end{lstlisting}
-Wieder schlechte Nachrichten: Der Scheiß kovergiert!
+
+\subsection*{f)}
+Wie in untenstehender Grafik ersichtlich wurde mit der Vorkonditionierung die Anzahl der benötigten Iterationen
+zur Erreichung der erwünschten Toleranz exorbitant gesenkt.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/f.png}
+    \caption{Vergleich Anzahl Interationen}
+    \label{fig:my_label}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Aufgabe_1/vcg.png}
+    \caption{Vergleich Anzahl Interationen}
+    \label{fig:my_label}
+\end{figure}
