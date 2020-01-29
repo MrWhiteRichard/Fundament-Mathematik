@@ -64,7 +64,7 @@ Im Vergleich dazu Algorithmus 8.10 aus dem Numerik-Skript:
 &1: t = 0 &\\
 &2: r^{(0)} = b - Ax^{(0)} &\\
 &3: d^{(0)} = r^{(0)} &\\
-&4: \textbf{while}~ \vbraces{r^{(t)}} > \textbf{TOL} do &\\
+&4: \textbf{while}~ \norm{r^{(t)}} > \textbf{TOL}~ \text{do} &\\
 &5:\quad \alpha_t = \frac{r^{(t)}*d^{(t)}}{d^{(t)}*Ad^{(t)}} &\\
 &6:\quad x^{(t+1)} = x^{(t)} + \alpha_td^{(t)} &\\
 &7:\quad t = t + 1 &\\
@@ -109,7 +109,7 @@ Sei nun nach $n$ Schleifendurchläufen die Gleichheit aller vorhergehenden Varia
   \alpha_{n-1} = \alpha_{n-1}*, x_n = x_n^*, r_n = r_n^*, \beta_{n-1} = \beta_{n-1}^*, d_n = d_n^* \\
   \alpha_n = \frac{r_n^Td_n}{d_n^TAd_n} = \frac{r_n^{*T}d_n^*}{d_n^{*T}A^*d_n^*} = \frac{r_n^{*T}(r_n^* + \beta_{n-1}^*d_{n-1}^*)}{d_n^{*T}A^*d_n^*} \\
 \end{align*}
-Jetzt nutzen wir die Eigenschaft: $\forall 0 \leq j < m: r_m^Td_j = 0$ und erhalten:
+Jetzt nutzen wir die Eigenschaft: $\forall~ 0 \leq j < m: r_m^Td_j = 0$ und erhalten:
 \begin{align*}
   \frac{r_n^{*T}(r_n^* + \beta_{n-1}^*d_{n-1}^*)}{d_n^{*T}A^*d_n^*} = \frac{r_n^{*T}r_n^*}{d_n^{*T}A^*d_n^*} = \alpha_n^* \\
   x_{n+1} = x_n + \alpha_nd_n = x_n^* + \alpha_n^*d_n^* = x_{n+1}^* \\
@@ -146,7 +146,7 @@ im letzteren Fall die Konditionszahl deutlich schlechter und teilweise erreichen
 Schritten, wo wir in der Theorie ohne Rechenfehler bereits exakt sein sollten. Also haben wir uns für erstere Methode entschieden.
 Interessanterweise konvergiert der Fehler wesentlich schneller gegen 0 als die obere Schranke des theoretischen Fehlerschätzers
 vermuten lassen würde und unsere vorgegebene Toleranz von $10^{-8}$ wird bereits
-nach etwa $500$ Iterationen erreicht, noch weit vor dem theoretisch
+nach etwa $400$ Iterationen erreicht, noch weit vor dem theoretisch
 (bis auf Rechenfehler) garantierten exakten Resultat nach $n = 5000$ Durchläufen.
 Unsere Testwerte: \\
 
@@ -160,7 +160,7 @@ x0 = np.random.rand(n)
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Aufgabe_1/c.png}
+    \includegraphics[width=\linewidth]{Aufgabe_1/c2.png}
     \caption{Residuum abhängig von der Anzahl an Iterationen}
     \label{fig:my_label}
 \end{figure}
@@ -321,7 +321,7 @@ postiv definiten Zufallsmatrizen. Der Zeitgewinn schlägt sich bei den s.s.d. Ma
 aber ist dennoch vorhanden und merkbar. Bei den bereits strikt diagonaldominanten Matrizen braucht das vorkonditionierte CG-Verfahren
 sogar deutlich mehr Zeit, da die Ersparnis der geringeren Anzahl an Schleifendurchläufen in diesem Fall eher minimal ist und
 allerdings durch die Vorkonditionierung in jedem Iterationsschritt mehr Aufwand steckt. \\
-Unsere Testwerte: Strikt diagonaldominant mit positiven Diagonaleinträgen: \\
+Unsere Testwerte: Strikt diagonaldominante Matrix mit positiven Diagonaleinträgen: \\
 \begin{lstlisting}[language=Python]
 A = np.zeros((n,n))
 row_sum = []
