@@ -25,7 +25,7 @@ Zur Berechnung der Eigenschwingungen suchen wir nach Lösungen $u$, die in der Z
 mit einer festen, aber unbekannten Kreisfrequenz $\omega > 0$ und einer Funktion $v$, welche nur noch vom Ort $x$ abhängt. Durch Einsetzen erhalten wir für $v$ die sogenannte Helmholz-Gleichung
 
 \begin{align} \label{Helmholz-Gleichung}
-  -\mathbf{v}^\primeprime(x) = \kappa^2 v(x), \qquad
+  -v^\primeprime(x) = \kappa^2 v(x), \qquad
   x \in (0, 1),
 \end{align}
 
@@ -79,7 +79,7 @@ Das sind die gesuchten $\kappa > 0$. Sei nun eines dieser $\kappa$ fest. Offensi
 Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerische Verfahren zurückgegriffen wird, welche möglichst gute Näherungen an die exakten Lösungen berechnen sollen. Als einfachstes Mittel dienen sogenannte Differenzenverfahren. Sei dazu $x_j := jh$, $j = 0, \ldots, n$ eine Zerlegung des Intervalls $[0, 1]$ mit äquidistanter Schrittweite $h = 1/n$. Die zweite Ableitung in \eqref{Helmholz-Gleichung} wird approximiert durch den Differenzenquotienten
 
 \begin{align} \label{Differenzenquotient}
-  \mathbf{v}^\primeprime(x_j) \approx
+  v^\primeprime(x_j) \approx
   D_h v(x_j) :=
   \frac{1}{h^2} (v(x_{j-1}) - 2 v(x_j) + v(x_{j+1})), \qquad
   j = 1, \ldots, n-1.
@@ -88,11 +88,11 @@ Häufig lassen sich solche Probleme nicht analytisch lösen, sodass auf numerisc
 Es sei angemerkt, dass \eqref{Differenzenquotient} tatsächlich einen Differenzenquotienten beschreibt. Um das einzusehen, verwenden wir den links- und rechts-seitigen Differenzenquotient erster Ordnung, sowie $x_{j-1} = x_j - h$, $x_{j+1} = x_j + h$. Wir erhalten $\Forall j = 1, \ldots, n-1:$
 
 \begin{align*}
-  \mathbf{v}^\primeprime(x_j)
+  v^\primeprime(x_j)
   & = \lim_{h \to 0}
       \Frac{h}
       {
-        \mathbf{v}^\prime(x_j + h) - \mathbf{v}^\prime(x_j)
+        v^\prime(x_j + h) - v^\prime(x_j)
       } \\
   & = \lim_{h \to 0}
       \Frac{h}
@@ -120,7 +120,7 @@ Es sei angemerkt, dass \eqref{Differenzenquotient} tatsächlich einen Differenze
 Für hinreichend glatte Funktionen $v$ mit einer geeigneten Konstanten $C > 0$ wird der Approximationsfehler quadratisch in $h$ klein, d.h. dass
 
 \begin{align} \label{quadratische_Konvergenz}
-  \vbraces{\mathbf{v}^\primeprime(x_j) - D_h v(x_j)} \leq C h^2.
+  \vbraces{v^\primeprime(x_j) - D_h v(x_j)} \leq C h^2.
 \end{align}
 
 Nachdem $v$ hinreichend glatt ist, gilt nach dem Satz von Taylor, dass $\Forall j = 1, \ldots, n-1:$
@@ -129,12 +129,12 @@ Nachdem $v$ hinreichend glatt ist, gilt nach dem Satz von Taylor, dass $\Forall 
   v(x_j + h) & =
   \sum_{\ell = 0}^{n+2}
   \frac{h^\ell}{\ell !}
-  \mathbf{v}^{(\ell)}(x_j) +
+  v^{(\ell)}(x_j) +
   \Landau{h^{n+3}}, \\
   v(x_j - h) & =
   \sum_{\ell = 0}^{n+2}
   \frac{(-h)^\ell}{\ell !}
-  \mathbf{v}^{(\ell)}(x_j) +
+  v^{(\ell)}(x_j) +
   \Landau{h^{n+3}}.
 \end{align*}
 
@@ -149,31 +149,31 @@ Man beachte, dass sich die ungeraden Summanden, der oberen Taylor-Polynome, gege
   & = \Frac{h^2}
       {
         2 v(x_j) +
-        h^2 \mathbf{v}^\primeprime(x_j) +
+        h^2 v^\primeprime(x_j) +
         \sum_{\substack{\ell = 4 \\ \ell \in 2 \N}}^{n+2}
         \frac{h^\ell}{\ell !}
-        \mathbf{v}^{(\ell)}(x_j)
+        v^{(\ell)}(x_j)
         (1 + (-1)^\ell) -
         2 v(x_j)
       } +
       \Landau{h^{n+3}} \\
-  & = \mathbf{v}^\primeprime(x_j) +
+  & = v^\primeprime(x_j) +
       2 \sum_{\ell = 1}^\floor{\frac{n}{2}}
       \frac{h^{2 \ell}}{(2 \ell + 2)!}
-      \mathbf{v}^{(2 \ell)}(x_j) +
+      v^{(2 \ell)}(x_j) +
       \Landau{h^{n+1}}
 \end{align*}
 
 Daraus folgt unmittelbar die quadratische Konvergenz \eqref{quadratische_Konvergenz}, d.h. $\Forall j = 1, \ldots, n-1:$
 
 \begin{align*}
-  D_h v(x_j) - \mathbf{v}^\primeprime(x_j) = \Landau{h^2}, \qquad
+  D_h v(x_j) - v^\primeprime(x_j) = \Landau{h^2}, \qquad
   h \to 0.
 \end{align*}
 
 \subsubsection{Eigenwertproblem}
 
-Wir wollen nun den Differenzenquotienten $D_h v(x_j)$ verwenden, um ein Eigenwertproblem der Form $A \mathbf{v} = \lambda \mathbf{v}$ mit einer Matrix $A \in \R^{(n-1) \times (n-1)}$ zu dem Eigenvektor $\mathbf{v} := (v(x_1), \ldots, v(x_{n-1}))^T)$ und dem Eigenwert $\lambda := \kappa^2$ herzuleiten. Das soll die Helmholz-Gleichung \eqref{Helmholz-Gleichung}, mit Tupeln und Eigenwerten für die Funktionen $v_\kappa$ bzw. Vorfaktoren $\kappa$, approximieren. \\
+Wir wollen nun den Differenzenquotienten $D_h v(x_j)$ verwenden, um ein Eigenwertproblem der Form $A \mathbf{v} = \lambda \mathbf{v}$ mit einer Matrix $A \in \R^{(n-1) \times (n-1)}$ zu dem Eigenvektor $\mathbf{v} := (v(x_1), \ldots, v(x_{n-1}))^T$ und dem Eigenwert $\lambda := \kappa^2$ herzuleiten. Das soll die Helmholz-Gleichung \eqref{Helmholz-Gleichung}, mit Tupeln und Eigenwerten für die Funktionen $v_\kappa$ bzw. Vorfaktoren $\kappa$, approximieren. \\
 
 Es wird eine Matrix $-A_n$, $n \geq 2$ gesucht, die den Differenzenquotienten $D_h v(x_j)$ auf den oberen Vektor $\mathbf{v}^{(n)}$ komponentenweise anwendet. Wir rufen in Erinnerung, dass $h = 1/n$ und definieren die naheliegende Matrix
 
@@ -207,7 +207,7 @@ Wenn nun die Randbedingungen \eqref{Randbedingungen} gelten sollen, d.h. $v(x_0)
     D_h v(x_{n-1})
   \end{pmatrix}
   \xrightarrow{n \to \infty}
-  -\mathbf{v}^\primeprime
+  -v^\primeprime
 \end{align*}
 
 Die Matrix $A_n$ wurde in der Funktion \verb|my_numpy_matrix| implementiert. \\
@@ -250,7 +250,7 @@ Wir bezeichnen mit $\epsilon_i(n) := |\lambda_i - \lambda_{i, n}|$, $i = 1, \ldo
 
 Allem Anschein nach, verschwindet $\epsilon_i$ quadratisch. Das korreliert mit dem Ergebnis \eqref{quadratische_Konvergenz}. Man beachte, dass der $i$-te Eigenwert erst ab einer Matrix $A_n$, $n > i$ existiert. Daher fangen die Plots von $\epsilon_i$ desto später an, je größer $i$ ist. Für größeres $i$ ist auch der intitiale Fehler größer. Obwohl dieser ebenfalls quadratisch konvergiert, werden mehr Rechenoperationen für ein genaues Ergebnis benötigt. \\
 
-Seien $\mathbf{v}^{(1, n)}, \ldots, \mathbf{v}^{(n-1, n)}$ die Eigenvektoren (modulo Konstante), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Folgende Abbildungen sollen dies veranschaulichen.
+Seien $\mathbf{v}^{(1, n)}, \ldots, \mathbf{v}^{(n-1, n)}$ die Eigenvektoren (modulo Konstante), zu den Eigenwerten $\lambda_{1, n} < \cdots < \lambda_{n-1, n}$, der Matrix $A_n$. Diese sollten nun gegen die Funktionen $v_{\kappa_i}$, $\kappa_i = \sqrt{\lambda_i}$, vielleicht sogar quadratisch, konvergieren. Die folgende Abbildung \ref{fig:Eigenvektoren} soll dies veranschaulichen.
 
 \begin{figure}[H]
   \centering
@@ -319,7 +319,7 @@ Wir verwenden jedoch den selben Ansatz, wie Vorher. Das war $u(x, t) = \Re (v(x)
 Einsetzen und analoges Nachrechnen, gibt, mit der unbekannten Wellenzahl $\kappa(x) := \frac{\omega}{c(x)}$, die Randbedingungen \eqref{Randbedingungen} und
 
 \begin{align*}
-  -\mathbf{v}^\primeprime(x) = \kappa^2(x) v(x), \qquad
+  -v^\primeprime(x) = \kappa^2(x) v(x), \qquad
   x \in (0, 1).
 \end{align*}
 
@@ -354,7 +354,7 @@ Soll $v$ auf $1/2$ stetig fortgesetzt werden, so müssen dessen links- und recht
 Um stetige Differenzierbarkeit zu erhalten, muss auch die Ableitung
 
 \begin{align*}
-  \mathbf{v}^\prime(x) =
+  v^\prime(x) =
   \begin{cases}
     C_{02} \kappa_0 \cos(\kappa_0 x),
     & x \in (0, 1/2) \\
@@ -367,8 +367,8 @@ auf $1/2$ stetig fortgesetzt werden.
 
 \begin{align*}
   C_{02} \kappa_0 \cos(\kappa_0/2)
-  = \lim_{x \to 1/2-} \mathbf{v}^\prime(x)
-  = \lim_{x \to 1/2+} \mathbf{v}^\prime(x)
+  = \lim_{x \to 1/2-} v^\prime(x)
+  = \lim_{x \to 1/2+} v^\prime(x)
   = - C_{11} \kappa_1 \sin(\kappa_1/2) + C_{12} \kappa_1 \cos(\kappa_1/2)
 \end{align*}
 
@@ -434,7 +434,7 @@ Für die folgenden Plots in Abbildung \ref{fig:zero_function}, wurden die arbitr
   \label{fig:zero_function}
 \end{figure}
 
-Dementsprechend, können passende Startwerte $\tilde{\omega}$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte, die wir im nächsten Unterkapitel betrachten. \\
+Dementsprechend, können passende Startwerte $\tilde{\omega}$ für iterative Verfahren gewählt werden. Die jeweils ersten Ergebnisse $\omega$ vom, bereits erwähnten, \verb|scipy.optimize.fsolve| sind in der folgenden Tabelle zu sehen. Die Quadrate $\omega^2$ dieser Ergebnisse sind Approximationen der Grenzwerte der Eigenwerte, die wir im nächsten Unterkapitel betrachten. \\
 \begin{center}
 
 \input{Aufgabe_2/data/find_omegas(c = (100, 1), guesses = [5, 10, 15, 20, 25, 30], tol = 1e-08)}
@@ -773,7 +773,7 @@ Zuletzt, wollen wir noch wissen, ob die Eigenwerte unserer Matrix $B_n^{-1} A_n$
 
 Zuerst berechnen wir die Determinante der Matrix $A_n^\prime$. Dazu induzieren wir $\det(A_n^\prime) = n$. Der Induktionsanfang, $n = 2, 3$, ist trivial. Für den Induktionsschritt muss man einmal nach der letzten Spalte und dann Zeile entwickeln (oder umgekehrt). \\
 
-Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $\det(B_n^{-1}) > 0$, da wir nur $c_0,c_1$ mit denselben Vorzeichen betrachten. Sont wäre die Matrix indefinit und es würden auch negative Eigenwerte auftreten, also negative Kreisfrequenz, was wir aber ausschließen. Weil die Determinante dieser Matrizen bloß das Produkt ihrer Komponenten ist, sind alle Hauptminoren unserer Matrizen positiv. Sie sind also tatsächlich positiv definit. Deren Produkt und Vielfaches $A_n$ ist es also auch, weil
+Nun gilt aber $A_n = \frac{1}{h^2} A_n^\prime$ und $\det(B_n^{-1}) > 0$, da wir nur $c_0,c_1$ mit denselben Vorzeichen betrachten. Weil die Determinante dieser Matrizen bloß das Produkt ihrer Komponenten ist, sind alle Hauptminoren unserer Matrizen positiv. Sie sind also tatsächlich positiv definit. Deren Produkt und Vielfaches $A_n$ ist es also auch, weil
 
 \begin{align*}
   0 < \mathbf{x}^\ast A \mathbf{x}, \mathbf{x}^\ast B \mathbf{x}
