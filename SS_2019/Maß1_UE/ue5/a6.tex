@@ -1,10 +1,22 @@
 \begin{lemma}
     Es gelten folgende Aussagen:
     \begin{itemize}
-        \item[(a)] Wenn $\mu$ und $\nu$ zwei endliche Maße auf dem Messraum $(\Omega,\mathfrak{S})$ sind, dann ist $\mathfrak{D}:=\{A\in\mathfrak{S}\mid\mu(A)=\nu(A)\}$ ein Dynkin-System im weiteren Sinn.
+        \item[(a)] Wenn $\mu$ und $\nu$ zwei endliche Maße auf dem Messraum $(\Omega,\mathfrak{S})$ sind, dann ist $\mathfrak{D}:=\{A\in\mathfrak{S}\mid\mu(A)=\nu(A)\}$ ein Dynkin-System im weiteren Sinn. 
         \item[(b)] Sind $\mu$ und $\nu$ sogar Wahrscheinlichkeitsmaße, dann ist $\mathfrak{D}$ ein Dynkin-System im engeren Sinn. 
     \end{itemize}
 \end{lemma} 
 \begin{proof}[Beweis.]
-    Ausständig.
+    Wir wählen $A,B \in \mathfrak{D}$ mit $B \subseteq A$ beliebig und erkennen, dass 
+    \begin{align*}
+        \mu(A \setminus B) = \mu(A) - \mu(B) = \nu(A) - \nu(B) = \nu(A \setminus B)
+    \end{align*}
+    gilt und damit $A \setminus B \in \mathfrak{D}$ ist.
+
+    Als nächstes wählen wir eine beiliebige Folge disjunkter Mengen $A_n$ aus $\mathfrak{D}$. Wegen
+    \begin{align*}
+        \mu\left(\sum_{n \in \mathbb{N}} A_n \right) = \sum_{n \in \mathbb{N}} \mu(A_n) = \sum_{n \in \mathbb{N}} \nu(A_n) = \nu\left( \sum_{n \in \mathbb{N}} A_n \right)
+    \end{align*}
+    ist auch $\sum_{n \in \mathbb{N}} A_n \in \mathfrak{D}$, womit auch schon Punkt (a) bewiesen ist.
+
+    Für Punkt (b) ist es ausreichend, dass zusätzlich $\mu(\Omega) = 1 = \nu(\Omega)$ und damit $\Omega \in \mathfrak{D}$ gilt.
 \end{proof}
