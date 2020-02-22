@@ -1,0 +1,937 @@
+\section{Menensysteme und Maßfunktionen}
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie Maßfunktion, endliche Maßfunktion, sigmaendliche Maßfunktion, äußere Maßfunktion.
+  \item[(b)] Formulieren und beweisen Sie den Fortsetzungssatz für Maßfunktionen.
+  \item[(c)] $\Omega$ sei eine beliebige Menge für $A \subseteq \Omega$
+  \begin{align*}
+    \mu^\ast(A) =
+    \begin{cases}
+      0, & \text{wenn} \enspace A = \emptyset, \\
+      1, & \text{sonst}.
+    \end{cases}
+  \end{align*}
+  Zeigen Sie, dass $\mu^\ast$ eine äußere Maßfunktion ist und bestimmen Sie das System der $\mu^\ast$-messbaren Mengen.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+Sei $\mu: \mathfrak{C} \to \R$ eine Mengenfunktion auf dem Mengensystem $\emptyset \neq \mathfrak{C} \subseteq 2^\Omega$.
+
+\begin{itemize}
+
+  \item $\mu \Text{Maßfunktion} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\Forall A \in \mathfrak{C}: \mu(A) \geq 0,$
+    \item $\mu \enspace \sigma \text{-additiv}, \enspace
+    \text{d.h.}
+    \Forall (A_n) \in \mathfrak{C}, \text{disj.}, \text{höchst. abz.}:
+    A := \sum_{n \in \N} A_n \in \mathfrak{C} \Rightarrow
+    \mu(A) = \sum_{n \in \N} \mu(A_n)$
+  \end{itemize}
+
+  \item $\mu \Text{endliche Maßfunktion} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mu \enspace \text{Maßfunktion},$
+    \item $\Forall A \in \mathfrak{C}: \mu(A) < \infty$
+  \end{itemize}
+
+  \item $\mu \Text{sigmaendliche Maßfunktion} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mu \enspace \text{Maßfunktion},$
+    \item $\Forall A \in \mathfrak{C}: \Exists (A_n) \in \mathfrak{C}: A \subseteq \bigcup_{n \in \N} A_n, \Forall n \in \N: \mu(A_n) < \infty$
+  \end{itemize}
+
+\end{itemize}
+
+Sei $\mu^\ast: 2^\Omega \to \R$ eine weitere Mengenfunktion.
+
+\begin{itemize}
+
+  \item $\mu^\ast \Text{äußere Maßfunktion} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mu^\ast(\emptyset) = 0,$
+    \item $\Forall A \in 2^\Omega: \mu^\ast(A) \geq 0,$
+    \item $\Forall A, B \in 2^\Omega:
+    A \subseteq B \Rightarrow
+    \mu^\ast(A) \leq \mu^\ast(B),$
+    \item $\Forall A, (B_n) \in 2^\Omega:
+    A \subseteq \bigcup_{n \in \N} B_n \Rightarrow
+    \mu^\ast(A) \leq \sum_{n \in \N} \mu^\ast(B_n)$
+  \end{itemize}
+
+\end{itemize}
+
+Der Beweis des Fortsetzungssatz für Maßfunktionen ist nicht teil des Prüfungsstoffs. Dennoch, er besagt folgendes.
+
+\begin{theorem*}[Fortsetzungssatz für Maßfunktionen]
+
+$\mu$ sei ein Maß auf einem Semiring $\mathfrak{T}$. Dann kann man auf dem von $\mathfrak{T}$ erzeugten Sigmaring ein Maß finden, dass auf $\mathfrak{T}$ mit $\mu$ übereinstimmt. \\
+Wenn $\mu$ auf $\mathfrak{T}$ sigmaendlich ist, dann ist die Fortsetzung auf den erzeugten Sigmaring eindeutig bestimmt.
+
+\end{theorem*}
+
+Die ersten drei Eigenschaften sind offensichtlich. Seien zuletzt $A, (B_n) \in 2^\Omega$ mit $A \subseteq \bigcup_{n \in \N} B_n$. Falls $A = \emptyset$, sind wir (wegen der zweiten Eigenschaft) fertig und sonst $\Exists n \in \N: B_n \neq \emptyset$. \\
+
+Das System der Carathéodory-messbaren Mengen lautet wie folgt.
+
+\begin{align*}
+  \mathfrak{M}_{\mu^\ast} :=
+  \Bbraces
+  {
+    A \subseteq \Omega:
+    \Forall B \subseteq \Omega:
+    \mu^\ast(B) = \mu^\ast(B \cap A) + \mu^\ast(B \cap A^\complement)
+  }
+\end{align*}
+
+Weil dieses System eine $\sigma$-Algebra ist, sind $\emptyset, \Omega$ messbar. $A \subseteq \Omega$ mit $A \neq \emptyset, \Omega$, ist wegen $B := \Omega$ nicht messbar, weil $A^\complement \neq \emptyset$ und damit $\mathfrak{M}_{\mu^\ast} = \Bbraces{\emptyset, \Omega}$.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Gegeben sei die folgende Funktion auf $2^\R$:
+
+\begin{align*}
+  \mu^\ast(A) =
+  \begin{cases}
+    0 & \text{für} \enspace A = \emptyset, \\
+    1 & \text{wenn} \enspace 1 \leq |A| < \infty, \\
+    2 & \text{sonst}.
+  \end{cases}
+\end{align*}
+
+Zeigen Sie, dass $\mu^\ast$ eine äußere Maßfunktion ist und bestimmen Sie das System der $\mu^\ast$-messbaren Mengen.
+
+\end{exercise}
+
+\begin{solution}
+
+Die ersten drei Eigenschaften sind offensichtlich. Seien zuletzt $A, (B_n) \in 2^\Omega$ mit $A \subseteq \bigcup_{n \in \N} B_n$. Falls $A = \emptyset$, sind wir (wegen der zweiten Eigenschaft) fertig. Für $1 \leq |A| < \infty$, muss $\Exists n \in \N: 1 \leq |B_n| < \infty$. Ansonsten, sind die (unendlich vielen) $\omega \in A$ über ganz $(B_n)$ verteilt. Nun gilt aber $\Exists n \in \N: |B_n| = \infty$ oder $\Exists n \neq m \in \N: 1 \leq |B_n|, |B_m| < \infty$. \\
+
+Das System der Carathéodory-messbaren Mengen lautet wie folgt.
+
+\begin{align*}
+  \mathfrak{M}_{\mu^\ast} :=
+  \Bbraces
+  {
+    A \subseteq \Omega:
+    \Forall B \subseteq \Omega:
+    \mu^\ast(B) = \mu^\ast(B \cap A) + \mu^\ast(B \cap A^\complement)
+  }
+\end{align*}
+
+Weil dieses System eine $\sigma$-Algebra ist, sind $\emptyset, \Omega$ messbar. Sei also $A \subseteq \Omega$ mit $A \neq \emptyset, \Omega$.
+
+\begin{itemize}
+
+  \item[Fall $1$)] $A \enspace \text{endl.} \Rightarrow A^\complement \Text{unendl.}$
+  \begin{align*}
+    2 = \mu^\ast(\R) =
+    \underbrace{\mu^\ast(\R \cap A)}_1 +
+    \underbrace{\mu^\ast(\R \cap A^\complement)}_2 = 3
+  \end{align*}
+
+  \item[Fall $2$)] $A \enspace \text{unendl.}$
+  \begin{itemize}
+    \item[Fall a)] $A^\complement \enspace \text{endl.} \Rightarrow$ analog zu Fall $1$
+    \item[Fall b)] $A^\complement \enspace \text{unendl.}$
+    \begin{align*}
+      2 = \mu^\ast(\R) =
+      \underbrace{\mu^\ast(\R \cap A)}_2 +
+      \underbrace{\mu^\ast(\R \cap A^\complement)}_2 = 4
+    \end{align*}
+  \end{itemize}
+
+\end{itemize}
+
+Damit, muss $\mathfrak{M}_{\mu^\ast} = \Bbraces{\emptyset, \Omega}$.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie Ring, Semiring, monotones System, Dynkin-System, Algebra, Sigmaalgebra.
+  \item[(b)] Zeigen Sie: Wenn $\mathfrak{R}$ ein Ring ist, dann stimmt das von $\mathfrak{R}$ erzeugte monotone System mit dem erzeugten Sigmaring überein.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item $\emptyset \neq \mathfrak{R} \subseteq 2^\Omega \Text{Ring} : \Leftrightarrow \Forall A, B \in \mathfrak{R}:$
+  \begin{itemize}
+    \item $A \cup B \in \mathfrak{R}$
+    \item $A \setminus B \in \mathfrak{R}$
+  \end{itemize}
+
+  \item $\emptyset \neq \mathfrak{T} \subseteq 2^\Omega \Text{Semiring} : \Leftrightarrow \Forall A, B \in \mathfrak{T}:$
+  \begin{itemize}
+    \item $A \cap B \in \mathfrak{T},$
+    \item $A \subseteq B \Rightarrow \Exists C_1, \ldots, C_n \in \mathfrak{T}, \Text{disj.}:
+    B \setminus A = \sum_{i=1}^n C_i,$
+    \item $\Forall k = 1, \ldots, n:
+    A \cup \sum_{i=1}^k C_i \in \mathfrak{T}$
+  \end{itemize}
+
+  \item $\mathfrak{M} \subseteq 2^\Omega \Text{monotones System} : \Leftrightarrow \Forall (A_n) \in \mathfrak{M}, \Text{mon.}: \lim_{n \to \infty} A_n \in \mathfrak{M}$
+
+  \item $\emptyset \neq \mathfrak{D} \subseteq 2^\Omega \Text{Dynkin-System} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\Forall A, B \in \mathfrak{D}:
+    A \subseteq B \Rightarrow B \setminus A \in \mathfrak{D}$
+    \item $\Forall (A_n) \in \mathfrak{D}, \text{disj.}: \sum_{n \in \N} A_n \in \mathfrak{D}$
+    \item $\Omega \in \mathfrak{D}$
+  \end{itemize}
+
+  \item $\emptyset \neq \mathfrak{A} \subseteq 2^\Omega \Text{Algebra} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mathfrak{A} \enspace \text{Ring},$
+    \item $\Omega \in \mathfrak{A}$
+  \end{itemize}
+
+  \item $\emptyset \neq \mathfrak{A}_\sigma \subseteq 2^\Omega \Text{Sigmaalgebra} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\Forall (A_n) \in \mathfrak{A}_\sigma, \text{disj.}: \sum_{n \in \N} A_n \in \mathfrak{A}_\sigma$
+    \item $\Forall A, B \in \mathfrak{A}_\sigma: A \setminus B \in \mathfrak{A}_\sigma,$
+    \item $\Omega \in \mathfrak{A}_\sigma$
+  \end{itemize}
+
+\end{itemize}
+
+Der nächste Teil ist genau das \Quote{Monotone Class Theorem} und steht woanders!
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren sie Maßfunktion, endliche Maßfunktion, sigmaendliche Maßfunktion, äußere Maßfunktion, von einem Maß erzeugte äußere Maßfunktion.
+  \item[(b)] Zeigen Sie, dass eine äußere Maßfunktion auf dem System der messbaren Mengen ein Maß bildet.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Sei $\inf \emptyset := \infty$. Dann ist die äußere Maßfunktion, für ein Maß $\mu$ auf einem Ring $\mathfrak{R}$, definiert als
+
+\begin{align*}
+  \mu^\ast:
+  2^\Omega \to \bar \R,
+  A \mapsto \inf \Bbraces{\sum_{n \in \N} \mu(E_n): (E_n) \in \mathfrak{R}, A \subseteq \bigcup_{n \in \N} E_n}.
+\end{align*}
+
+Für den Rest: siehe Aufgabe 1 (a). \\
+
+(b) Siehe Skript.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] $\mathfrak{S}$ sei eine Sigmaalgebra über $\Omega$, $\mathfrak{C} \subset \Omega$. Zeigen Sie
+  \begin{align*}
+    \mathfrak{A}_\sigma(\mathfrak{S} \cup \Bbraces{C}) =
+    \Bbraces{(A \cap C) \cup (B \cap C^\complement), A, B \in \mathfrak{S}}.
+  \end{align*}
+  \item[(b)] $\mathfrak{R}$ sei ein Ring über $\Omega$. Zeigen Sie
+  \begin{align*}
+    \mathfrak{A}(\mathfrak{R}) =
+    \mathfrak{R} \cup \Bbraces{A: A^\complement \in \mathfrak{R}}.
+  \end{align*}
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) \Quote{$\supseteq$}: Seien $A, B \in \mathfrak{S}$, dann auch $A, B, C \in \mathfrak{A}_\sigma(\mathfrak{S} \cup \Bbraces{C})$. Als $\sigma$-Algebra ist diese bezüglich \Quote{$\cap$}, \Quote{$\cup$}, \Quote{$^\complement$} abgeschlossen. \\
+
+\Quote{$\subseteq$}: Die linke Seite ist die kleinste $\sigma$-Algebra, die $\mathfrak{S} \cup \Bbraces{C}$ enthält. Sei $\mathfrak{S}^\prime$ die rechte Seite, dann muss
+
+\begin{itemize}
+  \item $\mathfrak{S} \subseteq \mathfrak{S}^\prime$, wenn man $A = B$ wählt und
+  \item $C \in \mathfrak{S}^\prime$, wenn $A := \Omega$, $B := \emptyset$.
+\end{itemize}
+
+Wir weisen also noch nach, dass $\mathfrak{S}^\prime$ eine $\sigma$-Algebra ist.
+
+\begin{itemize}
+
+  \item \Quote{Enthält Grundmenge}: $\Omega \in \mathfrak{S} \subseteq \mathfrak{S}^\prime$
+
+  \item \Quote{Stabil bzgl. abzählbaren Vereinigungen}: Sei $(E_n) \in \mathfrak{S}^\prime$, dann $\Exists (A_n), (B_n) \in \mathfrak{S}:$
+  \begin{align*}
+    \bigcup_{n \in \N} \pbraces{A_n \cap C} \cup \pbraces{B_n \cap C^\complement} =
+    \Bigg ( \underbrace{\bigcup_{n \in \N} A_n}_{\in \mathfrak{S}} \cap C \Bigg ) \cup
+    \Bigg ( \underbrace{\bigcup_{n \in \N} B_n}_{\in \mathfrak{S}} \cap C^\complement \Bigg ) \cup
+    \in \mathfrak{S}^\prime
+  \end{align*}
+
+  \item \Quote{Stabil bzgl. Differenzen}: Diese filetieren wir in
+  \begin{itemize}
+
+    \item \Quote{Stabil bzgl. Komplement}: Sei $E \in \mathfrak{S}^\prime$, dann $\Exists A, B \in \mathfrak{S}:$
+    \begin{align*}
+      E^\complement
+      = \pbraces{\pbraces{A \cap C} \cup \pbraces{B \cap C^\complement}}^\complement
+      & = \pbraces{A^\complement \cup C^\complement} \cap \pbraces{B^\complement \cup C} \\
+      & = \underbrace
+          {
+            \pbraces{A^\complement \cap B^\complement}
+          }_{
+            \in \mathfrak{S}
+          } \cup
+          \underbrace
+          {
+            \pbraces{A^\complement \cap C} \cup \pbraces{C^\complement \cap B^\complement}
+          }_{
+            \in \mathfrak{S}^\prime
+          } \cup
+          \underbrace
+          {
+            \pbraces{C^\complement \cap C}
+          }_\emptyset
+          \in \mathfrak{S}^\prime
+    \end{align*}
+
+    \item \Quote{Stabil bzgl. (endlichen) Durchschnitten}: Seien $E_1, E_2 \in \mathfrak{S}^\prime$, dann $\Exists A_1, B_1, A_2, B_2 \in \mathfrak{S}:$
+    \begin{align*}
+      E_1 \cap E_2
+      & = \pbraces{\pbraces{A_1 \cap C} \cup \pbraces{B_1 \cap C^\complement}} \cup
+        \pbraces{\pbraces{A_2 \cap C} \cup \pbraces{B_2 \cap C^\complement}} \\
+      & = \pbraces{\pbraces{A_1 \cap C} \cap \pbraces{A_2 \cap C}} \cup
+          \underbrace
+          {
+            \Big (
+            \pbraces{B_1 \cap C^\complement} \cap \pbraces{A_2 \cap C}
+            \Big )
+          }_\emptyset \\
+      & \cup \underbrace
+          {
+            \Big (
+            \pbraces{A_1 \cap C} \cap \pbraces{B_2 \cap C^\complement}
+            \Big )
+            }_\emptyset
+            \pbraces
+          {
+            \pbraces{B_1 \cap C^\complement} \cap
+            \pbraces{B_2 \cap C^\complement}
+          } \\
+      & = \pbraces{A_1 \cap A_2 \cap C} \cup
+          \pbraces{B_1 \cap B_2 \cap C^\complement}
+          \in \mathfrak{S}^\prime
+    \end{align*}
+
+  \end{itemize}
+
+\end{itemize}
+
+(b) \Quote{$\supseteq$}: Offensichtlich, gilt $\mathfrak{A}(\mathfrak{R}) \supseteq \mathfrak{R}$. Weil Algebren die Grundmenge enthalten und stabil bzgl. Differenzen sind, sind sie es auch bzgl. Komplementen. Damit folgt auch $\mathfrak{A}(\mathfrak{R}) \supseteq \mathfrak{R}^\complement$, wobei $^\complement$ punktweise zu verstehen ist. \\
+
+\Quote{$\subseteq$}: So wie in (a), bemerkt man, dass die rechte Seite $\mathfrak{A} \supseteq \mathfrak{R}$ enhält und weist nach, dass $\mathfrak{A}$ eine Algebra ist.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie Ring, Semiring, monotones System, Dynkin-System.
+  \item[(b)] Gegeben sei der Wahrscheinlichkeitsraum $(\Omega, \mathfrak{S}, \P)$. Für $A \in \mathfrak{S}$ sei
+  \begin{align*}
+    \mathfrak{U}(A) = \Bbraces{B: \P(A \cap B) = \P(A) \P(B)}
+  \end{align*}
+  das System aller Mengen, die von $A$ unabhängig sind. Zeigen Sie, dass $\mathfrak{U}(A)$ ein Dynkin-System ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe 3 (a) \\
+
+(b)
+
+\begin{itemize}
+
+  \item \Quote{Stabil bzgl. Differenzen von Teilmengen}: Seien $B, C \in \mathfrak{U}(A)$ mit $B \subseteq C$, dann gilt Folgendes.
+  \begin{align*}
+    \P(A \cap C \setminus B)
+    & = \P(A) \P(C \setminus B)
+    \Leftrightarrow \\
+    \P(A) \P(B) + \P(A \cap C \setminus B)
+    & = \P(A) \P(C \setminus B) + \P(A) \P(B)
+      = \P(A) \P(C)
+    \Leftrightarrow \\
+    \P(A \cap C) + \P(A) \P(B)
+      =\P(A \cap B) + \P(A) \P(B) + \P(A \cap C \setminus B)
+    & = \P(A) \P(C) + \P(A \cap B)
+  \end{align*}
+
+  \item \Quote{Stabil bzgl. abzählbaren, disjunkten Vereinigungen}: Sei $(B_n) \in \mathfrak{D}$ disjunkt, dann
+  \begin{align*}
+    \P \pbraces{A \cap \sum_{n \in \N} B_n}
+    =
+    \sum_{n \in \N} \P(A \cap B_n)
+    =
+    \sum_{n \in \N} \P(A) \P(B_n)
+    =
+    \P(A) \P \pbraces{\sum_{n \in \N} B_n}.
+  \end{align*}
+
+  \item \Quote{Enthält Grundmenge}: $\P(A \cap \Omega) = \P(A) = \P(A) \P(\Omega)$
+
+\end{itemize}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: äußeres Maß, Messbarkeit nach Caratheodory, von einer Maßfunktion erzeugtes Maß.
+  \item[(b)] Zeigen Sie: wenn $\mu^\ast_n$ äußere Maße über derselben Menge sind, dann auch $\sup_n \mu^\ast_n$
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe 1 (a) und Aufgabe 4 (a). \\
+
+(b) Die ersten drei Eigenschaften sind offensichtlich. Seien also $A, (B_k) \in 2^\Omega$, mit $A \subseteq \bigcup_{k \in \N} B_k$, dann gilt Folgendes.
+\begin{align*}
+  \sum_{k \in \N} \sup_n \mu^\ast_n(B_k)
+  \geq
+  \sup_n \sum_{k \in \N} \mu^\ast_n(B_k)
+  \geq
+  \sup_n \mu^\ast_n(A)
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$\mu$ und $\nu$ seinen zwei Maße auf dem Ring $\mathfrak{R}$. Zeigen Sie:
+
+\begin{itemize}
+  \item[(a)] $(\mu + \nu)^\ast = \mu^\ast + \nu^\ast$
+  \item[(b)] $\mathfrak{M}_{\mu^\ast + \nu^\ast} \supseteq \mathfrak{M}_{\mu^\ast} \cap \mathfrak{M}_{\nu^\ast}$
+  \item[(c)] Falls $\mu$ und $\nu$ sigmaendlich sind, dann gilt im vorigen Punkt Gleichheit.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) \Quote{$\geq$}: Sei $A \subseteq \Omega$, dann folgt die eine Ungleichung wegen \\
+
+\begin{align*}
+  (\mu + \nu)^\ast(A)
+  & =
+    \inf \Bbraces{\sum_{n \in \N} (\mu + \nu)(E_n): (E_n) \in \mathfrak{R}, A \subseteq \sum_{n \in \N} E_n} \\
+  & \geq
+    \inf \Bbraces{\sum_{n \in \N} \mu(E_n): (E_n) \in \mathfrak{R}, A \subseteq \sum_{n \in \N} E_n} +
+    \inf \Bbraces{\sum_{n \in \N} \nu(E_n): (E_n) \in \mathfrak{R}, A \subseteq \sum_{n \in \N} E_n} \\
+  & =
+    \mu^\ast(A) + \nu^\ast(A).
+\end{align*}
+
+\Quote{$\leq$}: Für die Andere, finden wir für beliebiges $\epsilon > 0$ zwei disjunkte Überdeckungen $(B_n), (C_m) \in \mathfrak{R}$ von $A$, sodass
+
+\begin{align*}
+  \mu^\ast(A) \leq \sum_{n \in \N} \mu^\ast(B_n) \leq \mu^\ast(A) + \frac{\epsilon}{2}, \enspace
+  \nu^\ast(A) \leq \sum_{m \in \N} \nu^\ast(C_m) \leq \nu^\ast(A) + \frac{\epsilon}{2}.
+\end{align*}
+
+Weil $(B_n \cap C_m)$ wieder eine disjunkte Überdeckungen von $A$ ist, folgt
+
+\begin{align*}
+  (\mu + \nu)^\ast(A)
+  & \leq
+    \sum_{n, m \in \N} (\mu + \nu)^\ast(B_n \cap C_m)
+    \leq
+    \sum_{n \in \N} \sum_{m \in \N} \mu^\ast(B_n \cap C_m) +
+    \sum_{m \in \N} \sum_{n \in \N} \nu^\ast(B_n \cap C_m) \\
+  & \leq
+    \sum_{n \in \N} \mu^\ast(B_n) +
+    \sum_{m \in \N} \nu^\ast(C_m)
+    \leq
+    \mu^\ast(A) + \nu^\ast(A) + \epsilon.
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie: Falls $\mu_n$ für jedes $n$ eine Maßfunktion auf $(\Omega, \mathfrak{S})$ ist, so ist auch $\mu = \sum_n \mu_n$ eine Maßfunktion.
+
+\end{exercise}
+
+\begin{solution}
+
+Offensichtlich, ist $\Forall A \in \mathfrak{S}: \mu(A) \geq 0$. Es fehlt also nur noch die $\sigma$-Additivität von $\mu$. $\emptyset \in \mathfrak{S}$, also wählen wir $(A_k) \in \mathfrak{S}$ disjunkt.
+
+\begin{align*}
+  \mu(\sum_{k \in \N} A_k)
+  =
+  \sum_{n \in \N} \mu_n(\sum_{k \in \N} A_k)
+  =
+  \sum_{n \in \N} \sum_{k \in \N} \mu_n(A_k)
+  =
+  \sum_{k \in \N} \sum_{n \in \N} \mu_n(A_k)
+  =
+  \sum_{k \in \N} \mu(A_k)
+\end{align*}
+
+Dabei darf man die beiden Summen vertauschen, weil die Reihen entweder $\infty$ sind, oder absolut (also unbedingt) konvergieren. Der Rest ist die $\sigma$-Additivität von $\mu_n$ und pure Definition.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie: Falls $\mu_1$ und $\mu_2$ zwei äußere Maßfunktionen sind, so ist auch $\mu = \max(\mu_1, \mu_2)$ eine äußere Maßfunktion.
+
+\end{exercise}
+
+\begin{solution}
+
+Die ersten drei Punkte sind offensichtlich. Für die Subadditivität sei $A \subseteq \bigcap_{n \in \N} B_n$, dann
+
+\begin{align*}
+  \mu(A)
+  =
+  \max(\mu_1(A), \mu_2(A))
+  \leq
+  \max(\mu_1(\sum_{n \in \N} B_n), \mu_2(\sum_{n \in \N} B_n))
+  =
+  \mu(\sum_{n \in \N} B_n).
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei
+
+\begin{align*}
+  \mathfrak{T} = \Bbraces{A \subset \R: |A| \leq 2}.
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie: $\mathfrak{T}$ ist ein Semiring.
+  \item[(b)] Bestimmmen Sie den von $\mathfrak{T}$ erzeugten Ring bzw. Sigmaring.
+  \item[(c)] Was muss eine Mengenfunktion $\mu$ auf $\mathfrak{T}$ erfüllen, damit sie ein Maß ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a)
+
+\begin{itemize}
+
+  \item \Quote{Stabil bzgl. (endlichen) Durchschnitten}: Seien $A, B \in \mathfrak{T}$, so auch $A \cap B \in \mathfrak{T}$, weil
+  \begin{align*}
+    |A \cap B| \leq |A|, |B| \leq 2.
+  \end{align*}
+
+  \item \Quote{Enthält Leiterpflöcke} Seien $A, B \in \mathfrak{T}$, mit $A \subseteq B$. Nachdem $\Forall x \in \R: \Bbraces{x} \in \mathfrak{T}$, findet man disjunkte $C_1, \leq, C_n: B \setminus A = \sum_{i=1}^n C_i$.
+
+  \item \Quote{Enthält Unterleitern} Offensichtlich gilt auch $\Forall k = 1, \ldots, n: A \cup \sum_{i=1}^k \in \mathfrak{T}$.
+
+\end{itemize}
+
+(b) Dazu gibt es zwei wunderbare Resultate:
+
+\begin{itemize}
+
+  \item $\mathfrak{R}(\mathfrak{T})
+  = \Bbraces{\bigcup_{i=1}^n A_i: (A_i)_{i=1}^n \in \mathfrak{T}^n}
+  = \Bbraces{\sum   _{i=1}^n A_i: (A_i)_{i=1}^n \in \mathfrak{T}^n}
+  = \Bbraces{A \subset \R: |A| < \infty}$.
+
+  \item Laut dem \Quote{Monotone Class Theorem}, gilt
+  $\mathfrak{R}_\sigma(\mathfrak{T})
+  = \mathfrak{R}_\sigma(\mathfrak{R}(\mathfrak{T}))
+  = \mathfrak{M}(\mathfrak{R}(\mathfrak{T}))$.
+  Dieses Mengenssytem ist stabil bzgl. $\lim_{n \to \infty} A_n = \bigcup_{n \in \N} A_n$, also genau $\Bbraces{A \subset \R: |A| \leq \aleph_0}$.
+
+\end{itemize}
+
+(c) Siehe Aufgabe 1 (a).
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei $\Omega = (0, 1] \times (0, 1]$ und
+
+\begin{align*}
+  \mathfrak{T}
+  =
+  \Bbraces{(a, b] \times (0, 1]: 0 \leq a \leq b \leq 1}
+  \cup
+  \Bbraces{(0, 1] \times (a, b]: 0 \leq a \leq b \leq 1}
+\end{align*}
+
+Ferner sei
+
+\begin{align*}
+  \mu((a, b] \times (0, 1]) = \mu((0, 1] \times (a, b]) = b - a
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie: $\mu$ ist ein Inhalt auf $\mathfrak{T}$.
+  \item[(b)] Zeigen Sie $\mathfrak{T}$ ist kein Semiring.
+  \item[(c)] Zeigen Sie: Die Fortsetzung von $\mu$ zu einem Inhalt auf dem erzeugten Ring ist nicht eindeutig bestimmt.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Offensichtlich gilt $\Forall A \in \mathfrak{T}: \mu(A) \geq 0$. Zu zeigen, bleibt also nur noch die Additivität. Seien dazu $A_1, \ldots, A_n \in \mathfrak{T}$ disjunkt und $\sum_{i=1}^n A_i \in \mathfrak{T}$. $A_1, \ldots, A_n$ wollen wir aber darstellen, mit $\Forall i = 1, \ldots, n: \Exists a_i, b_i \in (0, 1):$
+
+\begin{align*}
+  A_i = (a_i, b_i] \times (0, 1]
+  \enspace \text{oder} \enspace
+  A_i = (0, 1] \times (a_i, b_i].
+\end{align*}
+
+Weil $A_1, \ldots, A_n$ ja disjunkt sind, müssen sie aber alle die selbe, einer der oberen, Darstellungen haben. Weil $\sum_{i=1}^n A_i \in \mathfrak{T}$, müssen $A_1, \ldots, A_n$ auch direkt an einender angrenzen. Das führt zu
+
+\begin{align*}
+  \sum_{i=1}^n \mu(A_i)
+  =
+  \sum_{i=1}^n b_i - a_i
+  =
+  \mu(\sum_{i=1}^n A_i).
+\end{align*}
+
+(b) $\mathfrak{T}$ ist nicht stabil bzgl. (endlichen) Durchschnitten, weil $\Forall a, b, c, d \in (0, 1): a \leq b$, $c \leq d \Rightarrow$
+
+\begin{align*}
+  (a, b] \times (0, 1]
+  \cap
+  (0, 1] \times (c, d]
+  =
+  (a, b] \times (c, d]
+  \notin \mathfrak{T}
+\end{align*}
+
+(c)
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig (gleichverteilt) gewählte Permuation von $n$ Elementen keinen Fixpunkt hat.
+
+\end{exercise}
+
+\begin{solution}
+
+Click \href{https://de.wikipedia.org/wiki/Fixpunktfreie_Permutation}{here}!
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Ein Würfel wird einmal geworfen, $X$ sei die erzielte Augenzahl. Anschließend werden in eine Urne $X$ weiße und eine schwarze Kugel gelegt, und eine Kugel wird gezogen. $A$ sei das Ereignis, dass die schwarze Kugel gezogen wurde. Bestimmen Sie
+
+\begin{itemize}
+  \item[(a)] $\mathbf{P}(A)$
+  \item[(b)] $\mathbf{P}(X = 3 | A)$
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Die Urne enthält also $X + 1$ Kugeln und damit ist $\mathbf{P}(A) = \frac{1}{X + 1}$. \\
+
+(b) Sei $H_i := [X = i]$, für $i = 1, \ldots, 6$, so ist $(H_i)_{i=1}^6$ ein vollständiges Ereignissystem. Offensichtlich, gilt $\Forall i = 1, \ldots, 6: \mathbf{P}(H_i) = \frac{1}{6}$. Nachdem $\mathbf{P}(A) > 0$, können wir das \Quote{Bayes'sche Theorem} anwenden und erhalten
+
+\begin{align*}
+  \mathbf{P}(H_3 | A)
+  =
+  \frac
+  {\mathbf{P}(H_3) \mathbf{P}(A | H_3)}
+  {\sum_{i=1}^6 \mathbf{P}(H_i) \mathbf{P}(A | H_i)}
+  =
+  \frac
+  {\frac{1}{3+1}}
+  {\sum_{i=1}^6 \frac{1}{i+1}}
+  = \frac{35}{223}.
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Stellen Sie fest, welche der folgenden Mengenfunktionen auf $2^\R$ äußere Maße sind. Bestimmen Sie für die äußeren Maßfunktionen jeweils das System der $\mu^\ast$-messbaren Mengen.
+
+\begin{itemize}
+  \item[(a)] $\mu^\ast(A) = |A|$
+  \item[(b)]
+  \begin{align*}
+    \mu^\ast(A) =
+    \begin{cases}
+      0 & \text{wenn} \enspace |A| < \infty, \\
+      1 & \text{sonst},
+    \end{cases}
+  \end{align*}
+  \item[(c)]
+  \begin{align*}
+    \mu^\ast(A) =
+    \begin{cases}
+      0 & \text{wenn} \enspace \card(A) \leq \aleph_0, \\
+      1 & \text{sonst},
+    \end{cases}
+  \end{align*}
+  \item[(d)]
+  \begin{align*}
+    \mu^\ast(A) =
+    \begin{cases}
+      0 & \text{wenn} \enspace A = \emptyset, \\
+      2 & \text{wenn} \enspace A = \R, \\
+      1 & \text{sonst},
+    \end{cases}
+  \end{align*}
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Offensichtlich, ist $\mu^\ast$ ein äußeres Maß und $\mathfrak{M}_{\mu^\ast} = 2^\R$. \\
+
+(b) Seien $A := \N$ und $B_n := \Bbraces{n}$, $n \in \N$. Dann gilt aber $\mu^\ast(A) = 1$ und $\Forall n \in \N: \mu^\ast(B_n) = 0$ und somit $\mu^\ast(A) \nleq \sum_{n \in \N} \mu^\ast(B_n)$. \\
+
+(c) Die ersten drei Eigenschaften sind offensichtlich. Seien also $A, (B_n) \in 2^\R$, mit $A \subseteq \bigcup_{n \in \N} B_n$. Wenn $\card(A) \leq \aleph_0$, sind wir fertig. Ansonsten, $\Exists n \in \N: \card(B_n) > \aleph_0$ weil die obere Vereinigung (nur) abzählbar ist. \\
+
+(d)
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: Ring, Semiring, Sigmaring, Algebra, Sigmaalgebra, Dynkin-System, monotones System.
+  \item[(b)] Von welchem Typ sind folgende Mengensysteme über $\Omega = \R$?
+  \begin{align*}
+    \mathfrak{C}_1 & = \Bbraces{A \subseteq \R: |A| < \infty}, \\
+    \mathfrak{C}_2 & = \Bbraces{A \subseteq \R: |A| < 5}, \\
+    \mathfrak{C}_3 & = \Bbraces{A \subseteq \R: |A| < \infty, \enspace \text{gerade}}, \\
+    \mathfrak{C}_4 & = \Bbraces{A \subseteq \R: \card(A) \leq \aleph_0}, \\
+  \end{align*}
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) $\emptyset \neq \mathfrak{R}_\sigma \subseteq 2^\Omega \Text{Sigmaring} : \Leftrightarrow$
+\begin{itemize}
+  \item $\Forall (A_n) \in \mathfrak{R}_\sigma, \text{disj.}: \sum_{n \in \N} A_n \in \mathfrak{R}_\sigma$
+  \item $\Forall A, B \in \mathfrak{R}_\sigma: A \setminus B \in \mathfrak{R}_\sigma,$
+\end{itemize}
+
+Für den Rest: Siehe Aufgabe 3 (a). \\
+
+(b)
+
+\begin{itemize}
+
+  \item $\mathfrak{C}_1$ ist
+  \begin{itemize}
+    \item ein Ring, weil mit $|A|, |B| < \infty$, auch $|A \cup B|, |A \setminus B| < \infty$,
+    \item ein Semiring, weil Ring,
+    \item kein Sigmaring, weil $\Forall n \in \N: \Bbraces{n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$,
+    \item keine Algebra, weil $\R \notin \mathfrak{C}_1$,
+    \item keine Sigmaalgebra,  weil kein Algebra,
+    \item kein Dynkin-System,  weil kein monotones System,
+    \item und kein monotones System, weil $\Forall n \in \N: \Bbraces{1, \leq, n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$.
+  \end{itemize}
+
+  \item$\mathfrak{C}_2$ ist
+  \begin{itemize}
+    \item kein Ring, weil $|A|, |B| < 5$, im Allgemeinen nicht $|A \cup B| < 5$ folgt,
+    \item ein Semiring, weil $\mathfrak{C}_2$ stabil bzgl. (endlicher) Durchschnitte ist, und $\Forall x \in \R: \Bbraces{x} \in \mathfrak{C}_2$, also \Quote{Leitern} gebaut werden können, bzgl. denen $\mathfrak{C}_2$ stabil ist,
+    \item kein Sigmaring,  weil kein Ring,
+    \item keine Algebra,  weil kein Ring,
+    \item keine Sigmaalgebra, weil kein Algebra,
+    \item kein Dynkin-System, weil $\Forall n \in \N: \Bbraces{n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$,
+    \item ein monotones System, weil jede monotone Mengenfolge, nur höchstens $5$ verschiedene Folgenglieder haben kann, also fast überall konstant ist.
+  \end{itemize}
+
+\end{itemize}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: Maßfunktion, endliche Maßfunktion, sigmaendliche Maßfunktion, äußere Maßfunktion, von einem Maß auf einem Ring erzeugte äußere Maßfunktion, messbare Menge.
+  \item[(b)] Zeigen Sie, dass das System $\mathfrak{M}$ der $\mu^\ast$-messbaren Mengen eine Sigmaalgebra ist, und dass die Einschränkung von $\mu^\ast$ auf $\mathfrak{M}$ ein Maß ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe 4. \\
+
+(b) Siehe Skript.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: Maßfunktion, endliche Maßfunktion, sigmaendliche Maßfunktion, äußere Maßfunktion, von einem Maß auf einem Ring erzeugte äußere Maßfunktion.
+  \item[(b)] $\mu$ und $\nu$ seien zwei Maßfunktionen auf dem Ring $\mathfrak{R}$. Zeigen Sie:
+  \begin{align*}
+    (\mu + \nu)^\ast = \mu^\ast + \nu^\ast
+  \end{align*}
+  und
+  \begin{align*}
+    \mathfrak{M}_{\mu^\ast} \cap \mathfrak{M}_{\nu^\ast}
+    \subseteq
+    \mathfrak{M}_{\mu^\ast + \nu^\ast}.
+  \end{align*}
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe 4. \\
+
+(b) Siehe Aufgabe 8.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: Ring, Semiring, Sigmaring, Algebra, Sigmaalgebra, Dynkin-System.
+  \item[(b)] $\mu$ und $\nu$ seien zwei Wahrscheinlichkeitsmaße auf dem Messraum $(\Omega, \mathfrak{S})$. Zeigen Sie, dass
+  \begin{align*}
+    \mathfrak{D} = \Bbraces{A \in \mathfrak{S} : \mu(A) = \nu(A)}
+  \end{align*}
+  ein Dynkin-System ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe (a).
+
+(b)
+
+\begin{itemize}
+
+  \item \Quote{Stabil bzgl. Differenzen von Teilmengen}: Seien $A, B \in \mathfrak{D}$ mit $A \subseteq B$, dann gilt Folgendes.
+  \begin{align*}
+    \mu(B \setminus A)
+    & =
+    \nu(B \setminus A)
+    \Leftrightarrow \\
+    \nu(A) + \mu(B \setminus A)
+    & =
+    \nu(B \setminus A) + \nu(A)
+    =
+    \nu(B)
+    \Leftrightarrow \\
+    \nu(A) + \mu(B)
+    =
+    \mu(A) + \nu(A) + \mu(B \setminus A)
+    & =
+    \nu(B) + \mu(A)
+  \end{align*}
+
+  \item \Quote{Stabil bzgl. abzählbaren, disjunkten Vereinigungen}: Sei $(A_n) \in \mathfrak{D}$ disjunkt, dann
+  \begin{align*}
+    \mu(\sum_{n \in \N} A_n)
+    =
+    \sum_{n \in \N} \mu(A_n)
+    =
+    \sum_{n \in \N} \nu(A_n)
+    =
+    \nu(\sum_{n \in \N} A_n).
+  \end{align*}
+
+  \item \Quote{Enthält Grundmenge}: $\mu(\Omega) = 1 = \nu(\Omega)$
+
+\end{itemize}
+
+\end{solution}
