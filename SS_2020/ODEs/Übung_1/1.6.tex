@@ -2,19 +2,19 @@
 
 Das \Quote{mathematische Pendel} wird beschrieben durch die ODE
 \begin{align*}
-  \phi^\primeprime(t) + \omega^2 \sin{\phi(t)} = 0,
+  \varphi^\primeprime(t) + \omega^2 \sin{\varphi(t)} = 0,
   \quad
   \omega = \frac{g}{\ell},
 \end{align*}
 
-wobei $g$ die Erdbeschleunigung und $\ell$ die Fadenlänge des Pendels ist. Die Funktion $\phi: t \mapsto \phi(t)$ beschreibt die Auslenkung des Pendels.
+wobei $g$ die Erdbeschleunigung und $\ell$ die Fadenlänge des Pendels ist. Die Funktion $\varphi: t \mapsto \varphi(t)$ beschreibt die Auslenkung des Pendels.
 
 \begin{itemize}
 
   \item[\textbf{a)}] Schreiben Sie die ODE in ein System 1. Ordnung um. Hat Ihre neue Variable eine physikalische
   Bedeutung?
 
-  \item[\textbf{b)}] Geben Sie eine Erhaltungsgröße an. Begrunden Sie, warum es sich um solche handelt.
+  \item[\textbf{b)}] Geben Sie eine Erhaltungsgröße an. Begründen Sie, warum es sich um solche handelt.
 
 \end{itemize}
 
@@ -22,6 +22,60 @@ wobei $g$ die Erdbeschleunigung und $\ell$ die Fadenlänge des Pendels ist. Die 
 
 \begin{solution}
 
-Trivial!
+(a)
+
+\begin{align*}
+  \psi(t) & := \varphi^\prime(t) \\
+  \psi^\prime(t) + \omega^2 \sin{\varphi(t)} & = 0
+\end{align*}
+
+% \input{pendel.tex}
+
+$\psi$ ist die Winkelgeschwindigkeit des Pendels. \\
+
+(b) Die Energie ist eine Erhaltungsgröße. Um das nachzuweisen, stellen wir folgendes Modell auf.
+
+\begin{itemize}
+  \item
+  $E(t) := E_\Text{pot}(t) + E_\Text{kin}(t)
+  \ldots \text{Energie des Pendels}$
+  \item
+  $E_\Text{pot} := m \cdot g \cdot h(t)
+  \ldots \text{potentielle Energie des Pendels}$
+  \item
+  $E_\Text{kin} := \Frac{2}{m \cdot v(t)^2}
+  \ldots \text{kinetische Energie des Pendels}$
+  \item
+  $m \in \R^+
+  \ldots \text{Masse des Pendels}$
+  \item
+  $h(t) := \ell - \ell \cdot \cos{\varphi(t)} + h_0
+  \ldots \text{Höhe des Pendels}$
+  \item
+  $h_0 \in \R^+
+  \ldots \text{Höhe des Pendels im Ruhezustand (d.h. minimale Höhe)}$
+  \item
+  $v(t) := \psi(t) \cdot \ell
+  \ldots \text{Tangentialgeschwindigkeit des Pendels}$
+\end{itemize}
+
+Die Ableitung der Funktion $E$ verschwindet.
+
+\begin{multline*}
+  E^\prime(t)
+  =
+  E_\Text{pot}^\prime(t) + E_\Text{kin}^\prime(t)
+  =
+  m g h^\prime(t) + \Frac{2}{m \pbraces{v(t)^2}^\prime}
+  =
+  m g \ell \sin{\varphi(t) \varphi^\prime(t)} +
+  \Frac{2}{2 m v(t) v^\prime(t)} \\
+  =
+  m g \ell \sin{\varphi(t) \varphi^\prime(t)} +
+  m \varphi^\prime(t) \ell \varphi^\primeprime(t) \ell
+  =
+  m g \ell \sin{\varphi(t) \varphi^\prime(t)} -
+  m \varphi^\prime(t) \ell \frac{g}{\ell} \sin{\varphi(t)} \ell = 0
+\end{multline*}
 
 \end{solution}

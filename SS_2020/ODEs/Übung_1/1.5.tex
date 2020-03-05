@@ -3,8 +3,8 @@
 Sei $\epsilon > 0$. Betrachten Sie die \Quote{skalierte} Lotka-Volterra Gleichung
 
 \begin{align*}
-  x^\prime(t) & = x(t) - x(t)y(t) \\
-  y^\prime(t) & = -\epsilon y(t) + x(t)y(t).
+  x^\prime(t) & = x(t) - x(t) y(t) \\
+  y^\prime(t) & = -\epsilon y(t) + x(t) y(t).
 \end{align*}
 
 Zeigen Sie: Die Funktion $(x, y) \mapsto \phi(x, y) := x + y - \epsilon \ln{x} - \ln{y}$ ist eine Erhaltungsgröße, d.h. für Lösungen $t \mapsto (x(t), y(t))$ der Lotka-Volterra-Gleichung gilt, daß $t \mapsto \phi(x(t), y(t))$ konstant ist.
@@ -13,6 +13,34 @@ Zeigen Sie: Die Funktion $(x, y) \mapsto \phi(x, y) := x + y - \epsilon \ln{x} -
 
 \begin{solution}
 
-Trivial!
+Die Ableitung der Funktion $f: t \mapsto \phi(x(t), y(t))$ verschwindet.
+
+\begin{align*}
+  f^\prime(t)
+  & =
+  x^\prime(t) +
+  y^\prime(t) -
+  \epsilon
+  \frac{1}{x(t)} x^\prime(t) -
+  \frac{1}{y(t)} y^\prime(t) \\
+  & =
+  x(t) - x(t) y(t) -
+  \epsilon
+  y(t) + x(t) y(t) -
+  \epsilon
+  \frac{1}{x(t)}
+  \pbraces
+  {
+    x(t) - x(t) y(t)
+  } -
+  \frac{1}{y(t)}
+  \pbraces
+  {
+    -\epsilon
+    y(t) + x(t) y(t)
+  } \\
+  & =
+  x(t) - \epsilon y(t) - \epsilon + \epsilon y(t) + \epsilon - x(t) = 0
+\end{align*}
 
 \end{solution}

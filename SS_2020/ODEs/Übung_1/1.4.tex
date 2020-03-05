@@ -12,6 +12,41 @@ Zeigen Sie: Die Menge aller Lösungen (genauer: zu gegebenem offenen Intervall $
 
 \begin{solution}
 
-Trivial!
+\begin{align*}
+  V := \pbraces{\R^d}^I,
+  \quad
+  U := \Bbraces
+  {
+    \mathbf{y} \in C^1(I; \R^d):
+    \mathbf{y}^\prime + \mathbf{A} \mathbf{y} = 0
+  }
+\end{align*}
+
+Wir zeigen, dass $U$ ein linearer Unterraum des Vektorraumes $V$ über $\R$ ist.
+
+\begin{itemize}
+
+  \item $0 \in U
+  \Rightarrow
+  U \neq \emptyset$
+
+  \item $\Forall \mathbf{y}_1, \mathbf{y}_2 \in U, \Forall x \in \R:$
+  \begin{align*}
+    (\mathbf{y}_1 + x \mathbf{y}_2)^\prime +
+    \mathbf{A}
+    (\mathbf{y}_1 + x \mathbf{y}_2)
+    =
+    \underbrace{\pbraces{
+      \mathbf{y}_1^\prime + \mathbf{A} \mathbf{y}_1
+    }}_0 +
+    x
+    \underbrace{\pbraces{
+    \mathbf{y}_2^\prime + \mathbf{A} \mathbf{y}_2
+    }}_0
+    = 0 \\
+    \Rightarrow \mathbf{y}_1 + x \mathbf{y}_2 \in U
+  \end{align*}
+
+\end{itemize}
 
 \end{solution}
