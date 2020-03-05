@@ -1,0 +1,491 @@
+\setcounter{exercise}{0}
+
+\section{Lebesgue-Stieltjes Maße}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{align*}
+  F(x, y) =
+  \begin{cases}
+    x y^2 & \text{falls} \enspace y > 0. \\
+    0     & \text{sonst}
+  \end{cases}
+\end{align*}
+
+ist eine zweidimensionale Verteilungsfunktion. Bestimmen Sie das Maß des Einheitskreises.
+
+\end{exercise}
+
+\begin{solution}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: Tatsächlich gilt sogar $\Forall x \in \R: F(x, 0 + 0) = F(x, 0) = 0$.
+
+  \item \Quote{nichtnegativer Differenzenoperator}: Seien $a, b \in \R^2$, mit $a \leq b$.
+  \begin{align*}
+    \Delta^{(a, b)} F(x)
+    & =
+    \Delta_1^{(a_1, b_1)}
+    \Delta_2^{(a_2, b_2)}
+    F(x) \\
+    & =
+    \Delta_1^{(a_1, b_1)}
+    \pbraces{F(x_1, b_2) - F(x_1, a_2)} \\
+    & =
+    \pbraces{\Delta_1^{(a_1, b_1)} F(x_1, b_2)} -
+    \pbraces{\Delta_1^{(a_1, b_1)} F(x_1, a_2)} \\
+    & =
+    \pbraces{F(b_1, b_2) - F(a_1, b_2)} -
+    \pbraces{F(b_1, a_2) - F(a_1, a_2)} \\
+    & =
+    \pbraces{b_1 b_2^2 - a_1 b_2^2} -
+    \pbraces{b_1 a_2^2 - a_1 a_2^2} \\
+    & =
+    b_2^2 (b_1 - a_1) - a_2^2 (b_1 - a_1) \\
+    & =
+    (b_1 - a_1) (b_2^2 - a_2^2)
+    \geq
+    0
+  \end{align*}
+
+\end{itemize}
+
+Die untere Hälfte des Einheitskreises, hat offensichtlich Maß Null. Die Obere, werden wir mit Untersummen approximieren. Dazu betrachten wir vorerst die rechte Hälfte.
+
+\begin{align*}
+  \sum_{i=0}^{n-1}
+  \mu_F
+  \pbraces
+  {
+    \Bigg ]
+      \pbraces{\frac{i}{n}, 0},
+      \pbraces{\frac{i+1}{n}, \sqrt{1 - \pbraces{\frac{i+1}{n}}^2}}
+    \Bigg ]
+  }
+  =
+  \sum_{i=0}^{n-1}
+  \pbraces{\frac{i+1}{n} - \frac{i}{n}}
+  \pbraces{\sqrt{1 - \pbraces{\frac{i+1}{n}}^2}^2 - 0^2} \\
+  \xrightarrow[n \to \infty]{}
+  \Int[0][1]{1 - x^2}{x}
+  =
+  1 - \frac{x^3}{3} \Bigg |_0^1
+  =
+  \frac{2}{3}
+\end{align*}
+
+Nachdem dieser Ausdruck symmetrisch um die $y$-Achse ist (Quadrat), gilt dieser auch für die linke Hälfte und damit $\mu_F(B(0, 1)) = \frac{4}{3}$.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie Maßfunktion, Lebesgue-Stieltjes Maßfunktion, Verteilungsfunktion.
+  \item[(b)] Zeigen Sie, dass jede nichtfallende und rechtstetige Funktion Verteilungsfunktion eines Lebesgue-Stieltjes Maßes auf $\R$ ist.
+  \item[(c)] Zeigen Sie, dass $F(x) = \min(x_1, x_2)$ zweidimensionale Verteilungsfunktion ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Siehe Aufgabe 1 (a), Kapitel 1 und Aufgabe 11 (a) Kapitel 2. \\
+
+(b) Siehe Skript! \\
+
+(c) Siehe Aufgabe 6.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{align*}
+  F(x, y) = \min(x, y)
+\end{align*}
+
+ist eine zweidimensionale Verteilungsfunktion, und bestimmen Sie $\mu_F(]0, 1] \times ]0, 1])$ und $\mu_F(\Bbraces{(x, x) : 0 < x \leq 1})$.
+
+\end{exercise}
+
+\begin{solution}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $\min(x, y) = \Frac{2}{x + y - |x - y|}$
+
+  \item \Quote{nichtnegativer Differenzenoperator}: Seien $a, b \in \R^2$, mit $a \leq b$.
+  \begin{align*}
+    \Delta^{(a, b)} \min
+    =
+    \min(b_1, b_2) - \min(a_1, b_2) - \min(b_1, a_2) + \min(a_1, a_2)
+  \end{align*}
+
+\end{itemize}
+
+Es könnte jetzt eine langweilige Fallunterscheidung folgen. Wir führen diese aber nicht zur Gänze aus.
+
+\begin{itemize}
+  \item[Fall 1:] $b_1 \leq b_2 \Rightarrow a_1 \leq b_2$
+  \begin{itemize}
+    \item[Fall a:] $a_1 \leq a_2 \Rightarrow a_1 \leq b_2$
+    \begin{itemize}
+      \item[Fall i:] $a_2 \leq b_1 \Rightarrow
+      \Delta^{(a, b)} \min = b_1 - a_1 - a_2 + a_1 \geq 0$
+      \item[Fall ii:] $b_1 \leq a_2 \Rightarrow
+      \Delta^{(a, b)} \min = b_1 - a_1 - b_1 + a_1 \geq 0$
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+Wir berechnen nun die Maße der Mengen
+
+\begin{align*}
+  A := ]0, 1]^2, \\
+  B := \Bbraces{(x, x): 0 < x \leq 1}.
+\end{align*}
+
+\begin{itemize}
+
+  \item $\mu(A) =
+  \Delta^{(0, 0), (1, 1)} \min =
+  \min(1, 1) - \min(0, 1) - \min(1, 0) + \min(0, 0) = 1$
+
+  \item Wir betrachten die Überdeckungen von
+  \begin{align*}
+    B \supseteq B_n
+    :=
+    \sum_{i=1}^n
+    \left ] \frac{i-1}{n}, \frac{i}{n} \right ]^2
+    \xrightarrow{n \in \N^2} B.
+  \end{align*}
+  Weil $(B_{n_k})$ mit $n_k := k^2$ monoton gegen $B$ fällt, kann man die Stetigkeit von oben ausnützen.
+  \begin{align*}
+    \mu(B)
+    =
+    \mu \pbraces{\lim_{n \in \N^2} B_n}
+    =
+    \lim_{n \in \N^2} \mu(B_n)
+    =
+    \lim_{n \in \N^2} \sum_{i=1}^n \mu \pbraces
+    {\left ] \frac{i-1}{n}, \frac{i}{n} \right ]^2}
+    = \\
+    \lim_{n \in \N^2} \sum_{i=1}^n
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} -
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} -
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} +
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}}
+    = 0
+  \end{align*}
+
+\end{itemize}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{align*}
+  F(x, y) =
+  \begin{cases}
+    x y^2 & \text{falls} \enspace y > 0. \\
+    0     & \text{sonst}
+  \end{cases}
+\end{align*}
+
+ist eine zweidimensionale Verteilungsfunktion. Bestimmen Sie das Maß des Einheitskreises.
+
+\end{exercise}
+
+\begin{solution}
+
+Siehe Aufgabe 1.
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Gegeben ist die Funktion $F: \R \to \R:$
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+    x       & \text{für} \enspace x < 0 \\
+    x^2 + 1 & \text{für} \enspace 0 \leq x < 1, \\
+    2x      & \text{für} \enspace 1 \leq x < 3, \\
+    8       & \text{für} \enspace x \geq 3.
+  \end{cases}
+\end{align*}
+
+Weisen Sie nach, dass $F$ eine Verteilungsfunktion ist, und bestimmen Sie $\mu_F(]0, 1])$, $\mu_F([0, 1])$, $\mu_F(]0, 1[)$ und $\mu_F(\Q)$.
+
+\end{exercise}
+
+\begin{solution}
+
+Nachweisen:
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0, 1, 3: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0, 1, 3: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+Bestimmen:
+
+\begin{itemize}
+
+  \item $\mu_F(]0, 1]) =$
+  \begin{align*}
+    F(1) - F(0) = 2 - 1 = 1
+  \end{align*}
+
+  \item $\mu_F([0, 1]) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcap_{n \in \N} \left ] 0 - \frac{1}{n}, 1 \right]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{ \left ] 0 - \frac{1}{n}, 1 \right]}
+    =
+    \lim_{n \in \N} F(1) - F \pbraces{0 - \frac{1}{n}}
+    =
+    \lim_{n \in \N} 2 + \frac{1}{n} = 2
+  \end{align*}
+
+  \item $\mu_F(]0, 1[) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcup_{n \in \N} \left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} F \pbraces{1 - \frac{1}{n}} - F(0)
+    =
+    \lim_{n \in \N} \pbraces{1 - \frac{1}{n}}^2 - 1 = 0
+  \end{align*}
+
+  \item $\mu_F(\Q) =$
+  \begin{align*}
+    \mu_F \pbraces{\sum_{q \in \Q} \Bbraces{q}}
+    & =
+    \sum_{q \in \Q} \mu_F \pbraces
+    {\bigcap_{n \in \N} \left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} \lim_{n \in \N} \mu_F \pbraces
+    {\left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} F(q - 0) - F(q) \\
+    & =
+    \sum_{x = 0, 1, 3} (F(x) - F(x - 0)) \\
+    & =
+    (1 - 0) + (2 - 2) + (8 - 6) = 3
+  \end{align*}
+
+\end{itemize}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Gegeben ist die Funktion $F: \R \to \R:$
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+    0   & \text{wenn} \enspace x < 0, \\
+    1   & \text{wenn} \enspace 0 \leq x < 1, \\
+    x^2 & \text{wenn} \enspace 1 \leq x < 2, \\
+    5   & \text{wenn} \enspace x \geq 2.
+  \end{cases}
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie, dass $F$ eine Verteilungsfunktion ist.
+  \item[(b)] Bestimmen Sie $\mu_F(]0, 1[)$, $\mu_F([0, 2])$, $\mu_F(\Q)$.
+  \item[(c)] Bestimmen Sie $\Int{e^x}{\mu_F(x)}$.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a)
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0, 1, 2: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0, 1, 2: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+(b)
+
+\begin{itemize}
+
+  \item $\mu_F(]0, 1[) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcup_{n \in \N} \left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} F \pbraces{1 - \frac{1}{n}} - F(0)
+    = 1 - 1 = 0
+  \end{align*}
+
+  \item $\mu_F([0, 2]) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcap_{n \in \N} \left ] 0 - \frac{1}{n}, 2 \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0 - \frac{1}{n}, 2 \right ]}
+    =
+    \lim_{n \in \N} F(2) - F \pbraces{0 - \frac{1}{n}}
+    =
+    5 - 0 = 5
+  \end{align*}
+
+  \item $\mu_F(\Q) =$
+  \begin{align*}
+    \mu_F \pbraces{\sum_{q \in \Q} \Bbraces{q}}
+    & =
+    \sum_{q \in \Q} \mu_F \pbraces
+    {\bigcap_{n \in \N} \left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} \lim_{n \in \N} \mu_F \pbraces
+    {\left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} F(q - 0) - F(q) \\
+    & =
+    \sum_{x = 0, 1, 2} (F(x) - F(x - 0)) \\
+    & =
+    (1 - 0) + (1 - 1) + (5 - 4) = 2
+  \end{align*}
+
+\end{itemize}
+
+(c) Seien $f = \exp$ und $a_1, \ldots, a_n$ die Sprünge von $F$, sowie $a_0 = - \infty$ und $a_{n+1} = \infty$.
+
+\begin{align*}
+  \Int{f}{\mu_F}
+  =
+  \sum_{i=1}^{n+1} \Int[a_{i-1}][a_i]{f(x) F^\prime(x)}{x} +
+  \sum_{i=1}^n f(a_i) (F(a_i) - F(a_i - 0))
+\end{align*}
+
+Also ...
+
+\begin{align*}
+  \Int{e^x}{\mu_F(x)}
+  & =
+  \underbrace{\Int[-\infty][0]{e^x 0}{x}}_0
+  +
+  \underbrace{\Int[0][1]{e^x 0}{x}}_0
+  +
+  \Int[1][2]{e^x 2x}{x}
+  +
+  \underbrace{\Int[2][\infty]{e^x 0}{x}}_0 \\
+  & +
+  e^0 \underbrace{(F(0) - F(0 - 0))}_{= 1-0 = 1}
+  +
+  e^1 \underbrace{(F(1) - F(1 - 0))}_{= 1-1 = 0}
+  +
+  e^2 \underbrace{(F(2) - F(2 - 0))}_{= 5-4 = 1} \\
+  & =
+  e^x 2x |_1^2 - 2 \Int[1][2]{e^x}{x} + 1 + e^2 \\
+  & =
+  (4e^2 - 2e) - 2 (e^2 - e) + 1 + e^2
+  =
+  1 + 3e^2
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie Lebesgue-Stieltjes Maß, Verteilungsfunktion.
+  \item[(b)] $F_1$ und $F_2$ seien zwei eindimensionale Verteilungsfunktionen. Zeigen Sie, dass
+  \begin{align*}
+    F(x_1, x_2) = F_1(x_1) F_2(x_2)
+  \end{align*}
+  eine zweidimensionale Verteilungsfunktion ist.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a)
+
+\begin{itemize}
+
+  \item $\mu \enspace \text{Lebesuge-Stiletjes Maß} : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mu: (\R^k, \mathfrak{B}_k) \to \R, \text{Maß}$
+    \item $\Forall A \in \mathfrak{B}_k, \text{beschr.}: \mu(A) < \infty$
+  \end{itemize}
+
+  \item $F: \R \to \R, \text{Verteilungsfunktion von} \enspace \mu : \Leftrightarrow$
+  \begin{itemize}
+    \item $\mu \enspace \text{Lebesgue-Stieltjes Maß}$
+    \item $\Forall a \leq b \in \R: \mu((a, b]) = F(b) - F(a)$
+  \end{itemize}
+
+\end{itemize}
+
+(b)
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist als Produkt der rechtsstetigen $F_1, F_2$ wieder rechtsstetig.
+
+  \item \Quote{nichtnegativer Differenzenoperator}: Seien $a, b \in \R^2$, mit $a \leq b$.
+  \begin{align*}
+    \Delta^{(a, b)} F
+    & =
+    F(b_1, b_2) - F(a_1, b_2) - F(b_1, a_2) + F(a_1, a_2) \\
+    & =
+    F_1(b_1) F_2(b_2) -
+    F_1(a_1) F_2(b_2) -
+    F_1(b_1) F_2(a_2) +
+    F_1(a_1) F_2(a_2) \\
+    & =
+    F_1(b_1) (F_2(b_2) - F_2(a_2)) -
+    F_1(a_1) (F_2(b_2) - F_2(a_2)) \\
+    & =
+    \underbrace{(F_1(b_1) - F_1(a_1))}_{\geq 0}
+    \underbrace{(F_2(b_2) - F_2(a_2))}_{\geq 0}
+    \geq 0
+  \end{align*}
+
+\end{itemize}
+
+\end{solution}

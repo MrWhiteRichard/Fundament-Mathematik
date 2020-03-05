@@ -1,0 +1,352 @@
+\setcounter{exercise}{0}
+
+\section{Das Integral}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+    0         & \text{für} \enspace x < 0 \\
+    x         & \text{für} \enspace 0 \leq x < 1 \\
+    (x + 1)^2 & \text{für} \enspace 1 \leq x \leq 2 \\
+    0         & \text{für} \enspace x \geq 2
+  \end{cases}
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie: $F$ ist eine Verteilungsfunktion
+  \item[(b)] Bestimmen Sie $\Int{f}{\mu_F}$ für $f(x) = x^2$.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0, 1, 2: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0, 1, 2: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+(b)
+
+\begin{align*}
+  \Int{f}{\mu_F}
+  & =
+  \Int[-\infty][0]{f(x) \underbrace{F^\prime(x)}_0}
+  +
+  \Int[0][1]{f(x) \underbrace{F^\prime(x)}_1}
+  +
+  \Int[1][2]{f(x) \underbrace{F^\prime(x)}_{2 (x+1)}}
+  +
+  \Int[2][\infty]{f(x) \underbrace{F^\prime(x)}_0} \\
+  & +
+  f(0) \underbrace{(F(0) - F(0 - 0))}_0
+  +
+  \underbrace{f(1)}_1 \underbrace{(F(1) - F(1 - 0))}_{= 4-1 = 3}
+  +
+  \underbrace{f(2)}_4 \underbrace{(F(2) - F(2 - 0))}_{= 9-9 = 0} \\
+  & =
+  \frac{1}{3}
+  +
+  2 \underbrace
+  {
+    \Int[1][2]{x^2 (x + 1)}{x}
+  }_{
+    = \frac{x^4}{4} |_1^2 + \frac{x^3}{3} |_1^2
+    = 4 - \frac{1}{4} + \frac{8}{3} - \frac{1}{3}
+  }
+  =
+  \frac{25}{2}
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+                            & \text{wenn} \enspace x < 0, \\
+    1 - \frac{1}{2} e^{-x}  & \text{wenn} \enspace x \geq 0.
+  \end{cases}
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie: $F$ ist eine Verteilungsfunktion.
+  \item[(b)] Bestimmen Sie $\Int{f(x)}{\mu_F(x)}$ für $f(x) = e^{-x}$.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+(b)
+
+\begin{align*}
+  \Int{f}{\mu_F}
+  & =
+  \Int[-\infty][0]{f(x) \underbrace{F^\prime(x)}_0}
+  +
+  \Int[0][\infty]
+  {
+    \underbrace{f(x)}_{e^{-x}}
+    \underbrace{F^\prime(x)}_{\frac{1}{2} e^{-x}}
+  }
+  +
+  \underbrace{f(0)}_1 \underbrace{(F(0) - F(0 - 0))}_\frac{1}{2}
+  & =
+  \frac{1}{2} \underbrace
+  {
+    \Int[0][\infty]{e^{-2x}}{x}
+  }_{
+    = -\frac{1}{2} e^{-2x} |_0^\infty
+    = -\frac{1}{2}
+  }
+  +
+  \frac{1}{2}
+  =
+  -\frac{1}{4} + \frac{1}{2} = \frac{1}{4}
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie das Integral einer nichtnegativen Treppenfunktion, einer nichtnegativen messbaren Funktion, einer messbaren und einer fast uberall messbaren Funktion.
+  \item[(b)] Es sei
+  \begin{align*}
+    F(x) =
+    \begin{cases}
+      0     & \text{wenn} \enspace  x < 0, \\
+      x + 1 & \text{wenn} \enspace 1 \leq x < 2, \\
+      2x^2  & \text{wenn} \enspace 2 \leq x < 3, \\
+      20    & \text{wenn} \enspace 3 \leq x.
+    \end{cases}
+  \end{align*}
+  Überzeugen Sie sich, dass $F$ eine Verteilungsfunktion ist und bestimmen Sie $\Int{f}{\mu_F}$ für $f(x) = e^x$.
+  \item[(c)] Formulieren und beweisen Sie den Satz von der Konvergenz durch Majorisierung.
+\end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) Sei $t = \sum_{i=1}^n a_i A_i$ eine nichtnegative, messbare Treppenfunktion auf $(\Omega, \mathfrak{S}, \mu)$, dann
+
+\begin{align*}
+  \Int{t}{\mu} := \sum_{i=1}^n a_i \mu(A_i).
+\end{align*}
+
+Sei $f$ eine nichtnegative, messbare Funktion, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \sup \Bbraces{\Int{t}{\mu}: f \geq t \geq 0, t \text{Treppenf.}}.
+\end{align*}
+
+Sei $f$ eine messbare Funktion, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \Int{f^+}{\mu} - \Int{f^-}{\mu}.
+\end{align*}
+
+Sei $f$ eine fast überall messbare Funktion, d.h. $\Exists N \in \mathfrak{S}: \mu(N) = 0, fN^\complement \enspace \text{messb.}$, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \Int[N^\complement]{f}{\mu}.
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$(X_n)$ sei eine Folge von unabhängigen, auf $[0, 1]$ gleichverteilten Zufallsvariablen. Gegen welchen Wert konvergiert
+
+\begin{align*}
+  (\prod_{i=1}^n)^\frac{1}{n}?
+\end{align*}
+
+\end{exercise}
+
+\begin{solution}
+
+$\ln$ ist messbar, also auf $(\ln X_n)$ unabhängig.
+
+\begin{align*}
+  \lim_{n \to \infty}
+  \pbraces{\prod_{i=1}^n X_i}^\frac{1}{n}
+  & =
+  \lim_{n \to \infty}
+  \exp \ln \pbraces{\pbraces{\prod_{i=1}^n X_i}^\frac{1}{n}}
+  =
+  \lim_{n \to \infty}
+  \exp \pbraces{\frac{1}{n} \sum_{i=1}^n \ln X_i} \\
+  & =
+  \exp \pbraces
+  {\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^n \ln X_i}
+  =
+  \exp \E(\ln X_1)
+  =
+  \exp \underbrace{\Int[0][1]{\ln(x) \frac{1}{1-0}}{x}}_{-\infty} = 0
+\end{align*}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$(X_n)$ sei eine Folge von unabhängigen Zufallsvariablen mit $\P(X_n = 1) = \P(X_n = -1) = 1/2$, $(a_n)$ eine Folge von reellen Zahlen. Zeigen Sie, dass die Reihe
+
+\begin{align*}
+  \sum_{n \in \N} a_n X_n
+\end{align*}
+
+genau dann fast sicher konvergiert, wenn
+
+\begin{align*}
+  \sum_{n \in \N} a_n^2 < \infty.
+\end{align*}
+
+\end{exercise}
+
+\begin{solution}
+
+Wir benützen den \Quote{Dreireihensatz von Kolmogorov}: Wenn $(X_n)$ unabhängige Zufallsvariablen sind, dann
+
+\begin{align*}
+  \sum_{n \in \N} X_n
+  \enspace \text{konv. f.s.}
+  \Leftrightarrow
+  \Forall \epsilon > 0:
+  \sum_{n \in \N} \P(|X_n| > \epsilon),
+  \sum_{n \in \N} \E(X_n [|X_n| \leq \epsilon]),
+  \sum_{n \in \N} \V(X_n [|X_n| \leq \epsilon])
+  < \infty.
+\end{align*}
+
+Zuerst bemerken wir, dass
+
+\begin{align*}
+  1
+  =
+  \P(X_n = 1) + \P(X_n = -1)
+  =
+  \P(X_n = \pm 1)
+  =
+  \P(|X_n| = 1)
+  =
+  \P(X_n^2 = 1)
+  \Rightarrow
+  \P(X_n \neq \pm 1) = 0.
+\end{align*}
+
+Damit berechnet man die Erwartungswerte
+
+\begin{itemize}
+
+  \item $\E(X_n) = 1 \cdot \P(X_n = 1) + (-1) \cdot \P(X_n = -1) = 0$,
+
+  \item $\E(X_n [|X_n| \leq \epsilon]) \leq \E(X_n) = 0$,
+
+  \item $\E(X_n^2) = 1 \cdot \P(X_n^2 = 1) = 1$,
+
+  \item $\E(X_n^2 [|X_n| \leq \epsilon]) = \E(X_n^2 [X_n^2 \leq \epsilon^2]) =
+  \begin{cases}
+    \E(X_n^2) = 1 & \text{wenn} \enspace \epsilon^2 \geq 1 \\
+    0             & \text{sonst}
+  \end{cases}$,
+
+\end{itemize}
+
+und Varianzen (mit dem \Quote{Verschiebungssatz von Steiner})
+
+\begin{itemize}
+
+  \item $\V(X_n) = \E(X_n^2) - \E(X_n)^2 = 1^2 - 0 = 1$
+
+  \item $\V(X_n [X_n \leq \epsilon]) = \E(X_n^2 [X_n \leq \epsilon]) - \E(X_n [X_n \leq \epsilon])^2 =
+  \begin{cases}
+    \E(X_n^2) = 1 & \text{wenn} \enspace \epsilon^2 \geq 1 \\
+    0             & \text{sonst}
+  \end{cases}$
+
+\end{itemize}
+
+\begin{itemize}
+
+  \item[\Quote{$\Rightarrow$}] $\Exists \epsilon > 0$
+  \begin{align*}
+    \infty
+    >
+    \sum_{n \in \N} \V(a_n X_n [|a_n X_n| \leq \epsilon])
+    =
+    \sum_{n \in \N} a_n^2
+  \end{align*}
+
+  \item[\Quote{$\Leftarrow$}]
+  \begin{itemize}
+
+    \item $a_n^2 \to 0
+    \Rightarrow
+    |a_n| \to 0
+    \Rightarrow
+    |a_n X_n| \to 0$,
+    d.h. $\Forall \epsilon > 0: \Exists N \in \N: \Forall n \geq N: |a_n X_n| < \epsilon$ und
+    \begin{align*}
+      \sum_{n \in \N} \P(X_n > \epsilon) < \infty.
+    \end{align*}
+
+    \item
+    \begin{align*}
+      \sum_{n \in \N} \E(a_n X_n [|a_n X_n| \leq \epsilon])
+      \leq
+      \sum_{n \in \N} a_n \E(X_n) = 0
+    \end{align*}
+
+    \item
+    \begin{align*}
+      \sum_{n \in \N} \E(a_n X_n [|a_n X_n| \leq \epsilon])
+      \leq
+      \sum_{n \in \N} a_n^2 \V(X_n)
+      =
+      \sum_{n \in \N} a_n^2
+    \end{align*}
+
+  \end{itemize}
+
+\end{itemize}
+
+\end{solution}
+
+--------------------------------------------------------------------------------
