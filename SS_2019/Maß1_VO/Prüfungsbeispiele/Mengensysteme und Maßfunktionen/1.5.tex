@@ -1,0 +1,110 @@
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] $\mathfrak{S}$ sei eine Sigmaalgebra über $\Omega$, $\mathfrak{C} \subset \Omega$. Zeigen Sie
+  \begin{align*}
+    \mathfrak{A}_\sigma(\mathfrak{S} \cup \Bbraces{C}) =
+    \Bbraces{(A \cap C) \cup (B \cap C^\complement), A, B \in \mathfrak{S}}.
+  \end{align*}
+  \item[(b)] $\mathfrak{R}$ sei ein Ring über $\Omega$. Zeigen Sie
+  \begin{align*}
+    \mathfrak{A}(\mathfrak{R}) =
+    \mathfrak{R} \cup \Bbraces{A: A^\complement \in \mathfrak{R}}.
+  \end{align*}
+\end{itemize}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) \Quote{$\supseteq$}: Seien $A, B \in \mathfrak{S}$, dann auch $A, B, C \in \mathfrak{A}_\sigma(\mathfrak{S} \cup \Bbraces{C})$. Als $\sigma$-Algebra ist diese bezüglich \Quote{$\cap$}, \Quote{$\cup$}, \Quote{$^\complement$} abgeschlossen. \\
+
+\Quote{$\subseteq$}: Die linke Seite ist die kleinste $\sigma$-Algebra, die $\mathfrak{S} \cup \Bbraces{C}$ enthält. Sei $\mathfrak{S}^\prime$ die rechte Seite, dann muss
+
+\begin{itemize}
+  \item $\mathfrak{S} \subseteq \mathfrak{S}^\prime$, wenn man $A = B$ wählt und
+  \item $C \in \mathfrak{S}^\prime$, wenn $A := \Omega$, $B := \emptyset$.
+\end{itemize}
+
+Wir weisen also noch nach, dass $\mathfrak{S}^\prime$ eine $\sigma$-Algebra ist.
+
+\begin{itemize}
+
+  \item \Quote{Enthält Grundmenge}: $\Omega \in \mathfrak{S} \subseteq \mathfrak{S}^\prime$
+
+  \item \Quote{Stabil bzgl. abzählbaren Vereinigungen}: Sei $(E_n) \in \mathfrak{S}^\prime$, dann $\Exists (A_n), (B_n) \in \mathfrak{S}:$
+  \begin{align*}
+    \bigcup_{n \in \N} \pbraces{A_n \cap C} \cup \pbraces{B_n \cap C^\complement} =
+    \Bigg ( \underbrace{\bigcup_{n \in \N} A_n}_{\in \mathfrak{S}} \cap C \Bigg ) \cup
+    \Bigg ( \underbrace{\bigcup_{n \in \N} B_n}_{\in \mathfrak{S}} \cap C^\complement \Bigg ) \cup
+    \in \mathfrak{S}^\prime
+  \end{align*}
+
+  \item \Quote{Stabil bzgl. Differenzen}: Diese filetieren wir in
+  \begin{itemize}
+
+    \item \Quote{Stabil bzgl. Komplement}: Sei $E \in \mathfrak{S}^\prime$, dann $\Exists A, B \in \mathfrak{S}:$
+    \begin{align*}
+      E^\complement
+      = \pbraces{\pbraces{A \cap C} \cup \pbraces{B \cap C^\complement}}^\complement
+      & = \pbraces{A^\complement \cup C^\complement} \cap \pbraces{B^\complement \cup C} \\
+      & = \underbrace
+          {
+            \pbraces{A^\complement \cap B^\complement}
+          }_{
+            \in \mathfrak{S}
+          } \cup
+          \underbrace
+          {
+            \pbraces{A^\complement \cap C} \cup \pbraces{C^\complement \cap B^\complement}
+          }_{
+            \in \mathfrak{S}^\prime
+          } \cup
+          \underbrace
+          {
+            \pbraces{C^\complement \cap C}
+          }_\emptyset
+          \in \mathfrak{S}^\prime
+    \end{align*}
+
+    \item \Quote{Stabil bzgl. (endlichen) Durchschnitten}: Seien $E_1, E_2 \in \mathfrak{S}^\prime$, dann $\Exists A_1, B_1, A_2, B_2 \in \mathfrak{S}:$
+    \begin{align*}
+      E_1 \cap E_2
+      & = \pbraces{\pbraces{A_1 \cap C} \cup \pbraces{B_1 \cap C^\complement}} \cup
+        \pbraces{\pbraces{A_2 \cap C} \cup \pbraces{B_2 \cap C^\complement}} \\
+      & = \pbraces{\pbraces{A_1 \cap C} \cap \pbraces{A_2 \cap C}} \cup
+          \underbrace
+          {
+            \Big (
+            \pbraces{B_1 \cap C^\complement} \cap \pbraces{A_2 \cap C}
+            \Big )
+          }_\emptyset \\
+      & \cup \underbrace
+          {
+            \Big (
+            \pbraces{A_1 \cap C} \cap \pbraces{B_2 \cap C^\complement}
+            \Big )
+            }_\emptyset
+            \pbraces
+          {
+            \pbraces{B_1 \cap C^\complement} \cap
+            \pbraces{B_2 \cap C^\complement}
+          } \\
+      & = \pbraces{A_1 \cap A_2 \cap C} \cup
+          \pbraces{B_1 \cap B_2 \cap C^\complement}
+          \in \mathfrak{S}^\prime
+    \end{align*}
+
+  \end{itemize}
+
+\end{itemize}
+
+(b) \Quote{$\supseteq$}: Offensichtlich, gilt $\mathfrak{A}(\mathfrak{R}) \supseteq \mathfrak{R}$. Weil Algebren die Grundmenge enthalten und stabil bzgl. Differenzen sind, sind sie es auch bzgl. Komplementen. Damit folgt auch $\mathfrak{A}(\mathfrak{R}) \supseteq \mathfrak{R}^\complement$, wobei $^\complement$ punktweise zu verstehen ist. \\
+
+\Quote{$\subseteq$}: So wie in (a), bemerkt man, dass die rechte Seite $\mathfrak{A} \supseteq \mathfrak{R}$ enhält und weist nach, dass $\mathfrak{A}$ eine Algebra ist.
+
+\end{solution}

@@ -1,0 +1,127 @@
+\begin{exercise}
+
+Für welche $n$ ist $(x_1 + \ldots + x_n)^2$ eine $n$-dimensionale Verteilungsfunktion?
+
+\end{exercise}
+
+\begin{solution}
+
+Behauptung: $\Forall n \in \N: \norm[1]{\cdot}^2: \R^n \to \R, \text{Verteilungsfunktion}$ \\
+
+Beweis: \\
+
+\Quote{Rechtsstetigkeit}: Normen sind, aufgrund der Dreiecksungleichung nach unten, stetig. \\
+
+\Quote{nichtnegativer Differenzenoperator}: zz: $\Forall a, b \in \R^n: a \leq b \Rightarrow$
+
+\begin{align*}
+  \Delta^{(a, b)} F
+  =
+  \mu(]a, b])
+  =
+  \sum_{e \in \Bbraces{0, 1}^n}
+  (-1)^{\norm[1]{e}}
+  F(a \cdot e + b \cdot (1 - e)) \geq 0
+\end{align*}
+
+Wir partitionieren $\Bbraces{0, 1}^n = A_n + B_n$, wobei
+
+\begin{align*}
+  A_n & := \Bbraces{e \in \Bbraces{0, 1}^n: \norm[1]{e} \in 2 \N_0}, \\
+  B_n & := \Bbraces{e \in \Bbraces{0, 1}^n: \norm[1]{e} \in 2 \N_0 + 1}.
+\end{align*}
+
+Durch Induktion, erhält man $|A_n| = |B_n|$.
+
+\begin{align*}
+  S_{e, n}
+  :=
+  F(a \cdot e + b \cdot (1 - e))
+  =
+  \sum_{\substack{i = 1 \\ e_i = 1}}^n a_i +
+  \sum_{\substack{i = 1 \\ e_i = 0}}^n b_i,
+  \quad
+  \text{lhs} := \sum_{e \in A_n} S_{e, n}^2,
+  \quad
+  \text{rhs} := \sum_{e \in B_n} S_{e, n}^2.
+\end{align*}
+
+Dann ist das obere \Quote{zz} äquivalent zur IB: $\Forall a, b \in \R^n: a \leq b \Rightarrow \text{lhs} \geq \text{rhs}$. \\
+
+IA ($n = 1$): $A_1 = \Bbraces{(0)}$, $B_1 = \Bbraces{(1)}$, also
+
+\begin{align*}
+  \text{lhs} = b_1^2 \geq \text{rhs} = a_1^2.
+\end{align*}
+
+IS ($n \mapsto n+1$): Wir partitionieren weiters $A_{n+1} = A_n^0 + B_n^1$, $B_{n+1} = A_n^1 + B_n^0$, wobei
+
+\begin{align*}
+  A_n^0 & := \Bbraces{e \in A_{n+1}: e_{n+1} = 0}, &
+  A_n^1 & := \Bbraces{e \in A_{n+1}: e_{n+1} = 1}, \\
+  B_n^0 & := \Bbraces{e \in B_{n+1}: e_{n+1} = 0}, &
+  B_n^1 & := \Bbraces{e \in B_{n+1}: e_{n+1} = 1}.
+\end{align*}
+
+Wir formen die linke Seite um.
+
+\begin{align*}
+  \text{lhs}
+  =
+  \sum_{e \in A_{n+1}} S_{e, n+1}^2
+  =
+  \sum_{e \in A_n^0} S_{e, n+1}^2 +
+  \sum_{e \in B_n^1} S_{e, n+1}^2
+  =
+  \sum_{e \in A_n} (S_{e, n} + b_{n+1})^2 +
+  \sum_{e \in B_n} (S_{e, n} + a_{n+1})^2
+\end{align*}
+
+Wir formen die rechte Seite um.
+
+\begin{align*}
+  \text{rhs}
+  =
+  \sum_{e \in B_{n+1}} S_{e, n+1}^2
+  =
+  \sum_{e \in A_n^1} S_{e, n+1}^2 +
+  \sum_{e \in B_n^0} S_{e, n+1}^2
+  =
+  \sum_{e \in A_n} (S_{e, n} + b_{n+1})^2 +
+  \sum_{e \in B_n} (S_{e, n} + a_{n+1})^2
+\end{align*}
+
+Man beachte, dass folgendes gilt ...
+
+\begin{align*}
+  (S_{e, n} + b_{n+1})^2 - (S_{e, n} + a_{n+1})^2
+  & =
+  S_{e, n}^2 + 2 S_{e, n} b_{n+1} + b_{n+1}^2 -
+  S_{e, n}^2 - 2 S_{e, n} a_{n+1} - a_{n+1}^2 \\
+  & =
+  2 S_{e, n} (b_{n+1} - a_{n+1}) + (b_{n+1}^2 - a_{n+1}^2)
+\end{align*}
+
+... und erhält damit ...
+
+\begin{align*}
+  \text{lhs}
+  & \geq
+  \text{rhs}
+  \Leftrightarrow \\
+  \sum_{e \in A_n} (S_{e, n} + b_{n+1})^2 - (S_{e, n} + a_{n+1})^2
+  & \geq
+  \sum_{e \in B_n} (S_{e, n} + b_{n+1})^2 - (S_{e, n} + a_{n+1})^2
+  \Leftrightarrow \\
+  2 \pbraces{\sum_{e \in A_n} S_{e, n}}(b_{n+1} - a_{n+1}) + |A_n| (b_{n+1}^2 - a_{n+1}^2)
+  & \geq
+  2 \pbraces{\sum_{e \in B_n} S_{e, n}}(b_{n+1} - a_{n+1}) + |B_n| (b_{n+1}^2 - a_{n+1}^2)
+  \Leftarrow \\
+  \sum_{e \in A_n} S_{e, n}^2
+  & \geq
+  \sum_{e \in B_n} S_{e, n}^2
+\end{align*}
+
+... was laut IV gilt.
+
+\end{solution}

@@ -1,0 +1,33 @@
+\begin{exercise}
+
+$(X_n)$ sei eine Folge von unabhängigen, auf $[0, 1]$ gleichverteilten Zufallsvariablen. Gegen welchen Wert konvergiert
+
+\begin{align*}
+  (\prod_{i=1}^n)^{1/n}?
+\end{align*}
+
+\end{exercise}
+
+\begin{solution}
+
+$\ln$ ist messbar, also auf $(\ln X_n)$ unabhängig.
+
+\begin{align*}
+  \lim_{n \to \infty}
+  \pbraces{\prod_{i=1}^n X_i}^\frac{1}{n}
+  & =
+  \lim_{n \to \infty}
+  \exp \ln \pbraces{\pbraces{\prod_{i=1}^n X_i}^\frac{1}{n}}
+  =
+  \lim_{n \to \infty}
+  \exp \pbraces{\frac{1}{n} \sum_{i=1}^n \ln X_i} \\
+  & =
+  \exp \pbraces
+  {\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^n \ln X_i}
+  =
+  \exp \E(\ln X_1)
+  =
+  \exp \underbrace{\Int[0][1]{\ln(x) \frac{1}{1-0}}{x}}_{-\infty} = 0
+\end{align*}
+
+\end{solution}

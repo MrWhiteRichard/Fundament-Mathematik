@@ -1,0 +1,62 @@
+\begin{exercise}
+
+Gegeben sei die folgende Funktion auf $2^\R$:
+
+\begin{align*}
+  \mu^\ast(A) =
+  \begin{cases}
+    0 & \text{für} \enspace A = \emptyset, \\
+    1 & \text{wenn} \enspace 1 \leq |A| < \infty, \\
+    2 & \text{sonst}.
+  \end{cases}
+\end{align*}
+
+Zeigen Sie, dass $\mu^\ast$ eine äußere Maßfunktion ist und bestimmen Sie das System der $\mu^\ast$-messbaren Mengen.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Die ersten drei Eigenschaften sind offensichtlich. Seien zuletzt $A, (B_n) \in 2^\Omega$ mit $A \subseteq \bigcup_{n \in \N} B_n$. Falls $A = \emptyset$, sind wir (wegen der zweiten Eigenschaft) fertig. Für $1 \leq |A| < \infty$, muss $\Exists n \in \N: 1 \leq |B_n| < \infty$. Ansonsten, sind die (unendlich vielen) $\omega \in A$ über ganz $(B_n)$ verteilt. Nun gilt aber $\Exists n \in \N: |B_n| = \infty$ oder $\Exists n \neq m \in \N: 1 \leq |B_n|, |B_m| < \infty$. \\
+
+Das System der Carathéodory-messbaren Mengen lautet wie folgt.
+
+\begin{align*}
+  \mathfrak{M}_{\mu^\ast} :=
+  \Bbraces
+  {
+    A \subseteq \Omega:
+    \Forall B \subseteq \Omega:
+    \mu^\ast(B) = \mu^\ast(B \cap A) + \mu^\ast(B \cap A^\complement)
+  }
+\end{align*}
+
+Weil dieses System eine $\sigma$-Algebra ist, sind $\emptyset, \Omega$ messbar. Sei also $A \subseteq \Omega$ mit $A \neq \emptyset, \Omega$.
+
+\begin{itemize}
+
+  \item[Fall $1$)] $A \enspace \text{endl.} \Rightarrow A^\complement \Text{unendl.}$
+  \begin{align*}
+    2 = \mu^\ast(\R) =
+    \underbrace{\mu^\ast(\R \cap A)}_1 +
+    \underbrace{\mu^\ast(\R \cap A^\complement)}_2 = 3
+  \end{align*}
+
+  \item[Fall $2$)] $A \enspace \text{unendl.}$
+  \begin{itemize}
+    \item[Fall a)] $A^\complement \enspace \text{endl.} \Rightarrow$ analog zu Fall $1$
+    \item[Fall b)] $A^\complement \enspace \text{unendl.}$
+    \begin{align*}
+      2 = \mu^\ast(\R) =
+      \underbrace{\mu^\ast(\R \cap A)}_2 +
+      \underbrace{\mu^\ast(\R \cap A^\complement)}_2 = 4
+    \end{align*}
+  \end{itemize}
+
+\end{itemize}
+
+Damit, muss $\mathfrak{M}_{\mu^\ast} = \Bbraces{\emptyset, \Omega}$.
+
+\end{solution}

@@ -1,0 +1,83 @@
+\begin{exercise}
+
+Gegeben ist die Funktion $F: \R \to \R:$
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+    x       & \text{für} \enspace x < 0 \\
+    x^2 + 1 & \text{für} \enspace 0 \leq x < 1, \\
+    2x      & \text{für} \enspace 1 \leq x < 3, \\
+    8       & \text{für} \enspace x \geq 3.
+  \end{cases}
+\end{align*}
+
+Weisen Sie nach, dass $F$ eine Verteilungsfunktion ist, und bestimmen Sie $\mu_F(]0, 1])$, $\mu_F([0, 1])$, $\mu_F(]0, 1[)$ und $\mu_F(\Q)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Nachweisen:
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0, 1, 3: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0, 1, 3: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+Bestimmen:
+
+\begin{itemize}
+
+  \item $\mu_F(]0, 1]) =$
+  \begin{align*}
+    F(1) - F(0) = 2 - 1 = 1
+  \end{align*}
+
+  \item $\mu_F([0, 1]) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcap_{n \in \N} \left ] 0 - \frac{1}{n}, 1 \right]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{ \left ] 0 - \frac{1}{n}, 1 \right]}
+    =
+    \lim_{n \in \N} F(1) - F \pbraces{0 - \frac{1}{n}}
+    =
+    \lim_{n \in \N} 2 + \frac{1}{n} = 2
+  \end{align*}
+
+  \item $\mu_F(]0, 1[) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcup_{n \in \N} \left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} F \pbraces{1 - \frac{1}{n}} - F(0)
+    =
+    \lim_{n \in \N} \pbraces{1 - \frac{1}{n}}^2 - 1 = 0
+  \end{align*}
+
+  \item $\mu_F(\Q) =$
+  \begin{align*}
+    \mu_F \pbraces{\sum_{q \in \Q} \Bbraces{q}}
+    & =
+    \sum_{q \in \Q} \mu_F \pbraces
+    {\bigcap_{n \in \N} \left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} \lim_{n \in \N} \mu_F \pbraces
+    {\left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} F(q - 0) - F(q) \\
+    & =
+    \sum_{x = 0, 1, 3} (F(x) - F(x - 0)) \\
+    & =
+    (1 - 0) + (2 - 2) + (8 - 6) = 3
+  \end{align*}
+
+\end{itemize}
+
+\end{solution}

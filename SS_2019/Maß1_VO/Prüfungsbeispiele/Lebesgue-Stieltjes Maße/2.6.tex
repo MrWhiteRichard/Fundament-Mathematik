@@ -1,0 +1,89 @@
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{align*}
+  F(x, y) = \min(x, y)
+\end{align*}
+
+ist eine zweidimensionale Verteilungsfunktion, und bestimmen Sie $\mu_F(]0, 1] \times ]0, 1])$ und $\mu_F(\Bbraces{(x, x) : 0 < x \leq 1})$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $\min(x, y) = \Frac{2}{x + y - |x - y|}$
+
+  \item \Quote{nichtnegativer Differenzenoperator}: Seien $a, b \in \R^2$, mit $a \leq b$.
+  \begin{align*}
+    \Delta^{(a, b)} \min
+    =
+    \min(b_1, b_2) - \min(a_1, b_2) - \min(b_1, a_2) + \min(a_1, a_2)
+  \end{align*}
+
+\end{itemize}
+
+Es könnte jetzt eine langweilige Fallunterscheidung folgen. Wir führen diese aber nicht zur Gänze aus.
+
+\begin{itemize}
+  \item[Fall 1:] $b_1 \leq b_2 \Rightarrow a_1 \leq b_2$
+  \begin{itemize}
+    \item[Fall a:] $a_1 \leq a_2 \Rightarrow a_1 \leq b_2$
+    \begin{itemize}
+      \item[Fall i:] $a_2 \leq b_1 \Rightarrow
+      \Delta^{(a, b)} \min = b_1 - a_1 - a_2 + a_1 \geq 0$
+      \item[Fall ii:] $b_1 \leq a_2 \Rightarrow
+      \Delta^{(a, b)} \min = b_1 - a_1 - b_1 + a_1 \geq 0$
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+Wir berechnen nun die Maße der Mengen
+
+\begin{align*}
+  A := ]0, 1]^2, \\
+  B := \Bbraces{(x, x): 0 < x \leq 1}.
+\end{align*}
+
+\begin{itemize}
+
+  \item $\mu(A) =
+  \Delta^{(0, 0), (1, 1)} \min =
+  \min(1, 1) - \min(0, 1) - \min(1, 0) + \min(0, 0) = 1$
+
+  \item Wir betrachten die Überdeckungen von
+  \begin{align*}
+    B \supseteq B_n
+    :=
+    \sum_{i=1}^n
+    \left ] \frac{i-1}{n}, \frac{i}{n} \right ]^2
+    \xrightarrow{n \in \N^2} B.
+  \end{align*}
+  Weil $(B_{n_k})$ mit $n_k := k^2$ monoton gegen $B$ fällt, kann man die Stetigkeit von oben ausnützen.
+  \begin{align*}
+    \mu(B)
+    =
+    \mu \pbraces{\lim_{n \in \N^2} B_n}
+    =
+    \lim_{n \in \N^2} \mu(B_n)
+    =
+    \lim_{n \in \N^2} \sum_{i=1}^n \mu \pbraces
+    {\left ] \frac{i-1}{n}, \frac{i}{n} \right ]^2}
+    = \\
+    \lim_{n \in \N^2} \sum_{i=1}^n
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} -
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} -
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}} +
+    \min \pbraces{\frac{i-1}{n}, \frac{i}{n}}
+    = 0
+  \end{align*}
+
+\end{itemize}
+
+\end{solution}

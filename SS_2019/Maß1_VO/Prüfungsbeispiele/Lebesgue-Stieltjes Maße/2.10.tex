@@ -1,0 +1,116 @@
+\begin{exercise}
+
+Gegeben ist die Funktion $F: \R \to \R:$
+
+\begin{align*}
+  F(x) =
+  \begin{cases}
+    0   & \text{wenn} \enspace x < 0, \\
+    1   & \text{wenn} \enspace 0 \leq x < 1, \\
+    x^2 & \text{wenn} \enspace 1 \leq x < 2, \\
+    5   & \text{wenn} \enspace x \geq 2.
+  \end{cases}
+\end{align*}
+
+\begin{itemize}
+  \item[(a)] Zeigen Sie, dass $F$ eine Verteilungsfunktion ist.
+  \item[(b)] Bestimmen Sie $\mu_F(]0, 1[)$, $\mu_F([0, 2])$, $\mu_F(\Q)$.
+  \item[(c)] Bestimmen Sie $\Int{e^x}{\mu_F(x)}$.
+\end{itemize}
+
+\end{exercise}
+
+--------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a)
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: $F$ ist stückweise stetig und $\Forall x = 0, 1, 2: F \text{ist rechtsstetig bei} \enspace x$.
+
+  \item \Quote{Steigende Monotonie}: $F$ ist stückweise monoton steigend und $\Forall x = 0, 1, 2: F(x - 0) \leq F(x)$.
+
+\end{itemize}
+
+(b)
+
+\begin{itemize}
+
+  \item $\mu_F(]0, 1[) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcup_{n \in \N} \left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0, 1 - \frac{1}{n} \right ]}
+    =
+    \lim_{n \in \N} F \pbraces{1 - \frac{1}{n}} - F(0)
+    = 1 - 1 = 0
+  \end{align*}
+
+  \item $\mu_F([0, 2]) =$
+  \begin{align*}
+    \mu_F \pbraces{\bigcap_{n \in \N} \left ] 0 - \frac{1}{n}, 2 \right ]}
+    =
+    \lim_{n \in \N} \mu_F \pbraces{\left ] 0 - \frac{1}{n}, 2 \right ]}
+    =
+    \lim_{n \in \N} F(2) - F \pbraces{0 - \frac{1}{n}}
+    =
+    5 - 0 = 5
+  \end{align*}
+
+  \item $\mu_F(\Q) =$
+  \begin{align*}
+    \mu_F \pbraces{\sum_{q \in \Q} \Bbraces{q}}
+    & =
+    \sum_{q \in \Q} \mu_F \pbraces
+    {\bigcap_{n \in \N} \left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} \lim_{n \in \N} \mu_F \pbraces
+    {\left ] q - \frac{1}{n}, q \right ]} \\
+    & =
+    \sum_{q \in \Q} F(q - 0) - F(q) \\
+    & =
+    \sum_{x = 0, 1, 2} (F(x) - F(x - 0)) \\
+    & =
+    (1 - 0) + (1 - 1) + (5 - 4) = 2
+  \end{align*}
+
+\end{itemize}
+
+(c) Seien $f = \exp$ und $a_1, \ldots, a_n$ die Sprünge von $F$, sowie $a_0 = - \infty$ und $a_{n+1} = \infty$.
+
+\begin{align*}
+  \Int{f}{\mu_F}
+  =
+  \sum_{i=1}^{n+1} \Int[a_{i-1}][a_i]{f(x) F^\prime(x)}{x} +
+  \sum_{i=1}^n f(a_i) (F(a_i) - F(a_i - 0))
+\end{align*}
+
+Also ...
+
+\begin{align*}
+  \Int{e^x}{\mu_F(x)}
+  & =
+  \underbrace{\Int[-\infty][0]{e^x 0}{x}}_0
+  +
+  \underbrace{\Int[0][1]{e^x 0}{x}}_0
+  +
+  \Int[1][2]{e^x 2x}{x}
+  +
+  \underbrace{\Int[2][\infty]{e^x 0}{x}}_0 \\
+  & +
+  e^0 \underbrace{(F(0) - F(0 - 0))}_{= 1-0 = 1}
+  +
+  e^1 \underbrace{(F(1) - F(1 - 0))}_{= 1-1 = 0}
+  +
+  e^2 \underbrace{(F(2) - F(2 - 0))}_{= 5-4 = 1} \\
+  & =
+  e^x 2x |_1^2 - 2 \Int[1][2]{e^x}{x} + 1 + e^2 \\
+  & =
+  (4e^2 - 2e) - 2 (e^2 - e) + 1 + e^2
+  =
+  1 + 3e^2
+\end{align*}
+
+\end{solution}

@@ -1,0 +1,85 @@
+\begin{exercise}
+
+Hier könnte Ihre Werbung stehen!
+
+\begin{itemize}
+  \item[(a)] Definieren Sie: messbare Funktion, Treppenfunktion, Konvergenz im Maß, Konvergenz fast überall, Konvergenz fast gleichmäßig.
+  \item[(b)] $f_n$, $n \in \N$ und $f$ seien reellwertige messbare Funktionen auf dem Maßraum $(\Omega, \mathfrak{S}, \mu)$. Zeigen Sie:
+  \begin{itemize}
+    \item[i.] Wenn $f_n \to f$ fast überall und $g: \R \to \R$ stetig ist, dann $g \circ f_n \to g \circ f$ fast überall.
+    \item[ii.] Wenn $f_n \to f$ im Maß und $g: \R \to \R$ gleichmäßig stetig ist, dann $g \circ f_n \to g \circ f$ im Maß.
+    \item[iii.] Geben Sie ein Beispiel einer Folge $f_n$ und einer stetigen Funktion $g$, sodass $f_n$ im Maß konvergiert, aber nicht $g \circ f_n$.
+  \end{itemize}
+\end{itemize}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) Siehe Aufgabe 1 (a) und Kapitel 4 Aufgabe 7 (a). \\
+
+(b) i. Wegen der Konvergenz fast überall von $(f_n)$, gilt
+
+\begin{align*}
+  \Exists N \in \mathfrak{S}:
+  \mu(N) = 0,
+  \Forall \omega \in N^\complement:
+  \Forall \delta > 0:
+  \Exists n_0 \in \N:
+  \Forall n \geq n_0:
+  |f_n(\omega) - f(\omega)| < \delta.
+\end{align*}
+
+Wegen der Stetigkeit von $g$, gilt
+
+\begin{align*}
+  \Forall x \in \R:
+  \Exists \delta > 0:
+  \Forall y \in \R:
+  |x - y| < \delta
+  \Rightarrow
+  |g(x) - g(y)| < \epsilon.
+\end{align*}
+
+Damit folgt die Konvergenz fast überall von $(g \circ f_n)$ ...
+
+\begin{align*}
+  \Forall \omega \in N^\complement:
+  \Forall \epsilon > 0:
+  \Exists n_0^\prime \in \N:
+  \Forall n \geq n_0^\prime:
+  |g(f_n(\omega)) - g(f(\omega))| < \epsilon
+\end{align*}
+
+ii. Wegen der Konvergenz im Maß von $(f_n)$, gilt
+
+\begin{align*}
+  \Forall \delta > 0:
+  \mu(|f_n - f| > \delta)
+  \xrightarrow[n \to \infty]{} 0.
+\end{align*}
+
+Wegen der gleichmäßigen Stetigkeit von $g$, gilt
+
+\begin{align*}
+  \Forall \epsilon > 0:
+  \Exists \delta > 0:
+  \Forall x, y \in \R:
+  |x - y| \leq \delta
+  \Rightarrow
+  |g(x) - g(y)| \leq \epsilon
+\end{align*}
+
+Damit folgt die Konvergenz im Maß von $(g \circ f_n)$ ...
+
+\begin{align*}
+  \Forall \epsilon > 0:
+  \mu(|g \circ f_n - g \circ f| > \epsilon)
+  \leq
+  \mu(|f_n - f| > \delta)
+  \xrightarrow[n \to \infty]{} 0
+\end{align*}
+
+\end{solution}

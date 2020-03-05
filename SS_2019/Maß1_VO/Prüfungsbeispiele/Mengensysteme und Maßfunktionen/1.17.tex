@@ -1,0 +1,33 @@
+\begin{exercise}
+
+Ein Würfel wird einmal geworfen, $X$ sei die erzielte Augenzahl. Anschließend werden in eine Urne $X$ weiße und eine schwarze Kugel gelegt, und eine Kugel wird gezogen. $A$ sei das Ereignis, dass die schwarze Kugel gezogen wurde. Bestimmen Sie
+
+\begin{itemize}
+  \item[(a)] $\mathbf{P}(A)$
+  \item[(b)] $\mathbf{P}(X = 3 | A)$
+\end{itemize}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) Die Urne enthält also $X + 1$ Kugeln und damit ist $\mathbf{P}(A) = \frac{1}{X + 1}$. \\
+
+(b) Sei $H_i := [X = i]$, für $i = 1, \ldots, 6$, so ist $(H_i)_{i=1}^6$ ein vollständiges Ereignissystem. Offensichtlich, gilt $\Forall i = 1, \ldots, 6: \mathbf{P}(H_i) = \frac{1}{6}$. Nachdem $\mathbf{P}(A) > 0$, können wir das \Quote{Bayes'sche Theorem} anwenden und erhalten
+
+\begin{align*}
+  \mathbf{P}(H_3 | A)
+  =
+  \frac
+  {\mathbf{P}(H_3) \mathbf{P}(A | H_3)}
+  {\sum_{i=1}^6 \mathbf{P}(H_i) \mathbf{P}(A | H_i)}
+  =
+  \frac
+  {\frac{1}{3+1}}
+  {\sum_{i=1}^6 \frac{1}{i+1}}
+  = \frac{35}{223}.
+\end{align*}
+
+\end{solution}
