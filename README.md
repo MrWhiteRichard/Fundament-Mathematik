@@ -1,3 +1,3 @@
 # Fundament Mathematik
 
-6 aspirierende Studenten der Technischen Universität Wien teilen, im Rahmen des Baechelor Studiums "Technische Mathematik", dieses Repository.
+6 aspirierende Studenten der Technischen Universität Wien teilen dieses Repository im Rahmen des Bachelorstudiums "Technische Mathematik".
