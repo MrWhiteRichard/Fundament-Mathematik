@@ -27,6 +27,66 @@ beschreibt eine Ellipse in der Ebene. Zeichnen Sie die Ellipse. Bestimmen Sie ei
 
 \begin{solution}
 
-Trivial!
+Wir lösen die Gleichung nach $y$ auf und erhalten
+\begin{align*}
+  y_{\pm} = \pm b \sqrt{1 - \pbraces{ \frac{x}{a} }^2} 
+\end{align*}
+und fasst man das als Funktion von $x$ auf so ergibt sich für die Ableitung
+\begin{align*}
+  y^\prime_{\pm}(x) = \mp \frac{2bx}{a^2 \sqrt{1 - \pbraces{ \frac{x}{a} }^2} }.
+\end{align*}
+Ein Tangentialvektor im Punkt $(x,y)^T$ der Ellipse ist dann gegeben durch
+\begin{align*}
+  t(x,y) =
+  \begin{cases}
+    \pbraces{1, y_+^\prime(x)}^T & ,y > 0 \\
+    \pbraces{0, 1}^T & ,y = 0 \\
+    \pbraces{1, y_-^\prime(x)}^T & ,y < 0
+  \end{cases}
+\end{align*}
+und ein Normalvektor durch
+\begin{align*}
+  n(x,y) =
+  \begin{cases}
+    \pbraces{ -y_+^\prime(x), 1}^T & ,y > 0 \\
+    \pbraces{1, 0}^T & ,y = 0 \\
+    \pbraces{ -y_-^\prime(x), 1}^T & ,y < 0
+  \end{cases} .
+\end{align*}
 
+Für einen beliebigen Punkt $(x_0, y_0)^T$ auf der Ellipse ist die Tangentialebene gegeben durch die Gleichung 
+\begin{align*}
+  \begin{cases}
+    y = y_0 + (x - x_0)y_+^\prime(x_0) & ,y_0 > 0 \\
+    y = \pm a & ,y_0 = 0 \land x_0 = \pm a \\
+    y = y_0 + (x - x_0) y_-^\prime(x_0) & ,y_0 < 0
+  \end{cases}.
+\end{align*}
+
+Nun parametrisieren wir die Ellipse gemäß Angabe und erhalten für den Tangentialvektor $s$ in Abhängigkeit von $t$
+\begin{align*}
+  s(t) = 
+  \begin{pmatrix}
+    x^\prime(t) \\ y^\prime(t)
+  \end{pmatrix} =
+  \begin{pmatrix}
+    -a \sin(t) \\ b \cos(t)
+  \end{pmatrix} .
+\end{align*}
+Für den Normalvektor ergibt sich dann 
+\begin{align*}
+  n(t) = 
+  \begin{pmatrix}
+    b \cos(t) \\ a \sin(t)
+  \end{pmatrix} .
+\end{align*}
+Schließlich sind
+\begin{align*}
+  \begin{cases}
+    b \sin(t) - \pbraces{ x - a \cos(t) } \frac{b \cos(t)}{a \sin(t)} = y & ,\sin(t) \neq 0 \\
+    x = a & , \sin(t) = 0 \land \cos(t) = 1 \\
+    x = -a & , \sin(t) = 0 \land \cos(t) = -1
+  \end{cases}
+\end{align*}
+Gleichungen für die Tangentialebene.
 \end{solution}
