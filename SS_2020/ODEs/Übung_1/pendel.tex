@@ -1,11 +1,30 @@
-\begin{figure}
-\centering
-
 \begin{tikzpicture}
 
+\draw[dashed]
+(0, 0) --
+node
+  [rotate = 90, yshift = 8pt]
+  {\footnotesize $\ell \cos{\varphi(t)}$}
+(0, -4) --
+node[anchor = east]{\footnotesize $h(t)$}
+(0, -5);
 
+\fill[color = black]
+(0, -5) circle (1pt)
+node[anchor = west]{\footnotesize $h_0$};
+
+\draw[dashed] (0, -4) -- (3, -4);
+
+\draw (0, 0) --
+node[anchor = south west]{\footnotesize $\ell$}
+(3, -4);
+
+\filldraw
+[fill = white, draw = black]
+(3, -4) circle (8pt);
+
+\draw[rotate = -90]
+(1.5, 0) arc (0:37:1.5cm)
+node[xshift = -0.5cm, yshift = 0.125cm]{\footnotesize $\varphi(t)$};
 
 \end{tikzpicture}
-
-\caption{title}
-\end{figure}
