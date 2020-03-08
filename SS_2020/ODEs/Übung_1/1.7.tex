@@ -6,13 +6,16 @@ Die Gleichung
   \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
 \end{align*}
 
-beschreibt eine Ellipse in der Ebene. Zeichnen Sie die Ellipse. Bestimmen Sie einen Tangentialvektor, einen Normalvektor und die Gleichung der Tangente an die Ellipse in einem beliebigen Punkt $(x_0, y_0)$ der Ellipse. Machen Sie dies auf zwei Arten:
+beschreibt eine Ellipse in der Ebene.
+Zeichnen Sie die Ellipse.
+Bestimmen Sie einen Tangentialvektor, einen Normalvektor und die Gleichung der Tangente an die Ellipse in einem beliebigen Punkt $(x_0, y_0)$ der Ellipse.
+Machen Sie dies auf zwei Arten:
 
-\begin{itemize}
+\begin{enumerate}[label = \textbf{\alph*)}]
 
-  \item[\textbf{a)}] durch Auflösen der Gleichung nach $x$ oder $y$.
+  \item durch Auflösen der Gleichung nach $x$ oder $y$.
 
-  \item[\textbf{b)}] unter Verwendung der Parametrisierung
+  \item unter Verwendung der Parametrisierung
   \begin{align*}
     x(t) = a \cos{t},
     \quad
@@ -21,76 +24,144 @@ beschreibt eine Ellipse in der Ebene. Zeichnen Sie die Ellipse. Bestimmen Sie ei
     t \in [0, 2 \pi].
   \end{align*}
 
-\end{itemize}
+\end{enumerate}
 
 \end{exercise}
 
 \begin{solution}
 
-Wir lösen die Gleichung nach $y$ auf und erhalten
+Die Ellipse $E$ ist also
+
 \begin{align*}
-  y_{\pm} = \pm b \sqrt{1 - \pbraces{ \frac{x}{a} }^2} 
+  E :=
+  \Bbraces
+  {
+    (x, y) \in \R^2:
+    \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+  }
 \end{align*}
-und fasst man das als Funktion von $x$ auf so ergibt sich für die Ableitung
+
+und sieht wie folgt aus.
+
+\begin{figure}[h!]
+  \centering
+  \input{ellipse.tex}
+  \caption{Ellipse}
+\end{figure}
+
+(a) Wir lösen die Gleichung nach $y$ auf und erhalten
+
 \begin{align*}
-  y^\prime_{\pm}(x) = \mp \frac{2bx}{a^2 \sqrt{1 - \pbraces{ \frac{x}{a} }^2} }.
+  y_\pm = \pm b \sqrt{1 - \pbraces{\frac{x}{a}}^2}.
 \end{align*}
-Ein Tangentialvektor im Punkt $(x,y)^T$ der Ellipse ist dann gegeben durch
+
+Fasst man das als Funktion von $x$ auf so ergibt sich für die Ableitung
+
 \begin{align*}
-  t(x,y) =
+  y^\prime_{\pm}(x)
+  =
+  \mp \frac{2bx}{a^2 \sqrt{1 - \pbraces{\frac{x}{a}}^2}}.
+\end{align*}
+
+Ein Tangentialvektor $\vec{t}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse ist
+
+\begin{align*}
+  \vec{t}(x_0, y_0)
+  =
   \begin{cases}
-    \pbraces{1, y_+^\prime(x)}^T & ,y > 0 \\
-    \pbraces{0, 1}^T & ,y = 0 \\
-    \pbraces{1, y_-^\prime(x)}^T & ,y < 0
+    (1, y_+^\prime(x_0))^T,
+    & \text{wenn} \enspace y_0 > 0, \\
+    (0, 1)^T,
+    & \text{wenn} \enspace y_0 = 0, \\
+    (1, y_-^\prime(x_0))^T,
+    & \text{wenn} \enspace y_0 < 0.
   \end{cases}
 \end{align*}
-und ein Normalvektor durch
+
+Ein Normalvektor $\vec{n}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse ist
+
 \begin{align*}
-  n(x,y) =
+  \vec{n}(x_0, y_0)
+  =
   \begin{cases}
-    \pbraces{ -y_+^\prime(x), 1}^T & ,y > 0 \\
-    \pbraces{1, 0}^T & ,y = 0 \\
-    \pbraces{ -y_-^\prime(x), 1}^T & ,y < 0
-  \end{cases} .
+    (-y_+^\prime(x_0), 1)^T
+    & \text{wenn} \enspace y_0 > 0, \\
+    (0, 1)^T
+    & \text{wenn} \enspace y_0 = 0, \\
+    (-y_-^\prime(x_0), 1)^T
+    & \text{wenn} \enspace y_0 < 0.
+  \end{cases}
 \end{align*}
 
-Für einen beliebigen Punkt $(x_0, y_0)^T$ auf der Ellipse ist die Tangentialebene gegeben durch die Gleichung 
+Die Tangentialebene $\vec{T}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse ist
+
 \begin{align*}
-  \begin{cases}
-    y = y_0 + (x - x_0)y_+^\prime(x_0) & ,y_0 > 0 \\
-    y = \pm a & ,y_0 = 0 \land x_0 = \pm a \\
-    y = y_0 + (x - x_0) y_-^\prime(x_0) & ,y_0 < 0
-  \end{cases}.
+  \vec{T}(x_0, y_0)
+  =
+  \Bbraces
+  {
+    (x, y) \in \R^2:
+    y =
+    \begin{cases}
+      y_0 + (x - x_0)y_+^\prime(x_0)
+      & \text{wenn} \enspace y_0 > 0 \\
+      \pm a
+      & \text{wenn} \enspace y_0 = 0 \land x_0 = \pm a \\
+      y_0 + (x - x_0) y_-^\prime(x_0)
+      & \text{wenn} \enspace y_0 < 0
+    \end{cases}
+  }.
 \end{align*}
 
-Nun parametrisieren wir die Ellipse gemäß Angabe und erhalten für den Tangentialvektor $s$ in Abhängigkeit von $t$
+(b) Nun parametrisieren wir die Ellipse gemäß Angabe. Ein Tangentialvektor $\vec{t}(t)$ in Abhängigkeit von $t$ ist
+
 \begin{align*}
-  s(t) = 
+  \vec{t}(t)
+  =
   \begin{pmatrix}
     x^\prime(t) \\ y^\prime(t)
-  \end{pmatrix} =
+  \end{pmatrix}
+  =
   \begin{pmatrix}
     -a \sin(t) \\ b \cos(t)
-  \end{pmatrix} .
+  \end{pmatrix}.
 \end{align*}
-Für den Normalvektor ergibt sich dann 
+
+Ein Normalvektor $\vec{n}(t)$ in Abhängigkeit von $t$ ist
+
 \begin{align*}
-  n(t) = 
+  n(t)
+  =
   \begin{pmatrix}
     b \cos(t) \\ a \sin(t)
-  \end{pmatrix} .
+  \end{pmatrix}.
 \end{align*}
-Schließlich sind
+
+Die Tangentialebene $\vec{T}(t)$ in Abhängigkeit von $t$ ist
+
 \begin{align*}
-  \begin{cases}
-    b \sin(t) - \pbraces{ x - a \cos(t) } \frac{b \cos(t)}{a \sin(t)} = y & ,\sin(t) \neq 0 \\
-    x = a & , \sin(t) = 0 \land \cos(t) = 1 \\
-    x = -a & , \sin(t) = 0 \land \cos(t) = -1
-  \end{cases}
+  \vec{T}(t)
+  =
+  \Bbraces
+  {
+    (x, y) \in \R^2:
+      \begin{cases}
+        b \sin(t) - (x - a \cos(t)) \frac{b \cos(t)}{a \sin(t)} = y
+        & \text{wenn} \enspace \sin(t) \neq 0 \\
+        x = \pm a
+        & \text{wenn} \enspace \sin(t) = 0 \land \cos(t) = \pm 1
+      \end{cases}
+  }.
 \end{align*}
-Gleichungen für die Tangentialebene. Alternativ kann man aus dem Normalvektor
+
+Alternativ kann man aus dem Normalvektor die Gleichung für die Tangentialebene ablesen.
+
 \begin{align*}
-  b \cos(t) x + a \sin(t) y = ab \pbraces{ \cos^2(t) + \sin^2(t) } = ab 
+  b \cos(t) x + a \sin(t) y
+  =
+  ab \pbraces{\cos^2(t) + \sin^2(t)}
+  =
+  ab
 \end{align*}
-  als Gleichung für die Tangentialebene ablesen.
+
 \end{solution}

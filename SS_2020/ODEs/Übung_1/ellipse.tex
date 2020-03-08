@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+
+\draw
+[step = 1cm, gray, very thin, dashed]
+(-4, -2) grid (4, 2);
+
+\draw
+[thick, ->]
+(-4, 0) -- (4, 0)
+node[anchor = north west]{$x$-achse};
+
+\draw
+[thick, ->]
+(0, -2) -- (0, 2)
+node[anchor = south east]{$y$-achse};
+
+\foreach \x in {-3, -2, -1, 0, 1, 2, 3}
+  \draw (\x cm, 2pt) -- (\x cm, -2pt);
+
+\foreach \y in {-1, 0, 1}
+  \draw (2pt, \y cm) -- (-2pt, \y cm);
+
+\draw (0, 0) ellipse (3cm and 1cm);
+
+\draw
+(3, 0) circle (1pt)
+node[anchor = north west]{$a$};
+
+\draw
+(0, 1) circle (1pt)
+node[anchor = south east]{$b$};
+
+\end{tikzpicture}
