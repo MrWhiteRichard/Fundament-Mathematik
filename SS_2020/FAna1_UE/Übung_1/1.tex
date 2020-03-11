@@ -5,13 +5,31 @@ Zeige
 
 \begin{align*}
   \Forall A \subseteq X:
-  \overline{A} = \bigcup_{W \in \mathfrak{W}}(A + W)
+  \overline{A} = \bigcap_{W \in \mathfrak{W}}(A + W)
 \end{align*}
 
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+Wir zeigen zuerst die Inklusion von links nach rechts: $\overline{A} \subseteq \bigcap_{W \in \mathfrak{W}}(A + W)$\\
+Sei $x \in \overline{A}$ beliebig, also $\forall U$ Umgebung von $x: A \cap U \neq \emptyset$. \\
+Da $\mathfrak{W}$ eine Umgebungbasis von 0 ist, ist $x + \mathfrak{W}$ eine Umgebungsbasis von x. \\
+Sei $W \in \mathfrak{W}$ beliebig und wähle $W_0 \subset W$ kreisförmige Umgebung der 0. \\
+$W_0$ ist somit insbesondere symmetrisch, $x + W_0$ eine Umgebung von x und es gilt:
+\begin{align*}
+\emptyset \neq (x + W_0) \cap A = (x - W_0) \cap A = x \cap (A + W_0) \subseteq x \cap (A + W)
+\end{align*}
+Also gilt: $x \in \bigcap_{W \in \mathfrak{W}}(A + W)$ \\
+
+Umgekehrt betrachte $y \in \bigcap_{W \in \mathfrak{W}}(A + W)$, sowie $ U \in \mathfrak{U}(0)$. \\
+Dann existiert $W \in \mathfrak{W}: W \subseteq U$ und $W_0$ kreisförmige Umgebung der 0: $W_0 \subseteq W$. \\
+Weiters wähle $W_1 \in \mathfrak{W}: W_1 \subseteq W_0$. \\
+$W_0$ ist somit insbesondere symmetrisch, $y \in (A + W_1) \subseteq (A + W_0)$ und es gilt:
+\begin{align*}
+  \emptyset \neq y \cap (A + W_0) = (y - W_0) \cap A = (y + W_0) \cap A \subseteq (y + W) \cap A \subseteq (y + U) \cap A
+\end{align*}
+
+Also haben wir: $y \in \overline{A}$, da $y + \mathfrak{U}(0)$ der Umgebungsfilter von y ist.
 
 \end{solution}
