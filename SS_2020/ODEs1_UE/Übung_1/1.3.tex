@@ -1,0 +1,52 @@
+\begin{exercise}
+
+Betrachten Sie die \textit{autonome}, explizite Differentialgleichung $y^{(k)}(t) = f(y(t), y^\prime(t), \ldots, y^{(k-1)}(t))$.
+Sei $t_0 \in \R$.
+Zeigen Sie:
+Falls $y$ eine Lösung der ODE ist, dann ist auch $\phi: t \mapsto y(t - t_0)$ eine Lösung.
+
+\end{exercise}
+
+\begin{solution}
+
+Damit die Aufgabe lösbar ist, müssen wir zusätzlich annehmen, dass das nicht angegebene offene Intervall $J = \R$.
+Zusätzlich setzen wir $F: G \mapsto \R^n$ mit dem Gebiet $G := \R^{n \times k}$. \\
+
+$y$ ist eine Lösung der obigen ODE, falls
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item $y \in C^k(J;\mathbb{R}^n)$,
+
+  \item $\text{graph~} y := \{(y(t), y^\prime(t), \ldots, y^{(k-1)}(t)): t \in J\} \subset G$, und
+
+  \item $\forall t \in J: y^{(k)}(t) = f(y(t), y^\prime(t), \ldots, y^{(k-1)}(t))$.
+
+\end{enumerate}
+
+Das soll nun auch für $\phi$ gelten:
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item
+  Da $y \in C^k(\R; \R^n)$ ist, aufgrund der Kettenregel, auch $\phi = y \circ \tau_{-t_0} \in C^k(\R; \R^n)$.
+
+  \item
+  Nachdem wir annehmen, dass $G = \R^{n \times k}$, ist auch die zweite Bedingung für $\phi$ erfüllt.
+
+  \item
+  Schließlich folgt, mit der Kettenregel, auch die dritte Bedingung, also $\Forall t \in J:$
+  \begin{align*}
+    \phi^{(k)}(t)
+    =
+    y^{(k)}(t-t_0)
+    =
+    f(y(t- t_0), y^\prime(t - t_0), \ldots, y^{(k-1)}(t-t_0))
+    =
+    f(\phi(t), \phi^\prime(t), \ldots, \phi^{(k-1)}(t))
+  \end{align*}
+
+\end{enumerate}
+
+
+\end{solution}
