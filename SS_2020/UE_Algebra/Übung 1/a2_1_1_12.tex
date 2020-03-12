@@ -1,0 +1,30 @@
+\begin{exercise}
+    Sei $\leq_M$ eine Quasiordnung auf einer Menge M. Definiert man für $a,b \in M$
+    die Relation $a \sim b$ durch $a \sim b :\iff a \leq_M b$ und $ b \leq_M a$, so
+    erhält man eine Äquivalenzrelation $\sim$ auf $M$. Auf der Faktormenge $M/\sim$
+    (der Menge aller Äquivalenzklassen auf $M$) lässt sich durch $[a]_{\sim} \leq
+    [b]_{\sim}: \iff a \leq_M b$ eine Halbordnungsrelation definieren.
+\end{exercise}
+\begin{solution}
+Zuerst zeigen wir, dass $\sim$ eine Äquivalenzrelation ist: \\
+\begin{itemize}
+  \item \textbf{reflexiv:} Sei $m \in M$ beliebig. Dann gilt aufgrund der Reflexivität der Quasiordnung $\leq_M$: \\
+  $m \leq_M m$ und somit $m \sim m$.
+  \item \textbf{transitiv:} Seien $a,b,c \in M: (a \sim b)$ und $(b \sim c)$. Dann gilt: \\
+  $a \leq_M b$ und $b \leq_M c$, sowie $c \leq_M b$ und $b \leq_M a$.
+  Daraus folgt mit der Transitivität von $\leq_M$: $a \leq_M c$, $c \leq_M a$ und somit $a \sim c$.
+  \item \textbf{symmetrisch:} Seien $a,b \in M: a \sim b$. Dann folgt klarerweise aus der Definition von $\sim$: $b \sim a$. \\
+\end{itemize}
+Betrachten wir nun $(M/\sim, \leq)$.
+\begin{itemize}
+  \item \textbf{wohldefiniert:} Die Wohldefiniertheit dieser Relation ist gegeben durch: \\
+  Seien $a_1, a_2 \in [a]_{\sim}, b_1, b_2 \in [b]_{\sim}, a_1 \leq_M b_1$: \\
+  Aus $a_2 \leq_M a_1$ und $b_1 \leq_M b_2$ folgt mit der Transitivität von $\leq_M$ auch $a_2 \leq_M b_2$. \\
+  \item \textbf{reflexiv:} Sei nun $[m]_{\sim} \in M/\sim$ beliebig. Es gilt $m \leq_M m$ und somit auch $[m]_{\sim} \leq [m]_{\sim}$.
+  \item \textbf{transitiv:} Seien $[a]_{\sim},[b]_{\sim},[c]_{\sim} \in M/\sim: [a]_{\sim} \leq [b]_{\sim}$ und
+  $[b]_{\sim} \leq [c]_{\sim}$. \\
+  Dann gilt: $a \leq_M b$ und $b \leq_M c$ und damit auch $a \leq_M c$, also $[a]_{\sim} \leq [c]_{\sim}$.
+  \item \textbf{antisymmetrisch:} Seien $[a]_{\sim},[b]_{\sim}: [a]_{\sim} \leq [b]_{\sim}$ und $ [b]_{\sim} \leq [a]_{\sim}$. \\
+  Dann gilt $a \leq_M b$ und $b \leq_M a$, also $a \sim b$ und somit $[a]_{\sim} = [b]_{\sim}$.
+\end{itemize}
+\end{solution}
