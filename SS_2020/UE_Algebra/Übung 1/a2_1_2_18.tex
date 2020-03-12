@@ -1,0 +1,26 @@
+\begin{exercise}
+    Sei $(P,\leq)$ eine Halbordnung, in der jede Teilmenge ein Infimum hat.
+    Dann hat auch jede Teilmenge von $P$ ein Supremum. Insbesondere liegt ein
+    vollständiger Verband vor.
+\end{exercise}
+\begin{solution}
+Sei $M \subseteq P$ beliebig. \\
+Mit $O := \{p \in P: \forall m \in M: p \geq m\}$
+bezeichne die Menge aller oberen Schranken von M. Laut Voraussetzung wissen wir,
+dass diese Menge ein Infimum besitzt. \\
+Bezeichne mit $U := \{p \in P: \forall o \in O: p \leq o\}$ die Menge aller
+unteren Schranken von O. Wir wissen: \\
+$\exists o_{inf} := \inf(O) = \max(U)$. \\
+Nun gilt $M \subseteq U$, da
+$\forall m \in M: \forall o \in O: m \leq o$. \\
+Daher erhalten wir $\forall m \in M: m \leq o_{inf}$ und damit $o_{inf} \in O$.
+Schließlich folgt $o_{inf} = \min(O) = \sup(M)$. \\
+\\
+Die Halbordnung $(\mathbb{N}, \leq)$ ist kein Gegenbeispiel, da sie die Voraussetzung
+nicht erfüllt. \\
+Dazu betrachte man die leere Menge: $\emptyset$\\
+Die Menge aller oberen Schranken M = $\{n \in \mathbb{N}: \forall x \in \emptyset: n \leq x \}$\\
+der leeren Menge ist klarerweise ganz $\mathbb{N}$ und besitzt kein Maximum. \\
+Formaler Beweis davon bräuchte eine formale Definition von $\leq$, welche ich
+im Algebra-Skript leider nicht finden konnte.
+\end{solution}
