@@ -1,0 +1,63 @@
+\begin{exercise}
+    Zeigen Sie mit Hilfe des Rekursionssatzes, dass die Peanostrukturen eindeutig sind.
+\end{exercise}
+\begin{solution}
+    Zuerst wollen wir gleich den Rekusionssatz benützen und zwar für die Menge $M$, das Element $0_M \in M$ und die Funktion $\nu_M: M \to M$. Der Rekursionssatz sagt uns nun
+    \begin{align*}
+        \exists! \varphi: \N \to M : \pbraces{\varphi(0) = 0_M \land \forall n \in \N : \varphi(\nu(n)) = \nu_M(\varphi(n))}
+    \end{align*}
+
+    Nun behaupten wir, dass $\varphi$ bijektiv ist. Zuerst zur Injektivität. 
+    Die erste Behauptung ist
+    \begin{align}\label{vorgaenger}
+       P := \Bbraces{n \in \N \mid n \neq 0 \Rightarrow \exists! m \in \N: \nu(m) = n} = \N.
+    \end{align}
+    Es gilt klarerweise $0 \in P$, weil $0 \neq 0$ schließlich alles folgt. 
+    
+    Sei weiters $n \in P$ beliebig. Dann gilt nach Definition der Peanostruktur $\nu(n) \neq 0$. Definieren wir nun $m := n$ so gilt $\nu(m) = \nu(n)$. Aus der Injektivität von $\nu$ folgt die Eindeutigkeit von $m$. Also ist $\nu(n) \in P$ und es gilt nach dem letzten Axiom der Peanostruktur $P = \N$.
+
+    Die nächste Behauptung ist
+    \begin{align}\label{zero}
+        \forall n \in \N: \varphi(n) = 0_M \Rightarrow n = 0.
+    \end{align}
+    Dies beweisen wir mit Widerspruch. Wir nehmen also an es gelte
+    \begin{align*}
+        \exists n \in \N: \varphi(n) = 0_M \land n \neq 0.
+    \end{align*}
+    Nach \eqref{vorgaenger} wissen wir, dass es ein $m \in \N$ gibt mit $\nu(m) = n$. Nun gilt also 
+    \begin{align*}
+        0_M = \varphi(n) = \varphi(\nu(m)) = \nu_M(\varphi(m))
+    \end{align*}
+    Das ist aber ein Widerspruch zum vierten Punkt der Definition der Peanostruktur.
+    Nun formulieren wir die Injektivität und beweisen sie mit Induktion.
+    \begin{align*}
+        T:= \Bbraces{n \in \N \mid \forall m \in \N: \varphi(n) = \varphi(m) \Rightarrow n = m} = \N
+    \end{align*}
+    Zuerst gilt $0 \in T$. Das sieht man indem man ein beliebiges $m \in \N$ betrachtet. Aus $0_M = \varphi(0) = \varphi(m)$ folgt mit \eqref{zero}, dass $m = 0 = n$.
+
+    Sei nun $n \in T$ beliebig. 
+    
+    Falls $m = 0$ gilt und $\varphi(\nu(n)) = \varphi(m) = 0_M$, dann gilt nach \eqref{zero}, dass $\nu(n) = 0$ was ein Widerspruch zum vierten Peanoaxiom ist. Aus einer falschen Aussage folgt beliebiges, also auch $\nu(n) = m$. 
+
+    Falls $m \neq 0$ gilt und $\varphi(\nu(n)) = \varphi(m)$, dann wissen wir nach \eqref{vorgaenger}, dass es ein $k \in \N$ gibt mit $\nu(k) = m$. Nun gilt auch
+    \begin{align*}
+        \nu_M(\varphi(n)) = \varphi(\nu(n)) = \varphi(m) = \varphi(\nu(k)) = \nu_M(\varphi(k)). 
+    \end{align*} 
+    Aus der Injektivität von $\nu_M$ folgt $\varphi(n) = \varphi(k)$. Da ja $n \in T$ gilt folgt hieraus $n = k$ und damit $\nu(n) = \nu(k) = m$. 
+
+    Nach dem letzten Axiom der Peanostruktur folgt also $T = \N$ und damit die Injektivität von $\varphi$.
+
+    Nun lässt sich die Surjektivität formulieren als
+    \begin{align*}
+        T := \Bbraces{m \in M \mid \exists n \in \N: \varphi(n) = m} = M
+    \end{align*}
+    Da $\varphi(0) = 0_M$ gilt ist also $0_M \in T$.
+
+    Sei nun $m \in T$ beliebig mit $\varphi(n) = m$. Dann gilt
+    \begin{align*}
+        \nu_M(m) = \nu_M(\varphi(n)) = \varphi(\nu(n)) 
+    \end{align*}
+    Da $\nu(n) \in \N$ ist also $\nu_M(m) \in T$ und damit gilt nach dem letzten Axiom der Peanostruktur, dass $T = M$ und damit folgt die Surjektivität von $\varphi$.
+    
+    Es ist also $\varphi$ ein gesuchter Isomorphismus. Wäre nun $\psi: \N \to M$ ein weiterer Isomorphismus so ist das insbesondere eine Funktion nach dem Rekursionssatz und es folgt aus der Eindeutigkeit die der Rekursionssatz liefert, dass $\varphi = \psi$ gilt und damit folgt die Eindeutigkeit von $\varphi$ als Isomorphismus.
+\end{solution}
