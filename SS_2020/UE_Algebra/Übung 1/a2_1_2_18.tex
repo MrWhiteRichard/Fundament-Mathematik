@@ -7,15 +7,13 @@
 Sei $M \subseteq P$ beliebig. \\
 Mit $O := \{p \in P: \forall m \in M: p \geq m\}$
 bezeichne die Menge aller oberen Schranken von M. Laut Voraussetzung wissen wir,
-dass diese Menge ein Infimum besitzt. \\
-Bezeichne mit $U := \{p \in P: \forall o \in O: p \leq o\}$ die Menge aller
-unteren Schranken von O. Wir wissen: \\
-$\exists o_{inf} := \inf(O) = \max(U)$. \\
-Nun gilt $M \subseteq U$, da
-$\forall m \in M: \forall o \in O: m \leq o$. \\
-Daher erhalten wir $\forall m \in M: m \leq o_{inf}$ und damit $o_{inf} \in O$.
-Schließlich folgt $o_{inf} = \min(O) = \sup(M)$. \\
-\\
+dass diese Menge ein Infimum besitzt. Nun behaupten wir $\inf(O)  = \sup(M)$. 
+
+Zuerst weisen wir dafür nach, dass $\inf(O)$ eine obere Schranke von $M$ ist. Sei also $m \in M$ beliebig. Wir wissen, dass $m$ eine untere Schranke von $O$ ist, weil $\forall o \in O: m \leq o$. Da $\inf(O)$ die größte untere Schranke ist, gilt also $m \leq \inf(O)$. Da $m \in M$ beliebig war ist also $\inf(O)$ eine obere Schranke von $M$.
+
+Nun gilt es noch nachzuweisen, dass $\inf(O)$ die kleinste obere Schranke von $M$ ist. Dies folgt aber unmittelbar daraus, dass für eine beliebige obere Schranke $o \in O$ gilt, dass $\inf(O) \leq o$ ist.  \newline
+
+
 Die Halbordnung $(\mathbb{N}, \leq)$ ist kein Gegenbeispiel, da sie die Voraussetzung
 nicht erfüllt. \\
 Dazu betrachte man die leere Menge: $\emptyset$\\
