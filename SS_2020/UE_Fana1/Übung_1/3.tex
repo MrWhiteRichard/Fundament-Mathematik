@@ -22,12 +22,168 @@ Zeige:
 Hinweis.
 Sei $V$ konvexe Nullumgebung, $r > 0$, sodass $U_r(0) := \Bbraces{g \in L^p(0, 1): \Delta(g) < r} \subseteq V$ wobei $\Delta(f) := d_p(f, 0)$.
 Sei $f \in L^p(0, 1)$.
-Wähle $n \in \N$ mit $n^{p-1} \Delta(f) < r$, $0 = x_0 < x_1 < \ldots < x_n = 1$ mit $\Int[x_{i-1}][x_i]{|f(t)|^p}{t} = n^{-1} \Delta(f)$ und setze $g_i(t) := n f(t) \1[[x_{i-1}, x_i]]$, sodass $f = n^{-1}(g_1 + \ldots + g_n)$.
+Wähle $n \in \N$ mit $n^{p-1} \Delta(f) < r$, $0 = x_0 < x_1 < \ldots < x_n = 1$ mit $\Int[x_{i-1}][x_i]{|f(t)|^p}{t} = n^{-1} \Delta(f)$ und setze $g_i(t) := n f(t) \1_{[x_{i-1}, x_i]}$, sodass $f = n^{-1}(g_1 + \ldots + g_n)$.
 
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+(a)
+Damit $d_p$ eine Metrik auf $L^p(0, 1)$ ist, müssen 3 Bedingungen gelten:
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item
+  \Quote{Null-Gleichheit}:
+  $L^p(0, 1)$ besteht aus Äquivalenzklassen f.ü. gleicher Funktionen. $\Forall f, g \in L^p(0, 1):$
+
+  \begin{align*}
+    f = g
+    \Leftrightarrow
+    |f - g|^p = 0
+    \Leftrightarrow
+    d_p(f, g)
+    =
+    \Int[(0, 1)]{|f - g|^p}{\lambda} = 0
+  \end{align*}
+
+  \item
+  \Quote{Symmetrie}:
+  $\Forall f, g \in L^p(0, 1):$
+
+  \begin{align*}
+    d_p(f, g)
+    =
+    \Int[(0, 1)]{|f - g|^p}{\lambda}
+    =
+    \Int[(0, 1)]{|g - f|^p}{\lambda}
+    =
+    d_p(g, f)
+  \end{align*}
+
+  \item
+  \Quote{Dreiecksungleichung}:
+  Dazu brauchen wir zuerst, dass $\Forall a, b \in \R:$
+
+  \begin{align*}
+    |a|^p + |b|^p \geq |a + b|^p.
+  \end{align*}
+
+  Für $a + b = 0$, stimmt die Aussage.
+  Ansonsten, genügt, aufgrund der Dreiecksungleichung für $|\cdot|$,
+
+  \begin{align*}
+    |a|^p + |b|^p \geq (|a| + |b|)^p
+    \Leftarrow
+    \pbraces{\frac{|a|}{|a| + |b|}}^p +
+    \pbraces{\frac{|b|}{|a| + |b|}}^p
+    \geq
+    \frac{|a|}{|a| + |b|} +
+    \frac{|b|}{|a| + |b|} = 1.
+  \end{align*}
+
+  Wegen der Monotonie des Integrals, folgt somit aber $\Forall f, g, h \in L^p(0, 1):$
+
+  \begin{align*}
+    d_p(f, g) + d_p(g, h)
+    & =
+    \Int[(0, 1)]{|f - g|^p}{\lambda} +
+    \Int[(0, 1)]{|g - h|^p}{\lambda} \\
+    & =
+    \Int[(0, 1)]{|f - g|^p + |g - h|^p}{\lambda}
+    \geq
+    \Int[(0, 1)]{|f - h|^p}{\lambda}
+    =
+    d_p(f, h).
+  \end{align*}
+
+\end{enumerate}
+
+Analog zu Beispiel 2.1.2, prüfen wir 3 Bedingungen nach.
+
+\begin{itemize}
+
+  \item
+  \Quote{$+$ stetig}:
+  In der Tat gilt wegen
+
+  \begin{align*}
+    d_p((f_1 + f_2), (g_1 + g_2))
+    & =
+    \Int[(0, 1)]{|(f_1 + f_2) - (g_1 + g_2)|^p}{\lambda} \\
+    & \leq
+    \Int[(0, 1)]{|f_1  - g_1|^p}{\lambda} +
+    \Int[(0, 1)]{|f_2  - g_2|^p}{\lambda}
+    =
+    d_p(f_1, g_1) + d_p(f_2, g_2)
+  \end{align*}
+
+  $U_\epsilon^{L^p(0, 1)}(f_1) + U_\epsilon^{L^p(0, 1)}(f_2) \subseteq U_{2 \epsilon}^{L^p(0, 1)}(f_1 + f_2)$, womit die Addition stetig ist.
+
+  \item
+  \Quote{$\cdot$ stetig}:
+  Aus
+
+  \begin{align*}
+    d_p(\alpha f, \beta g)
+    & =
+    \Int[(0, 1)]{|\alpha f - \beta g|^p}{\lambda}
+    \leq
+    \Int[(0, 1)]{|\alpha (f - g)|^p}{\lambda} +
+    \Int[(0, 1)]{|(\alpha - \beta) g|^p}{\lambda} \\
+    & =
+    |\alpha|^p
+    \Int[(0, 1)]{|f - g|^p}{\lambda} +
+    |\alpha - \beta|^p
+    \Int[(0, 1)]{|g|^p}{\lambda}
+    =
+    |\alpha|^p
+    d_p(f, g) +
+    |\alpha - \beta|^p
+    \Delta(g)
+  \end{align*}
+
+  folgt $U_\epsilon^\C(\alpha) \cdot U_\epsilon^{L^p(0, 1)}(f) \subseteq U_{\epsilon (|\alpha| + \Delta(f) + \epsilon)}^{L^p(0, 1)}(\alpha f)$ und damit die Stetigkeit der Skalarmultiplikation.
+
+  \item
+  \Quote{$T_2$}:
+  Schließlich bemerke man, dass jeder metrische Raum Hausdorff ist.
+
+\end{itemize}
+
+(b)
+Dem Hinweis fügen wir noch folgendes hinzu. $\Forall i = 1, \ldots, n:$
+
+\begin{align*}
+  \Delta(g_i)
+  =
+  \Int[(0, 1)]{|g_i|^p}{\lambda}
+  =
+  n^p
+  \Int[(x_{i-1}, x_i)]{|f|^p}
+  =
+  n^{p-1} \Delta(f) < r
+  \Rightarrow
+  g_i \in U_r(0)
+\end{align*}
+
+Nachdem $U_r(0)$ konvex ist und $f = n^{-1}(g_1 + \cdots + g_n)$ eine Konvexkombination, muss $f \in U_r(0) \subseteq V$. \\
+
+(c)
+Alle Polynomfunktionen liegen in $L^p(0, 1)$ und bilden bereits einen unendlichdimensionalen linearen Teilraum. \\
+
+Sei $D \subseteq \C$ offen und konvex und $f \in X^\prime$ linear und stetig. Dann ist $f^{-1}(D) \in L^p(0, 1)$ offen und konvex, weil $\Forall x, y \in f^{-1}(D), \Forall \alpha \in (0, 1):$
+
+\begin{align*}
+  f(x), f(y) \in D
+  \Rightarrow
+  f(\alpha x + (1 - \alpha) y)
+  =
+  \alpha f(x) + (1 - \alpha) f(y) \in D
+  \Rightarrow
+  \alpha x + (1 - \alpha) y \in f^{-1}(D).
+\end{align*}
+
+Wenn nun, für $\epsilon > 0$, $D = U_\epsilon(0)$, dann ist wegen der Linearität von $f$, $f^{-1}(D)$ eine offene $0$-Umgebung und somit ganz $L^p(0, 1)$. Damit liegt $f(L^p(0, 1))$ in jeder offenen $\epsilon$-Kugel um $0$, also in $\Bbraces{0} \subseteq \C$, d.h. $f = 0$.
 
 \end{solution}
