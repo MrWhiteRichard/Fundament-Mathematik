@@ -8,16 +8,33 @@ Zeige, dass jede kompakte Teilmenge von $X$ beschränkt ist. Zeige, dass jeder l
 
 \begin{solution}
 
-Sei $K \subseteq X$ kompakt, $U \in \mathfrak{U}(0)$ beliebig. \\
-Wähle $W \subseteq U$ als kreisförmige Nullumgebung. \\
-$W$ ist absorbierend, also: $\forall x \in X: \exists t > 0: x \in tW$. \\
-Für alle $ \lambda \neq 0 \in \mathbb{C}$ ist die Muliplikation mit einem komplexen Skalar
-ein Homöomorphismus und somit gilt: \\
-\[ \bigcup_{t > 0}tW = X \supseteq K \] ist eine offene Überdeckung von K. \\
-Nach der Definition einer kompakten Menge existiert davon eine endliche Teilüberdeckung: \\
-\[ \bigcup_{i=1}^nt_iW \supseteq K \]
-Aufgrund der Kreisförmigkeit von $W$ gilt: $t_j \geq t_i: t_jW \supseteq t_iW$ \\
-und somit mit $t_{max} := \max_{i=1}^nt_i: t_{max}U \supseteq t_{max}W \supseteq K$. \\
-Damit ist K beschränkt.
+\Quote{kompakte Teilmenge beschränkt}:
+Sei $K \subseteq X$ kompakt, $U \in \mathfrak{U}(0)$ beliebig.
+Wähle $W \subseteq U$ als kreisförmige Nullumgebung.
+$W$ ist absorbierend, d.h. $\Forall x \in X: \Exists t > 0: x \in tW$.
+Nach Lemma 2.1.3, ist $M_\lambda: x \mapsto \lambda x$ homöomorph, für alle $ \lambda \in \C \setminus \Bbraces{0}$.
+$(tW)_{t > 0}$ ist damit eine offene Überdeckung von $K$.
+
+\begin{align*}
+  \bigcup_{t > 0} tW = X \supseteq K
+\end{align*}
+
+Nach der Definition einer kompakten Menge existiert davon eine endliche Teilüberdeckung $(t_i W)_{i=1}^n$.
+Aufgrund der Kreisförmigkeit von $W$ gilt $\Forall i = 1, \ldots, n:$
+
+\begin{align*}
+  t_j \geq t_i
+  \Rightarrow
+  t_j W \supseteq t_i W.
+\end{align*}
+
+Mit $t_\Text{max} := \max_{i=1}^n t_i$, folgt also $t_\Text{max} U \supseteq t_\Text{max} W \supseteq K$.
+Damit ist $K$ beschränkt. \\
+
+\Quote{Linearer Teilraum unbeschränkt}:
+Weil $Y \neq \Bbraces{0}$, muss $\Exists y \in Y: y \neq 0$. Weil $(X, \mathcal{T})$ Hausdorff ist, $\Exists V \text{ Umgebung von } y, \Exists U \text{ Umgebung von } 0: V \cap U = \emptyset$.
+Damit muss aber $y \notin U \in \mathfrak{U}(0)$.
+Weil $Y$ ein linearer Teilraum ist, gilt $\Forall \lambda > 0: \lambda y \in Y$, aber $\lambda y \notin \lambda U$.
+Daher ist $Y$ unbeschränkt, weil $\Exists U \in \mathfrak{U}(0): \Forall \lambda > 0: Y \not \subseteq \lambda U$.
 
 \end{solution}
