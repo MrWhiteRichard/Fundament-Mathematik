@@ -36,7 +36,7 @@ Die Ellipse $E$ ist also
   E :=
   \Bbraces
   {
-    (x, y) \in \R^2:
+    (x, y)^T \in \R^2:
     \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
   }
 \end{align*}
@@ -55,7 +55,7 @@ und sieht wie folgt aus.
   y_\pm = \pm b \sqrt{1 - \pbraces{\frac{x}{a}}^2}.
 \end{align*}
 
-Fasst man das als Funktion von $x$ auf so ergibt sich für die Ableitung
+Fasst man das als Funktion von $x$ auf, so ergibt sich für die Ableitung
 
 \begin{align*}
   y^\prime_{\pm}(x)
@@ -84,29 +84,29 @@ Ein Normalvektor $\vec{n}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse i
   \vec{n}(x_0, y_0)
   =
   \begin{cases}
-    (-y_+^\prime(x_0), 1)^T
+    (-y_+^\prime(x_0), 1)^T,
     & \text{wenn} \enspace y_0 > 0, \\
-    (1, 0)^T
+    (1, 0)^T,
     & \text{wenn} \enspace y_0 = 0, \\
-    (-y_-^\prime(x_0), 1)^T
+    (-y_-^\prime(x_0), 1)^T,
     & \text{wenn} \enspace y_0 < 0.
   \end{cases}
 \end{align*}
 
-Die Tangentengleichung $\vec{T}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse ist
+Die Tangentialgerade $\vec{T}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ellipse ist
 
 \begin{align*}
   \vec{T}(x_0, y_0)
   =
   \Bbraces
   {
-    (x, y) \in \R^2:
+    (x, y)^T \in \R^2:
     \begin{cases}
-      y = y_0 + (x - x_0)y_+^\prime(x_0)
-      & \text{wenn} \enspace y_0 > 0 \\
-      x = \pm a
-      & \text{wenn} \enspace y_0 = 0 \land x_0 = \pm a \\
-      y = y_0 + (x - x_0) y_-^\prime(x_0)
+      y = y_0 + (x - x_0)y_+^\prime(x_0),
+      & \text{wenn} \enspace y_0 > 0, \\
+      x = \pm a,
+      & \text{wenn} \enspace y_0 = 0 \land x_0 = \pm a, \\
+      y = y_0 + (x - x_0) y_-^\prime(x_0),
       & \text{wenn} \enspace y_0 < 0
     \end{cases}
   }.
@@ -122,7 +122,7 @@ Die Tangentengleichung $\vec{T}(x_0, y_0)$ im Punkt $(x_0, y_0)^T \in E$ der Ell
   \end{pmatrix}
   =
   \begin{pmatrix}
-    -a \sin(t) \\ b \cos(t)
+    -a \sin{t} \\ b \cos{t}
   \end{pmatrix}.
 \end{align*}
 
@@ -132,23 +132,23 @@ Ein Normalvektor $\vec{n}(t)$ in Abhängigkeit von $t$ ist
   n(t)
   =
   \begin{pmatrix}
-    b \cos(t) \\ a \sin(t)
+    b \cos{t} \\ a \sin{t}
   \end{pmatrix}.
 \end{align*}
 
-Die Tangentengleichung $\vec{T}(t)$ in Abhängigkeit von $t$ ist
+Die Tangentialgerade $\vec{T}(t)$ in Abhängigkeit von $t$ ist
 
 \begin{align*}
   \vec{T}(t)
   =
   \Bbraces
   {
-    (x, y) \in \R^2:
+    (x, y)^T \in \R^2:
       \begin{cases}
-        b \sin(t) - (x - a \cos(t)) \frac{b \cos(t)}{a \sin(t)} = y
-        & \text{wenn} \enspace \sin(t) \neq 0 \\
-        x = \pm a
-        & \text{wenn} \enspace \sin(t) = 0 \land \cos(t) = \pm 1
+        b \sin{t} - (x - a \cos{t}) \frac{b \cos{t}}{a \sin{t}} = y,
+        & \text{wenn} \enspace \sin{t} \neq 0, \\
+        x = \pm a,
+        & \text{wenn} \enspace \sin{t} = 0 \land \cos{t} = \pm 1
       \end{cases}
   }.
 \end{align*}
