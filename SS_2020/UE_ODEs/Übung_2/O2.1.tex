@@ -1,0 +1,25 @@
+\begin{exercise}
+
+Sei G \subseteq \R^{d+1} Gebiet, f \in C(G; \R^{d}).
+
+a) zeige die Äquivalenz folgender Aussagen:
+
+\begin{enumerate}
+  \item* (1) $\forall (t, y) \in G \exists U$ Umgebung $\exists L_U > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in U
+  (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_U \left\lVert x-y \right\rVert).$
+  \item* (2) $\forall K \subseteq G kompakt \exists L_K > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in K
+  (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_K \left\lVert x-y \right\rVert).$
+\end{enumerate}
+
+\end{exercise}
+
+\begin{solution}
+
+(2) \Rightarrow (1): Sei $(t, y) \in \R^d.$ $G$ ist Gebiet $\Rightarrow \exits \epsilon > 0 (U_\epsilon((t,y)) \subseteq G).$ Insbesondere ist die abgeschlossene
+$\epsilon /2$-Kugel um $(t,y)$ in $G$ enthalten und kompakt, $(1)$ gilt also insbesondere für die offene $\epsilon /4$-Umgebung um $(t,y)$.
+
+(1) \Rightarrow (2): Jede Umgebung enthält eine \epsilon-Kugel. Daher gilt $\forall x \in K \exists \epsilon_x > 0 ( (1) gilt für U_{\epsilon_x}(x)).$
+Weil K kompakt ist, existiert eine endl. TÜ von K durch solche Kugeln: $K \subseteq \bigcup_{i = 1}^n U_{\epsilon_x_i}(x_i).$
+Wähle $L_K := max L_{U_{\epsilon_x_i}(x_i)}.$
+
+\end{solution}
