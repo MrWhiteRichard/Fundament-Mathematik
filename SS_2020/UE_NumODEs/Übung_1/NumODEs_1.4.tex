@@ -25,6 +25,34 @@ Weiter sei auch $z$ eine Lösung der Differentialgleichung $z^\prime = f(t, z)$ 
 
 \begin{solution}
 
-Trivial!
+Wir wollen für den Beweis wieder das Gronwall-Lemma anwenden und definieren somit erstmal fröhlich:
 
+\begin{align*}
+  v(t)&:= \norm[2]{y(t)-z(t)}^{2}\\
+  A &:= v(t_{0})
+\end{align*}
+
+Nun ist $v$ differenzierbar und es gilt:
+
+\begin{align*}
+  v'(t)=\frac{d}{dt}\sum_{i=0}^{n} (y_{i}(t)-z_{i}(t))^{2} =\sum_{i=0}^{n} \frac{d}{dt} (y_{i}(t)-z_{i}(t))^{2} =
+  \sum_{i=0}^{n} 2(y_{i}(t)-z_{i}(t))(y'_{i}(t)-z'_{i}(t)) = 2 \abraces{y'(t)-z'(t),y(t)-z(t)}_2
+\end{align*}
+Nun verwenden wir den Hauptsatz der Differnetial und Integralrechnung sowie die Dreiecksungleichung und die einseitige
+Lipschitz-stetigkeit für unsere Abschätzungen und erhalten:
+
+\begin{align*}
+  v(t) &\leq A + \int_{t_0}^{t} v'(\tau)d\tau \\
+  &= A + 2\int_{t_0}^{t}\abraces{y'(\tau)-z'(\tau),y(\tau)-z(\tau)}_2d\tau \\
+  &= A + 2\int_{t_0}^{t}\abraces{f(\tau,y(\tau))-f(\tau,z(\tau)),y(\tau)-z(\tau)}_2d\tau \\
+  &\leq A +2L_{+}\int_{t_0}^tv(\tau)d\tau \\
+  &\end{align*}
+
+Somit gilt nach dem Gronwall-Lemma:
+
+\begin{align*}
+  \norm[2]{y(t)-z(t)}^{2} \leq \norm[2]{y(t_{0})-z(t_{0})}^{2}e^{2L_{+}(t-t_{0})}
+\end{align*}
+
+Wurzelziehen gibt uns dann das gewünschte Ergebnis.
 \end{solution}
