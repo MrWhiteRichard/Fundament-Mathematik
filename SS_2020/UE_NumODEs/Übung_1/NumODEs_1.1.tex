@@ -19,6 +19,76 @@ Gegeben sei das Anfangswertproblem $y^\prime(t) = t y(t)$, $t \in [0, T]$, mit $
 
 \begin{solution}
 
-Trivial!
+\textbf{a)}
+Wir verwenden die Definition des Operators $\Phi$ aus dem Beweis vom Pidard-Lindelöf.
+
+\begin{align*}
+  (\Phi y)(t)
+  :=
+  1 + \Int[0][t]{f(\tau, y(\tau))}{\tau}.
+\end{align*}
+
+Laut besagtem Beweis, haben wir damit das Problem als Fixpunktproblem reformulieret.
+Wir zeigen mittels Induktion nach $n$, dass
+
+\begin{align*}
+  y_n(t)
+  =
+  \sum_{k=0}^{n-1} \pbraces{\frac{t^2}{2}}^k \frac{1}{k!}.
+\end{align*}
+
+IA ($n = 0$):
+Trivial! \\
+
+IS ($n \mapsto n+1$):
+
+\begin{align*}
+  y_{n+1}(t)
+  & =
+  1 + \Int[0][t]
+  {
+    \tau \pbraces
+    {
+      \sum_{k=0}^{n-1}
+      \pbraces{\frac{\tau^2}{2}}^k
+      \frac{1}{k!}
+    }
+  }
+  {\tau}
+  =
+  1 + \Int[0][t]
+  {
+    \sum_{k=0}^{n-1}
+    \frac
+    {\tau^{2k + 1}}
+    {2^k}
+    \frac{1}{k!}
+  }
+  {\tau} \\
+  & =
+  1 +
+  \sum_{k=0}^{n-1}
+  \frac{1}{2^k k!}
+  \Int[0][t]{\tau^{2k + 1}}{\tau}
+  1 +
+  \sum_{k=0}^{n-1}
+  \frac{1}{2^k k!}
+  \frac{t^{2(k+1)}}{(2(k+1))}
+  =
+  \sum_{k=0}^n \pbraces{\frac{t^2}{2}}^k \frac{1}{k!}.
+\end{align*}
+
+Schließlich, erhalten wir den Grenzwert
+
+\begin{align*}
+  y(t)
+  =
+  \lim_{n \to \infty} y_n(t)
+  =
+  \exp{\frac{t^2}{2}}.
+\end{align*}
+
+\textbf{b)}
+Siehe \Quote{.py}!
 
 \end{solution}
