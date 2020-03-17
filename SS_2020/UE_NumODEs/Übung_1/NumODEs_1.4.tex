@@ -25,34 +25,64 @@ Weiter sei auch $z$ eine Lösung der Differentialgleichung $z^\prime = f(t, z)$ 
 
 \begin{solution}
 
-Wir wollen für den Beweis wieder das Gronwall-Lemma anwenden und definieren somit erstmal fröhlich:
+Zuerst, bemerken wir, dass
 
 \begin{align*}
-  v(t)&:= \norm[2]{y(t)-z(t)}^{2}\\
-  A &:= v(t_{0})
+  \frac{d}{d \tau} \norm[2]{y(\tau) - z(\tau)}^2
+  & =
+  \sum_{i=1}^n \frac{d}{d \tau} (y_i(\tau) - z_i(\tau))^2
+  =
+  \sum_{i=1}^n 2 (y_i(\tau) - z_i(\tau))(y_i^\prime(\tau) - z_i^\prime(\tau)) \\
+  & =
+  2 \abraces
+  {
+    y^\prime(\tau) - z^\prime(\tau),
+    y(\tau) - z(\tau)
+  }_2
+  =
+  2 \abraces
+  {
+    f(\tau, y(\tau)) - f(\tau, z(\tau)),
+    y(\tau) - z(\tau)
+  }_2
+  \leq
+  2 L_+ \norm[2]{y(\tau) - z(\tau)}^2.
 \end{align*}
 
-Nun ist $v$ differenzierbar und es gilt:
+Aus dem Hauptsatz der Differnetial- und Integralrechnung, der Dreiecksungleichung, folgt also
 
 \begin{align*}
-  v'(t)=\frac{d}{dt}\sum_{i=1}^{n} (y_{i}(t)-z_{i}(t))^{2} =\sum_{i=1}^{n} \frac{d}{dt} (y_{i}(t)-z_{i}(t))^{2} =
-  \sum_{i=1}^{n} 2(y_{i}(t)-z_{i}(t))(y'_{i}(t)-z'_{i}(t)) = 2 \abraces{y'(t)-z'(t),y(t)-z(t)}_2
-\end{align*}
-Nun verwenden wir den Hauptsatz der Differnetial und Integralrechnung sowie die Dreiecksungleichung und die einseitige
-Lipschitz-stetigkeit für unsere Abschätzungen und erhalten:
-
-\begin{align*}
-  v(t) &\leq A + \int_{t_0}^{t} v'(\tau)d\tau \\
-  &= A + 2\int_{t_0}^{t}\abraces{y'(\tau)-z'(\tau),y(\tau)-z(\tau)}_2d\tau \\
-  &= A + 2\int_{t_0}^{t}\abraces{f(\tau,y(\tau))-f(\tau,z(\tau)),y(\tau)-z(\tau)}_2d\tau \\
-  &\leq A +2L_{+}\int_{t_0}^tv(\tau)d\tau \\
-  &\end{align*}
-
-Somit gilt nach dem Gronwall-Lemma:
-
-\begin{align*}
-  \norm[2]{y(t)-z(t)}^{2} \leq \norm[2]{y(t_{0})-z(t_{0})}^{2}e^{2L_{+}(t-t_{0})}
+  \norm[2]{y(t) - z(t)}^2
+  & \leq
+  \norm[2]{y(t_0) - z(t_0)}^2
+  +
+  \Int[t_0][t]
+  {\frac{d}{d \tau} \norm[2]{y(\tau) - z(\tau)}^2}{\tau} \\
+  & \leq
+  \norm[2]{y(t_0) - z(t_0)}^2
+  +
+  2 L_+ \Int[t_0][t]
+  {\norm[2]{y(\tau) - z(\tau)}^2}{\tau}.
 \end{align*}
 
-Wurzelziehen gibt uns dann das gewünschte Ergebnis.
+Mit dem Grönwall-Lemma, und
+
+\begin{align*}
+  v(t) := \norm[2]{y(t) - z(t)}^2,
+  \quad
+  A := v(t_0),
+  \quad
+  B := 0,
+\end{align*}
+
+erhalten wir
+
+\begin{align*}
+  \norm[2]{y(t) - z(t)}^{2}
+  \leq
+  \norm[2]{y(t_0) - z(t_0)}^2 e^{2 L_+ (t - t_0)}.
+\end{align*}
+
+Wenn man hier noch die $\sqrt{\cdot}$ zieht, folgt die Behauptung.
+
 \end{solution}
