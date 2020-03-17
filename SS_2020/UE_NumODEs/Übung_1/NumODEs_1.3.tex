@@ -18,12 +18,111 @@ Untersuchen Sie in Abhängigkeit von $\lambda$ und $h$ das Verhalten von $y^e_j$
 
 \begin{solution}
 
-Man verifiziert unmittelbar, dass die exakte Lösung folgende ist.
+Das Anfangswertproblem kann durch $f(t, y) = \lambda y$ beschrieben werden. Man verifiziert unmittelbar, dass die exakte Lösung folgende ist.
 
 \begin{align*}
   y(t) = e^{\lambda t} y_0
 \end{align*}
 
-2 b continued ...
+Damit erhält man
+
+\begin{align*}
+  y(t_j) \xrightarrow{j \to \infty} 0.
+\end{align*}
+
+Die Approximationen $y_j^{\mathrm{e}}$ und $y_j^{\mathrm{i}}$ sollten also auch für $j \to \infty$ verschwinden. \\
+
+Mit $j \in \N_0$ lautet die explizite Euler Methode
+
+\begin{align*}
+  \Phi(t_j, y_j^{\mathrm{e}}, h) := f(t_j, y_j^{\mathrm{e}}),
+  \quad
+  y_{j+1}^{\mathrm{e}} := y_j^{\mathrm{e}} + h \Phi(t_j, y_j^{\mathrm{e}}, h).
+\end{align*}
+
+Man erhält also konkret
+
+\begin{align*}
+  y_{j+1}^{\mathrm{e}}
+  =
+  y_j^{\mathrm{e}} + h \lambda y_j^{\mathrm{e}}
+  =
+  (1 + h \lambda) y_j^{\mathrm{e}}.
+\end{align*}
+
+Damit folgt unmittelbar
+
+\begin{align*}
+  y_j^{\mathrm{e}}
+  =
+  (1 + h \lambda)^j y_0.
+\end{align*}
+
+Dieser Ausdruck ist für $y_0 = 0$ offensichtlich konstant $0$ und somit dagegen konvergent.
+Er verschwindet aber auch für $|1 + h \lambda| < 1$.
+Sollte allerdings $y_0 \neq 0$ und $|1 + h \lambda| \geq 1$ so konvergiert er nicht.
+Dabei oszilliert die Approximation um die $t$-Achse, wenn $1 + h \lambda < 0$.
+Um das zu vermeiden, muss für gegebenes $\lambda < 0$, $h > 0$ hinreichend klein sein. \\
+
+Mit $j \in \N_0$ lautet die implizite Euler Methode
+
+\begin{align*}
+  \Phi(t_j, y_j^{\mathrm{i}}, y_{j+1}^{\mathrm{i}}, h) := f(t_{j+1}, y_{j+1}^{\mathrm{i}}),
+  \quad
+  y_{j+1}^{\mathrm{i}} := y_j^{\mathrm{i}} + h \Phi(t_j, y_j^{\mathrm{i}}, y_{j+1}^{\mathrm{i}}, h).
+\end{align*}
+
+Man erhält also konkret
+
+\begin{align*}
+  y_{j+1}^{\mathrm{i}}
+  =
+  y_j^{\mathrm{i}} + h \lambda y_{j+1}^{\mathrm{i}}
+  \Rightarrow
+  y_{j+1}^{\mathrm{i}}
+  =
+  (1 - h \lambda)^{-1} y_j^{\mathrm{i}}.
+\end{align*}
+
+Damit folgt unmittelbar
+
+\begin{align*}
+  y_j^{\mathrm{i}}
+  =
+  (1 - h \lambda)^{-j} y_0.
+\end{align*}
+
+Dieser Ausdruck ist für $y_0 = 0$ offensichtlich konstant $0$ und somit dagegen konvergent.
+Er verschwindet aber auch für
+
+\begin{align*}
+  |1 - h \lambda|^{-1} < 1
+  \Leftrightarrow
+  1 < |1 - \underbrace{h \lambda}_{< 0}| = 1 - h \lambda
+  \Leftrightarrow
+  h \lambda < 0.
+\end{align*}
+
+Schließlich, konvergieren die Approximationen beider Eulerverfahren, für $h \to 0$, gegen die exakte Lösung.
+
+\begin{align*}
+  y_j^{\mathrm{e}}
+  =
+  \pbraces
+  {
+    (1 + h \lambda)^\frac{1}{h \lambda}
+  }^{\lambda t_j}
+  \xrightarrow{h \to 0}
+  y(t_j),
+  \quad
+  y_j^{\mathrm{i}}
+  =
+  -\pbraces
+  {
+    (1 - h \lambda)^\frac{1}{h \lambda}
+  }^{-\lambda t_j}
+  \xrightarrow{h \to 0}
+  y(t_j)
+\end{align*}
 
 \end{solution}
