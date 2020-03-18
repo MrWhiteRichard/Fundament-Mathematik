@@ -1,34 +1,34 @@
 \begin{exercise}
-    Zeigen Sie, dass für alle natürlichen Zahlen $k,l,j$ 
+    Zeigen Sie, dass für alle natürlichen Zahlen $k,l,j$
     \begin{itemize}
-        \item[(1)] $(k^j)^l = k^{j \cdot l}$ 
+        \item[(1)] $(k^j)^l = k^{j \cdot l}$
         \item[(2)] $(k^j) \cdot (k^l) = k^{j + l}$
     \end{itemize}
     gilt.
 \end{exercise}
 
 \begin{solution}
-    Wir definieren die Funktion 
+    Wir definieren die Funktion
     \begin{align*}
-        b: K^{J \times L} \to \pbraces{K^J}^L : f \mapsto \varphi: 
+        b: K^{J \times L} \to \pbraces{K^J}^L : f \mapsto \varphi:
         \begin{cases}
             L \to K^J \\
-            l \mapsto \psi: 
+            l \mapsto \psi:
             \begin{cases}
                 J \to K \\
                 j \mapsto f\pbraces{(j,l)}
             \end{cases}
-        \end{cases}  
+        \end{cases}
     \end{align*}
     und behaupten, dass diese bijektiv ist.
 
-    Um die Injektivität zu zeigen wählen wir also $f,g \in K^{J \times L}$ mit $b(f) = b(g)$. Sei weiters $(j,l) \in J \times L$ beliebig. Dann gilt 
+    Um die Injektivität zu zeigen wählen wir also $f,g \in K^{J \times L}$ mit $b(f) = b(g)$. Sei weiters $(j,l) \in J \times L$ beliebig. Dann gilt
     \begin{align*}
         f(j,l) = \pbraces{ \pbraces{b(f) }(l) }(j) = \pbraces{ \pbraces{b(g) }(l) }(j) = g(j,l)
     \end{align*}
     und damit folgt $f = g$, also die Injektivität.
 
-    Um die Surjektivität zu zeigen wählen wir $\varphi \in \pbraces{K^J}^L$ beliebig und definieren 
+    Um die Surjektivität zu zeigen wählen wir $\varphi \in \pbraces{K^J}^L$ beliebig und definieren
     \begin{align*}
         f \in K^{J \times L}: (j, l) \mapsto \pbraces{\varphi(l)}(j).
     \end{align*}
@@ -37,13 +37,13 @@
         \pbraces{\pbraces{b(f) }(l) }(j) = f\pbraces{(j,l)} = \pbraces{\varphi(l)}(j)
     \end{align*}
     und damit gilt $b(f) = \varphi$ also ist die Surjektivität von $b$ gezeigt.
-    
+
     Nun ist noch der zweite Teil zu beweisen. Dafür definieren wir die Funktion
     \begin{align*}
         b: \pbraces{K^J} \times \pbraces{K^L} \to K^{J \cup L}: (f,g) \mapsto \varphi:
         \begin{cases}
             J \cup L \to K \\
-            \alpha \mapsto 
+            \alpha \mapsto
             \begin{cases}
                 f(\alpha) &, \alpha \in J \\
                 g(\alpha) &, \alpha \in L
@@ -52,7 +52,7 @@
     \end{align*}
     Die Funktion ist wohldefiniert, da $L$ und $J$ disjunkt sind. Nun wollen wir wieder die Bijektivität beweisen.
 
-    Für die Injektivität seien $(f,g), (u,v) \in \pbraces{K^J} \times \pbraces{K^L}$ und $b\pbraces{(f,g)} = b\pbraces{(u,v)}$. Weiters sei $\alpha \in J \cup L$, wobei wir ohne Beschränkung der Allgemeinheit $\alpha \in J$ annehmen können. Es gilt 
+    Für die Injektivität seien $(f,g), (u,v) \in \pbraces{K^J} \times \pbraces{K^L}$ und $b\pbraces{(f,g)} = b\pbraces{(u,v)}$. Weiters sei $\alpha \in J \cup L$, wobei wir ohne Beschränkung der Allgemeinheit $\alpha \in J$ annehmen können. Es gilt
     \begin{align*}
         f(\alpha) = \pbraces{b\pbraces{(f,g)}}(\alpha) = \pbraces{b\pbraces{(u,v)}}(\alpha) = u(\alpha)
     \end{align*}
@@ -60,9 +60,15 @@
 
     Um die Surjektivität von $b$ zu zeigen wählen wir $\varphi \in K^{J \cup L}$ beliebig und definieren $(f,g) \in \pbraces{K^J} \times \pbraces{K^L}$ mit
     \begin{align*}
-        f: x \mapsto \varphi(x) \\
-        g: x \mapsto \varphi(x) 
-    \end{align*} 
+    f: \begin{cases}
+        J \to K \\
+        x \mapsto \varphi(x)
+        \end{cases}
+    g: \begin{cases}
+        L \to K \\
+        x \mapsto \varphi(x)
+        \end{cases}
+    \end{align*}
     Es gilt dann für beliebiges $\alpha \in J \cup L$
     \begin{align*}
         \pbraces{b\pbraces{(f,g)}}(\alpha) = \varphi(\alpha)
