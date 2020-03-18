@@ -1,0 +1,42 @@
+\begin{exercise}
+  Sei $I$ ein abgeschlossenes (endliches) Intervall, $L \in \R$.
+  Versehen Sie den Raum $C(I;\R^{d})$ der stetigen Funktionen auf $I$ mit der Norm
+  \begin{align*}
+    \norm[X]{z} := max_{t\inI}e^{-2Lt}\norm[\R^{d}]{z(t)}
+  \end{align*}
+  Zeigen Sie, dass dieser Raum ein Banachraum ist (Sie dürfen verwenden, dass der Raum
+  $C(I;\R^{d})$ versehen mit der üblichen Norm ein Banachraum ist). Geben Sie einen Teilraum
+  von $C(\R;\R^{d})$ (und eine Norm) an, so dass ein Banachraum entsteht.
+\end{exercise}
+
+\begin{solution}
+  Wir zeigen, dass $\norm[X]{z}$ und $\norm[\infty]{z}$ über dem Vektorraum $C(I;\R^{d})$
+  äquivalent sind. Sei dazu $I:=[a,b]$ und weiteres o.B.d.A $L \leq 0$, dann gilt für bel.
+  $z \in C(I;\R^{d})$:
+
+  \begin{align*}
+    e^{-2La}\norm[\infty]{z}
+    \leq
+    \norm[X]{z}
+    \leq
+    e^{-2Lb}\norm[\infty]{z}
+  \end{align*}
+
+  Aufgrund der Äquivalenz der Normen konvergiert eine Cauchyfolge genau dann in einer der beiden,
+  wenn sie es in der anderen tut. Da $C(I;\R^{d})$ versehen mit $\norm[\infty]{\cdot}$ schon ein Banachraum ist,
+  folgt daraus dass er auch mit $\norm[X]{\cdot}$ ein Banachraum ist.
+
+  \\
+
+  Für den zweiten Teil betrachten wir den Raum $C_{b}{\R,\R^{d}}$ versehen mit $\norm[\infty]{\cdot}$.
+  Dass dieser Raum wirklich einen Unterraum bildet, lässt sich elementar nachrechnen.
+  Dazu betrachten wir die Unterraumkriterien:
+  \begin{align*}
+    U \neq \emptyset
+  \end{align*}
+  \begin{align*}
+    \forall a,b \in U, x \in \R \leftarrow a+xb \in U
+  \end{align*}
+
+
+\end{solution}
