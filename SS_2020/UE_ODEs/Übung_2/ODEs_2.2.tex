@@ -25,10 +25,7 @@
         Man sieht unmittelbar, dass die Behauptung für $y_0$ richtig ist. Sei sie nun für $y_n$ richtig.
         Dann gilt
         \begin{align*}
-            y_{n+1}(t) &= 1 + \int_0^t \sum_{k = 0}^{n-1} \frac{\tau^k}{k!} d\tau \\
-            &= 1 +  \sum_{k = 0}^{n-1}\frac{1}{k!} \int_0^t \tau^k d\tau \\
-            &= 1 + \sum_{k = 0}^{n-1} \frac{\tau^{k + 1}}{(k+1)!} \\
-            &= \sum_{k = 0}^n \frac{\tau^k}{k!}
+            y_{n+1}(t) &= 1 + \int_0^t \sum_{k = 0}^{n-1} \frac{\tau^k}{k!} d\tau = 1 +  \sum_{k = 0}^{n-1}\frac{1}{k!} \int_0^t \tau^k d\tau = 1 + \sum_{k = 0}^{n-1} \frac{\tau^{k + 1}}{(k+1)!} = \sum_{k = 0}^n \frac{\tau^k}{k!}
         \end{align*}
         und wir sehen unmittlebar, dass die Folge gegen $\exp$ konvergiert. Die Funktion $\exp$ ist eine Lösung der Differentialgleichung und zwar auf ganz $\R$.
 
@@ -44,14 +41,12 @@
         \begin{enumerate}[label = \roman*)]
             \item Im ersten Fall sei $n \in 2 \pbraces{\N \cup \Bbraces{0}}$. damit gilt $y_n = 0$, also 
             \begin{align*}
-                y_{n+1}(t) &= \int_0^t \pbraces{2\tau - 2 \sqrt{\max\Bbraces{0, y_n(\tau)}}} d\tau \\
-                &= \int_0^t 2\tau d\tau = t^2
+                y_{n+1}(t) = \int_0^t \pbraces{2\tau - 2 \sqrt{\max\Bbraces{0, y_n(\tau)}}} d\tau = \int_0^t 2\tau d\tau = t^2
             \end{align*}
 
             \item Im zweiten Fall ist $n \in 2 \pbraces{\N \cup \Bbraces{0}} + 1$. Dann ist $y_n(t) = t^2$ und wir erhalten
             \begin{align*}
-                y_{n+1}(t) &= \int_0^t \pbraces{2\tau - 2 \sqrt{\max\Bbraces{0, y_n(\tau)}}} d\tau \\
-                &= \int_0^t \pbraces{2\tau - 2\tau} d\tau = 0
+                y_{n+1}(t) = \int_0^t \pbraces{2\tau - 2 \sqrt{\max\Bbraces{0, y_n(\tau)}}} d\tau = \int_0^t \pbraces{2\tau - 2\tau} d\tau = 0
             \end{align*}
         \end{enumerate}
         Fragt man sich nun, welche Bedingung des Satzes von Pricard-Lindelöf verletzt ist, so erkennt man, dass die Funktion $f: \R^2 \to \R: (t,y) \mapsto 2t - 2\sqrt{\max\Bbraces{0,y}}$ jedenfalls im Punkt $(t,y) = (s,0)$ für ein beliebiges $s \in \R$ nicht lipschitzstetig ist. Denn nehmen wir an es gäbe eine Umgebung $U$ von $(s,0)$ und ein $L \in \R^+$, für die für alle $(u,x), (u,z) \in U$ gilt, dass $\vbraces{f\pbraces{u,x}- f\pbraces{u,z}} \leq L\vbraces{x - z}$. Das heißt insbesondere für alle $(s,x) \in U$
