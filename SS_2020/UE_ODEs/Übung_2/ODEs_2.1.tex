@@ -1,33 +1,58 @@
 \begin{exercise}
+  Sei $G \subseteq \R^{d+1}$ Gebiet, $f \in C(G; \R^d)$.
 
-Sei $G \subseteq \R^{d+1}$ Gebiet, $f \in C(G; \R^d)$.
+  \begin{enumerate}[label = \alph*)]
+    \item Zeige die Äquivalenz folgender Aussagen:
+    \begin{enumerate}[label = (\arabic*)]
+      \item $\forall (t, y) \in G \exists U$ Umgebung $\exists L_U > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in U
+      (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_U \left\lVert x-y \right\rVert).$ \label{one}
 
-a) zeige die Äquivalenz folgender Aussagen:
+      \item $\forall K \subseteq G kompakt \exists L_K > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in K
+      (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_K \left\lVert x-y \right\rVert).$ \label{two}
+    \end{enumerate}
 
-\begin{enumerate}
-  \item* (1) $\forall (t, y) \in G \exists U$ Umgebung $\exists L_U > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in U
-  (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_U \left\lVert x-y \right\rVert).$ \label{one}
-  \item* (2) $\forall K \subseteq G kompakt \exists L_K > 0 \forall (\tilde{t}, x), (\tilde{t}, y) \in K
-  (\left\lVert f(\tilde{t}, x), f(\tilde{t}, y) \right\rVert \leq L_K \left\lVert x-y \right\rVert).$ \label{two}
-\end{enumerate}
+    \item Zeigen Sie, dass jede Funktion $f \in C^1\pbraces{G; \R^d}$ lokal lipschitzstetig im zweiten Argument ist und geben Sie eine stetige Funktion $f$ an, die im zweiten Argument nicht lokal lipschitzstetig ist. 
+  \end{enumerate}
 
 \end{exercise}
 
 \begin{solution}
+  Hier könnte Ihre Werbung stehen!
 
-(2) $\Rightarrow$ (1):
-Sei $(t, y) \in \R^d$.
-% $G$ ist Gebiet $\Rightarrow \exits \epsilon > 0 (U_\epsilon((t, y)) \subseteq G)$.
-Insbesondere ist die abgeschlossene $\epsilon /2$-Kugel um $(t,y)$ in $G$ enthalten und kompakt, $(1)$ gilt also insbesondere für die offene $\epsilon /4$-Umgebung um $(t,y)$.
+  \begin{enumerate}[label = \alph*)]
+    \item 
+    (2) $\Rightarrow$ (1): Sei $(t, y) \in \R^d$.
+    % $G$ ist Gebiet $\Rightarrow \exits \epsilon > 0 (U_\epsilon((t, y)) \subseteq G)$.
+    Insbesondere ist die abgeschlossene $\epsilon /2$-Kugel um $(t,y)$ in $G$ enthalten und kompakt, $(1)$ gilt also insbesondere für die offene $\epsilon /4$-Umgebung um $(t,y)$.
 
-(1) $\Rightarrow$ (2):
-Wir führen einen Widerspruchsbeweis, es gelte also \eqref{one} und nicht \eqref{two}. Das heißt es gibt ein kompates $K \subseteq G$, für das 
-  \begin{align*}
-    \forall L \in \R^+: \exists \pbraces{s_L,x_L}, \pbraces{s_L, z_L} \in K: \Vbraces{f(s_L,x_L) - f(s_L,z_L)}_{\R^d} > L \Vbraces{x_L - z_L}_{\R^d}
-  \end{align*}
-gilt. Wir erhalten also zwei Netze $\pbraces{s_L,x_L}, \pbraces{s_L, z_L}$ aus $K$, wobei wir auf $L$ die natürliche Ordnung auf $\R^+$ betrachten. Da $K$ kompakt ist hat $\pbraces{s_L,x_L}$ ein gegen ein $(s,x) \in K$ konvergentes Teilnetz $\pbraces{s_M, x_M}$. Da $f$ stetig ist wissen wir, dass $f(K)$ kompakt und damit beschränkt ist und damit ist der Zähler im Bruch
-  \begin{align*}
-    \Vbraces{x_L - z_L}_{\R^d} < \frac{\Vbraces{f(s_L,x_L) - f(s_L,z_L)}_{\R^d}}{L}
-  \end{align*}
-  beschränkt, also ist $\Vbraces{x_L - z_L}_{\R^d}$ eine Nullfolge. Daraus erhalten wir unter Benützung der Dreiecksungleichung, dass auch $(s_M,z_M)$ gegen $(s,x)$ konvergiert. Nun ist aber $(s,x) \in G$ ein Punkt der \eqref{one} nicht erfüllt, was ein Widerspruch ist.
+    (1) $\Rightarrow$ (2):
+    Wir führen einen Widerspruchsbeweis, es gelte also \ref{one} und nicht \ref{two}. Das heißt es gibt ein kompates $K \subseteq G$, für das 
+    \begin{align*}
+      \forall L \in \R^+: \exists \pbraces{s_L,x_L}, \pbraces{s_L, z_L} \in K: \Vbraces{f(s_L,x_L) - f(s_L,z_L)}_{\R^d} > L \Vbraces{x_L - z_L}_{\R^d}
+    \end{align*}
+    gilt. Wir erhalten also zwei Netze $\pbraces{s_L,x_L}, \pbraces{s_L, z_L}$ aus $K$, wobei wir auf $L$ die natürliche Ordnung auf $\R^+$ betrachten. Da $K$ kompakt ist hat $\pbraces{s_L,x_L}$ ein gegen ein $(s,x) \in K$ konvergentes Teilnetz $\pbraces{s_M, x_M}$. Da $f$ stetig ist wissen wir, dass $f(K)$ kompakt und damit beschränkt ist und damit ist der Zähler im Bruch
+    \begin{align*}
+      \Vbraces{x_L - z_L}_{\R^d} < \frac{\Vbraces{f(s_L,x_L) - f(s_L,z_L)}_{\R^d}}{L}
+    \end{align*}
+    beschränkt, also ist $\Vbraces{x_L - z_L}_{\R^d}$ eine Nullfolge. Daraus erhalten wir unter Benützung der Dreiecksungleichung, dass auch $(s_M,z_M)$ gegen $(s,x)$ konvergiert. Nun ist aber $(s,x) \in G$ ein Punkt der \ref{one} nicht erfüllt, was ein Widerspruch ist.
+
+    \item Wir wählen ein beliebiges $f \in C^1\pbraces{G; \R^d}$. Wir wissen es gibt für beliebiges $\pbraces{t,y}^T \in G$ eine stetige lineare Abbildung $df\pbraces{\pbraces{t,y}^T}: G \to \R^d$ und ein $\rho \in \R^+$ mit $U_\rho\pbraces{\pbraces{t,y}^T} \subseteq G$ und eine Funktion $\epsilon: U_\rho \pbraces{0} \setminus \Bbraces{0} \to \R^d$ mit $\lim_{\pbraces{s,z}^T \to \pbraces{0,0}^T} \epsilon(\pbraces{s,z}^T) = 0$ so, dass für alle $\pbraces{s,z}^T \in U_\rho \pbraces{0} \setminus \Bbraces{0}$ die Gleichheit
+    \begin{align*}
+      f\pbraces{(t,y)^T + (s,z)^T} = f\pbraces{(t,y)^T} + df\pbraces{(t,y)^T} (s,z)^T + \Vbraces{(s,z)^T}_\infty \epsilon\pbraces{(s,z)^T}
+    \end{align*}
+    erfüllt ist. Wir wählen nun ein $\delta \in \R^+$ mit $\delta \leq \rho$ so klein, dass jedenfalls für beliebige $(s,x)^T, (s,z)^T \in U_\delta\pbraces{(t,y)^T} \subseteq G$ gilt, dass $\epsilon\pbraces{(0,z - x)^T} < 1$. Es gilt also
+    \begin{align*}
+      f\pbraces{(s,z)^T} = f\pbraces{(s,x)^T} + df\pbraces{(s,x)^T} (0,z-x)^T + \Vbraces{(0,z - x)^T}_\infty \epsilon\pbraces{(0,z - x)^T}.
+    \end{align*}
+    Schließlich erhalten wir
+    \begin{align*}
+      \Vbraces{f\pbraces{(s,z)^T} - f\pbraces{(s,x)^T}}_\infty &= \Vbraces{df\pbraces{(s,x)^T} (0,z-x)^T + \Vbraces{(0,z - x)^T}_\infty \epsilon\pbraces{(0,z - x)^T}}_\infty \\
+      &\leq \Vbraces{df\pbraces{(s,x)^T} (0,z-x)^T}_\infty + \Vbraces{(0,z - x)^T}_\infty \Vbraces{\epsilon\pbraces{(0,z - x)^T}}_\infty \\
+      &\leq  \pbraces{ \Vbraces{df\pbraces{(s,x)^T}} + 1} \Vbraces{z-x}_\infty \\
+      &\leq \pbraces{ \sup\Bbraces{\Vbraces{df\pbraces{(s,x)^T}} : (s,x)^T \in \overline{U_\delta\pbraces{(t,y)^T}}} + 1} \Vbraces{z-x}_\infty.
+    \end{align*}
+
+    Eine stetige, aber im zweiten Argument nicht lipschitzstetige Funktion finden wir in Aufgabe 4.
+  \end{enumerate}
+
 \end{solution}
