@@ -1,17 +1,17 @@
 \begin{exercise}
     Ein iteratives Verfahren um die Lösung eines Anfangswertproblems zu finden ist es beim Startpunkt $t_0$ eine Taylorreihe der Lösung $y$ zu finden.
     \begin{enumerate}[label = \alph*)]
-        \item Geben Sie für die Differentialgleichung 
+        \item Geben Sie für die Differentialgleichung
         \begin{align*}
             y^\prime(t) = f\pbraces{t,y(t)}
         \end{align*}
         eine Formel zur Berechnung von $y^{(n)}(t_0)$ für $n \in \Bbraces{1,2,3}$ an.
 
-        \item Geben Sie für das AWP 
+        \item Geben Sie für das AWP
         \begin{align*}
             y^\prime = y^2, \quad y(0) = 1
         \end{align*}
-        und $y(t) = \sum_{n = 0}^\infty y_n t^n$ eine Rekurrenz der Koeffizienten $y_n$ an. Konvergiert die Taylorreihe? Was ist das Konvergenzintervall? 
+        und $y(t) = \sum_{n = 0}^\infty y_n t^n$ eine Rekurrenz der Koeffizienten $y_n$ an. Konvergiert die Taylorreihe? Was ist das Konvergenzintervall?
     \end{enumerate}
 \end{exercise}
 
@@ -23,13 +23,13 @@
             y^{\prime\prime}(t_0) &= \partial_t f\pbraces{t_0, y(t_0)} + \partial_y f\pbraces{t_0, y(t_0)} f\pbraces{t_0, y(t_0)} \\
             y^{(3)}(t_0) &= \partial_t^2 f\pbraces{t_0, y(t_0)} + 2 \partial_y \partial_t f\pbraces{t_0,y(t_0)} f\pbraces{t_0, y(t_0)} + \partial_y f\pbraces{t_0, y(t_0)} \partial_t f\pbraces{t_0,y(t_0)} \\
             & \quad + \pbraces{f\pbraces{t_0, y(t_0)}}^T \partial_y^2 f(t_0, y(t_0)) f(t_0, y(t_0)) + \pbraces{\partial_y f\pbraces{t_0, y(t_0)}}^2 f\pbraces{t_0, y(t_0)} .
-        \end{align*} 
-
-        \item Mit dem Startwert erhält man unmittelbar $y(0) = y_0 = 1$. Sei nun für alle $k < n$ der Koeffizient $y_k = 1$. Nun wollen wir zeigen, dass dann auch $y_n = 1$ gilt. In jedem Fall gilt 
-        \begin{align*}
-            \sum_{j = 0}^\infty (j+1) y_{j + 1} t^j = \pbraces{\sum_{l = 0}^\infty y_n t^n}^2 = \sum_{m = 0}^\infty t^m \sum_{l = 0}^m y_l y_{m-l} .
         \end{align*}
-        Durch Koeffizientenvergleich des $t^{n-1}$ Terms erhält man 
+
+        \item Mit dem Startwert erhält man unmittelbar $y(0) = y_0 = 1$. Sei nun für alle $k < n$ der Koeffizient $y_k = 1$. Nun wollen wir zeigen, dass dann auch $y_n = 1$ gilt. In jedem Fall gilt
+        \begin{align*}
+            \sum_{j = 0}^\infty (j+1) y_{j + 1} t^j = \pbraces{\sum_{l = 0}^\infty y_l t^l}^2 = \sum_{m = 0}^\infty t^m \sum_{l = 0}^m y_l y_{m-l} .
+        \end{align*}
+        Durch Koeffizientenvergleich des $t^{n-1}$ Terms erhält man
         \begin{align*}
             n y_n = \sum_{l = 0}^{n - 1} y_l y_{n - 1 -l} = n ,
         \end{align*}
