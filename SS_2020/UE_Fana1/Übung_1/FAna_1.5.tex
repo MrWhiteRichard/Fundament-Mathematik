@@ -6,7 +6,28 @@ Finde eine Topologie auf $X$ mit der $X$ ein topologischer Vektorraum wird und s
 \end{exercise}
 
 \begin{solution}
-
-Trivial!
-
+$X$ ist mit der diskreten Topologie kein topologischer Vektorraum. \\
+Dazu betrachten wir die Stetigkeit der Skalarmultiplikation bei der $0$.
+Sei $x \in X\backslash\{0\}$ beliebig. \\
+Dann ist $\{0\}$ eine Umgebung von $\cdot(0,x) = 0$.
+Sei nun $V$ eine beliebige Umgebung von $(0,x)$ in der Produkttopologie von $X \times X$.
+Dann lässt sich $V = \bigcup_{i \in I}O_i^{\mathbb{C}}\times O_i^X$, mit
+$O_i^{\mathbb{C}}$ offen in $\mathbb{C}$, versehen mit der euklidischen Topologie
+und $O_i^X$ offen bezüglich der diskreten Topologie auf $X$ darstellen.
+Dann gilt:
+\begin{align*}
+  \exists (a,x) \in V: a \neq 0 \implies \cdot(a,x) \neq 0 \implies V \nsubseteq {0}
+\end{align*}
+Also ist die Skalarmultiplikation bei 0 nicht stetig und $X$ somit kein topologischer
+Vektorraum.
+\\
+Für den zweiten Teil der Aufgabe betrachte die Menge aller linearen Funktionale $(f_i)_{i \in I}$ auf X.
+\begin{align*}
+  f_i: X \rightarrow \mathbb{C}, i \in I
+\end{align*}
+Es gilt klarerweise $\bigcap_{i\in I}\ker f_i = \{0\}$.
+Ebenso ist $\mathbb{C}$, versehen mit der euklidischen Topologie ein Vektorraum.
+Damit sind alle Voraussetzungen für Proposition 2.4.1 erfüllt, die besagt, dass
+damit $X$ mit der von $(f_i)_{i\in I}$ induzierten Initialtopologie zu einem topologischen Vektorraum wird.
+Aus der Konstruktion der Topologie folgt sofort, dass $X^\prime = X^\ast$.
 \end{solution}
