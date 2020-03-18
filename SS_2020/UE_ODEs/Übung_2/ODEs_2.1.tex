@@ -36,21 +36,12 @@
     \end{align*}
     beschränkt, also ist $\Vbraces{x_L - z_L}_{\R^d}$ eine Nullfolge. Daraus erhalten wir unter Benützung der Dreiecksungleichung, dass auch $(s_M,z_M)$ gegen $(s,x)$ konvergiert. Nun ist aber $(s,x) \in G$ ein Punkt der \ref{one} nicht erfüllt, was ein Widerspruch ist.
 
-    \item Wir wählen ein beliebiges $f \in C^1\pbraces{G; \R^d}$. Wir wissen es gibt für beliebiges $\pbraces{t,y}^T \in G$ eine stetige lineare Abbildung $df\pbraces{\pbraces{t,y}^T}: G \to \R^d$ und ein $\rho \in \R^+$ mit $U_\rho\pbraces{\pbraces{t,y}^T} \subseteq G$ und eine Funktion $\epsilon: U_\rho \pbraces{0} \setminus \Bbraces{0} \to \R^d$ mit $\lim_{\pbraces{s,z}^T \to \pbraces{0,0}^T} \epsilon(\pbraces{s,z}^T) = 0$ so, dass für alle $\pbraces{s,z}^T \in U_\rho \pbraces{0} \setminus \Bbraces{0}$ die Gleichheit
+    \item Wir wählen ein beliebiges $f \in C^1\pbraces{G; \R^d}$ und beliebiges $(t,y) \in G$. Sei $U \subseteq G$ eine offene $\epsilon$-Kugel um $(t,y)$ und $L := \sup\Bbraces{\Vbraces{df(x)} \mid x \in U } < \infty$, weil $df$ stetig ist und $\overline{U}$ kompakt. Seien $(s,x), (s,z) \in U$ beliebig. Es gilt
     \begin{align*}
-      f\pbraces{(t,y)^T + (s,z)^T} = f\pbraces{(t,y)^T} + df\pbraces{(t,y)^T} (s,z)^T + \Vbraces{(s,z)^T}_\infty \epsilon\pbraces{(s,z)^T}
-    \end{align*}
-    erfüllt ist. Wir wählen nun ein $\delta \in \R^+$ mit $\delta \leq \rho$ so klein, dass jedenfalls für beliebige $(s,x)^T, (s,z)^T \in U_\delta\pbraces{(t,y)^T} \subseteq G$ gilt, dass $\epsilon\pbraces{(0,z - x)^T} < 1$. Es gilt also
-    \begin{align*}
-      f\pbraces{(s,z)^T} = f\pbraces{(s,x)^T} + df\pbraces{(s,x)^T} (0,z-x)^T + \Vbraces{(0,z - x)^T}_\infty \epsilon\pbraces{(0,z - x)^T}.
-    \end{align*}
-    Schließlich erhalten wir
-    \begin{align*}
-      \Vbraces{f\pbraces{(s,z)^T} - f\pbraces{(s,x)^T}}_\infty &= \Vbraces{df\pbraces{(s,x)^T} (0,z-x)^T + \Vbraces{(0,z - x)^T}_\infty \epsilon\pbraces{(0,z - x)^T}}_\infty \\
-      &\leq \Vbraces{df\pbraces{(s,x)^T} (0,z-x)^T}_\infty + \Vbraces{(0,z - x)^T}_\infty \Vbraces{\epsilon\pbraces{(0,z - x)^T}}_\infty \\
-      &\leq  \pbraces{ \Vbraces{df\pbraces{(s,x)^T}} + 1} \Vbraces{z-x}_\infty \\
-      &\leq \pbraces{ \sup\Bbraces{\Vbraces{df\pbraces{(s,x)^T}} : (s,x)^T \in \overline{U_\delta\pbraces{(t,y)^T}}} + 1} \Vbraces{z-x}_\infty.
-    \end{align*}
+      \Vbraces{f(s,x) - f(s,z)}_\infty &= \Vbraces{\int_0^1 df\pbraces{(s,z) + \tau (0, x - z)} (0, x - z) d\tau }_\infty \\
+      &\leq \sup\Bbraces{ \Vbraces{df\pbraces{(s,z) + \tau (0, x - z)} (0, x - z)}_\infty \mid \tau \in [0,1] } \\
+      &\leq L \Vbraces{x - z}_\infty
+    \end{align*} 
 
     Eine stetige, aber im zweiten Argument nicht lipschitzstetige Funktion finden wir in Aufgabe 4.
   \end{enumerate}
