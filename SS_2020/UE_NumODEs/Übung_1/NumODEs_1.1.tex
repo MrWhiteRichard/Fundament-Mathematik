@@ -20,6 +20,7 @@ Gegeben sei das Anfangswertproblem $y^\prime(t) = t y(t)$, $t \in [0, T]$, mit $
 \begin{solution}
 
 \textbf{a)}
+Das Anfangswertproblem kann durch $f(t, y) = t y$ beschrieben werden.
 Wir verwenden die Definition des Operators $\Phi$ aus dem Beweis vom Pidard-Lindelöf.
 
 \begin{align*}
@@ -89,6 +90,28 @@ Schließlich, erhalten wir den Grenzwert
 \end{align*}
 
 \textbf{b)}
-Siehe \Quote{.py}!
+Sei $n + 1$ die Anzahl der äquidistanten Zerlegungspunkte von $[0, 1]$, so haben diese jeweils Abstand $h_n = 1/n$ und sind durch $t_{i,n} = i \cdot h_n$, $i = 0, \ldots, n$ gegeben.
+Das explizite Euler-Verfahren gibt damit folgende Rekursion vor.
+
+\begin{align*}
+  y_0 = y(t_0) = 1,
+  \quad
+  y_{i+1,n} = y_{i,n} + h_n \Phi(t_{i,n}, y_{i,n}, h_n),
+  \quad
+  \Phi(t_{i,n}, y_{i,n}, h_n) := f(t_{i,n}, y_{i,n}),
+  \quad
+  i = 1, \ldots, n.
+\end{align*}
+
+Sei weiters $\epsilon(n) := |y(1) - y_{n,n}|$ der Fehler zum Endzeitpunkt. Wie man in Abbildung \ref{Konvergenzplot} sehen kann, konvergiert er linear.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics
+  [width = 0.5 \textwidth]
+  {Fehler zum Endzeitpunkt vs. Anzahl der Zerlegungspunkte}
+  \caption{Konvergenzplot}
+  \label{Konvergenzplot}
+\end{figure}
 
 \end{solution}
