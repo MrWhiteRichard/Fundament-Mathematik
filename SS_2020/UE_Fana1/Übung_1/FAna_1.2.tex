@@ -19,7 +19,42 @@ Inneres nicht kreisförmig ist.
 \end{exercise}
 
 \begin{solution}
+Hier könnte Ihre Werbung stehen!
+\begin{enumerate}[label = (\roman*)]
+  \item Wir nehmen ein kreisörmiges $A \subseteq X$. 
+  \begin{enumerate}
+    \item["$\Rightarrow$"] Sei $A^\circ \neq \emptyset$ kreisförmig. Das heißt es gibt ein $x \in A^\circ$ und wegen der Kreisförmigkeit ist auch $0x = 0 \in A^\circ$.
+    \item["$\Leftarrow$"]  Wir unterscheiden zwei Fälle.
+    \begin{enumerate}[label = Fall \arabic*:]
+      \item Sei $A^\circ = \emptyset$. Dann ist natürlich $A^\circ$ kreisförmig.
+      \item Sei $0 \in A^\circ$. Wir wählen ein beliebiges $x \in A^\circ$ und ein $\lambda \in \C$ mit $\vbraces{\lambda} \leq 1$.
+      \begin{enumerate}[label = Fall 2.\arabic*:]
+        \item Sei $\lambda = 0$. Dann ist $0x = 0 \in A^\circ$. 
+        \item Sei $\lambda \neq 0$. Es gibt ein offenes $U \subseteq A$ mit $x \in U$. Da $A$ kreisförmig ist und $M_\lambda: X \to X : x \mapsto \lambda x$ ein Homöomorphismus ist $\lambda U \subseteq A$ und $\lambda x \in \lambda U$ sowie $\lambda U$ offen. Also ist $A$ eine Umgebung von $\lambda x$ und damit $\lambda x \in A^\circ$.
+      \end{enumerate} 
+    \end{enumerate}
+    Insgesamt ist also $A^\circ$ kreisförmig.
+  \end{enumerate}
+  \item Wir betrachten den Raum $\C^2$ mit der einzigen Topologie, welche diesen zu einem topologischen Vektorraum macht. 
+  \begin{align*}
+    A := \Bbraces{
+      \begin{pmatrix}
+        v \\ w 
+      \end{pmatrix}
+      \in \C^2 : \vbraces{v} \leq \vbraces{w} }
+  \end{align*} 
+  Zuerst gilt es nachzuweisen, dass $A$ kreisförmig ist. Dazu wählen wir $\pbraces{v,w}^T \in A$ und $\lambda \in \C$ mit $\vbraces{\lambda} \leq 1$. Es gilt 
+  \begin{align*}
+    \vbraces{v} \leq \vbraces{w} \Rightarrow \vbraces{\lambda} \vbraces{v} \leq \vbraces{\lambda} \vbraces{w} \Rightarrow \vbraces{\lambda v} \leq \vbraces{\lambda w}
+  \end{align*} 
+  und damit $\lambda \pbraces{v, w}^T \in A$. Also ist $A$ kreisförmig.
 
-Trivial!
+  Nun behaupten wir, dass $A^\circ$ nicht kreisförmig ist. Das ist äquivalent dazu, dass $A^\circ \neq \emptyset \land (0,0)^T \notin A^\circ$. 
+  
+  Es ist $(0,1)^T \in A^\circ$ also $A^\circ \neq \emptyset$.
+  
+  Sein nun $U \subseteq \C^2$ eine offene Menge mit $(0,0)^T \in U$. Nun gibt es $\epsilon \in \mathbb{R}^+$ so, dass mit $V:= \Bbraces{z \in \C : \vbraces{z} < \epsilon}$ die Inklusion $V \times V \subseteq U$ gilt. Der Punkt $\pbraces{\frac{\epsilon}{2}, \frac{\epsilon}{4} }^T \in V \times V$ liegt nicht in $A$ weshalb also $A$ keine Umgebung von $(0,0)^T$ ist und damit ist $(0,0)^T \notin A^\circ$.
+
+\end{enumerate}
 
 \end{solution}
