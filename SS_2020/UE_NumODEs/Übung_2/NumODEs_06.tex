@@ -1,6 +1,42 @@
 \begin{exercise}
 
-ToDo!
+Sei $y: [0, T] \to \R^n$ Lösung des Anfangswertproblems $y^\prime = f(y)$ mit $y(0) = y_0$.
+Programmieren Sie einen allgemeinen Löser für solche Probleme.
+Eingabedaten sollten die Funktion $f$, eine Diskretisierung des Intervalls $[0, T]$, der Startwert $y_0$ und das Butcher-Schema eines beliebigen, expliziten Runge-Kutta-Verfahrens sein. Ausgabedaten wären die Approximationen $y_i$ an $y(t_i)$ aus dem zugehörigen Runge-Kutta-Verfahren.
+Verwenden Sie Ihr Programm, um folgendes Räuber-Beute-Modell numerisch zu lösen. \\
+
+Modell:
+Sei $y_\mathrm{J}(t)$ zu jedem Zeitpunkt $t$ die Größe einer Jäger-Population und $y_\mathrm{B}(t)$ die Größe einer Beutepopulation.
+Die Wachstumsrate der Populationen ergibt sich aus der Differenz der Geburtenrate und der Sterberate.
+Dabei nehmen wir an, dass für die Beutepopulation genügend Nahrung vorhanden sei, sodass die Geburtenrate $\alpha > 0$ konstant ist.
+Bei jedem Zusammentreffen zwischen Jäger und Beute wird mit einer ebenfalls konstanten Rate $\beta > 0$ die Beute gefressen.
+Die naturliche Sterberate der Beute sei im Vergleich dazu vernachlässigbar.
+Dann ergibt sich für die Beute-Population die Differentialgleichung
+
+\begin{align}
+  \label{Beute-Population}
+  y_\mathrm{B}^\prime(t)
+  =
+  \alpha y_\mathrm{B}(t) - \gamma y_\mathrm{J}(t) y_\mathrm{B}(t).
+  \tag{1a}
+\end{align}
+
+Für die Jäger-Population nehmen wir an, dass diese proportional mit Faktor $\gamma > 0$ zur Anzahl der Begegnungen mit der Beute wächst.
+Die natürliche Sterberate der Jäger $\delta > 0$ ist hier nicht vernachlässigbar.
+Insgesamt ergibt sich damit für die Jäger-Population
+
+\begin{align}
+  \label{Jäger-Population}
+  y_\mathrm{J}^\prime(t)
+  =
+  \gamma y_\mathrm{J}(t) y_\mathrm{B}(t) - \delta y_\mathrm{J}(t).
+  \tag{1b}
+\end{align}
+
+Zum Testen können Sie z.B. die Modellparameter $\alpha = 2$, $\beta = \gamma = 0.01$, $\delta = 1$, $y_\mathrm{J}(0) = 150$ und $y_\mathrm{B}(0) = 300$ verwenden.
+Zur Diskretisierung könnten Sie mit einer äquidistanten Zerlegung von $t \in [0, 100]$ mit $h = 0.01$ und dem den expliziten Runge-Kutta-Verfahren aus der Vorlesung (Example 2.23 und Example 2.25) starten.
+Variieren Sie aber Modellparameter und Diskretisierung
+und studieren Sie die Effekte auf die numerischen Ergebnisse.
 
 \end{exercise}
 
