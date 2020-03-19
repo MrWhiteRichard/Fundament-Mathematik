@@ -1,0 +1,24 @@
+\begin{exercise}
+    Sei $\pbraces{V, \lor, \land}$ ein Verband für den zusätzlich
+    \begin{align}
+        \forall x,y,z \in V: \pbraces{x \land z} \lor \pbraces{y \land z} = \pbraces{x \lor y} \land z \label{extra}
+    \end{align}
+    gilt. Zeigen Sie, dass dann auch 
+    \begin{align*}
+        \forall x,y,z \in V: \pbraces{x \lor z} \land \pbraces{y \lor z} = \pbraces{x \land y} \lor z
+    \end{align*}
+    gilt.
+\end{exercise}
+
+\begin{solution}
+    Aus der Definition des Verbandes erhalten wir die Assoziativität und die Kommutativität von $\land$ und $\lor$ sowie die Verschmelzungsgesetze
+    \begin{align}
+        \forall x,y \in V: x \land (x \lor y) = x  \label{absorb1} \\
+        \forall x,y \in V: x \lor (x \land y) = x \label{absorb2}
+    \end{align}
+    Sind $x,y,z \in V$ beliebig, so gilt
+    \begin{align*}
+        (x \lor z) \land (y \lor z)  &\stackrel{\eqref{extra}}{=} (x \land (y \lor z)) \lor (z \land (y \lor z)) \stackrel{\eqref{absorb1}}{=} (x \land (y \lor z)) \lor z \\
+        &\stackrel{\eqref{extra}}{=} ((x \land y) \lor (x \land z)) \lor z \stackrel{\eqref{absorb2}}{=} (x \land y) \lor z
+    \end{align*}
+\end{solution}
