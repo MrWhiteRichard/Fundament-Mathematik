@@ -1,0 +1,23 @@
+\begin{exercise}
+    Sei $\iota: \N \to \Z$ die Identität auf $\N$. Geben Sie eine Kategorie $\mathfrak{D}$ so an, dass erstens
+    \begin{align}
+        (\Z, \iota) \text{ ist initial in } \mathfrak{D} \label{firstCondition}
+    \end{align}
+    gilt und zweitens die Aussage \eqref{firstCondition} eine Umformulierung von Theorem 1.2.1.1(3) ist.
+\end{exercise}
+
+\begin{solution}
+    Die Kategorie $\mathfrak{D}$ besteht aus einer Klasse $Ob(\mathfrak{D})$ von Objekten $(G, \iota_G)$, mit einer Gruppe $G$ und einer zugehörigen isomorphen Einbettung $\iota_G:\N \to G$ der additiven Halbgruppe $\N$. 
+    
+    Für alle $(G, \iota_G), (H, \iota_H) \in Ob(\mathfrak{D})$ ist die Menge 
+    \begin{align*}
+        Hom((G, \iota_G) \to (H, \iota_H)) := \Bbraces{\varphi:G \to H \mid \varphi \text{ ist isomorphe Einbettung } \land \iota_H = \varphi \circ \iota_G}
+    \end{align*}
+    Diese Mengen bilden ebenfalls eine Kalsse paarweise disjunkter Mengen. 
+    
+    Der dritte Bestandteil von $\mathfrak{D}$ ist die Klasse der Kompositionen $Hom(B,C) \times Hom(A,B) \to Hom(A,C): (g,f) \mapsto g \circ f$ die als die gewöhnliche Hintereinanderausführung von Funktionen verstanden wird. 
+
+    Klarerweise gilt das Assoziativgesetz. Die Identität in der Kategorie ist schlicht die Identität als Funktion einer Menge auf sich selbst.
+
+    Nach Theorem 1.2.1.1. gibt es für alle $(G, \iota_G)$ genau eine isomorphe Einbettung $\varphi:\Z \to G$ mit $\iota_G = \varphi \circ \iota$. Deshalb ist $(\Z, \iota)$ initial.
+\end{solution}
