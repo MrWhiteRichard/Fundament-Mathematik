@@ -1,0 +1,19 @@
+\begin{exercise}
+    Beweisen Sie folgende Aussagen, wobei die Notation von Satz 2.1.8.4 gilt. 
+    \begin{enumerate}[label = \arabic*.]
+        \item In jedem Term kommen  nur endlich viele Variablen vor.
+        \item Der Wert $\bar{\alpha}(t)$ eines Terms $t$ für eine Variablenbelegung $\alpha: X \to A$ hängt von den $\alpha(x)$ nur für jene $x \in X$ mit $x \in v(t)$, die also in $t$ vorkommen, ab.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution} 
+    Hier könnte Ihre Werbung stehen!
+    \begin{enumerate}[label = \arabic*.]
+        \item Wir wollen die Aussage induktiv für alle $T_n$ zeigen. Zuerst betrachten wir $t \in T_0 := X$. Das heißt es gibt ein $x \in X$ mit $t = x$ und die Menge der Variablen ist $v(t) = \Bbraces{x}$, also ist die Menge endlich. Sei nun $n \in \N$ und für alle $k < n$ seien die Terme in $T_k$ alle endlich. Wählen wir nun ein beliebiges $t \in T_n$. 
+        \begin{enumerate}[label = Fall \arabic*:]
+            \item Es sei $t \in T_{n-1}$. Dann ist nach Voraussetzung $v(t)$ endlich.
+            \item Es sei $t \notin T_{n-1}$. Das heißt es gibt ein $j \in I$ und $t_1, \dots, t_{n_j} \in T_{n-1}$ so, dass $t = \omega_j(t_1, \dots, t_{n_j})$ ist. Die Menge der Terme ist dann $v(t) = v(t_1) \cup \dots \cup v(t_{n_j})$ und da für alle $l \in \Bbraces{1, \dots, n_j}$ die Menge $v(t_l)$ nach Voraussetzung endlich ist, ist auch $v(t)$ endlich. 
+        \end{enumerate}
+        \item
+    \end{enumerate}
+\end{solution}
