@@ -8,7 +8,7 @@
 \end{exercise}
 
 \begin{solution}
-    Hier könnte Ihre Werbung stehen.
+    Hier könnte Ihre Werbung stehen!
     \begin{enumerate}[label = (\roman*)]
         \item Wir verwenden die rekursive Konstruktion von $\langle B \rangle$ durch $B_0 := B$ und
         \begin{align*}
@@ -23,6 +23,22 @@
                 &= \omega(\varphi^\prime(c_1), \dots. \varphi^\prime(c_l)) = \varphi^\prime(\omega(c_1, \dots, c_l)) = \varphi^\prime(c)
             \end{align*}
         \end{enumerate}
-        \item Ausständig!
+        \item Man kann wohl für Körper eine ähnliche Charakterisierung vornehmen wie für Algebren. Wir definieren rekursiv $B_0 := B$ und 
+        \begin{align*}
+            B_{k+1} := B_k \cup \Bbraces{\omega(b_1, \dots, b_l) \mid b_1, \dots, b_l \in B_k \land \omega \in \Omega} \cup \Bbraces{b^{-1} \mid b \in B_k \setminus \Bbraces{0}}
+        \end{align*}
+        Für $b \in B_0$ gilt nach Voraussetzung $\varphi(b) = \varphi^\prime(b)$. Sei nun $n \in \N \setminus \Bbraces{0}$ und gelte für alle $x \in B_n: \varphi(x) = \varphi^\prime(x)$. Wählen wir nun ein beliebiges $c \in B_{n + 1}$.
+        \begin{enumerate}[label = Fall \arabic*:]
+            \item Sei $c \in B_n$. Dann gilt nach Voraussetzung $\varphi(c) = \varphi^\prime(c)$. 
+            \item Sei $c \in \Bbraces{\omega(b_1, \dots, b_l) \mid b_1, \dots, b_l \in B_k \land \omega \in \Omega}$. Dann gibt es $\omega \in \Omega$ und $c_1, \dots, c_l \in B_n$ mit $c = \omega(c_1, \dots, c_l)$. Es gilt also
+            \begin{align*}
+                \varphi(c) &= \varphi(\omega(c_1, \dots, c_l)) = \omega(\varphi(c_1), \dots, \varphi(c_l)) \\
+                &= \omega(\varphi^\prime(c_1), \dots. \varphi^\prime(c_l)) = \varphi^\prime(\omega(c_1, \dots, c_l)) = \varphi^\prime(c)
+            \end{align*}
+            \item Sei $c \in \Bbraces{b^{-1} \mid b \in B_k \setminus \Bbraces{0}}$. Dann gilt 
+            \begin{align*}
+                \varphi(c) = \varphi(b^{-1}) = (\varphi(b))^{-1} = (\varphi^\prime(b))^{-1} = \varphi^\prime(b^{-1}) = \varphi^\prime(c) 
+            \end{align*}
+        \end{enumerate}
     \end{enumerate}
 \end{solution}
