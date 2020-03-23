@@ -1,0 +1,18 @@
+\begin{exercise}
+    Es sei $n \in \N$ und $r,c \in \R^+$ sowie $f:\C \to \C$ eine ganze Funktion. Es gelte außerdem für alle $z \in \C$ mit $\vbraces{z} > r$ die Ungleichung $\vbraces{f(z)} \leq c \vbraces{z}^n$. Zeigen Sie, dass $f$ ein Polynom höchstens $n$-ten Grades ist.
+\end{exercise}
+
+\begin{solution}
+    Wir wissen, dass wir $f$ als Potenzreihe darstellen können, also für alle $z \in \C$ gilt
+    \begin{align*}
+        f(z) = \sum_{k = 0}^\infty c_k z^k.
+    \end{align*}
+    Für $l \in \N$ mit $l > n$ und $\rho \in \R^+$ mit $\rho > r$ gilt
+    \begin{align*}
+        \vbraces{c_l} = \vbraces{ \frac{1}{2\pi i} \int\limits_{\vbraces{z} = \rho} \frac{f(z)}{z^{l + 1}} dz} \leq \frac{1}{2 \pi} \int\limits_{\vbraces{z} = \rho} \frac{\vbraces{f(z)}}{\vbraces{z}^{l + 1}} dz \leq \frac{1}{2 \pi} \int\limits_{\vbraces{z} = \rho} \frac{c \vbraces{z}^n}{\vbraces{z}^{l + 1}} dz \leq \frac{c}{\rho^{l - n}}
+    \end{align*}
+    und da $l - n > 0$ und $\rho$ beliebig groß werden kann, ist $\vbraces{c_l} = 0$ also $c_l = 0$. Damit ist $f$ ein Polynom der Form
+    \begin{align*}
+        f(z) = \sum_{k = 0}^n c_k z^k.
+    \end{align*}
+\end{solution}

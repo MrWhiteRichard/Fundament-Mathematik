@@ -1,0 +1,49 @@
+\begin{exercise}
+    Es sei $G := \Bbraces{z \in \C : \vbraces{z} < 1 \land \Re(z) + \Im(z) > 1}$. Konstruieren Sie einen Weg $\gamma:[a, b] \to \C$ mit $\gamma\pbraces{[a, b]} = \partial G$ und berechnen Sie 
+    \begin{enumerate}[label = \alph*)]
+        \item $\int_\gamma \Im(z) \rm{d}z$
+        \item $\int_\gamma \Re(z) \rm{d}z$
+        \item $\int_\gamma \overline{z} \rm{d}z$.
+        \item Interpretieren Sie das Ergebnis.
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    Wir konstruieren 
+    \begin{align*}
+        \gamma: \bbraces{-1, \frac{\pi}{2}}: \to \partial G: t \mapsto 
+        \begin{cases}
+            (1 + t) - \rm{i}t  &, t \in [-1, 0] \\
+            \rm{e}^{it} &, t \in \left] 0, \frac{\pi}{2} \right]
+        \end{cases}
+    \end{align*}
+    und erhalten damit also
+    \begin{enumerate}[label = \alph*)]
+        \item 
+        \begin{align*}
+            \int_\gamma \Im(z) \rm{d}z = -\int_{-1}^0 t (1 - \rm{i}) \rm{d}t + \rm{i} \int_0^{\frac{\pi}{2}} \sin(t) \rm{e}^{\rm{i}t} \rm{d}t = \frac{1}{2} - \rm{i} \frac{1}{2} + i \pbraces{\frac{1}{2} + \rm{i} \frac{\pi}{4}} = \frac{2 - \pi}{4}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \int_\gamma \Re(z) \rm{d}z = \int_{-1}^0 (1 + t) (1 - \rm{i}) \rm{d}t + \rm{i} \int_0^{\frac{\pi}{2}} \cos(t) \rm{e}^{\rm{i}t} \rm{d}t = \frac{1}{2} - \rm{i}\frac{1}{2} + \rm{i} \pbraces{\frac{\pi}{4} + \rm{i} \frac{1}{2}} = \rm{i} \frac{\pi - 2}{4}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \int_\gamma \overline{z} \rm{d}z = \int_{-1}^0 \pbraces{(1 + t) + \rm{i}t} (1 - i) \rm{d}t + \rm{i} \int_0^\frac{\pi}{2} \rm{e}^{-\rm{i} t} \rm{e}^{\rm{i} t} \rm{d}t = -\rm{i} + \rm{i} \frac{\pi}{2} = \rm{i}\frac{\pi - 2}{2}.
+        \end{align*}
+        Ebenfalls gilt 
+        \begin{align*}
+            \int_{\gamma} \overline{z} \rm{d}z = \int_\gamma \Re(z) \rm{d}z - \rm{i} \int_\gamma \Im(z) \rm{d}z = \rm{i} \frac{\pi - 2}{4} - \rm{i} \frac{2 - \pi}{4} = \rm{i} \frac{\pi - 2}{2}.
+        \end{align*}
+        \item Es gilt 
+        \begin{align*}
+            \int_0^{2\pi} \pbraces{\Re(\gamma(t))(\Re(\gamma(t)))^\prime} dt = \int\limits_{\Re(\gamma(t))} z dz = 0,
+        \end{align*}
+        weil die Identität eine Stammfunktion besitzt und das gleiche Ergebnis erhält man für das analoge Integral mit dem Imaginärteil. Deshalb gilt für den Flächeninhalt $I(G)$ unter Benützung der Leibnizschen Sektorformel
+        \begin{align*}
+          \vbraces{\int_\gamma \overline{z} \rm{d}z} = \vbraces{\int_0^{2\pi} \pbraces{\Re\pbraces{\gamma(t)} - i \Im\pbraces{\gamma(t)}} ((\Re(\gamma(t)))^\prime + i(\Im(\gamma(t)))^\prime) dt} \\ 
+          = \vbraces{i\int_0^{2\pi} \pbraces{\Re(\gamma(t))(\Im(\gamma(t)))^\prime - \Im(\gamma(t))(\Re(\gamma(t)))^\prime} dt  + \underbrace{\int_0^{2\pi} \pbraces{\Re(\gamma(t))(\Re(\gamma(t)))^\prime + \Im(\gamma(t))(\Im(\gamma(t)))^\prime} dt}_{= 0}} \\
+          = 2 I(G) 
+        \end{align*}
+    \end{enumerate}
+
+\end{solution}

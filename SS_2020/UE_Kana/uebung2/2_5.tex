@@ -1,0 +1,29 @@
+\begin{exercise}
+    Sei $a, z \in \C$, $r \in \R^+$ und $\gamma: [0, 2\pi] \to \C: t \mapsto a + r \rm{e}^{it}$, wobei $z \notin \gamma\pbraces{[0, 2\pi]}$. Berechnen Sie
+    \begin{align*}
+        \int\limits_\gamma \frac{1}{(z - w)^2} dw
+    \end{align*} 
+    indem Sie den Integranden in eine Potenzreihe entwickeln.
+\end{exercise}
+\begin{solution}
+    Hier könnte Ihre Werbung stehen!
+    \begin{enumerate}[label = Fall \arabic*:]
+        \item Sei $\vbraces{z - a} > r$. Dann gilt nach dem Cauchyschen Intgralsatz $\int_\gamma \frac{1}{(z - w)^2} = 0$.
+        \item Sei $\vbraces{z - a} < r$. Es gilt für alle $w \in \gamma\pbraces{[0, 2\pi]}$
+        \begin{align*}
+            \frac{1}{(z - w)^2} = \frac{1}{(a - w)^2} \sum_{n = 0}^\infty \frac{(-1)^n (n + 1) }{(a - w)^n} (z - a)^n   
+        \end{align*}
+        und damit
+        \begin{align*}
+            \int\limits_\gamma \frac{1}{(z - w)^2} dw = \sum_{n = 0}^\infty (-1)^n (n + 1) (z - a)^n \int\limits_\gamma \frac{1}{(a - w)^{n + 2}} dw
+        \end{align*}
+        und weil für alle $n \in \N$
+        \begin{align*}
+            \int\limits_\gamma \frac{1}{(a - w)^{n + 2}} dw  = \int_0^{2\pi} \frac{i r e^{it}}{\pbraces{- r e^{it}}^{n + 2}} dt = \frac{i(-1)^n}{r^{n + 1}} \int_0^{2\pi} e^{-it (n + 1)} dt = 0
+        \end{align*}
+        gilt folgt auch
+        \begin{align*}
+            \int\limits_\gamma \frac{1}{(z - w)^2} dw = 0.
+        \end{align*}
+    \end{enumerate}
+\end{solution}
