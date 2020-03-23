@@ -1,11 +1,26 @@
 \begin{exercise}
 
-ToDo!
+Berechnen Sie für das klassische Runge-Kutta-Verfahren aus Example 2.25 eine obere Schranke für die Stabilitätskonstante $C_{stab}$ indem Sie die Koeffizienten $\mu_{j}$ aus (2.38) für dieses Beispiel explizit berechnen.
 
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+Wie im Beweis von Theorem 2.27 berechnen wir zuerst für $i=1,..,m$ (hier $m=4$) die rekursiv definierten Polynome $q_{i} \in \P_{i-1}$ und zwar $q_{i}(hL)= 1 + hL\sum_{j=1}^{i-1}|A_{ij}|q_{j}(hL)$.
+
+\begin{align*}
+    \Rightarrow q_{1}(hL) =& 1 \\
+    q_{2}(hL) =& 1 + hL(\frac{1}{2} \cdot 1) = 1 + \frac{1}{2}hL \\
+     q_{3}(hL) =& 1 + hL(0 \cdot q_{1}(hL) + \frac{1}{2}(1+\frac{1}{2}hL)) = 1 + \frac{1}{2}hL + \frac{1}{4}(hL)^{2} \\
+     q_{4}(hL) =& 1 + hL(1 + \frac{1}{2}hL + \frac{1}{4}(hL)^{2}) = 1 + hL + \frac{1}{2}(hL)^{2} + \frac{1}{4}(hL)^{3}
+\end{align*}
+
+Für das gesuchte Polynom $p \in \P_{3}$ gilt also
+ \begin{align*}
+     p(hL) = \sum_{j=1}^{m}|b_{j}|q_{j}(hL) =& \frac{1}{6}(1) + \frac{1}{3}(1 + \frac{1}{2}hL) + \frac{1}{3}(1 + \frac{1}{2}hL + \frac{1}{4}(hL)^{2}) + \frac{1}{6}(1 + hL + \frac{1}{2}(hL)^{2} + \frac{1}{4}(hL)^{3})  \\
+     =& 1 + \frac{1}{2}hL + \frac{1}{6}(hL)^{2} + \frac{1}{24}(hL)^{3}
+ \end{align*}
+
+ und somit $\mu = (1,\frac{1}{2},\frac{1}{6},\frac{1}{24})$.
 
 \end{solution}
