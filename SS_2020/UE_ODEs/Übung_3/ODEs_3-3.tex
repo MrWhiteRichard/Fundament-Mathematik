@@ -1,0 +1,18 @@
+\begin{definition}
+    Sei $G \subseteq \R^2$ ein Gebiet und $J = ]a, b[ \subset \R$ und $t_0 \in J$, sowie $f: G \to \R$. Eine Funktion $y_+ \in C^1(J, \R)$ heißt definitionsgemäß genau dann Oberlösung, wenn für alle $t \in ]t_0, b[$ das Paar $(t, y(t)) \in G$ ist und die Ungleichung $y_+^\prime(t) > f\pbraces{t, y_+(t)}$ erfüllt ist.
+\end{definition}
+
+\begin{exercise}
+    Sei $G \subseteq \R^2$ ein Gebiet und $J = ]a, b[ \subset \R$ und $t_0 \in J$, sowie $f: G \to \R$. Sei $y_+ \in C^1(J, \R)$ eine Oberlösung und $y \in C^1(J, \R)$ eine Lösung von $y^\prime = f(t,y)$ sowie $y(t_0) < y_+(t_0)$. Zeigen Sie, dass für alle $t \in ]t_0, b[$ die Ungleichung $y(t) < y_+(t)$ erfüllt ist.
+\end{exercise}
+
+\begin{solution}
+    Wir führen einen Widerspruchsbeweis, nehmen also an es gibt ein $q \in ]t_0, b[$ mit $y(q) \geq y_+(q)$. Das erlaubt es uns $s := \min\Bbraces{r \in ]t_0, b[ : y(r) \geq y_+(r)}$ zu definieren. Nach dem Zwischenwertsatz gibt es nun ein $u \in ]t_0, s]$ mit $y(u) = y_+(u)$. Daraus folgt
+    \begin{align*}
+        y^\prime(u) = f(u, y(u)) = f(u, y_+(u)) < y_+^\prime(u)
+    \end{align*}
+    und da $y^\prime$ und $y_+^\prime$ stetig sind finden wir auch ein $v \in ]t_0, u[$ so, dass für alle $t \in ]v, u[$ die Ungleichung $y^\prime(t) < y_+^\prime(t)$ erfüllt ist. Wir erhalten den Widerspruch
+    \begin{align*}
+       y_+(u) = y(u) = y(v) + \int_v^u y^\prime(t) dt < y_+^\prime(v) + \int_v^u y_+^\prime(t) dt = y_+(u).
+    \end{align*}
+\end{solution}
