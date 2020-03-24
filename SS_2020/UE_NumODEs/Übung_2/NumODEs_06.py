@@ -95,7 +95,6 @@ def dot(x, y):
         dot_product += x[i]*y[i]
 
     return dot_product
-    return np.array(product)
 
 # ---------------------------------------------------------------- #
 
