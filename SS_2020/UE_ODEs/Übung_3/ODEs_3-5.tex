@@ -1,0 +1,55 @@
+\begin{exercise}
+    Betrachten Sie das AWP $y^\prime = f(y)g(t)$ mit $y(t_0) = y_0$. 
+    \begin{enumerate}[label = \alph*)]
+        \item fehlt
+        \item fehlt
+        \item Lösen Sie das AWP (logistische ODE)
+        \begin{align*}
+            y^\prime = y(1 - y), \qquad y(0) = y_0.
+        \end{align*}
+        \item Lösen Sie das AWP
+        \begin{align*}
+            y^\prime = \cos(t) \pbraces{\cos(y)}^2, \qquad y(0) = 0
+        \end{align*}
+    \end{enumerate}
+\end{exercise}
+\begin{solution}
+    Hier könnte Ihre Werbung stehen
+    \begin{enumerate}[label = \alph*)]
+        \item fehlt
+        \item fehlt
+        \item Wir berechnen
+        \begin{align*}
+            \int \frac{1}{y(1 - y)} = -\log\pbraces{\frac{1 - y}{y}}
+        \end{align*}
+        und erhalten so für die Lösung
+        \begin{align*}
+            -\log\pbraces{\frac{1 - y(t)}{y(t)}} = t + \log(c) \Leftrightarrow \frac{1 - y(t)}{y(t)} = c\rm{e}^{-t} \Leftrightarrow y(t) = \frac{1}{1 + c\rm{e}^{-t}}
+        \end{align*}
+        und aus der Anfangsbedingung ermitteln wir $c$ zu
+        \begin{align*}
+            y_0 = y(0) = \frac{1}{1 + c} \Leftrightarrow c = \frac{1}{y_0} - 1,
+        \end{align*}
+        insgesamt gilt also (vlg. Skriptum S. 2)
+        \begin{align*}
+            y(t) = \frac{1}{1 + \pbraces{\frac{1}{y_0} - 1} \rm{e}^{-t}}.
+        \end{align*}
+        \item Auch hier berechnen wir 
+        \begin{align*}
+            \int \frac{1}{\pbraces{\cos(y)}^2} = \tan(y)
+        \end{align*}
+        und erhalten so für die Lösung der Differentialgleichung
+        \begin{align*}
+            \tan(y(t)) = \sin(t) + c \Leftrightarrow y(t) = \arctan(\sin(t) + c)
+        \end{align*}
+        und die Anfangsbedingung liefert
+        \begin{align*}
+            0 = y(0) = \arctan(c) \Leftrightarrow c = 0
+        \end{align*}
+        womit die Lösung insgesamt die Gestalt
+        \begin{align*}
+            y(t) = \arctan(\sin(t))
+        \end{align*}
+        hat.
+    \end{enumerate}
+\end{solution}
