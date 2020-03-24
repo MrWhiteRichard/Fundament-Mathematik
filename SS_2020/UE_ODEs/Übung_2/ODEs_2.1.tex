@@ -49,4 +49,20 @@
 Feedback:
 a) Bei der Richtung (1) $\implies$ (2) wäre es etwas einfacher, eine offene Überdeckung von K anzugeben und daraus zu schließen, dass es auch schon eine endliche Teilüberdeckung geben muss.
 
+Auf Grund der Kompaktheit von K kann man K mit endlich vielen epsilon-Kugeln B_1,...,B_N überdecken. Laut Voraussetzung gilt für jede einzelne Kugel B_n die folgende Schranke:
+
+(a) Für alle x,y in B_n: ||f(x)-f(y)|| < L_n ||x-y||.
+
+Außerdem wissen wir, dass das Bild von K unter f kompakt sein muss (K kompakt, f stetig). Also gibt es auch eine globale Schranke L_K derart, dass:
+
+(b) Für alle x,y in K: ||f(x)-f(y)|| < L_K.
+
+Betrachte nun zwei beliebige x,y in K. Wir können o.B.d.A. annehmen, dass x in B_1 liegt. Nun gibt es zwei Fälle:
+
+1. Fall: y liegt ebenfalls in B_1: Dann haben wir wegen (a) natürlich ||f(x)-f(y)|| < L_1 ||x-y||.
+
+2. Fall: y liegt nicht in B_1: Dann muss aber ||x-y|| > epsilon_1 sein (B_1 ist ja eine Kugel mit Radius epsilon_1). Dann folgt mit (b) die Abschätzung ||f(x)-f(y)|| < L_K < (L_K / epsilon_1) ||x-y||. Q.E.D.
+
+Ich dachte ursprünglich eigentlich auch, dass man ohne (b) und Fall 2 auskommt. Da war ich aber offensichtlich zu vorschnell.
+
 \end{solution}
