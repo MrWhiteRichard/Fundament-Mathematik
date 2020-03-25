@@ -17,24 +17,15 @@ Dies in (5b) und (5c) eingesetzt ergibt mit
     \frac{2}{3}c_{2}^{2} + \frac{1}{6}c_{3}^{2} = \frac{1}{3}
 \end{align*}
 
-die zwei Fälle $c_{2}=\frac{7}{10}, c_{3}=\frac{1}{5}$ und $c_{2}=\frac{1}{2}, c_{3}=1$.
+die zwei Fälle $c_{2}=\frac{7}{10}, c_{3}=\frac{1}{5}$ und $c_{2}=\frac{1}{2}, c_{3}=1$. Hierbei kann aber nur der zweite Fall ein Runge-Kutta-Verfahren sein, da für ein solches die Voraussetzung $c_{2} \leq c_{3}$ erfüllt sein muss
 Da mit $c_{1}=0$ die Gleichung (5d)
 \begin{align*}
     \frac{1}{6}a_{32}c_{2}=\frac{1}{6}
 \end{align*}
-lautet, sind in beiden Fällen $a_{32}=c_{2}^{-1}$ und durch Gleichung (4) auch $a_{21}=c_{2}$ und $a_{31}=c_{3}-a_{32}$ eindeutig bestimmt.
+lautet, sind $a_{32}=c_{2}^{-1}$ und durch Gleichung (4) auch $a_{21}=c_{2}$ und $a_{31}=c_{3}-a_{32}$ eindeutig bestimmt.
 
-Für die beiden Fälle ergeben sich also die Runge-Kutta-Verfahren mit
-\begin{align*}
-    A = \left( \begin{array}{rrr}
-         0 & 0 & 0 \\
-        \frac{7}{10} & 0 & 0 \\
-        -\frac{43}{35} & \frac{10}{7} & 0
-    \end{array} \right) , c = \begin{pmatrix}
-    0 \\ \frac{7}{10} \\ \frac{1}{5}
-    \end{pmatrix}
-\end{align*}
-und
+Es ergibt sich also nur das bereits aus Example 2.26 bekannte Runge-Kutta-Verfahren mit
+
 \begin{align*}
     A = \left( \begin{array}{rrr}
          0 & 0 & 0 \\
@@ -44,19 +35,7 @@ und
     0 \\ \frac{1}{2} \\ 1
     \end{pmatrix}
 \end{align*}
-(bereits bekannt aus Example 2.26). Die (nicht so schönen) Butcher Tabellen sind dann
-
-\begin{align*}
-  \begin{array}{c|ccc}
-    0 & 0 & 0 & 0 \\
-    \frac{7}{10} & \frac{7}{10} & 0 & 0 \\
-    \frac{1}{5} & -\frac{43}{35} & \frac{10}{7} & 0 \\
-    \hline
-    & \frac{1}{6} & \frac{2}{3} & \frac{1}{6}
-  \end{array}
-\end{align*}
-
-sowie
+Die Butcher Tabelle ist dann
 
 \begin{align*}
   \begin{array}{c|ccc}
