@@ -1,8 +1,23 @@
+\begin{definition}
+    Eine skalare ODE heißt genau dann separabel, wenn sie von der Form
+    \begin{align*}
+        y^\prime = f(y)g(t) 
+    \end{align*}
+    ist.
+\end{definition}
+
 \begin{exercise}
     Betrachten Sie das AWP $y^\prime = f(y)g(t)$ mit $y(t_0) = y_0$. 
     \begin{enumerate}[label = \alph*)]
-        \item fehlt
-        \item fehlt
+        \item Falls $f$ und $g$ stetig (bei $y_0$ und $t_0$) sind und $f(y_0) \neq 0$, dann sit das AWP (eindeutig) lösbar. Die Lösung ist charakterisiert durch
+        \begin{align}
+            F(y(t)) - G(t) + c = 0, \label{charakter}
+        \end{align}
+        wobei $c \in \R$ geeignet gewählt ist und $F^\prime(y) = \frac{1}{f(y)}$ und $G^\prime(t) = g(t)$. Was ist $c$? Was passiert im Fall $f(y_0) = 0$?
+        \item Lösen Sie das AWP 
+        \begin{align*}
+            y^\prime = y^2, \qquad y(0) = y_0
+        \end{align*}
         \item Lösen Sie das AWP (logistische ODE)
         \begin{align*}
             y^\prime = y(1 - y), \qquad y(0) = y_0.
@@ -14,9 +29,17 @@
     \end{enumerate}
 \end{exercise}
 \begin{solution}
-    Hier könnte Ihre Werbung stehen
+    Hier könnte Ihre Werbung stehen!
     \begin{enumerate}[label = \alph*)]
-        \item fehlt
+        \item Der Existenzsatz von Peano garantiert eine Lösung der Differentialgleichung, zumindest in einer kleinen Umgebung von $t_0$. Der Hauptsatz der Differential- und Integralrechnung garantiert Funktionen $F$ und $G$ gemäß Angabe. Durch einmaliges Ableiten von \eqref{charakter} ergibt sich, dass diese Gleichung das AWP charakterisiert, wobei $c = G(t_0) - F(y_0)$ gelten muss. Im Fall $f(y_0) = 0$ ist jedenfalls $y(t) = y_0$ eine Lösung der Differentialgleichung.
+        
+        Seien nun $y$ und $z$ zwei Lösungen der Differentialgleichung, wobei wieder $f(y_0) \neq 0$ gelten soll. Dann gilt zumindest in einer Umgebung um $t_0$
+        \begin{align*}
+            \frac{y^\prime(t)}{f(y(t))} = \frac{z^\prime(t)}{f(z(t))}
+        \end{align*}
+        und daraus folgt wegen $y(t_0) = y_0 = z(t_0)$ auch $F(y(t)) = F(z(t))$. Da $F$ wegen der Stegtigkeit von $f$ in einer kleinen Umgebung um $y_0$ streng monoton wachsend und damit bijektiv ist, muss in dieser Umgebung sicher $y(t) = z(t)$ gelten.
+        
+        Offene Fragen: Was ist das maximale Existenzintervall der Lösung? Stimmen $z$ und $y$ überall wo es eine Lösung gibt überein? Ist die Lösung im Fall $f(y_0) = 0$ eindeutig?.
         \item fehlt
         \item Wir berechnen
         \begin{align*}
