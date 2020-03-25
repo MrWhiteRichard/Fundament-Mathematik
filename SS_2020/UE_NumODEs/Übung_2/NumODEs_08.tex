@@ -1,11 +1,125 @@
 \begin{exercise}
 
-ToDo!
+Beweisen Sie: Ein gegen Autonomisierung invariantes, $s$-stufiges Runge-Kutta-Verfahren
+hat Ordnung 3, wenn
 
+\begin{align} \label{Sum_b} \tag{5a}
+  \sum_{j=1}^s b_j = 1 \\
+  \label{Sum_b_c} \tag{5b}
+  \sum_{j=1}^s b_j c_j = \frac{1}{2} \\
+ \label{Sum_b_c_squared} \tag{5c}
+  \sum_{j=1}^s b_j c_j^2 = \frac{1}{3}\\
+  \label{Sum_b_c_a} \tag{5d}
+  \sum_{j=1}^s \sum_{i=1}^{j-1} b_j a_{ji} c_i = \frac{1}{6}
+\end{align}
+
+Vergleichen Sie mit Proposition 2.17 aus dem Vorlesungsskript. \\
+
+Dazu folgende Hinweise: Entwickeln Sie zunächst $k_j, j=1,...,s,$ mit dem
+Satz von Taylor. Mit den Abkürzungen aus Proposition 2.17 sollten sie erhalten
+
+\begin{align} \label{long_k} \tag{6}
+  k_j=f+h\Bigg( c_jf_t+f_y\sum_{i=1}^{j-1}a_{ji}k_i \Bigg)
+  + h^2 \Bigg( \frac{c_j^2}{2}f_{tt}+c_j f_{yt}\sum_{i=1}^{j-1}a_{ji}k_i
+  + \frac{1}{2} f_{yy} \bigg( \sum_{i=1}^{j-1}a_{ji}k_i \bigg)^2 \Bigg)
+  + \Landau{h^3}
+\end{align}
+Ersetzen Sie in dieser Formel die $k_i$ durch ihre entsprechenden Entwlicklungen
+in ausreichender Ordnung. \\
+Nun können Sie wie in Proposition 2.17 die Ordnungsbedingungen herleiten.
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+Betrachten wir nun die Inkremente $k_j$ als Funktionen:
 
+\begin{align*}
+  k_j(t,y,h)=f(t+c_jh,y+h \sum_{i=1}^{j-1}a_{ji}k_i), \text{}j=1,...,s
+\end{align*}
+Entwickeln wir nun $k_j$ als Funktion in $h$ um 0
+
+\begin{align*}
+  k_j(t,y,h) \\
+  &= k_j(t,y,0)
+  + h\partial_h k_j(t,y,0)
+  + \frac{h^2}{2} \partial_{hh} k_j(t,y,0)
+  + \Landau{h^3} \\
+  &= f + h\bigg(f_t c_j+ f_y \sum_{i=1}^{j-1} a_{ji} k_i \bigg) \\
+  &+ \frac{h^2}{2} \bigg( f_{tt} c_j^2 +f_{yt} c_j \sum_{i=1}^{j-1} a_{ji} k_i
+  + f_{ty} c_j \sum_{i=1}^{j-1} a_{ji} k_{i} + f_{yy} \Big(
+  \sum_{i=1}^{j-1} a_{ji} k_i\Big)^2 \bigg)\\
+  &+ \Landau{h^3}
+\end{align*}
+Wir erhalten hier also wirklich (\ref{long_k}). Wir sehen auch, dass
+
+\begin{align*}
+  k_j = f + \Landau{h}
+\end{align*}
+sowie
+
+\begin{align*}
+  k_j = f + h\Big( f_t c_j + f_y\sum_{i=1}^{j-1} a_{ji} k_i\Big) + \Landau{h^2}
+  = f + h\Big(f_t c_j + f_y f \sum_{i=1}^{j-1} a_{ji}\Big) + \Landau{h^2}
+\end{align*}
+
+Nun ersetzen wir laut Hinweis $k_i$ durch ihre entsprechenden Entwickeln in ausreichender Ordnung:
+
+\begin{align*}
+  f &+ h\Bigg(c_j f_t + f_y \sum_{i=1}^{j-1} a_{ji}
+  \bigg( f + h \Big( f_t c_j + f_y f \sum_{l=1}^{i-1}a_{il}
+  \Big) + \Landau{h^2}
+  \bigg) \Bigg) \\
+  &+ \frac{h^2}{2} \Bigg( c_j^2 f_{tt} +c_j 2f_{yt} \sum_{i=1}^{j-1} a_{ji}
+  \big( f + \Landau{h} \big)
+  + f_{yy} \bigg( \sum_{i=1}^{j-1} a_{ji} (f + \Landau{h})
+  \bigg)^2 \Bigg)\\
+  &+ \Landau{h^3}
+\end{align*}
+
+Dabei kann man $\Landau{h^2}$ und $\Landau{h}$ nun eben bei $\Landau{h^3}$ miteinbeziehen,
+da die Terme entsprechend mit $h$ bzw $h^2$ multipliziert werden.
+Fahren wir nun wie beim Beweis von Proposition 2.17 fort, müssen wir noch $y$ um
+$t$ Taylorentwickeln:
+
+\begin{align*}
+y(t+h) &= y(t) + hy'(t) + \frac{h^2}{2}y''(t)+\frac{h^3}{6}y'''(t) + \Landau{h^4} \\
+&= y(t) + hf + \frac{h^2}{2}(f_t + f_yf)\\
+&+ \frac{h^3}{6}(f_{tt} + f_{ty}f + f_{yt}f+ f_yf_t + f_{yy} f^2 + f_y^2 f)
++ \Landau{h^4}
+\end{align*}
+
+Kombinieren wir nun unsere Ergebnisse, erhalten wir den Konsistenzfehler:
+
+\begin{align*}
+  &y(t+h) - (y(t) + h \Phi(t,y(t),h)) \\
+  &=hf +\frac{h^2}{2}(f_t + f_yf)
+  + \frac{h^3}{6}(f_{tt} + f_{ty}f + f_{yt}f+ f_yf_t + f_{yy} f^2 + f_y^2 f)
+  + \Landau{h^4} \\
+  &- h \sum_{j=1}^s b_j\Bigg(
+  f + h\Bigg(c_j f_t + f_y \sum_{i=1}^{j-1} a_{ji}
+  \bigg( f + h \Big( f_t c_j + f_y f \sum_{l=1}^{i-1}a_{il}
+  \Big)
+  \bigg) \Bigg) \\
+  &+ \frac{h^2}{2} \Bigg( c_j^2 f_{tt} +c_j 2f_{yt} \sum_{i=1}^{j-1} a_{ji} f
+  + f_{yy} f^2 \bigg( \sum_{i=1}^{j-1} a_{ji}
+  \bigg)^2 \Bigg)\\
+  &+ \Landau{h^3}\Bigg) \\
+  &= h\Big(1-\sum_{j=1}^s b_j \Big)
+  + \frac{h^2}{2}
+  \bigg( f_t \Big(1-2\sum_{j=1}^s b_jc_j \Big)
+  + f_yf \Big(1-2\sum_{j=1}^s b_jc_j \Big)
+  \bigg) \\
+  &+ \frac{h^3}{6}
+  \bigg(
+  (f_{tt}+2f_{ty}f+f_{yy}f^2) \Big( 1-3\sum_{j=1}^s b_j c_j^2 \Big) +
+  (f_tf_y +f_y^2f) \Big(1-6 \sum_{j=1}^s\sum_{i=1}^{j-1} b_j a_{ji} c_i \Big)
+  \bigg) + \Landau{h^4}
+\end{align*}
+
+Wobei hier schon unser Wissen aus (\ref{Bedingung}) eingegangen ist.
+Daraus erhalten wir letzendlich, dass
+\begin{align*}
+  y(t+h) - (y(t) + h \Phi(t,y(t),h)) = \Landau{h^4}
+\end{align*}
+genau dann, wenn (\ref{Sum_b})-(\ref{Sum_b_c_a}) gilt.
 \end{solution}
