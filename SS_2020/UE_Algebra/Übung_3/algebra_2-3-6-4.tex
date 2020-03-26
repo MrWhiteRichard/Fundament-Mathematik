@@ -1,0 +1,35 @@
+\begin{exercise}
+    Auf der Menge $M := \Bbraces{1, 2, 3, 4, 5}$ betrachten wir die Äquivalenzrelation $\theta$, die durch die Partition $\Bbraces{\{1, 2\}, \{3, 4\}, \{5\}}$ gegeben ist, sowie die Untermenge $U := \Bbraces{4, 5}$. Definieren Sie auf der Menge $M$ eine Algebra $\mathfrak{M}$ so, dass $\theta$ Kongruenz ist, $U$ Unteralgebra, und geben Sie explizit den Isomorphismus an, der im ersten Isomorophiesatz beschrieben wird. Zusätzlich soll es neben der Allrelation keine Kongruenz $\sim$ mit $2 \sim 3$ geben.
+\end{exercise}
+
+\begin{solution}
+    Wir definieren
+    \begin{align*}
+        \omega: M \to M : 
+        \begin{cases}
+            1 \mapsto 2 \\
+            2 \mapsto 1 \\
+            3 \mapsto 5 \\
+            4 \mapsto 5 \\
+            5 \mapsto 5
+        \end{cases}
+        , \qquad \psi: M \to M: x \mapsto
+        \begin{cases}
+            4 &, x \neq 5 \\
+            5 &, x = 5
+        \end{cases}  
+    \end{align*}
+    und die Algebra $\mathfrak{M} := (M, \omega, \psi)$. Man sieht, dass es sich bei $\theta$ um eine Kongruenzrelation handelt und bei $U$ um eine Unteralgebra.
+    
+    Sei $\sim$ eine Kongruenz mit $2 \sim 3$. Dann gilt $ 1 = \omega(2) \sim \omega(3) = 5$. Daraus folgt wiederum $2 = \omega(1) \sim \omega(5) = 5$, also wegen der Transitivität und der Symmetrie von $\sim$ zusammen $1 \sim 2 \sim 3 \sim 5$. Weiters gilt $4 = \psi(3) \sim \psi(5) = 5$, also ist $1 \sim 2 \sim 3 \sim 4 \sim 5$ und damit ist $\sim$ die Allrelation.
+
+    Nach dem ersten Isomorophiesatz ist
+    \begin{align*}
+        \varphi: U/\theta \to [U]_\theta/\theta: 
+        \begin{cases}
+            \{4\} \mapsto \{3, 4\} \\
+            \{5\} \mapsto \{5\}
+        \end{cases}
+    \end{align*}
+    ein Isomorphismus, wobei $U/\theta = \Bbraces{\{4\}, \{5\}}$ und $[U]_\theta/\theta = \Bbraces{\{3, 4\}, \{5\}}$.
+\end{solution}
