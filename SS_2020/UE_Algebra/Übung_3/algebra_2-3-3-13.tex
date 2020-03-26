@@ -1,0 +1,31 @@
+\begin{exercise}
+    Sei $\mathfrak{A} = (A, (\omega_i)_{i \in I})$ eine Algebra vom Typ $\tau = (n_i)_{i \in I}$ und $\sim$ eine Äquivalenzrelaion auf $\mathfrak{A}$. Dann sind folgende Aussagen äquivalent:
+    \begin{enumerate}[label = (\roman*)]
+        \item \label{kongrurel} Die Relation $\sim$ ist sogar eine Kongruenzrelation auf $\mathfrak{A}$.
+        \item \label{aequikla} Auf der Menge $A/_\sim$ aller Äquivalenzklassen bezüglich $\sim$ gibt es eine Familie von $n_i$-stelligen Operationen $\omega_i^*$ mit 
+        \begin{align*}
+            \omega_i^*([a_1]_\sim, \dots, [a_{n_i}]_\sim) = [\omega_i(a_1, \dots, a_{n_i})]_\sim
+        \end{align*}
+        für alle $i \in I$ und $a_1, \dots, a_{n_i} \in A$. 
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    Was könnte hier stehen?
+    \begin{enumerate}
+        \item[``\ref{kongrurel} $\Rightarrow$ \ref{aequikla}''] Wir definieren für alle $i \in I$ die Abbildung
+        \begin{align*}
+            \omega_i^*: \pbraces{A/_\sim}^{n_i} \to A/\sim: ([a_1]_\sim, \dots, [a_{n_i}]_\sim) \mapsto [\omega_i(a_1, \dots, a_{n_i})]_\sim
+        \end{align*} 
+        Es ist natürlich die Wohldefiniertheit zu zeigen. Wir wählen dafür beliebige $([a_1]_\sim, \dots, [a_{n_i}]_\sim) \in \pbraces{A/_\sim}^{n_i}$. 
+        
+        In einem ersten Schritt ist erkennen wir, dass $\omega_i(a_1, \dots, a_{n_i}) \in A$ eindeutig bestimmt ist und damit auch das Bild $[\omega_i(a_1, \dots, a_{n_i})]_\sim$ eindeutig ist und existiert.
+        
+        In einem zweiten Schritt wählen wir dann noch $b_1 \in [a_1]_\sim ,\dots, b_n \in [a_n]_\sim$. Da $\omega_i$ eine Kongruenzrelation ist, gilt $\omega_i(b_1, \dots, b_{n_i}) \in [\omega_i(a_1, \dots, a_{n_i})]_\sim$. 
+
+        \item[``\ref{aequikla} $\Rightarrow$ \ref{kongrurel}''] Wir wählen ein beliebiges $i \in I$ und beliebige $a_1, \dots, a_{n_i} \in A$, sowie $b_1 \in [a_1]_\sim ,\dots, b_n \in [a_n]_\sim$. Es gilt
+        \begin{align*}
+            [\omega_i(a_1, \dots, a_{n_i})]_\sim = \omega_i^*([a_1]_\sim, \dots, [a_{n_i}]_\sim) = \omega_i^*([b_1]_\sim, \dots, [b_{n_i}]_\sim) = [\omega_i(b_1, \dots, b_{n_i})]_\sim.
+        \end{align*} 
+    \end{enumerate}
+\end{solution}
