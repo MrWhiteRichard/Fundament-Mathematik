@@ -1,0 +1,15 @@
+\begin{exercise}
+    Die Einheitengruppe $\mathfrak{E}$ eines Monoids $\mathfrak{M} = (M, \cdot, e)$ ist eine Gruppe.
+\end{exercise}
+
+\begin{solution}
+    Die Trägermenge von $\mathfrak{E}$ ist $E := \Bbraces{a \in M \mid \exists a^{-1} \in M: aa^{-1} = a^{-1}a = e}$.
+    \begin{enumerate}[label = \arabic*.]
+        \item \label{mon} Wir weisen nach, dass $(E, \cdot, e)$ ein Monoid ist.
+        \begin{enumerate}[label = \ref{mon}\arabic*.]
+            \item Dafür weisen wir zuerst nach, dass $(E, \cdot)$ eine Halbgruppe ist. Wähle dafür $a, b, c \in E$ beliebig. Dann gilt insbesondere $a, b, c \in M$ und da $(M, \cdot)$ eine Halbgruppe ist gilt $(a \cdot b) \cdot c = a \cdot (b \cdot c)$. 
+            \item Nun ist noch nachzuweisen, dass $e$ ein neutrales Element bezüglich $\cdot$ ist. Zuerst gilt $ee = e$ und damit $e^{-1} = e$ also $e \in E$. Für beliebiges $a \in E$ gilt $a \in M$ und damit $e \cdot a = a \cdot e = a$.
+        \end{enumerate}
+        \item Jetzt bleibt noch nachzuweisen, dass $^{-1}$ eine Inversenbildung bezüglich $\cdot$ und $e$ ist. Dafür wählen wir $a \in E$ beliebig. Nach Definition von $E$ gibt es nun ein Inverses Element $a^{-1} \in M$ und da umgekehrt $a$ das Inverse zu $a^{-1}$ ist, gilt auch $a^{-1} \in E$. 
+    \end{enumerate}
+\end{solution}
