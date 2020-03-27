@@ -1,0 +1,23 @@
+\begin{exercise}
+    Sei $X$ eine Menge. $F := \Bbraces{x_1 \dots x_n \mid n \in \N^\times \land \forall i \in {1, \dots, n}: x_i \in X}$ Darauf sei die Konkatentaion als Abbildung $\cdot: F^2 \to F: (x_1 \dots, x_n, y_1 \dots, y_m) \mapsto x_1 \dots x_n y_1 \dots y_m$ definiert. Zeigen Sie, dass $(F, \cdot)$ eine freie Halbgruppe ist. Fügt man noch das leere Wort $\epsilon$ hinzu, so ist $(F, \cdot, \epsilon)$ ein freies Monoid. Deuten Sie die Situation auch als universelle Eigenschaft in einer geeigneten Kategorie.
+\end{exercise}
+
+\begin{solution}
+    Hier könnte Ihre Werbung stehen!
+    \begin{enumerate}[label = \arabic*)]
+        \item \label{halbgruppe} Sei $(H, \circ)$ eine Halbgruppe und $j:X \to H$. Wir definieren $\varphi: F \to H: x_1 \dots x_n \mapsto j(x_1) \circ \dots \circ j(x_n)$. Es gilt
+        \begin{align*}
+            \varphi((x_1 \dots x_n) \cdot (y_1 \dots y_m)) = j(x_1) \circ \dots \circ j(x_n) \circ j(y_1) \circ \dots \circ j(y_n) = \varphi(x_1 \dots x_n) \circ \varphi(y_1 \dots y_n)
+        \end{align*} 
+        also ist $\varphi$ ein Homomorphismus und eine Fortsetzung von $j$.
+
+        Sei nun $\psi: F \to H$ ein weiterer Homomorphismus, der Fortsetzung von $j$ ist und sei $x_1 \dots x_n$ in $F$ beliebig. Es gilt
+        \begin{align*}
+            \varphi(x_1 \dots x_n) &= \varphi(x_1 \cdot \dots \cdot x_n) = \varphi(x_1) \circ \dots \circ \varphi(x_n) = j(x_1) \circ \dots \circ j(x_n) \\
+            &= \psi(x_1) \circ \dots \circ \psi(x_n) = \psi(x_1 \cdot \dots \cdot x_n) = \psi(x_1 \dots x_n)
+        \end{align*}
+        also $\varphi = \psi$.
+        \item Nun betrachten wir das Monoid $(H, \circ, e)$. Wir definieren $\varphi$ wie in \ref{halbgruppe} und zusätzlich $\varphi(\epsilon) := e$. Dann sollte alles analog zu \ref{halbgruppe} funktionieren. 
+        \item Hier fehlt noch die Kategorie!!!
+    \end{enumerate}
+\end{solution}
