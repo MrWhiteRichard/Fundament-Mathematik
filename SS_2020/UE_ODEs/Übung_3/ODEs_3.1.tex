@@ -1,11 +1,44 @@
 \begin{exercise}
 
-ToDo!
+Sei $G \subset \R^{d+1}$ ein Gebiet, $f \in C(G; \R^d)$ lokal lipschitzstetig im 2. Argument.
+Sei $y \in C^1((a, b); \R^d)$ eine Lösung von $y^\prime = f(t, y)$.
+Zeigen Sie:
+Falls es eine Folge $(t_n)^\infty_{n=0}$ mit $\lim_{n \to \infty}(t_n, y(t_n)) = (b, y_b) \in G$ gibt, so kann $y$ über $b$ hinaus fortgesetzt werden, d.h. es gibt ein $b^\prime > b$ und ein $y_e \in C^1((a, b^\prime), \R^d)$ mit $y_e^\prime = f(t, y_e)$ auf $(a, b^\prime)$ und $y = y_e$ auf $(a, b)$.
+Hinweis:
+Zeigen Sie $\lim_{t \to b-} y(t) = y_b$ mittels Widerspruch.
+Betrachten Sie hierzu Folgen $(\tau_n)_n$ mit $t_n \leq \tau_n$ und $\norm[\R^d]{y(\tau_n) - y_b} = \epsilon > 0$ sowie $\norm[\R^d]{y(t) - yb} \leq \epsilon$ für $t \in [t_n, \tau_n]$.
+Verwenden Sie, daß $f$ in einer Umgebung von $(b, y_b)$ beschränkt ist.
 
 \end{exercise}
 
 \begin{solution}
 
-Trivial!
+$f$ lokal lipschitzstetig im 2. Argument heißt genau, dass
+$\Forall (t, y) \in G:
+\Exists U \text{ Umgebung von } (t, y):
+\Exists L_U > 0:
+\Forall (\tilde{t}, \tilde{y}_1), (\tilde{t}, \tilde{y}_2) \in U:$
+
+\begin{align*}
+  \norm{f(\tilde{t}, \tilde{y}_1) - f(\tilde{t}, \tilde{y}_2)}
+  \leq
+  L_U \norm{\tilde{y}_2 - \tilde{y}_2}.
+\end{align*}
+
+zz:
+
+\begin{align*}
+  \Exists (t_n)_{n \in \N} \in (a, b)^\N:
+  (t_n, y(t_n)) \xrightarrow{n \to \infty} (b, y_b)
+  \Rightarrow
+  \Exists b^\prime > b:
+  \Exists \tilde{y} \in C^1((a, b^\prime), \R^d):
+  \begin{cases}
+    \tilde{y}^\prime = f(t, \tilde{y})
+    & \text{auf } (a, b^\prime) \\
+    \tilde{y} = y
+    & \text{auf } (a, b)
+  \end{cases}
+\end{align*}
 
 \end{solution}
