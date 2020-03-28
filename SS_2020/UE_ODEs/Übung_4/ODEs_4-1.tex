@@ -1,0 +1,32 @@
+\begin{exercise}
+    Sei $Y \in C^1(J; \R^{d \times d})$ eine Fundamentalmatrix für das lineare System $y^\prime = A(t) y$. Zeigen Sie
+    \begin{enumerate}[label = \alph*)]
+        \item Die Matrixfunktion $X \in C^1(J, \R^{d \times d})$ ist genau dann eine Fundamentalmatrix, wenn es eine reguläre Matrix $B \in \R^{d \times d}$ so gibt, dass für alle $t \in J$ die Gleichheit $X(t) = Y(t)B$ erfüllt ist.
+        \item Die Matrix $X(t) := Y(t) \pbraces{Y(t_0)}^{-1}$ ist eine Hauptfundamentalmatrix.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+    Hier könnte Ihre Werbung stehen!
+    \begin{enumerate}[label = \alph*)]
+        \item \label{fundam} Wir zeigen zwei Inklusionen.
+        \begin{enumerate}
+            \item[``$\Rightarrow$''] Es sei also $X$ eine Fundamentalmatrix. Wir wählen $s \in J$ beliebig. Dann sind $Y(s)$ und $X(s)$ zwei reguläre Matrizen. Aus der linearen Algebra (siehe LinAlg-Buch Satz 3.5.2) wissen wir, dass es Inverse zu den beiden Matrizen gibt, also es existieren reguläre $C,D \in \R^{d \times d}$ mit $X(s) C = I = Y(s) D$. Mit $B := D C^{-1}$ ist $X(s) = Y(s) B$.
+            
+            Wählen wir nun $t \in J$ beliebig. Es gilt
+            \begin{align*}
+                X(t) = X(s) + \int_s^t X^\prime(u) du = Y(s) B + \int_s^t Y^\prime(u) B du = \pbraces{Y(s) + \int_s^t Y^\prime(u) du} B = Y(t) B.
+            \end{align*}
+            \item[``$\Leftarrow$''] Sei also $B \in \R^{d \times d}$ regulär und für alle $t \in J$ sei $X(t) = Y(t)B$. Es gilt für alle $t \in J$
+            \begin{align*}
+                X^\prime(t) = Y^\prime(t) B = A(t) Y(t) B = A(t) X(t)
+            \end{align*}  
+            also ist $X$ eine Lösungsmatrix für das gegebene lineare System. Nach Korollar 3.9. gilt für alle $t \in J$
+            \begin{align*}
+                \det(X(t)) = \det(Y(t)B) = \det(Y(t)) \det(B) \neq 0
+            \end{align*}
+            und damit ist $X$ eine Fundamentalmatrix.
+        \end{enumerate}
+        \item Aus der linearen Algebra wissen wir, dass $(Y(t_0))^{-1}$ regulär ist und aus \ref{fundam} wissen wir bereits, dass $X(t) = Y(t) (Y(t_0))^{-1}$ eine Fundamentalmatrix ist. Es gilt $X(t_0) = I$ also ist $X$ eine Hauptfundamentalmatrix.
+    \end{enumerate}
+\end{solution}
