@@ -1,0 +1,35 @@
+\begin{exercise}
+  Ein explizites Einschrittverfahren mit Inkrementfunktion $\Phi(t,y,h)$
+  kann mit der sogenannten diskreten Evolution
+
+  \begin{align}
+    \Psi^{t,t+h}y := y + h\Phi(t,y,h)
+  \end{align}
+  formuliert werden durch
+  \begin{align}
+    y_{j+1}=\Psi^{t_j,t_j + h_j} y_j
+  \end{align}
+
+  Es heißt reversibel, wenn gilt $\Psi^{t+h,t}\Psi^{t,t+h}y = y$
+  für alle zulässigen $(t,y)$ und alle hinreichend kleinen $h$. Zeigen Sie, dass
+  es kein konsistentes, explizites Runge-Kutta-Verfahren gibt, welches für jedes
+  beliebige Anfangswertproblem reversibel ist.
+
+  Hinweis: Beweisen Sie zunächst, dass $\Psi^{0,h} y_0$ für ein $s$-stufiges,
+  explizites Runge-Kutta-Verfahren ein Polynom der Ordnung $s$ in $h$ ist, wenn
+  das Verfahren auf die Differentialgleichung
+
+  \begin{align}
+    y'(t)=y(t), y(0)=y_0,
+  \end{align}
+
+  angewendet wird.
+
+  Zusatzinformation: Bei reversiblen Einschrittverfahren führt ein Schritt des
+  Verfahrens mit positiver Schrittweite $h$ gefolgt von einem Schritt des Verfahrens
+  mit negativer Schrittweite $-h$ wieder auf den Anfangswert.
+\end{exercise}
+
+\begin{solution}
+  Trivial!
+\end{solution}
