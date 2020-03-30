@@ -20,5 +20,62 @@
 \end{exercise}
 
 \begin{solution}
-  Trivial!
+Theorem 2.27 für implizite Runge-Kutta Verfahren
+
+Sei ...Butcher-Tabelle... ein (implizites) m-stufiges Runge-Kutta Verfahren. Sei außerdem L die Lipschitz Konstante von f in y und
+\begin{align*}
+  h_{max} := \text{max}\{h>0|\forall i \in \{1,...,m\}:h<\frac{1}{L\sum_{j=1}^{m}|A_{ij}|}\}
+\end{align*}
+Dann existiert ein $C_{\text{Stab}} > 0$, sodass
+
+\begin{align*}
+  \forall t \in [t_{0},T) \forall h \in (0,\text{min}\{T-t,h_{max}\}] \forall y, \tilde(y) \in R^{n} : \|\phi(t,y,h) - \phi(t,\tilde{y},h)\| \leq C_{\text{Stab}} \|y-\tilde{y}\|
+\end{align*}
+
+Beweis:
+
+Wie im Beweis von 2.27 betrachten wir zunächst die Differenzen der Inkremente $k_{i}$ und $\tilde{k_{i}}$ von $y$ und $\tilde{y}$.
+
+Gemäß Angabe ist das Verfahren durchführbar und somit auch für alle $i \in \{1,...,m\}$ die $k_{i}$ wohldefiniert.
+Somit kann man sich ein $i_{1}$ definieren mit
+
+\begin{align}\label{iVoraussetzung}
+  \forall i\in \{1,...,m\}:\|A_{ii}(k_{i}-\tilde{k_{i}})\| \leq \|A_{i_{1}i_{1}}(k_{i_{1}}-\tilde{k_{i_{1}}})\|
+\end{align}
+
+analog definieren wir $i_{l}, l=1,...,m$ sodass die Ugleichung \eqref{iVoraussetzung} gilt $\forall i\in \{1,...,m\}\setminus \{i_{1},...,i_{l-1}\}$.
+
+Wir wollen zeigen mit Induktion nach $l=1,...,m$, dass
+\begin{align}\label{ind}
+  \exists C_{j}>0: \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \leq C_{l} \|y-\tilde{y}\|
+\end{align}
+Nun gilt also zunächst für $l=1$ durch die Lipschitzstetigkeit von $f$:
+
+\begin{align*}
+  \|k_{i_{1}}-\tilde{k_{i_{1}}}\| =& \|f(t+c_{i}h,y+h\sum_{j=1}^{m}A_{i_{1}j}k_{j})-f(t+c_{i}h,\tilde{y}+h\sum_{j=1}^{m}A_{i_{1}j}\tilde{k_{j}})\| \\
+  \leq& L\|(h\sum_{j=1}^{m}A_{i_{1}j}k_{j}-h\sum_{j=1}^{m}A_{i_{1}j}\tilde{k_{j}}) + (y-\tilde{y})\| \\
+  \leq& Lh \|\sum_{j=1}^{m}A_{i_{1}i_{j}}(k_{i_{j}}-\tilde{k_{i_{j}}})\| + \|y-\tilde{y}\|
+\end{align*}
+
+mit dieser Ungleichung und der Wahl von $i_{1}$ gilt also
+
+\begin{align*}
+  \|k_{i_{1}}-\tilde{k_{i_{1}}}\| &\leq Lh \sum_{j=1}^{m}|A_{i_{1}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + \|y-\tilde{y}\| \\
+  &\leq Lh \|k_{i_{1}}-\tilde{k_{i_{1}}}\|\sum_{j=1}^{m}|A_{i_{1}i_{j}}| + \|y-\tilde{y}\| \\
+  &\Rightarrow  \|k_{i_{1}}-\tilde{k_{i_{1}}}\| \underbrace{(1-Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}|)}_{>0, \text{da h hinreichend klein}} \leq \|y-\tilde{y}\| \\
+  &\Rightarrow  \|k_{i_{1}}-\tilde{k_{i_{1}}}\|  \leq \underbrace{\frac{1}{1-Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}|}}_{=:C_{1}} \|y-\tilde{y}\|
+\end{align*}
+
+Sei also $l \in \{2,...,m\}$ beliebig und für alle $k<l$ die Ungleichung \eqref{ind} bereits erfüllt, dann gilt (zunächst analog wie bei $l=1$)
+
+\begin{align*}
+  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \leq& Lh \|\sum_{j=1}^{m}A_{i_{l}i_{j}}(k_{i_{j}}-\tilde{k_{i_{j}}})\| + \|y-\tilde{y}\| \\
+  \leq& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + \|y-\tilde{y}\| \\
+  \stackrel{}{\leq}& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + Lh\|k_{i_{j}}-\tilde{k_{i_{j}}}\|\sum_{j=l}^{m}|A_{i_{l}i_{j}}|+ \|y-\tilde{y}\| \\
+  \stackrel{IV}{\leq}& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot C_{j} \|y-\tilde{y}\| + Lh\|k_{i_{j}}-\tilde{k_{i_{j}}}\|\sum_{j=l}^{m}|A_{i_{l}i_{j}}|+ \|y-\tilde{y}\| \\
+  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| (1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|) \leq (1+Lh\sum_{j=1}^{l-1}C_{j}) \|y-\tilde{y}\| \\
+  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\|  \leq \underbrace{\frac{(1+Lh\sum_{j=1}^{l-1}C_{j})}{(1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}}_{=:C_{l}} \|y-\tilde{y}\|
+\end{align*}
+
+Dann analog wie im Skript weiter und alles aufsummieren...
 \end{solution}
