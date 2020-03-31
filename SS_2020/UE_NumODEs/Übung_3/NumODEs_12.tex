@@ -20,7 +20,7 @@
   Sei \=y der lineare Interpolationsspline an die exakte Lösung y mit den gleichen Interpolationsknoten $t_{0},...,t_{N}$ wie bei $\tilde{y}$.
   Aus Numerik A, Beispiel 3.25 wissen wir, dass der Fehler des Splines abgeschätzt werden kann durch
   \begin{align*}
-    |y(t)-\overline{y}(t)| \leq \frac{h_{\triangle}^{2}}{8}\|y''\|_{\infty} = \frac{h_{\triangle}^{2}}{8}\|f'\|_{\infty}
+    |y(t)-\overline{y}(t)| \leq \frac{h_{\triangle}^{2}}{8}\|y''\|_{\infty} = \frac{h_{\triangle}^{2}}{8}\|\frac{\partial}{\partial t} f\|_{\infty}
   \end{align*}
 
   Außerdem existiert wegen der Konvergenzordnung $p$ des Verfahrens eine Konstante $\tilde{C}$, sodass
@@ -28,7 +28,7 @@
     \underset{i=1,...,N}{\max} |y(t_{i})-y_{i}| \leq \tilde{C}h_{\triangle}^{p}
   \end{align}
 
-  Da die beiden Splines $bar{y}, \tilde{y}$ die gleichen Knoten haben, und zwei Geraden auf dem gleichen Intervall (hier $[t_{i},t_{i+1}]$) ihren maximalen Abstand jeweils an einem der beiden Randpunkte annehmen, gilt
+  Da die beiden Splines $\bar{y}, \tilde{y}$ die gleichen Knoten haben, und zwei Geraden auf dem gleichen Intervall (hier $[t_{i},t_{i+1}]$) ihren maximalen Abstand jeweils an einem der beiden Randpunkte annehmen, gilt
 
   \begin{align*}
     |\tilde{y}(t)-\overline{y}(t)| \leq& \underset{i=0,...,N-1}{\max} \underset{t \in [t_{i},t_{i+1}]}{\sup} |\tilde{y}(t)-\overline{y}(t)| \\
@@ -41,7 +41,7 @@
 
   \begin{align*}
     |y(t)-\tilde{y}(t)| \leq& |y(t)-\overline{y}(t)| + |\overline{y}(t)-\tilde{y}(t)| \\
-    \leq& \frac{h_{\triangle}^{2}}{8}\|f'\|_{\infty} + \tilde{C}h_{\triangle}^{p} \leq \underbrace{(\frac{T}{8}\|f'\|_{\infty} + \tilde{C}T^{p-1})}_{=:C} h_{\triangle}
+    \leq& \frac{h_{\triangle}^{2}}{8}\|\frac{\partial}{\partial t} f\|_{\infty} + \tilde{C}h_{\triangle}^{p} \leq \underbrace{(\frac{T}{8}\|f'\|_{\infty} + \tilde{C}T^{p-1})}_{=:C} h_{\triangle}
   \end{align*}
 
 
