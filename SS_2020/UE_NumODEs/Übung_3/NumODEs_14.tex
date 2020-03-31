@@ -24,7 +24,7 @@ Theorem 2.27 für implizite Runge-Kutta Verfahren
 
 Sei ...Butcher-Tabelle... ein (implizites) m-stufiges Runge-Kutta Verfahren. Sei außerdem L die Lipschitz Konstante von $f$ in $y$ und
 \begin{align*}
-  h_{max} := \text{max}\{h>0|\forall i \in \{1,...,m\}:h<\frac{1}{L\sum_{j=1}^{m}|A_{ij}|}\}
+  h_{max} := \text{\max}\{h>0|\forall i \in \{1,...,m\}:h<\frac{1}{L\sum_{j=1}^{m}|A_{ij}|}\}
 \end{align*}
 Dann existiert ein $C_{\text{Stab}} > 0$, sodass
 
@@ -63,7 +63,7 @@ mit dieser Ungleichung und der Wahl von $i_{1}$ gilt also
   \|k_{i_{1}}-\tilde{k_{i_{1}}}\| &\leq Lh \sum_{j=1}^{m}|A_{i_{1}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + L\|y-\tilde{y}\| \\
   &\leq Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}| \cdot \|k_{i_{1}}-\tilde{k_{i_{1}}}\| + L\|y-\tilde{y}\| \\
   &\Rightarrow  \|k_{i_{1}}-\tilde{k_{i_{1}}}\| \underbrace{(1-Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}|)}_{>0 \text{,~da h hinreichend klein}} \leq L\|y-\tilde{y}\| \\
-  &\Rightarrow  \|k_{i_{1}}-\tilde{k_{i_{1}}}\|  \leq \frac{L}{1-Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}|}\|y-\tilde{y}\| \leq  \underbrace{\frac{L}{1-Lh_{max}\sum_{j=1}^{m}|A_{i_{1}i_{j}}|}}_{=:C_{1}} \|y-\tilde{y}\|
+  &\Rightarrow  \|k_{i_{1}}-\tilde{k_{i_{1}}}\|  \leq \frac{L}{1-Lh\sum_{j=1}^{m}|A_{i_{1}i_{j}}|}\|y-\tilde{y}\| \leq  \underbrace{\frac{L}{1-Lh_{\max}\sum_{j=1}^{m}|A_{i_{1}i_{j}}|}}_{=:C_{1}} \|y-\tilde{y}\|
 \end{align*}
 
 Sei also $l \in \{2,...,m\}$ beliebig und für alle $k<l$ die Ungleichung \eqref{ind} bereits erfüllt, dann gilt (zunächst analog wie bei $l=1$)
@@ -73,8 +73,8 @@ Sei also $l \in \{2,...,m\}$ beliebig und für alle $k<l$ die Ungleichung \eqref
   \leq& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + L\|y-\tilde{y}\| \\
   \stackrel{}{\leq}& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot\|k_{i_{j}}-\tilde{k_{i_{j}}}\| + Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}| \cdot \|k_{i_{l}}-\tilde{k_{i_{l}}}\|+ L\|y-\tilde{y}\| \\
   \stackrel{IV}{\leq}& Lh\sum_{j=1}^{l-1}|A_{i_{l}i_{j}}|\cdot C_{j} \|y-\tilde{y}\| + Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}| \cdot \|k_{i_{l}}-\tilde{k_{i_{l}}}\|+ L\|y-\tilde{y}\| \\
-  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \underbrace{(1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}_{\text{wieder~} >0} \leq L(1+Lh\sum_{j=1}^{l-1}C_{j}) \|y-\tilde{y}\| \\
-  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \leq \frac{L(1+Lh\sum_{j=1}^{l-1}C_{j})}{(1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}\|y-\tilde{y}\| \leq \underbrace{\frac{L(1+Lh_{max}\sum_{j=1}^{l-1}C_{j})}{(1-Lh_{max}\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}}_{=:C_{l}} \|y-\tilde{y}\|
+  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \underbrace{(1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}_{\text{wieder~} >0} \leq L(1+h\sum_{j=1}^{l-1}C_{j}) \|y-\tilde{y}\| \\
+  &\Rightarrow  \|k_{i_{l}}-\tilde{k_{i_{l}}}\| \leq \frac{L(1+h\sum_{j=1}^{l-1}C_{j})}{(1-Lh\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}\|y-\tilde{y}\| \leq \underbrace{\frac{L(1+h_{\max}\sum_{j=1}^{l-1}C_{j})}{(1-Lh_{\max}\sum_{j=l}^{m}|A_{i_{l}i_{j}}|)}}_{=:C_{l}} \|y-\tilde{y}\|
 \end{align*}
 
 Also folgt letztendlich, dass
