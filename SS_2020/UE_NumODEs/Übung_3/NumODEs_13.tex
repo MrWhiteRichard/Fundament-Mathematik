@@ -31,5 +31,77 @@
 \end{exercise}
 
 \begin{solution}
-  Trivial!
+  Wir zeigen zunächst den Hinweis. Dazu betrachten wir die Inkremente des Verfahrens
+  für unsere Differentialgleichung:
+
+  \begin{align*}
+    k_i = y_0 + h \sum_{j=1}^{i-1}A_{ij}k_j
+  \end{align*}
+
+  Wir zeigen nun per Induktion, dass die Inkremente $k_i$ in $h$ ein Polynom vom Grad
+  $i-1$ sind. Wir sehen sofort, dass die Behauptung für $i=1$ stimmt. Für den
+  Induktionsschritt $i \rightarrow i+1$ betrachten wir:
+
+  \begin{align*}
+    k_{i+1} = y_0 + h \sum_{j=1}^iA_{ij}k_j
+  \end{align*}
+
+  Wir sehen, dass die Summe nach Induktionsvoraussetzung ein Polynom vom Grad
+  $i-1$ ist, durch die Multiplikation mit $h$ haben wir es also insgesamt mit einem
+  Polynom des Grades $i$ zu tun, womit unsere Induktion abgeschlossen ist.
+
+  Damit ist
+  \begin{align*}
+    \Phi(t,y,h) = \sum_{j=1}^s b_j k_j
+  \end{align*}
+  Ein Polynom vom Grad $s-1$ und wenn wir darauf $Psi$ anwenden erhalten wir also
+  wirklich ein Polynom vom Grad $s$.
+
+  Aus der Induktion und der Definition von $Psi$ bemerkt man, dass man den Faktor
+  $y_0$ aus dem Polynom herausheben kann, es gibt also ein Polynom $P \in \Pi_s$
+  sodass
+
+  \begin{align*}
+    \Psi^{0,h} y_0 = P(h)y_0 \\
+    \Psi^{0,-h} y_0 = P(h)y_0
+  \end{align*}
+
+  Damit erhalten wir insgesamt für die Reversiblität in $(0,y_0)$:
+
+  \begin{align*}
+    \Psi^{h,0}\Psi^{0,h}y_0 = \Psi^{0,-h}\Psi^{0,h}y_0
+    = P(-h)P(h)y_0
+  \end{align*}
+
+  Somit muss $P(-h)P(h) = 1$ für hinreichend kleine $h$. Das beteuted, dass $P$
+  das konstante $1$-Polynom sein muss.
+
+  Nun soll unser Verfahren konsistent sein, das bedeutet, dass es
+
+  \begin{align*}
+    \forall t \in \left[t_0 T\right): \lim_{h\rightarrow 0^+}
+    \frac{\tau(t,y,h)}{h} = 0
+  \end{align*}
+  erfüllt, wobei $\tau$ definiert ist durch
+
+  \begin{align*}
+    \tau(t,y,h) := \norm{y(t+h)-y(t)+h\Phi(t,y(t),h)}{} =
+    \norm{y(t+h)- \Psi^{t,t+h}y}{}
+  \end{align*}
+
+  Wenn wir zusätzlich zu unseren bisherigen Voraussetzungen noch annehmen, dass
+  $y_0 \neq 0$ ergibt sich ein Wiederspruch zur Konsistenz:
+
+  \begin{align*}
+    \lim_{h\rightarrow 0^+} \frac{\tau(0,y_0,h)}{h}
+    &=\lim_{h\rightarrow 0^+} \frac{\norm{y(h)-P(h)y_0}{}}{h} \\
+    &=\lim_{h\rightarrow 0^+} \vbraces{y_0}\frac{e^h-1}{h} \\
+    &= \vbraces{y_0} \lim_{h\rightarrow 0^+}
+    \frac{\sum_{j=1}^\infty \frac{h^j}{j!}-1}{h} \\
+    &= \vbraces{y_0} \lim_{h\rightarrow 0^+}
+    1 + \sum_{j=2}^\infty \frac{h^{j-1}}{j!} = \vbraces{y_0}
+  \end{align*}
+
+  Es kann also kein konsistentes, explizites Runge-Kutta-Verfahren geben welches
+  für dieses Anfangswertproblem reversibel ist und damit insbesondere nicht für alle.
 \end{solution}
