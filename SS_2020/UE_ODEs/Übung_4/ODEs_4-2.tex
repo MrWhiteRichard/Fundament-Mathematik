@@ -1,0 +1,51 @@
+\begin{exercise}
+Sei $X \in C^1(J;\mathbb{R}^{d \times d})$ und
+$Y \in C^1(J;\mathbb{R}^{d \times d})$.
+\begin{itemize}
+  \item [\textbf{a)}] Zeigen Sie die Produktregel
+  \begin{align*}
+    \frac{d}{dt}(XY) = \left(\frac{d}{dt}X\right)Y + X\left(\frac{d}{dt}Y\right)
+  \end{align*}
+  \item [\textbf{b)}] Falls $X(t)$ für jedes $t \in J$ invertierbar ist, dann ist
+  die Abbildung $t \mapsto (X(t))^{-1}$ in $C^1(J;\mathbb{R}^{d \times d})$.
+  Geben Sie $(X^{-1})^{\prime}$ an.
+  \item [\textbf{c)}] Sei $Y$ eine Fundamentalmatrix für das lineare System
+  $y^{\prime} = A(t)y$. Welche Differentialgleichung wird von $Y^{-1}$ erfüllt?
+\end{itemize}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}]
+  \begin{align*}
+    \frac{d}{dt}(X(t)Y(t)) &= \frac{d}{dt}\left(\begin{array}{rrr}
+    \sum_{j=1}^d X_{1i}(t)Y_{i1}(t) & \cdots & \sum_{j=1}^d X_{1i}(t)Y_{id}(t) \\
+    \vdots & \ddots & \vdots \\
+    \sum_{j=1}^d X_{di}(t)Y_{i1}(t) & \cdots & \sum_{j=1}^d X_{di}(t)Y_{id}(t)
+    \end{array}\right) \\
+    &=
+    \left(\begin{array}{rrr}
+    \frac{d}{dt}\left(\sum_{j=1}^d X_{1i}(t)Y_{i1}(t)\right) & \cdots &
+    \frac{d}{dt}\left(\sum_{j=1}^d X_{1i}(t)Y_{id}(t)\right) \\
+    \vdots & \ddots & \vdots \\
+    \frac{d}{dt}\left(\sum_{j=1}^d X_{di}(t)Y_{i1}(t)\right) & \cdots &
+    \frac{d}{dt}\left(\sum_{j=1}^d X_{di}(t)Y_{id}(t)\right)
+    \end{array}\right) \\
+    &= \left(\begin{array}{rrr}
+    \sum_{j=1}^d \left(\frac{d}{dt}X_{1i}(t)\right)Y_{i1}(t) +
+    \left(\frac{d}{dt}Y_{i1}(t)\right)X_{1i}(t) & \cdots &
+    \sum_{j=1}^d \left(\frac{d}{dt}X_{1i}(t)\right)Y_{id}(t) +
+    \left(\frac{d}{dt}Y_{id}(t)\right)X_{1i}(t) \\
+    \vdots & \ddots & \vdots \\
+    \sum_{j=1}^d \left(\frac{d}{dt}X_{di}(t)\right)Y_{i1}(t) +
+    \left(\frac{d}{dt}Y_{i1}(t)\right)X_{di}(t) & \cdots &
+    \sum_{j=1}^d \left(\frac{d}{dt}X_{di}(t)\right)Y_{id}(t) +
+    \left(\frac{d}{dt}Y_{id}(t)\right)X_{1d}(t)
+    \end{array}\right) \\
+    &= \left(\frac{d}{dt}X(t)\right)Y(t) + X(t)\left(\frac{d}{dt}Y(t)\right)
+  \end{align*}
+  \item [\textbf{b)}]
+
+\end{itemize}
+
+\end{solution}
