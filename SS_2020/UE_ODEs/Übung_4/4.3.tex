@@ -1,0 +1,79 @@
+\begin{exercise}
+Betrachten Sie das lineare System
+\begin{align*}
+  y^{\prime} = A(t)y, \qquad A(t) = \left(\begin{array}{rr}
+    3t - 1 & 1 - t \\
+    t + 2 & t - 2
+  \end{array}\right)
+\end{align*}
+Geben Sie ein Fundamentalsystem an. \textit{Hinweis:} Eine Lösung ergibt sich
+aus dem Ansatz $y_1(t) = y_2(t)$.
+\end{exercise}
+\begin{solution}
+\begin{align*}
+  y_1(t) &= y_2(t) \\
+ \begin{pmatrix*}[c]
+   y_1(t) \\
+   y_1(t)
+ \end{pmatrix*}^{\prime}
+ &= A\begin{pmatrix*}[c]
+   y_1(t) \\
+   y_1(t)
+ \end{pmatrix*} = \begin{pmatrix*}[c]
+   2ty_1(t) \\
+   2ty_1(t)
+ \end{pmatrix*} \\
+ y(t) &= \begin{pmatrix*}[c]
+  \exp\left(t^2\right) \\
+  \exp\left(t^2\right)
+ \end{pmatrix*}
+\end{align*}
+Nach dem d'Alembertschen Reduktionsprinzip machen wir den Ansatz
+\begin{align*}
+  u(t) = \phi(t)y(t) + (0,z_2(t))^{\top}, \qquad \phi,z_2 \in C^1(J;\mathbb{R}).
+\end{align*}
+Wir setzen in die Differentialgleichung ein und erhalten
+\begin{align*}
+  \phi^{\prime}(t)y(t) + (0,z_2^{\prime}(t))^{\top} =
+  \begin{pmatrix*}[c]
+    3t - 1 & 1 - t \\
+    t + 2 & t - 2
+  \end{pmatrix*}
+  \begin{pmatrix*}[c]
+     0 \\
+     z_2(t)
+  \end{pmatrix*}.
+\end{align*}
+Also:
+\begin{align*}
+  \phi^{\prime}(t)\exp(t^2) &= (1 - t)z_2(t) \implies
+  \phi^{\prime}(t) = \frac{1-t}{\exp(t^2)}z_2(t)\\
+  \phi^{\prime}(t)\exp(t^2) + z_2^{\prime}(t) &=  (t -2)z_2(t) \implies
+  z_2^{\prime}(t) = (2t - 3)z_2(t)
+\end{align*}
+Es folgt
+\begin{align*}
+  z_2(t) &= \exp(t^2 - 3t) \\
+  \phi^{\prime}(t) &= (1 - t)\exp(-3t) \\
+  \phi(t) &= \int (1 - t)\exp(-3t) = -\frac{1}{3}\exp(-3t) + \frac{1}{9}\exp(-3t)
+  (3t + 1) + c
+\end{align*}
+Damit ist
+\begin{align*}
+  \phi(t) = \exp(-3t)\left(\frac{1}{3}t - \frac{2}{9}\right)
+\end{align*}
+eine Lösung und wir erhalten
+\begin{align*}
+  u(t) = \phi(t)y(t) + (0,z_2(t))^{\top} = \frac{1}{9}\exp(t^2-3t)\begin{pmatrix*}[c]
+  3t - 2 \\
+  3t + 7
+  \end{pmatrix*}.
+\end{align*}
+Damit lautet unser Fundamentalsystem
+\begin{align*}
+  Y(t) = \begin{pmatrix*}[c]
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+  \end{pmatrix*}
+\end{align*}
+\end{solution}

@@ -1,0 +1,36 @@
+\begin{exercise}
+Sei $Y \in C^1(J;\mathbb{R}^{d\times d})$ eine Fundamentalmatrix für das lineare
+System $y^{\prime}(t) = A(t)y(t)$. Zeigen Sie:
+\begin{itemize}
+  \item [\textbf{a)}] Die Matrixfunktion $X \in C^1(J;\mathbb{R}^{d \times d})$
+  ist genau dann eine Fundamentalmatrix, wenn es eine reguläre Matrix
+  $B \in \mathbb{R}^{d\times d}$ gibt mit $\forall t \in J: X(t) = Y(t)B$.
+  \item [\textbf{b)}] Die Matrix $X(t) := Y(t)(Y(t_0))^{-1}$ ist eine
+  Hauptfundamentalmatrix.
+\end{itemize}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}] Sei $B \in \mathbb{R}^{d\times d}$ eine beliebige reguläre
+  Matrix, $X(t) := Y(t)B$. Da für alle $b \in \mathbb{R}^{d}$ $Y(t) b$ eine
+  Lösung des linearen Systems ist, ist $X(t)$ zumindest eine Lösungsmatrix.
+  Aufgrund des Multiplikationssatz für Determinanten ist $Y(t)B$ auch regulär
+  und $X(t)$ ist damit eine Fundamentalmatrix. \\
+  Sei umgekehrt $X \in C^1(J;\mathbb{R}^{d \times d})$ eine beliebige
+  Fundamentalmatrix, $Y(t) = (y^1(t),\dots,y^d(t))$. Da der Lösungsraum des
+  linearen Systems Dimension $d$ hat, existiert zu jedem $y^i(t)$ ein $b_i \in
+  \mathbb{R}^d$, sodass $X(t) b_i = y^i(t)$. Also gilt $X(t)B = Y(t)$. Da
+  $X(t), Y(t)$ beide regulär sind, muss auch $B$ regulär und damit invertierbar
+  sein und es gilt: $\forall t \in J: X(t) = Y(t)B^{-1}$
+  \item [\textbf{b)}] Nach Lemma 3.3 ist $Y(t)$ für jedes $t \in \mathbb{R}^d$
+  $Y(t)$ invertierbar, also existiert insbesondere $(Y(t_0))^{-1}$. \\
+  Da $(Y(t_0))^{-1}$ regulär ist, folgt mit a), dass $Y(t)(Y(t_0))^{-1}$ eine
+  Fundamentalmatrix ist. Bezüglich
+  $t_0$ ist $X(t)$ offensichtlich eine Hauptfundamentalmatrix, da
+  \begin{align*}
+    X(t_0) = Y(t_0)(Y(t_0))^{-1} = I
+  \end{align*}
+\end{itemize}
+
+\end{solution}

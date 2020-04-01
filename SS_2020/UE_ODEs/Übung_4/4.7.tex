@@ -1,0 +1,88 @@
+\begin{exercise}
+Zeigen Sie für $A \in \mathbb{R}^{d \times d}$:
+\begin{itemize}
+  \item [\textbf{a)}] $\det e^A = e^{tr A}$
+  \item [\textbf{b)}] $e^{A^{\top}} = (e^A)^{\top}$
+  \item [\textbf{c)}] Falls $A$ schiefsymmetrisch ist, dann ist $e^{tA}$ orthogonal
+  und $\det e^{tA} = 1$.
+  \item [\textbf{d)}] Sei $A \in C^1(J;\mathbb{R}^{d \times d})$ punktweise
+  schiefsymmetrisch, also $A(t)^{\top} = -A(t)$ für alle $t \in J$.
+  Zeigen Sie: Jede Lösung $y$ von $y^{\prime} = A(t)y$ erfüllt:
+  Die Funktion $t \mapsto ||y(t)||_2$ ist konstant auf $J$.
+\end{itemize}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}]
+  Wir wissen aus der Linearen Algebra:
+  \begin{align*}
+    \exists V \in GL_d(\mathbb{C}): VAV^{-1} = J,
+  \end{align*}
+  wobei $J$ in Jordan-Normalform ist. $J$ hat also die Form
+  \begin{align*}
+    J &= \text{diag}(J_1,\dots,J_n), \\
+    J_i &= \text{diag}(
+    \underbrace{J_{m_{i,1}}(\lambda_i),\dots,J_{m_{i,1}}(\lambda_i)}_
+    {1 \leq k_{i,1}  \text{viele}},\dots,
+    \underbrace{J_{m_{i,p_i}}(\lambda_i),\dots,J_{m_{i,p_i}}(\lambda_i)}_
+    {1 \leq k_{i,p_i}  \text{viele}})
+  \end{align*}
+  Wir nutzen Lemma 3.16 und den Fakt, dass die Exponentialmatrix einer Blockdiagonalmatrix
+  wieder eine Blockdiagonalmatrix ist und erhalten
+  \begin{align*}
+    \det \exp(J_i) &= \det \text{diag}(\exp(J_{m_i,1}(\lambda_i)),\dots,
+    \exp(J_{m_i,1}(\lambda_i)),\dots,\exp(J_{m_i,p_i}(\lambda_i)),\dots,
+    \exp(J_{m_i,p_i}(\lambda_i))) \\
+    &= \prod_{j=1}^{p_i}(\det \exp(J_{m_i,j}(\lambda_i)))^{k_{i,j}}
+    = \prod_{j=1}^{p_i}\exp(\lambda_i m_{i,j})^{k_{i,j}}
+    = \prod_{j=1}^{p_i}\exp(\lambda_ik_{i,j} m_{i,j})
+    = \exp(\lambda_i \sum_{j=1}^{p_i}m_{i,j})
+    = \exp(\lambda_i n_i),
+  \end{align*}
+  wobei $n_i$ die algebraische Vielfachheit des jeweiligen Eigenwerts $\lambda_i$
+  bezeichnet. Aus der Linearen Algebra ist bekannt, dass sich die Spur einer Matrix
+  durch die Summe ihrer Eigenwerte mal algebraischer Vielfachheit charakterisieren lässt.
+  \begin{align*}
+    \det \exp (J) = \det \text{diag}(\exp(J_1),\dots,\exp(J_n))
+    = \prod_{i=1}^n \det \exp (J_i) = \prod_{i=1}^n \exp(\lambda_in_i)
+    = \exp(\sum_{i=1}^n \lambda_i n_i) = \exp(tr A).
+  \end{align*}
+  Jetzt können wir $A$ einsetzen
+  \begin{align*}
+    \det \exp (A) = \det \exp (V^{-1}JV) = \det V^{-1}\exp(J)V
+    = \det V^{-1} \det \exp(J) \det V = \det \exp(J) = \exp(tr A)
+  \end{align*}
+  \item [\textbf{b)}]
+  Da die Matrix-Transponierung auf $(\mathbb{R}^{d \times d}, ||\cdot||_{\infty})$
+  stetig ist, gilt
+  \begin{align*}
+    \exp(A^{\top}) = \sum_{n = 0}^{\infty} \frac{1}{n!}(A^{\top})^n
+    = \sum_{n = 0}^{\infty} \frac{1}{n!}(A^n)^{\top}
+    = \left(\sum_{n = 0}^{\infty} \frac{1}{n!}(A^n)\right)^{\top}
+    = \exp(A)^{\top}
+  \end{align*}
+\item [\textbf{c)}]
+Sei $A$ schiefsymmetrisch, also $A^{\top} = -A$. Dann gilt
+\begin{align*}
+  \exp(tA)^{\top}\exp(tA) = \exp(tA^{\top})\exp(tA) = \exp(-tA)\exp(tA) = \exp(0) = I
+  \in \mathbb{R}^{d \times d}
+\end{align*}
+Also ist $\exp(tA)$ orthogonal und es gilt
+\begin{align*}
+  \left(\det \exp(tA) \right)^2 = \det \exp(tA)^{\top} \det \exp(tA) =
+  \det \exp(tA)^{\top}\exp(tA) = \det I = 1.
+\end{align*}
+Da $\det \exp(tA) = \exp(tr(tA)) \geq 0$ folgt daraus $\det \exp(tA) = 1$.
+\item [\textbf{d)}]
+Wir zeigen, dass die Ableitung von $t \mapsto ||y(t)||_2^2$ verschwindet.
+\begin{align*}
+  (||y(t)||_2^2)^{\prime} &= 2\langle y(t), y^{\prime}(t) \rangle_2
+  = 2\langle y(t),A(t)y(t) \rangle_2 = 2\langle A(t)^{\top}y(t),  y(t), \rangle_2\\
+  &= -2 \langle A(t)y(t),  y(t), \rangle_2
+  = -2 \langle y^{\prime}(t),  y(t), \rangle_2
+  = -2 \langle y(t), y^{\prime}(t)\rangle_2
+\end{align*}
+Daraus folgt $(||y(t)||_2^2)^{\prime} = 2\langle y(t), y^{\prime}(t)\rangle_2 = 0$.
+\end{itemize}
+\end{solution}

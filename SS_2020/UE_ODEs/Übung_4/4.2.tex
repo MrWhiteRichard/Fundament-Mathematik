@@ -18,20 +18,20 @@ $Y \in C^1(J;\mathbb{R}^{d \times d})$.
 \begin{itemize}
   \item [\textbf{a)}]
   \begin{align*}
-    \frac{d}{dt}(X(t)Y(t)) &= \frac{d}{dt}\left(\begin{array}{rrr}
+    \frac{d}{dt}(X(t)Y(t)) &= \frac{d}{dt}\begin{pmatrix*}[c]
     \sum_{j=1}^d X_{1i}(t)Y_{i1}(t) & \cdots & \sum_{j=1}^d X_{1i}(t)Y_{id}(t) \\
     \vdots & \ddots & \vdots \\
     \sum_{j=1}^d X_{di}(t)Y_{i1}(t) & \cdots & \sum_{j=1}^d X_{di}(t)Y_{id}(t)
-    \end{array}\right) \\
+    \end{pmatrix*}\\
     &=
-    \left(\begin{array}{rrr}
+    \begin{pmatrix*}[c]
     \frac{d}{dt}\left(\sum_{j=1}^d X_{1i}(t)Y_{i1}(t)\right) & \cdots &
     \frac{d}{dt}\left(\sum_{j=1}^d X_{1i}(t)Y_{id}(t)\right) \\
     \vdots & \ddots & \vdots \\
     \frac{d}{dt}\left(\sum_{j=1}^d X_{di}(t)Y_{i1}(t)\right) & \cdots &
     \frac{d}{dt}\left(\sum_{j=1}^d X_{di}(t)Y_{id}(t)\right)
-    \end{array}\right) \\
-    &= \left(\begin{array}{rrr}
+    \end{pmatrix*} \\
+    &= \begin{pmatrix*}[c]
     \sum_{j=1}^d \left(\frac{d}{dt}X_{1i}(t)\right)Y_{i1}(t) +
     \left(\frac{d}{dt}Y_{i1}(t)\right)X_{1i}(t) & \cdots &
     \sum_{j=1}^d \left(\frac{d}{dt}X_{1i}(t)\right)Y_{id}(t) +
@@ -41,11 +41,47 @@ $Y \in C^1(J;\mathbb{R}^{d \times d})$.
     \left(\frac{d}{dt}Y_{i1}(t)\right)X_{di}(t) & \cdots &
     \sum_{j=1}^d \left(\frac{d}{dt}X_{di}(t)\right)Y_{id}(t) +
     \left(\frac{d}{dt}Y_{id}(t)\right)X_{1d}(t)
-    \end{array}\right) \\
+    \end{pmatrix*} \\
     &= \left(\frac{d}{dt}X(t)\right)Y(t) + X(t)\left(\frac{d}{dt}Y(t)\right)
   \end{align*}
   \item [\textbf{b)}]
-
+  \begin{align*}
+    X^{-1}(t) = \frac{1}{\det X(t)} X^{\#}(t),
+  \end{align*}
+wobei $A^{\#}$ die Kofaktor-Matrix bezeichnet mit $(A^{\#})_{lk} = \det A_{kl}$ mit
+\begin{align*}
+A_{kl} =
+  \begin{pmatrix*}[c]
+  a_{11} & \dots & 0 & \dots & a_{1n} \\
+  \vdots & \ddots & \vdots & \iddots & \vdots \\
+  0 & \dots & 1 & \dots & 0 \\
+  \vdots & \iddots & \vdots & \ddots & \vdots \\
+  a_{n1} & \dots & 0 & \dots & a_{nn}
+  \end{pmatrix*}
+\end{align*}
+Die Determinantenbildung ist von $\mathbb{R}^{d \times d} \rightarrow \mathbb{R}$
+eine Polynomfunktion und somit stetig differenzierbar.
+Die Funktion $t \mapsto X^{\#}(t)$ ist also komponentenweise stetig differenzierbar
+und damit auch insgesamt stetig differenzierbar.
+Damit ist $X^{-1}$ als Verknüpfung und Multiplikation stetig differenzierbarer Funktionen ebenso
+stetig differenzierbar. \\
+Mithilfe der eben bewiesenen Produktregel können wir nun
+$(X^{-1})^{\prime}$ berechnen.
+\begin{align*}
+  0 = I^{\prime} = (X X^{-1})^{\prime} = X^{\prime}(X^{-1}) + X(X^{-1})^{\prime}
+\end{align*}
+Es folgt
+\begin{align*}
+  (X^{-1})^{\prime} = -X^{-1}X^{\prime}X^{-1}
+\end{align*}
+\item [\textbf{c)}]
+\begin{align*}
+  (Y^{-1})^{\prime} = -Y^{-1}Y^{\prime}Y^{-1} = -Y^{-1}A(t)YY^{-1} = -Y^{-1}A(t)
+\end{align*}
+$Y^{-1}$ erfüllt also die Differentialgleichung
+\begin{align*}
+  y^{\prime}(t) = -A^{\top}(t)y(t)
+\end{align*}
 \end{itemize}
 
 \end{solution}

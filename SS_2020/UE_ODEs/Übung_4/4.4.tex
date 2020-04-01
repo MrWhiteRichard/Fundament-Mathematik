@@ -1,0 +1,41 @@
+\begin{exercise}
+Seien $A,B \in \mathbb{R}^{d \times d}$ mit $AB = BA$.
+\begin{itemize}
+  \item [\textbf{a)}]Zeigen Sie:
+  \begin{align*}
+    e^{A + B} = e^Ae^B = e^Be^A
+  \end{align*}
+  \item [\textbf{b)}]Zeigen Sie für $s,t \in \mathbb{R}$:
+  \begin{align*}
+    e^{(s + t)A} = e^{sA}e^{tA}
+  \end{align*}
+\end{itemize}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}]
+  In einem kommutativen Ring mit Eins gilt der binomische Lehrsatz.
+  Der Matrizenring ist zwar im Allgemeinen nicht kommutativ, aber eingeschränkt
+  auf jene Matrizen, welche das Kommutativgesetz erfüllen, können wir somit
+  den binomischen Lehrsatz anwenden und aufgrund der absoluten Konvergenz der Exponentialmatrix-Reihe
+  die Reihenglieder beliebig umordnen.
+  \begin{align*}
+    e^{A + B} &= \sum_{n=0}^{\infty}\frac{t^n}{n!}(A + B)^n
+    = \sum_{n=0}^{\infty}\sum_{k=0}^n\frac{t^n}{n!}\binom{n}{k}A^{n-k}B^k
+    = \sum_{n=0}^{\infty}A^n
+    \sum_{k=0}^{n}\frac{t^{n+k}}{(n+k)!}\binom{n+k}{k}B^k \\
+    &= \sum_{n=0}^{\infty}\frac{t^n}{n!}A^n
+    \sum_{k=0}^{\infty}\frac{t^{k}}{k!}B^k
+    = e^Ae^B
+  \end{align*}
+  Da $(A + B)^n = (B + A)^n$ gilt auch: $e^{A + B} = e^Be^A$.
+  \item [\textbf{b)}]
+  Wegen $sAtA = tAsA$ gilt:
+  \begin{align*}
+    \exp(sA)\exp(tA) = \exp(sA + tA) = \exp((s+t)A)
+  \end{align*}
+\end{itemize}
+
+
+\end{solution}

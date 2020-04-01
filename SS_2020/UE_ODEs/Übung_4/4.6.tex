@@ -1,0 +1,73 @@
+\begin{exercise}
+Definieren Sie die matrixwertige Funktion $Z(t) = e^{\int_0^tA(s)ds}$ (hier
+ist $A \in C(\mathbb{R};\mathbb{R}^{d \times d})$). Zeigen Sie: Man kann nicht
+erwarten, dass $Z$ eine Fundamentalmatrix für
+\begin{align*}
+  y^{\prime} = A(t)y
+\end{align*}
+ist. Geben Sie Bedingungen an, unter denen $Z$ eine Fundamentalmatrix ist.
+\end{exercise}
+\begin{solution}
+Wir geben zunächst ein Beispiel an, sodass $Z$ keine Fundamentalmatrix für
+$y^{\prime} = A(t)y$ ist.
+\begin{align*}
+  A(s) &= \begin{pmatrix*}[c]
+    2s & 1 \\
+    0 & 0
+  \end{pmatrix*} \\
+  B(t) &= \int_0^tA(s)ds = \begin{pmatrix*}[c]
+    t^2 & t \\
+    0 & 0
+  \end{pmatrix*} \\
+  B^n(t) &= \begin{pmatrix*}[c]
+    t^{2n} & t^{2n-1} \\
+    0 & 0
+  \end{pmatrix*} \\
+  Z(t) &= \exp(B(t)) = \begin{pmatrix*}[c]
+    \sum_{n=1}^{\infty}\frac{t^{2n}}{n!} & \sum_{n=1}^{\infty}\frac{t^{2n-1}}{n!}\\
+    0 & 0
+  \end{pmatrix*}
+  = \begin{pmatrix*}[c]
+    \exp(t^2) & \frac{\exp(t^2)}{t}\\
+    0 & 0
+  \end{pmatrix*} \\
+  Z^{\prime}(t) &= \begin{pmatrix*}[c]
+    2t\exp(t^2) & \frac{(2t^2-1)}{t^2}\exp(t^2) \\
+    0 & 0
+  \end{pmatrix*}\neq
+  \begin{pmatrix*}[c]
+    2t\exp(t^2) & 2\exp(t^2)\\
+    0 & 0
+  \end{pmatrix*}
+  = A(t)Z(t)
+\end{align*}
+Wir bemerken, dass
+\begin{align*}
+  A(t)B(t) =  \begin{pmatrix*}[c]
+    2t^3 & 2t^2 \\
+    0 & 0
+  \end{pmatrix*} \neq
+  \begin{pmatrix*}[c]
+    2t^3 & t^2 \\
+    0 & 0
+  \end{pmatrix*} =
+  B(t)A(t)
+\end{align*}
+Das führt uns zu unserer Bedingung: $\forall t \in J: A(t)B(t) = B(t)A(t)$. \\
+Um zu zeigen, dass diese Bedingung auch hinreichend ist, zeigen wir zunächst
+induktiv $(B^n)^{\prime} = nB^{n-1}A$.
+Für $n = 1$ lautet der Induktionsanfang einfach $B^{\prime} = A$.
+Gelte die Aussage nun für $n - 1$:
+\begin{align*}
+  (B^n)^{\prime} &= (B^{n-1}B)^{\prime} = (B^{n-1})^{\prime}B + B^{n-1}B^{\prime}
+  = (n - 1)B^{n - 2}AB + B^{n-1}A = nB^{n-1}A \\
+\end{align*}
+Da die Exponentialmatrix-Reihe absolut konvergiert, können wir Differentiation
+und Grenzwert vertauschen und erhalten mit der Kommutativität von $A$ und $B$
+\begin{align*}
+  Z^{\prime} &= (\exp(B))^{\prime} = (\sum_{n=0}^{\infty}\frac{1}{n!}B^n)^{\prime}
+  = \sum_{n=0}^{\infty}\frac{1}{n!}(B^n)^{\prime} =
+  \sum_{n=1}^{\infty}\frac{1}{n!}nB^{n-1}A = A \sum_{n=0}^{\infty}\frac{1}{n!}B^n
+  = AZ
+\end{align*}
+\end{solution}

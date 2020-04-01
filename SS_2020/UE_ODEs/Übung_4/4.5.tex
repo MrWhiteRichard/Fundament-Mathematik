@@ -1,0 +1,53 @@
+\begin{exercise}
+Im allgemeinen gilt \textit{nicht} $e^{A + B} = e^Ae^B$. Geben Sie ein
+Gegenbeispiel an.
+\end{exercise}
+\begin{solution}
+Betrachte die Matrizen
+\begin{align*}
+  A &= \begin{pmatrix*}[c]
+    1 & 1 \\
+    0 & 0 \\
+  \end{pmatrix*} \\
+  B &=  \begin{pmatrix*}[c]
+    1 & 0 \\
+    1 & 0 \\
+  \end{pmatrix*}
+\end{align*}
+Dann gilt
+\begin{align*}
+  AB &= \begin{pmatrix*}[c]
+    1 & 0 \\
+    0 & 0 \\
+  \end{pmatrix*}\\
+  BA &= \begin{pmatrix*}[c]
+    1 & 1 \\
+    1 & 1 \\
+  \end{pmatrix*} \\
+  A^n &= A \\
+  B^n &= B \\
+\end{align*}
+und es folgt
+\begin{align*}
+  e^A &= \sum_{n=0}^{\infty}\frac{t^n}{n!}(A)^n = \sum_{n=0}^{\infty}\frac{t^n}{n!}A
+  = \begin{pmatrix*}[c]
+    \sum_{n=0}^{\infty}\frac{t^n}{n!} & \sum_{n=0}^{\infty}\frac{t^n}{n!} \\
+    0 & 0 \\
+  \end{pmatrix*} \\
+  e^B &= \begin{pmatrix*}[c]
+    \sum_{n=0}^{\infty}\frac{t^n}{n!} & 0 \\
+    \sum_{n=0}^{\infty}\frac{t^n}{n!} & 0 \\
+  \end{pmatrix*} \\
+  e^Ae^B &= \begin{pmatrix*}[c]
+    \left(\sum_{n=0}^{\infty}\frac{t^n}{n!}\right)^2 & 0 \\
+    0 & 0 \\
+  \end{pmatrix*} \neq
+  \begin{pmatrix*}[c]
+    \left(\sum_{n=0}^{\infty}\frac{t^n}{n!}\right)^2 &
+    \left(\sum_{n=0}^{\infty}\frac{t^n}{n!}\right)^2 \\
+    \left(\sum_{n=0}^{\infty}\frac{t^n}{n!}\right)^2 &
+    \left(\sum_{n=0}^{\infty}\frac{t^n}{n!}\right)^2 \\
+  \end{pmatrix*}
+  = e^Be^A.
+\end{align*}
+\end{solution}
