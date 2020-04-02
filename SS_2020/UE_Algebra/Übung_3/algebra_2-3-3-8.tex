@@ -6,22 +6,40 @@
     \end{enumerate}
 \end{exercise}
 
-\begin{solution} 
+\begin{solution}
     Wir müssen endlich wen finden der bei uns Werbung machen will!
     \begin{enumerate}[label = \alph*)]
         \item Wir unterscheiden zwei Fälle.
         \begin{enumerate}[label = Fall \arabic*:]
             \item Sei $J \neq \emptyset$.
             \begin{enumerate}[label = (\roman*)]
-                \item Wissen wir schon irgendwoher, dass der Durchschnitt von Äquivalenzrelationen wieder eine ist oder müssen wir das hier durcharbeiten? (Ich hab nach kurzer Suche im Skriptum nichts gefunden)
-                \item Sei $\omega \in \Omega$ beliebig eine $n$-stellige Operation, $n \in \N$ und seien entsprechend $(a_1, b_1), \dots, (a_n, b_n) \in \sim$ beliebig. Für alle $j \in J$ sind also $(a_1, b_1), \dots, (a_n, b_n) \in \sim_j$ und da $\sim_j$ schließlich eine Kongruenzrelation ist, gilt auch $(\omega(a_1, \dots, a_n), \omega(b_1, \dots, b_n)) \in \sim_j$. Da das für alle $j \in J$ der Fall ist, können wir $(\omega(a_1, \dots, a_n), \omega(b_1, \dots, b_n)) \in \sim$ schließen. 
+                \item Äquivalenzrelation: \\
+                \begin{itemize}
+                  \item [\textbf{Reflexivität:}] Sei $a \in A$. Dann gilt
+                  \begin{align*}
+                    \forall j \in J: a \sim_j a \implies a \sim a
+                  \end{align*}
+                  \item [\textbf{Symmetrie:}]
+                  Seien $a,b \in A: a \sim b$. Dann gilt
+                  \begin{align*}
+                    \forall j \in J: a \sim_j b \implies \forall j \in J: b \sim_j a \implies
+                    b \sim a.
+                  \end{align*}
+                  \item [\textbf{Transitivität:}]
+                  Seien $a,b,c \in A: a \sim b, b \sim c$. Dann gilt
+                  \begin{align*}
+                    \forall j \in J: a \sim_j b, b \sim_j c \implies  \forall j \in J: a \sim_j c
+                    \implies a \sim c.
+                  \end{align*}
+              \end{itemize}
+                \item Sei $\omega \in \Omega$ beliebig eine $n$-stellige Operation, $n \in \N$ und seien entsprechend $(a_1, b_1), \dots, (a_n, b_n) \in \sim$ beliebig. Für alle $j \in J$ sind also $(a_1, b_1), \dots, (a_n, b_n) \in \sim_j$ und da $\sim_j$ schließlich eine Kongruenzrelation ist, gilt auch $(\omega(a_1, \dots, a_n), \omega(b_1, \dots, b_n)) \in \sim_j$. Da das für alle $j \in J$ der Fall ist, können wir $(\omega(a_1, \dots, a_n), \omega(b_1, \dots, b_n)) \in \sim$ schließen.
             \end{enumerate}
             \item Sei $J = \emptyset$.
             \begin{enumerate}[label = (\roman*)]
-                \item Wissen wir schon irgendwoher, dass $A \times A$ eine Äquivalenzrelationen ist?
+                \item Wissen wir schon irgendwoher, dass $A \times A$ eine Äquivalenzrelationen ist? Des is ja wohl klar.
                 \item Sei $\omega \in \Omega$ beliebig eine $n$-stellige Operation, $n \in \N$ und seien entsprechend $(a_1, b_1), \dots, (a_n, b_n) \in \sim$ beliebig. Es ist $(\omega(a_1, \dots, a_n), \omega(b_1, \dots, b_n)) \in \sim$, weil $\omega: A^n \to A$ und $\sim = A \times A$.
             \end{enumerate}
         \end{enumerate}
-        \item Folgt unmittlebar aus \ref{kongru} und Korollar 2.1.2.19. 
+        \item Folgt unmittlebar aus \ref{kongru} und Korollar 2.1.2.19.
     \end{enumerate}
 \end{solution}
