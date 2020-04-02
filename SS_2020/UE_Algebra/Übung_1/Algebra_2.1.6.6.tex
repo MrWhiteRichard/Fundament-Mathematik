@@ -2,13 +2,25 @@
     Zeigen Sie, dass jede abzählbare, dichte Kette $(M, \prec)$ ohne größtes und ohne kleinstes Element ordnungsisomorph zu $(\Q, <)$ ist.
 \end{exercise}
 \begin{solution}
-    Wir betrachten Abzählungen $(m_n)_{n \in \N}$ von $M$ und $(q_k)_{k \in \N}$ von $\Q$. Wir definieren nun rekursiv den Isomorphismus $\varphi: M \to \Q$. Dieser soll $m_0 \mapsto q_0$ schicken. Für alle $n \in \N \setminus \Bbraces{0}$ existiert $j_n := \min\Bbraces{j \in \N \mid \forall l \in \N: (l < n \Rightarrow (m_l \prec m_n \Rightarrow \varphi(m_l) < q_j) \land (m_n \prec m_l \Rightarrow q_j < \varphi(m_l) ) )}$. Für die Existenz ist natürlich wichtig, dass $\Q$ dicht ist und wir kein größtes und kleinstes Element finden, was garantiert, dass die Menge von der wir das Minimum nehmen nicht leer ist. Also schicken wir dann $m_n \mapsto q_{j_n}$.
+    Wir betrachten Abzählungen $(m_n)_{n \in \N}$ von $M$ und $(q_k)_{k \in \N}$ von $\Q$. Wir definieren nun rekursiv den Isomorphismus $\varphi: M \to \Q$. Dieser soll $m_0 \mapsto q_0$ schicken. Für alle $n \in \N \setminus \Bbraces{0}$ existiert
+    \begin{align*}
+        j_n := \min\underbrace{\Bbraces{j \in \N \mid \forall l \in \N: (l < n \Rightarrow (m_l \prec m_n \Rightarrow \varphi(m_l) < q_j) \land (m_n \prec m_l \Rightarrow q_j < \varphi(m_l) ) )}}_{P_n :=}.
+    \end{align*}
+     Für die Existenz ist natürlich wichtig, dass $\Q$ dicht ist und wir kein größtes und kleinstes Element finden, was garantiert, dass die Menge von der wir das Minimum nehmen nicht leer ist. Also schicken wir dann $m_n \mapsto q_{j_n}$.
     
     Natürlich gilt es nachzuweisen, dass $\varphi$ ein Isomorphismus ist. Schauen wir zuerst, ob die Abbildung die Ordnung erhält, wählen wir also $a,b \in M$ mit $a \prec b$. Nach unserer Konstruktion von $\varphi$ gilt $\varphi(a) < \varphi(b)$. Wählen wir nun umgekehrt $c,d \in M$ mit $\varphi(c) < \varphi(d)$. Weil es sich bei $M$ um eine Kette handelt gilt $c \prec d \lor c = d \lor c \succ d$. Aus der Konstruktion von $\varphi$ ist aber sofort $c \prec d$ ersichtlich. 
 
-    Jetzt müssen wir uns noch mit der Bijektivität auseinandersetzen. Die Injektivität sieht man unmittelbar an der Definition von $\varphi$. Die Surjektivität wollen wir induktiv beweisen. Es gilt zu beginn $\varphi(m_0) = q_0$. Nehmen wir jetzt an, dass $n \in \N \setminus \Bbraces{0}$ und für alle $i < n$ gibt es bereits ein $m_{k_i} \in M$ mit $\varphi(m_{k_i}) = q_i$. Nun definieren wir analog zur obigen Konstruktion
+    Jetzt müssen wir uns noch mit der Bijektivität auseinandersetzen. Die Injektivität sieht man unmittelbar an der Definition von $\varphi$. Die Surjektivität wollen wir induktiv beweisen. Es gilt zu Beginn $\varphi(m_0) = q_0$. Nehmen wir jetzt an, dass $n \in \N \setminus \Bbraces{0}$ und für alle $i < n$ gibt es bereits ein $m_{k_i} \in M$ mit $\varphi(m_{k_i}) = q_i$. Nun definieren wir analog zur obigen Konstruktion
     \begin{align*}
-        k_n :=  \min\Bbraces{j \in \N \mid \forall l \in \N: (l < n \Rightarrow (q_l < q_n \Rightarrow m_{k_l} \prec m_j) \land (q_n < q_l \Rightarrow m_j \prec m_{k_l} ) )} .
+        k_n :=  \min\underbrace{\Bbraces{j \in \N \mid \forall a \in \N: (a < n \Rightarrow (q_a \geq q_n \Leftarrow m_{k_a} \succeq m_j) \land (q_n \geq q_a \Leftarrow m_j \succeq m_{k_a} ) )}}_{T_n:=} .
     \end{align*}
-    Nun muss also $\varphi(m_{k_n}) = q_n$ gelten und damit ist $\varphi$ auch surjektiv.
+    Wir behaupten $\varphi(m_{k_n}) = q_n$. Dazu müssen wir $j_{k_n} = n$ zeigen. 
+
+    Wählen wir zuerst $a \in \N$ mit $a < n$ beliebig. Wir wollen $a \notin P_{k_n}$ zeigen. Es sei o.B.d.A. $q_a < q_n$ und wegen $k_n \in T_n$ auch $m_{k_b} < m_{k_n}$.  Wir definieren $q_b := \max\Bbraces{q_j \in \Q \mid j \in \N \land j < n \land q_j < q_n}$. Wegen $k_n \in T_{b}$ gilt $k_b < k_n$ und außerdem $\varphi(m_{k_b}) = q_b \geq q_a$. Also ist $a \notin P_{k_n}$ und da $a < n$ beliebig war $j_{k_n} \geq n$. 
+    
+    Nun wollen wir $n \in P_{k_n}$ zeigen. Wähle dafür $l \in \N$ mit $l < k_n$ und $m_l \prec m_{k_n}$. Wegen $l \notin T_n$ gilt $\exists a < n: (q_a < q_n \land m_{k_a} \succeq m_l) \lor (q_a > q_n \land m_l \succeq m_{k_a})$. 
+    Aus $q_a > q_n$ folgt wegen $k_n \in T_n$, dass $m_{k_a} \succ m_{k_n}$ und damit $m_l \prec m_{k_n} \prec m_{k_a}$ im Widerspruch zu $m_l \succeq m_{k_a}$. Dieser Fall kann also nicht eintreten.
+    Aus $q_a < q_n$ folgt $m_{k_a} \prec m_{k_n}$ und damit also $m_l \preceq m_{k_a} \prec m_{k_n}$. Daraus wiederum schließen wir $\varphi(m_l) \leq q_a < q_n$, genau was wir wollen. 
+    
+
 \end{solution}
