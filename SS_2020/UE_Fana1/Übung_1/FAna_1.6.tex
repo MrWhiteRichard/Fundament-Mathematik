@@ -22,7 +22,7 @@ $(tW)_{t > 0}$ ist damit eine offene Überdeckung von $K$.
 \end{align*}
 
 Nach der Definition einer kompakten Menge existiert davon eine endliche Teilüberdeckung $(t_i W)_{i=1}^n$.
-Aufgrund der Kreisförmigkeit von $W$ gilt $\Forall i = 1, \ldots, n:$
+Aufgrund der Kreisförmigkeit von $W$ gilt $\Forall i, j = 1, \ldots, n:$
 
 \begin{align*}
   t_j \geq t_i
@@ -30,12 +30,23 @@ Aufgrund der Kreisförmigkeit von $W$ gilt $\Forall i = 1, \ldots, n:$
   t_j W \supseteq t_i W.
 \end{align*}
 
-Mit $t_\Text{max} := \max_{i=1}^n t_i$, folgt also $t_\Text{max} U \supseteq t_\Text{max} W \supseteq K$.
+Mit $t_\Text{max} := \max_{i=1}^n t_i$, folgt also
+
+\begin{align*}
+  t_\Text{max} U
+  \supseteq
+  t_\Text{max} W
+  \supseteq
+  \bigcup_{i=1}^n t_i W
+  \supseteq
+  K.
+\end{align*}
+
 Damit ist $K$ beschränkt. \\
 
 \Quote{Linearer Teilraum unbeschränkt}:
-Weil $Y \neq \Bbraces{0}$, muss $\Exists y \in Y: y \neq 0$. Weil $(X, \mathcal{T})$ Hausdorff ist, $\Exists V \text{ Umgebung von } y, \Exists U \text{ Umgebung von } 0: V \cap U = \emptyset$.
-Damit muss aber $y \notin U \in \mathfrak{U}(0)$.
+Weil $Y \neq \Bbraces{0}$, muss $\Exists y \in Y: y \neq 0$. Weil $(X, \mathcal{T})$ Hausdorff ist, $\Exists V \in \mathfrak{U}(y), \Exists U \in \mathfrak{U}(0): V \cap U = \emptyset$.
+Damit muss aber $y \notin U$.
 Weil $Y$ ein linearer Teilraum ist, gilt $\Forall \lambda > 0: \lambda y \in Y$, aber $\lambda y \notin \lambda U$.
 Daher ist $Y$ unbeschränkt, weil $\Exists U \in \mathfrak{U}(0): \Forall \lambda > 0: Y \not \subseteq \lambda U$.
 
