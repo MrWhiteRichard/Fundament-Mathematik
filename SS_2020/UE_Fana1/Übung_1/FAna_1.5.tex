@@ -1,33 +1,41 @@
 \begin{exercise}
 
-Sei $X$ ein Vektorraum mit $X \neq \Bbraces{0}$. Ist $X$ mit der diskreten Topologie ein topologischer Vektorraum?
+Sei $X$ ein Vektorraum mit $X \neq \Bbraces{0}$.
+Ist $X$ mit der diskreten Topologie ein topologischer Vektorraum?
 Finde eine Topologie auf $X$ mit der $X$ ein topologischer Vektorraum wird und sodass $X^\prime = X^\ast$ ist.
 
 \end{exercise}
 
 \begin{solution}
-$X$ ist mit der diskreten Topologie kein topologischer Vektorraum. \\
-Dazu betrachten wir die Stetigkeit der Skalarmultiplikation bei der $0$.
-Sei $x \in X\backslash\{0\}$ beliebig. \\
-Dann ist $\{0\}$ eine Umgebung von $\cdot(0,x) = 0$.
-Sei nun $V$ eine beliebige Umgebung von $(0,x)$ in der Produkttopologie von $\C \times X$.
-Dann lässt sich $V = \bigcup_{i \in I}O_i^{\mathbb{C}}\times O_i^X$, mit
-$O_i^{\mathbb{C}}$ offen in $\mathbb{C}$, versehen mit der euklidischen Topologie
-und $O_i^X$ offen bezüglich der diskreten Topologie auf $X$ darstellen.
-Dann gilt:
+
+$X$ ist mit der diskreten Topologie $\mathcal{T}$ kein topologischer Vektorraum.
+Um das zu zeigen, widerlegen wir die Stetigkeit der Skalarmultiplikation bei $0$. \\
+
+
+Sei dazu $x \in X \setminus \Bbraces{0}$.
+Offenbar, gilt $\cdot((0, x)) = 0 \cdot x = 0$.
+Weil $\mathcal{T} = \mathcal{P}(X)$, ist $\Bbraces{0} \in \mathfrak{U}(0)$.
+Sei weiters $V \in \mathfrak{U}((0, x))$ im topologischen Raum $(\C \times X, \mathcal{E} \times \mathcal{T})$.
+Dann $\Exists (O_i^\C)_{i \in I} \in \mathcal{E}^I, \Exists (O_i^X)_{i \in I} \in \mathcal{T}^I:$
+
 \begin{align*}
-  \exists (a,x) \in V: a \neq 0 \implies \cdot(a,x) \neq 0 \implies \cdot(V) \nsubseteq \{0\}
+  V = \bigcup_{i \in I} O_i^\C \times O_i^X.
 \end{align*}
-Also ist die Skalarmultiplikation bei 0 nicht stetig und $X$ somit kein topologischer
-Vektorraum.
-\\
-Für den zweiten Teil der Aufgabe betrachte die Menge aller linearen Funktionale $(f_i)_{i \in I}$ auf X.
+
+Es muss dabei aber $\Exists i \in I: O_i^\C \setminus \Bbraces{0} \neq \emptyset$.
+Daher $\Exists z \in \C \setminus \Bbraces{0}: (z, x) \in V$.
+Damit gilt aber auch $a \cdot x \neq 0$ und somit $\cdot(V) \nsubseteq \Bbraces{0}$.
+Also, ist $V \not \subseteq \cdot^{-1}(\Bbraces{0}) \notin \mathfrak{U}((0, x))$, die Skalarmultiplikation bei $0$ nicht stetig, und $X$ schließlich kein topologischer Vektorraum. \\
+
+Für den zweiten Teil der Aufgabe betrachte die Initialtopologie $\mathcal{T}_\Text{init}$, welche durch alle $f \in X^\ast$ induziert wird.
+Es gilt klarerweise
+
 \begin{align*}
-  f_i: X \rightarrow \mathbb{C}, i \in I
+  \bigcap_{f \in X^\ast} \ker f = \Bbraces{0}.
 \end{align*}
-Es gilt klarerweise $\bigcap_{i\in I}\ker f_i = \{0\}$.
-Ebenso ist $\mathbb{C}$, versehen mit der euklidischen Topologie ein Vektorraum.
-Damit sind alle Voraussetzungen für Proposition 2.4.1 erfüllt, die besagt, dass
-damit $X$ mit der von $(f_i)_{i\in I}$ induzierten Initialtopologie zu einem topologischen Vektorraum wird.
-Aus der Konstruktion der Topologie folgt sofort, dass $X^\prime = X^\ast$.
+
+Ebenso, ist $(\C, \mathcal{E})$ ein topologischer Vektorraum.
+Laut Proposition 2.4.1, ist $(X, \mathcal{T}_\Text{init})$ also ein topologischer Vektorraum.
+Aus der Konstruktion Topologie von $\mathcal{T}_\Text{init}$ folgt sofort, dass $X^\prime = X^\ast$.
+
 \end{solution}
