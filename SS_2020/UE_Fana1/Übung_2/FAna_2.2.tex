@@ -18,6 +18,74 @@ Ist $X\prime$ strikt konvex, so hat $f$ genau eine normerhaltende Fortsetzung.
 
 \begin{solution}
 
-Trivial!
+Seinen $F_1$, $F_2$ normerhaltende Fortsetzungen von $f$, d.h.
+
+\begin{align*}
+  F_1|_M = F_2|_M = f,
+  \enspace
+  \norm[X\prime]{F_1} = \norm[X^\prime]{F_2} = \norm[M^\prime]{f}.
+\end{align*}
+
+\begin{enumerate}[label = Fall \arabic*:]
+
+  \item
+  Wenn $f = 0$, dann muss auch $\norm[X\prime]{F_1} = \norm[X^\prime]{F_2} = \norm[M^\prime]{f} = 0$ und somit $F_1, F_2 = 0$.
+
+  \item
+  Wenn $f \neq 0$, dann gilt $\Forall i = 1, 2:$
+
+  \begin{align*}
+    \norm[X^\prime]{\frac{F_i}{\norm[M^\prime]{f}}}
+    =
+    \frac{\norm[X^\prime]{F_i}}{\norm[M^\prime]{f}} = 1.
+  \end{align*}
+
+  Aus der Dreiecksungleichung, folgt
+
+  \begin{align*}
+    \norm[X^\prime]
+    {
+      \Frac{2}
+      {
+        \frac{F_1}{\norm[M^\prime]{f}} +
+        \frac{F_2}{\norm[M^\prime]{f}}
+      }
+    }
+    =
+    \frac{1}{2 \norm[M^\prime]{f}} \norm[X^\prime]{F_1 + F_2}
+    \leq
+    \Frac{2 \norm[M^\prime]{f}}
+    {
+      \norm[X^\prime]{F_1} +
+      \norm[X^\prime]{F_2}
+    }
+    = 1.
+  \end{align*}
+
+  Die andere Richtung, dieser Abschätzung, erhalten wir mit
+
+  \begin{align*}
+    \norm[X^\prime]{F_1 + F_2}
+    & =
+    \sup \Bbraces{(F_1 + F_2)(x): x \in X, \norm{x} = 1} \\
+    & \geq
+    \sup \Bbraces{(F_1 + F_2)(x): x \in M, \norm{x} = 1} \\
+    & =
+    \sup \Bbraces{2 f(x): x \in M, \norm{x} = 1}
+    =
+    2 \norm[M^\prime]{f}.
+  \end{align*}
+
+  Aus der strikten Konvexität von $X^\prime$, folgt somit
+
+  \begin{align*}
+    \frac{F_1}{\norm[M^\prime]{f}}
+    =
+    \frac{F_2}{\norm[M^\prime]{f}}
+    \implies
+    F_1 = F_2.
+  \end{align*}
+
+\end{enumerate}
 
 \end{solution}
