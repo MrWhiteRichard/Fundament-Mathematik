@@ -16,6 +16,28 @@ Falls nein, zeige dass es keines gibt.
 
 \begin{solution}
 
-Trivial!
-
+Die Antwort lautet nein! \\
+Um das einzusehen, bemerken wir zuerst, dass es sich bei $A$ um einen linearen
+Teilraum von $X$ handelt. \\
+Für jedes $\phi \in L^2(-1, 1)^\prime$ muss folglich
+$\phi(A)$ ebenso ein linearer Teilraum von $\mathbb{R}$ sein.
+Dafür gibt es natürlich nur zwei Möglichkeiten. \\
+Im Fall, dass $\phi(A) = \mathbb{R}$ kann die Bedingung $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
+offensichtlich nicht erfüllt werden. \\
+Also bleibt nur noch der Fall $\phi(A) = \{0\}$.
+Jetzt bemerken wir noch, dass die Differenz zweier Funktionen auf $B$ in $A$ liegen
+muss. Also kann $\phi$ auf $B$ nur konstant sein. \\
+Sei nun zusätzlich angenommen, dass $\phi(B) = \{a\}$ mit $a \neq 0$.
+Dann sehen wir allerdings ein, dass in jeder Null-Umgebung ein $b \in B$ liegt.
+Dazu betrachte für $\epsilon > 0$ beliebig die Funktion $b_{\epsilon}$ definiert durch
+\begin{align*}
+  b_{\epsilon}(x) := \begin{cases}
+    \sqrt{1 - |\epsilon x|}, & |x| < \epsilon \\
+    0 & \text{sonst}
+  \end{cases}
+\end{align*}
+und es gilt $||b_{\epsilon}||_{L^2} = \epsilon$. \\
+Damit kann $\phi$ nicht stetig sein und es bleibt nur noch der Fall $\phi \equiv 0$.
+Diese Funktion erfüllt aber auch nicht $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
+und somit kann es auch keine solche Funktion geben.
 \end{solution}
