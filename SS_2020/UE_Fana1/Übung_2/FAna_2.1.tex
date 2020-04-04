@@ -13,8 +13,121 @@ Man erinnere sich was $(\ell^1)^\prime$ ist.
 
 \begin{solution}
 
-Wir betrachten den Banachraum $ X := l^1 = \Bbraces{(x_n)_{n \in \N} : \Vbraces{(x_n)_{n \in \N}}_1 = \sum_{n = 1}^\infty \vbraces{x_n} < \infty}$. Wir definieren $e := (1, 0, \dots)$ und sehen, dass wegen $\Vbraces{e}_1 = 1$ die Familie $e \in l^1$ ist. Nun definieren wir den linearen Teilraum $M := span\Bbraces{e} = \Bbraces{\lambda e \mid \lambda \in \C}$. Dazu definieren wir $f: M \to \C: \lambda e \mapsto \lambda$. Man rechnet nach, dass $f$ linear ist. Weiters ist $\Vbraces{f} = \sup\Bbraces{\vbraces{f(\lambda e)} : \Vbraces{\lambda e_1} = 1 = \vbraces{\lambda} } = 1$, also ist $f$ beschränkt.
+\phantom{}
 
-Aus der Maßtheorie wissen wir, dass $\varphi: l^\infty \to (l^1)^\prime : (c_n)_{n \in \N} \mapsto \pbraces{(y_n)_{n \in \N} \mapsto \sum_{n = 1}^\infty y_n c_n}$ ein isometrischer Isomorphismus ist (vgl. FAna Skript Beispiel 2.3.3), wobei $l^\infty = \Bbraces{(x_n)_{n \in \N}: \Vbraces{(x_n)_{n \in \N}}_\infty = \sup\Bbraces{\vbraces{x_n} : n \in \N} < \infty}$. Um einzusehen, dass $f$ nun mehr als eine normerhaltende Fortsetzung hat, definieren wir \\ $A := \Bbraces{(c_n)_{n \in \N} : \Vbraces{(c_n)_{n \in \N}}_\infty = 1 \land c_1 = 1} \subseteq l^\infty$. Es sind $(1)_{n \in \N}, e \in A$ also ist $\vbraces{A} > 1$. Da $\varphi$ als Isomorphismus insbesondere injektiv ist, gilt daher auch $\vbraces{\varphi(A)} > 1$. Nehmen wir nun ein beliebiges $F \in \varphi(A) \subseteq (l^1)^\prime$, dann gibt es ein $(c_n)_{n \in \N} \in A$ so, dass für alle $(y_n)_{n \in \N} \in l^1: F\pbraces{(y_n)_{n \in \N}} = \sum_{n = 1}^\infty y_n c_n$. Daraus erhalten wir für beliebiges $\lambda e \in M$ wegen $c_1 = 1$ nach Definition von $A$ die Gleichheit $F(\lambda e) = \lambda c_1 = \lambda = f(\lambda e)$, also $F\mid_M = f$ oder $F$ setzt $f$ fort. Da $\varphi$ isometrisch ist erhalten wir $\Vbraces{F} = \Vbraces{\varphi^{-1}(F)}_\infty = 1 = \Vbraces{f}$. Das heißt alle $F \in \varphi(A)$ sind normerhaltende Fortsetzungen von $f$ und $\varphi(A)$ enthält mindestens zwei Funktionen, also gibt es mindestens zwei normerhaltende Fortsetzungen von $f$.
+\begin{enumerate}
+
+  \item
+  Wir betrachten die Banachräume $X := (\ell^1, \norm[1]{\cdot})$ und $(\ell^1, \norm[\infty]{\cdot})$, wobei
+
+  \begin{align*}
+    \ell^1
+    & :=
+    \Bbraces
+    {
+      x \in \C^\N:
+      \norm[1]{x} < \infty
+    },
+    &
+    \norm[1]{x}
+    & :=
+    \sum_{n=1}^\infty |x_n|, \\
+    \ell^\infty
+    & :=
+    \Bbraces
+    {
+      x \in \C^\N:
+      \norm[\infty]{x} < \infty
+    },
+    &
+    \norm[\infty]{x}
+    & :=
+    \sup_{n=1}^\infty |x_n|.
+  \end{align*}
+
+  \item
+  $e := (\delta_{1n})_{n \in \N} \in \ell^1$, weil $\norm[1]{e} = 1$.
+
+  \item
+  $M :=
+  \Span{\Bbraces{e}} =
+  \Bbraces{\lambda e: \lambda \in \C}$ ist ein linearer Teilraum von $\ell^1$.
+
+  \item
+  $f: M \to \C: \lambda e \mapsto \lambda$ ist ein beschränktes Funktional aus $M^\prime$, weil
+
+  \begin{align*}
+    \norm[M^\prime]{f}
+    =
+    \sup
+    \{
+      \underbrace{|f(\lambda e)|}_{|\lambda|}:
+      \lambda \in \C,
+      \underbrace{\norm[1]{\lambda e}}_{|\lambda|} = 1
+    \} = 1.
+  \end{align*}
+
+\end{enumerate}
+
+Laut Beispiel 2.3.3, ist folgendes $\varphi$ ein isometrischer Isomorphismus.
+
+\begin{align*}
+  \varphi:
+  \ell^\infty \to (\ell^1)^\prime:
+  c \mapsto
+  \pbraces
+  {
+    y \mapsto
+    \sum_{n = 1}^\infty y_n c_n
+  }
+\end{align*}
+
+Wir betrachten das Bilde unter $\varphi$ von folgender Teilmenge von $\ell^\infty$
+
+\begin{align*}
+  A :=
+  \Bbraces
+  {
+    c \in \ell^1:
+    \norm[\infty]{c} = 1,  c_1 = 1
+  }
+\end{align*}
+
+Wählen wir nun ein beliebiges $F \in \varphi(A) \subseteq (\ell^1)^\prime$, dann $\Exists c \in A: \Forall y \in \ell^1:$
+
+\begin{align*}
+  F(y)
+  =
+  \sum_{n=1}^\infty y_n c_n.
+\end{align*}
+
+$F$ setzt $f$ fort, d.h. $F|_M = f$, weil $c_1 = 1$ und damit $\Forall \lambda \in \C:$
+
+\begin{align*}
+  F(\lambda e)
+  =
+  \lambda c_1
+  =
+  \lambda
+  =
+  f(\lambda e).
+\end{align*}
+
+Da $\varphi$ isometrisch ist, erhalten wir
+
+\begin{align*}
+  \norm[X^\prime]{F}
+  =
+  \norm[\infty]{\varphi^{-1}(F)}
+  =
+  1
+  =
+  \norm[M^\prime]{f}.
+\end{align*}
+
+D.h. alle $F \in \varphi(A)$ sind normerhaltende Fortsetzungen von $f$.
+Es sind $1, e \in A$, also ist $|A| > 1$.
+Da $\varphi$ als Isomorphismus insbesondere injektiv ist, gilt daher auch $|\varphi(A)| > 1$.
+Also gibt es mindestens zwei verschiedene normerhaltende Fortsetzungen von $f$.
 
 \end{solution}
