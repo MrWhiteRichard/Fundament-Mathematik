@@ -1,0 +1,42 @@
+\begin{exercise}
+Für $i \in I$ sei $(X_i, \mathcal{T}_i)$ ein lokalkonvexer Vektorraum und
+$\{p_{ij} ~|~ j \in J\}$ eine Familie von Seminormen, die $\mathcal{T}_i$ erzeugt.
+Finde eine Familie von Seminormen auf $\prod_{i \in I} X_i$, welche die Produkttopologie erzeugt.
+
+\end{exercise}
+
+\begin{solution}
+
+
+
+Wir identifizieren den Produktraum als Menge aller Auswahlfunktionen:
+\begin{align*}
+    \prod_{i \in I} X_i = \{f: I \rightarrow \bigcup_{i \in I} X_i ~|~ f(i) \in X_i\}.
+\end{align*}
+
+Auf dieser Menge definieren wir eine Familie von Seminormen:
+\begin{align*}
+    p_{ij}'(f) := p_{ij}(f(i)).
+\end{align*}
+
+$p_{ij}'$ ist eine Seminorm auf dem Produktraum:
+
+\begin{itemize}
+    \item $p_{ij}'(\alpha f) = p_{ij}(\alpha f(i)) = |\alpha|~ p_{ij}(f(i)) = |\alpha|~ p_{ij}'(f),$
+    
+    \item $p_{ij}'(f + g) = p_{ij}(f(i) + g(i)) \leq p_{ij}(f(i)) + p_{ij}(g(i)) = p_{ij}'(f) + p_{ij}'(g).$
+\end{itemize}
+
+Die Familie $(p_{ij}')_{(i,j) \in I \times J}$ ist überdies separierend: Seien $f, g \in \prod_{i \in I} X_i$ mit $f \neq g$. Dann existiert ein $i \in I$, sodass $g(i) \neq f(i)$. Für $g(i), f(i) \in X_i$ gibt es nun, weil die Familie $(p_{ij})_{j \in J}$ separierend ist, ein $j \in J$, sodass $p_{ij}(g(i)) \neq p_{ij}(f(i))$, was äquivalent zu $p_{ij}'(f) \neq p_{ij}'(g)$ ist.
+
+Die durch die Familie der Seminormen $(p_{ij}')_{(i,j) \in I \times J}$ induzierte Topologie auf dem Produktraum ist die Initialtopologie der zugehörigen Projektionen (\pi_{ij}')_{(i,j) \in I \times J}:
+
+
+ \pi_{ij}': ~\begin{cases}
+
+    \prod_{i \in I} X_i \rightarrow (\prod_{i \in I} X_i) / N(p_{ij}')\\
+    f \mapsto f + N(p_{ij}'), \text{wobei}~ N(p_{ij}') := \{g \in \prod_{i \in I} X_i ~|~ p_{ij}'(g) = 0\}.
+\end{cases}
+
+Jeder Faktorraum $(\prod_{i \in I} X_i) / N(p_{ij}')$ trägt dabei jene Topologie, die von der Norm $\overline{p_{ij}'}$ induziert wird, welche repräsentantenweise durch die Seminorm ${p_{ij}'}$ definiert ist.
+\end{solution}
