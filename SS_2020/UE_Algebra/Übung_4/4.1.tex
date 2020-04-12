@@ -1,0 +1,92 @@
+\begin{algebraUE}{141}
+In dieser Übungsaufgabe interessieren wir uns für Unteralgebren und Kongruenzrelationen
+auf $\mathbb{N}$ bezüglich additiver und/oder multiplikativer Struktur. Versuchen
+Sie jeweils alle Objekte der angegebenen Art zu beschreiben. Wenn Ihnen das zu
+schwierig erscheint (was in der Mehrzahl der Fälle wahrscheinlich ist), ermitteln
+Sie, wieviele es davon gibt. Unterscheiden Sie dabei verschiedene unendliche
+Kardinalitäten, insbesondere $|\mathbb{N}|$ und $|\mathbb{R}|$.
+\begin{itemize}
+  \item [1.] Unteralgebren von $(\mathbb{N},+,0)$
+  \item [2.] Kongruenzrelationen von $(\mathbb{N},+,0)$
+  \item [3.] Unteralgebren von $(\mathbb{N},\cdot,1)$
+  \item [4.] Kongruenzrelationen von $(\mathbb{N},\cdot,1)$
+  \item [5.] Unteralgebren von $(\mathbb{N},+,0,\cdot,1)$
+  \item [6.] Kongruenzrelationen von $(\mathbb{N},+,0,\cdot,1)$
+\end{itemize}
+\end{algebraUE}
+\begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [1.] Als erstes haben wir die beiden trivialen Unteralgebren: $\{0\}$ und $\mathbb{N}$. \\
+  Dann haben wir zu jeder natürlichen Zahl $n \geq 2: n\cdot\mathbb{N}$. \\
+Ebenfalls für jede natürliche Zahl $n \geq 1: \mathbb{N}\backslash\{1,\dots,n\}$. \\
+Im allgemeinen können wir zu jeder beliebiger Teilmenge $X \subset \mathbb{N}$
+die erzeugte Unteralgebra mit $\{\sum_{j=1}^nx_jn_j: n, n_j \in \mathbb{N}, x_j \in X \}$
+bestimmen. Damit haben wir ein System um alle Unteralgebren vollständig zu beschreiben.
+Natürlich werden wir damit öfters die gleichen Unteralgebren erzeugen,
+allerdings haben wir mit $|2^{\mathbb{N}}| = |\mathbb{R}|$ zumindest eine obere
+Schranke für die Kardinalität der Unteralgebren gefunden. Bleibt noch die Frage,
+ob wir die Schranke noch auf abzählbar unendlich herunterschrauben können. \\
+Wir können zumindest zeigen, dass jede Unteralgebra endlich erzeugt ist.
+Sei $U$ eine beliebige Unteralgebra von $(\mathbb{N},+,0)$ und sei angenommen,
+dass $U$ nicht endlich erzeugt ist.
+Dazu definieren wir uns die Folge $(a_n)_{n \in \mathbb{N}}$ induktiv wie folgt
+\begin{align*}
+  a_0 := \min U \\
+a_{n+1} := \min U \backslash \langle a_0,\dots,a_n\rangle
+\end{align*}
+Betrachte nun die endliche Menge $(a_0,\dots,a_m)$ mit einem $m > a_0$.
+Nun folgt mit dem Schubfachprinzip $\exists k,n \leq m: a_k \mod a_0 = a_n \mod a_0$.
+Wir nehmen o.B.d.A. an $a_k < a_n$. Dann gilt also
+\begin{align*}
+  \exists c \in \mathbb{N}: a_n = a_k + ca_0 \in \langle a_0,\dots,a_m \rangle
+\end{align*}
+Dies ist ein Widerspruch zu unserer Konstruktion und $U$ muss somit endlich erzeugt sein.
+Laut Proposition 2.3.1.22. wissen wir damit jetzt, dass der Unteralgebrenverband
+mit der Mengeninklusion eine Noethersche Halbordnung ist, also dass es keine
+unendlich aufsteigenden Ketten gibt.
+Ebenfalls äquivalent dazu ist, dass jede nichtleere Teilmenge ein Maximum hat.
+\item [2.] Wieder haben wir zwei triviale Kongruenzrelationen am Anfang:
+Die Allrelation $\mathbb{N} \times \mathbb{N}$ und die Identitätsrelation
+$\{(n,n): n \in \mathbb{N}\}$. \\
+Dann können wir die Modulo-Kongruenzrelationen definieren. Für jede natürliche Zahl
+$n \geq 1$ ist $a \sim b: \iff a \mod n = b \mod n$ eine Kongruenzrelation, welche
+die Partition in die jeweiligen Restklassen induziert.
+Also haben wir zumindest abzählbar unendlich viele Kongruenzrelationen.
+\item [3.] Jede Teilmenge $A$ der Potenzmenge der Primzahlen induziert eine
+Unteralgebra von $(\mathbb{N},\cdot,1)$ mit
+\begin{align*}
+  U_A := \left\{\prod_{j=1}^na_j^{n_j}: n, n_j \in \mathbb{N}, a_j \in A\right\}.
+\end{align*}
+Diese Unteralgebren sind aufgrund der Eindeutigkeit
+der Primfaktorzerlegung allesamt paarweise verschieden.
+Damit können wir zwar noch nicht alle möglichen Unteralgebren
+vollständig beschreiben, allerdings ist aufgrund $|2^\mathbb{P}| = |2^\mathbb{N}|
+= |\mathbb{R}|$ die Kardinalität der Unteralgebren auf jeden
+Fall überabzählbar. \\
+Sei $X \subset \mathbb{N}$ beliebig.
+Dann ist die Menge
+\begin{align*}
+  U_X := \left\{\prod_{j=1}^nx_j^{n_j}: n, n_j \in \mathbb{N}, x_j \in X\right\}.
+\end{align*}
+eine Unteralgebra und offensichtlicherweise können damit auch alle möglichen
+Unteralgebren beschrieben werden, allerdings ist diese Darstellung im Allgemeinen
+nicht mehr eindeutig.
+Also haben wir sowohl eine injektive, als auch eine surjektive Abbildung von
+einer Teilmenge der Potenzmenge der natürlichen Zahlen in die Menge aller
+Unteralgebren von $(\mathbb{N},\cdot,1)$ gefunden. \\
+Ich denke, dass es nicht möglich ist, eine elementare bijektive Abbildung zu finden.
+\item [4.] Wieder gibt es die beiden trivialen Relationen: Allrelation + Identitätsrelation.
+Weiters ist auch die Modulo 2 Relation eine Kongruenzrelation.
+Wiederum eine weitere Kongruenzrelation ist durch
+\begin{align*}
+  a = \prod_{p \in \mathbb{P}}p^{a_p} \sim b = \prod_{p \in \mathbb{P}}p^{b_p}: \iff \sum_{p \in \mathbb{P}} a_p = \sum_{p \in \mathbb{P}} b_p
+\end{align*}
+definiert.
+\item [5.] Jede Unteralgebra muss auf jeden Fall $\{0,1\}$ enthalten. Aufgrund
+der Abgeschlossenheit unter der Addition und dem Induktionsprinzip
+muss jede Unteralgebra bereits ganz $\mathbb{N}$ enthalten.
+\item [6.] Wieder gibt es zwei triviale Relationen mit der Allrelation und der
+Identitätsrelation.
+\end{itemize}
+\end{solution}

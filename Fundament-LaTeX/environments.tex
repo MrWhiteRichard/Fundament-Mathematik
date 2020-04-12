@@ -1,7 +1,11 @@
 % \def \lastexercisenumber {...} <- in project
+\theoremstyle{definition}
 \newtheorem{exercise}{Aufgabe}
 \setcounter{exercise}{\lastexercisenumber}
-
+\newtheorem{inneralgebraUE}{UE}
+\newenvironment{algebraUE}[1]
+  {\renewcommand\theinneralgebraUE{#1}\inneralgebraUE}
+  {\endinneralgebraUE}
 \newtheorem*{theorem*}{Satz}
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{definition*}{Definition}

@@ -1,0 +1,34 @@
+\begin{algebraUE}{147}
+Auf der zweielementigen Menge $H := \{0,1\}$ definiert $xy := x$ eine
+nichtkommutative Halbgruppenoperation. Adjunktion eines neutralen Elements $e$
+ergibt nach Proposition 3.1.1.9 ein Monoid $M = \{e,0,1\}$. Das einelementige
+Monoid $\{e\}$ zusammen mit der konstanten Abbildung $\kappa: M \rightarrow \{e\}$
+erweist sich als Quotientenmonoid von $M$. Es liegt also ein Beispiel eines
+Monoids vor, das erstens nicht isomorph in sein Quotientenmonoid eingebettet
+wird, und zweitens ein (in diesem Fall auf triviale Weise) kommutatives
+Quotientenmonoid hat, obwohl es selbst nicht kommutativ ist.
+\end{algebraUE}
+\begin{solution}
+Zuerst zeigen wir, dass $(\{e\}, \kappa)$ ein Objekt der Kategorie $\mathcal{C}(M,M)$ ist. \\
+$\kappa$ ist klarerweise ein Monoidhomomorphismus und für jedes $x \in M$
+besitzt $\kappa(x) = e$ mit dem neutralen Element $e$ auch ein Inverses.
+Jetzt gilt es noch zu zeigen, dass $(\{e\}, \kappa)$ auch initial in dieser
+Kategorie ist. Sei dazu $(A,\varphi)$ ein beliebiges Objekt der Kategorie.
+Dann existiert genau ein Monoidhomomorphismus $\psi: \{e\} \rightarrow A; e \mapsto e_A$,
+der das neutrale Element wieder auf das neutrale Element abbildet.
+Wir zeigen, dass $\varphi$ ebenfalls die konstante Abbildung $x \mapsto e_A$
+sein muss.
+Angenommen
+\begin{align*}
+  e_A \neq a = \varphi(0).
+\end{align*}
+Dann folgt
+\begin{align*}
+  a = \varphi(0) = \varphi(01) = \varphi(0)\varphi(1) = a\varphi(1) \\
+  a^{-1}a = a^{-1}a\varphi(1) \\
+  e_A = e_A\varphi(1) = \varphi(10) = \varphi(1)\varphi(0) = e_Aa
+\end{align*}
+im Widerspruch zu $a \neq e_A$. Analog zeigt man $\varphi(1) = e_A$. \\
+Also gilt $\varphi = \psi \circ \kappa$ und $(\{e\}, \kappa)$ ist somit initial
+in $\mathcal{C}(M,M)$.
+\end{solution}
