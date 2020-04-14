@@ -3,9 +3,17 @@
 Betrachte den Raum $L^2(-1, 1)$ (der $L^2$-Raum bezüglich dem Lebesgue Maß auf $(-1, 1)$), und die beiden konvexen Teilmengen
 
 \begin{align*}
-  A := \Bbraces{f \in L^2(-1, 1): f \text{ stetig}, f(0) = 0},
+  A :=
+  \Bbraces{
+    f \in L^2(-1, 1):
+    f \text{ stetig}, f(0) = 0
+  },
   \quad
-  B := \Bbraces{f \in L^2(-1, 1): f \text{ stetig}, f(0) = 1}.
+  B :=
+  \Bbraces{
+    f \in L^2(-1, 1):
+    f \text{ stetig}, f(0) = 1
+  }.
 \end{align*}
 
 Existiert $\phi \in L^2(-1, 1)^\prime$ mit $\Forall a \in A, b \in B. \enspace \phi(a) < \phi(b)$?
@@ -16,28 +24,119 @@ Falls nein, zeige dass es keines gibt.
 
 \begin{solution}
 
-Die Antwort lautet nein! \\
-Um das einzusehen, bemerken wir zuerst, dass es sich bei $A$ um einen linearen
-Teilraum von $X$ handelt. \\
-Für jedes $\phi \in L^2(-1, 1)^\prime$ muss folglich
-$\phi(A)$ ebenso ein linearer Teilraum von $\mathbb{R}$ sein.
-Dafür gibt es natürlich nur zwei Möglichkeiten. \\
-Im Fall, dass $\phi(A) = \mathbb{R}$ kann die Bedingung $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
-offensichtlich nicht erfüllt werden. \\
-Also bleibt nur noch der Fall $\phi(A) = \{0\}$.
-Jetzt bemerken wir noch, dass die Differenz zweier Funktionen auf $B$ in $A$ liegen
-muss. Also kann $\phi$ auf $B$ nur konstant sein. \\
-Sei nun zusätzlich angenommen, dass $\phi(B) = \{a\}$ mit $a \neq 0$.
-Dann sehen wir allerdings ein, dass in jeder Null-Umgebung ein $b \in B$ liegt.
-Dazu betrachte für $\epsilon > 0$ beliebig die Funktion $b_{\epsilon}$ definiert durch
+Zuerst, entschlüsseln wir die Angabe.
+
 \begin{align*}
-  b_{\epsilon}(x) := \begin{cases}
-    \sqrt{1 - \frac{|x|}{\epsilon}}, & |x| < \epsilon \\
-    0 & \text{sonst}
-  \end{cases}
+  A & :=
+  \Bbraces
+  {
+    f \in L^2(-1, 1):
+    \Exists f_\Text{rep} \in f:
+    f_\Text{rep} \text{ stetig},
+    f_\Text{rep}(0) = 0
+  }, \\
+  \quad
+  B & :=
+  \Bbraces
+  {
+    f \in L^2(-1, 1):
+    \Exists f_\Text{rep} \in f:
+    f_\Text{rep} \text{ stetig},
+    f_\Text{rep}(0) = 1
+  }
 \end{align*}
-und es gilt $||b_{\epsilon}||_{L^2} = \epsilon$. \\
-Damit kann $\phi$ nicht stetig sein und es bleibt nur noch der Fall $\phi \equiv 0$.
-Diese Funktion erfüllt aber auch nicht $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
-und somit kann es auch keine solche Funktion geben.
+
+Jetzt bemerken wir noch, dass $A$ ein linearer (und $B$ ein affiner) Teilraum von $X$ ist.
+Weiters, gelten $B = A + 1$ und $A = B - B$. \\
+
+Nun zum \Quote{wahren} Teil der Aufgabe:
+Die Antwort lautet \Quote{nein}! \\
+
+Um das einzusehen, bemerken wir zuerst, dass für jedes $\phi \in L^2(-1, 1)^\prime$, ebenso $\phi(A)$ ein linearer Teilraum, jetzt von $\R$, ist.
+Dafür gibt es nur zwei Fälle.
+
+\begin{enumerate}[label = Fall \arabic*:]
+
+  \item
+  Wenn $\phi(A) = \mathbb{R}$, dann kann die Bedingung $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
+  offensichtlich nicht erfüllt werden.
+
+  \item
+  Sei $\phi(A) = \Bbraces{0}$.
+  Dann muss aber $\phi|_B$ konstant gleich einem $c \in \R$ sein, weil $\Forall b_1, b_2 \in B:$
+
+  \begin{align*}
+    \phi(b_1) - \phi(b_2)
+    =
+    \phi(\underbrace{b_1 - b_2}_{\in A})
+    =
+    0.
+  \end{align*}
+
+  Betrachte für beliebiges $\epsilon \in (0, 1]$ die Funktion $b_\epsilon \in B$.
+
+  \begin{align*}
+    b_\epsilon:
+    \begin{cases}
+      (-1, 1) \to \C \\
+      x \mapsto
+      \1_{(-\epsilon, \epsilon)}(x)
+      \sqrt{1 - \frac{|x|}{\epsilon}}
+    \end{cases}
+  \end{align*}
+
+  Wir berechnen deren Norm.
+
+  \begin{align*}
+    \norm[L^2(-1, 1)]{b_\epsilon}
+    =
+    \Int
+    [-1][1]
+    {
+      \vbraces
+      {
+        \1_{(-\epsilon, \epsilon)}(x)
+        \sqrt{1 - \frac{|x|}{\epsilon}}
+      }^2
+    }
+    {x}
+    =
+    \Int
+    [-\epsilon][\epsilon]
+    {1 - \frac{|x|}{\epsilon}}
+    {x}
+    =
+    \Int
+    [-\epsilon][\epsilon]
+    {}{x}
+    - \frac{2}{\epsilon}
+    \Int
+    [0][\epsilon]
+    {x}
+    {x}
+    =
+    2 \pbraces
+    {
+      \epsilon -
+      \frac{1}{\epsilon} \frac{\epsilon^2}{2}
+    }
+    =
+    \epsilon
+  \end{align*}
+
+  Weil $\phi$ linear ist, muss $\phi(0) = 0$.
+  Weil $\phi$ stetig ist, betrachten wir folgenden Grenzwert.
+
+  \begin{align*}
+    c
+    =
+    \phi(b_\epsilon)
+    \xrightarrow{\epsilon \to 0}
+    0
+  \end{align*}
+
+  Damit, muss $c = 0$ und schließlich $\Forall a \in A, b \in B: \phi(a) = \phi(b) = 0$.
+
+\end{enumerate}
+
 \end{solution}
