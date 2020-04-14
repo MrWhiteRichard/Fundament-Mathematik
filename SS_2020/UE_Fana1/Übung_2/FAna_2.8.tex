@@ -23,20 +23,21 @@ $p_{ij}'$ ist eine Seminorm auf dem Produktraum:
 
 \begin{itemize}
     \item $p_{ij}'(\alpha f) = p_{ij}(\alpha f(i)) = |\alpha|~ p_{ij}(f(i)) = |\alpha|~ p_{ij}'(f),$
-    
+
     \item $p_{ij}'(f + g) = p_{ij}(f(i) + g(i)) \leq p_{ij}(f(i)) + p_{ij}(g(i)) = p_{ij}'(f) + p_{ij}'(g).$
 \end{itemize}
 
 Die Familie $(p_{ij}')_{(i,j) \in I \times J}$ ist überdies separierend: Seien $f, g \in \prod_{i \in I} X_i$ mit $f \neq g$. Dann existiert ein $i \in I$, sodass $g(i) \neq f(i)$. Für $g(i), f(i) \in X_i$ gibt es nun, weil die Familie $(p_{ij})_{j \in J}$ separierend ist, ein $j \in J$, sodass $p_{ij}(g(i)) \neq p_{ij}(f(i))$, was äquivalent zu $p_{ij}'(f) \neq p_{ij}'(g)$ ist.
 
-Die durch die Familie der Seminormen $(p_{ij}')_{(i,j) \in I \times J}$ induzierte Topologie auf dem Produktraum ist die Initialtopologie der zugehörigen Projektionen (\pi_{ij}')_{(i,j) \in I \times J}:
+Die durch die Familie der Seminormen $(p_{ij}')_{(i,j) \in I \times J}$ induzierte Topologie auf dem Produktraum ist die Initialtopologie der zugehörigen Projektionen $(\pi_{ij}')_{(i,j) \in I \times J}:$
 
-
- \pi_{ij}': ~\begin{cases}
-
+\begin{align*}
+  \pi_{ij}':
+  ~\begin{cases}
     \prod_{i \in I} X_i \rightarrow (\prod_{i \in I} X_i) / N(p_{ij}')\\
     f \mapsto f + N(p_{ij}'), \text{wobei}~ N(p_{ij}') := \{g \in \prod_{i \in I} X_i ~|~ p_{ij}'(g) = 0\}.
-\end{cases}
+  \end{cases}
+\end{align*}
 
 Jeder Faktorraum $(\prod_{i \in I} X_i) / N(p_{ij}')$ trägt dabei jene Topologie, die von der Norm $\overline{p_{ij}'}$ induziert wird, welche repräsentantenweise durch die Seminorm ${p_{ij}'}$ definiert ist.
 
@@ -48,7 +49,7 @@ Wir zeigen nun, dass jede Umgebung der Null in der einen Topologie auch eine sol
 
 Eine Nullumgebungsbasis im Produktraum bezüglich der von den Seminormen induzierten Topologie bildet folgende Menge:
 \begin{align*}
-    \mathcal{B} = 
+    \mathcal{B} =
     \{\bigcap_{(i,j) \in E} (\pi_{ij}')^{-1}(U^{{\overline{p_{ij}'}}}_{\epsilon}(N(p_{ij}'))
     ~|~ ...
     \}.
@@ -71,7 +72,7 @@ eine Nullumgebungsbasis besteht also genau aus den endlichen Schnitten von Kugel
 Betrachten wir nun eine Nullumgebungsbasis in der Produkttopologie:
 
 \begin{align*}
-    \mathcal{C} = 
+    \mathcal{C} =
     \{\bigcap_{i \in E} (\pi_{i})^{-1}(V)
     ~|~ V ~\text{Nullumgebung in}~ (X_i, \mathcal{T}_i)
     \}.
@@ -87,7 +88,7 @@ Demnach lassen sich die Mengen aus $\mathcal{C}$ schreiben als
 
 \begin{align*}
     \bigcap_{i \in E_1} (\pi_{i})^{-1}(\bigcap_{j \in E_2} U_{\epsilon}^{p_{ij}}(0))
-    = 
+    =
     \bigcap_{i \in E_1}
     \bigcap_{j \in E_2}
     (\pi_{i})^{-1}(U_{\epsilon}^{p_{ij}}(0))
