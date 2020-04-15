@@ -67,21 +67,13 @@ Seien $G$ eine Gruppe und $A,B,\dots \subseteq G$ Teilmengen.
     xAB = AxB = ABx.
   \end{align*}
   Damit ist $AB$ ebenso Normalteiler von $G$.
-  \item [4.] Wir zeigen die Aussage induktiv.
-  Seien $N_1,N_2$ beliebige Normalteiler von $G$. Für jede
-  obere Schranke $O$ dieser Menge im Normalteilerverband ist $O$
-  insbesondere eine Untergruppe von $G$. Daher gilt
+  \item [4.] Seien $N_1, ..., N_n$ beliebige Normalteiler von $G$. Wie in Punkt 3 zeigt man, dass $N_1\cdots N_n$ auch Normalteiler ist. Jede obere Schranke $O$ dieser Mengen im Normalteilerverband ist insbesondere eine Untergruppe von $G$. Daher gilt
   \begin{align*}
-    \forall x_1 \in N_1, x_2 \in N_2: x_1x_2 \in O.
+    \forall (n_1, ..., n_n) \in N_1 \times ... \times N_n: n_1\cdots n_n \in O,
   \end{align*}
-  Damit folgt $O \supseteq N_1N_2$ und klarerweise auch $N_1,N_2 \subseteq N_1N_2$.
-  Mit Punkt 3 wissen wir auch, dass $N_1N_2$
-  Normalteiler sein muss, und somit unser gesuchtes Supremum ist.
-  Gelte nun die Aussage für $n - 1$ Normalteiler. Dann wende obige Überlegungen
-  auf die beiden Normalteiler $N_1\dots N_{n_1}$ und $N_n$ an.
-  Damit erhalten wir, dass $N_1\dots N_n$ ebenfalls Normalteiler sein muss
-  und für jede obere Schranke $O$ gilt $O \supseteq N_1\dots N_n$.
-  Also ist $N_1\dots N_n$ Supremum dieser Menge.
+  also $N_1\cdots N_n \subseteq O$;
+  klarerweise gilt auch $N_i \subseteq N_1\cdots N_n$ für alle $i \in \{1,...,n\}$.
+  $N_1\cdots N_n$ ist also die kleinste obere Schranke im Normalteilerverband und damit das gesuchte Supremum.
   \item [5.] Seien $N_i \vartriangleleft G, i \in I \neq \emptyset$ beliebig,
   $N$ die Vereinigung aller endlichen Komplexprodukte davon.
   Sei $y \in xN$ beliebig. Also existiert ein endliches Komplexprodukt $N_i^*$,
