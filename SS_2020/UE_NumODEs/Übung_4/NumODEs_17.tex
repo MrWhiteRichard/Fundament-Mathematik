@@ -1,6 +1,60 @@
 \begin{exercise}
 
-ToDo!
+Implementieren Sie das implizite Euler Verfahren unter Verwendung des Newton-Verfahrens zur Lösung des nichtlinearen Gleichungssystems. Der Algorithmus soll als Input-Parameter einen Vektor von Stützstellen $t$, einen Startwert $y_0$, die rechte Seite und Ableitung der rechten Seite $f$ bzw. $\frac{\partial}{\partial t} f$ sowie eine geeignete Abbruchbedinung für das Newton Verfahren (Toleranz und/oder maximale Anzahl an Interationen) akzeptieren.
+
+Testen Sie das Verfahren an folgenden Anfangswertproblemen: Sei $Y = (y_1, y_2)^T$ die Lösung des Anfangswertproblems
+
+\begin{align} \tag{1}
+    Y^\prime(t)
+    =
+    \begin{pmatrix}
+        -2 &  1 \\
+         1 & -2
+    \end{pmatrix}
+    Y(t)
+    +
+    \begin{pmatrix}
+        2 \sin{t} \\
+        2 (\cos{t} - \sin{t})
+    \end{pmatrix},
+    \quad
+    t \geq 0,
+    \quad
+    Y(0)
+    =
+    \begin{pmatrix}
+        2 \\
+        3
+    \end{pmatrix}.
+\end{align}
+
+Sei $Z = (z_1, z_2)^T$ die Lösung des Anfangswertproblems
+
+\begin{align} \tag{2}
+    Z^\prime(t)
+    =
+    \begin{pmatrix}
+        -2   &  1 \\
+         998 & -999
+    \end{pmatrix}
+    Z(t)
+    +
+    \begin{pmatrix}
+        2 \sin{t} \\
+        999 (\cos{t} - \sin{t})
+    \end{pmatrix},
+    \quad
+    t \geq 0,
+    \quad
+    Z(0)
+    =
+    \begin{pmatrix}
+        2 \\
+        3
+    \end{pmatrix}.
+\end{align}
+
+Vergleichen Sie dabei auch mit den Ergebnissen und Schrittweiten des eingebetteten Runge-Kutta Verfahren RK5(4) aus Aufgabe 15. Verwenden Sie dazu die Parameter $t \in [0, 10]$, $\rho = 0.7$, $\eta = 1.5$, $\text{tol} = 10^{-6}$, $h_{\text{min}} = 10^{-10}$.
 
 \end{exercise}
 
