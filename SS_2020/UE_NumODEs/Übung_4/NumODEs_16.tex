@@ -1,11 +1,33 @@
 \begin{exercise}
-
-ToDo!
-
+Wenden Sie die Methode der (Zweischritt-)Richardson Extrapolation aus Abschnitt
+2.7 auf das explizite Euler-Verfahren an.
+\begin{itemize}
+  \item [\textbf{a)}] Welches Verfahren entsteht dabei?
+  \item [\textbf{b)}] Weisen Sie unabhängig von Abschnitt 2.7 nach, dass dieses
+  Verfahren die Konvergenzordnung 2 besitzt.
+\end{itemize}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}] Explizites Euler-Verfahren: $\varphi(t,y,h) = f(t,y)$
+  \begin{align*}
+    z_1 &:= z(t) + hf(t,z(t)) \\
+    \widetilde{z}_{1/2} &= z(t) + \frac{h}{2}f(t,z(t)) \\
+  \widetilde{z_1} &:= \widetilde{z}_{1/2} + \frac{h}{2}f(t + \frac{h}{2},\widetilde{z}_{1/2}) \\
+  &= z(t) + \frac{h}{2}f(t,z(t)) + \frac{h}{2}f(t + \frac{h}{2},z(t) + \frac{h}{2}f(t,z(t))) \\
+    z(t + h) &\approx 2\widetilde{z_1} - \widetilde{z_1}
+    = 2z(t) + h\left(f(t,z(t))+ f(t+\frac{h}{2},z(t)+\frac{h}{2}f(t,z(t)))\right) -
+    (z(t) + hf(t,z(t))) \\
+    &= z(t) + hf(t+\frac{h}{2},z(t)+\frac{h}{2}f(t,z(t)))
+  \end{align*}
+  Also erhalten wir die modifizierte Eulermethode.
+  \item [\textbf{b)}] Nach Proposition 2.17 hat das Einschrittverfahren der Form
+  \begin{align*}
+    \phi(t,y,h) := b_1f(t,y) + b_2f(t+ch,y+ahf(t,y))
+  \end{align*}
+  genau dann Konsistenzordnung 2, wenn $a = c$ $b_1 + b_2 = 1$ und $2b_2a = 1$. \\
+  In unserem Fall haben wir $b_1 = 0, b_2 = 1, a = c = 1/2$ und die Bedingungen
+  werden offensichtlich erfüllt.
+\end{itemize}
 \end{solution}

@@ -1,11 +1,30 @@
 \begin{exercise}
-
-ToDo!
-
+Implizite Runge-Kutta-Verfahren führen zu einem nichtlinearen Gleichungssytem,
+dessen Lösung sehr aufwändig sein kann. Zur Vereinfachung kann man folgende
+Verfahren zur Lösung von autonomen Differentialgleichungen $y^{\prime}(t) = f(y(t))$
+verwenden. \\
+Gegeben sei $b \in \mathbb{R}^m, A = (A_{ij}) \in \mathbb{R}^{m \times m}$ mit
+$A_{ij} = 0$ für $i \leq j$ und $B = (B_{ij}) \in \mathbb{R}^{m \times m}$ mit
+$B_{ij} = 0$ für $i < j$. Weiter sei $J$ die Jacobi-Matrix von $f$, also
+$J := \partial_y f$. Dann beschreiben die folgenden Gleichnungen ein implizites
+Einschrittverfahren
+\begin{align} \label{inc}
+  k_i &= J\left\{y_l + h\sum_{j=1}^i(B_{ij} - A_{ij})k_j\right\} + f\left(y_l +
+  h\sum_{j=1}^{i-1}A_{ij}k_j\right), \qquad i = 1,\dots,m \\
+  y_{l+1} &:= y_l + h\sum_{j=1}^m b_jk_j.
+\end{align}
+\begin{itemize}
+  \item [\textbf{a)}] Zeigen Sie, dass für dieses Verfahren nur $m$ lineare
+  Gleichungssysteme (und keine nichtlinearen) gelöst werden müssen.
+  \item [\textbf{b)}] Mit welchem Gesamtaufwand sind diese linearen Gleichungssysteme
+  lösbar, wenn $B_ii = \beta$ für alle $i = 1,\dots,m$?
+  \item [\textbf{c)}] Zeigen Sie, dass diese linearen Gleichungssysteme für alle
+  $h > 0$ eindeutig lösbar sind, wenn $B_{ii} = \beta > 0$ für alle $i = 1,\dots,m$
+  und wenn $J$ nur negative Eigenwerte besitzt.
+  \item [\textbf{d)}] Zeigen Sie, dass \eqref{inc} für lineare Funktionen $f$ ein
+  implizites Runge-Kutta-Verfahren beschreibt.
+\end{itemize}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
 
 \end{solution}
