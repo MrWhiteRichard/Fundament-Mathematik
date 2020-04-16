@@ -11,6 +11,11 @@ Wenden Sie die Methode der (Zweischritt-)Richardson Extrapolation aus Abschnitt
 \leavevmode \\
 \begin{itemize}
   \item [\textbf{a)}] Explizites Euler-Verfahren: $\varphi(t,y,h) = f(t,y)$
+  Für hinreichend glattes $f$ erhalten wir nach Taylor die asymptotische Entwicklung
+  \begin{align*}
+    z(t+h) = z(t) + hf(t,z(t),h) + \frac{h^2}{2}y^{\primeprime} + \Landau{h^3}
+  \end{align*}
+  Ergo können wir die Richardson-Extrapolation anwenden und erhalten damit
   \begin{align*}
     z_1 &:= z(t) + hf(t,z(t)) \\
     \widetilde{z}_{1/2} &= z(t) + \frac{h}{2}f(t,z(t)) \\
@@ -21,7 +26,7 @@ Wenden Sie die Methode der (Zweischritt-)Richardson Extrapolation aus Abschnitt
     (z(t) + hf(t,z(t))) \\
     &= z(t) + hf(t+\frac{h}{2},z(t)+\frac{h}{2}f(t,z(t)))
   \end{align*}
-  Also erhalten wir die modifizierte Eulermethode.
+  die modifizierte Eulermethode.
   \item [\textbf{b)}] Nach Proposition 2.17 hat das Einschrittverfahren der Form
   \begin{align*}
     \phi(t,y,h) := b_1f(t,y) + b_2f(t+ch,y+ahf(t,y))
