@@ -15,24 +15,49 @@ Dann gilt:
 
 \begin{solution}
 \leavevmode \\
+  Wir wissen:
 \begin{itemize}
-  \item [a)] $A_n \stackrel{s}{\rightarrow} A$ ist äquivalent zu
-  $\forall y \in Y: A_ny \stackrel{||\cdot||_Z}{\rightarrow} Ay$,
-  also $\lim_{n \in \mathbb{N}}||A_ny - Ay||_Z = 0$.\\
-  Zu zeigen: $\forall x \in X: A_nB_nx \stackrel{||\cdot||_Z}{\rightarrow} ABx$,
-  also $\lim_{n \in \mathbb{N}}||A_nB_nx - ABx||_Z = 0$.
-  \begin{align*}
-    \lim_{n \in \mathbb{N}}||A_nB_nx - ABx||_Z &\leq
-    \lim_{n \in \mathbb{N}}||A_nB_nx - A_nBx||_Z + \lim_{n \in \mathbb{N}}||A_nBx - ABx||_Z \\
-    &\leq \lim_{n \in \mathbb{N}}||A_n|| ||B_nx - Bx||_Z + \lim_{n \in \mathbb{N}}||A_nBx - ABx||_Z
-  \end{align*}
-  Da $\sup_{n\in\mathbb{N}} ||A_n|| < \infty$ und $\forall x \in X:
-  \lim_{n \in \mathbb{N}}||B_nx - Bx||_Z = 0$ geht der erste Grenzwert gegen $0$
-  und aufgrund $\forall y \in Y: \lim_{n \in \mathbb{N}}||A_ny - Ay||_Z = 0$
-  verschwindet auch der zweite Limes.
-  \item [b)]
-  \item [c)]
-  \item [d)]
+    \item $A_n \xrightarrow{s} A \Leftrightarrow \forall x \in Y~ A_nx \xrightarrow{\mathbb{ \| . \|}_z} Ax,$
+    \item $A_n \xrightarrow{w} A \Leftrightarrow \forall x \in Y~ \forall \varphi \in Z':~ \varphi(A_nx) \xrightarrow{\mathbb{C}} \varphi(Ax)$.
+\end{itemize}
+
+\begin{itemize}
+    \item [a)] Seien $x \in Y, \epsilon > 0$ beliebig. Für hinreichend großes $n$ gilt
+    \begin{align*}
+        \| A_n B_n x - ABx \| \leq \| A_n B_n x - A_n Bx \| + \| A_n Bx - ABx \| \leq \\ (\sup{\| A_n \|}) \underbrace{\| B_n x - Bx \|}_{\substack{\leq
+        \frac{\epsilon}{2 \sup{\| A_n \|}}
+        \text{~wegen~} B_n \xrightarrow{s} B}} +
+        \underbrace{\| A_n(Bx) - A(Bx) \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} A_n \xrightarrow{s} A}}
+        \leq \epsilon.
+    \end{align*}
+
+    \item [b)] Seien $\epsilon > 0, \varphi \in Z', x \in Y$ beliebig. Für hinreichend großes $n$ gilt
+    \begin{align*}
+        \| \varphi(A_n B_n x) - \varphi(ABx) \|_2
+        \leq \| \varphi(A_n B_n x) - \varphi(A_nBx) \|
+        +  \underbrace{\| \varphi(A_n (Bx)) - \varphi(A (Bx)) \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} A_n \xrightarrow{w} A}} \leq \\
+        \| \varphi \|~ \| A_n (B_n x - B x) \| + \frac{\epsilon}{2} \leq
+        \underbrace{\| \varphi \|~ (\sup{\| A_n \|})
+        \| B_n x - Bx \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} B_n \xrightarrow{s} B}} + \frac{\epsilon}{2} \leq
+        \epsilon.
+    \end{align*}
+
+    \item [c)]  Die starke Konvergenz von $A_nB$ gegen $AB$ folgt aus der starken Konvergenz von $A$:
+    \begin{center} $\| A_n Bx - ABx \|_z = \| A_n(Bx) - A(Bx) \|_z \xrightarrow{n \rightarrow \infty} 0.$ \end{center}
+    Gilt hingegen $B_n \xrightarrow{s} B$, dann auch
+    \begin{center}
+     $\| AB_n x - ABx \|_z = \| A(B_n x - Bx) \| \leq
+       \| A \|~ \| B_n x - Bx \| \xrightarrow{n \rightarrow \infty} 0.$
+    \end{center}
+
+    \item [d)] Konvergiert $A_n$ schwach gegen $A$, so gilt
+    \begin{center}$
+    \| \varphi(A_n Bx) - \varphi(ABx) \| = \| \varphi(A_n(Bx)) - \varphi(A(Bx)) \| \xrightarrow{n \rightarrow \infty} 0.
+    $\end{center}
+
+    Konvergiert $B_n$ schwach gegen $B$, so gilt
+    \begin{center}$
+    \| \varphi(AB_n x) - \varphi(ABx) \| = \| \underbrace{(\varphi \circ A)}_\substack{\in Y'}} (B_nx - Bx) \| \xrightarrow{n \rightarrow \infty} 0. $\end{center}
 \end{itemize}
 
 
