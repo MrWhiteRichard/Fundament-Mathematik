@@ -17,15 +17,16 @@ Dann gilt:
 \leavevmode \\
   Wir wissen:
 \begin{itemize}
-    \item $A_n \xrightarrow{s} A \Leftrightarrow \forall x \in Y~ A_nx \xrightarrow{\mathbb{ \| . \|}_z} Ax,$
+    \item $A_n \xrightarrow{s} A \Leftrightarrow \forall x \in Y:~ A_nx \xrightarrow{\mathbb{ \| . \|}_z} Ax,$
     \item $A_n \xrightarrow{w} A \Leftrightarrow \forall x \in Y~ \forall \varphi \in Z':~ \varphi(A_nx) \xrightarrow{\mathbb{C}} \varphi(Ax)$.
 \end{itemize}
 
 \begin{itemize}
     \item [a)] Seien $x \in Y, \epsilon > 0$ beliebig. Für hinreichend großes $n$ gilt
     \begin{align*}
-        \| A_n B_n x - ABx \| \leq \| A_n B_n x - A_n Bx \| + \| A_n Bx - ABx \| \leq \\ (\sup{\| A_n \|}) \underbrace{\| B_n x - Bx \|}_{\substack{\leq
-        \frac{\epsilon}{2 \sup{\| A_n \|}}
+        \| A_n B_n x - ABx \| \leq \| A_n B_n x - A_n Bx \| + \| A_n Bx - ABx \| \leq \\
+        \underbrace{(\sup{\| A_n \|}) \| B_n x - Bx \|}_{\substack{\leq
+        \frac{\epsilon}{2}
         \text{~wegen~} B_n \xrightarrow{s} B}} +
         \underbrace{\| A_n(Bx) - A(Bx) \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} A_n \xrightarrow{s} A}}
         \leq \epsilon.
@@ -42,7 +43,7 @@ Dann gilt:
         \epsilon.
     \end{align*}
 
-    \item [c)]  Die starke Konvergenz von $A_nB$ gegen $AB$ folgt aus der starken Konvergenz von $A$:
+    \item [c)]  Die starke Konvergenz von $A_nB$ gegen $AB$ folgt aus der starken Konvergenz von $A_n$ gegen $A$:
     \begin{center} $\| A_n Bx - ABx \|_z = \| A_n(Bx) - A(Bx) \|_z \xrightarrow{n \rightarrow \infty} 0.$ \end{center}
     Gilt hingegen $B_n \xrightarrow{s} B$, dann auch
     \begin{center}
