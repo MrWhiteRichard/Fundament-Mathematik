@@ -16,7 +16,20 @@ Dann gilt:
 \begin{solution}
 \leavevmode \\
 \begin{itemize}
-  \item [a)]
+  \item [a)] $A_n \stackrel{s}{\rightarrow} A$ ist äquivalent zu
+  $\forall y \in Y: A_ny \stackrel{||\cdot||_Z}{\rightarrow} Ay$,
+  also $\lim_{n \in \mathbb{N}}||A_ny - Ay||_Z = 0$.\\
+  Zu zeigen: $\forall x \in X: A_nB_nx \stackrel{||\cdot||_Z}{\rightarrow} ABx$,
+  also $\lim_{n \in \mathbb{N}}||A_nB_nx - ABx||_Z = 0$.
+  \begin{align*}
+    \lim_{n \in \mathbb{N}}||A_nB_nx - ABx||_Z &\leq
+    \lim_{n \in \mathbb{N}}||A_nB_nx - A_nBx||_Z + \lim_{n \in \mathbb{N}}||A_nBx - ABx||_Z \\
+    &\leq \lim_{n \in \mathbb{N}}||A_n|| ||B_nx - Bx||_Z + \lim_{n \in \mathbb{N}}||A_nBx - ABx||_Z
+  \end{align*}
+  Da $\sup_{n\in\mathbb{N}} ||A_n|| < \infty$ und $\forall x \in X:
+  \lim_{n \in \mathbb{N}}||B_nx - Bx||_Z = 0$ geht der erste Grenzwert gegen $0$
+  und aufgrund $\forall y \in Y: \lim_{n \in \mathbb{N}}||A_ny - Ay||_Z = 0$
+  verschwindet auch der zweite Limes.
   \item [b)]
   \item [c)]
   \item [d)]

@@ -5,8 +5,9 @@ Verfahren zur Lösung von autonomen Differentialgleichungen $y^{\prime}(t) = f(y
 verwenden. \\
 Gegeben sei $b \in \mathbb{R}^m, A = (A_{ij}) \in \mathbb{R}^{m \times m}$ mit
 $A_{ij} = 0$ für $i \leq j$ und $B = (B_{ij}) \in \mathbb{R}^{m \times m}$ mit
-$B_{ij} = 0$ für $i < j$. Weiter sei $J$ die Jacobi-Matrix von $f$, also
-$J := \partial_y f$. Dann beschreiben die folgenden Gleichnungen ein implizites
+$B_{ij} = 0$ für $i < j$. Weiter sei $J = J(y_l)$ die Jacobi-Matrix von $f$
+im Punkt $y_l$, also
+$J := \partial_y f(y_l)$. Dann beschreiben die folgenden Gleichnungen ein implizites
 Einschrittverfahren
 \begin{align} \label{inc}
   k_i &= J\left\{y_l + h\sum_{j=1}^i(B_{ij} - A_{ij})k_j\right\} + f\left(y_l +
@@ -17,7 +18,7 @@ Einschrittverfahren
   \item [\textbf{a)}] Zeigen Sie, dass für dieses Verfahren nur $m$ lineare
   Gleichungssysteme (und keine nichtlinearen) gelöst werden müssen.
   \item [\textbf{b)}] Mit welchem Gesamtaufwand sind diese linearen Gleichungssysteme
-  lösbar, wenn $B_ii = \beta$ für alle $i = 1,\dots,m$?
+  lösbar, wenn $B_{ii} = \beta$ für alle $i = 1,\dots,m$?
   \item [\textbf{c)}] Zeigen Sie, dass diese linearen Gleichungssysteme für alle
   $h > 0$ eindeutig lösbar sind, wenn $B_{ii} = \beta > 0$ für alle $i = 1,\dots,m$
   und wenn $J$ nur negative Eigenwerte besitzt.
@@ -26,5 +27,68 @@ Einschrittverfahren
 \end{itemize}
 \end{exercise}
 \begin{solution}
-
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}] Wir zeigen die Aussage mit Induktion.
+  \begin{align*}
+    k_1 = J\left\{y_l + h(B_{11}-A_{11})k_1\right\} + f(y_l)
+  \end{align*}
+  Die Gleichung ist äquivalent zum linearen Gleichungssystem
+  \begin{align*}
+    (I - hB_{11}J)k_1 = Jy_l + f(y_l).
+  \end{align*}
+  Sei nun für alle $l < n: k_l$ die Lösung eines linearen Gleichungssytem.
+  \begin{align*}
+    k_n = J\left\{y_l + h\sum_{j=1}^n(B_{nj}-A_{nj})k_j\right\} + f(y_l +h\sum_{j=1}^{n-1}A_{nj}k_j)
+  \end{align*}
+  Jetzt ist der nichtlineare $f$-Term nicht mehr von $k_n$ abhängig und unser lineares Gleichungssystem lautet
+  \begin{align*}
+    (I - hB_{nn}J)k_n = J\left\{y_l + h\sum_{j=1}^{n-1}(B_{nj}-A_{nj})k_j\right\} + f(y_l +h\sum_{j=1}^{n-1}A_{nj}k_j).
+  \end{align*}
+  \item [\textbf{b)}] Wenn $B_{ii} = \beta$ konstant ist, reduziert sich das Problem
+  darauf, dass das lineare Gleichungssytem immer nur für die selbe linke Seite gelöst werden muss.
+  \begin{align*}
+    (I - h\beta J)k_i = J\left\{y_l + h\sum_{j=1}^{i-1}(B_{ij}-A_{ij})k_j\right\} + f(y_l +h\sum_{j=1}^{i-1}A_{ij}k_j), \qquad i = 1,\dots,m
+  \end{align*}
+  Es bietet sich also an, zuerst eine LU-Zerlegung der Matrix $(I - h\beta J)$ durchzuführen.
+  Sei $J \in \mathbb{R}^{n \times n}$, dann beträgt der Aufwand der LU-Zerlegung etwa $\frac{n^3}{3}$.
+  Der Aufwand zur Lösung der einzelnen Gleichungssysteme reduziert sich folglich
+  auf Vorwärts- und Rückwärtssubstitution, also etwa $n^2$. \\
+  Ingesamt erhalten wir für unseren Aufwand $\frac{n^3}{3} + mn^2$.
+  \item [\textbf{c)}] Da $h, \beta > 0$ und alle Eigenwerte von $J$ negativ sind, folgt
+  dass alle Eigenwerte von $-h\beta J$ positiv sein müssen.
+  Sei also $\widetilde{J}$ die Jordan-Normalform von $-h\beta J$ und $T$ die
+  dazugehörige Transformationsmatrix.
+  \begin{align*}
+  \widetilde{J} =
+    \begin{pmatrix}
+      \lambda_1 & * & & & & &\\
+       & \ddots &  & & & &\\
+       & & \lambda_1 & * & & &\\
+       & & & \ddots & & &\\
+       & & & & \lambda_n & * &\\
+       & & & & & \ddots & \\
+      0 & & & & & & \lambda_n
+    \end{pmatrix}
+  \end{align*}
+  Es gilt
+  \begin{align*}
+    I -h\beta J = T^{-1}T + T^{-1}\widetilde{J}T = T^{-1}\left(T + \widetilde{J}T\right)
+    = T^{-1}\left(I + \widetilde{J}\right)T
+  \end{align*}
+  und da $\det(I + \widetilde{J}) = \prod_{j=1}^n(1 +\lambda_i) > 0$ ist
+  $I - h\beta J$ als Produkt regulärer Matrixen wieder regulär und
+  das lineare Gleichungssystem also eindeutig lösbar.
+  \item [\textbf{d)}] Da $f(y) = My$ mit $M \in \mathbb{R}^{n \times n}$ linear ist,
+  gilt $J(y) = df(y) = M$ und es folgt
+  \begin{align*}
+  k_i &= J\left\{y_l + h\sum_{j=1}^i(B_{ij} - A_{ij})k_j\right\} + f\left(y_l +
+  h\sum_{j=1}^{i-1}A_{ij}k_j\right) \\
+  &= M\left(y_l + h\sum_{j=1}^i(B_{ij} - A_{ij})k_j\right) + M\left(y_l +
+  h\sum_{j=1}^{i-1}A_{ij}k_j\right) \\
+  &= M\left(2y_l + h\sum_{j=1}^iB_{ij}k_j\right) \\
+  &= 2f(y_l + h\sum_{j=1}^i\frac{B_{ij}}{2}k_j), \qquad i = 1,\dots,m
+  \end{align*}
+  dass damit ein implizites Runge-Kutta-Verfahren dargestellt wird.
+\end{itemize}
 \end{solution}

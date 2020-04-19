@@ -1,8 +1,76 @@
 \begin{exercise}
-Beweisen Sie, welche Konsistenzordnungen die impliziten Runge-Kutta-Verfahren aus
-Example 3.11 (impliziter Euler), Example 3.12 (implizite Trapezregel) und
-Example 3.13 (implizite Mittelpunktsregel) besitzen.
+Beweisen Sie, welche Konsistenzordnungen diese impliziten Runge-Kutta-Verfahren besitzen.
+\begin{itemize}
+  \item (Example 3.11) Impliziter Euler
+  \item (Example 3.12) Implizite Trapezregel
+  \item (Example 3.13) Implizite Mittelpunktsregel
+\end{itemize}
 \end{exercise}
 \begin{solution}
-Beweis.
+\leavevmode \\
+\begin{itemize}
+  \item Impliziter Euler:
+  \begin{align*}
+    y_{l+1} = y_l + h_lk_1 = y_l + hf(t_l+h_l,y_l+h_lk_1) = f(t_{l+1},y_{l+1})
+  \end{align*}
+  Mit dem Satz von Taylor folgt für hinreichend glattes f
+  \begin{align*}
+    y(t) = y(t+h) - hy^{\prime}(t+h) + \Landau{h^2} =
+    y(t+h) - hf(t+h,y(t+h)) + \Landau{h^2}
+  \end{align*}
+  und damit
+  \begin{align*}
+    \tau(t,y,h) = ||y(t+h) - y(t) - h\phi(t,y(t),h)|| =
+    ||y(t+h) - y(t) - hf(t + h,y(t+h))|| \leq Ch^2.
+  \end{align*}
+  Also hat das implizite Euler-Verfahren Konsistenzordnung 1.
+  \item Implizite Trapezregel:
+  \begin{align*}
+    y_{l+1} = y_l + h_l\frac{f(t_l,y_l) + f(t_{l+1},y_{l+1})}{2}
+  \end{align*}
+  \begin{align*}
+    \tau(t,y,h) = ||y(t+h) - y(t) - h\phi(t,y(t),h)|| =
+    ||y(t+h) - y(t) - \frac{h}{2}\left(f(t,y) + f(t+h,y+h)\right)||
+  \end{align*}
+  Wir kennen die Restglieddarstellung der Trapezregel:
+  \begin{align*}
+    Q(f) - \frac{b-a}{2}(f(a)+f(b)) = -\frac{(b-a)^3}{12}f^{\primeprime}(\xi)
+  \end{align*}
+  Damit erhalten wir
+  \begin{align*}
+  \left\|y(t+h) - y(t) - \frac{h}{2}\left(f(t,y) + f(t+h,y+h)\right)\right\|
+  &= \left\|\int_{t}^{t+h}f(\tau,y(\tau))d\tau - \frac{h}{2}\left(f(t,y) + f(t+h,y+h)\right)\right\| \\
+  &= \left\|-\frac{h^3}{12}f^{\primeprime}(\xi)\right\| \leq Ch^3.
+  \end{align*}
+  Damit hat die implizite Trapezregel Konsistenzordnung 2.
+  \item Implizite Mittelpunktsregel:
+  \begin{align*}
+    y_{l+1} = y_l + h_lf\left(t_l + \frac{h_l}{2},\frac{y_l + y_{l+1}}{2}\right)
+  \end{align*}
+  Mit dem Satz von Taylor erhalten wir wieder
+  \begin{align*}
+    y(t) &= y\left(t + \frac{h}{2}\right) - \frac{h}{2}y^{\prime}\left(t + \frac{h}{2}\right)
+    + \frac{h^2}{8}y^{\primeprime}\left(t + \frac{h}{2}\right) + \Landau{h^3} \\
+    y(t+h) &= y\left(t + \frac{h}{2}\right) + \frac{h}{2}y^{\prime}\left(t + \frac{h}{2}\right)
+    + \frac{h^2}{8}y^{\primeprime}\left(t + \frac{h}{2}\right) + \Landau{h^3}.
+  \end{align*}
+  Das bedeudet, dass
+  \begin{align*}
+    y(t+h) - y(t) = hy^{\prime}\left(t + \frac{h}{2}\right) + \Landau{h^3}
+    = hf\left(t + \frac{h}{2},y\left(t + \frac{h}{2}\right)\right) + \Landau{h^3}
+  \end{align*}
+  und
+  \begin{align*}
+    \frac{y(t+h) + y(t)}{2} = y\left(t + \frac{h}{2}\right) + \Landau{h^2}.
+  \end{align*}
+  Damit erhalten wir aufgrund der Stetigkeit von $f$
+  \begin{align*}
+    f\left(t + \frac{h}{2},y\left(t + \frac{h}{2}\right)\right) = f\left(t + \frac{h}{2}, \frac{y(t+h) + y(t)}{2}\right) + \Landau{h^2}.
+  \end{align*}
+  Insgesamt erhalten wir
+  \begin{align*}
+    y(t+h) - y(t) - hf\left(t + \frac{h}{2},\frac{y(t) + y(t+h)}{2}\right) = \Landau{h^3}.
+  \end{align*}
+  Also hat auch die implizite Mittelpunktsregel Konsistenzordnung 2.
+\end{itemize}
 \end{solution}

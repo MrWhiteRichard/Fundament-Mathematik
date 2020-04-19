@@ -45,3 +45,38 @@ Ebenso ist $c_{lk}^{\#}$ als Determinante von $C_{lk}$ ein Polynom vom Grad $\le
 
 Daraus folgt schließlich durch Ausführen der Matrix-Vektor-Multiplikation $\tilde{R} = \frac{\sum_{l=1}^{s}b_{l}\sum_{k=1}^{s}c_{lk}^{\#}}{\det C}$. Es ist also $\tilde{P} = \sum_{l=1}^{s}b_{l}\sum_{k=1}^{s}c_{lk}^{\#}$ und $\tilde{Q} = \det C$.
 \end{solution}
+\\
+\\
+\begin{solution}
+\textbf{Version 2:} \\
+Wir zeigen die Behauptung $y_{i+1} = \frac{P}{Q}(\lambda h)y_i$ mit einem von $b$
+unabhängigen $Q$ mittels Induktion nach der Stufe $s$. \\
+\begin{itemize}
+  \item [s = 1:]
+  \begin{align*}
+    k_1 &= f(t + c_1h,y_i + hA_{11}k_1) = \lambda y_i + \lambda  hA_{11}k_1 \iff k_1 = \frac{\lambda y_i}{1 - \lambda hA_{11}} \\
+    y_{i+1} &= y_i + hb_1k_1 = y_i + hb_1\frac{\lambda y_i}{1 - \lambda hA_{11}}
+    = y_i\left(\frac{1 - \lambda hA_{11} + \lambda hb_1}{1 - \lambda h A_{11}}\right) =: y_i\left(\frac{P_1^b}{Q_1}\right)(\lambda h)
+  \end{align*}
+  \item [s - 1 $\rightarrow$ s:]
+  \begin{align*}
+    k_s &= \frac{\lambda\left(y_i + h\sum_{\ell=1}^{s-1}A_{s\ell}k_{\ell}\right)}{1 - \lambda h A_{ss}}\\
+    y_{i+1} &= y_i + h\sum_{j=1}^sb_jk_j = y_i + h\left(\sum_{j=1}^{s-1}b_jk_j + b_s\frac{\lambda\left(y_i + h\sum_{\ell=1}^{s-1}A_{s\ell}k_{\ell}\right)}{1 - \lambda h A_{ss}}\right)
+  \end{align*}
+  Mit der Induktionsannahme können wir $y_i + h\sum_{j=1}^{s-1}b_jk_j = \frac{P_{s-1}^b}{Q_{s-1}}(\lambda h)y_i$ \\
+  und $y_i + h\sum_{j=1}^{s-1}A_{sj}k_j = \frac{P_{s-1}^*}{Q_{s-1}}(\lambda h)y_i $ schreiben.
+  \begin{align*}
+    y_{i+1} &= \frac{P_{s-1}^b}{Q_{s-1}}(\lambda h)y_i + b_s\frac{\lambda h\left(\frac{P_{s-1}^*}{Q_{s-1}}(\lambda h)\right)}{1 - \lambda h A_{ss}}
+    = \frac{P_{s-1}^b}{Q_{s-1}}(h\lambda)y_i + \frac{P_1^*\frac{P_{s-1}^*}{Q_{s-1}}(\lambda h)}{Q_1^*}y_i \\
+    &= y_i\left(\frac{P_{s-1}^b}{Q_{s-1}}(\lambda h) + \frac{P_1^*P_{s-1}^*}{Q_1^*Q_{s-1}}(\lambda h)\right)
+    = y_i\left(\frac{P_{s-1}^bQ_1^* + P_1^*P_{s-1}^*}{Q_1^*Q_{s-1}}(\lambda h)\right)
+  \end{align*}
+  und die Aussage ist aufgrund
+  \begin{align*}
+    Q_s := Q_1^*Q_{s-1} \in \Pi_s \\
+    P_s := P_{s-1}^bQ_1^* + P_1^*P_{s-1}^* \in \Pi_s \\
+    y_{i+1} = y_i\left(\frac{P_s}{Q_s}\right)(\lambda h)
+  \end{align*}
+  gezeigt.
+\end{itemize}
+\end{solution}

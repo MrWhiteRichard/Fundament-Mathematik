@@ -10,18 +10,20 @@ Wenden Sie die Methode der (Zweischritt-)Richardson Extrapolation aus Abschnitt
 \begin{solution}
 \leavevmode \\
 \begin{itemize}
-  \item [\textbf{a)}] Explizites Euler-Verfahren: $\varphi(t,y,h) = f(t,y)$
+  \item [\textbf{a)}] Das explizite Euler-Verfahren stellt mit
+  $\Phi(t,y,h) = f(t,y)$ ein stabilies, explizites Einschrittverfahren
+  mit Konvergenzordnung 1 dar.
   Für hinreichend glattes $f$ erhalten wir nach Taylor die asymptotische Entwicklung
   \begin{align*}
-    z(t+h) = z(t) + hf(t,z(t),h) + \frac{h^2}{2}y^{\primeprime} + \Landau{h^3}
+    z(t+h) = z(t) + hf(t,z(t)) + \frac{h^2}{2}y^{\primeprime} + \Landau{h^3}
   \end{align*}
-  Ergo können wir die Richardson-Extrapolation anwenden und erhalten damit
+  Ergo können wir die Richardson-Extrapolation für $p = 1$ anwenden und erhalten damit
   \begin{align*}
-    z_1 &:= z(t) + hf(t,z(t)) \\
+    z_1 &= z(t) + hf(t,z(t)) \\
     \widetilde{z}_{1/2} &= z(t) + \frac{h}{2}f(t,z(t)) \\
-  \widetilde{z_1} &:= \widetilde{z}_{1/2} + \frac{h}{2}f(t + \frac{h}{2},\widetilde{z}_{1/2}) \\
-  &= z(t) + \frac{h}{2}f(t,z(t)) + \frac{h}{2}f(t + \frac{h}{2},z(t) + \frac{h}{2}f(t,z(t))) \\
-    z(t + h) &\approx 2\widetilde{z_1} - \widetilde{z_1}
+  \widetilde{z_1} &= \widetilde{z}_{1/2} + \frac{h}{2}f(t + \frac{h}{2},\widetilde{z}_{1/2})
+  = z(t) + \frac{h}{2}f(t,z(t)) + \frac{h}{2}f(t + \frac{h}{2},z(t) + \frac{h}{2}f(t,z(t))) \\
+    z(t + h) &\approx 2\widetilde{z_1} - z_1
     = 2z(t) + h\left(f(t,z(t))+ f(t+\frac{h}{2},z(t)+\frac{h}{2}f(t,z(t)))\right) -
     (z(t) + hf(t,z(t))) \\
     &= z(t) + hf(t+\frac{h}{2},z(t)+\frac{h}{2}f(t,z(t)))
@@ -33,6 +35,6 @@ Wenden Sie die Methode der (Zweischritt-)Richardson Extrapolation aus Abschnitt
   \end{align*}
   genau dann Konsistenzordnung 2, wenn $a = c$ $b_1 + b_2 = 1$ und $2b_2a = 1$. \\
   In unserem Fall haben wir $b_1 = 0, b_2 = 1, a = c = 1/2$ und die Bedingungen
-  werden offensichtlich erfüllt.
+  werden offensichtlichlerweise erfüllt.
 \end{itemize}
 \end{solution}
