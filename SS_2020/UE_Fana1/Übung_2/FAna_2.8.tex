@@ -98,4 +98,52 @@ Demnach lassen sich die Mengen aus $\mathcal{C}$ schreiben als
 
 insgesamt gilt also $\mathcal{B} = \mathcal{C}$, was zu zeigen war.
 
+\begin{tikzpicture}[auto]
+    \node (prod) at (0,0) {$\pbraces{\prod_{i \in I} X_i, \prod_{i \in I} \mathcal{T}_i }$};
+
+    \node (xj) at (3,2) {$\pbraces{X_j, \mathcal{T}_j}$};
+    \node (dots1) at (3,0) {$\vdots$}; 
+    \node (xk) at (3,-2) {$\pbraces{X_k, \mathcal{T}_k}$};
+
+    \node (xj_fac_l) at (6,3) {$\pbraces{X_j/_{N(p_{jl})}, \norm{\cdot}{_{p_{jl}}}}$};
+    \node (dots2) at (6, 2) {$\vdots$};
+    \node (xj_fac_m) at (6,1) {$\pbraces{X_j/_{N(p_{jm})}, \norm{\cdot}{_{p_{jm}}}}$};
+
+    \node (xk_fac_n) at (6,-1) {$\pbraces{X_k/_{N(p_{kn})}, \norm{\cdot}{_{p_{kn}}}}$};
+    \node (dots3) at (6, -2) {$\vdots$};
+    \node (xk_fac_q) at (6,-3) {$\pbraces{X_k/_{N(p_{kq})}, \norm{\cdot}{_{p_{kq}}}}$};
+
+    \node (prod_fac_jl) at (12,3) {$\pbraces{\prod_{i \in I} X_i/_{N(p_{jl} \circ \pi_j)}, \norm{\cdot}{_{p_{jl} \circ \pi_j}}}$};
+    \node (dots4) at (12,2) {$\vdots$};
+    \node (prod_fac_jm) at (12,1) {$\pbraces{\prod_{i \in I} X_i/_{N(p_{jm} \circ \pi_j)}, \norm{\cdot}{_{p_{jm} \circ \pi_j}}}$};
+
+    \node (prod_fac_kn) at (12,-1) {$\pbraces{\prod_{i \in I} X_i/_{N(p_{kn} \circ \pi_k)}, \norm{\cdot}{_{p_{kn} \circ \pi_k}}}$};
+    \node (dots5) at (12, -2) {$\vdots$};
+    \node (prod_fac_kq) at (12,-3) {$\pbraces{\prod_{i \in I} X_i/_{N(p_{kq} \circ \pi_k)}, \norm{\cdot}{_{p_{kq} \circ \pi_k}}}$};
+
+    \draw[->] (prod) to node {$\pi_j$} (xj);
+    \draw[->] (prod) to node [swap] {$\pi_k$} (xk);
+
+    \draw[->] (xj) to node[swap] {$\pi_{p_{jl}}$} (xj_fac_l);
+    \draw[->] (xj) to node [swap] {$\pi_{p_{jm}}$} (xj_fac_m);
+    
+    \draw[->] (xk) to node {$\pi_{p_{kn}}$} (xk_fac_n);
+    \draw[->] (xk) to node {$\pi_{p_{kq}}$} (xk_fac_q);
+
+    \draw[->, bend left = 45] (prod) to node {$\pi_{p_{jl}} \circ \pi_j$} (prod_fac_jl);
+    \draw[->] (prod) to node[swap] {$\pi_{p_{jm}} \circ \pi_j$} (prod_fac_jm);
+    \draw[->] (prod) to node {$\pi_{p_{kn}} \circ \pi_k$} (prod_fac_kn);
+    \draw[->, bend right = 45] (prod) to node[swap] {$\pi_{p_{kq}} \circ \pi_k$} (prod_fac_kq);
+
+    \draw[->, bend left = 35] (xj) to node[swap] {$R_{jl}$} (prod_fac_jl);
+    \draw[->, bend left = 5] (xj) to node {$R_{jm}$} (prod_fac_jm);
+    \draw[->, bend right = 5] (xk) to node[swap] {$R_{kn}$} (prod_fac_kn);
+    \draw[->, bend right = 35] (xk) to node {$R_{kq}$} (prod_fac_kq);
+
+    \draw[->] (xj_fac_l) to node {$R_{jl}/_{N(p_{jl})}$} (prod_fac_jl);
+    \draw[->] (xj_fac_m) to node {$R_{jm}/_{N(p_{jm})}$} (prod_fac_jm);
+    \draw[->] (xk_fac_n) to node[swap] {$R_{kn}/_{N(p_{kn})}$} (prod_fac_kn);
+    \draw[->] (xk_fac_q) to node[swap] {$R_{kq}/_{N(p_{kq})}$} (prod_fac_kq);
+\end{tikzpicture}
+
 \end{solution}
