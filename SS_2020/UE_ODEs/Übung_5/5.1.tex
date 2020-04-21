@@ -1,11 +1,61 @@
 \begin{exercise}
-
-ToDo!
-
+\textit{Homogene ODEs} der Form $y^{\prime}(t) = f(\nicefrac{y}{t})$
+können mit der Substitution $\nicefrac{y}{t} = x$ vereinfacht werden.
+Geben Sie die allgemeine Lösung an für:
+\begin{itemize}
+  \item [\textbf{a)}] $y^{\prime}(t) = \left(\nicefrac{y}{t}\right)^2
+  + 2\nicefrac{y}{t}$
+  \item [\textbf{b)}] $y^{\prime}(t) = \nicefrac{y}{t} - \tan(\nicefrac{y}{t})$
+\end{itemize}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}] Wir substituieren $x(t) = \nicefrac{y(t)}{t}$ und erhalten
+  \begin{align*}
+    (tx)^{\prime} = x^2 + 2x \iff \frac{x^{\prime}}{x^2 + x} = \frac{1}{t}
+  \end{align*}
+  Jetzt können wir den Ansatz für separable ODEs verwenden.
+  \begin{align*}
+    \int_{t_0}^t \frac{x^{\prime}(\tau)}{x(\tau)^2 + x(\tau)}d\tau &= \int_{t_0}^t \frac{1}{\tau}d\tau \\
+    \int_{x(t_0)}^{x(t)} \frac{1}{x^2 + x}dx &= \ln(t) - \ln(t_0)\\
+    \ln(x(t)) - \ln(x(t) + 1) - \ln(x(t_0)) + \ln(x(t_0) + 1) &= \ln(t) - \ln(t_0)\\
+    \frac{x(t)(x(t_0) + 1)}{x(t_0)(x(t) + 1)} &= \frac{t}{t_0} \\
+    x(t)t_0(x(t_0) + 1) &= x(t_0)t(x(t) + 1) \\
+    x(t)(t_0(x(t_0) + 1) - x(t_0)t) &= x(t_0)t \\
+    x(t) &= \frac{x(t_0)t}{t_0(x(t_0) + 1) - x(t_0)t}
+  \end{align*}
+  Wir machen die Probe
+  \begin{align*}
+    x^{\prime} &= \frac{x(t_0)(t_0(x(t_0) + 1) - x(t_0)t) + x(t_0)^2t}{(t_0(x(t_0) + 1) - x(t_0)t)^2}
+    = \frac{x(t_0)t_0(x(t_0) + 1)}{(t_0(x(t_0) + 1) - x(t_0)t)^2}\\
+    &\stackrel{!}{=} \frac{x^2 + x}{t}
+    = \frac{x(t_0)^2t^2}{t(t_0(x(t_0) + 1) - x(t_0)t)^2} + \frac{x(t_0)t}{t(t_0(x(t_0) + 1) - x(t_0)t)} \\
+    &= \frac{x(t_0)^2t + x(t_0)(t_0(x(t_0) + 1) - x(t_0)t)}{(x(t_0)t - t_0(x(t_0) - 1))^2}\\
+    &= \frac{x(t_0)^2t + x(t_0)^2t_0 - x(t_0)^2t + x(t_0)t_0)}{(x(t_0)t - t_0(x(t_0) - 1))^2}\\
+    &= \frac{x(t_0)^2t_0 + x(t_0)t_0}{(x(t_0)t - t_0(x(t_0) - 1))^2}
+    = \frac{x(t_0)t_0(x(t_0) + 1)}{(t_0(x(t_0) + 1) - x(t_0)t)^2}\\
+  \end{align*}
+  und frohlocken.
+  Unsere endgültige Lösung lautet dann
+  \begin{align*}
+    y(t) = tx(t) = \frac{x(t_0)t^2}{t_0(x(t_0) + 1) - x(t_0)t}
+  \end{align*}
+  \item [\textbf{b)}]
+  Mit der selben Methode wie in a) erhalten wir
+  \begin{align*}
+    (tx)^{\prime} &= x - \tan(x) \\
+    \frac{x^{\prime}}{-\tan(x)} &= \frac{1}{t} \\
+    \int_{t_0}^t \frac{x^{\prime}(\tau)}{-\tan(x(\tau))}d\tau &= \int_{t_0}^t \frac{-1}{\tau}d\tau \\
+    \int_{x(t_0})^{x(t)} \frac{1}{-\tan(x)}dx &= \ln(t) - \ln(t_0) \\
+    \ln(\sin(x(t_0))) - \ln(\sin(x(t))) &= \ln(t) - \ln(t_0) \\
+    \ln(\sin(x(t))) &= \ln(\sin(x(t_0))) - \ln(t) + \ln(t_0) \\
+    \sin(x(t)) &= \frac{\sin(x(t_0))t_0}{t} \\
+    x(t) &= \arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)
+  \end{align*}
+Laut Wolfram-Alpha erfüllt das auch die Differentialgleichung und wir erhalten als finale Lösung
+\begin{align*}
+  y(t) = tx(t) = t\arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)
+\end{align*}
+\end{itemize}
 \end{solution}

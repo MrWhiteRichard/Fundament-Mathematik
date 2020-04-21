@@ -1,11 +1,67 @@
 \begin{exercise}
-
-ToDo!
-
+Geben Sie reelle Fundamentalsysteme für die Systeme $y^{\prime} = A_iy$
+an, wobei
+\begin{align*}
+  A_1 &= \begin{pmatrix}
+    -1 & 1 & -1 \\
+    2 & -1 & 2 \\
+    2 & 2 & -1
+  \end{pmatrix} \\
+  A_2 &= \begin{pmatrix}
+    3 & -3 & 2 \\
+    -1 & 5 & -2 \\
+    -1 & 3 & 0
+  \end{pmatrix} \\
+  A_3 &= \begin{pmatrix}
+    6 & -17 \\
+    1 & -2
+  \end{pmatrix}
+\end{align*}
 \end{exercise}
-
 \begin{solution}
+\leavevmode \\
+\begin{itemize}
+  \item [$A_1$]
+  $(-3,(2,-3,1)^{\top}),(-1,(-1,1,1)^{\top},(1,(0,1,1)^{\top}))$ sind alle
+  Eigenpaare von $A_1$.
+  Ein reelles Fundamentalsystem von $A_1$ lautet damit
+  \begin{align*}
+    Y(t) = \begin{pmatrix}
+      2\exp(-3t) & -1\exp(-t) & 0\exp(t) \\
+      -3\exp(-3t) & 1\exp(-t) & 1\exp(t) \\
+      1\exp(-3t) & 1\exp(-t) & 1\exp(t)
+    \end{pmatrix}.
+  \end{align*}
+  \item [$A_2$]
+  $(4,(-1,1,1)^{\top}),(2,(-2,0,1)^{\top}),(2,(3,1,0)^{\top})$
+  sind alle Eigenpaare von $A_2$.
+  Ein reelles Fundamentalsystem von $A_2$ lautet damit
+  \begin{align*}
+    Y(t) = \begin{pmatrix}
+    -1\exp(4t) & -2\exp(2t) & 3\exp(2t) \\
+    1\exp(4t) & 0\exp(2t) & 1\exp(2t) \\
+    1\exp(4t) & 1\exp(2t) & 0\exp(2t)
+    \end{pmatrix}.
+  \end{align*}
+  \item [$A_3$]
+  $(2 + i,(4+i,1)^{\top}),(2-i,(4-i,1)^{\top})$ sind alle Eigenpaare von $A_3$.
+  Damit erhalten wir zunächst direkt ein komplexes Fundamentalsystem.
+  \begin{align*}
+  Y(t) = \begin{pmatrix}
+    (4+i)\exp((2+i)t)  & (4-i)\exp((2-i)t)(\cos(t) + 4\sin(t)) \\
+    (4+i)\exp((2+i)t)\cos(t) & (4-i)\exp((2-i)t)\sin(t)
+  \end{pmatrix}
+  \end{align*}
+  Durch Linearkombinationen der beiden Spalten und der Identität
+  $\exp(x + iy) = \exp(x)(\cos(y) + i\sin(y))$ erhalten wir das gewünschte reelle
+  Fundamentalsystem.
+  \begin{align*}
+    Y(t) = \begin{pmatrix}
+      \exp(2t)(4\cos(t) -\sin(t))  & \exp(2t)(\cos(t) + 4\sin(t)) \\
+      \exp(2t)\cos(t) & \exp(2t)\sin(t)
+    \end{pmatrix}
+  \end{align*}
+\end{itemize}
 
-Trivial!
 
 \end{solution}

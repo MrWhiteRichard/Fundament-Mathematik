@@ -1,11 +1,56 @@
 \begin{exercise}
-
-ToDo!
-
+Sei $A \in \mathbb{R}^{d\times d}$.
+\begin{itemize}
+  \item [\textbf{a)}]Zeigen Sie: Ist $(v,\lambda) \in \mathbb{C}^d
+  \times \mathbb{C}$ ein Eigenpaar von $A$, so sind die Funktionen
+  $y_1(t) = \exp(\lambda t)v$ und $y_2(t) = \exp(\bar{\lambda}t)\bar{v}$
+  Lösungen der ODE $y^{\prime} = Ay$ an.
+  \item [\textbf{b)}] Nehmen Sie an, dass $A \in \mathbb{R}^
+  {d \times d}$ (komplex) diagonalisierbar ist. Geben Sie ein
+  \textit{reelles} Fundamentalsystem der ODE $y^{\prime} = Ay$ an.
+\end{itemize}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+\leavevmode \\
+\begin{itemize}
+  \item [\textbf{a)}]
+  Mit der Rechenregel $\bar{a}\bar{b} = \bar{ab}$ und der Tatsache, dass $\bar{A} = A$
+  sehen wir ein, dass
+  \begin{align*}
+    y_1^{\prime}(t) &= \exp(\lambda t)\lambda v = \exp(\lambda t)A v = Ay_1(t) \\
+    y_2^{\prime}(t) &= \exp(\bar{\lambda}t)\bar{\lambda}\bar{v} = \exp(\bar{\lambda}t) \bar{\lambda v} =
+    \exp(\bar{\lambda}t) \bar{Av} =  \exp(\bar{\lambda}t) \bar{A}\bar{v} = A\exp(\bar{\lambda}t)\bar{v} = Ay_2(t)
+  \end{align*}
+  gilt.
+  \item [\textbf{b)}]
+  Seien $(\lambda_i,\dots,\lambda_n,\bar{\lambda_1},\dots,\bar{\lambda_n},a_1,\dots,a_m)$
+  mit $a_i,\dots,a_m \in \mathbb{R}$ die Eigenwerte, \\
+  $(v_i,\dots,v_n,\bar{v_1},\dots,\bar{v_n},x_1,\dots,x_m)$, $x_1,\dots,x_m \in \mathbb{R}$
+  die zugehörigen Eigenvektoren von $A$.
+  Für jedes komplexe Eigenpaar $(\lambda_i, v_i), i = 1,\dots,d$ stellen die Funktionen
+  \begin{align*}
+    y_{i1}(t) &= \exp(\lambda t)v_i, \\
+    y_{i2}(t) &= \exp(\bar{\lambda} t)\bar{v_i}
+  \end{align*}
+  Lösungen der Differentialgleichung dar. Damit sind sowohl
+  \begin{align*}
+    y_i(t) := y_{i1}(t) + y_{i2}(t) = \exp(\lambda t)v_i + \exp(\bar{\lambda} t)\bar{v_i}
+    = \exp(\lambda t)v_i + \bar{\exp(\lambda t)}\bar{v_i}
+    = \exp(\lambda t)v_i + \bar{\exp(\lambda t)v_i}
+    = 2\mathfrak{R}(\exp(\lambda t)v_i),
+  \end{align*}
+  als auch
+  \begin{align*}
+    y_{n+1}(t) := i(y_{i1}(t) + y_{i2}(t)) = 2i\mathfrak{I}(\exp(\lambda t)v_i)
+  \end{align*}
+  reelle Lösungen der Differentialgleichung.
+  Für die verbleibenden reellen Eigenvektoren können wir $y_i$ einfach als
+  \begin{align*}
+    y_i(t) := \exp(a_i t)x_i
+  \end{align*}
+  definieren.
+  Die Funktionen $(y_i)_{i=1}^d$ sind aufgrund der linearen Unabhängigkeit der $v_i$
+  ebenso linear unabhängig und
+  bilden somit ein reelles Fundamentalsystem.
+\end{itemize}
 \end{solution}
