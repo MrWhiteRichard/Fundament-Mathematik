@@ -1,11 +1,103 @@
 \begin{exercise}
-
-ToDo!
-
+    Lösen Sie das für
+    \begin{align*}
+        A(t) := 
+        \begin{pmatrix}
+            \frac{1}{t} & \frac{-1}{t^2} \\
+            2 & \frac{-1}{t}
+        \end{pmatrix},
+        \quad b(t) :=
+        \begin{pmatrix}
+            1 \\ t
+        \end{pmatrix},
+        \quad y_0 :=
+        \begin{pmatrix}
+            1 \\ 1
+        \end{pmatrix}
+    \end{align*}
+    das AWP
+    \begin{align*}
+        y^\prime = A(t) y + b(t), \quad y(1) = y_0
+    \end{align*}
 \end{exercise}
 
 \begin{solution}
+    Zuerst versuchen wir eine Lösung des homogenen Systems zu erraten. Wir probieren eine Funktion der Form 
+    \begin{align*}
+        y(t) = \begin{pmatrix} t^k \\ y_2(t) \end{pmatrix} \Rightarrow y^\prime(t) = \begin{pmatrix} k t^{k - 1} \\ y_2^\prime(t) \end{pmatrix} = A(t) y(t) = 
+        \begin{pmatrix}
+            \frac{1}{t} & \frac{-1}{t^2} \\
+            2 & \frac{-1}{t}
+        \end{pmatrix} 
+        \begin{pmatrix} t^k \\ y_2(t) \end{pmatrix} = \begin{pmatrix} t^{k - 1} - \frac{y_2(t)}{t^2} \\ 2t^k - \frac{y_2(t)}{t}\end{pmatrix}
+    \end{align*}
+    Vergleicht man die ersten Komponenten in der Gleichheit so folgt
+    \begin{align*}
+        k t^{k - 1} \stackrel{!}{=} t^{k - 1} - \frac{y_2(t)}{t^2}  \Leftrightarrow \frac{y_2(t)}{t^2} \stackrel{!}{=} (1 - k) t^{k - 1} \Leftrightarrow y_2(t) \stackrel{!}{=} (1 - k) t^{k + 1}
+    \end{align*}
+    Setzt man das nun in die Gleichheit zwischen den zweiten Komponenten ein, so erhält man 
+    \begin{align*}
+        (1 - k^2) t^k = (1 - k)(k + 1) t^k = y_2^\prime(t) \stackrel{!}{=} 2 t^k  - \frac{y_2(t)}{t} = 2 t^k - \frac{(1 - k) t^{k + 1}}{t} = (1 - k) t^k \\ 
+        \Leftrightarrow (1 - k^2 - 1 - k) t^k = -(k + k^2) t^k = -k (1 + k) t^k \stackrel{!}{=} 0.
+    \end{align*}
+    Damit das für $t \neq 0$ erfüllt ist muss $k = 0$ oder $k = -1$ gelten. Wir hatten Glück und haben zwei Lösungen für die homogene Differentialgleichung gefunden und können ein Fundamentalsystem
+    \begin{align*}
+        Y(t) =
+        \begin{pmatrix}
+            1 & t^{-1} \\
+            t & 2
+        \end{pmatrix}
+        \quad \textrm{mit} \quad \det Y(t) = 2 - \frac{t}{t} = 2 - 1 = 1
+    \end{align*}
+    anschreiben. 
 
-Trivial!
-
+    Die Determinante haben wir berechnet weil wir Satz 3.1.7 verwenden wollen und dafür die Inverse Matrix berechnen wollen. Diese erhalten wir durch Vertauschen der Elemente auf der Hauptdiagonale, Vorzeichenwechsel auf der Nebendiagonale und Skalierung der ganzen Matrix mit dem Faktor $\frac{1}{\det Y(t)} = 1$, also
+    \begin{align*}
+        Y^{-1}(t) = 
+        \begin{pmatrix}
+            2 & -t^{-1} \\
+            -t & 1
+        \end{pmatrix}.
+    \end{align*}
+    Als nächstes müssen wir
+    \begin{align*}
+        Y^{-1}(s) b(s) = 
+        \begin{pmatrix}
+            2 & -t^{-1} \\
+            -t & 1
+        \end{pmatrix}
+        \begin{pmatrix} 1 \\ t \end{pmatrix} =
+        \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad \textrm{und} \quad \int_1^t Y^{-1}(s)b(s) \mathrm{d}s = \begin{pmatrix} \int_1^t 1 ds \\ \int_1^t 0 ds \end{pmatrix} = \begin{pmatrix} t - 1 \\ 0 \end{pmatrix}
+    \end{align*}
+    berechnen und wissen dann nach dem Satz eine Partikulärlösung
+    \begin{align*}
+        y_p(t) = Y(t) \int_1^t Y^{-1}(s)b(s) \mathrm{d}s = 
+        \begin{pmatrix}
+            1 & t^{-1} \\
+            t & 2
+        \end{pmatrix}
+        \begin{pmatrix} t - 1 \\ 0 \end{pmatrix} = \begin{pmatrix} t - 1 \\ t(t - 1) \end{pmatrix}.
+    \end{align*}
+    Die Lösung des Anfangswertproblems ist gegeben durch
+    \begin{align*}
+        y(t) = Y(t) Y^{-1}(t) y_0 + y_p(t) &= 
+        \begin{pmatrix}
+            1 & t^{-1} \\
+            t & 2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & -1 \\
+            -1 & 1
+        \end{pmatrix} 
+        \begin{pmatrix} 1 \\ 1 \end{pmatrix} + \begin{pmatrix} t - 1 \\ t(t - 1) \end{pmatrix} \\
+        &= 
+        \begin{pmatrix}
+            1 & t^{-1} \\
+            t & 2
+        \end{pmatrix}
+        \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} t - 1 \\ t^2 - t \end{pmatrix} = \begin{pmatrix} 1 \\ t \end{pmatrix} + \begin{pmatrix} t - 1 \\ t^2 - t \end{pmatrix} = \begin{pmatrix}
+            t \\ t^2
+        \end{pmatrix}
+    \end{align*}
 \end{solution}
+
