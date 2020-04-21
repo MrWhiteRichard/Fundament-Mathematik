@@ -1,11 +1,64 @@
 \begin{exercise}
-
-ToDo!
-
+Welche der folgenden Funktionen kann eine Lösung einer ODE $y^{\prime}
+= Ay$ mit $A \in \mathbb{R}^{2\times 2}$ sein?
+\begin{align}
+  y_1(t) &= (3\exp(t) + \exp(-t), \exp(2t))^{\top} \label{f1}\\
+  y_2(t) &= (3\exp(t) + \exp(-t), \exp(t))^{\top} \label{f2}\\
+  y_3(t) &= (3\exp(t) + \exp(-t), t\exp(t))^{\top} \label{f3} \\
+  y_4(t) &= (3\exp(t), t^2\exp(t))^{\top} \label{f4} \\
+  y_5(t) &= (\exp(t) + 2\exp(-t), \exp(t) + 2\exp(-t))^{\top} \label{f5}
+\end{align}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+Betrachten wir zuerst den Fall, dass $A$ zwei Eigenwerte besitzt.
+Eine Lösung der ODE $y^{\prime} = Ay$ muss sich als Linearkombination
+der Basisfunktionen
+\begin{align*}
+  y^1(t) := (\exp(\lambda_1t)v_1,\exp(\lambda_1t)v_2)^{\top}, \\
+  y^2(t) := (\exp(\lambda_2t)w_1,\exp(\lambda_1t)w_2)^{\top}, \\
+\end{align*}
+darstellen lassen, wobei $(\lambda_1,v), (\lambda_2,w)$ die beiden Eigenpaare
+der Matrix $A$ sind.
+Eine allgemeine Lösung der ODE lautet also folgendermaßen:
+\begin{align*}
+  y(t) = c_1(\exp(\lambda_1t)v_1,\exp(\lambda_1t)v_2)^{\top} + c_2(\exp(\lambda_2t)w_1,\exp(\lambda_1t)w_2)^{\top}
+\end{align*}
+Die Funktionen $y_3,y_4$ fallen sofort als Kandidaten aus, da sie sich überhaupt
+nicht in dieser Form darstellen lassen. Ebenso kann $y_1$ keine Lösung sein,
+da dafür drei unterschiedliche Eigenwerte benötigt werden würden.
+\begin{align*}
+  y_5(t) = \exp(1t)(1,1)^{\top} + \exp(-1t)(2,2)^{\top}
+\end{align*}
+Folglich müssten die Eigenpaare $(1,(1,1)^{\top},-1,(2,2)^{\top})$ lauten, was klarerweise
+unmöglich ist.
+Es bleibt also nur noch $y_2$ übrig. Diese Funktion stellt in der Tat eine mögliche
+Lösung dar, da
+\begin{align*}
+  y_2(t) = \exp(1t)(3,1)^{\top} + \exp(-1t)(1,0)
+\end{align*}
+mit $(1,0), (3,1)$ zwei linear unabhänige Eigenvektoren gegeben sind.
+Die zugehörige Matrix $A$ lautet
+\begin{align*}
+A =
+  \begin{pmatrix}
+    1 & 3 \\ 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    -1 & 0 \\ 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 3 \\ 0 & 1
+  \end{pmatrix}^{-1}
+  =
+  \begin{pmatrix}
+    -1 & 6 \\ 0 & 1
+  \end{pmatrix}
+\end{align*}
+Für den Fall, dass $A$ nur ein Eigenpaar $(\lambda,v)$ und einen Hauptvektor $w$
+besitzt, lautet die allgemeine Lösung
+\begin{align*}
+  y(t) = \exp(\lambda t)((c_1v_1 + c_2(w_1 + tv_1)),c_1v_2 + c_2(w_2 + tv_2))^{\top}
+\end{align*}
+Allerdings lässt sich in diesem Fall keine der obigen Funktionen auf so eine Form
+mit $c_2 \neq 0$ bringen. Also bleibt die einzig mögliche Lösung $y_2$.
 \end{solution}
