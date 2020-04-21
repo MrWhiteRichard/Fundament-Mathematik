@@ -4,41 +4,41 @@
 \begin{solution}
     Wir betrachten Abzählungen $(m_n)_{n \in \N}$ von $M$ und $(q_k)_{k \in \N}$ von $\Q$. Wir definieren nun rekursiv den Isomorphismus $\varphi: M \to \Q$. Dieser soll $m_0 \mapsto q_0$ schicken. Ist $l \in \N \setminus \{0\}$ und ist für alle $n < l$ das Bild $\varphi(m_n) = q_{k_n}$ bereits definiert, dann definieren wir die endlichen Mengen
     \begin{align*}
-        S_l := \{m_n \mid n < l \land m_n < m_l \} \quad \textrm{und} \quad G_l := \{m_n \mid n < l \land m_n > m_l \}.
+        S_l := \{m_n \mid n < l \land m_n \prec m_l \} \quad \textrm{und} \quad G_l := \{m_n \mid n < l \land m_n \succ m_l \}.
     \end{align*}
-    Außerdem definieren wir $s_l := \max \varphi(S_l)$ und $g_l := \min \varphi(G_l)$, wobei $s_l := -\infty$ falls $S_l = \emptyset$ und $g_l := \infty$, falls $G_l = \emptyset$. Nun definieren wir 
+    Außerdem definieren wir $s_l := \max \varphi(S_l)$ und $g_l := \min \varphi(G_l)$, wobei $s_l := -\infty$ falls $S_l = \emptyset$ und $g_l := \infty$, falls $G_l = \emptyset$. Nun definieren wir
     \begin{align*}
         P_l := \{k \in \N \mid s_l < q_k < g_l \}
     \end{align*}
-    und $k_l := \min P_l$ und schicken $m_l \mapsto q_{k_l}$. 
+    und $k_l := \min P_l$ und schicken $m_l \mapsto q_{k_l}$.
     \begin{enumerate}
-        \item Zuerst zeigen wir die Wohldefiniertheit von $\varphi$ induktiv. $\varphi(m_0) = q_0$ macht den Anfang. Sei nun $l \in \N \setminus \{0\}$ und $\varphi \mid_{\{m_n \in M \mid n < l\}}$ bereits wohldefiniert. 
-        
-        Nehmen wir nun an es wäre $s_l \geq g_l$. Dann gibt es o.B.d.A $a < b < l: m_a < m_l < m_b \land \varphi(m_b) \leq \varphi(m_a)$. Wegen $a < b$ und $m_a < m_b$ gilt aber $\varphi(m_a) \leq s_a < \varphi(m_b)$, was ein Widerspruch ist. 
-        
+        \item Zuerst zeigen wir die Wohldefiniertheit von $\varphi$ induktiv. $\varphi(m_0) = q_0$ macht den Anfang. Sei nun $l \in \N \setminus \{0\}$ und $\varphi \mid_{\{m_n \in M \mid n < l\}}$ bereits wohldefiniert.
+
+        Nehmen wir nun an es wäre $s_l \geq g_l$. Dann gibt es o.B.d.A $a < b < l: m_a \prec m_l \prec m_b \land \varphi(m_a) \geq \varphi(m_b)$. Wegen $a < b$ und $m_a \prec m_b$ gilt aber $\varphi(m_a) \leq s_b < \varphi(m_b)$, was ein Widerspruch ist.
+
         Also gilt $s_l < g_l$ und weil $\Q$ dicht ist erhalten wir $P_l \neq \emptyset$ und $\min P_l$ ist wohldefniert.
         \item Nun zeigen wir die Strukturverträglichkeit.
             \begin{enumerate}
-                \item [``$\Rightarrow$''] Sei $m_a < m_b$ mit o.B.d.A. $a < b$. Dann gilt nach Definition $\varphi(m_a) < \varphi(m_b)$. 
-                \item [``$\Leftarrow$''] Sei $\varphi(m_a) < \varphi(m_b)$ mit o.B.d.A. $a < b$. Wäre nun $m_b \leq m_a$ dann gälte $\varphi(m_b) \leq \varphi(m_a)$ was ein Widerspruch ist. 
+                \item [``$\Rightarrow$''] Sei $m_a \prec m_b$ mit o.B.d.A. $a < b$. Dann gilt nach Definition $\varphi(m_a) < \varphi(m_b)$.
+                \item [``$\Leftarrow$''] Sei $\varphi(m_a) < \varphi(m_b)$ mit o.B.d.A. $a < b$. Wäre nun $m_b \prceq m_a$ dann gälte $\varphi(m_b) \leq \varphi(m_a)$ was ein Widerspruch ist.
             \end{enumerate}
-        \item Die Injektivität folgt unmittelbar aus der Strukturverträglichkeit. 
-        \item Nun nehmen wir an $\varphi$ ist nicht surjektiv und definieren $l := \min \{k \in \N \mid \nExists m \in M : \varphi(m) = q_k \}$ und sei $\forall k < l: \varphi(m_{n_k}) = q_k$. Wir definieren 
+        \item Die Injektivität folgt unmittelbar aus der Strukturverträglichkeit.
+        \item Nun nehmen wir an $\varphi$ ist nicht surjektiv und definieren $l := \min \{k \in \N \mid \nExists m \in M : \varphi(m) = q_k \}$ und sei $\forall k < l: \varphi(m_{n_k}) = q_k$. Wir definieren
         \begin{align*}
-            T_l := \{q_k \mid k < l \land q_k < q_l\} \quad \textrm{und} \quad H_l := \{q_k \mid k < l \land q_k > q_l\} 
+            T_l := \{q_k \mid k < l \land q_k < q_l\} \quad \textrm{und} \quad H_l := \{q_k \mid k < l \land q_k > q_l\}
         \end{align*}
-        und weiters $t_l := \max \varphi^{-1}(T_l)$ sowie $h_l := \min \varphi^{-1}(H_l)$. Wegen $\varphi(t_l) < q_l < \varphi(h_l)$ und der Strukturverträglichkeit gilt $t_l < h_l$. Also ist die Menge
+        und weiters $t_l := \max \varphi^{-1}(T_l)$ sowie $h_l := \min \varphi^{-1}(H_l)$, wobei $t_l := -\infty$ falls $T_l = \emptyset$ und $h_l := \infty$, falls $H_l = \emptyset$. Wegen $\varphi(t_l) < q_l < \varphi(h_l)$ und der Strukturverträglichkeit gilt $t_l \prec h_l$. Also ist die Menge
         \begin{align*}
-            R_l := \{n \in \N \mid t_l < m_n < h_l\}
+            R_l := \{n \in \N \mid t_l \prec m_n \prec h_l\}
         \end{align*}
-        nicht leer und wir definieren $n_l := \min R_l$. Nun behaupten wir $\varphi(m_{n_l}) = q_l$ und müssen dafür $l = k_{n_l} = \min P_{n_l}$ zeigen. 
+        nicht leer und wir definieren $n_l := \min R_l$. Nun behaupten wir $\varphi(m_{n_l}) = q_l$ und müssen dafür $l = k_{n_l} = \min P_{n_l}$ zeigen.
 
-        Nehmen wir zuerst an es wäre $k_{n_l} < l$. Dann hat $q_{k_l}$ ein Bild unter $\varphi$ und es gilt entweder $\varphi(m_{n_l}) = q_{k_{n_l}} = \varphi(m_{n_{k_{n_l}}}) < \max T_l < q_l$ oder $\varphi(m_{n_l}) = q_{k_{n_l}} = \varphi(m_{n_{k_{n_l}}}) > \min H_l > q_l$ in jedem Fall ein Widerspruch. 
+        Nehmen wir zuerst an es wäre $k_{n_l} < l$. Dann ist $q_{k_n_l}$ entweder in $T_l$ oder in $H_l$ und es gilt entweder $\varphi(m_{n_l}) = q_{k_{n_l}}  \leq \max T_l < \varphi(m_{n_l})$ oder $\varphi(m_{n_l}) = q_{k_{n_l}} \geq \min H_l > \varphi(m_{n_l})$ ,in jedem Fall ein Widerspruch.
 
         Wir wissen also $k_{n_l} \geq l$. Nun gilt wegen $n_l = \min R_l$
         \begin{align*}
-            \Forall n < n_l: m_n \leq t_l \lor h_l \leq m_n \Rightarrow \varphi(m_n) \leq \varphi(t_l) = \max T_l < q_l  \lor q_l < \min H_l = \varphi(h_l) \leq \varphi(m_n)
+            \Forall n < n_l: m_n \preceq t_l \lor h_l \preceq m_n \Rightarrow \varphi(m_n) \leq \varphi(t_l) = \max T_l < q_l  \lor q_l < \min H_l = \varphi(h_l) \leq \varphi(m_n)
         \end{align*}
-        und daher auch $s_{n_l} \leq \max T_l < q_l < \min H_l \leq g_{n_l}$. Damit ist also $l \in P_{n_l}$ also $k_{n_l} = \min P_{n_l} \leq l$. Wir erhalten $k_{n_l} = l$ und damit den Widerspruch $\varphi(m_{k_{n_l}}) = q_l$. 
-    \end{enumerate} 
+        und daher auch $s_{n_l} \leq \max T_l < q_l < \min H_l \leq g_{n_l}$. Damit ist also $l \in P_{n_l}$ also $k_{n_l} = \min P_{n_l} \leq l$. Wir erhalten $k_{n_l} = l$ und damit den Widerspruch $\varphi(m_{k_{n_l}}) = q_l$.
+    \end{enumerate}
 \end{solution}
