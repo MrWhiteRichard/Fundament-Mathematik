@@ -10,13 +10,13 @@ def implicit_euler(t,y_0,f,df,tol,max_iter):
         z = [y[i] + h*f(t[i],y[i])]
         z.append(np.linalg.solve(np.identity(2)-h*df(t[i+1],z[-1]),-(z[-1]-y[i]-h*f(t[i+1],z[-1]))) + z[-1])
         while True:
-            i = 1
+            j = 1
             z.append(np.linalg.solve(np.identity(2)-h*df(t[i+1],z[-1]),-(z[-1]-y[i]-h*f(t[i+1],z[-1]))) + z[-1])
             q = np.linalg.norm(z[-1] - z[-2])/np.linalg.norm(z[-2] - z[-3])
-            i += 1
+            j += 1
             if q >= 1:
                 return "PROBLEM!"
-            if q/(1-q)*np.linalg.norm(np.linalg.norm(z[-1] - z[-2])) <= tol or i >= max_iter:
+            if q/(1-q)*np.linalg.norm(np.linalg.norm(z[-1] - z[-2])) <= tol or j >= max_iter:
                 break
         y[i+1] = z[-1]
     return np.array(y)
