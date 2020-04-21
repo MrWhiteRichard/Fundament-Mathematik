@@ -1,11 +1,60 @@
 \begin{exercise}
-
-ToDo!
-
+Bestimmen Sie ein reelles Fundamentalsystem für die ODE $y^{\prime}
+= Ay$ mit
+\begin{align*}
+  A = \begin{pmatrix}
+    2 & 1 & 0 & 0 & 0 \\
+    0 & 2 & 0 & 0 & 0 \\
+    0 & -1 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 2 & 2 \\
+    0 & 0 & 0 & -2 & 0
+  \end{pmatrix}
+\end{align*}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+Die Jordan-Normalform dieser Matrix lautet
+\begin{align*}
+J = \begin{pmatrix}
+  2 & 1 & 0 & 0 & 0 \\
+  0 & 2 & 0 & 0 & 0 \\
+  0 & 0 & 2 & 0 & 0 \\
+  0 & 0 & 0 & -i\sqrt{3} + 1  & 0 \\
+  0 & 0 & 0 & 0 & i\sqrt{3} + 1
+\end{pmatrix}
+\end{align*}
+mit der Transformationsmatrix
+\begin{align*}
+T =
+\begin{pmatrix}
+  1 & 0 & 1 & 0 & 0 \\
+  0 & 1 & 0 & 0 & 0 \\
+  -1 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & \frac{i\sqrt{3} - 1}{2}  & \frac{-i\sqrt{3} - 1}{2} \\
+  0 & 0 & 0 & 1 & 1
+\end{pmatrix}.
+\end{align*}
+Wir wissen, dass $Y(t) = \exp(tA)$ ein (zwar nicht reelles) Fundamentalsystem für diese ODE darstellt.
+\begin{align*}
+  \exp(tA) &= T\exp(tJ)T^{-1}
+  = T\begin{pmatrix}
+    \exp(2t) & t\exp(2t) & 0 & 0 & 0 \\
+    0 & \exp(2t) & 0 & 0 & 0 \\
+    0 & 0 & \exp(2t) & 0 & 0 \\
+    0 & 0 & 0 & \exp(\frac{i\sqrt{3} - 1}{2}) & 0 \\
+    0 & 0 & 0 & 0 & \exp(\frac{i\sqrt{3} - 1}{2})
+  \end{pmatrix}T^{-1} \\
+  &= \begin{pmatrix}
+    \exp(2t) & t\exp(2t) & 0 & 0 & 0 \\
+    0 & \exp(2t) & 0 & 0 & 0 \\
+    0 & -t\exp(2t) & \exp(2t) & 0 & 0 \\
+    0 & 0 & 0 &
+    \frac{3\exp(1)\cos(\frac{\sqrt{3}180}{\pi})+\sqrt{3}\exp(1)\sin(\frac{\sqrt
+    {3}180}{\pi})}{3} & \frac{2\sqrt{3}\exp(1)\sin(\frac{\sqrt{3}180}{\pi})}{3}
+    \\
+    0 & 0 & 0 & \frac{-2\sqrt{3}\exp(1)\sin(\frac{\sqrt{3}180}{\pi})}{3} &
+    \frac{3\exp(1)\cos(\frac{\sqrt{3}180}{\pi})-
+    \sqrt{3}\exp(1)\sin(\frac{\sqrt{3}180}{\pi})}{3}
+  \end{pmatrix}
+\end{align*}
+Joa und jetzt hab ich keine Lust mehr.
 \end{solution}
