@@ -78,7 +78,6 @@ def implicit_euler(t, y_0, f, f_y, tol = 1e-6, counter_max = 1e16):
 #         y_new = newton(F_ell, DF_ell, guess, tol, counter_max)
         y_new = fsolve(F_ell, guess, xtol = tol)
 
-#         print("Test ...", y_new == y[-1] + h[ell] * f(t[ell+1], y_new))
         y += [y_new]
 
     y = np.array(y).transpose()
