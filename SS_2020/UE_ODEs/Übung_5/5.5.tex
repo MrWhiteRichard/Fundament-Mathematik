@@ -1,11 +1,84 @@
 \begin{exercise}
-
-ToDo!
-
+Geben Sie alle Lösungen des folgenden Systems an:
+\begin{align*}
+  y^{\prime}(t) = \begin{pmatrix}
+    3t -1 & 1 - t \\ t + 2 & t - 2
+  \end{pmatrix}
+  y(t) +
+  \begin{pmatrix}
+    t\exp(t^2) \\ \exp(t^2))
+  \end{pmatrix}
+\end{align*}
 \end{exercise}
-
 \begin{solution}
-
-Trivial!
-
+Wir kennen aus Aufgabe 4.3 die Fundamentalmatrix des entsprechenden homogenen Systems mit
+\begin{align*}
+Y(t) = \begin{pmatrix*}[c]
+  \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+  \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+\end{pmatrix*}.
+\end{align*}
+Nun können wir Satz 3.17 welcher uns durch Variation der Konstanten folgende
+Lösungsformel für beliebige inhomogene Systeme liefert:
+\begin{align*}
+  y(t) = Y(t)(Y(t_0))^{-1}y_0 + Y(t)\int_{t_0}^{t}(Y(s))^{-1}b(s)ds
+\end{align*}
+Angewandt auf unseren Fall liefert das
+\begin{align*}
+  y(t) &= \begin{pmatrix*}[c]
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+  \end{pmatrix*}
+  \begin{pmatrix*}[c]
+    \exp(1) & \exp(-2)(\frac{1}{3} - \frac{2}{9}) \\
+    \exp(1) & \exp(-2)(\frac{1}{3} + \frac{7}{9})
+  \end{pmatrix*}^{-1}
+  \begin{pmatrix}
+    1 \\ 1
+  \end{pmatrix} \\
+  &+
+  \begin{pmatrix*}[c]
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+    \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+  \end{pmatrix*}
+  \int_{1}^{t}  \begin{pmatrix*}[c]
+      \exp(s^2) & \exp(s^2-3s)(\frac{1}{3}s - \frac{2}{9}) \\
+      \exp(s^2) & \exp(s^2-3s)(\frac{1}{3}s + \frac{7}{9})
+    \end{pmatrix*}^{-1}
+    \begin{pmatrix}
+      t\exp(t^2) \\ \exp(t^2)
+    \end{pmatrix}ds \\
+    &= \begin{pmatrix*}[c]
+      \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+      \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+    \end{pmatrix*}
+    \left(\begin{pmatrix*}[c]
+        \frac{10}{9\exp(1)} - \frac{1}{9\exp(1)} \\
+        \frac{-\exp(3)}{\exp(1)} + \frac{\exp(3)}{\exp(1)})
+      \end{pmatrix*} +
+    \int_{1}^{t}  \begin{pmatrix*}[c]
+        \frac{3s + 7}{9\exp(s^2)} &\frac{-3s + 2}{9\exp(s^2)} \\
+        \frac{-\exp(3s)}{\exp(s^2)} & \frac{\exp(3s)}{\exp(s^2)})
+      \end{pmatrix*}
+      \begin{pmatrix}
+        s\exp(s^2) \\ \exp(s^2)
+      \end{pmatrix}ds \right)\\
+      &= \begin{pmatrix*}[c]
+        \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9}) \\
+        \exp(t^2) & \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})
+      \end{pmatrix*}
+      \left(\begin{pmatrix*}[c]
+          \exp(-1) \\ 0
+        \end{pmatrix*} +
+      \int_{1}^{t}  \begin{pmatrix*}[c]
+          \frac{3s^2 + 4s + 2}{9} \\
+          \exp(3s)(1 - s)
+        \end{pmatrix*}ds \right)\\
+        &=
+          \begin{pmatrix*}[c]
+            \exp(t^2)\left(\exp(-1) + \frac{t^3 + 2t^2 + 2t - 5}{9}\right) + \exp(t^2-3t)(\frac{1}{3}t - \frac{2}{9})\left(\frac{\exp(3t)(4 - 3t) - \exp(3)}{9}\right)\\
+            \exp(t^2)\left(\exp(-1) + \frac{t^3 + 2t^2 + 2t - 5}{9}\right) + \exp(t^2-3t)(\frac{1}{3}t + \frac{7}{9})\left(\frac{\exp(3t)(4 - 3t) - \exp(3)}{9}\right)\\
+          \end{pmatrix*}\\
+\end{align*}
+Hoffentlich stimmt das alles, lol.
 \end{solution}
