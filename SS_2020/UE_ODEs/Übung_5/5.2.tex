@@ -27,14 +27,16 @@ Sei $A \in \mathbb{R}^{d\times d}$.
   mit $a_i,\dots,a_m \in \mathbb{R}$ die Eigenwerte, \\
   $(v_i,\dots,v_n,\bar{v_1},\dots,\bar{v_n},x_1,\dots,x_m)$, $x_1,\dots,x_m \in \mathbb{R}$
   die zugehörigen Eigenvektoren von $A$.
-  Für jedes komplexe Eigenpaar $(\lambda_i, v_i), i = 1,\dots,n$ stellen die Funktionen
+  Für jedes komplexe Eigenpaar $(\lambda_i, v_i), i = 1,\dots,n$, sowie jedes
+  reelle Eigenpaar $(a_j,x_j), j = 1,\dots,m$ stellen die Funktionen
   \begin{align*}
-    y_{i1}(t) &= \exp(\lambda t)v_i, \\
-    y_{i2}(t) &= \exp(\bar{\lambda} t)\bar{v_i}
+    y_{i}(t) &= \exp(\lambda t)v_i, \\
+    y_{n + i}(t) &= \exp(\bar{\lambda} t)\bar{v_i} \\
+    y_{2n + j} &= \exp(a_j)x_j
   \end{align*}
   Lösungen der Differentialgleichung dar. Damit mit $\lambda_i = b_i + ic_i$ sind sowohl
   \begin{align*}
-    y_i(t) &:= y_{i1}(t) + y_{i2}(t) = \exp(\lambda_i t)v_i + \exp(\bar{\lambda_i} t)\bar{v_i}
+    z_i(t) &:= y_{i1}(t) + y_{i2}(t) = \exp(\lambda_i t)v_i + \exp(\bar{\lambda_i} t)\bar{v_i}
     = \exp(\lambda_i t)v_i + \bar{\exp(\lambda_i t)}\bar{v_i}
     = \exp(\lambda_i t)v_i + \bar{\exp(\lambda_i t)v_i}
     = 2\mathfrak{R}(\exp(\lambda_i t)v_i)
@@ -44,18 +46,31 @@ Sei $A \in \mathbb{R}^{d\times d}$.
   \end{align*}
   als auch
   \begin{align*}
-    y_{n+i}(t) &:= -i(y_{i1}(t) - y_{i2}(t)) = 2\mathfrak{I}(\exp(\lambda_i t)v_i)
+    z_{n+i}(t) &:= -i(y_{i1}(t) - y_{i2}(t)) = 2\mathfrak{I}(\exp(\lambda_i t)v_i)
     = 2\exp(b_i)\mathfrak{I}(\cos(c_i)v_i+i\sin(c_i)v_i) \\
     &= 2\exp(b_i)\left(\cos(c_i)\mathfrak{I}(v_i) - \sin(c_i)\mathfrak{R}(v_i)\right)
   \end{align*}
   reelle Lösungen der Differentialgleichung.
   Für die verbleibenden reellen Eigenvektoren können wir $y_i$ einfach als
   \begin{align*}
-    y_i(t) := \exp(a_i t)x_i
+    z_i(t) := \exp(a_i t)x_i
   \end{align*}
-  definieren.
-  Die Funktionen $(y_i)_{i=1}^d$ sind aufgrund der linearen Unabhängigkeit der $(v_i,x_i)$
-  ebenso linear unabhängig und
-  bilden somit ein reelles Fundamentalsystem.
+  definieren. Anders formuliert erhalten wir unser reelles Fundamentalsystem
+  durch Anwenden der regulären Matrix
+  \begin{align*}
+    A = \begin{pmatrix}
+      1 & 0 & 0 & -i & 0 & 0 & 0 & 0 & 0\\
+      0 & \ddots & 0 & 0 & \ddots & 0 & 0 & 0 & 0\\
+      0 & 0 & 1 & 0 & 0 & -i & 0 & 0 & 0\\
+      1 & 0 & 0 & i & 0 & 0 & 0 & 0 & 0\\
+      0 & \ddots & 0 & 0 & \ddots & 0 & 0 & 0 & 0\\
+      0 & 0 & 1 & 0 & 0 & i & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & \ddots & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+    \end{pmatrix}
+  \end{align*}
+  auf die komplexe Fundamentalmatrix $Y(t)$. Daher müssen unsere Funktionen $(z_i)_{i=1}^d$
+  ebenso linear unabhängig sein und bilden somit ein reelles Fundamentalsystem.
 \end{itemize}
 \end{solution}
