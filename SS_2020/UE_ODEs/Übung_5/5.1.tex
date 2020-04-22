@@ -16,15 +16,16 @@ Geben Sie die allgemeine Lösung an für:
     (tx)^{\prime} = x^2 + 2x \iff x + tx^\prime = x^2 + 2x \iff t x^\prime = x^2 + x \iff \frac{x^{\prime}}{x^2 + x} = \frac{1}{t}
   \end{align*}
   Jetzt können wir den Ansatz für separable ODEs verwenden.
-  \begin{gather*}
-    \int_{t_0}^t \frac{x^{\prime}(\tau)}{x(\tau)^2 + x(\tau)}d\tau = \int_{t_0}^t \frac{1}{\tau}d\tau \\
-    \iff \int_{x(t_0)}^{x(t)} x^{-1} dx - \int_{x(t_0)}^{x(t)} (x + 1)^{-1} dx = \int_{x(t_0)}^{x(t)} \frac{1 + x - x}{x(x + 1)} dx = \int_{x(t_0)}^{x(t)} \frac{1}{x^2 + x}dx = \ln(t) - \ln(t_0)\\
-    \iff \ln(x(t)) - \ln(x(t) + 1) - \ln(x(t_0)) + \ln(x(t_0) + 1) = \ln(t) - \ln(t_0)\\
-    \iff \frac{x(t)(x(t_0) + 1)}{x(t_0)(x(t) + 1)} = \frac{t}{t_0} \\
-    \iff x(t)t_0(x(t_0) + 1) = x(t_0)t(x(t) + 1) \\
-    \iff x(t)(t_0(x(t_0) + 1) - x(t_0)t) = x(t_0)t \\
-    \iff x(t) = \frac{x(t_0)t}{t_0(x(t_0) + 1) - x(t_0)t}
-  \end{gather*}
+  \begin{align*}
+    &\int_{t_0}^t \frac{x^{\prime}(\tau)}{x(\tau)^2 + x(\tau)}d\tau = \int_{t_0}^t \frac{1}{\tau}d\tau \\
+    &\iff \int_{x(t_0)}^{x(t)} x^{-1} dx - \int_{x(t_0)}^{x(t)} (x + 1)^{-1} dx = \int_{x(t_0)}^{x(t)} \frac{1 + x - x}{x(x + 1)} dx =
+    \int_{x(t_0)}^{x(t)} \frac{1}{x^2 + x}dx = \ln(t) - \ln(t_0)\\
+    &\iff \ln(x(t)) - \ln(x(t) + 1) - \ln(x(t_0)) + \ln(x(t_0) + 1) = \ln(t) - \ln(t_0)\\
+    &\iff \frac{x(t)(x(t_0) + 1)}{x(t_0)(x(t) + 1)} = \frac{t}{t_0} \\
+    &\iff x(t)t_0(x(t_0) + 1) = x(t_0)t(x(t) + 1) \\
+    &\iff x(t)(t_0(x(t_0) + 1) - x(t_0)t) = x(t_0)t \\
+    &\iff x(t) = \frac{x(t_0)t}{t_0(x(t_0) + 1) - x(t_0)t}
+  \end{align*}
   Wir machen die Probe
   \begin{align*}
     x^{\prime} &= \frac{x(t_0)(t_0(x(t_0) + 1) - x(t_0)t) + x(t_0)^2t}{(t_0(x(t_0) + 1) - x(t_0)t)^2}
@@ -44,10 +45,10 @@ Geben Sie die allgemeine Lösung an für:
   \item [\textbf{b)}]
   Mit der selben Methode wie in a) erhalten wir
   \begin{align*}
-    (tx)^{\prime} &= x - \tan(x) \iff x + tx^\prime = x - \tan(x) \iff tx^\prime = -\tan(x) \iff \frac{x^{\prime}}{-\tan(x)} = \frac{1}{t}, 
+    (tx)^{\prime} &= x - \tan(x) \iff x + tx^\prime = x - \tan(x) \iff tx^\prime = -\tan(x) \iff \frac{x^{\prime}}{-\tan(x)} = \frac{1}{t},
   \end{align*}
-  eine separable ODE, die wir lösen können. 
-  Wir berechnen zuerst eine Stammfunktion 
+  eine separable ODE, die wir lösen können.
+  Wir berechnen zuerst eine Stammfunktion
   \begin{align*}
     \int \frac{1}{\tan(x)} = \int \frac{\cos(x)}{\sin(x)} \quad \vbraces{\begin{array}{c} u = \sin(x) \\ dx = (\cos(x))^{-1} du \end{array}} = \int u^{-1} = \ln(u) = \ln(\sin(x))
   \end{align*}
@@ -68,7 +69,7 @@ Geben Sie die allgemeine Lösung an für:
   \begin{align*}
     y^\prime(t) &= \arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right) - t \sin(x(t_0))t_0 t^{-2} \pbraces{\sqrt{1 - \frac{(\sin(x(t_0)) t_0)^2}{t^2}}}^{-1} \\
     &= \frac{y(t)}{t} - \sin\pbraces{\arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)} \pbraces{ \sqrt{1 - \pbraces{\sin\pbraces{\arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)}}^2} }^{-1} \\
-    &= \frac{y(t)}{t} - \sin\pbraces{\frac{y(t)}{t}} \pbraces{\cos\pbraces{\arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)}}^{-1} \\ 
+    &= \frac{y(t)}{t} - \sin\pbraces{\frac{y(t)}{t}} \pbraces{\cos\pbraces{\arcsin\left(\frac{\sin(x(t_0))t_0}{t}\right)}}^{-1} \\
     &= \frac{y(t)}{t} - \sin\pbraces{\frac{y(t)}{t}} \pbraces{\cos\pbraces{\frac{y(t)}{t}}}^{-1} = \frac{y(t)}{t} - \tan\pbraces{\frac{y(t)}{t}}
   \end{align*}
   und frohlocken.

@@ -15,13 +15,13 @@ Eine Lösung der ODE $y^{\prime} = Ay$ muss sich als Linearkombination
 der Basisfunktionen
 \begin{align*}
   y^1(t) := (\exp(\lambda_1t)v_1,\exp(\lambda_1t)v_2)^{\top}, \\
-  y^2(t) := (\exp(\lambda_2t)w_1,\exp(\lambda_1t)w_2)^{\top}, \\
+  y^2(t) := (\exp(\lambda_2t)w_1,\exp(\lambda_2t)w_2)^{\top}, \\
 \end{align*}
 darstellen lassen, wobei $(\lambda_1,v), (\lambda_2,w)$ die beiden Eigenpaare
 der Matrix $A$ sind.
 Eine allgemeine Lösung der ODE lautet also folgendermaßen:
 \begin{align*}
-  y(t) = c_1(\exp(\lambda_1t)v_1,\exp(\lambda_1t)v_2)^{\top} + c_2(\exp(\lambda_2t)w_1,\exp(\lambda_1t)w_2)^{\top}
+  y(t) = c_1(\exp(\lambda_1t)v_1,\exp(\lambda_1t)v_2)^{\top} + c_2(\exp(\lambda_2t)w_1,\exp(\lambda_2t)w_2)^{\top}
 \end{align*}
 Die Funktionen $y_3,y_4$ fallen sofort als Kandidaten aus, da sie sich überhaupt
 nicht in dieser Form darstellen lassen. Ebenso kann $y_1$ keine Lösung sein,
@@ -57,7 +57,7 @@ A =
 Für den Fall, dass $A$ nur ein Eigenpaar $(\lambda,v)$ und einen Hauptvektor $w$
 besitzt, lautet die allgemeine Lösung
 \begin{align*}
-  y(t) = \exp(\lambda t)((c_1v_1 + c_2(w_1 + tv_1)),c_1v_2 + c_2(w_2 + tv_2))^{\top}
+  y(t) = \exp(\lambda t)(c_1v_1 + c_2(w_1 + tv_1),c_1v_2 + c_2(w_2 + tv_2))^{\top}
 \end{align*}
 Allerdings lässt sich in diesem Fall keine der obigen Funktionen auf so eine Form
 mit $c_2 \neq 0$ bringen. Also bleibt die einzig mögliche Lösung $y_2$.
