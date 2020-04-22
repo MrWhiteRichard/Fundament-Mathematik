@@ -19,22 +19,42 @@ an, wobei
 \end{align*}
 \end{exercise}
 \begin{solution}
-\leavevmode \\
+Aus Satz 3.15 wissen wir, dass $Y(t) = \exp(tA)$ eine allgemeine Fundamentalmatrix für $y^{\prime} = Ay$
+darstellt. $\exp(tA)$ können wir dann durch Transformation von $A = VDV^{-1}$ in Jordan-Normalform berechnen.
+Wenn $A$ diagonalisierbar ist, können wir die allgemeine Lösung zu
+\begin{align*}
+  Y(t) = exp(tA) = V\exp(tD)V^{-1}
+\end{align*}
+vereinfachen. Da $V$ regulär ist, ist auch $v\exp(tD)$ schon eine Fundamentalmatrix.
 \begin{itemize}
-  \item [$A_1$]
-  $(-3,(2,-3,1)^{\top}),(-1,(-1,1,1)^{\top},(1,(0,1,1)^{\top}))$ sind alle
-  Eigenpaare von $A_1$.
+  \item $A_1$ ist diagonalisierbar mit den Eigenpaaren
+  \begin{align*}
+  (\lambda_1,v_1) = (-3,(2,-3,1)^{\top})\\
+  (\lambda_2,v_2) = (-1,(-1,1,1)^{\top}) \\
+  (\lambda_3,v_3) = (1,(0,1,1)^{\top}))
+  \end{align*}
   Ein reelles Fundamentalsystem von $A_1$ lautet damit
   \begin{align*}
     Y(t) = \begin{pmatrix}
-      2\exp(-3t) & -1\exp(-t) & 0\exp(t) \\
+      2 & -1 & 0 \\ -3 & 1 & 1 \\ 1 & 1 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \exp(-3t) & 0 & 0 \\
+      0 & \exp(-t) & 0 \\
+      0 & 0 & \exp(t)
+    \end{pmatrix} =
+    \begin{pmatrix}
+      2\exp(-3t) & -1\exp(-t) & 0 \\
       -3\exp(-3t) & 1\exp(-t) & 1\exp(t) \\
       1\exp(-3t) & 1\exp(-t) & 1\exp(t)
     \end{pmatrix}.
   \end{align*}
-  \item [$A_2$]
-  $(4,(-1,1,1)^{\top}),(2,(-2,0,1)^{\top}),(2,(3,1,0)^{\top})$
-  sind alle Eigenpaare von $A_2$.
+  \item $A_2$ ist diagonalisierbar mit den Eigenpaaren
+  \begin{align*}
+  (\lambda_1,v_1) = (4,(-1,1,1)^{\top}) \\
+  (\lambda_2,v_2) = (2,(-2,0,1)^{\top}) \\
+  (\lambda_3,v_3) = (2,(3,1,0)^{\top})
+  \end{align*}
   Ein reelles Fundamentalsystem von $A_2$ lautet damit
   \begin{align*}
     Y(t) = \begin{pmatrix}
@@ -43,8 +63,11 @@ an, wobei
     1\exp(4t) & 1\exp(2t) & 0\exp(2t)
     \end{pmatrix}.
   \end{align*}
-  \item [$A_3$]
-  $(2 + i,(4+i,1)^{\top}),(2-i,(4-i,1)^{\top})$ sind alle Eigenpaare von $A_3$.
+  \item $A_3$ ist komplex diagonalisierbar mit den Eigenpaaren
+  \begin{align*}
+    (\lambda_1,v_1) = (2 + i,(4+i,1)^{\top}) \\
+    (\lambda_2,v_2) = (2-i,(4-i,1)^{\top})
+  \end{align*}
   Damit erhalten wir zunächst direkt ein komplexes Fundamentalsystem.
   \begin{align*}
   Y(t) = \begin{pmatrix}
@@ -52,7 +75,8 @@ an, wobei
     (4+i)\exp((2+i)t)\cos(t) & (4-i)\exp((2-i)t)\sin(t)
   \end{pmatrix}
   \end{align*}
-  Durch Linearkombinationen der beiden Spalten und der Identität
+  Durch die Linearkombinationen $\frac{1}{2}(\exp(t\lambda_1)v_1 + \exp(t\lambda_2)v_2)$, sowie
+  $\frac{-i}{2}(\exp(t\lambda_1)v_1 + \exp(t\lambda_2)v_2)$ der beiden Spalten und der Identität
   $\exp(x + iy) = \exp(x)(\cos(y) + i\sin(y))$ erhalten wir das gewünschte reelle
   Fundamentalsystem.
   \begin{align*}
