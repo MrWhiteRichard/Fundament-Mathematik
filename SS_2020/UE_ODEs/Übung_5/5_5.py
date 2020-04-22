@@ -1,5 +1,4 @@
 import sympy as sp
-sp.init_printing(use_unicode=True)
 
 t, s = sp.symbols('t, s')
 
