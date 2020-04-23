@@ -1,65 +1,144 @@
 \begin{exercise}
-Seien $X,Y,Z$ normierte Räume, und seien $A_n,A \in \mathcal{B}(Y,Z),B_n,B\in \mathcal{B}(X,Y)$.
+
+Seien $X, Y, Z$ normierte Räume, und seien $A_n, A \in \mathcal{B}(Y, Z), B_n, B \in \mathcal{B}(X, Y)$.
+
 Dann gilt:
-\begin{itemize}
-  \item [a)] Ist $A_n \stackrel{s}{\rightarrow} A, \sup_{n\in\mathbb{N}} ||A_n|| < \infty$,
-  und $B_n \stackrel{s}{\rightarrow} B$, so folgt $A_nB_n \stackrel{s}{\rightarrow} AB$.
-  \item [b)] Ist $A_n \stackrel{w}{\rightarrow} A, \sup_{n\in\mathbb{N}} ||A_n|| < \infty$,
-  und $B_n \stackrel{s}{\rightarrow} B$, so folgt $A_nB_n \stackrel{w}{\rightarrow} AB$.
-  \item [c)] Ist $A_n \stackrel{s}{\rightarrow} A$, so folgt $A_nB \stackrel{s}{\rightarrow} AB$.
-  Ist $B_n \stackrel{s}{\rightarrow} B$, so folgt $AB_n \stackrel{s}{\rightarrow} AB$.
-  \item [d)] Ist $A_n \stackrel{w}{\rightarrow} A$, so folgt $A_nB \stackrel{w}{\rightarrow} AB$.
-  Ist $B_n \stackrel{w}{\rightarrow} B$, so folgt $AB_n \stackrel{w}{\rightarrow} AB$.
-\end{itemize}
+
+\begin{enumerate}[label = \alph*)]
+
+  \item
+  Ist $A_n \xrightarrow{s} A, \sup_{n \in \N} \norm{A_n} < \infty$, und $B_n \xrightarrow{s} B$, so folgt $A_n B_n \xrightarrow{s} A B$.
+
+  \item
+  Ist $A_n \xrightarrow{w} A, \sup_{n \in \N} \norm{A_n} < \infty$, und $B_n \xrightarrow{s} B$, so folgt $A_n B_n \xrightarrow{w} A B$.
+
+  \item
+  Ist $A_n \xrightarrow{s} A$, so folgt $A_n B \xrightarrow{s} A B$.
+  Ist $B_n \xrightarrow{s} B$, so folgt $A B_n \xrightarrow{s} A B$.
+
+  \item
+  Ist $A_n \xrightarrow{w} A$, so folgt $A_n B \xrightarrow{w} A B$.
+  Ist $B_n \xrightarrow{w} B$, so folgt $A B_n \xrightarrow{w} A B$.
+
+\end{enumerate}
+
 \end{exercise}
 
 \begin{solution}
-\leavevmode \\
-  Wir wissen:
-\begin{itemize}
-    \item $A_n \xrightarrow{s} A \Leftrightarrow \forall x \in Y:~ A_nx \xrightarrow{\mathbb{ \| . \|}_z} Ax,$
-    \item $A_n \xrightarrow{w} A \Leftrightarrow \forall x \in Y~ \forall \varphi \in Z':~ \varphi(A_nx) \xrightarrow{\mathbb{C}} \varphi(Ax)$.
-\end{itemize}
+
+Seien $(X_1, \norm[1]{\cdot})$ und $(X_2, \norm[2]{\cdot})$ normierte Räume.
+Für ein Netzt $(T_i)_{i \in I}$ von Operatorern $T_i \in L_b(X_1, X_2)$ gilt
 
 \begin{itemize}
-    \item [a)] Seien $x \in X, \epsilon > 0$ beliebig. Für hinreichend großes $n$ gilt
+
+    \item
+    [\Quote{$s$}:]
+
+    laut Beispiel 5.1.11, dass
+
     \begin{align*}
-        \| A_n B_n x - ABx \| \leq \| A_n B_n x - A_n Bx \| + \| A_n Bx - ABx \| \leq \\
-        \underbrace{(\sup{\| A_n \|}) \| B_n x - Bx \|}_{\substack{\leq
-        \frac{\epsilon}{2}
-        \text{~wegen~} B_n \xrightarrow{s} B}} +
-        \underbrace{\| A_n(Bx) - A(Bx) \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} A_n \xrightarrow{s} A}}
-        \leq \epsilon.
+      T_i \xrightarrow{\mathcal{T}_s} T
+      \iff
+      T_i x \xrightarrow{\norm[2]{\cdot}} T x
+      ~ \text{für alle} ~ x \in X_1.
     \end{align*}
 
-    \item [b)] Seien $\epsilon > 0, \varphi \in Z', x \in X$ beliebig. Für hinreichend großes $n$ gilt
+    \item
+    [\Quote{$w$}:]
+
+    laut Beispiel 5.3.10, dass
+
     \begin{align*}
-        \| \varphi(A_n B_n x) - \varphi(ABx) \|_2
-        \leq \| \varphi(A_n B_n x) - \varphi(A_nBx) \|
-        +  \underbrace{\| \varphi(A_n (Bx)) - \varphi(A (Bx)) \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} A_n \xrightarrow{w} A}} \leq \\
-        \| \varphi \|~ \| A_n (B_n x - B x) \| + \frac{\epsilon}{2} \leq
-        \underbrace{\| \varphi \|~ (\sup{\| A_n \|})
-        \| B_n x - Bx \|}_{\substack{\leq \frac{\epsilon}{2} \text{~wegen~} B_n \xrightarrow{s} B}} + \frac{\epsilon}{2} \leq
-        \epsilon.
+      T_i \xrightarrow{\mathcal{T}_w} T
+      \iff
+      \Forall x \in X_1, \varphi \in X_2^\prime
+      \Rightarrow
+      \varphi(T_i x) \xrightarrow{\C} \varphi(T x).
     \end{align*}
 
-    \item [c)]  Die starke Konvergenz von $A_nB$ gegen $AB$ folgt aus der starken Konvergenz von $A_n$ gegen $A$:
-    \begin{center} $\| A_n Bx - ABx \|_z = \| A_n(Bx) - A(Bx) \|_z \xrightarrow{n \rightarrow \infty} 0.$ \end{center}
-    Gilt hingegen $B_n \xrightarrow{s} B$, dann auch
-    \begin{center}
-     $\| AB_n x - ABx \|_z = \| A(B_n x - Bx) \| \leq
-       \| A \|~ \| B_n x - Bx \| \xrightarrow{n \rightarrow \infty} 0.$
-    \end{center}
-
-    \item [d)] Konvergiert $A_n$ schwach gegen $A$, so gilt
-    \begin{center}$
-    \| \varphi(A_n Bx) - \varphi(ABx) \| = \| \varphi(A_n(Bx)) - \varphi(A(Bx)) \| \xrightarrow{n \rightarrow \infty} 0.
-    $\end{center}
-
-    Konvergiert $B_n$ schwach gegen $B$, so gilt
-    \begin{center}$
-    \| \varphi(AB_n x) - \varphi(ABx) \| = \| \underbrace{(\varphi \circ A)}_{\in Y'} (B_nx - Bx) \| \xrightarrow{n \rightarrow \infty} 0. $\end{center}
 \end{itemize}
 
+
+\begin{enumerate}[label = \alph*)]
+
+    \item
+    $\Forall x \in X:$
+
+    \begin{align*}
+        \norm[Z]{A_n B_n x - A B x}
+        & \leq
+        \norm[Z]{A_n B_n x - A_n B x}
+        +
+        \norm[Z]{A_n B x - A B x} \\
+        & \leq
+        \underbrace{\sup_{n \in \N}{\norm{A_n}}}_{< \infty}
+        \underbrace{\norm[Z]{B_n x - B x}}_{B_n \xrightarrow{s} B}
+        +
+        \underbrace{\norm[Z]{A_n (B x) - A (B x)}}_{A_n \xrightarrow{s} A}
+        \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+    \item
+    $\Forall x \in X, \Forall \varphi \in Z^\prime:$
+
+    \begin{align*}
+        \norm[2]{\varphi(A_n B_n x) - \varphi(A B x)}
+        & \leq
+        \norm[2]{\varphi(A_n B_n x) - \varphi(A_n B x)}
+        +
+        \norm[2]{\varphi(A_n (B x)) - \varphi(A (B x))} \\
+        & \leq
+        \underbrace{\norm{\varphi}}_{< \infty}
+        \underbrace{\sup_{n \in \N} \norm{A_n}}_{< \infty}
+        \underbrace{\norm[2]{B_n x - B x}}_{B_n \xrightarrow{s} B}
+        +
+        \underbrace{\norm[2]{\varphi(A_n (B x)) - \varphi(A (B x))}}_{A_n \xrightarrow{w} A}
+        \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+    \item
+    $\Forall x \in X:$
+
+    \begin{align*}
+      \norm[Z]{A_n Bx - A B x}
+      =
+      \underbrace{\norm[Z]{A_n (B x) - A (B x)}}_{A_n \xrightarrow{s} A}
+      \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+    \begin{align*}
+      \norm[Z]{A B_n x - A Bx}
+      \leq
+      \underbrace{\norm{A}}_{< \infty}
+      \underbrace{\norm[Z]{B_n x - B x}}_{B_n \xrightarrow{s} B}
+      \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+    \item
+    $\Forall x \in X:$
+
+    \begin{align*}
+      \norm[2]{\varphi(A_n B x) - \varphi(A B x)}
+      =
+      \underbrace{\norm[2]{\varphi(A_n (B x)) - \varphi(A (B x))}}_{A_n \xrightarrow{w} A}
+      \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+    \begin{align*}
+      \norm[2]{\varphi(A B_n x) - \varphi(A B x)}
+      =
+      \underbrace
+      {
+        \|
+        \underbrace{(\varphi \circ A)}_{\in Y^\prime}
+        (B_n x - B x)
+        \|_2
+      }_{
+        B_n \xrightarrow{w} B
+      }
+      \xrightarrow{n \to \infty} 0
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
