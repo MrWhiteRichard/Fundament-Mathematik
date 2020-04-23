@@ -15,45 +15,75 @@ Nämlich:
 \end{exercise}
 
 \begin{solution}
+
+\phantom{}
+
 \begin{enumerate}[label = (\arabic*)]
-  \item Sei $V \subseteq \iota(X)$ ein beliebiges Element aus der Nullumgebungsbasis von
+
+  \item
+  Sei $V \subseteq \iota(X)$ ein beliebiges Element aus der Nullumgebungsbasis von
+
   \begin{align*}
     (\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime}))).
   \end{align*}
-  Wir wissen, dass
+
+  Wir wissen, dass folgende Menge eine Subbasis von $\mathcal{T}$ ist, deren Basiselemente alle die $0$ enthalten.
+
   \begin{align*}
     \bigcup_{i \in I}f_i^{-1}(\mathcal{T}_{\C})
   \end{align*}
-  eine Subbasis von $\mathcal{T}$ ist und es folgt
+
+  Insbesondere, liegt damit eine Nullumgebungsbasis vor.
+  Wir finden also folgende Darstellung.
+
   \begin{align*}
     \exists f_1,\dots,f_n \in \iota_1(X^{\prime}), \exists V_1,\dots,V_n \in \mathcal{U}^{\C}(0):
     V = \bigcap_{i=1}^n f_i^{-1}(V_i).
   \end{align*}
-  Wir wollen zeigen, dass
+
+  Wir zeigen zuerst, dass $\iota$ stetig ist.
+  Wir erinnern uns, dass $f$ stetig im Punkt $x$ ist, genau dann, wenn
+
   \begin{align*}
-    \exists g_1,\dots,g_m \in X^{\prime}: \exists W_1,\dots,W_m \in \mathcal{U}^{\C}(0):
-    \iota\left(\bigcap_{j=1}^m g_j^{-1}(w_j)\right) \subseteq V
+    \Forall V \in \mathfrak{U}(f(x)):
+    \Exists U \in \mathfrak{U}(x):
+    f(U) \subseteq V.
   \end{align*}
-  Sei $k \in \{1,\dots,n\}$ beliebig.
+
+  Dabei, können wir uns von $\mathfrak{U}$ auch auf die jeweiligen Umgebungsbasen einschränken.
+  Mit unserer Darstellung der Nullumgebung (bzw. Nullumgebungsbasiselement) $U$, läuft das auf Folgendes hinaus.
+
   \begin{align*}
-    g_k &:= \iota_1^{-1} \in X^{\prime} \\
-    \mathcal{T}_{||\cdot||_{X^{\primeprime}|_{\iota(X)}}} &\supseteq \sigma(X^{\primeprime},X^{\prime}) \ni f_k^{-1}(V_k)
-    (\subseteq \iota(X)).
+    \Exists g_1, \dots, g_m \in X^{\prime}:
+    \exists W_1, \dots, W_m \in \mathfrak{U}^\C(0):
+    \iota\left(\bigcap_{j=1}^m g_j^{-1}(W_j)\right) \subseteq V
   \end{align*}
-  Es folgt also
+
+  Um das einzusehen, sei $k \in \{1,\dots,n\}$ beliebig.
+  Nun, wählen wir $g_k := \iota_1^{-1}(f_k) \in X^{\prime}$.
+  Wir erinnern uns, dass
+
   \begin{align*}
-    f_k^{-1}(V_k) \in \mathcal{T}_{||\cdot||_{X^{\primeprime}|_{\iota(X)}}}
+    f_k^{-1}(V_k)
+    \in
+    \sigma(X^{\primeprime}, X^{\prime})
+    \subseteq
+    \mathcal{T}_{\norm[X^\primeprime|_{\iota(X)}]{\cdot}}.
+    % (\subseteq \iota(X)).
   \end{align*}
-  und weil $\iota: (X,||\cdot||_X) \rightarrow (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}})$
-  stetig ist gilt
+
+  Weil $\iota: (X,||\cdot||_X) \rightarrow (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}})$
+  stetig ist gilt tatsächlich
+
   \begin{align*}
-    \exists S_k \in \mathcal{U}^{(X,||\cdot||)}(0): \iota(S_k) \subseteq f_k^{-1}(V_k),
+    \Exists S_k \in \mathfrak{U}^{(X,\norm{\cdot})}(0):
+    \iota(S_k) \subseteq f_k^{-1}(V_k).
   \end{align*}
-  weiters
-  \begin{align*}
-    \exists W_k \in \mathcal{U}^{\C}(0) ~\text{mit}~ (\iota_1^{-1}(f_k))^{-1}(W_k) \subseteq S_k,
-  \end{align*}
-  weil $\iota_1^{-1}(f_k) \in (X,||\cdot||)^{\prime}$. Damit folgt
+
+  Laut Beispiel 5.3.10, gilt $\mathcal{T}_w \subseteq \mathcal{T}_s \subseteq \mathcal{T}_{\norm{\cdot}}$.
+  Weiters, war $g_k \in X^\prime$. Damit, $\Exists W_k \in \mathfrak{U}^\C(0): g_k^{-1}(W_k) \subseteq S_k$.
+
+  Damit folgt
   \begin{align*}
     \iota((\iota_1^{-1}(f_k))^{-1}(W_k)) \subseteq \iota(S_k) \subseteq f_k^{-1}(V_k)
     \implies \iota\left(\bigcap_{i=1}^n (\iota_1^{-1}(f_i))^{-1}(W_i)\right) \subseteq \bigcap_{i = 1}^nf_i^{-1}(V_i).
