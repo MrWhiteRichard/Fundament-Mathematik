@@ -18,7 +18,7 @@ gröber als die Norminduzierte. Daher brauchen wir nur ein Beispiel finden, bei 
 die Voraussetzungen von (a), ohne die aus der Angabe, gelten und wenn wir daraus folgern können, das die Conlusio von (b) falsch ist haben wir gezeigt, dass die Vorraussetzung sowohl
 für (a) als auch (b) notwendig ist.
 
-Für die Folge $(A_n)_{n \ in \N}$ gilt:
+Für die Folge $(A_n)_{n \in \N}$ gilt:
 
 \begin{align*}
   A_n \stackrel{s}{\rightarrow} A
@@ -54,11 +54,12 @@ Für $g \in L^1(0,1)$ bel. gilt (KU 13.21: $L^1(0,1) \subseteq L^{\infty}(0,1)$)
 $\norm[\infty]{g} < \infty$. Damit
 
 \begin{align*}
+  |A_n g| =
   \big| \int_{(0,1)}h_n(s) g(s)d\lambda(s) \big|
   \leq \norm[\infty]{g} \int_{(0,1)} h_n(s) d\lambda(s)
   =\norm[\infty]{g}
   \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
-  \bigg)
+  \bigg) \\
   = \norm[\infty]{g} (\frac{1}{n}+\frac{1}{n}(1-\frac{1}{n}))
   \xrightarrow{n \rightarrow \infty} 0
 \end{align*}
@@ -68,20 +69,20 @@ $B_n: \R \rightarrow L^1(0,1): x \mapsto xh_n$, diese Funktionen sind nun linear
 beschränkt. Für $x \in \R$ bel. berechnen wir nun:
 
 \begin{align*}
-  \int_{(0,1)} |xh_n(s)|d\lambda(s) = |x|
+  \norm[1]{B_n} = \int_{(0,1)} |xh_n(s)|d\lambda(s) = |x|
   \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
   \bigg)
   \xrightarrow{n \rightarrow \infty} 0
 \end{align*}
-Also konvergieren $A_n$ und $B_n$ schwach gegen 0. Wiederum für $x \in \R$ gilt also
+Also konvergieren $A_n$ und $B_n$ stark gegen 0. Wiederum für $x \in \R$ gilt also
 $ABx = 0$. Es gilt aber auch:
 
 \begin{align*}
-  A_n B_n x =
-  \int_{(0,1)} x h_n(s) h_n(s) d\lambda(s) = x
+  |A_n B_n x| =
+  \int_{(0,1)} x h_n(s) h_n(s) d\lambda(s) = |x|
   \bigg(\int_0^\frac{1}{n^2} n^2 d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n^2}
   \bigg)
-  = x(1+\frac{1}{n^2}(1-\frac{1}{n^2}))
+  = |x|(1+\frac{1}{n^2}(1-\frac{1}{n^2}))
   \xrightarrow{n \rightarrow \infty} x
 \end{align*}
 
@@ -89,9 +90,10 @@ Wir erinnern uns an eine Beschreibung der Konvergenz bezlüglich der schwachen O
 
 \begin{align*}
   A_n B_n \stackrel{w}{\rightarrow} AB \Leftrightarrow
-  \forall x \in \R, \forall \phi in \R':
-  \phi(A_n B_n x) \stackrel{\C}{\rightarrow} \phi(ABx)
+  \forall x \in \R, \forall \phi \in \R':
+  \phi(A_n B_n x) \stackrel{\R}{\rightarrow} \phi(ABx)
 \end{align*}
 
-Wählen wir nun $\phi=id_\R$ sehen wir, dass $A_n B_n$ nicht schwach gegen $AB$ konvergiert.
+Wählen wir nun $\phi=id_\R$ sehen wir, dass $A_n B_n$ nicht schwach gegen $AB$ konvergiert
+wenn wir zusätzlich $x \neq 0$ wählen.
 \end{solution}
