@@ -27,7 +27,7 @@ Für die Folge $(A_n)_{n \ in \N}$ gilt:
 \end{align*}
 
 Wir wählen unsere Räume wie folgt: $Y = (L^1 (0,1), ||\cdot||_1) ; Z=X=\R$. Der
-Darstellungssatz von Riesz gibt uns jetzt vor, wie unsere $A_n$ aussehen:
+Darstellungssatz von Riesz gibt uns eine Darstellung der $A_n$:
 
 \begin{align*}
   \forall n \in \N: \exists h_n \in L^{\infty}(0,1):
@@ -44,6 +44,54 @@ Wir wählen:
   \end{cases}
 \end{align*}
 
-Dann gilt für die Norm der $A_n$
+Dann gilt für die Norm der $A_n$ (nach Kusolitsch 13.40):
 
+\begin{align*}
+  \norm[]{A_n} = \norm[\infty]{h_n} = n
+\end{align*}
+
+Für $g \in L^1(0,1)$ bel. gilt (KU 13.21: $L^1(0,1) \subseteq L^{\infty}(0,1)$):
+$\norm[\infty]{g} < \infty$. Damit
+
+\begin{align*}
+  \big| \int_{(0,1)}h_n(s) g(s)d\lambda(s) \big|
+  \leq \norm[\infty]{g} \int_{(0,1)} h_n(s) d\lambda(s)
+  =\norm[\infty]{g}
+  \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
+  \bigg)
+  = \norm[\infty]{g} (\frac{1}{n}+\frac{1}{n}(1-\frac{1}{n}))
+  \xrightarrow{n \rightarrow \infty} 0
+\end{align*}
+
+Daraus folgern wir, dass $A=0$. Definieren wir nun
+$B_n: \R \rightarrow L^1(0,1): x \mapsto xh_n$, diese Funktionen sind nun linear und
+beschränkt. Für $x \in \R$ bel. berechnen wir nun:
+
+\begin{align*}
+  \int_{(0,1)} |xh_n(s)|d\lambda(s) = |x|
+  \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
+  \bigg)
+  \xrightarrow{n \rightarrow \infty} 0
+\end{align*}
+Also konvergieren $A_n$ und $B_n$ schwach gegen 0. Wiederum für $x \in \R$ gilt also
+$ABx = 0$. Es gilt aber auch:
+
+\begin{align*}
+  A_n B_n x =
+  \int_{(0,1)} x h_n(s) h_n(s) d\lambda(s) = x
+  \bigg(\int_0^\frac{1}{n^2} n^2 d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n^2}
+  \bigg)
+  = x(1+\frac{1}{n^2}(1-\frac{1}{n^2}))
+  \xrightarrow{n \rightarrow \infty} x
+\end{align*}
+
+Wir erinnern uns an eine Beschreibung der Konvergenz bezlüglich der schwachen Operatortopologie:
+
+\begin{align*}
+  A_n B_n \stackrel{w}{\rightarrow} AB \Leftrightarrow
+  \forall x \in \R, \forall \phi in \R':
+  \phi(A_n B_n x) \stackrel{\C}{\rightarrow} \phi(ABx)
+\end{align*}
+
+Wählen wir nun $\phi=id_\R$ sehen wir, dass $A_n B_n$ nicht schwach gegen $AB$ konvergiert.
 \end{solution}
