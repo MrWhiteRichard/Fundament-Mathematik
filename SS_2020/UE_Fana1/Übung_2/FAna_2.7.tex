@@ -31,10 +31,9 @@ Darstellungssatz von Riesz gibt uns eine Darstellung der $A_n$:
 
 \begin{align*}
   \forall n \in \N: \exists h_n \in L^{\infty}(0,1):
-  \forall g \in L^1 (0,1): A_n(g) = \int_{(0,1)}h_n g d\lambda \\
-  \text{bzw.} A(g)= \int_{(0,1)} hg d\lambda
+  \forall g \in L^1 (0,1): A_n(g) = \int_{(0,1)}h_n g d\lambda,
 \end{align*}
-
+sowie $A(g)= \int_{(0,1)} hg d\lambda$.
 Wir wählen:
 
 \begin{align*}
@@ -50,31 +49,31 @@ Dann gilt für die Norm der $A_n$ (nach Kusolitsch 13.40):
   \norm[]{A_n} = \norm[\infty]{h_n} = n
 \end{align*}
 
-Für $g \in L^1(0,1)$ bel. gilt (KU 13.21: $L^1(0,1) \subseteq L^{\infty}(0,1)$):
+Für $g \in L^1(0,1)$ beliebig gilt (KU 13.21: $L^1(0,1) \subseteq L^{\infty}(0,1)$):
 $\norm[\infty]{g} < \infty$. Damit
 
 \begin{align*}
   |A_n g| =
-  \big| \int_{(0,1)}h_n(s) g(s)d\lambda(s) \big|
-  \leq \norm[\infty]{g} \int_{(0,1)} h_n(s) d\lambda(s)
+  \left| \int_{(0,1)}h_n(s) g(s)d\lambda(s) \right|
+  \leq \norm[\infty]{g} \left|\int_{(0,1)} h_n(s) d\lambda(s)\right|
   =\norm[\infty]{g}
   \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
   \bigg) \\
-  = \norm[\infty]{g} (\frac{1}{n}+\frac{1}{n}(1-\frac{1}{n}))
+  = \norm[\infty]{g} \left(\frac{1}{n}+\frac{1}{n}\left(1-\frac{1}{n}\right)\right)
   \xrightarrow{n \rightarrow \infty} 0
 \end{align*}
 
 Daraus folgern wir, dass $A=0$. Definieren wir nun
 $B_n: \R \rightarrow L^1(0,1): x \mapsto xh_n$, diese Funktionen sind nun linear und
-beschränkt. Für $x \in \R$ bel. berechnen wir nun:
+beschränkt. Für $x \in \R$ beliebig berechnen wir nun:
 
 \begin{align*}
-  \norm[1]{B_n} = \int_{(0,1)} |xh_n(s)|d\lambda(s) = |x|
+  \norm[1]{B_n(x)} = \int_{(0,1)} |xh_n(s)|d\lambda(s) = |x|
   \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
   \bigg)
   \xrightarrow{n \rightarrow \infty} 0
 \end{align*}
-Also konvergieren $A_n$ und $B_n$ stark gegen 0. Wiederum für $x \in \R$ gilt also
+Also konvergieren $A_n$ und $B_n$ stark und somit insbesondere schwach gegen 0. Wiederum für $x \in \R$ gilt also
 $ABx = 0$. Es gilt aber auch:
 
 \begin{align*}
@@ -82,7 +81,7 @@ $ABx = 0$. Es gilt aber auch:
   \int_{(0,1)} x h_n(s) h_n(s) d\lambda(s) = |x|
   \bigg(\int_0^\frac{1}{n^2} n^2 d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n^2}
   \bigg)
-  = |x|(1+\frac{1}{n^2}(1-\frac{1}{n^2}))
+  = |x|\left(1+\frac{1}{n^2}\left(1-\frac{1}{n^2}\right)\right)
   \xrightarrow{n \rightarrow \infty} x
 \end{align*}
 
@@ -94,6 +93,5 @@ Wir erinnern uns an eine Beschreibung der Konvergenz bezlüglich der schwachen O
   \phi(A_n B_n x) \stackrel{\R}{\rightarrow} \phi(ABx)
 \end{align*}
 
-Wählen wir nun $\phi=id_\R$ sehen wir, dass $A_n B_n$ nicht schwach gegen $AB$ konvergiert
-wenn wir zusätzlich $x \neq 0$ wählen.
+Wählen wir nun $\phi=\id_\R, x \neq 0$ sehen wir, dass $A_n B_n$ nicht schwach gegen $AB$ konvergiert.
 \end{solution}
