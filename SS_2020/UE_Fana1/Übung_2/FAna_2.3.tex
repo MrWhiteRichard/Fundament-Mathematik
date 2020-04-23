@@ -16,7 +16,7 @@ Betrachte den Raum $L^2(-1, 1)$ (der $L^2$-Raum bezüglich dem Lebesgue Maß auf
   }.
 \end{align*}
 
-Existiert $\phi \in L^2(-1, 1)^\prime$ mit $\Forall a \in A, b \in B. \enspace \phi(a) < \phi(b)$?
+Existiert $\phi \in L^2(-1, 1)^\prime$ mit $\Forall a \in A, b \in B. \enspace \text{Re } \phi(a) < \text{Re } \phi(b)$?
 Falls ja, finde ein solches Funktional.
 Falls nein, zeige dass es keines gibt.
 
@@ -46,24 +46,25 @@ Zuerst, entschlüsseln wir die Angabe.
   }
 \end{align*}
 
-Jetzt bemerken wir noch, dass $A$ ein linearer (und $B$ ein affiner) Teilraum von $X$ ist.
+Jetzt bemerken wir noch, dass $A$ ein linearer (und $B$ ein affiner) Teilraum von $L^2(-1, 1)$ ist.
 Weiters, gelten $B = A + 1$ und $A = B - B$. \\
 
 Nun zum \Quote{wahren} Teil der Aufgabe:
 Die Antwort lautet \Quote{nein}! \\
 
-Um das einzusehen, bemerken wir zuerst, dass für jedes $\phi \in L^2(-1, 1)^\prime$, ebenso $\phi(A)$ ein linearer Teilraum, jetzt von $\R$, ist.
+Um das einzusehen, bemerken wir zuerst, dass für jedes $\phi \in L^2(-1, 1)^\prime$, ebenso $\phi(A)$ ein linearer Teilraum, jetzt von
+$\C$, ist.
 Dafür gibt es nur zwei Fälle.
 
 \begin{enumerate}[label = Fall \arabic*:]
 
   \item
-  Wenn $\phi(A) = \mathbb{R}$, dann kann die Bedingung $\Forall a \in A, b \in B: \phi(a) < \phi(b)$
+  Wenn $\phi(A) = \C$, dann kann die Bedingung $\Forall a \in A, b \in B: \text{Re } \phi(a) < \text{Re } \phi(b)$
   offensichtlich nicht erfüllt werden.
 
   \item
   Sei $\phi(A) = \Bbraces{0}$.
-  Dann muss aber $\phi|_B$ konstant gleich einem $c \in \R$ sein, weil $\Forall b_1, b_2 \in B:$
+  Dann muss aber $\phi|_B$ konstant gleich einem $c \in \C$ sein, weil $\Forall b_1, b_2 \in B:$
 
   \begin{align*}
     \phi(b_1) - \phi(b_2)
@@ -135,7 +136,9 @@ Dafür gibt es nur zwei Fälle.
     0
   \end{align*}
 
-  Damit, muss $c = 0$ und schließlich $\Forall a \in A, b \in B: \phi(a) = \phi(b) = 0$.
+  Damit, muss $c = 0$ und schließlich $\Forall a \in A, b \in B: \phi(a) = \phi(b) = 0$,
+  also kann die Bedingung $\Forall a \in A, b \in B: \text{Re } \phi(a) < \text{Re } \phi(b)$
+  von keinem $\phi \in L^2(-1, 1)^\prime$ erfüllt werden.
 
 \end{enumerate}
 
