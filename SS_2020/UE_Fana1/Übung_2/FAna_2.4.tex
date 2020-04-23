@@ -15,11 +15,76 @@ und die $w^*$-Topologie.
 \end{exercise}
 
 \begin{solution}
-  \phantom{}
+$C[0,1]$ ist der Raum aller Äquivalenzklassen von Funktionen auf $[0,1]$ die
+einen und sogar genau einen stetigen Repräsentanten besitzen.
   \begin{enumerate}[label = (\alph*)]
     \item Wir gehen die drei Topologien durch.
     \begin{enumerate}
-      \item[\glqq $\norm{\cdot}$ \grqq] Wir wählen $f \in \overline{C[0, 1]}^{\norm[\infty]{\cdot}}$ beliebig. Dann gibt es ein Netz $(f_i)_{i \in I}$ aus $C[0,1]$ mit $f_i \stackrel{\norm[\infty]{\cdot}}{\to} f$. Die $f_i$ sind Äquivalenzklassen, wir betrachten sie nun als die stetigen Repräsentaten.
+      \item[\glqq $\norm{\cdot}$ \grqq] Wir wählen $f \in \overline{C[0, 1]}^{\norm[\infty]{\cdot}}$ beliebig. Dann gibt es ein Netz $(f_i)_{i \in I}$ aus $C[0,1]$ mit $f_i \stackrel{\norm[\infty]{\cdot}}{\to} f$. Die $f_i$ sind Äquivalenzklassen, wir betrachten sie nun als die stetigen Repräsentaten. Für die stetigen Repräsentanten entspricht
+      die $\norm[\infty]{\cdot}$-Konvergenz der gleichmäßigen Konvergenz und
+      somit ist $f$ als gleichmäßiger Grenzwert stetiger Funktionen wieder stetig.
+      \item [\glqq $w$-Topologie \grqq]
+      \begin{align*}
+        \sigma(L^{\infty}(0,1),(L^{\infty}(0,1), ||\cdot||_{\infty})^{\prime}) =: \mathcal{T}_w
+      \end{align*}
+      $C[0,1]$ ist konvex, denn für beliebige $f,g \in C[0,1]$ und $t \in [0,1]:
+      tf + (1-t)g \in C[0,1]$, deshalb gilt nach Satz 5.3.8
+      $\overline{C[0,1]}^{\mathcal{T}_w} = \overline{C[0,1]}^{||\cdot||_{\infty}} = C[0,1]$.
+      Also gilt $C[0,1]$ ist abgeschlossen in $(L^{\infty}(0,1), \mathcal{T}_w)$.
+      \item [\glqq $w^*$-Topologie \grqq]
+      \begin{align*}
+        \sigma(L^{\infty}(0,1),\iota(L^1(0,1))) =: \mathcal{T}_{w^*},
+      \end{align*}
+      wobei $\iota: L^1(0,1) \rightarrow (L^1(0,1)^{\prime})^*: g \mapsto (T \mapsto T(g))$.
+      Nach dem Darstellungsatz von Riesz (vgl. Kusolitsch Satz 13.40) können wir
+      jedem $T \in L^1(0,1)^{\prime}$ mit einem eindeutigen $h \in L^{\infty}(0,1)$
+      identifizieren, sodass $T(g) = \int_{0}^1 gh d\lambda$ gilt.
+      Fassen wir also $\iota(L^1(0,1))$ als Teilmenge von $(L^{\infty}(0,1))^*$ auf,
+      so ist
+      \begin{align*}
+      \iota(L^1(0,1)) = \{S_g: L^{\infty}(0,1) \rightarrow \mathbb{C}: h \mapsto \int_0^1gh d\lambda
+      : g \in L^1(0,1)\} \subseteq L^{\infty}(0,1)^{\prime},
+      \end{align*}
+      wobei die zweite
+      Inklusion gilt, da nach Kusolitsch Lemma 13.38 alle $S_g \in \iota(L^1(0,1))$
+      stetig sind als Abbildungen $(L^{\infty}(0,1),||\cdot||_{\infty}) \rightarrow \mathbb{C})$.
+      Für beliebige $f,g \in C[0,1]$ und beliebige $\alpha \in \mathbb{C}$ ist $f + \alpha g \in C[0,1]$,
+      also ist $C[0,1]$ ein linearer Teilraum von $L^{\infty}(0,1)$, $(L^{\infty}(0,1),\mathcal{T}_{w^*})$
+      ein lokalkonvexer topologischer Vektorraum und deshalb
+      gilt nach Korollar 5.2.6:
+      \begin{align*}
+        \overline{C[0,1]} = \bigcap_{\stackrel{S_g \in \iota(L^1(0,1))}{C[0,1] \subseteq \ker S_g}} \ker S_g.
+      \end{align*}
+      Aus $C[0,1] \subseteq \ker S_g$ folgt
+      \begin{align*}
+        \forall h \in C[0,1]: S_g(h) = \int_0^1 gh d\lambda = 0
+        \implies g = 0 ~\text{f. ü.}~ \implies S_g = 0.
+      \end{align*}
+      Also gilt schlicht
+      \begin{align*}
+        \overline{C[0,1]}^{\mathcal{T}_w^*} = \ker 0 = L^{\infty}(0,1) \supsetneq C[0,1].
+      \end{align*}
+      Um einzusehen, dass $L^{\infty}(0,1)$ eine echte Obermenge von $C[0,1]$ ist,
+      betrachte die Signum-Funktion, welche nicht fast überall gleich einer stetigen
+      Funktion ist.
+      $C[0,1]$ ist demnach nicht abgeschlossen in $(L^{\infty}(0,1),\mathcal{T}_{w^*})$.
     \end{enumerate}
+    \item
+    \begin{align*}
+      C[0,1]^{\complement} \in \mathcal{T}_w \land C[0,1]^{\complement} \notin \mathcal{T}_{w^*} \implies
+      \mathcal{T}_w \neq \mathcal{T}_{w^*}
+    \end{align*}
+    \item Angenommen $\iota: L^1(0,1) \rightarrow L^1(0,1)^{\primeprime}$ wäre
+    surjektiv, dann wäre
+    \begin{align*}
+      \iota(L^1(0,1)) = (L^{\infty}(0,1), ||\cdot||_{\infty})^{\prime}
+    \end{align*}
+    und da laut Korollar 5.2.7 für jeden lokalkonvexen Vektorraum $(X,\mathcal{T})$
+    $X^{\prime}$ punktetrennend ist, folgt mit Korollar 5.3.5 auch
+    \begin{align*}
+    \sigma(L^{\infty}(0,1),\iota(L^1(0,1))) = \mathcal{T}_{w^*} = \mathcal{T}_w =
+    \sigma(L^{\infty}(0,1),(L^{\infty}(0,1), ||\cdot||_{\infty})^{\prime}),
+    \end{align*}
+    was einen Widerspruch zu b) ergibt.
   \end{enumerate}
 \end{solution}

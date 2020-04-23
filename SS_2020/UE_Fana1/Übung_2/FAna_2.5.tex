@@ -15,7 +15,66 @@ Nämlich:
 \end{exercise}
 
 \begin{solution}
-Beweis.
+\begin{enumerate}[label = (\arabic*)]
+  \item Sei $V \subseteq \iota(X)$ ein beliebiges Element aus der Nullumgebungsbasis von
+  \begin{align*}
+    (\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime}))).
+  \end{align*}
+  Wir wissen, dass
+  \begin{align*}
+    \bigcup_{i \in I}f_i^{-1}(\mathcal{T}_{\C})
+  \end{align*}
+  eine Subbasis von $\mathcal{T}$ ist und es folgt
+  \begin{align*}
+    \exists f_1,\dots,f_n \in \iota_1(X^{\prime}), \exists V_1,\dots,V_n \in \mathcal{U}^{\C}(0):
+    V = \bigcap_{i=1}^n f_i^{-1}(V_i).
+  \end{align*}
+  Wir wollen zeigen, dass
+  \begin{align*}
+    \exists g_1,\dots,g_m \in X^{\prime}: \exists W_1,\dots,W_m \in \mathcal{U}^{\C}(0):
+    \iota\left(\bigcap_{j=1}^m g_j^{-1}(w_j)\right) \subseteq V
+  \end{align*}
+  Sei $k \in \{1,\dots,n\}$ beliebig.
+  \begin{align*}
+    g_k &:= \iota_1^{-1} \in X^{\prime} \\
+    \mathcal{T}_{||\cdot||_{X^{\primeprime}|_{\iota(X)}}} &\supseteq \sigma(X^{\primeprime},X^{\prime}) \ni f_k^{-1}(V_k)
+    (\subseteq \iota(X)).
+  \end{align*}
+  Es folgt also
+  \begin{align*}
+    f_k^{-1}(V_k) \in \mathcal{T}_{||\cdot||_{X^{\primeprime}|_{\iota(X)}}}
+  \end{align*}
+  und weil $\iota: (X,||\cdot||_X) \rightarrow (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}})$
+  stetig ist gilt
+  \begin{align*}
+    \exists S_k \in \mathcal{U}^{(X,||\cdot||)}(0): \iota(S_k) \subseteq f_k^{-1}(V_k),
+  \end{align*}
+  weiters
+  \begin{align*}
+    \exists W_k \in \mathcal{U}^{\C}(0) ~\text{mit}~ (\iota_1^{-1}(f_k))^{-1}(W_k) \subseteq S_k,
+  \end{align*}
+  weil $\iota_1^{-1}(f_k) \in (X,||\cdot||)^{\prime}$. Damit folgt
+  \begin{align*}
+    \iota((\iota_1^{-1}(f_k))^{-1}(W_k)) \subseteq \iota(S_k) \subseteq f_k^{-1}(V_k)
+    \implies \iota\left(\bigcap_{i=1}^n (\iota_1^{-1}(f_i))^{-1}(W_i)\right) \subseteq \bigcap_{i = 1}^nf_i^{-1}(V_i).
+  \end{align*}
+  Daraus folgt, dass $\iota$ stetig im Punkt $0$ und linear, also ist $\iota$ stetig. \\
+  Sei nun umgekehrt $\bigcap_{i=1}^n f_i^{-1}(W_i)$ mit $W_i \in \mathcal{U}^{\C}(0)$
+  und $g_i \in X^{\prime}$ gegeben, $k \in \{1,\dots,n\}$ beliebig.
+  \begin{align*}
+    f_k := \iota_1(g_k) \in X^{\primeprime},
+  \end{align*}
+  wegen $g_i^{-1}(W_i) \in \sigma(X,X^{\prime}) \subseteq \mathcal{T}_{||\cdot||}$
+  ist $g_k^{-1}(W_k) \in \mathcal{T}_{||\cdot||}$ und weil $\iota^{-1}$ ein
+  Homöomorphismus ist, gibt es ein
+  $S_k \in \mathcal{U}^{(\iota(X), ||\cdot||_{X^{\primeprime}|_{\iota(X)}})}$
+  mit $\iota^{-1}(S_k) \subseteq g_k^{-1}(W_k)$, wegen $f_k \in X^{\primeprimeprime}$
+  gibt es $V_k \in \mathcal{U}^{\C}(0)$ mit
+  \begin{align*}
+    f_k^{-1}(V_k) \subseteq S_k \implies \iota^{-1}(f_k^{-1}(V_k)) \subseteq g_k^{-1}(V_k)
+  \end{align*}
+  \item
+\end{enumerate}
 
 
 \end{solution}
