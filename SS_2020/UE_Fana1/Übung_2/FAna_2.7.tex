@@ -4,6 +4,48 @@ $\sup_{n \in \mathbb{N}} ||A_n|| < \infty$ weglassen?
 Falls ja, beweise dies. Falls nein, finde ein Gegenbeispiel.
 \end{exercise}
 \begin{solution}
-Beweis.
+
+Wir zeigen an einem Beispiel, dass man die Vorraussetzung nicht weglassen kann.
+Dabei machen wir zuerst die allgemeine Feststellung bezüglich des Zusammenhangs der
+Operatortopologien:
+
+\begin{align*}
+  \mathcal{T}_w \subseteq \mathcal{T}_s \subseteq \mathcal{T}_{||\cdot||}
+\end{align*}
+
+Also ist die schwache Operatortopologie gröber als die starke und diese wiederum
+gröber als die Norminduzierte. Daher brauchen wir nur ein Beispiel finden, bei dem
+die Voraussetzungen von (a), ohne die aus der Angabe, gelten und wenn wir daraus folgern können, das die Conlusio von (b) falsch ist haben wir gezeigt, dass die Vorraussetzung sowohl
+für (a) als auch (b) notwendig ist.
+
+Für die Folge $(A_n)_{n \ in \N}$ gilt:
+
+\begin{align*}
+  A_n \stackrel{s}{\rightarrow} A
+  \Leftrightarrow
+  \forall y \in Y: A_n y \stackrel{||\cdot||_Z}{\rightarrow} Ay
+\end{align*}
+
+Wir wählen unsere Räume wie folgt: $Y = (L^1 (0,1), ||\cdot||_1) ; Z=X=\R$. Der
+Darstellungssatz von Riesz gibt uns jetzt vor, wie unsere $A_n$ aussehen:
+
+\begin{align*}
+  \forall n \in \N: \exists h_n \in L^{\infty}(0,1):
+  \forall g \in L^1 (0,1): A_n(g) = \int_{(0,1)}h_n g d\lambda \\
+  \text{bzw.} A(g)= \int_{(0,1)} hg d\lambda
+\end{align*}
+
+Wir wählen:
+
+\begin{align*}
+  h_n (x):= \left\{
+  \begin{array}{cc}
+    n & \text{,falls\,} x \in (0,\frac{1}{n^2}) \\
+    \frac{1}{n} & \text{sonst}
+  \end{array}
+  \right\}
+\end{align*}
+
+Dann gilt für die Norm der $A_n$
 
 \end{solution}
