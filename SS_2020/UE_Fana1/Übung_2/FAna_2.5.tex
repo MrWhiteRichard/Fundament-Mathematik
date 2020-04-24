@@ -49,7 +49,7 @@ Nämlich:
     =& \{\iota(x) \in \iota(X): |\underbrace{\iota_1 (f_{j})}_{\in \iota_1 (X^{\prime})}(\iota(x))|<\epsilon_j, j=1,...,m\}
   \end{align*}
 
-  und somit ist $V := \iota(U) \subset \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$ und es gilt
+  und somit ist $V := \iota(U) \subseteq \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$ und es gilt
   \begin{align*}
     \iota^{-1}(V) = U,
   \end{align*}
@@ -114,18 +114,18 @@ Nämlich:
     \iota\left(\bigcap_{j=1}^m g_j^{-1}(W_j)\right) \subseteq V
   \end{align*}
 
-  Wir definieren 
+  Wir definieren
   \begin{align*}
     g_k := f_k \circ \iota \in (X,\norm[X]{\cdot})^\prime \quad \textrm{und} \quad W_k := V_k.
   \end{align*}
-  Die Funktion $g_k$ ist stetig und linear, weil $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ und $f_k: (X, \norm[X^\primeprime]{\cdot}) \to \C$ beide stetig und linear sind. 
-  Nun gilt 
+  Die Funktion $g_k$ ist stetig und linear, weil $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ und $f_k: (X, \norm[X^\primeprime]{\cdot}) \to \C$ beide stetig und linear sind.
+  Nun gilt
   \begin{align*}
     y \in \iota(g_k^{-1}(W_k)) \Rightarrow \exists x \in g_k^{-1}(W_k): y = \iota(x).
   \end{align*}
   Wegen $x \in g_k^{-1}(W_k)$ gilt weiter
   \begin{align*}
-    g_k(x) = f_k(\iota(x)) \in W_k = V_k \Rightarrow y = \iota(x) \in f_k^{-1}(V_k) 
+    g_k(x) = f_k(\iota(x)) \in W_k = V_k \Rightarrow y = \iota(x) \in f_k^{-1}(V_k)
   \end{align*}
   Es gilt also $\iota(g_k^{-1}(W_k)) \subseteq f_k^{-1}(V_k)$. Nun schneiden wir noch
   \begin{align*}
@@ -137,7 +137,7 @@ Nämlich:
   \begin{align*}
     f_k := g_k \circ \iota^{-1} \in \iota_1(X^\prime) \quad \textrm{und} \quad V_k := W_k.
   \end{align*}
-  Wie schon vorhin sind $\iota^{-1}: (\iota(X), \norm[X^\primeprime]{\cdot}\mid_{\iota(X)}) \to (X, \norm[X]{\cdot})$ und $g_k: (X, \norm[X]{\cdot}) \to \C$ und daher auch $f_k$ stetig und linear, wobei, weil $\iota_1$ die Auswertungsabbildung ist und $g_k \in X^\prime$, sogar $f_k \in \iota_1(X\prime)$. Wie vorhin gilt nun auch 
+  Wie schon vorhin sind $\iota^{-1}: (\iota(X), \norm[X^\primeprime]{\cdot}\mid_{\iota(X)}) \to (X, \norm[X]{\cdot})$ und $g_k: (X, \norm[X]{\cdot}) \to \C$ und daher auch $f_k$ stetig und linear, wobei, weil $\iota_1$ die Auswertungsabbildung ist und $g_k \in X^\prime$, sogar $f_k \in \iota_1(X\prime)$. Wie vorhin gilt nun auch
   \begin{align*}
     \iota \pbraces{\bigcap_{i = 1}^n f_k^{-1}(V_k)} \subseteq \bigcap_{i = 1}^n g_k^{-1}(W_k)
   \end{align*}
@@ -154,15 +154,12 @@ Nämlich:
      \Leftrightarrow \Forall y \in X^{\prime}: \iota(\cdot)(y) \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: y(\cdot) \text{~stetig~}.
   \end{align*}
 
-  Wir wissen bereits, dass
+  Ebenso ist $\iota^{-1}$ genau dann stetig, wenn gilt
+
   \begin{align*}
-    \iota^{-1}: (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}}) \rightarrow (X,||\cdot||_X)
+    \Forall y \in X^{\prime}: y \circ \iota^{-1}(\cdot) \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: \iota(\iota^{-1}(\cdot))(y) \text{~stetig~} \\
+     \Leftrightarrow \Forall y \in X^{\prime}: \iota_1(y)(\cdot) \text{~stetig~} \Leftrightarrow \Forall w \in \iota_1(X^{\prime}): w(\cdot) \text{~stetig~}
   \end{align*}
-  stetig ist und somit auch für alle $y \in X^{\prime}$
-  \begin{align*}
-    y \circ \iota^{-1}: (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}}) \rightarrow (\C,\mathcal{T}_\C)
-  \end{align*}
-  stetig ist. Also erhalten wir $y \circ \iota^{-1} \in \iota(X)^{\prime} \stackrel{?}{\subseteq} \iota_1(X^{\prime})$
 
   ***************
 
@@ -170,11 +167,11 @@ Nämlich:
   \begin{align*}
     \iota \quad \textrm{stetig} \Leftrightarrow \forall f \in \iota_1(X^\prime): f \circ \iota \quad \textrm{stetig}
   \end{align*}
-  Wir wählen also 
+  Wir wählen also
   \begin{align*}
-    f \in \iota_1(X^\prime) \subseteq X^\primeprimeprime 
+    f \in \iota_1(X^\prime) \subseteq X^\primeprimeprime
   \end{align*}
-  beliebig. Da $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ stetig und linear ist erhalten wir auch die Stetigkeit von 
+  beliebig. Da $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ stetig und linear ist erhalten wir auch die Stetigkeit von
   \begin{align*}
     f \circ \iota \in (X, \norm[X]{\cdot})^\prime = (X, \sigma(X, X^\prime))^\prime
   \end{align*}
