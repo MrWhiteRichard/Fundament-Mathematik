@@ -59,12 +59,12 @@ $\norm[\infty]{g} < \infty$. Damit
   =\norm[\infty]{g}
   \bigg( \int_0^\frac{1}{n^2} n d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n} d\lambda
   \bigg) \\
-  = \norm[\infty]{g} \left(\frac{1}{n}+\frac{1}{n}\left(1-\frac{1}{n}\right)\right)
+  = \norm[\infty]{g} \left(\frac{1}{n}+\frac{1}{n}\left(1-\frac{1}{n^2}\right)\right)
   \xrightarrow{n \rightarrow \infty} 0
 \end{align*}
 
 Daraus folgern wir, dass $A=0$. Definieren wir nun
-$B_n: \R \rightarrow L^1(0,1): x \mapsto xh_n$, diese Funktionen sind nun linear und
+$B_n: \R \rightarrow L^1(0,1): x \mapsto xh_n$. Diese Funktionen sind nun linear und
 beschränkt. Für $x \in \R$ beliebig berechnen wir nun:
 
 \begin{align*}
@@ -79,13 +79,13 @@ $ABx = 0$. Es gilt aber auch:
 \begin{align*}
   |A_n B_n x| =
   \int_{(0,1)} x h_n(s) h_n(s) d\lambda(s) = |x|
-  \bigg(\int_0^\frac{1}{n^2} n^2 d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n^2}
+  \bigg(\int_0^\frac{1}{n^2} n^2 d\lambda + \int_\frac{1}{n^2}^1 \frac{1}{n^2} d\lambda
   \bigg)
   = |x|\left(1+\frac{1}{n^2}\left(1-\frac{1}{n^2}\right)\right)
   \xrightarrow{n \rightarrow \infty} x
 \end{align*}
 
-Wir erinnern uns an eine Beschreibung der Konvergenz bezlüglich der schwachen Operatortopologie:
+Wir erinnern uns an eine Beschreibung der Konvergenz bezüglich der schwachen Operatortopologie:
 
 \begin{align*}
   A_n B_n \stackrel{w}{\rightarrow} AB \Leftrightarrow

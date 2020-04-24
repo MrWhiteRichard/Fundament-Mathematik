@@ -21,6 +21,13 @@ Nämlich:
 \begin{enumerate}[label = (\arabic*)]
 
   \item
+  Wir erinnern uns, dass $f$ stetig im Punkt $x$ ist, genau dann, wenn
+
+  \begin{align*}
+    \Forall V \in \mathfrak{U}(f(x)):
+    \Exists U \in \mathfrak{U}(x):
+    f(U) \subseteq V.
+  \end{align*}
 
   Sei $U \subseteq X$ ein beliebiges Element aus der Nullumgebungsbasis von
 
@@ -42,8 +49,12 @@ Nämlich:
     =& \{\iota(x) \in \iota(X): |\underbrace{\iota_1 (f_{j})}_{\in \iota_1 (X^{\prime})}(\iota(x))|<\epsilon_j, j=1,...,m\}
   \end{align*}
 
-  und somit ist $\iota(U) \subset \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$.
-
+  und somit ist $V := \iota(U) \subset \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$ und es gilt
+  \begin{align*}
+    \iota^{-1}(V) = U,
+  \end{align*}
+  also ist $\iota^{-1}$ im Punkt $0$ stetig und aufgrund Proposition 2.1.11
+  insgesamt stetig. \\
   Sei umgekehrt $V \subseteq \iota(X)$ ein beliebiges Element aus der Nullumgebungsbasis von
 
   \begin{align*}
@@ -63,11 +74,11 @@ Nämlich:
   Also gilt
 
   \begin{align*}
-    \iota^{-1}(V) =& \{x \in X: \vbraces{w_{j}(\iota(x))}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{\iota_1(y_{j})(\iota(x))}<\epsilon_j, j=1,...,m\} \\
+    U := \iota^{-1}(V) =& \{x \in X: \vbraces{w_{j}(\iota(x))}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{\iota_1(y_{j})(\iota(x))}<\epsilon_j, j=1,...,m\} \\
     =& \{x \in X: \vbraces{\iota(x)(y_j)}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{y_j(x)}<\epsilon_j, j=1,...,m\}
   \end{align*}
 
-  und somit wäre auch diese Aussage gezeigt.
+  und wir haben mit $U$ eine Nullumgebung gefunden mit $\iota(U) = V$ und damit ist auch $\iota$ stetig.
 
   ******************
 
@@ -159,11 +170,15 @@ Nämlich:
      \Leftrightarrow \Forall y \in X^{\prime}: \iota(\cdot)(y) \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: y(\cdot) \text{~stetig~}.
   \end{align*}
 
-  Ebenso ist $\iota^{-1}$ genau dann stetig, wenn
-
+  Wir wissen bereits, dass
   \begin{align*}
-    \Forall y \in X^{\prime}: y \circ \iota^{-1}\underbrace{(z)}_{=\iota(x)} \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: y(x) \text{~stetig~}
+    \iota^{-1}: (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}}) \rightarrow (X,||\cdot||_X)
   \end{align*}
+  stetig ist und somit auch für alle $y \in X^{\prime}$
+  \begin{align*}
+    y \circ \iota^{-1}: (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}}) \rightarrow (\C,\mathcal{T}_\C)
+  \end{align*}
+  stetig ist. Also erhalten wir $y \circ \iota^{-1} \in \iota(X)^{\prime} \stackrel{?}{\subseteq} \iota_1(X^{\prime})$
 
 \end{enumerate}
 

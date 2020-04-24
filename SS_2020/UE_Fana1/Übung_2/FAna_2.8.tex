@@ -39,61 +39,56 @@ Die durch die Familie der Seminormen $(p_{ij}')_{(i,j) \in I \times J}$ induzier
   \end{cases}
 \end{align*}
 
-Jeder Faktorraum $(\prod_{i \in I} X_i) / N(p_{ij}')$ trägt dabei jene Topologie, die von der Norm $\overline{p_{ij}'}$ induziert wird, welche repräsentantenweise durch die Seminorm ${p_{ij}'}$ definiert ist.
+Jeder Faktorraum $(\prod_{i \in I} X_i) / N(p_{ij}')$ trägt dabei jene Topologie, die von der Norm $\overline{p_{ij}'}$ induziert wird,
+welche repräsentantenweise durch die Seminorm ${p_{ij}'}$ definiert ist.
 
-
-\textbf{ab da hab ichs mir noch nicht wirklich durchüberlegt - weiß gar nicht ob es genügt, das zu zeigen}
-
-Wir zeigen nun, dass jede Umgebung der Null in der einen Topologie auch eine solche in der jeweils anderen ist.
-
-
-Eine Nullumgebungsbasis im Produktraum bezüglich der von den Seminormen induzierten Topologie bildet folgende Menge:
+Eine Basis der Topologie im Produktraum bezüglich der von den Seminormen induzierten Topologie bildet folgende Menge:
 \begin{align*}
     \mathcal{B} =
-    \{\bigcap_{(i,j) \in E} (\pi_{ij}')^{-1}(U^{{\overline{p_{ij}'}}}_{\epsilon}(N(p_{ij}'))
-    ~|~ ...
+    \{\bigcap_{(i,j) \in E} (\pi_{ij}')^{-1}(U^{{\overline{p_{ij}'}}}_{\epsilon_{ij}}(x_{ij} + N(p_{ij}'))
+    ~|~ \epsilon_{ij} > 0, E \subset I \times J : |E| < \infty
     \}.
 \end{align*}
 
 Es gilt
 \begin{align*}
-    (\pi_{ij}')^{-1}(U^{{\overline{p_{ij}'}}}_{\epsilon}(N(p_{ij}')))
+    (\pi_{ij}')^{-1}(U^{{\overline{p_{ij}'}}}_{\epsilon_{ij}}x_{ij} + (N(p_{ij}')))
    = \{ f \in \prod_{i \in I} X_i ~|~
-   \overline{p_{ij}'}(\pi_{ij}'(f) - N(p_{ij}'))
-   < \epsilon \}
+   \overline{p_{ij}'}(\pi_{ij}'(f) - x_{ij} + N(p_{ij}'))
+   < \epsilon_{ij} \}
    = \{ f \in \prod_{i \in I} X_i ~|~
    p_{ij}'(f) < \epsilon \}
-   = U_{\epsilon}^{p_{ij}'}(0),
+   = U_{\epsilon_{ij}}^{p_{ij}'}(x_{ij}),
 \end{align*}
 
-eine Nullumgebungsbasis besteht also genau aus den endlichen Schnitten von Kugeln bezüglich der Seminormen.
+eine Basis der Topologie besteht also genau aus den endlichen Schnitten von Kugeln bezüglich der Seminormen.
 
 
-Betrachten wir nun eine Nullumgebungsbasis in der Produkttopologie:
+Betrachten wir nun eine Basis der Produkttopologie:
 
 \begin{align*}
     \mathcal{C} =
-    \{\bigcap_{i \in E} (\pi_{i})^{-1}(V)
-    ~|~ V ~\text{Nullumgebung in}~ (X_i, \mathcal{T}_i)
+    \{\bigcap_{i \in E} (\pi_{i})^{-1}(V_i)
+    ~|~ V_i \in \mathcal{T}_i, E \subset I: |E| < \infty
     \}.
 \end{align*}
 
 Die Räume $(X_i, \mathcal{T}_i)$ sind nun ihrerseits wiederum von den Familien
 $\{p_{ij} ~|~ j \in J\}$ von Seminormen erzeugt. Jedes V aus der oberen Menge enthält also einen endlichen Schnitt von Kugeln:
 \begin{align*}
- \bigcap_{j \in E} U_{\epsilon}^{p_{ij}}(0) \subseteq V.
+ \bigcap_{j \in E} U_{\epsilon}^{p_{ij}}(x_j) \subseteq V.
 \end{align*}
 
 Demnach lassen sich die Mengen aus $\mathcal{C}$ schreiben als
 
 \begin{align*}
-    \bigcap_{i \in E_1} (\pi_{i})^{-1}(\bigcap_{j \in E_2} U_{\epsilon}^{p_{ij}}(0))
+    \bigcap_{i \in E_1} (\pi_{i})^{-1}(\bigcap_{j \in E_2} U_{\epsilon}^{p_{ij}}(x_j))
     =
     \bigcap_{i \in E_1}
     \bigcap_{j \in E_2}
-    (\pi_{i})^{-1}(U_{\epsilon}^{p_{ij}}(0))
+    (\pi_{i})^{-1}(U_{\epsilon}^{p_{ij}}(x_j))
     =
-    \bigcap_{(i,j) \in E_1 \times E_2} U_{\epsilon}^{p_{ij}'}(0);
+    \bigcap_{(i,j) \in E_1 \times E_2} U_{\epsilon}^{p_{ij}'}(x_j);
 \end{align*}
 
 insgesamt gilt also $\mathcal{B} = \mathcal{C}$, was zu zeigen war.
