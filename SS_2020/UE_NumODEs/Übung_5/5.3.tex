@@ -28,5 +28,114 @@ dann eine Norm ist, wenn
 \end{align*}
 \end{exercise}
 \begin{solution}
-Beweis.
+Wir wissen
+\begin{align}\label{Pol}
+  \Forall p \in \Pi_r :(\text{p hat mindestens $r+1$ paarweise verschiedene Nullstellen} \Rightarrow p = 0)
+\end{align}
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item
+  \begin{enumerate}[label = \textit{\roman*)}]
+    \item \Quote{Skalare raus} \begin{align*}
+      & \Forall p \in \Pi_r, \Forall \lambda \in \C: \\
+      & \|\lambda p\|_k = \|\lambda p\|_\infty + \|\lambda p^{(k)}\|_\infty = |\lambda| \|p\|_\infty + |\lambda| \|p^{k}\|_\infty = |\lambda| \|p\|_k
+    \end{align*}
+    \item Dreiecksungleichung \begin{align*}
+      &\Forall p,q \in \Pi_r: \\
+      & \|p+q\|_k = \|p+q\|_\infty + \|(p+q)^{(k)}\|_\infty \\
+      &\leq \|p\|_\infty + \|q\|_\infty + \|p^{(k)}\|_\infty + \|q^{(k)}\|_\infty = \|p\|_k + \|q\|_k
+    \end{align*}
+    \item \Quote{Null-Äquivalenz} \begin{align*}
+      &\Forall p \in \Pi_r: \\
+      & \|p\|_k = 0 \Rightarrow \|p\|_\infty = 0 \Rightarrow p = 0
+    \end{align*}
+    Umkehrung trivial.
+  \end{enumerate}
+  \item
+  \begin{enumerate}[label = \textit{\roman*)}]
+    \item \Quote{Skalare raus} $\Rightarrow \checkmark$
+    \item Dreiecksungleichung $\Rightarrow \checkmark$
+    \item \Quote{Null-Äquivalenz} \begin{align*}
+      &\Forall p \in \Pi_r: \\
+      & \|p\|_k = 0 \Rightarrow \Forall j=0,...,r: p(x_j) = 0 \stackrel{\eqref{Pol}}{\Rightarrow} p = 0
+    \end{align*}
+    Umkehrung trivial.
+  \end{enumerate}
+  \item
+  \begin{enumerate}[label = \textit{\roman*)}]
+    \item \Quote{Skalare raus} $\Rightarrow \checkmark$
+    \item Dreiecksungleichung $\Rightarrow \checkmark$
+    \item \Quote{Null-Äquivalenz} \begin{align*}
+      &\Forall p \in \Pi_r: \\
+      & \|p\|_k = 0 \Rightarrow p(x_0) = 0 \land \Forall j=1,...,r: p^{(k)}(x_j) = 0
+    \end{align*}
+    \begin{enumerate}[label = \textit{\arabic*.}]
+      \item Fall ($k=1$):
+      Laut Aufgabe 22 ist die Lösung dieses Problems eindeutig und offensichtlich ist $p = 0$ eine Lösung.
+      Umkehrung trivial.
+      \item Fall ($k>1$):
+      Definiere das Polynom $p_0 \in \Pi_r$ durch
+      \begin{align*}
+        p_0(x) := \sum_{i=0}^{r}a_{i}x^i \text{~mit~} &a_i = 0, i=k,...r, \\
+        &a_i = 1, i=1,...,min(r,k-1), \\
+        &a_0 = - \sum_{i=1}^{r}a_{i}x_0^{i}
+      \end{align*}
+      Nun gilt $p_0^{(k)}(x) = \sum_{i=k}^{r} \frac{i!}{(i-k)!}a_{i}x^{i-k} = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=1,...,r$. Außerdem ist durch Definition von $a_0$ auch $p_0(x_0) = a_{0}x_0^{0} + \sum_{i=1}^{r}a_{i}x_0^i = 0$.
+      Somit gilt $\|p_0\|_k = 0$ aber $p_0 \neq 0$. Also ist $\|\cdot\|_k$ für $k>1$ keine Norm.
+    \end{enumerate}
+  \end{enumerate}
+  \item
+  \begin{enumerate}[label = \textit{\roman*)}]
+    \item \Quote{Skalare raus} $\Rightarrow \checkmark$
+    \item Dreiecksungleichung $\Rightarrow \checkmark$
+    \item \Quote{Null-Äquivalenz} \begin{align*}
+      &\Forall p \in \Pi_r: \\
+      & \|p\|_k = 0 \Rightarrow p(x_0) = p(x_1) = 0 \land \Forall j=2,...,r: p^{(k)}(x_j) = 0
+    \end{align*}
+    \begin{enumerate}[label = \textit{\arabic*.}]
+      \item Fall ($k=1$):
+      Wir zeigen zunächst die Rückrichtung des Hinweises, nehmen also an, dass
+      \begin{align*}
+        \int_{x_0}^{x_1} \prod_{j=2}^r \left(\xi - x_j\right)d\xi \neq 0.
+      \end{align*}
+      Wir wählen ein belibiges $x_{r+1}$ verschieden von den bisherigen Stützstellen. Der Einfachheit halber definieren wir
+      \begin{align*}
+        z_j = x_j+1, j = 1,...,r
+      \end{align*}
+      Sei nun $p \in \Pi_r$ mit $\|p\|_k = 0 \Rightarrow p(x_0) = p(x_1) = 0 \land \Forall j=1,...,r-1: p^{\prime}(z_j) = 0$.
+      Also gilt
+      \begin{align}\label{int}
+        0 = p(x_1) - p(x_0) = \int_{x_0}^{x_1}p^{\prime}(\xi) d\xi
+      \end{align}
+      Wir verwenden nun die Newton Darstellung des Interpolationspolynoms über die dividierten Differenzen, wobei für $j=1,...,r-1$ gilt $y[z_j] = p^{\prime}(x_{j+1}) = 0$ und somit aufgrund der rekursiven Definition der d. D. auch $y[z_1,...,z_j]=0$ und $y[z_1,...,z_r] = \frac{1}{C}p^{\prime}(z_r)$
+      Eingesetzt in \eqref{int}:
+      \begin{align*}
+        0 =& \int_{x_0}^{x_1}p^{\prime}(\xi) d\xi = \int_{x_0}^{x_1} \sum_{j=1}^{r}y[z_1,...,z_j]N_{j-1}(\xi) d\xi \\
+        =& y[z_1,...,z_r]\int_{x_0}^{x_1}N_{r-1}(\xi)d\xi = \frac{1}{C}p^{\prime}(z_r)\underbrace{\int_{x_0}^{x_1}\prod_{k=1}^{r-1}(\xi-z_j)d\xi}_{\neq 0}
+      \end{align*}
+      Es muss also $p^{\prime}(z_r) = 0$, somit wieder nach \eqref{Pol} $p^{\prime} = 0$ und $p = 0$ konstant, da $p(x_0) = 0$. Also ist in diesem Fall $\|\cdot\|_k$ eine Norm.
+
+      Für die umgekehrte Richtung, nehmen wir an, dass
+      \begin{align*}
+        \int_{x_0}^{x_1} \prod_{j=2}^r \left(\xi - x_j\right)d\xi = 0.
+      \end{align*}
+      Wir definieren
+      \begin{align*}
+        p_0(x) := \int_{x_0}^{x} \prod_{j=2}^r \left(\xi - x_j\right)d\xi
+      \end{align*}
+      Man überprüft leicht, dass $\|p_0\|_k = 0$, allerdings ist $p_0 \neq 0$. In diesem Fall ist $\|\cdot \|_k$ also keine Norm.
+
+      \item Fall ($k>1$):
+      (Fast) analog zu \textbf{c)} definiert man das Polynom $p_0 \in \Pi_r$ (o.B.d.A. $r>1$) durch
+      \begin{align*}
+        p_0(x) := \sum_{i=0}^{r}a_{i}x^i \text{~mit~} &a_i = 0, i=k,...r, \\
+        &a_i = 1, i=2,...,min(r,k-1), \\
+        &a_0 = - \sum_{i=1}^{r}a_{i}x_0^{i} \\
+        &a_1 = - \frac{a_0 + \sum_{i=2}^{r}a_{i}x_1^{i}}{x_1}
+      \end{align*}
+      Aufpassen: $a_0$ und $a_1$ so nur implizit definiert, aber eindeutig lösbar (da $x_0 \neq x_1$).
+      Wieder gilt $p_0^{(k)}(x) = \sum_{i=k}^{r} \frac{i!}{(i-k)!}a_{i}x^{i-k} = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=2,...,r$. Außerdem ist durch Definition von $a_0$ und $a_1$ auch $p_0(x_0) = a_{0}x_0^{0} + \sum_{i=1}^{r}a_{i}x_0^i = 0$ und $p_0(x_1) = a_{0}x_1^{0} + a_{1}x_1^{1} + \sum_{i=2}^{r}a_{i}x_1^i = 0$.
+      Somit gilt $\|p_0\|_k = 0$ aber $p_0 \neq 0$. Also ist $\|\cdot\|_k$ für $k>1$ keine Norm.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
 \end{solution}
