@@ -85,29 +85,21 @@ Für jedes $n \in \N,a_0 \leq n < b_0$ ist also
 \begin{align*}
   [n]_{\sim} \supseteq \{n + km: k \in \N\}.
 \end{align*}
-Gelte nun zusätzlich $a_1 \sim a_1 + m^{\prime}$ mit $a_1 > a_0$ und $m^{\prime} \in \N$. \\
-Dann existiert ein kleinstes $k_0 \in N: a_0 + k_0m \geq a_1$ und es folgt mittels
-Transitivität und $1 \sim 1$
-\begin{align*}
-  [a_0]_{\sim} \supseteq \{a_0 + k_0m + km^{\prime}: k \in \N\}.
-\end{align*}
-Da für alle $k < k_0: a_0 + km \sim a_0 + k_0m$ gilt sogar
-\begin{align*}
-  [a_0]_{\sim} \supseteq \{a_0 + k_1m + k_2m^{\prime}: k_1,k_2 \in \N\}.
-\end{align*}
-Definiert man $l := ggT(m,m^{\prime})$ und setzt man
-$lp = m, lp^{\prime} = m^{\prime}$ vereinfacht sich der Ausdruck zu
-\begin{align*}
-  [a_0]_{\sim} \supseteq \{a_0 + l(k_1p + k_2p^{\prime}): k_1,k_2 \in \N\}.
-\end{align*}
-Da $p$ und $p^{\prime}$ nun co-prim sind gilt damit
-\begin{align*}
-  [a_0]_{\sim} \supseteq \{a_0 + lk: k \in \N\}.
-\end{align*}
-Im Spezialfall, dass $m, m^{\prime}$ teilerfremd sind, gilt dann
-\begin{align*}
-  [a_0]_{\sim} = \{n \in \N: n \geq a_0\}
-\end{align*}
+Angenomenn es gäbe zusätzlich $a_1 \sim a_1 + m^{\prime}$ mit $m^{\prime} \neq m \in \N$. \\
+\begin{itemize}
+\item Fall 1: $a_1 < a_0$:
+Widerspruch zur Annahme, dass $a_0$ das kleinste Element ist, welches nicht nur
+mit sich selbst in Relation steht.
+  \item Fall 2: $a_1 \geq a_0, m^{\prime} < m$:
+  Es existiert ein kleinstes $k \in \N$, sodass $a_0 + km \geq a_1$.
+  Es folgt $a_0 + km \sim a_0 + km + m^{\prime} \sim a_0 + m^{\prime}$
+  im Widerspruch dazu, dass $b_0$ das kleinste Element ungleich $a_0$ ist, welches mit
+  $a_0$ in Relation steht.
+  \item Fall 3: $a_1 \geq a_0, m^{\prime} > m$:
+  Es gibt ein kleinstes $k \in \N: mk < m^{\prime}$.
+  Es folgt $a_1 + mk \sim a_1 \sim a_1 + m^{\prime}$ und wir erhalten einen
+  Widerpruch mittels Fall 1 angewandt auf das Paar $(a_1 + mk, a_1 + m^{\prime})$.
+\end{itemize}
 Insgesamt gilt also, dass jede Kongruenzrelation auf $(\mathbb{N},+,0)$ einer Partition
 der Form
 \begin{align*}
@@ -120,8 +112,8 @@ mit $a_0,m \in N$ entspricht. Damit haben wir eine bijektive Abbildung
     (a_0,m) \mapsto P_{(a_0,m)}
   \end{cases}
 \end{align*}
-gefunden und es gilt $|K| = |\N|$.
-***** Glaub ich nicht ($a_0 - n < 0$) **** glaubst du es so?******\\
+gefunden und es gilt $|K| = |\N|$. \\
+*************************** (andere Argumentation) \\
 Dass Gleichheit gilt, erkennt man im Folgenden. Sei angenommen, es gibt zwei Zahlen $n_1 < n_2$ zwischen $a_0$ und $b_0$ (also $n_1 = a_0 + d_1$ und $n_2 = a_0 + d_2$ mit $d_1,d_2 \in {0,...,m-1}$), die in Relation stehen.
 
 Dann folgt (wiederum durch induktives Anwenden der Kongruenz bzgl. $+$ und $1 \sim 1$), dass
@@ -129,7 +121,7 @@ Dann folgt (wiederum durch induktives Anwenden der Kongruenz bzgl. $+$ und $1 \s
 n_1 + (m-d_2) = \underbrace{a_0 + m}_{\sim a_0} \sim a_0 + \underbrace{(m + d_1 - d_2)}_{<m} = n_2 + (m-d_2),
 \end{align*}
 was ein Widerspruch zur Minimalität von $b$ wäre.\\
-*********************
+********************* \\
 Umgekehrt kann man zeigen, dass für alle $a_0 \in \N$ und $b_0 > a_0$ diese Konstruktion eine Kongruenzrelation ergibt. Die Äquivalenzklassen sind wie oben festgelegt, die Verträglichkeit mit der Addition zeigt man durch Fallunterscheidung.
 Wir wollen zeigen, dass für alle $x_1,x_2,y_1,y_2 \in \N$ gilt:
 \begin{align*}
