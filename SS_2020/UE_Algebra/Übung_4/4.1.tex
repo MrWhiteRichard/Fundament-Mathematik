@@ -17,7 +17,9 @@ Kardinalitäten, insbesondere $|\mathbb{N}|$ und $|\mathbb{R}|$.
 \begin{solution}
 \leavevmode \\
 \begin{itemize}
-  \item [1.] Als erstes haben wir die beiden trivialen Unteralgebren: $\{0\}$ und $\mathbb{N}$. \\
+  \item [1.] Bezeichne mit $\mathcal{U}$ die Menge aller Unteralgebren
+  von $(\mathbb{N},+,0)$. \\
+  Als erstes haben wir die beiden trivialen Unteralgebren: $\{0\}$ und $\mathbb{N}$. \\
   Dann haben wir zu jeder natürlichen Zahl $n \geq 2: n\cdot\mathbb{N}$. \\
 Ebenfalls für jede natürliche Zahl $n \geq 1: \mathbb{N}\backslash\{1,\dots,n\}$. \\
 Im allgemeinen können wir zu jeder beliebiger Teilmenge $X \subset \mathbb{N}$
@@ -28,7 +30,7 @@ allerdings haben wir mit $|2^{\mathbb{N}}| = |\mathbb{R}|$ zumindest eine obere
 Schranke für die Kardinalität der Unteralgebren gefunden. Bleibt noch die Frage,
 ob wir die Schranke noch auf abzählbar unendlich herunterschrauben können. \\
 Wir können zumindest zeigen, dass jede Unteralgebra endlich erzeugt ist.
-Sei $U$ eine beliebige Unteralgebra von $(\mathbb{N},+,0)$ und sei angenommen,
+Sei $U \in \mathcal{U}$ beliebig und sei angenommen,
 dass $U$ nicht endlich erzeugt ist.
 Dazu definieren wir uns die Folge $(a_n)_{n \in \mathbb{N}}$ induktiv wie folgt
 \begin{align*}
@@ -36,16 +38,20 @@ Dazu definieren wir uns die Folge $(a_n)_{n \in \mathbb{N}}$ induktiv wie folgt
 a_{n+1} := \min U \backslash \langle a_0,\dots,a_n\rangle
 \end{align*}
 Betrachte nun die endliche Menge $(a_0,\dots,a_m)$ mit einem $m > a_0$.
-Nun folgt mit dem Schubfachprinzip $\exists k,n \leq m: a_k \mod a_0 = a_n \mod a_0$.
+Nun folgt mit dem Schubfachprinzip $\exists k,n \leq m: a_k \equiv a_n (\mod a_0)$.
 Wir nehmen o.B.d.A. an $a_k < a_n$. Dann gilt also
 \begin{align*}
   \exists c \in \mathbb{N}: a_n = a_k + ca_0 \in \langle a_0,\dots,a_m \rangle
 \end{align*}
 Dies ist ein Widerspruch zu unserer Konstruktion und $U$ muss somit endlich erzeugt sein.
-Laut Proposition 2.3.1.22. wissen wir damit jetzt, dass der Unteralgebrenverband
-mit der Mengeninklusion eine Noethersche Halbordnung ist, also dass es keine
-unendlich aufsteigenden Ketten gibt.
-Ebenfalls äquivalent dazu ist, dass jede nichtleere Teilmenge ein Maximum hat.
+Also können wir $\mathcal{U}$ als Bild einer nicht notwendigerweise injektiven
+Abbildung von der Menge $\mathcal{E}(\N)$ aller endlichen Teilmengen von $\N$ darstellen.
+Die Menge $\mathcal{E}(\N)$ können wir als
+abzählbare Vereinigung endlicher Mengensysteme anschreiben
+\begin{align*}
+  \mathcal{E}(\N) = \bigcup_{n \in \N} \{A \subset 2^\N: |A| = n \}
+\end{align*}
+und ist damit ebenfalls abzählbar. Also gilt $|\mathcal{U}| \leq |\N|$.
 \item [2.] Wieder haben wir zwei triviale Kongruenzrelationen am Anfang:
 Die Allrelation $\mathbb{N} \times \mathbb{N}$ und die Identitätsrelation
 $\{(n,n): n \in \mathbb{N}\}$. \\
