@@ -19,17 +19,28 @@ Kardinalitäten, insbesondere $|\mathbb{N}|$ und $|\mathbb{R}|$.
 \begin{itemize}
   \item [1.] Bezeichne mit $\mathcal{U}$ die Menge aller Unteralgebren
   von $(\mathbb{N},+,0)$. \\
-  Als erstes haben wir die beiden trivialen Unteralgebren: $\{0\}$ und $\mathbb{N}$. \\
-  Dann haben wir zu jeder natürlichen Zahl $n \geq 2: n\cdot\mathbb{N}$. \\
-Ebenfalls für jede natürliche Zahl $n \geq 1: \mathbb{N}\backslash\{1,\dots,n\}$. \\
+  Einige Beispiele an Unteralgebren lauten
+  \begin{itemize}
+    \item Die beiden trivialen Unteralgebren: $\{0\}$ und $\mathbb{N}$.
+    \item Für jede natürliche Zahl $n \geq 2: n\cdot\mathbb{N}$.
+    \item Für jede natürliche Zahl $n \geq 1: \mathbb{N}~\backslash\{1,\dots,n\}$.
+  \end{itemize}
 Im allgemeinen können wir zu jeder beliebiger Teilmenge $X \subset \mathbb{N}$
 die erzeugte Unteralgebra mit $\{\sum_{j=1}^nx_jn_j: n, n_j \in \mathbb{N}, x_j \in X \}$
-bestimmen. Damit haben wir ein System um alle Unteralgebren vollständig zu beschreiben.
+bestimmen. Also haben wir eine Abbildung
+\begin{align*}
+  \varphi: \begin{cases}
+    2^\N \rightarrow \mathcal{U} \\
+    X \mapsto \{\sum_{j=1}^nx_jn_j: n, n_j \in \mathbb{N}, x_j \in X \}
+  \end{cases}
+\end{align*}
+gefunden, welche $2^\N$ surjektiv auf $\mathcal{U}$ abbildet.
+Damit haben wir ein System um alle Unteralgebren vollständig zu beschreiben.
 Natürlich werden wir damit öfters die gleichen Unteralgebren erzeugen,
 allerdings haben wir mit $|2^{\mathbb{N}}| = |\mathbb{R}|$ zumindest eine obere
 Schranke für die Kardinalität der Unteralgebren gefunden. Bleibt noch die Frage,
 ob wir die Schranke noch auf abzählbar unendlich herunterschrauben können. \\
-Wir können zumindest zeigen, dass jede Unteralgebra endlich erzeugt ist.
+Dafür zeigen wir zunächst, dass jede Unteralgebra endlich erzeugt ist.
 Sei $U \in \mathcal{U}$ beliebig und sei angenommen,
 dass $U$ nicht endlich erzeugt ist.
 Dazu definieren wir uns die Folge $(a_n)_{n \in \mathbb{N}}$ induktiv wie folgt
