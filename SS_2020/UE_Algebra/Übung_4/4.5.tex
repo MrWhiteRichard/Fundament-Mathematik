@@ -45,7 +45,7 @@ Seien $G$ eine Gruppe und $A,B,\dots \subseteq G$ Teilmengen.
   \end{pmatrix}
   \end{align*}
   Dann existieren als Untergruppen davon $A := \{e,s_1\}, B := \{e,s_2\}$. \\
-  $AB = \{e,s_1,s_2, d\}$ ist allerdings keine Untergruppe, da $d \circ d = d^2 \notin AB$.
+  Mit $s_1 \circ s_2 = d$ ist $AB = \{e,s_1,s_2, d\}$ allerdings keine Untergruppe, da $d \circ d = d^2 \notin AB$.
   \item [2.] Sei $A$ beliebiger Normalteiler, $B$ beliebige Untergruppe von $G$.
   Aufgrund der Normalteilereigenschaft von $A$ gilt $xA = Ax$ für alle
   $x \in G$ und daher
@@ -67,17 +67,20 @@ Seien $G$ eine Gruppe und $A,B,\dots \subseteq G$ Teilmengen.
     xAB = AxB = ABx.
   \end{align*}
   Damit ist $AB$ ebenso Normalteiler von $G$.
-  \item [4.] Seien $N_1, ..., N_n$ beliebige Normalteiler von $G$. Wie in Punkt 3 zeigt man, dass $N_1\cdots N_n$ auch Normalteiler ist. Jede obere Schranke $O$ dieser Mengen im Normalteilerverband ist insbesondere eine Untergruppe von $G$. Daher gilt
+  \item [4.] Seien $N_1, ..., N_n$ beliebige Normalteiler von $G$. Durch
+  induktive Fortführung von Punkt 3 zeigt man, dass $N_1\cdots N_n$ auch Normalteiler ist.
+  Jede obere Schranke $O$ der Menge $\{N_i : 1 \leq i \leq n\}$ im Normalteilerverband
+  ist insbesondere eine Untergruppe von $G$. Daher gilt
   \begin{align*}
-    \forall (n_1, ..., n_n) \in N_1 \times ... \times N_n: n_1\cdots n_n \in O,
+    \forall (n_1,\dots, n_n) \in N_1 \times \dots \times N_n: n_1\cdots n_n \in O,
   \end{align*}
   also $N_1\cdots N_n \subseteq O$;
-  klarerweise gilt auch $N_i \subseteq N_1\cdots N_n$ für alle $i \in \{1,...,n\}$.
+  klarerweise gilt auch $N_i \subseteq N_1\cdots N_n$ für alle $i \in \{1,\dots,n\}$.
   $N_1\cdots N_n$ ist also die kleinste obere Schranke im Normalteilerverband und damit das gesuchte Supremum.
   \item [5.] Seien $N_i \vartriangleleft G, i \in I \neq \emptyset$ beliebig,
   $N$ die Vereinigung aller endlichen Komplexprodukte davon.
-  Sei $y \in xN$ beliebig. Also existiert ein endliches Komplexprodukt $N_i^*$,
-  welches nach Punkt 4 wieder ein Normalteiler ist, sodass $y \in xN_i^* = N_i^*x$.
+  Sei $y \in xN$ beliebig. Also existiert ein endliches Komplexprodukt $N_I^*$,
+  welches nach Punkt 4 wieder ein Normalteiler ist, sodass $y \in xN_I^* = N_I^*x$.
   Damit folgt
   \begin{align*}
     xN \subseteq Nx
@@ -85,9 +88,9 @@ Seien $G$ eine Gruppe und $A,B,\dots \subseteq G$ Teilmengen.
   und $N$ ist damit ein Normalteiler. Weiters gilt für jedes $i \in I: N_i \subseteq N$.
   Sei nun $O$ beliebige obere Schranke der Menge $N_i, i\in I$. Dann folgt
   \begin{align*}
-    \forall n \in N, x_{i_1} \in N_{i_1},\dots x_{i_n} \in N_{i_n}: x_{i_1}\dots x_{i_n} \in O.
+    \forall n \in \N, x_{i_1} \in N_{i_1},\dots, x_{i_n} \in N_{i_n}: x_{i_1}\cdots x_{i_n} \in O.
   \end{align*}
-  Es gilt also für jedes beliebige endliche Komplexprodukt $N^* \subseteq O$
+  Es gilt also für jedes beliebige endliche Komplexprodukt $N_I^* \subseteq O$
   und somit auch für die Vereinigung $N \subseteq O$.
   Damit ist $N$ also das gesuchte Supremum.
 \end{itemize}
