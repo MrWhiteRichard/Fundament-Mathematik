@@ -1,0 +1,67 @@
+\begin{exercise}
+  Gegeben sei die skalare ODE
+
+  \begin{align*}
+    x'' + q(t)x = 0
+  \end{align*}
+
+  mit einer stetigen Funktion $q: \R \rightarrow \R$
+
+  Es seien $t \mapsto x(t)$ und $t \mapsto y(t)$ zwei Lösunger der ODE.
+  Ihre Wronskideterminante ist durch
+
+  \begin{align*}
+    W(t) := x(t)y'(t)-x'(t)y(t)
+  \end{align*}
+
+  definiert. Die Lösungen $x(t)$ und $y(t)$ sind l.u. wenn
+  $W(t) \neq 0, \forall t \in \R$ gilt.
+
+  \begin{itemize}
+    \item[a)] Zeigen sie, dass $W(t)$ konstant ist.
+    \item[b)] Zeigen sie unter Verwendung von a), dass für l.u. Lösungen
+    $x(t)$ und $y(t)$ gilt:
+    \begin{itemize}
+      \item[(i)] Aus $x(t_1) = 0$ folgt $x'(t_1) \neq 0$ und $y(t_1) \neq 0$
+      \item[(ii)] Falls $x(t_1)=x(t_2)=0$ gilt und $x(t) \neq 0$ für
+      $t \in (t_1 , t_2 )$ dann hat $y(t)$ in $(t_1 , t_2 )$ genau eine Nullstelle.
+    \end{itemize}
+  \end{itemize}
+
+\end{exercise}
+
+\begin{solution}
+Beweisen wir diese Aussagen also.
+\begin{itemize}
+  \item[a)] Um das zu zeigen, berechnen wir einfach die Ableitung:
+  \begin{align*}
+    W'(t)= x'(t)y'(t) + x(t)y''(t) - x''(t)y(t) - x'(t)y'(t) =
+    x'(t)y'(t) - x(t)q(t)y(t) + x(t)q(t)y(t) - x'(t)y'(t) = 0
+  \end{align*}
+  also ist die Wronskideterminante wirklich konstant.
+
+  \item[b)] Ad (i): Da $x$ und $y$ unabhängige Lösungen sind wissen wir durch ihre
+  Wronskideterminante:
+
+  \begin{align*}
+    x(t)y'(t)-x'(t)y(t) = c && c \in \R \backslash \{0\}
+  \end{align*}
+
+  Gilt also an einem Punkt $t_1: x(t_1 ) = 0$ sehen wir, dass dort
+
+  \begin{align*}
+    -x'(t_1 )y(t_1 ) = c
+  \end{align*}
+
+  Da $c \neq 0$ können wir daraus die Behauptung sofort schließen.
+
+  Ad (ii): Nach (i) wissen wir: $y(t_1 ) \neq 0, y(t_2 ) \neq 0$. Wir können auch
+
+  \begin{align*}
+    -x'(t_1 )y(t_1 ) = c = -x'(t_2 )y(t_2 )
+    \Rightarrow x'(t_1 )y(t_1 ) = x'(t_2 )y(t_2 )
+  \end{align*}
+
+  schließen. Nun zeigen wir noch $sgn(x'(t_1 )) \neq sgn(x'(t_2 ))$
+\end{itemize}
+\end{solution}
