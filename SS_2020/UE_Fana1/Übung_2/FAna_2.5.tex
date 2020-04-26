@@ -21,6 +21,13 @@ Nämlich:
 \begin{enumerate}[label = (\arabic*)]
 
   \item
+  Wir erinnern uns, dass $f$ stetig im Punkt $x$ ist, genau dann, wenn
+
+  \begin{align*}
+    \Forall V \in \mathfrak{U}(f(x)):
+    \Exists U \in \mathfrak{U}(x):
+    f(U) \subseteq V.
+  \end{align*}
 
   Sei $U \subseteq X$ ein beliebiges Element aus der Nullumgebungsbasis von
 
@@ -42,8 +49,12 @@ Nämlich:
     =& \{\iota(x) \in \iota(X): |\underbrace{\iota_1 (f_{j})}_{\in \iota_1 (X^{\prime})}(\iota(x))|<\epsilon_j, j=1,...,m\}
   \end{align*}
 
-  und somit ist $\iota(U) \subset \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$.
-
+  und somit ist $V := \iota(U) \subseteq \iota(X)$ eine Menge aus der Nullumgebungsbasis von $(\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime})))$ und es gilt
+  \begin{align*}
+    \iota^{-1}(V) = U,
+  \end{align*}
+  also ist $\iota^{-1}$ im Punkt $0$ stetig und aufgrund Proposition 2.1.11
+  insgesamt stetig. \\
   Sei umgekehrt $V \subseteq \iota(X)$ ein beliebiges Element aus der Nullumgebungsbasis von
 
   \begin{align*}
@@ -63,11 +74,11 @@ Nämlich:
   Also gilt
 
   \begin{align*}
-    \iota^{-1}(V) =& \{x \in X: \vbraces{w_{j}(\iota(x))}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{\iota_1(y_{j})(\iota(x))}<\epsilon_j, j=1,...,m\} \\
+    U := \iota^{-1}(V) =& \{x \in X: \vbraces{w_{j}(\iota(x))}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{\iota_1(y_{j})(\iota(x))}<\epsilon_j, j=1,...,m\} \\
     =& \{x \in X: \vbraces{\iota(x)(y_j)}<\epsilon_j, j=1,...,m\} = \{x \in X: \vbraces{y_j(x)}<\epsilon_j, j=1,...,m\}
   \end{align*}
 
-  und somit wäre auch diese Aussage gezeigt.
+  und wir haben mit $U$ eine Nullumgebung gefunden mit $\iota(U) = V$ und damit ist auch $\iota$ stetig.
 
   ******************
 
@@ -103,50 +114,34 @@ Nämlich:
     \iota\left(\bigcap_{j=1}^m g_j^{-1}(W_j)\right) \subseteq V
   \end{align*}
 
-  Um das einzusehen, sei $k \in \{1,\dots,n\}$ beliebig.
-  Nun, wählen wir $g_k := \iota_1^{-1}(f_k) \in X^{\prime}$.
-  Wir erinnern uns, dass
-
+  Wir definieren
   \begin{align*}
-    f_k^{-1}(V_k)
-    \in
-    \sigma(X^{\primeprime}, X^{\prime})
-    \subseteq
-    \mathcal{T}_{\norm[X^\primeprime|_{\iota(X)}]{\cdot}}.
-    % (\subseteq \iota(X)).
+    g_k := f_k \circ \iota \in (X,\norm[X]{\cdot})^\prime \quad \textrm{und} \quad W_k := V_k.
   \end{align*}
-
-  Weil $\iota: (X,||\cdot||_X) \rightarrow (\iota(X),||\cdot||_{X^{\primeprime}|_{\iota(X)}})$
-  stetig ist gilt tatsächlich
-
+  Die Funktion $g_k$ ist stetig und linear, weil $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ und $f_k: (X, \norm[X^\primeprime]{\cdot}) \to \C$ beide stetig und linear sind.
+  Nun gilt
   \begin{align*}
-    \Exists S_k \in \mathfrak{U}^{(X,\norm{\cdot})}(0):
-    \iota(S_k) \subseteq f_k^{-1}(V_k).
+    y \in \iota(g_k^{-1}(W_k)) \Rightarrow \exists x \in g_k^{-1}(W_k): y = \iota(x).
   \end{align*}
+  Wegen $x \in g_k^{-1}(W_k)$ gilt weiter
+  \begin{align*}
+    g_k(x) = f_k(\iota(x)) \in W_k = V_k \Rightarrow y = \iota(x) \in f_k^{-1}(V_k)
+  \end{align*}
+  Es gilt also $\iota(g_k^{-1}(W_k)) \subseteq f_k^{-1}(V_k)$. Nun schneiden wir noch
+  \begin{align*}
+    \iota\pbraces{\bigcap_{i = 1}^n g_i^{-1}(W_i)} \subseteq \bigcap_{i = 1}^n \iota(g_i^{-1}(W_i)) \subseteq \bigcap_{i=1}^n f_i^{-1}(V_i)
+  \end{align*}
+  und haben die Stetigkeit von $\iota$ gezeigt.
 
-  Laut Beispiel 5.3.10, gilt $\mathcal{T}_w \subseteq \mathcal{T}_s \subseteq \mathcal{T}_{\norm{\cdot}}$.
-  Weiters, war $g_k \in X^\prime$. Damit, $\Exists W_k \in \mathfrak{U}^\C(0): g_k^{-1}(W_k) \subseteq S_k$.
-
-  Damit folgt
+  Sei nun umgekehrt $\bigcap_{i = 1}^n g_i^{-1}(W_i)$, ein Element aus der Nullumgebungsbasis von $\sigma(X^\primeprime, X^\prime)$ gegeben. Analog wie vorhin definieren wir für $k \in \{1, \dots, n\}$
   \begin{align*}
-    \iota((\iota_1^{-1}(f_k))^{-1}(W_k)) \subseteq \iota(S_k) \subseteq f_k^{-1}(V_k)
-    \implies \iota\left(\bigcap_{i=1}^n (\iota_1^{-1}(f_i))^{-1}(W_i)\right) \subseteq \bigcap_{i = 1}^nf_i^{-1}(V_i).
+    f_k := g_k \circ \iota^{-1} \in \iota_1(X^\prime) \quad \textrm{und} \quad V_k := W_k.
   \end{align*}
-  Daraus folgt, dass $\iota$ stetig im Punkt $0$ und linear, also ist $\iota$ stetig. \\
-  Sei nun umgekehrt $\bigcap_{i=1}^n f_i^{-1}(W_i)$ mit $W_i \in \mathcal{U}^{\C}(0)$
-  und $g_i \in X^{\prime}$ gegeben, $k \in \{1,\dots,n\}$ beliebig.
+  Wie schon vorhin sind $\iota^{-1}: (\iota(X), \norm[X^\primeprime]{\cdot}\mid_{\iota(X)}) \to (X, \norm[X]{\cdot})$ und $g_k: (X, \norm[X]{\cdot}) \to \C$ und daher auch $f_k$ stetig und linear, wobei, weil $\iota_1$ die Auswertungsabbildung ist und $g_k \in X^\prime$, sogar $f_k \in \iota_1(X\prime)$. Wie vorhin gilt nun auch
   \begin{align*}
-    f_k := \iota_1(g_k) \in X^{\primeprime},
+    \iota \pbraces{\bigcap_{i = 1}^n f_k^{-1}(V_k)} \subseteq \bigcap_{i = 1}^n g_k^{-1}(W_k)
   \end{align*}
-  wegen $g_i^{-1}(W_i) \in \sigma(X,X^{\prime}) \subseteq \mathcal{T}_{||\cdot||}$
-  ist $g_k^{-1}(W_k) \in \mathcal{T}_{||\cdot||}$ und weil $\iota^{-1}$ ein
-  Homöomorphismus ist, gibt es ein
-  $S_k \in \mathcal{U}^{(\iota(X), ||\cdot||_{X^{\primeprime}|_{\iota(X)}})}$
-  mit $\iota^{-1}(S_k) \subseteq g_k^{-1}(W_k)$, wegen $f_k \in X^{\primeprimeprime}$
-  gibt es $V_k \in \mathcal{U}^{\C}(0)$ mit
-  \begin{align*}
-    f_k^{-1}(V_k) \subseteq S_k \implies \iota^{-1}(f_k^{-1}(V_k)) \subseteq g_k^{-1}(V_k)
-  \end{align*}
+  und damit ist $\iota^-1$ stetig.
 
   ***************
 
@@ -159,11 +154,38 @@ Nämlich:
      \Leftrightarrow \Forall y \in X^{\prime}: \iota(\cdot)(y) \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: y(\cdot) \text{~stetig~}.
   \end{align*}
 
-  Ebenso ist $\iota^{-1}$ genau dann stetig, wenn
+  Ebenso ist $\iota^{-1}$ genau dann stetig, wenn gilt
 
   \begin{align*}
-    \Forall y \in X^{\prime}: y \circ \iota^{-1}\underbrace{(z)}_{=\iota(x)} \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: y(x) \text{~stetig~}
+    \Forall y \in X^{\prime}: y \circ \iota^{-1}(\cdot) \text{~stetig~} \Leftrightarrow \Forall y \in X^{\prime}: \iota(\iota^{-1}(\cdot))(y) \text{~stetig~} \\
+     \Leftrightarrow \Forall y \in X^{\prime}: \iota_1(y)(\cdot) \text{~stetig~} \Leftrightarrow \Forall w \in \iota_1(X^{\prime}): w(\cdot) \text{~stetig~}
   \end{align*}
+
+  ***************
+
+  Wir wissen es ist
+  \begin{align*}
+    \iota \quad \textrm{stetig} \Leftrightarrow \forall f \in \iota_1(X^\prime): f \circ \iota \quad \textrm{stetig}
+  \end{align*}
+  Wir wählen also
+  \begin{align*}
+    f \in \iota_1(X^\prime) \subseteq X^\primeprimeprime
+  \end{align*}
+  beliebig. Da $\iota: (X, \norm[X]{\cdot}) \to (X, \norm[X^\primeprime]{\cdot})$ stetig und linear ist erhalten wir auch die Stetigkeit von
+  \begin{align*}
+    f \circ \iota \in (X, \norm[X]{\cdot})^\prime = (X, \sigma(X, X^\prime))^\prime
+  \end{align*}
+
+  Umgekehrt haben wir
+  \begin{align*}
+    \iota^{-1} \quad \textrm{stetig} \Leftrightarrow \forall g \in X^{\prime}: g \circ \iota^{-1} \quad \textrm{stetig}
+  \end{align*}
+  Wir wählen wieder beliebiges $g \in X^\prime$. Da $\iota^{-1}: (\iota(X), \norm[X^\primeprime]{\cdot}\mid_{\iota(X)}) \to (X, \norm[X]{\cdot})$ stetig und linear ist, wissen wir das auch von
+  \begin{align*}
+    g \circ \iota \in (\iota(X), \norm[X^\primeprime]{\cdot}\mid_{\iota(X)})^\prime = (\iota(X), \sigma(X^\primeprime, \iota_1(X^\prime))\mid_{\iota(X)})^\prime
+  \end{align*}
+
+  ***************
 
 \end{enumerate}
 
