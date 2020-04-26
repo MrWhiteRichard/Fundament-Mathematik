@@ -57,11 +57,32 @@ Beweisen wir diese Aussagen also.
 
   Ad (ii): Nach (i) wissen wir: $y(t_1 ) \neq 0, y(t_2 ) \neq 0$. Wir können auch
 
-  \begin{align*}
+  \begin{align} \label{Vorzeichen}
     -x'(t_1 )y(t_1 ) = c = -x'(t_2 )y(t_2 )
     \Rightarrow x'(t_1 )y(t_1 ) = x'(t_2 )y(t_2 )
+  \end{align}
+
+  schließen. Nun zeigen wir noch $\sgn(x'(t_1 )) = - \sgn(x'(t_2 ))$. Dazu bemerken wir
+  zuerst, dass $x'(t_ i ) \neq 0, i=1,2$ da sonst $W(t_i) = 0$ im Widerspruch zu
+  unserer Voraussetzung. Wenn nun $\sgn(x'(t_1 )) = 1$ gilt heißt das auch
+  $x(t)>0 \, \forall t \in (t_1, t_2)$ damit muss klarerweise $\sgn(x'(t_2 ))=-1$.
+  (Formaler: man schaut sich den einseitigen Grenzwert im Differenzialquotienten an.)
+
+  Gemeinsam mit \eqref{Vorzeichen} sehen wir, dass $\sgn(y(t_1 )) = -\sgn(y(t_2 ))$.
+  Dazu muss $y$ also einen Vorzeichenwechsel in $(t_1 , t_2 )$ und folglich auch
+  zumindest eine Nullstelle haben.
+
+  Um die Eindeutigkeit jener zeigen wir mit einem Widerspruchsbeweis: Sei $\tilde{t}$
+  die kleinste Nullstelle von $y$ und $\hat{t}$ die nächste weitere Nullstelle in
+  $(t_1 , t_2 )$. Es gilt also:
+
+  \begin{align*}
+    x( \tilde{t} ) y'( \tilde{t} ) = x( \hat{t} ) y'( \hat{t} )
   \end{align*}
 
-  schließen. Nun zeigen wir noch $sgn(x'(t_1 )) \neq sgn(x'(t_2 ))$
+  Da nun aber $x$ keine Vorzeichenwechsel in dem Intervall hat folgt daraus
+  $\sgn(y(\tilde{t})) = \sgn(y(\hat{t}))$. Wir haben aber auch
+  $\forall t \in (\tilde{t},\hat{t}): y(t) \neq 0 $ vorausgesetzt. Mit den selben Überlegungen
+  wie bei $x$ weiter oben ist dies jedoch ein Widerspruch.
 \end{itemize}
 \end{solution}
