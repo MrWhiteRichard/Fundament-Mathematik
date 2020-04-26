@@ -75,13 +75,55 @@ Relation stehen, gibt es wieder ein kleinstes Element, das wir $b_{0}$ nennen. D
   a_{0} \sim b_{0} \Rightarrow a_{0}+1 \sim b_{0}+1 \Rightarrow \dots \Rightarrow a_{0}+(m-1) \sim b_{0}+(m-1) \Rightarrow b_{0} \sim
   b_{0}+m \Rightarrow \dots
 \end{align*}
+Zusammengefasst gilt also
+\begin{align*}
+  \forall n \geq a_0: n \sim n + m
+\end{align*}
 Also ist $\sim$ eine Kongruenzrelation mit $a_{0}$ einelementigen Äquivalenzklassen und maximal $m$ weiteren Quasi-Modulo-Äquivalenzklassen
 (beginnend ab $a_{0}$).
 Für jedes $n \in \N,a_0 \leq n < b_0$ ist also
 \begin{align*}
   [n]_{\sim} \supseteq \{n + km: k \in \N\}.
 \end{align*}
+Gelte nun zusätzlich $a_1 \sim a_1 + m^{\prime}$ mit $a_1 > a_0$ und $m^{\prime} \in \N$. \\
+Dann existiert ein kleinstes $k_0 \in N: a_0 + k_0m \geq a_1$ und es folgt mittels
+Transitivität und $1 \sim 1$
+\begin{align*}
+  [a_0]_{\sim} \supseteq \{a_0 + k_0m + km^{\prime}: k \in \N\}.
+\end{align*}
+Da für alle $k < k_0: a_0 + km \sim a_0 + k_0m$ gilt sogar
+\begin{align*}
+  [a_0]_{\sim} \supseteq \{a_0 + k_1m + k_2m^{\prime}: k_1,k_2 \in \N\}.
+\end{align*}
+Definiert man $l := ggT(m,m^{\prime})$ und setzt man
+$lp = m, lp^{\prime} = m^{\prime}$ vereinfacht sich der Ausdruck zu
+\begin{align*}
+  [a_0]_{\sim} \supseteq \{a_0 + l(k_1p + k_2p^{\prime}): k_1,k_2 \in \N\}.
+\end{align*}
+Da $p$ und $p^{\prime}$ nun co-prim sind gilt damit
+\begin{align*}
+  [a_0]_{\sim} \supseteq \{a_0 + lk: k \in \N\}.
+\end{align*}
+Im Spezialfall, dass $m, m^{\prime}$ teilerfremd sind, gilt dann
+\begin{align*}
+  [a_0]_{\sim} = \{n \in \N: n \geq a_0\}
+\end{align*}
+Insgesamt gilt also, dass jede Kongruenzrelation auf $(\mathbb{N},+,0)$ einer Partition
+der Form
+\begin{align*}
+  P_{(a_0,m)} := \{\{1\},\dots,\{a_0 - 1\},\{a_0 + km: k \in \N\},\dots,\{a_0 + m - 1 + km: k \in \N\}\}
+\end{align*}
+mit $a_0,m \in N$ entspricht. Damit haben wir eine bijektive Abbildung
+\begin{align*}
+  \varphi: \begin{cases}
+    \N^2 \rightarrow \mathcal{K} \\
+    (a_0,m) \mapsto P_{(a_0,m)}
+  \end{cases}
+\end{align*}
+gefunden und es gilt $|K| = |\N|$.
+***** Glaub ich nicht ($a_0 - n < 0$) **** \\
 Dass Gleichheit gilt, erkennt man im Folgenden. Sei $a_0 \leq n < b_0$ beliebig und angenommen, dass $\Exists l \notin \{n + km: k \in \N\}$ (o.B.d.A. $l = n + m_l, m_l < m$) mit $l \sim n$. Dann folgt (wiederum durch induktives Anwenden der Kongruenz bzgl. $+$ und $1 \sim 1$), dass $l + (a_0 - n) = a_0 + m_l \sim a_0 = n + (a_0 - n)$, was ein Widerspruch zur Minimalität von $b$ wäre.\\
+*********************
 Umgekehrt kann man zeigen, dass für alle $a_0 \in \N$ und $b_0 > a_0$ diese Konstruktion eine Kongruenzrelation ergibt. Die Äquivalenzklassen sind wie oben festgelegt, die Verträglichkeit mit der Addition zeigt man durch Fallunterscheidung.
 Wir wollen zeigen, dass für alle $x_1,x_2,y_1,y_2 \in \N$ gilt:
 \begin{align*}
