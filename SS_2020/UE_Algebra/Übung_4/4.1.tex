@@ -67,9 +67,27 @@ und ist damit ebenfalls abzählbar. Also gilt $|\mathcal{U}| \leq |\N|$.
 Die Allrelation $\mathbb{N} \times \mathbb{N}$ und die Identitätsrelation
 $\{(n,n): n \in \mathbb{N}\}$. \\
 Dann können wir die Modulo-Kongruenzrelationen definieren. Für jede natürliche Zahl
-$n \geq 1$ ist $a \sim b: \iff a \mod n = b \mod n$ eine Kongruenzrelation, welche
+$n \geq 1$ ist $a \sim b: \iff a \equiv b \mod n$ eine Kongruenzrelation, welche
 die Partition in die jeweiligen Restklassen induziert.
-Also haben wir zumindest abzählbar unendlich viele Kongruenzrelationen.
+Also haben wir zumindest abzählbar unendlich viele Kongruenzrelationen. \\
+Sei nun $\sim$ eine beliebige Kongruenzrelation ungleich der Identitätsrelation.
+Dann gibt es ein kleinstes $a_{0}$, das mit mindestens einem anderen Element in Relation steht. In der Menge aller $b$, die mit $a_{0}$ in
+Relation stehen, gibt es wieder ein kleinstes Element, das wir $b_{0}$ nennen. Da $\sim$ eine Kongruenzrelation bezüglich $+$ ist und $1
+\sim 1$, gilt (mit $m := b_{0}-a_{0} > 0$)
+\begin{align*}
+  a_{0} \sim b_{0} \Rightarrow a_{0}+1 \sim b_{0}+1 \Rightarrow \dots \Rightarrow a_{0}+(m-1) \sim b_{0}+(m-1) \Rightarrow b_{0} \sim
+  b_{0}+m \Rightarrow \dots
+\end{align*}
+Also ist $\sim$ eine Kongruenzrelation mit $a_{0}$ einelementigen Äquivalenzklassen und maximal $m$ weiteren Quasi-Modulo-Äquivalenzklassen
+(beginnend ab $a_{0}$).
+Für jedes $n \in \N$ ist also
+\begin{align*}
+  [n]_{\sim} \subseteq \{n + km: k \in \N\}.
+\end{align*}
+Da also für alle solchen minimalen $a_{0}$ und $b_{0}$ also mindestens eine (die eben genannte (feinste) unter der Voraussetzung $a_{0}
+\sim b_{0}$), aber maximal endlich viele
+verschiedene Kongruenzrelationen in Frage kommen, sieht man, dass es auf jeden Fall unendlich viele, aber höchstens abzählbar viele
+Kongruenzrelationen von $(\mathbb{N},+,0,\cdot,1)$ gibt.
 \item [3.] Jede Teilmenge $A$ der Potenzmenge der Primzahlen induziert eine
 Unteralgebra von $(\mathbb{N},\cdot,1)$ mit
 \begin{align*}
@@ -105,12 +123,6 @@ der Abgeschlossenheit unter der Addition und dem Induktionsprinzip
 muss jede Unteralgebra bereits ganz $\mathbb{N}$ enthalten.
 \item [6.] Wieder gibt es zwei triviale Relationen mit der Allrelation und der
 Identitätsrelation.
-\newline
-***Ab hier bitte mal drüberschauen, bin mir nicht sicher, ob irgendwo ein Fehler drin ist...falls nicht, sollte das für 2. eigenltich auch schon gelten oder?*** Sei $\sim$ eine Kongruenzrelation ungleich der Identitätsrelation. Dann gibt es ein kleinstes $a_{0}$, das mit mindestens einem anderen Element in Relation steht. In der Menge aller $b$, die mit $a_{0}$ in Relation stehen, gibt es wieder ein kleinstes Element, das wir $b_{0}$ nennen. Da $\sim$ eine Kongruenzrelation bezüglich $+$ ist und $1 \sim 1$, gilt (mit $m := b_{0}-a_{0} > 0$)
-\begin{align*}
-  a_{0} \sim b_{0} \Rightarrow a_{0}+1 \sim b_{0}+1 \Rightarrow \dots \Rightarrow a_{0}+(m-1) \sim b_{0}+(m-1) \Rightarrow b_{0} \sim b_{0}+m \Rightarrow \dots
-\end{align*}
-Also ist $\sim$ eine Kongruenzrelation mit $a_{0}$ einelementigen Äquivalenzklassen und maximal $m$ weiteren Quasi-Modulo-Äquivalenzklassen (beginnend ab $a_{0}$).
-Da also für alle solchen minimalen $a_{0}$ und $b_{0}$ also mindestens eine (die eben genannte (feinste) unter der Voraussetzung $a_{0} \sim b_{0}$ - die Verträglichkeit dieser mit der Multiplikation ist aufgrund der modulo-Homomorphie gegeben), aber maximal endlich viele verschiedene Kongruenzrelationen in Frage kommen, sieht man, dass es auf jeden Fall unendlich viele, aber höchstens abzählbar viele Kongruenzrelationen von $(\mathbb{N},+,0,\cdot,1)$ gibt.
+
 \end{itemize}
 \end{solution}
