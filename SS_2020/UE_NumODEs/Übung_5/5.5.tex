@@ -15,5 +15,51 @@ der Matrix $M$ gemäß ihrer Vielfachheit sind. Wie müssen die Anfangsdaten $\w
 gewählt werden?
 \end{exercise}
 \begin{solution}
-Beweis.
+Um die Separierung des Anfangswertproblems zu motivieren, betrachte man die Substitution
+\begin{align*}
+  \widetilde{y} = V^{-1}y.
+\end{align*}
+ Wir erhalten das äquivalente Anfangswertproblem
+\begin{align*}
+  \widetilde{y}^{\prime} = (V^{-1}y)^{\prime} = V^{-1}V\Lambda\underbrace{V^{-1}y}_{ = \widetilde{y}} = \Lambda\widetilde{y},
+\end{align*}
+bei dem die einzelnen Komponenten bereits separiert sind, wir können also genauso gut schreiben
+\begin{align*}
+  \widetilde{y}_j = \lambda_j\widetilde{y}_j, \qquad j = 1,\dots,n.
+\end{align*}
+Die Anfangsdaten ergeben sich also einfach durch
+\begin{align*}
+   \widetilde{y}(0) = V^{-1}y(0) = V^{-1}y_0.
+\end{align*}
+Sei also
+\renewcommand{\arraystretch}{1.5}
+\begin{align*}
+  \begin{matrix}
+    c & \vline & A \\
+    \hline
+    & \vline & b^{\top}
+  \end{matrix}
+\end{align*}
+das Butcher-Schema eines beliebigen $m$-stufigen Runge-Kutta-Verfahrens.
+Ein Schritt dieses Verfahrens angewendet auf das erste Problem liefert
+\begin{align*}
+  y_1 &= y_0 + h_0 \sum_{j=1}^m b_jf(t + c_jh, y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+  = y_0 + h_0 \sum_{j=1}^m b_jM(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+\end{align*}
+Das selbe Verfahren angewendet auf die separierten Anfangswertprobleme ergibt
+\begin{align*}
+  \widetilde{y}_{1} = \widetilde{y}_{0} + h_0 \sum_{j=1}^m b_j\lambda_j(\widetilde{y}_{0} + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+\end{align*}
+Setzen wir nun $\widetilde{y}_{0} = V^{-1}y_0$ ein, erhalten wir
+\begin{align*}
+  \widetilde{y}_{1} &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
+  &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+\end{align*}
+und mit der Rücksubstitution $y_1 = V\widetilde{y}_{1}$ kommen wir wieder auf
+das originale Problem zurück.
+\begin{align*}
+  V\widetilde{y}_{1} &= V\left(V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})\right) \\
+  &= y_0 + h_0 \sum_{j=1}^m b_jV\lambda_jV^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
+  &= y_0 + h_0 \sum_{j=1}^m b_jM(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) = y_1
+\end{align*}
 \end{solution}
