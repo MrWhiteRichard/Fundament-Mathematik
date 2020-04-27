@@ -73,13 +73,11 @@ Wir wissen
       Laut Aufgabe 22 ist die Lösung dieses Problems eindeutig und offensichtlich ist $p = 0$ eine Lösung.
       Umkehrung trivial.
       \item Fall ($k>1$):
-      Definiere das Polynom $p_0 \in \Pi_r$ durch
+      Definiere das Polynom $p_0 \in \Pi_r$ (o.B.d.A $r \geq 1$) durch
       \begin{align*}
-        p_0(x) := \sum_{i=0}^{r}a_{i}x^i \text{~mit~} &a_i = 0, i=k,...r, \\
-        &a_i = 1, i=1,...,min(r,k-1), \\
-        &a_0 = - \sum_{i=1}^{r}a_{i}x_0^{i}
+        p_0(x) := x-x_0
       \end{align*}
-      Nun gilt $p_0^{(k)}(x) = \sum_{i=k}^{r} \frac{i!}{(i-k)!}a_{i}x^{i-k} = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=1,...,r$. Außerdem ist durch Definition von $a_0$ auch $p_0(x_0) = a_{0}x_0^{0} + \sum_{i=1}^{r}a_{i}x_0^i = 0$.
+      Nun gilt $p_0^{(k)}(x) = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=1,...,r$. Außerdem ist durch Definition auch $p_0(x_0) = 0$.
       Somit gilt $\|p_0\|_k = 0$ aber $p_0 \neq 0$. Also ist $\|\cdot\|_k$ für $k>1$ keine Norm.
     \end{enumerate}
   \end{enumerate}
@@ -124,17 +122,16 @@ Wir wissen
       \end{align*}
       Man überprüft leicht, dass $\|p_0\|_k = 0$, allerdings ist $p_0 \neq 0$. In diesem Fall ist $\|\cdot \|_k$ also keine Norm.
 
-      \item Fall ($k>1$):
-      (Fast) analog zu \textbf{c)} definiert man das Polynom $p_0 \in \Pi_r$ (o.B.d.A. $r>1$) durch
+      \item Fall ($k=2$):
+      In diesem Fall gilt $p^{(k)} \in \Pi_{r-2}$, und $p^{(k)}$ besitzt $r-1$ Nullstellen $\substack{\Rightarrow}{\eqref{Pol}} p^{(k)} = 0$, also ist $p$ linear und an $x_0$ und $x_1$ gleich Null. Also gilt $p=0$.
+
+      \item Fall ($k>2$):
+      (Fast) analog zu \textbf{c)} definiere das Polynom $p_0 \in \Pi_r$ (o.B.d.A $r \geq 2$) durch
       \begin{align*}
-        p_0(x) := \sum_{i=0}^{r}a_{i}x^i \text{~mit~} &a_i = 0, i=k,...r, \\
-        &a_i = 1, i=2,...,min(r,k-1), \\
-        &a_0 = - \sum_{i=1}^{r}a_{i}x_0^{i} \\
-        &a_1 = - \frac{a_0 + \sum_{i=2}^{r}a_{i}x_1^{i}}{x_1}
+        p_0(x) := (x-x_0)(x-x_1)
       \end{align*}
-      Aufpassen: $a_0$ und $a_1$ so nur implizit definiert, aber eindeutig lösbar (da $x_0 \neq x_1$).
-      Wieder gilt $p_0^{(k)}(x) = \sum_{i=k}^{r} \frac{i!}{(i-k)!}a_{i}x^{i-k} = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=2,...,r$. Außerdem ist durch Definition von $a_0$ und $a_1$ auch $p_0(x_0) = a_{0}x_0^{0} + \sum_{i=1}^{r}a_{i}x_0^i = 0$ und $p_0(x_1) = a_{0}x_1^{0} + a_{1}x_1^{1} + \sum_{i=2}^{r}a_{i}x_1^i = 0$.
-      Somit gilt $\|p_0\|_k = 0$ aber $p_0 \neq 0$. Also ist $\|\cdot\|_k$ für $k>1$ keine Norm.
+      Nun gilt $p_0^{(k)}(x) = 0$, insbesondere $p_0^{(k)}(x_j) = 0, j=2,...,r$. Außerdem ist durch Definition auch $p_0(x_0) = p_0(x_1) = 0$.
+      Somit gilt $\|p_0\|_k = 0$ aber $p_0 \neq 0$. Also ist $\|\cdot\|_k$ für $k>2$ keine Norm.
     \end{enumerate}
   \end{enumerate}
 \end{enumerate}
