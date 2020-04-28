@@ -57,12 +57,16 @@ Wir nehmen o.B.d.A. an $a_k < a_n$. Dann gilt also
 Dies ist ein Widerspruch zu unserer Konstruktion und $U$ muss somit endlich erzeugt sein.
 Also können wir $\mathcal{U}$ als Bild einer nicht notwendigerweise injektiven
 Abbildung von der Menge $\mathcal{E}(\N)$ aller endlichen Teilmengen von $\N$ darstellen.
-Die Menge $\mathcal{E}(\N)$ können wir als
-abzählbare Vereinigung abzählbarer Mengensysteme anschreiben
+Um die Abzählbarkeit von $\mathcal{E}(\N)$ einzusehen, betrachte die Abbildung
 \begin{align*}
-  \mathcal{E}(\N) = \bigcup_{n \in \N} \{A \subset 2^\N: |A| = n \}
+  \varphi: \begin{cases}
+    \mathcal{E}(\N) \rightarrow \N \\
+    \{e_0,\dots,e_n\} \mapsto \prod_{k=0}^np_k^{e_k}
+  \end{cases},
 \end{align*}
-und ist damit ebenfalls abzählbar. Also gilt $|\mathcal{U}| \leq |\N|$.
+wobei $(p_k)_{k=\in \N} = \P$ eine Abzählung der Primzahlen bezeichnet.
+Aufgrund der Eindeutigkeit der Primfaktorzerlegung ist diese Abbildung injektiv
+und es gilt $|\mathcal{U}| \leq  |\mathcal{E}(\N)| \leq |\N|$.
 \item [2.] Wieder haben wir zwei triviale Kongruenzrelationen am Anfang:
 Die Allrelation $\mathbb{N} \times \mathbb{N}$ und die Identitätsrelation
 $\{(n,n): n \in \mathbb{N}\}$. \\
