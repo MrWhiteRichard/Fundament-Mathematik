@@ -17,10 +17,11 @@ Gesucht sei für beliebiges $g \in C^r([a,b])$ die Lösung $p \in \Pi_r$ von
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Seien $p_1,p_2 \in \Pi_r$ Lösungen, so ist $p := p_1 - p_2$ ein Polynom vom Grad $\leq r$
-  mit der Nullstelle $x_0$.
+  mit einer Nullstelle in $x_0$.
   $p^{\prime} \in \Pi_{r-1}$ hat $x_1,\dots,x_r$ als Nullstellen und es folgt mit
   dem Fundamentalsatz der Algebra $p^{\prime} \equiv 0$. Also muss $p$ konstant
-  sein und aufgrund $p(x_0) = 0$ auch $p \equiv 0$.
+  sein und aufgrund $p(x_0) = 0$ auch $p \equiv 0$. Es folgt $p_1 = p_2$ und die
+  Eindeutigkeit der Lösung ist gezeigt.
   Zum Nachweis der Existenz einer Lösung betrachten wir die Abbildung
   \begin{align*}
     \mu: \begin{cases}
@@ -31,7 +32,7 @@ Gesucht sei für beliebiges $g \in C^r([a,b])$ die Lösung $p \in \Pi_r$ von
   Aufgrund $\dim \Pi_r = r + 1$ folgt aus der eben bewiesenen Injektivität auch
   die Surjektivität. Also existiert immer genau eine Lösung des Problems.
   \item Auf das Polynom $p^{\prime}$ können wir die Fehlerabschätzung aus der
-  Lagrange-Interpolation anwenden und erhalten
+  Lagrange-Interpolation (Lemma 3.18) anwenden und erhalten
   \begin{align*}
       \sup_{x \in [0,h]} |p^{\prime}(x) - g^{\prime}(x)| \leq \frac{h^{r}}{r!}\sup_{x \in [0,h]} |g^{(r)}(x)|.
   \end{align*}
