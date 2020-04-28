@@ -1,13 +1,158 @@
 \begin{exercise}
-  Bestimmen Sie die allgemeine Lösung der folgenden ODEs mit der Ansatzmethode:
-  \begin{itemize}
-    \item[a)] $y'' + y = \sin t +\sin 3t $
-    \item[b)] $y'' + y = t e^{-2t} \cos t$
-    \item[c)] $y'' - y = t e^{-t}$
-  \end{itemize}
-  Untersuchen Sie, ob die Lösungen dieser ODEs stabil bzw. asymptotisch stabil sind.
+Bestimmen Sie die allgemeine Lösung der folgenden ODEs mit der
+Ansatzmethode:
+\begin{enumerate}[label = \textbf{\alph*)}]
+\item \begin{align*}
+  y^{\primeprime} + y &= \sin(t) + \sin(3t),
+\end{align*}
+\item \begin{align*}
+  y^{\primeprime} + y = t\exp(-2t)\cos(t),
+\end{align*}
+\item \begin{align*}
+  y^{\primeprime} - y = t\exp(-t).
+\end{align*}
+\end{enumerate}
+Untersuchen Sie, ob die Lösungen dieser ODEs stabil, beziehungsweise
+asymptotisch stabil sind.
 \end{exercise}
-
 \begin{solution}
-  To do!
+\leavevmode \\
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Das charakteristische Polynom des homogenen Systems lautet
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 + 1
+  \end{align*}
+  mit den komplexen Nullstellen
+  \begin{align*}
+    \lambda_1 = i, \qquad \lambda_2 = -i.
+  \end{align*}
+  Also erhalten wir mit Satz 2.18 mit
+  \begin{align*}
+    y_1(t) = \exp(it), \qquad y_2(t) = \exp(-it)
+  \end{align*}
+  ein Fundamentalsystem für die homogene Gleichung.
+  Eine beliebige Lösung $\widetilde{y}$ des homogenen Systems hat daher die Form
+  \begin{align*}
+    \widetilde{y}(t) = a_1\exp(it) + a_2\exp(-it)
+  \end{align*}
+  Eine allgemeine Lösung des inhomogenen Systems, lässt sich durch
+  \begin{align*}
+    y(t) = \widetilde{y}(t) + y_p(t)
+  \end{align*}
+  darstellen, wobei $y_p$ eine Partikulärlösung des inhomogenen System ist.
+  Um diese nun zu berechnen, schreiben wir zuerst die Differentialgleichung folgendermaßen um:
+  \begin{align*}
+    y^{\primeprime} + y &= \sin(t) + \sin(3t)
+    = \frac{-i}{2}(\exp(it) + \exp(3it) - \exp(-3it) - \exp(-it)).
+  \end{align*}
+  Jetzt können wir für $b_{1,2} = \exp(\pm it), b_{3,4} = \exp(\pm 3it)$
+  jeweils seperat Teil-Partikulärlösungen berechnen und diese anschließend zur finalen Partikulärlösung
+  aufsummieren. Einen Ansatz dafür liefert uns Satz 3.20. Da $\chi(\pm i) = 0$ sind wir im 2.Fall und
+  setzen
+  \begin{align*}
+    y_{p_1}(t) = ct\exp(it)
+  \end{align*}
+  an. Einsetzen in die Differentialgleichung liefert
+  \begin{align*}
+    &y_{p_1}^{\primeprime}(t) + y_{p_1}(t) = c(2i - t + t)\exp(it)\stackrel{!}{=}
+    \frac{-i}{2}\exp(it) \\
+    &\iff c = \frac{-1}{4}.
+  \end{align*}
+  Damit erhalten wir die erste Teil-Partikulärlösung $y_{p_1}(t) = \frac{-t}{4}\exp(it)$. \\
+  Analog berechnen wir $y_{p_2}(t) = \frac{-t}{4}\exp(-it)$. \\
+  Da $\chi(\pm 3i) \neq 0$, sind wir diesmal im 1.Fall des Satzes.
+  Unser Ansatz lautet daher
+  \begin{align*}
+    y_{p_3}(t) = c\exp(3it).
+  \end{align*}
+  Einsetzen in die Differentialgleichung liefert
+  \begin{align*}
+    &c(1 - i)\exp(3it) = \frac{-i}{2}\exp(3it) \\
+    &\iff c = \frac{-i}{2(1-i)} = \frac{-i(1+i)}{2(1-i)(1+i)} = \frac{1-i}{4}
+  \end{align*}
+  Die dritte Teil-Partikulärlösung lautet daher $y_{p_3}(t) = \frac{1-i}{4}\exp(3it)$.
+  Wiederum analog berechnet man die letzte verbleibende Teil-Partikulärlösung
+  und erhält $y_{p_4}(t) = \frac{i - 1}{4}\exp(-3it)$.
+  Insgesamt haben wir also mit
+  \begin{align*}
+    y_p(t) = \frac{1}{4}\left(-t\exp(it) - t\exp(-it) + (1-i)\exp(3it) + (i - 1)\exp(-3it)\right)
+  \end{align*}
+  eine Gesamt-Partikulärlösung gefunden und jubilieren.
+  Die allgemeine Form der Lösung lautet daher
+  \begin{align*}
+    y = y_p + \widetilde{y} = \frac{1}{4}\left[-t\exp(it) - t\exp(-it) + (1-i)\exp(3it) +
+    (i - 1)\exp(-3it)\right] + a_1\exp(it) + a_2\exp(-it)
+  \end{align*}
+  \item Das charakteristische Polynom lautet gleich zu vorhin
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 + 1
+  \end{align*}
+  mit den selben Nullstellen
+  \begin{align*}
+    \lambda_1 = i, \qquad \lambda_2 = -i.
+  \end{align*}
+  Wieder formen wir die Differentialgleichung um
+  \begin{align*}
+    y^{\primeprime} + y = t\exp(-2t)\cos(t) = \frac{t}{2}\exp(-2t)(\exp(it) + \exp(-it))
+    = \frac{t}{2}(\exp((i-2)t) + \exp(-(i+2)t))
+  \end{align*}
+  und wieder teilen wir die Partikulärlösungen auf. Für $b_{1} = \frac{t}{2}\exp((i-2)t)$
+  gilt $\chi(i - 2) \neq 0$ und somit sind wir im Fall 1. Der Ansatz lautet
+  \begin{align*}
+    y_{p_1}(t) = (c_1t + c_0)\exp((i-2)t)
+  \end{align*}
+  Was passiert jetzt bloß? Wir setzen in die Differentialgleichung ein...
+  \begin{align*}
+    &y_{p_1}^{\primeprime}(t) + y_{p_1}(t) = [c_1(2i-4 + (i - 2)^2t + t) + c_0((i-2)^2 + 1)]\exp((i-2)t)
+    \stackrel{!}{=} \frac{t}{2}(\exp((i-2)t) \\
+    &\iff (4c_1(1-i))t + c_1(2i-4) + 4c_0(1 - i) = \frac{t}{2} \\
+  \end{align*}
+  Wir machen nun den Ansatz im Ansatz
+  \begin{align*}
+    &4c_1(1-i)t = \frac{t}{2} \\
+    &\iff c_1 = \frac{1}{8(1-i)},
+  \end{align*}
+  setzen zurück ein
+  \begin{align*}
+    &\frac{2i-4}{8(1-i)} + 4c_0(1-i) = 0 \\
+    &\iff c_0 = - \frac{i-2}{(4(1-i))^2} = - \frac{(i-2)}{16(1-2i-1)} =
+    = \frac{(i-2)}{32i} = \frac{1 + 2i}{32}
+  \end{align*}
+  und erhalten ansatzweise eine Lösung.
+  Wie könnte es jetzt bloß weitergehen? \\
+  Für $b_2 = \frac{t}{2}(\exp(-(i+2)t)$ landen wir dank $\chi(-(i+2)) \neq 0$
+  wieder im zweiten Fall. Ob man dafür jetzt dankbar ist, ist eine andere Frage.
+  \begin{align*}
+    y_{p_2}(t) &= (c_1t + c_0)\exp(-(i+2)t) \\
+    y_{p_2}^{\primeprime}(t) + y_{p_2}(t) &=
+    [c_1(-(2i+4) + (i + 2)^2t + t) + c_0((i + 2)^2 + 1)]\exp(-(i+2)t)
+    \stackrel{!}{=} \frac{t}{2}(\exp(-(i+2)t) \\\
+    &\iff [c_1(-(4 + 2i) + (i + 2)^2t + t) + c_0((i + 2)^2 + 1)] = \frac{t}{2}
+  \end{align*}
+  Überraschenderweise wählen wir den Ansatz
+  \begin{align*}
+    &c_1((i + 2)^2+1)t = \frac{t}{2} \\
+    &\iff c_1 = \frac{1}{2(4 + 4i)} = \frac{3 - 4i}{64}
+  \end{align*}
+  und erhalten
+  \begin{align*}
+    &c_0((i + 2)^2 + 1) = \frac{(3 - 4i)(4+2i)}{64} \\
+    &\iff c_0 = \frac{(3 - 4i)(4+2i)}{64(4 + 4i)} = \frac{5 - 15i}{256}
+  \end{align*}
+  wenig überraschend endlich die finale Partikulärlösung
+  \begin{align*}
+    y_p(t) = \left(\frac{1}{8(1-i)}t + \frac{1 + 2i}{32}\right)\exp((i-2)t) +
+    \left(\frac{3 - 4i}{64}t + \frac{5 - 15i}{256}\right)\exp(-(i+2)t),
+  \end{align*}
+  womit wir leicht die allgemeine Lösung
+  \begin{align*}
+  y(t) = \left(\frac{1}{8(1-i)}t + \frac{1 + 2i}{32}\right)\exp((i-2)t) +
+  \left(\frac{3 - 4i}{64}t + \frac{5 - 15i}{256}\right)\exp(-(i+2)t) +
+  a_1\exp(it) + a_2\exp(-it)
+  \end{align*}
+  angeben können.
+  \item Analog zu b)
+\end{enumerate}
+So viel analog, um Glück schreib ich zum Ausgleich das Ganze digital.
+Lol, krasse Analogie.
 \end{solution}
