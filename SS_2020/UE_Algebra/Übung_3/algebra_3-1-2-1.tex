@@ -18,11 +18,21 @@
         \end{align*}
         also $\varphi = \psi$.
         \item Nun betrachten wir das Monoid $(H, \circ, e)$. Wir definieren $\varphi$ wie in \ref{halbgruppe} und zusätzlich $\varphi(\epsilon) := e$. Dann sollte alles analog zu \ref{halbgruppe} funktionieren.
-        \item Dass es genau einen Homomorphismus $\varphi: X^* \rightarrow H$ gibt, ist äquivalent dazu, dass $\varphi$ initial in der Kategorie $\mathcal{C}$ ist, wobei:
+        \item Dass es genau einen Homomorphismus $\varphi: F \rightarrow H$ gibt, ist äquivalent dazu, dass $\varphi$ initial in der Kategorie $\mathcal{C}$ ist, wobei:
 
 \begin{itemize}
     \item $\mathrm{Ob}(\mathcal{C})$ := Klasse aller Tupel $(H, j)$, wobei $H$ eine Halbgruppe und $j: X \rightarrow H$ eine Funktion ist ($X^*$ mit der Konkatenation und der Einbettung $\iota$ ist natürlich selbst in dieser Klasse),
     \item $\mathrm{Hom}((H_1, j_1), (H_2, j_2))$ := Menge aller Homomorphismen $\varphi: H_1 \rightarrow H_2$, für die gilt $\varphi(j_1 (x)) = j_2 (x)$ für alle $x \in X$ (mit der gewöhnlichen Funktionsverknüpfung).
     \end{itemize}
+    \begin{center}
+    \begin{tikzpicture}[auto]
+        \node (X) at (0,2) {$X$};
+        \node (F) at (0,0) {$F$};
+        \node (H) at (2,0) {$H$};
+        \draw[->] (X) to node [swap] {$\iota$} (F);
+        \draw[->] (X) to node  {$j$} (H);
+        \draw[->] (F) to node [swap] {$\varphi$} (H);
+    \end{tikzpicture}
+    \end{center}
     \end{enumerate}
 \end{solution}
