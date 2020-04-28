@@ -109,7 +109,8 @@ der Form
 \begin{align*}
   P_{(a_0,m)} := \{\{1\},\dots,\{a_0 - 1\},\{a_0 + km: k \in \N\},\dots,\{a_0 + m - 1 + km: k \in \N\}\}
 \end{align*}
-mit $a_0,m \in N$ entspricht. Damit haben wir eine bijektive Abbildung
+mit $a_0,m \in N$ entspricht. Insbesondere erhalten wir (für $a_0 = 0$) die Modulo-Kongruenzrelationen.
+Damit haben wir eine bijektive Abbildung
 \begin{align*}
   \varphi: \begin{cases}
     \N^2 \rightarrow \mathcal{K} \\
@@ -150,34 +151,37 @@ Wir wollen zeigen, dass für alle $x_1,x_2,y_1,y_2 \in \N$ gilt:
 \end{align*}
 \end{enumerate}
 
-Die Kongruenzrelationen von $(\mathbb{N},+,0)$ sind also genau festgelegt durch ein beliebiges $a_0 \in \N$ und $b_0 > a_0$. Insgesamt gibt es also abzählbar unendlich viele.
-
-Insbesondere haben wir (für $a_0 = 0$) die Modulo-Kongruenzrelationen. Für jede natürliche Zahl
-$n \geq 1$ ist $a \sim b: \iff a \equiv b \mod n$ eine Kongruenzrelation, welche
-die Partition in die jeweiligen Restklassen induziert.
-\item [3.] Jede Teilmenge $A$ der Potenzmenge der Primzahlen induziert eine
+Die Kongruenzrelationen von $(\mathbb{N},+,0)$ sind also genau festgelegt durch ein beliebiges $a_0 \in \N$ und $b_0 > a_0$.
+Insgesamt gibt es also abzählbar unendlich viele.
+\item [3.] Jede Teilmenge $A \subseteq 2^{\P}$ induziert eine
 Unteralgebra von $(\mathbb{N},\cdot,1)$ mit
 \begin{align*}
   U_A := \left\{\prod_{j=1}^na_j^{n_j}: n, n_j \in \mathbb{N}, a_j \in A\right\}.
 \end{align*}
+Um zu überprüfen, dass $U_A$ eine Unteralgebra ist, betrachte $a, b \in U_A$:
+\begin{align*}
+  a &= \prod_{j=1}^{n_a}a_j^{n_j}, \qquad b = \prod_{j=1}^{n_b}b_j^{n_j} \\
+  ab &= \prod_{j=1}^{n_a}a_j^{n_j}\prod_{j=1}^{n_b}b_j^{n_j} \in U_A
+\end{align*}
 Diese Unteralgebren sind aufgrund der Eindeutigkeit
 der Primfaktorzerlegung allesamt paarweise verschieden.
 Damit können wir zwar noch nicht alle möglichen Unteralgebren
-vollständig beschreiben, allerdings ist aufgrund $|2^\mathbb{P}| = |2^\mathbb{N}|
+vollständig beschreiben, wie das Beispiel
+\begin{align*}
+  U = \{4^k: k \in \N\}
+\end{align*} zeigt.
+Allerdings ist aufgrund $|2^\mathbb{P}| = |2^\mathbb{N}|
 = |\mathbb{R}|$ die Kardinalität der Unteralgebren auf jeden
 Fall überabzählbar. \\
-Sei $X \subset \mathbb{N}$ beliebig.
-Dann ist die Menge
+Wenn wir uns nun nicht mehr auf Teilmengen von Primzahlen einschränken,
+können wir auf einfache, aber nicht mehr eindeutige Weise alle möglichen Unteralgebren
+erhalten. Sei dazu $X \subset \mathbb{N}$ beliebig. Die zugehörige Unteralgebra lautet
 \begin{align*}
   U_X := \left\{\prod_{j=1}^nx_j^{n_j}: n, n_j \in \mathbb{N}, x_j \in X\right\}.
 \end{align*}
-eine Unteralgebra und offensichtlicherweise können damit auch alle möglichen
-Unteralgebren beschrieben werden, allerdings ist diese Darstellung im Allgemeinen
-nicht mehr eindeutig.
 Also haben wir sowohl eine injektive, als auch eine surjektive Abbildung von
 einer Teilmenge der Potenzmenge der natürlichen Zahlen in die Menge aller
 Unteralgebren von $(\mathbb{N},\cdot,1)$ gefunden. \\
-Ich denke, dass es nicht möglich ist, eine elementare bijektive Abbildung zu finden.
 \item [4.] Wieder gibt es die beiden trivialen Relationen: Allrelation + Identitätsrelation.
 Weiters ist auch die Modulo 2 Relation eine Kongruenzrelation.
 Wiederum eine weitere Kongruenzrelation ist durch
