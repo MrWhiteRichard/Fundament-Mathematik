@@ -15,5 +15,127 @@
 \end{exercise}
 
 \begin{solution}
-Hier muss was stehen, sonst spackt \LaTeX.
+Für die Bestimmung des Fundamentalsystems sehen wir uns das charakteristische Polynom
+$\chi(\lambda)$ an. Für dieses gilt:
+
+\begin{align*}
+  \chi(\lambda) = \lambda^3 - 3\lambda + 2
+\end{align*}
+
+Wir sehen unmittelbar, dass $\lambda_1 = 1$ eine Nullstelle ist. Um die weiteren
+Nullstellen zu berechnen führen wir also Polynomdivision durch. Dabei erhalten wir
+
+\begin{align*}
+  \lambda^3 - 3\lambda + 2 : (\lambda - 1) = \lambda^2 + \lambda - 2
+\end{align*}
+
+Lösen dieser quadratischen Gleichung gibt uns die weiteren Nullstellen
+$\lambda_2 = 1, \lambda_3 = -2$, also ist $1$ Nullstelle mit Vielfachheit $2$.
+Nach Satz 3.18 sind damit folgende Lösungen linear unabhängig und bilden damit ein
+Fundamentalsystem:
+
+\begin{align*}
+t\exp^t, \exp^t, \exp^{-2t}
+\end{align*}
+
+Um jetzt die Spezielle Lösung mit der Vatiation der Konstanten zu berechnen, machen
+wir das Vorgehen wie in 3.4 (iv) im Skript. Wir machen also den Ansatz:
+
+\begin{align*}
+  y_p (t)= y^1 (t) c_1 (t) + y^2 (t) c_2 (t) + y^3 (t) c_3 (t)
+\end{align*}
+
+Notatiell geschickter
+\begin{align*}
+  Y(t) \cdot c(t) \quad \text{mit} \quad
+  Y(t) = \left(
+  \begin{array}{ccc}
+    y^1 & y^2 & y^3 \\
+    (y^1)^\prime & (y^2)^\prime & (y^3)^\prime \\
+    (y^1)^\primeprime & (y^2)^\primeprime & (y^3)^\primeprime
+  \end{array}
+  \right)  =
+  \left(
+  \begin{array}{ccc}
+    \exp^t & t\exp^t & \exp^{-2t} \\
+    \exp^t & t\exp^t \exp^t & -2\exp^{-2t} \\
+    \exp^t & 2\exp^t + t\exp^t & 4\exp^{-2t}
+  \end{array}
+  \right)
+\end{align*}
+
+Dann ist
+
+\begin{align*}
+  c(t) = \int Y(t)^{-1} \cdot
+  \left(
+  \begin{array}{c}
+    0 \\
+    0 \\
+    9\exp^t
+  \end{array}
+  \right) dt
+\end{align*}
+
+Die Inverse lassen wir uns berechnen:
+
+\begin{align*}
+  Y(t)^{-1} = \left(
+  \begin{array}{ccc}
+    \frac{6t+8}{9\exp^t} & \frac{-3t+2}{9\exp^t} & \frac{-3t-1}{9\exp^t} \\
+    \frac{-2}{3\exp^t} & \frac{1}{3\exp^t} & \frac{1}{3\exp^t} \\
+    \frac{\exp^{2t}}{9} & \frac{-2\exp^{2t}}{9} & \frac{\exp^{2t}}{9}
+  \end{array}
+  \right)
+\end{align*}
+
+Damit:
+
+\begin{align*}
+  \int Y(t)^{-1} \cdot
+  \left(
+  \begin{array}{c}
+    0 \\
+    0 \\
+    9\exp^t
+  \end{array}
+  \right)dt = \left(
+  \begin{array}{c}
+    -\frac{3t^2}{2} - t + k_1 \\
+    3t + k_2 \\
+    \frac{\exp^{3t}}{3} + k_3
+  \end{array}
+  \right)
+\end{align*}
+
+Wobei $k_1,k_2,k_3$ die Integrationskonstanten sind. Setzen wir diese Null haben
+also mit $y_p(t) = \frac{3t^2 \exp^t}{2} - t\exp^t + \frac{\exp^t}{3}$ eine
+Partikulärlösung und damit eine allgemeine Lösung
+\begin{align*}
+  y(t) = a_1 \exp^t + a_2 t\exp^t + a_3\exp^{-2t} + \frac{3t^2 \exp^t}{2} - t\exp^t + \frac{\exp^t}{3}
+\end{align*}
+
+Wenn wir die (in diesem Fall etwas praktischere) Ansatzmethode anwenden wollen
+benutzen wir erstmal Satz 3.20. Unser Polynom $q(t)=1$ ist vom Grad 0 und $\beta=1$.
+Da $\beta$ eine 2-fache Nullstelle von $\chi$ ist, wissen wir, dass es eine
+Konstante $c$ gibt sodass
+
+\begin{align*}
+  y_p (t) = ct^2 \exp^t
+\end{align*}
+
+Setzen wir nun in unsere Differentialgleichung ein:
+
+\begin{align*}
+  y_p^\primeprimeprime -3y_p^\prime +2y_p =
+  c6\exp^t \stackrel{!}{=} 9\exp^t
+  \Rightarrow c = \frac{3}{2}
+\end{align*}
+
+Damit sind Lösungen mit $a_1 ,a_2 ,a_3 \in \R$ gegeben durch:
+
+\begin{align*}
+  y(t) = a_1 \exp^t + a_2 t\exp^t + a_3\exp^{-2t} + \frac{3t^2 \exp^t}{2}
+\end{align*}
+
 \end{solution}
