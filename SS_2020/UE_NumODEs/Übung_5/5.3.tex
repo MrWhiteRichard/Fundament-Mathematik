@@ -41,7 +41,7 @@ Wir wissen
     \end{align*}
     \item Dreiecksungleichung \begin{align*}
       &\Forall p,q \in \Pi_r: \\
-      & \|p+q\|_k = \|p+q\|_\infty + \|(p+q)^{(k)}\|_\infty \\
+      & \|p+q\|_k = \|p+q\|_\infty + \|(p+q)^{(k)}\|_\infty = \|p+q\|_\infty + \|p^{(k)}+q^{(k)}\|_\infty\\
       &\leq \|p\|_\infty + \|q\|_\infty + \|p^{(k)}\|_\infty + \|q^{(k)}\|_\infty = \|p\|_k + \|q\|_k
     \end{align*}
     \item \Quote{Null-Äquivalenz} \begin{align*}
@@ -104,7 +104,7 @@ Wir wissen
       \begin{align}\label{int}
         0 = p(x_1) - p(x_0) = \int_{x_0}^{x_1}p^{\prime}(\xi) d\xi
       \end{align}
-      Wir verwenden nun die Newton Darstellung des Interpolationspolynoms über die dividierten Differenzen, wobei für $j=1,...,r-1$ gilt $y[z_j] = p^{\prime}(x_{j+1}) = 0$ und somit aufgrund der rekursiven Definition der d. D. auch $y[z_1,...,z_j]=0, j = 1,\dots,r-1$ und $y[z_1,...,z_r] = \frac{1}{C}p^{\prime}(z_r)$
+      Wir verwenden nun die Newton Darstellung des Interpolationspolynoms über die dividierten Differenzen, wobei für $j=1,...,r-1$ gilt $y[z_j] = p^{\prime}(x_{j+1}) = 0$ und somit aufgrund der rekursiven Definition der d. D. auch $y[z_1,...,z_j]=0, j = 1,\dots,r-1$ und $y[z_1,...,z_r] = \frac{1}{C}p^{\prime}(z_r)$ mit einer Konstante $C \in \R$.
       Eingesetzt in \eqref{int}:
       \begin{align*}
         0 =& \int_{x_0}^{x_1}p^{\prime}(\xi) d\xi = \int_{x_0}^{x_1} \sum_{j=1}^{r}y[z_1,...,z_j]N_{j-1}(\xi) d\xi \\
