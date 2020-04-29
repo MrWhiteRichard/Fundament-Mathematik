@@ -47,11 +47,54 @@
     \end{align*}
     Zeigen Sie, dass dann die Funktion $\tilde{y}(t) := y(t + t_0 ) - y_0$ eine
     ODE der Form \eqref{allgemeiner Typ} mit $c = \gamma = 0$ erfüllt. Überlegen
-    Sie sich, dass letzere Form eifach auf die Form einer homogenen ODE gebracht
+    Sie sich, dass letzere Form einfach auf die Form einer homogenen ODE gebracht
     werden kann.
   \end{itemize}
 \end{exercise}
 
 \begin{solution}
-  To do!
+\begin{itemize}
+  \item[a)]
+  Da $\det(A) = 0$, gilt
+  \begin{align*}
+    \exists \lambda \in \R: (a,b) = \lambda (\alpha, \beta) \lor \lambda (a,b) = (\alpha, \beta)
+  \end{align*}
+  Sei o.B.d.A. $(a,b) = \lambda (\alpha, \beta)$ also auch $ay + bt = \lambda (\alpha y + \beta t)$.
+
+  Sei $\tilde{y}(t) = \alpha y(t) + \beta t$
+  \begin{align*}
+    \Rightarrow \tilde{y}'(t) = \alpha y'(t) + \beta = \alpha f(\frac{ay + bt + c}{\alpha y + \beta t + \gamma}) = \alpha f(\frac{\lambda \tilde{y} + c}{\tilde{y} + \gamma}) + \beta =: \tilde{f}(\tilde{y})
+  \end{align*}
+
+  \item[b)]
+  \begin{align*}
+    A\left(
+    \begin{array}{c}
+      y_0 \\
+      t_0
+    \end{array}
+    \right) = -\left(
+    \begin{array}{c}
+      c \\
+      \gamma
+    \end{array}
+    \right) \\
+    \Rightarrow ay_0 + bt_0 = -c \land \alpha y_0 + \beta t_0 = -\gamma
+  \end{align*}
+  Sei nun $\tilde{y}(t) := y(t + t_0 ) - y_0$
+  \begin{align*}
+    \tilde{y}'(t) = y'(t + t_0 ) = f \bigg(\frac{ay(t+t_0) + b(t+t_0) + c}{\alpha y(t+t_0) + \beta (t+t_0) + \gamma}\bigg) = f\bigg(\frac{ay(t+t_0) - ay_0 + b(t+t_0) - bt_0}{\alpha y(t+t_0) -\alpha y_0 + \beta (t+t_0) - \beta t_0}
+    \bigg) = f \bigg(\frac{a\tilde{y}(t) + bt}{\alpha \tilde{y}(t) + \beta t}\bigg)
+  \end{align*}
+  Nochmals vereinfacht also
+  \begin{align*}
+    \tilde{y}'(t) = f \bigg(\frac{a\tilde{y}(t)/t + b}{\alpha \tilde{y}(t)/t + \beta }\bigg)
+  \end{align*}
+  Sei nun $\hat{y} = \frac{\tilde{y}}{t}$
+
+  \begin{align*}
+    &\Rightarrow \hat{y}' = \frac{\tilde{y}'t - \tilde{y}}{t^{2}} = \frac{\tilde{y}'}{t} - \frac{\tilde{y}}{t^{2}} = \frac{\tilde{y}'}{t} - \frac{\hat{y}}{t} \\
+    &\Rightarrow \hat{y}' = \frac{1}{t} (f \bigg(\frac{a\hat{y} + b}{\alpha \hat{y} + \beta }\bigg) - \hat{y}) =: \frac{1}{t} \hat{f}(\hat{y})
+  \end{align*}
+\end{itemize}
 \end{solution}
