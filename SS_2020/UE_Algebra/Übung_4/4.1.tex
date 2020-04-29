@@ -45,14 +45,15 @@ Sei $U \in \mathcal{U}$ beliebig und sei angenommen,
 dass $U$ nicht endlich erzeugt ist.
 Dazu definieren wir uns die Folge $(a_n)_{n \in \mathbb{N}}$ induktiv wie folgt
 \begin{align*}
-  a_0 := \min U \\
+  a_0 := \min U = 0\\
+  a_1 := \min U \backslash \langle 0 \rangle \\
 a_{n+1} := \min U \backslash \langle a_0,\dots,a_n\rangle
 \end{align*}
-Betrachte nun die endliche Menge $(a_0,\dots,a_m)$ mit einem $m > a_0$.
-Nun folgt mit dem Schubfachprinzip $\exists k,n \leq m: a_k \equiv a_n (\mod a_0)$.
-Wir nehmen o.B.d.A. an $a_k < a_n$. Dann gilt also
+Betrachte nun die endliche Menge $(a_0,\dots,a_m)$ mit einem $m > a_1$.
+Nun folgt mit dem Schubfachprinzip $\exists k,n \leq m: a_k \equiv a_n \mod a_1$.
+Wir nehmen o.B.d.A. an $a_k < a_n$, also gilt auch $k < n$. Dann gilt also
 \begin{align*}
-  \exists c \in \mathbb{N}: a_n = a_k + ca_0 \in \langle a_0,\dots,a_m \rangle
+  \exists c \in \mathbb{N}: a_n = a_k + ca_0 \in \langle a_0,\dots,a_k \rangle
 \end{align*}
 Dies ist ein Widerspruch zu unserer Konstruktion und $U$ muss somit endlich erzeugt sein.
 Also können wir $\mathcal{U}$ als Bild einer nicht notwendigerweise injektiven
@@ -102,7 +103,7 @@ mit sich selbst in Relation steht.
   \item Fall 3: $a_1 \geq a_0, m^{\prime} > m$:
   Es gibt ein kleinstes $k \in \N: mk < m^{\prime}$.
   Es folgt $a_1 + mk \sim a_1 \sim a_1 + m^{\prime}$ und wir erhalten einen
-  Widerpruch mittels Fall 1 angewandt auf das Paar $(a_1 + mk, a_1 + m^{\prime})$.
+  Widerpruch mittels Fall 2 angewandt auf das Paar $(a_1 + mk, a_1 + m^{\prime})$.
 \end{itemize}
 Insgesamt gilt also, dass jede Kongruenzrelation auf $(\mathbb{N},+,0)$ einer Partition
 der Form
@@ -117,7 +118,7 @@ Damit haben wir eine bijektive Abbildung
     (a_0,m) \mapsto P_{(a_0,m)}
   \end{cases}
 \end{align*}
-gefunden und es gilt $|K| = |\N|$. \\
+gefunden und es gilt $|K| = |\N^2| = |\N|$. \\
 *************************** (andere Argumentation) \\
 Dass Gleichheit gilt, erkennt man im Folgenden. Sei angenommen, es gibt zwei Zahlen $n_1 < n_2$ zwischen $a_0$ und $b_0$ (also $n_1 = a_0 + d_1$ und $n_2 = a_0 + d_2$ mit $d_1,d_2 \in {0,...,m-1}$), die in Relation stehen.
 
@@ -153,7 +154,7 @@ Wir wollen zeigen, dass für alle $x_1,x_2,y_1,y_2 \in \N$ gilt:
 
 Die Kongruenzrelationen von $(\mathbb{N},+,0)$ sind also genau festgelegt durch ein beliebiges $a_0 \in \N$ und $b_0 > a_0$.
 Insgesamt gibt es also abzählbar unendlich viele.
-\item [3.] Jede Teilmenge $A \subseteq 2^{\P}$ induziert eine
+\item [3.] Jede Teilmenge $A \subseteq \P$ induziert eine
 Unteralgebra von $(\mathbb{N},\cdot,1)$ mit
 \begin{align*}
   U_A := \left\{\prod_{j=1}^na_j^{n_j}: n, n_j \in \mathbb{N}, a_j \in A\right\}.

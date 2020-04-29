@@ -9,7 +9,7 @@ Gesucht sei für beliebiges $g \in C^r([a,b])$ die Lösung $p \in \Pi_r$ von
   \item Zeigen Sie die Fehlerabschätzung
   \begin{align}
     \sup_{x \in [0,h]} |p(x) - g(x)| \leq \frac{h^{r+1}}{r!}
-    \sup_{x \in [0,h]}\left|g^{(r)}(x)\right|.
+    \sup_{x \in [0,h]}\left|g^{(r + 1)}(x)\right|.
   \end{align}
 \end{enumerate}
 \end{exercise}
@@ -34,17 +34,17 @@ Gesucht sei für beliebiges $g \in C^r([a,b])$ die Lösung $p \in \Pi_r$ von
   \item Auf das Polynom $p^{\prime}$ können wir die Fehlerabschätzung aus der
   Lagrange-Interpolation (Lemma 3.18) anwenden und erhalten
   \begin{align*}
-      \sup_{x \in [0,h]} |p^{\prime}(x) - g^{\prime}(x)| \leq \frac{h^{r}}{r!}\sup_{x \in [0,h]} |g^{(r)}(x)|.
+      \sup_{x \in [0,h]} |p^{\prime}(x) - g^{\prime}(x)| \leq \frac{h^{r}}{r!}\sup_{x \in [0,h]} |(g^{\prime})^{(r)}(x)|.
   \end{align*}
   Weiters berechnen wir für $x \in [0,h]$ beliebig
   \begin{align*}
     |p(x) - g(x)| = \left|\int_0^x p^{\prime}(y) - g^{\prime}(y) dy \right| \leq h \sup_{x \in [0,h]} |p^{\prime}(x) - g^{\prime}(x)| =
-    \frac{h^{r+1}}{r!}\sup_{x \in [0,h]} |g^{(r)}(x)|
+    \frac{h^{r+1}}{r!}\sup_{x \in [0,h]} |g^{(r + 1)}(x)|
   \end{align*}
   und erhalten schließlich
   \begin{align*}
   \sup_{x \in [0,h]} |p(x) - g(x)| \leq \frac{h^{r+1}}{r!}
-  \sup_{x \in [0,h]}\left|g^{(r)}(x)\right|,
+  \sup_{x \in [0,h]}\left|g^{(r + 1)}(x)\right|,
   \end{align*}
   was zu zeigen war.
 \end{enumerate}
