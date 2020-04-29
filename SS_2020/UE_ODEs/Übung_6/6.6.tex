@@ -2,12 +2,71 @@
   Bestimmen Sie ein Fundamentalsystem für die ODE vom Eulerschen Typ:
 
   \begin{align*}
-    2t^3 y^{\primeprimeprime} + 10t^2 y^{\primeprime}- 4ty^{\prime}- 20y = 0
+    2t^3 y^\primeprimeprime + 10t^2 y^\primeprime - 4ty^\prime - 20y = 0
   \end{align*}
 
   Hinweis: Substituieren Sie $t = \exp(\tau)$.
 \end{exercise}
 
 \begin{solution}
-  To do!
+  Führen wir die Substitution aus dem Hinweis durch erhalten wir das System
+
+  \begin{align*}
+    2\exp^{3\tau} y^{(3)}(\exp^\tau) + 10\exp^{2\tau} y^\primeprime (\exp^\tau)
+    -4 exp^\tau y^\prime (\exp^\tau) - 20 y(\exp^\tau) = 0
+  \end{align*}
+
+  Definieren wir $z(\tau)=y(\exp^\tau)$ so gilt für deren Ableitungen:
+
+  \begin{align*}
+    z^\prime (\tau) &= y^\prime (\exp^\tau)\exp^\tau \\
+    z^\primeprime (\tau) &= y^\primeprime (\exp^\tau) \exp^{2\tau} +
+    y^\prime (\exp^\tau)\exp^\tau \\
+    z^{(3)}(\tau) &= y^{(3)}(\exp^\tau) \exp^{3\tau} + 3y^\primeprime (\exp^\tau)
+    \exp^{2\tau} + y^\prime (\exp^\tau) \exp^\tau
+  \end{align*}
+
+  Wollen wir das nun auf obige Form bringen müssen wir die Koeffizienten vergleichen und erhalten
+
+  \begin{align*}
+    2z^{(3)}(\tau)+4z^\primeprime (\tau) -10 z^\prime (\tau) - 20z(\tau) = 0
+    \Leftrightarrow \\
+    z^{(3)}(\tau)+2z^\primeprime (\tau) -5 z^\prime (\tau) - 10z(\tau) = 0
+  \end{align*}
+
+  Hier können wir nun Satz 3.18 anwenden, wir suchen also die Nullstellen des
+  charakteristischen Polynoms $\chi$:
+
+  \begin{align*}
+    \chi(\lambda) = \lambda^3 + 2\lambda^2 -5\lambda - 10
+  \end{align*}
+
+  Eine einfache Nullstelle, nämlich $\lambda _1 =-2$ können wir erraten und dann Polynomdivision
+  durchführen:
+
+  \begin{align*}
+    \lambda^3 + 2\lambda^2 -5\lambda - 10 : (\lambda + 2) = \lambda^2 - 5
+  \end{align*}
+
+  Damit erhalten wir die zwei weiteren Nullstellen
+  $\lambda_2, \lambda_3 = \pm \sqrt{5}$. Damit bilden
+
+  \begin{align*}
+    z_1(\tau)=\exp^{-2\tau} \qquad z_2 (\tau)=\exp^{-\sqrt{5}\tau} \qquad
+    z_3 (\tau)=\exp^{\sqrt{5}\tau}
+  \end{align*}
+
+  ein Fundamentalsystem. Sehen wir uns die Definition von $z$ an bedeutet das also
+
+  \begin{align*}
+    y_1 (\exp^\tau) = \exp^{-2\tau} \qquad y_2 (\exp^\tau)=\exp^{-\sqrt{5}\tau} \qquad
+    y_3 (\exp^\tau)=\exp^{\sqrt{5}\tau}
+  \end{align*}
+
+  Wenn wir nun Rücksubstituieren erhalten wir damit ein Fundamentalsystem des originalen
+  Problems:
+
+  \begin{align*}
+    y_1 (t) = t^{-2} \qquad y_2 (t) = t^{-\sqrt{5}} \qquad y_3 (t) = t^{\sqrt{5}}
+  \end{align*}
 \end{solution}
