@@ -7,5 +7,41 @@
 \end{exercise}
 
 \begin{solution}
-  To do!
+  Dem Ansatz der letzten Aufgabe folgend, wählen wir geschickt $(y_0,t_0) = (-1,1)$, sodass
+  \begin{align*}
+  A\left(
+  \begin{array}{c}
+    -1 \\
+    1
+  \end{array}
+  \right) = -\left(
+  \begin{array}{c}
+    1 \\
+    1
+  \end{array}
+  \right).
+  \end{align*}
+
+  Wir definieren also analog $\tilde{y}(t) := y(t+1)+1$ und $\hat{y} := \frac{\tilde{y}}{t}$.
+
+  Nun müssen wir noch die separable ODE
+  \begin{align*}
+    \hat{y}' = \frac{1}{t} \bigg(\frac{-3 \hat{y} -4}{4\hat{y}+3}-\hat{y}\bigg)
+  \end{align*}
+  lösen.
+
+  \begin{align*}
+    \int \frac{1}{\frac{-3y-4}{4y+3}-y}dy =& \int \frac{1}{t} dt + c \\
+    \Leftrightarrow -1/2 ln(2y^2 +3y + 2) =& ln(t) + c \\
+    \Leftrightarrow 2y^2 +3y + 2 =& (te^c)^{-2} \\
+    \Leftrightarrow y^2 +3/2y + 1 - (\sqrt{2} te^c)^{-2} =& 0 \\
+    \Rightarrow \hat{y}(t) = -3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}
+  \end{align*}
+  \begin{align*}
+    \Rightarrow \tilde{y}(t) = t \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}\bigg) \\
+    \Rightarrow y(t) = \tilde{y}(t-1) -1 =& (t-1) \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} (t-1)e^c)^{-2}}\bigg) - 1 \\
+    =& -1/4 (3t+1) \pm (t-1) \sqrt{-7/16 + (2 (t-1)^2 e^2c)^{-1}} \\
+    =& -1/4 (3t+1) \pm \sqrt{-7/16(t-1)^2 + (2e^2c)^{-1}}
+  \end{align*}
+
 \end{solution}
