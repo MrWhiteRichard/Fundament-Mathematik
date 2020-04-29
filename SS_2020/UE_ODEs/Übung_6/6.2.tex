@@ -26,7 +26,7 @@ asymptotisch stabil sind.
   \begin{align*}
     \lambda_1 = i, \qquad \lambda_2 = -i.
   \end{align*}
-  Also erhalten wir mit Satz 3.18 mit
+  Also erhalten wir mit Satz 2.18 mit
   \begin{align*}
     y_1(t) = \exp(it), \qquad y_2(t) = \exp(-it)
   \end{align*}
@@ -185,8 +185,70 @@ asymptotisch stabil sind.
   a_1\exp(it) + a_2\exp(-it)
   \end{align*}
   angeben können.
-  \item Analog zu b)
+  Zur Untersuchung der Stabilität greifen wir wieder auf eine Variableneinführung
+  zurück und erhalten das lineare System
+  \begin{align*}
+    Y^{\prime}(t) = \begin{pmatrix}
+      0 & 1 \\
+      -1 & 0
+    \end{pmatrix}Y(t)
+    + \begin{pmatrix}
+      0 \\ t\exp(-2t)\cos(t)
+    \end{pmatrix}
+  \end{align*}
+  Wie in Beispiel a) erkennt man, dass die Ruhelage $y^* \equiv 0$ nicht stabil sein
+  kann und $y_{t_0,y_0}$ damit auch nicht.
+  \item Zur Abwechslung kommt auch mal ein anderes charakteristisches Polynom dran:
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 - 1
+  \end{align*}
+  Die Nullstellen davon sind
+  \begin{align*}
+    \lambda_1 = 1, \qquad \lambda_2 = -1.
+  \end{align*}
+  Unsere neues Fundamentalsystem der homogenen Gleichung lautet
+  \begin{align*}
+    y_1(t) = \exp(t), \qquad y_2(t) = \exp(-t)
+  \end{align*}
+  Diesmal brauchen wir für $b(t) = t\exp(-t)$ nur eine Partikulärlösung berechnen.
+  Da $\chi(-1) = 0$ befinden wir uns im zweiten Fall. Der Ansatz lautet
+  \begin{align*}
+    y_p(t) = t(c_1t + c_0)\exp(-t).
+  \end{align*}
+  Wir setzen ein letztes Mal in die Differentialgleichung ein:
+  \begin{align*}
+    &[c_1(2 - 4t + t^2 - t^2)+ c_0(-2 + t - t)]\exp(-t) = t\exp(-t) \\
+    &\iff c_1(2 - 4t) - 2c_0 = t
+  \end{align*}
+  Wir lesen die Lösungen
+  \begin{align*}
+    c_0 = c_1 = -\frac{1}{4}
+  \end{align*}
+  ab. Die allgemeine Lösung lautet damit
+  \begin{align*}
+    y(t) = t(-\frac{1}{4}t - \frac{1}{4})\exp(-t) + a_1\exp(t) + a_2\exp(-t).
+  \end{align*}
+  Für die Stabilität betrachte wieder das umgeformte, lineare System
+  \begin{align*}
+    Y^{\prime}(t) = \begin{pmatrix}
+      0 & 1 \\
+      1 & 0
+    \end{pmatrix}Y(t)
+    + \begin{pmatrix}
+      0 \\ t\exp(-t)
+    \end{pmatrix}
+  \end{align*}
+  mit der zugehörigen Fundamentalmatrix
+  \begin{align*}
+    Z(t) = \begin{pmatrix}
+      1 & \exp(t) \\
+      \exp(t) & 1
+    \end{pmatrix}
+  \end{align*}
+  und wieder haben wir
+  \begin{align*}
+    \sup_{t \geq t_0} ||Y(t)|| = \infty
+  \end{align*}
+  und somit Instabilität.
 \end{enumerate}
-So viel analog, um Glück schreib ich zum Ausgleich das Ganze digital.
-Lol, krasse Analogie.
 \end{solution}
