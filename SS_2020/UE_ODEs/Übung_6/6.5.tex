@@ -35,7 +35,7 @@ Nach Satz 3.18 sind damit folgende Lösungen linear unabhängig und bilden damit
 Fundamentalsystem:
 
 \begin{align*}
-t\exp^t, \exp^t, \exp^{-2t}
+y^1(t) = t\exp^t, \qquad y^2(t) = \exp^t,\qquad y^3(t) =  \exp^{-2t}
 \end{align*}
 
 Um jetzt die Spezielle Lösung mit der Vatiation der Konstanten zu berechnen, machen
@@ -82,9 +82,9 @@ Die Inverse lassen wir uns berechnen:
 \begin{align*}
   Y(t)^{-1} = \left(
   \begin{array}{ccc}
-    \frac{6t+8}{9\exp^t} & \frac{-3t+2}{9\exp^t} & \frac{-3t-1}{9\exp^t} \\
-    \frac{-2}{3\exp^t} & \frac{1}{3\exp^t} & \frac{1}{3\exp^t} \\
-    \frac{\exp^{2t}}{9} & \frac{-2\exp^{2t}}{9} & \frac{\exp^{2t}}{9}
+    \frac{6t+8}{9\exp(t)} & \frac{-3t+2}{9\exp(t)} & \frac{-3t-1}{9\exp(t)} \\
+    \frac{-2}{3\exp(t)} & \frac{1}{3\exp(t)} & \frac{1}{3\exp(t)} \\
+    \frac{\exp(2t)}{9} & \frac{-2\exp(2t)}{9} & \frac{\exp(2t)}{9}
   \end{array}
   \right)
 \end{align*}
@@ -97,22 +97,22 @@ Damit:
   \begin{array}{c}
     0 \\
     0 \\
-    9\exp^t
+    9\exp(t)
   \end{array}
   \right)dt = \left(
   \begin{array}{c}
     -\frac{3t^2}{2} - t + k_1 \\
     3t + k_2 \\
-    \frac{\exp^{3t}}{3} + k_3
+    \frac{\exp(3t)}{3} + k_3
   \end{array}
   \right)
 \end{align*}
 
 Wobei $k_1,k_2,k_3$ die Integrationskonstanten sind. Setzen wir diese Null haben
-also mit $y_p(t) = \frac{3t^2 \exp^t}{2} - t\exp^t + \frac{\exp^t}{3}$ eine
+also mit $y_p(t) = \frac{3t^2 \exp(t)}{2} - t\exp(t) + \frac{\exp(t)}{3}$ eine
 Partikulärlösung und damit eine allgemeine Lösung
 \begin{align*}
-  y(t) = a_1 \exp^t + a_2 t\exp^t + a_3\exp^{-2t} + \frac{3t^2 \exp^t}{2} - t\exp^t + \frac{\exp^t}{3}
+  y(t) = a_1 \exp(t) + a_2 t\exp(t) + a_3\exp(-2t) + \frac{3t^2 \exp(t)}{2} - t\exp(t) + \frac{\exp(t)}{3}
 \end{align*}
 
 Wenn wir die (in diesem Fall etwas praktischere) Ansatzmethode anwenden wollen
@@ -121,21 +121,21 @@ Da $\beta$ eine 2-fache Nullstelle von $\chi$ ist, wissen wir, dass es eine
 Konstante $c$ gibt sodass
 
 \begin{align*}
-  y_p (t) = ct^2 \exp^t
+  y_p (t) = ct^2 \exp(t)
 \end{align*}
 
 Setzen wir nun in unsere Differentialgleichung ein:
 
 \begin{align*}
   y_p^\primeprimeprime -3y_p^\prime +2y_p =
-  c6\exp^t \stackrel{!}{=} 9\exp^t
+  c6\exp(t) \stackrel{!}{=} 9\exp^t
   \Rightarrow c = \frac{3}{2}
 \end{align*}
 
 Damit sind Lösungen mit $a_1 ,a_2 ,a_3 \in \R$ gegeben durch:
 
 \begin{align*}
-  y(t) = a_1 \exp^t + a_2 t\exp^t + a_3\exp^{-2t} + \frac{3t^2 \exp^t}{2}
+  y(t) = a_1 \exp(t) + a_2 t\exp(t) + a_3\exp(-2t) + \frac{3t^2 \exp(t)}{2}
 \end{align*}
 
 \end{solution}

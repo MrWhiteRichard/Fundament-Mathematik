@@ -9,7 +9,7 @@
   \end{align}
 
   für Konstanten $a,b,c,\alpha ,\beta ,\gamma$. Ziel ist es, durch Variablensubstitution
-  eine seperierbare ODE zu erhalten. Definieren Sie hierzu die Matrix
+  eine separierbare ODE zu erhalten. Definieren Sie hierzu die Matrix
 
   \begin{align*}
     A = \left(
@@ -25,7 +25,7 @@
     $ay +bt = \lambda (\alpha y + \beta t)$ für ein $\lambda \in \R$. Überlegen
     Sie sich, dass Sie durch Substitution sogar die Form
     \begin{align*}
-      \tilde{y'}=\tilde{f}(\tilde{y})
+      \tilde{y}^{\prime}=\tilde{f}(\tilde{y})
     \end{align*}
     erhalten können.
 
@@ -59,7 +59,7 @@
   \begin{align*}
     \exists \lambda \in \R: (a,b) = \lambda (\alpha, \beta) \lor \lambda (a,b) = (\alpha, \beta)
   \end{align*}
-  Sei o.B.d.A. $(a,b) = \lambda (\alpha, \beta)$ also auch $ay + bt = \lambda (\alpha y + \beta t)$.
+  Sei o.B.d.A. $(a,b) = \lambda (\alpha, \beta)$, also auch $ay + bt = \lambda (\alpha y + \beta t)$.
 
   Sei $\tilde{y}(t) = \alpha y(t) + \beta t$
   \begin{align*}
@@ -69,7 +69,12 @@
 
   \item[b)]
   \begin{align*}
-    A\left(
+  \left(
+    \begin{array}{cc}
+      a & b \\
+      \alpha & \beta
+    \end{array}
+  \right)\left(
     \begin{array}{c}
       y_0 \\
       t_0
@@ -91,10 +96,10 @@
   \begin{align*}
     \tilde{y}'(t) = f \bigg(\frac{a\tilde{y}(t)/t + b}{\alpha \tilde{y}(t)/t + \beta }\bigg)
   \end{align*}
-  Sei nun $u = \frac{\tilde{y}}{t}$
+  Sei nun $u = \tilde{y}/t$
 
   \begin{align*}
-    &\Rightarrow u' = \frac{\tilde{y}' t - \tilde{y}}{t^{2}} = \frac{\tilde{y}'}{t} - \frac{\tilde{y}}{t^{2}} = \frac{\tilde{y}'}{t} - \frac{u}{t} \\
+    &\Rightarrow u' = \frac{\tilde{y}' t - \tilde{y}}{t^{2}} = \frac{\tilde{y}'}{t} - \frac{\tilde{y}}{t^{2}} = \frac{\tilde{y}'- u}{t} \\
     &\Rightarrow u' = \frac{1}{t} \left(f \bigg(\frac{au + b}{\alpha u + \beta }\bigg) - u\right) =: \frac{1}{t} \hat{f}(u)
   \end{align*}
 \end{itemize}

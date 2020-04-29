@@ -5,43 +5,96 @@
     y'= -\frac{3y + 4t - 1}{4y + 3t + 1}
   \end{align*}
 \end{exercise}
-
+\begin{solution}
+Wir verwenden den Ansatz aus Aufgabe 6.3 und stellen vorerst die Matrix $A$ auf:
+\begin{align*}
+  A = \begin{pmatrix}
+    3 & 4 \\ 4 & 3
+  \end{pmatrix}, \qquad \det (A) = 9 - 16 = 7 \neq 0.
+\end{align*}
+Zunächst lösen wir das lineare Gleichungssystem
+\begin{align*}
+\begin{pmatrix}
+ 3 & 4 \\ 4 & 3
+\end{pmatrix}
+\begin{pmatrix}
+  y_0 \\ t_0
+\end{pmatrix}
+=
+\begin{pmatrix}
+  1 \\ -1
+\end{pmatrix}
+\end{align*}
+und erhalten mit $(y_0, t_0)^{\top} = (-1,1)^{\top}$ eine Partikulärlösung davon.
+Wir definieren die Funktion \\
+$\widetilde{y}(t) := y(t + 1) + 1$, welche die Differentialgleichung
+\begin{align*}
+  \widetilde{y}^{\prime}(t) = -\frac{3\widetilde{y} + 4t}{4\widetilde{y} + 3t}
+  = -\frac{3\widetilde{y}/t + 4}{4\widetilde{y}/t + 3}
+\end{align*}
+erfüllt. Wir substituieren $u = \widetilde{y}/t$ und stellen nochmals die Differentialgleichung auf
+\begin{align*}
+  u^{\prime}(t) = \frac{t\widetilde{y}^{\prime} - \widetilde{y}}{t^2}
+  = \frac{\widetilde{y}^{\prime} - u}{t}
+  = \frac{1}{t}\left(-\frac{3u + 4}{4u + 3} -u\right)
+  = -\frac{1}{t}\left(\frac{4u^2 + 6u + 4}{4u + 3}\right).
+\end{align*}
+Jetzt verwenden wir die Methode zur Lösung von homogenen ODEs und setzen an
+\begin{align*}
+  \int \frac{4u + 3}{4u^2 + 6u + 4} du &= \int \frac{1}{t} dt \\
+  \iff \int \frac{4u + 3}{4u^2 + 6u + 4} du \bigg|_{s = 4u^2 + 6u + 4}^{du = ds/(8u + 6)} &= \ln(t) + C \\
+  \iff \int \frac{1}{2s} ds &= \ln(t) + C \\
+  \iff \frac{1}{2}\ln(4u^2 + 6u + 4) &= \ln(t) + C \\
+  \iff (4u^2 + 6u + 4) &= t^2\exp(2C)\\
+  \iff u = \frac{1}{4}\left(\pm\sqrt{4\exp(2C)t^2 - 7} - 3\right)
+\end{align*}
+Wir substituieren zurück, erhalten
+\begin{align*}
+  \widetilde{y}(t) = \frac{t}{4}\left(\pm\sqrt{4\exp(2C)t^2 - 7} - 3\right)
+\end{align*}
+und als finales Ergebnis
+\begin{align*}
+  y(t) = \frac{t-1}{4}\left(\pm\sqrt{4\exp(2C)(t-1)^2 - 7} - 3\right) - 1
+\end{align*}
+\\
+\end{solution}
 \begin{solution}
   Dem Ansatz der letzten Aufgabe folgend, wählen wir geschickt $(y_0,t_0) = (-1,1)$, sodass
   \begin{align*}
-  A\left(
+  \begin{pmatrix}
+    3 & 4 \\ 4 & 3
+  \end{pmatrix}\left(
   \begin{array}{c}
     -1 \\
     1
   \end{array}
   \right) = -\left(
   \begin{array}{c}
-    1 \\
+    -1 \\
     1
   \end{array}
   \right).
   \end{align*}
 
-  Wir definieren also analog $\tilde{y}(t) := y(t+1)+1$ und $\hat{y} := \frac{\tilde{y}}{t}$.
+  Wir definieren also analog $\tilde{y}(t) := y(t+1)+1$ und $u := \tilde{y}/t$.
 
   Nun müssen wir noch die separable ODE
   \begin{align*}
-    \hat{y}' = \frac{1}{t} \bigg(\frac{-3 \hat{y} -4}{4\hat{y}+3}-\hat{y}\bigg)
+    u' = \frac{1}{t} \bigg(\frac{-3 u -4}{4u+3}-u\bigg)
   \end{align*}
   lösen.
 
   \begin{align*}
     \int \frac{1}{\frac{-3y-4}{4y+3}-y}dy =& \int \frac{1}{t} dt + c \\
-    \Leftrightarrow -1/2 ln(2y^2 +3y + 2) =& ln(t) + c \\
+    \Leftrightarrow -1/2 \ln(2y^2 +3y + 2) =& ln(t) + c \\
     \Leftrightarrow 2y^2 +3y + 2 =& (te^c)^{-2} \\
     \Leftrightarrow y^2 +3/2y + 1 - (\sqrt{2} te^c)^{-2} =& 0 \\
-    \Rightarrow \hat{y}(t) = -3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}
+    \Rightarrow u(t) = -3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}
   \end{align*}
   \begin{align*}
-    \Rightarrow \tilde{y}(t) = t \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}\bigg) \\
-    \Rightarrow y(t) = \tilde{y}(t-1) -1 =& (t-1) \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} (t-1)e^c)^{-2}}\bigg) - 1 \\
-    =& -1/4 (3t+1) \pm (t-1) \sqrt{-7/16 + (2 (t-1)^2 e^2c)^{-1}} \\
-    =& -1/4 (3t+1) \pm \sqrt{-7/16(t-1)^2 + (2e^2c)^{-1}}
+    \Rightarrow \tilde{y}(t) &= t \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} te^c)^{-2}}\bigg) \\
+    \Rightarrow y(t) &= \tilde{y}(t-1) -1 = (t-1) \bigg(-3/4 \pm \sqrt{9/16 - 1 + (\sqrt{2} (t-1)e^c)^{-2}}\bigg) - 1 \\
+    &= -1/4 (3t+1) \pm (t-1) \sqrt{-7/16 + (2 (t-1)^2 e^{2c})^{-1}} \\
+    &= -1/4 (3t+1) \pm \sqrt{-7/16(t-1)^2 + (2e^{2c})^{-1}}
   \end{align*}
-
 \end{solution}

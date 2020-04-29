@@ -1,5 +1,5 @@
 \begin{exercise}
-  Lösen Sie die ODE vom Bernoullschen Typ:
+  Lösen Sie die ODE vom \textit{Bernoullischen Typ}:
 
   \begin{align*}
     y' = f(t)y + g(t) y^n , \qquad n \neq 0,1
@@ -20,7 +20,8 @@
 
   Man definiert nun $u(t) := \exp(-\int_0^t (1-n)f(\tau)d\tau)$, sodass gilt $u'(t) = -(1-n)f(t)u(t)$. Somit erhalten wir
   \begin{align*}
-    \big(\tilde{y}(t)u(t)\big)' = \tilde{y}'(t)u(t) - (1-n)f(t)u(t) \tilde{y}(t) \stackrel{\eqref{eq1}}{=} (1-n)g(t)u(t)
+    \big(\tilde{y}(t)u(t)\big)' = \tilde{y}'(t)u(t) - (1-n)f(t)u(t) \tilde{y}(t)
+    = u(t)\left(\tilde{y}'(t) - (1-n)f(t)\tilde{y}(t)\right)\stackrel{\eqref{eq1}}{=} (1-n)g(t)u(t)
   \end{align*}
   Integrieren auf beiden Seiten führt zu
   \begin{align*}
@@ -31,7 +32,7 @@
   Nun nur noch Rücksubstitution von $\tilde{y} = y^{1-n}$:
   \begin{align*}
     y(t) = \tilde{y}^{\frac{1}{1-n}}(t) = & \left(\frac{\int (1-n)g(\tau)u(\tau)d\tau}{u(t)}\right)^{\frac{1}{1-n}} \\
-    =& \left(\frac{\int (1-n)g(\tau) e^{-\int_0^\tau (1-n)f(\xi)d\xi}d\tau}{e^{-\int_0^t (1-n)f(\tau)d\tau)}}\right)^{\frac{1}{1-n}} \\
-    =& e^{-\int_0^t f(\tau)d\tau}\left(\int (1-n)g(\tau) e^{-\int_0^\tau (1-n)f(\xi)d\xi}d\tau \right)^{\frac{1}{1-n}}
+    =& \left(\frac{\int (1-n)g(\tau) \exp\left(-\int_0^\tau (1-n)f(\xi)d\xi\right)d\tau}{\exp\left(-\int_0^t (1-n)f(\tau)d\tau\right)}\right)^{\frac{1}{1-n}} \\
+    =& \exp\left(\int_0^t f(\tau)d\tau\right)\left(\int (1-n)g(\tau) \exp\left(-\int_0^\tau (1-n)f(\xi)d\xi\right)d\tau \right)^{\frac{1}{1-n}}
   \end{align*}
 \end{solution}

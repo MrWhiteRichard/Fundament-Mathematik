@@ -14,12 +14,12 @@
     W(t) := x(t)y'(t)-x'(t)y(t)
   \end{align*}
 
-  definiert. Die Lösungen $x(t)$ und $y(t)$ sind l.u. wenn
-  $W(t) \neq 0, \forall t \in \R$ gilt.
+  definiert. Die Lösungen $x(t)$ und $y(t)$ sind linear unabhängig, wenn
+  $\forall t \in \R: W(t) \neq 0$ gilt.
 
   \begin{itemize}
     \item[a)] Zeigen sie, dass $W(t)$ konstant ist.
-    \item[b)] Zeigen sie unter Verwendung von a), dass für l.u. Lösungen
+    \item[b)] Zeigen sie unter Verwendung von a), dass für linear unabhängige Lösungen
     $x(t)$ und $y(t)$ gilt:
     \begin{itemize}
       \item[(i)] Aus $x(t_1) = 0$ folgt $x'(t_1) \neq 0$ und $y(t_1) \neq 0$
@@ -33,7 +33,8 @@
 \begin{solution}
 Beweisen wir diese Aussagen also.
 \begin{itemize}
-  \item[a)] Um das zu zeigen, berechnen wir einfach die Ableitung:
+  \item[a)] Um das zu zeigen, berechnen wir die Ableitung
+  und setzen dabei in die Differentialgleichung ein:
   \begin{align*}
     W'(t)= x'(t)y'(t) + x(t)y''(t) - x''(t)y(t) - x'(t)y'(t) =
     x'(t)y'(t) - x(t)q(t)y(t) + x(t)q(t)y(t) - x'(t)y'(t) = 0
@@ -44,13 +45,13 @@ Beweisen wir diese Aussagen also.
   Wronskideterminante:
 
   \begin{align*}
-    x(t)y'(t)-x'(t)y(t) = c, \qquad c \in \R \backslash \{0\}
+    W(t) = x(t)y'(t)-x'(t)y(t) = c, \qquad c \in \R \backslash \{0\}
   \end{align*}
 
-  Gilt also an einem Punkt $t_1: x(t_1 ) = 0$ sehen wir, dass dort
+  Gilt also an einem Punkt $t_1: x(t_1) = 0$ sehen wir, dass dort
 
   \begin{align*}
-    -x'(t_1 )y(t_1 ) = c
+    W(t_1) = -x'(t_1)y(t_1) = c
   \end{align*}
 
   Da $c \neq 0$ können wir daraus die Behauptung sofort schließen.
@@ -58,12 +59,13 @@ Beweisen wir diese Aussagen also.
   Ad (ii): Nach (i) wissen wir: $y(t_1 ) \neq 0, y(t_2 ) \neq 0$. Wir können auch
 
   \begin{align} \label{Vorzeichen}
-    -x'(t_1 )y(t_1 ) = c = -x'(t_2 )y(t_2 )
+    W(t_1) = -x'(t_1 )y(t_1 ) = c = -x'(t_2 )y(t_2 ) = W(t_2)
     \Rightarrow x'(t_1 )y(t_1 ) = x'(t_2 )y(t_2 )
   \end{align}
 
   schließen. Nun zeigen wir noch $\sgn(x'(t_1 )) = - \sgn(x'(t_2 ))$. Dazu bemerken wir
-  zuerst, dass $x'(t_ i ) \neq 0, i=1,2$ da sonst $W(t_i) = 0$ im Widerspruch zu
+  zuerst, dass \\
+  $x'(t_ i ) \neq 0, i=1,2$ da sonst $W(t_i) = 0$ im Widerspruch zu
   unserer Voraussetzung. Wenn nun $\sgn(x'(t_1 )) = 1$ gilt heißt das auch
   $\forall t \in (t_1, t_2): x(t)>0$ damit muss klarerweise $\sgn(x'(t_2 ))=-1$.
   \begin{align*}
@@ -71,20 +73,20 @@ Beweisen wir diese Aussagen also.
     x^{\prime}(t_2) &= \lim_{h \rightarrow 0} \frac{x(t_2 - h) -x(t_2)}{-h} = \frac{x(t_2 - h)}{-h} < 0
   \end{align*}
   Gemeinsam mit \eqref{Vorzeichen} sehen wir, dass $\sgn(y(t_1 )) = -\sgn(y(t_2 ))$.
-  Dazu muss $y$ also einen Vorzeichenwechsel in $(t_1 , t_2 )$ und folglich auch
-  zumindest eine Nullstelle haben.
+  Dazu muss $y$ also einen Vorzeichenwechsel in $(t_1 , t_2 )$ und aufgrund des
+  Zwischenwertsatzes folglich auch zumindest eine Nullstelle haben.
 
-  Um die Eindeutigkeit jener zeigen wir mit einem Widerspruchsbeweis: Sei $\tilde{t}$
-  die kleinste Nullstelle von $y$ und $\hat{t}$ die nächste weitere Nullstelle in
+  Um die Eindeutigkeit jener zeigen wir mit einem Widerspruchsbeweis: Sei $\tau_0$
+  die kleinste Nullstelle von $y$ und $\tau_1$ die nächste weitere Nullstelle in
   $(t_1 , t_2 )$. Es gilt also:
 
   \begin{align*}
-    x( \tilde{t} ) y'( \tilde{t} ) = x( \hat{t} ) y'( \hat{t} )
+    x( \tau_0 ) y'( \tau_0 ) = x( \tau_1 ) y'( \tau_1 )
   \end{align*}
 
   Da nun aber $x$ keine Vorzeichenwechsel in dem Intervall hat folgt daraus
-  $\sgn(y^{\prime}(\tilde{t})) = \sgn(y^{\prime}(\hat{t}))$. Wir haben aber auch
-  $\forall t \in (\tilde{t},\hat{t}): y(t) \neq 0 $ vorausgesetzt. Mit den selben Überlegungen
+  $\sgn(y^{\prime}(\tau_0)) = \sgn(y^{\prime}(\tau_1))$. Wir haben aber auch
+  $\forall t \in (\tau_0,\tau_1): y(t) \neq 0 $ vorausgesetzt. Mit den selben Überlegungen
   wie bei $x$ weiter oben ist dies jedoch ein Widerspruch.
 \end{itemize}
 \end{solution}
