@@ -9,5 +9,29 @@
 \end{exercise}
 
 \begin{solution}
-  To do!
+  Nach der Definition von $\tilde{y}$ gilt
+  \begin{align*}
+    \tilde{y}'(t) = (1-n)y^{-n}(t)y'(t) =& (1-n)y^{-n}(t)(f(t)y(t) + g(t)y^n(t)) \\
+    =& (1-n)f(t)\tilde{y}(t) + (1-n)g(t)
+  \end{align*}
+  \begin{align}\label{eq1}
+    \Rightarrow \tilde{y}' - (1-n)f(t)\tilde{y} = (1-n) g(t)
+  \end{align}
+
+  Man definiert nun $u(t) := \exp(-\int_0^t (1-n)f(\tau)d\tau)$, sodass gilt $u'(t) = -(1-n)f(t)u(t)$. Somit erhalten wir
+  \begin{align*}
+    \big(\tilde{y}(t)u(t)\big)' = \tilde{y}'(t)u(t) - (1-n)f(t)u(t) \tilde{y}(t) \stackrel{\eqref{eq1}}{=} (1-n)g(t)u(t)
+  \end{align*}
+  Integrieren auf beiden Seiten führt zu
+  \begin{align*}
+    u(t) \tilde{y}(t) = \int (1-n)g(\tau)u(\tau)d\tau \\
+    \Rightarrow \tilde{y}(t) = \frac{\int (1-n)g(\tau)u(\tau)d\tau}{u(t)}.
+  \end{align*}
+
+  Nun nur noch Rücksubstitution von $\tilde{y} = y^{1-n}$:
+  \begin{align*}
+    y(t) = \tilde{y}^{\frac{1}{1-n}}(t) = & \left(\frac{\int (1-n)g(\tau)u(\tau)d\tau}{u(t)}\right)^{\frac{1}{1-n}} \\
+    =& \left(\frac{\int (1-n)g(\tau) e^{-\int_0^\tau (1-n)f(\xi)d\xi}d\tau}{e^{-\int_0^t (1-n)f(\tau)d\tau)}}\right)^{\frac{1}{1-n}} \\
+    =& e^{-\int_0^t f(\tau)d\tau}\left(\int (1-n)g(\tau) e^{-\int_0^\tau (1-n)f(\xi)d\xi}d\tau \right)^{\frac{1}{1-n}}
+  \end{align*}
 \end{solution}
