@@ -49,18 +49,18 @@ hinreichend klein ein wohldefiniertes Ergebnis mit
 \end{align*}
 Das selbe Verfahren angewendet auf die separierten Anfangswertprobleme ergibt
 \begin{align*}
-  \widetilde{y}_{1} = \widetilde{y}_{0} + h_0 \sum_{j=1}^m b_j\lambda_j\left(\widetilde{y}_{0} + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right)
+  \widetilde{y}_{1} = \widetilde{y}_{0} + h_0 \sum_{j=1}^m b_j\Lambda\left(\widetilde{y}_{0} + h\sum_{\ell = 1}^m A_{j\ell}\widetilde{k_{\ell}}\right)
 \end{align*}
 Setzen wir nun $\widetilde{y}_{0} = V^{-1}y_0$ ein, erhalten wir
 \begin{align*}
-  \widetilde{y}_{1} &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right) \\
-  &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right)
+  \widetilde{y}_{1} &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\Lambda\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}\widetilde{k_{\ell}}\right) \\
+  &= V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\Lambda\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}V^{-1}k_{\ell}\right)
 \end{align*}
 und mit der Rücksubstitution $y_1 = V\widetilde{y}_{1}$ kommen wir wieder auf
 das originale Problem zurück.
 \begin{align*}
-  V\widetilde{y}_{1} &= V\left(V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\lambda_j\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right)\right) \\
-  &= y_0 + h_0 \sum_{j=1}^m b_jV\lambda_jV^{-1}\left(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right) \\
+  V\widetilde{y}_{1} &= V\left(V^{-1}y_0 + h_0 \sum_{j=1}^m b_j\Lambda\left(V^{-1}y_0 + h\sum_{\ell = 1}^m A_{j\ell}V^{-1}k_{\ell}\right)\right) \\
+  &= y_0 + h_0 \sum_{j=1}^m b_jV\Lambda V^{-1}\left(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right) \\
   &= y_0 + h_0 \sum_{j=1}^m b_jM\left(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right) = y_1
 \end{align*}
 \end{solution}
