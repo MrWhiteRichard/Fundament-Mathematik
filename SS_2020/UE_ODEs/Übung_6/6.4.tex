@@ -41,26 +41,26 @@ erfüllt. Wir substituieren $u = \widetilde{y}/t$ und stellen nochmals die Diffe
 \end{align*}
 Jetzt verwenden wir die Methode zur Lösung von homogenen ODEs und setzen an
 \begin{align*}
-  \int \frac{4u + 3}{4u^2 + 6u + 4} du &= \int \frac{1}{t} dt \\
-  \iff \int \frac{4u + 3}{4u^2 + 6u + 4} du \bigg|_{s = 4u^2 + 6u + 4}^{du = ds/(8u + 6)} &= \ln(t) + C \\
-  \iff \int \frac{1}{2s} ds &= \ln(t) + C \\
-  \iff \frac{1}{2}\ln(4u^2 + 6u + 4) &= \ln(t) + C \\
-  \iff (4u^2 + 6u + 4) &= t^2\exp(2C)\\
-  \iff u = \frac{1}{4}\left(\pm\sqrt{4\exp(2C)t^2 - 7} - 3\right)
+  \int \frac{4u + 3}{4u^2 + 6u + 4} du &= -\int \frac{1}{t} dt \\
+  \iff \int \frac{4u + 3}{4u^2 + 6u + 4} du \bigg|_{s = 4u^2 + 6u + 4}^{du = ds/(8u + 6)} &= -\ln(t) + C \\
+  \iff \int \frac{1}{2s} ds &= -\ln(t) + C \\
+  \iff \frac{1}{2}\ln(4u^2 + 6u + 4) &= -\ln(t) + C \\
+  \iff (4u^2 + 6u + 4) &= t^{-2}\exp(2C)\\
+  \iff u = \frac{1}{4}\left(\pm\sqrt{\frac{4\exp(2C)}{t^2} - 7} - 3\right)
 \end{align*}
 Wir substituieren zurück, erhalten
 \begin{align*}
-  \widetilde{y}(t) = \frac{t}{4}\left(\pm\sqrt{4\exp(2C)t^2 - 7} - 3\right)
+  \widetilde{y}(t) = \frac{t}{4}\left(\pm\sqrt{\frac{4\exp(2C)}{t^2} - 7} - 3\right)
 \end{align*}
 und als finales Ergebnis
 \begin{align*}
-  y(t) = \frac{t-1}{4}\left(\pm\sqrt{4\exp(2C)(t-1)^2 - 7} - 3\right) - 1
+  y(t) = \frac{t-1}{4}\left(\pm\sqrt{\frac{4\exp(2C)}{(t-1)^2} - 7} - 3\right) - 1
 \end{align*}
 \\
 \end{solution}
 \begin{solution}
   Dem Ansatz der letzten Aufgabe folgend, wählen wir geschickt $(y_0,t_0) = (-1,1)$, sodass
-  \begin{align*}
+ \begin{align*}
   \begin{pmatrix}
     3 & 4 \\ 4 & 3
   \end{pmatrix}\left(
