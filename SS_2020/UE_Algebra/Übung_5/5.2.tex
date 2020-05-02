@@ -20,7 +20,46 @@ und betrachten die Abbildung $\Phi: g \mapsto \pi_g$. Dann gilt
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}
-  \item
+  \item Seien $g,h,x \in G$ beliebig. Dann gilt aufgrund $(gh)^{-1} = h^{-1}g^{-1}$
+  \begin{align*}
+    (\pi_g \circ \pi_h)(x) = \pi_g(hxh^{-1}) = ghxh^{-1}g^{-1} = \pi_{gh}(x)
+  \end{align*}
+  \item Sei $g \in G$ beliebig. Dann gilt
+  \begin{itemize}
+    \item \begin{align*}
+      \pi_g(1_G) = g1_Gg^{-1} = gg^{-1} = 1_G
+    \end{align*}
+    \item \begin{align*}
+      \pi_g(xy^{-1}) = g(xy^{-1})g^{-1} =  gxg^{-1}gy^{-1}g^{-1} =  (gxg^{-1})(gyg^{-1})^{-1} = \pi_g(x)\pi_g(y)^{-1}
+    \end{align*}
+    Also ist $\pi_G$ zumindest ein Endomorphismus auf $G$.
+    \item Aus Punkt 1 haben wir mit $\pi_{g^{-1}}$ aufgrund
+    \begin{align*}
+      \id_G = \pi_{1_G} = \pi_{gg^{-1}} = \pi_g \circ \pi_{g^{-1}}
+    \end{align*}
+    bereits eine Inverse gefunden und $\pi_g$ ist damit bijektiv und ein Automorphismus auf $G$.
+  \end{itemize}
+\item Wir zeigen zuerst die Inklusion $\glqq \subseteq \grqq$: Sei also $g \in Z(G), x \in G$ beliebig.
+\begin{align*}
+  \pi_g(x) = gxg^{-1} = xgg^{-1} = x.
+\end{align*}
+Also folgt $\pi_g = \id_G$ und somit $\pi_g \in \ker(\Phi)$. \\
+Sei umgekehrt $g \in \ker(\Phi)$ beliebig. Dann folgt für $x \in G$ beliebig
+\begin{align*}
+  xg = \id_G(x)g = \Phi(g)(x)g = \pi_g(x)g= gxg^{-1}g = gx
+\end{align*}
+und damit $g \in Z(G)$. \\
+Wenn $Z(G) = \{1_G\}$ gilt, folgt mit
+\begin{align*}
+  \pi_g = \pi_h \implies \pi_{gh^{-1}} = \id_G \implies gh^{-1} \in Z(G) = \{1_G\} \implies g = h.
+\end{align*}
+direkt die Injektivität von $\Phi$. Klarerweise ist die Bedingung auch notwendig für die Injektivität.
+\item Aufgrund der Homomorphie-Eigenschaft von $\Phi$ ist $\Phi(G)$ eine Untergruppe
+der Automorphismengruppe von $G$. Weiters gilt für $\psi \in \Aut(G), \pi_g \in \Phi(G), x\in G$ beliebig
+\begin{align*}
+  (\psi \circ \pi_g) (x)= \psi(gxg^{-1}) = \psi(g)\psi(x)\psi(g)^{-1} = \pi_{\psi(g)}(\psi(x)) = (\pi_{\psi(g)} \circ \psi)(x).
+\end{align*}
+Also folgt $\forall \psi \in \Aut(G): \psi\Phi(G) \subseteq \Phi(G)\psi$ und $\Phi(G)$ ist somit ein Normalteiler von $\Aut(G)$.
 \end{enumerate}
 
 \end{solution}
