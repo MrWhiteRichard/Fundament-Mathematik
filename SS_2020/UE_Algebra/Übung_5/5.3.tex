@@ -6,5 +6,48 @@ Sie die Gruppen $NU, N\cap U, NU/N, U/(N \cap U)$ und geben Sie den kanonischen
 Isomorphismus zwischen $NU/N$ und $U/(N \cap U)$ explizit an.
 \end{algebraUE}
 \begin{solution}
-\leavevmode \\
+\begin{align*}
+  U = \{\id, (1234),(13)(24),(4321)\}
+\end{align*}
+Zuerst zeigen wir, dass $N$ eine Untergruppe von $S_4$ ist.
+\begin{align*}
+  (12)(34) \circ (13)(24) &= (14)(23) \\
+  (13)(24) \circ (12)(34) &= (14)(23) \\
+  (12)(34) \circ (14)(23) &= (13)(24) \\
+  (14)(23) \circ (12)(34) &= (13)(24) \\
+  (13)(24) \circ (14)(23) &= (12)(34) \\
+  (14)(23) \circ (13)(24) &= (12)(34)
+\end{align*}
+Zusätzlich bemerkt man leicht, dass jedes Element aus $N$ zu sich selbst invers ist.
+Laut Proposition 3.2.5.11.4. ist die Untergruppe $N$ genau dann ein Normalteiler von $S_4$
+wenn sie von jedem Permutationstyp entweder kein oder alle $\pi \in S_n$ dieses Typs
+enthält. Unter dem Permutationstyp von $\pi \in S_n$ sei dabei die Familie $(v_k(\pi))_{k \in \N}$
+verstanden, wobei $v_k(\pi)$ die Anzahl der Zyklen der Länge $k$ in einer beliebigen
+Darstellung von $\pi$ als Produkt elementfremden Zyklen ist. \\
+$N$ enthält mit der Identität alle Zyklen vom Typ $(0,4,\dots)$, sowie alle
+Zyklen vom Typ $(0,0,2)$, wie man leicht überprüfen kann.
+Also ist $N$ ein Normalteiler.
+
+\begin{align*}
+  NU &= \{\id,(12)(34),(13)(24),(14)(23),(1234),(24),(4321),(13)\} \\
+  N \cap U &= \{\id, (13)(24) \} \\
+\end{align*}
+Die durch $N$ induzierte Kongruenzrelation ist charakterisiert durch
+$f \sim g :\iff f^{-1}\circ g \in N$.
+Also ist
+\begin{align*}
+  NU/N = \{ \{\id, (12)(34), (13)(24), (14)(23)\}, \{(1234),(24),(4321),(13)\}\}
+\end{align*}
+und
+\begin{align*}
+  U/(N \cap U) = \{\{\id, (13)(24)\}, \{(1234), (4321)\}\}
+\end{align*}
+Der kanonische Isomorphismus lautet daher
+\begin{align*}
+  \varphi: \begin{cases}
+    NU/N \rightarrow U/(N \cap U) \\
+    \{\id, (12)(34), (13)(24), (14)(23)\} \mapsto \{\id, (13)(24)\} \\
+    \{(1234),(24),(4321),(13)\} \mapsto \{(1234), (4321)\}
+  \end{cases}.
+\end{align*}
 \end{solution}

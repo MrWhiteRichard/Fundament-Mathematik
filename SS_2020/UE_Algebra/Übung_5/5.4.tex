@@ -1,16 +1,18 @@
 \begin{algebraUE}{171}
-Sei $R$ ein Ring mit $1$ und $A \subseteq R$. Bezeichne $I$ den Schnitt aller Ideale,
+Sei $R$ ein Ring und $A \subseteq R$. Bezeichne $I$ den Schnitt aller Ideale,
 $J \vartriangleleft R$ mit $A \subseteq J$. ($I$ ist also das kleinste $A$ umfassende
 Ideal in $R$, genannt das von $A$ erzeugte Ideal, symbolisch $I = (A)$, im Fall
-$A = \{a_1,\dots,a_n\}$ auch $I = (a_1,\dots,a_n)$.) Dann gilt:
+$A = \{a_1,\dots,a_n\}$ auch $I = (a_1,\dots,a_n)$.)
+Weiters bezeichnen wir mit $-A := \{-x: x \in A\}$ die Menge aller additiven Inversen von $A$.
+Dann gilt:
 \begin{enumerate}[label = (\arabic*)]
-  \item $I$ ist die Menge aller
-  \begin{align*}
-    \sum_{i = 1}^n r_ia_is_i + \sum_{j = 1}^{m^{\prime}}r_j^{\prime}b_j +
-    \sum_{k = 1}^{n^{\prime}}c_ks_k^{\prime} + \sum_{l = 1}^{m}d_l
-  \end{align*}
-  mit $n,m^{\prime}, n^{\prime}, k \in \N, a_i, b_j, c_k, d_l \in A$ und
-  $r_i, s_i, r_j^{\prime}, s_k^{\prime} \in R$.
+  \item $I$ ist die Menge aller Linearkombinationen
+  \begin{align}\label{lk}
+    L := \{\sum_{i = 1}^n r_ia_is_i + \sum_{j = 1}^{m^{\prime}}r_j^{\prime}b_j +
+    \sum_{k = 1}^{n^{\prime}}c_ks_k^{\prime} + \sum_{l = 1}^{m}d_l :
+    n,m^{\prime}, n^{\prime}, k \in \N, a_i, b_j, c_k, d_l \in (A \cup -A),
+    r_i, s_i, r_j^{\prime}, s_k^{\prime} \in R \}.
+  \end{align}
   \item Hat $R$ ein Einselement, so ist $I$ auch darstellbar als die Menge aller
   \begin{align*}
     \sum_{i = 1}^n r_ia_is_i
@@ -30,6 +32,50 @@ $A = \{a_1,\dots,a_n\}$ auch $I = (a_1,\dots,a_n)$.) Dann gilt:
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = (\arabic*)]
-  \item
+  \item Sei $x \in L$ beliebig.
+  Dann gilt für alle Ideale $J$ mit $J \supseteq A$ aufgrund $rJr \subseteq Jr \subseteq J$, dass $x \in J$.
+  Folglich gilt auch $x \in I$. \\
+  Wir zeigen nun, dass $L$ bereits ein Ideal darstellt
+  und somit das kleinste Ideal sein muss, welches $A$ enthält.
+  Dafür muss die Menge vorerst eine Untergruppe von $R$ sein. Seien dafür
+  $x,y \in L$ beliebig.
+  \begin{align*}
+    x = \sum_{i = 1}^n r_ia_is_i + \sum_{j = 1}^{m^{\prime}}r_j^{\prime}b_j +
+    \sum_{k = 1}^{n^{\prime}}c_ks_k^{\prime} + \sum_{l = 1}^{m}d_l, \\
+    y = \sum_{i = 1}^{n^*} r_i^*a_i^*s_i^* + \sum_{j = 1}^{m^{\prime*}}r_j^{\prime*}b_j^* +
+    \sum_{k = 1}^{n^{\prime*}}c_k^*s_k^{\prime*} + \sum_{l = 1}^{m*}d_l^*
+  \end{align*}
+  Dann ist
+  \begin{align*}
+    x - y = \sum_{i = 1}^{\max\{n,n^*\}} r_i(-a_i)s_i + \sum_{j = 1}^{\max\{n^{\prime},n^{\prime*}\}}r_j^{\prime}(-b_j) +
+    \sum_{k = 1}^{\max\{m^{\prime},m^{\prime*}\}}(-c_k)s_k^{\prime} + \sum_{l = 1}^{\max\{m,n^*\}}(-d_l),
+  \end{align*}
+  aufgrund $-a_i, -b_j, -c_k, -d_l \in -A$ ebenfalls in $L$
+  und somit bildet $L$ eine Untergruppe. Sei $r \in R, x \in L$ beliebig.
+  \begin{align*}
+    rx = r\left(\sum_{i = 1}^n r_ia_is_i + \sum_{j = 1}^{m^{\prime}}r_j^{\prime}b_j +
+    \sum_{k = 1}^{n^{\prime}}c_ks_k^{\prime} + \sum_{l = 1}^{m}d_l\right)
+    = \sum_{i = 1}^n rr_ia_is_i + \sum_{j = 1}^{m^{\prime}}rr_j^{\prime}b_j +
+    \sum_{k = 1}^{n^{\prime}}rc_ks_k^{\prime} + \sum_{l = 1}^{m}rd_l
+  \end{align*}
+  Da $R$ ein Ring ist, sind auch $rr_i, rr_j^{\prime} \in R$ und $L$ ist ein Ideal, also $L = I$.
+  \item Hat $R$ nun ein Einselement, vereinfacht sich die Menge $L$ zu
+  \begin{align*}
+  L &= \{\sum_{i = 1}^n r_ia_is_i + \sum_{j = 1}^{m^{\prime}}r_j^{\prime}b_j1_R +
+  \sum_{k = 1}^{n^{\prime}}1_Rc_ks_k^{\prime} + \sum_{l = 1}^{m}1_Rd_l1_R :
+  n,m^{\prime}, n^{\prime}, k \in \N, a_i, b_j, c_k, d_l \in (A \cup -A),
+  r_i, s_i, r_j^{\prime}, s_k^{\prime} \in R \} \\
+  &= \{\sum_{i = 1}^n r_ia_is_i: n \in \N, a_i \in A, r_i, s_i \in R \}
+  \end{align*}
+  \item Ist $R$ außerdem noch kommutativ, vereinfacht sich die Summe weiter zu
+  \begin{align*}
+    L &= \{\sum_{i = 1}^n r_ia_is_i: n \in \N, a_i \in A, r_i, s_i \in R \} \\
+    &= \{\sum_{i = 1}^n r_is_ia_i: n \in \N, a_i \in A, r_i, s_i \in R \} \\
+    &= \{\sum_{i = 1}^n r_ia_i: n \in \N, a_i \in A, r_i \in R \}
+  \end{align*}
+  Insbesondere gilt damit auch
+  \begin{align*}
+    I = (a) = \{ra: r \in R\}.
+  \end{align*}
 \end{enumerate}
 \end{solution}
