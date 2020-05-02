@@ -19,7 +19,55 @@
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}
-  \item
+  \item Da der Körper $K$ kommutativ ist, ist auch $K^{\prime}$ bereits kommutativ.
+  Mit den Rechenregeln
+  \begin{align*}
+    \frac{p_1}{q_1} + \frac{p_2}{q_2} = \frac{p_1q_2 + p_2q_1}{q_1q_2} \\
+    \frac{p_1}{q_1}   \frac{p_2}{q_2} = \frac{p_1p_2}{q_1q_2}
+  \end{align*}
+  sieht man auch die Abgeschlossenheit bezüglich der Addition, sowie Multiplikation.
+  Das Distributivgesetz in $K^{\prime}$ folgt ebenso aus dem Distributivgesetz in $K$ selbst.
+  Damit bleiben nur noch die Nullteilerfreiheit, sowie die Existenz der multiplikativen Inversen zu überprüfen.
+  Seien also $\frac{p_1}{q_1}, \frac{p_2}{q_2} \in K^{\prime}$ mit $\frac{p_1}{q_1}   \frac{p_2}{q_2} = 0$ beliebig.
+  Dann gilt
+  \begin{align*}
+    0 = \frac{p_1}{q_1}   \frac{p_2}{q_2} = \frac{p_1p_2}{q_1q_2} \implies p_1p_2 = 0
+  \end{align*}
+  und aufgrund der Nullteilerfreiheit in $K:$
+  \begin{align*}
+    p_1 = 0 \lor p_2 = 0 \implies \frac{p_1}{q_1} = 0 \lor \frac{p_2}{q_2} = 0.
+  \end{align*}
+  Nun zur Existenz multiplikativer Inversen: Sei $\frac{p}{q} \in \K^{\prime}: p \neq 0$ beliebig.
+  Dann ist $\frac{q}{p} \in \K^{\prime}$ und es gilt
+  \begin{align*}
+    \frac{p}{q}\frac{q}{p} = \frac{pq}{qp} = 1.
+  \end{align*}
+  Damit ist $K^{\prime}$ ein Unterkörper von $K$.
+  \item Sei $K^{\primeprime}$ nun ein beliebiger Körper, welcher $R$ enthält.
+  Damit muss vorerst $K^{\primeprime} \subseteq R$ gelten. Aufgrund der Abgeschlossenheit
+  unter der multiplikativen Inversenbildung muss auch gelten
+  \begin{align*}
+    K^{\primeprime} \supseteq \{\frac{1}{q}: q \neq 0 \in R\} \cup \{\frac{p}{1}: p \in R\}
+  \end{align*}
+  Aufgrund der Abgeschlossenheit bezüglich der Multiplikation gilt schließlich auch
+  \begin{align*}
+    K^{\primeprime} \supseteq  \{\frac{p}{q}: q \neq 0 \in R\} = K^{\prime}.
+  \end{align*}
+  \item Gelte zuerst $K = K^{\prime}$. \\
+  Damit $(K,\iota)$ der bis auf Isomorhie eindeutig bestimmte Quotientenkörper ist, muss
+  noch gelten, dass für jeden anderen Körper $K^{\primeprime}$ mit isomorpher Einbettung
+  $\iota^{\prime}: R \rightarrow K^{\primeprime}$ eine eindeutige isomorphe Einbettung
+  $\varphi: K \rightarrow K^{\primeprime}$ gibt, sodass $\iota^{\prime}(r) = \varphi \circ \iota$.
+  Im vorherigen Schritt haben wir gezeigt, dass $K = K^{\prime} \subseteq K^{\primeprime}$ erfüllt.
+  Damit erfüllt die triviale Einbettungsabbildung $\varphi: K \rightarrow K^{\primeprime}, x \mapsto x$
+  die Bedingung $\iota^{\prime}(r) = \varphi \circ \iota$. Ich nehme stark an, dass
+  durch die Homomorphie-Bedingungen $\varphi$ auf $K$ bereits eindeutig festgelegt wird,
+  kanns aber grad nicht zeigen. \\
+  Die Rückrichtung zeigen wir mittels Kontraposition, gelte also $K \supsetneq K^{\prime}$.
+  Nachdem $\varphi(K^{\prime}) = K^{\prime}$ gelten muss, kann $\varphi$ nicht injektiv
+  und somit keine isomorphe Einbettung sein.
+  \item Sei $(Q^{\prime},\iota^{\prime})$ ein weiterer Körper mit Einbettungsabbildung
+  $\iota: R \rightarrow Q^{\prime}$.
 \end{enumerate}
 
 \end{solution}
