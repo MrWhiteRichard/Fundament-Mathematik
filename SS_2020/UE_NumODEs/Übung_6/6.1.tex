@@ -10,12 +10,19 @@ Sei $c_1 = 0, c_3 = 1$ und $c_2 \in (0,1)$ beliebig.
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Theorem 3.28 sagt uns, dass für $m$-stufige Runge-Kutta-Verfahren $2m$ die maximal
-  erreichbare Konvergenzordnung darstellt, also erhalten wir in unserem Fall maximal Konvergenzordnung 6.
-  Aus Numerik A kennen wir mit
+  erreichbare Konvergenzordnung darstellt, also erhalten wir in unserem Fall maximal Konvergenzordnung 6. Allerdings benötigen wir dafür
+  Kollokationspunkte aus einer Gauß-Quadratur, welche allerdings immer
+  im offenen Intervall $(-1,1)$ liegen und nicht auf den Randpunkten.
+  Da Gauß-Quadraturen eindeutig sind, kann es auch keine weiteren
+  Kollokationspunkte geben, mit denen die selbe Konvergenzordnung
+  erreicht werden kann. Also müssen wir uns mit einer Konvergenzordnung
+  weniger begnügen. Im Appendix Abschnitt B.6 finden wir Lobatto-
+  Quadraturen, welche genau das erfüllen, was wir uns wünschen.
   \begin{align*}
-    Q_2(f) = \frac{5}{9}f\left(-\sqrt{\frac{3}{5}}\right) + \frac{8}{9}f\left(0\right)
-    + \frac{5}{9}f\left(\sqrt{\frac{3}{5}}\right)
+    Q_3(g) = \frac{1}{6}g(0) + \frac{2}{3}g\left(\frac{1}{2}\right)
+    + \frac{1}{6}g(1)
   \end{align*}
+  ist exakt für Polynome vom Grad $\leq 2m-3$
   die Gauß-Legendre-Quadraturformel mit drei Stützstellen auf dem Intervall $[0,1]$,
   für die konstante Gewichtsfunktion $\omega \equiv 0$. Um die Quadraturpunkte unseren
   vorgegeben Stützstellen anzupassen führen wir eine affine Transformation nach dem Schema
@@ -27,10 +34,6 @@ Sei $c_1 = 0, c_3 = 1$ und $c_2 \in (0,1)$ beliebig.
   Q_2(f) = \sqrt{\frac{5}{12}}\left(\frac{5}{9}f(0) + \frac{8}{9}f\left(\frac{1}{2}\right)
   + \frac{5}{9}f(1)\right).
   \end{align*}
-  \textit{Die affine Transformation hab ich auf Wikipedia bestätigt gesehen, hab
-  aber noch kein stichhaltiges Argument dafür, warum das ohne weiteres durchgeht.
-  Ich schätze, man könnte sich anschauen, dass die entsprechenden Polynome genauso exakt
-  integriert werden, indem man sie analog transformiert.}
   Aufgrund der Eindeutigkeit der Gaußschen Quadraturformeln sind dies auch die
   einzigen Kollokationspunkte mit denen maximale Konvergenzordnung erzielt werden kann.
   \item Um das zugehörige Butcher Tableau zu bestimmen, benötigen wir vorerst die

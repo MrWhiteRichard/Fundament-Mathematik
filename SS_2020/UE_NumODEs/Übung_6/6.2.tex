@@ -50,7 +50,7 @@ Schritt des Orthogonalisierungsverfahrens
 was ein ungerades Polynom darstellt. \\
 Gelte nun die Aussage für $k < s$.
 \begin{itemize}
-  \item Fall 1: $s$ gerade
+  \item Fall 1: $s$ gerade:
   \begin{align*}
     q_s(x) = x^s - \sum_{i = 0}^{s-1}\frac{\int_{-1}^1 q_i(y) y^s dy}{\int_{-1}^1 q_i^2(y) dy}q_i(x)
   \end{align*}
@@ -62,7 +62,7 @@ Gelte nun die Aussage für $k < s$.
     = q_s(-x)
   \end{align*}
   und $q_s$ ist daher eine gerade Funktion.
-  \item Fall 2: $s$ ungerade
+  \item Fall 2: $s$ ungerade: \\
   In diesem Fall verschwinden genau die Integrale der geraden $i$ und wir erhalten
   \begin{align*}
     q_s(x) &= x^s - \sum_{i = 0}^{s-1}\frac{\int_{-1}^1 q_i(y) y^s dy}{\int_{-1}^1 q_i^2(y) dy}q_i(x)
@@ -73,17 +73,22 @@ Gelte nun die Aussage für $k < s$.
   \end{align*}
   eine ungerade Funktion.
 \end{itemize}
-\item Da die Kollokationspunkte $c_j$ genau die Nullstellen des $m$-ten Orthogonalpolynom sind,
-folgt aufgrund $q_{m}(x) = \pm q_m(-x)$, dass die $c_j$ symmetrisch um 0 liegen müssen.
-Also gilt
+\item Um aus den Nullstellen $(\widetilde{c}_j)_{j = 1}^m$ des $m$-ten Orthogonalpolynoms,
+welche im Intervall $(-1,1)$ liegen, auf die zugehörigen Kollokationspunkte zu kommen,
+müssen wir sie auf das Intervall $[0,1]$ transformieren.
+Da die Nullstellen des $m$-ten Orthogonalpolynoms symmetrisch um die $0$ liegen
+($\widetilde{c}_j = -\widetilde{c}_{m+j-1}$), folgt nach der Transformation
 \begin{align*}
-  c_j = -c_{m+1-j}
+  c_j = \frac{\widetilde{c_j} + 1}{2}
 \end{align*}
-Wie die Gleichheit aus der Angabe folgen soll, erschließt sich mir nicht.
-Ich denke, das ist gemeint. \\
+und
+\begin{align*}
+  \left|c_j - \frac{1}{2}\right| = \left|\frac{\widetilde{c_j}}{2}\right| =
+  \left|\frac{\widetilde{c}_{m+1-j}}{2}\right| = \left|c_{m+1-j} - \frac{1}{2}\right|.
+\end{align*}
 Die Quadraturgewichte berechnen sich folgendermaßen:
 \begin{align*}
-  b_j = \int_{-1}^1 L_j(t) dt, \qquad j = 1,\dots,m.
+  b_j = \int_{0}^1 L_j(t) dt, \qquad j = 1,\dots,m.
 \end{align*}
 Definieren wir
 \begin{align*}
@@ -92,18 +97,11 @@ Definieren wir
 erhalten wir
 
 \begin{align*}
-  L_j(x) &= P_j(x)\left(\frac{x - c_{m+1-j}}{c_j - c_{m+1-j}}\right) = P_j(x)\left(\frac{x + c_{j}}{c_j - c_{m+1-j}}\right)\\
+  L_j(x) &= P_j(x)\left(\frac{x - c_{m+1-j}}{c_j - c_{m+1-j}}\right)\\
   L_{m+1-j}(x) &= P_{m+1-j}(x)\left(\frac{x - c_{j}}{c_{m+1-j} - c_j}\right)
 \end{align*}
 Wenn man die Faktoren im Nenner von $P_j, P_{m+1-j}$ vergleicht erhält man zu jedem $(c_j - c_k)$
 ein $(c_{m+1-j}- c_{m+1-k}) = (c_k - c_j)$. Also unterscheiden sich die Nenner
 insgesamt nur um den Faktor $(-1)^{m-2}$.
-\begin{align*}
-  L_{m+1-j}(x) &= (-1)^{m-2}P_{j}(x)\left(\frac{x - c_{j}}{c_{m+1-j} - c_j}\right).
-\end{align*}
-Die Differenz der beiden lautet daher
-\begin{align*}
-  L_j(x) - L_{m+1-j}(x) = P_j(x)\left(\frac{x + c_{j}}{c_j - c_{m+1-j}} - (-1)^{m-2}\frac{x - c_{j}}{c_{m+1-j} - c_j}\right).
-\end{align*}
 \end{enumerate}
 \end{solution}

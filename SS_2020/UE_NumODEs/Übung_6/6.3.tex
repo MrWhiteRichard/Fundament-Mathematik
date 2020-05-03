@@ -1,7 +1,7 @@
 \begin{exercise}
 Sei
 \begin{align}
-  Mh := \frac{1}{h^2}\begin{pmatrix}
+  M_h := \frac{1}{h^2}\begin{pmatrix}
     -2 & 1 & &  \\
     1 & -2 & \ddots & \\
     & \ddots & \ddots & 1 \\
@@ -37,5 +37,74 @@ mit $N \in \N$ und $h := \nicefrac{1}{N}$ die Matrix aus Example 4.2 des Vorlesu
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
 \item
+Wir verwenden die Additionstheoreme
+\begin{align}
+  \sin(x_1 + x_2) &= \sin(x_1)\cos(x_2) + \sin(x_2)\cos(x_1) \label{add1} \\
+  \sin(2x) &= 2\sin(x)\cos(x) \label{add2} \\
+  \sin(x_1 - x_2) &= \sin(x_1)\cos(x_2) - \sin(x_2)\cos(x_1) \label{add3}
+\end{align}
+und berechnen ganz stumpf
+\begin{align*}
+  M_h v^{(j)} = \frac{1}{h^2}\begin{pmatrix}
+    -2 & 1 & &  \\
+    1 & -2 & \ddots & \\
+    & \ddots & \ddots & 1 \\
+    & & 1 & -2
+  \end{pmatrix}
+  \begin{pmatrix}
+  \sin\left(\frac{j\pi}{N}\right) \\
+  \sin\left(\frac{2j\pi}{N}\right) \\
+  \vdots \\
+  \sin\left(\frac{(N-1)j\pi}{N}\right)
+  \end{pmatrix}
+  = \frac{1}{h^2}\begin{pmatrix}
+    -2\sin\left(\frac{j\pi}{N}\right) + \sin\left(\frac{2j\pi}{N}\right) \\
+    \sin\left(\frac{j\pi}{N}\right) - 2\sin\left(\frac{2j\pi}{N}\right) + \sin\left(\frac{3j\pi}{N}\right)\\
+    \vdots \\
+    \sin\left(\frac{(N-2)j\pi}{N}\right) - 2\sin\left(\frac{(N-1)j\pi}{N}\right)
+  \end{pmatrix}.
+\end{align*}
+
+Mit den Additionstheoremen erhalten wir die Zwischenresultate
+\begin{align*}
+  \sin\left(\frac{2j\pi}{N}\right) &\stackrel{\eqref{add2}}{=}
+  2\sin\left(\frac{j\pi}{N}\right)\cos\left(\frac{j\pi}{N}\right) \\
+  \sin\left(\frac{(k-1)j\pi}{N}\right) &= \sin\left(\frac{kj\pi}{N}- \frac{j\pi}{N}\right)\stackrel{\eqref{add3}}{=}
+  \sin\left(\frac{kj\pi}{N}\right)\cos\left(\frac{j\pi}{N}\right)
+  - \sin\left(\frac{j\pi}{N}\right)\cos\left(\frac{kj\pi}{N}\right) \\
+  \sin\left(\frac{(k+1)j\pi}{N}\right) &= \sin\left(\frac{2j\pi}{N}+ \frac{j\pi}{N}\right)
+  \stackrel{\eqref{add1}}{=}
+  \sin\left(\frac{kj\pi}{N}\right)\cos\left(\frac{j\pi}{N}\right)
+  + \sin\left(\frac{j\pi}{N}\right)\cos\left(\frac{kj\pi}{N}\right).
+\end{align*}
+Wenn wir in der letzten Zeile noch den Term
+$0 = \sin\left(\frac{Nj\pi}{N}\right)$ ergänzen haben wir
+\begin{align*}
+  M_h v^{(j)} = \frac{1}{h^2}\begin{pmatrix}
+    2\sin\left(\frac{j\pi}{N}\right)\left(\cos\left(\frac{j\pi}{N}\right) - 1\right) \\
+    2\sin\left(\frac{2j\pi}{N}\right)\left(\cos\left(\frac{j\pi}{N}\right) - 1\right)\\
+    \vdots \\
+    2\sin\left(\frac{(N-1)j\pi}{N}\right)\left(\cos\left(\frac{j\pi}{N}\right) - 1\right)
+  \end{pmatrix}
+  = \lambda_j v^{(j)}
+\end{align*}
+damit die Aussage gezeigt.
+\item Wir rechnen die Limiten nach:
+\begin{align*}
+  \lim_{N \rightarrow \infty} \lambda_1 =
+  \lim_{h \rightarrow 0} \frac{2\left(-1 + \cos\left(h\pi\right)\right)}{h^2}
+\end{align*}
+Da Zähler und Nenner gegen $0$ konvergieren, wenden wir L'Hospital an:
+\begin{align*}
+  \lim_{h \rightarrow 0} \frac{2\left(-1 + \cos\left(h\pi\right)\right)}{h^2}
+  &= \lim_{h \rightarrow 0} \frac{-2\pi\sin(h\pi)}{2h}
+  = \lim_{h \rightarrow 0} -\pi^2\cos(h\pi) = -\pi^2.
+\end{align*}
+Jetzt zum zweiten Limes:
+\begin{align*}
+\lim_{N \rightarrow \infty} \lambda_{N-1} =
+\lim_{h \rightarrow 0} \frac{2\left(-1 + \cos\left((1 - \frac{1}{h})\pi\right)\right)}{h^2}
+= \lim_{N \rightarrow \infty} \frac{-4}{\frac{1}{N^2}} = -\infty.
+\end{align*}
 \end{enumerate}
 \end{solution}
