@@ -28,6 +28,24 @@ $\varphi$ ist ein Homomorphismus:
 \end{itemize}
 Die Addition in den beiden letzten Gleichungen ist dabei punktweise definiert.
 
+****** (ab hier 1. Version --Bijektivität--)(weniger konstruktiv, basierend auf Existenz 3.2.4.2) ******
+
+Um die Bijektivität von $\varphi$ zu zeigen, zeigen wir zunächst, dass es für ein beliebiges Element $\bigtimes_{p \in \P} [k_p]_{p^{e_p}} \in \bigoplus_{p \in \P} C_{p^{e_p}}$ ein (modulo $n$) eindeutig bestimmtes $z$ gibt, so dass für alle $p \in \P$ gilt, $z \equiv_{p^{e_{p}}} k_{p}$.
+
+Nach Folgerung 3.2.4.2 gilt:
+
+\begin{align*}
+    & \Forall p \in \P, \Exists a_p \in p^{e_{p}} \Z, \alpha_p \in \prod_{q \neq p} q^{e_q} \Z: k_p = a_p + \alpha_p \\
+    \Rightarrow & \alpha_p \equiv_{p^{e_{p}}} k_p, \Forall q \neq p: \alpha_p \equiv_{q^{e_{q}}} 0 \\
+    \Rightarrow & z := \sum_{p \in \P} \alpha_p
+\end{align*}
+
+Offensichtlich erfüllt das so definierte $z$ die geforderten Bedingungen und für ein $\tilde{z}$, das ebenso die Bedingungen erfüllt, muss auf jeden Fall gelten $z-\tilde{z} \equiv_n 0$.
+
+Wir definieren also eine Umkehrabbildung $\varphi^{-1}$, die jedes $\bigtimes_{p \in \P} [k_p]_{p^{e_p}} \in \bigoplus_{p \in \P} C_{p^{e_p}}$ auf das eindeutig bestimmte $[z]_n \in C_n$ abbildet. Aufgrund der Konstruktion von $\varphi^{-1}$ erkennt man, dass es sich tatsächlich um eine Umkehrabbildung handelt.
+
+****** (ab hier 2. Version --Bijektivität--)(etwas konstruktiver) ******
+
 Um die Bijektivität von $\varphi$ zu zeigen, definieren wir eine Funktion $\varphi^{-1}$ und weisen nach, dass es sich um eine Inverse handelt:
 
 \begin{align*}
