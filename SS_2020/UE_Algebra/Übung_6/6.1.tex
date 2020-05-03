@@ -1,0 +1,79 @@
+\begin{algebraUE}{162}
+Zeigen Sie
+\begin{align*}
+  C_n \cong \bigoplus_{p \in \P} C_{p^{e_p}}
+\end{align*}
+für die zyklische Gruppe $C_n$ der Ordnung $n = \prod_{p \in \P}p^{e_p}$.
+\end{algebraUE}
+\begin{solution}
+Wir definieren eine Abbildung $\varphi$ wie folgt:
+
+\begin{align*}
+    \varphi: C_n \rightarrow \bigoplus_{p \in \P} C_{p^{e_p}}, [k]_n \mapsto \bigtimes_{p \in \P} [k]_{p^{e_p}}.
+\end{align*}
+
+$\varphi$ ist ein Homomorphismus:
+\begin{itemize}
+\item
+\begin{align*}
+    \varphi([0]_{n}) = \bigtimes_{p \in \P}[0]_{p^{e_p}}
+    \end{align*}
+\item
+\begin{align*}
+      \varphi([k]_n - [m]_n) = \varphi([k-m]_n) = \bigtimes_{p \in \P} [k-m]_{p^{e_p}} =
+      \bigtimes_{p \in \P} [k]_{p^{e_p}} -
+      \bigtimes_{p \in \P} [m]_{p^{e_p}} =
+      \varphi([k]_n) - \varphi([m]_n).
+\end{align*}
+\end{itemize}
+Die Addition in den beiden letzten Gleichungen ist dabei punktweise definiert.
+
+****** (ab hier 1. Version --Bijektivität--)(weniger konstruktiv, basierend auf Existenz 3.2.4.2) ******
+
+Um die Bijektivität von $\varphi$ zu zeigen, zeigen wir zunächst, dass es für ein beliebiges Element $\bigtimes_{p \in \P} [k_p]_{p^{e_p}} \in \bigoplus_{p \in \P} C_{p^{e_p}}$ ein (modulo $n$) eindeutig bestimmtes $z$ gibt, so dass für alle $p \in \P$ gilt, $z \equiv_{p^{e_{p}}} k_{p}$.
+
+Nach Folgerung 3.2.4.2 gilt:
+
+\begin{align*}
+    & \Forall p \in \P, \Exists a_p \in p^{e_{p}} \Z, \alpha_p \in \prod_{q \neq p} q^{e_q} \Z: k_p = a_p + \alpha_p \\
+    \Rightarrow & \alpha_p \equiv_{p^{e_{p}}} k_p, \Forall q \neq p: \alpha_p \equiv_{q^{e_{q}}} 0 \\
+    \Rightarrow & z := \sum_{p \in \P} \alpha_p
+\end{align*}
+
+Offensichtlich erfüllt das so definierte $z$ die geforderten Bedingungen und für ein $\tilde{z}$, das ebenso die Bedingungen erfüllt, muss auf jeden Fall gelten $z-\tilde{z} \equiv_n 0$.
+
+Wir definieren also eine Umkehrabbildung $\varphi^{-1}$, die jedes $\bigtimes_{p \in \P} [k_p]_{p^{e_p}} \in \bigoplus_{p \in \P} C_{p^{e_p}}$ auf das eindeutig bestimmte $[z]_n \in C_n$ abbildet. Aufgrund der Konstruktion von $\varphi^{-1}$ erkennt man, dass es sich tatsächlich um eine Umkehrabbildung handelt.
+
+****** (ab hier 2. Version --Bijektivität--)(etwas konstruktiver) ******
+
+Um die Bijektivität von $\varphi$ zu zeigen, definieren wir eine Funktion $\varphi^{-1}$ und weisen nach, dass es sich um eine Inverse handelt:
+
+\begin{align*}
+   \varphi^{-1}: \bigoplus_{p \in \P} C_{p^{e_p}} \rightarrow C_n, \bigtimes_{p \in \P} [k_p]_{p^{e_p}}
+   \mapsto \left[\sum_{p \in P} \alpha_p \prod_{q \neq p} q^{e_q}\right]_n,
+\end{align*}
+wobei wir die Koeffizienten $\alpha_p$ so wählen, dass gilt
+
+\begin{align*}
+    \alpha_p \prod_{q \neq p} q^{e_q} \equiv_{p^{e_{p}}} k_{p}.
+\end{align*}
+
+Das ist aufgrund der Teilerfremdheit von $\prod_{q \neq p} q^{e_q}, p^{e_p}$ stets möglich,
+da für $\alpha_0, \alpha_1 \leq n-1, \alpha_0 \neq \alpha_1$ gilt:
+
+\begin{align*}
+    p^{e_{p}} \nmid \left(\prod_{q \neq p} q^{e_q}\right) (\alpha_0 - \alpha_1), \text{also~}
+    \left(\alpha_0 \prod_{q \neq p} q^{e_q}\right) \not\equiv_{p^{e_p}}
+    \left(\alpha_1 \prod_{q \neq p} q^{e_q}\right).
+\end{align*}
+
+Mit dieser Wahl gilt nun für beliebiges $s \in \P:$
+
+\begin{align*}
+\sum_{p \in P} \alpha_p \prod_{q \neq p} q^{e_q} \mod s^{e_s} =
+\left(k_s + \left(\underbrace{\sum_{p \neq s} \alpha_p \prod_{q \neq p} q^{e_q}
+\mod s^{e_s}}_{\substack{\equiv 0 \mod s^{e_s}}}\right)\right) \mod s^{e_s} = k_s.
+\end{align*}
+
+$\varphi^{-1}$ ist also wohldefiniert und offensichtlich Umkehrfunktion.
+\end{solution}

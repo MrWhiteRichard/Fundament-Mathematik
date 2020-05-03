@@ -1,0 +1,109 @@
+\begin{exercise}
+Sei zunächst $[a,b] = [-1,1]$ und $\omega(x) \equiv 1$.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Zeigen Sie, dass die Orthogonalpolynome $(q_s)_{s \in \N_0}$ aus Remark B.13
+  des Vorlesungsskripts gerade, beziehungsweise ungerade Polynome sind, falls $s$
+  gerade, beziehungsweise ungerade ist. Dazu können Sie die Konstruktion dieser
+  Polynome aus der Monombasis mit Hilfe des Orthogonalisierungsverfahrens von
+  Gram-Schmidt verwenden.
+  \item
+  \renewcommand{\arraystretch}{1.2}
+  Sei nun ~$\begin{matrix}
+    c & \vline & A \\
+    \hline
+    & \vline & b^{\top}
+  \end{matrix}$~
+  \renewcommand{\arraystretch}{1}
+  das Butcher Tableau eines durch Kollokation erzeugten $m$-stufigen Runge-Kutta-Verfahrens,
+  bei dem Gauß-Quadratur zur Grundlage genommen wurde. Beweisen Sie, dass die Kollokationspunkte
+  und die Gewichte im folgenden Sinn symmetrisch sind:
+  \begin{align}
+    \left|c_j - \frac{1}{2}\right| = \left| c_{m + 1 - j} - \frac{1}{2}\right|,
+    \qquad b_j = b_{m+1-j}, \qquad j = 1,\dots,m.
+  \end{align}
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{enumerate}[label = \textbf{\alph*)}]
+\item
+Mit dem Orthogonalisierungsverfahren von Gram-Schmidt angewandt auf die Monombasis,
+erhalten wir $q_s$ folgendermaßen:
+\begin{align*}
+q_s(x) = x^s - \sum_{i = 0}^{s-1}\frac{\langle q_i(x), x^s\rangle}{\langle q_i(x), q_i(x) \rangle}q_i(x),
+\end{align*}
+wobei das Skalarprodukt als
+\begin{align*}
+  \langle f, g \rangle := \int_a^b w(y)f(y)g(y) dy = \int_{-1}^1 f(y)g(y) dy
+\end{align*}
+definiert ist. Also haben wir
+\begin{align*}
+  q_s(x) = x^s - \sum_{i = 0}^{s-1}\frac{\int_{-1}^1 q_i(y) y^s dy}{\int_{-1}^1 q_i^2(y) dy}q_i(x)
+\end{align*}
+Wir zeigen die Aussage mit Induktion nach $s$. Für $s = 0$ lautet $q_0 \equiv 1$,
+was klarerweise ein gerades Polynom darstellt. Für $s = 1$ erhalten wir im ersten
+Schritt des Orthogonalisierungsverfahrens
+\begin{align*}
+  q_1(x) = x - \frac{\int_{-1}^1 q_0(y) y dy}{\int_{-1}^1 q_0^2(y) dy}q_0(x)
+  = x - \frac{\int_{-1}^1 y dy}{\int_{-1}^1 1 dy}1 = x - \frac{0}{2} = x,
+\end{align*}
+was ein ungerades Polynom darstellt. \\
+Gelte nun die Aussage für $k < s$.
+\begin{itemize}
+  \item Fall 1: $s$ gerade
+  \begin{align*}
+    q_s(x) = x^s - \sum_{i = 0}^{s-1}\frac{\int_{-1}^1 q_i(y) y^s dy}{\int_{-1}^1 q_i^2(y) dy}q_i(x)
+  \end{align*}
+  Für $i$ ungerade ist $q_i(x) x^s$ eine ungerade Funktion und das Integral verschwindet somit zu 0.
+  Also vereinfacht sich die Summe zu
+  \begin{align*}
+    q_s(x) = x^s - \sum_{i = 0}^{s/2-1}\frac{\int_{-1}^1q_{2i}(y)y^s dy}{\int_{-1}^1q_{2i}^2(y)dy}q_{2i}(x)
+    = (-x)^s - \sum_{i = 0}^{s/2-1}\frac{\int_{-1}^1 q_{2i}(y) y^s dy}{\int_{-1}^1 q_{2i}^2(y) dy}q_{2i}(-x)
+    = q_s(-x)
+  \end{align*}
+  und $q_s$ ist daher eine gerade Funktion.
+  \item Fall 2: $s$ ungerade
+  In diesem Fall verschwinden genau die Integrale der geraden $i$ und wir erhalten
+  \begin{align*}
+    q_s(x) &= x^s - \sum_{i = 0}^{s-1}\frac{\int_{-1}^1 q_i(y) y^s dy}{\int_{-1}^1 q_i^2(y) dy}q_i(x)
+    = x^s - \sum_{i = 0}^{s/2-1}\frac{\int_{-1}^1q_{2i+1}(y)y^s dy}{\int_{-1}^1q_{2i+1}^2(y)dy}q_{2i+1}(x)\\
+    &= -(-x)^s +
+    \sum_{i = 0}^{s/2-1}\frac{\int_{-1}^1q_{2i+1}(y)y^s dy}{\int_{-1}^1q_{2i+1}^2(y)dy}q_{2i+1}(-x)
+    = -q_s(-x)
+  \end{align*}
+  eine ungerade Funktion.
+\end{itemize}
+\item Da die Kollokationspunkte $c_j$ genau die Nullstellen des $m$-ten Orthogonalpolynom sind,
+folgt aufgrund $q_{m}(x) = \pm q_m(-x)$, dass die $c_j$ symmetrisch um 0 liegen müssen.
+Also gilt
+\begin{align*}
+  c_j = -c_{m+1-j}
+\end{align*}
+Wie die Gleichheit aus der Angabe folgen soll, erschließt sich mir nicht.
+Ich denke, das ist gemeint. \\
+Die Quadraturgewichte berechnen sich folgendermaßen:
+\begin{align*}
+  b_j = \int_{-1}^1 L_j(t) dt, \qquad j = 1,\dots,m.
+\end{align*}
+Definieren wir
+\begin{align*}
+  P_j(x) := \left(\prod_{k = 1, k \notin \{j,m+1-j\}}^m\frac{x - c_k}{c_j - c_k}\right),
+\end{align*}
+erhalten wir
+
+\begin{align*}
+  L_j(x) &= P_j(x)\left(\frac{x - c_{m+1-j}}{c_j - c_{m+1-j}}\right) = P_j(x)\left(\frac{x + c_{j}}{c_j - c_{m+1-j}}\right)\\
+  L_{m+1-j}(x) &= P_{m+1-j}(x)\left(\frac{x - c_{j}}{c_{m+1-j} - c_j}\right)
+\end{align*}
+Wenn man die Faktoren im Nenner von $P_j, P_{m+1-j}$ vergleicht erhält man zu jedem $(c_j - c_k)$
+ein $(c_{m+1-j}- c_{m+1-k}) = (c_k - c_j)$. Also unterscheiden sich die Nenner
+insgesamt nur um den Faktor $(-1)^{m-2}$.
+\begin{align*}
+  L_{m+1-j}(x) &= (-1)^{m-2}P_{j}(x)\left(\frac{x - c_{j}}{c_{m+1-j} - c_j}\right).
+\end{align*}
+Die Differenz der beiden lautet daher
+\begin{align*}
+  L_j(x) - L_{m+1-j}(x) = P_j(x)\left(\frac{x + c_{j}}{c_j - c_{m+1-j}} - (-1)^{m-2}\frac{x - c_{j}}{c_{m+1-j} - c_j}\right).
+\end{align*}
+\end{enumerate}
+\end{solution}

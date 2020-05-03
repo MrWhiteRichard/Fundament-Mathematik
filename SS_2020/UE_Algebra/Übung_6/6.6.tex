@@ -54,20 +54,31 @@
     K^{\primeprime} \supseteq  \{\frac{p}{q}: q \neq 0 \in R\} = K^{\prime}.
   \end{align*}
   \item Gelte zuerst $K = K^{\prime}$. \\
-  Damit $(K,\iota)$ der bis auf Isomorhie eindeutig bestimmte Quotientenkörper ist, muss
-  noch gelten, dass für jeden anderen Körper $K^{\primeprime}$ mit isomorpher Einbettung
-  $\iota^{\prime}: R \rightarrow K^{\primeprime}$ eine eindeutige isomorphe Einbettung
-  $\varphi: K \rightarrow K^{\primeprime}$ gibt, sodass $\iota^{\prime}(r) = \varphi \circ \iota$.
-  Im vorherigen Schritt haben wir gezeigt, dass $K = K^{\prime} \subseteq K^{\primeprime}$ erfüllt.
-  Damit erfüllt die triviale Einbettungsabbildung $\varphi: K \rightarrow K^{\primeprime}, x \mapsto x$
-  die Bedingung $\iota^{\prime}(r) = \varphi \circ \iota$. Ich nehme stark an, dass
-  durch die Homomorphie-Bedingungen $\varphi$ auf $K$ bereits eindeutig festgelegt wird,
-  kanns aber grad nicht zeigen. \\
-  Die Rückrichtung zeigen wir mittels Kontraposition, gelte also $K \supsetneq K^{\prime}$.
-  Nachdem $\varphi(K^{\prime}) = K^{\prime}$ gelten muss, kann $\varphi$ nicht injektiv
-  und somit keine isomorphe Einbettung sein.
-  \item Sei $(Q^{\prime},\iota^{\prime})$ ein weiterer Körper mit Einbettungsabbildung
-  $\iota: R \rightarrow Q^{\prime}$.
+  Da $R$ kommutativ ist, ist $R\backslash\{0\}$ ein kürzbares Untermonoid von $R$.
+  Aufgrund $\frac{p}{q} := [(p,q)]_{\sim}$ mit $(p_1,q_1) \sim (p_2,q_2) :\iff p_1q_2 = p_2q_1$
+  ist $K = R \times R\backslash\{0\}$ laut Satz 3.3.5.8. ein Quotientenkörper von $R$.
+  Sei $K$ umgekehrt ein Quotientenkörper von $R$. Da Quotientenkörper bis auf
+  Isomorphie eindeutig bestimmt sind, gilt damit  $K \cong K^{\prime}$.
+  \item In Punkt 1 und 2 haben wir mit $K^{\prime}$ den kleinsten Unterkörper von $K$,
+  welcher einen beliebigen Ring $R$ mit eins enthält. Als homomorphes Bild eines
+  Integritätsbereichs ist $\iota(R)$ ein Ring mit eins und wir können $Q$ angeben als
+  \begin{align*}
+    Q = \{ \frac{p}{q}: p,q \in \iota(R)\}.
+  \end{align*}
+  Aus Punkt 3 folgt schließlich, dass $Q$ ein Quotientenkörper von $\iota(R)$ ist
+  und da $R$ isomorph zu $\iota(R)$ ist, auch ein Quotientenkörper von $R$.
+  \begin{center}
+  \begin{tikzpicture}[auto]
+      \node (R) at (0,0) {$R$};
+      \node (iotaR) at (2,0) {$\iota(R)$};
+      \node (Q) at (3,1) {$Q$};
+      \node (K) at (3,-1) {$K$};
+      \draw[->] (R) to node [swap] {$\iota$} (iotaR);
+      \draw[->] (iotaR) to node  {$\iota^{\prime}$} (Q);
+      \draw[->] (iotaR) to node [swap] {$\tau$} (K);
+      \draw[->] (Q) to node {$\varphi$} (K);
+  \end{tikzpicture} \\
+  \end{center}
 \end{enumerate}
 
 \end{solution}

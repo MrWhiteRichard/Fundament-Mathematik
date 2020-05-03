@@ -1,0 +1,66 @@
+\begin{exercise}
+Sei $c_1 = 0, c_3 = 1$ und $c_2 \in (0,1)$ beliebig.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Welche Konvergenzordnung ist für 3-stufige Runge-Kutta-Verfahren erreichbar,
+  wenn diese durch Kollokation mit diesen Kollokationspunkten erzeugt werden?
+  \item Geben Sie die Butcher Tableaus dieser Verfahren an.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\leavevmode \\
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Theorem 3.28 sagt uns, dass für $m$-stufige Runge-Kutta-Verfahren $2m$ die maximal
+  erreichbare Konvergenzordnung darstellt, also erhalten wir in unserem Fall maximal Konvergenzordnung 6.
+  Aus Numerik A kennen wir mit
+  \begin{align*}
+    Q_2(f) = \frac{5}{9}f\left(-\sqrt{\frac{3}{5}}\right) + \frac{8}{9}f\left(0\right)
+    + \frac{5}{9}f\left(\sqrt{\frac{3}{5}}\right)
+  \end{align*}
+  die Gauß-Legendre-Quadraturformel mit drei Stützstellen auf dem Intervall $[0,1]$,
+  für die konstante Gewichtsfunktion $\omega \equiv 0$. Um die Quadraturpunkte unseren
+  vorgegeben Stützstellen anzupassen führen wir eine affine Transformation nach dem Schema
+  \begin{align*}
+    \int_a^b f(x)dx \approx \frac{b-a}{2}\sum_{i = 1}^n\alpha_i f\left(\frac{(b-a)x_i + (a+b)}{2}\right)
+  \end{align*}
+  durch und erhalten das Intervall $\left[\frac{1}{2} - \sqrt{\frac{5}{12}}, \frac{1}{2} + \sqrt{\frac{5}{12}}\right]$
+  \begin{align*}
+  Q_2(f) = \sqrt{\frac{5}{12}}\left(\frac{5}{9}f(0) + \frac{8}{9}f\left(\frac{1}{2}\right)
+  + \frac{5}{9}f(1)\right).
+  \end{align*}
+  \textit{Die affine Transformation hab ich auf Wikipedia bestätigt gesehen, hab
+  aber noch kein stichhaltiges Argument dafür, warum das ohne weiteres durchgeht.
+  Ich schätze, man könnte sich anschauen, dass die entsprechenden Polynome genauso exakt
+  integriert werden, indem man sie analog transformiert.}
+  Aufgrund der Eindeutigkeit der Gaußschen Quadraturformeln sind dies auch die
+  einzigen Kollokationspunkte mit denen maximale Konvergenzordnung erzielt werden kann.
+  \item Um das zugehörige Butcher Tableau zu bestimmen, benötigen wir vorerst die
+  zugehörigen Lagrange Basispolynome
+  \begin{align*}
+    L_1(x) &= 2(x - 1/2)(x - 1) = 2x^2 - 3x + 1\\
+    L_2(x) &= -4x(x - 1) = -4x^2 + 4x\\
+    L_3(x) &= 2x(x - 1/2) = 2x^2 - x.
+  \end{align*}
+  Mit den Formeln
+  \begin{align*}
+    A_{ij} = \int_{\frac{1}{2} - \sqrt{\frac{5}{12}}}^{c_i} L_j dt \\
+    b_j = \int_{\frac{1}{2} - \sqrt{\frac{5}{12}}}^{\frac{1}{2} + \sqrt{\frac{5}{12}}} L_j dt
+  \end{align*}
+  berechnen wir schließlich
+  \begin{align*}
+    b &= \frac{1}{18}\sqrt{\frac{5}{3}}
+    \begin{pmatrix}
+       5 \\ 8 \\ 5
+    \end{pmatrix}\\
+    A &=
+     \begin{pmatrix}
+      \frac{5}{36}\sqrt{\frac{5}{3}} & \frac{1}{27}\left(2\sqrt{15} - 9\right)
+      & \frac{5}{36}\sqrt{\frac{5}{3}} - \frac{1}{6}\\
+      \frac{5}{216}\left(9 + 2\sqrt{15}\right) & \frac{2}{9}\sqrt{\frac{5}{3}}
+      & \frac{5}{216}\left(-9 + 2\sqrt{15}\right)\\
+      \frac{5}{36}\sqrt{\frac{5}{3}} + \frac{1}{6} & \frac{1}{27}\left(2\sqrt{15} + 9\right)
+      & \frac{5}{36}\sqrt{\frac{5}{3}}
+    \end{pmatrix}.
+  \end{align*}
+\end{enumerate}
+Wunderschön, nicht wahr?
+\end{solution}
