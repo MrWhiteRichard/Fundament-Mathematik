@@ -9,61 +9,88 @@ Sei $c_1 = 0, c_3 = 1$ und $c_2 \in (0,1)$ beliebig.
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item Theorem 3.28 sagt uns, dass für $m$-stufige Runge-Kutta-Verfahren $2m$ die maximal
-  erreichbare Konvergenzordnung darstellt, also erhalten wir in unserem Fall maximal Konvergenzordnung 6. Allerdings benötigen wir dafür
-  Kollokationspunkte aus einer Gauß-Quadratur, welche allerdings immer
-  im offenen Intervall $(-1,1)$ liegen und nicht auf den Randpunkten.
-  Da Gauß-Quadraturen eindeutig sind, kann es auch keine weiteren
-  Kollokationspunkte geben, mit denen die selbe Konvergenzordnung
-  erreicht werden kann. Also müssen wir uns mit einer Konvergenzordnung
-  weniger begnügen. Im Appendix Abschnitt B.6 finden wir Lobatto-
-  Quadraturen, welche genau das erfüllen, was wir uns wünschen.
+  \item Theorem 3.28 sagt uns, dass für $3$-stufige Runge-Kutta-Verfahren
+  maximal Konvergenzordnung $6$ erreichen können. Allerdings benötigen wir dafür
+  Kollokationspunkte aus einer Gauß-Quadratur, welche immer
+  im offenen Intervall $(0,1)$ liegen und nicht auf den Randpunkten.
+  Daher können wir nicht die maximale Konvergenzordnung erwarten.
+  Also setzen wir die Lagrange Basispolynome vorerst allgemein an.
   \begin{align*}
-    Q_3(g) = \frac{1}{6}g(0) + \frac{2}{3}g\left(\frac{1}{2}\right)
-    + \frac{1}{6}g(1)
+    L_1(x) &= \frac{(x-c_2)(x-1)}{c_2} \\
+    L_2(x) &= \frac{x(x-1)}{c_2(c_2 - 1)} \\
+    L_3(x) &= \frac{x(x - c_2)}{1 - c_2}
   \end{align*}
-  ist exakt für Polynome vom Grad $\leq 2m-3$
-  die Gauß-Legendre-Quadraturformel mit drei Stützstellen auf dem Intervall $[0,1]$,
-  für die konstante Gewichtsfunktion $\omega \equiv 0$. Um die Quadraturpunkte unseren
-  vorgegeben Stützstellen anzupassen führen wir eine affine Transformation nach dem Schema
+  Die zugehörige Quadraturformel lautet
   \begin{align*}
-    \int_a^b f(x)dx \approx \frac{b-a}{2}\sum_{i = 1}^n\alpha_i f\left(\frac{(b-a)x_i + (a+b)}{2}\right)
+    \int_0^1 f(x) dx &\approx Q(f) := \int_0^1 L_1(x) dx f(0) + \int_0^1 L_2(x) dx f(c_2) +
+    \int_0^1 L_1(x) dx f(1) \\
+    &= \frac{3c_2 -1}{6c_2} f(0) + \frac{1}{6c_2(1 - c_2)} f(c_2) +
+    \frac{2- 3c_2}{6(1 - c_2)} f(1)
   \end{align*}
-  durch und erhalten das Intervall $\left[\frac{1}{2} - \sqrt{\frac{5}{12}}, \frac{1}{2} + \sqrt{\frac{5}{12}}\right]$
+  Jetzt wollen wir durch geschickte Wahl von $c_2$ die Ordnung dieser Quadratur maximieren.
+  Dafür betrachten wir die Monombasis.
   \begin{align*}
-  Q_2(f) = \sqrt{\frac{5}{12}}\left(\frac{5}{9}f(0) + \frac{8}{9}f\left(\frac{1}{2}\right)
-  + \frac{5}{9}f(1)\right).
+    Q(x^0) &= \frac{3c_2 - 1}{6c_2} + \frac{1}{6c_2(1 - c_2)} +
+    \frac{2- 3c_2}{6(1 - c_2)} \stackrel{!}{=} 1 \\
+    &\iff \frac{(3c_2 - 1)(1 - c_2) + 1 + (2- 3c_2)c_2}{6c_2(1 - c_2)} \stackrel{!}{=} 1 \\
+    &\iff \frac{-3c_2^2 + 3c_2 + c_2 + 2c_2 - 3c_2^2}{6c_2(1 - c_2)} \stackrel{!}{=} 1 \\
+    &\iff \frac{-6c_2^2 + 6c_2}{6c_2(1 - c_2)} \stackrel{!}{=} 1 \\
+    &\iff c_2 \notin \{0,1\}
   \end{align*}
-  Aufgrund der Eindeutigkeit der Gaußschen Quadraturformeln sind dies auch die
-  einzigen Kollokationspunkte mit denen maximale Konvergenzordnung erzielt werden kann.
-  \item Um das zugehörige Butcher Tableau zu bestimmen, benötigen wir vorerst die
-  zugehörigen Lagrange Basispolynome
   \begin{align*}
-    L_1(x) &= 2(x - 1/2)(x - 1) = 2x^2 - 3x + 1\\
-    L_2(x) &= -4x(x - 1) = -4x^2 + 4x\\
-    L_3(x) &= 2x(x - 1/2) = 2x^2 - x.
+    Q(x^1) &= \frac{c_2}{6c_2(1 - c_2)} +
+    \frac{2- 3c_2}{6(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff \frac{c_2 + c_2(2 - 3c_2)}{6c_2(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff \frac{3c_2 - 3c_2^2}{6c_2(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff c_2 \notin \{0,1\}  \\
+    Q(x^2) &= \frac{c_2^2}{6c_2(1 - c_2)} +
+    \frac{2- 3c_2}{6(1 - c_2)} \stackrel{!}{=} \frac{1}{3} \\
+    &\iff \frac{c_2^2 + c_2(2 - 3c_2)}{6c_2(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff \frac{2c_2 - 2c_2^2}{6c_2(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff c_2 \notin \{0,1\}  \\
+    Q(x^3) &= \frac{c_2^3}{6c_2(1 - c_2)} +
+    \frac{2- 3c_2}{6(1 - c_2)} \stackrel{!}{=} \frac{1}{4} \\
+    &\iff \frac{c_2^3 + c_2(2 - 3c_2)}{6c_2(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff \frac{c_2^2 - 3c_2 + 2}{6(1 - c_2)} \stackrel{!}{=} \frac{1}{2} \\
+    &\iff 2c_2^2 - 6c_2 + 4 \stackrel{!}{=} 6(1 - c_2)\\
+    &\iff 2c_2^2 - 2 \stackrel{!}{=} 0\\
+    &\iff c_2 \in \{-\frac{1}{2},\frac{1}{2}\} \\
   \end{align*}
-  Mit den Formeln
+  Also hat unsere Quadratur für $c_2 = \frac{1}{2}$ zumindest Ordnung $4$.
+  Polynome von Grad $4$ werden allerdings im Allgemeinen nicht mehr exakt integriert, da
   \begin{align*}
-    A_{ij} = \int_{\frac{1}{2} - \sqrt{\frac{5}{12}}}^{c_i} L_j dt \\
-    b_j = \int_{\frac{1}{2} - \sqrt{\frac{5}{12}}}^{\frac{1}{2} + \sqrt{\frac{5}{12}}} L_j dt
+    Q(x^4) &= \frac{1}{24} +
+    \frac{1}{6} = \frac{5}{24} \neq \frac{1}{5}.
   \end{align*}
-  berechnen wir schließlich
+  Also hat die zugehörige Kollokationsmethode ebenso Konsistenzordnung $4$.
+  Die Kollokationspunkte stimmen dabei mit denen der abgeschlossenen Newton-Cotes-Formel $Q_2$
+  überein.
+  \item Das zugehörige Butcher Tableau haben wir bereits letzte Woche bestimmt:
   \begin{align*}
-    b &= \frac{1}{18}\sqrt{\frac{5}{3}}
-    \begin{pmatrix}
-       5 \\ 8 \\ 5
-    \end{pmatrix}\\
-    A &=
-     \begin{pmatrix}
-      \frac{5}{36}\sqrt{\frac{5}{3}} & \frac{1}{27}\left(2\sqrt{15} - 9\right)
-      & \frac{5}{36}\sqrt{\frac{5}{3}} - \frac{1}{6}\\
-      \frac{5}{216}\left(9 + 2\sqrt{15}\right) & \frac{2}{9}\sqrt{\frac{5}{3}}
-      & \frac{5}{216}\left(-9 + 2\sqrt{15}\right)\\
-      \frac{5}{36}\sqrt{\frac{5}{3}} + \frac{1}{6} & \frac{1}{27}\left(2\sqrt{15} + 9\right)
-      & \frac{5}{36}\sqrt{\frac{5}{3}}
-    \end{pmatrix}.
+    b &= \begin{pmatrix}
+      \int_0^1 L_1(x) \\ \int_0^1 L_2(x) \\ \int_0^1 L_3(x)
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \int_0^1 2x^2 - 3x + 1 dx \\
+      \int_0^1 -4x^2 + 4x dx \\
+      \int_0^1 2x^2 - x dx
+    \end{pmatrix}
+    = \begin{pmatrix}
+       \frac{2}{3} - \frac{3}{2} + 1 \\-\frac{4}{3} + 2 \\ \frac{2}{3} - \frac{1}{2}
+    \end{pmatrix}
+    = \frac{1}{6}\begin{pmatrix}
+      1 \\ 4 \\ 1
+    \end{pmatrix} \\
+    A &= \begin{pmatrix}
+      \int_0^0 L_1(x) & \int_0^0 L_2(x) & \int_0^0 L_3(x)\\
+      \int_0^{1/2} L_1(x) & \int_0^{1/2} L_2(x) & \int_0^{1/2} L_3(x)\\
+      \int_0^1 L_1(x) & \int_0^1 L_2(x) & \int_0^1 L_3(x)
+    \end{pmatrix}
+    = \frac{1}{24}\begin{pmatrix}
+      0 & 0 & 0\\
+      5 & 8 & -1\\
+      4 & 16 & 4
+    \end{pmatrix}
   \end{align*}
 \end{enumerate}
-Wunderschön, nicht wahr?
 \end{solution}
