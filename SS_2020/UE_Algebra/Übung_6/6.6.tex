@@ -47,36 +47,42 @@
   Damit muss vorerst $K^{\primeprime} \subseteq R$ gelten. Aufgrund der Abgeschlossenheit
   unter der multiplikativen Inversenbildung muss auch gelten
   \begin{align*}
-    K^{\primeprime} \supseteq \{\frac{1}{q}: q \neq 0 \in R\} \cup \{\frac{p}{1}: p \in R\}
+    K^{\primeprime} \supseteq \left\{\frac{1}{q}: q \neq 0 \in R\right\} \cup \left\{\frac{p}{1}: p \in R\right\}
   \end{align*}
   Aufgrund der Abgeschlossenheit bezüglich der Multiplikation gilt schließlich auch
   \begin{align*}
-    K^{\primeprime} \supseteq  \{\frac{p}{q}: q \neq 0 \in R\} = K^{\prime}.
+    K^{\primeprime} \supseteq  \left\{\frac{p}{q}: q \neq 0 \in R\right\} = K^{\prime}.
   \end{align*}
   \item Gelte zuerst $K = K^{\prime}$. \\
   Da $R$ kommutativ ist, ist $R\backslash\{0\}$ ein kürzbares Untermonoid von $R$.
   Aufgrund $\frac{p}{q} := [(p,q)]_{\sim}$ mit $(p_1,q_1) \sim (p_2,q_2) :\iff p_1q_2 = p_2q_1$
   ist $K = R \times R\backslash\{0\}$ laut Satz 3.3.5.8. ein Quotientenkörper von $R$.
   Sei $K$ umgekehrt ein Quotientenkörper von $R$. Da Quotientenkörper bis auf
-  Isomorphie eindeutig bestimmt sind, gilt damit  $K \cong K^{\prime}$.
+  Isomorphie eindeutig bestimmt sind, gilt damit  $K \cong K^{\prime}$. Es gibt also
+  genau eine isomorphe Einbettung $\iota: K \rightarrow K^{\prime}$. Die Identität
+  auf $K$ ist so eine Abbildung und damit folgt $K = K^{\prime}$.
   \item In Punkt 1 und 2 haben wir mit $K^{\prime}$ den kleinsten Unterkörper von $K$,
-  welcher einen beliebigen Ring $R$ mit eins enthält. Als homomorphes Bild eines
+  welcher einen beliebigen Ring $R$ mit eins enthält bestimmt. Als homomorphes Bild eines
   Integritätsbereichs ist $\iota(R)$ ein Ring mit eins und wir können $Q$ angeben als
   \begin{align*}
-    Q = \{ \frac{p}{q}: p,q \in \iota(R)\}.
+    Q = \left\{ \frac{p}{q}: p,q \in \iota(R)\right\}.
   \end{align*}
   Aus Punkt 3 folgt schließlich, dass $Q$ ein Quotientenkörper von $\iota(R)$ ist
   und da $R$ isomorph zu $\iota(R)$ ist, auch ein Quotientenkörper von $R$.
+  Um das einzusehen, betrachte einen beliebigen Körper $\widetilde{Q}$ in den $R$
+  mittels $\widetilde{\iota}$ isomorph eingebettet ist:
   \begin{center}
   \begin{tikzpicture}[auto]
       \node (R) at (0,0) {$R$};
-      \node (iotaR) at (2,0) {$\iota(R)$};
-      \node (Q) at (3,1) {$Q$};
-      \node (K) at (3,-1) {$K$};
+      \node (iotaR) at (4,0) {$\iota(R)$};
+      \node (Q) at (6,2) {$Q$};
+      \node (Qschlange) at (2,2) {$\widetilde{Q}$};
       \draw[->] (R) to node [swap] {$\iota$} (iotaR);
-      \draw[->] (iotaR) to node  {$\iota^{\prime}$} (Q);
-      \draw[->] (iotaR) to node [swap] {$\tau$} (K);
-      \draw[->] (Q) to node {$\varphi$} (K);
+      \draw[->] (iotaR) to node [swap]  {$\iota^{\prime}$} (Q);
+      \draw[->] (R) to node {$\widetilde{\iota}$} (Qschlange);
+      \draw[->] (Q) to node [swap] {$\varphi$} (Qschlange);
+      \draw[->] (iotaR) to node [swap] {$\widetilde{\iota}\circ\iota^{-1}$} (Qschlange);
+      \draw[->] (0,0) .. controls  (2,-2) and (5,-2) .. node {$\iota^{\prime}\circ\iota$} (6,2) ;
   \end{tikzpicture} \\
   \end{center}
 \end{enumerate}
