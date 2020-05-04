@@ -86,22 +86,29 @@ und
   \left|c_j - \frac{1}{2}\right| = \left|\frac{\widetilde{c_j}}{2}\right| =
   \left|\frac{\widetilde{c}_{m+1-j}}{2}\right| = \left|c_{m+1-j} - \frac{1}{2}\right|.
 \end{align*}
+Als alternative Darstellung dieses Sachverhalts erhalten wir
+\begin{align*}
+  c_j + c_{m + 1 - j} = 1
+\end{align*}
 Die Quadraturgewichte berechnen sich folgendermaßen:
 \begin{align*}
-  b_j = \int_{0}^1 L_j(t) dt, \qquad j = 1,\dots,m.
+  b_j &= \int_{0}^1 L_j(t) dt
+  = \int_0^1 \prod_{k = 1, k \neq j}^m\frac{t - c_k}{c_j - c_k} dt \bigg|_{du = 2dt}^{u = 2t - 1}
+  = \frac{1}{2}\int_{-1}^1  \prod_{k = 1, k \neq j}^m\frac{\frac{u+1}{2} - c_k}{c_j - c_k} du \\
+  &= \frac{1}{2}\int_{-1}^1  \prod_{k = 1, k \neq j}^m\frac{\frac{u+1}{2} - (1 - c_{m+1-k})}
+  {(1 - c_{m+1-j}) - (1 - c_{m+1-k})} du
+  = \frac{1}{2}\int_{-1}^1  \prod_{k = 1, k \neq j}^m\frac{c_{m+1-k} + \frac{u-1}{2}}
+  {c_{m+1-k} - c_{m+1-j}} du \\
+  &= \frac{1}{2}\int_{-1}^1  \prod_{k = 1, k \neq j}^m\frac{\frac{1-u}{2} - c_{m+1-k}}
+  {c_{m+1-j} - c_{m+1-k}} du
+  = \frac{1}{2}\int_{-1}^1  \prod_{k = 1, k \neq m+1-j}^m\frac{\frac{1-u}{2} - c_{k}}
+  {c_{m+1-j} - c_{k}} du \bigg|_{dt = -\frac{1}{2}du}^{t = \frac{1-u}{2}} \\
+  &= \frac{-2}{2}\int_{1}^0  \prod_{k = 1, k \neq m+1-j}^m\frac{t - c_{k}}
+  {c_{m+1-j} - c_{k}} dt
+  = -\int_{0}^1  \prod_{k = 1, k \neq m+1-j}^m\frac{t - c_{k}}
+  {c_{m+1-j} - c_{k}} dt \\
+  &= \int_0^1 L_{m+1-j}(t) dt = b_{m+1-j}
 \end{align*}
-Definieren wir
-\begin{align*}
-  P_j(x) := \left(\prod_{k = 1, k \notin \{j,m+1-j\}}^m\frac{x - c_k}{c_j - c_k}\right),
-\end{align*}
-erhalten wir
 
-\begin{align*}
-  L_j(x) &= P_j(x)\left(\frac{x - c_{m+1-j}}{c_j - c_{m+1-j}}\right)\\
-  L_{m+1-j}(x) &= P_{m+1-j}(x)\left(\frac{x - c_{j}}{c_{m+1-j} - c_j}\right)
-\end{align*}
-Wenn man die Faktoren im Nenner von $P_j, P_{m+1-j}$ vergleicht erhält man zu jedem $(c_j - c_k)$
-ein $(c_{m+1-j}- c_{m+1-k}) = (c_k - c_j)$. Also unterscheiden sich die Nenner
-insgesamt nur um den Faktor $(-1)^{m-2}$.
 \end{enumerate}
 \end{solution}
