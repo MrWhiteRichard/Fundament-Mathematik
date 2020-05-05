@@ -23,6 +23,39 @@ $G_i := g\left(\frac{i}{N}\right)$ für $i = 1,\dots,N-1$.
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-\item
+\item Um mit dem expliziten Euler-Verfahren
+exponentiell fallende Lösungen zu erreichen, muss, wenn wir
+die äquivalenten, separierten Anfangswertprobleme betrachten,
+aufgrund $y_{l + 1}^j = (1 + \lambda_j \tau)y_{l}^j$
+\begin{align*}
+  |1 + \lambda \tau| \leq 1 \iff \tau \leq \frac{-2}{\lambda}
+\end{align*}
+gelten. In unserem Fall führt das mit dem kleinsten Eigenwert $\lambda_{N - 1}$ zu
+\begin{align*}
+  \tau \leq \frac{-2}{\lambda_{N - 1}} =
+  \frac{-2}{\frac{2}{h^2}\left(-1 + \cos\left(\frac{(N-1)\pi}{N}\right)\right)}
+  =\frac{h^2}{\left(1 - \cos\left(\frac{(N-1)\pi}{N}\right)\right)}
+  \approx \frac{h^2}{2}
+\end{align*}
+\item Wir würden also erwarten, dass für $h = 2^{-i}$, die Zeitschrittweite
+kleiner als $2^{-2i-1}$ gewählt werden muss, um exponentiellen Abfall zu erzielen.
+In der Grafik sind alle Zeitschritte, die $\tau \leq \frac{h^2}{2}$ nicht erfüllen,
+schwarz markiert. Wie erwartet, sind das genau die Kurven, welche nicht exponentiell abfallen.
+\FloatBarrier
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plot29a.png}
+    \caption{Expliziter Euler}
+\end{figure}
+\FloatBarrier
+\item Nun zum impliziten Euler-Verfahren. Wir würden erwarten, dass wir
+unabhängig von der Zeitschrittweite exponentiell abfallende Resultate sehen
+und die numerischen Tests bestätigen das.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plot29b.png}
+    \caption{Impliziter Euler}
+\end{figure}
+\FloatBarrier
 \end{enumerate}
 \end{solution}
