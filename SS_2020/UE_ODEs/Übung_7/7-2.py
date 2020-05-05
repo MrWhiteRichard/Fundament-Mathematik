@@ -1,37 +1,55 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# ---------------- #
+
 a = 1
-b = 2
+b = 10
 
-sigma = 1/2
-gamma = 1/4
+sigma = 1
+gamma = 10
 
-def f(z, t):
-    x, y = z
-    return [- x * (x - a) * (x - b) - y, sigma * x - gamma * y]
+assert 0 < a < b and sigma > 0 and gamma > 0
 
-x = np.linspace(-2, 4, 20)
-y = np.linspace(-3, 3, 20)
+f = lambda x, y: np.array([-x * (x - a) * (x - b) - y, sigma * x - gamma * y])
+
+sqrt = np.sqrt( ((a-b) / 2)**2 - sigma/gamma)
+ruhe_x = np.array([0, (a+b)/2 - sqrt, (a+b)/2 + sqrt])
+ruhe_y = ruhe_x * (sigma/gamma)
+
+# ---------------- #
+
+border = 0.5
+
+a_x = min(ruhe_x) - border
+b_x = max(ruhe_x) + border
+n_x = 25
+
+a_y = min(ruhe_y) - border
+b_y = max(ruhe_y) + border
+n_y = n_x
+
+# ---------------- #
+
+x = np.linspace(a_x, b_x, n_x)
+y = np.linspace(a_y, b_y, n_y)
 
 X, Y = np.meshgrid(x, y)
+u, v = f(X, Y)
 
-t = 0
+fig = plt.figure(figsize = (15, 10))
 
-u, v = np.zeros(X.shape), np.zeros(Y.shape)
+plt.quiver(X, Y, u, v)
+plt.scatter(ruhe_x, ruhe_y, label = 'Ruhelagen')
 
-NI, NJ = X.shape
-
-for i in range(NI):
-    for j in range(NJ):
-        xi = X[i, j]
-        eta = Y[i, j]
-        etaprime = f([xi, eta], t)
-        u[i, j] = etaprime[0]
-        v[i, j] = etaprime[1]
-
-Q = plt.quiver(X, Y, u, v)
-
-
+title = ''
+title += 'Phase Diagram'
+title += '\n'
+title += '$a = {}$, $b = {}$, $\sigma = {}$, $\gamma = {}$'.format(a, b, sigma, gamma)
+plt.suptitle(title)
+plt.legend()
+plt.grid(linestyle = ':')
 
 plt.show()
+
+# ---------------- #
