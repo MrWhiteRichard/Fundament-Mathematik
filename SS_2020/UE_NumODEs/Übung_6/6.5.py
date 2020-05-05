@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import numpy as np
 
 def stabdomain(l, method):
@@ -15,14 +16,12 @@ def stabdomain(l, method):
             z = l[j] + l[i]*1j
             M = np.linalg.inv(np.eye(m)-z*A) #auf Singularitäten wird hier noch keine Rücksicht genommen - evtl noch verbessern
             if R(z,M) >= 1 :
-                resi.append(1)
+                resi.append(2)
             else:
-                resi.append(0)
+                resi.append(R(z,M))
         res.append(resi)
     return res
 
-
-l = np.linspace(-6,6,100) #bei dieser Diskretisierung ist zufällig/ glücklicherweise die Matrix (I-zA) immer invertierbar
 
 # verschiedene Verfahren mit Matrix A und Vektor b
 expeuler = [np.array([[0]]),np.array([1])]
@@ -32,32 +31,22 @@ imptrapezoidal = [np.array([[0,0],[1/2,1/2]]),np.array([1/2,1/2])]
 radau = [np.array([[5/12,-1/12],[3/4,1/4]]),np.array([3/4,1/4])]
 gauss = [np.array([[1/4,1/4-np.sqrt(3)/6],[1/4+np.sqrt(3)/6,1/4]]),np.array([1/2,1/2])]
 
+fig, ((ax1,ax2),(ax3,ax4),(ax5,ax6)) = plt.subplots(3,2)
 
-z = stabdomain(l,expeuler)
-plt.contourf(l, l ,z)
-plt.show()
+for method, ax, name in zip([expeuler, impeuler, modeuler, imptrapezoidal, radau, gauss],
+[ax1,ax2,ax3,ax4,ax5,ax6], ["Expliziter Euler", "Impliziter Euler", "Modifizierter Euler",
+"Implizite Trapezregel", "Radau", "Gauss"]):
+    if ax in (ax1,ax3):
+        l = np.linspace(-3,3,100)
+    else:
+        l = np.linspace(-6,6,100)
+    levels = levels = np.array([0,0.1,0.5,1,2])
+    z = stabdomain(l,method)
+    cp = ax.contourf(l,l,z)
+    CS = ax.contour(l,l,z, levels=levels, colors='k')
+    plt.clabel(CS, inline=1, fontsize=10)
+    fig.colorbar(cp, ax = ax)
+    ax.set_title(name)
+    ax.grid(True)
 
-
-z = stabdomain(l,impeuler)
-plt.contourf(l, l ,z)
-plt.show()
-
-
-z = stabdomain(l,modeuler)
-plt.contourf(l, l ,z)
-plt.show()
-
-
-z = stabdomain(l,imptrapezoidal)
-plt.contourf(l, l ,z)
-plt.show()
-
-
-z = stabdomain(l,radau)
-plt.contourf(l, l ,z)
-plt.show()
-
-
-z = stabdomain(l,gauss)
-plt.contourf(l, l ,z)
 plt.show()
