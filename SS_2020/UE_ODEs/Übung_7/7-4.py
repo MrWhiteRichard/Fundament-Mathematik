@@ -34,13 +34,17 @@ levels = np.linspace(0,1,20)
 fig = plt.figure(figsize = (15, 10))
 # Option 1: Contourf-Plot
 
-plt.contour(X, Y, h(X, Y), levels = 20)
+plt.contourf(X, Y, h(X, Y), levels = 20)
 
 # Option 2: Scatter-Plot mit farbigen Kreisen
 
 #plt.scatter(ruhe_x, ruhe_y, marker = 'x', color = 'black', s = 1000)
 #plt.scatter(X, Y, c = h(X, Y), s = 250, alpha = 0.25, edgecolors = 'white')
 
+# Ruhelage einzeichnen
+
+plt.scatter(0,0, 200, marker = "x", color = "red")
+plt.scatter(-1,0, 200, marker = "x", color = "red")
 plt.quiver(X, Y, u, v)
 plt.colorbar()
 

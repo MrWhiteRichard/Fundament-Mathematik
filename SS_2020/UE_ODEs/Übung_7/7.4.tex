@@ -11,17 +11,36 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
 \begin{solution}
   Die Funktion $h$ ist eine Erhaltungsgröße, denn
   \begin{align*}
-      \frac{\partial}{\partial t}h\prime(x(t), y(t)) = 2yy^\prime - 2xx^\prime = 2y(x^2 + x) - 2xy. -2x^2y = 0
+      \frac{\partial}{\partial t}h(x(t), y(t)) = 2y(t)y^\prime(t) - 2x(t)x^\prime(t)
+       = 2y(t)(x^2(t) + x(t)) - 2x(t)y(t) -2x^2(t)y(t) = 0.
   \end{align*}
   Wir definieren die Funktion
   \begin{align*}
-    f\pbraces{(x, y)^T} := (y, x^2 + x)^T
+    f\left(\begin{pmatrix}
+      x \\ y
+    \end{pmatrix}\right) :=
+    \begin{pmatrix}
+      y \\ x^2 + x
+    \end{pmatrix}
   \end{align*}
   und bestimmen die Ruhelagen
   \begin{align*}
-    f((x,y)^T) = (0, 0)^T \Leftrightarrow y = 0 \land x^2 + x = 0 \Leftrightarrow y = 0 \land x(x + 1) = 0 \Leftrightarrow y = 0 \land (x = 0 \lor x = 1)
+    f\left(\begin{pmatrix}
+      x \\ y
+    \end{pmatrix}\right) =
+    \begin{pmatrix}
+      y \\ x^2 + x
+    \end{pmatrix} \stackrel{!}{=}
+    \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}.
   \end{align*}
-  also haben wir zwei Ruhelagen
+  Aus der ersten Gleichung erhalten wir $y = 0$
+  und aus der zweiten
+  \begin{align*}
+    x^2 + x = (x + 1)x = 0 \iff x \in \{0,-1\}.
+  \end{align*}
+  Also haben wir zwei Ruhelagen
   \begin{align*}
     f \pbraces{
     \begin{pmatrix}
@@ -44,9 +63,21 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
       -1 \\ 0
     \end{pmatrix}.
   \end{align*}
-  Nun wollen wir noch die Stabilität der Ruhelagen untersuchen.
-  \begin{enumerate}
-    \item[\glqq$(0, 0)^T$\grqq] Wir berechnen die Ableitungsmatrix von $f$
+  Damit können wir nun ein schönes Phasenportrait erstellen, indem wir im
+  Hintergrund die Höhenlinien von $h$ plotten. Aufgrund der Erhaltungsgrößeneigenschaft
+  von $h$ können Lösungen ihre jeweiligen Höhenlinien nie verlassen.
+  \FloatBarrier
+  \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{plot7.4.png}
+  \end{figure}
+  \FloatBarrier
+  Das Phasenportrait lässt uns vermuten, dass $(-1,0)^{\top}$ eine asymptotisch stabile Ruhelage darstellt,
+  während $(0,0)^{\top}$ instabil ist.
+  Das gilt es nun formal zu überprüfen.
+  \begin{itemize}
+    \item $(0, 0)^T$: \\
+    Wir berechnen die Ableitungsmatrix von $f$
     \begin{align*}
       Df\pbraces{\begin{pmatrix}
         x \\ y
@@ -55,8 +86,8 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
       \begin{pmatrix}
         0 & 1 \\
         2x+1 & 0
-      \end{pmatrix}
-      \quad \textrm{,also} \quad
+      \end{pmatrix},
+      \quad \textrm{also} \quad
       Df\pbraces{\begin{pmatrix}
         0 \\ 0
       \end{pmatrix}}
@@ -75,6 +106,62 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
       = \lambda^2 - 1 \quad \textrm{und daher} \quad \chi(\lambda) = 0 \Leftrightarrow \lambda^2 - 1 = 0 \Leftrightarrow \lambda = \pm 1.
     \end{align*}
     Da ein Eigenwert positiv ist wissen wir nach Satz 5.8, dass es sich bei $(0, 0)^T$ um eine instabile Ruhelage handelt.
-    \item[\glqq$(-1, 0)^T$\grqq] \textbf{Fehlt!!}
-  \end{enumerate}
+    \item $(-1, 0)^T$: \\
+    Wir berechnen wieder die Ableitungsmatrix
+    \begin{align*}
+    Df\pbraces{\begin{pmatrix}
+      -1 \\ 0
+    \end{pmatrix}}
+    =
+    \begin{pmatrix}
+      0 & 1 \\
+      -1 & 0
+    \end{pmatrix}
+    \end{align*}
+    mit dem charakteristischen Polynom
+    \begin{align*}
+      \chi(\lambda) = \lambda^2 + 1.
+    \end{align*}
+    Die Nullstellen davon lauten
+    \begin{align*}
+      \lambda_{1,2} = \pm i
+    \end{align*}
+    und diesmal liefert uns Satz 5.8. keine Aussage. \\
+    Da wir allerdings wissen, dass Erhaltungsgrößen
+    Ljapunovfunktionen sind, können wir noch mit der direkten Methode von Ljapunov
+    überprüfen, ob mit $(-1,0)$
+    ein striktes Minimum von $h$ vorliegt.
+    \begin{align*}
+      \frac{\partial}{\partial x}h(x,y) &= -2x - 2x^2 \\
+       \frac{\partial}{\partial y}h(x,y) &= 2y
+    \end{align*}
+    Also erhalten wir in unserem Fall
+    \begin{align*}
+    \frac{\partial}{\partial x}h(-1,0) &= -2 + 2 = 0 \\
+     \frac{\partial}{\partial y}h(-1,0) &= 0.
+    \end{align*}
+    Betrachten wir nun die zugehörige Hesse-Matrix
+    \begin{align*}
+      \begin{pmatrix}
+        \frac{\partial^2 f }{\partial x^2} & \frac{\partial^2 f }{\partial x \partial y} \\
+        \frac{\partial^2 f }{\partial y \partial x} & \frac{\partial^2 f }{\partial y^2}
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        -2-4x & 0 \\
+        0 & 2
+      \end{pmatrix}.
+    \end{align*}
+    Setzen wir nun ein, erhalten wir mit
+    \begin{align*}
+    \begin{pmatrix}
+      2 & 0 \\
+      0 & 2
+    \end{pmatrix}
+    \end{align*}
+    eine klarerweise positiv definite Matrix und somit ist $(-1,0)^{\top}$
+    ein striktes Minimum der Ljapunovfunktion $h$ und somit stabil.
+    Da die einzige andere Ruhelage $(0,0)$ ist, ist $(-1,0)$ sogar eine
+    isolierte Ruhelage und somit asymptotisch stabil.
+  \end{itemize}
 \end{solution}
