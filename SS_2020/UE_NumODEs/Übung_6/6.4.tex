@@ -34,8 +34,15 @@ gelten. In unserem Fall führt das mit dem kleinsten Eigenwert $\lambda_{N - 1}$
 \begin{align*}
   \tau \leq \frac{-2}{\lambda_{N - 1}} =
   \frac{-2}{\frac{2}{h^2}\left(-1 + \cos\left(\frac{(N-1)\pi}{N}\right)\right)}
-  =\frac{h^2}{\left(1 - \cos\left(\frac{(N-1)\pi}{N}\right)\right)}
-  \approx \frac{h^2}{2}
+  =\frac{h^2}{\left(1 - \cos\left(\frac{(N-1)\pi}{N}\right)\right)}.
+\end{align*}
+Da nach Taylor
+\begin{align*}
+  \cos\left(\pi - \frac{\pi}{N}\right) = \cos(\pi) + \frac{\pi}{n}\sin(\pi) + \Landau{\frac{1}{N^3}} = -1 + \Landau{h^3}
+\end{align*}
+gilt, folgt
+\begin{align*}
+  \frac{h^2}{\left(1 - \cos\left(\frac{(N-1)\pi}{N}\right)\right)} = \frac{h^2}{2 + \Landau{h^3}} \approx \frac{h^2}{2}.
 \end{align*}
 \item Wir würden also erwarten, dass für $h = 2^{-i}$, die Zeitschrittweite
 kleiner als $2^{-2i-1}$ gewählt werden muss, um exponentiellen Abfall zu erzielen.
