@@ -11,5 +11,29 @@ exakt ist. Lösen Sie die ODE
 indem Sie einen integrierenden Faktor der Form $\mu(t,y) = \mu(t)$ suchen. \\
 \end{exercise}
 \begin{solution}
-Lösung.
+  Wir haben
+  \begin{align*}
+    p(t, y) = t \quad \textrm{und} \quad q(t,y) = 3t - 2y
+  \end{align*}
+  und definieren
+  \begin{align*}
+    F(t, y) := yt^{-2} - 3t^{-1} \quad \textrm{und} \quad \mu(t,y) := t^{-3}.
+  \end{align*}
+  Wir berechnen
+  \begin{align*}
+    \frac{\partial}{\partial y} F(t, y) = t^{-2} = t^{-3}t = \mu(t, y) p(t, y) \quad \textrm{und} \quad \frac{\partial}{\partial t} F(t, y) = -2yt^{-3} + 3t^{-2} = t^{-3}(3t - 2y) = \mu(t, y) q(t, y).
+  \end{align*}
+  Als nächstes lösen wir für beliebiges $c \in \R$
+  \begin{align*}
+    F(t, y) = c \Leftrightarrow yt^{-2} - 3t^{-1} = c \Leftrightarrow yt^{-2} = c + 3t \Leftrightarrow y = t^2 (c + 3t^{-1}) = ct^2 + 3t
+  \end{align*}
+  und haben so mit
+  \begin{align*}
+    y(t) := ct^2 + 3t \quad \textrm{mit Ableitung} \quad y^\prime(t) = 2ct + 3
+  \end{align*}
+  die Lösung der ODE gefunden. Auch die Probe
+  \begin{align*}
+    ty^\prime(t) + 3t - 2y = t (2ct + 3) + 3t - 2(ct^2 + 3t) = 2ct^2 + 6t - 2ct^2 -6t = 0
+  \end{align*}
+  bestätigt uns das.
 \end{solution}
