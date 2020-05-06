@@ -35,7 +35,25 @@ Daraus folgt
   y^{\prime}p(t,y) + q(t,y) = 0.
 \end{align*}
 Also ist $y$ eine Lösung der exakten Differentialgleichung.
-\item Wir suchen also $F$, sodass
+\item
+Eine ODE ist exakt, wenn $(q(t,y), p(t,y))$ ein Gradientenfeld ist. Wir kennen eine
+Bedingung für (lokale) Gradientenfelder $\phi$ die lautet:
+
+\begin{align*}
+  \frac{\partial}{\partial x_i} \phi(.) e_j = \frac{\partial}{\partial x_j} \phi(.) e_i
+  \quad \text{für alle} \quad i, j \in \{1,...,n\}
+\end{align*}
+
+Für exakte ODE's bedeutet  das also $\frac{\partial}{\partial t} p(t,y) =
+\frac{\partial}{\partial y} q(t,y)$
+Wir können Nachrechnen, dass die gegebene ODE eine exakte ist:
+
+\begin{align*}
+  \frac{\partial}{\partial t} p(t,y) = 4by + 3
+  \frac{\partial}{\partial y} q(t,y)
+\end{align*}
+
+Wir suchen also $F$, sodass
 \begin{align*}
   \frac{\partial}{\partial y}F(t,y) &= 4bty + 3t + 5 \\
   \frac{\partial}{\partial t}F(t,y) &= 3t^2 + 8at + 2by^2 + 3y

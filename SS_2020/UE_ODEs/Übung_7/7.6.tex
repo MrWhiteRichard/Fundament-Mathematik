@@ -15,15 +15,76 @@ indem Sie einen integrierenden Faktor der Form $\mu(t,y) = \mu(t)$ suchen. \\
   \begin{align*}
     p(t, y) = t \quad \textrm{und} \quad q(t,y) = 3t - 2y
   \end{align*}
-  und definieren
+
+Eine ODE ist exakt, wenn $(q(t,y), p(t,y))$ ein Gradientenfeld ist. Wir kennen eine
+Bedingung für (lokale) Gradientenfelder $\phi$ die lautet:
+
+\begin{align*}
+  \frac{\partial}{\partial x_i} \phi(.) e_j = \frac{\partial}{\partial x_j} \phi(.) e_i
+  \quad \text{für alle} \quad i, j \in \{1,...,n\}
+\end{align*}
+
+Für exakte ODE's bedeutet  das also $\frac{\partial}{\partial t} p(t,y) =
+\frac{\partial}{\partial y} q(t,y)$
+Wir können Nachrechnen, dass die gegebene ODE keine exakte ist, da
+
   \begin{align*}
-    F(t, y) := yt^{-2} - 3t^{-1} \quad \textrm{und} \quad \mu(t,y) := t^{-3}.
+    \frac{\partial}{\partial t} p(t,y) = 1 \neq -2 = \frac{\partial}{\partial y} q(t,y)
   \end{align*}
-  Wir berechnen
+
+Unsere Funkion $\mu$ soll also erfüllen:
+
   \begin{align*}
-    \frac{\partial}{\partial y} F(t, y) = t^{-2} = t^{-3}t = \mu(t, y) p(t, y) \quad \textrm{und} \quad \frac{\partial}{\partial t} F(t, y) = -2yt^{-3} + 3t^{-2} = t^{-3}(3t - 2y) = \mu(t, y) q(t, y).
-  \end{align*}
-  Als nächstes lösen wir für beliebiges $c \in \R$
+    \frac{\partial}{\partial y} (\mu(t)(3t-2y)) &\stackrel{!}{=}
+    \frac{\partial}{\partial t} (\mu(t) t)
+    \quad \Leftrightarrow \\
+    -2\mu(t) &\stackrel{!}{=} \mu^\prime (t)t+ \mu(t)
+   \end{align*}
+
+Also muss unser integrierender Faktor der separablen ODE
+
+\begin{align*}
+  \mu^\prime (t) = -\frac{3}{t} \mu(t)
+\end{align*}
+
+Wir wissen wie man diese löst:
+
+\begin{align*}
+  &\ln(\mu) =\int \frac{1}{\mu} d\mu = -3 \int \frac{1}{t} = -3 \ln(t) \quad \Leftrightarrow \\
+  &\mu(t) = t^{-3}
+\end{align*}
+
+Wir erhalten also die (äquivalente) exakte ODE
+
+\begin{align*}
+  t^{-2}y^\prime + 3t^{-2} -2yt^{-3} = 0
+\end{align*}
+
+Wie man diese löst haben wir beim vorherigen Bsp gesehen. Dazu setzen wir also die
+Funktion $F(t,y)$ an.
+
+\begin{align*}
+  F(t,y) = \int t^{-2} dy + \varphi(t) = t^{-2} y + \varphi(t)
+\end{align*}
+
+Um nun $\varphi(t)$ zu bestimmen:
+
+\begin{align*}
+  \frac{\partial}{\partial t} F(t,y) = -2yt^{-3} + \varphi^\prime (t)
+  \stackrel{!}{=} 3t^{-2} -2yt^{-3} \Rightarrow
+  \varphi^\prime (t) = 3t^{-2}
+\end{align*}
+
+Also haben wir nun $F(t,y) = yt^{-2} - 3t^{-1}$.
+%  und definieren
+%  \begin{align*}
+%    F(t, y) := yt^{-2} - 3t^{-1} \quad \textrm{und} \quad \mu(t,y) := t^{-3}.
+%  \end{align*}
+%  Wir berechnen
+%  \begin{align*}
+%    \frac{\partial}{\partial y} F(t, y) = t^{-2} = t^{-3}t = \mu(t, y) p(t, y) \quad \textrm{und} \quad \frac{\partial}{\partial t} F(t, y) = -2yt^{-3} + 3t^{-2} = t^{-3}(3t - 2y) = \mu(t, y) q(t, y).
+%  \end{align*}
+Als nächstes lösen wir für beliebiges $c \in \R$
   \begin{align*}
     F(t, y) = c \Leftrightarrow yt^{-2} - 3t^{-1} = c \Leftrightarrow yt^{-2} = c + 3t^{-1} \Leftrightarrow y = t^2 (c + 3t^{-1}) = ct^2 + 3t
   \end{align*}
