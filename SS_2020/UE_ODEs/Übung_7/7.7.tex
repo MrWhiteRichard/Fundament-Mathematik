@@ -12,6 +12,48 @@ und $f(y) < 0$ für $y \in (y_0 - \delta, y_0)$, dann ist $y \equiv y_0$ instabi
 \begin{solution}
   \phantom{}
 \begin{enumerate}[label = \textbf{\alph*)}]
-\item
+\item Sei $\epsilon > 0$ beliebig und wähle
+$\rho := \min \left\{\frac{\epsilon}{2}, \delta \right\}$.
+Sei zusätzlich $\widetilde{y}_0 \in B_{\rho}(y_0)$ beliebig, o.B.d.A. $\widetilde{y}_0 > y_0$
+und $y := y_{t_0,\widetilde{y}_0}$ Lösung von
+\begin{align*}
+  y^{\prime} = f(y), \qquad y(t_0) = \widetilde{y}_0.
+\end{align*}
+Aufgrund der Eindeutigkeit von Anfangswertprobleme gilt
+$\forall t \geq t_0: y_{t_0,\widetilde{y}_0}(t) > y_0$.
+Wir zeigen nun indirekt, dass $y$ streng monoton fallend ist.
+Sei dazu angenommen, dass $\exists r,s \in [t_0,\infty]: r < s \land y(r) \leq y(s)$.
+Nach dem Mittelwertsatz gibt es $\xi \in ]r,s[:$
+\begin{align*}
+  0 \leq \frac{y(s)-y(r)}{s-r} = y^{\prime}(\xi) = f(y(\xi)).
+\end{align*}
+Definiere $\eta := \min \{\xi \in ]t_0,\infty[: f(y(\xi)) \geq 0 \}$.
+Nun gilt, dass $y$ auf $[t_0, \eta]$ streng monoton fällt und somit muss
+\begin{align*}
+  y_0 < y(\eta) < y(t_0) = \widetilde{y}_0 < y_0 + \delta
+\end{align*}
+im Widerspruch zu $f(y) < 0$ auf $]y_0,y_0 + \delta[$.
+Also ist $y$ monoton und beschränkt, daher existiert $\lim_{t \to \infty} y(t) =: y_{\infty}$.
+Nach Aufgabe 7.1. muss $y_{\infty}$ eine Ruhelage sein und da $y_0$ die einzige
+Ruhelage in $[y_0,y_0 + \delta[$ ist, folgt somit
+\begin{align*}
+  \lim_{t \to \infty} y(t) = y_0,
+\end{align*}
+also ist die Ruhelage $y_0$ asymptotisch stabil.
+\item Wähle $\epsilon = \frac{\delta}{2}$. Wir konstruieren nun eine Folge
+$(y_k)_{k \in \N}$ mit $\lim_{k \rightarrow \infty} y_k = y_0$, sodass
+\begin{align*}
+  \exists t > t_0: |y_0 - y_{t_0,y_k}(t) | \geq \epsilon.
+\end{align*}
+Definiere $y_k := y_0 + \frac{\delta}{k}$.
+Nun unterscheiden wir zwei Fälle:
+\begin{itemize}
+  \item $y_{t_0,y_k}$ ist unbeschränkt: \\
+  Dann existiert sicher $t > t_0: |y_0 - y_{t_0,y_k}(t) | \geq \epsilon.$
+  \item $y_{t_0,y_k}$ ist beschränkt: \\
+  Dann existiert $\lim_{t \rightarrow \infty} y_{t_0,y_k}(t) =: y_{\infty,k}$, welcher wieder
+  eine Ruhelage sein muss. Also muss $y_{\infty,k} > y_0 + \delta > \epsilon$.
+\end{itemize}
+Also ist $y_0$ instabil.
 \end{enumerate}
 \end{solution}
