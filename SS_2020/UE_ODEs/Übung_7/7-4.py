@@ -2,31 +2,51 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def f(z, t):
-    x, y = z
-    return [y, x**2 + x]
+# ---------------- #
 
-x = np.linspace(-3/2, 1/2, 30)
-y = np.linspace(-2, 2, 25)
+f = lambda x, y: np.array([y, x**2 + x])
+
+ruhe_x = np.array([0, -1])
+ruhe_y = np.array([0,  0])
+
+h = lambda x, y: y**2 - x**2 - 2/3 * x**3
+
+# ---------------- #
+
+border = 0.5
+
+a_x = min(ruhe_x) - border
+b_x = max(ruhe_x) + border
+n_x = 25
+
+a_y = min(ruhe_y) - border
+b_y = max(ruhe_y) + border
+n_y = n_x
+
+# ---------------- #
+
+x = np.linspace(a_x, b_x, n_x)
+y = np.linspace(a_y, b_y, n_y)
 
 X, Y = np.meshgrid(x, y)
+u, v = f(X, Y)
+levels = np.linspace(0,1,20)
+fig = plt.figure(figsize = (15, 10))
+# Option 1: Contourf-Plot
 
-t = 0
+plt.contour(X, Y, h(X, Y), levels = 20)
 
-u, v = np.zeros(X.shape), np.zeros(Y.shape)
+# Option 2: Scatter-Plot mit farbigen Kreisen
 
-NI, NJ = X.shape
+#plt.scatter(ruhe_x, ruhe_y, marker = 'x', color = 'black', s = 1000)
+#plt.scatter(X, Y, c = h(X, Y), s = 250, alpha = 0.25, edgecolors = 'white')
 
-for i in range(NI):
-    for j in range(NJ):
-        xi = X[i, j]
-        eta = Y[i, j]
-        etaprime = f([xi, eta], t)
-        u[i, j] = etaprime[0]
-        v[i, j] = etaprime[1]
+plt.quiver(X, Y, u, v)
+plt.colorbar()
 
-Q = plt.quiver(X, Y, u, v)
-
-
+plt.suptitle('Phasenportrait')
+plt.grid(linestyle = ':')
 
 plt.show()
+
+# ---------------- #

@@ -5,6 +5,7 @@ $\lim_{t \rightarrow \infty} y(t) = y_{\infty} \in G$.
 Zeigen Sie: $y_{\infty}$ ist eine Ruhelage der ODE.
 \end{exercise}
 \begin{solution}
+Schreibe $y(t) = (y_1(t),\dots, y_d(t))^{\top}$.
 Zunächst zeigen wir eine Aussage über den Grenzwert der Ableitung von $y(t)$. Aufgrund der Stetigkeit von $f$ gilt
 
 \begin{align*}
@@ -16,10 +17,13 @@ Mit dem Mittelwertsatz gilt außerdem
   \Forall i = 1,...,d, \Forall t \in \R, \Exists \zeta_{t_i} \in [t,t+1]: y_i '(\zeta_{t_i}) = y_i(t+1)-y_i(t)
 \end{align*}
 
-Wie wir vorhin schon gezeigt haben, existiert der limes von $y'(t)$ und somit
+Wie wir vorhin schon gezeigt haben, existiert $\lim_{t \to \infty} y'(t)$ und somit gilt
 \begin{align*}
-  \lim_{t \to \infty} y_i'(t) = \lim_{t \to \infty} y_i'(\zeta_{t_i}) = \lim_{t \to \infty} (y_i(t+1)-y_i(t)) = 0 \\
-  \Rightarrow f(y_\infty) = \lim_{t \to \infty} y'(t) = \lim_{t \to \infty} (y_1'(t),...,y_d'(t))^{T} = (0,...0)^T
+  f(y_\infty) &= \lim_{t \to \infty} y'(t) = \lim_{t \to \infty} (y_1'(t),...,y_d'(t))^{T}
+  = \lim_{t \to \infty} (y_1'(\zeta_{t_i}),...,y_d'(\zeta_{t_i}))^{T}  \\
+  &= \lim_{t \to \infty} ((y_1(t+1)-y_1(t)),...,(y_d(t+1)-y_d(t)))^{T}
+  = \lim_{t \to \infty} (y_{\infty, 1} - y_{\infty, 1},...,y_{\infty, d} - y_{\infty, d})^{T}
+  = (0,\dots,0)^T
 \end{align*}
 
 Also ist $y_{\infty}$ Ruhelage der ODE.
