@@ -15,5 +15,29 @@ dass die Abbildung
 ein linearer Homöomorphismus ist.
 \end{exercise}
 \begin{solution}
-Beweis.
+\item Linearität:
+Seien $(a,b),(c,d)\in M\times N, \lambda \in \C $ beliebig. Dann gilt
+\begin{align*}
+  \varphi((a,b)+\lambda (c,d)) &= \varphi ((a+\lambda c, b + \lambda d)) \\
+  &= a+\lambda c +  b + \lambda d = \varphi (a,b) + \lambda \varphi (c,d)
+\end{align*}
+ \item Stetigkeit/ Beschränktheit:
+ Mit der Summennorm auf dem Raum $M \times N$ ($\|(m,n)\|_{M \times N} = \|m\|_M + \|n\|_N = \|m\|_X + \|n\|_X$) gilt
+ \begin{align*}
+      \|\varphi\| = \sup\{\|m+n\|_X | \|(m,n)\|_{M \times N} = 1\} \leq \sup\{\|m\|_X + \|n\|_X | \|m\|_X + \|n\|_X = 1\} = 1 < \infty
+ \end{align*}
+
+ \item Surjektivität:
+ Offensichtlich ist $\varphi$ surjektiv, da $M + N = X$.
+
+ \item Injektivität:
+ Seien $(a,b),(c,d)\in M\times N$ beliebig mit $\varphi (a,b) = \varphi (c,d)$. Dann gilt (da $M$ und $N$ nur trivialen Schnitt haben)
+ \begin{align*}
+    \Rightarrow a+b = c+d \Leftrightarrow \underbrace{a-c}_{\in M} = \underbrace{d-b}_{\in N} \\
+    \Rightarrow a-c = d-b = 0 \Rightarrow a=c, b=d
+ \end{align*}
+
+ \item Stetigkeit von $\varphi^{-1}$:
+ Da $M$ und $N$ abgeschlossen in X sind, ist $M \times N$ ein Banachraum und somit erfüllt $\varphi$ die Voraussetzungen aus Korollar 4.3.4. Also ist $\varphi^{-1}$ stetig.
+
 \end{solution}
