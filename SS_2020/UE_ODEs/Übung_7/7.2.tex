@@ -46,7 +46,7 @@ Setzen wir das in die erste Zeile ein, erhalten wir
   -x(x - a)(x - b) - \frac{\sigma}{\gamma}x &\stackrel{!}{=} 0 \\
   \iff (x - a)(x - b) + \frac{\sigma}{\gamma} &\stackrel{!}{=} 0 \\
   \iff x^2 -(a+b)x + ab + \frac{\sigma}{\gamma} &\stackrel{!}{=} 0 \\
-  \iff x &= \frac{a+b}{2} \pm \sqrt{\frac{(a+b)^2}{4} - ab - \frac{\sigma}{\gamma}}.
+  \iff x &= \frac{a+b}{2} \pm \sqrt{\frac{(a+b)^2}{4} - ab - \frac{\sigma}{\gamma}} \\
   \iff x &= \frac{a+b}{2} \pm \sqrt{\frac{(a-b)^2}{4}  - \frac{\sigma}{\gamma}}.
 \end{align*}
 und mit
@@ -76,12 +76,48 @@ Das charakteristische Polynom lautet
 \end{align*}
 mit den Nullstellen
 \begin{align*}
-  \lambda_{1,2} = -\frac{ab+\gamma}{2} \pm \sqrt{\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma}
+  \lambda_{1,2} = -\frac{ab+\gamma}{2} \pm \sqrt{\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma}.
 \end{align*}
-und da $-ab\gamma - \sigma < 0$ ist der Ausdruck unter der Wurzel entweder kleiner
-als $\frac{ab+\gamma}{2}$, oder komplex. In jedem Fall gilt $\Re(\lambda_{1,2}) < 0$
-und $(0,0)^{\top}$ ist aufgrund Satz 5.8. asymptotisch stabil.
-\item Um die Differentialgleichung der Ableitung nach $\sigma$ zu bestimmen,
+Nun unterscheiden wir zwei Fälle:
+\begin{itemize}
+  \item $\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma < 0$: Dann ist
+  \begin{align*}
+    \Re\left(-\frac{ab+\gamma}{2} \pm \sqrt{\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma}\right)
+    = -\frac{ab+\gamma}{2} < 0.
+  \end{align*}
+  \item $\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma > 0$: Da $ab\gamma, \sigma > 0$
+  gilt
+  \begin{align*}
+    \Re\left(-\frac{ab+\gamma}{2} \pm \sqrt{\frac{(ab + \gamma)^2}{4} -ab\gamma - \sigma}\right)
+    < \Re\left(-\frac{ab+\gamma}{2} \pm \sqrt{\frac{(ab + \gamma)^2}{4}}\right) \leq 0.
+  \end{align*}
+\end{itemize}
+Mit Satz 5.8 ist $(0,0)^{\top}$ ist somit asymptotisch stabil.
+
+\item ***Leichtere Version !?????!?? ***
+
+Sei $z = \begin{pmatrix}
+  x \\ y
+\end{pmatrix}$ eine Lösung, dann gilt $z' = \begin{pmatrix}
+  x' \\ y'
+\end{pmatrix} = \begin{pmatrix}
+  -x(x-a)(x-b)-y \\ \sigma x - \gamma y
+\end{pmatrix}$ und somit für die Ableitung nach $\sigma$:
+\begin{align*}
+\frac{dz'}{d\sigma} = \begin{pmatrix}
+  0 \\ x
+\end{pmatrix}
+\end{align*}
+Also löst $\Phi = \frac{dz}{d\sigma}$ die Differentialgleichung
+\begin{align*}
+  \Phi' = \begin{pmatrix}
+    0 \\ x
+  \end{pmatrix}
+\end{align*}
+
+**********
+
+Um die Differentialgleichung der Ableitung nach $\sigma$ zu bestimmen,
 definieren wir uns ein geeignetes Hilfssystem ($z = (x,y)^{\top}$):
 \begin{align*}
   Y(t) &:= \begin{pmatrix}
@@ -130,7 +166,7 @@ Aus $(\partial_{\sigma_0} \sigma)^{\prime} = 0$ und $\partial_{\sigma_0}\sigma(t
 folgt $\partial_{\sigma_0} \sigma = 1$ und
 \begin{align*}
   (\partial_{\sigma_0}z_{t_0,z_0})^{\prime} =
-  \partial_z f(t,z_{t_0,z_0},\sigma)d_{\sigma_0}\partial_{\sigma_0} z_{t_0,z_0}
+  \partial_z f(t,z_{t_0,z_0},\sigma)\partial_{\sigma_0} z_{t_0,z_0}
   + \partial_\sigma f(t,z_{t_0,z_0},\sigma).
 \end{align*}
 \end{enumerate}
