@@ -30,16 +30,21 @@ y = np.linspace(a_y, b_y, n_y)
 
 X, Y = np.meshgrid(x, y)
 u, v = f(X, Y)
-
+levels = np.linspace(0,1,20)
 fig = plt.figure(figsize = (15, 10))
+# Option 1: Contourf-Plot
+
+plt.contour(X, Y, h(X, Y), levels = 20)
+
+# Option 2: Scatter-Plot mit farbigen Kreisen
+
+#plt.scatter(ruhe_x, ruhe_y, marker = 'x', color = 'black', s = 1000)
+#plt.scatter(X, Y, c = h(X, Y), s = 250, alpha = 0.25, edgecolors = 'white')
 
 plt.quiver(X, Y, u, v)
-plt.scatter(ruhe_x, ruhe_y, marker = 'x', color = 'black', s = 1000)
-
-plt.scatter(X, Y, c = h(X, Y), s = 250, alpha = 0.25, edgecolors = 'white')
 plt.colorbar()
 
-plt.suptitle('Phase Diagram')
+plt.suptitle('Phasenportrait')
 plt.grid(linestyle = ':')
 
 plt.show()

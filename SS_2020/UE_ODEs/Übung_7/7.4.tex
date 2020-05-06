@@ -11,17 +11,17 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
 \begin{solution}
   Die Funktion $h$ ist eine Erhaltungsgröße, denn
   \begin{align*}
-      h^\prime(x, y) = 2yy^\prime - 2xx^\prime = 2y(x^2 + x) - 2xy. -2x^2y = 0
+      \frac{\partial}{\partial t}h\prime(x(t), y(t)) = 2yy^\prime - 2xx^\prime = 2y(x^2 + x) - 2xy. -2x^2y = 0
   \end{align*}
   Wir definieren die Funktion
   \begin{align*}
-    f\pbraces{(x, y)^T} := (y, x^2 + x)^T  
+    f\pbraces{(x, y)^T} := (y, x^2 + x)^T
   \end{align*}
-  und bestimmen die Ruhelagen 
+  und bestimmen die Ruhelagen
   \begin{align*}
     f((x,y)^T) = (0, 0)^T \Leftrightarrow y = 0 \land x^2 + x = 0 \Leftrightarrow y = 0 \land x(x + 1) = 0 \Leftrightarrow y = 0 \land (x = 0 \lor x = 1)
   \end{align*}
-  also haben wir zwei Ruhelagen 
+  also haben wir zwei Ruhelagen
   \begin{align*}
     f \pbraces{
     \begin{pmatrix}
@@ -31,15 +31,15 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
     \begin{pmatrix}
       x \\ y
     \end{pmatrix}
-    = 
+    =
     \begin{pmatrix}
       0 \\ 0
-    \end{pmatrix} 
+    \end{pmatrix}
     \lor
     \begin{pmatrix}
       x \\ y
     \end{pmatrix}
-    = 
+    =
     \begin{pmatrix}
       -1 \\ 0
     \end{pmatrix}.
@@ -50,23 +50,23 @@ Was können Sie über die Stabilität der beiden Ruhelagen aussagen?
     \begin{align*}
       Df\pbraces{\begin{pmatrix}
         x \\ y
-      \end{pmatrix}} 
+      \end{pmatrix}}
       =
       \begin{pmatrix}
         0 & 1 \\
         2x+1 & 0
       \end{pmatrix}
-      \quad \textrm{,also} \quad 
+      \quad \textrm{,also} \quad
       Df\pbraces{\begin{pmatrix}
         0 \\ 0
-      \end{pmatrix}} 
+      \end{pmatrix}}
       =
       \begin{pmatrix}
         0 & 1 \\
         1 & 0
       \end{pmatrix}
-    \end{align*}  
-    Von dieser Matrix ist das charakteristische Polynom 
+    \end{align*}
+    Von dieser Matrix ist das charakteristische Polynom
     \begin{align*}
       \chi(\lambda) = \det \begin{pmatrix}
         -\lambda & 1 \\
