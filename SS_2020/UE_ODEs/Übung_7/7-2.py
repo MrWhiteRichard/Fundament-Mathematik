@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 # ---------------- #
 
 a = 1
-b = 10
+b = 5
 
-sigma = 1
-gamma = 10
+sigma = 5
+gamma = 4
 
 assert 0 < a < b and sigma > 0 and gamma > 0
 
