@@ -24,17 +24,28 @@ heißt \textit{exakt}, falls es eine Funktion $F$ gibt, sodass
   \phantom{}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-\item Erfülle $y: F(t,y(t)) = 0$. Dann folgt nach dem Hauptsatz über implizite
-Funktionen, dass
+\item
+Haben wir $c = F(t_0 , y_0 )$ dann gilt für die Funktion $\widetilde{F}(t,y) := F(t,y) - c$
+
 \begin{align*}
-  y^{\prime} = -\left(\frac{\partial F}{\partial y}(t,y(t))\right)^{-1}
-  \frac{\partial F}{\partial t}(t,y(t)) = \frac{q(t,y(t))}{p(t,y(t))}.
+  \widetilde{F}(t_0 , y_0 ) = 0 \\
+  \frac{\partial}{\partial y}\widetilde{F}(t_0 , y_0 ) = p(t_0 , y_0 ) \neq 0
+\end{align*}
+
+Damit folgt nach dem Hauptsatz über implizite
+Funktionen, dass es die in einer Umgebung von $t_0$ definierte Funktion $y(t)$ gibt, die
+$\widetilde{F}(t,y(t)) = 0$, (d.h. $F(t,y(t))=c$) erfüllt und für
+deren Ableitung gilt:
+
+\begin{align*}
+  y^{\prime}(t) = -\left(\frac{\partial \widetilde{F}}{\partial y}(t,y(t))\right)^{-1}
+  \frac{\partial \widetilde{F}}{\partial t}(t,y(t)) = \frac{q(t,y(t))}{p(t,y(t))}.
 \end{align*}
 Daraus folgt
 \begin{align*}
   y^{\prime}p(t,y) + q(t,y) = 0.
 \end{align*}
-Also ist $y$ eine Lösung der exakten Differentialgleichung.
+Also ist $y(t)$ eine Lösung der exakten Differentialgleichung.
 \item
 Eine ODE ist exakt, wenn $(q(t,y), p(t,y))$ ein Gradientenfeld ist. Wir kennen eine
 Bedingung für (lokale) Gradientenfelder $\phi$ die lautet:
@@ -45,7 +56,7 @@ Bedingung für (lokale) Gradientenfelder $\phi$ die lautet:
 \end{align*}
 
 Für exakte ODE's bedeutet  das also $\frac{\partial}{\partial t} p(t,y) =
-\frac{\partial}{\partial y} q(t,y)$
+\frac{\partial}{\partial y} q(t,y)$.
 Wir können Nachrechnen, dass die gegebene ODE eine exakte ist:
 
 \begin{align*}
