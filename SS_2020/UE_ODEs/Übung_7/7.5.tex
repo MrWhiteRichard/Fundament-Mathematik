@@ -24,7 +24,7 @@ heißt \textit{exakt}, falls es eine Funktion $F$ gibt, sodass
   \phantom{}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-\item Erfülle $y: F(t,y(t)) = c$. Dann folgt nach dem Hauptsatz über implizite
+\item Erfülle $y: F(t,y(t)) = 0$. Dann folgt nach dem Hauptsatz über implizite
 Funktionen, dass
 \begin{align*}
   y^{\prime} = -\left(\frac{\partial F}{\partial y}(t,y(t))\right)^{-1}
@@ -34,42 +34,41 @@ Daraus folgt
 \begin{align*}
   y^{\prime}p(t,y) + q(t,y) = 0.
 \end{align*}
-Also ist $y$ eine Lösung der exakten Differentialgleichung. Um die Anfangswertbedingung
-zu erfüllen, wählen wir $c = F(y_0)$.
+Also ist $y$ eine Lösung der exakten Differentialgleichung.
 \item Wir suchen also $F$, sodass
 \begin{align*}
   \frac{\partial}{\partial y}F(t,y) &= 4bty + 3t + 5 \\
   \frac{\partial}{\partial t}F(t,y) &= 3t^2 + 8at + 2by^2 + 3y
 \end{align*}
-gilt. Aus der ersten Gleichung folgt
+gilt. Aus der zweiten Gleichung folgt
 \begin{align*}
-  F(t,y) = \int 4bty + 3t + 5 dy + c(t) = 2bty^2 + 3ty + 5y + c(t)
+  F(t,y) = \int 3t^2 + 8at + 2by^2 + 3y dt + c(t) = t^3 +4at^2 + 2by^2 t +3yt + c(y)
 \end{align*}
-mit einer Funktion $c(t)$, welche nur von $t$ abhängt.
-Nun leiten wir den Ausdruck nach $t$ ab, verwenden die zweite Gleichung von oben
+mit einer Funktion $c(y)$, welche nur von $y$ abhängt.
+Nun leiten wir den Ausdruck nach $y$ ab, verwenden die erste Gleichung von oben
 und erhalten
 \begin{align*}
-  2by^2 + 3y + 5 + c^{\prime}(t) = \frac{\partial}{\partial t}F(t,y) &= 3t^2 + 8at + 2by^2 + 3y.
+  4bty + 3t + c^{\prime}(y) = \frac{\partial}{\partial t}F(t,y) &= 4bty + 3t + 5.
 \end{align*}
 Es folgt
 \begin{align*}
-  c^{\prime}(t) = 3t^2 + 8at - 5
+  c^{\prime}(y) =  5
 \end{align*}
 und
 \begin{align*}
-  c(t) = t^3 + 4at^2 - 5t.
+  c(y) = 5y.
 \end{align*}
 Insgesamt erhalten wir also
 \begin{align*}
-  F(t,y) = 2bty^2 + 3ty + 5y + t^3 + 4at^2 - 5t.
+  F(t,y) = 2bty^2 + 3ty + 5y + t^3 + 4at^2.
 \end{align*}
 Lösen wir jetzt
 \begin{align*}
-  F(t,y(t)) &= 2bty(t)^2 + 3ty(t) + 5y(t) + t^3 + 4at^2 - 5t \stackrel{!}{=}
-  bt_0y_0^2 + 3t_0y_0 + 5y_0 + t_0^3 + 4at_0^2 - 5t_0\\
-  &\iff 2bty(t)^2 + (3t + 5)y(t) + t^3 + 4at^2 - 5t -
-  (bt_0y_0^2 + 3t_0y_0 + 5y_0 + t_0^3 + 4at_0^2 - 5t_0) \stackrel{!}{=} 0
+  F(t,y(t)) &= 2bty(t)^2 + 3ty(t) + 5y(t) + t^3 + 4at^2 \stackrel{!}{=} 0
 \end{align*}
 Durch die quadratische Lösungsformel kann man nun die Lösung berechnen.
+\begin{align*}
+  y(t) = - \frac{3t +5}{2} \pm \sqrt{9t^2 + 30t + 25 - 4(2bt)(t^3 + 4at)}
+\end{align*}
 \end{enumerate}
 \end{solution}
