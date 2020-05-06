@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 # ---------------- #
 
-a = 1
+a = 2
 b = 5
 
-sigma = 5
-gamma = 4
+sigma = 1.5
+gamma = 1
 
 assert 0 < a < b and sigma > 0 and gamma > 0
 
@@ -25,8 +25,8 @@ a_x = min(ruhe_x) - border
 b_x = max(ruhe_x) + border
 n_x = 25
 
-a_y = min(ruhe_y) - border
-b_y = max(ruhe_y) + border
+a_y = min(ruhe_y) - border - 1.5
+b_y = max(ruhe_y) + border + 1.5
 n_y = n_x
 
 # ---------------- #
