@@ -1,42 +1,81 @@
 \begin{exercise}
-Sei $\Omega$ eine Menge und $X$ ein linearer Raum, dessen Elemente Funktionen von
-$\Omega$ nach $\C$ sind, und dessen lineare Operationen durch punktweise Addition
-und skalare Multiplikation gegeben sund. Für $\omega \in \Omega$ bezeichne mit
-$\chi_{\omega}: X \rightarrow \C$ das Punktauswertungsfunktional
+
+Sei $\Omega$ eine Menge und $X$ ein linearer Raum, dessen Elemente Funktionen von $\Omega$ nach $\C$ sind, und dessen lineare Operationen durch punktweise Addition und skalare Multiplikation gegeben sind.
+Für $\omega \in \Omega$ bezeichne mit $\chi_{\omega}: X \rightarrow \C$ das Punktauswertungsfunktional
+
 \begin{align*}
   \chi_{\omega}(f) := f(\omega), \qquad f \in X.
 \end{align*}
-Dann ist $\chi_{\omega}$ linear. Zeige, dass es (bis auf Äquivalenz der Normen)
-höchstens eine Norm $||\cdot||$ auf $X$ geben kann, sodass $(X,||\cdot||)$ ein
-Banachraum ist und alle Punktauswertungsfunktionale bezüglich $||\cdot||$ stetig sind. \\
-\textit{Hinweis:} Wende den Satz vom abgeschlossenen Graphen auf die identische Abbildung an.
+
+Dann ist $\chi_{\omega}$ linear.
+Zeige, dass es (bis auf Äquivalenz der Normen) höchstens eine Norm $\norm{\cdot}$ auf $X$ geben kann, sodass $(X, \norm{\cdot})$ ein Banachraum ist und alle Punktauswertungsfunktionale bezüglich $\norm{\cdot}$ stetig sind. \\
+
+\textit{Hinweis:}
+Wende den Satz vom abgeschlossenen Graphen auf die identische Abbildung an.
+
 \end{exercise}
+
 \begin{solution}
-Zwei Normen $\|\cdot \|_1$ und $\|\cdot \|_2$ auf $X$ sind nicht äquivalent, wenn
-\begin{align}\label{nequ}
-  (\Forall \alpha > 0,\Exists x \in X: \alpha \|x \|_1 > \|x \|_2) \lor (\Forall \beta > 0,\Exists x \in X: \|x \|_2 > \beta \|x \|_1)
+
+Angenommen, $(X, \norm[1]{\cdot})$ und $(X, \norm[2]{\cdot})$ seien Banachräume, mit nicht-äquivalenten Normen, und alle Punktauswertungsfunktionale seien, bezüglich derer, stetig.
+
+\begin{align}
+\label{nequ}
+  \norm[1]{\cdot} \not \equiv \norm[2]{\cdot}
+  \iff
+  (
+    \Forall \alpha > 0:
+    \Exists x \in X:
+    \alpha \norm[1]{x} > \norm[2]{x}
+  )
+  \lor
+  (
+    \Forall \beta > 0:
+    \Exists x \in X:
+    \norm[2]{x} > \beta \norm[1]{x}
+  )
 \end{align}
-\newline
 
-Nehmen wir also an, es gibt zwei Normen $\|\cdot \|_1$ und $\|\cdot \|_2$ auf $X$, die nicht äquivalent sind, sodass $(X,\|\cdot \|_1)$ und $(X,\|\cdot \|_2)$ Banachräume sind und alle Punktauswertungsfunktionale bzgl. $\|\cdot \|_i, i = 1,2$ stetig sind.
-
-Sei o.B.d.A. die zweite Bedingung aus \eqref{nequ} erfüllt. Dann ist die Identität als lineare Abbildung $Id:(X,\|\cdot \|_1) \to (X,\|\cdot \|_2)$ nicht stetig, da
-\begin{align*}
-  \|Id\| = \sup \left \{\frac{\|x\|_2}{\|x\|_1}: x \in X \setminus \{0\} \right \}
-\end{align*}
-unbeschränkt ist.
-
-Die Menge $M := \{\chi_\omega | \omega \in \Omega\} \subseteq X'$ ist auf jedenfall punktetrennend, da
-\begin{align*}
-  \Forall f \in X \setminus \{0\}, \Exists \chi_\omega \in M: \chi_\omega(f) \neq 0 \Leftrightarrow \Forall f \in X \setminus \{0\}, \Exists \omega \in \Omega: f(\omega) \neq 0 .
-\end{align*}
-
-Gemäß Korollar 4.4.4 (Kontraposition) folgt daraus, dass es ein $\chi_\omega \in M$ gibt, sodass $\chi_\omega \circ Id$ nicht stetig ist. Allerdings ist
+Sei o.B.d.A. die zweite Bedingung aus \eqref{nequ} erfüllt.
+Dann ist die Identität als lineare Abbildung $\id: (X, \norm[1]{\cdot}) \to (X, \norm[2]{\cdot})$ nicht stetig, weil sie unbeschränkt ist, also $\Forall \beta > 0: \Exists x_\beta \in X:$
 
 \begin{align*}
-  \chi_\omega \circ Id = \chi_\omega: (X,\|\cdot \|_1) \to (\C, \|\cdot \|_\C)
+  \norm{\id}
+  =
+  \sup \Bbraces
+  {
+    \frac{\norm[2]{x}}{\norm[1]{x}}:
+    x \in X \setminus \Bbraces{0}
+  }
+  \geq
+  \frac{\norm[2]{x_\beta}}{\norm[1]{x_\beta}}
+  >
+  \beta.
 \end{align*}
 
-nach Voraussetzung stetig und somit haben wir einen Widerspruch.
+Die Menge $M := \Bbraces{\chi_\omega: \omega \in \Omega} \subseteq X^\prime$ ist auf jeden Fall punktetrennend, weil $\Forall f \in X \setminus \Bbraces{0}:$
+
+\begin{align*}
+  (
+    \Exists \chi_\omega \in M:
+    \chi_\omega(f) \neq 0
+  )
+  \iff
+  (
+    \Exists \omega \in \Omega:
+    f(\omega) \neq 0
+  ).
+\end{align*}
+
+Laut Korollar 4.4.4 (Kontraposition), folgt daraus, dass es ein $\chi_\omega \in M$ gibt, sodass $\chi_\omega \circ \id$ nicht stetig ist.
+
+\begin{align*}
+  \chi_\omega \circ \id
+  =
+  \chi_\omega:
+  (X, \norm[1]{\cdot}) \to (\C, |\cdot|)
+\end{align*}
+
+Letzteres ist, laut Voraussetzung, stetig. Widerspruch!
 
 \end{solution}
