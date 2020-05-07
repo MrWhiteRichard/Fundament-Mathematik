@@ -13,24 +13,24 @@ eine $G_{\delta}$-Menge?
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = (\roman*)]
-  \item Wir führen einen Widerspruchsbeweis und nehmen dafür an $\Q$ ist eine $G_\delta$-Menge. Wir wissen, dass 
+  \item Wir führen einen Widerspruchsbeweis und nehmen dafür an $\Q$ ist eine $G_\delta$-Menge. Wir wissen, dass
   \begin{align*}
     \Q \quad \textrm{und} \quad \R \setminus \Q \quad \textrm{dicht liegen in} \quad \R.
   \end{align*}
-  Weiters erkennen wir, dass 
+  Weiters erkennen wir, dass
   \begin{align*}
     \R \setminus \Q = \bigcap_{q \in \Q} \R \setminus \{q\} \quad \textrm{eine $G_\delta$-Menge ist.}
   \end{align*}
-  Nach Aufgabe 3 ist dann, dann 
+  Nach Aufgabe 3 ist dann
   \begin{align*}
     \emptyset = (\R \setminus \Q) \cap \Q \quad \textrm{eine dichte $G_\delta$-Menge.}
   \end{align*}
   Ein Widerspruch!
-  
+
   Nun wissen wir also, dass $\Q$ keine $G_\delta$-Menge ist. Gäbe es nun eine Funktion $f: \R \to \R$ die an allen rationalen Punkten stetig ist und an allen irrationalen Punkten unstetig ist, dann wäre nach Aufgabe 4 die Menge $\Q$ eine $G_\delta$-Menge, also kann es so eine Funktion nicht geben.
-  \item Wir kennen so eine Funktion bereits. 
+  \item Wir kennen so eine Funktion bereits.
   \begin{align*}
-    f: \R \to \R: x \mapsto 
+    f: \R \to \R: x \mapsto
     \begin{cases}
       \frac{1}{q} &\textrm{, falls} \quad x = \frac{p}{q} \in \Q \quad \textrm{, wobei der Bruch vollständig gekürzt ist} \\
       0 &\textrm{, falls} \quad x \in \R \setminus \Q
@@ -38,16 +38,16 @@ eine $G_{\delta}$-Menge?
   \end{align*}
   Wir rechnen nach:
   \begin{enumerate}
-    \item[\glqq $x \in \Q$ \grqq] Wir schreiben $x$ als vollständig gekürzten Bruch $x = \frac{p}{q}$ und sehen mit 
+    \item[\glqq $x \in \Q$ \grqq] Wir schreiben $x$ als vollständig gekürzten Bruch $x = \frac{p}{q}$ und sehen mit
     \begin{align*}
-      \epsilon := \frac{1}{2q} \quad \textrm{gilt} \quad \forall\delta \in \R^+: \exists y \in \R \setminus \Q \cap U_\delta(x) \quad \textrm{und} \quad \vbraces{f(x) - f(y)} = \vbraces{f(x)} = \frac{1}{q} \geq \frac{1}{2q} = \epsilon
-    \end{align*} 
-    Also ist $f$ im Punkt $x$ nicht stetig.
-    \item[\glqq $x \in \R \setminus \Q$ \grqq] Wir wählen $\epsilon \in \R^+$ beliebig und definieren 
-    \begin{align*} 
-      \delta := \min\Bbraces{\vbraces{\frac{p}{q} - x} : p \in \Z \land q = \max\pbraces{\{1\} \cup \Bbraces{r \in \N \mid \frac{1}{r} \geq \epsilon}} }.
+      \epsilon := \frac{1}{2q} \quad \textrm{gilt} \quad \forall\delta \in \R^+: \exists y \in (\R \setminus \Q) \cap U_\delta(x) \quad \textrm{und} \quad \vbraces{f(x) - f(y)} = \vbraces{f(x)} = \frac{1}{q} \geq \frac{1}{2q} = \epsilon
     \end{align*}
-    Dann gilt 
+    Also ist $f$ im Punkt $x$ nicht stetig.
+    \item[\glqq $x \in \R \setminus \Q$ \grqq] Wir wählen $\epsilon \in \R^+$ beliebig und definieren
+    \begin{align*}
+      \delta := \min_{q = 1}^{\lceil \frac{1}{\epsilon} \rceil}\left( \min_{p \in \Z}\Bbraces{\vbraces{\frac{p}{q} - x}}\right).
+    \end{align*}
+    Dann gilt
     \begin{align*}
       \forall y \in U_\delta(x): \vbraces{f(y) -f(x)} < \epsilon,
     \end{align*}
@@ -55,4 +55,3 @@ eine $G_{\delta}$-Menge?
   \end{enumerate}
 \end{enumerate}
 \end{solution}
-
