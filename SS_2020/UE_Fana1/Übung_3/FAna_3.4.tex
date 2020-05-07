@@ -1,29 +1,70 @@
 \begin{exercise}
-Sei $f: \R \rightarrow \R$. Zeige, dass die Menge aller Punkte $x \in \R$ an
-denen $f$ stetig ist eine $G_{\delta}$-Menge ist.
+
+Sei $f: \R \rightarrow \R$. Zeige, dass die Menge aller Punkte $x \in \R$ an denen $f$ stetig ist eine $G_{\delta}$-Menge ist.
+
 \end{exercise}
+
 \begin{solution}
-  Definiere die Mengen
 
-  \begin{align*}
-  M := \{x \in \mathbb{R} ~|~ \forall \epsilon > 0 ~\exists \delta_x > 0 ~\forall y \in U_{d_x}(x): ~|f(x)-f(y)| < \epsilon\}, \\
-  U_n := \left\{x \in \mathbb{R} ~|~ \exists \delta_x > 0 ~\forall y \in U_{d_x}(x): ~|f(x)-f(y)| < \frac{1}{n}\right\}.
-  \end{align*}
+\begin{align*}
+  M & := \Bbraces
+  {
+    x \in \R:
+    \Forall \epsilon > 0:
+    \Exists \delta_x > 0:
+    \Forall y \in U_{d_x}(x):
+    |f(x) - f(y)| < \epsilon
+  }, \\
+  U_n & := \Bbraces
+  {
+    x \in \R:
+    \Exists \delta_x > 0:
+    \Forall y \in U_{\delta_x}(x):
+    |f(x) - f(y)| < 1/n
+  }
+\end{align*}
 
-  Behauptung: $M = \bigcap_{n \in \mathbb{N}} U_n^\circ.$
+$M$ ist genau die Menge der Stetigkeitspunkte von $f$.
+Wir zeigen, dass diese eine $G_\delta$-Menge ist, mit
 
-  \glqq $\subseteq$ \grqq: Seien $y \in M$ und $k \in \mathbb{N}$ beliebig. Weil $y$ ein Stetigkeitspunkt ist, gilt
-  \begin{align*}
-      \exists \delta_y > 0 ~\forall z \in U_{\delta_y}(y): ~|f(y)-f(z)| < \frac{1}{2k}.
-  \end{align*}
+\begin{align*}
+  M = \bigcap_{n \in \N} U_n^\circ.
+\end{align*}
 
-  Für ein beliebiges $z \in U_{\delta_y}(y)$ definiere $\delta_z := \frac{1}{2} \min\{|y + \delta_y - z|, |y - \delta_y - z|\},$ dann gilt $U_{\delta_z}(z) \subseteq U_{\delta_y}(y).$ Für ein $t \in U_{\delta_z}(z)$ gilt nun
-  \begin{align*}
-      |f(z)-f(t)| \leq |f(z)-f(y)| + |f(y)-f(t)| \leq \frac{1}{2k} + \frac{1}{2k} = \frac{1}{k},
-  \end{align*}
+\Quote{$\subseteq$}:
+Seien $y \in M$ und $k \in \N$.
+Dann $\Exists \delta_y > 0: \Forall z \in U_{\delta_y}(y):$
 
-  also $z \in U_k$. Es liegt also eine ganze Umgebung von $y$ in $U_k$, das heißt $y \in U_k^\circ.$
+\begin{align*}
+    |f(y) - f(z)| < \frac{1}{2k}.
+\end{align*}
 
+Offene Kugeln sind offen.
+Also, $\Exists \delta_z > 0:$
 
-  \glqq$\supseteq$ \grqq: Klar.
+\begin{align*}
+  U_{\delta_z}(z)
+  \subseteq
+  U_{\delta_y}(y).
+\end{align*}
+
+Dann gilt $\Forall t \in U_{\delta_z}(z) \subseteq U_{\delta_y}(y):$
+
+\begin{align*}
+    |f(z) - f(t)|
+    \leq
+    \underbrace{|f(z) - f(y)|}_{\leq \frac{1}{2 k}} +
+    \underbrace{|f(y) - f(t)|}_{\leq \frac{1}{2 k}}
+    \leq
+    \frac{1}{k}
+\end{align*}
+
+Also, liegt $z \in U_k$.
+Weil $z$ beliebig war, liegt die ganze $U_{\delta_y}(y) \subseteq U_k$.
+Das heißt, dass $y \in U_k^\circ.$ \\
+
+\Quote{$\supseteq$}:
+Trivial!
+($\R$ ist Archimedisch angeordnet.)
+
 \end{solution}

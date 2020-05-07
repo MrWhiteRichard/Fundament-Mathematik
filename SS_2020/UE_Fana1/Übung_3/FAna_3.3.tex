@@ -1,18 +1,29 @@
 \begin{exercise}
-Eine Menge heißt $G_{\delta}$-Menge, wenn sie der abzählbare Durchschnitt offener
-Mengen ist. Zeige, dass der Durchschnitt von abzählbar vielen dichten $G_{\delta}$-Mengen
-eines vollständigen metrischen Raumes wieder eine dichte $G_{\delta}$-Menge ist.
+
+Eine Menge heißt $G_\delta$-Menge, wenn sie der abzählbare Durchschnitt offener Mengen ist.
+Zeige, dass der Durchschnitt von abzählbar vielen dichten $G_\delta$-Mengen eines vollständigen metrischen Raumes wieder eine dichte $G_\delta$-Menge ist.
+
 \end{exercise}
+
 \begin{solution}
-Sei $(X,d)$ ein beliebiger vollständiger metrischer Raum und sei für alle $n \in \N: M_n$
-eine $G_{\delta}$-Menge, also
+
+Sei $(X, d)$ vollständiger metrischer Raum und $(M_n)_{n \in \N}$
+eine Folge von dichten $G_\delta$-Mengen.
+D.h. $\Forall n \in \N: \Exists (O_{n, k})_{k \in \N} \in \mathcal{T}_{\norm[X]{\cdot}}^\N:$
+
 \begin{align*}
-  M_n = \bigcap_{k \in \N}P_{n_k}
+  M_n = \bigcap_{k \in \N} O_{n, k}.
 \end{align*}
-und seien weiters alle $M_n$ dicht in $X$. Dann sind insbesondere auch alle $P_{n_k}$
-offene Mengen, die dicht in $X$ liegen und mit dem Satz von Baire folgt, dass
+
+Insbesondere, ist der Durchschnitt $M$ eine $G_\delta$-Menge.
+
 \begin{align*}
-  \bigcap_{n \in \N}M_n = \bigcap_{(n,k) \in \N^2}P_{n_k}
+  M := \bigcap_{n \in \N} M_n
+     = \bigcap_{n, k \in \N} O_{n, k}
 \end{align*}
-dicht in $X$ liegt und somit eine dichte $G_{\delta}$-Menge ist.
+
+Für alle $n, k \in \N$, ist $M_n \subseteq O_{n, k}$ und $M_n$ liegt dicht in $X$.
+Damit, liegt auch $O_{n, k}$ dicht.
+Laut dem Satz von Baire 4.1.1, liegt auch der Durchschnitt $M$ dicht.
+
 \end{solution}
