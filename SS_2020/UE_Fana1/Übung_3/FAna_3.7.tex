@@ -12,17 +12,24 @@ Banachraum ist und alle Punktauswertungsfunktionale bezüglich $||\cdot||$ steti
 \textit{Hinweis:} Wende den Satz vom abgeschlossenen Graphen auf die identische Abbildung an.
 \end{exercise}
 \begin{solution}
-Zwei Normen sind nicht äquivalent, sobald eine der beiden Normen "echt feiner" als die andere ist. Die von der feineren Norm induzierte Topologie ist also auch echt feiner als die der anderen. (Ist noch nicht ganz sauber, muss man wohl noch mit der offiziellen Definition von (Nicht-)Äquivalenz zeigen.)
+Zwei Normen $\|\cdot \|_1$ und $\|\cdot \|_2$ auf $X$ sind nicht äquivalent, wenn
+\begin{align}\label{nequ}
+  (\Forall \alpha > 0,\Exists x \in X: \alpha \|x \|_1 > \|x \|_2) \lor (\Forall \beta > 0,\Exists x \in X: \|x \|_2 > \beta \|x \|_1)
+\end{align}
 \newline
 
 Nehmen wir also an, es gibt zwei Normen $\|\cdot \|_1$ und $\|\cdot \|_2$ auf $X$, die nicht äquivalent sind, sodass $(X,\|\cdot \|_1)$ und $(X,\|\cdot \|_2)$ Banachräume sind und alle Punktauswertungsfunktionale bzgl. $\|\cdot \|_i, i = 1,2$ stetig sind.
+
+Sei o.B.d.A. die zweite Bedingung aus \eqref{nequ} erfüllt. Dann ist die Identität als lineare Abbildung $Id:(X,\|\cdot \|_1) \to (X,\|\cdot \|_2)$ nicht stetig, da
+\begin{align*}
+  \|Id\| = \sup \left \{\frac{\|x\|_2}{\|x\|_1}: x \in X \setminus \{0\} \right \}
+\end{align*}
+unbeschränkt ist.
 
 Die Menge $M := \{\chi_\omega | \omega \in \Omega\} \subseteq X'$ ist auf jedenfall punktetrennend, da
 \begin{align*}
   \Forall f \in X \setminus \{0\}, \Exists \chi_\omega \in M: \chi_\omega(f) \neq 0 \Leftrightarrow \Forall f \in X \setminus \{0\}, \Exists \omega \in \Omega: f(\omega) \neq 0 .
 \end{align*}
-
-Sei o.B.d.A. $\|\cdot \|_1 < \|\cdot \|_2$. Dann ist die Identität $Id:(X,\|\cdot \|_1) \to (X,\|\cdot \|_2)$ nicht stetig.
 
 Gemäß Korollar 4.4.4 (Kontraposition) folgt daraus, dass es ein $\chi_\omega \in M$ gibt, sodass $\chi_\omega \circ Id$ nicht stetig ist. Allerdings ist
 
