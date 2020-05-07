@@ -1,8 +1,71 @@
 \begin{exercise}
-Sei $(X,||\cdot||)$ ein Banachraum. Zeige, dass die Mächtigkeit einer algebraischen
-Basis von $X$ als $\C$-Vektorraum entweder endlich oder überabzählbar ist. \\
-\textit{Hinweis:} Zeige, dass ein linearer Teilraum $Y \subsetneq Y$ keinen inneren Punkt hat.
+
+Sei $(X, \norm{\cdot})$ ein Banachraum.
+Zeige, dass die Mächtigkeit einer algebraischen Basis von $X$ als $\C$-Vektorraum entweder endlich oder überabzählbar ist. \\
+
+\textit{Hinweis:}
+Zeige, dass ein linearer Teilraum $Y \subsetneq X$ keinen inneren Punkt hat.
+
 \end{exercise}
+
 \begin{solution}
-Beweis.
+
+$y \in Y$ ist ein innerer Punkt von $Y$, genau dann, wenn $y \in Y^\circ$.
+$Y$ hat also keine inneren Punkte, genau dann, wenn $Y^\circ = \emptyset$. \\
+
+Der Anschauung nach, ist die Aussage im \textit{Hinweis} trivial.
+Dazu, betrachte $Y := \R^2 \times 0$ und $X := \R^3$.
+Offensichtlich, lieben keine $\epsilon$-Kugeln von $y \in Y$ wieder in $Y$, weil die letzte Komponente von $y$ immer $0$ ist.
+Diese Argumentation gilt es, ins allgemeine Setting zu übertragen. \\
+
+Sei $(b_i)_{i \in J}$ eine Basis von $Y$ und $(b_i)_{i \in I}$ die auf $X$ fortgesetzte.
+Weil $Y < X$, muss auch $J \subsetneq I$, also $\Exists i_0 \in I \setminus J$. \\
+
+Angenommen, $Y^\circ \neq \emptyset$, dann $\Exists p \in Y^\circ$.
+$Y^\circ$ ist als Vereinigung aller offenen Teilmengen von $Y$ selbst wieder offen.
+Daher, $\Exists \epsilon > 0: U_\epsilon(p) \subseteq Y^\circ$.
+
+$p \in Y^\circ \subseteq Y$ besitzt aber auch, eine eindeutige Koordinatendarstellung $(p_i)$ bezüglich der Basis $(b_i)$.
+
+\begin{align*}
+  p = \sum_{i \in I} p_i b_i
+    = \sum_{i \in J} p_i b_i
+\end{align*}
+
+Daher, muss $\Forall i \in I \setminus J: p_i = 0$, also insbesondere auch für das obere $i_0$.
+In unserer $U_\epsilon(p) \subseteq Y^\circ$ finden wir aber ein Element $p^\prime \notin Y$, mit $i_0$-ter Komponente von $p^\prime \neq 0$.
+Widerspruch!
+
+\begin{align*}
+  \| \underbrace{p + \frac{\epsilon}{2 \norm{b_{i_0}}} b_{i_0}}_{=: p^\prime} - p \|
+  =
+  \frac{\epsilon}{2} \frac{1}{\norm{b_{i_0}}} \norm{b_{i_0}}
+  <
+  \epsilon
+\end{align*}
+
+Damit, zeigen wir die ursprüngliche Aussage.
+Wir verwenden zudem ein Korollar (Bemerkung 4.1.3) vom Satz von Baire. \\
+
+Sei $I$ unendlich.
+Angenommen, $|I| = \aleph_0$, also o.B.d.A. $I = \N$.
+Betrachte die aufsteigende Unterraumkette $(A_n)_{n \in \N}$ von $X$.
+
+\begin{align*}
+  A_n := \Span \Bbraces{b_1, \ldots, b_n} < X
+\end{align*}
+
+$(A_n)_{n \in \N}$ ist eine Folge abgeschlossener Mengen mit, laut \textit{Hinweis}, komponentenweise leerem Inneren.
+Laut Bemerkung 4.1.3, hat auch deren Vereinigung leeres Inneres.
+
+\begin{align*}
+  X = \bigcup_{n \in N} A_n
+  \implies
+  \emptyset = X^\circ = X
+\end{align*}
+
+Letztere Gleichheit gilt, weil $X$ in sich selbst wieder offen ist.
+$\emptyset$ ist aber kein Vektorraum, also erst recht nicht $\aleph_0$-dimensional.
+Widerspruch!
+
 \end{solution}
