@@ -5,22 +5,22 @@ denen $f$ stetig ist eine $G_{\delta}$-Menge ist.
 \begin{solution}
   Definiere die Mengen
 
-  \begin{align}
+  \begin{align*}
   M := \{x \in \mathbb{R} ~|~ \forall \epsilon > 0 ~\exists \delta_x > 0 ~\forall y \in U_{d_x}(x): ~|f(x)-f(y)| < \epsilon\}, \\
-  U_n := \{x \in \mathbb{R} ~|~ \exists \delta_x > 0 ~\forall y \in U_{d_x}(x): ~|f(x)-f(y)| < \frac{1}{n}\}.
-  \end{align}
+  U_n := \left\{x \in \mathbb{R} ~|~ \exists \delta_x > 0 ~\forall y \in U_{d_x}(x): ~|f(x)-f(y)| < \frac{1}{n}\right\}.
+  \end{align*}
 
   Behauptung: $M = \bigcap_{n \in \mathbb{N}} U_n^\circ.$
 
   \glqq $\subseteq$ \grqq: Seien $y \in M$ und $k \in \mathbb{N}$ beliebig. Weil $y$ ein Stetigkeitspunkt ist, gilt
-  \begin{align}
-      \exists \delta_y > 0 ~\forall z \in U_{d_y}(y): ~|f(y)-f(z)| < \frac{1}{2k}.
-  \end{align}
+  \begin{align*}
+      \exists \delta_y > 0 ~\forall z \in U_{\delta_y}(y): ~|f(y)-f(z)| < \frac{1}{2k}.
+  \end{align*}
 
-  Für ein beliebiges $z \in U_{d_y}(y)$ definiere $d_z := \frac{1}{2} \min\{|y + d_y - z|, |y - d_y - z|\},$ dann gilt $U_{d_z}(z) \subseteq U_{d_y}(y).$ Für ein $t \in U_{d_z}(z)$ gilt nun
-  \begin{align}
+  Für ein beliebiges $z \in U_{\delta_y}(y)$ definiere $\delta_z := \frac{1}{2} \min\{|y + \delta_y - z|, |y - \delta_y - z|\},$ dann gilt $U_{\delta_z}(z) \subseteq U_{\delta_y}(y).$ Für ein $t \in U_{\delta_z}(z)$ gilt nun
+  \begin{align*}
       |f(z)-f(t)| \leq |f(z)-f(y)| + |f(y)-f(t)| \leq \frac{1}{2k} + \frac{1}{2k} = \frac{1}{k},
-  \end{align}
+  \end{align*}
 
   also $z \in U_k$. Es liegt also eine ganze Umgebung von $y$ in $U_k$, das heißt $y \in U_k^\circ.$
 
