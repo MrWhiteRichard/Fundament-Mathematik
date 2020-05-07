@@ -1,43 +1,114 @@
 \begin{exercise}
+
 Sei $X$ ein Banachraum, und seien $M,N$ zwei abgeschlossene lineare Teilräume von $X$ mit
+
 \begin{align*}
-  M + N = X, \quad M \cap N = \{0\}
+  M + N = X, \quad M \cap N = \Bbraces{0}.
 \end{align*}
-Es sind $M$ und $N$ mit der von $X$ vererbten Norm selbst normierte Räume, also
-können wir den Produktraum $M \times N$ mit der Supremumsnorm betrachten. Zeige,
-dass die Abbildung
+
+Es sind $M$ und $N$ mit der von $X$ vererbten Norm selbst normierte Räume, also können wir den Produktraum $M \times N$ mit der Supremumsnorm betrachten.
+Zeige, dass die Abbildung
+
 \begin{align*}
-  \varphi: \bigg\{\begin{matrix}
-    M \times N &\rightarrow& X \\
-    (m,n) &\mapsto& m + n
+  \varphi:
+  \bigg \{
+  \begin{matrix}
+    M \times N & \rightarrow & X \\
+    (m, n)     & \mapsto     & m + n
   \end{matrix}
 \end{align*}
+
 ein linearer Homöomorphismus ist.
+
 \end{exercise}
+
 \begin{solution}
-\item Linearität:
-Seien $(a,b),(c,d)\in M\times N, \lambda \in \C $ beliebig. Dann gilt
-\begin{align*}
-  \varphi((a,b)+\lambda (c,d)) &= \varphi ((a+\lambda c, b + \lambda d)) \\
-  &= a+\lambda c +  b + \lambda d = \varphi (a,b) + \lambda \varphi (c,d)
-\end{align*}
- \item Stetigkeit/ Beschränktheit:
- Mit der Summennorm auf dem Raum $M \times N$ ($\|(m,n)\|_{M \times N} = \|m\|_M + \|n\|_N = \|m\|_X + \|n\|_X$) gilt
- \begin{align*}
-      \|\varphi\| = \sup\{\|m+n\|_X | \|(m,n)\|_{M \times N} = 1\} \leq \sup\{\|m\|_X + \|n\|_X | \|m\|_X + \|n\|_X = 1\} = 1 < \infty
- \end{align*}
 
- \item Surjektivität:
- Offensichtlich ist $\varphi$ surjektiv, da $M + N = X$.
+\phantom{}
 
- \item Injektivität:
- Seien $(a,b),(c,d)\in M\times N$ beliebig mit $\varphi (a,b) = \varphi (c,d)$. Dann gilt (da $M$ und $N$ nur trivialen Schnitt haben)
- \begin{align*}
-    \Rightarrow a+b = c+d \Leftrightarrow \underbrace{a-c}_{\in M} = \underbrace{d-b}_{\in N} \\
-    \Rightarrow a-c = d-b = 0 \Rightarrow a=c, b=d
- \end{align*}
+\begin{itemize}
 
- \item Stetigkeit von $\varphi^{-1}$:
- Da $M$ und $N$ abgeschlossen in X sind, ist $M \times N$ ein Banachraum (stimmt das so?) und somit erfüllt $\varphi$ die Voraussetzungen aus Korollar 4.3.4. Also ist $\varphi^{-1}$ stetig.
+  \item
+  Linearität:
+
+  $\Forall (a, b), (c, d) \in M \times N, \Forall \lambda \in \C:$
+
+  \begin{align*}
+    \varphi((a,b) + \lambda (c,d))
+    & =
+    \varphi ((a + \lambda c, b + \lambda d))
+    =
+    a + \lambda c + b + \lambda d \\
+    & =
+    (a + b) + \lambda (c + d)
+    =
+    \varphi (a, b) + \lambda \varphi (c, d)
+  \end{align*}
+
+  \item
+  Injektivität:
+
+  $\Forall (a, b), (c, d) \in M \times N:$
+
+  \begin{align*}
+    \underbrace{\varphi((a, b))}_{a + b}
+    =
+    \underbrace{\varphi((c, d))}_{c + d}
+    & \implies
+    \underbrace{a - c}_{\in M}
+    =
+    \underbrace{d - b}_{\in N}
+    \implies
+    a - c, d - b \in M \cap N = \Bbraces{0} \\
+    & \implies
+    a = c, b = d
+    \implies
+    (a, b) = (c, d)
+  \end{align*}
+
+  \item
+  Surjektivität:
+
+  Weil $M + N = X$, muss es $\Forall x \in X: \Exists m \in M, \Exists n \in N:$
+
+  \begin{align*}
+    x = m + n = \varphi((m, n)).
+  \end{align*}
+
+  \item
+  Stetigkeit / Beschränktheit von $\varphi$:
+
+  Weil $+$ auf $X^2$ stetig ist, ist auch $\varphi$ stetig.
+  Mann könnte aber auch die Beschränktheit zeigen.
+  $\Forall (m, n) \in M \times N:$
+
+  \begin{align*}
+    \norm{\varphi}
+    & =
+    \sup \{
+      \| \underbrace{\varphi((m, n))}_{m + n} \|_X:
+      \underbrace
+      {
+        \norm[M \times N]{(m, n)}
+      }_{
+        \norm[X]{m} + \norm[X]{n}
+      } = 1
+    \} \\
+    & \leq
+    \sup \Bbraces{
+      \norm[X]{m} + \norm[X]{n}:
+      \norm[X]{m} + \norm[X]{n} = 1
+    }
+    = 1 < \infty
+  \end{align*}
+
+  \item
+  Stetigkeit von $\varphi^{-1}$:
+
+  $M$ und $N$ sind abgeschlossen, im Banachraum $X$, also Banachräume.
+  $M \times N$ ist also, laut Proposition 2.4.5(ii) auch ein Banachraum!
+  $\varphi$ ist stetig, laut Korollar 4.3.4, also auch $\varphi^{-1}$.
+
+ \end{itemize}
 
 \end{solution}
