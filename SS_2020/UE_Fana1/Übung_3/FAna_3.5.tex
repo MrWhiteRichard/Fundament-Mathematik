@@ -1,57 +1,180 @@
 \begin{exercise}
-\leavevmode \\
-\begin{enumerate}[label = (\roman*)]
-  \item Zeige, dass es keine Funktion $f: \R \rightarrow \R$ gibt, die an allen rationalen
-  Punkten stetig, aber an allen irrationalen Punkten unstetig ist.
-  \item Finde eine
- Funktion $f: \R \rightarrow \R$ die an allen irrationalen Punkten stetig,
- aber an allen rationalen Punkten unstetig ist.
-\end{enumerate}
-\textit{Hinweis:} Ist die Teilmenge $\Q$ von $\R$ (welche ja dicht liegt)
-eine $G_{\delta}$-Menge?
-\end{exercise}
-\begin{solution}
-\leavevmode \\
-\begin{enumerate}[label = (\roman*)]
-  \item Wir führen einen Widerspruchsbeweis und nehmen dafür an $\Q$ ist eine $G_\delta$-Menge. Wir wissen, dass
-  \begin{align*}
-    \Q \quad \textrm{und} \quad \R \setminus \Q \quad \textrm{dicht liegen in} \quad \R.
-  \end{align*}
-  Weiters erkennen wir, dass
-  \begin{align*}
-    \R \setminus \Q = \bigcap_{q \in \Q} \R \setminus \{q\} \quad \textrm{eine $G_\delta$-Menge ist.}
-  \end{align*}
-  Nach Aufgabe 3 ist dann
-  \begin{align*}
-    \emptyset = (\R \setminus \Q) \cap \Q \quad \textrm{eine dichte $G_\delta$-Menge.}
-  \end{align*}
-  Ein Widerspruch!
 
-  Nun wissen wir also, dass $\Q$ keine $G_\delta$-Menge ist. Gäbe es nun eine Funktion $f: \R \to \R$ die an allen rationalen Punkten stetig ist und an allen irrationalen Punkten unstetig ist, dann wäre nach Aufgabe 4 die Menge $\Q$ eine $G_\delta$-Menge, also kann es so eine Funktion nicht geben.
-  \item Wir kennen so eine Funktion bereits.
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item
+  Zeige, dass es keine Funktion $f: \R \rightarrow \R$ gibt, die an allen rationalen Punkten stetig, aber an allen irrationalen Punkten unstetig ist.
+
+  \item
+  Finde eine Funktion $f: \R \rightarrow \R$ die an allen irrationalen Punkten stetig, aber an allen rationalen Punkten unstetig ist.
+
+\end{enumerate}
+
+\textit{Hinweis:}
+Ist die Teilmenge $\Q$ von $\R$ (welche ja dicht liegt) eine $G_\delta$-Menge?
+
+\end{exercise}
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item
+  Angenommen, $\Q$ ist eine $G_\delta$-Menge.
+  Wir wissen, dass
+
   \begin{align*}
-    f: \R \to \R: x \mapsto
+    \Q \quad \textrm{und} \quad \R \setminus \Q
+    \quad
+    \textrm{dicht liegen in}
+    \quad
+    \R.
+  \end{align*}
+
+  Weiters erkennen wir, dass
+
+  \begin{align*}
+    \R \setminus \Q
+    =
+    \bigcap_{q \in \Q}( \R \setminus \Bbraces{q})
+    \quad
+    \textrm{eine $G_\delta$-Menge ist.}
+  \end{align*}
+
+  Laut Aufgabe 3, wäre dann deren Schnitt
+
+  \begin{align*}
+    \emptyset
+    =
+    \R \cap \Q^\complement \cap \Q
+    =
+    (\R \setminus \Q) \cap \Q \quad \textrm{eine dichte $G_\delta$-Menge.}
+  \end{align*}
+
+  Widerspruch!
+  Nun wissen wir also, dass $\Q$ keine $G_\delta$-Menge ist.
+
+  Angenommen, es gäbe eine Funktion $f: \R \to \R$ die bei $\Q$ stetig ist und bei $\R \setminus \Q$ unstetig ist.
+  Dann wäre, laut Aufgabe 4, die Menge der Stetigkeitspunkte von $f$, also $\Q$, eine $G_\delta$-Menge.
+  Widerspruch!
+  Also, kann es solch eine Funktion nicht geben.
+
+  \item
+  Wir kennen so eine Funktion bereits aus Analysis 1.
+
+  \begin{align*}
+    f:
+    \R \to \R:
+    x \mapsto
     \begin{cases}
-      \frac{1}{q} &\textrm{, falls} \quad x = \frac{p}{q} \in \Q \quad \textrm{, wobei der Bruch vollständig gekürzt ist} \\
-      0 &\textrm{, falls} \quad x \in \R \setminus \Q
+      \frac{1}{q},
+      & \textrm{wenn} \enspace
+      x = \frac{p}{q} \in \Q, \enspace \ggT(p, q) = 1, \\
+      0,
+      & \textrm{wenn} \enspace
+      x \in \R \setminus \Q
     \end{cases}
   \end{align*}
-  Wir rechnen nach:
-  \begin{enumerate}
-    \item[\glqq $x \in \Q$ \grqq] Wir schreiben $x$ als vollständig gekürzten Bruch $x = \frac{p}{q}$ und sehen mit
+
+  $\Forall x \in \R:$
+
+  \begin{itemize}
+
+    \item
+    [\Quote{$x \in \Q$}:]
+
+    Wir schreiben $x$ als vollständig gekürzten Bruch $x = \frac{p}{q}$.
+    $\Forall \delta > 0: \Exists y \in (\R \setminus \Q) \cap U_\delta(x):$
+
     \begin{align*}
-      \epsilon := \frac{1}{2q} \quad \textrm{gilt} \quad \forall\delta \in \R^+: \exists y \in (\R \setminus \Q) \cap U_\delta(x) \quad \textrm{und} \quad \vbraces{f(x) - f(y)} = \vbraces{f(x)} = \frac{1}{q} \geq \frac{1}{2q} = \epsilon
+      \vbraces{f(x) - f(y)}
+      =
+      \vbraces{f(x)}
+      =
+      \frac{1}{q}
+      =:
+      \epsilon.
     \end{align*}
-    Also ist $f$ im Punkt $x$ nicht stetig.
-    \item[\glqq $x \in \R \setminus \Q$ \grqq] Wir wählen $\epsilon \in \R^+$ beliebig und definieren
+
+    Also, ist $f$ im Punkt $x$ nicht stetig.
+
+    \item
+    [\Quote{$x \in \R \setminus \Q$}:]
+
+    Es gilt also $f(x) = 0$. Das ist wichtig!
+    Seien $\epsilon > 0$ beliebig und
+
     \begin{align*}
-      \delta := \min_{q = 1}^{\lceil \frac{1}{\epsilon} \rceil}\left( \min_{p \in \Z}\Bbraces{\vbraces{\frac{p}{q} - x}}\right).
+      \delta
+      :=
+      \min_{q = 1}^{\ceil{1/\epsilon}}
+      \pbraces
+      {
+        \min_{p \in \Z}
+        \vbraces{\frac{p}{q} - x}
+      }
+      =
+      \min \Bbraces
+      {
+        \vbraces{\frac{p}{q} - x}:
+        q = 1, \ldots, \ceil{1/\epsilon},
+        \enspace
+        p \in \Z
+      }.
     \end{align*}
-    Dann gilt
+
+    $\Exists q = 1, \ldots, \ceil{1/\epsilon}, \Exists p \in \Z:$
+
     \begin{align*}
-      \forall y \in U_\delta(x): \vbraces{f(y) -f(x)} < \epsilon,
+      \delta = \vbraces{\frac{p}{q} - x}.
     \end{align*}
-    also Stetigkeit im Punkt $x$.
-  \end{enumerate}
+
+    $z := \frac{p}{q}$ ist die, zu $x$, näheste rationale Zahl, mit Nenner $q = 1, \ldots, \ceil{1/\epsilon}$.
+
+    \begin{align*}
+      \implies
+      q < 1/\epsilon
+      \implies
+      \epsilon < 1/q
+    \end{align*}
+
+    $\Forall y \in U_\delta(x):$ \\
+
+    \begin{itemize}
+
+      \item
+      [\Quote{$y \in \R \setminus \Q$}:]
+
+      \begin{align*}
+        \implies
+        f(y) = 0
+        \implies
+        |f(x) - f(y)| = 0 < \epsilon
+      \end{align*}
+
+      \item
+      [\Quote{$y \in \Q$}:]
+
+      Wir schreiben $y$ als vollständig gekürzten Bruch $y = \frac{a}{b}$.
+      Weil $|y - x| < \delta = |z - x|$, muss $y \neq z$.
+      $y$ ist außerdem näher an $x$ als $z$ (an $x$).
+      Was war $z$ nochmal?
+      Also, $y$'s Nenner
+
+      \begin{align*}
+        b > \ceil{1/\epsilon} \geq 1/\epsilon
+        \implies
+        \epsilon > 1/b = |f(y) - f(x)|.
+      \end{align*}
+
+    \end{itemize}
+
+  \end{itemize}
+
 \end{enumerate}
+
 \end{solution}
