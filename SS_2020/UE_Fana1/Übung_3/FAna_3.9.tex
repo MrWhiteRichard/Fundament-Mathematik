@@ -48,6 +48,88 @@ Argumentiere, warum jede dieser Aussagen (i),(ii),(iii), tatsächlich die gewün
 
 \begin{solution}
 
-Trivial!
+\begin{enumerate}[label = (\roman*)]
+\item \begin{align*}
+  M_n := \{ f \in L^2(0,1): \int_0^1 |f(t)|^2dt \leq n \}
+  = \{ f \in L^2(0,1): ||f||^2 \leq \sqrt{n}\}
+\end{align*}
+Sei $f \in \overline{M_n}$ beliebig, dann existiert ein Netz $(f_i)_{i \in I}$ aus $M_n$ mit
+\begin{align*}
+  \lim_{i \in I}||f_i - f||_{L^2} = 0.
+\end{align*}
+Aus der Maßtheorie (Kusolitsch Satz 13.15) wissen wir, dass aus der Konvergenz im
+p-ten Mittel bereits die Konvergenz im Maß folgt, das heißt
+\begin{align*}
+  \forall \epsilon > 0: \lim_{i \in I} \lambda(|f_n - f| > \epsilon) = 0.
+\end{align*}
+Insbesondere liegt eine Cauchy-Folge im Maß vor, woraus wiederum folgt, dass ein
+Teilnetz $(f_{i_j})_{j \in J})$ existiert, welches fast überall gegen $f$ konvergiert.
+Damit konvergiert auch $(|f_{i_j}^2|)_{j \in J}$ $\lambda$-fast überall gegen $|f^2|$.
+Nach dem Lemma von Fatou angewandt auf $|f_{i_j}|^2 \geq g := 0$, folgt
+\begin{align*}
+  \int_0^1 |f|^2 d\lambda = \int_0^1 \lim_{j \in J}|f_{i_j}|^2 d\lambda
+  = \int_0^1 \liminf_{j \in J}|f_{i_j}|^2 d\lambda \leq \liminf_{j \in J} \int_0^1 |f_{i_j}|^2 d\lambda \leq n.
+\end{align*}
+Also gilt $f \in M_n$ und somit ist $M_n$ abgeschlossen. \\
+Nun zeigen wir noch, dass $M_n$ leeres Inneres hat. Dazu sei $g \in L^1\backslash L^2$
+und $f \in M_n$, sowie $\forall k \in \N: h_k := f + \frac{1}{k}g$. Dann gilt
+\begin{align*}
+  \forall k \in \N: h_k \in L^1 \land h_k \notin L^2.
+\end{align*}
+Außerdem gilt
+\begin{align*}
+  \lim_{h \rightarrow \infty}\|h_k - f\|_{L^1} = \lim_{k \rightarrow \infty} \|g\|_{L^1} = 0,
+\end{align*}
+also folgt $h_k \rightarrow^{L^1} f$. Damit ist $M_n^{\circ} = \overline{M_n}^{\circ} = \emptyset$
+und $L^2(0,1) = \bigcup_{n \in \N}M_n$ kann als abzählbare Vereinigung nirgends dichter
+Mengen geschrieben werden, ist also von 1.Kategorie.
+\item Sei $f \in L^2$ beliebig. Mit der Ungleichung von Hölder gilt dann
+\begin{align*}
+  |\int_0^1 fg_n d\lambda | \leq \|f\|_2\|g\|_2 = \|f\|_2 \int_0^{\frac{1}{n^3}}n^2 dt = \|f\|^2 \frac{1}{n}
+  \rightarrow^{n\rightarrow \infty} 0.
+\end{align*}
+Für das Gegenbeispiel betrachte $f(t) := \frac{1}{\sqrt{t}}$. Es gilt
+\begin{align*}
+  \int_0^1 \frac{1}{\sqrt{t}} = 2\sqrt{t}\bigg|_0^1 = 2,
+\end{align*}
+also ist $f \in L^1(0,1)$. Nun berechne man
+\begin{align*}
+  \int_0^1 f(t)g_n(t) dt = \int_0^{\frac{1}{n^3}}\frac{n}{\sqrt{t}} dt
+  = 2\sqrt{t}\bigg|_0^{n^{-3}} = \frac{2}{\sqrt{n}} \stackrel{n \rightarrow \infty}{\longrightarrow} \infty.
+\end{align*}
+Da $L^1(0,1)$ ein Banachraum, $\C$ ein normierter Raum, $R_n: L^1 \rightarrow \C: f \rightarrow
+\int_0^1 fg_n d\lambda$ eine Folge beschränkter linearer Operatoren mit
+\begin{align*}
+   \|R_n\| = \|g_n\|_{\infty} = n,
+\end{align*}
+also
+\begin{align*}
+  \sup_{n \in \N}\|R_n\| = \infty.
+\end{align*}
+Nach Satz 4.2.1 gibt es also eine dichte $G_{\delta}$-Menge $M \subseteq L^1(0,1)$
+mit
+\begin{align*}
+  \forall f \in M: \sup_{n \in \N}|\int fg_n d\lambda | = \infty.
+\end{align*}
+Nun gilt, dass
+\begin{align*}
+  L^2 \subseteq M^{\complement} = \left(\bigcap_{k \in \N}M_k)^{\complement}\right)
+  = \bigcup_{k \in \N}M_k^{\complement}.
+\end{align*}
+Da für alle $k \in \N: M_k$ dicht, gilt $M_k^{\circ} = \overline{M_k}^{\circ} = \emptyset$
+und wir haben die Darstellung
+\begin{align*}
+  L^2 = L^2 \cap \bigcup_{k \in \N} M_k^{\complement} = \bigcup_{k \in \N}(L^2 \cap M_k^{\complement})
+\end{align*}
+\item Wie bereits gezeigt, ist die Einbettung
+\begin{align*}
+  \iota: \bigg\{\begin{matrix}
+    L_2 & \rightarrow & L_1 \\
+    f & \mapsto & f
+  \end{matrix}
+\end{align*}
+nicht surjektiv. Wäre $L^2$ von 2.Kategorie, dann gäbe dass einen Widerspruch zu
+Aufgabe 4/3, welche besagen würde, dass $\iota$ surjektiv ist.
+\end{enumerate}
 
 \end{solution}
