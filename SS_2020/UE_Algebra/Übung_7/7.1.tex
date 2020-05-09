@@ -23,8 +23,136 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
 \end{enumerate}
 \end{algebraUE}
 \begin{solution}
-Beeindruckender Beweis.
+\leavevmode \\
 \begin{enumerate}
-  \item
+  \item \begin{align*}
+    \ord(p + q) = \min\{n \in \N: a_n + b_n \neq 0\}
+    \geq \min\{n \in \N: a_n \neq 0 \lor b_n \neq 0\}
+    = \min\{\ord(p),\ord(q)\}.
+  \end{align*}
+  Als Beispiel, bei dem Gleichheit nicht gilt, betrachte
+  \begin{align*}
+  p(x) &= 1, \qquad \ord(p(x)) = 0 \\
+  q(x) &= -1, \qquad \ord(q(x)) = 0 \\
+  p + q (x) &= 0, \qquad \grad(p + q(x)) = \infty
+  \end{align*}
+  \item \begin{align*}
+    \grad(p + q) = \max\{n \in \N: a_n + b_n \neq 0 \}
+    \leq \max\{n \in \N: a_n \neq 0 \lor b_n \neq 0 \}
+    = \max\{\grad(p),\grad(q)\}.
+    \end{align*}
+    Als Beispiel, bei dem Gleichheit nicht gilt, betrachte
+    \begin{align*}
+      p(x) &= 1, \qquad \grad(p(x)) = 0 \\
+      q(x) &= -1, \qquad \grad(q(x)) = 0 \\
+      p + q (x) &= 0, \qquad \grad(p + q(x)) = -\infty
+    \end{align*}
+  \item Die Multiplikation von Potenzreihen ist definiert über das Cauchyprodukt, also
+  \begin{align*}
+    pq(x) = \sum_{n=0}^{\infty}\sum_{i=0}^{n}a_ib_{n-i}x^n.
+  \end{align*}
+  \begin{align*}
+  \ord(pq) &= \min\{n \in \N: \sum_{i=0}^{n}a_ib_{n-i} \neq 0\}
+  \geq \min\{n \in \N: \exists i \leq n: a_i \neq 0 \land b_{n-i} \neq 0\} \\
+  &= \ord(p) + \ord(q).
+  \end{align*}
+  Als Beispiel, bei dem Gleichheit nicht gilt, betrachte den Restklassenring modulo $4$.
+  \begin{align*}
+    p(x) &= q(x) = \overline{2}, \qquad \ord(p(x)) + \ord(q(x)) = 0 \\
+    pq(x) &= \overline{0}, \qquad \ord(pq(x)) = \infty.
+  \end{align*}
+  Ist $R$ nun zusätzlich ein Integritätsbereich folgt mit der Nullteilerfreiheit
+  aus $a_{\ord(p)}, b_{\ord(q)} \neq 0$ bereits $a_{\ord(p)}b_{\ord(q)} \neq 0$.
+  \begin{align*}
+    \sum_{i=0}^{\ord(p) + \ord(q)}a_ib_{\ord(p) + \ord(q)-i} &=
+    \sum_{i=0}^{\ord(p) -1}\underbrace{a_i}_{=0}b_{\ord(p) + \ord(q)-i} +
+    \sum_{i = 0}^{\ord(q - 1)}\underbrace{b_i}_{=0}a_{\ord(q-1) - i}
+    + a_{\ord(p)}b_{\ord(q)} \\
+    &= a_{\ord(p)}b_{\ord(q)} \neq 0.
+  \end{align*}
+  Damit folgt
+  \begin{align*}
+    \ord(pq) \leq \ord(p) + \ord(q).
+  \end{align*}
+  und aufgrund der bereits gezeigten Ungleichung sogar Gleichheit.
+  \item \begin{align*}
+    \grad(pq) &= \max\{n \in \N: \sum_{i=0}^{n}a_ib_{n-i} \neq 0\}
+    \leq \max\{n \in \N: \exists i < n: a_ib_{n-i} \neq 0\}
+    \leq \max\{n \in \N: \exists i < n: a_i \neq 0 \land b_{n-i} \neq 0\} \\
+    &= \grad(p) + \grad(q).
+  \end{align*}
+  Als Beispiel, bei dem Gleichheit nicht gilt, betrachte wieder den Restklassenring modulo $4$.
+  \begin{align*}
+  p(x) &= q(x) = \overline{2}, \qquad \grad(p(x)) + \grad(q(x)) = 0 \\
+  pq(x) &= \overline{0}, \qquad \grad(pq(x)) = -\infty.
+  \end{align*}
+  Ist $R$ nun zusätzlich ein Integritätsbereich, folgt mit der Nullteilerfreiheit
+  aus $a_{\grad(p)}, b_{\grad(q)} \neq 0$ bereits $a_{\grad(p)}b_{\grad(q)} \neq 0$
+  und mit $n := \grad(p) + \grad(q)$
+  \begin{align*}
+  \sum_{i=0}^{n}a_ib_{n-i} &=
+  \sum_{\grad(p) + 1}^{n}\underbrace{a_i}_{=0}b_{n - i} +
+  \sum_{\grad(q) + 1}^{n}\underbrace{b_i}_{=0}a_{n - i}
+  + a_{\grad(p)}b_{\grad(q)} \\
+  &= a_{\grad(p)}b_{\grad(q)} \neq 0.
+  \end{align*}
+  Damit folgt wieder
+  \begin{align*}
+    \grad(p + q) \geq \grad(p) + \grad(q)
+  \end{align*}
+  und mit der obigen Ungleichung Gleichheit.
+  \item Sowohl $R[[x]]$, als auch $R[x]$ erfüllen klarerweise $1 \neq 0$.
+  Also bleibt nur die Nullteilerfreiheit nachzuprüfen. Betrachte dazu
+  $p,q \neq 0 \in R[[x]]$ beliebig. Es gilt also $\ord(p), \ord(q) \leq \infty$
+  und es folgt mit $k := \ord(p) + \ord(q)$ wie in Punkt 3 gezeigt,
+  $c_k := \sum_{i=0}^n a_ib_{k-i} \neq 0$ und damit $pq \neq 0$.
+  Da $R[x] \subset R[[x]]$ haben wir die Aussage auch gleich für $R[x]$
+  mitgezeigt.
+  \item \begin{align*}
+    R^* &= \{a \in R: a^{-1} \in R\} \\
+    R[[x]]^* &= \{p \in R[[x]]: p^{-1} \in R[[x]]\} \\
+  \end{align*}
+  Sei zunächst $a_0 \in R^*$. Wir zeigen, dass
+  \begin{align*}
+    q(x) = \sum_{n=0}^{\infty}b_nx^n,
+  \end{align*}
+  wobei die Koeffizienten $b_n$ die Rekursion
+  \begin{align*}
+    b_0 &= a_0^{-1} \\
+    b_n &= -b_0\left(\sum_{j=1}^na_jb_{n-j}\right)
+  \end{align*}
+  erfüllen, die Inverse zu $p$ ist. Dazu betrachten wir die Koeffizienten $c_k$
+  von $pq$ und zeigen mittels Induktion nach $k: c_0 = 1, c_k = 0, k > 0$. Der Anfang ist leicht getan.
+  \begin{align*}
+    c_0 &= a_0b_0 = a_0a_0^{-1} = 1 \\
+    c_1 &= a_0b_1 + a_1b_0 = -a_0b_0(a_1b_0) + a_1b_0 = -a_1b_0 + a_1b_0 = 0.
+  \end{align*}
+  Gelte nun für alle $i < k: c_i = 0$:
+  \begin{align*}
+    c_k &= \sum_{i=0}^{k} a_i b_{k-i}
+    = \sum_{i=1}^{k-1} -a_ia_0^{-1}\left(\sum_{j=1}^{k-i}a_jb_{k-i-j}\right) + a_0b_k + a_kb_0 = 0 \\
+    &= \sum_{i=1}^{k-1} -a_ia_0^{-1}\left(c_{k-i} - a_0b_{k-i}\right) - a_0b_0\left(\sum_{j=1}^ka_jb_{k-j}\right) + a_kb_0 = 0 \\
+    &= \sum_{i=1}^{k-1} a_ib_{k-i} - \left(\sum_{j=1}^ka_jb_{k-j}\right) + a_kb_0 = 0 \\
+  \end{align*}
+  Also gilt
+  \begin{align*}
+    pq(x) = 1
+  \end{align*}
+  und $q = p^{-1}$. Wenn $R$ zusätzlich ein Körper ist, gilt klarerweise $R = R^*$
+  und die Bedingung $a_0 \in R^*$ kann weggelassen werden.
+  \item Sei $R$ ein Integritätsbereich und gelte $\grad(p) = 0$, sowie $p = a_0 \in R^*$.
+  Dann ist die Inverse $q = p^{-1}$ gegeben durch
+  \begin{align*}
+    q(x) = a_0^{-1}.
+  \end{align*}
+  Die Rückrichtung zeigen wir mittels Kontraposition.
+  Sei zunächst $\grad(p) = 0$ und $p = a_0 \notin R^*$.
+  Klarerweise hat dann $p(x) = a_0$ keine Inverse. \\
+  Gelte stattdessen $\grad(p) > 0$. Angenommen, $p$ hätte eine Inverse.
+  Mit Punkt 4 erhalten wir
+  \begin{align*}
+    0 = \grad(1) = \grad(pp^{-1}) = \grad(p) + \grad(p^{-1}) = 1 + \grad(p^{-1})
+  \end{align*}
+  einen Widerspruch.
 \end{enumerate}
 \end{solution}
