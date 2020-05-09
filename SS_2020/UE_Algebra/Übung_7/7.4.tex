@@ -9,5 +9,31 @@ hier zu beweisende Variante ohne große Mühe aus dem Hauptsatz in der Version
 von 3.4.5.2. ableiten.
 \end{algebraUE}
 \begin{solution}
-Außergewöhnliche Argumentation.
+Seien $C_p, C_q$ zwei zyklische Gruppen mit teilerfremden Ordnungen, also
+$\ggT(p,q) = 1$. Dann ist $C_p \bigoplus C_q$ eine abelsche Gruppe und mit
+Lemma 3.4.4.1. folgt
+\begin{align*}
+  \ord((1,1)) = \ord((1,0) + (0,1)) = \ord(1,0) \cdot \ord(0,1) = pq.
+\end{align*}
+Da $|C_p \bigoplus C_q| = pq$ gilt $\langle (1,1) \rangle = C_p \bigoplus C_q$
+und $C_p \bigoplus C_q$ ist somit zyklisch.
+Aus dem Hauptsatz in 3.4.5.2. wissen wir bereits, dass sich eine beliebige endliche
+abelsche Gruppe als direkte Summe
+\begin{align*}
+  A \cong \bigoplus_{p \in \P}\bigoplus_{n=1}^{\infty}C_{p^n}^{e_{p,n}}
+  =  \bigoplus_{n=1}^{\infty}\bigoplus_{p \in \P}C_{p^n}^{e_{p,n}}
+\end{align*}
+von zyklischen Gruppen von Primzahlordnung darstellen lässt.
+Da nur endlich viele $e_{p,n} \neq 0$ sind, lässt sich zu jedem $p \in \P$
+das kleinste $p_1 \in \N$ finden, sodass $e_{p_1,k} \neq 0$ und wir können
+\begin{align*}
+  \bigoplus_{p \in \P}C_{p^{p_1}}^{e_{p,p_1}} \cong C_{m_1}
+\end{align*}
+schreiben. Wenn wir dieses Schema analog fortführen haben wir in endlich vielen
+Schritten alle $e_{p,n} \neq 0$ abgearbeitet und wir können
+\begin{align*}
+  A \cong \bigoplus_{k=1}^{n} C_{m_k}.
+\end{align*}
+schreiben, wobei für alle $0 < i < j \leq n $ gilt: $m_i | m_j$.
+
 \end{solution}
