@@ -1,4 +1,5 @@
 \begin{algebraUE}{196}
+\leavevmode \\
 \begin{enumerate}
   \item Zeigen Sie: Ist $V$ ein endlich-dimensionaler Vektorraum über einem
   Körper, so ist $\End(V)$ als Ring einfach (besitzt also nur die trivialen Ideale).
@@ -9,8 +10,77 @@
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}
-  \item Sei $I \neq \{0\}$ ein Ideal von $\End(V)$. Dann existiert ein $f \neq 0 \in I$.
-  Dann ist $\ker(f) = f^{-1}(\{0\}) \neq V$ ein Normalteiler auf $V$.
-  Sei $x \notin \ker(f)$ beliebig. Ich gebe mich vorerst geschlagen.
+  \item Sei $V$ ein endlich-dimensionaler Vektorraum über einem Körper $K$, dann ist
+  \begin{align*}
+    R := \End(V) = \{f: V \rightarrow V: f \text{ linear}\}
+  \end{align*}
+  nach Proposition 3.3.8.1. ein Ring mit Eins.
+  Sei $\{0\} \neq I \vartriangleleft \End(V)$ ein Ideal, dann existieren
+  $g \in I, b_1 \in V$, sodass
+  \begin{align*}
+    g(b_1) = c_1 \neq 0.
+  \end{align*}
+  Nun können wir $b_1,c_1$ zu zwei Basen $B = \{b_1,\dots,b_n\}$ und $C = \{c_1,\dots,c_n\}$ von $V$
+  fortsetzen.
+  Dann werden durch
+  \begin{align*}
+    &\alpha_k:\begin{cases} V  \rightarrow & V \\
+      b_j  \mapsto & \begin{cases}
+        b_1 & \text{für } j = k \\
+        0 & \text{für } j \neq k.
+        \end{cases}
+        \end{cases} \\
+    &\beta_k: \begin{cases} V \rightarrow & V \\
+      c_j \mapsto & \begin{cases}
+        b_k & \text{für } j = 1 \\
+        0 & \text{für } j \neq 1.
+        \end{cases}
+        \end{cases}
+  \end{align*}
+  lineare Abbildungen definiert und
+  \begin{align*}
+    f_{k,l} := \beta_l \circ g \circ \alpha_k: \begin{cases}
+      V \rightarrow & V \\
+      b_j \mapsto & \begin{cases}
+      b_l & \text{für } j = k\\
+      0 & \text{für } j \neq k.
+      \end{cases}
+    \end{cases}
+  \end{align*}
+  wegen $\End(V)I \subset I$ und $\End(V) \subset I$, ist $f \in I$. Nun definiere
+  für $c \in K$
+  \begin{align*}
+    f_{k,l,c} := c f_{k,l} \in I.
+  \end{align*}
+  Sei nun $f \in \End(V)$ beliebig. Dann lässt sich $f$ darstellen als
+  \begin{align*}
+    f(b_k) = \sum_{l=1}^n c_{k,l}b_l, \qquad k = 1,\dots,n.
+  \end{align*}
+  Es gilt also für $j \in \{1,\dots,n\}$ beliebig gilt
+  \begin{align*}
+    \sum_{k = 1}^n \sum_{l = 1}^n f_{k,l,c_{k,l}}(b_j) = \sum_{l=1}^n c_{j,l}f_{j,l}(b_j)
+    = \sum_{l = 1}^n c_{j,l} b_l = f(b_j).
+  \end{align*}
+  und damit
+  \begin{align*}
+    f = \sum_{k=1}^n\sum_{l=1}^n f_{k,l,c_{k,l}}.
+  \end{align*}
+  Also ist, da $I$ insbesondere eine Untergruppe von $\End(V)$ ist, $f \in I$ und $I = \End(V)$.
+  \item Sei $V$ nun unendlich-dimensional und definiere
+  \begin{align*}
+    I := \{f: V \rightarrow V: \dim f(V) < \infty \} \neq \End(V).
+  \end{align*}
+  Es gilt vorerst für $f_1,f_2 \in I$
+  nach dem Dimensionssatz
+  \begin{align*}
+    \dim((f_1 + f_2)(V)) \leq \dim(f_1(V) + f_2(V)) =
+    \dim(f_1(V)) + \dim(f_2(V)) - \dim(f_1(V)\subset f_2(V)) < \infty
+  \end{align*}
+  Nach der Rangformel gilt auch
+  \begin{align*}
+    \dim(g(f(V))) = \dim(f(V)) - \dim(\ker (G)) < \infty.
+  \end{align*}
+  Es ist also $I \leq \End(V), \End(V)I \subset I, I\End(V) \subset$ und $I$
+  ist damit ein nichttriviales Ideal.
 \end{enumerate}
 \end{solution}
