@@ -14,86 +14,42 @@ Wir wissen, dass jede Untergruppe einer zyklischen Gruppe wieder zyklisch ist.
   \begin{align*}
     C_p \times C_p = \{(a + p\Z, b + p\Z): a,b \in \Z\}
   \end{align*}
-  Sei $U \leq C_p \times C_p$ beliebig.
-  \begin{itemize}
-    \item Fall 1: $\exists (\overline{a},\overline{b} \in U: \overline{a} \neq \overline{b})$
-    \begin{itemize}
-      \item Fall 1.1: $\overline{a} \neq 0$
-      \begin{itemize}
-        \item Fall 1.1.1: $\overline{b} = 0$ \\
-        Nach Proposition 3.2.4.9.ist $\overline{a}$ ein erzeugendes Element von $C_p$ und
-        \begin{align*}
-          \langle (\overline{a}, \overline{0})\rangle  = C_p \times \{0\}
-        \end{align*}
-        ist eine Untergruppe von $U$ und also auch von $C_p \times C_p$.
-        \item Fall 1.1.2: $\overline{b} \neq 0$. \\
-        Dann sind $\overline{a},\overline{b}$ erzeudende Elemente und es gibt $\alpha, \beta \in \N$:
-        \begin{align*}
-          \alpha \overline{a} = 0 \land \beta \overline{b} = 0
-          \land \alpha \overline{b} \neq 0 \land \beta \overline{a} \neq 0,
-        \end{align*}
-        weil
-        \begin{align*}
-          \alpha (\overline{a},\overline{b}) &= (0,\alpha \overline{b}) \in U \\
-          \beta (\overline{a}, \overline{b}) &= (\beta \overline{a}, 0) \in U.
-        \end{align*}
-        Es gilt also $U = C_p \times C_p$.
-      \end{itemize}
-      \item Fall 1.2: $\overline{a} = 0, \overline{b} \neq 0$. \\
-      Analog zu Fall 1.1
-    \end{itemize}
-    \item Fall 2: $\exists (\overline{a},\overline{b}) \in U: \overline{a} = \overline{b}$. \\
-    \begin{itemize}
-      \item Fall 2.1: $U = \{0\}$
-      \item Fall 2.2: $U \neq \{0\}$. \\
-      Also existiert $(\overline{a},\overline{a}) \in U: \overline{a} \neq 0$ und
-      \begin{align*}
-        \{(\overline{a},\overline{a}); \overline{a} \in C_p\} \leq U \leq C_p \times C_p.
-      \end{align*}
-    \end{itemize}
-  \end{itemize}
-  Insgesamt gibt es also 5 Untergruppen: $\{(\overline{0},\overline{0})\},
-  \{\overline{0}\} \times C_p, C_p \times \{\overline{0}\},
-  \{(\overline{a},\overline{a}); \overline{a} \in C_p\}, C_p \times C_p$.
+  Wir wissen nach dem Satz von Lagrange, dass für jede Untergruppe
+  $|U|$ ein Teiler von $|C_p \times C_p| = p^2$ sein muss. Also gibt es neben den
+  trivialen Untergruppen nur noch Untergruppen von der Mächtigkeit $p$ und da
+  jede endliche Gruppe von Primzahlordnung zyklisch sein muss, sind diese
+  Untergruppen allesamt zyklisch.
+  Also können wir uns auf
+  \begin{align*}
+    \langle (a,b) \rangle, \qquad a,b \in C_p
+  \end{align*}
+  einschränken. Für alle $(0,0) \neq (a,b) \in C_p \times C_p$ gilt
+  \begin{align*}
+    \langle (a,b) \rangle = \{k(a,b): 0 \leq k \leq p-1\}.
+  \end{align*}
+  Da laut Proposition 3.2.4.9 jedes Element aus dieser Menge ein erzeugendes Element
+  ist, kann der Schnitt zweier solcher Untergruppen nur das Null-Element erhalten.
+  Gleichzeitig liegt aber jedes Element in einer Untergruppe der Mächtigkeit $p$,
+  also haben wir genau $(p^2-1)/(p-1) = (p+1)$ nichttriviale Untergruppen
+  und insgesamt $(p+3)$ Untergruppen.
   \item Da $1,p,p^2$ die drei einzigen Teiler von $C_{p^2}$ sind, hat
   $C_{p^2}$ genau 3 Untergruppen.
 \end{enumerate}
 \end{solution}
-
-
 \begin{algebraUE}{212}
   Sei $p$ eine Primzahl. Wie viele Automorphismen hat $C_p \times C_p$? \\
   \textit{Hinweis:} Verwenden Sie Ihr Wissen aus der Linearen Algebra.
 \end{algebraUE}
 \begin{solution}
+  Wir fassen $C_p \times C_p$ als zwei-dimensionalen Vektorraum über dem Körper $C_p$
+  auf und betrachten die Basis $\{(0,1),(1,0)\}$.
   Sei $\phi: C_p \times C_p \rightarrow C_p \times C_p$ ein Automorphismus.
-  Dann gilt
+  Für das Bild des ersten Basisvektors können wir alles außer der Null wählen.
   \begin{align*}
-    \varphi(0,0) &= (0,0) \\
-    \varphi(1,0) &= (a,b) \neq (0,0)
+    \varphi((0,1)) := (a,b) \neq (0,0)
   \end{align*}
-  Wieder machen wir eine Fallunterscheidung:
-  \begin{itemize}
-    \item Fall 1: $a \neq 0$
-    \begin{itemize}
-      \item Fall 1.1: $b \neq 0, b \neq a$. \\
-      Es ist $\varphi(C_p \times \{0\})$ eine Untergruppe von $C_p \times C_p$
-      mit gleich vielen Elementen wie $C_p \times \{0\}$, was einen Widerspruch ergibt-
-      \item Fall 1.2: $b = 0$. \\
-      Dann ist $\varphi(C_p \times \{0\}) = C_p \times \{0\}$, es gibt also $p$ Möglichkeiten.
-      \item Fall 1.3: $b = a$. \\
-      Dann ist $\varphi(C_p \times \{0\}) = \{(a,a): a \in C_p\}$, es gibt also wieder
-      $p$ Möglichkeiten.
-    \end{itemize}
-    \item Fall 2: $a = 0$. \\
-    Dann ist $b \neq 0$ und $\varphi(C_p \times \{0\}) = \{0\} \times C_p$.
-    Für $\varphi(0,1)$ funktioniert alles analog, außer
-    \begin{align*}
-      \forall (x,y) \in \varphi(C_p \times \{0\}): (x,y) \notin \varphi(\{0\} \times C_p).
-    \end{align*}
-    Also: Für $\varphi(1,0)$ gibt es $3p$ Möglichkeiten und für $\varphi(1,0)$
-    gibt es unabhängig davon $2p$ Möglichkeiten. Mit diesen beiden Werten ist
-    der Automorphismus bereits eindeutig bestimmt und wir erhalten insgesamt
-    $6p^2$ mögliche Automorphismen.
-  \end{itemize}
+  Also haben wir $p^2 - 1$ Möglichkeiten.
+  Da $|\spn\{(a,b)\}| = p$ gibt es in $C_p \times C_p$ insgesamt $p^2 - p$
+  linear unabhängige Vektoren auf die $(1,0)$ abgebildet werden kann.
+  Also erhalten wir $(p^2 - 1)(p^2 - p)$ verschiedene Automorphismen.
 \end{solution}
