@@ -11,5 +11,82 @@ einen eindeutigen ordnungsverträglichen Homomorphismus $\iota$, der
 (wieder wegen der archimedischen Eigenschaft) sogar injektiv sein muss.
 \end{algebraUE}
 \begin{solution}
-Exzellenter Einfall.
+Wir setzen o.B.d.A. $G \neq \{0\}$, also $\exists 0 \neq g \in G^+$.
+Wir setzen $\iota(g) = 1$ und haben damit
+\begin{align*}
+  \forall k \in \Z: \iota(kg) = k\iota(g) = k.
+\end{align*}
+Für $G = \Z g$ sind wir damit bereits fertig.
+Anderenfalls, wähle $h \in G^+\backslash \Z g$ und setze
+\begin{align*}
+  \forall n \in \N\backslash \{0\}: m_n^h &:= \min\{k \in \N: 2^nh \leq kg\}.
+\end{align*}
+Damit $\iota$ ein Ordnungisomorphismus werden kann, muss gelten
+\begin{align*}
+  2^n \iota(h) &= \iota(2^nh) \leq \iota(m_n^hg) = m_n^h \iff \iota(h) \leq \frac{m_n^h}{2^n} \\
+  2^n \iota(h) &= \iota(2^nh) \geq \iota((m_n^h - 1)g) = m_n^h - 1 \iff \iota(h) \geq \frac{m_n^h - 1}{2^n},
+\end{align*}
+also
+\begin{align*}
+  \forall n \in \N: \iota(h) \in \left[\frac{m_n^h-1}{2^n},\frac{m_n^h}{2^n}\right]
+  \iff \iota(h) \in \bigcap_{n \in \N} \left[\frac{m_n^h-1}{2^n},\frac{m_n^h}{2^n}\right].
+\end{align*}
+Es gilt
+\begin{align*}
+  (m_1 - 1)g \leq h \leq m_1g.
+\end{align*}
+Es folgt
+\begin{align*}
+  &2(m_1 - 1) + 1 \leq m_2 \leq  2m_1 \\
+  \iff &m_1 - \frac{1}{2} \leq \frac{m_2}{2} \leq m_1 \\
+  \iff &\left[\frac{m_2-1}{2},\frac{m_2}{2}\right] \subseteq \left[m_1 -1,m_1\right]
+\end{align*}
+Induktiv folgt dann, dass mit $[\frac{m_n^h-1}{2^n},\frac{m_n^h}{2^n}]_{n \in \N}$
+eine absteigende Mengenfolge vorliegt.
+Aufgrund der Vollständigkeit der reellen Zahlen existiert also
+\begin{align*}
+  \iota(h) = x = \lim_{n \rightarrow \infty} \frac{m_n^h}{2^n} = \lim_{n \rightarrow \infty} \frac{m_n^h-1}{2^n}
+\end{align*}
+und somit wird $\iota$ bereits auf ganz $G$ eindeutig festgelegt. \\
+Nun zur Injektivität von $\iota$: Sei $k \in G^+\backslash\{0\}$ beliebig.
+Dann existiert ein $n \in \N: 1 \leq n\iota(h)$, weil die additive Gruppe $(\R,+)$
+archimedisch angeordnet ist. Daraus folgt $\iota(0) = 0 < \frac{1}{n} \leq \iota(h)$.
+Daraus erhalten wir schließlich die Injektivität, denn für $a \neq b \in G$ gilt
+\begin{align*}
+  \iota(a) - \iota(b) = \iota(a-b) \neq 0 \implies \iota(a) \neq \iota(b).
+\end{align*}
+Diese Konstruktion erhält auch die Ordnung, denn für $a > b \in G$ gilt $a-b \in G^+$
+und es existiert ein $n \in N: (a-b) \geq ng$
+\begin{align*}
+  \iota(a) - \iota(b) = \iota(a-b) \geq \iota(ng) = n\iota(g) \geq 0.
+\end{align*}
+und aus der Injektivität folgt sogar $\iota(a) > \iota(b)$.
+Jetzt müssen wir noch zeigen, dass diese Konstruktion auch ein Homomorphismus ist.
+\begin{align*}
+  \iota(0) &= \iota(0g) = 0\iota(g) = 0 \\
+  \iota(-h) &= -\iota(h)
+\end{align*}
+Für die Verträglichkeit mit der Addition müssen wir etwas mehr arbeiten:
+\begin{align*}
+  \forall n \in \N:& 2^nh_1 \leq m_n^{h_1}g \land 2^nh_2 \leq m_n^{h_2}g \\
+  &\implies 2^n(h_1 + h_2) \leq (m_n^{h_1} + m_n^{h_2})g \implies m_n^{h_1} + m_n^{h_2} \geq m_n^{h_1 + h_2} \\
+  \forall n \in \N:& 2^nh_1 \geq (m_n^{h_1}-1)g \land 2^nh_2 \geq (m_n^{h_2}-1)g \\
+  &\implies 2^n(h_1 + h_2) \geq (m_n^{h_1} + m_n^{h_2} - 2)g \implies m_n^{h_1} + m_n^{h_2} \leq m_n^{h_1 + h_2} + 1
+\end{align*}
+Daraus folgt
+\begin{align*}
+  \iota(h_1) + \iota(h_2) = \lim_{n \rightarrow \infty} \frac{m_n^{h_1} + m_n^{h_2}}{2^n}
+  = \lim_{n \rightarrow \infty} \frac{m_n^{h_1 + h_2}}{2^n} = \iota(h_1 + h_2).
+\end{align*}
+Schließlich noch zu Eindeutigkeit von $\iota$: \\
+Sei nun $\alpha$ eine weiter isomorphe Einbettung mit
+\begin{align*}
+  \alpha(g) = \lambda = \lambda \iota(g) = \iota(\lambda g).
+\end{align*}
+Wie zuvor ist dadurch schon
+\begin{align*}
+  \lambda \frac{m_n^h - 1}{2^n} = \frac{m_n^h - 1}{2^n}\alpha(g) \leq \alpha(h) \leq \frac{m_n^h}{2^n}\alpha(g)
+  = \lambda \frac{m_n^h}{2^n}
+\end{align*}
+und es gilt $\alpha(h) = \lambda \iota(g)$.
 \end{solution}
