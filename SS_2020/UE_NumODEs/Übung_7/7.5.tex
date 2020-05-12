@@ -17,7 +17,7 @@ $c_1,\dots,c_m$. Wir definieren das Polynom
 \end{enumerate}
 \textit{Hinweis (zu a):} Um die Darstellung von $R(z)$ zu erhalten, betrachten Sie
 das übliche Modellproblem mit $h = 1$(dies impliziert $z = \lambda$). Aus der
-Definitiond der Kollokationspolynome $q \in \Pi_m$ schließen Sie nun, dass
+Definition der Kollokationspolynome $q \in \Pi_m$ schließen Sie nun, dass
 \begin{align*}\label{a}
   q^{\prime}(x) - zq(x) = KM(x)
 \end{align*}
@@ -26,5 +26,75 @@ mal ab, um einen Ausdruck für $q(x)$ zu erhalten. Schließlich gilt
 $R(z) = \nicefrac{q(1)}{q(0)}$.
 \end{exercise}
 \begin{solution}
-Lösung.
+Die Kollokationspolynome $q_l \in \Pi_m$ werden durch
+\begin{align*}
+  q_l(t_l) &= y_l, \\
+  q_l^{\prime}(t_l + c_jh_l) = f(t_l + c_jh_l, q_l(t_l + c_jh_l)), \qquad j = 1,\dots,m \\
+  y_{l+1} &:= q_l(t_l + h_l)
+\end{align*}
+eindeutig festgelegt. Wir wählen nun $f(y) = \lambda y, t_0 = 0, h_0 = 1$
+und erhalten also
+\begin{align*}
+  q(0) &= y_0 \\
+  q^{\prime}(c_j) &= \lambda q(c_j), \qquad j = 1,\dots,m \\
+  y_1 := q(1).
+\end{align*}
+Aus der Definition der Stabilitätsfunktion folgt
+\begin{align*}
+  y_1 = R(\lambda)y_0 \implies  R(z) = R(\lambda) = \frac{y_1}{y_0} = \frac{q(1)}{q(0)}.
+\end{align*}
+Als nächstes zeigen wir
+\begin{align*}
+  q^{\prime}(x) - zq(x) - KM(x) \equiv 0
+\end{align*}
+für geeignetes $K$. Dafür bemerken wir, dass für $c_j, j=1,\dots,m$
+\begin{align*}
+  q^{\prime}(c_j) - zq(c_j) - KM(c_j) = zq(c_j) - zq(c_j) = 0
+\end{align*}
+gilt. Nun wähle $x_0: q^{\prime}(x_0) - zq(x_0) \neq 0$ beliebig. Dies ist sicher möglich,
+da anderenfalls $\forall x: q^{\prime}(x) = zq(x)$ und somit $q(x) = C\exp(zx)$ folgen würde.
+Nun setze
+\begin{align*}
+  K := q^{\prime}(x_0) - zq(x_0)
+\end{align*}
+und es folgt
+\begin{align*}
+  q^{\prime}(x_0) - zq(x_0) - KM(x_0) = 0.
+\end{align*}
+Damit hat das Polynom $q^{\prime} - zq - KM \in \Pi_m$ insgesamt $m+1$ Nullstellen
+und muss damit das Nullpolynom sein.
+Jetzt können wir $KM(x), s = 1,\dots,m$ Mal ableiten
+und erhalten für $q(x) = \sum_{k=1}^m a_kx^k$
+\begin{align*}
+  \partial_x^s KM(x) &= \partial_x^s (q^{\prime}(x) + zq(x))
+  = \partial_x^{s+1}q(x) - z\partial_x^s q(x)
+  = \sum_{k=0}^{m-s-1}a_{k+s+1}\frac{(k+s+1)!}{k!}x^k - z\sum_{k=0}^{m-s}a_{k+s}\frac{(k+s)!}{k!}x^k.
+\end{align*}
+Nun setzen wir für $x = 1$ ein.
+\begin{align*}
+  KM^{(s)}(1) &= \sum_{k=0}^{m-s-1}a_{k+s+1}\frac{(k+s+1)!}{k!}
+  - z\underbrace{\sum_{k=0}^{m-s}\frac{(k+s)!}{k!}}_{=: b_s} \\
+  KP(z) &= \sum_{s=0}^m KM^{(s)}(1)z^{m-s} = \sum_{s=0}^m (b_{s+1} - zb_s)z^{m-s} \\
+  &= \sum_{s=0}^m z^{m-s}b_{s+1} - z^{m-s+1}b_s
+  = -z^{m+1}b_0 + b_{m+1}
+  = -z^{m+1}\sum_{i=1}^m a_i
+  = -z^{m+1}q(1)
+\end{align*}
+Für $x=0$ erhalten wir wiederum
+\begin{align*}
+  KM^{(s)}(0) = \begin{cases}
+    a_{s+1}(s+1)! - za_ss, & s < m \\
+    -za_mm!, & s = m
+  \end{cases} \\
+  KQ(z) &= K\sum_{s=0}^m M^{(s)}(0)z^{m-s} = \sum_{s=0}^{m-1}(b_{s+1}-zb_s)z^{m-s} - zb_m
+  = \sum_{s=0}^{m-1}z^{m-s}b_{s+1} - z^{m-s+1}b_s - zb_m
+  = -z^{m+1}b_0
+  = -z^{m+1}a_0
+  = -z^{m+1}q(0)
+\end{align*}
+Daraus folgt
+\begin{align*}
+  \frac{KP(z)}{KQ(z)} = \frac{-z^{m+1}q(1)}{-z^{m+1}q(0)} = \frac{q(1)}{q(0)} = R(z).
+\end{align*}
+\item 
 \end{solution}

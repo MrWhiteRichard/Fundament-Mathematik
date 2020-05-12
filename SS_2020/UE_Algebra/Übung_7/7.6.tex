@@ -33,13 +33,15 @@ also
 \end{align*}
 Es gilt
 \begin{align*}
-  (m_0 - 1)g \leq h \leq m_0g.
+  (m_n - 1)g \leq 2^nh \leq m_ng.
 \end{align*}
 Es folgt
 \begin{align*}
-  &2(m_0 - 1) + 1 \leq m_1 \leq  2m_0 \\
-  \iff &m_0 - \frac{1}{2} \leq \frac{m_1}{2} \leq m_0 \\
-  \iff &\left[\frac{m_1-1}{2},\frac{m_1}{2}\right] \subseteq \left[m_0 -1,m_0\right]
+  2^{n+1}h &\leq 2\cdot2^nh \leq 2 m_n g \implies m_{n+1} \leq 2m_n
+  \iff \frac{m_{n+1}}{2^{n+1}} \leq \frac{m_n}{2^n} \\
+  2^{n+1}h &\geq 2 (m_n - 1)g \implies m_{n+1} - 1 \geq 2 (m_n - 1)
+  \iff \frac{m_{n+1}-1}{2^{n+1}} \geq \frac{m_n-1}{2^n}\\
+  &\iff \left[\frac{m_{n+1} - 1}{2^{n+1}},\frac{m_{n+1}}{2^{n+1}}\right] \subset \left[\frac{m_{n} - 1}{2^{n}},\frac{m_{n}}{2^{n}}\right]
 \end{align*}
 Induktiv folgt dann, dass mit $[\frac{m_n^h-1}{2^n},\frac{m_n^h}{2^n}]_{n \in \N}$
 eine absteigende Mengenfolge vorliegt und der Schnitt darüber ist somit nicht leer.
