@@ -15,5 +15,47 @@ Berechnen Sie die Stabilitätsfunktion dieses Verfahrens. Ist dieses Verfahren
 A-stabil?
 \end{exercise}
 \begin{solution}
-Lösung.
+Wir betrachten die Fixpunktiteration
+\begin{align*}
+  \Psi: \bigg\{\begin{matrix}
+    \R^{n \times m} & \rightarrow & \R^{n \times m} \\
+    (k_1,\dots,k_m) & \mapsto & \left(f\left(t + c_jh,y + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}\right)\right)_{j=1}^m
+  \end{matrix}
+\end{align*}
+Dann erhalten wir mit dem Modellproblem $f(t,y) = \lambda y$ und $\1 := (1,\dots,1) \in \R^m$
+\begin{align*}
+  k^{(0)} &= \lambda y_l \1 \\
+  k^{(1)}_{j0} &= \Psi(k^{(0)})_{j0}
+  = \lambda\left(y_{\ell} + h\sum_{j_1 = 1}^mA_{j_0,j_1}\lambda y_{\ell}\right)
+  = y_{\ell}\left(\lambda + h\lambda^2\sum_{j_1 = 1}^mA_{j_0,j_1}\right) \\
+  k^{(2)}_{j0} &= \Psi(k^{(1)})_{j0}
+  = \lambda\left(y_{\ell} + h\sum_{j_1 = 1}^mA_{j_0,j_1}y_{\ell}\left(\lambda + h\lambda^2
+  \sum_{j_1 = 1}^mA_{j_0,j_1}\right)\right)
+  = y_{\ell}\left(\lambda + h\lambda^2\sum_{j_1 = 1}^mA_{j_0,j_1}
+  + h^2\lambda^3\sum_{j_1 = 1}^m\sum_{j_2 = 1}^m A_{j_0,j_1}A_{j_1,j_2}\right) \\
+  &\vdots \\
+  k^{(m)}_{j_0} &= y_{\ell}\sum_{k = 0}^m \lambda^{k+1}h^k\sum_{j_1 = 1}^m\dots\sum_{j_{k} = 1}^m
+  \prod_{i=1}^k A_{j_{i-1}, j_i}.
+\end{align*}
+Also gilt
+\begin{align*}
+  y_{\ell+1} &= y_\ell + h\sum_{j_0 = 1}^{m} b_{j_0}k_{j_o}^{(m)} =
+  y_\ell + h\sum_{j_0 = 1}^{m} b_{j_0}y_{\ell}\sum_{k = 0}^m \lambda^{k+1}h^k\sum_{j_1 = 1}^m\dots\sum_{j_{k} = 1}^m
+  \prod_{i=1}^k A_{j_{i-1}, j_i} \\
+  &= y_{\ell}\left(1 + (\lambda h)\sum_{i=1}^nb_i + \sum_{k=1}^m(\lambda h)^{k+1}
+  \sum_{j_0 = 1}^mb_{j_0}\dots\sum_{j_k = 1}^m \prod_{i=1}^k A_{j_{i-1},j_i}\right) \\
+  R(\lambda h) &= 1 + \lambda h + \sum_{k=1}^m(\lambda h)^{k+1}
+  \sum_{j_0 = 1}^mb_{j_0}\dots\sum_{j_k = 1}^m \prod_{i=1}^k A_{j_{i-1},j_i}
+  \in \Pi_{m+1}(\lambda h)
+\end{align*}
+Damit folgt, dass es ein $1 \leq v \leq m - 1$ gibt, sodass
+\begin{align*}
+  R(z) = \sum_{k= 0}^v a_kz^k
+\end{align*}
+mit $a_v \neq 0$ und es gilt
+\begin{align*}
+  |R(z)| \geq |a_v||z|^v - \sum_{k=0}^{v-1}|a_k||z^k|
+  = |z|^v\left(|a_v| - \sum_{j = 0}^{v - 1}\frac{|a_j|}{|z|^{v - j}}\right)
+  \stackrel{\Re(z) \rightarrow \infty}{\longrightarrow} \infty.
+\end{align*}
 \end{solution}

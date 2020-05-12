@@ -18,9 +18,9 @@ $c_1,\dots,c_m$. Wir definieren das Polynom
 \textit{Hinweis (zu a):} Um die Darstellung von $R(z)$ zu erhalten, betrachten Sie
 das übliche Modellproblem mit $h = 1$(dies impliziert $z = \lambda$). Aus der
 Definition der Kollokationspolynome $q \in \Pi_m$ schließen Sie nun, dass
-\begin{align*}\label{a}
+\begin{align}\label{a}
   q^{\prime}(x) - zq(x) = KM(x)
-\end{align*}
+\end{align}
 für eine Konstante $K \neq 0$. Leiten Sie Gleichung \eqref{a} $s=0,\dots,m$
 mal ab, um einen Ausdruck für $q(x)$ zu erhalten. Schließlich gilt
 $R(z) = \nicefrac{q(1)}{q(0)}$.
@@ -29,7 +29,7 @@ $R(z) = \nicefrac{q(1)}{q(0)}$.
 Die Kollokationspolynome $q_l \in \Pi_m$ werden durch
 \begin{align*}
   q_l(t_l) &= y_l, \\
-  q_l^{\prime}(t_l + c_jh_l) = f(t_l + c_jh_l, q_l(t_l + c_jh_l)), \qquad j = 1,\dots,m \\
+  q_l^{\prime}(t_l + c_jh_l) &= f(t_l + c_jh_l, q_l(t_l + c_jh_l)), \qquad j = 1,\dots,m \\
   y_{l+1} &:= q_l(t_l + h_l)
 \end{align*}
 eindeutig festgelegt. Wir wählen nun $f(y) = \lambda y, t_0 = 0, h_0 = 1$
@@ -96,31 +96,24 @@ Daraus folgt
 \begin{align*}
   \frac{KP(z)}{KQ(z)} = \frac{-z^{m+1}q(1)}{-z^{m+1}q(0)} = \frac{q(1)}{q(0)} = R(z).
 \end{align*}
-\item Sei $p \in \Pi$ symmetrisch um $x$,
-also $p(x+y) = p(x-y)$.
-Dann ist
-\begin{align*}
-  p^{\prime}(x+y) = \lim_{h \rightarrow 0}\frac{p(x+y+h)-p(x+y)}{h}
-  = \lim_{h \rightarrow 0}\frac{p(x-y-h)-p(x-y)}{h}
-  = -p^{\prime}(x-y).
-\end{align*}
-Ebenso sieht man, dass aus $p(x+y) = -p(x+y)$ bereits $p^{\prime}(x+y) = p^{\prime}(x-y)$ folgt.
+\item
 Aus Aufgabe 27 von letzter Woche wissen wir, dass die Kollokationspunkte einer
 Gauß-Kollokation für die konstante Gewichtsfunktion $\omega(x) \equiv 1$
 symmetrisch um $\nicefrac{1}{2}$ liegen, also $c_j = 1 - c_{m+1-j}, j = 1,\dots,m$.
 Daraus folgt
 \begin{align*}
-  M(\frac{1}{2}+x) = \frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}+x-c_j)
-  = \frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}+x - (1 - c_{m+1-j}))
-  = (-1)^m\frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}-x + c_{m+1-j}))
-  = (-1)^m M(\frac{1}{2}+x).
+  M\left(\frac{1}{2}+x\right) &= \frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2}+x-c_j\right)
+  = \frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2}+x - (1 - c_{m+1-j})\right) \\
+  &= (-1)^m\frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2} - x - c_{m+1-j}\right)
+  = (-1)^m M\left(\frac{1}{2}+x\right).
 \end{align*}
-Wenden wir nun das zuvor gezeigte an, erhalten wir
+und wir erhalten
 \begin{align*}
-  \forall s = 1,\dots,m: |M^{(s)}(1)| = |M^{(s)}(0)|
+  |M(0)| = |M(1)|.
 \end{align*}
-und damit
+Da $R$ ein rationales Polynom ist, ist der Grenzwert für $z \rightarrow \infty$
+bereits durch die Führungskoeffizienten bestimmt:
 \begin{align*}
-  \forall z \in \C: |R(z)| = 1.
+  \lim_{\Re(z) \rightarrow -\infty} |R(z)| = \left|\frac{M(0)}{M(1)}\right| = 1.
 \end{align*}
 \end{solution}
