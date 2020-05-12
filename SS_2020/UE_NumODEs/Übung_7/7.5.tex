@@ -82,12 +82,12 @@ Nun setzen wir für $x = 1$ ein.
 \end{align*}
 Für $x=0$ erhalten wir wiederum
 \begin{align*}
-  KM^{(s)}(0) = \begin{cases}
+  KM^{(s)}(0) &= \begin{cases}
     a_{s+1}(s+1)! - za_ss, & s < m \\
     -za_mm!, & s = m
   \end{cases} \\
-  KQ(z) &= K\sum_{s=0}^m M^{(s)}(0)z^{m-s} = \sum_{s=0}^{m-1}(b_{s+1}-zb_s)z^{m-s} - zb_m
-  = \sum_{s=0}^{m-1}z^{m-s}b_{s+1} - z^{m-s+1}b_s - zb_m
+  KQ(z) &= K\sum_{s=0}^m M^{(s)}(0)z^{m-s} = \sum_{s=0}^{m-1}(b_{s+1}-zb_s)z^{m-s} - zb_m \\
+  &= \sum_{s=0}^{m-1}z^{m-s}b_{s+1} - z^{m-s+1}b_s - zb_m
   = -z^{m+1}b_0
   = -z^{m+1}a_0
   = -z^{m+1}q(0)
@@ -96,5 +96,31 @@ Daraus folgt
 \begin{align*}
   \frac{KP(z)}{KQ(z)} = \frac{-z^{m+1}q(1)}{-z^{m+1}q(0)} = \frac{q(1)}{q(0)} = R(z).
 \end{align*}
-\item 
+\item Sei $p \in \Pi$ symmetrisch um $x$,
+also $p(x+y) = p(x-y)$.
+Dann ist
+\begin{align*}
+  p^{\prime}(x+y) = \lim_{h \rightarrow 0}\frac{p(x+y+h)-p(x+y)}{h}
+  = \lim_{h \rightarrow 0}\frac{p(x-y-h)-p(x-y)}{h}
+  = -p^{\prime}(x-y).
+\end{align*}
+Ebenso sieht man, dass aus $p(x+y) = -p(x+y)$ bereits $p^{\prime}(x+y) = p^{\prime}(x-y)$ folgt.
+Aus Aufgabe 27 von letzter Woche wissen wir, dass die Kollokationspunkte einer
+Gauß-Kollokation für die konstante Gewichtsfunktion $\omega(x) \equiv 1$
+symmetrisch um $\nicefrac{1}{2}$ liegen, also $c_j = 1 - c_{m+1-j}, j = 1,\dots,m$.
+Daraus folgt
+\begin{align*}
+  M(\frac{1}{2}+x) = \frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}+x-c_j)
+  = \frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}+x - (1 - c_{m+1-j}))
+  = (-1)^m\frac{1}{m!}\prod_{j=1}^m(\frac{1}{2}-x + c_{m+1-j}))
+  = (-1)^m M(\frac{1}{2}+x).
+\end{align*}
+Wenden wir nun das zuvor gezeigte an, erhalten wir
+\begin{align*}
+  \forall s = 1,\dots,m: |M^{(s)}(1)| = |M^{(s)}(0)|
+\end{align*}
+und damit
+\begin{align*}
+  \forall z \in \C: |R(z)| = 1.
+\end{align*}
 \end{solution}
