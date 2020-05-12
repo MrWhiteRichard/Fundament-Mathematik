@@ -55,7 +55,7 @@ gilt. Nun wähle $x_0: q^{\prime}(x_0) - zq(x_0) \neq 0$ beliebig. Dies ist sich
 da anderenfalls $\forall x: q^{\prime}(x) = zq(x)$ und somit $q(x) = C\exp(zx)$ folgen würde.
 Nun setze
 \begin{align*}
-  K := q^{\prime}(x_0) - zq(x_0)
+  K := \frac{q^{\prime}(x_0) - zq(x_0)}{M(x_0)}
 \end{align*}
 und es folgt
 \begin{align*}
@@ -73,7 +73,7 @@ und erhalten für $q(x) = \sum_{k=1}^m a_kx^k$
 Nun setzen wir für $x = 1$ ein.
 \begin{align*}
   KM^{(s)}(1) &= \sum_{k=0}^{m-s-1}a_{k+s+1}\frac{(k+s+1)!}{k!}
-  - z\underbrace{\sum_{k=0}^{m-s}\frac{(k+s)!}{k!}}_{=: b_s} \\
+  - z\underbrace{\sum_{k=0}^{m-s}a_{k+s}\frac{(k+s)!}{k!}}_{=: b_s} \\
   KP(z) &= \sum_{s=0}^m KM^{(s)}(1)z^{m-s} = \sum_{s=0}^m (b_{s+1} - zb_s)z^{m-s} \\
   &= \sum_{s=0}^m z^{m-s}b_{s+1} - z^{m-s+1}b_s
   = -z^{m+1}b_0 + b_{m+1}
@@ -83,7 +83,7 @@ Nun setzen wir für $x = 1$ ein.
 Für $x=0$ erhalten wir wiederum
 \begin{align*}
   KM^{(s)}(0) &= \begin{cases}
-    a_{s+1}(s+1)! - za_ss, & s < m \\
+    a_{s+1}(s+1)! - za_ss!, & s < m \\
     -za_mm!, & s = m
   \end{cases} \\
   KQ(z) &= K\sum_{s=0}^m M^{(s)}(0)z^{m-s} = \sum_{s=0}^{m-1}(b_{s+1}-zb_s)z^{m-s} - zb_m \\
@@ -94,7 +94,7 @@ Für $x=0$ erhalten wir wiederum
 \end{align*}
 Daraus folgt
 \begin{align*}
-  \frac{KP(z)}{KQ(z)} = \frac{-z^{m+1}q(1)}{-z^{m+1}q(0)} = \frac{q(1)}{q(0)} = R(z).
+  \frac{P(z)}{Q(z)}=\frac{KP(z)}{KQ(z)} = \frac{-z^{m+1}q(1)}{-z^{m+1}q(0)} = \frac{q(1)}{q(0)} = R(z).
 \end{align*}
 \item
 Aus Aufgabe 27 von letzter Woche wissen wir, dass die Kollokationspunkte einer
@@ -105,7 +105,7 @@ Daraus folgt
   M\left(\frac{1}{2}+x\right) &= \frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2}+x-c_j\right)
   = \frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2}+x - (1 - c_{m+1-j})\right) \\
   &= (-1)^m\frac{1}{m!}\prod_{j=1}^m\left(\frac{1}{2} - x - c_{m+1-j}\right)
-  = (-1)^m M\left(\frac{1}{2}+x\right).
+  = (-1)^m M\left(\frac{1}{2}-x\right).
 \end{align*}
 und wir erhalten
 \begin{align*}
