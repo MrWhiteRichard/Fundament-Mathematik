@@ -31,7 +31,7 @@ Im Beweis dieses Satzes sind genauer folgende Schritte zu tun:
   \item Die Addition ist wohldefiniert auf $R[[[x]]]$, da für $N := \ord(p), M := \ord(q)$
   und $p+q(x) = \sum_{k \in \Z}c_kx^k$
   \begin{align*}
-    \forall k < \min{N,M}: c_k = a_k + b_k = 0.
+    \forall k < \min\{N,M\}: c_k = a_k + b_k = 0.
   \end{align*}
   $(R[[[x]]],+,0,-)$ ist klarerweise eine abelsche Gruppe, da sich die
   entsprechenden Eigenschaften direkt von $R$ übertragen lassen.
@@ -43,12 +43,20 @@ Im Beweis dieses Satzes sind genauer folgende Schritte zu tun:
   \end{align*}
   Ebenso ist sie klarerweise assoziativ, kommutativ, distributiv bezüglich $+$
   und hat das Einselement $1_{R[[[x]]]}$.
+  Wir rechnen exemplarisch das Assoziativgesetz nach
+  \begin{align*}
+    \left((a_k)_{k \in \Z} \cdot (b_k)_{k \in \Z}\right) \cdot (c_k)_{k \in \Z}
+    &= \left(\sum_{i \in \Z}a_i b_{k-i}\right)_{k \in \Z}\cdot (c_k)_{k \in \Z}
+    = \left(\sum_{j \in \Z} \left( \sum_{i \in \Z}a_i b_{j-i}\right)c_{k-j}\right)_{k \in \Z} \\
+    &= \left(\sum_{i \in \Z}a_i\left(\sum_{j \in \Z} b_{j-i} c_{k-j}\right)\right)_{k \in \Z}
+    = (a_k)_{k \in \Z}\left(\sum_{j \in \Z} b_{j-i} c_{k-j}\right)_{k \in \Z} \\
+    &= (a_k)_{k \in \Z} \cdot \left((b_k)_{k \in \Z} \cdot (c_k)_{k \in \Z}\right).
+  \end{align*}
   Also stellt $(R[[[x]]],+,0,-1,\cdot,1)$ tatsächlich einen kommutativer Ring mit Eins dar.
   \item Sei $q \in R[[[x]]]\backslash \{0\}$ beliebig. Sei $N := \ord(q)$, dann gilt
-  aufgrund der Tatsache, dass $R$ ein Körper ist.
+  aufgrund der Tatsache, dass $R$ ein Körper ist
   \begin{align*}
-    q(x) = \sum_{k = N}^{\infty}a_kx^k = \sum_{k = N}^{\infty}a_kx^k
-    = x^{N}\sum_{k = 0}^{\infty}a_{k+N}x^k
+    q(x) = \sum_{k = N}^{\infty}a_kx^k = x^{N}\sum_{k = 0}^{\infty}a_{k+N}x^k
   \end{align*}
   mit $\overline{q}(x) := \sum_{k = 0}^{\infty}a_{k+N}x^k \in R[[x]]^*$, da $0 \neq a_{k+N} \in R^*$.
   Sei nun $N^{\prime} \in \Z, \overline{q^{\prime}} \in R[[x]]^*: q(x) = x^{N^{\prime}}\overline{q}^{\prime}(x)$,
@@ -60,26 +68,27 @@ Im Beweis dieses Satzes sind genauer folgende Schritte zu tun:
   \begin{itemize}
     \item Fall 1: $N-N^{\prime} < 0$: Dann ist $\overline{q}^{\prime} \notin R[[x]]$.
     \item Fall 2: $N-N^{\prime} > 0$: Dann ist aufgrund
-    $\ord(x^{N-N^{\prime}}\overline{q}(x)) \leq N - N^{\prime} > 0: a_0^{\prime} = 0$
+    $\ord(\overline{q}^{\prime}) = \ord(x^{N-N^{\prime}}\overline{q}(x)) = N - N^{\prime} > 0: a_0^{\prime} = 0$
     und $\overline{q}^{\prime} \notin R[[x]]^*$.
     \item Fall 3: $N-N^{\prime} = 0$: Dann ist $\overline{q}^{\prime}(x) = \overline{q}(x)$.
   \end{itemize}
   Damit ist diese Darstellung für beliebiges $q \in R[[[x]]]\backslash \{0\}$ eindeutig.
   \item Sei $q \in R[[[x]]]\backslash \{0\}$ beliebig. Sei $N := \ord(q)$, dann gilt
+  mit $\overline{q}(x) \in R[[x]]^*$
   \begin{align*}
-    p(x) = x^{-N}\overline{q}(x).
+    q(x) = x^{N}\overline{q}(x).
   \end{align*}
   $\overline{q}$ hat in $R[[x]]$ ein Inverses: $\overline{q}^{-1}$. Damit erhalten wir
   \begin{align*}
-    p^{-1}(x) = x^N\overline{q}^{-1}(x)
+    q^{-1}(x) = x^{-N}\overline{q}^{-1}(x)
   \end{align*}
   und somit ist $R[[[x]]]$ ein Körper.
   \item Zuerst bemerken wir, dass $\iota$ eine isomorphe Einbettung von $R[[x]]$
-  als Ring mit Eins in $R[[[x]]]$ ist. Mit Punkt 3 und Punkt 4 folgt, dass
-  \begin{align*}
-    R[[[x]]] = \left\{\frac{p}{q}: p, q \in R[[x]], q \neq 0 \right\}
-  \end{align*}
-  und aus Proposition 3.3.5.10 folgt, dass $R[[[x]]]$ somit ein Quotientenkörper
+  als Ring mit Eins in $R[[[x]]]$ ist. $R[[[x]]]$ ist ein Körper, welcher gleichzeitig
+  der von $\iota(R[[x]])$ erzeugte Unterkörper $Q$ ist, da $Q$ alle bereits alle
+  Inversen $x^{-N}$ enthalten muss. Da sich jedes $q \in R[[[x]]]$ als Linearkombination von
+  $x^{-N}$ und einem Element aus $R[[x]]$ darstellen lässt, muss $Q = R[[[x]]]$.
+  Aus Proposition 3.3.5.10 folgt dann, dass $R[[[x]]]$ somit ein Quotientenkörper
   von $R[[x]]$ ist.
 \end{enumerate}
 \end{solution}

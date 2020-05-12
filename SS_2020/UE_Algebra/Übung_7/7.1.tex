@@ -32,9 +32,11 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
   \end{align*}
   Als Beispiel, bei dem Gleichheit nicht gilt, betrachte
   \begin{align*}
-  p(x) &= 1, \qquad \ord(p(x)) = 0 \\
-  q(x) &= -1, \qquad \ord(q(x)) = 0 \\
-  p + q (x) &= 0, \qquad \grad(p + q(x)) = \infty
+  \begin{matrix}
+    p(x) & = & 1, & \ord(p(x)) & = & 0 \\
+    q(x) & = & -1, & \ord(q(x)) & = & 0 \\
+    p + q (x) & = & 0, & \ord(p + q(x)) & = & \infty
+  \end{matrix}
   \end{align*}
   \item \begin{align*}
     \grad(p + q) = \max\{n \in \N: a_n + b_n \neq 0 \}
@@ -43,13 +45,15 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
     \end{align*}
     Als Beispiel, bei dem Gleichheit nicht gilt, betrachte
     \begin{align*}
-      p(x) &= 1, \qquad \grad(p(x)) = 0 \\
-      q(x) &= -1, \qquad \grad(q(x)) = 0 \\
-      p + q (x) &= 0, \qquad \grad(p + q(x)) = -\infty
+    \begin{matrix}
+      p(x) & = & 1, & \grad(p(x)) & = & 0 \\
+      q(x) & = & -1, & \grad(q(x)) & = & 0 \\
+      p + q (x) & = & 0, & \grad(p + q(x)) & = & -\infty
+    \end{matrix}
     \end{align*}
   \item Die Multiplikation von Potenzreihen ist definiert über das Cauchyprodukt, also
   \begin{align*}
-    pq(x) = \sum_{n=0}^{\infty}\sum_{i=0}^{n}a_ib_{n-i}x^n.
+    pq(x) = \sum_{n=0}^{\infty}\sum_{i=0}^{n}a_ib_{n-i}x^n := \sum_{n=0}^{\infty}c_nx^n
   \end{align*}
   \begin{align*}
   \ord(pq) &= \min\{n \in \N: \sum_{i=0}^{n}a_ib_{n-i} \neq 0\}
@@ -58,13 +62,15 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
   \end{align*}
   Als Beispiel, bei dem Gleichheit nicht gilt, betrachte den Restklassenring modulo $4$.
   \begin{align*}
-    p(x) &= q(x) = \overline{2}, \qquad \ord(p(x)) + \ord(q(x)) = 0 \\
-    pq(x) &= \overline{0}, \qquad \ord(pq(x)) = \infty.
+  \begin{matrix}
+    p(x) = q(x) & = & \overline{2}, & \ord(p(x)) + \ord(q(x)) & = & 0 \\
+    pq(x) & = & \overline{0}, & \ord(pq(x)) & = & \infty.
+  \end{matrix}
   \end{align*}
   Ist $R$ nun zusätzlich ein Integritätsbereich folgt mit der Nullteilerfreiheit
   aus $a_{\ord(p)}, b_{\ord(q)} \neq 0$ bereits $a_{\ord(p)}b_{\ord(q)} \neq 0$.
   \begin{align*}
-    \sum_{i=0}^{\ord(p) + \ord(q)}a_ib_{\ord(p) + \ord(q)-i} &=
+    c_{\ord(p) + \ord(q)} &= \sum_{i=0}^{\ord(p) + \ord(q)}a_ib_{\ord(p) + \ord(q)-i} =
     \sum_{i=0}^{\ord(p) -1}\underbrace{a_i}_{=0}b_{\ord(p) + \ord(q)-i} +
     \sum_{i = 0}^{\ord(q - 1)}\underbrace{b_i}_{=0}a_{\ord(q-1) - i}
     + a_{\ord(p)}b_{\ord(q)} \\
@@ -77,9 +83,9 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
   und aufgrund der bereits gezeigten Ungleichung sogar Gleichheit.
   \item \begin{align*}
     \grad(pq) &= \max\{n \in \N: \sum_{i=0}^{n}a_ib_{n-i} \neq 0\}
-    \leq \max\{n \in \N: \exists i < n: a_ib_{n-i} \neq 0\}
-    \leq \max\{n \in \N: \exists i < n: a_i \neq 0 \land b_{n-i} \neq 0\} \\
-    &= \grad(p) + \grad(q).
+    \leq \max\{n \in \N: \exists i < n: a_ib_{n-i} \neq 0\} \\
+    &\leq \max\{n \in \N: \exists i < n: a_i \neq 0 \land b_{n-i} \neq 0\}
+    = \grad(p) + \grad(q).
   \end{align*}
   Als Beispiel, bei dem Gleichheit nicht gilt, betrachte wieder den Restklassenring modulo $4$.
   \begin{align*}
@@ -90,7 +96,7 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
   aus $a_{\grad(p)}, b_{\grad(q)} \neq 0$ bereits $a_{\grad(p)}b_{\grad(q)} \neq 0$
   und mit $n := \grad(p) + \grad(q)$
   \begin{align*}
-  \sum_{i=0}^{n}a_ib_{n-i} &=
+  c_n &= \sum_{i=0}^{n}a_ib_{n-i} =
   \sum_{\grad(p) + 1}^{n}\underbrace{a_i}_{=0}b_{n - i} +
   \sum_{\grad(q) + 1}^{n}\underbrace{b_i}_{=0}a_{n - i}
   + a_{\grad(p)}b_{\grad(q)} \\
@@ -145,7 +151,7 @@ $R, R[[x]]$, beziehungsweise $R[x]$ bezeichnet. Dann gilt:
   \end{align*}
   da sonst $b_0 = a_0^{-1}$ wäre.
   Wenn $R$ zusätzlich ein Körper ist, gilt klarerweise $R^* = R\backslash \{0\}$
-  und die Bedingung $a_0 \in R^*$ kann weggelassen werden.
+  und die Bedingung $a_0 \in R^*$ kann durch $a_0 \neq 0$ oder $\ord(p) = 0$ ersetzt werden.
   \item Sei $R$ ein Integritätsbereich und gelte $\grad(p) = 0$, sowie $p = a_0 \in R^*$.
   Dann ist die Inverse $q = p^{-1}$ gegeben durch
   \begin{align*}

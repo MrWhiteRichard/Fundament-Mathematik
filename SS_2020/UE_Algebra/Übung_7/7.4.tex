@@ -10,16 +10,16 @@ von 3.4.5.2. ableiten.
 \end{algebraUE}
 \begin{solution}
 Wir wissen aus der letzen Übung, dass für jedes $n = \prod_{p \in P}p^{e_p}\in \N$
-\begin{align*}
+\begin{align}\label{letzte_ue}
   C_n \cong \bigoplus_{p \in \P}C_{p^{e_p}}.
-\end{align*}
+\end{align}
 Insbesondere ist die direkte Summe teilerfremder zyklischer Gruppen damit wieder zyklisch.
 Aus dem Hauptsatz in 3.4.5.2. wissen wir bereits, dass sich eine beliebige endliche
 abelsche Gruppe als direkte Summe
-\begin{align*}
+\begin{align}\label{hs}
   A \cong \bigoplus_{p \in \P}\bigoplus_{n=1}^{\infty}C_{p^n}^{e_{p,n}}
   =  \bigoplus_{n=1}^{\infty}\bigoplus_{p \in \P}C_{p^n}^{e_{p,n}}
-\end{align*}
+\end{align}
 von zyklischen Gruppen von Primzahlordnung darstellen lässt.
 Definiere nun für $p \in \P$ die Folge
 \begin{align*}
@@ -30,11 +30,12 @@ Jetzt definiere
 \begin{align*}
   m_i := \prod_{p \in \P}p^{M_{p,i}}
 \end{align*}
-Da nur endlich viele $e_{p,n} \neq 0$, existiert ein $N > 0: \forall n > N: m_n = 1$.
+Da nur endlich viele $e_{p,n} \neq 0$, existiert ein kleinstes $N > 0: \forall n > N: m_n = 1$.
 Nach Definition folgt $m_N | \dots | m_1$ und es gilt
 \begin{align*}
-  \bigoplus_{i = 1}^{N} C_{m_i} &\cong \bigoplus_{i = 1}^{N}\bigoplus_{p \in \P}C_{M_{p,i}}
-  \cong \bigoplus_{n=1}^{\infty}\bigoplus_{p \in \P}C_{p^n}^{e_{p,n}} \cong A.
+  \bigoplus_{n = 1}^{\infty} C_{m_n} &\stackrel{\eqref{letzte_ue}}{\cong} \bigoplus_{n = 1}^{\infty}\bigoplus_{p \in \P}C_{M_{p,n}}
+  \cong \bigoplus_{n=1}^{\infty}\bigoplus_{p \in \P}C_{p^n}^{e_{p,n}}
+  \stackrel{\eqref{hs}}{\cong} A.
 \end{align*}
 Für die Eindeutigkeit dieser Darstellung betrachte eine weitere Folge $(k_j)_{j=1}^M$
 mit $k_M | \dots | k_1$ und $A \cong \bigoplus_{j = 1}^{N} C_{k_j}$.
@@ -56,11 +57,10 @@ Nach der Eindeutigkeitsaussage des Hauptsatzes über abelsche Gruppen folgt dara
 \end{align*}
 und aufgrund $p^n | m_k \implies (p^n | m_n, n \leq k)$ folgt
 \begin{align*}
-  m_1 &= \prod_{p \in \P}p^{\max\{n \in N: e^m_{p,n} \neq 0\}} = k_1.
-\end{align*}
-Weitergeführt folgt damit auch
-\begin{align*}
-  m_i = k_i, \qquad i = 1,\dots,N
+  m_1 &= \prod_{p \in \P}p^{\max\{n \in N: e^m_{p,n} \neq 0\}}
+  = \prod_{p \in \P}p^{\max\{n \in N: e^k_{p,n} \neq 0\}} = k_1 \\
+  m_j &= \prod_{p \in \P}p^{\max\{n \in N: \sum_{i \geq j}e^m_{p,i} \leq n\}}
+  = \prod_{p \in \P}p^{\max\{n \in N: \sum_{i \geq j}e^k_{p,i} \leq n\}} = k_j
 \end{align*}
 und damit die Eindeutigkeit der Darstellung.
 \end{solution}
