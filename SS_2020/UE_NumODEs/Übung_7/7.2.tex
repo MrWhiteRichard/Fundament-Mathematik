@@ -41,7 +41,7 @@
       \end{array}
     \end{align*}
 
-    Wobei das linke das der impl. Trapezregel und das rechte das der Mittelpunktsregel ist.
+    Wobei das linke das der impliziten Trapezregel und das rechte das der Mittelpunktsregel ist.
     Nach Theorem 4.10 ist die Stabilitätsfunktion für ein $m-$stufiges Runge-Kutta
     Verfahren gegeben durch:
 
@@ -53,7 +53,7 @@
     Damit sehen wir, dass die Stabilitätsfunktion der impliziten Mittelpunktsregel
 
     \begin{align*}
-        1+z \frac{2}{2-z}
+        R(z) = 1 + z\left(1- \frac{z}{2}\right) = 1+z \frac{2}{2-z}
     \end{align*}
 
     ist. Berechnen wir nun also die der impliziten Trapezregel.
@@ -85,32 +85,33 @@
   \item[\textbf{b)}] Um die A Stabilität zu zeigen, müssen wir
 
     \begin{align*}
-      \sup\limits_{Re z \leq 0} \vbraces{R(z)} \leq 1
+      \sup\limits_{\Re(z) \leq 0} \vbraces{R(z)} \leq 1
     \end{align*}
-
+    zeigen.
     Sei also $z \in \C, z=a+ ib$ mit $a \leq 0$. Wir rechnen nach:
 
     \begin{align*}
-      \vbraces{1+\frac{2(a+ib)}{2-a-ib}} = \vbraces{\frac{2-a-ib +2a +2ib}{2-a-ib}}
+      R(z) = \vbraces{1+\frac{2(a+ib)}{2-a-ib}} = \vbraces{\frac{2-a-ib +2a +2ib}{2-a-ib}}
       = \frac{\vbraces{2+a+ib}}{\vbraces{2-a-ib}}
-      = \frac{\sqrt{a^2 +4a +4 +b^2}}{\sqrt{a^2-4a+4+b^2}} &\stackrel{!}{\leq} 1
-      \Leftrightarrow \\
-      a^2 + 4a +4 +b^2 &\leq a^2 -4a +4+b^2 \Leftrightarrow \\
-      a &\leq 0
+      = \frac{\sqrt{a^2 +4a +4 +b^2}}{\sqrt{a^2-4a+4+b^2}}
     \end{align*}
-    Da dies für bel. $z$ mit Realteil kleiner 0 gilt also auch für das Supremum.
-
+    und aufgrund $a^2 + 4a +4 +b^2 \leq a^2 -4a +4+b^2$ gilt
+    \begin{align*}
+      R(z) \leq 1.
+    \end{align*}
   \item[\textbf{c)}] Wir zeigen zuerst, dass die Funktion dissipativ ist. Das ist für
-    eine reelwertige Funktion genau dann der Fall, wenn sie monoton fallend ist. Dazu
+    eine reellwertige Funktion genau dann der Fall, wenn sie monoton fallend ist. Dazu
     berachten wir die Ableitung, wobei wir den Differenzialquotienten in $y=0$  gesondert betrachten.
-
+    \begin{align*}
+    \lim\limits_{t \rightarrow 0^+} \frac{f(t)}{t} = 0 \quad
+    \lim\limits_{t \rightarrow 0^-} \frac{f(t)}{t} = 0
+    \end{align*}
+    Also gilt
     \begin{align*}
       f^\prime (y) = \begin{cases}
       -3 y^2 , & y \leq 0 \\
       -2 y, & y > 0
-    \end{cases} \\
-    \lim\limits_{t \rightarrow 0^+} \frac{f(t)}{t} = 0 \quad
-    \lim\limits_{t \rightarrow 0^-} \frac{f(t)}{t} = 0
+    \end{cases}.
     \end{align*}
 
     Also ist die Funktion monoton fallend und damit auch dissipativ. Wollen wir nun
@@ -123,35 +124,32 @@
       \norm{y_1 - \tilde{y}_1} \leq \norm{y_0 - \tilde{y}_0}
     \end{align*}
 
-    Berechnen wir zuerst $y_1$ gilt es eine Fallunterscheidung zu machen.
+    Nun wenden wir einen Schritt der impliziten Trapezregel auf $y_0 = 0$ an.
     \begin{itemize}
       \item[Fall 1: $y_1 > 0$:] Dann gilt
 
         \begin{align*}
-          y_1 = \frac{f(y_1)}{2} \Leftrightarrow y_1 = -\frac{y_1^2}{2}
-          \Leftrightarrow y_1^2 + 2y_1 = 0 \Leftrightarrow y_1 = -1 \pm 1
+          y_1 = y_0 + \frac{f(t_0,y_0) + f(t_1,y_1)}{2} = \frac{f(y_1)}{2} \Leftrightarrow y_1 = -\frac{y_1^2}{2}
+          \Leftrightarrow y_1^2 + 2y_1 = 0 \Leftrightarrow y_1 = -1 \pm 1 \leq 0.
         \end{align*}
-        Wobei lezteres ein Widerspruch zu unserer Annahme ist.
+        Also existieren keine positiven Lösungen.
       \item[Fall 2: $y_1 \leq 0$:] Dann gilt
 
       \begin{align*}
         y_1 = - \frac{y_1^3}{2} \Leftrightarrow y_1^3 +2y_1 = 0 \Leftrightarrow
-        y_1(y_1^2+2)=0
+        y_1(y_1^2+2)=0.
       \end{align*}
-      Damit ist entweder $y_1 = 0$ oder $y_1^2=-2$ was zu komplexen Lösungen führt
-      die wir Ausschließen. Damit gilt also $y_1 = 0$
+      Damit ist die einzige reelle Lösung $y_1 = 0$.
     \end{itemize}
-    Damit vereinfacht sich unsere Bedingung (mit der Annahme $\tilde{y}_0 < 0$
-    und $h=1$) zu
+    Um zu zeigen, dass die implizite Trapezregel nicht B-stabil ist, müssen wir
+    also $\widetilde{y}_0$ finden, sodass
 
     \begin{align*}
-      \vbraces{-\tilde{y}_1} \leq \vbraces{-\tilde{y}_0} = -\tilde{y}_0 \Leftrightarrow
-      \tilde{y}_0 \leq \tilde{y}_1 \leq -\tilde{y}_0
+    |\widetilde{y}_0| = ||y_0 - \widetilde{y}_0|| < ||y_1 - \widetilde{y}_1|| = |\widetilde{y}_1|
     \end{align*}
 
-    Damit sehen wir auch warum es genügt den Hinweis zu zeigen. Der relevante Fall
-    ist hier also $\tilde{y}_1 > 0$. Damit berechnen wir:
-
+    Damit sehen wir auch warum es genügt den Hinweis zu zeigen. Damit berechnen wir
+    unter der Voraussetzung $\tilde{y}_1 > 0$:
     \begin{align*}
       \tilde{y}_1 = \tilde{y}_0 - \frac{\tilde{y}_0^3 +\tilde{y}_1^2}{2} \Leftrightarrow
       \tilde{y}_1^2 - 2\tilde{y}_1 - \tilde{y}_0^3+2\tilde{y}_0 = 0
@@ -165,7 +163,7 @@
     Wobei nach Annahme nur $\tilde{y}_1 = 1+ \sqrt{2}$ zulässig ist. Damit gilt auch:
 
     \begin{align*}
-      \tilde{y}_1 > 1 = -\tilde{y}_0
+      |\tilde{y}_1| > 1 = |\tilde{y}_0|
     \end{align*}
 
     Also ist das Verfahren nicht B-Stabil und wir sehen damit, dass aus A-Stabilität
