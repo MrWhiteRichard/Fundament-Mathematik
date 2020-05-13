@@ -26,36 +26,33 @@ zwei differenzierbare Funktionen $\R \to \R$, für die gilt
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item Angenommen
+  \item Sei $\epsilon \in \R^+$ beliebig,
+  und $|y_2 - z_2| < \frac{\epsilon}{L}$, wobei
+  $L$ die Lipschitz-Konstante von $f$ in $y$ bezeichnet.
+  Dann gilt
   \begin{align*}
-    \emptyset \neq \{t > t_0: y_2(t) < y(t) \} =: M.
+    |f(t,y_2) - f(t,z_2)| \leq L |y_2 - z_2| < \epsilon.
   \end{align*}
-  Dann betrachte $t_{1} := \inf M$. Es gilt
+  Wähle $\delta := \frac{\epsilon}{2L}, z_1 := y_1 - \delta, z_2 := y_2 + \delta$, dann folgt
   \begin{align*}
-    y_2(t_1) = \lim_{h \to 0^+} y_2(t_1 + h) \leq \lim_{h \to 0^+} y(t_1 + h) = y(t_1).
+    z_1^{\prime} &= y_1^{\prime} = f(t,y_1) > f(t,z_2) - \epsilon \\
+    z_2^{\prime} &= y_2^{\prime} = f(t,y_2) > f(t,z_2) - \epsilon
   \end{align*}
-  Es muss sogar Gleichheit gelten, da anderenfalls aufgrund der Stetigkeit von $y$
-  ein $t_2 < t_1$ existiert, sodass
+  Sei nun $z$ eine Lösung von $z^{\prime} = f(t,z) - \epsilon$.
+  Nach Aufgabe 3.3 gilt
   \begin{align*}
-    y_2(t_2) < y(t_2).
+    z_1 < z < z_2
   \end{align*}
-  Nach Voraussetzung gilt
-  \begin{align}\label{1}
-    y_2^{\prime}(t_1) \geq f(t,y_2(t_1)) = f(t,y(t_1)) = y^{\prime}(t_1)
-  \end{align}
-
-  Gleichzeitig existiert aufgrund der Stetigkeit von $y_2- y$ ein $h_0 > 0$, sodass
-  \begin{align}\label{2}
-    y_2 - y < 0 \text{ auf } ]t_1,t_1+h_0[.
-  \end{align}
-    \begin{align*}
-      0 \stackrel{\eqref{1}}{\leq} y_2^{\prime}(t_1) - y^{\prime}(t_1)
-      = \lim_{h \to 0^+}\frac{y_2(t_1 + h) - y_2(t_1)}{h} - \lim_{h \to 0^+}\frac{y(t_1 + h) - y(t_1)}{h}
-      = \lim_{h \to 0^+}\frac{y_2(t_1 + h) - y(t_1 + h)}{h}
-      \stackrel{\eqref{2}}{<} 0.
-    \end{align*}
-    Widerspruch! \\
-  Für $y_1$ geht der Beweis analog.
+  Mit Satz 4.1 folgt aufgrund $|z^{\prime} - f(t,z)| = |f(t,z) - \epsilon - f(t,z)| \leq \epsilon$
+  \begin{align*}
+  |y(t) - z(t)| \leq |y(t_0) - z(t_0)|\exp(L|t - t_0|) + \delta\left(\exp(L|t-t_0|) - 1\right)
+  \stackrel{\epsilon \to 0}{\longrightarrow} 0.
+  \end{align*}
+  Wir erhalten $\lim_{\epsilon \to 0} z = y$. Insgesamt gilt
+  \begin{align*}
+    y_1 = \lim_{\epsilon \to 0}y_1 - \delta \leq \underbrace{\lim_{\epsilon \to 0} z}_{= y} \leq
+    \lim_{\epsilon \to 0}y_2 + \delta = y_2.
+  \end{align*}
   \item Definiere $y_1(t) = -2, y_2(t) = 2$. Dann gilt
   \begin{align*}
     -2 = y_1(0) \leq y(0) \leq y_2(0) \leq 2
@@ -87,8 +84,9 @@ zwei differenzierbare Funktionen $\R \to \R$, für die gilt
   \widetilde{f}(t,\widetilde{y}(t)) = f(2\pi+t,\widetilde{y}(t)),
   \widetilde{y}(0) = y_1$. Es gilt
   \begin{align*}
-    f(2\pi + t,y) = -y^3 + \sin(2\pi + t, y) = f(t,y)
+    f(2\pi + t,y) = -y^3 + \sin(2\pi + t) = f(t,y)
   \end{align*}
-  Jetzt gilt aufgrund der Eindeutigkeit von Anfangswertproblemen $y_{0,y_1}(2\pi) = \widetilde{y}(t) = y_{0,y_1}(t)$.
+  Jetzt gilt aufgrund der Eindeutigkeit von Anfangswertproblemen
+  $y_{0,y_1}(2\pi + t) = \widetilde{y}(t) = y_{0,y_1}(t)$.
 \end{enumerate}
 \end{solution}
