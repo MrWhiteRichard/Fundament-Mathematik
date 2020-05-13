@@ -25,5 +25,24 @@ Zeigen Sie:
 \end{enumerate}
 \end{exercise}
 \begin{solution}
-Beweis.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Das charakteristische Polynom ist gegeben durch
+  \begin{align*}
+    \chi (\lambda) =& (-1 + \frac{3}{2}\cos^2 t - \lambda)(-1 + \frac{3}{2}\sin^2 t - \lambda) - (\frac{9}{4}\sin^2 t \cos^2 t - 1) \\
+    =& \lambda^2 +2\lambda - \frac{3}{2} \lambda + 1 - \frac{3}{2} + \frac{9}{4}\sin^2 t \cos^2 t - \frac{9}{4} \sin^{2} t \cos^2 t + 1 \\
+    =& \lambda^2 + \frac{\lambda}{2} + \frac{1}{2}
+  \end{align*}
+  Die Nullstellen lauten $- \frac{1}{4}+\frac{i}{2}$ und $- \frac{1}{4}-\frac{i}{2}$, haben also negativen Realteil.
+  \item Wir leiten $y$ ab und erhalten
+  \begin{align*}
+    y^{\prime}(t) =& \begin{pmatrix}
+      \sin(t)\exp(\frac{t}{2}) -\frac{1}{2}\cos(t)\exp(\frac{t}{2}) \\ \cos(t)\exp(\frac{t}{2}) + \frac{1}{2}\sin(t)\exp(\frac{t}{2})
+    \end{pmatrix} \\
+    =& \exp(\frac{t}{2}) \begin{pmatrix}
+      \sin(t) -\frac{1}{2}\cos(t) \\ \cos(t) + \frac{1}{2}\sin(t)
+    \end{pmatrix}
+  \end{align*}.
+  Durch Nachrechnen erkennt man leicht, dass bei $Ay$ genau das gleiche herauskommt.
+  \item Gemäß Satz 5.6 ist $y = 0$ genau dann stabil, wenn ${\sup}_{t \geq t_0} \| Y(t)\| < \infty$. Die Lösung aus Aufgabenteil b) ist eine Spalte der Fundamentalmatrix und somit $Y$ in der Norm unbeschränkt. Also ist $y= 0$ nicht stabil.
+  \end{enumerate}
 \end{solution}
