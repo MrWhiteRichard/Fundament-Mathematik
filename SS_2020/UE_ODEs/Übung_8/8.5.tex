@@ -13,5 +13,143 @@ Geben Sie die stabilen und asymptotisch stabilen Ruhelagen für die konkrete Fun
 an.
 \end{exercise}
 \begin{solution}
-Beweis.
+Mit unserem Kriterium für Ljapnuovfunktionen können wir einfach nachrechnen, dass $H$
+wirklich eine soche ist.
+
+\begin{align*}
+  \abraces{\nabla H(q,p),f\left(
+  \begin{array}{c}
+    q \\
+    p
+  \end{array}
+  \right)} &= \abraces{\left(
+  \begin{array}{c}
+  \partial_q H(q,p) \\
+  \partial_p H(q,p)
+  \end{array}
+  \right), \left(
+  \begin{array}{c}
+      \partial_p H(q,p) \\
+      -\partial_q H(q,p)
+  \end{array}
+  \right)} = \\
+  & \partial_q H(q,p) \partial_p H(q,p) - \partial_q H(q,p) \partial_p H(q,p) = 0
+\end{align*}
+
+Hier können wir auch direkt erkennen, dass $H$ auch eine Erhaltungsgröße ist, da die
+zweite Zeile ja genau $\partial_t H(q(t),p(t))$ ist. Für die Stabilität der Ruhelagen
+können wir zuerst das Prinzip der linearisierten Stabilität anwenden, falls wir dort
+keine Aussage erhalten können wir noch überprüfen, ob die Ruhelage ein striktes Minimum
+von $H$ ist. Dann ist die Ruhelage nach der direkten Methode von Ljapunov stabil.
+Für eine Ruhelage gilt jedenfalls schon $\nabla H = 0$, für die Stabilität muss also
+die Hesse-Matrix von $H$ positiv definit sein. Um asymptotischsche Stabilität zu erhalten
+müssen die Realteile aller Eigenwerte von $Df(y^*)$ echt negativ sein. Wenden wir uns nun dem
+konkreten Beispiel zu. Zuerst suchen wir die Ruhelagen
+
+\begin{align*}
+  f((p,q)^T) = \left(
+  \begin{array}{c}
+    -\partial_q H(p,q) \\
+    \partial_p H(p,q)
+  \end{array}
+  \right) = \left(
+  \begin{array}{c}
+  -\sin(q) \\
+    p
+  \end{array}
+  \right) \stackrel{!}{=}0
+\end{align*}
+
+Also sind unsere Ruhelagen gegeben durch $(p^*,q^*)=(0,n \pi), n \in \Z$. Wenden wir
+nun das Prinzip der linearisierten Stabilität.
+
+\begin{align*}
+  Df(p^*,q^*)= \left(\begin{array}{cc}
+    0 & -\cos(q^*) \\
+    1 & 0
+  \end{array} \right)
+\end{align*}
+
+Wir unterscheiden nun für $q^* \in \pi(2\Z)$:
+
+\begin{align*}
+Df(p^*,q^*)= \left(\begin{array}{cc}
+  0 & -1 \\
+  1 & 0
+\end{array} \right)
+\end{align*}
+
+Das charakteristische Polynom ist
+
+\begin{align*}
+  \chi(\lambda) = \lambda^2 + 1 = (\lambda -i)(\lambda +i)
+\end{align*}
+
+Die beiden Eigenwerte sind also echt Imaginär und damit liefert der Satz keine Aussage.
+Wir werden darauf gleich noch zurückkommen, zuerst betrachten wir noch den Fall
+$q^* \in \pi(2\Z +1)$. Dann ist:
+
+\begin{align*}
+Df(p^*,q^*)= \left(\begin{array}{cc}
+  0 & 1 \\
+  1 & 0
+\end{array} \right)
+\end{align*}
+
+Das charakteristische Polynom ist
+
+\begin{align*}
+  \chi(\lambda) = \lambda^2 - 1 = (\lambda -1)(\lambda +1)
+\end{align*}
+
+Diese Ruhelagen sind also instabil. Um noch zu überprüfen ob die Ruhelagen mit
+$q^* \in \pi(2\Z)$ zumindest stabil sind sehen wir uns die Hesse-Matrix von H an:
+
+\begin{align*}\left(
+  \begin{array}{cc}
+    \partial_{pp}H(p^*,q^*) & \partial_{pq}H(p^*,q^*) \\
+    \partial_{qp}H(p^*,q^*) & \partial_{qq}H(p^*,q^*)
+  \end{array}\right)=
+  \left(\begin{array}{cc}
+    1 & 0 \\
+    0 & \cos(q^*)
+  \end{array}\right)=
+  \left(
+  \begin{array}{cc}
+    1 & 0 \\
+    0 & 1
+  \end{array}\right)
+\end{align*}
+
+Diese Einheitsmatrix ist klarerweise positiv definit, damit sind diese Ruhelagen zumindest stabil.
+Wir wollen noch zeigen, dass sie nicht attraktiv sein können. Das gilt wenn
+
+\begin{align*}
+\forall \delta > 0 : \Exists (\widetilde{p},\widetilde{q}) \in B_{\delta}((p^*,q^*)^T):
+\lim_{t \rightarrow \infty} \norm{(p,q)^T_{t_0,(p^*,q^*)^T}(t)-(p,q)^T_{t_0,(\widetilde{p},\widetilde{q})^T}(t)} \neq 0
+\end{align*}
+
+Sei nun $\delta$ beliebig und $(\widetilde{p},\widetilde{q})^T\neq (p^*,q^*)^T$ aus
+der Umgebung. Weil $(p^*,q^*)^T$ ein striktes Minimum von $H$ ist gilt
+
+\begin{align*}
+  H(p^*,q^*) < H(\widetilde{p},\widetilde{q})
+\end{align*}
+
+Weil $H$ stetig ist finden wir $\delta > \rho >0$ sodass
+
+\begin{align*}
+  \forall (\bar{p},\bar{q})^T \in B_{\rho}((p^*,q^*)^T): \\
+  H(p^*,q^*) \leq H(\bar{p},\bar{q}) < H(\widetilde{p}, \widetilde{q}) = H((p,q)^T_{t_0,(\widetilde{p},\widetilde{q})^T})
+\end{align*}
+
+Wobei letzte Gleichheit gilt, da $H$ eine Erhaltungsgröße ist und somit entlang Lösungen
+konstant. Dann gilt aber auch
+
+\begin{align*}
+  \lim_{t \rightarrow \infty} \norm{(p,q)^T_{t_0,(p^*,q^*)^T}(t)-(p,q)^T_{t_0,(\widetilde{p},\widetilde{q})^T}(t)}
+  > \rho > 0
+\end{align*}
+
+Womit diese Ruhelagen nicht attraktiv sind.
 \end{solution}
