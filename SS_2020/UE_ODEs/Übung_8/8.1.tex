@@ -18,7 +18,7 @@ Da die Exponentialfunktion einer Block-Diagonalmatrix wieder eine Block-Diagonal
 können wir für jeden Eigenwert $\lambda$ die zugehörigen Jordan-Kästchen betrachten.
 Für
 \begin{align*}
-  J = \begin{pmatrix}
+  \widetilde{J} = \begin{pmatrix}
     \lambda & 1 & & \\
     & \ddots & \ddots & \\
     & & \ddots & 1 \\
@@ -27,17 +27,20 @@ Für
 \end{align*}
 ist
 \begin{align*}
-  \exp(tJ) = \exp(\lambda t)\begin{pmatrix}
+  \exp(t\widetilde{J}) = \exp(\lambda t)\begin{pmatrix}
     1 & t & \dots & \frac{t^{r-1}}{(r-1)!} \\
     & 1 & \dots & \frac{t^{r-2}}{(r-2)!} \\
     & & \ddots & \vdots \\
     & & & 1
   \end{pmatrix}
 \end{align*}
-Damit ist die Zeilensummenorm  $\|\exp(tJ)\| \leq \exp(\lambda t)\sum_{i=0}^{d-1} t^d$.
-Insgesamt folgt also
+Damit ist $\|\exp(t\widetilde{J})\| \leq \exp(\lambda t)\sum_{i=0}^{d-1} t^d$.
+Da $|\exp(\lambda)| = \exp(\Re(\lambda))$ brauchen wir für $\|\exp(tJ)\|$
+aufgrund der Block-Diagonalform nur den Eigenwert
+mit größtem Realteil betrachten. Das größte Jordan-Kästchen davon hat maximal Dimension $d$
+und es folgt
 \begin{align*}
-  \|\exp(tA)\| \leq \widetilde{M}\exp(s(A)t)\sum_{i=0}^{d-1} t^d \stackrel{!}{\leq} M \exp(\omega t).
+  \|\exp(tA)\| \leq \widetilde{M}\exp(s(A)t)\sum_{i=0}^{d-1} t^i \stackrel{!}{\leq} M \exp(\omega t).
 \end{align*}
 Wir formen um und erhalten für $M$
 \begin{align*}
