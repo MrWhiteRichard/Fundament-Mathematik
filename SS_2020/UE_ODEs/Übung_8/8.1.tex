@@ -7,5 +7,12 @@ Zeigen Sie: Es gibt ein $M \geq 1$, sodass
 Warum gilt diese Aussage nicht, wenn lediglich $\omega \geq s(A)$ gefordert wird?
 \end{exercise}
 \begin{solution}
-Beweis.
+Annahme: Mit $|\exp(tA)|$ ist die Zeilensummennorm dieser Matrix gemeint.
+Sei also $A = VJV{-1}$ mit der zugehörigen Jordan-Normalform $J$.
+Seien also $V = (v_1,v_d)$ eine Basis von (komplexen) Eigenvektoren von $A$.
+\begin{align*}
+  \|\exp(tA)\| = \|V\exp(tJ)V^{-1}\| \leq \underbrace{\|V\|\|V^{-1}\|}_{=:M}\|\exp(tD)\|
+  = M|\exp(t\max \{\lambda: \lambda \in \sigma(A)\})| < M\exp(t\omega).
+\end{align*}
+
 \end{solution}

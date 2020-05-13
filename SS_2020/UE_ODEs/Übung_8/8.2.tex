@@ -24,5 +24,71 @@ zwei differenzierbare Funktionen $\R \to \R$, für die gilt
 \end{enumerate}
 \end{exercise}
 \begin{solution}
-Beweis.
+\leavevmode \\
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Angenommen
+  \begin{align*}
+    \emptyset \neq \{t > t_0: y_2(t) < y(t) \} =: M.
+  \end{align*}
+  Dann betrachte $t_{1} := \inf M$. Es gilt
+  \begin{align*}
+    y_2(t_1) = \lim_{h \to 0^+} y_2(t_1 + h) \leq \lim_{h \to 0^+} y(t_1 + h) = y(t_1).
+  \end{align*}
+  Es muss sogar Gleichheit gelten, da anderenfalls aufgrund der Stetigkeit von $y$
+  ein $t_2 < t_1$ existiert, sodass
+  \begin{align*}
+    y_2(t_2) < y(t_2).
+  \end{align*}
+  Nach Voraussetzung gilt
+  \begin{align}\label{1}
+    y_2^{\prime}(t_1) \geq f(t,y_2(t_1)) = f(t,y(t_1)) = y^{\prime}(t_1)
+  \end{align}
+
+  Gleichzeitig existiert aufgrund der Stetigkeit von $y_2- y$ ein $h_0 > 0$, sodass
+  \begin{align}\label{2}
+    y_2 - y < 0 \text{ auf } ]t_1,t_1+h_0[.
+  \end{align}
+    \begin{align*}
+      0 \stackrel{\eqref{1}}{\leq} y_2^{\prime}(t_1) - y^{\prime}(t_1)
+      = \lim_{h \to 0^+}\frac{y_2(t_1 + h) - y_2(t_1)}{h} - \lim_{h \to 0^+}\frac{y(t_1 + h) - y(t_1)}{h}
+      = \lim_{h \to 0^+}\frac{y_2(t_1 + h) - y(t_1 + h)}{h}
+      \stackrel{\eqref{2}}{<} 0.
+    \end{align*}
+    Widerspruch! \\
+  Für $y_1$ geht der Beweis analog.
+  \item Definiere $y_1(t) = -2, y_2(t) = 2$. Dann gilt
+  \begin{align*}
+    -2 = y_1(0) \leq y(0) \leq y_2(0) \leq 2
+  \end{align*}
+  und
+  \begin{align*}
+    0 &= y_1^{\prime}(t) \leq f(t,y_1) = -(-2)^3 + \sin(t) \leq 7 \\
+    0 &= y_2^{\prime}(t) \geq f(t,y_2) = -2^3 + \sin(t) \geq -7.
+  \end{align*}
+  Damit folgt nach Punkt a)
+  \begin{align*}
+    -2 \leq y(t) \leq 2.
+  \end{align*}
+  \item Der Fixpunktsatz von Brouwer besagt, dass jede stetige Abbildung $f: K \to K$
+  von einer kompakten Teilmenge $K \subset \R^n$ in sich einen Fixpunkt hat.
+  Betrachte also die Funktion
+  \begin{align*}
+    \varphi: \begin{cases}
+      [-2,2] &\to [-2,2] \\
+      y_0 &\mapsto y_{0,y_0}(2\pi)
+    \end{cases}
+  \end{align*}
+  Aufgrund Punkt b) ist diese Funktion wohldefiniert und mit dem Brouwerschen Fixpunktsatz
+  existiert ein $y_1 \in [-2,2]$, sodass
+  \begin{align*}
+    y_{0,y_1}(0) = y_1 = y_{0,y_1}(2\pi).
+  \end{align*}
+  $\widetilde{y}(t) = y_{0,y_1}(2\pi + t)$ erfüllt klarerweise das Anfangswertproblem $\widetilde{y}^{\prime}(t) =
+  \widetilde{f}(t,\widetilde{y}(t)) = f(2\pi+t,\widetilde{y}(t)),
+  \widetilde{y}(0) = y_1$. Es gilt
+  \begin{align*}
+    f(2\pi + t,y) = -y^3 + \sin(2\pi + t, y) = f(t,y)
+  \end{align*}
+  Jetzt gilt aufgrund der Eindeutigkeit von Anfangswertproblemen $y_{0,y_1}(2\pi) = \widetilde{y}(t) = y_{0,y_1}(t)$.
+\end{enumerate}
 \end{solution}
