@@ -33,25 +33,30 @@ zwei differenzierbare Funktionen $\R \to \R$, für die gilt
   \begin{align*}
     |f(t,y_2) - f(t,z_2)| \leq L |y_2 - z_2| < \epsilon.
   \end{align*}
-  Wähle $\delta := \frac{\epsilon}{2L}, z_1 := y_1 - \delta, z_2 := y_2 + \delta$, dann folgt
+  Wähle $\delta := \frac{\epsilon}{2L}, z_1(t) := y_1(t) - \delta, z_2(t) := y_2(t) + \delta$, dann folgt
   \begin{align*}
-    z_1^{\prime} &= y_1^{\prime} = f(t,y_1) > f(t,z_2) - \epsilon \\
-    z_2^{\prime} &= y_2^{\prime} = f(t,y_2) > f(t,z_2) - \epsilon
+    z_1^{\prime}(t) &= y_1^{\prime}(t) = f(t,y_1) > f(t,z_1) - \epsilon \\
+    z_2^{\prime}(t) &= y_2^{\prime}(t) = f(t,y_2) > f(t,z_2) - \epsilon
   \end{align*}
-  Sei nun $z$ eine Lösung von $z^{\prime} = f(t,z) - \epsilon$.
-  Nach Aufgabe 3.3 gilt
+  Sei nun $z_{\epsilon}$ eine Lösung von $z_{\epsilon}^{\prime} = f(t,z) - \epsilon, z_{\epsilon}(t_0) = y_0$.
+  Es gilt
   \begin{align*}
-    z_1 < z < z_2
+    z_1(t_0) = y_1(t_0) - \delta < y_0 = z_{\epsilon}(t_0) < y_2(t_0) + \delta = z_2(t_0)
   \end{align*}
-  Mit Satz 4.1 folgt aufgrund $|z^{\prime} - f(t,z)| = |f(t,z) - \epsilon - f(t,z)| \leq \epsilon$
+  und nach Aufgabe 3.3 folgt
   \begin{align*}
-  |y(t) - z(t)| \leq |y(t_0) - z(t_0)|\exp(L|t - t_0|) + \delta\left(\exp(L|t-t_0|) - 1\right)
+    \forall t \geq t_0: z_1(t) < z_{\epsilon}(t) < z_2(t).
+  \end{align*}
+  Mit Satz 4.1 folgt aufgrund $|z_{\epsilon}^{\prime}(t) - f(t,z)| = |f(t,z) - \epsilon - f(t,z)| \leq \epsilon$
+  \begin{align*}
+  |y(t) - z_{\epsilon}(t)| \leq \underbrace{|y(t_0) - z_{\epsilon}(t_0)|}_{=0}\exp(L|t - t_0|) + \frac{\epsilon}{L}\left(\exp(L|t-t_0|) - 1\right)
+  = \frac{\epsilon}{L}\left(\exp(L|t-t_0|) - 1\right)
   \stackrel{\epsilon \to 0}{\longrightarrow} 0.
   \end{align*}
-  Wir erhalten $\lim_{\epsilon \to 0} z = y$. Insgesamt gilt
+  Wir erhalten $\lim_{\epsilon \to 0} z_{\epsilon}(t) = y(t)$. Insgesamt gilt
   \begin{align*}
-    y_1 = \lim_{\epsilon \to 0}y_1 - \delta \leq \underbrace{\lim_{\epsilon \to 0} z}_{= y} \leq
-    \lim_{\epsilon \to 0}y_2 + \delta = y_2.
+    y_1(t) = \lim_{\epsilon \to 0}y_1(t) - \frac{\epsilon}{2L} \leq \underbrace{\lim_{\epsilon \to 0} z_{\epsilon}(t)}_{= y(t)} \leq
+    \lim_{\epsilon \to 0}y_2(t) + \frac{\epsilon}{2L} = y_2(t).
   \end{align*}
   \item Definiere $y_1(t) = -2, y_2(t) = 2$. Dann gilt
   \begin{align*}

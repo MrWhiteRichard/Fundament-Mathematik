@@ -20,36 +20,42 @@ heißt Riccatigleichung. Sei $y_1$ eine Lösung dieser Gleichung.
 \end{exercise}
 
 \begin{solution}
+\leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Wir rechnen ganz einfach nach:
 
   \begin{align*}
-    y^\prime = y_1^\prime + x^\prime = g(t)y_1 +h(t)y_1^2 + k(t) +
-    (g(t) + 2y_1(t)h(t))x + h(t)x^2 = g(t)(y_1+x) + h(t)(y_1^2 +2y_1x +x^2) + k(t)
+    y^\prime &= y_1^\prime + x^\prime = g(t)y_1 +h(t)y_1^2 + k(t) +
+    (g(t) + 2y_1(t)h(t))x + h(t)x^2 = g(t)(y_1+x) + h(t)(y_1^2 +2y_1x +x^2) + k(t) \\
+    &= g(t)y + h(t)y^2 + k(t)
   \end{align*}
 
   Also ist $y$ wirklich eine Lösung der Riccatischen Gleichung.
 
   \item Wir folgen dem Hinweis und sehen schnell, dass $y_1 = t+1$ eine Lösung der Gleichung ist.
   Um jetzt die allgemeine Lösung zu finden, verwenden wir \textbf{a)}. Wir suchen also
-  Lösungen der Bernoullischen ODE
+  Lösungen der Bernoullischen ODE für $g(t) = 3\left(2(t+1)^2 - \frac{1}{t+1}\right), h(t) = - 3(t+1)$
 
   \begin{align*}
     x^\prime = (6(t+1)^2 -\frac{3}{t+1}-6(t+1)^2)x - 3(t+1)x^2 = -\frac{3}{t+1}x
     -3(t+1)x^2
   \end{align*}
 
-  Um diese zu lösen substituieren wir $\widetilde{x}=x^{-1}$ und erhalten für
+  Wir wissen aus Übung 6, dass sich ODEs vom Bernoullischen Typ durch die
+  Substitution $\widetilde{x} = x^{1-n}$ lösen lassen. Im unseren Fall ist $n = 2$,
+  also substituieren wir $\widetilde{x}=x^{-1}$ und erhalten für
   $\widetilde{x}$ das System:
 
   \begin{align*}
-    \widetilde{x}^\prime = \frac{3}{t+1}\widetilde{x} + 3t+3
+    \widetilde{x}^\prime = -\frac{x^{\prime}}{x^2} = \frac{3}{t+1}\widetilde{x} + 3t+3
   \end{align*}
 
-  Wir suchen zuerst eine Lösung für das homogene System, dieses ist Seperierbar und wir erhalten
+  Wir suchen zuerst eine Lösung für das homogene System, dieses ist separierbar und wir erhalten
 
   \begin{align*}
-    \widetilde{x}=(t+1)^3
+    &\int \frac{1}{\widetilde{x}} d\widetilde{x} = \int \frac{3}{t+1} dt \\
+    &\iff \ln(\widetilde{x}) = 3\ln(t+1) + C \\
+    &\iff \widetilde{x}= \widetilde{C}(t+1)^3
   \end{align*}
 
   als Lösung des homogenen Systems. Um nun eine Partikulärlösung zu finden verwenden
@@ -57,7 +63,8 @@ heißt Riccatigleichung. Sei $y_1$ eine Lösung dieser Gleichung.
 
   \begin{align*}
     \widetilde{x}_p(t) = (t+1)^3 \int_{t_0}^t \frac{3(s+1)}{(s+1)^3}  ds=
-    3(t+1)^3(\frac{1}{t_0 + 1}-\frac{1}{t+1}) = \frac{3(t+1)^3}{(t_0+1)} - 3(t+1)^2
+    3(t+1)^3\left(\frac{1}{t_0 + 1}-\frac{1}{t+1}\right) = \left(
+    \frac{3(t+1)^3}{(t_0+1)} - 3(t+1)^2\right)
   \end{align*}
 
   Setzen wir der Einfachheit (und Lesbarkeit) halber $t_0 = 0$, dann hat
