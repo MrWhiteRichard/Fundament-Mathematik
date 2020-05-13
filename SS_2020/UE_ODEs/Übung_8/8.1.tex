@@ -10,7 +10,6 @@ Warum gilt diese Aussage nicht, wenn lediglich $\omega \geq s(A)$ gefordert wird
 Anmerkung: Wir verwenden für das Beispiel die Zeilensummennorm. Die Aussage ist
 aufgrund der Äquivalenz aller Normen im endlich-dimensionalen für beliebige Normen gültig. \\
 Sei also $A = VJV{-1}$ mit der zugehörigen Jordan-Normalform $J$.
-Seien also $V = (v_1,v_d)$ eine Basis von (komplexen) Eigenvektoren von $A$.
 \begin{align*}
   \|\exp(tA)\| = \|V\exp(tJ)V^{-1}\| \leq \underbrace{\|V\|\|V^{-1}\|}_{=:\widetilde{M}}\|\exp(tJ)\|
 \end{align*}
@@ -40,11 +39,11 @@ aufgrund der Block-Diagonalform nur den Eigenwert
 mit größtem Realteil betrachten. Das größte Jordan-Kästchen davon hat maximal Dimension $d$
 und es folgt
 \begin{align*}
-  \|\exp(tA)\| \leq \widetilde{M}\exp(s(A)t)\sum_{i=0}^{d-1} t^i \stackrel{!}{\leq} M \exp(\omega t).
+  \|\exp(tA)\| \leq \widetilde{M}\|\exp(s(A)t)\|\sum_{i=0}^{d-1} t^i \stackrel{!}{\leq} M \exp(\omega t).
 \end{align*}
 Wir formen um und erhalten für $M$
 \begin{align*}
-  M\geq \widetilde{M} \exp(\underbrace{t(s(A) - \omega)}_{< 0})\sum_{i=0}^{d-1} t^d =: f(t)
+  M\geq \widetilde{M} \|\exp(\underbrace{t(s(A) - \omega)}_{< 0})\|\sum_{i=0}^{d-1} t^d =: f(t)
 \end{align*}
 Wie man leicht sieht, ist
 \begin{align*}
@@ -60,9 +59,9 @@ betrachte
 \end{align*}
 mit dem einzigen Eigenwert $\lambda = 1$. Wähle also $\omega = s(A) = 1$ und berechne
 \begin{align*}
-  \|\exp(tA)\| = \exp(1)\|\begin{pmatrix}
+  \|\exp(tA)\| = \exp(1)\left\|\begin{pmatrix}
     1 & t \\ 0 & 1
-  \end{pmatrix}\|
+  \end{pmatrix}\right\|
   = \exp(1)(t+1)
 \end{align*}
 Es gibt also kein $M > 0$, sodass die Gleichung
