@@ -7,7 +7,7 @@ heißt Riccatigleichung. Sei $y_1$ eine Lösung dieser Gleichung.
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Überprüfen Sie, dass jede Lösung $x$ der Bernoullischen ODE
   \begin{align*}
-    x^{\prime} = (g(t) + 2y_1(t)h(t))y + h(t)x^2
+    x^{\prime} = (g(t) + 2y_1(t)h(t))x + h(t)x^2
   \end{align*}
   eine Lösung $y = y_1 + x$ der Riccatischen Gleichung erzeugt.
   \item Geben Sie die allgemeine Lösung der ODE
@@ -18,6 +18,61 @@ heißt Riccatigleichung. Sei $y_1$ eine Lösung dieser Gleichung.
   \textit{Hinweis:} Versuchen Sie ein lineares Polynom als spezielle Lösung.
 \end{enumerate}
 \end{exercise}
+
 \begin{solution}
-Lösung.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Wir rechnen ganz einfach nach:
+
+  \begin{align*}
+    y^\prime = y_1^\prime + x^\prime = g(t)y_1 +h(t)y_1^2 + k(t) +
+    (g(t) + 2y_1(t)h(t))x + h(t)x^2 = g(t)(y_1+x) + h(t)(y_1^2 +2y_1x +x^2) + k(t)
+  \end{align*}
+
+  Also ist $y$ wirklich eine Lösung der Riccatischen Gleichung.
+
+  \item Wir folgen dem Hinweis und sehen schnell, dass $y_1 = t+1$ eine Lösung der Gleichung ist.
+  Um jetzt die allgemeine Lösung zu finden, verwenden wir \textbf{a)}. Wir suchen also
+  Lösungen der Bernoullischen ODE
+
+  \begin{align*}
+    x^\prime = (6(t+1)^2 -\frac{3}{t+1}-6(t+1)^2)x - 3(t+1)x^2 = -\frac{3}{t+1}x
+    -3(t+1)x^2
+  \end{align*}
+
+  Um diese zu lösen substituieren wir $\widetilde{x}=x^{-1}$ und erhalten für
+  $\widetilde{x}$ das System:
+
+  \begin{align*}
+    \widetilde{x}^\prime = \frac{3}{t+1}\widetilde{x} + 3t+3
+  \end{align*}
+
+  Wir suchen zuerst eine Lösung für das homogene System, dieses ist Seperierbar und wir erhalten
+
+  \begin{align*}
+    \widetilde{x}=(t+1)^3
+  \end{align*}
+
+  als Lösung des homogenen Systems. Um nun eine Partikulärlösung zu finden verwenden
+  wir Satz 3.17.
+
+  \begin{align*}
+    \widetilde{x}_p(t) = (t+1)^3 \int_{t_0}^t \frac{3(s+1)}{(s+1)^3}  ds=
+    3(t+1)^3(\frac{1}{t_0 + 1}-\frac{1}{t+1}) = \frac{3(t+1)^3}{(t_0+1)} - 3(t+1)^2
+  \end{align*}
+
+  Setzen wir der Einfachheit (und Lesbarkeit) halber $t_0 = 0$, dann hat
+  jede Lösung unseres Systems für $\widetilde{x}$ hat nun die Form
+
+  \begin{align*}
+    \widetilde{x}_c = \widetilde{x}_p + c(t+1)^3 = (t+1)^3(3+c)-3(t+1)^2
+  \end{align*}
+
+  mit $c \in \R$.
+  Wenn wir nun Rücksubstituieren erhalten wir für $x$ einfach $x = 1/\widetilde{x}$ und
+  wir haben allgemeine Lösungen für unsere ursprüngliche ODE mit
+
+  \begin{align*}
+    y_c = y_1 + x_c = (t+1) + \frac{1}{\widetilde{x}_c} = (t+1) + \frac{1}{(t+1)^3(3+c)-3(t+1)^2}
+  \end{align*}
+\end{enumerate}
 \end{solution}
