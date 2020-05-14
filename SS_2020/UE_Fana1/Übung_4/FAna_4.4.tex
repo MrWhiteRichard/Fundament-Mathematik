@@ -14,5 +14,70 @@ $\ker A$. Ist $\alpha_n \to 0$, so konvergiert die Reihe in der Operatornorm.
 Gilt auch die Umkehrung?
 \end{exercise}
 \begin{solution}
-Beweis.
+  Wegen $\ran P_n \bot \ker P_n$ und $\ran P_m \bot \ker P_m$ gilt, weil $\ker P_n$ das orthogonale Komplement von $\ran P_n$ ist, $\ran P_m \subseteq \ker P_n$ und somit $P_n P_m = 0.$ Wir wissen, dass für orthogonale Projektionen $P_1$ und $P_2$ mit dieser Eigenschaft $P_1 + P_2$ wieder eine orthogonale Projektion ist mit $\ran (P_1 + P_2) = \ran P_1 + \ran P_2$.
+
+  Die endlichen Summen der Projektionen $\alpha_n P_n$ sind also wieder orthogonale Projektionen, wir können damit durch mehrfache Anwendung des Satzes von Pythagoras berechnen:
+
+  \begin{align}
+      \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{a}{=} \sum_{n = M+1}^N \| \alpha_n P_n x \|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \\
+      \stackrel{c}{\leq} \max_{M+1 \leq n \leq N} |\alpha_n|^2 \sum_{n = M+1}^N \| P_n x \|^2 \stackrel{d}{=}
+      \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \\ \stackrel{e}{\leq}
+      \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2
+      \stackrel{f}{\leq} \| \alpha \|_{\infty}^2 \| x \|^2.
+  \end{align}
+  \\
+  (a), (d), (g) ist der Satz von Pythagoras; \\
+  (e), (h) gelten, weil die endliche Summe orthogonaler Projektionen mit der Eigenschaft $P_n P_m = 0$ wieder eine orthogonale Projektion ist, also Abbildungsnorm kleiner gleich 1 hat.
+
+  Weiters gilt
+
+  \begin{align}
+      \sum_{n = 1}^N \| P_n x \|^2 \stackrel{g}{=}
+       \left\| \left(\sum_{n = 1}^N P_n\right) x \right\|^2 \stackrel{h}{\leq} \|x\|^2.
+  \end{align}
+
+  Da die Reihe $\sum_{n = 1}^N \| P_n x \|^2$ ist also beschränkt, und weil sie auch monoton ist, konvergent. Es gilt
+
+  \begin{align}
+  \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2
+  \leq \|\alpha\|_{\infty} \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \stackrel{M, N \rightarrow \infty}{\longrightarrow} 0,
+  \end{align}
+
+  wobei wir die erste Ungleichung schon oben gezeigt haben (d) und die zweite gilt, weil die Reihe konvergiert, also eine Cauchyfolge ist. Wir haben also eine Cauchyfolge und damit die Konvergenz dieser Reihe gezeigt.
+
+  Mit der Ungleichheit (f) gilt
+  \begin{align}
+      \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \leq \| \alpha \|_{\infty}^2 \| x \|^2, \text{~~also~} \|A\| \leq \|\alpha\|_{\infty}
+  \end{align}
+
+  und somit $A \in \mathcal{B}(H).$ Die erste Ungleichungskette bis (e) gelesen gibt uns folgende Abschätzung:
+
+  \begin{align}
+  \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2,
+  \end{align}
+
+  also gilt in der Operatornorm
+
+  \begin{align}
+  \left\| \sum_{n = M+1}^N \alpha_n P_n \right\| \leq \max_{M+1 \leq n \leq N} |\alpha_n|.
+  \end{align}
+
+  Die Folge $(\alpha_n)$ ist aber eine Nullfolge, damit ist die Reihe eine Cauchyfolge in der Operatornorm. Da wir in einem vollständigen Raum sind, haben wir somit die Konvergenz bezüglich der Operatornorm gezeigt.
+
+  Die Umkehrung gilt im Allgemeinen nicht, wie folgendes Gegenbeispiel zeigt: Sei $(e_i)_{i \in I}$ eine Orthonormalbasis des Folgenraums $\ell^2.$ Wir wählen eine paarweise disjunkte Folge $(e_n)_{n \in \mathbb{N}}.$ Definiere $P_nx := |(x, e_n)|^2 e_n.$ Für $\alpha_n$ konstant 1 ist $\alpha \in \ell^2, \alpha_n \not \rightarrow 0$. Allerdings gilt
+
+  \begin{align}
+      \left\| \sum_{n = 1}^{\infty} \alpha_n P_n x \right\|^2 =
+      \left\| \sum_{n = 1}^{\infty} P_n x \right\|^2 = \left\| \sum_{n = 1}^{\infty} |(x, e_n)|^2 e_n \right\|^2 \leq \sum_{n = 1}^{\infty} |(x, e_n)|^2 \underbrace{\|e_n\|}_{\substack{= 1}} \leq \|x\|,
+  \end{align}
+
+  wobei die letzte Ungleichung eine weitere Abschätzung der Parzevalschen Gleichung ist. Die Reihe $\sum_{n = 1}^{\infty} \alpha_n P_n$ konvergiert also in der Operatornorm, obwohl $\alpha_n$ keine Nullfolge ist.
+
+  Zuletzt sehen wir, dass für $x \in \ker A$ gilt
+  \begin{align}
+      \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
+      \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \stackrel{N \rightarrow \infty}{\longrightarrow} 0.
+  \end{align}
+
+  Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n$ gilt $\|P_n x\| = 0$, also $P_n x = 0,$ ergo $x \in \bigcap_{n \in \mathbb{N}} \ker P_n$. Da für Elemente dieses Durchschnitts die Reihe sowieso Null ist, haben wir genau den Kern von $A$ gefunden.
 \end{solution}
