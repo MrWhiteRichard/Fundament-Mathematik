@@ -13,5 +13,68 @@ Für (ii) $\implies$ (i) erinnere man sich zusätzlich daran, dass der schwache
 Abschluss bei konvexen Mengen gleich dem Norm-Abschluss ist.
 \end{exercise}
 \begin{solution}
-Beweis.
+\begin{itemize}
+  \item (i) $\implies$ (iii): \\
+  Sei $X$ reflexiv. Nach dem Satz von Banach-Alaoglu
+  angewandt auf den normierten Raum $(X^{\prime},\|\cdot\|)$ ist $B_{X^{\primeprime}}$
+  kompakt bezüglich $\sigma(X^{\primeprime}, \iota_1(X^{\prime})$.
+  Nach Aufgabe 6/2 ist $\iota: (X,\sigma(X,X^{\prime})) \to
+  (\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime}))|_{\iota(X)})$ ein Homöomorphismus
+  und wegen der Reflexivität gilt $\iota(X) = X^{\primeprime}$.
+  Mit Korollar 5.2.4 gilt
+  \begin{align*}
+    \iota^{-1}(B_{X^{\primeprime}}) &= \{x \in X: \|\iota(x)\|_{X^{\primeprime} \leq 1}
+    = \{x \in X: \sup\{|f(x)|: f \in X^{\prime}, \|f\| \leq 1 \} \\
+    &= \{x \in X: \|x\| \leq 1\} = B_X
+  \end{align*}
+  Damit ist $B_X$ als Bild einer kompakten Menge $B_{X^{\primeprime}}$ unter einer
+  stetigen Abbildung wieder kompakt.
+  \item (iii) $\implies$ (i): \\
+  Sei also $B_X$ kompakt bezüglich $\sigma(X,X^{\prime})$. Nach dem Satz von Goldstine
+  ist
+  \begin{align*}
+    \overline{\iota(B_X)}^{\sigma(X^{\primeprime},\iota_1(X))} = B_{X^{\primeprime}}
+  \end{align*}
+  und $\iota$ ist ein Homöomorphismus, also ist $\iota(B_X)$ bezüglich
+  $\sigma(X^{\primeprime}, \iota_1(X^{\prime}))$ kompakt. Da
+  $(X^{\primeprime}, \sigma(X^{\primeprime}, \iota_1(X^{\prime})))$ Hausdorff ist,
+  ist $\iota(B_X)$ insbesondere auch abgeschlossen (Kaltenbäck Lemma 12.11.7),
+  also ist $\iota(B_X) = \overline{\iota(B_X)} = B_{X^{\primeprime}}$.
+  Außerdem ist $\iota$ nach Lemma 5.5.2 und Bemerkung 5.5.3 injektiv und linear.
+  Sei nun $y \in X^{\primeprime}$ mit $y \neq 0$ und betrachte
+  $z := \frac{y}{\|y\|_{X^{\primeprime}}} \in X^{\primeprime}, \|z\|_{X^{\primeprime}} = 1$.
+  Es gilt $z \in B_{X^{\primeprime}}$, also folgt
+  \begin{align*}
+    \exists x \in B_X: \iota(x) = z
+  \end{align*}
+  Für $u := \|y\|_{X^{\primeprime}} \in X$ gilt dann
+  \begin{align*}
+    \iota(u) = \|y\|_{X^{\primeprime}}\iota(x) = \|y\|_{X^{\primeprime}}z
+    = \|y\|_{X^{\primeprime}} \frac{y}{\|y\|_{X^{\primeprime}}} = y
+  \end{align*}
+  und es gilt $\iota(X) = X^{\primeprime}$, also ist $X$ reflexiv.
+  \item (i) $\implies$ (ii): \\
+  Sei $X$ reflexiv. Nach dem Satz von Banach-Alaoglu ist $B_{X^{\prime}}$ abgeschlossen
+  bezüglich $\sigma(X^{\prime}, \iota(X)) = \sigma(X^{\prime},X^{\primeprime})$.
+  Nun erhalten wir mit (iii) $\implies$ (i), dass $X^{\prime}$ relexiv ist.
+  \item (ii) $\implies$ (i): \\
+  Sei $X^{\prime}$ reflexiv. Dann ist mit dem Satz von Banach-Alaoglu $B_{X^{\primeprime}}$
+  bezüglich $\sigma(X^{\primeprime}, \iota_1(X^{\prime})) = \sigma(X^{\primeprime}, X^{\primeprimeprime})$
+  und mit dem Satz von Goldstine und der Konvexität von $\iota(B_X)$ mit Satz 5.3.8
+  \begin{align*}
+    \overline{\iota(B_X)}^{\|\cdot\|_{X^{\primeprime}}}
+    = \overline{\iota(B_X)}^{\sigma(X^{\primeprime},X^{\primeprimeprime})} = B_{X^{\primeprime}}.
+  \end{align*}
+  Da $B_X$ abgeschlossen bezüglich $\|\cdot\|$ ist und
+  \begin{align*}
+    \iota^{-1}: (\iota(X), \|\cdot\|_{X^{\primeprime}}|_{\iota(X)}) \to (X,\|\cdot\|)
+  \end{align*}
+  laut Lemma 5.5.2 und Bemerkung 5.5.3
+  stetig und surjektiv ist, ist $(\iota^{-1})^{-1}(B_X)$ abgeschlossen bezüglich $\|\cdot\|_{X^{\primeprime}}$,
+  also ist
+  \begin{align*}
+    \iota(B_X) = \overline{\iota(B_X)}^{\|\cdot\|_{X^{\primeprime}}} = B_{X^{\primeprime}}.
+  \end{align*}
+  Wie in der Implikation (iii) $\implies$ (i) folgt dan $\iota(X) = X^{\primeprime}$.
+ \end{itemize}
 \end{solution}

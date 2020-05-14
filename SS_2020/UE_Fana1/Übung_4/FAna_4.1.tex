@@ -1,8 +1,58 @@
 \begin{exercise}
 Sei $(X,\|\cdot\|)$ ein Banachraum. Finde einen kompakten Hausdorffraum $K$, sodass
-$(X,\|\cdot\|)$ isometrisch isomorph zu $(C(K),\|\cdot\|_{\infty})$ ist. \\
+$(X,\|\cdot\|)$ isometrisch isomorph zu einem abgeschlossenem Teilraum $A$ von
+$(C(K),\|\cdot\|_{\infty})$ ist. \\
 \textit{Hinweis:} Betrachte $\iota: X \to X^{\primeprime}$.
 \end{exercise}
 \begin{solution}
-Beweis.
+Nach dem Satz von Banach-Alaoglu 5.5.6 ist
+\begin{align*}
+  K := \{f \in X^{\prime}: \|f\| \leq 1\}
+\end{align*}
+bezüglich $\sigma(X^{\prime}, \iota(X))$ kompakt.
+Wir wissen bereits, dass $(X^{\prime}, \sigma(X^{\prime},\iota(X)))$ lokalkonvexer
+topologischer Vektorraum ist, insbesondere also ein Hausdorffraum.
+Es ist also $(K, \sigma(X^{\prime},\iota(X))|_K)$ ein kompakter Hausdorffraum.
+Damit ist $(C(K), \|\cdot\|_{\infty})$ ein normierter Raum-
+Nach Lemma 5.5.2 ist $\iota: (X,\|\cdot\|) \to (\iota(X),\|\cdot\|_{X^{\primeprime}}|_{\iota(X)})$
+isometrisch und linear.
+Aus Bemerkung 5.5.3 entnehmen wir, dass $\iota$ auch bijektiv ist, also ist $\iota$
+ein Homöomorphismus.
+Definiere
+\begin{align*}
+  A := \{g\circ\alpha: K \to \C: g \in \iota(X)\}
+\end{align*}
+Es gilt sicher $A \subseteq C(K)$.
+Sei $\varphi: X \to A; x \mapsto \iota(x) \circ \alpha$.
+Es gilt:
+\begin{itemize}
+  \item Injektivität: Seien $x \neq y \in X$ beliebig. Nach Korollar 5.2.7. (i)
+  ist $X^{\prime}$ punktetrennend, also
+  \begin{align*}
+    \exists g \in X^{\prime}: f(x) \neq g(x).
+  \end{align*}
+  Die Funktion
+  \begin{align*}
+    h(x) := \frac{g(x)}{\|g\|_{X^{\prime}}}
+  \end{align*}
+  erfüllt dann $h \in K$ und $\varphi(x)(h) = \iota(x)(\alpha(h)) = \iota(x)(h) = h(x) \neq h(y) = \varphi(y)(h)$.
+  Also folgt $\varphi(x) \neq \varphi(y)$.
+  \item Surjektivität: Sei $f \in A$ beliebig. \\
+  \begin{align*}
+    f = g \circ \alpha = \iota(x) \circ \alpha = \phi(x).
+  \end{align*}
+  \item Linearität: Seien $x,y \in X, \lambda \in \C, f \in K$ beliebig.
+  \begin{align*}
+    \varphi(x + \lambda y)(f) = f(x + \lambda y) = f(x) + \lambda f(y) = \varphi(x)(f) + \lambda \varphi(y)(f)
+  \end{align*}
+  \item Isometrie: Sei $x \in X$ beliebig. Dann gilt für $x \in X$ beliebig fest
+  \begin{align*}
+    \|\phi(x)\|_{\infty} &= \sup\{|f(x)|: f \in K\}
+    = \sup\{|f(x)|: f \in X^{\prime}, \|f\| \leq 1\}
+    \leq  \sup\{\|f\|\|x\|_X: f \in X^{\prime}, \|f\| \leq 1\} \leq \|x\|_X \\
+  \end{align*}
+  \item Stetigkeit: $\varphi$ ist als isometrische Bijektion sogar ein Homöomorphismus.
+\end{itemize}
+Da $X$ ein Banachraum ist, erhalten wir mit Lemma 4.3.6, dass $\varphi(X) = A$
+ein abgeschlossener Teilraum von $C(K)$ ist.
 \end{solution}
