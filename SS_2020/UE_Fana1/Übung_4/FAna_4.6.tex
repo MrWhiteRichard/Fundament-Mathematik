@@ -13,6 +13,31 @@ $GT = TG = \id_H $ gilt. \\
 \textit{Hinweis:} Zeige, dass $(H,[\cdot,\cdot])$ ein Hilbertraum ist.
 \end{exercise}
 \begin{solution}
-Beweis.
+  Die positive Definitheit folgt direkt aus der zweiten Voraussetzung. Die Linearitätsbedingungen gelten, weil es sich um eine Sesquilinearform handelt. Das letzte Axiom für innere Produkte ist erfüllt wegen \textbf{warum gilt die vorletzte Ungl.? Komm nicht drauf}
+  \begin{align}
+      [x, y] = (Gx, y)_H = \overline{(y, Gx)_H} = \overline{(Gy, x)_H} = \overline{[y, x]}.
+  \end{align}
+  Sei $(x_n)_{n \in \mathbb{N}}$ eine Cauchyfolge bezüglich der von $[.,.]$ induzierten Norm. Dann gilt nach Voraussetzung
+  \begin{align}
+      \|x_n - x_m\|_H \leq \frac{\|x_n - x_m\|_{[.,.]}}{\sqrt{m}};
+  \end{align}
+  die Folge hat also einen Grenzwert in $H$, weil sie auch bezüglich der ursprünglichen Norm eine Cauchyfolge ist.
 
+  Nun ist $(H, [.,.])$ also ein Hilbertraum. Weiters ist das ursprüngliche Skalarprodukt eine beschränkte Sesquilinearform. Nach dem Satz von Lax-Milgram existiert damit genau ein Operator $T \in L_b(H)$ mit
+  \begin{align}
+      (x, y)_H = [Tx, y] ~~~~~~~ \text{für alle~~} x, y \in H.
+  \end{align}
+
+  Weil $T$ also der Gramoperator von $(.,.)_H$ bezüglich $[.,.]$ und $G$ jener von $[.,.]$ bezüglich $(.,.)_H$ ist, gilt für alle $x, y \in H$
+
+  \begin{itemize}
+      \item $(x, y)_H = [Tx, y] = (GTx, y)_H,$
+      \item $[x, y] = (Gx, y)_H = [TGx, y].$
+  \end{itemize}
+
+  Die erste Gleichung ist äquivalent zu $(y, x)_H = (y, GTx)_H.$
+
+  Ist $\Phi$ die Abbildung $y \mapsto (x \mapsto (x, y)_H)$, dann gilt also $\Phi(x) = \Phi(GTx)$. Nach Proposition 3.2.5 ist $\Phi$ bijektiv, insbesondere injektiv -- damit ist $x = GTx$ für alle $x$.
+
+  Aus der zweiten Gleichung folgt, mit demselben Argument angewandt auf den Hilbertraum $(H, [.,.])$, dass $x = TGx.$
 \end{solution}
