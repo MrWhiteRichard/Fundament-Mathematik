@@ -25,6 +25,17 @@
 }
 \newcommand{\eps}{\mathrm{eps}}
 
+% graphics in a box:
+\newcommandtwoopt{\includegraphicsboxed}[3][][]{\begin{figure}
+\begin{boxedin}
+\ifthenelse{\isempty{#2}}{
+    \includegraphics{#3}
+    \label{fig:#1}}{
+    \includegraphics{#3}
+    \caption{#2}
+    \label{fig:#1}}
+\end{boxedin} \end{figure}}
+
 % braces:
 \newcommand{\pbraces}[1]{{\left  ( #1 \right  )}}
 \newcommand{\bbraces}[1]{{\left  [ #1 \right  ]}}
