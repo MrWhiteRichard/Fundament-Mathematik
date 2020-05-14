@@ -1,50 +1,143 @@
 \begin{exercise}
-Man zeige: Sei $H$ ein Hilbertraum, $A: H \to H$ linear und symmetrisch, also
+
+Man zeige:
+Sei $H$ ein Hilbertraum, $A: H \to H$ linear und symmetrisch, also
+
 \begin{align*}
-  (Ax,y) = (x,Ay), \qquad x,y \in H.
+  (A x, y) = (x, A y),
+  \qquad
+  x, y \in H.
 \end{align*}
+
 Dann ist $A$ stetig. \\
-Die Vollständigkeit spielt hier eine entscheidende Rolle: Betrachte den Vektorraum $X$
-aller Funktionen $f: \R \to \C$, die beliebig oft stetig differenzierbar sind und
-außerhalb des Intervalls $[0,1]$ verschwinden, und versehe ihn mit dem inneren Produkt
+
+Die Vollständigkeit spielt hier eine entscheidende Rolle: Betrachte den Vektorraum $X$ aller Funktionen $f: \R \to \C$, die beliebig oft stetig differenzierbar sind und außerhalb des Intervalls $[0, 1]$ verschwinden, und versehe ihn mit dem inneren Produkt
+
 \begin{align*}
-  (f,g) := \int_0^1 f(t)\overline{g(t)}dt, \qquad f,g \in X.
+  (f, g)
+  :=
+  \Int[0][1]{f(t) \overline{g(t)}}{t},
+  \enspace
+  f, g \in X.
 \end{align*}
-Wir betrachten damit jenen Teilraum von $L^2(0,1)$, der aus $C^{\infty}$-Funktionen
-besteht, die am Rand verschwinden. Da $X$ in $L^2(0,1)$ dicht liegt, aber sicher
-$X \neq L^2(0,1)$ ist, kann $X$ nicht vollständig sein. \\
+
+D.h. wir betrachten damit jenen Teilraum von $L^2(0,1)$, der aus $C^\infty$-Funktionen besteht, die am Rand verschwinden.
+Da $X$ in $L^2(0,1)$ dicht liegt, aber sicher $X \neq L^2(0,1)$ ist, kann $X$ nicht vollständig sein. \\
+
 Zeige, dass der Operator
+
 \begin{align*}
-  A: \begin{cases}
-    X &\to X \\
-    f(t) &\mapsto if^{\prime}(t)
+  A:
+  \begin{cases}
+    X    & \to X \\
+    f(t) & \mapsto if^{\prime}(t)
   \end{cases}
 \end{align*}
-in diesem Sinne symmetrisch ist, aber nicht stetig.
+
+in diesem Sinne symmetrisch ist, aber nicht stetig. \\
+
+Die Aussage dieses Beispiels ist einer der ersten Sätze der Funktionalanalysis (Hellinger, Töplitz 1910).
+
 \end{exercise}
+
 \begin{solution}
-Wir zeigen, dass
-\begin{align*}
-  \graph A := \{(x,Ax) \in H \times H: x \in H\}
-\end{align*}
-abgeschlossen in $H \times H$ ist. Wir versehen dabei $H \times H$ mit der Summennorm.
-Wir müssen also zeigen, dass für jede
-Folge $(x_n)_{n \in \N}$ von Punkten $x_n \in H$, für die die beiden Limiten
-$x := \lim_{n \to \infty} x_n, y:= \lim_{n \to \infty} Ax_n$ existieren, gilt $y = Ax$.
-\begin{align*}
-    (x,Ax) = (Ax,x) \\
-    (x,y) = (\lim_{n \to \infty} x_n, \lim_{n \to \infty} Ax_n) \\
-    = \lim_{n \to \infty}(x_n, Ax_n) \\
-    =\lim_{n \to \infty}(Ax_n, x_n) \\
-    = \dots = (y,x) \\
-   (A\lim_{n \to \infty} x_n, y)(Ax,y) = (x,Ay) = (x, A\lim_{n \to \infty} Ax_n)
-\end{align*}
-\begin{align*}
-  \lim_{n \to \infty} (Ax_n - y,Ax_n -y)
-  &= \lim_{n \to \infty} (Ax_n,Ax_n) - (y,Ax_n) - (Ax_n,y) +(y,y)
-  = \lim_{n \to \infty} (Ax_n,Ax_n) - (y,Ax_n) - (Ax_n,y) +(y,y) \\
-  &= \lim_{n \to \infty} (Ax_n,Ax_n) - (\lim_{m \to \infty} Ax_m,Ax_n) - (Ax_n,\lim_{m \to \infty} Ax_m) +(y,y)
-\end{align*}
-Wir zeigen zuerst, dass $X$ in $L^2(0,1)$ dicht liegt. Dies folgt mit dem
-Approximationssatz (Kusoltisch 30.4.3.52)
-a\end{solution}
+
+\phantom{}
+
+\begin{enumerate}
+
+  \item
+  $H$ ist, mit der vom Skalarprodukt induzierten Norm, ein Banachraum, also auch lokalkonvexer topologischer Vektorraum.
+  Laut Korollar 5.2.7, operiert $H^\prime$ damit punktetrennend auf $H$.
+  Laut Proposition 3.2.5, ist
+
+  \begin{align*}
+    H^\prime
+    =
+    \Bbraces
+    {
+      f_y:
+      H \to \C:
+      x \mapsto (x, y):
+      y \in H
+    }.
+  \end{align*}
+
+  Sei $(x_n)_{n \in \N}$ eine Null-Folge aus $H$ und $y \in H$.
+  Wegen der Symmetrie von $A$ und der Stetigkeit von $f_{A y}$, muss
+
+  \begin{align*}
+    \lim_{n \to \infty} f_y(A x_n)
+    =
+    \lim_{n \to \infty} (A x_n, y)
+    =
+    \lim_{n \to \infty} (x_n, A y)
+    =
+    (\lim_{n \to \infty} x_n, A y)
+    =
+    (0, A y) = 0
+  \end{align*}
+
+  Laut Korollar 4.4.4, ist $A$ also beschränkt.
+
+  \item
+  \begin{itemize}
+
+    \item
+    \Quote{Symmetrie}:
+    $\Forall f, g \in X:$
+
+    \begin{align*}
+      (f, A g)
+      & =
+      \Int[0][1]{f \overline{i g^\prime}}{\lambda}
+      =
+      \Int[0][1]{f (-i) \overline{g}^\prime}{\lambda}
+      =
+      -i \pbraces
+      {
+        \underbrace{f(1) \overline{y}(1)}_0 -
+        \underbrace{f(0) \overline{g}(0)}_0 -
+        \Int[0][1]{f^\prime \overline{g}}
+      } \\
+      & =
+      \Int[0][1]{i f^\prime \overline{g}}{\lambda}
+      =
+      \Int[0][1]{A f \overline{g}}{\lambda}
+      =
+      (A f, g)
+    \end{align*}
+
+    \item
+    \Quote{Nicht-Stetigkeit}:
+
+    \begin{align*}
+      \graph{A} :=
+      \Bbraces
+      {
+        (h, A h) \in X^2:
+        h \in X
+      }
+    \end{align*}
+
+    Angenommen, $A$ wäre stetig.
+    Sei $(f_n)_{n \in \N}$ eine Cauchy-Folge in $X$, die nicht konvergiert.
+    Sie konvergiert aber gegen ein $f$ in $L^2$.
+    Weil $A$ stetig ist, ist auch $(A f_n)_{n \in \N}$ eine Cauchy-Folge, konvergiert also gegen ein $g$ in $L^2$. \\
+
+    Diese Konvergenzen sind äquivalent zur komponentenweise Konvergenz in der Produkt-Topologie.
+
+    \begin{align*}
+      \underbrace{(f_n, A f_n)}_{\in \graph{A}}
+      \xrightarrow{n \to \infty}
+      \underbrace{(f, g)}_{\notin \graph{A}}
+    \end{align*}
+
+    Damit, wäre aber der $\graph{A}$ nicht abgeschlossen, und Lemma 4.4.1 widerlegt.
+    Widerspruch!
+
+  \end{itemize}
+
+\end{enumerate}
+
+\end{solution}
