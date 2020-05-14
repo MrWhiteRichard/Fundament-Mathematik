@@ -14,14 +14,19 @@ $GT = TG = \id_H $ gilt. \\
 \end{exercise}
 \begin{solution}
   Die positive Definitheit folgt direkt aus der zweiten Voraussetzung.
-  
-  Sei $(x_n)_{n \in \mathbb{N}}$ eine Cauchyfolge bezüglich der von $[.,.]$ induzierten Norm. Dann gilt nach Voraussetzung
+
+  Sei $(x_n)_{n \in \mathbb{N}}$ eine Cauchyfolge bezüglich der von $[.,.]$ induzierten Norm. Es gilt nach Voraussetzung
   \begin{align}
       \|x_n - x_m\|_H \leq \frac{\|x_n - x_m\|_{[.,.]}}{\sqrt{m}};
   \end{align}
   die Folge hat also einen Grenzwert in $H$, weil sie auch bezüglich der ursprünglichen Norm eine Cauchyfolge ist.
 
-  Nun ist $(H, [.,.])$ also ein Hilbertraum. Weiters ist das ursprüngliche Skalarprodukt eine beschränkte Sesquilinearform. Nach dem Satz von Lax-Milgram existiert damit genau ein Operator $T \in L_b(H)$ mit
+  Nun ist $(H, [.,.])$ also ein Hilbertraum. Weiters ist das ursprüngliche Skalarprodukt eine beschränkte Sesquilinearform,
+  weil gilt
+\begin{align}
+    (x, y)_H \leq \|x\|_H \|y\|_H \leq \frac{1}{m} \|x\|_{[.,.]} \|y\|_{[.,.]}.
+\end{align}
+Nach dem Satz von Lax-Milgram existiert damit genau ein Operator $T \in L_b(H)$ mit
   \begin{align}
       (x, y)_H = [Tx, y] ~~~~~~~ \text{für alle~~} x, y \in H.
   \end{align}
