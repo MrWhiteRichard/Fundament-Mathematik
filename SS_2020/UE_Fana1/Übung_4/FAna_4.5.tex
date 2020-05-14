@@ -4,7 +4,7 @@ Man zeige: Sei $H$ ein Hilbertraum, $A: H \to H$ linear und symmetrisch, also
   (Ax,y) = (x,Ay), \qquad x,y \in H.
 \end{align*}
 Dann ist $A$ stetig. \\
-Die Vollstädnigkeit spielt hier eine entscheidende Rolle: Betrachte den Vektorraum $X$
+Die Vollständigkeit spielt hier eine entscheidende Rolle: Betrachte den Vektorraum $X$
 aller Funktionen $f: \R \to \C$, die beliebig oft stetig differenzierbar sind und
 außerhalb des Intervalls $[0,1]$ verschwinden, und versehe ihn mit dem inneren Produkt
 \begin{align*}
@@ -23,5 +23,28 @@ Zeige, dass der Operator
 in diesem Sinne symmetrisch ist, aber nicht stetig.
 \end{exercise}
 \begin{solution}
-Beweis.
-\end{solution}
+Wir zeigen, dass
+\begin{align*}
+  \graph A := \{(x,Ax) \in H \times H: x \in H\}
+\end{align*}
+abgeschlossen in $H \times H$ ist. Wir versehen dabei $H \times H$ mit der Summennorm.
+Wir müssen also zeigen, dass für jede
+Folge $(x_n)_{n \in \N}$ von Punkten $x_n \in H$, für die die beiden Limiten
+$x := \lim_{n \to \infty} x_n, y:= \lim_{n \to \infty} Ax_n$ existieren, gilt $y = Ax$.
+\begin{align*}
+    (x,Ax) = (Ax,x) \\
+    (x,y) = (\lim_{n \to \infty} x_n, \lim_{n \to \infty} Ax_n) \\
+    = \lim_{n \to \infty}(x_n, Ax_n) \\
+    =\lim_{n \to \infty}(Ax_n, x_n) \\
+    = \dots = (y,x) \\
+   (A\lim_{n \to \infty} x_n, y)(Ax,y) = (x,Ay) = (x, A\lim_{n \to \infty} Ax_n)
+\end{align*}
+\begin{align*}
+  \lim_{n \to \infty} (Ax_n - y,Ax_n -y)
+  &= \lim_{n \to \infty} (Ax_n,Ax_n) - (y,Ax_n) - (Ax_n,y) +(y,y)
+  = \lim_{n \to \infty} (Ax_n,Ax_n) - (y,Ax_n) - (Ax_n,y) +(y,y) \\
+  &= \lim_{n \to \infty} (Ax_n,Ax_n) - (\lim_{m \to \infty} Ax_m,Ax_n) - (Ax_n,\lim_{m \to \infty} Ax_m) +(y,y)
+\end{align*}
+Wir zeigen zuerst, dass $X$ in $L^2(0,1)$ dicht liegt. Dies folgt mit dem
+Approximationssatz (Kusoltisch 30.4.3.52)
+a\end{solution}
