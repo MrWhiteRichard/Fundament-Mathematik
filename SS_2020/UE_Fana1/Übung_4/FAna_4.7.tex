@@ -1,28 +1,69 @@
 \begin{exercise}
-Sei $\mu$ das normierte Lebesguemaß $d\mu = \frac{1}{2\pi}dx$. Betrachte die Elemente
-beziehungsweise Teilräume im $L^2([0,2\pi], \mu)$, die definiert sind als
-\begin{align*}
-  e_n(t) &:= \exp(int), n \in \Z, \qquad u_n(t) := \frac{e_{-n}(t) + ne_n(t)}{\sqrt{1+n^2}}, n \in \N, \\
-  M &:= \overline{\Span \{e_n: n = 0,1,\dots\}}, \qquad N := \overline{\Span\{u_n: n = 0,1,\dots\}}.
-\end{align*}
-Zeige die folgenden Aussagen:
-\begin{enumerate}[label = (\alph*)]
-  \item Die Räume $M$ und $N$ sind, versehen mit dem $L^2(\mu)$-Skalarprodukt, Hilberträume.
-  Die Mengen $\{e_n: n = 0,1,\dots\}$, beziehungsweise
-  $\{u_n: n = 0,1,\dots\}$ sind Orthonormalbasen von $M$, beziehungsweise $N$.
-  \item $M \cap N = \{0\}$.
-  \item $M \dot+ N$ ist dicht in $L^2([0,2\pi],\mu)$, aber nicht gleich ganz $L^2([0,2\pi],\mu)$.
-  \item Die Projektion des normierten Raumes $X := M \dot + N$ mit Bild $M$ und Kern $N$
-  ist nicht stetig.
-  \item Finde eine stetige Projektion von $L^2([0,2\pi],\mu)$ auf $M$.
-\end{enumerate}
 \end{exercise}
 \begin{solution}
-Beweis.
+\newpage
+Für $n \in \mathbb{N}$ ist $\ker{P_n}$ das orthogonale Komplement von $\ran P_n$.
+Wegen $\ran{P_m} \bot \ran{P_n} \bot \ker{P_n}$ gilt also $\ran P_m \subseteq \ker P_n$ und somit $P_n P_m = 0$.
+ Wir wissen, dass für orthogonale Projektionen $P_1$ und $P_2$ mit dieser Eigenschaft $P_1 + P_2$ wieder eine orthogonale Projektion ist mit $\ran(P_1 + P_2) = \ran P_1 + \ran P_2$.
 
-\includegraphicsboxed[label1][Zweites Optionales ist Caption]{../../../WS_2019-20/Numerik_UE/Projekt_2/Aufgabe_1/matmult_plot}
-\includegraphicsboxed[label2]{../../../WS_2019-20/Numerik_UE/Projekt_1/Aufgabe_1/gauss-trapez(-x^2),cos}
+Die endlichen Summen der Projektionen $P_n$ sind also wieder orthogonale Projektionen, wir können damit durch mehrfache Anwendung des Satzes von Pythagoras berechnen:
 
-In Abbildung \ref{fig:label1} sehen wir was und bei der zweiten ist nun keine
-Caption
+\begin{align}
+    \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{a}{=} \sum_{n = M+1}^N \| \alpha_n P_n x \|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \\
+    \stackrel{c}{\leq} \max_{M+1 \leq n \leq N} |\alpha_n|^2 \sum_{n = M+1}^N \| P_n x \|^2 \stackrel{d}{=}
+    \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \\ \stackrel{e}{\leq}
+    \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2
+    \stackrel{f}{\leq} \| \alpha \|_{\infty}^2 \| x \|^2.
+\end{align}
+\\
+(a), (d), (g) ist der Satz von Pythagoras; \\
+(e), (h) gelten, weil die endliche Summe orthogonaler Projektionen mit der Eigenschaft $P_n P_m = 0$ wieder eine orthogonale Projektion ist, also Abbildungsnorm kleiner gleich 1 hat.
+
+Weiters gilt
+
+\begin{align}
+    \sum_{n = 1}^N \| P_n x \|^2 \stackrel{g}{=}
+     \left\| \left(\sum_{n = 1}^N P_n\right) x \right\|^2 \stackrel{h}{\leq} \|x\|^2.
+\end{align}
+
+Da die Reihe $\sum_{n = 1}^N \| P_n x \|^2$ ist also beschränkt, und weil sie auch monoton ist, konvergent. Es gilt
+
+\begin{align}
+\left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2
+\leq \|\alpha\|_{\infty} \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \stackrel{M, N \rightarrow \infty}{\longrightarrow} 0,
+\end{align}
+
+wobei wir die erste Ungleichung schon oben gezeigt haben (d) und die zweite gilt, weil die Reihe konvergiert, also eine Cauchyfolge ist. Wir haben also eine Cauchyfolge und damit die Konvergenz dieser Reihe gezeigt.
+
+Mit der Ungleichheit (f) gilt
+\begin{align}
+    \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \leq \| \alpha \|_{\infty}^2 \| x \|^2, \text{~~also~} \|A\| \leq \|\alpha\|_{\infty}
+\end{align}
+
+und somit $A \in \mathcal{B}(H).$ Die erste Ungleichungskette bis (e) gelesen gibt uns folgende Abschätzung:
+
+\begin{align}
+\left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2,
+\end{align}
+
+also gilt in der Operatornorm
+
+\begin{align}
+\left\| \sum_{n = M+1}^N \alpha_n P_n \right\| \leq \max_{M+1 \leq n \leq N} |\alpha_n|.
+\end{align}
+
+Die Umkehrung gilt ebenfalls: Sei $(\alpha_n)$ keine Nullfolge, das heißt für jedes $\epsilon > 0$, sodass es für jedes $n$ $M, N > n$ und ein $k$ mit $M+1 \leq k \leq N$ gibt, sodass gilt $|\alpha_k|^2 > \epsilon.$ Wegen $P_k \neq 0$ gibt es ein $x \in \ran P_k\backslash\{0\}.$ $P_k$ ist auf seinem Bild die Identität, damit gilt
+\begin{align}
+ \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \geq |\alpha_k|^2 \|x\|^2 > \epsilon \|x\|^2.
+\end{align}
+Es liegt also keine Konvergenz in der Operatornorm vor.
+
+
+Zuletzt sehen wir, dass für $x \in \ker A$ gilt
+\begin{align*}
+    \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
+    \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \stackrel{N \rightarrow \infty}{\longrightarrow} 0.
+\end{align*}
+
+Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n$ gilt $\|P_n x\| = 0$, also $P_n x = 0,$ ergo $x \in \bigcap_{n \in \mathbb{N}} \ker P_n$. Da für Elemente dieses Durchschnitts die Reihe sowieso Null ist, haben wir genau den Kern von $A$ gefunden.
 \end{solution}
