@@ -1,46 +1,93 @@
 \begin{exercise}
-Sei $(H,(\cdot,\cdot)_H)$ ein Hilbertraum, und $[\cdot,\cdot]$ ein weiteres Skalarprodukt
-auf $H$. Sei vorausgesetzt, dass $[\cdot,\cdot]$ eine stetige, koerzive Sesquilinearform
-ist, also dass (hier bezeichnet $\|\cdot\|_H$ die von $(\cdot,\cdot)_H$ induzierte Norm)
+
+Sei $(H,(\cdot, \cdot)_H)$ ein Hilbertraum, und $[\cdot, \cdot]$ ein weiteres Skalarproduktauf $H$.
+Sei vorausgesetzt, dass $[\cdot,\cdot]$ eine stetige, koerzive Sesquilinearform ist, also dass (hier bezeichnet $\norm[H]{\cdot}$ die von $(\cdot, \cdot)_H$ induzierte Norm)
+
 \begin{align*}
-  \exists C > 0 \forall x,y \in H: |[x,y]| \leq C\|x\|_H\|y\|_H, \qquad
-  \exists m > 0 \forall x \in H: [x,x] \geq m\|x\|_H^2.
+  \Exists C > 0:
+  \Forall x, y \in H:
+  |[x, y]| \leq C\norm[H]{x} \norm[H]{y},
+  \qquad
+  \Exists m > 0:
+  \Forall x \in H:
+  [x, x] \geq m \norm[H]{x}^2.
 \end{align*}
-Weiters bezeichne $G$ den Gram-Operator der Sesquilinearform $[\cdot,\cdot]$
-bezüglich $(\cdot,\cdot)_H$. \\
-Zeige, dass es einen eindeutigen Operator $T \in \mathcal{B}(H)$ gibt, sodass
-$GT = TG = \id_H $ gilt. \\
-\textit{Hinweis:} Zeige, dass $(H,[\cdot,\cdot])$ ein Hilbertraum ist.
+
+Weiters bezeichne $G$ den Gram-Operator der Sesquilinearform $[\cdot, \cdot]$ bezüglich $(\cdot, \cdot)_H$. \\
+Zeige, dass es einen eindeutigen Operator $T \in \mathcal{B}(H)$ gibt, sodass $GT = TG = \id_H $ gilt. \\
+
+\textit{Hinweis:}
+Zeige, dass $(H, [\cdot, \cdot])$ ein Hilbertraum ist.
+
 \end{exercise}
+
 \begin{solution}
-  Die positive Definitheit folgt direkt aus der zweiten Voraussetzung.
 
-  Sei $(x_n)_{n \in \mathbb{N}}$ eine Cauchyfolge bezüglich der von $[.,.]$ induzierten Norm. Es gilt nach Voraussetzung
-  \begin{align}
-      \|x_n - x_k\|_H \leq \frac{\|x_n - x_k\|_{[.,.]}}{\sqrt{m}};
-  \end{align}
-  die Folge hat also einen Grenzwert in $H$, weil sie auch bezüglich der ursprünglichen Norm eine Cauchyfolge ist.
+Wir zeigen, dass $(H, [\cdot, \cdot])$ ein Hilbertraum ist.
 
-  Nun ist $(H, [.,.])$ also ein Hilbertraum. Weiters ist das ursprüngliche Skalarprodukt eine beschränkte Sesquilinearform,
-  weil gilt
-\begin{align}
-    (x, y)_H \leq \|x\|_H \|y\|_H \leq \frac{1}{m} \|x\|_{[.,.]} \|y\|_{[.,.]}.
-\end{align}
-Nach dem Satz von Lax-Milgram existiert damit genau ein Operator $T \in L_b(H)$ mit
-  \begin{align}
-      (x, y)_H = [Tx, y] ~~~~~~~ \text{für alle~~} x, y \in H.
-  \end{align}
+\begin{itemize}
 
-  Weil $T$ also der Gramoperator von $(.,.)_H$ bezüglich $[.,.]$ und $G$ jener von $[.,.]$ bezüglich $(.,.)_H$ ist, gilt für alle $x, y \in H$
+  \item
+  \Quote{positive Definitheit}: \\
 
-  \begin{itemize}
-      \item $(x, y)_H = [Tx, y] = (GTx, y)_H,$
-      \item $[x, y] = (Gx, y)_H = [TGx, y].$
-  \end{itemize}
+  Die positive Definitheit von $[\cdot, \cdot]$ folgt direkt aus der zweiten Voraussetzung. \\
 
-  Die erste Gleichung ist äquivalent zu $(y, x)_H = (y, GTx)_H.$
+  \item
+  \Quote{Vollständigkeit}:
 
-  Ist $\Phi$ die Abbildung $y \mapsto (x \mapsto (x, y)_H)$, dann gilt also $\Phi(x) = \Phi(GTx)$. Nach Proposition 3.2.5 ist $\Phi$ bijektiv, insbesondere injektiv -- damit ist $x = GTx$ für alle $x$.
+  Sei $(x_n)_{n \in \N}$ eine Cauchyfolge bezüglich der von $[\cdot, \cdot]$ induzierten Norm.
+  Es gilt nach Voraussetzung
 
-  Aus der zweiten Gleichung folgt, mit demselben Argument angewandt auf den Hilbertraum $(H, [.,.])$, dass $x = TGx.$
+  \begin{align*}
+      \norm[H]{x_n - x_k}
+      \leq
+      \frac
+      {
+        \norm[{[\cdot, \cdot]}]{x_n - x_k}
+      }{
+        \sqrt{m}
+      }.
+  \end{align*}
+
+  Die Folge ist also auch bezüglich der ursprünglichen Norm eine Cauchyfolge.
+  Damit hat sie einen Grenzwert in $H$.
+
+\end{itemize}
+
+Weiters ist das ursprüngliche Skalarprodukt eine, durch $\frac{1}{m}$, beschränkte Sesquilinearform, weil
+
+\begin{align*}
+  (x, y)_H
+  \leq
+  \norm[H]{x} \norm[H]{y}
+  \leq
+  \frac{1}{m} \norm[{[\cdot, \cdot]}]{x} \norm[{[\cdot, \cdot]}]{y}.
+\end{align*}
+
+\includegraphicsboxed{Satz 3.2.6}
+
+Nach dem Satz 3.2.6 (von Lax-Milgram), $\ExistsOnlyOne T \in L_b(H): \Forall x, y \in H:$
+
+\begin{align*}
+    (x, y)_H = [T x, y].
+\end{align*}
+
+$T$ ist der Gramoperator von $(\cdot, \cdot)_H$ bezüglich $[\cdot, \cdot]$.
+$G$ ist jener von $[\cdot, \cdot]$ bezüglich $(\cdot, \cdot)_H$.
+Also gilt $\Forall x, y \in H:$
+
+\begin{align*}
+    (x, y)_H = [T x, y] = (G T x, y)_H,
+    \enspace
+    [x, y] = (G x, y)_H = [T G x, y].
+\end{align*}
+
+Die erste Gleichung ist äquivalent zu $(y, x)_H = (y, GTx)_H$. \\
+
+Ist $\Phi$ die Abbildung $y \mapsto (x \mapsto (x, y)_H)$, dann gilt also $\Phi(x) = \Phi(GTx)$.
+Nach Proposition 3.2.5 (siehe oben), ist $\Phi$ bijektiv.
+Damit ist $\Phi$ insbesondere injektiv und für alle $x$ gilt $x = GTx$. \\
+
+Aus der zweiten Gleichung folgt, mit demselben Argument angewandt auf den Hilbertraum $(H, [\cdot, \cdot])$, dass $x = T G x.$
+
 \end{solution}
