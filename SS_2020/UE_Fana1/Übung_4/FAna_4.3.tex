@@ -91,6 +91,36 @@ Dann gilt
 \end{align*}
 Seien nun $k := \min \{ i \in \N: \Im(a_i) \neq 0\}$
 und $b := \max\{|\Im(a_i)|: i \in \{k+1,\dots,n\}\}$.
-Wir wählen jetzt ein $t \in ]0,1]$ mit $t^{k+1}b < \frac{|\Im(a_k)}{n}t^k$.
-Ab hier unvollständig!
+Wir wählen jetzt ein $t \in ]0,1]$ mit $t^{k+1}b < \frac{|\Im(a_k)|}{n}t^k$,
+also gilt
+\begin{align*}
+  t < \frac{|\Im(a_k)|}{nb} \implies t^k(tb - \frac{|\Im(a_k)|}{n}) < 0.
+\end{align*}
+Dann ist insbesondere $\forall l \geq k + 1: t^lb \leq t^{k+1}b < \frac{|\Im(a_k)|}{n}t^k$.
+Weiters gilt
+\begin{align*}
+  |\sum_{i = k + 1}^n \Im(a_i)t^i| \leq \sum_{i = k + 1}^n|\Im(a_i)|t^i
+  \leq \sum_{i = k + 1}^n b t^i < |\Im(a_k)|t^k.
+\end{align*}
+Also folgt
+\begin{align*}
+  |\Im(p(t))| = |\sum_{i = k}^n \Im(a_i)t^i| \geq | |\Im(a_k)|t^k - |\sum_{i = k + 1}^n \Im(a_i)t^i|| > 0.
+\end{align*}
+Dies ist aber ein Widerspruch zu $p(t) \in \R$! \\
+Also ist
+\begin{align*}
+L = \R^n[z] = \{p: [-1,1] \to \R: x \mapsto \sum_{i = 0}^n a_ix^i |
+\forall i \in \{0,\dots,n\}: a_i \in \R\}.
+\end{align*}
+Außerdem ist
+\begin{align*}
+  M = \bigcap_{t \in [-1,1]}\beta_t^{-1}(\R^+\cup \{0\})
+\end{align*}
+konvex und abgeschlossen, also auch $L \cap M = K \neq \emptyset$.
+Schließlich folgt die gewünschte Aussage mit Satz 3.2.3 (i), der besagt,
+dass zu jedem $f \in L^2([-1,1])$ ein eindeutiges Element $p_K(x) \in K$ gibt,
+sodass
+\begin{align*}
+  \|x - p_K(x)\| = \inf\{\|y-x\|: y \in K\}.
+\end{align*}
 \end{solution}
