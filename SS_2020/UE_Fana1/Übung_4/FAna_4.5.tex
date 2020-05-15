@@ -149,6 +149,25 @@ Wir wählen eine Funktion $f$ mit $\int |f|^2 < \infty$ und $\int |f'|^2 < \inft
     \item $\int|f_n'|^2 = n \int |f'|^2 \longrightarrow \infty.$
 \end{itemize}
 
+  ************* Noch konkretere Alternative ***************
+
+  Wir betrachten die die $C_c^\infty$ Funktion (vgl. Blümlinger Lemma 2.4.3)
+  \begin{align*}
+    f_\rho := 
+    \begin{cases}
+      \sqrt{\frac{1}{2\rho}}\exp\pbraces{\frac{- \rho^2}{\rho^2 - x^2}} &, \vbraces{x} < \rho \\
+      0 &, \vbraces{x} \geq \rho
+    \end{cases}
+  \end{align*}
+  Die Funktion ist symmetrisch um Null und hat das Maximum im Punkt Null mit Wert $\sqrt{\frac{1}{2\rho}} \underbrace{\exp(-1)}_{\leq 1}$. Wir können also die Norm abschätzen
+  \begin{align*}
+    \norm[2]{f_\rho} \leq \frac{1}{2\rho} \int_{-\rho}^\rho 1 dx = 1
+  \end{align*}
+  Von der Ableitung kennen wir eine Stammfunktion und können leicht das Integral berechnen und mit der Ungleichung von Hölder gilt
+  \begin{align*}
+    2\norm[2]{f_\rho^\prime} \geq \norm[1]{f_\rho^\prime} = 2(f_\rho(0) - f_\rho(-1)) = 2 \sqrt\frac{1}{2\rho} \exp(-1) \to \infty \quad \textrm{für $\rho \to 0$}
+  \end{align*}
+
 \end{enumerate}
 
 \end{solution}
