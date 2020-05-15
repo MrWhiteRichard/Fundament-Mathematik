@@ -26,14 +26,18 @@
 \newcommand{\eps}{\mathrm{eps}}
 
 % graphics in a box:
-\newcommandtwoopt{\includegraphicsboxed}[3][][]{\begin{figure}
+\newcommandtwoopt{\includegraphicsboxed}[3][][]{\begin{figure}[!h]
 \begin{boxedin}
-\ifthenelse{\isempty{#2}}{
+\ifthenelse{\isempty{#2}}{\begin{center}
+
+
     \includegraphics{#3}
-    \label{fig:#1}}{
+    \label{fig:#1}\end{center}}{
+    \begin{center}
     \includegraphics{#3}
     \caption{#2}
-    \label{fig:#1}}
+    \label{fig:#1}
+    \end{center}}
 \end{boxedin} \end{figure}}
 
 % braces:
