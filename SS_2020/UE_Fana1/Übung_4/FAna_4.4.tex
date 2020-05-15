@@ -16,7 +16,6 @@ und ist $\alpha = (\alpha_n)_{n \in \N} \in \ell^{\infty}$, mit $\alpha_n \neq 0
 
 konvergent.
 Es gilt $A \in \mathcal{B}(H), \|A\| = \norm[\infty]{\alpha}$.
-
 Bestimme $\ker A$. Ist $\alpha_n \to 0$, so konvergiert die Reihe in der Operatornorm.
 Gilt auch die Umkehrung?
 
@@ -77,41 +76,116 @@ Dabei, haben die erste Ungleichung schon oben gezeigt.
 Der Grenzübergang folgt aus (g).
 Damit, ist die Reihe eine Cauchy-Folge, also konvergent. \\
 
+\Quote{$\norm{A} \leq \norm[\infty]{\alpha}$}:
 Mit (a)-(f) gilt
 
 \begin{align*}
-    \norm{\sum_{n = 1}^N \alpha_n P_n x}^2
-    \leq
     \norm[\infty]{\alpha}^2 \norm{x}^2.
+    \leq
+    \norm{\sum_{n = 1}^N \alpha_n P_n x}^2
+    \xrightarrow{N \to \infty}
+    \norm{A x}^2
 \end{align*}
 
 Also $\|A\| \leq \norm[\infty]{\alpha}$ und somit $A \in \mathcal{B}(H)$. \\
 
-Die erste Ungleichungskette bis (e) gelesen gibt uns folgende Abschätzung:
+\Quote{$\norm{A} \leq \norm[\infty]{\alpha}$}:
+Sei $(\alpha_{n(k)})_{k \in \N}$ eine Teil-Folge, sodass
 
 \begin{align*}
-\left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2,
+  |\alpha_{n(k)}|
+  \xrightarrow{k \to \infty}
+  \sup_{n \in \N} |\alpha_n|
+  =
+  \norm[\infty]{\alpha}.
 \end{align*}
 
-also gilt in der Operatornorm
+Sei $x_k \in \ran{P_k}$, mit $\norm{x_k} = 1$.
+$\Forall \ell \in \N \setminus \Bbraces{k}:$
 
 \begin{align*}
-\left\| \sum_{n = M+1}^N \alpha_n P_n \right\| \leq \max_{M+1 \leq n \leq N} |\alpha_n|.
+  P_\ell x_k = P_\ell P_k x_k = 0
+  \implies
+  \norm{A}
+  \geq
+  \norm{\sum_{n=1}^\infty \alpha_n P_n x_{n(k)}}
+  =
+  \norm{\alpha_{n(k)} P_{n(k)} x_{n(k)}}
+  =
+  |\alpha_n(k)|
+  \xrightarrow{k \to \infty}
+  \norm[\infty]{\alpha}
 \end{align*}
 
-Die Folge $(\alpha_n)$ ist aber eine Nullfolge, damit ist die Reihe eine Cauchyfolge in der Operatornorm. Da wir in einem vollständigen Raum sind, haben wir somit die Konvergenz bezüglich der Operatornorm gezeigt.
+Wir zeigen, dass
 
-Die Umkehrung gilt ebenfalls: Sei $(\alpha_n)$ keine Nullfolge, das heißt für jedes $\epsilon$ und jedes $n$ gibt es $M, N > n$ und ein $k$ mit $M+1 \leq k \leq N$, sodass gilt $|\alpha_k|^2 > \epsilon.$ Wegen $P_k \neq 0$ gibt es ein $x \in \ran P_k\backslash\{0\}.$ $P_k$ ist auf seinem Bild die Identität, damit gilt
+\begin{align*}
+  \bigcap_{n \in \N} \ker{P_n}
+  =
+  \ker{A}
+  =
+  \Bbraces{x \in H: A x = 0}
+  =
+  \Bbraces{x \in H: \sum_{n=1}^\infty \alpha_n P_n x = 0}
+\end{align*}
+
+\Quote{$\subseteq$}:
+Trivial
+
+\Quote{$\supseteq$}:
+Wegen dem Pythagoras, gilt $\Forall x \in \ker{A}:$
+
+\begin{align*}
+    \sum_{n=1}^N |\alpha_n|^2 \norm{P_n x}^2
+    =
+    \norm{\sum_{n = 1}^N \alpha_n P_n x}^2
+    \xrightarrow{N \rightarrow \infty}
+    \norm{A x}^2 = 0.
+\end{align*}
+
+Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n \in \N$, $\norm{P_n x} = 0$ ist, also $P_n x = 0$. \\
+
+Nun zur Konvergenz ... (a)-(e) gibt uns folgende Abschätzung.
+
+\begin{align*}
+  \norm{\sum_{n = M+1}^N \alpha_n P_n x}^2
+  \leq
+  \max_{M+1 \leq n \leq N} |\alpha_n|^2 \norm{x}^2
+\end{align*}
+
+Also gilt in der Operatornorm
+
+\begin{align*}
+  \norm{\sum_{n = M+1}^N \alpha_n P_n}
+  \leq
+  \max_{M+1 \leq n \leq N} |\alpha_n|.
+\end{align*}
+
+Die Folge $(\alpha_n)_{n \in \N}$ ist aber eine Nullfolge.
+Damit ist die Reihe eine Cauchyfolge in der Operatornorm.
+Da der Raum der Linearen Abbildungen mit der Operatornorm vollständig ist, haben wir somit die Konvergenz bezüglich dieser gezeigt. \\
+
+Die Umkehrung gilt ebenfalls.
+Das zeigen wir via Kontraposition.
+Sei $(\alpha_n)_{n \in \N}$ keine Nullfolge.
+D.h. $\Exists \epsilon > 0, \Forall n \in \N: \Exists M, N > n, \Exists k \in \N:$
+
+\begin{align*}
+  M+1 \leq k \leq N,
+  \quad
+  |\alpha_k|^2 > \epsilon.
+\end{align*}
+
+Wegen $P_k \neq 0$ gibt es ein $x \in \ran{P_k} \setminus \Bbraces{0}$.
+$P_k$ ist auf seinem Bild die Identität.
+Damit gilt
+
 \begin{align}
- \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \geq |\alpha_k|^2 \|x\|^2 > \epsilon \|x\|^2.
+ \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2
+ \stackrel{(b)}{=}
+ \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \geq |\alpha_k|^2 \|x\|^2 > \epsilon \|x\|^2.
 \end{align}
-Es liegt also keine Konvergenz in der Operatornorm vor.
-Zuletzt sehen wir, dass für $x \in \ker A$ gilt
-\begin{align*}
-    \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
-    \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \stackrel{N \rightarrow \infty}{\longrightarrow} 0.
-\end{align*}
 
-Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n$ gilt $\|P_n x\| = 0$, also $P_n x = 0,$ ergo $x \in \bigcap_{n \in \mathbb{N}} \ker P_n$. Da für Elemente dieses Durchschnitts die Reihe sowieso Null ist, haben wir genau den Kern von $A$ gefunden.
+Es liegt also keine Konvergenz in der Operatornorm vor. \\
 
 \end{solution}
