@@ -101,15 +101,11 @@ also gilt in der Operatornorm
 
 Die Folge $(\alpha_n)$ ist aber eine Nullfolge, damit ist die Reihe eine Cauchyfolge in der Operatornorm. Da wir in einem vollständigen Raum sind, haben wir somit die Konvergenz bezüglich der Operatornorm gezeigt.
 
-Die Umkehrung gilt im Allgemeinen nicht, wie folgendes Gegenbeispiel zeigt: Sei $(e_i)_{i \in I}$ eine Orthonormalbasis des Folgenraums $\ell^2.$ Wir wählen eine Folge paarweise verschiedener $(e_n)_{n \in \mathbb{N}}.$ Definiere $P_nx := |(x, e_n)|^2 e_n.$ Für $\alpha_n$ konstant 1 ist $\alpha \in \ell^2, \alpha_n \not \rightarrow 0$. Allerdings gilt
-
-\begin{align*}
-    \left\| \sum_{n = 1}^{\infty} \alpha_n P_n x \right\|^2 =
-    \left\| \sum_{n = 1}^{\infty} P_n x \right\|^2 = \left\| \sum_{n = 1}^{\infty} |(x, e_n)|^2 e_n \right\|^2 \leq \sum_{n = 1}^{\infty} |(x, e_n)|^2 \underbrace{\|e_n\|}_{\substack{= 1}} \leq \|x\|,
-\end{align*}
-
-wobei die letzte Ungleichung eine weitere Abschätzung der Parzevalschen Gleichung ist. Die Reihe $\sum_{n = 1}^{\infty} \alpha_n P_n$ konvergiert also in der Operatornorm, obwohl $\alpha_n$ keine Nullfolge ist.
-
+Die Umkehrung gilt ebenfalls: Sei $(\alpha_n)$ keine Nullfolge, das heißt für jedes $\epsilon$ und jedes $n$ gibt es $M, N > n$ und ein $k$ mit $M+1 \leq k \leq N$, sodass gilt $|\alpha_k|^2 > \epsilon.$ Wegen $P_k \neq 0$ gibt es ein $x \in \ran P_k\backslash\{0\}.$ $P_k$ ist auf seinem Bild die Identität, damit gilt
+\begin{align}
+ \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \geq |\alpha_k|^2 \|x\|^2 > \epsilon \|x\|^2.
+\end{align}
+Es liegt also keine Konvergenz in der Operatornorm vor.
 Zuletzt sehen wir, dass für $x \in \ker A$ gilt
 \begin{align*}
     \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
