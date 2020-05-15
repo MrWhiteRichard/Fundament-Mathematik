@@ -48,7 +48,13 @@ Die Aussage dieses Beispiels ist einer der ersten Sätze der Funktionalanalysis 
 
   \item
   $H$ ist, mit der vom Skalarprodukt induzierten Norm, ein Banachraum, also auch lokalkonvexer topologischer Vektorraum.
+
+  \includegraphicsboxed{Korollar 5.2.7_1}
+
   Laut Korollar 5.2.7, operiert $H^\prime$ damit punktetrennend auf $H$.
+
+  \includegraphicsboxed{Proposition 3.2.5}
+
   Laut Proposition 3.2.5, ist
 
   \begin{align*}
@@ -78,9 +84,9 @@ Die Aussage dieses Beispiels ist einer der ersten Sätze der Funktionalanalysis 
     (0, A y) = 0
   \end{align*}
 
-  Laut Korollar 4.4.4, ist $A$ also beschränkt.
-
   \includegraphicsboxed{4.4.4.jpg}
+
+  Laut Korollar 4.4.4, ist $A$ also beschränkt.
 
   \item
   \begin{itemize}
@@ -135,39 +141,48 @@ Die Aussage dieses Beispiels ist einer der ersten Sätze der Funktionalanalysis 
       \underbrace{(f, g)}_{\notin \graph{A}}
     \end{align*}
 
+    \includegraphicsboxed{4.4.1}
+
     Damit, wäre aber der $\graph{A}$ nicht abgeschlossen, und Lemma 4.4.1 widerlegt.
     Widerspruch!
-    \includegraphicsboxed{4.4.1}
-    \FloatBarrier
+
   \end{itemize}
 
-  ********* Alternativer Beweis der Nichtstetigkeit *********
+\end{enumerate}
+
+\end{solution}
+
+\begin{solution}
+
+\textbf{Alternativer Beweis der Nichtstetigkeit}
 
 Wir wählen eine Funktion $f$ mit $\int |f|^2 < \infty$ und $\int |f'|^2 < \infty$ und setzen $f_n(x) := f(nx).$ Dann gilt
 \begin{itemize}
-    \item $\int |f_n|^2 = \frac{1}{n} \int |f|^2 \longrightarrow 0,$
-    \item $\int|f_n'|^2 = n \int |f'|^2 \longrightarrow \infty.$
+  \item $\int |f_n|^2 = \frac{1}{n} \int |f|^2 \longrightarrow 0,$
+  \item $\int|f_n'|^2 = n \int |f'|^2 \longrightarrow \infty.$
 \end{itemize}
 
-  ************* Noch konkretere Alternative ***************
+\end{solution}
 
-  Wir betrachten die die $C_c^\infty$ Funktion (vgl. Blümlinger Lemma 2.4.3)
-  \begin{align*}
-    f_\rho := 
-    \begin{cases}
-      \sqrt{\frac{1}{2\rho}}\exp\pbraces{\frac{- \rho^2}{\rho^2 - x^2}} &, \vbraces{x} < \rho \\
-      0 &, \vbraces{x} \geq \rho
-    \end{cases}
-  \end{align*}
-  Die Funktion ist symmetrisch um Null und hat das Maximum im Punkt Null mit Wert $\sqrt{\frac{1}{2\rho}} \underbrace{\exp(-1)}_{\leq 1}$. Wir können also die Norm abschätzen
-  \begin{align*}
-    \norm[2]{f_\rho} \leq \frac{1}{2\rho} \int_{-\rho}^\rho 1 dx = 1
-  \end{align*}
-  Von der Ableitung kennen wir eine Stammfunktion und können leicht das Integral berechnen und mit der Ungleichung von Hölder gilt
-  \begin{align*}
-    2\norm[2]{f_\rho^\prime} \geq \norm[1]{f_\rho^\prime} = 2(f_\rho(0) - f_\rho(-1)) = 2 \sqrt\frac{1}{2\rho} \exp(-1) \to \infty \quad \textrm{für $\rho \to 0$}
-  \end{align*}
+\begin{solution}
 
-\end{enumerate}
+\textbf{Noch konkretere Alternative}
+
+Wir betrachten die die $C_c^\infty$ Funktion (vgl. Blümlinger Lemma 2.4.3)
+\begin{align*}
+  f_\rho :=
+  \begin{cases}
+    \sqrt{\frac{1}{2\rho}}\exp\pbraces{\frac{- \rho^2}{\rho^2 - x^2}} &, \vbraces{x} < \rho \\
+    0 &, \vbraces{x} \geq \rho
+  \end{cases}
+\end{align*}
+Die Funktion ist symmetrisch um Null und hat das Maximum im Punkt Null mit Wert $\sqrt{\frac{1}{2\rho}} \underbrace{\exp(-1)}_{\leq 1}$. Wir können also die Norm abschätzen
+\begin{align*}
+  \norm[2]{f_\rho} \leq \frac{1}{2\rho} \int_{-\rho}^\rho 1 dx = 1
+\end{align*}
+Von der Ableitung kennen wir eine Stammfunktion und können leicht das Integral berechnen und mit der Ungleichung von Hölder gilt
+\begin{align*}
+  2\norm[2]{f_\rho^\prime} \geq \norm[1]{f_\rho^\prime} = 2(f_\rho(0) - f_\rho(-1)) = 2 \sqrt\frac{1}{2\rho} \exp(-1) \to \infty \quad \textrm{für $\rho \to 0$}
+\end{align*}
 
 \end{solution}

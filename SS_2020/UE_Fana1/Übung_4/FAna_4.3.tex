@@ -63,10 +63,8 @@ $P_n$ ist als endlich-dimensionaler Unterraum abgeschlossen (Satz 2.2.1).
 
 \begin{align*}
   \alpha_t:
-  \begin{cases}
-    P_n & \to \C \\
-    p   & \mapsto p(t)
-  \end{cases},
+  P_n \to \C:
+  p  \mapsto p(t),
   \enspace
   t \in [-1, 1]
 \end{align*}
@@ -78,33 +76,31 @@ Wir zeigen nun, dass $\alpha_t$ ein lineares Funktional ist.
   \item
   \Quote{Linearität}: \\
 
-  Seien $p, q \in P_n, \lambda \in \C$ beliebig.
-
-  \begin{align*}
-    \alpha_t(p + \lambda q)
-    =
-    p(t) + \lambda q(t)
-    =
-    \alpha_t(p) + \alpha_t(q).
-  \end{align*}
+  Evaluierungsfunktionen sind linear.
 
   \item
   \Quote{Stetigkeit}: \\
 
-  Da $\dim(P_n) = n + 1 < \infty$ sind alle Normen äquivalent und wir betrachten
+  Da $\dim(P_n) = n + 1 < \infty$ sind alle Normen äquivalent.
 
   \begin{align*}
     \norm{\alpha_t}
     =
     \sup \Bbraces
     {
+      |\alpha_t(p)|:
+      \norm[\infty]{p} = 1
+    }
+    =
+    \sup \Bbraces
+    {
       |p(t)|:
       \norm[\infty]{p} = 1
     }
-    = 1 < \infty,
+    = 1 < \infty
   \end{align*}
 
-  also ist $\alpha_t$ stetig.
+  Also ist $\alpha_t$ beschränkt, und damit stetig.
 
 \end{itemize}
 
@@ -121,6 +117,11 @@ Die Funktionen sind wieder lineare Funktionale.
 \begin{itemize}
 
   \item
+  \Quote{Linearität}: \\
+
+  Evaluierungsfunktionen und der Ableitungsoperator sind linear.
+
+  \item
   \Quote{Stetigkeit}: \\
 
   \begin{align*}
@@ -135,11 +136,17 @@ Die Funktionen sind wieder lineare Funktionale.
   \begin{align*}
     \gamma_{t, k}
     :=
-    h_k^{-2}(\alpha_{t + h_k} - 2 \alpha_t + \alpha_{t - h_k})
+    \frac
+    {
+      \alpha_{t + h_k} -
+      2 \alpha_t +
+      \alpha_{t - h_k}
+    }
+    {h_k^2}
   \end{align*}
 
   Das ist ein stetiges, lineares Funktional.
-  Für alle $p \in P_n$ existiert der Grenzwert $\lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)$.
+  Für alle $p \in P_n$ existiert der Grenzwert (als Teilfolge eines Netzes) $\lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)$.
 
   \includegraphicsboxed{Korollar 4.2.3}
 
@@ -147,55 +154,63 @@ Die Funktionen sind wieder lineare Funktionale.
 
   \begin{align*}
     \beta_t:
-    \begin{cases}
-      P_n & \to \C \\
-      p   & \mapsto \lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)
-    \end{cases}
+    P_n \to \C:
+    p \mapsto \lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)
   \end{align*}
 
   ein stetiges lineares Funktional.
 
 \end{itemize}
 
-$\R, \R^+ \cup \Bbraces{0} \subset \C$ sind abgeschlossen und konvex, also sind $\Forall t \in [-1, 1]$:
+$\R, \R^+ \cup \Bbraces{0} \subset \C$ sind abgeschlossen und konvex.
+Also sind $\Forall t \in [-1, 1]$:
 
 \begin{align*}
   \alpha_t^{-1}(\R)
   =
-  \Bbraces{p \in P_n: p(t) \in \R}
-\end{align*}
-
-und
-
-\begin{align*}
+  \Bbraces{p \in P_n: p(t) \in \R},
+  \enspace
   \beta_t^{-1}(\R^+ \cup \Bbraces{0})
   =
   \Bbraces{p \in P_n: p^\primeprime(t) \geq 0}
 \end{align*}
 
-abgeschlossen und konvex, also ist auch
+abgeschlossen und konvex.
+Also ist auch
 
 \begin{align*}
   L := \bigcap_{t \in [-1, 1]}\alpha_t^{-1}(\R)
 \end{align*}
 
 abgeschlossen und konvex.
-Sei nun $p = \sum_{i=1}^n a_i x^i \in L$ beliebig.
+Sei nun $(p: x \mapsto \sum_{i=1}^n a_i x^i) \in L$ beliebig.
 Dann gilt
 
 \begin{align*}
   \Forall t \in [-1, 1]: p(t) \in \R.
 \end{align*}
 
-Seien nun $k := \min \Bbraces{i \in \N: \Im(a_i) \neq 0}$
-und $b := \max \Bbraces{|\Im(a_i)|: i \in \Bbraces{k+1, \dots, n}}$.
-Wir wählen jetzt ein $t \in ]0, 1]$ mit $t^{k+1} b < \frac{|\Im(a_k)|}{n} t^k$.
+Angenommen, es gäbe einen imaginären Koeffizienten.
+Dann kann man definieren ...
+
+\begin{align*}
+  k := \min \Bbraces{i \in \N: \Im(a_i) \neq 0},
+  \enspace
+  b := \max \Bbraces{|\Im(a_i)|: i = k + 1, \dots, n}.
+\end{align*}
+
+Wir wählen jetzt ein $t \in ]0, 1]$ mit
+
+\begin{align*}
+  t^{k+1} b < \frac{|\Im(a_k)|}{n} t^k.
+\end{align*}
+
 Also gilt
 
 \begin{align*}
   t < \frac{|\Im(a_k)|}{nb}
   \implies
-  t^k(tb - \frac{|\Im(a_k)|}{n}) < 0.
+  t^k \pbraces{tb - \frac{|\Im(a_k)|}{n}} < 0.
 \end{align*}
 
 Dann ist insbesondere $\Forall l \geq k + 1:$
