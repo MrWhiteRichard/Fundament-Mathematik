@@ -146,7 +146,17 @@ Wegen dem Pythagoras, gilt $\Forall x \in \ker{A}:$
 Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n \in \N$, $\norm{P_n x} = 0$ ist, also $P_n x = 0$. \\
 
 Nun zur Konvergenz in der Operatornorm.
-Diese folgt aus $\norm{A} \leq \norm[\infty]{\alpha}$. \\
+Diese folgt, mit $\norm{x} = 1$, aus
+
+\begin{align*}
+  \norm{\sum_{n=M+1}^N \alpha_n P_n x}
+  \leq
+  \max_{M+1 \leq n \leq N} |\alpha_n| \norm{x}
+  \xrightarrow{M, N \to \infty} 0,
+\end{align*}
+
+Weil die Linearen Abbildungen mit der Abbildungsnorm einen Banachraum bildern.
+Die obere Cauchy-Folge ist also darin konvergent. \\
 
 Die Umkehrung gilt ebenfalls.
 Das zeigen wir via Kontraposition.
