@@ -1,83 +1,121 @@
 \begin{exercise}
-Sei $H$ ein Hilbertraum. Zeige: Ist $(P_n)_{n \in \N}$ eine Folge von orthogonalen
-Projektionen $(P_n \neq 0)$, für die gilt
+
+Sei $H$ ein Hilbertraum.
+Zeige:
+Ist $(P_n)_{n \in \N}$ eine Folge von orthogonalen Projektionen $(P_n \neq 0)$, für die gilt
+
 \begin{align*}
-  \ran P_N ~\bot~ \ran P_m, \qquad n \neq m,
+  \ran P_n ~\bot~ \ran P_m, \qquad n \neq m,
 \end{align*}
-und ist $\alpha = (\alpha_n)_{n \in \N} \in \ell^{\infty}$, mit $\alpha_n \neq 0, n \in \N$,
-so ist für jedes $x \in H$ die Reihe
+
+und ist $\alpha = (\alpha_n)_{n \in \N} \in \ell^{\infty}$, mit $\alpha_n \neq 0, n \in \N$, so ist für jedes $x \in H$ die Reihe
+
 \begin{align*}
   Ax := \sum_{n=1}^{\infty} \alpha_n P_n x
 \end{align*}
-konvergent. Es gilt $A \in \mathcal{B}(H), \|A\| = \|\alpha\|_{\infty}$. Bestimme
-$\ker A$. Ist $\alpha_n \to 0$, so konvergiert die Reihe in der Operatornorm.
+
+konvergent.
+Es gilt $A \in \mathcal{B}(H), \|A\| = \norm[\infty]{\alpha}$.
+
+Bestimme $\ker A$. Ist $\alpha_n \to 0$, so konvergiert die Reihe in der Operatornorm.
 Gilt auch die Umkehrung?
+
 \end{exercise}
+
 \begin{solution}
-  Wegen $\ran P_n \bot \ker P_n$ und $\ran P_m \bot \ker P_m$ gilt, weil $\ker P_n$ das orthogonale Komplement von $\ran P_n$ ist, $\ran P_m \subseteq \ker P_n$ und somit $P_n P_m = 0.$ Wir wissen, dass für orthogonale Projektionen $P_1$ und $P_2$ mit dieser Eigenschaft $P_1 + P_2$ wieder eine orthogonale Projektion ist mit $\ran (P_1 + P_2) = \ran P_1 + \ran P_2$.
 
-  Die endlichen Summen der Projektionen $\alpha_n P_n$ sind also wieder orthogonale Projektionen, wir können damit durch mehrfache Anwendung des Satzes von Pythagoras berechnen:
+Für $n \in \N$, ist $\ker{P_n}$ das orthogonale Komplement von $\ran P_n$.
+Wegen $\ran{P_m} \bot \ran{P_n} \bot \ker{P_n}$ gilt also $\ran P_m \subseteq \ker P_n$.
+Somit, muss $P_n P_m = 0$.
 
-  \begin{align}
-      \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \stackrel{a}{=} \sum_{n = M+1}^N \| \alpha_n P_n x \|^2 \stackrel{b}{=} \sum_{n = M+1}^N | \alpha_n|^2 \| P_n x \|^2 \\
-      \stackrel{c}{\leq} \max_{M+1 \leq n \leq N} |\alpha_n|^2 \sum_{n = M+1}^N \| P_n x \|^2 \stackrel{d}{=}
-      \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \\ \stackrel{e}{\leq}
-      \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2
-      \stackrel{f}{\leq} \| \alpha \|_{\infty}^2 \| x \|^2.
-  \end{align}
-  \\
-  (a), (d), (g) ist der Satz von Pythagoras; \\
-  (e), (h) gelten, weil die endliche Summe orthogonaler Projektionen mit der Eigenschaft $P_n P_m = 0$ wieder eine orthogonale Projektion ist, also Abbildungsnorm kleiner gleich 1 hat.
+Wir wissen, dass für orthogonale Projektionen $P_1$ und $P_2$ mit dieser Eigenschaft $P_1 + P_2$ wieder eine orthogonale Projektion ist, und $\ran{(P_1 + P_2)} = \ran{P_1} + \ran{P_2}$.
 
-  Weiters gilt
+Die endlichen Summen der Projektionen $(P_n)_{n \in \N}$ sind also wieder orthogonale Projektionen.
 
-  \begin{align}
-      \sum_{n = 1}^N \| P_n x \|^2 \stackrel{g}{=}
-       \left\| \left(\sum_{n = 1}^N P_n\right) x \right\|^2 \stackrel{h}{\leq} \|x\|^2.
-  \end{align}
+\begin{align*}
+    \norm{\sum_{n = M+1}^N \alpha_n P_n x}^2
+    \stackrel{(a)}{=}
+    \sum_{n = M+1}^N \norm{\alpha_n P_n x}^2
+    \stackrel{(b)}{=}
+    \sum_{n = M+1}^N |\alpha_n|^2 \norm{P_n x}^2 \\
+    \stackrel{(c)}{\leq}
+    \max_{M+1 \leq n \leq N} |\alpha_n|^2 \sum_{n = M+1}^N \norm{P_n x}^2
+    \stackrel{(d)}{=}
+    \max_{M+1 \leq n \leq N} |\alpha_n|^2 \norm{\pbraces{\sum_{n = M+1}^N P_n} x}^2 \\
+    \stackrel{(e)}{\leq}
+    \max_{M+1 \leq n \leq N} |\alpha_n|^2 \norm{x}^2
+    \stackrel{(f)}{\leq}
+    \norm[\infty]{\alpha}^2 \norm{x}^2.
+\end{align*}
 
-  Da die Reihe $\sum_{n = 1}^N \| P_n x \|^2$ ist also beschränkt, und weil sie auch monoton ist, konvergent. Es gilt
+(a), (d), (g) ist der Satz von Pythagoras.
 
-  \begin{align}
-  \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2
-  \leq \|\alpha\|_{\infty} \left\| \left(\sum_{n = M+1}^N P_n\right) x \right\|^2 \stackrel{M, N \rightarrow \infty}{\longrightarrow} 0,
-  \end{align}
+(e), (h) gelten, weil die endliche Summe orthogonaler Projektionen mit der Eigenschaft $P_n P_m = 0$ wieder eine orthogonale Projektion ist, also Abbildungsnorm kleiner gleich $1$ hat. \\
 
-  wobei wir die erste Ungleichung schon oben gezeigt haben (d) und die zweite gilt, weil die Reihe konvergiert, also eine Cauchyfolge ist. Wir haben also eine Cauchyfolge und damit die Konvergenz dieser Reihe gezeigt.
+Wir betrachten Folgendes nochmal genauer.
 
-  Mit der Ungleichheit (f) gilt
-  \begin{align}
-      \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \leq \| \alpha \|_{\infty}^2 \| x \|^2, \text{~~also~} \|A\| \leq \|\alpha\|_{\infty}
-  \end{align}
+\begin{align*}
+    \sum_{n = 1}^N \norm{P_n x}^2
+    \stackrel{(g)}{=}
+    \norm{\pbraces{\sum_{n = 1}^N P_n} x}^2
+    \stackrel{(h)}{\leq}
+    \norm{x}^2
+\end{align*}
 
-  und somit $A \in \mathcal{B}(H).$ Die erste Ungleichungskette bis (e) gelesen gibt uns folgende Abschätzung:
+$\sum_{n = 1}^N \| P_n x \|^2$ ist also beschränkt, und somit absolut konvergent.
 
-  \begin{align}
-  \left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2,
-  \end{align}
+\begin{align*}
+  \norm{\sum_{n = M+1}^N \alpha_n P_n x}^2
+  \leq
+  \max_{M+1 \leq n \leq N} |\alpha_n|^2 \norm{\pbraces{\sum_{n = M+1}^N P_n} x}^2
+  \leq
+  \norm[\infty]{\alpha} \norm{\pbraces{\sum_{n = M+1}^N P_n} x}^2
+  \xrightarrow{M, N \rightarrow \infty} 0
+\end{align*}
 
-  also gilt in der Operatornorm
+Dabei, haben die erste Ungleichung schon oben gezeigt.
+Der Grenzübergang folgt aus (g).
+Damit, ist die Reihe eine Cauchy-Folge, also konvergent. \\
 
-  \begin{align}
-  \left\| \sum_{n = M+1}^N \alpha_n P_n \right\| \leq \max_{M+1 \leq n \leq N} |\alpha_n|.
-  \end{align}
+Mit (a)-(f) gilt
 
-  Die Folge $(\alpha_n)$ ist aber eine Nullfolge, damit ist die Reihe eine Cauchyfolge in der Operatornorm. Da wir in einem vollständigen Raum sind, haben wir somit die Konvergenz bezüglich der Operatornorm gezeigt.
+\begin{align*}
+    \norm{\sum_{n = 1}^N \alpha_n P_n x}^2
+    \leq
+    \norm[\infty]{\alpha}^2 \norm{x}^2.
+\end{align*}
 
-  Die Umkehrung gilt im Allgemeinen nicht, wie folgendes Gegenbeispiel zeigt: Sei $(e_i)_{i \in I}$ eine Orthonormalbasis des Folgenraums $\ell^2.$ Wir wählen eine paarweise disjunkte Folge $(e_n)_{n \in \mathbb{N}}.$ Definiere $P_nx := |(x, e_n)|^2 e_n.$ Für $\alpha_n$ konstant 1 ist $\alpha \in \ell^2, \alpha_n \not \rightarrow 0$. Allerdings gilt
+Also $\|A\| \leq \norm[\infty]{\alpha}$ und somit $A \in \mathcal{B}(H)$. \\
 
-  \begin{align}
-      \left\| \sum_{n = 1}^{\infty} \alpha_n P_n x \right\|^2 =
-      \left\| \sum_{n = 1}^{\infty} P_n x \right\|^2 = \left\| \sum_{n = 1}^{\infty} |(x, e_n)|^2 e_n \right\|^2 \leq \sum_{n = 1}^{\infty} |(x, e_n)|^2 \underbrace{\|e_n\|}_{\substack{= 1}} \leq \|x\|,
-  \end{align}
+Die erste Ungleichungskette bis (e) gelesen gibt uns folgende Abschätzung:
 
-  wobei die letzte Ungleichung eine weitere Abschätzung der Parzevalschen Gleichung ist. Die Reihe $\sum_{n = 1}^{\infty} \alpha_n P_n$ konvergiert also in der Operatornorm, obwohl $\alpha_n$ keine Nullfolge ist.
+\begin{align*}
+\left\| \sum_{n = M+1}^N \alpha_n P_n x \right\|^2 \leq \max_{M+1 \leq n \leq N} |\alpha_n|^2 \|x\|^2,
+\end{align*}
 
-  Zuletzt sehen wir, dass für $x \in \ker A$ gilt
-  \begin{align}
-      \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
-      \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \stackrel{N \rightarrow \infty}{\longrightarrow} 0.
-  \end{align}
+also gilt in der Operatornorm
 
-  Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n$ gilt $\|P_n x\| = 0$, also $P_n x = 0,$ ergo $x \in \bigcap_{n \in \mathbb{N}} \ker P_n$. Da für Elemente dieses Durchschnitts die Reihe sowieso Null ist, haben wir genau den Kern von $A$ gefunden.
+\begin{align*}
+\left\| \sum_{n = M+1}^N \alpha_n P_n \right\| \leq \max_{M+1 \leq n \leq N} |\alpha_n|.
+\end{align*}
+
+Die Folge $(\alpha_n)$ ist aber eine Nullfolge, damit ist die Reihe eine Cauchyfolge in der Operatornorm. Da wir in einem vollständigen Raum sind, haben wir somit die Konvergenz bezüglich der Operatornorm gezeigt.
+
+Die Umkehrung gilt im Allgemeinen nicht, wie folgendes Gegenbeispiel zeigt: Sei $(e_i)_{i \in I}$ eine Orthonormalbasis des Folgenraums $\ell^2.$ Wir wählen eine Folge paarweise verschiedener $(e_n)_{n \in \mathbb{N}}.$ Definiere $P_nx := |(x, e_n)|^2 e_n.$ Für $\alpha_n$ konstant 1 ist $\alpha \in \ell^2, \alpha_n \not \rightarrow 0$. Allerdings gilt
+
+\begin{align*}
+    \left\| \sum_{n = 1}^{\infty} \alpha_n P_n x \right\|^2 =
+    \left\| \sum_{n = 1}^{\infty} P_n x \right\|^2 = \left\| \sum_{n = 1}^{\infty} |(x, e_n)|^2 e_n \right\|^2 \leq \sum_{n = 1}^{\infty} |(x, e_n)|^2 \underbrace{\|e_n\|}_{\substack{= 1}} \leq \|x\|,
+\end{align*}
+
+wobei die letzte Ungleichung eine weitere Abschätzung der Parzevalschen Gleichung ist. Die Reihe $\sum_{n = 1}^{\infty} \alpha_n P_n$ konvergiert also in der Operatornorm, obwohl $\alpha_n$ keine Nullfolge ist.
+
+Zuletzt sehen wir, dass für $x \in \ker A$ gilt
+\begin{align*}
+    \sum_{n=1}^N |\alpha_n|^2 \|P_n x\|^2 =
+    \left\| \sum_{n = 1}^N \alpha_n P_n x \right\|^2 \stackrel{N \rightarrow \infty}{\longrightarrow} 0.
+\end{align*}
+
+Das ist wegen $\alpha_n \neq 0$ offenbar nur dann möglich, wenn für alle $n$ gilt $\|P_n x\| = 0$, also $P_n x = 0,$ ergo $x \in \bigcap_{n \in \mathbb{N}} \ker P_n$. Da für Elemente dieses Durchschnitts die Reihe sowieso Null ist, haben wir genau den Kern von $A$ gefunden.
+
 \end{solution}
