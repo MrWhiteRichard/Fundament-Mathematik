@@ -1,125 +1,287 @@
 \begin{exercise}
+
 Sei $n \in \N$, $\R^n[z]$ die Menge aller reellen Polynome vom Grad $\leq n$ und
+
 \begin{align*}
-  K := \{p \in \R^n[z]: p^{\primeprime}(x) \geq 0, x \in [-1,1]\}.
+  K := \Bbraces
+  {
+    p \in \R^n[z]:
+    p^\primeprime(x) \geq 0,
+    x \in [-1, 1]
+  }.
 \end{align*}
-Zeige, dass es für jedes $f \in L^2([-1,1])$ genau ein $p_0 \in K$ gibt, sodass
+
+Zeige, dass es für jedes $f \in L^2([-1, 1])$ genau ein $p_0 \in K$ gibt, sodass
+
 \begin{align*}
-  \int_{-1}^{1}|f(t)-p_0(t)|^2 dt \leq \int_{-1}^1 |f(t) - p(t)|^2 dt
+  \Int[-1][1]{|f(t) - p_0(t)|^2}{t}
+  \leq
+  \Int[-1][1]{|f(t) - p(t)|^2}{t}
 \end{align*}
+
 für alle $p \in K$. \\
-\textit{Hinweis:} Die Menge aller komplexen Polynome vom Grad $\leq n$ ist ein
-endlich dimensionaler Unterraum und $p \mapsto p(t)$, sowie $p \mapsto p^{\primeprime}(t)$
-sind lineare Funktionale auf diesem Unterraum für jedes $t \in [a,b]$. Schließe,
-dass $K$ abgeschlossen und konvex ist.
+
+\textit{Hinweis:}
+Die Menge aller komplexen Polynome vom Grad $\leq n$ ist ein endlich dimensionaler Unterraum und $p \mapsto p(t)$, sowie $p \mapsto p^\primeprime(t)$ sind lineare Funktionale auf diesem Unterraum für jedes $t \in [a, b]$.
+Schließe, dass $K$ abgeschlossen und konvex ist.
+
 \end{exercise}
+
 \begin{solution}
-Wir befinden uns im Hilbertraum $L^2([-1,1])$ mit
+
+Wir befinden uns im Hilbertraum $L^2([-1, 1])$ mit
+
 \begin{align*}
-  (f,g) := \int_{-1}^1 f\overline{g} d\lambda.
+  (f, g) := \Int[-1][1]{f \overline{g}}{\lambda}.
 \end{align*}
+
 Weiters definieren wir
+
 \begin{align*}
-  P_n:= \{p: [-1,1] \to \C: x \mapsto \sum_{i=0}^n a_ix^i | \forall i \in
-  \{1,\dots,n\}: a_i \in \C\}
+  P_n := \Bbraces
+  {
+    p: [-1, 1] \to \C: x
+    \mapsto \sum_{i=0}^n a_i x^i:
+    a_1, \ldots, a_n \in \C
+  }
 \end{align*}
-$P_n$ ist ein $n+1$-dimensionaler Unterraum von $L^2([-1,1])$ weil für $f,g \in P_n$
+
+$P_n$ ist ein $(n+1)$-dimensionaler Unterraum von $L^2([-1, 1])$, weil für $f, g \in P_n$
+
 \begin{align*}
-  \grad(f+g) \leq \max\{\grad(f), \grad(g)\} \leq n,
+  \grad{(f + g)}
+  \leq
+  \max \Bbraces{\grad{f}, \grad{g}}
+  \leq n,
 \end{align*}
-und für $\lambda \in \C$ beliebig: $f + \lambda g \in P_n$.
+
+und für $\lambda \in \C$, $f + \lambda g \in P_n$ gilt.
+
+\includegraphicsboxed{Satz 2.2.1}
+
 $P_n$ ist als endlich-dimensionaler Unterraum abgeschlossen (Satz 2.2.1).
-Sei
+
 \begin{align*}
-  \forall t \in [-1,1]: \alpha_t: \begin{cases}
-    P_n &\to \C \\
-    p &\mapsto p(t)
-  \end{cases}
+  \alpha_t:
+  P_n \to \C:
+  p  \mapsto p(t),
+  \enspace
+  t \in [-1, 1]
 \end{align*}
-Wir zeigen nun, dass $\alpha_t$ ein lineares Funktional ist:
+
+Wir zeigen nun, dass $\alpha_t$ ein lineares Funktional ist.
+
 \begin{itemize}
-  \item Linearität: Seien $p,q \in P_n, \lambda \in \C$ beliebig.
+
+  \item
+  \Quote{Linearität}: \\
+
+  Evaluierungsfunktionen sind linear.
+
+  \item
+  \Quote{Stetigkeit}: \\
+
+  Da $\dim(P_n) = n + 1 < \infty$ sind alle Normen äquivalent.
+
   \begin{align*}
-    \alpha_t(p + \lambda q) = p(t) + \lambda q(t) = \alpha_t(p) + \alpha_t(q).
+    \norm{\alpha_t}
+    =
+    \sup \Bbraces
+    {
+      |\alpha_t(p)|:
+      \norm[\infty]{p} = 1
+    }
+    =
+    \sup \Bbraces
+    {
+      |p(t)|:
+      \norm[\infty]{p} = 1
+    }
+    = 1 < \infty
   \end{align*}
-  \item Stetigkeit: Da $\dim(P_n) = n + 1 < \infty$ sind alle Normen äquivalent
-  und wir betrachten
-  \begin{align*}
-    \|\alpha_t\| = \sup\{|p(t)|: \|p\|_{\infty} = 1\} = 1 < \infty,
-  \end{align*}
-  also ist $\alpha_t$ stetig.
+
+  Also ist $\alpha_t$ beschränkt, und damit stetig.
+
 \end{itemize}
-Sei weiter $\forall t \in [-1,1]: \beta_t : P_n \to \C: p \mapsto p^{\primeprime}(t)$.
-Die Funktionen sind wieder lineare Funktionale, weil
+
+\begin{align*}
+  \beta_t :
+  P_n \to \C:
+  p \mapsto p^\primeprime(t),
+  \enspace
+  t \in [-1, 1]
+\end{align*}
+
+Die Funktionen sind wieder lineare Funktionale.
+
 \begin{itemize}
-  \item Stetigkeit:
+
+  \item
+  \Quote{Linearität}: \\
+
+  Evaluierungsfunktionen und der Ableitungsoperator sind linear.
+
+  \item
+  \Quote{Stetigkeit}: \\
+
   \begin{align*}
-    \forall t \in [-1,1]: p^{\primeprime}(t) = \lim_{h \to 0^+}\frac{p(t+h) - 2p(t) + p(t-h)}{h^2}
+    \Forall t \in [-1, 1]:
+    p^\primeprime(t)
+    =
+    \lim_{h \to 0^+} \frac{p(t+h) - 2 p(t) + p(t-h)}{h^2}
   \end{align*}
+
   Sei nun $(h_k)_{k \in \N}$ eine Nullfolge aus $\R^+$ und setze für $k \in \N$:
+
   \begin{align*}
-    \gamma_{t,k} := h_k^{-2}(\alpha_{t + h_k} - 2\alpha_t + \alpha_{t - h_k})
+    \gamma_{t, k}
+    :=
+    \frac
+    {
+      \alpha_{t + h_k} -
+      2 \alpha_t +
+      \alpha_{t - h_k}
+    }
+    {h_k^2}
   \end{align*}
-  ist ein stetiges, lineares Funktional.
-  Für alle $p \in P_n$ existiert der Grenzwert $\lim_{k \to \infty}\gamma_{t,k}(p) = p^{\primeprime}(t)$.
+
+  Das ist ein stetiges, lineares Funktional.
+  Für alle $p \in P_n$ existiert der Grenzwert (als Teilfolge eines Netzes) $\lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)$.
+
+  \includegraphicsboxed{Korollar 4.2.3}
+
   $P_n$ ist ein Banachraum, also ist nach Korollar 4.2.3
+
   \begin{align*}
-    \beta_t: \begin{cases}
-      P_n &\to \C \\
-      p &\mapsto \lim_{k \to \infty}\gamma_{t,k}(p) = p^{\primeprime}(t)
-    \end{cases}
+    \beta_t:
+    P_n \to \C:
+    p \mapsto \lim_{k \to \infty} \gamma_{t, k}(p) = p^\primeprime(t)
   \end{align*}
+
   ein stetiges lineares Funktional.
+
 \end{itemize}
-$\R, \R^+ \cup \{0\} \subset \C$ sind abgeschlossen und konvex, also sind $\forall t \in [-1,1]$:
+
+$\R, \R^+ \cup \Bbraces{0} \subset \C$ sind abgeschlossen und konvex.
+Also sind $\Forall t \in [-1, 1]$:
+
 \begin{align*}
-  \alpha_t^{-1}(\R) = \{p \in P_n: p(t) \in \R\}
+  \alpha_t^{-1}(\R)
+  =
+  \Bbraces{p \in P_n: p(t) \in \R},
+  \enspace
+  \beta_t^{-1}(\R^+ \cup \Bbraces{0})
+  =
+  \Bbraces{p \in P_n: p^\primeprime(t) \geq 0}
 \end{align*}
-und
+
+abgeschlossen und konvex.
+Also ist auch
+
 \begin{align*}
-  \beta_t^{-1}(\R^+ \cup \{0\}) = \{p \in P_n: p^{\primeprime}(t) \geq 0\}
+  L := \bigcap_{t \in [-1, 1]}\alpha_t^{-1}(\R)
 \end{align*}
-abgeschlossen und konvex, also ist auch
-\begin{align*}
-  L := \bigcap_{t \in [-1,1]}\alpha_t^{-1}(\R)
-\end{align*}
-abgeschlossen und konvex. Sei nun $p = \sum_{i = 1}^n a_i x^i \in L$ beliebig.
+
+abgeschlossen und konvex.
+Sei nun $(p: x \mapsto \sum_{i=1}^n a_i x^i) \in L$ beliebig.
 Dann gilt
+
 \begin{align*}
-  \forall t \in [-1,1]: p(t) \in \R.
+  \Forall t \in [-1, 1]: p(t) \in \R.
 \end{align*}
-Seien nun $k := \min \{ i \in \N: \Im(a_i) \neq 0\}$
-und $b := \max\{|\Im(a_i)|: i \in \{k+1,\dots,n\}\}$.
-Wir wählen jetzt ein $t \in ]0,1]$ mit $t^{k+1}b < \frac{|\Im(a_k)|}{n}t^k$,
-also gilt
+
+Angenommen, es gäbe einen imaginären Koeffizienten.
+Dann kann man definieren ...
+
 \begin{align*}
-  t < \frac{|\Im(a_k)|}{nb} \implies t^k(tb - \frac{|\Im(a_k)|}{n}) < 0.
+  k := \min \Bbraces{i \in \N: \Im(a_i) \neq 0},
+  \enspace
+  b := \max \Bbraces{|\Im(a_i)|: i = k + 1, \dots, n}.
 \end{align*}
-Dann ist insbesondere $\forall l \geq k + 1: t^lb \leq t^{k+1}b < \frac{|\Im(a_k)|}{n}t^k$.
+
+Wir wählen jetzt ein $t \in ]0, 1]$ mit
+
+\begin{align*}
+  t^{k+1} b < \frac{|\Im(a_k)|}{n} t^k.
+\end{align*}
+
+Also gilt
+
+\begin{align*}
+  t < \frac{|\Im(a_k)|}{nb}
+  \implies
+  t^k \pbraces{tb - \frac{|\Im(a_k)|}{n}} < 0.
+\end{align*}
+
+Dann ist insbesondere $\Forall l \geq k + 1:$
+
+\begin{align*}
+  t^lb
+  \leq
+  t^{k+1}b
+  <
+  \frac{|\Im(a_k)|}{n}t^k.
+\end{align*}
+
 Weiters gilt
+
 \begin{align*}
-  |\sum_{i = k + 1}^n \Im(a_i)t^i| \leq \sum_{i = k + 1}^n|\Im(a_i)|t^i
-  \leq \sum_{i = k + 1}^n b t^i < |\Im(a_k)|t^k.
+  \vbraces{\sum_{i = k + 1}^n \Im(a_i)t^i}
+  \leq
+  \sum_{i = k + 1}^n \vbraces{\Im(a_i)} t^i
+  \leq
+  \sum_{i = k+1}^n b t^i
+  <
+  \vbraces{\Im(a_k)} t^k.
 \end{align*}
+
 Also folgt
+
 \begin{align*}
-  |\Im(p(t))| = |\sum_{i = k}^n \Im(a_i)t^i| \geq | |\Im(a_k)|t^k - |\sum_{i = k + 1}^n \Im(a_i)t^i|| > 0.
+  \vbraces{\Im(p(t))}
+  =
+  \vbraces{\sum_{i = k}^n \Im(a_i)t^i}
+  \geq
+  \vbraces
+  {
+    \vbraces{\Im(a_k)} t^k -
+    \vbraces{\sum_{i = k+1}^n \Im(a_i)t^i}
+  } > 0.
 \end{align*}
-Dies ist aber ein Widerspruch zu $p(t) \in \R$! \\
+
+Dies ist aber ein Widerspruch zu $p(t) \in \R$!
 Also ist
+
 \begin{align*}
-L = \R^n[z] = \{p: [-1,1] \to \R: x \mapsto \sum_{i = 0}^n a_ix^i |
-\forall i \in \{0,\dots,n\}: a_i \in \R\}.
+  L =
+  \R^n[z] =
+  \Bbraces
+  {
+    p: [-1, 1] \to \R:
+    x \mapsto \sum_{i = 0}^n a_ix^i:
+    a_1, \ldots, a_n \in \R
+  }.
 \end{align*}
+
 Außerdem ist
+
 \begin{align*}
-  M = \bigcap_{t \in [-1,1]}\beta_t^{-1}(\R^+\cup \{0\})
+  M =
+  \bigcap_{t \in [-1, 1]} \beta_t^{-1}(\R^+ \cup \Bbraces{0})
 \end{align*}
-konvex und abgeschlossen, also auch $L \cap M = K \neq \emptyset$.
-Schließlich folgt die gewünschte Aussage mit Satz 3.2.3 (i), der besagt,
-dass zu jedem $f \in L^2([-1,1])$ ein eindeutiges Element $p_K(x) \in K$ gibt,
-sodass
+
+konvex und abgeschlossen.
+Also auch $L \cap M = K \neq \emptyset$.
+
+\includegraphicsboxed{Satz 3.2.3}
+
+Schließlich folgt die gewünschte Aussage mit Satz 3.2.3 (i).
+Der besagt, dass zu jedem $f \in L^2([-1, 1])$ ein eindeutiges Element $p_K(x) \in K$ gibt, sodass
+
 \begin{align*}
-  \|x - p_K(x)\| = \inf\{\|y-x\|: y \in K\}.
+  \norm{x - p_K(x)}
+  =
+  \inf \Bbraces{\norm{y - x}: y \in K}.
 \end{align*}
+
 \end{solution}

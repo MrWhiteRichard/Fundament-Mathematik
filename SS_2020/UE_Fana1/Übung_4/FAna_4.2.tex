@@ -1,81 +1,176 @@
 \begin{exercise}
+
 Sei $X$ ein Banachraum. Dann sind äquivalent:
+
 \begin{enumerate}[label = \roman*)]
-  \item  $X$ ist reflexiv.
-  \item $X^{\prime}$ ist reflexiv.
-  \item Die abgeschlossene Einheitskugel $B_X$ von $X$ ist $w$-kompakt, also
-  kompakt bezüglich $\sigma(X,X^{\prime})$.
+
+  \item
+  $X$ ist reflexiv.
+
+  \item
+  $X^\prime$ ist reflexiv.
+
+  \item
+  Die abgeschlossene Einheitskugel $B_X$ von $X$ ist $w$-kompakt, also kompakt bezüglich $\sigma(X,X^\prime)$.
+
 \end{enumerate}
-\textit{Hinweis:} Zeige mit Hilfe des Satzes von Banach-Alaoglu und der Aufgabe 06/2,
-dass aus $X$ reflexiv bereits $B_X, B_{X^{\prime}}$ $w$-kompakt folgt. Mit dem Satz
-von Goldstine zeige, dass aus $B_X$ $w$-kompakt $\iota(B_X) = B_X$ folgt.
-Für (ii) $\implies$ (i) erinnere man sich zusätzlich daran, dass der schwache
-Abschluss bei konvexen Mengen gleich dem Norm-Abschluss ist.
+
+\textit{Hinweis:}
+Zeige mit Hilfe des Satzes von Banach-Alaoglu und der Aufgabe 06/2, dass aus $X$ reflexiv bereits $B_X, B_{X^\prime}$ $w$-kompakt folgt.
+Mit dem Satz von Goldstine zeige, dass aus $B_X$ $w$-kompakt $\iota(B_X) = B_X$ folgt.
+Für (ii) $\implies$ (i) erinnere man sich zusätzlich daran, dass der schwache Abschluss bei konvexen Mengen gleich dem Norm-Abschluss ist.
+
 \end{exercise}
+
 \begin{solution}
+
 \leavevmode \\
+
+\includegraphicsboxed{Definition 5.5.4}
+
 \begin{itemize}
-  \item (i) $\implies$ (iii): \\
-  Sei $X$ reflexiv. Nach dem Satz von Banach-Alaoglu
-  angewandt auf den normierten Raum $(X^{\prime},\|\cdot\|)$ ist $B_{X^{\primeprime}}$
-  kompakt bezüglich $\sigma(X^{\primeprime}, \iota_1(X^{\prime})$.
-  Nach Aufgabe 6/2 ist $\iota: (X,\sigma(X,X^{\prime})) \to
-  (\iota(X),\sigma(X^{\primeprime},\iota_1(X^{\prime}))|_{\iota(X)})$ ein Homöomorphismus
-  und wegen der Reflexivität gilt $\iota(X) = X^{\primeprime}$.
+
+  \item
+  \Quote{(i) $\implies$ (iii)}: \\
+
+  Sei $X$ reflexiv.
+  Nach dem Satz von Banach-Alaoglu angewandt auf den normierten Raum $(X^\prime,\norm{\cdot})$ ist $B_{X^\primeprime}$ kompakt bezüglich $\sigma(X^\primeprime, \iota_1(X^\prime))$.
+  Nach Aufgabe 6/2 ist $\iota: (X,\sigma(X,X^\prime)) \to (\iota(X), \sigma(X^\primeprime,\iota_1(X^\prime))|_{\iota(X)})$ ein Homöomorphismus und wegen der Reflexivität gilt $\iota(X) = X^\primeprime$.
+
+  \includegraphicsboxed{Korollar 5.2.4}
+
   Mit Korollar 5.2.4 gilt
+
   \begin{align*}
-    \iota^{-1}(B_{X^{\primeprime}}) &= \{x \in X: \|\iota(x)\|_{X^{\primeprime} \leq 1}\}
-    = \{x \in X: \sup\{|f(x)|: f \in X^{\prime}, \|f\| \leq 1 \}\} \\
-    &= \{x \in X: \|x\| \leq 1\} = B_X
+    \iota^{-1}(B_{X^\primeprime})
+    & =
+    \Bbraces
+    {
+      x \in X:
+      \norm[X^\primeprime]{\iota(x)} \leq 1
+    }
+    =
+    \Bbraces
+    {
+      x \in X:
+      \sup \Bbraces
+      {
+        |f(x)|:
+        f \in X^\prime,
+        \norm{f} = 1
+      }
+      \leq 1
+    } \\
+    & =
+    \Bbraces
+    {
+      x \in X:
+      \norm{x} \leq 1
+    }
+    = B_X
   \end{align*}
-  Damit ist $B_X$ als Bild einer kompakten Menge $B_{X^{\primeprime}}$ unter einer
-  stetigen Abbildung wieder kompakt.
-  \item (iii) $\implies$ (i): \\
-  Sei also $B_X$ kompakt bezüglich $\sigma(X,X^{\prime})$. Nach dem Satz von Goldstine
-  ist
+
+  Damit ist $B_X$ als Bild einer kompakten Menge $B_{X^\primeprime}$ unter einer stetigen Abbildung wieder kompakt.
+
+  \item
+  \Quote{(iii) $\implies$ (i)}: \\
+
+  Sei also $B_X$ kompakt bezüglich $\sigma(X, X^\prime)$.
+
+  \includegraphicsboxed{Satz 5.5.5}
+
+  Nach dem Satz von Goldstine ist
+
   \begin{align*}
-    \overline{\iota(B_X)}^{\sigma(X^{\primeprime},\iota_1(X))} = B_{X^{\primeprime}}
+    \overline
+    {
+      \iota(B_X)}^{\sigma(X^\primeprime, \iota_1(X))
+    }
+    =
+    B_{X^\primeprime}
   \end{align*}
-  und $\iota$ ist ein Homöomorphismus, also ist $\iota(B_X)$ bezüglich
-  $\sigma(X^{\primeprime}, \iota_1(X^{\prime}))$ kompakt. Da
-  $(X^{\primeprime}, \sigma(X^{\primeprime}, \iota_1(X^{\prime})))$ Hausdorff ist,
-  ist $\iota(B_X)$ insbesondere auch abgeschlossen (Kaltenbäck Lemma 12.11.7),
-  also ist $\iota(B_X) = \overline{\iota(B_X)} = B_{X^{\primeprime}}$.
+
+  und $\iota$ ist ein Homöomorphismus.
+  Also ist $\iota(B_X)$ bezüglich $\sigma(X^\primeprime, \iota_1(X^\prime))$ kompakt.
+
+  \includegraphicsboxed{Kaltenbäck Lemma 12.11.7}
+
+  Da $(X^\primeprime, \sigma(X^\primeprime, \iota_1(X^\prime)))$ Hausdorff ist, ist $\iota(B_X)$ insbesondere auch abgeschlossen (Kaltenbäck Lemma 12.11.7).
+  Also ist $\iota(B_X) = \overline{\iota(B_X)} = B_{X^\primeprime}$.
   Außerdem ist $\iota$ nach Lemma 5.5.2 und Bemerkung 5.5.3 injektiv und linear.
-  Sei nun $y \in X^{\primeprime}$ mit $y \neq 0$ und betrachte
-  $z := \frac{y}{\|y\|_{X^{\primeprime}}} \in X^{\primeprime}, \|z\|_{X^{\primeprime}} = 1$.
-  Es gilt $z \in B_{X^{\primeprime}}$, also folgt
+  Sei nun $y \in X^\primeprime$ mit $y \neq 0$ und betrachte $z := \frac{y}{\norm[X^\primeprime]{y}} \in X^\primeprime$, $\norm[X^\primeprime]{z} = 1$.
+  Es gilt $z \in B_{X^\primeprime}$, also folgt
+
   \begin{align*}
-    \exists x \in B_X: \iota(x) = z
+    \Exists x \in B_X:
+    \iota(x) = z
   \end{align*}
-  Für $u := \|y\|_{X^{\primeprime}} \in X$ gilt dann
+
+  Für $u := \norm[X^\primeprime]{y} x \in X$ gilt dann
+
   \begin{align*}
-    \iota(u) = \|y\|_{X^{\primeprime}}\iota(x) = \|y\|_{X^{\primeprime}}z
-    = \|y\|_{X^{\primeprime}} \frac{y}{\|y\|_{X^{\primeprime}}} = y
+    \iota(u)
+    =
+    \norm[X^\primeprime]{y} \iota(x)
+    =
+    \norm[X^\primeprime]{y} z
+    =
+    \norm[X^\primeprime]{y} \frac{y}{\norm[X^\primeprime]{y}}
+    = y
   \end{align*}
-  und es gilt $\iota(X) = X^{\primeprime}$, also ist $X$ reflexiv.
-  \item (i) $\implies$ (ii): \\
-  Sei $X$ reflexiv. Nach dem Satz von Banach-Alaoglu ist $B_{X^{\prime}}$ abgeschlossen
-  bezüglich $\sigma(X^{\prime}, \iota(X)) = \sigma(X^{\prime},X^{\primeprime})$.
-  Nun erhalten wir mit (iii) $\implies$ (i), dass $X^{\prime}$ reflexiv ist.
-  \item (ii) $\implies$ (i): \\
-  Sei $X^{\prime}$ reflexiv. Dann ist mit dem Satz von Banach-Alaoglu $B_{X^{\primeprime}}$
-  bezüglich $\sigma(X^{\primeprime}, \iota_1(X^{\prime})) = \sigma(X^{\primeprime}, X^{\primeprimeprime})$
-  und mit dem Satz von Goldstine und der Konvexität von $\iota(B_X)$ mit Satz 5.3.8
+
+  und es gilt $\iota(X) = X^\primeprime$, also ist $X$ reflexiv.
+
+  \item
+  \Quote{(i) $\implies$ (ii)}: \\
+
+  Sei $X$ reflexiv.
+  Nach dem Satz von Banach-Alaoglu ist $B_{X^\prime}$ abgeschlossen bezüglich $\sigma(X^\prime, \iota(X)) = \sigma(X^\prime, X^\primeprime)$.
+  Nun erhalten wir mit \Quote{(iii) $\implies$ (i)}, dass $X^\prime$ reflexiv ist.
+
+  \item
+  \Quote{(ii) $\implies$ (i)}: \\
+
+  Sei $X^\prime$ reflexiv.
+  Dann ist mit dem Satz von Banach-Alaoglu $B_{X^\primeprime}$ bezüglich $\sigma(X^\primeprime, \iota_1(X^\prime)) = \sigma(X^\primeprime, X^\primeprimeprime)$ kompakt.
+
+  \includegraphicsboxed{Satz 5.3.8}
+
+  Mit dem Satz von Goldstine und der Konvexität von $\iota(B_X)$ mit Satz 5.3.8
+
   \begin{align*}
-    \overline{\iota(B_X)}^{\|\cdot\|_{X^{\primeprime}}}
-    = \overline{\iota(B_X)}^{\sigma(X^{\primeprime},X^{\primeprimeprime})} = B_{X^{\primeprime}}.
+    \overline{\iota(B_X)}^{\norm[X^\primeprime]{\cdot}}
+    =
+    \overline{\iota(B_X)}^{\sigma(X^\primeprime, X^\primeprimeprime)}
+    =
+    B_{X^\primeprime}.
   \end{align*}
-  Da $B_X$ abgeschlossen bezüglich $\|\cdot\|$ ist und
+
+  \includegraphicsboxed{Lemma 5.5.2}
+  \includegraphicsboxed{Bemerkung 5.5.3}
+
+  Da $B_X$ abgeschlossen bezüglich $\norm{\cdot}$ ist und
+
   \begin{align*}
-    \iota^{-1}: (\iota(X), \|\cdot\|_{X^{\primeprime}}|_{\iota(X)}) \to (X,\|\cdot\|)
+    \iota^{-1}:
+    (\iota(X), \norm[X^\primeprime]{\cdot}|_{\iota(X)})
+    \to
+    (X, \norm{\cdot})
   \end{align*}
-  laut Lemma 5.5.2 und Bemerkung 5.5.3
-  stetig und surjektiv ist, ist $(\iota^{-1})^{-1}(B_X)$ abgeschlossen bezüglich $\|\cdot\|_{X^{\primeprime}}$,
-  also ist
+
+  laut Lemma 5.5.2 und Bemerkung 5.5.3 stetig und surjektiv ist, ist $(\iota^{-1})^{-1}(B_X)$ abgeschlossen bezüglich $\norm[X^\primeprime]{\cdot}$.
+  Also ist
+
   \begin{align*}
-    \iota(B_X) = \overline{\iota(B_X)}^{\|\cdot\|_{X^{\primeprime}}} = B_{X^{\primeprime}}.
+    \iota(B_X)
+    =
+    \overline{\iota(B_X)}^{\norm[X^\primeprime]{\cdot}}
+    =
+    B_{X^\primeprime}.
   \end{align*}
-  Wie in der Implikation (iii) $\implies$ (i) folgt dan $\iota(X) = X^{\primeprime}$.
- \end{itemize}
+
+  Wie in der Implikation \Quote{(iii) $\implies$ (i)} folgt dann $\iota(X) = X^\primeprime$.
+
+\end{itemize}
+
 \end{solution}
