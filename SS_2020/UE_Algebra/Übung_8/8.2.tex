@@ -11,7 +11,29 @@ mit $\forall r \in R: r > r_0 \implies q_1(r) < q_2(r)$. Zeigen Sie:
 \end{algebraUE}
 \begin{solution}
 \begin{enumerate}
-  \item Um einzusehen, dass $\Q(x)$ mit der gegebenen Relation kein archimedisch angeordneter
+  \item Zuerst ist also zu zeigen, dass die gegebene Relation eine Totalordnung
+  auf $\Q(x)$ definiert. Dazu betrachte $p \neq q \in \Q(x)$ beliebig und sei $n := \grad(p - q)$
+  \begin{align*}
+    \lim_{x \to \infty} p(x) - q(x) = \lim_{x \to \infty}\underbrace{x^n}_{> 0}
+    \underbrace{\left((p_n - q_n) + \sum_{k \in \Z}(p_k - q_k)x^{k-n}\right)}_{\to (p_n - q_n)}.
+  \end{align*}
+  Für hinreichend großes $r$ hat $p(x) - q(x)$ also das selbe Vorzeichen wie $(p_n - q_n)$.
+  Da für $p \neq q$ immer $p_n - q_n \neq 0$ gilt, liegt hiermit eine Totalordnung vor und
+  \begin{align*}
+    p \geq q &\iff (p_n > q_n) \\
+    q \geq p &\iff (q_n > p_n)
+  \end{align*}
+  und damit haben wir eine Totalordnung auf $\Q(x)$.
+  Aus $p \leq q$ folgt ebenso für beliebiges $c \in \Q(x)$ klarerweise $p + c \leq q + c$.
+  Für $c \geq 0$ folgt auch
+  \begin{align*}
+    \exists r_0 > 0&: \forall r > r_0: c(r) > 0 \\
+    \exists r_1 > 0&: \forall r > r_1: q(r) - p(r) > 0 \\
+    \forall r > r_0 + r_1&: (q(r) - p(r))c(r) > 0
+  \end{align*}
+  und damit $pc \leq qc$. Somit haben wir auf jeden Fall einen angeordneten Körper
+  gegeben.
+  Um einzusehen, dass $\Q(x)$ mit der gegebenen Relation kein archimedisch angeordneter
   Körper sein kann, betrachte die Funktionen $f(x) = x, g(x) = 1$. Es gilt
   \begin{align*}
     \forall k \in \N: f \geq kg.
