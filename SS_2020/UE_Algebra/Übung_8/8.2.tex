@@ -1,14 +1,89 @@
 \begin{algebraUE}{228}
-Auf dem Körper $\Q(x)$ der gebrochen rationalen Funktionen sei eine Relation $<$
-definiert durch $q_1(x) < q_2(x)$, falls $q_1 = q_2$ oder es ein $r_0 > 0$ gibt
+Auf dem Körper $\Q(x)$ der gebrochen rationalen Funktionen sei eine Relation $\leq$
+definiert durch $q_1(x) \leq q_2(x)$, falls $q_1 = q_2$ oder es ein $r_0 > 0$ gibt
 mit $\forall r \in R: r > r_0 \implies q_1(r) < q_2(r)$. Zeigen Sie:
 \begin{enumerate}
-  \item Die so definierte Relation $\leq$ macht $Q(x)$ zu einem nichtarchimedisch
+  \item Die so definierte Relation $\leq$ macht $\Q(x)$ zu einem nichtarchimedisch
   angeordneten Körper.
   \item $Q(x)$ lässt sich als angeordneter Körper solcher in jeden anderen
   nichtarchimedisch angeordneten Körper isomorph einbetten.
 \end{enumerate}
 \end{algebraUE}
 \begin{solution}
-Beweis.
+\begin{enumerate}
+  \item Um einzusehen, dass $\Q(x)$ mit der gegebenen Relation kein archimedisch angeordneter
+  Körper sein kann, betrachte die Funktionen $f(x) = x, g(x) = 1$. Es gilt
+  \begin{align*}
+    \forall k \in \N: f \geq kg.
+  \end{align*}
+  \item Sei $K$ nun ein beliebiger, nicht archimedisch angeordneter Körper.
+  Aufgrund der Monotoniegesetze folgt $\Char(K) = 0$.
+  Der Primkörper $\Q_K$, also der Durchschnitt sämtlicher Unterkörper von $K$
+  ist isomorph zum Körper der rationalen Zahlen. Also existiert ein
+  \begin{align*}
+    \varphi: \Q \to \Q_K
+  \end{align*}
+  Damit ist also klar, wohin
+  alle Polynome vom Grad $n = 0$ abgebildet werden.
+  Da $\Q_K$ isomorph zum archimedisch angeordneten Körper $\Q$ ist,
+  muss es also Elemente aus $K \backslash \Q_K$ geben.
+  Angenommen,
+  \begin{align*}
+    \forall k \in K: \exists q \in \Q_K: k \geq q
+  \end{align*}
+  dann folgt
+  \begin{align*}
+    \forall p \in Q_K: \exists b \in \Z: bp > k \geq q
+  \end{align*}
+  und somit für $k_1, k_2 \in K$ beliebig
+  \begin{align*}
+    \exists q_1,q_2 \in Q_K: q_1 \geq k_1, q_2 \geq k_2 \\
+    \exists a,b \in \Z: aq_1 > q_2 \geq k_2, bq_2 > g_1 \geq k_1.
+  \end{align*}
+  im Widerspruch zu $K$ nicht archimedisch angeordnet.
+  Sei uns nun ein Element $x \in K$ mit $x > \Q_K$ gegeben. Es folgt
+  \begin{align*}
+    \Q_K < x < x^2 < \dots.
+  \end{align*}
+  Analog folgt
+  \begin{align*}
+    \Q_K > x^{-1} > x^{-2} > \dots.
+  \end{align*}
+  Also definieren wir unsere Abbildung
+  \begin{align*}
+    \psi: \begin{cases}
+      \Q(x) &\to K \\
+      (q_k)_{k \in \Z} \mapsto
+      \begin{cases}
+        \sum_{k \in \Z}\varphi(q_k)x^k
+      \end{cases}
+    \end{cases},
+  \end{align*}
+\end{enumerate}
+von der wir nun nachweisen müssen, dass sie die gewünschte isomorphe Einbettung liefert.
+\begin{itemize}
+  \item Injektivität: Seien $p, \neq q \in \Q(x)$ beliebig. \\
+  Dann existiert ein größtes $k \in \Z$, sodass $p_k \neq q_k$. Ss folgt
+  \begin{align*}
+    \psi(p) - \psi(q) = \sum_{n = -\infty}^kr_kx^k
+  \end{align*}
+  und aufgrund $\forall n < k: x^k > -r_nx^n$
+  \begin{align*}
+    \psi(p) - \psi(q) > 0.
+  \end{align*}
+  Damit ist $\psi$ injektiv.
+  \item Homomorphie:
+  \begin{align*}
+    \psi(0_{\Q(x)}) &= \sum_{k \in \Z}\varphi(0)x^k = 0_K \\
+    \psi(1_{\Q(x)}) &= \varphi(1) = 1_K \\
+    \psi(q + p) &= \sum_{k \in \Z}\varphi(q_k + p_k)x^k =
+    \sum_{k \in \Z}\varphi(q_k)x_k + \sum_{k \in \Z}\varphi(p_k)x_k
+    = \psi(q) + \psi(p) \\
+    \psi(pq) &= \sum_{k \in \Z}\varphi(\sum_{i \in \Z}p_iq_{k-i})x^k =
+    \sum_{k \in \Z}\sum_{i \in \Z}\varphi(p_i)\varphi(q_{k-i})x^k
+    = \psi(p)\psi(q) \\
+    1_K &= \psi(1_{\Q(x)}) = \psi(pp^{-1}) = \psi(p)\psi(p^{-1})
+    \implies \psi(p)^{-1} = \psi(p^{-1}).
+  \end{align*}
+\end{itemize}
 \end{solution}
