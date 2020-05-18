@@ -6,8 +6,10 @@ Atome $a_1,\dots,a_k$ von $B$ mit $b \leq a_1 \lor \dots \lor a_k$ gibt,
 ein echtes Ideal von $B$ ist, und betrachten Sie $B/I$.
 \end{algebraUE}
 \begin{solution}
-Wir zeigen zunächst, dass die Menge $I$ tatsächlich ein Ideal ist.
+Zuerst behandeln wir den Fall, dass $\At(B) = \emptyset$. Dann gilt für ein beliebiges $b \in B\setminus \{ 0\}$, dass $\{ a \in B: a \geq b\}$ ein echter Filter ist. Somit gibt es nach dem Ultrafiltersatz einen Ultrafilter (der keine Atome enthält).
+Wir zeigen zunächst, dass die Menge $I$ tatsächlich ein Ideal ist. \\
 
+Sei ab nun $\At(B) \neq \emptyset$.
 Seien $x, y \in I$ beliebig, d.h.
 \begin{align*}
   \exists a_1,...,a_n,b_1,...,b_m \in At(B): &x \leq a_1 \lor \dots \lor a_n , y \leq b_1 \lor \dots \lor b_m \\
@@ -16,34 +18,28 @@ Seien $x, y \in I$ beliebig, d.h.
 \end{align*}
 aufgrund der Monotonie von $\lor$.
 Sei $x \in I$ beliebig und $b \in B$ mit $b \leq x$. Dann folgt offensichtlich aus der Transitivität von $\leq$, dass $b \in I$.
-
-
-
+Ebenso ist $I \neq \emptyset$, da wir die Existenz eines Atoms $a \in \At(B)$
+vorausgesetzt haben und damit klarerweise $a \in I$ folgt.
 Nun wollen wir zeigen, dass $I$ ein echtes Ideal ist, also $1 \notin I$.
-Dazu unterscheiden wir zuerst den Fall, dass $At(B) = \emptyset$. Dann gilt für ein beliebiges $b \in B\setminus \{ 0\}$, dass $\{ a \in B: a \geq b\}$ ein echter Filter ist. Somit gibt es nach dem Ultrafiltersatz einen Ultrafilter (der keine Atome enthält).
-
-Sei nun $At(B) \neq \emptyset$. Unter der Annahme $1 \in I$ gibt es also $a_1,...,a_k$, sodass $1 \leq a_1 \lor \dots \lor a_k$.
+Unter der Annahme $1 \in I$ gibt es also $a_1,...,a_k$, sodass $1 \leq a_1 \lor \dots \lor a_k$.
 
 Für ein beliebiges $b \in B$ gilt nun
 \begin{align*}
   b = b \land 1 = b \land (a_1 \lor \dots \lor a_k) = (b \land a_1) \lor \dots \lor (b \land a_k).
 \end{align*}
-Für alle $i=1 \dots k$ gilt nun $(b \land a_i) = 0 \lor (b \land a_i) = a_i$. Also gilt $|B| = 2^k < \infty$ und somit ein Widerspruch.
+Für alle $i=1 \dots k$ gilt nun $(b \land a_i) = 0$ oder $ (b \land a_i) = a_i$. Also gilt $|B| = 2^k < \infty$ und somit ein Widerspruch.
 
 Nach Definition 3.6.6.9 ist durch das Ideal $I$ eine Äquivalenzrelation $\sim_I$ definiert, wobei nach Lemma 3.6.6.10 gilt
 \begin{align*}
   b \sim_I c \Leftrightarrow \Exists i \in I: b \land i' = c \land i' \Leftrightarrow \Exists i \in I: b \lor i = c \lor i
 \end{align*}
 
-Die Verträglichkeit dieser Relation mit $\land$ zeigt man leicht durch die erste Äquivalenz, die mit $\lor$ und Komplementen durch die zweite.
-
-Offensichtlich ist $1 \sim_I 1$ und $0 \sim_I 0$, also ist $\sim_I$ auch eine Kongruenzrelation.
-
-Wir können also $B/ \sim_I = B/I$ bilden und zeigen zunächst, dass $[1]_{\sim_I}$ ein Filter ist.
+Da $I$ auf dem zugehörigen Booleschen Ring eine Kongruenzrelation induziert,
+haben wir auch eine Kongruenzrelation auf der Booleschen Algebra.
 
 Seien $x,y \in [1]_{\sim_I}$ beliebig, d.h.
 \begin{align*}
-  \Exists i,j \in I: &x \lor i = 1 \lor i = 1, y \lor j = 1 \\
+  \Exists i,j \in I: &x \lor i = 1 \lor i = 1, y \lor j = 1 \lor j = 1\\
   \Rightarrow &(x \land y) \lor \underbrace{(i \lor j)}_{\in I} = (x \lor (i \lor j)) \land (y \lor (i \lor j)) = 1 \land 1 = 1 = 1 \lor (i \lor j) \\
   \Rightarrow &x \land y \in [1]_{\sim_I}
 \end{align*}
@@ -53,12 +49,15 @@ Für $x \in [1]_{\sim_I}$ beliebig und $y \in B: y \geq x$ gilt
   y \lor i \geq x \lor i = 1 \lor i \\
   \Rightarrow y \in [1]_{\sim_I}
 \end{align*}
-
-Es ist also $[1]_{\sim_I}$ ein Filter, der außerdem echt ist (da $ 0 \notin [1]_{\sim_I}$) und für den gilt
+Weiters gilt, da $1 \notin I$
 \begin{align*}
-  \Forall a \in At(B): a \in I \land a'  \lor a = 1 \lor a \Rightarrow a' \in [1]_{\sim_I}.
+  \forall i \in I: 0 \lor i  = i \neq 1 = 1 \lor i.
+\end{align*}
+Es ist also $[1]_{\sim_I}$ ein echter Filter und es gilt
+\begin{align*}
+  \Forall a \in At(B): a \in I \text{ und } a'  \lor a = 1 \lor a \Rightarrow a' \in [1]_{\sim_I}.
 \end{align*}
 
-Nach dem Ultrafiltersatz wissen wir, es gibt einen echten Ultrafilter $U \supseteq [1]_{\sim_I}$. Es gilt also auch, dass alle $a'$ in $U$ sind und somit kann kein Atome $a$ im Ultrafilter liegen.
+Nach dem Ultrafiltersatz wissen wir, es gibt einen echten Ultrafilter $U \supseteq [1]_{\sim_I}$. Es gilt also auch, dass alle $a'$ in $U$ sind und somit kann kein Atom $a$ im Ultrafilter liegen.
 
 \end{solution}
