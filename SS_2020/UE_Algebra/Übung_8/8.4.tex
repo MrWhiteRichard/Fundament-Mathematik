@@ -1,20 +1,46 @@
 \begin{algebraUE}{291}
 Seien $t(x_1,\dots,x_n)$ und $t^{\prime}(x_1,\dots,x_n)$ Terme (in einer festen
 Sprache $L$), in denen jeweils nur die Variablen $x_1,\dots,x_n$ (oder Teilmengen
-davon) vorkommen. Sei $\mathcal{V}$ eine Varietät (zur Sprache $L$). Für $C \in \mathcal{V}$
-schreiben wir $C \vDash t \approx t^{\prime}$ (gelesen: ``Das Gesetz $t = t^{\prime}$
-gilt in $C$'') als Abkürzung für
+davon) vorkommen. Sei $\mathcal{V}$ eine Varietät (zur Sprache $L$). Für $\mathcal{C} \in \mathcal{V}$
+schreiben wir $\mathcal{C} \vDash t \approx t^{\prime}$ (gelesen: ``Das Gesetz $t = t^{\prime}$
+gilt in $\mathcal{C}$'') als Abkürzung für
 \begin{align*}
-  \forall c_1,\dots,c_n \in C: t(c_1,\dots,c_n) = t^{\prime}(c_1,\dots,c_n).
+  \forall c_1,\dots,c_n \in \mathcal{C}: t(c_1,\dots,c_n) = t^{\prime}(c_1,\dots,c_n).
 \end{align*}
 Sei $F \in \mathcal{V}$ frei über der $n$-elementigen Menge $\{b_1,\dots,b_n\}$ in $\mathcal{V}$.
 Zeigen Sie, dass die folgenden Aussagen äquivalent sind, und schließen Sie daraus, dass 4.1.3.4. gilt:
 \begin{enumerate}[label = (\alph*)]
   \item In $F$ gilt $t(b_1,\dots,b_n) = t^{\prime}(b_1,\dots,b_n)$.
-  \item Für alle $C \in \mathcal{V}$ gilt $C \vDash t \approx t^{\prime}$.
+  \item Für alle $\mathcal{C} \in \mathcal{V}$ gilt $\mathcal{C} \vDash t \approx t^{\prime}$.
   \item Es gilt $F \vDash t \approx t^{\prime}$.
 \end{enumerate}
 \end{algebraUE}
 \begin{solution}
-Beweis.
+$F \in \mathcal{V}$ heißt frei über $B:= \{b_1,\dots,b_n\}$ in $\mathcal{V}$
+mit der Einbettung $\iota: B \to F$, wenn
+\begin{align*}
+  \forall \mathfrak{A} \in \mathcal{V}, j : X \to A:
+  \exists! \varphi: F \to \mathfrak{A} \text{ Homomorphismus}:  j = \varphi \circ \iota
+\end{align*}
+\begin{itemize}
+  \item (a) $\implies$ (b): \\
+  Sei $\mathcal{C} \in \mathcal{V}$ mit Trägermenge $C$ und $c_1,\dots,c_n \in C$ beliebig.
+  Definiere die Abbildung $j(b_j) := c_j, j = 1,\dots,n$.
+  Dann existiert ein eindeutiger
+  Homomorphismus $\varphi: F \to \mathcal{C}$ mit $j = \varphi \circ \iota$.
+  \begin{align*}
+    t(c_1,\dots,c_n) &= t(j(b_1),\dots,j(b_n)) = t(\varphi \circ \iota(b_1),\dots,\varphi \circ \iota(b_n))
+    = t(\varphi(b_1),\dots,\varphi(b_n)) = \varphi(t(b_1,\dots,b_n)) \\
+    &= \varphi(t^{\prime}(b_1,\dots,b_n)) = t^{\prime}(\varphi(b_1),\dots,\varphi(b_n))
+    = t^{\prime}(\varphi \circ \iota(b_1),\dots,\varphi \circ \iota(b_n))
+    = t^{\prime}(c_1,\dots,c_n).
+  \end{align*}
+  \item (b) $\implies$ (c):
+    (c) ist einfach ein Spezialfall von (b), da $F \in \mathcal{V}$.
+  \item (c) $\implies$ (a):
+  Es gilt für alle $\forall f_1,\dots,f_n \in F: t(f_1,\dots,f_n) = t^{\prime}(f_1,\dots,f_n)$
+  und somit insbesondere $t(b_1,\dots,b_n) = t^{\prime}(b_1,\dots,b_n$.
+\end{itemize}
+Um die Gültigkeit der Aussage von Satz 4.1.3.4. einzusehen, betrachte man einfach
+die Implikation (c) $\implies$ (b).
 \end{solution}
