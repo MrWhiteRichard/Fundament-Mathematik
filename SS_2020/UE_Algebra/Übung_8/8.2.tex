@@ -12,7 +12,9 @@ mit $\forall r \in R: r > r_0 \implies q_1(r) < q_2(r)$. Zeigen Sie:
 \begin{solution}
 \begin{enumerate}
   \item Zuerst ist also zu zeigen, dass die gegebene Relation eine Totalordnung
-  auf $\Q(x)$ definiert. Dazu betrachte $p \neq q \in \Q(x)$ beliebig und sei $n := \grad(p - q)$
+  auf $\Q(x)$ definiert.
+  Dabei sind Reflexivität und Transitivität klar.
+  Dazu betrachte $p \neq q \in \Q(x)$ beliebig und sei $n := \grad(p - q)$
   \begin{align*}
     \lim_{x \to \infty} p(x) - q(x) = \lim_{x \to \infty}\underbrace{x^n}_{> 0}
     \underbrace{\left((p_n - q_n) + \sum_{k \in \Z}(p_k - q_k)x^{k-n}\right)}_{\to (p_n - q_n)}.
@@ -55,7 +57,7 @@ mit $\forall r \in R: r > r_0 \implies q_1(r) < q_2(r)$. Zeigen Sie:
   \end{align*}
   dann folgt
   \begin{align*}
-    \forall p \in Q_K: \exists b \in \Z: bp > k \geq q
+    \forall p \in \Q_K: \exists b \in \Z: bp > k \geq q
   \end{align*}
   und somit für $k_1, k_2 \in K$ beliebig
   \begin{align*}
@@ -84,16 +86,25 @@ mit $\forall r \in R: r > r_0 \implies q_1(r) < q_2(r)$. Zeigen Sie:
 \end{enumerate}
 von der wir nun nachweisen müssen, dass sie die gewünschte isomorphe Einbettung liefert.
 \begin{itemize}
-  \item Injektivität: Seien $p, \neq q \in \Q(x)$ beliebig. \\
-  Dann existiert ein größtes $k \in \Z$, sodass $p_k \neq q_k$. Ss folgt
+  \item Injektivität: Seien $p > q \in \Q(x)$ beliebig. \\
+  Dann existiert ein größtes $k \in \Z$, sodass $p_k \neq q_k$. Es folgt $p_k > q_k$ und
   \begin{align*}
-    \psi(p) - \psi(q) = \sum_{n = -\infty}^kr_kx^k
+    \psi(p) - \psi(q) = \sum_{n = -\infty}^k(p_n - q_n)x^k.
   \end{align*}
-  und aufgrund $\forall n < k: x^k > -r_nx^n$
+  Aufgrund der Monotonie der Multiplikation folgt
+  \begin{align*}
+    \forall r \in \Q_K, k \in \Z: rx^k \leq x^{k+1}
+  \end{align*}
+  und aufgrund $x \notin \Q_K$ sogar die strikte Ungleichheit.
+  Damit folgt induktiv
+  \begin{align*}
+    \sum_{n = -\infty}^{k - 1} (p_n - q_n)x^n < (p_k - q_k)x^k
+  \end{align*}
+  und somit
   \begin{align*}
     \psi(p) - \psi(q) > 0.
   \end{align*}
-  Damit ist $\psi$ injektiv.
+  Damit ist $\psi$ injektiv und sogar ordnungserhaltend.
   \item Homomorphie:
   \begin{align*}
     \psi(0_{\Q(x)}) &= \sum_{k \in \Z}\varphi(0)x^k = 0_K \\

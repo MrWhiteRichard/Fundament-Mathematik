@@ -6,14 +6,18 @@ $\varphi_{\alpha}: \Z \times \Z \to \R; \varphi_{\alpha}(a,b) := a + \alpha b$,
 und übertragen Sie damit die Struktur von $\R$ als geordnete Gruppe auf $\Z \times \Z$.
 \end{algebraUE}
 \begin{solution}
-Um $\varphi_{\alpha}$ zu einer ordnungs-erhaltenden Funktion zu machen muss also gelten:
+$\varphi_{\alpha}$ induziert folgendermaßen eine Ordnung auf $\Z \times \Z$:
 \begin{align*}
-  (a,b) \leq (c,d) :\iff a + \alpha b \leq c + \alpha d.
+  (a,b) \leq_{\alpha} (c,d) :\iff a + \alpha b \leq c + \alpha d.
 \end{align*}
 Nun müssen wir zeigen, dass $(\Z \times \Z, \leq_{\alpha})$ zu einer geordneten Gruppe wird.
-Da $(\R,\leq)$ eine geordente Gruppe ist und somit insbesondere totalgeordnet.
-Sicherlich wird damit durch obige Festlegung eine ebenso eine Totalordnung
-auf $\Z \times \Z$ definiert.
+Reflexivität und Transitivität sind klar.
+Für die Antisymmetrie betrachte $(a,b) \leq_{\alpha} (c,d) \leq_{\alpha} (a,b)$. Es folgt
+\begin{align*}
+  a + \alpha b= c + \alpha d \iff (a-c) = \alpha (d-b).
+\end{align*}
+Da für $(d-b)\neq 0: \alpha (d-b) \notin \Z$ muss daraus bereits $a=b, c=d$ folgen.
+Die Totalität ist wiederum klar.
 Zur Überprüfung des Monotoniegesetzes sei $(c_1,c_2) \in \Z \times \Z$ beliebig,
 weiters seien $(a_1,a_2) \leq_{\alpha} (b_1,b_2) \in \Z \times \Z$ beliebig.
 Es gilt also $a_1 + \alpha a_2 \leq b_1 + \alpha b_2$ und es folgt
@@ -30,7 +34,7 @@ Da die additive Struktur auf $\R$ archimedisch angeordnet ist, existiert ein $b 
 \begin{align*}
   b(\alpha_1 - \alpha_2) > 1.
 \end{align*}
-Daraus gibt es ein $k \in \Z$, sodass
+Also gibt es ein $k \in \Z$, sodass
 \begin{align*}
   b\alpha_1 > k > b\alpha_2.
 \end{align*}

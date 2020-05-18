@@ -4,5 +4,48 @@ in einer geeigneten Kategorie eindeutig bestimmt sind. In Varietäten sind
 Polynomalgebren bis auf Isomorphie eindeutig bestimmt.
 \end{algebraUE}
 \begin{solution}
-Beweis.
+Wir wissen bereits, dass für festes $X$ die freie Algebra in $\mathcal{C}$
+über $X$ in der Kategorie $\mathcal{C}(X)$ ein initiales Objekt ist, also
+bis auf Äquivalenz eindeutig bestimmt.
+Dabei sind die Objekte in $\mathcal{C}(X)$ sämtliche Paare $(\mathfrak{A},\iota)$,
+wobei $\mathfrak{A}$ ein Objekt in $\mathcal{C}$ ist mit Trägermenge $A = U(\mathfrak{A})$
+und $\iota: X \to A$. \\
+Die Morphismen $f: (\mathfrak{A}_1,\iota_1) \to (\mathfrak{A}_2,\iota_2)$
+sind Morphismen aus $\mathcal{C}$ mit $U(f)\circ \iota_1 = \iota_2$. \\
+Die Kompositionen sind einfach Abbildungskompositionen. \\
+Seien nun $(F_1(X),\iota_1), (F_2(X),\iota_2)$ zwei freie Algebren in $\mathcal{C}$ über $X$.
+Dann existieren also Morphismen $f,g$ in $\mathcal{C}$
+\begin{align*}
+  f&: (F_1(X),\iota_1) \to (F_2(X),\iota_2) \\
+  g&: (F_2(X),\iota_2) \to (F_1(X),\iota_1)
+\end{align*}
+mit $f \circ g = \id_{F_2(X)}$ und $g \circ f = \id_{F_1(X)}$.
+Ebenso ist für festes $F(X)$ das
+Koprodukt von $A$ und $F(X)$ in $\mathcal{C}$ in der Kategorie $C^*$ initial
+und somit bis auf Äquivalenz eindeutig bestimmt. \\
+Die Objekte von $C^*$ sind Tupel $(B,\varphi_A,\varphi_{F(X)})$, wobei $B \in \Ob(\mathcal{C})$
+und $\varphi_A: A \to B, \varphi_{F(X)}: F(X) \to B$ Morphismen von $\mathcal{C}$ sind. \\
+Die Morphismen von $C^*$ sind Tupel $(B_1,f,B_2)$, wobei $f \in \Hom_{\mathcal{C}}(B_1,B_2)$
+mit $\varphi_{2,A} = f \circ \varphi_{1,A}, \varphi_{2,F(X)} = f \circ \varphi_{1,F(X)}$. \\
+Die Kompositionen sind die Kompositionen in $\mathcal{C}$. \\
+Seien nun $A[X]_1,A[X]_2$ zwei Koprodukte von $A,F(X)$ in $\mathcal{C}$, dann exisitieren
+\begin{align*}
+  h&: (A[X]_1,\varphi_{1,A},\varphi_{1,F(X)}) \to (A[X]_2,\varphi_{2,A},\varphi_{2,F(X)}) \\
+  i&: (A[X]_2,\varphi_{2,A},\varphi_{2,F(X)}) \to (A[X]_1,\varphi_{1,A},\varphi_{1,F(X)})
+\end{align*}
+mit $h \circ i = \id_{A[X]_2}, i \circ h = \id_{A[X]_1}$. \\
+Ergo definieren wir unsere Kategorie $\widetilde{\mathcal{C}}$ folgendermaßen:\\
+Die Objekte sind Tupel $(A[X],\varphi_A,\varphi_{F(X)},F(X),\iota)$ wobei $(A[X],\varphi_A,\varphi_{F(X)})$
+eine Polynomalgebra in $X$ über $A$ in der Kategorie $\mathcal{C}$ ist und
+$(F(X),\iota)$ eine freie Algebra in $\mathcal{C}$ über $X$ ist. \\
+Die Morhismen in der Kategorie sind Tupel
+$(A[X]_1,\varphi_{A,1},\varphi_{F(X),1},F(X)_1,\iota,f,g,A[X]_2,\varphi_{A,2},\varphi_{F(X),2},F(X)_2,\iota_2)$,
+wobei $f \in \Hom_{C(X)}(F(X)_1,\iota,F(X)_2,\iota_2)$
+und $g \in \Hom_{C^*}(A[X]_1,\varphi_{A,1},\varphi_{F(X),1},A[X]_2,\varphi_{A,2},\varphi_{F(X),2})$. \\
+Die Komposition ist für $f$ die Abbildungskomposition und für $g$ die Komposition in $\mathcal{C}$. \\
+Setzen wir diese beiden Äquivalenzen nun zusammen, erhalten wir für zwei
+beliebige Polynomalgebren $A[X], \widetilde{A[X]}$ in $X$ über $A$:
+\begin{align*}
+  teste
+\end{align*}
 \end{solution}
