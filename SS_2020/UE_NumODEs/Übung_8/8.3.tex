@@ -4,5 +4,70 @@ implizite lineare $k$-Schritt Verfahren maximaler Konsistenzordnung berechnet. G
 das explizite, beziehungsweise implizite 2- und 3-Schritt-Verfahren maximaler Ordnung an.
 \end{exercise}
 \begin{solution}
-Lösung.
+Wir machen uns Theorem 5.15 zunutze. \includegraphicsboxed{5.15}
+Unterpunkt $(iii)$ gibt uns einen guten Anhaltspunkt. Betrachte zuerst die impliziten Verfahren.
+Wir haben jeweils $k+1$ Unbekannte $\alpha$ und $\beta$ . Erinnern wir uns daran,
+dass $\alpha_k = 1$ haben wir schon eine Unbekannte weniger. Um auf die restlichen
+zu kommen können wir die Gleichungen wie folgt umformen.
+
+\begin{align*}
+  \sum_{j=0}^k \alpha_j = 0 \Leftrightarrow -\alpha_k = \sum_{j=1}^{k-i} \alpha_j \\
+  \sum_{j=0}^{k-1}\alpha_j j^i - \sum_{j=0}^k \beta_j ij^{i-1} = -k^i \quad i=1,\dots,p
+\end{align*}
+
+Mit diesen Informationen stellen wir ein lineares $2k+1$ Gleichungssystem auf:
+
+\begin{align*}
+  \left(\begin{array}{c|c}
+    1 \text{ }1\dots & 0\text{ } 0 \dots \\
+    \hline
+    \bigg( j^i\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k} & \bigg( -ij^{i-1}\bigg)_{j=0,\dots,k}^{i=1,\dots,2k}
+  \end{array}\right)
+  \left(\begin{array}{c}
+    \alpha_0 \\
+    \alpha_1 \\
+    \vdots \\
+    \alpha_{k-1} \\
+    \beta_0 \\
+    \vdots \\
+    \beta_k
+  \end{array}\right) =
+  \left(\begin{array}{c}
+    -k^0 \\
+    -k^1 \\
+    \vdots \\
+    -k^{2k}
+  \end{array}\right)
+\end{align*}
+Damit sieht man auch, dass das Verfahren zumindest Ordnung $2k$ hat. Wir können nun,
+wenn wir die $\alpha$ und $\beta$ berechnen, nachprüfen für welche $p \geq 2k$ die Bedingung
+in $(iii)$ erfüllt ist und davon das Größte wählen. (Anscheinend ist die Maximale schon $2k$.)
+
+Für explizite Verfahren vereinfacht sich unser System, da bei diesen $\beta_k = 0$ gilt.
+Dann sieht das ganze so aus:
+\begin{align*}
+  \left(\begin{array}{c|c}
+    1 \text{ }1\dots & 0\text{ } 0 \dots \\
+    \hline
+    \bigg( j^i\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k} & \bigg( -ij^{i-1}\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k}
+  \end{array}\right)
+  \left(\begin{array}{c}
+    \alpha_0 \\
+    \alpha_1 \\
+    \vdots \\
+    \alpha_{k-1} \\
+    \beta_0 \\
+    \vdots \\
+    \beta_{k-1}
+  \end{array}\right) =
+  \left(\begin{array}{c}
+    -k^0 \\
+    -k^1 \\
+    \vdots \\
+    -k^{2k-1}
+  \end{array}\right)
+\end{align*}
+
+Hier hat das Verfahren also zumindest Ordnung $2k-1$ und wir können genauso nachprüfen
+welche Ordnung maximal ist. (Wiederum ist diese Ordnung augenscheinlich auch die Maximale)
 \end{solution}
