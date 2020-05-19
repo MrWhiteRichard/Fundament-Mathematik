@@ -14,16 +14,16 @@ mit paarweise verschiedenen $\lambda_1,\lambda_2,\lambda_3$.
 \begin{solution}
 Durch Ausmultiplizieren kann man das charakteristische Polynom auf die Form $\rho(\lambda) = \sum_{j=0}^{6}\alpha_j \lambda^j$ bringen, somit lautet die zugehörige Lineare Differenzengleichung
 \begin{align}\label{diffeq}
-  \sum_{j=0}^{k} \alpha_j y_{l+j} \text{~~mit~~} k=6
+  \sum_{j=0}^{6} \alpha_j y_{l+j}, \qquad \ell \in \N_0
 \end{align}
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Da die Nullstellen des charakteristischen Polynoms genau $\lambda_1,\lambda_2,\lambda_3$
   mit Vielfachheiten $1,2,3$ sind, sind
-  lle Lösungen der Differenzengleichung gegeben durch Linearkombinationen der Folgen
+  alle Lösungen der Differenzengleichung gegeben durch Linearkombinationen der Folgen
   \begin{align*}
-    (\lambda_{l}^{(n,m)})_{l \in \N_0} \text{~~mit~~} n = 1,2,3, m = 0,...,n-1
+    (\lambda_{l}^{(n,m)})_{l \in \N_0} \text{~~mit~~} n = 1,2,3, \qquad m = 0,...,n-1
   \end{align*}
-  die wie folgt definiert sind.
+  die wie folgt definiert sind:
   \begin{align*}
     \lambda_{l}^{(1,0)} =& \lambda_1^l \\
     \lambda_{l}^{(2,0)} =& \lambda_2^l \\
@@ -46,24 +46,23 @@ l(l-1) \lambda_3^{l-2} & \, l > 1
 
   \begin{align*}
     \sum_{j=0}^{k} \alpha_j \lambda_{l+j}^{(1,0)} =& \sum_{j=0}^{k} \alpha_j \lambda_1^{l+j} = \lambda_1^l \rho(\lambda_1) = 0 \\
-    \sum_{j=0}^{k} \alpha_j \lambda_{l+j}^{(2,1)} =& \sum_{j=0}^{k} \alpha_j (l+j)\lambda_2^{l+j-1} = \rho_l^{(1)}(\lambda_2) = 0 \\
-    \sum_{j=0}^{k} \alpha_j \lambda_{l+j}^{(3,2)} =& \sum_{j=0}^{k} \alpha_j (l+j)(l+j-1)\lambda_3^{l+j-2} = \rho_l^{(2)}(\lambda_3) = 0
+    \sum_{j=0}^{k} \alpha_j \lambda_{l+j}^{(2,1)} =& \sum_{j=0}^{k} \alpha_j (l+j)\lambda_2^{l+j-1} = \lambda_2^l\rho^{(1)}(\lambda_2) = 0 \\
+    \sum_{j=0}^{k} \alpha_j \lambda_{l+j}^{(3,2)} =& \sum_{j=0}^{k} \alpha_j (l+j)(l+j-1)\lambda_3^{l+j-2} = \lambda_3^l\rho^{(2)}(\lambda_3) = 0.
   \end{align*}
 
-  mit den Funktionen $\rho_l (\lambda) := \lambda^l \rho(\lambda)$ für die die $k$-te Ableitung an einer $k$-fachen Nullstelle von $\rho$ auch verschwinden.
 
   Nachdem wir gezeigt haben, dass es sich um Lösungen handelt, stellen wir fest, dass es $k=6$ verschiedene Lösungen sind (den Fundamentalsatz brauchen wir hier also gar nicht). Nun wollen wir noch zeigen, dass die Lösungen linear unabhängig sind und somit tatsächlich den $k$-dimensionalen Lösungsraum aufspannen.
 
   Lineare Unabhängigkeit zeigen wir, indem wir annehmen
   \begin{align*}
-    \Forall l \in \N_0: \sum_{n=1}^3 \sum_{m=0}^{n-1} \alpha_{n,m} \lambda_{l}^{(n,m)} = 0 .
+    \Forall \ell \in \N_0: \sum_{n=1}^3 \sum_{m=0}^{n-1} \alpha_{n,m} \lambda_{\ell}^{(n,m)} = 0 .
   \end{align*}
-  Für $l=0,...,k-1$ führt das zu folgendem linearen Gleichungssystem
+  Für $\ell=0,...,k-1$ führt das zu folgendem linearen Gleichungssystem
   \begin{align*}
     \underbrace{\begin{pmatrix}
       \lambda_1^0 & \lambda_2^0 & 0 & \lambda_3^0 & 0 & 0\\
       \lambda_1^1 & \lambda_2^1 & \lambda_2^0 & \lambda_3^1 & \lambda_3^0 & 0\\
-      \lambda_1^2 & \lambda_2^2 & 2\lambda_2^1 & \lambda_3^2 & 2\lambda_3^1 & \lambda_3^0\\
+      \lambda_1^2 & \lambda_2^2 & 2\lambda_2^1 & \lambda_3^2 & 2\lambda_3^1 & 2\lambda_3^0\\
       \lambda_1^3 & \lambda_2^3 & 3\lambda_2^2 & \lambda_3^3 & 3\lambda_3^2 & 6\lambda_3^1\\
       \lambda_1^4 & \lambda_2^4 & 4\lambda_2^3 & \lambda_3^4 & 4\lambda_3^3 & 12\lambda_3^2\\
       \lambda_1^5 & \lambda_2^5 & 5\lambda_2^4 & \lambda_3^5 & 5\lambda_3^4 & 20\lambda_3^3

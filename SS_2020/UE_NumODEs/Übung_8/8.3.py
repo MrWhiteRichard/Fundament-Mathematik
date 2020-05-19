@@ -1,9 +1,5 @@
 import numpy as np
 
-# dass die linearen Gleichungssysteme im Programm äquivalent sind zu den Gleichungen in 5.15
-# muss man vermutlich noch in der Theorie aufschreiben.
-# Hab alles bisher handschriftlich irgendwo hingekritzelt, latexen wird wohl zu aufwändig
-# heißt, man muss es nochmal selber schön zamschreiben
 
 def row(i,k): #Zeilenvektor Länge 2k+1
     if i == 0:
@@ -12,7 +8,7 @@ def row(i,k): #Zeilenvektor Länge 2k+1
     else:
         a = np.array([j**i for j in range(k)])
         if i == 1:
-            b = np.concatenate((np.array([-1]),-1*np.ones(k)))
+            b = -1*np.ones(k+1)
         else:
             b = (-i)*np.array([j**(i-1) for j in range(k+1)])
     return np.concatenate((a,b))
@@ -33,6 +29,7 @@ def sol(p,k):
 def givehighestexp(k): #gibt array a mit alpha0,..,alphak und b mit beta0,..., betak zurück
     p = 2*k-1
     A = AE(p,k)
+    print(A)
     if np.linalg.det(A) != 0:
         ab = np.linalg.solve(A,sol(p,k))
         a = np.append(ab[0:k] , [1]) #ak = 1
