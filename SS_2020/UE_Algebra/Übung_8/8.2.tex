@@ -88,8 +88,10 @@ von der wir nun nachweisen müssen, dass sie die gewünschte isomorphe Einbettun
 \begin{itemize}
   \item Injektivität: Seien $p > q \in \Q(x)$ beliebig. \\
   Dann existiert ein größtes $k \in \Z$, sodass $p_k \neq q_k$. Es folgt $p_k > q_k$ und
+  aufgrund der Isomorphie von $\varphi$ zwischen den angeordneten Körpern $\Q$ und $\Q_K$
+  auch $\varphi(p_k) > \varphi(q_k)$
   \begin{align*}
-    \psi(p) - \psi(q) = \sum_{n = -\infty}^k(p_n - q_n)x^k.
+    \psi(p) - \psi(q) = \sum_{n = -\infty}^k(\varphi(p_n) - \varphi(q_n))x^n.
   \end{align*}
   Aufgrund der Monotonie der Multiplikation folgt
   \begin{align*}
@@ -98,7 +100,7 @@ von der wir nun nachweisen müssen, dass sie die gewünschte isomorphe Einbettun
   und aufgrund $x \notin \Q_K$ sogar die strikte Ungleichheit.
   Damit folgt induktiv
   \begin{align*}
-    \sum_{n = -\infty}^{k - 1} (p_n - q_n)x^n < (p_k - q_k)x^k
+    \sum_{n = -\infty}^{k - 1} (\varphi(q_n) - \varphi(p_n))x^n < (\varphi(p_k) - \varphi(q_k))x^k
   \end{align*}
   und somit
   \begin{align*}
