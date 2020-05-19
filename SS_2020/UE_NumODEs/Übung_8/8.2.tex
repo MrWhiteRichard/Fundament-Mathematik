@@ -5,12 +5,12 @@ ein uniformes Gitter mit Gitterweite $h$. Gegeben seien die Werte $y_{\ell},\dot
 Zur Berechnung von $y_{\ell + 1}$ sei $p_{\ell} \in \Pi_k$ das Polynom, welches
 die Bedingungen
 \begin{subequations}
-\begin{align}
-  p_{\ell}(t_{\ell + 1- j}) = y_{\ell + 1 - j}, \qquad j = 0,\dots,k,
+\begin{align}\label{lagrange}
+  p_{\ell}(t_{\ell + 1 - j}) = y_{\ell + 1 - j}, \qquad j = 0,\dots,k,
 \end{align}
 und
 \begin{align}
-  p^{\prime}(t_{\ell + 1}) = f(t_{\ell + 1},y_{\ell + 1})
+  p_{\ell}^{\prime}(t_{\ell + 1}) = f(t_{\ell + 1},y_{\ell + 1})
 \end{align}
 \end{subequations}
 erfüllt. Dann definieren wir $y_{\ell + 1} := p_{\ell}(t_{\ell + 1})$.
@@ -29,5 +29,80 @@ erfüllt. Dann definieren wir $y_{\ell + 1} := p_{\ell}(t_{\ell + 1})$.
 \end{enumerate}
 \end{exercise}
 \begin{solution}
-Beweis.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Wir setzen anfangs $y_{\ell + 1}$ unbestimmt an und lösen das Lagrange-Interpolationsproblem
+  \eqref{lagrange} in Abhängigkeit von $y_{\ell + 1}$.
+  Wir erhalten als Darstellung von $p_{\ell}$
+  \begin{align*}
+    p_{\ell}(t_{\ell} + \tau h) = \sum_{j=0}^k\tilde{L}_j(\tau)y_{\ell + 1 - j}
+  \end{align*}
+  mit
+  \begin{align*}
+    \tilde{L}_j(\tau) := L_j(t_{\ell} + \tau h) &= \prod_{\stackrel{i = 0}{i \neq j}}^{k}\frac{t_{\ell} + \tau h - t_{\ell + 1 - i}}{t_{\ell + 1 -j} - t_{\ell + 1 - i}}
+    = \prod_{\stackrel{i = 0}{i \neq j}}^{k}\frac{t_0 + h{\ell} + \tau h - (t_0 + h(\ell + 1 - i))}{t_0 + h(\ell + 1 -j) - (t_0
+    + h(\ell + 1 - i))} \\
+    &=  \prod_{\stackrel{i = 0}{i \neq j}}^{k}\frac{\tau h - h(1 - i)}{h(i - j)}
+    = \prod_{\stackrel{i = 0}{i \neq j}}^{k}\frac{\tau  - (1 - i)}{i - j}.
+  \end{align*}
+  Jetzt können wir $y_{\ell + 1}$ durch die zusätzliche Bedingung
+  \begin{align*}
+    hf(t_{\ell + 1},y_{\ell + 1}) = hp_{\ell}^{\prime}(t_{\ell + 1}) = \partial_{\tau}p_{\ell}(t_{\ell} + h) =
+    \sum_{j=0}^k\tilde{L}_j^{\prime}(1)y_{\ell + 1 - j}
+  \end{align*}
+  ausdrücken und erhalten
+  \begin{align*}
+    \alpha_{k - j} = \tilde{L}_j^{\prime}(1), \qquad j = 0,\dots,k
+  \end{align*}
+  Damit erhalten wir ein implizites Verfahren, welches laut Remark 5.2 für
+  hinreichend kleines $h$ wohldefiniert ist.
+  \item $k = 1$:
+  \begin{align*}
+    hf(t_{\ell + 1},y_{\ell + 1}) &= \partial_{\tau}(\tau)\Bigg|_{\tau = 1}y_{\ell + 1} -
+    \partial_{\tau}(\tau + 1)\Bigg|_{\tau = 1}y_{\ell} \\
+    &= y_{\ell + 1} - y_{\ell}
+  \end{align*}
+  $k = 2$:
+  \begin{align*}
+  hf(t_{\ell + 1},y_{\ell + 1}) &= \partial_{\tau}\left(\frac{\tau(\tau + 1)}{2}\right)
+  \Bigg|_{\tau = 1}y_{\ell + 1} -
+  \partial_{\tau}\left((\tau - 1)(\tau + 1)\right)
+  \Bigg|_{\tau = 1}y_{\ell} +
+  \partial_{\tau}\left(\frac{(\tau - 1)\tau}{2}\right)
+  \Bigg|_{\tau = 1}y_{\ell - 1} \\
+  &= \frac{3}{2}y_{\ell + 1} - 2y_{\ell} + \frac{1}{2}y_{\ell - 1}
+  \end{align*}
+  $k = 3$:
+  \begin{align*}
+  hf(t_{\ell + 1},y_{\ell + 1}) &= \partial_{\tau}\left(\frac{\tau(\tau + 1)(\tau + 2)}{6}\right)
+  \Bigg|_{\tau = 1}y_{\ell + 1} -
+  \partial_{\tau}\left(\frac{(\tau - 1)(\tau + 1)(\tau + 2)}{2}\right)
+  \Bigg|_{\tau = 1}y_{\ell} \\
+  &+ \partial_{\tau}\left(\frac{(\tau - 1)\tau(\tau + 2)}{2}\right)
+  \Bigg|_{\tau = 1}y_{\ell - 1} -
+  \partial_{\tau}\left(\frac{(\tau - 1)\tau(\tau + 1)}{6}\right)
+  \Bigg|_{\tau = 1}y_{\ell - 2}
+  \\
+  &= \frac{11}{6}y_{\ell + 1} - 3y_{\ell} + \frac{3}{2}y_{\ell - 1} - \frac{1}{3}y_{\ell - 2}
+  \end{align*}
+  \item
+  \begin{align*}
+    \tilde{\eta}(p,h) &= hp^{\prime}(t_{\ell + 1 - k} + kh)
+    - \sum_{j = 0}^k \alpha_jp(t_{\ell + 1 - k} + jh) \\
+    &= \sum_{j= 0}^k p(t_{\ell + 1 - k} + jh)\tilde{L}_j^{\prime}(k)
+    - \sum_{j = 0}^k \alpha_jp(t_{\ell + 1 - k} + jh) = 0
+  \end{align*}
+  Nach Theorem 5.15 haben diese Verfahren also Konsistenzordnung $\geq k$.
+  Dass $k$ auch eine obere Schranke für die Konsistenzordnung ist, sieht man mit
+  dem Polynom
+  \begin{align*}
+    p(t) = \prod_{j = 0}^k (t- t_{\ell + 1 - j}) \in \Pi_{k+1}.
+  \end{align*}
+  Es folgt
+  \begin{align*}
+    \tilde{\eta}(p,h) = hp^{\prime}(t_\ell + 1) - \sum_{j = 0}^k \alpha_j \underbrace{p(t_{\ell + 1 -k} + jh)}_{=0}
+    = hp^{\prime}(t_{\ell + 1}) \neq 0,
+  \end{align*}
+  da $p$ keine doppelten Nullstellen besitzt.
+  Damit kann das Verfahren wieder laut Theorem 5.15 nicht Konsistenzordnung $k + 1$ haben.
+\end{enumerate}
 \end{solution}
