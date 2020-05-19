@@ -16,29 +16,29 @@ $\mathcal{G} = (G,\ast,1,^{-1})$. Sei $F_2$ die von 2 Elementen frei erzeugte Gr
 \begin{solution}
 \begin{enumerate}
   \item Betrachte die Menge aller maximal gekürzten endlichen Wörter, welche aus den beiden
-  Elementen selbstinversen $1_0$ und $1_1$ gebildet werden können.
+  Elementen selbstinversen $1_1$ und $1_2$ gebildet werden können.
   Also können wir $G$ als Menge von kanonischen gekürzten Vertretern darstellen.
   \begin{align*}
-  G = \{g_1\dots g_n: n \in \N, g_j \in\{1_0,1_1\}, g_j \neq g_{j+1}, j = 0,\dots,n-1\}
+  G = \{g_1\dots g_n: n \in \N, g_j \in\{1_1,1_2\}, g_j \neq g_{j+1}, j = 0,\dots,n-1\}
   \end{align*}
   und die Einbettungen
   \begin{align*}
-    \iota_1&: C_2 \to G; \iota_1(0) = \epsilon, \iota_1(1) = 1_0 \\
-    \iota_2&: C_2 \to G; \iota_2(0) = \epsilon, \iota_2(1) = 1_1,
+    \iota_1&: C_2 \to G; \iota_1(0) = \epsilon, \iota_1(1) = 1_1 \\
+    \iota_2&: C_2 \to G; \iota_2(0) = \epsilon, \iota_2(1) = 1_2,
   \end{align*}
   wobei $\epsilon$ das leere Wort bezeichnet.
-  Zusammen mit der Konkatenation $*$ als Gruppenoperation wird $G$ zu einer Gruppe
+  Zusammen mit der Konkatenation $*$ und danach Kürzung als Gruppenoperation wird $G$ zu einer Gruppe
   und $\iota_1,\iota_2$ zu Gruppenhomomorphismen.
-  Für eine beliebige Gruppe $G^{\prime}$ mit Einbettungsabbildungen $j_1: C_2 \to G,
-  j_2: C_2 \to G$ folgt, dass
+  Für eine beliebige Gruppe $G^{\prime}$ mit homomorphen Einbettungsabbildungen $j_1: C_2 \to G^{\prime},
+  j_2: C_2 \to G^{\prime}$ folgt, dass
   \begin{align*}
-    f(g_1\dots g_n) := h(g_1)\circ\dots h(g_n),
+    f(g_1\dots g_n) := h(g_1)\circ\dots\circ h(g_n),
   \end{align*}
   mit
   \begin{align*}
     h(g) = \begin{cases}
-      j_1(1), & g = 1_0 \\
-      j_2(1), & g = 1_1
+      j_1(1), & g = 1_1 \\
+      j_2(1), & g = 1_2
     \end{cases}
   \end{align*}
   der eindeutig bestimmte Gruppenhomomorphismus von $G$ nach $G^{\prime}$
@@ -48,41 +48,46 @@ $\mathcal{G} = (G,\ast,1,^{-1})$. Sei $F_2$ die von 2 Elementen frei erzeugte Gr
     j_2 &= f \circ \iota_2
   \end{align*}
   erfüllt, wobei wir zusätzlich $f(\epsilon) = 0_{G^\prime}$ setzen.
-  Da jeder weitere Homomorphismus auf dem Erzeugnis $\{1_0,1_1\}$ von $G$
+  Die Homorphiebedingung sieht man wegen $j_1(1)\circ j_1(1) = j_2(1)\circ j_2(1) = j_2(1+1) = j_2(0) = 0_{G^{\prime}}$
+  \begin{align*}
+    f(g_1\dots g_n * k_1\dots k_m) &= f(g_1\dots g_ik_j\dots k_l)
+    =h(g_1)\circ\dots\circ h(g_i)\circ h(k_j) \circ \dots \circ h(k_l) \\
+    &= (h(g_1)\circ\dots\circ h(g_n))(h(k_1)\circ \dots h(k_m))
+    = f(g_1\dots g_n) \circ f(k_1\dots k_m).
+  \end{align*}
+  Da jeder weitere Homomorphismus auf dem Erzeugnis $\{1_1,1_2\}$ von $G$
   mit $f$ übereinstimmen muss, folgt mit Proposition 2.3.1.13., dass
   $f$ eindeutig bestimmt ist. \\
   Damit ist $(G,\iota_1,\iota_2)$ ein Koprodukt von $(C_2,C_2)$ in der Varietät
   der Gruppen.
-  \item Eine Aufzählung von Elementen aus $G$ lautet
+  \item Eine (vollständige) Aufzählung von Elementen aus $G$ lautet
   \begin{align*}
-    1_0,1_01_1,1_01_11_0,\dots
+    \epsilon,1_1,1_2,1_11_2,1_2,1_1,1_11_21_1,1_21_11_2\dots
   \end{align*}
-  G ist nicht kommutativ, da $1_0*1_1 = 1_01_1 \neq 1_11_0 = 1_1*1_0$
+  G ist nicht kommutativ, da $1_1*1_2 = 1_11_2 \neq 1_21_1 = 1_2*1_1$
   \item $F_2$ bezeichnet die freie Gruppe über einer beliebigen zwei-elementigen
   Variablenmenge $\{a,b\}$ mit den zugehörigen Inversen $\{\overline{a},\overline{b}\}$.
   \begin{align*}
     F_2 = \{f_1^{k_1}f_2^{k_2}\dots f_n^{k_n}: n \in \N,k_j \in \N, f_j \in
     \{a,b,\overline{a},\overline{b}\}, f_j \neq f_{j+1}\}
   \end{align*}
-  Um die Nicht-Isomorphie zu zeigen, bemerken wir zuerst, dass kein Element aus $F_2$
+  Um die Nicht-Isomorphie zu zeigen, bemerken wir zuerst, dass kein Element aus $F_2\backslash\{\epsilon\}$
   zu sich selbst invers sein kann. Angenommen $gg = \epsilon$, dann unterscheiden wir
   \begin{itemize}
-    \item Fall 1: $g = g_1\dots g_{2n}$.\\
-    Es folgt $g_i = \overline{g_{2n+1-i}}$ und damit $g_{n} = \overline{g_{n+1}}$
+    \item Fall 1: $g = g_1\dots g_{2n}, n > 0$.\\
+    Es folgt $g_i = \overline{g_{2n+1-i}}, i = 1,\dots,2n$ und damit $g_{n} = \overline{g_{n+1}}$
     im Widerspruch zur Gekürztheit von $g$
-    \item Fall 2: $f = g_1\dots g_{2n-1}$. \\
-    Es folgt $g_i = \overline{g_{2n-i}}$ und damit $g_{n} = \overline{g_n}$
-    im Widerspruch zu $B \cap \overline{B} \emptyset$.
+    \item Fall 2: $f = g_1\dots g_{2n-1}, n > 0$. \\
+    Es folgt $g_i = \overline{g_{2n-i}}, i = 1,\dots,2n$ und damit $g_{n} = \overline{g_n}$
+    im Widerspruch zu $B \cap \overline{B} = \emptyset$.
   \end{itemize}
   Angenommen, wir hätten nun einen Isomorphismus $\varphi$ zwischen $F_2$ und $G$
-  gegeben, dann wäre $\varphi$ insbesondere surjektiv und es exisitiert ein $g \in G$,
-  sodass wir mit
+  gegeben, dann wäre $\varphi$ insbesondere surjektiv und es existiert ein $g \in G\backslash\{0_G\}$
+  mit $g^{-1} \neq g$,
+  sodass wir mit der Injektivität von $\varphi$
   \begin{align*}
-    1_0 = \varphi(a) \neq \varphi(a^{-1}) = \varphi(a)^{-1} = 1_0
+    1_1 = \varphi(g) \neq \varphi(g^{-1}) = \varphi(g)^{-1} = 1_1
   \end{align*}
   einen Widerspruch erhalten.
-  \begin{align*}
-    \varphi(a^{-1}) = \varphi(a)^{-1} = \varphi(a)
-  \end{align*}
 \end{enumerate}
 \end{solution}
