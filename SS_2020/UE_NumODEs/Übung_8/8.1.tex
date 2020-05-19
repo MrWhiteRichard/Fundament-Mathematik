@@ -10,5 +10,44 @@ verwenden. Vergleichen Sie Ihr Verfahren mit den Werten aus dem Vorlesungsskript
 für äquidistante Schrittweiten.
 \end{exercise}
 \begin{solution}
-Lösung.
+Die Anzahl der Schritte $m$ dieses Verfahrens ist $m = \max\{r+1,s+k\}=\min\{1,3\} = 3$.
+Eine allgemeine lineare $k$-Schrittmethode hat die Form
+\begin{align*}
+  \sum_{j = 0}^k \alpha_{k - j}y_{l+1-j} = h \sum_{j = 0}^k \beta_{k-j}f(t_{\ell + 1 - j},y_{\ell + 1 -j}).
+\end{align*}
+In unserem Fall ergibt das
+\begin{align*}
+  \alpha_3 y_{\ell + 1} + \alpha_2 y_{\ell} + \alpha_1 y_{\ell - 1} + \alpha_0 y_{\ell - 2} =
+  h \left(\beta_3 f(t_{\ell + 1},y_{\ell + 1}) +
+  \beta_2 f(t_{\ell},y_{\ell}) +
+  \beta_1 f(t_{\ell - 1},y_{\ell - 1}) +
+  \beta_0 f(t_{\ell - 2},y_{\ell - 2}))\right),
+\end{align*}
+wobei bei Adamsverfahren $\alpha_{m-j} = 0$ für $j \in \{0,\dots,m-1\}\backslash\{r+1\}$,
+$\alpha_m = 1, \alpha_{m-r-1} = -1$ gilt. \\
+Ebenso gilt $\beta_{m-j} = 0$ für $j \in \{0,\dots,s-1\}$
+und $\beta_{m-j} = b_{j-s}$ für $j \in \{s,\dots,m\}$. \\
+Also vereinfacht sich der Ausdruck zu
+\begin{align*}
+y_{\ell + 1} - y_{\ell} =
+h \left(
+b_0 f(t_{\ell},y_{\ell}) +
+b_1 f(t_{\ell - 1},y_{\ell - 1}) +
+b_0 f(t_{\ell - 2},y_{\ell - 2}))\right),
+\end{align*}
+wobei man die $b_j$ durch Integration der entsprechenden Lagrange-Interpolationspolynome erhält.
+\begin{align*}
+  b_j = \int_{0}^1 \prod_{\stackrel{m = 0}{m \neq j}}^{2}\frac{\tilde{t} + m}{m - j}dt.
+\end{align*}
+Also berechnen wir
+\begin{align*}
+  b_0  &= \int_{0}^1 (t + 1)\frac{t + 2}{2}dt  = \frac{23}{12}\\
+  b_1  &= \int_{0}^1 -t(t + 2)dt = -\frac{16}{12}\\
+  b_2  &= \int_{0}^1 \frac{t}{2}(t + 1)dt = \frac{5}{12}\\.
+\end{align*}
+Unsere Methode lautet daher mit der Notation $f_{\ell} := f(t_{\ell},y_{\ell})$
+\begin{align*}
+  y_{\ell + 1} = y_{\ell} + \frac{h}{12}\left(23f_{\ell} -16f_{\ell - 1} + 5f_{\ell - 2}\right)
+\end{align*}
+und der Vergleich mit dem Skript gibt uns recht.
 \end{solution}
