@@ -131,7 +131,6 @@ ax2.set_title("Solution with 3 steps")
 
 ax3.plot(t1,Y_expEuler.T)
 ax3.set_title("Solution with expl Euler")
-plt.show()
 
 
 #Problem 5.21
