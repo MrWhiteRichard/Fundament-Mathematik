@@ -34,25 +34,59 @@ h \left(
 \beta_{i,2} f_{i-1}. +
 \beta_{i,3} f_{i-2}.\right),
 \end{align*}
-wobei man die $b_j$ durch Integration der entsprechenden Lagrange-Interpolationspolynome erhält.
+wobei man die $b_j$ durch Integration der entsprechenden Lagrange-Interpolationspolynome erhält. \\
+
+----------------------- \\
+
+Wir machen die Konstruktion analog zum Skript. Für $r=0$ haben wir Also
+
 \begin{align*}
-  \beta_{i,j+1} = \int_{t_{i}}^{t_{i + 1}} \prod_{\stackrel{m = 0}{m \neq j}}^{2}
+  y(t_{i+1}) = y(t_i) + \int_{t_i}^{t_{i+1}} f(\tau, y(\tau))d\tau
+\end{align*}
+
+Nun interpolieren wir die Funktion $f$ an den $k+1$ Stützstellen
+
+\begin{align*}
+  t_{i-j}, \quad j=0,1,2
+\end{align*}
+
+Dann ist unser interpolierendes Polynom gegeben durch
+
+\begin{align*}
+  p = \sum_{j=0}^2 f_{i-j}L_j, \quad \text{mit } L_j(t) := \prod_{\stackrel{m = 0}{m \neq j}}^{2}
+  \frac{t - t_{i - m}}{t_{i - j} - t_{i - m}}
+\end{align*}
+
+Dann erhalten wir die Form wie in der Angabe.
+\begin{align*}
+  y_{i+1} = y_i + \sum_{j=0}^2 \beta_{i,j}(h_{i-1},h_i,h_{i+1})f_{i-j},
+  \qquad f_{i-j} := f(t_{i-j},y_{i-j}).
+\end{align*}
+
+
+Wobei wir unsere $\beta_{i,j}(h_{i-1},h_i,h_{i+1})$ erhalten durch die Integration der Lagrangebasispolynome
+
+\begin{align*}
+  \beta_{i,j} = \int_{t_{i}}^{t_{i + 1}} \prod_{\stackrel{m = 0}{m \neq j}}^{2}
   \frac{t - t_{i - m}}{t_{i - j} - t_{i - m}}dt \\
 \end{align*}
+
+Wir berechnen
+
 \begin{align*}
-  \beta_{i,1}(h_{i-1},h_i,h_{i+1}) &= \frac{1}{h_{i+1}}\int_{t_i}^{t_{i + 1}}
+  \beta_{i,1}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i - 1}}{t_{i} - t_{i - 1}}\frac{t - t_{i - 2}}{t_{i} - t_{i - 2}}dt
-  = \frac{1}{h_{i+1}}\int_{0}^{h_{i+1}}
+  = \int_{0}^{h_{i+1}}
   \frac{t + h_i}{h_i}\frac{t + h_i + h_{i-1}}{h_i + h_{i-1}}dt \\
   &= \frac{h_{i+1}(3h_{i+1}(h_{i-1} + 2h_i) + 6h_i(h_{i-1} + h_i) + 2h_{i+1}^2)}{6h_i(h_{i-1} + h_i)}\\
-  \beta_{i,2}(h_{i-1},h_i,h_{i+1}) &= \frac{1}{h_{i+1}}\int_{t_i}^{t_{i + 1}}
+  \beta_{i,2}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i}}{t_{i - 1} - t_{i}}\frac{t - t_{i - 2}}{t_{i - 1} - t_{i - 2}}dt
-  = -\frac{1}{h_{i+1}}\int_{0}^{h_{i+1}}
+  = -\int_{0}^{h_{i+1}}
   \frac{t}{h_i}\frac{t + h_i + h_{i-1}}{h_{i-1}}dt \\
   &= -\frac{h_{i+1}^2(3h_{i-1} + 3h_i + 2h_{i+1})}{6h_{i-1}h_i} \\
-  \beta_{i,3}(h_{i-1},h_i,h_{i+1}) &= \frac{1}{h_{i+1}}\int_{t_i}^{t_{i + 1}}
+  \beta_{i,3}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i}}{t_{i - 2} - t_{i}}\frac{t - t_{i - 1}}{t_{i-2} - t_{i - 1}}dt
-  = \frac{1}{h_{i+1}}\int_{0}^{h_{i+1}}
+  = \int_{0}^{h_{i+1}}
   \frac{t}{h_i + h_{i-1}}\frac{t + h_{i-1}}{h_{i-1}}dt\\
   &= \frac{h_{i+1}^2(3h_{i-1} + 2h_{i+1})}{6h_{i-1}(h_{i-1} + h_i)}
 \end{align*}
