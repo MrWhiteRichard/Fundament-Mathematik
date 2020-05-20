@@ -1,14 +1,28 @@
 % \def \lastexercisenumber {...} <- in project
-\theoremstyle{definition}
-\newtheorem{exercise}{Aufgabe}
-\setcounter{exercise}{\lastexercisenumber}
-\newtheorem{inneralgebraUE}{UE}
-\newenvironment{algebraUE}[1]
-  {\renewcommand\theinneralgebraUE{#1}\inneralgebraUE}
-  {\endinneralgebraUE}
+
+\newtheorem{theorem}{Satz}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Korollar}
+\newtheorem{remark}{Bemerkung}
+\newtheorem{definition}{Definition}
+
 \newtheorem*{theorem*}{Satz}
 \newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Korollar}
+\newtheorem*{remark*}{Bemerkung}
 \newtheorem*{definition*}{Definition}
+
+\theoremstyle{definition}
+
+\newtheorem{exercise}{Aufgabe}
+\setcounter{exercise}{\lastexercisenumber}
+
+\newtheorem{inneralgebraUE}{UE}
+\newenvironment{algebraUE}[1]
+{
+  \renewcommand \theinneralgebraUE{#1} \inneralgebraUE
+}
+{\endinneralgebraUE}
 
 \newcommand{\solution}
 {
@@ -16,14 +30,29 @@
     \renewcommand{\qedsymbol}{}
     \proof
 }
+\renewcommand{\proofname}{Beweis}
 
-%dickere vertical lines
-\newcolumntype{x}[1]{!{\centering\arraybackslash\vrule width #1}}
+% dickere vertical lines
+\newcolumntype
+{x}
+[1]
+{!{\centering\arraybackslash\vrule width #1}}
 
-%environment zum einkasteln
-\newenvironment{boxedin}{\begin{tabular}{x{1pt}p{\textwidth}x{1pt}}
-\Xhline{2\arrayrulewidth}
-}{
- \\\Xhline{2\arrayrulewidth}
-\end{tabular}
+% environment zum einkasteln
+\newenvironment
+{boxedin}
+{
+  \begin{tabular}
+  {
+    x{1 pt}
+    p{\textwidth}
+    x{1 pt}
+  }
+  \Xhline
+  {2 \arrayrulewidth}
+}
+{
+  \\
+  \Xhline{2 \arrayrulewidth}
+  \end{tabular}
 }

@@ -1,0 +1,61 @@
+\begin{corollary}
+
+Es gelten die Voraussetzungen aus Satz \ref{th_1}.
+Sei zusätzlich $k \in \N$.
+Die $k$-te Ableitung ist somit wie folgt gegeben.
+Dabei, werden Summen, unter denen nicht-erfüllbare Bedingungen stehen, aus der Kette entfernt.
+
+\begin{align} \label{eq_3}
+  p^{(k)}(x)
+  =
+  \sum_{i_1 = 1}^n
+  \sum_{\substack{i_2 = 1 \\ i_2 \neq i_1}}^n
+  \cdots
+  \sum_{\substack{i_k = 1 \\ i_k \neq i_1, \ldots, i_{k-1}}}^n
+  \prod_{\substack{j = 1 \\ j \neq i_1, \ldots, i_{k-1}}}^n
+  (x - x_j)
+\end{align}
+
+\end{corollary}
+
+\begin{proof}
+
+Wir führen den Beweis mit vollständiger Induktion nach $k$. \\
+
+Induktions-Anfang ($k = 0$):
+Laut Definition, verschwindet die Summen-Kette aus \eqref{eq_3} und es bleibt nur noch das Produkt übrig. \\
+
+Induktions-Schritt ($k-1 \mapsto k$):
+Die zu zeigende Aussage gelte für $k-1 \in \N$.
+
+Wir benützen die Summen-Regel und die Induktions-Voraussetzung und berechnen Folgendes.
+
+\begin{align*}
+  p^{(k)}(x)
+  & =
+  \frac{d^k}{dx^k}
+  \prod_{i=1}^{n} (x - x_i)
+  =
+  \frac{d^{k-1}}{dx^{k-1}}
+  \frac{d}{dx}
+  \prod_{i=1}^{n} (x - x_i)
+  =
+  \frac{d^{k-1}}{dx^{k-1}}
+  \sum_{i_1 = 1}^n
+  \prod_{\substack{j=1 \\ j \neq i_1}}^n
+  (x - x_j) \\
+  & =
+  \sum_{i_1 = 1}^n
+  \frac{d^{k-1}}{dx^{k-1}}
+  \prod_{\substack{j=1 \\ j \neq i_1}}^n
+  (x - x_j)
+  =
+  \sum_{i_1 = 1}^n
+  \sum_{\substack{i_2 = 1 \\ i_2 \neq i_1}}^n
+  \cdots
+  \sum_{\substack{i_k = 1 \\ i_k \neq i_1, \ldots, i_{k-1}}}^n
+  \prod_{\substack{j = 1 \\ j \neq i_1, \ldots, i_{k-1}}}^n
+  (x - x_j)
+\end{align*}
+
+\end{proof}

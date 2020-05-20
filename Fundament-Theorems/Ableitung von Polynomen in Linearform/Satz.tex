@@ -1,0 +1,74 @@
+\begin{theorem}
+
+\label{th_1}
+
+Seien $n \in \N$ und $p \in \Pi_n$ ein komplexes Polynom vom maximalen Grad $n$.
+Laut dem Fundamentalsatz der Algebra, existieren $n$, nicht zwangsläufig verschiedene, Nullstellen $x_1, \ldots, x_n \in \C$.
+Sei o.B.d.A. der Führungskoeffizient von $p$ gleich $1$.
+$p$ besitzt demnach folgende Darstellung.
+
+\begin{align} \label{eq_1}
+  p(x)
+  =
+  \prod_{i=1}^n (x - x_i)
+\end{align}
+
+Die Ableitung ist somit wie folgt gegeben.
+
+\begin{align} \label{eq_2}
+  p^\prime(x)
+  =
+  \sum_{i=1}^n
+  \prod_{\substack{j=1 \\ j \neq i}}^n
+  (x - x_j)
+\end{align}
+
+\end{theorem}
+
+\begin{proof}
+
+Wir führen den Beweis mit vollständiger Induktion nach $n$. \\
+
+Induktions-Anfang ($n = 0$):
+Damit, stehen in \eqref{eq_1} und \eqref{eq_2} bloß das leere Produkt $1$, bzw. die leere Summe $0$. \\
+
+Induktions-Schritt ($n-1 \mapsto n$):
+Die zu zeigende Aussage gelte für $n-1 \in \N$.
+Wir benützen die Produkt-Regel und die Induktions-Voraussetzung und berechnen Folgendes.
+
+\begin{align*}
+  p^\prime(x)
+  & =
+  \frac{d}{dx}
+  \prod_{i=1}^{n} (x - x_i)
+  =
+  \frac{d}{dx}
+  \pbraces
+  {
+    (x - x_n)
+    \prod_{i=1}^{n-1} (x - x_i)
+  }
+  =
+  \prod_{i=1}^{n-1} (x - x_i)
+  +
+  (x - x_n)
+  \frac{d}{dx}
+  \prod_{i=1}^{n-1} (x - x_i) \\
+  & =
+  \prod_{i=1}^{n-1} (x - x_i)
+  +
+  (x - x_n)
+  \sum_{i=1}^{n-1}
+  \prod_{\substack{j=1 \\ j \neq i}}^{n-1} (x - x_j)
+  =
+  \prod_{\substack{i=1 \\ i \neq n}}^n (x - x_i)
+  +
+  \sum_{i=1}^{n-1}
+  \prod_{\substack{j=1 \\ j \neq i}}^n (x - x_j)
+  =
+  \sum_{i=1}^n
+  \prod_{\substack{j=1 \\ j \neq i}}^n
+  (x - x_j)
+\end{align*}
+
+\end{proof}
