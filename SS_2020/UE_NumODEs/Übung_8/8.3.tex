@@ -11,11 +11,11 @@ dass $\alpha_k = 1$ haben wir schon eine Unbekannte weniger. Um auf die restlich
 zu kommen können wir die Gleichungen wie folgt umformen.
 
 \begin{align*}
-  \sum_{j=0}^k \alpha_j = 0 \Leftrightarrow -\alpha_k = \sum_{j=1}^{k-i} \alpha_j \\
+  \sum_{j=0}^k \alpha_j = 0 \Leftrightarrow -1 = -\alpha_k = \sum_{j=1}^{k-i} \alpha_j \\
   \sum_{j=0}^{k-1}\alpha_j j^i - \sum_{j=0}^k \beta_j ij^{i-1} = -k^i \quad i=1,\dots,p
 \end{align*}
 
-Mit diesen Informationen stellen wir ein lineares $2k+1$ Gleichungssystem auf:
+Mit diesen Informationen stellen wir ein lineares $(2k+1 \times 2k+1)$ Gleichungssystem auf:
 
 \begin{align*}
   \left(\begin{array}{c|c}
@@ -39,7 +39,8 @@ Mit diesen Informationen stellen wir ein lineares $2k+1$ Gleichungssystem auf:
     -k^{2k}
   \end{array}\right)
 \end{align*}
-Damit sieht man auch, dass das Verfahren zumindest Ordnung $2k$ hat. Wir können nun,
+Damit sieht man auch, dass das maximale implizite Verfahren, wenn die angegebene Matrix regulär ist,
+zumindest Ordnung $2k$ hat. Wir können nun,
 wenn wir die $\alpha$ und $\beta$ berechnen, nachprüfen für welche $p \geq 2k$ die Bedingung
 in $(iii)$ erfüllt ist und davon das Größte wählen. (Anscheinend ist die Maximale schon $2k$.)
 
@@ -49,7 +50,7 @@ Dann sieht das ganze so aus:
   \left(\begin{array}{c|c}
     1 \text{ }1\dots & 0\text{ } 0 \dots \\
     \hline
-    \bigg( j^i\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k} & \bigg( -ij^{i-1}\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k}
+    \bigg( j^i\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k-1} & \bigg( -ij^{i-1}\bigg)_{j=0,\dots,k-1}^{i=1,\dots,2k-1}
   \end{array}\right)
   \left(\begin{array}{c}
     \alpha_0 \\
@@ -67,7 +68,7 @@ Dann sieht das ganze so aus:
     -k^{2k-1}
   \end{array}\right)
 \end{align*}
-
-Hier hat das Verfahren also zumindest Ordnung $2k-1$ und wir können genauso nachprüfen
-welche Ordnung maximal ist. (Wiederum ist diese Ordnung augenscheinlich auch die Maximale)
+Hier erhalten wir für $p = 2k - 1$ ein $(2k \times 2k)$ Gleichungssystem,
+bei dem hier eine eindeutige Lösung erhoffen können. Darüber hinaus können wir
+nur noch weitere Lösungen erhalten, wenn die Matrix nicht regulär ist.
 \end{solution}
