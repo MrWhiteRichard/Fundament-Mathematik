@@ -1,0 +1,67 @@
+\begin{theorem*}[Verallgemeinertes Kreuzprodukt]
+
+Seien $n \in \N$ und $v^{(1)}, \ldots, v^{(n-1)} \in \R$.
+Mögen $e_1, \ldots, e_n \in \R^n$ die kanonischen Basis-Vektoren, und $(\cdot, \cdot)$ das kanonische Skalarprodukt bezeichnen.
+
+\begin{align*}
+  v^{(n)}_i := \det{(v^{(1)}, \ldots, v^{(n-1)}, e_i)},
+  \quad
+  i = 1, \ldots, n
+\end{align*}
+
+Dann steht $v^{(n)}$ orthogonal auf die anderen Vektoren.
+D.h.
+
+\begin{align*}
+  \Forall i = 1, \ldots, n-1:
+  (v^{(n)}, v^{(i)}) = 0.
+\end{align*}
+
+Insbesondere, ist diese Vorschrift eine Verallgemeinerung des Kreuzprodukts ($n = 3$), die einen $n$-dimensionalen orthogonalen Vektor produziert.
+
+\begin{align*}
+  \times:
+  (\R^n)^{n-1} \to \R^n:
+  (v^{(1)}, \ldots, v^{(n-1)})
+  \mapsto
+  v^{(n)}
+\end{align*}
+
+\end{theorem*}
+
+\begin{proof}
+
+Seien $i = 1, \ldots, n$ und $A_i$ die Matrix $(v^{(1)}, \ldots, v^{(n-1)})$ ohne die $i$-te Zeile und letzte Spalte.
+
+Sei $j = 1, \ldots, n-1$ und $B_j = (v^{(1)}, \ldots, v^{(n-1)}, v^{(j)})$.
+Weil bei den Vektoren, die $B_j$ bilden, $v^{(j)}$ doppelt vorkommt, sind diese linear abhängig.
+Also, ist $B_j$ singulär und $\det{B_j} = 0$.
+
+\begin{align*}
+  v^{(i)}_n
+  :=
+  \begin{vmatrix}
+    v^{(1)}_1 & v^{(2)}_1 & \cdots & v^{(n-1)}_1 & \delta_{1 i} \\
+    v^{(1)}_2 & v^{(2)}_2 & \cdots & v^{(n-1)}_2 & \delta_{2 i} \\
+    \vdots    & \vdots    & \ddots & \vdots      & \vdots \\
+    v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n-1)}_n & \delta_{n i}
+  \end{vmatrix}
+\end{align*}
+
+Wir entwickeln $v^{(n)}_i$ und $B_j$ (trotz Singularität) nach der letzten Spalte und erhalten damit $\orthogonal{v^{(n)}}{v^{(j)}}$.
+
+\begin{align*}
+  (v^{(n)}, v^{(j)})
+  =
+  \sum_{i=1}^n
+  v^{(n)}_i
+  v^{(j)}_i
+  =
+  \sum_{i=1}^n
+  (-1)^{n + i} \det{(A_i)}
+  v^{(j)}_i
+  =
+  \det{B_j} = 0
+\end{align*}
+
+\end{proof}

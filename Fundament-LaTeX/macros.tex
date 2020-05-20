@@ -26,19 +26,27 @@
 \newcommand{\eps}{\mathrm{eps}}
 
 % graphics in a box:
-\newcommandtwoopt{\includegraphicsboxed}[3][][]{\begin{figure}[!h]
-\begin{boxedin}
-\ifthenelse{\isempty{#2}}{\begin{center}
-
-
-    \includegraphics{#3}
-    \label{fig:#1}\end{center}}{
-    \begin{center}
-    \includegraphics{#3}
-    \caption{#2}
-    \label{fig:#1}
-    \end{center}}
-\end{boxedin} \end{figure}}
+\newcommandtwoopt
+{\includegraphicsboxed}[3][][]
+{
+  \begin{figure}[!h]
+    \begin{boxedin}
+      \ifthenelse{\isempty{#2}}
+      {
+        \begin{center}
+          \includegraphics{#3}
+          \label{fig:#1}
+        \end{center}
+      }{
+        \begin{center}
+          \includegraphics{#3}
+          \caption{#2}
+          \label{fig:#1}
+        \end{center}
+      }
+    \end{boxedin}
+  \end{figure}
+}
 
 % braces:
 \newcommand{\pbraces}[1]{{\left  ( #1 \right  )}}
@@ -84,6 +92,7 @@
 \newcommand{\At}{\mathrm{At}}
 \newcommand{\Ob}{\mathrm{Ob}}
 \newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\orthogonal}[3][]{#2 ~\bot_{#1}~ #3}
 
 % MISC:
 \newcommandtwoopt{\Int}[4][][]{\int_{#1}^{#2} #3 \: d #4}
