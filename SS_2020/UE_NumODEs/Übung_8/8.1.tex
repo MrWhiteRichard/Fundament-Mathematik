@@ -25,14 +25,14 @@ In unserem Fall ergibt das
 \end{align*}
 wobei bei Adamsverfahren $\alpha_{m-j} = 0$ für $j \in \{0,\dots,m-1\}\backslash\{r+1\}$,
 $\alpha_m = 1, \alpha_{m-r-1} = -1$ gilt. \\
-Ebenso gilt $\beta_{i,j} = 0$ für $j \in \{0,\dots,s-1\}$.
+Ebenso gilt $\beta_{i,j} = 0$ für $j \in \{m-s+1,\dots,m\}$.
 Also vereinfacht sich der Ausdruck zu
 \begin{align*}
 y_{i + 1} - y_{i} =
 h \left(
-\beta_{i,1} f_{i}. +
-\beta_{i,2} f_{i-1}. +
-\beta_{i,3} f_{i-2}.\right),
+\beta_{i,0} f_{i}. +
+\beta_{i,1} f_{i-1}. +
+\beta_{i,2} f_{i-2}.\right),
 \end{align*}
 wobei man die $b_j$ durch Integration der entsprechenden Lagrange-Interpolationspolynome erhält. \\
 
@@ -47,7 +47,7 @@ Wir machen die Konstruktion analog zum Skript. Für $r=0$ haben wir Also
 Nun interpolieren wir die Funktion $f$ an den $k+1$ Stützstellen
 
 \begin{align*}
-  t_{i-j}, \quad j=0,1,2
+  t_{i-j}, \quad j=0,1,2 = k
 \end{align*}
 
 Dann ist unser interpolierendes Polynom gegeben durch
@@ -74,17 +74,17 @@ Wobei wir unsere $\beta_{i,j}(h_{i-1},h_i,h_{i+1})$ erhalten durch die Integrati
 Wir berechnen
 
 \begin{align*}
-  \beta_{i,1}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
+  \beta_{i,0}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i - 1}}{t_{i} - t_{i - 1}}\frac{t - t_{i - 2}}{t_{i} - t_{i - 2}}dt
   = \int_{0}^{h_{i+1}}
   \frac{t + h_i}{h_i}\frac{t + h_i + h_{i-1}}{h_i + h_{i-1}}dt \\
   &= \frac{h_{i+1}(3h_{i+1}(h_{i-1} + 2h_i) + 6h_i(h_{i-1} + h_i) + 2h_{i+1}^2)}{6h_i(h_{i-1} + h_i)}\\
-  \beta_{i,2}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
+  \beta_{i,1}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i}}{t_{i - 1} - t_{i}}\frac{t - t_{i - 2}}{t_{i - 1} - t_{i - 2}}dt
   = -\int_{0}^{h_{i+1}}
   \frac{t}{h_i}\frac{t + h_i + h_{i-1}}{h_{i-1}}dt \\
   &= -\frac{h_{i+1}^2(3h_{i-1} + 3h_i + 2h_{i+1})}{6h_{i-1}h_i} \\
-  \beta_{i,3}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
+  \beta_{i,2}(h_{i-1},h_i,h_{i+1}) &= \int_{t_i}^{t_{i + 1}}
   \frac{t - t_{i}}{t_{i - 2} - t_{i}}\frac{t - t_{i - 1}}{t_{i-2} - t_{i - 1}}dt
   = \int_{0}^{h_{i+1}}
   \frac{t}{h_i + h_{i-1}}\frac{t + h_{i-1}}{h_{i-1}}dt\\
