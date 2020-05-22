@@ -1,19 +1,30 @@
-% \def \lastexercisenumber {...} <- in project
+% -------------------------------- %
+% amsthm-stuff:
 
 \theoremstyle{definition}
 
+% numbered theorems
 \newtheorem{theorem}{Satz}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Korollar}
 \newtheorem{remark}{Bemerkung}
 \newtheorem{definition}{Definition}
 
+% unnumbered theorems
 \newtheorem*{theorem*}{Satz}
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{corollary*}{Korollar}
 \newtheorem*{remark*}{Bemerkung}
 \newtheorem*{definition*}{Definition}
 
+% Please define this stuff in project ("main.tex"):
+
+% \def \lastexercisenumber {...}
+% This will be 0 by default
+
+% \setcounter{section}{...}
+% This will be 0 by default
+% and hence, completely ignored
 
 \ifnum \thesection = 0
 {\newtheorem{exercise}{Aufgabe}}
@@ -25,12 +36,15 @@
 {\lastexercisenumber}
 {\setcounter{exercise}{\lastexercisenumber}}
 
-\newtheorem{inneralgebraUE}{UE}
-\newenvironment{algebraUE}[1]
-{
-  \renewcommand \theinneralgebraUE{#1} \inneralgebraUE
-}
-{\endinneralgebraUE}
+% The following code (commented out) is obsolete.
+% Please use "exercise"-environment instead
+
+% \newtheorem{inneralgebraUE}{UE}
+% \newenvironment{algebraUE}[1]
+% {
+%   \renewcommand \theinneralgebraUE{#1} \inneralgebraUE
+% }
+% {\endinneralgebraUE}
 
 \newcommand{\solution}
 {
@@ -38,7 +52,11 @@
     \renewcommand{\qedsymbol}{}
     \proof
 }
+
 \renewcommand{\proofname}{Beweis}
+
+% -------------------------------- %
+% environment zum einkasteln:
 
 % dickere vertical lines
 \newcolumntype
@@ -46,7 +64,7 @@
 [1]
 {!{\centering\arraybackslash\vrule width #1}}
 
-% environment zum einkasteln
+% environment selbst (the big cheese)
 \newenvironment
 {boxedin}
 {
@@ -64,3 +82,5 @@
   \Xhline{2 \arrayrulewidth}
   \end{tabular}
 }
+
+% -------------------------------- %
