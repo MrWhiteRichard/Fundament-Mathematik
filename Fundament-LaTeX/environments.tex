@@ -14,8 +14,16 @@
 \newtheorem*{remark*}{Bemerkung}
 \newtheorem*{definition*}{Definition}
 
-\newtheorem{exercise}{Aufgabe}
-\setcounter{exercise}{\lastexercisenumber}
+
+\ifnum \thesection = 0
+{\newtheorem{exercise}{Aufgabe}}
+\else
+{\newtheorem{exercise}{Aufgabe}[section]}
+\fi
+
+\ifdef
+{\lastexercisenumber}
+{\setcounter{exercise}{\lastexercisenumber}}
 
 \newtheorem{inneralgebraUE}{UE}
 \newenvironment{algebraUE}[1]
