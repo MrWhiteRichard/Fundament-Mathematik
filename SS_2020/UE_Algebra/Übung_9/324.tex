@@ -1,0 +1,64 @@
+\begin{algebraUE}{324}
+Sei $R = \Z[\sqrt{-5}] := \{a + b\sqrt{-5} | a,b \in \Z\} \subseteq \C$.
+\begin{enumerate}
+  \item Zeigen Sie, dass die Elemente $2$ und $3$ in $R$ irreduzibel, aber nicht prim
+  sind.
+  \item Finden Sie eine Primzahl $p \in \Z$, die im Ring $Z[-\sqrt{5}]$ nicht irreduzibel ist.
+\end{enumerate}
+\textit{Hinweis:} Verwenden Sie die Normfunktion $N$ aus 5.1.3. und zeigen Sie,
+dass genau jene $x \in R$ Einheiten sind, die $N(x) = 1$ erfüllen.
+\end{algebraUE}
+\begin{solution}
+\leavevmode \\
+\begin{enumerate}
+  \item Wir betrachten die Normfunktion
+  \begin{align*}
+    N: \begin{cases}
+      \Z[\sqrt{-5}] &\to \Z \\
+      (a + b\sqrt{-5}) &\mapsto a^2 + 5b^2
+    \end{cases}.
+  \end{align*}
+  Die Normfunktion ist wohldefiniert, da für $(a + b\sqrt{-5}) = (c + d\sqrt{-5})$
+  folgt, dass $a = b$ und $c = d$.
+  Gilt $N((a + b\sqrt{-5}) ) = 1$, dann folgt aufgrund
+  \begin{align*}
+    (a + b\sqrt{-5})(a - b\sqrt{-5}) = a^2 + 5b^2 = N(a^2 + 5b^2) = 1,
+  \end{align*}
+  dass $(a + b\sqrt{-5})$ eine Einheit von $R$ ist.
+  Wir wissen aus UE 320, dass alle Einheiten von $R$ genau $1,-1$ sind,
+  welche klarerweise $N(\pm 1) = 1$ erfüllen.
+  Sei $(a + b\sqrt{-5}) \in R$ ein Teiler von $2$, also gibt es ein $(c + d\sqrt{-5}) \in R$, sodass
+  \begin{align*}
+    (a + b\sqrt{-5})(c + d\sqrt{-5}) = (ac - 5bd) + (ad + bc)\sqrt{-5} = 2.
+  \end{align*}
+  Da $N$ ein multiplikativer Homomorphismus ist, folgt
+  \begin{align*}
+    N((a + b\sqrt{-5}))N(c + d\sqrt{-5}) = N(2) = 4
+  \end{align*}
+  und damit können die einzelnen Faktoren nur Werte in $\{-4,-2,-1,1,2,4\}$ annehmen.
+  Da $a^2 + 5b^2 \geq 0$, können sogar nur die positiven Werte auftreten.
+  Der einzig verbleibende Fall, in dem keine Einheit im Produkt auftritt ist also $(2,2)$.
+  Man sieht leicht, dass dieser Fall auch nicht auftreten kann.
+  Für $n = 3$ sieht man analog
+  \begin{align*}
+    N((a + b\sqrt{-5}))N(c + d\sqrt{-5}) = N(3) = 9.
+  \end{align*}
+  Diesmal ist die kritische Faktorkombination $(3,3)$, welche aber auch nicht auftreten kann. \\
+  Wir haben also gezeigt, dass jeder Teiler von $2$ oder $3$ eine Einheit, oder assoziiert
+  mit $2$ oder $3$ sein muss. Also sind $[2]_{\sim},[3]_{\sim}$ obere Nachbarn
+  von $[1]_{\sim}$ und per Definition damit irreduzibel. \\
+  Um einzusehen, dass $2$ nicht prim sein kann, betrachte
+  \begin{align*}
+    2 | 6 = (1 + \sqrt{-5})(1 - \sqrt{-5}).
+  \end{align*}
+  $2$ teilt aber sicher nicht $1 + \sqrt{-5}$, da
+  \begin{align*}
+    \frac{1 + \sqrt{-5}}{2} = \frac{1}{2} + \frac{1}{2}\sqrt{-5} \notin R.
+  \end{align*}
+  Das selbe Gegenbeispiel funktioniert auch für $3$.
+  \item
+  \begin{align*}
+    5 = -\sqrt{-5}\sqrt{-5}.
+  \end{align*}
+\end{enumerate}
+\end{solution}
