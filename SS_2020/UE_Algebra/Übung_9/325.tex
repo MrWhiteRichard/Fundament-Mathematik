@@ -4,11 +4,23 @@ irreduzible Elemente im Allgemeinen nicht eindeutige Zerlegbarkeit in
 irreduzible Elemente impliziert.
 \end{algebraUE}
 \begin{solution}
-Wir betrachten wieder den Integritätsbereich $R = \Z[\sqrt{-5}]$.
+Wir betrachten wieder den Integritätsbereich $\Z[\sqrt{-5}]$.
 Zuerst müssen wir zeigen, dass hier Zerlegbarkeit in irreduzible Elemente gilt.
-Dazu zeigen wir, dass es eine Zerlegung in Primelemente gibt.
-Sei $(a + b\sqrt{-5}) \in R$ beliebig. Wenn $(a + b\sqrt{-5})$ prim oder eine Einheit
-ist, sind wir damit schon fertig. Anderenfall existieren $(c + d\sqrt{-5}),(e + f\sqrt{-5})$
-mit $(a + b\sqrt{-5})|(c + d\sqrt{-5})(e + f\sqrt{-5})$, aber
-$(a + b\sqrt{-5})\nmid (c + d\sqrt{-5}), (a + b\sqrt{-5})\nmid (e + f\sqrt{-5})$.
+Dafür zeigen wir, dass $\Z[\sqrt{-5}]$ die Teilerkettenbedingung erfüllt.
+Sei also $(r_n)_{n \in \N}$ eine Folge aus $\Z[\sqrt{-5}]$ mit $r_{n+1} | r_n$
+für alle $n \in \N$. Bezeichne zusätzlich mit $(a_n)_{n \in N}$ die Folge aus $\Z[\sqrt{-5}]$
+mit $r_{n+1}a_n = r_n$.
+Betrachte $N(r_0) = k \in \Z$. Wenn $r_{n+1}$ ein echter Teiler
+von $r_n$ ist, gilt $r_{n+1}a_n = r_n$, wobei $a \in \Z[\sqrt{-5}]\backslash \Z[\sqrt{-5}]^*$ und es folgt
+\begin{align*}
+  N(r_n) = N(r_{n+1}a_n) = N(r_{n+1})N(a_n) > N(r_{n+1}).
+\end{align*}
+Da wir wissen, dass $\forall r \in \Z[\sqrt{-5}]: N(r) \geq 1$ muss es also ein $n_0 \in \N$
+geben, ab dem die Folge $N(r_n)_{n \geq n_0}$ konstant bleibt.
+Aus $N(r_n) = N(r_{n+1})$ folgt weiters, dass $N(a_n) = 1$ und daher $a_n$
+eine Einheit sein muss. Daher gilt $\forall n \geq n_0: r_n \sim r_{n+1}$. \\
+$\Z[\sqrt{-5}]$ erfüllt also die Teilerkettenbedingung und damit gilt Zerlegbarkeit
+in irreduzible Elemente. In der Aufgabe davor haben wir gesehen, dass nicht jedes
+irreduzible Element prim ist und mit Satz 5.2.1.7. kann hiermit kein faktorieller
+Ring vorliegen, also keine eindeutige Zerlegbarkeit in irreduzible Elemente.
 \end{solution}
