@@ -6,19 +6,25 @@ kleiner $1$ sind und finden Sie eine Abschätzung die gleichmäßig in $z$ ist.
 Konstruieren Sie daraus einen Widerspruch.
 \end{exercise}
 \begin{solution}
-Ich schätze mal, dass die Stabilätsfunktion eines linearen $k$-Schrittverfahrens
-folgendes erfüllen soll:
+Wir nehmen an, dass das Stabilitätsgebiet des Verfahrens unbeschränkt ist. Das heißt es gibt für jedes $C>0$ ein $z \in \C$ mit $|z|>C$, das in $S$ liegt. In $S$ zu liegen heißt, alle Nullstellen von $\rho_z$ erfüllen $|\xi_z| \leq 1$.
+
+Die Funktion $\rho_z$ ist im Fall von expliziten Verfahren ($\beta_k = 0$) gegeben durch:
 \begin{align*}
-  \begin{pmatrix}
-    y_{l + 1} \\ \vdots \\ y_{l + k}
-  \end{pmatrix}
-  =
-  R\left(\lambda \begin{pmatrix}
-    h_{l-k} \\ \vdots \\ h_{l}
-  \end{pmatrix}\right)
-  \begin{pmatrix}
-    y_{l - k} \\ \vdots \\ y_{l}
-  \end{pmatrix},
+  \rho_z(\xi) := \rho(\xi) - z \sigma(\xi) = \xi^k + \sum_{j=0}^{k-1} (\alpha_j - z \beta_j) \xi^j
 \end{align*}
-wobei $R: \C^k \to \C^{k \times k}$.
+Auf der anderen Seite kann man $\rho_z \in \Pi_k$ auch mithilfe der Nullstellen in die Linearfaktoren zerlegen.
+\begin{align*}
+  \rho_z(\xi) = \prod_{i = 0}^k(\xi - \xi_{z}^{(i)})
+\end{align*}
+Für alle $z$ aus dem Stabilitätsgebiet gilt nun:
+\begin{align*}
+  |\rho_z(0)| = |\prod_{i = 0}^k(0 - \xi_{z}^{(i)})| = \prod_{i = 0}^k|\xi_{z}^{(i)}| \leq 1 \\
+\end{align*}
+Allerdings auch (aus der Darstellung weiter oben):
+\begin{align*}
+  |\rho_z(0)| = |\alpha_0 - z \beta_0| \geq |z \beta_0| - |\alpha_0| > 1
+\end{align*}
+für $|z|$ hinreichend groß. ($|z| > C := \frac{|\alpha_0|}{|\beta_0|}$)
+
+Aus dem Widerspruch erhalten wir also, dass das Stabilitätsgebiet beschränkt ist und somit auch nicht $\C_{Re \leq 0} \subset S$ gilt. Also sind lineare explizite Mehrschrittverfahren nicht A stabil.
 \end{solution}
