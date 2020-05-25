@@ -25,8 +25,29 @@ dass genau jene $x \in R$ Einheiten sind, die $N(x) = 1$ erfüllen.
     (a + b\sqrt{-5})(a - b\sqrt{-5}) = a^2 + 5b^2 = N(a^2 + 5b^2) = 1,
   \end{align*}
   dass $(a + b\sqrt{-5})$ eine Einheit von $R$ ist.
-  Wir wissen aus UE 320, dass alle Einheiten von $R$ genau $1,-1$ sind,
-  welche klarerweise $N(\pm 1) = 1$ erfüllen.
+
+  ***Alternative*** (Der Beweis wird hier von der ersten Aufgabe(320) verlagert)
+
+  Für die Rückrichtung sei $x = a + b\sqrt(D) \neq 0$ mit $N(x) \neq 1$ beliebig
+  \begin{align}\label{Normg}
+    \Rightarrow a^2 - D b^2 > 1 \Rightarrow (a^2=1 \land -Db^2 = 1) \lor (a^2 > 1) \lor (b^2 > 1)
+  \end{align}
+
+  In den komplexen Zahlen ist die Inverse von $x$ gegeben durch
+  \begin{align*}
+    \frac{a}{a^2 - Db^2} - \frac{b}{a^2-Db^2}\sqrt{D} =: \tilde{a} + \tilde{b} \sqrt{D}
+  \end{align*}
+  In allen drei Fällen aus \eqref{Normg} ist $\tilde{a}$ oder $\tilde{b}$ nicht aus $\Z$, somit die (eindeutige) Inverse nicht in $R$ und $x$ keine Einheit.
+
+  Exemplarisch gilt für den zweiten Fall:
+  \begin{align*}
+    a^2 > 1 \Rightarrow a \neq 0 \land |a| < a^2 \Rightarrow |a| < a^2 - Db^2 = |a^2 - Db^2| \\
+    \Rightarrow |\tilde{a}|=|\frac{a}{a^2 - Db^2}| < 1 \Rightarrow \tilde{a} \notin \Z
+  \end{align*}
+
+
+  ***Alternative Ende***
+
   Sei $(a + b\sqrt{-5}) \in R$ ein Teiler von $2$, also gibt es ein $(c + d\sqrt{-5}) \in R$, sodass
   \begin{align*}
     (a + b\sqrt{-5})(c + d\sqrt{-5}) = (ac - 5bd) + (ad + bc)\sqrt{-5} = 2.
