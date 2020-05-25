@@ -24,84 +24,28 @@ erzeugte Unterring von $\C$.
   jeder Unterring davon klarerweise nullteilerfrei. Damit ist $R$ für alle $D \in \Z$
   ebenso ein Integritätsbereich.
   \item
-  ***Kurze Alternative für den zweiten Punkt***
-
-  In der nächsten Aufgabe (324) werden wir zeigen, dass genau jene $x \in R$ Einheiten sind, die $N(x) = 1$ erfüllen.
-
+  In der nächsten Aufgabe (324) werden wir zeigen, dass für $D < 0$ genau jene $x \in R$ Einheiten sind, die $N(x) = 1$ erfüllen.
   Wir machen eine Fallunterscheidung:
   \begin{itemize}
     \item $D = -1$: \\
     Es gilt $N(x) = a^2 + b^2$. In dem Fall sind also $\pm1,\pm i$ alle Einheiten von $R$.
     \item $D < -1$: \\
-    Es gilt $N(x) = a^2 + D b^2$. In dem Fall sind also $\pm1$ alle Einheiten von $R$.
-  \end{itemize}
-
-  ***Alternative Ende***
-
-  Sei nun $D < 0 \in \Z$ beliebig. Mit Einheiten in $R$ bezeichnen wir die Einheiten
-  des multiplikativen Monoids $(R,\cdot,1)$. Es gilt $a + b\sqrt{D} \in E(R)$, genau dann wenn
-  \begin{align*}
-    \exists c + d\sqrt{D} \in E(R): (a + b\sqrt{D})(c + d\sqrt{D}) =
-    (ac + bdD) + (ad + bc)\sqrt{D} = 1.
-  \end{align*}
-  Wir suchen also genau jene Elemente aus $R$, welche in $R$ eine multiplikative Inverse besitzen.
-  Sei uns nun ein beliebiges $a + b\sqrt{D} \neq 0$ aus $R$ vorgegeben, zu dem wir eine
-  Inverse finden wollen. Dazu finden wir zuerst die Inverse in $\C$,
-  welche sicher existiert und überprüfen, ob sie auch in $R$ liegt.
-  Die Inverse lautet
-  \begin{align*}
-    \frac{a - b\sqrt{D}}{a^2 - b^2D}
-  \end{align*}
-  und liegt genau dann in $R$, wenn es $k_1,k_2 \in \Z$ gibt mit $(a^2 - b^2D)k_1 = a$ und $(a^2 - b^2D)k_2 = b$.
-  Sei nun $a \notin \{-1,0,1\}$. Dann folgt
-  \begin{align*}
-    |a^2 - b^2D| \geq a^2 > a
-  \end{align*}
-  und somit kann es kein $k_1 \in \Z$ geben, sodass $(a^2 - b^2D)k_1 = a$.
-  Für $b \notin \{-1,0,1\}$ folgt analog
-  \begin{align*}
-    |a^2 - b^2D| \geq -b^2D \geq b^2 > b
-  \end{align*}
-  und somit kann es kein $k_2 \in \Z$ geben, sodass $(a^2 - b^2D)k_2 = b$.
-  Also bleiben nur noch acht mögliche Einheitskandidaten: $\pm1, \pm\sqrt{D}, \pm(1+\sqrt{D}),\pm(1-\sqrt{D})$.
-  Nun unterscheiden wir zwei Fälle:
-  \begin{itemize}
-    \item $D = -1$: \\
-    In dem Fall sind $\pm1,\pm i, \pm (1+i), \pm (1-i)$ alle Einheiten von $R$.
-    \item $D < -1$: \\
-    In diesem Fall folgt
-    \begin{align*}
-      |a^2 - b^2D| \geq -b^2D > b^2 > b
-    \end{align*}
-    für alle $b \neq 0$. Also bleiben als einzige Einheiten $\pm 1$ übrig.
+    Es gilt $N(x) = a^2 - D b^2$. In dem Fall sind also $\pm1$ alle Einheiten von $R$.
   \end{itemize}
   \item
-  ***Kurze Alternative für den dritten Punkt***
-
-  Man sieht leicht, dass $a = 1+ \sqrt(2)$ eine Einheit ist mit $a^{-1} = -1 + \sqrt(2)$. Nun gilt für alle $n \in \N$:
+  Seien $a,b \in \Z$ beliebig. Die Inverse von $a + b\sqrt{2}$ lautet
+  \begin{align*}
+    \frac{a}{a^2 - 2b^2} - \frac{b}{a^2-2b^2}\sqrt{2}.
+  \end{align*}
+  Für $a^2 - 2b^2 = \pm 1$ sind diese Koeffizienten sicher in $\Z$ und somit die Inverse
+  auch in $R$.
+  Man sieht leicht, dass $a = 1 + \sqrt{2}$ eine Einheit ist mit $a^{-1} = -1 + \sqrt{2}$. Nun gilt für alle $n \in \N$:
   \begin{align*}
     a^n {(a^{-1})}^n = 1
   \end{align*}
 
   Dass es sich hierbei um unendlich viele unterschiedliche Einheiten handelt, sieht man leicht, da $|a|>1$ und somit für $m>n$ gilt $|a^m|>|a^n|$. Insbesondere gilt nicht Gleichheit.
 
-  ***Alternative Ende***
-
-
-  Seien $a,b \in \Z$ beliebig. Die Inverse von $a + b\sqrt{2}$ lautet
-  \begin{align*}
-    \frac{a}{a^2 - 2b^2} - \frac{b}{a^2-2b^2}\sqrt{2}.
-  \end{align*}
-  Für $a^2 = 2b^2 \pm 1$ sind diese Koeffizienten in $\Z$ und somit die Inverse
-  auch in $R$. Wir müssen also unendlich viele Lösungen der Gleichung
-  \begin{align*}
-    a^2 = 2b^2 \pm 1
-  \end{align*}
-  finden. Die ersten Lösungen dieser Gleichung lauten unter anderem $(1,0),(1,1),(3,2)$.
-  Also sind $1, 1 + \sqrt{2}, 3 + 2\sqrt{2}$ Einheiten in $R$, deren Inversen ebenfalls in $R$
-  liegen. Damit müssen auch alle Potenzen dieser Einheiten wieder Inversen in $R$ haben
-  und somit ebenso Einheiten sein. Konkret können wir also mit $\left((1 + \sqrt{2})^n\right)_{n \in \N}$
-  unendlich viele Einheiten angeben.
 \end{itemize}
 
 \end{solution}
