@@ -6,5 +6,26 @@ algorithmisch erhalten kann. Wie verhält es sich mit dem $\ggT$ unendlich
 vieler Elemente?
 \end{algebraUE}
 \begin{solution}
-Beweis.
+Sei $A = \{a_1,\dots,a_n\} \subset R$ eine beliebe endliche Teilmenge von $R$.
+Nun haben wir im Skript bereits eine algorithmische Darstellung vom
+$\ggT$ zweier Elemente hergeleitet.
+Daher berechne man zuerst $b_1 := \ggT(a_1,a_2)$.
+Induktiv erhalten wir mit $b_k := \ggT(b_{k-1},a_{k+1})$
+in $n - 1$ Schritten $b_{n-1} = \ggT(b_{n-1},a_{k+1})$.
+Wir behaupten nun, dass $b_{n-1} = \ggT(A)$.
+Es gilt zunächst $b_{n-1} | b_k | a_{k+1}, k = 1,\dots,n-1$ und $b_{n-1} | b_1 | a_1$.
+Damit ist $b_{n-1}$ zumindest ein Teiler von $A$. \\
+Induktiv sieht man, dass $b_{n-1}$ bereits der größte Teiler sein muss,
+da klarerweise jede weitere Teiler $\widetilde{b}$ von $A: \widetilde{b} | b_1$
+erfüllen muss.
+Wenn $\widetilde{b} | b_k$, dann folgt aber auch nach Konstruktion $\widetilde{b} | b_{k+1}$
+und schließlich $\widetilde{b} | b_{n-1}$. \\
+Sei $A$ nun eine unendliche Teilmenge von $R$. Nun können wir unseren Algorithmus
+zwar weiter so durchführen, allerdings terminiert er nicht.
+Aufgrund der Teilerkettenbedingung wissen wir aber zumindest, dass es einen
+Index $N$ geben muss, ab dem $b_{n+1} \sim b_{n}, n \geq N$ gilt.
+Damit ist die Existenz des $\ggT$s zwar sichergestellt,
+aber für die algorithmische Beschreibung ist die Tatsache leider nutzlos, da
+wir nicht wissen können, wann wir den Index erreicht haben, ab dem wir
+unseren Algorithmus terminieren können.
 \end{solution}
