@@ -25,5 +25,46 @@ Sie müssen auch erklären können, warum dies die beiden wesentlichen Änderung
 zum skalaren Fall sind!
 \end{exercise}
 \begin{solution}
-Beweis.
+Wir schreiben wieder den Fehler $e_{\ell} = y(t_{\ell}) - y_{\ell} \in \R^n, \ell = 0,\dots,N$ um als
+\begin{align*}
+  E_{\ell} := \begin{pmatrix}
+    e_{\ell - k + 1} \\
+    \vdots \\
+    e_{\ell}
+  \end{pmatrix}
+  \in R^{kn}
+\end{align*}
+Analog zum Beweis im Skript erhalten wir mit
+$\delta_{\ell} := \Phi(t_{\ell},y(t_{\ell + 1},\dots,y(t_{\ell+1-k}),h) -
+\Phi(t_{\ell},y_{\ell + 1},\dots,y_{\ell+1-k},h)$
+\begin{align*}
+  e_{\ell + 1} = h\delta_{\ell} - \eta_{\ell}(y,h) - \sum_{j = 1}^k \alpha_{k - j}e_{\ell + 1 - j} \in \R^n.
+\end{align*}
+Also gilt mit $F_{\ell} := (0,\dots,0,h\delta_{\ell} - \eta_{\ell}(y,h)) \in \R^{nk}$
+\begin{align*}
+  E_{\ell + 1} = \begin{pmatrix}
+    0 & I_k & 0 & \hdots & 0 \\
+    \vdots & \ddots & I_k & \hdots & 0\\
+    \vdots &  & \ddots & \ddots & 0 \\
+    0 & \hdots & \hdots & 0 & I_k \\
+    -\alpha_0I_k & \hdots & \hdots & \hdots & -\alpha_{k-1}I_k
+  \end{pmatrix}E_{\ell} + F_{\ell}.
+\end{align*}
+Wieder analog zum Skript folgt
+\begin{align*}
+  E_{\ell + k - 1} =  \left(A_{\rho}^{\top} \otimes I\right)^{\ell}E_{k-1}
+  + \sum_{j = 0}^{\ell - 1}\left(A_{\rho}^{\top} \otimes I\right)^{\ell - j - 1}F_{j + k - 1},
+  \qquad \ell = 0,\dots,N-k+1.
+\end{align*}
+Die Schranke für $\|F_{\ell + k - 1}\|_{\infty}$ geht im mehr-dimensionalen
+genauso wie im Skript durch.
+Im dritten Schritt müssen wir wieder etwas anpassen. Wir definieren
+\begin{align*}
+  M := \sup_{k \in \N_0} \left\| (A_{\rho}^{\top} \otimes I)^k\right\|_{\infty}
+\end{align*}
+******************************* \\
+Hier Begründung mit Wurzelkriterium einfügen. \\
+******************************* \\
+Mit $M < \infty$ können wir jetzt Schritt 3 aus dem Skript analog nachrechnen.
+Im letzten Schritt müssen wir nur noch $\|e_{\ell}\|$ abschätzen.
 \end{solution}
