@@ -33,14 +33,108 @@ Addition und Multiplikation sind wie bei gewöhnlichen Polynomen definiert
   \begin{align*}
     K(E) \vDash p \text{ ist irreduzibel } \iff \forall k \geq n: K(E_k) \vDash p \text{ ist irreduzibel}.
   \end{align*}
+  \item Schließen Sie daraus, dass in $K(E)$ die irreduziblen Element genau die primen Elemente sind.
+  \item Finden Sie eine echt absteigende Teilerkette in $K(E)$ und folgern Sie, dass $K(E)$
+  kein faktorieller Ring ist.
 \end{enumerate}
-Schließen Sie daraus, dass in $K(E)$ die irreduziblen Element genau die primen Elemente sind.
-Finden Sie eine echt absteigende Teilerkette in $K(E)$ und folgern Sie, dass $K(E)$
-kein faktorieller Ring ist.
 \end{algebraUE}
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}
-  \item
+  \item Es gilt klarerweise $E_n \subset E_{n+1} \subset E$. Daher können wir $K(E_n)$
+  als Teilmenge von $K(E_{n+1})$ auffassen.
+  \begin{align*}
+    K(E_n) = \{\sum_{e \in E_n}r_ex^e: r_e \in K\}
+  \end{align*}
+  $K(E_n)$ enthält klarerweise Null- und Eins-Element.
+  \begin{align*}
+    \sum_{e \in E_n}r_ex^e + \sum_{e \in E_n}s_ex^e &= \sum_{e \in E_n}(r_e + s_e)x^e \in K(E_n) \\
+    \left(\sum_{e \in E_n}r_ex^e\right)\cdot\left(\sum_{e \in E_n}s_ex^e\right) &=
+    \sum_{e \in E_n}\sum_{e_1 + e_2 = e}r_{e_1}s_{e_2}x^e \in K(E_n)
+  \end{align*}
+  Damit ist $K(E_n)$ auch unter den binären Operationen in $K(E_{n+1})$
+  abgeschlossen und somit ein Unterring von $K(E_{n+1})$ und ebenso von $K(E)$. \\
+  Sei $\sum_{e \in E}r_ex^e \in K(E)$ beliebig. Es sind nach Definition nur endlich
+  viele $r_e \neq 0_K$, also existiert ein $N \in \N: \{e \in E: r_e \neq 0_K\} \subset E_N$
+  und damit $\sum_{e \in E}r_ex^e = \sum_{e \in E_N}r_ex^e \in K(E_N)$.
+  Umgekehrt sei $\sum_{e \in E_N}r_ex^e \in \bigcup_{n \in \N}K(E_n)$ beliebig.
+  Dann definiere $r_e = 0$ für $e \in E\backslash E_N$ und es folgt
+  \begin{align*}
+    \sum_{e \in E_N}r_ex^e = \sum_{e \in E}r_ex^e \in K(E).
+  \end{align*}
+  \item $E_0 = \N$, also müssen wir zuerst einen Isomorphismus $\varphi_0: K[x] \to K(\N)$
+  finden.
+  \begin{align*}
+    \varphi_0: \begin{cases}
+      K[x] &\to K(\N) \\
+      \sum_{i = 0}^nk_ix^i \mapsto \sum_{i = 0}^nk_ii
+    \end{cases}
+  \end{align*}
+  Induktiv fahren wir fort: Haben wir den Isomorphismus $\varphi_n$ bereits gefunden,
+  dann definiere
+  \begin{align*}
+    \varphi_{n+1}(x^e) = \varphi_n(x^{2e}), \qquad e \in E_{n+1}.
+  \end{align*}
+  $\varphi_{n+1}$ ist aufgrund der Homomorphie-Bedingung dadurch bereits eindeutig
+  festgelegt. Weiters ist die Festlegung wohldefiniert, da aus $e \in E_{n+1}$
+  bereits $2e \in E_n$ folgt.
+  \begin{align*}
+    \varphi_{n+1}(x^{e_1}x^{e_2}) = \varphi_{n+1}(x^{e_1 + e_2}) = \varphi_n(x^{2e_1 + 2e_2})
+    = \varphi_n(x^{2e_1})\varphi_n(x^{2e_2}) = \varphi_{n+1}(x^{e_1})\varphi_{n+1}(x^{e_2})
+  \end{align*}
+  \item Seien $n \in \N, p,q \in K(E_n)$ beliebig fest.
+  Sei zuerst $K(E_n) \vDash p|q$, also existiert $r \in K(E_n) \subset K(E): rp = q$.
+  Damit folgt $ K(E) \vDash p|q$. \\
+  Gelte umgekehrt $K(E) \vDash p | q$. Sei O.B.d.A. $q \neq 0$.
+  Dann existiert ein $r \in K(E): rp = q $.
+  Es gilt sogar $\exists r \in K(E_n): rp = q$, da anderenfalls
+  \begin{align*}
+    \exists e^* := \min \{e \in E\backslash E_n: r_e \neq 0_K\}
+  \end{align*}
+  und aufgrund $p \neq 0$
+  \begin{align*}
+    \exists e^{\prime} := \min \{e \in E_n: p_e \neq 0_K\} \text{ und }
+    \widetilde{e} := e^* + e^{\prime} \notin E_n.
+  \end{align*}
+  Damit folgt
+  \begin{align*}
+    q_{e^* + e^{\prime}} = \sum_{e \in E_n}\sum_{e_1 + e_2 = \widetilde{e}}r_{e_1}p_{e_2}x^{\widetilde{e}}
+    = \underbrace{r_{e^*}p_{e^{\prime}}}_{\neq 0}x^{\widetilde{e}}
+  \end{align*}
+  und daher $q \notin K(E_n)$. Widerspruch!
+  \item Sei $p = \varphi_0(q) \in K(E_0) \subset K(E)$ mit $q \in K[x]: \grad(q) = 0$.
+  Wir wissen aus Proposition 3.3.6.5, dass $q$ in $K[x]$ eine Inverse besitzt, genau
+  dann wenn $\grad(p) = 0$.
+  \begin{align*}
+    \varphi_0(q)\varphi_0(q^{-1}) = \varphi_0(1) = 1.
+  \end{align*}
+  Daher sind auch die Einheiten von $K(E)$ genau die Bilder von konstanten Polynomen
+  unter $\varphi_0$.
+  \item Seien $n \in \N, p \in K(E_n)$ beliebig fest. \\
+  Gelte zuerst $K(E) \vDash p$ ist prim. $p$ ist also keine Einheit in $K(E)$
+  und $\neq 0$. Weiters gilt für alle $a,b \in K(E): p|ab \implies p|a \lor p|b$.
+  Die Einheiten in $K(E_k)$ sind genau die Einheiten in $K(E)$ und die Implikation
+  gilt klarerweise auch, wenn wir sie auf $K(E_k)$ einschränken. \\
+  Gelte umgekehrt $\forall k \geq n; K(E_k) \vDash p$ ist prim.
+  Wieder ist klarerweise $p$ auch in $K(E)$ keine Einheit.
+  Seien $a,b \in K(E)$ mit $p|ab$ beliebig. Es existiert ein $k \in N: a,b \in K(E_k)$
+  und damit $p|a \lor p|b$. Also gilt auch $K(E) \vDash p$ ist prim.
+  \item Seien $n \in \N, p \in K(E_n)$ beliebig fest. \\
+  Gelte zuerst $K(E) \vDash p$ ist irreduzibel, also
+  $\forall a,b \in K(E): p = ab \implies a \sim 1 \lor b \sim 1$.
+  Die Implikation gilt sicher auch in jedem $K(E_k)$. \\
+  Umgekehrt folgt aus
+  \begin{align*}
+    \forall k \geq n: \forall a,b \in K(E_k): p = ab \implies a \sim 1 \lor b \sim 1
+  \end{align*}
+  für $a,b \in K(E): \exists k \in \N: a,b \in K(E_k) \implies a \sim 1 \lor b \sim 1$.
+  \item $\forall n \in \N: K(E_n)$ ist isomorph zum faktoriellen Ring $K[x]$. Damit sind
+  die irreduziblen Elemente in $K(E_n)$ genau die primen Elemente und es gilt:
+  \begin{align*}
+    K(E) \vDash p \text{ ist prim } \iff \forall k \geq n: K(E_k) \vDash p \text{ ist prim} \\
+    \iff \forall k \geq n: K(E_k) \vDash p \text{ ist irreduzibel}
+    \iff K(E) \vDash p \text{ ist irreduzibel}.
+  \end{align*}
+  \item $(x^{\nicefrac{1}{2n}})_{n \in \N}$ und Satz 5.2.1.7.
 \end{enumerate}
 \end{solution}
