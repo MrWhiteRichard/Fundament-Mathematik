@@ -8,25 +8,22 @@ eine Nichteinheit von $R$ ist.
 Sei zuerst $R$ ein Körper, $I \vartriangleleft R[x]$ ein beliebiges Ideal von $R[x]$.
 Dann ist laut Proposition 5.2.3.3. $R[x]$ ein eukldischer Ring und nach Satz 5.2.3.4.
 insbesondere ein Hauptidealring. \\
-Sei also $R$ kein Körper. Dann existiert ein Element $a$, dass in $R$ kein
+Sei also $R$ kein Körper. Dann existiert ein Element $a \neq 0$, das in $R$ kein
 multiplikatives Inverses besitzt. Das erzeugte Ideal von $a$ und $x$ lässt sich darstellen als
 \begin{align*}
   (a,x) = \{r_1a + r_2x: r_1,r_2 \in R[x]\}.
 \end{align*}
-Ich schätze, wir wollen damit zeigen, dass das erzeugte Ideal nicht von einem
-Element erzeugt werden kann und wir somit keinen Hauptidealring haben.
-Wähle also mit $r_1a + r_2x$ ein beliebiges Element von $(a,x)$
-und betrachte das davon erzeugte Ideal.
+Wir zeigen nun durch einen Widerspruch, dass $(a,x)$ kein Hauptideal ist (und somit $R[x]$ kein Hauptidealring).
+
+Wir nehmen also an, es gibt ein $p \in R[x]$ mit $(a,x) = (p) = {rp: r \in R[x]}$. Man sieht sofort, $p$ vom Grad $0$ sein muss, da wir sonst keine konstanten Polynome erzeugen können (also auch nicht $a$).
+
+Aufgrund von $(a,x)=(p)$ folgt:
 \begin{align*}
-  (r_1a + r_2x) = \{rr_1a + rr_2x: r \in R[x]\}
+  a \in (a,x) \Rightarrow \Exists r \in R: rp = a \\
+  p \in (p) \Rightarrow \Exists r_1 \in R: r_1 a = p \\
+  \Rightarrow a \sim p \\
+  1\cdot x \in (a,x) \Rightarrow \Exists r \in R: (rx)p = 1\cdot x \Rightarrow rp = 1 \\
+  \Rightarrow p \sim 1
 \end{align*}
-Um damit wieder das gesamte ursprünglich Ideal zu erhalten muss insbesondere
-\begin{align*}
-  \exists r \in R[x]: rr_1a + rr_2x = x.
-\end{align*}
-Wir stellen $p,r$ dar durch
-\begin{align*}
-  p = \sum_{k = 0}^n p_kx^k \\
-  r = \sum_{k = 0}^m r_kx^k.
-\end{align*}
+Insgesamt gilt also auch $a \sim 1$, im Widerspruch zu $a$ Nichteinheit.
 \end{solution}
