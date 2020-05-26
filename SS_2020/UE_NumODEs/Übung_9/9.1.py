@@ -5,7 +5,6 @@ t = sp.Symbol("t")
 
 L = lambda t : np.prod([(t - (1 - i))/(i - j) for i in range(k+1) if i != j])
 first_roots = []
-simplicity_check = []
 coeffs = []
 for k in range(1,11):
     coeffs.append([])

@@ -16,5 +16,20 @@ wobei $\|U(t)\|_{\infty}$ aber noch in der Zeit fallen sollte. Was beobachten Si
 sondern können die auftretenden Gleichungen explizit lösen. Beachten Sie dabei Aufgabe 29c.
 \end{exercise}
 \begin{solution}
-Beweis.
+\begin{align}
+  M_h := \frac{1}{h^2}\begin{pmatrix}
+    -2 & 1 & &  \\
+    1 & -2 & \ddots & \\
+    & \ddots & \ddots & 1 \\
+    & & 1 & -2
+  \end{pmatrix}
+  \in \R^{(N-1)\times (N-1)}
+\end{align}
+\begin{align}\label{awp}
+  U_h^{\prime} = M_hU_h, \qquad U_h(0) = G
+\end{align}
+Berechnen Sie die Lösung des Anfangswertproblems \eqref{awp} auf dem Intervall
+$[0,1]$ numerisch. Der Anfangswert $G$ soll die Funktion
+$g(x) := \exp\left(-30\left(x-\frac{1}{2}\right)^2\right)$ nodal approximieren, also
+$G_i := g\left(\frac{i}{N}\right)$ für $i = 1,\dots,N-1$.
 \end{solution}

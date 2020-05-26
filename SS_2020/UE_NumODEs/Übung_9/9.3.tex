@@ -13,5 +13,26 @@ von Theorem 5.15 und vollziehen Sie die Konstruktion des Fehlerschätzers in Abs
 2.6, beziehungsweise Abschnitt 2.7 nach.
 \end{exercise}
 \begin{solution}
-Beweis.
+Seien die Adams-Bashforth-Verfahren gegeben durch
+\begin{align*}
+  y_{\ell + 1} &= y_{\ell} + h\sum_{i = 0}^{k-1} a_i f_{\ell - i} \\
+  \widetilde{y}_{\ell + 1} &= y_{\ell} + h\sum_{i = 0}^{k} b_i f_{\ell - i}.
+\end{align*}
+Aus Lemma 5.12 wissen wir bereits, dass es Konstanten $C_1,C_2, h_0$ gibt, sodass
+\begin{align*}
+  \forall h \in (0,h_0), \forall \ell \in \{k-1,\dots,N-1\}: C_1\|\tau_{\ell}(h)\|
+  \leq \|\eta_{\ell}(y,h)\| \leq C_2\|\tau_{\ell}(h)\|
+\end{align*}
+In Theorem 5.15 haben wir für den Abschneidefehler linearer $k$-Schritt-Verfahren,
+also insbesondere auch Adams-Bashforth-Verfahren folgende Darstellung hergeleitet:
+\begin{align*}
+  \eta_{\ell}(y,h) = -y(t_{\ell + 1 - k})\sum_{j= 0}^k\alpha_j + \sum_{i=1}^k \frac{y^{(i)}(t_{\ell + 1 - k})}{i!}
+  h^i\sum_{j= 0}^ki\beta_jj^{i-1} - \alpha_j j^{i} + \Landau{h^{p+1}}.
+\end{align*}
+Aus Korollar 5.18 wissen wir, dass $k$-Schritt Adams-Bashforth-Verfahren auch
+Konsistenzordnung $k$ besitzen und daher folgt für den Abschneidefehler
+\begin{align*}
+\eta_{\ell}(y,h) = -y(t_{\ell + 1 - k})\sum_{j= 0}^k\alpha_j + \sum_{i=1}^k \frac{y^{(i)}(t_{\ell + 1 - k})}{i!}
+h^i\sum_{j= 0}^ki\beta_jj^{i-1} - \alpha_j j^{i} + \Landau{h^{k+1}}.
+\end{align*}
 \end{solution}
