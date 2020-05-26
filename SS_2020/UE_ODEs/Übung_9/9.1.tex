@@ -31,7 +31,48 @@ beiden Aussagen für eine Matrix $A \in R^{d \times d}$:
     = \int_{t = 0}^{\infty} \left(\exp(tA)^{\top}\exp(tA)\right)^{\top} dt
     = \int_{t = 0}^{\infty} \exp(tA)^{\top}\exp(tA) dt = Q.
   \end{align*}
-  Eine quadratische, symmetrische Matrix ist genau dann positiv definit, wenn
-  alle Eigenwerte positiv sind.
+  Für $x \neq 0$ folgt
+  \begin{align*}
+    x^{\top}Qx &= x^{\top}\int_{t = 0}^{\infty} \exp(tA)^{\top}\exp(tA) dt~x
+    = \int_{t = 0}^{\infty} x^{\top}\exp(tA)^{\top}\exp(tA) x~ dt
+    = \int_{t = 0}^{\infty} (\exp(tA)x)^{\top}(\exp(tA)x) dt \\
+    &= \int_{t = 0}^{\infty} (\exp(tA)x,\exp(tA)x)_2 dt > 0
+  \end{align*}
+  auch die positive Definitheit. \\
+  Aber die entscheidende Frage fehlt noch! Warum existiert das Integral?
+  Es wird wohl damit zusammenhängen, dass aufgrund der asymptotischen Stabilität
+  von $y^* = 0$ alle Eigenwerte von $A$ negativen Realteil haben müssen.
+  Bezeichne also mit $\lambda_1$ den Eigenwert mit größtem Realteil.
+  Weiters sei $m$ die Dimension des größten Jordan-Kästchen der Jordan-Normalform von $A$.
+  Daher gilt die Abschätzung ($A = VJV^{-1}$):
+  \begin{align*}
+    \|\exp(tA)\|_{\infty} &\leq  \|V\|_{\infty}\|\exp(tJ)\|_{\infty}\|V^{-1}\|_{\infty}
+    \leq \|V\|_{\infty}\|V^{-1}\|_{\infty}|\exp(\lambda_1t)\sum_{i= 0}^mt^i| \\
+    &= \|V\|_{\infty}\|V^{-1}\|_{\infty}\exp(\Re(\lambda_1)t)\sum_{i= 0}^mt^i
+  \end{align*}
+  Analoges gilt für $\|\exp(tA)^{\top}\|$. Ja, dann wirds schon integrierbar sein, nicht wahr?
+  \begin{align*}
+    A^{\top}Q + QA &= \int_{t = 0}^{\infty} A^{\top}\exp(tA)^{\top}\exp(A) + \exp(tA)^{\top}\exp(tA)Adt \\
+    &= \int_{t = 0}^{\infty} \frac{d}{dt}(\exp(tA)^{\top}\exp(tA)) dt
+    = \lim_{t \to \infty} \exp(tA)^{\top}\exp(tA) - I
+  \end{align*}
+  Aus Satz 5.6 folgt aufgrund der Tatsache, dass $\exp(tA)$ ein Fundamentalsystem für $y^{\prime} = Ay$
+  ist, dass $\lim_{t \to \infty}\|\exp(tA)\| = 0$ und damit
+  \begin{align*}
+    A^{\top}Q + QA = \lim_{t \to \infty} \exp(tA)^{\top}\exp(tA) - I = -I.
+  \end{align*}
+  \item Wir rechnen das hinreichende Kriterium für eine strikte Ljapunovfunktion nach:
+  \begin{align*}
+    \nabla V(y) \cdot f(y) &= \nabla (Qy,y)_2 Ay = 2y^{\top}Q Ay =
+    y^{\top}Q^{\top} Ay + y^{\top}Q Ay = y^{\top}(Q^{\top}A + QA)y \\
+    &\stackrel{?????}{=} y^{\top}(A^{\top}Q + QA)y = - y^{\top}y = -(y,y)_2 < 0
+  \end{align*}
+  Aufgrund der positiven Definitheit gilt für alle $y \neq 0$
+  \begin{align*}
+    V(y) = (Qy,y)_2 > 0,
+  \end{align*}
+  also ist $y^* = 0$ ein striktes Minimum von $V$. Wenn jetzt noch zusätzlich $y^*$
+  eine isolierte Ruhelage ist, folgt daraus die asymptotische Stabilität.
+  Dies ist genau dann der Fall, wenn $A$ regulär ist.
 \end{enumerate}
 \end{solution}

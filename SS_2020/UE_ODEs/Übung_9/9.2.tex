@@ -9,5 +9,34 @@ mit geeigneten $a,b$. Was können Sie über die Stabilität der Ruhelage $(0,0)$
 aussagen?
 \end{exercise}
 \begin{solution}
-Beweis.
+Wir setzen den Ansatz in das hinreichende Kriterium für eine strikte Ljapunovfunktion
+ein
+\begin{align*}
+  \nabla V(x,y) f(x,y) &= (2ax,2by)(-x -2y + x^2y^2,x - \frac{1}{2}y - x^3y)^{\top}
+  = 2ax(-x -2y + x^2y^2) + 2by(x - \frac{1}{2}y - x^3y) \\
+  &= x^3(2ay^2) - x^2(2a) - x(4ay) - x^3(2by^2) + x(2by) - by^2
+  = 2x(x^2y^2(a - b) + y(b - 2a)) - (2ax^2 + by^2)
+\end{align*}
+Setze mal $b = a$
+\begin{align*}
+  \nabla V(x,y) f(x,y) = -2xya - (2ax^2 + ay^2) = -a(2xy + 2x^2 + y^2) = -a((x+y)^2 + x^2).
+\end{align*}
+Wir erhalten also für $a = b < 0$ strikte Ljapunovfunktionen. Der Einfachheit halber
+wähle $a = b = 1$.
+\begin{align*}
+  V(x,y) = x^2 + y^2.
+\end{align*}
+Klarerweise ist $(0,0)$ ein striktes Minimum der strikten Ljapunovfunktion
+und wieder hängen wir uns daran auf, dass wir für die asymptotische Stabilität
+eine isolierte Ruhelage brauchen.
+\begin{align*}
+  (0,0)^{\top} \stackrel{!}{=} f(x,y) = (-x -2y + x^2y^2,x - \frac{1}{2}y - x^3y)^{\top}
+\end{align*}
+Aus der zweiten Komponente erhalten wir
+\begin{align*}
+  x - \frac{1}{2}y - x^3y = 0 \iff y = \frac{x}{x^3 + \frac{1}{2}}
+\end{align*}
+Wenn wir das nun in die erste Komponente einsetzen erhalten wir eine rationale
+Funktion mit endlich vielen Nullstellen. Damit muss die Ruhelage $(0,0)$
+isoliert sein und damit auch asymptotisch stabil.
 \end{solution}

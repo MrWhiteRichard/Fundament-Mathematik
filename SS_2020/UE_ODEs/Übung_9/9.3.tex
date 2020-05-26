@@ -16,5 +16,32 @@ sagen?
 \end{exercise}
 
 \begin{solution}
-Beweis.
+Wir setzen $f$ gleich Null und erhalten drei Gleichungen
+\begin{align}
+  \mu (a-x) &= \lambda xy \\
+  y(\lambda x + \gamma - \mu) &= 0 \implies \lambda x  = \mu - \gamma \lor y = 0\\
+  \mu z &= \gamma y \label{3}
+\end{align}
+Fall 1: $y = 0$: \\
+Es folgt unmittelbar $z = 0, x = a$ \\
+Fall 2: $y \neq 0$: \\
+Es folgt $x = \frac{\mu - \gamma}{\lambda} > 0$. Setzen wir in die erste Gleichung ein
+erhalten wir
+\begin{align*}
+  y = \frac{\mu a}{\mu - \gamma} - \frac{\mu}{\lambda}
+  \iff y = \frac{\mu(\lambda a - (\mu - \gamma))}{(\mu - \gamma)\lambda} > 0
+\end{align*}
+Schließlich erhalten wir aus der letzten Gleichung
+\begin{align*}
+  z = \frac{\gamma}{\mu} \frac{\mu(\lambda a - (\mu - \gamma))}{(\mu - \gamma)\lambda} > 0.
+\end{align*}
+Wieder ziehen wir das hinreichende Kriterium für eine strikte Ljapunovfunktion zu Rate
+\begin{align*}
+  \nabla V(x,y,z)f(x,y,z) &= (1 - \frac{x^*}{x}, 1 - \frac{y^*}{y}, 0)^{\top}
+  (- \lambda xy - \mu x + \mu a,\lambda xy - \mu y + \gamma y, \gamma y - \mu z) \\
+  &= (1 - \frac{x^*}{x})(- \lambda xy + \mu (a - x)) + (1 - \frac{y^*}{y})(\lambda xy - \mu y + \gamma y) \\
+  &= - \lambda xy + \mu (a - x) + \lambda x^*y - \mu \frac{x^*(a-x)}{x} + \lambda xy - \mu y + \gamma y
+  + y^*(\mu - \gamma - \lambda)  \\
+  &= \lambda y x^* + \mu (a - x - \frac{x^*(a-x)}{x} - y) + \gamma y + y^*(\mu - \gamma - \lambda)
+\end{align*}
 \end{solution}
