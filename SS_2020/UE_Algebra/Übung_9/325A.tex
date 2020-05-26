@@ -102,18 +102,24 @@ bereits $2e \in E_n$ folgt. Die Injektivität überträgt sich von $\varphi_n$ u
   \end{align*}
   Damit folgt
   \begin{align*}
-    q_{e^* + e^{\prime}} = \sum_{e \in E_n}\sum_{e_1 + e_2 = \widetilde{e}}r_{e_1}p_{e_2}x^{\widetilde{e}}
+    q_{e^* + e^{\prime}} = \sum_{\stackrel{(e_1,e_2) \in E_n \times E}{e_1 + e_2 = \widetilde{e}}}r_{e_1}p_{e_2}x^{\widetilde{e}}
     = \underbrace{r_{e^*}p_{e^{\prime}}}_{\neq 0}x^{\widetilde{e}}
   \end{align*}
   und daher $q \notin K(E_n)$. Widerspruch!
-  \item Sei $p = \varphi_0(q) \in K(E_0) \subset K(E)$ mit $q \in K[x]: \grad(q) = 0$.
+  \item Sei $p = \varphi_0^{-1}(q) \in K(E_0) \subset K(E)$ mit $q \in K[x]: \grad(q) = 0$.
   Wir wissen aus Proposition 3.3.6.5, dass $q$ in $K[x]$ eine Inverse besitzt, genau
-  dann wenn $\grad(p) = 0$.
+  dann wenn $\grad(q) = 0$.
   \begin{align*}
-    \varphi_0(q)\varphi_0(q^{-1}) = \varphi_0(1) = 1.
+    \varphi_0^{-1}(q)\varphi_0^{-1}(q^{-1}) = \varphi_0^{-1}(1) = 1.
   \end{align*}
-  Daher sind auch die Einheiten von $K(E)$ genau die Bilder von konstanten Polynomen
-  unter $\varphi_0$.
+  Sei umgekehrt $p := \sum_{e \in E}p_ex^e \in K(E)$ eine beliebige Einheit
+  mit $p^{-1} = \sum_{e \in E}q_ex^e$. Es gibt also ein $n \in \N: p,p^{-1} \in K(E_n)$ und es gilt
+  \begin{align*}
+    1 = \varphi_n(1) = \varphi_n(pp^{-1}) = \varphi_n(p)\varphi_n(p^{-1})
+    = \left(\varphi_0(\sum_{e \in E}p_ex^{2^ne})\right)\left(\varphi_0(\sum_{e \in E}q_ex^{2^ne})\right)
+  \end{align*}
+  Wiederum ist das nur möglich, wenn $\grad(\varphi_0(\sum_{e \in E}p_ex^{2^ne})) = 0$
+  und $p$ ist daher Bild eines konstanten Polynoms unter $\varphi_0^{-1}$.
   \item Seien $n \in \N, p \in K(E_n)$ beliebig fest. \\
   Gelte zuerst $K(E) \vDash p$ ist prim. $p$ ist also keine Einheit in $K(E)$
   und $\neq 0$. Weiters gilt für alle $a,b \in K(E): p|ab \implies p|a \lor p|b$.

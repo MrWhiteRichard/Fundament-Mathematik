@@ -71,9 +71,22 @@ Wir wissen, dass
 \end{align*}
 Man kann zeigen (wenn man denn kann), dass das zugehörige charakteristische Polynom
 \begin{align*}
-  (x^k + \sum_{i = 0}^{k-1}\alpha_ix^i)^n
+  \left(x^k + \sum_{i = 0}^{k-1}\alpha_ix^i\right)^n
 \end{align*}
-ist. Wie man leicht erkennt sind die Eigenwerte also genau die Nullstellen von
+ist. Induktion nach $n$ ($k$ beliebig fest): $n = 1$.
+Hier haben wir den Fall aus dem Skript. \\
+$n-1 \to n:$
+\begin{align*}
+  A_n = \begin{pmatrix}
+    0_n & \hdots & \hdots & 0_n & -\alpha_0I_n \\
+    I_n & \ddots & & \vdots & -\alpha_1I_n \\
+    0_n & I_n & \ddots & \vdots & \vdots \\
+    \vdots & \ddots & \ddots & 0_n & -\alpha_{k-2}I_n \\
+    0_n & \hdots & 0_n & I_n & -\alpha_{k-1}I_n
+  \end{pmatrix}
+\end{align*}
+Jetzt müssen wir nach den letzten $n$ Zeilen entwickeln?
+Wie man leicht erkennt sind die Eigenwerte also genau die Nullstellen von
 \begin{align*}
   x^k + \sum_{i = 0}^{k-1}\alpha_ix^i
 \end{align*}
