@@ -43,11 +43,11 @@ $\delta_{\ell} := \Phi(t_{\ell},y(t_{\ell + 1},\dots,y(t_{\ell+1-k}),h) -
 Also gilt mit $F_{\ell} := (0,\dots,0,h\delta_{\ell} - \eta_{\ell}(y,h)) \in \R^{nk}$
 \begin{align*}
   E_{\ell + 1} = \begin{pmatrix}
-    0 & I_k & 0 & \hdots & 0 \\
-    \vdots & \ddots & I_k & \hdots & 0\\
-    \vdots &  & \ddots & \ddots & 0 \\
-    0 & \hdots & \hdots & 0 & I_k \\
-    -\alpha_0I_k & \hdots & \hdots & \hdots & -\alpha_{k-1}I_k
+    0_n & I_n & 0_n & \hdots & 0_n \\
+    \vdots & \ddots & I_n & \hdots & 0_n\\
+    \vdots &  & \ddots & \ddots & 0_n \\
+    0_n & \hdots & \hdots & 0_n & I_n \\
+    -\alpha_0I_n & \hdots & \hdots & \hdots & -\alpha_{k-1}I_n
   \end{pmatrix}E_{\ell} + F_{\ell}.
 \end{align*}
 Wieder analog zum Skript folgt
@@ -62,9 +62,28 @@ Im dritten Schritt müssen wir wieder etwas anpassen. Wir definieren
 \begin{align*}
   M := \sup_{k \in \N_0} \left\| (A_{\rho}^{\top} \otimes I)^k\right\|_{\infty}
 \end{align*}
-******************************* \\
-Hier Begründung mit Wurzelkriterium einfügen. \\
-******************************* \\
+Laut Lemma 5.32. ist $M < \infty$ äquivalent zu $\rho((A_{\rho}^{\top} \otimes I) \leq 1$
+und alle $\lambda \in \sigma(A)$ mit $|\lambda| = 1$ sind halbeinfach.
+Wir wissen, dass
+\begin{align*}
+  \sigma(A_{\rho}^{\top} \otimes I) = \sigma(A_{\rho}^{\top} \otimes I)^{\top}
+  = \sigma(A_{\rho} \otimes I)
+\end{align*}
+Man kann zeigen (wenn man denn kann), dass das zugehörige charakteristische Polynom
+\begin{align*}
+  (x^k + \sum_{i = 0}^{k-1}\alpha_ix^i)^n
+\end{align*}
+ist. Wie man leicht erkennt sind die Eigenwerte also genau die Nullstellen von
+\begin{align*}
+  x^k + \sum_{i = 0}^{k-1}\alpha_ix^i
+\end{align*}
+mit $n$-facher Vielfachheit. Aus der Wurzelbedingung folgt damit direkt, dass
+$\sigma(A_{\rho} \otimes I) \leq 1$. Alle Nullstellen mit $|\lambda| = 1$
+sind jetzt aber nicht mehr einfach, sondern haben Vielfachheit $n$.
+Wenn wir jetzt noch zeigen können, kann diese Eigenwerte halbeinfach sein müssen,
+sind wir fertig.
 Mit $M < \infty$ können wir jetzt Schritt 3 aus dem Skript analog nachrechnen.
 Im letzten Schritt müssen wir nur noch $\|e_{\ell}\|$ abschätzen.
+Das geht wieder analog zum Skript, wenn wir $|e_{\ell + k  - 1}|$
+durch $\|e_{\ell + k  - 1}\|_{\infty}$ ersetzen.
 \end{solution}
