@@ -24,3 +24,4 @@ for i in range(len(first_roots)):
                 n = len(coeffs[i]) - 1
                 p = [n*coeffs[i][k] for k in range(n)]
                 print(np.polyval(p, first_roots[i][j]))
+    print()
