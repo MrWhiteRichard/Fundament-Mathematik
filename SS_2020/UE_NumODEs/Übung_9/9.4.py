@@ -8,7 +8,7 @@ def g(x):
 def M(n):
     return n**2*(np.tri(n-1,n-1,1) - np.tri(n-1,n-1,-2) -3*np.eye(n-1,n-1))
 
-def adams_moulton(alpha,beta,y0,T,Mh):
+def implicit_linear_multi_step(alpha,beta,y0,T,Mh):
     n = len(y0)
     h = T[1] - T[0]
     k = len(alpha)
@@ -25,7 +25,7 @@ def adams_moulton(alpha,beta,y0,T,Mh):
     return y
 
 
-def multi_step_method(alpha,beta,y0,T,Mh):
+def explicit_linear_multi_step(alpha,beta,y0,T,Mh):
     h = T[1] - T[0]
     k = len(alpha)
     y = RK4(T[:k],y0,lambda t,y: Mh@y)
@@ -75,22 +75,22 @@ fig, ((ax1,ax2,ax3),(ax4,ax5,ax6),(ax7,ax8,ax9)) = plt.subplots(3,3)
 ax = [ax1,ax2,ax3,ax4,ax5,ax6,ax7,ax8,ax9]
 for i in range(1,10):
     Mh = M(2**i)
-    y0 = [g(i/2**i) for i in range(1,2**i)]
+    y0 = [g(i/2**j) for j in range(1,2**i)]
     for j in range(2,10):
         t = np.linspace(0,1,2**j+1)
         # fig.suptitle("Adams Bashforth")
-        # y = multi_step_method(a,b,y0,t,Mh)
+        # y = explicit_linear_multi_step(a,b,y0,t,Mh)
 
         # fig.suptitle("Adams-Moulton (k = 2)")
-        # y = adams_moulton(a2,b2,y0,t,Mh)
+        # y = implicit_linear_multi_step(a2,b2,y0,t,Mh)
         # m = max([np.linalg.norm(y[i]) for i in range(len(y))])
 
         # fig.suptitle("Adams-Moulton (k = 3)")
-        # y = adams_moulton(a3,b3,y0,t,Mh)
+        # y = implicit_linear_multi_step(a3,b3,y0,t,Mh)
         # m = max([np.linalg.norm(y[i]) for i in range(len(y))])
         
         fig.suptitle("BDF")
-        y = adams_moulton(a4,b4,y0,t,Mh)
+        y = implicit_linear_multi_step(a4,b4,y0,t,Mh)
 
 
         m = max([np.linalg.norm(y[i]) for i in range(len(y))])
