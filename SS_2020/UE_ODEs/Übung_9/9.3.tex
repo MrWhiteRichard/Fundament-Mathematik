@@ -84,5 +84,63 @@ Betrachten wir nun die Hesse-Matrix
 welche positiv semidefinit ist. Wie man leicht erkennt, kann $(x^*,y^*,z^*)$ kein
 striktes Minimum von $V$ sein, da $V$ gar nicht von $z$ abhängt. Damit können wir
 die direkte Methode von Ljapunov nicht anwenden und somit nichts über die Stabilität
-der Ruhelage aussagen. Ist das ein legitimes Resultat?
+der Ruhelage aussagen.
+Nachdem unser Versuch mit der Ljapunovfunktion gescheitert ist, können wir noch
+versuchen, das Prinzip der linearisierten Stabilität zu bemühen. Also berechnen wir
+\begin{align*}
+  Df(x,y,z) = \begin{pmatrix}
+  -\lambda y - \mu & - \lambda x & 0 \\
+  \lambda y& \lambda x + \gamma - \mu & 0 \\
+  0 & \gamma & -\mu
+  \end{pmatrix}.
+\end{align*}
+Setzen wir unsere Ruhelage ein, erhalten wir
+\begin{align*}
+  Df(x^*,y^*,z^*) = \begin{pmatrix}
+  -\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma} - \mu & \gamma - \mu & 0 \\
+  \frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma}& 0 & 0 \\
+  0 & \gamma & -\mu
+  \end{pmatrix}
+\end{align*}
+Das charakteristische Polynom davon lautet
+\begin{align*}
+  \chi(\zeta) = \left(-\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma} - \mu - \zeta\right)(\zeta)
+  (\mu + \zeta) + (\gamma - \mu)
+  \left(\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma}\right)
+  (\mu + \zeta) \stackrel{!}{=} 0
+\end{align*}
+und erhalten als erste Nullstelle $\zeta_1 = -\mu < 0$.
+\begin{align*}
+  0 &\stackrel{!}{=} \left(-\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma} - \mu - \zeta\right)\zeta
+  + (\gamma - \mu)\left(\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma}\right) \\
+  &= \left(-\frac{\mu\lambda a}{\mu - \gamma} - \zeta\right)\zeta
+  + (\gamma - \mu)\left(\frac{\mu(\lambda a - (\mu - \gamma))}{\mu - \gamma}\right)\\
+  &= -\zeta^2 - \zeta\left(\frac{\mu\lambda a}{\mu - \gamma}\right)
+  + \mu(\mu - \gamma - \lambda a).
+\end{align*}
+Wir erinnern nochmals an die Voraussetzungen
+\begin{align*}
+  \lambda, \mu, \gamma, a &> 0 \\
+  \mu - \gamma &> 0 \\
+  \mu - \gamma - a\lambda &< 0.
+\end{align*}
+Die letzten beiden Nullstellen lauten somit
+\begin{align*}
+  \zeta_{2,3} = - \left(\frac{\mu\lambda a}{2(\mu - \gamma)}\right)
+  \pm \sqrt{\left(\frac{(\mu\lambda a)^2}{4(\mu - \gamma)^2}\right)
+   + \underbrace{\mu(\mu - \gamma - \lambda a)}_{< 0}}
+\end{align*}
+Fall 1: $\left(\frac{(\mu\lambda a)^2}{4(\mu - \gamma)^2}\right)
+ + \mu(\mu - \gamma - \lambda a) < 0$
+ \begin{align*}
+   \Re(\zeta_{2,3}) = - \left(\frac{\mu\lambda a}{2(\mu - \gamma)}\right) < 0
+ \end{align*}
+ Fall 2: $\left(\frac{(\mu\lambda a)^2}{4(\mu - \gamma)^2}\right)
+  + \mu(\mu - \gamma - \lambda a) \geq 0$
+  \begin{align*}
+    \zeta_{2,3} < - \left(\frac{\mu\lambda a}{2(\mu - \gamma)}\right)
+    \pm \sqrt{\left(\frac{(\mu\lambda a)^2}{4(\mu - \gamma)^2}\right)} \leq 0
+  \end{align*}
+  In jedem Fall sind die Realteile aller Eigenwerte negativ und mit dem Prinzip
+  der linearisierten Stabilität ist unsere Ruhelage asymptotisch stabil.
 \end{solution}
