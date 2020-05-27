@@ -69,15 +69,17 @@ beiden Aussagen für eine Matrix $A \in R^{d \times d}$:
   \item Wir rechnen das hinreichende Kriterium für eine strikte Ljapunovfunktion nach:
   \begin{align*}
     \nabla V(y) \cdot f(y) &= \nabla (Qy,y)_2 Ay = 2y^{\top}Q Ay =
-    y^{\top}Q^{\top} Ay + y^{\top}Q Ay = y^{\top}(Q^{\top}A + QA)y \\
-    &\stackrel{?????}{=} y^{\top}(A^{\top}Q + QA)y = - y^{\top}y = -(y,y)_2 < 0
+    y^{\top}Q^{\top} Ay + y^{\top}Q Ay = (y^{\top}Q^{\top} Ay)^{\top} + y^{\top}Q Ay\\
+    &= y^{\top}(A^{\top}Q + QA)y = - y^{\top}y = -(y,y)_2 < 0 \text{ für y $\neq$ 0}
   \end{align*}
+  Daraus folgt für $y \neq 0$ auch $\nabla (Qy,y)_2 Ay \neq 0$ und somit $Ay \neq 0$,
+  also ist $A$ regulär.
   Aufgrund der positiven Definitheit gilt für alle $y \neq 0$
   \begin{align*}
     V(y) = (Qy,y)_2 > 0,
   \end{align*}
-  also ist $y^* = 0$ ein striktes Minimum von $V$. Wenn jetzt noch zusätzlich $y^*$
-  eine isolierte Ruhelage ist, folgt daraus die asymptotische Stabilität.
-  Dies ist genau dann der Fall, wenn $A$ regulär ist.
+  also ist $y^* = 0$ ein striktes Minimum von $V$.
+  Da $A$ regulär ist, ist die einzige Ruhelage $0$, welche somit isoliert ist.
+  Daraus folgt schließlich die asymptotische Stabilität.
 \end{enumerate}
 \end{solution}
