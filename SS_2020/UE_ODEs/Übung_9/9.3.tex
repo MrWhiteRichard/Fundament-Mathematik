@@ -41,7 +41,33 @@ Wieder ziehen wir das hinreichende Kriterium für eine strikte Ljapunovfunktion 
   (- \lambda xy - \mu x + \mu a,\lambda xy - \mu y + \gamma y, \gamma y - \mu z) \\
   &= (1 - \frac{x^*}{x})(- \lambda xy + \mu (a - x)) + (1 - \frac{y^*}{y})(\lambda xy - \mu y + \gamma y) \\
   &= - \lambda xy + \mu (a - x) + \lambda x^*y - \mu \frac{x^*(a-x)}{x} + \lambda xy - \mu y + \gamma y
-  + y^*(\mu - \gamma - \lambda)  \\
-  &= \lambda y x^* + \mu (a - x - \frac{x^*(a-x)}{x} - y) + \gamma y + y^*(\mu - \gamma - \lambda)
+  + y^*(\mu - \gamma - \lambda x)  \\
+  &= \mu (a - x - \frac{x^*(a-x)}{x}) + y(\gamma - \mu + \lambda x^*) + y^*(\mu - \gamma - \lambda x) \\
+  &= \mu (a - x - \frac{(\mu - \gamma)(a-x)}{\lambda x}) + y(\gamma - \mu + \mu - \gamma) +
+  y^*(\mu - \gamma - \lambda) \\
+  &=\mu \frac{(a-x)(\gamma - \mu + \lambda x)}{\lambda x} + y^*(\mu - \gamma - \lambda x) \\
+  &= \mu \frac{(a-x(1+\frac{\lambda}{\mu} y^*))(\gamma - \mu + \lambda x)}{\lambda x} \\
 \end{align*}
+Der Zähler hat also genau die Nullstellen $x^*, \frac{a}{1 + \frac{\lambda}{\mu}y^*} = x^*$.
+Daher kann es im Zähler keinen Vorzeichenwechsel geben. Da der rechte Faktor für $x \to \infty$ sicher negativ wird
+und der linke Faktor für $x \to \infty$ positiv, muss der Nenner insgesamt immer negativ sein.
+Da die Ljapunovfunktion für für positive $x$ definiert ist, ist der Nenner immer positiv
+und wir haben also eine strikte Ljapunovfunktion gegeben. \\
+Setzen wir nun die Ruhelage in die Ljapunovfunktion ein:
+\begin{align*}
+  \nabla V(x^*,y^*,z^*) = (1 - \frac{x^*}{x^*}, 1 - \frac{y^*}{y^*}, 0) = (0,0,0).
+\end{align*}
+Betrachten wir nun die Hesse-Matrix
+\begin{align*}
+  D^2 V(x^*,y^*,z^*) = \begin{pmatrix}
+    1 + \frac{x^*}{(x^*)^2} & 0 \\
+    0 & 1 + \frac{y^*}{(y^*)^2}
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 + \frac{1}{x^*} & 0 \\
+    0 & 1 + \frac{1}{y^*}
+  \end{pmatrix},
+\end{align*}
+welche positiv definit ist. Also ist $(x^*,y^*,z^*)$ ein striktes Minimum von $V$
+und aufgrund der Isoliertheit auch eine asymptotische Ruhelage.
 \end{solution}

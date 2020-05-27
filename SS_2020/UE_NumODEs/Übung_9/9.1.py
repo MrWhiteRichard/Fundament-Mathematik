@@ -22,6 +22,6 @@ for i in range(len(first_roots)):
         if i < 6:
             if abs(first_roots[i][j]) > 1 - 1e-6:
                 n = len(coeffs[i]) - 1
-                p = [n*coeffs[i][k] for k in range(n)]
+                p = [(n-k)*coeffs[i][k] for k in range(n)]
                 print(np.polyval(p, first_roots[i][j]))
     print()
