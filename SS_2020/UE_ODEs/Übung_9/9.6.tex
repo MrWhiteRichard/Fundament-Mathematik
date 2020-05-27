@@ -9,5 +9,63 @@ diese ODE 2.Ordnung in ein System erster Ordnung. Geben Sie eine Ljapunovfunktio
 an. Zeigen Sie, dass $(y,y^{\prime}) = (0,0)$ eine stabile Ruhelage ist.
 \end{exercise}
 \begin{solution}
-Beweis.
+Um die ODE in ein System erster Ordnung zu Überführen definieren wir $y_1:=y,
+y_2:= y^\prime = y_1^\prime$. Dann sieht unser System, mit $y= (y_1,y_2)^T$ wie folgt aus:
+
+\begin{align*}
+  y^\prime = \left(
+  \begin{array}{c}
+    y_1^\prime \\
+    y_2^\prime
+  \end{array}
+  \right) = \left(
+  \begin{array}{c}
+    y_2 \\
+    -g(y_1)
+  \end{array}
+  \right) =: f(y)
+\end{align*}
+
+Um nun eine Ljapunovfunktion zu finden wenden wir uns an Satz 5.13 der besagt, das diese
+durch
+
+\begin{align*}
+  \nabla V(y) \cdot f(y) \leq 0 \quad \forall y \in G
+\end{align*}
+
+gekennzeichnet sind. Wenn wir nun
+
+\begin{align*}
+  V(y_1,y_2) = \frac{y_2^2}{2} + \int_0^{y_1}g(\tau)d\tau
+\end{align*}
+
+wählen, sehen wir dass diese Bedingung wirklich erfüllt ist, da
+
+\begin{align*}
+  \nabla V(y) \cdot f(y) = \left(
+  \begin{array}{c}
+    g(y_1)\\
+    y_2
+  \end{array}
+  \right)
+  \cdot \left(
+  \begin{array}{c}
+   y_2 \\
+  -g(y_1)
+  \end{array}
+  \right) = g(y_1) y_2 - g(y_1) y_2 = 0
+\end{align*}
+
+Dabei existiert $\int_0^{y_1} g(\tau)d\tau$ da $g$ nach unser allgemeinen Annahme
+lipschitzstetig ist (weil unsere rechte Seite $f$ lipschitzstetig sein soll).
+
+Klarerweise ist $(y_1,y_2) = (0,0)$ eine Ruhelage. Mit der direkten Methode von Ljapunov
+können wir nun auch einsehen, dass diese stabil ist. Denn es gilt $V(0,0) = 0$ und für
+beliebige $(y_1,y_2) \in (-a,a) \times \R \backslash \{(0,0)\}$ gilt:
+
+\begin{align*}
+  V(y_1,y_2) > 0
+\end{align*}
+
+Da $\frac{y_2^2}{2} > 0$ und da $\sgn(g(y_1))=\sgn(y_1)$.
 \end{solution}
