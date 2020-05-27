@@ -60,14 +60,18 @@ Setzen wir nun die Ruhelage in die Ljapunovfunktion ein:
 Betrachten wir nun die Hesse-Matrix
 \begin{align*}
   D^2 V(x^*,y^*,z^*) = \begin{pmatrix}
-    1 + \frac{x^*}{(x^*)^2} & 0 \\
-    0 & 1 + \frac{y^*}{(y^*)^2}
+    1 + \frac{x^*}{(x^*)^2} & 0 & 0 \\
+    0 & 1 + \frac{y^*}{(y^*)^2} & 0 \\
+    0 & 0 & 0
   \end{pmatrix}
   = \begin{pmatrix}
-    1 + \frac{1}{x^*} & 0 \\
-    0 & 1 + \frac{1}{y^*}
+    1 + \frac{1}{x^*} & 0 & 0\\
+    0 & 1 + \frac{1}{y^*} & 0 \\
+    0 & 0 & 0 \\
   \end{pmatrix},
 \end{align*}
-welche positiv definit ist. Also ist $(x^*,y^*,z^*)$ ein striktes Minimum von $V$
-und aufgrund der Isoliertheit auch eine asymptotische Ruhelage.
+welche positiv semidefinit ist. Wie man leicht erkennt, kann $(x^*,y^*,z^*)$ kein
+striktes Minimum von $V$ sein, da $V$ gar nicht von $z$ abhängt. Damit können wir
+die direkte Methode von Ljapunov nicht anwenden und somit nichts über die Stabilität
+der Ruhelage aussagen. Ist das ein legitimes Resultat?
 \end{solution}

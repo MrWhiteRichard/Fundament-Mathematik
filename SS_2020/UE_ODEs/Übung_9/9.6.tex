@@ -9,5 +9,28 @@ diese ODE 2.Ordnung in ein System erster Ordnung. Geben Sie eine Ljapunovfunktio
 an. Zeigen Sie, dass $(y,y^{\prime}) = (0,0)$ eine stabile Ruhelage ist.
 \end{exercise}
 \begin{solution}
-Beweis.
+System erster Ordnung:
+\begin{align*}
+  y^{\prime} &=  z\\
+  z^{\prime} &= -g(y)
+\end{align*}
+Unsere Ljapunovfunktion lautet
+\begin{align*}
+  V(y,z) = \frac{z^2}{2} + \int_0^y g(x) dx
+\end{align*}
+mit
+\begin{align*}
+  \nabla V(y,z)f(y,z) = (g(y),z)(z,-g(y)) = 0
+\end{align*}
+Nun betrachte
+\begin{align*}
+  \nabla V(0,0) = 0
+\end{align*}
+Weiters gilt $V(y,z) > 0$ für $(y,z) \neq (0,0)$, da
+\begin{align*}
+  \int_0^y g(x) dx > 0
+\end{align*}
+für $y \neq 0$.
+Damit ist $(0,0)$ ein striktes Minimum von $V$ und damit nach der direkten Methode
+von Ljapunov eine stabile Ruhelage.
 \end{solution}
