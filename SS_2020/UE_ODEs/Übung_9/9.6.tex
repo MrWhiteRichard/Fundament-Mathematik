@@ -9,6 +9,7 @@ diese ODE 2.Ordnung in ein System erster Ordnung. Geben Sie eine Ljapunovfunktio
 an. Zeigen Sie, dass $(y,y^{\prime}) = (0,0)$ eine stabile Ruhelage ist.
 \end{exercise}
 \begin{solution}
+<<<<<<< HEAD
 Um die ODE in ein System erster Ordnung zu Überführen definieren wir $y_1:=y,
 y_2:= y^\prime = y_1^\prime$. Dann sieht unser System, mit $y= (y_1,y_2)^T$ wie folgt aus:
 
@@ -68,4 +69,30 @@ beliebige $(y_1,y_2) \in (-a,a) \times \R \backslash \{(0,0)\}$ gilt:
 \end{align*}
 
 Da $\frac{y_2^2}{2} > 0$ und da $\sgn(g(y_1))=\sgn(y_1)$.
+=======
+System erster Ordnung:
+\begin{align*}
+  y^{\prime} &=  z\\
+  z^{\prime} &= -g(y)
+\end{align*}
+Unsere Ljapunovfunktion lautet
+\begin{align*}
+  V(y,z) = \frac{z^2}{2} + \int_0^y g(x) dx
+\end{align*}
+mit
+\begin{align*}
+  \nabla V(y,z)f(y,z) = (g(y),z)(z,-g(y)) = 0
+\end{align*}
+Nun betrachte
+\begin{align*}
+  \nabla V(0,0) = 0
+\end{align*}
+Weiters gilt $V(y,z) > 0$ für $(y,z) \neq (0,0)$, da
+\begin{align*}
+  \int_0^y g(x) dx > 0
+\end{align*}
+für $y \neq 0$.
+Damit ist $(0,0)$ ein striktes Minimum von $V$ und damit nach der direkten Methode
+von Ljapunov eine stabile Ruhelage.
+>>>>>>> 5d8e535ae5773d955a85a04b2be88d83a5e8930f
 \end{solution}
