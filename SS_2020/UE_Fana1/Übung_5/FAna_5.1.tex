@@ -14,7 +14,44 @@ Zeige, dass $T$ zu $\mathcal{B}(L^1(0, 1), C^0(\N_0))$ gehört, und bestimme $T^
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
-
+Sei $f \in L^1(0,1), n \in \N$ beliebig. Dann ist
+\begin{align*}
+  \int_0^1 f(t)t^n dt \leq   \int_0^1|f(t)t^n|dt \leq \int_0^1 |f(t)| dt < \infty
+\end{align*}
+und damit existiert $Tf_n$ für alle $n \in \N$. Weiters folgt mittels majorisierter
+Konvergenz
+\begin{align*}
+  \lim_{n \to \infty} Tf_n = \lim_{n \to \infty} \int_0^1 f(t)t^n dt
+  =  \int_0^1 \lim_{n \to \infty}f(t)t^n dt = \int_0^1 0 dt= 0,
+\end{align*}
+dass $T$ wirklich nach $C^0(\N_0)$ abbildet. Da $C^0(\N_0)$ mit der Supremumsnorm
+versehen ist, folgt auch
+\begin{align*}
+  \|Tf\|_{\infty} = \left\|\pbraces{\Int[0][1]{f(t) t^n}{t}}_{n \in \N_0}\right\|_{\infty} =
+  \left|\Int[0][1]{f(t)}{t}\right| \leq \|f\|_{L^1},
+\end{align*}
+dass $T$ ein beschränkter linearer Operator ist mit Norm $\leq 1$.
+Der Operator $T^{\prime}$ wird durch
+\begin{align*}
+  \forall x \in X, y^{\prime} \in Y^{\prime}:
+  y^{\prime}(Tx) = \langle Tx,y^{\prime} \rangle =
+  \langle x, T^{\prime}y^{\prime}\rangle = T^{\prime}y^{\prime}(x)
+\end{align*}
+charakteristiert. Also ist $T^{\prime}$ eine Abbildung von $C^0(\N_0)^{\prime} = L^1(\N_0)$
+nach $L^1(0, 1)^{\prime} = L^\infty(0, 1)$.
+Der Isomorphismus zwischen $C^0(\N_0)^{\prime}$ und $L^1(\N_0)$ lautet
+\begin{align*}
+  \varphi_1:& \begin{Bmatrix}
+    L^1(\N_0) & \to & C^0(\N_0)^{\prime} \\
+    (a_n)_{n \in \N} &\mapsto & ((x_n)_{n \in \N} \mapsto \sum_{n \in \N}x_na_n)
+  \end{Bmatrix}. \\
+  \varphi_2:& \begin{Bmatrix}
+    L^\infty(0, 1) & \to & L^1(0, 1)^{\prime} \\
+    g &\mapsto & (f \mapsto \int_0^1 fg dt)
+  \end{Bmatrix}.
+\end{align*}
+Es gilt schließlich
+\begin{align*}
+  T^{\prime}((a_n)_{n \in\N}) = \sum_{n \in \N}a_n t^n
+\end{align*}
 \end{solution}
