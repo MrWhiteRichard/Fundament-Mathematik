@@ -24,6 +24,63 @@ Betrachte den Shift-Operator $S$ am $\ell^2(\N)$, das ist
 
 \begin{solution}
 
-ToDo!
+  \begin{itemize}
+      \item $S$ ist isometrisch: Klar.
+      \item $\ran{S}$ abgeschlossen: Sei $(\vv{x_n})_{n=0}^\infty =
+      (S(\vv{y_n}))_{n=0}^\infty$ eine gegen $\vv{x}$ konvergente Folge aus $\ran{S}$. Weil $S$ isometrisch und linear ist, gilt
+      $\| S(\vv{y_n}) - S(\vv{y_m})\|
+      = \| S(\vv{y_n} - \vv{y_m}) \|
+      = \| \vv{y_n} - \vv{y_m} \|$, also ist auch $(\vv{y_n})_{n=0}^\infty$ eine Cauchyfolge in $\ell^2$ und damit konvergent gegen ein $\vv{y} \in \ell^2.$ Nun gilt
+      \begin{align}
+       \| S(\vv{y}) - \vv{x} \| \leq
+       \| S(\vv{y}) - S(\vv{y_n}) \| + \| S(\vv{y_n}) - \vv{x} \|
+       \stackrel{n \rightarrow \infty}{\longrightarrow} 0,
+      \end{align}
+      also $\vv{x} = S(\vv{y}) \in \ran{S}$.
+      \item $\bigcap_{n=0}^\infty \ran{S^n} = \{0\}:$ Für ein $\vv{x} \in \ran{S^n}$ gilt $\vv{x}_n = 0.$ Liegt $\vv{x}$ im Schnitt aller $\ran{S^n},$ ist also jede Komponente gleich Null.
+      \item Wir bestimmen nun die Hilbertraumadjungierte $S^*$ von $S.$
 
+      $\ell^2$ ist isomorph zu seinem eigenen Dualraum vermöge folgender Abbildung $\Phi$:
+           \begin{align}
+            \Phi: \left\{ \begin{array}{ll}
+       \ell^2 \rightarrow \ell^2^\prime \\
+      (x_n)_{n=0}^\infty \mapsto ((y_n)_{n=0}^\infty \mapsto \sum_{n=0}^\infty y_n \overline{x_n}).
+        \end{array}
+        \end{align}
+
+      Weiters sei an folgende Definitionen erinnert:
+      \begin{align}
+        S^\prime: \left\{ \begin{array}{ll}
+       \ell^2^\prime \rightarrow \ell^2^\prime \\
+       y^\prime \mapsto (x \mapsto y^\prime(S(x))),
+        \end{array}
+        \end{align}
+          \begin{align}
+        S^*: \left\{\begin{array}{ll}
+       \ell^2 \rightarrow \ell^2 \\
+       (x_n)_{n=0}^\infty \mapsto \Phi^{-1}(S^\prime(\Phi((x_n)_{n=0}^\infty)))).
+        \end{array}
+      \end{align}
+
+       Durch Anwendung dieser Definitionen erhalten wir
+       \begin{align}
+           S^*((x_n)_{n=0}^\infty) = \Phi^{-1}(S^\prime(\Phi((x_n)_{n=0}^\infty))) =
+           \Phi^{-1}\left(S^\prime\left( (y_n)_{n=0}^\infty \mapsto \sum_{n=0}^\infty y_n \overline{x_n}\right)\right) = \\
+           \Phi^{-1}\left((z_n)_{n=0}^\infty \mapsto \sum_{n=0}^\infty z_n \overline{x_{n+1}}\right) = (x_{n+1})_{n=0}^\infty.
+       \end{align}
+
+       Die Hilbertraumadjungierte $S^*$ verschiebt eine Folge also um einen Eintrag nach links.
+
+      \item $\ker{S^*} = \{(c, 0, 0, 0, ...)~|~c \in \mathbb{C}\}.$
+      %\item $\ran{S^*} = \ell^2,$ denn es gilt $\sum_{n=0}^\infty |x_n|^2 < \infty \Longleftrightarrow \sum_{n=1}^\infty |x_n|^2 < \infty$. \textbf{Das folgt eh aus dem nächsten}
+      \item $\bigcap_{n=0}^\infty \ran{(S^*)^n} = \ell^2$, weil für alle $n \in \mathbb{N}$ gilt: $\ran{(S^*)^n} = \ell^2.$
+
+      Sei dazu $(x_k)_{k=0}^\infty \in \ell^2$ beliebig. Wir konstruieren eine weitere Folge $(y_k)_{k=0}^\infty \in \ell^2,$ die die erste als Bild unter $(S^*)^n$ hat, wie folgt:
+      \begin{align}
+       y_k = \left\{\begin{array}{ll}
+       0, \text{~~~falls~} k < n, \\
+       x_{k-n}, \text{~~~falls~} k \geq n.
+       \end{array}
+      \end{align}
+  \end{itemize}
 \end{solution}
