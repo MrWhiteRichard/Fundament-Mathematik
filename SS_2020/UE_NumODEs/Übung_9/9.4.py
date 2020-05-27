@@ -12,7 +12,7 @@ def implicit_linear_multi_step(alpha,beta,y0,T,Mh):
     n = len(y0)
     h = T[1] - T[0]
     k = len(alpha)
-    y = RK4(T[:k],y0,lambda t,y: Mh@y)
+    y = implicit_euler(T[:k],y0,Mh,1e-8,100)
     fy = [Mh@y[i] for i in range(k)]
     L,U = lu_factor(np.eye(n) - h*beta[-1]*Mh)
     for i in range(k,len(T)):
@@ -24,6 +24,14 @@ def implicit_linear_multi_step(alpha,beta,y0,T,Mh):
         fy.append(Mh@y[-1])
     return y
 
+def implicit_euler(T,y0,Mh,tol,max_iter):
+    h = T[1] - T[0]
+    y = [np.array(y0)]
+    n = len(y0)
+    L, U = lu_factor(np.eye(n) - h*Mh)
+    for i in range(len(T) - 1):
+        y.append(lu_solve((L,U), y[i]))
+    return y
 
 def explicit_linear_multi_step(alpha,beta,y0,T,Mh):
     h = T[1] - T[0]
@@ -88,7 +96,7 @@ for i in range(1,10):
         # fig.suptitle("Adams-Moulton (k = 3)")
         # y = implicit_linear_multi_step(a3,b3,y0,t,Mh)
         # m = max([np.linalg.norm(y[i]) for i in range(len(y))])
-        
+
         fig.suptitle("BDF")
         y = implicit_linear_multi_step(a4,b4,y0,t,Mh)
 
