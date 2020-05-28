@@ -64,13 +64,13 @@ Sei o.B.d.A $\sigma(A) \neq \sigma(B)$ (sonst ist die linke Seite $=0$). Wir kö
 (gilt auch für $B$).
 1. Sei $\tau \in \sigma(A-\lambda I)$. Dann gilt nach Definition
 \begin{align*}
-  (A-\lambda I) - \tau I = A - (\lambda + \tau) I \notin Inv(\mathcal{B}(X)) \\
+  (A-\lambda I) - \tau I = A - (\lambda + \tau) I \notin \Inv(\mathcal{B}(X)) \\
   \Rightarrow \lambda + \tau \in \sigma(A)
 \end{align*}
 
 2. Sei $\tau \in \sigma(A) - \lambda$. Dann gilt
 \begin{align*}
-  A - (\lambda + \tau) I = (A - \lambda I) -\tau I \notin Inv(\mathcal{B}(X)) \\
+  A - (\lambda + \tau) I = (A - \lambda I) -\tau I \notin \Inv(\mathcal{B}(X)) \\
   \Rightarrow \tau \in \sigma(A - \lambda I)
 \end{align*}
 
@@ -82,14 +82,17 @@ Ebenso folgt $0 \in \rho(B - \lambda I)$.
 
 Also folgt aus der vorigen Aufgabe, dass
 \begin{align*}
-  r(T) = r(A-B) \geq r((B-\lambda I)^{-1})^{-1}
+  r(A-B) = r(T) \geq r((B-\lambda I)^{-1})^{-1}
 \end{align*}
 
 ($(B- \lambda I)$ nimmt die Rolle von $A$ ein und $(A- \lambda I)$ nimmt die Rolle von $B$ ein. Offensichtlich vertauschen sie.)
 
 \begin{align*}
-  \Rightarrow r(A-B) \geq r((B-\lambda I)^{-1})^{-1} \stackrel{\text{Def. und Lemma 6.4.8}}{=} (\max_{\beta \in \sigma(B - \lambda I)^{-1}} |\beta|)^{-1} = (\max_{\tilde{\beta} \in \sigma(B - \lambda I)} |\tilde{\beta}|^{-1})^{-1} \\
-  \stackrel{\eqref{minuslambda}}{=} (\max_{b \in \sigma(B)} |b - \lambda|^{-1})^{-1} = \min_{b \in \sigma(B)} |b - \lambda| = \inf_{\beta \in \sigma(B)} |\beta - \lambda|
+  \Rightarrow r(A-B) \geq r((B-\lambda I)^{-1})^{-1} \stackrel{\text{Def. und Lemma 6.4.8}}{=}
+  (\max_{\beta \in \sigma((B - \lambda I)^{-1})}) |\beta|)^{-1} =
+  (\max_{\tilde{\beta} \in \sigma(B - \lambda I)} |\tilde{\beta}|^{-1})^{-1} \\
+  \stackrel{\eqref{minuslambda}}{=} (\max_{b \in \sigma(B)} |b - \lambda|^{-1})^{-1} =
+  \min_{b \in \sigma(B)} |b - \lambda| = \inf_{\beta \in \sigma(B)} |\beta - \lambda|
 \end{align*}
 
 Da $\lambda$ beliebig war, gilt also auch:
