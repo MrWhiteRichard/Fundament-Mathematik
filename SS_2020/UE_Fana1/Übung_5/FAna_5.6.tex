@@ -138,15 +138,26 @@ Wegen Satz 6.4.14, gilt überdies
   \leq
   \norm{a}.
 \end{align*}
-
-Wir erhalten die erste Abschätzung also auch durch die erste Voraussetzung.
-
+und daher
 \begin{align*}
-  r(T) r(A^{-1})
-  <
-  \norm{T} \norm{A^{-1}} < 1
+  \|T\| \leq \|A^{-1}\|^{-1} \implies r(T) \leq \|T\| \leq \|A^{-1}\|^{-1} \leq r(A)^{-1}.
 \end{align*}
 
 Die neue Aussage ist also stärker, weil die Voraussetzung schwächer ist.
 
+Als Beispiel dafür, dass die schwächere Voraussetzung erfüllt ist, die stärkere aber nicht,
+betrachte die Matrizen
+\begin{align*}
+  T = \begin{pmatrix}
+    0.5 & 1 \\ 0 & 0.5
+  \end{pmatrix} \\
+  A = \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+  \end{pmatrix}
+\end{align*}
+Dann gilt
+\begin{align*}
+  r(T)r(A) = 0.5\cdot1 < 1 \\
+  \|T\|_{\infty}\|A\|_{\infty} = 1.5*1 > 1
+\end{align*}
 \end{solution}
