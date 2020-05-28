@@ -10,24 +10,145 @@ Warum ist diese Aussage eigentlich stärker als die obige?
 \end{exercise}
 
 \begin{solution}
-  Zuerst stellen wir fest, dass $T$ auch mit $A^{-1}$ kommutiert, denn es gilt
-  \begin{align}
-      A^{-1}T = A^{-1}TAA^{-1} = A^{-1}ATA^{-1} = TA^{-1}.
-  \end{align}
 
-  Damit und mit Satz 6.4.14 erhalten wir nun folgende Abschätzung:
-  \begin{align}
-      r(TA^{-1}) = \lim\limits_{n \rightarrow \infty}{\|(TA^{-1})^n\|^{\frac{1}{n}}} =
-      \lim\limits_{n \rightarrow \infty}{\|T^n(A^{-1})^n\|^{\frac{1}{n}}} \\ \leq
-      \lim\limits_{n \rightarrow \infty}{\|T^n\|^{\frac{1}{n}}\|(A^{-1})^n\|^{\frac{1}{n}}} =
-      r(T) r(A^{-1}) < 1,
-  \end{align}
+\underline{Was ist was?}
 
-  wobei die letzte Ungleichung nach Voraussetzung gilt.
+\includegraphicsboxed{Definition 6.4.4}
 
-  Nach der Definition des Spektralradius gilt also $1 \in \rho(TA^{-1}),$ was gleichbedeutend ist damit, dass $(TA^{-1} + I) = A^{-1} (T + A)$ invertierbar, diese Abbildung also bijektiv ist.
-  Da das bei einer Verkettung von Abbildungen genau dann der Fall ist, wenn beide Abbildungen bijektiv sind, ist auch $T + A$ invertierbar, das heißt $0 \in \rho(B).$
+Der Spektralradius von $a \in A$ ist dabei definiert als
+
+\begin{align*}
+  r(a)
+  :=
+  \max_{\lambda \in \sigma(a)} |\lambda|.
+\end{align*}
+
+Um zu zeigen, dass $0 \in \rho(B)$, müssen wir also $B \in \Inv{\mathcal{B(X)}}$.
+Wir suchen also eine Inverse von $B$. \\
+
+\underline{Richard's Argumentation:}
+
+\begin{align*}
+  B
+  =
+  A + T
+  =
+  (I - (-T A^{-1})) A
+\end{align*}
+
+$A$ ist bereits invertierbar, weil $0 \in \rho(A)$.
+Ein, bereits in der Angabe angesprochener, Kandidat, für die Inverse des ersten Faktors, ist die Neumannsche Reihe.
+Um zu argumentieren, dass diese existiert, d.h. (absolut) konvergiert, und das gewünschte leistet, gehen wir wie folgt vor. \\
+
+Wir stellen fest, dass $T$ auch mit $A^{-1}$ kommutiert.
+
+\begin{align}
+    A^{-1} T
+    =
+    A^{-1} T A A^{-1}
+    =
+    A^{-1} A T A^{-1}
+    = T A^{-1}.
+\end{align}
+
+\includegraphicsboxed{Satz 6.4.14}
+
+Laut Satz 6.4.14, gilt also $\Forall \epsilon > 0: \Exists N \in \N: \Forall n \geq N:$
+
+\begin{align*}
+\begin{array}{ccccc}
+  \norm{T^n}^\frac{1}{n} - r(T) < \epsilon &
+  \implies &
+  \norm{T^n}^\frac{1}{n} < \epsilon + r(T) &
+  \implies &
+  \norm{T^n} < (\epsilon + r(T))^n, \\
+  \norm{A^{-n}}^\frac{1}{n} - r(A^{-1}) < \epsilon &
+  \implies &
+  \norm{A^{-n}}^\frac{1}{n} < \epsilon + r(A^{-1}) &
+  \implies &
+  \norm{A^{-n}} < (\epsilon + r(A^{-1}))^n
+\end{array}
+\end{align*}
+
+Man beachte, dass die $|\cdot|$ wegen des $\inf$ weggelassen werden können.
+Für $\epsilon$ hinreichend klein gilt also
+
+\begin{align*}
+  \norm{T^n} \norm{A^{-n}}
+  <
+  (\epsilon + r(T))^n
+  (\epsilon + r(A^{-1}))^n
+  =
+  (
+    \underbrace
+    {
+      (\epsilon + r(T))
+      (\epsilon + r(A^{-1}))
+    }_{=: q < 1}
+  )^n < 1.
+\end{align*}
+
+Damit, konvergiert die folgende Neumannsche Reihe absolut.
+
+\begin{align*}
+  \norm{\sum_{n = 0}^\infty (-T A^{-1})^n}
+  \leq
+  \sum_{n = 0}^{N-1} \norm{T^n} \norm{A^{-n}} +
+  \sum_{n = N}^\infty \norm{T^n} \norm{A^{-n}}
+  \leq
+  \sum_{n = 0}^{N-1} \norm{T^n} \norm{A^{-n}} +
+  \sum_{n = N}^\infty q^n
+  < \infty
+\end{align*}
+
+Weil $T$ und $A^{-1}$ kommutieren, rechnet man wie immer nach, dass die Neumannsche Reihe tatsächlich eine Inverse ist. \\
+
+\underline{Paul's Argumentation:} \\
+
+Damit, und mit Satz 6.4.14 erhalten wir nun folgende Abschätzung.
+
+\begin{align*}
+    r(TA^{-1})
+    =
+    \lim_{n \to \infty}{\|(TA^{-1})^n\|^{\frac{1}{n}}}
+    =
+    \lim_{n \to \infty}
+    \norm{T^n(A^{-n})}^\frac{1}{n}
+    \leq
+    \lim_{n \to \infty}
+    \norm{T^n}^\frac{1}{n}
+    \norm{(A^{-n})}^\frac{1}{n}
+    =
+    r(T) r(A^{-1}) < 1
+\end{align*}
+
+Die letzte Ungleichung gilt nach Voraussetzung.
 
 
-  Des Weiteren gilt stets $r(A) \leq \|A\|$; die neue Aussage ist also stärker, weil die Voraussetzung schwächer ist. \textbf{(wsl will er haben, dass sie echt stärker ist)}.
+Das find ich ein Bisschen verwirrend ...
+Nach der Definition des Spektralradius gilt also $1 \in \rho(TA^{-1}),$ was gleichbedeutend ist damit, dass $(TA^{-1} + I) = A^{-1} (T + A)$ invertierbar, diese Abbildung also bijektiv ist. Da das bei einer Verkettung von Abbildungen genau dann der Fall ist, wenn beide Abbildungen bijektiv sind, ist auch $T + A$ invertierbar, das heißt $0 \in \rho(B).$ \\
+
+\underline{Echt stärker:} \\
+
+Wegen Satz 6.4.14, gilt überdies
+
+\begin{align*}
+  r(a)
+  =
+  \inf_{n \in \N}
+  \norm{a^n}^\frac{1}{n}
+  \leq
+  \norm{a}.
+\end{align*}
+
+Wir erhalten die erste Abschätzung also auch durch die erste Voraussetzung.
+
+\begin{align*}
+  r(T) r(A^{-1})
+  <
+  \norm{T} \norm{A^{-1}} < 1
+\end{align*}
+
+Die neue Aussage ist also stärker, weil die Voraussetzung schwächer ist.
+
 \end{solution}
