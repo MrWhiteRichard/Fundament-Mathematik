@@ -9,7 +9,7 @@ Betrachte den Operator $T$ der für $f \in L^1(0, 1)$ definiert ist als
 \end{align*}
 
 Die Zahlen $\Int[0][1]{f(t) t^n}{t}$ heißen auch die Momente von $f$.
-Zeige, dass $T$ zu $\mathcal{B}(L^1(0, 1), C^0(\N_0))$ gehört, und bestimme $T^\prime \in \mathcal{B}(\ell^1(\N_0), L^\infty(0, 1))$.
+Zeige, dass $T$ zu $\mathcal{B}(L^1(0, 1), C_0(\N_0))$ gehört, und bestimme $T^\prime \in \mathcal{B}(\ell^1(\N_0), L^\infty(0, 1))$.
 
 \end{exercise}
 
@@ -24,7 +24,7 @@ Konvergenz und der Tatsache, dass $f(t)t^n$ punktweise für alle $t$ gegen $0$ k
   \lim_{n \to \infty} Tf_n = \lim_{n \to \infty} \int_0^1 f(t)t^n dt
   =  \int_0^1 \lim_{n \to \infty}f(t)t^n dt = \int_0^1 0 dt= 0,
 \end{align*}
-dass $T$ wirklich nach $C^0(\N_0)$ abbildet. Da $C^0(\N_0)$ mit der Supremumsnorm
+dass $T$ wirklich nach $C_0(\N_0)$ abbildet. Da $C_0(\N_0)$ mit der Supremumsnorm
 versehen ist, folgt auch
 \begin{align*}
   \|Tf\|_{\infty} = \left\|\pbraces{\Int[0][1]{f(t) t^n}{t}}_{n \in \N_0}\right\|_{\infty} =
@@ -37,12 +37,12 @@ Der Operator $T^{\prime}$ wird durch
   y^{\prime}(Tx) = \langle Tx,y^{\prime} \rangle =
   \langle x, T^{\prime}y^{\prime}\rangle = T^{\prime}y^{\prime}(x)
 \end{align*}
-charakteristiert. Also ist $T^{\prime}$ eine Abbildung von $C^0(\N_0)^{\prime} = L^1(\N_0)$
+charakteristiert. Also ist $T^{\prime}$ eine Abbildung von $C_0(\N_0)^{\prime} = L^1(\N_0)$
 nach $L^1(0, 1)^{\prime} = L^\infty(0, 1)$.
-Der Isomorphismus zwischen $C^0(\N_0)^{\prime}$ und $L^1(\N_0)$ lautet
+Der Isomorphismus zwischen $C_0(\N_0)^{\prime}$ und $L^1(\N_0)$ lautet
 \begin{align*}
   \varphi_1:& \begin{Bmatrix}
-    L^1(\N_0) & \to & C^0(\N_0)^{\prime} \\
+    L^1(\N_0) & \to & C_0(\N_0)^{\prime} \\
     (a_n)_{n \in \N} &\mapsto & ((x_n)_{n \in \N} \mapsto \sum_{n \in \N}x_na_n)
   \end{Bmatrix}. \\
   \varphi_2:& \begin{Bmatrix}
@@ -61,8 +61,8 @@ Dualräumen) leistet
 
 Wieder folgt aufgrund majorisierter Konvergenz mit der Majorante
 \begin{align*}
-  \int_0^1 \sum_{k=0}^n a_kt^k f(t)dt \leq \int_0^1 \sum_{n \in \N} |a_n|t^nf(t) dt
-  \leq \int_0^1 \|a\|_{L^1(\N_0)}f(t) \leq \|a\|_{L^1(\N_0)}\|f\|_{L^1(0,1)},
+  \int_0^1 \sum_{k=0}^n a_kt^k f(t)dt \leq \int_0^1 \sum_{n \in \N} |a_n|t^n|f(t)| dt
+  \leq \int_0^1 \|a\|_{L^1(\N_0)}|f(t)| \leq \|a\|_{L^1(\N_0)}\|f\|_{L^1(0,1)},
 \end{align*}
 dass
 \begin{align*}
