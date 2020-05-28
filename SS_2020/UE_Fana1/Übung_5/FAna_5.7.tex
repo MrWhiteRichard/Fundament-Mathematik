@@ -21,7 +21,7 @@ Zeige:
 \begin{enumerate}[label = (\alph*)]
 
   \item
-  Sind $A, B \in \mathcal{B}$ mit $A B = B A$, dann ist $d_H(\sigma(A), \sigma(B)) \leq r(A - B)$.
+  Sind $A, B \in \mathcal{B}(X)$ mit $A B = B A$, dann ist $d_H(\sigma(A), \sigma(B)) \leq r(A - B)$.
 
   \item
   Ist $\mathcal{C}$ eine kommutative Teilalgebra von $\mathcal{B}(X)$, so ist die Funktion
@@ -41,7 +41,22 @@ Zeige:
 \end{exercise}
 
 \begin{solution}
+Aus Lemma 6.4.10 folgt die Kompaktheit von $\sigma(A)$ und $\sigma(B)$. Damit
+ist der Metrik-Abstand zwischen diesen beiden Mengen wohldefiniert.
 
-ToDo!
+Sei $x \in \sigma(A)$ beliebig. Betrachte $\inf_{y \in \sigma(B)}|x-y|$.
+Also ist $(A - xe),(B - ye) \notin \Inv(\mathcal{B}(X))$.
 
+\begin{align*}
+  (A - B) -(x -y)e = wahtever
+\end{align*}
+
+\begin{align*}
+  |x - y| \leq |x| + |y| \leq r(A) + r(B) = \lim_{n \to \infty}\|A^n\|^{\nicefrac{1}{n}}
+  + \|B^n\|^{\nicefrac{1}{n}}
+\end{align*}
+
+\begin{align*}
+  r(A - B) = \lim_{n \to \infty} \|(A-B)^n\|^{\nicefrac{1}{n}} \leq \|A-B\|
+\end{align*}
 \end{solution}
