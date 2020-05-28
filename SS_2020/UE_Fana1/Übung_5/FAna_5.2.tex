@@ -12,12 +12,33 @@ Zeige, dass sein Konjugierter $A^\prime \in \mathcal{B}(M(Y), M(X))$ gegeben ist
 \end{exercise}
 
 \begin{solution}
-$M(X),M(Y)$ Menge aller messbaren Funktionen auf $X,Y$? Wohin?
-Oder Borelmaße? Oder was?
+Da $X,Y$ kompakt sind, gilt $C(X) = C_c(X), C(Y) = C_c(Y)$.
+Laut dem Darstellungssatz von Riesz-Markov gilt $C_c(L)^{\prime} = M_{reg}(L)$,
+wobei $(M_{reg}(L), \|\cdot\|)$ den Raum der komplexen regulären Borelmaße auf $L$
+mit der Totalvariation als Norm.
+Der Isomorphismus lautet
 \begin{align*}
-  (A^{\prime}\mu)(\Delta) = \langle \Delta, A^{\prime}\mu \rangle =
-  \langle A \Delta, \mu \rangle = \mu(A \Delta) = \mu(\Delta \circ \tau)
+  \Phi(\mu): \begin{Bmatrix}
+    M_{reg}(L) & \to & C_c(L)^{\prime} \\
+    \mu & \mapsto & (f \mapsto \int_L f d\mu)
+  \end{Bmatrix}.
 \end{align*}
-
-
+Seien nun $f \in C_c(X), g^{\prime} \in C_c(Y)^{\prime}$ beliebig mit $\Phi(\mu_g) = g$.
+\begin{align*}
+  (A^{\prime}g^{\prime})f = \langle f, A^{\prime}g^{\prime} \rangle = \langle A f, g^{\prime} \rangle
+  = g^{\prime}(Af) = \Phi(\mu_g)(f \circ \tau)
+  = \int_Y f\circ \tau d\mu_g
+  = \int_{\tau^{-1}(X)} f \circ \tau d\mu_g.
+\end{align*}
+Mit dem Transformationssatz für Maße folgt schließlich
+\begin{align*}
+  (A^{\prime}g^{\prime})f = \int_{\tau^{-1}(X)} f \circ \tau d\mu_g
+  = \int_{X} f d\mu_g\tau^{-1},
+\end{align*}
+also ist $\mu_g\tau^{-1}$ ein reguläres Maß auf $X$.
+Setzen wir nun für eine beliebige Borelmenge $f := \1\Delta$ erhalten wir
+\begin{align*}
+  (A^{\prime}g^{\prime})\1\Delta = \int_{X} \1\Delta d\mu_g\tau^{-1}
+  = \mu_g(\tau^{-1})(\Delta)
+\end{align*}
 \end{solution}
