@@ -10,7 +10,7 @@ Man erinnere sich, dass $U$ auf dem dichten Teilraum $L^1(\R) \cap L^2(\R)$ gege
   (U f)(\zeta)
   =
   \frac{1}{\sqrt{2 \pi}}
-  \Int[\R]{f(t \exp{(-i t \zeta)})}{\lambda(t)}.
+  \Int[\R]{f(t) \exp{(-i t \zeta)}}{\lambda(t)}.
 \end{align*}
 
 Verwende den Spektralabbildungssatz und betrachte Funktionen der Bauart $p(t) e^{-\frac{t^2}{2}}$ mit einem Polynom $p(t)$.
@@ -19,6 +19,285 @@ Verwende den Spektralabbildungssatz und betrachte Funktionen der Bauart $p(t) e^
 
 \begin{solution}
 
-ToDo!
+Wir beginnen, indem wir ein paar Eigenwerte ausrechnen.
+
+\includegraphicsboxed{Blümlinger - Beispiel 2.1.10}
+
+\begin{align*}
+  U(e^{-\frac{t^2}{2}})(\zeta)
+  & =
+  \frac{1}{\sqrt{2 \pi}}
+  \Int[\R]
+  {
+    \exp \pbraces{-\frac{t^2}{2}}
+    \exp{(-i t \zeta)}
+  }
+  {\lambda(t)} \\
+  & =
+  \frac{1}{\sqrt{2 \pi}}
+  \Bigg (
+    \underbrace
+    {
+    \Int[\R]
+    {
+    \exp \pbraces{-\frac{t^2}{2}}
+    \cos{(\zeta t)}
+    }
+    {\lambda(t)}
+    }_{
+    \sqrt{2 \pi}
+    \exp \pbraces{-\frac{\zeta^2}{2}}
+    } -
+    i
+    \underbrace
+    {
+    \Int[\R]
+    {
+    \exp \pbraces{-\frac{t^2}{2}}
+    \sin{(\zeta t)}
+    }
+    {\lambda(t)}
+    }_0
+  \Bigg )
+  =
+  \exp \pbraces{-\frac{\zeta^2}{2}}
+\end{align*}
+
+Das erste \Quote{Underbrace} gilt wegen Blümlinger - Beispiel 2.1.10 und das zweite, weil der Integrand ungerade ist.
+Wir erhalten also $1 \in \sigma_p(U) \subseteq \sigma(U)$. \\
+
+\begin{align*}
+  \frac{d}{dt}
+  \exp \pbraces{-\frac{t^2}{2}}
+  =
+  -t \exp \pbraces{-\frac{t^2}{2}}
+\end{align*}
+
+\includegraphicsboxed{Blümlinger - Proposition 3.2.2}
+
+\begin{align*}
+  U \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+  =
+  U \pbraces{\frac{d}{dt} \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+  =
+  i \zeta U \pbraces{\exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+  =
+  i \zeta \exp \pbraces{-\frac{\zeta^2}{2}}
+  =
+  (-i) (-\zeta \exp \pbraces{-\frac{\zeta^2}{2}})
+\end{align*}
+
+Wir erhalten also $-i \in \sigma_p(U) \subseteq \sigma(U)$. \\
+
+\begin{align*}
+  \frac{d^2}{dt^2}
+  \exp \pbraces{-\frac{t^2}{2}}
+  =
+  \frac{d}{dt}
+  \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}
+  =
+  -\exp \pbraces{-\frac{t^2}{2}} +
+  t^2 \exp \pbraces{-\frac{t^2}{2}}
+\end{align*}
+
+\begin{align*}
+  -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
+  & =
+  U \pbraces
+  {
+    \frac{d^2}{dt^2}
+    \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  U \pbraces
+  {
+    -\exp \pbraces{-\frac{t^2}{2}} +
+    t^2 \exp \pbraces{-\frac{t^2}{2}}
+  } \\
+  & =
+  U \pbraces
+  {
+    -\frac{1}{2}
+    \exp \pbraces{-\frac{t^2}{2}}
+  } +
+  U \pbraces
+  {
+    -\frac{1}{2}
+    \exp \pbraces{-\frac{t^2}{2}} +
+    t^2 \exp \pbraces{-\frac{t^2}{2}}
+  } \\
+  & =
+  -\frac{1}{2} \exp \pbraces{-\frac{\zeta^2}{2}} +
+  U \pbraces
+  {
+    -\frac{1}{2}
+    \exp \pbraces{-\frac{t^2}{2}} +
+    t^2 \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
+\end{align*}
+
+\begin{align*}
+  U \pbraces
+  {
+    -\frac{1}{2}
+    \exp \pbraces{-\frac{t^2}{2}} +
+    t^2 \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  (-1) \pbraces
+  {
+    -\frac{1}{2}
+    \exp \pbraces{-\frac{\zeta^2}{2}} +
+    \zeta^2
+    \exp \pbraces{-\frac{\zeta^2}{2}}
+  }
+\end{align*}
+
+Wir erhalten also $-1 \in \sigma_p(U) \subseteq \sigma(U)$. \\
+
+\begin{align*}
+  \frac{d^3}{dt^3}
+  \exp \pbraces{-\frac{t^2}{2}}
+  =
+  \frac{d^2}{dt^2}
+  \pbraces
+  {
+    -\exp \pbraces{-\frac{t^2}{2}} +
+    t^2 \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  t \exp \pbraces{-\frac{t^2}{2}} +
+  2 t \exp \pbraces{-\frac{t^2}{2}} -
+  t^3 \exp \pbraces{-\frac{t^2}{2}}
+\end{align*}
+
+\begin{align*}
+  -i \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
+  & =
+  i^3 \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
+  =
+  U \pbraces
+  {
+    \frac{d^3}{dt^3}
+    \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  U \pbraces
+  {
+    3 t \exp \pbraces{-\frac{t^2}{2}} -
+    t^3 \exp \pbraces{-\frac{t^2}{2}}
+  } \\
+  & =
+  \frac{3}{2}
+  U \pbraces{t \exp \pbraces{-\frac{t^2}{2}}} +
+  U \pbraces
+  {
+    \frac{3}{2}
+    t \exp \pbraces{-\frac{t^2}{2}} -
+    t^3 \exp \pbraces{-\frac{t^2}{2}}
+  } \\
+  & =
+  -\frac{3}{2} i \zeta \exp \pbraces{-\frac{t^2}{2}} +
+  U \pbraces
+  {
+    \frac{3}{2}
+    t \exp \pbraces{-\frac{t^2}{2}} -
+    t^3 \exp \pbraces{-\frac{t^2}{2}}
+  }
+\end{align*}
+
+\begin{align*}
+  U \pbraces
+  {
+    \frac{3}{2}
+    t \exp \pbraces{-\frac{t^2}{2}} -
+    t^3 \exp \pbraces{-\frac{t^2}{2}}
+  }
+  =
+  i \pbraces
+  {
+    \frac{3}{2} \zeta \exp \pbraces{-\frac{t^2}{2}} -
+    \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
+  }
+\end{align*}
+
+Wir erhalten also $i \in \sigma_p(U) \subseteq \sigma(U)$. \\
+Wir erhalten also insgesamt $\Bbraces{\pm 1, \pm i} \subseteq \sigma_p(U) \subseteq \sigma(U)$.
+
+\includegraphicsboxed{Blümlinger - Satz 3.3.2}
+\includegraphicsboxed{Proposition 6.6.7}
+\includegraphicsboxed{Proposition 6.6.8}
+
+Laut Blümlinger - Satz 3.3.2, ist $U: L^2(\R) \to L^2(\R)$ eine surjektive Isometrie.
+Laut Proposition 6.6.7, ist $U$ also unitär.
+Laut Proposition 6.6.8, gilt also
+
+\begin{align*}
+  \Bbraces{\pm 1, \pm i}
+  \subseteq
+  \sigma_p(U)
+  \subseteq
+  \sigma(U)
+  \subseteq
+  \T
+  =
+  \Bbraces{z \in \C: |z| = 1}.
+\end{align*}
+
+\includegraphicsboxed{Blümlinger - Proposition 3.3.1}
+
+Laut Blümlinger - Proposition 3.3.1, ist der Schwarzraum $S \subseteq L^2(\R)$ und $T := U|_S$ ein Automorphismus.
+
+\begin{align*}
+  S
+  :=
+  \Bbraces
+  {
+    f \in C^\infty(\R):
+    \Forall n, m \in \N:
+    \sup \Bbraces{|x^n f^{(m)}(x)| : x \in \R} < \infty
+  }
+\end{align*}
+
+\includegraphicsboxed{Blümlinger - Satz 2.5.1}
+
+Laut Blümlinger - Satz 2.5.1, liegt $C_c^\infty(\R) \subseteq S$ dicht in $L^2(\R)$.
+Also liegt auch $S$ dicht in $L^2(\R)$. \\
+
+Weil auch $S \subseteq L^1(\R)$, können wir $T$, wie im Hinweis, explizit anschreiben. \\
+
+\includegraphicsboxed{Blümlinger - MISC}
+
+Wir betrachten den Operator $R f(x) = f(-x)$.
+Laut Blümlinger - (3.14), erhalten wir
+
+\begin{align*}
+  T^{-1} = R T = T R
+  \implies
+  R f = R T^{-1} T f = R R T T f = T^2 f
+  \implies
+  T^2 = R, T^4 = R^2 = I.
+\end{align*}
+
+Da $S$ dicht in $L^1(\R)$ liegt, gilt damit auch $U^4 = I$.
+
+\includegraphicsboxed{Satz 6.4.7 (Spektralabbildungssatz)}
+
+Mit dem Spektralabbildungssatz, Satz 6.4.7, folgt also
+
+\begin{align*}
+  \implies
+  1 = \sigma(I) = \sigma(U^4) = (\sigma(U))^4
+  \implies
+  \Bbraces{\pm 1, \pm i}
+  \subseteq
+  \sigma_p(U)
+  \subseteq
+  \sigma(U)
+  \subseteq
+  \Bbraces{\pm 1, \pm i}.
+\end{align*}
 
 \end{solution}
