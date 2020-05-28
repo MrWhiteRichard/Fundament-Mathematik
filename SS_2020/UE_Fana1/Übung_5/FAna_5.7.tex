@@ -41,22 +41,77 @@ Zeige:
 \end{exercise}
 
 \begin{solution}
-Aus Lemma 6.4.10 folgt die Kompaktheit von $\sigma(A)$ und $\sigma(B)$. Damit
-ist der Metrik-Abstand zwischen diesen beiden Mengen wohldefiniert.
+\begin{enumerate}[label = (\alph*)]
 
-Sei $x \in \sigma(A)$ beliebig. Betrachte $\inf_{y \in \sigma(B)}|x-y|$.
-Also ist $(A - xe),(B - ye) \notin \Inv(\mathcal{B}(X))$.
-
+\item
+Wir zeigen zuerst eine Hilfsaussage:
+\begin{align}\label{Lemmachen}
+  \Forall C \in \mathcal{B}(X): r(C) = r(-C)
+\end{align}
+Dies gilt, da
 \begin{align*}
-  (A - B) -(x -y)e = wahtever
+  C - \lambda I \in Inv(\mathcal{B}(X)) \Leftrightarrow & -C + \lambda I = -(C - \lambda I) \in Inv(\mathcal{B}(X)) \\
+  \Rightarrow \lambda \in \sigma (C) \Leftrightarrow & -\lambda \in \sigma (-C) \\
+  \Rightarrow r(A) = \max_{\lambda \in \sigma (C)} |\lambda| = \max_{\lambda \in \sigma (C)} |-\lambda| = & \max_{\lambda \in \sigma (-C)} |\lambda| = r(-C)
 \end{align*}
 
+Wir wissen nach Lemma 6.4.10, dass die Spektren kompakt sind, somit ist $d_H(\sigma(A), \sigma(B))$ wohldefiniert.
+
+Sei o.B.d.A $\sigma(A) \neq \sigma(B)$ (sonst ist die linke Seite $=0$). Wir können also ein $\lambda \in \sigma(A) \setminus \sigma(B)$ wählen (wieder o.B.d.A.) und wollen zeigen
+\begin{align}\label{minuslambda}
+  \sigma(A-\lambda I) = \sigma(A) - \lambda
+\end{align}
+(gilt auch für $B$).
+1. Sei $\tau \in \sigma(A-\lambda I)$. Dann gilt nach Definition
 \begin{align*}
-  |x - y| \leq |x| + |y| \leq r(A) + r(B) = \lim_{n \to \infty}\|A^n\|^{\nicefrac{1}{n}}
-  + \|B^n\|^{\nicefrac{1}{n}}
+  (A-\lambda I) - \tau I = A - (\lambda + \tau) I \notin Inv(\mathcal{B}(X)) \\
+  \Rightarrow \lambda + \tau \in \sigma(A)
 \end{align*}
 
+2. Sei $\tau \in \sigma(A) - \lambda$. Dann gilt
 \begin{align*}
-  r(A - B) = \lim_{n \to \infty} \|(A-B)^n\|^{\nicefrac{1}{n}} \leq \|A-B\|
+  A - (\lambda + \tau) I = (A - \lambda I) -\tau I \notin Inv(\mathcal{B}(X)) \\
+  \Rightarrow \tau \in \sigma(A - \lambda I)
 \end{align*}
+
+Wir setzen nun $T := A - B$ und somit auch $A- \lambda I = B - \lambda I + T$.
+
+Wir haben $\lambda$ so gewählt, dass $\lambda \in \sigma(A)$. Also ist auch $0 \in \sigma(A - \lambda I)$ und $0 \notin \rho(A - \lambda I)$.
+
+Ebenso folgt $0 \in \rho(B - \lambda I)$.
+
+Also folgt aus der vorigen Aufgabe, dass
+\begin{align*}
+  r(T) = r(A-B) \geq r((B-\lambda I)^{-1})^{-1}
+\end{align*}
+
+($(B- \lambda I)$ nimmt die Rolle von $A$ ein und $(A- \lambda I)$ nimmt die Rolle von $B$ ein. Offensichtlich vertauschen sie.)
+
+\begin{align*}
+  \Rightarrow r(A-B) \geq r((B-\lambda I)^{-1})^{-1} \stackrel{\text{Def. und Lemma 6.4.8}}{=} (\max_{\beta \in \sigma(B - \lambda I)^{-1}} |\beta|)^{-1} = (\max_{\tilde{\beta} \in \sigma(B - \lambda I)} |\tilde{\beta}|^{-1})^{-1} \\
+  \stackrel{\eqref{minuslambda}}{=} (\max_{b \in \sigma(B)} |b - \lambda|^{-1})^{-1} = \min_{b \in \sigma(B)} |b - \lambda| = \inf_{\beta \in \sigma(B)} |\beta - \lambda|
+\end{align*}
+
+Da $\lambda$ beliebig war, gilt also auch:
+\begin{align*}
+  r(A-B) \geq \sup_{\lambda \in \sigma(A) \setminus \sigma(B)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda} = \sup_{\lambda \in \sigma(A)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda}
+\end{align*}
+
+Die letzte Gleichung, da für $\lambda \in \sigma(B)$ eh das Infimum gleich $0$ ist.
+
+Analog zeigt man
+\begin{align*}
+  r(B-A) \geq \sup_{\beta \in \sigma(B)} \inf_{\lambda \in \sigma(A)} \vbraces{\beta - \lambda}
+\end{align*}
+
+Gemeinsam mit \eqref{Lemmachen} bekommen wir
+\begin{align*}
+  r(A-B) \geq \max\{\sup_{\lambda \in \sigma(A)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda},\sup_{\beta \in \sigma(B)} \inf_{\lambda \in \sigma(A)} \vbraces{\beta - \lambda}\} = d_H(\sigma(A), \sigma(B))
+\end{align*}
+
+\item
+\begin{align*}
+  d_H(\Sigma(A), \Sigma(B)) = d_H(\sigma(A), \sigma(B)) \leq r(A-B) \leq \|A-B\|
+\end{align*}
+\end{enumerate}
 \end{solution}
