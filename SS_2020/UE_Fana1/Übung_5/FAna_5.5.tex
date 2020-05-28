@@ -230,6 +230,7 @@ Wir erhalten also insgesamt $\Bbraces{\pm 1, \pm i} \subseteq \sigma_p(U) \subse
 \includegraphicsboxed{Proposition 6.6.7}
 \includegraphicsboxed{Proposition 6.6.8}
 \FloatBarrier
+
 Laut Blümlinger - Satz 3.3.2, ist $U: L^2(\R) \to L^2(\R)$ eine surjektive Isometrie.
 Laut Proposition 6.6.7, ist $U$ also unitär.
 Laut Proposition 6.6.8, gilt also
@@ -271,7 +272,26 @@ Weil auch $S \subseteq L^1(\R)$, können wir $T$, wie im Hinweis, explizit ansch
 \includegraphicsboxed{Blümlinger - MISC}
 
 Wir betrachten den Operator $R f(x) = f(-x)$.
-Laut Blümlinger - (3.14), erhalten wir
+Mit Substitution folgt $\Forall f \in S:$
+
+\begin{align*}
+  T R f
+  =
+  \Int[-\infty][\infty]
+  {f(-t) \exp{(-i t \zeta)}}{t}
+  \begin{vmatrix}
+    s = -t \\
+    ds = -dt
+  \end{vmatrix}
+  =
+  -\Int[\infty][-\infty]{f(s) \exp{(i s \zeta)}}{s}
+  =
+  \Int[-\infty][\infty]{f(s) \exp{(i t \zeta)}}{s}
+  =
+  R T f.
+\end{align*}
+
+Laut Blümlinger - (3.14), erhalten wir also $T^{-1} = R T$.
 
 \begin{align*}
   T^{-1} = R T = T R
@@ -281,7 +301,7 @@ Laut Blümlinger - (3.14), erhalten wir
   T^2 = R, T^4 = R^2 = I.
 \end{align*}
 
-Da $S$ dicht in $L^1(\R)$ liegt, gilt damit auch $U^4 = I$.
+Da $S$ dicht in $L^2(\R)$ liegt, gilt damit auch $U^4 = I$.
 
 \includegraphicsboxed{Satz 6.4.7 (Spektralabbildungssatz)}
 
