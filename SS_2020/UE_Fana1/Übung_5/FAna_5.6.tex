@@ -10,7 +10,24 @@ Warum ist diese Aussage eigentlich stärker als die obige?
 \end{exercise}
 
 \begin{solution}
+  Zuerst stellen wir fest, dass $T$ auch mit $A^{-1}$ kommutiert, denn es gilt
+  \begin{align}
+      A^{-1}T = A^{-1}TAA^{-1} = A^{-1}ATA^{-1} = TA^{-1}.
+  \end{align}
 
-ToDo!
+  Damit und mit Satz 6.4.14 erhalten wir nun folgende Abschätzung:
+  \begin{align}
+      r(TA^{-1}) = \lim\limits_{n \rightarrow \infty}{\|(TA^{-1})^n\|^{\frac{1}{n}}} =
+      \lim\limits_{n \rightarrow \infty}{\|T^n(A^{-1})^n\|^{\frac{1}{n}}} \\ \leq
+      \lim\limits_{n \rightarrow \infty}{\|T^n\|^{\frac{1}{n}}\|(A^{-1})^n\|^{\frac{1}{n}}} =
+      r(T) r(A^{-1}) < 1,
+  \end{align}
 
+  wobei die letzte Ungleichung nach Voraussetzung gilt.
+
+  Nach der Definition des Spektralradius gilt also $1 \in \rho(TA^{-1}),$ was gleichbedeutend ist damit, dass $(TA^{-1} + I) = A^{-1} (T + A)$ invertierbar, diese Abbildung also bijektiv ist.
+  Da das bei einer Verkettung von Abbildungen genau dann der Fall ist, wenn beide Abbildungen bijektiv sind, ist auch $T + A$ invertierbar, das heißt $0 \in \rho(B).$
+
+
+  Des Weiteren gilt stets $r(A) \leq \|A\|$; die neue Aussage ist also stärker, weil die Voraussetzung schwächer ist. \textbf{(wsl will er haben, dass sie echt stärker ist)}.
 \end{solution}
