@@ -27,6 +27,82 @@ Approximiere $A$ mit Operatoren die endlichdimensionales Bild haben.
 
 \begin{solution}
 
-ToDo!
+Zuerst zeigen wir $A: \ell^2(\N) \rightarrow \ell^2(\N)$. Sei dazu $(x_n)_{n \in \N} \in \ell^2(\N)$
+beliebig. Dann ist
+
+\begin{align*}
+  \sum_{n=1}^\infty |\sum_{k=1}^\infty a_{k+n-1}x_k|^2 &\leq
+  \sum_{n=1}^\infty \Big( \sum_{k=1}^\infty |a_{k+n-1}| |x_k|\Big)^2 \leq
+  \sum_{n=1}^\infty \Big( \sum_{k=1}^\infty |a_{k+n-1}|^2 \cdot \sum_{k=1}^\infty |x_k|^2\Big) = \\
+  & \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=1}^\infty \sum_{k=1}^\infty |a_{k+n-1}|^2 \stackrel{(1)}{\leq}
+  \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=1}^\infty \sum_{k=1}^\infty |a_n| |a_k| =
+  \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \Vbraces{(a_n)_{n \in \N}}_{\ell^1(\N)}^2
+\end{align*}
+
+Wobei $(1)$ gilt da die Folge $(a_n)_{n \in \N}$ monoton fallend ist.
+
+Dem Hinweis folgend definieren wir für $j \in \N$ Operatoren $A_j$ folgendermaßen:
+
+\begin{align*}
+  A_j((x_n)_{n\in \N}) = (y_n)_{n \in \N} = \begin{cases}
+  \sum_{k=1}^{\infty} a_{k+n-1}x_k & \text{für} \quad n \leq j \\
+  0 & \text{sonst}
+  \end{cases}
+\end{align*}
+
+Also gilt $A_j: \ell^2(\N) \rightarrow \{(y_n)_{n \in \N} \in \ell^2(\N): \forall n > j:
+y_n = 0\}$ damit haben die Operatoren also endlichdimensionales Bild. Nach Proposition
+$6.5.4$ gilt zu zeigen, dass $A_j$ linear und beschränkt sind.
+\includegraphicsboxed{Prop. 6.5.4}
+
+Die Linearität rechnen wir nach:
+
+\begin{align*}
+  A_j((x_n)_{n \in \N} + c (y_n)_{n \in \N}) =& \big(\sum_{k=1}^{\infty}a_{k+n-1}
+  x_k+c y_k \big)_{n=1}^j = \big(\sum_{k=1}^{\infty}a_{k+n-1}
+  x_k+ c \sum_{k=1}^{\infty}a_{k+n-1}y_k \big)_{n=1}^j\\
+  =&\big(\sum_{k=1}^{\infty}a_{k+n-1}
+  x_k \big)_{n=1}^j + c\big(\sum_{k=1}^\infty a_{k+n-1}y_k \big)_{n=1}^j
+  = A_j((x_n)_{n \in \N})+ c A_j((y_n)_{n \in \N})
+\end{align*}
+
+Weisen wir also noch die Beschränktheit nach:
+
+\begin{align*}
+  \Vbraces{A_k(x_n)_{n\in\N}}_{\ell^2(\N)}^2 =&
+  \sum_{n=1}^j |\sum_{k=1}^\infty a_{k+n-1}x_k|^2  \leq
+  \sum_{n=1}^j \Big( \sum_{k=1}^\infty |a_{k+n-1}| |x_k|\Big)^2 \leq
+  \sum_{n=1}^j \Big( \sum_{k=1}^\infty |a_{k+n-1}|^2 \cdot \sum_{k=1}^\infty |x_k|^2\Big) = \\
+  =& \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=1}^j \sum_{k=1}^\infty |a_{k+n-1}|^2 =
+  \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=1}^j \Vbraces{(a_{k+n-1})_{k \in \N}}_{\ell^2(\N)}^2
+  < \infty
+\end{align*}
+
+Dabei haben wir einmal die Ungleichung von Schwarz angewendet und die letze ungleichheit gilt, da
+$(a_n)_{n\in \N} \in \ell^1(\N) \subset \ell^2(\N)$ und da die Folge monoton falend ist gilt
+für festes $n \in \N$
+
+\begin{align*}
+  \Vbraces{(a_k)_{k\in \N}}_{\ell^2(\N)}^2 \geq \Vbraces{(a_{k+n-1})_{k \in \N}}_{\ell^2(\N)}^2
+\end{align*}
+
+Jetzt brauchen wir noch die Konvergenz der $A_j$ gegen $A$ in der Operatornorm:
+
+\begin{align*}
+  \Vbraces{A(x_n)_{n \in \N}- A_j(x_n)_{n \in \N}}_{\ell^2(\N)}^2 &=
+  \Vbraces{\Big(\sum_{k=1}^\infty a_{k+n-1} x_k\Big)_{n=j+1}^\infty}_{\ell^2(\N)}^2
+  \leq \sum_{n=j+1}^\infty |\sum_{k=1}^\infty a_{k+n-1} x_k|^2 \\
+  &\leq \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=j+1}^\infty \sum_{k=1}^\infty |a_{k+n-1}|^2
+  \leq \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \sum_{n=j+1}^\infty \sum_{k=1}^\infty |a_n||a_k| \\
+  &= \Vbraces{(x_n)_{n \in \N}}_{\ell^2(\N)}^2 \Vbraces{(a_k)_{k \in \N}}_{\ell^1(\N)} \sum_{n=j+1}^\infty |a_n|
+  \stackrel{j \rightarrow \infty}{\longrightarrow} 0
+\end{align*}
+
+Das gilt da die $(|a_n|)_{n \in \N}$ eine Nullfolge bilden. Nach der Proposition oben
+(Unterpunkt $(iii)$) ist die Menge der kompakten Operatoren bezüglich der Operatornorm in
+$L_b(X,Y)$ abgeschlossen. Dabei ist $A$ linear und beschränkt wegen Korollar 4.2.3. (Wir haben
+ja gerade gezeigt dass der Grenzwert existiert).
+\includegraphicsboxed{Kor. 4.2.3}
+
 
 \end{solution}
