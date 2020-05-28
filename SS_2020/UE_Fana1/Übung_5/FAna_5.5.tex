@@ -20,212 +20,229 @@ Verwende den Spektralabbildungssatz und betrachte Funktionen der Bauart $p(t) e^
 \begin{solution}
 
 Wir beginnen, indem wir ein paar Eigenwerte ausrechnen.
+Davor sei aber bemerkt, dass Funktionen der Form $p(t)\exp(-\frac{t^2}{2})$ mit $p \in \Pi_n$ integrierbar sind, da für alle $k \in \N$
+ein $t_0 \in \R$ exisitiert, sodass $t^k < \exp(\frac{t^2}{4})$. Damit folgt
+\begin{align*}
+  \int_\R t^k \exp\left(\frac{-t^2}{2}\right) dt &= \int_{-t_0}^{t_0} t^k \exp\left(\frac{-t^2}{2}\right) dz
+  + \int_{-\infty}^{-t_0} t^k \exp\left(\frac{-t^2}{2}\right) dt + \int_{t_0}^{+\infty} t^k \exp\left(\frac{-t^2}{2}\right) dt\\
+  &\leq \int_{-t_0}^{t_0} t^k \exp\left(\frac{-t^2}{2}\right) dt + 2\int_{t_0}^{+\infty}\exp\left(\frac{-t^2}{4}\right)  dt,
+\end{align*}
+wobei das erste Integral wegen stetiger Funktion auf Kompaktum existiert und
+das zweite mittels Substitution $u = \frac{t}{\sqrt{2}}$ auf das Integral von $\exp(-\nicefrac{t^2}{2})$
+zurückgeführt werden kann.
 \includegraphicsboxed{Blümlinger - Beispiel 2.1.10}
-\begin{align*}
-  U(e^{-\frac{t^2}{2}})(\zeta)
-  & =
-  \frac{1}{\sqrt{2 \pi}}
-  \Int[\R]
-  {
-    \exp \pbraces{-\frac{t^2}{2}}
-    \exp{(-i t \zeta)}
-  }
-  {\lambda(t)} \\
-  & =
-  \frac{1}{\sqrt{2 \pi}}
-  \Bigg (
-    \underbrace
-    {
-    \Int[\R]
-    {
-    \exp \pbraces{-\frac{t^2}{2}}
-    \cos{(\zeta t)}
-    }
-    {\lambda(t)}
-    }_{
-    \sqrt{2 \pi}
-    \exp \pbraces{-\frac{\zeta^2}{2}}
-    } -
-    i
-    \underbrace
-    {
-    \Int[\R]
-    {
-    \exp \pbraces{-\frac{t^2}{2}}
-    \sin{(\zeta t)}
-    }
-    {\lambda(t)}
-    }_0
-  \Bigg )
-  =
-  \exp \pbraces{-\frac{\zeta^2}{2}}
-\end{align*}
-
-Das erste \Quote{Underbrace} gilt wegen Blümlinger - Beispiel 2.1.10 und das zweite, weil der Integrand ungerade ist.
-Wir erhalten also $1 \in \sigma_p(U) \subseteq \sigma(U)$. \\
-
-\includegraphicsboxed{Blümlinger - Proposition 3.2.2}
 \FloatBarrier
-\begin{align*}
-  \frac{d}{dt}
-  \exp \pbraces{-\frac{t^2}{2}}
-  =
-  -t \exp \pbraces{-\frac{t^2}{2}}
-\end{align*}
+\begin{itemize}
+  \item
+  \begin{align*}
+    U(e^{-\frac{t^2}{2}})(\zeta)
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+      \exp \pbraces{-\frac{t^2}{2}}
+      \exp{(-i t \zeta)}
+    }
+    {\lambda(t)} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Bigg (
+      \underbrace
+      {
+      \Int[\R]
+      {
+      \exp \pbraces{-\frac{t^2}{2}}
+      \cos{(\zeta t)}
+      }
+      {\lambda(t)}
+      }_{
+      \sqrt{2 \pi}
+      \exp \pbraces{-\frac{\zeta^2}{2}}
+      } -
+      i
+      \underbrace
+      {
+      \Int[\R]
+      {
+      \exp \pbraces{-\frac{t^2}{2}}
+      \sin{(\zeta t)}
+      }
+      {\lambda(t)}
+      }_0
+    \Bigg )
+    =
+    \exp \pbraces{-\frac{\zeta^2}{2}}
+  \end{align*}
+
+  Das erste \Quote{Underbrace} gilt wegen Blümlinger - Beispiel 2.1.10 und das zweite, weil der Integrand ungerade ist.
+  Wir erhalten also $1 \in \sigma_p(U) \subseteq \sigma(U)$.
+  \FloatBarrier
+  \includegraphicsboxed{Blümlinger - Proposition 3.2.2}
+  \FloatBarrier
+  \item
+  \begin{align*}
+    \frac{d}{dt}
+    \exp \pbraces{-\frac{t^2}{2}}
+    =
+    -t \exp \pbraces{-\frac{t^2}{2}}
+  \end{align*}
 
 
 
-\begin{align*}
-  U \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
-  =
-  U \pbraces{\frac{d}{dt} \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
-  =
-  i \zeta U \pbraces{\exp \pbraces{-\frac{t^2}{2}}}(\zeta)
-  =
-  i \zeta \exp \pbraces{-\frac{\zeta^2}{2}}
-  =
-  (-i) (-\zeta \exp \pbraces{-\frac{\zeta^2}{2}})
-\end{align*}
+  \begin{align*}
+    U \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+    =
+    U \pbraces{\frac{d}{dt} \exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+    =
+    i \zeta U \pbraces{\exp \pbraces{-\frac{t^2}{2}}}(\zeta)
+    =
+    i \zeta \exp \pbraces{-\frac{\zeta^2}{2}}
+    =
+    (-i) (-\zeta \exp \pbraces{-\frac{\zeta^2}{2}})
+  \end{align*}
 
-Wir erhalten also $-i \in \sigma_p(U) \subseteq \sigma(U)$. \\
-
-\begin{align*}
-  \frac{d^2}{dt^2}
-  \exp \pbraces{-\frac{t^2}{2}}
-  =
-  \frac{d}{dt}
-  \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}
-  =
-  -\exp \pbraces{-\frac{t^2}{2}} +
-  t^2 \exp \pbraces{-\frac{t^2}{2}}
-\end{align*}
-
-\begin{align*}
-  -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
-  & =
-  U \pbraces
-  {
+  Wir erhalten also $-i \in \sigma_p(U) \subseteq \sigma(U)$.
+  \item
+  \begin{align*}
     \frac{d^2}{dt^2}
     \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  U \pbraces
-  {
+    =
+    \frac{d}{dt}
+    \pbraces{-t \exp \pbraces{-\frac{t^2}{2}}}
+    =
     -\exp \pbraces{-\frac{t^2}{2}} +
     t^2 \exp \pbraces{-\frac{t^2}{2}}
-  } \\
-  & =
-  U \pbraces
-  {
-    -\frac{1}{2}
-    \exp \pbraces{-\frac{t^2}{2}}
-  } +
-  U \pbraces
-  {
-    -\frac{1}{2}
-    \exp \pbraces{-\frac{t^2}{2}} +
-    t^2 \exp \pbraces{-\frac{t^2}{2}}
-  } \\
-  & =
-  -\frac{1}{2} \exp \pbraces{-\frac{\zeta^2}{2}} +
-  U \pbraces
-  {
-    -\frac{1}{2}
-    \exp \pbraces{-\frac{t^2}{2}} +
-    t^2 \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
-\end{align*}
+  \end{align*}
 
-\begin{align*}
-  U \pbraces
-  {
-    -\frac{1}{2}
-    \exp \pbraces{-\frac{t^2}{2}} +
-    t^2 \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  (-1) \pbraces
-  {
-    -\frac{1}{2}
-    \exp \pbraces{-\frac{\zeta^2}{2}} +
-    \zeta^2
-    \exp \pbraces{-\frac{\zeta^2}{2}}
-  }
-\end{align*}
+  \begin{align*}
+    -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
+    & =
+    U \pbraces
+    {
+      \frac{d^2}{dt^2}
+      \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    U \pbraces
+    {
+      -\exp \pbraces{-\frac{t^2}{2}} +
+      t^2 \exp \pbraces{-\frac{t^2}{2}}
+    } \\
+    & =
+    U \pbraces
+    {
+      -\frac{1}{2}
+      \exp \pbraces{-\frac{t^2}{2}}
+    } +
+    U \pbraces
+    {
+      -\frac{1}{2}
+      \exp \pbraces{-\frac{t^2}{2}} +
+      t^2 \exp \pbraces{-\frac{t^2}{2}}
+    } \\
+    & =
+    -\frac{1}{2} \exp \pbraces{-\frac{\zeta^2}{2}} +
+    U \pbraces
+    {
+      -\frac{1}{2}
+      \exp \pbraces{-\frac{t^2}{2}} +
+      t^2 \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    -\zeta^2 \exp \pbraces{-\frac{\zeta^2}{2}}
+  \end{align*}
 
-Wir erhalten also $-1 \in \sigma_p(U) \subseteq \sigma(U)$. \\
+  \begin{align*}
+    U \pbraces
+    {
+      -\frac{1}{2}
+      \exp \pbraces{-\frac{t^2}{2}} +
+      t^2 \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    (-1) \pbraces
+    {
+      -\frac{1}{2}
+      \exp \pbraces{-\frac{\zeta^2}{2}} +
+      \zeta^2
+      \exp \pbraces{-\frac{\zeta^2}{2}}
+    }
+  \end{align*}
 
-\begin{align*}
-  \frac{d^3}{dt^3}
-  \exp \pbraces{-\frac{t^2}{2}}
-  =
-  \frac{d}{dt}
-  \pbraces
-  {
-    -\exp \pbraces{-\frac{t^2}{2}} +
-    t^2 \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  t \exp \pbraces{-\frac{t^2}{2}} +
-  2 t \exp \pbraces{-\frac{t^2}{2}} -
-  t^3 \exp \pbraces{-\frac{t^2}{2}}
-\end{align*}
-
-\begin{align*}
-  -i \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
-  & =
-  i^3 \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
-  =
-  U \pbraces
-  {
+  Wir erhalten also $-1 \in \sigma_p(U) \subseteq \sigma(U)$.
+  \item
+  \begin{align*}
     \frac{d^3}{dt^3}
     \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  U \pbraces
-  {
-    3 t \exp \pbraces{-\frac{t^2}{2}} -
+    =
+    \frac{d}{dt}
+    \pbraces
+    {
+      -\exp \pbraces{-\frac{t^2}{2}} +
+      t^2 \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    t \exp \pbraces{-\frac{t^2}{2}} +
+    2 t \exp \pbraces{-\frac{t^2}{2}} -
     t^3 \exp \pbraces{-\frac{t^2}{2}}
-  } \\
-  & =
-  \frac{3}{2}
-  U \pbraces{t \exp \pbraces{-\frac{t^2}{2}}} +
-  U \pbraces
-  {
-    \frac{3}{2}
-    t \exp \pbraces{-\frac{t^2}{2}} -
-    t^3 \exp \pbraces{-\frac{t^2}{2}}
-  } \\
-  & =
-  -\frac{3}{2} i \zeta \exp \pbraces{-\frac{t^2}{2}} +
-  U \pbraces
-  {
-    \frac{3}{2}
-    t \exp \pbraces{-\frac{t^2}{2}} -
-    t^3 \exp \pbraces{-\frac{t^2}{2}}
-  }
-\end{align*}
+  \end{align*}
 
-\begin{align*}
-  U \pbraces
-  {
+  \begin{align*}
+    -i \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
+    & =
+    i^3 \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
+    =
+    U \pbraces
+    {
+      \frac{d^3}{dt^3}
+      \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    U \pbraces
+    {
+      3 t \exp \pbraces{-\frac{t^2}{2}} -
+      t^3 \exp \pbraces{-\frac{t^2}{2}}
+    } \\
+    & =
     \frac{3}{2}
-    t \exp \pbraces{-\frac{t^2}{2}} -
-    t^3 \exp \pbraces{-\frac{t^2}{2}}
-  }
-  =
-  i \pbraces
-  {
-    \frac{3}{2} \zeta \exp \pbraces{-\frac{t^2}{2}} -
-    \zeta^3 \exp \pbraces{-\frac{t^2}{2}}
-  }
-\end{align*}
+    U \pbraces{t \exp \pbraces{-\frac{t^2}{2}}} +
+    U \pbraces
+    {
+      \frac{3}{2}
+      t \exp \pbraces{-\frac{t^2}{2}} -
+      t^3 \exp \pbraces{-\frac{t^2}{2}}
+    } \\
+    & =
+    -\frac{3}{2} i \zeta \exp \pbraces{-\frac{t^2}{2}} +
+    U \pbraces
+    {
+      \frac{3}{2}
+      t \exp \pbraces{-\frac{t^2}{2}} -
+      t^3 \exp \pbraces{-\frac{t^2}{2}}
+    }
+  \end{align*}
 
-Wir erhalten also $i \in \sigma_p(U) \subseteq \sigma(U)$. \\
+  \begin{align*}
+    U \pbraces
+    {
+      \frac{3}{2}
+      t \exp \pbraces{-\frac{t^2}{2}} -
+      t^3 \exp \pbraces{-\frac{t^2}{2}}
+    }
+    =
+    i \pbraces
+    {
+      \frac{3}{2} t \exp \pbraces{-\frac{t^2}{2}} -
+      t^3 \exp \pbraces{-\frac{t^2}{2}}
+    }
+  \end{align*}
+
+  Wir erhalten also $i \in \sigma_p(U) \subseteq \sigma(U)$. \\
+\end{itemize}
+
+
 Wir erhalten also insgesamt $\Bbraces{\pm 1, \pm i} \subseteq \sigma_p(U) \subseteq \sigma(U)$.
-
+\FloatBarrier
 \includegraphicsboxed{Blümlinger - Satz 3.3.2}
 \includegraphicsboxed{Proposition 6.6.7}
 \includegraphicsboxed{Proposition 6.6.8}
@@ -271,7 +288,7 @@ Weil auch $S \subseteq L^1(\R)$, können wir $T$, wie im Hinweis, explizit ansch
 
 \includegraphicsboxed{Blümlinger - MISC}
 
-Wir betrachten den involutorischen Operator $R f(x) = f(-x)$.
+Wir betrachten den Operator $R f(x) = f(-x)$.
 Mit Substitution folgt $\Forall f \in S:$
 
 \begin{align*}
