@@ -1,6 +1,6 @@
 \begin{exercise}[22/2$^\ast$]
 
-Sei $\mathcal{K}(\C)$ die Menge aller kompakten Teilmengen von $C$, und
+Sei $\mathcal{K}(\C)$ die Menge aller kompakten Teilmengen von $\C$, und
 
 \begin{align*}
   d_H(M, N)
@@ -41,80 +41,190 @@ Zeige:
 \end{exercise}
 
 \begin{solution}
+
+\phantom{}
+
 \begin{enumerate}[label = (\alph*)]
 
-\item
-Wir zeigen zuerst eine Hilfsaussage:
-\begin{align}\label{Lemmachen}
-  \Forall C \in \mathcal{B}(X): r(C) = r(-C)
-\end{align}
-Dies gilt, da
-\begin{align*}
-  C - \lambda I \in \Inv(\mathcal{B}(X)) \Leftrightarrow & -C + \lambda I = -(C - \lambda I) \in \Inv(\mathcal{B}(X)) \\
-  \Rightarrow \lambda \in \sigma (C) \Leftrightarrow & -\lambda \in \sigma (-C) \\
-  \Rightarrow r(C) = \max_{\lambda \in \sigma (C)} |\lambda| = \max_{\lambda \in \sigma (C)} |-\lambda| = & \max_{\lambda \in \sigma (-C)} |\lambda| = r(-C)
-\end{align*}
+  \item
+  Wir zeigen zuerst eine Hilfsaussage.
 
-Wir wissen nach Lemma 6.4.10, dass die Spektren kompakt sind, somit ist $d_H(\sigma(A), \sigma(B))$ wohldefiniert.
+  \begin{align} \label{Lemmachen}
+    \Forall C \in \mathcal{B}(X):
+    r(C) = r(-C)
+  \end{align}
 
-Sei o.B.d.A $\sigma(A) \neq \sigma(B)$ (sonst ist die linke Seite $=0$). Wir können also ein $\lambda \in \sigma(A) \setminus \sigma(B)$ wählen (wieder o.B.d.A.) und wollen zeigen
-\begin{align}\label{minuslambda}
-  \sigma(A-\lambda I) = \sigma(A) - \lambda
-\end{align}
-(gilt auch für $B$).
-1. Sei $\tau \in \sigma(A-\lambda I)$. Dann gilt nach Definition
-\begin{align*}
-  (A-\lambda I) - \tau I = A - (\lambda + \tau) I \notin \Inv(\mathcal{B}(X)) \\
-  \Rightarrow \lambda + \tau \in \sigma(A)
-\end{align*}
+  \textit{Beweis.}
 
-2. Sei $\tau \in \sigma(A) - \lambda$. Dann gilt
-\begin{align*}
-  A - (\lambda + \tau) I = (A - \lambda I) -\tau I \notin \Inv(\mathcal{B}(X)) \\
-  \Rightarrow \tau \in \sigma(A - \lambda I)
-\end{align*}
+  \begin{align*}
+    (
+      C - \lambda I \in \Inv(\mathcal{B}(X))
+      & \iff
+      (-C) - (-\lambda) I = -(C - \lambda I) \in \Inv(\mathcal{B}(X))
+    ) \\
+    & \implies \\
+    (
+      \lambda \in \sigma (C)
+      & \iff
+      -\lambda \in \sigma (-C)
+    ) \\
+    & \implies
+    r(C) = \max_{\lambda \in \sigma (C)} |\lambda| = \max_{\lambda \in \sigma (C)} |-\lambda| =
+    \max_{\lambda \in \sigma (-C)} |\lambda| = r(-C)
+  \end{align*}
 
-Wir setzen nun $T := A - B$ und somit auch $A- \lambda I = B - \lambda I + T$.
+  \includegraphicsboxed{Lemma 6.4.10}
 
-Wir haben $\lambda$ so gewählt, dass $\lambda \in \sigma(A)$. Also ist auch $0 \in \sigma(A - \lambda I)$ und $0 \notin \rho(A - \lambda I)$.
+  Wir wissen nach Lemma 6.4.10, dass die Spektren kompakt sind.
+  Somit, ist $d_H(\sigma(A), \sigma(B))$ wohldefiniert. \\
 
-Ebenso folgt $0 \in \rho(B - \lambda I)$.
+  Sei o.B.d.A. $\sigma(A) \neq \sigma(B)$ (sonst ist die linke Seite $=0$).
+  Sei o.B.d.A. $\sigma(A) \supsetneq \sigma(B)$.
+  Wir können also ein $\lambda \in \sigma(A) \setminus \sigma(B)$ wählen und wollen Folgendes zeigen (auch für $B$).
 
-Also folgt aus der vorigen Aufgabe, dass
-\begin{align*}
-  r(A-B) = r(T) \geq r((B-\lambda I)^{-1})^{-1}
-\end{align*}
+  \begin{align} \label{minuslambda}
+    \sigma(A-\lambda I) = \sigma(A) - \lambda
+  \end{align}
 
-($(B- \lambda I)$ nimmt die Rolle von $A$ ein und $(A- \lambda I)$ nimmt die Rolle von $B$ ein. Offensichtlich vertauschen sie.)
+  \textit{Beweis.}
 
-\begin{align*}
-  \Rightarrow r(A-B) \geq r((B-\lambda I)^{-1})^{-1} \stackrel{\text{Def. und Lemma 6.4.8}}{=}
-  (\max_{\beta \in \sigma((B - \lambda I)^{-1})}) |\beta|)^{-1} =
-  (\max_{\tilde{\beta} \in \sigma(B - \lambda I)} |\tilde{\beta}|^{-1})^{-1} \\
-  \stackrel{\eqref{minuslambda}}{=} (\max_{b \in \sigma(B)} |b - \lambda|^{-1})^{-1} =
-  \min_{b \in \sigma(B)} |b - \lambda| = \inf_{\beta \in \sigma(B)} |\beta - \lambda|
-\end{align*}
+  \begin{enumerate}[label = \arabic*.]
 
-Da $\lambda$ beliebig war, gilt also auch:
-\begin{align*}
-  r(A-B) \geq \sup_{\lambda \in \sigma(A) \setminus \sigma(B)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda} = \sup_{\lambda \in \sigma(A)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda}
-\end{align*}
+    \item
+    Sei $\tau \in \sigma(A-\lambda I)$. Dann gilt nach der Definition von $\sigma$, dass
 
-Die letzte Gleichung, da für $\lambda \in \sigma(B)$ eh das Infimum gleich $0$ ist.
+    \begin{align*}
+      A - (\lambda + \tau) I
+      =
+      (A - \lambda I) - \tau I
+      \notin
+      \Inv(\mathcal{B}(X)) \\
+      \implies
+      \lambda + \tau \in \sigma(A).
+    \end{align*}
 
-Analog zeigt man
-\begin{align*}
-  r(B-A) \geq \sup_{\beta \in \sigma(B)} \inf_{\lambda \in \sigma(A)} \vbraces{\beta - \lambda}
-\end{align*}
+    \item
+    Sei $\tau \in \sigma(A) - \lambda$. Dann gilt nach der Definition von $\sigma$, dass
 
-Gemeinsam mit \eqref{Lemmachen} bekommen wir
-\begin{align*}
-  r(A-B) \geq \max\{\sup_{\lambda \in \sigma(A)} \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda},\sup_{\beta \in \sigma(B)} \inf_{\lambda \in \sigma(A)} \vbraces{\beta - \lambda}\} = d_H(\sigma(A), \sigma(B))
-\end{align*}
+    \begin{align*}
+      (A - \lambda I) - \tau I
+      =
+      A - (\lambda + \tau) I
+      \notin
+      \Inv(\mathcal{B}(X)) \\
+      \implies
+      \tau \in \sigma(A - \lambda I).
+    \end{align*}
 
-\item
-\begin{align*}
-  d_H(\Sigma(A), \Sigma(B)) = d_H(\sigma(A), \sigma(B)) \leq r(A-B) \leq \|A-B\|
-\end{align*}
+  \end{enumerate}
+
+  Wir setzen nun $T := A - B$. Dann folgt $A- \lambda I = B - \lambda I + T$. \\
+
+  Wir haben $\lambda$ so gewählt, dass $\lambda \in \sigma(A)$.
+  Also ist auch $0 \in \sigma(A - \lambda I)$ und $0 \notin \rho(A - \lambda I)$. \\
+  Wir haben $\lambda$ so gewählt, dass $\lambda \notin \sigma(B)$.
+  Also ist auch $0 \notin \sigma(B - \lambda I)$ und $0 \in \rho(B - \lambda I)$. \\
+
+  Wir betrachten die Kontraposition der vorigen Aufgabe.
+  $(B - \lambda I)$ nehme die Rolle von $A$ ein und $(A - \lambda I)$ die von $B$.
+  Offensichtlich kommutieren sie.
+
+  \begin{align*}
+    r(A - B)
+    =
+    r(T)
+    \geq
+    r((B-\lambda I)^{-1})^{-1}.
+  \end{align*}
+
+  \includegraphicsboxed{Lemma 6.4.8}
+
+  \begin{align*}
+    \implies
+    r(A - B)
+    & \geq
+    r((B - \lambda I)^{-1})^{-1}
+    \stackrel{\text{Definition}}{=}
+    \pbraces
+    {
+      \max_{\beta \in \sigma((B - \lambda I)^{-1})} |\beta|
+    }^{-1}
+    \stackrel{\text{Lemma 6.4.8}}{=}
+    \pbraces
+    {
+      \max_{\beta \in \sigma(B - \lambda I)} |\beta|^{-1}
+    }^{-1} \\
+    & \stackrel{\eqref{minuslambda}}{=}
+    \pbraces
+    {
+      \max_{\beta \in \sigma(B)}
+      |\beta - \lambda|^{-1}
+    }^{-1}
+    =
+    \min_{\beta \in \sigma(B)}
+    |\beta - \lambda|
+    =
+    \inf_{\beta \in \sigma(B)}
+    |\beta - \lambda|
+  \end{align*}
+
+  Da $\lambda$ beliebig war, gilt also auch
+
+  \begin{align*}
+    r(A - B)
+    \geq
+    \sup_{\lambda \in \sigma(A) \setminus \sigma(B)}
+    \inf_{\beta \in \sigma(B)} \vbraces{\beta - \lambda}
+    =
+    \sup_{\lambda \in \sigma(A)}
+    \inf_{\beta \in \sigma(B)}
+    \vbraces{\beta - \lambda}.
+  \end{align*}
+
+  Die Gleichung gilt, da für $\lambda \in \sigma(B) \cap \sigma(A)$ das Infimum gleich $0$ ist.
+
+  Analog zeigt man
+
+  \begin{align*}
+    r(B - A)
+    \geq
+    \sup_{\beta \in \sigma(B)}
+    \inf_{\lambda \in \sigma(A)}
+    \vbraces{\beta - \lambda}.
+  \end{align*}
+
+  Laut \eqref{Lemmachen}, ist $r(A - B) = r(B - A)$.
+
+  \begin{align*}
+    \implies
+    r(A-B)
+    \geq
+    \max \Bbraces
+    {
+      \sup_{\lambda \in \sigma(A)}
+      \inf_{\beta \in \sigma(B)}
+      \vbraces{\beta - \lambda},
+      \sup_{\beta \in \sigma(B)}
+      \inf_{\lambda \in \sigma(A)}
+      \vbraces{\beta - \lambda}
+    }
+    =
+    d_H(\sigma(A), \sigma(B))
+  \end{align*}
+
+  \item
+  $\Sigma$ ist sogar Lipschitz-stetig mit Lipschitz-Konstante $1$.
+
+  \begin{align*}
+    d_H(\Sigma(A), \Sigma(B))
+    =
+    d_H(\sigma(A), \sigma(B))
+    \leq
+    r(A-B)
+    \leq
+    \norm{A - B}
+  \end{align*}
+
 \end{enumerate}
+
 \end{solution}
