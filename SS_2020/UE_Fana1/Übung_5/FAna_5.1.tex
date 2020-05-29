@@ -36,7 +36,7 @@ Weil $\int$ linear ist, ist es auch $T$.
   \xrightarrow{n \to \infty} 0
 \end{align*}
 
-Also folgt mittels majorisierter Konvergenz, mit $1$ als Majorante, dass
+Also folgt mittels majorisierter Konvergenz, mit $|f(t)|$ als Majorante, dass
 
 \begin{align*}
   \lim_{n \to \infty}
@@ -129,7 +129,14 @@ $T^\prime$ aufgefasst als Abbildung zwischen (noch nicht isomorph identifizierte
 Wir dominieren den Integranden.
 
 \begin{align*}
-  \Int[0][1]{\sum_{k=0}^n a_k t^k f(t)}{t}
+  \Int[0][1]
+  {
+    \vbraces
+    {
+      \sum_{k=0}^n a_k t^k f(t)
+    }
+  }
+  {t}
   \leq
   \Int[0][1]{\sum_{n=0}^\infty |a_n| \cdot t^n \cdot |f(t)|}{t}
   \leq
@@ -138,7 +145,7 @@ Wir dominieren den Integranden.
   \norm[\ell^1(\N_0)]{a} \norm[L^1(0, 1)]{f}
 \end{align*}
 
-Also, können wir den $\lim$ ins $\int$ ziegen.
+Also, können wir den $\lim$ ins $\int$ ziehen.
 
 \begin{align*}
   \implies
@@ -150,20 +157,33 @@ Also, können wir den $\lim$ ins $\int$ ziegen.
 Es gilt schließlich nach kanonischer Identifikation
 
 \begin{align*}
-T^\prime \pbraces
-{
-  \varphi_1((a_n)_{n \in \N})
-}
-& = f \mapsto \Int[0][1]{\sum_{n=0}^\infty a_n t^n f(t)}{t}
-= \varphi_2(t \mapsto \sum_{n=0}^\infty a_n t^n)
+  T^\prime \pbraces
+  {
+    \varphi_1((a_n)_{n \in \N})
+  }
+  & =
+  f
+  \mapsto
+  \Int[0][1]{\sum_{n=0}^\infty a_n t^n f(t)}{t}
+  =
+  \varphi_2(t \mapsto \sum_{n=0}^\infty a_n t^n)
 \end{align*}
-Jetzt können wir $\widetilde{T}^{\prime} := \varphi_2^{-1} \circ T^{\prime}\circ \varphi_1$ definieren
-und erhalten die gewünschte Darstellung
+
+Jetzt können wir $\widetilde{T}^\prime := \varphi_2^{-1} \circ T^\prime \circ \varphi_1$ definieren und erhalten die gewünschte Darstellung
+
 \begin{align*}
   \widetilde{T}^{\prime}:
-  \Bigg\{ \begin{matrix}
-    \ell^1(\N_0) & \to  & L^\infty(0, 1) \\
-    (a_n)_{n \in \N} & \mapsto & \sum_{n=0}^\infty a_n \id^n
-    \end{matrix}.
+  \Bigg \{
+  \begin{matrix}
+    \ell^1(\N_0) &
+    \to          &
+    L^\infty(0, 1) \\
+    (a_n)_{n \in \N} &
+    \mapsto          &
+    \sum_{n=0}^\infty a_n \id^n
+  \end{matrix}.
 \end{align*}
+
+Das $\widetilde{T}^\prime$ hier ist das $T^\prime$ in der Angabe.
+
 \end{solution}
