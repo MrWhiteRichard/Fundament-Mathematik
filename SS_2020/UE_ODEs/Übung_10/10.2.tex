@@ -17,7 +17,7 @@
     \end{pmatrix}.
   \end{align*}
   Hat das RWP eine Lösung?
-  \item Diskutieren Sie das Lösbarkeit des RWP (auf $(0,\pi)$)
+  \item Diskutieren Sie die Lösbarkeit des RWP (auf $(0,\pi)$)
   \begin{align*}
   y^{\prime} = \begin{pmatrix}
     0 & 1 \\ -\alpha^2 & 0
@@ -38,6 +38,171 @@
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item
+  \item Zuerst bestimmen wir eine Fundamentalmatrix für das System
+  \begin{align*}
+    y^{\prime}(x) &= \begin{pmatrix}
+      0 & 1 \\ 0 & 0
+    \end{pmatrix}y(x) =: A y(x). \\
+  Y(t) &= \exp(tA) = \begin{pmatrix}
+    1 & t \\ 0 & 1
+  \end{pmatrix}
+  \end{align*}
+  ist unsere Lösung dafür. Da wir hier ein halbhomogenes System vorliegen haben
+  mit $\ell = (0,1)^{\top}, b \equiv 0$, ist
+  unsere Partikulärlösung $y_p \equiv 0$ und es folgt mit Satz 6.3, dass unser
+  System genau dann lösbar ist, wenn für $B := R_0Y(0) + R_1Y(1)$
+  \begin{align*}
+    \Rang(B) = \Rang\left(B,\begin{pmatrix}
+      0 \\ 1
+    \end{pmatrix}\right)
+  \end{align*}
+  gilt, also
+  \begin{align*}
+    \Rang\left(\begin{pmatrix}
+      1 & 0 \\ 0 & 0
+    \end{pmatrix}\begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix} +
+    \begin{pmatrix}
+      -1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 1 \\ 0 & 1
+    \end{pmatrix}\right) =
+    \Rang\left(\begin{pmatrix}
+      0 & -1 \\ 0 & 1
+    \end{pmatrix}\right) = 1 \neq 2 =
+    \Rang\left(\begin{pmatrix}
+      0 & -1 & 0\\ 0 & 1 & 1
+    \end{pmatrix}\right).
+  \end{align*}
+  Es folgt, dass unser Problem unlösbar ist.
+  \item Unsere Fundamentalmatrix des homogenen Systems lautet für $\alpha \neq 0$
+  \begin{align*}
+    Y(t) = \exp(tA) = \begin{pmatrix}
+      \cos(\alpha t) & \nicefrac{\sin(\alpha t)}{\alpha}  \\ -\alpha\sin(\alpha t) & \cos(\alpha t)
+    \end{pmatrix}
+  \end{align*}
+  Wir gehen nach dem gleichen Schema wie zuvor vor und berechnen
+  \begin{align*}
+    B &= R_0Y(0) + R_{\pi}Y(\pi) =
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \cos(0) & \nicefrac{\sin(0)}{\alpha}  \\ -\alpha\sin(0) & \cos(0)
+    \end{pmatrix}
+    + \begin{pmatrix}
+      -1 & 0 \\ 0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \cos(\alpha \pi) & \nicefrac{\sin(\alpha \pi)}{\alpha}  \\ -\alpha\sin(\alpha \pi) & \cos(\alpha \pi)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0  \\ 0 & 1
+    \end{pmatrix}
+    + \begin{pmatrix}
+      -1 & 0 \\ 0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \cos(\alpha \pi) & \nicefrac{\sin(\alpha \pi)}{\alpha}  \\ -\alpha\sin(\alpha \pi) & \cos(\alpha \pi)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      1 - \cos(\alpha \pi) & -\nicefrac{\sin(\alpha \pi)}{\alpha} \\
+      \alpha\sin(\alpha \pi) & 1 - \cos(\alpha \pi)
+    \end{pmatrix}
+  \end{align*}
+  Klarerweise löst $y \equiv 0$ unser Problem, damit ist die Existenz einer Lösung
+  auf jeden Fall gegeben und wir erhalten mit dem zweiten Teil von Satz 6.3, dass
+  unser Lösungsraum Dimension $\ker B$ hat. Also betrachten wir die lineare
+  (Un)-Abhängigkeit der Spalten von $B$ in Abhängigkeit von $\alpha$.
+  \begin{align*}
+    \lambda(1 - \cos(\alpha \pi), \alpha\sin(\alpha \pi))^{\top} \stackrel{!}{=}
+    (-\nicefrac{\sin(\alpha \pi)}{\alpha},1 - \cos(\alpha \pi))^{\top}
+  \end{align*}
+  Wir erhalten die beiden Gleichungen
+  \begin{align*}
+    \lambda(1 - \cos(\alpha \pi)) &= -\nicefrac{\sin(\alpha \pi)}{\alpha} \\
+    \lambda\alpha\sin(\alpha \pi) &= 1 - \cos(\alpha \pi)
+  \end{align*}
+  Es folgt
+  \begin{align*}
+     -\nicefrac{\sin(\alpha \pi)}{\alpha} \stackrel{!}{=} \alpha\sin(\alpha \pi)
+     \iff \sin(\alpha \pi)(\alpha + \frac{1}{\alpha}) \stackrel{!}{=} 0
+  \end{align*}
+  Diese Gleichheit wird genau von $\alpha \in \Z\backslash\{0\}$ erfüllt. Nun brauchen
+  wir noch eine Fallunterscheidung:
+  \begin{itemize}
+    \item $\alpha \in 2\Z\backslash\{0\}$: \\
+    Es gilt $1 - \cos(\alpha \pi) = 0$ und der Lösungsraum ist zwei-dimensional. Damit können wir eine allgemeine Lösung $y$
+    angeben als
+    \begin{align*}
+      y(x) = Y(x)(a,b)^{\top} = (a\cos(\alpha x) - b\alpha\sin(\alpha t), -a-\alpha\sin(\alpha t) + b\cos(\alpha t)), \qquad a,b \in \R.
+    \end{align*}
+    \item $\alpha \in 2\Z+1\backslash\{0\}$: \\
+      Der Lösungsraum ist ein-dimensional und lässt sich angeben als
+      Lösung von $Bx = (0,0)^{\top}$:
+      \begin{align*}
+        \begin{pmatrix}
+          1 - \cos(\alpha \pi) & 0 \\
+          0 & 1 - \cos(\alpha \pi)
+        \end{pmatrix}
+        \begin{pmatrix}
+          a \\ b
+        \end{pmatrix}
+        &= \begin{pmatrix}
+          0 \\ 0
+        \end{pmatrix} \iff
+        \begin{pmatrix}
+          a \\ b
+        \end{pmatrix}
+        = \begin{pmatrix}
+          \cos(\alpha \pi) \\ \cos(\alpha \pi)
+        \end{pmatrix}\\
+        y(x) &=
+        \begin{pmatrix}
+          \cos(\alpha \pi)\cos(\alpha x) - \cos(\alpha \pi)\alpha\sin(\alpha t) \\
+          -\cos(\alpha \pi)\alpha\sin(\alpha t) + \cos(\alpha \pi)\cos(\alpha t)
+        \end{pmatrix}.
+      \end{align*}
+    \item $\alpha \notin \Z$: \\
+      Der Lösungsraum ist null-dimensional, es gibt also nur die triviale $0$-Lösung.
+    \item $\alpha = 0$:
+      Die Fundamentalmatrix lautet
+      \begin{align*}
+        Y(t) = \begin{pmatrix}
+          1 & t \\ 0 & 1
+        \end{pmatrix}
+      \end{align*}
+      und wir erhalten
+      \begin{align*}
+        B = R_0Y(0) + R_{\pi}Y(\pi) =
+        \begin{pmatrix}
+          1 & 0 \\ 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+          1 & 0  \\ 0 & 1
+        \end{pmatrix}
+        + \begin{pmatrix}
+          -1 & 0 \\ 0 & -1
+        \end{pmatrix}
+        \begin{pmatrix}
+          1 & \pi  \\ 0 & 1
+        \end{pmatrix}
+        = \begin{pmatrix}
+          0 & -\pi \\ 0 & 0
+        \end{pmatrix}
+      \end{align*}
+      Wieder ist der Lösungsraum ein-dimensional und man kann leicht nachrechnen, dass
+      \begin{align*}
+        y(x) = \begin{pmatrix}
+          a \\ 0
+        \end{pmatrix}, \qquad a \in \R
+      \end{align*}
+      die Randbedingungen erfüllt.
+  \end{itemize}
 \end{enumerate}
 \end{solution}
