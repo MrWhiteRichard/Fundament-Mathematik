@@ -10,6 +10,176 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item
+  \item Sei $y$ eine Lösung des Randwertproblems. Dann erfüllt
+  $x = yy^{\prime}$ das Randwertproblem
+  \begin{align}\label{i}
+    x^{\prime} = 1 - 3t, \qquad x(0) = y(0)y^{\prime}(0) = 0, \qquad x(1) = y(1)y^{\prime}(1) = 0.
+  \end{align}
+  Betrachten wir davon nur die erste Randbedingung, erhalten wir ein Anfangswertproblem,
+  welches eindeutig lösbar ist mit der Lösung
+  \begin{align*}
+    x(t) = \int_0^t 1 -3\tau d\tau = t - \frac{3}{2}t^2
+  \end{align*}
+  und $x(1) = -\frac{1}{2} \neq 0$. Damit hat das Randwertproblem \eqref{i}
+  keine Lösung und somit kann das originale Problem ebenso nicht lösbar sein.
+  \item Um eine Lösung des Systems $Ly = y^{\primeprime} + 4y = 0$
+  zu erhalten, berechnen wir die Nullstellen des zugehörigen charakteristischen Polynoms
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 + 4 \stackrel{!}{=} 0 \iff \lambda = \pm2i
+  \end{align*}
+  und bekommen die Lösungen $y_1(x) = \exp(2ix), y_2(x) = \exp(-2ix)$.
+  Wir schreiben die ODE in ein System erster Ordnung um:
+  \begin{align*}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}^{\prime} =
+    \begin{pmatrix}
+      0 & 1 \\ -4 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}
+  \end{align*}
+  Die zugehörige Fundamentalmatrix lautet
+  \begin{align*}
+    Y(x) = \begin{pmatrix}
+      \exp(2ix) & \exp(-2ix) \\ 2i\exp(2ix) & -2i\exp(-2ix)
+    \end{pmatrix}
+  \end{align*}
+  Wir stellen die Matrix $B$ auf:
+  \begin{align*}
+    B &= R_{-\pi}Y(-\pi) + R_{\pi}Y(\pi) =
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \exp(-2i\pi) & \exp(2i\pi) \\ 2i\exp(-2i\pi) & -2i\exp(2i\pi)
+    \end{pmatrix} +
+    \begin{pmatrix}
+      -1 & 0 \\ 0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      \exp(2i\pi) & \exp(-2i\pi) \\ 2i\exp(2i\pi) & -2i\exp(-2i\pi)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      \exp(-2i\pi) - \exp(2i\pi) & \exp(2i\pi) - \exp(-2i\pi) \\
+      2i\exp(-2i\pi) - 2i\exp(2i\pi) & -2i\exp(2i\pi) + 2i\exp(-2i\pi)
+    \end{pmatrix}
+    = \begin{pmatrix}
+      0 & 0 \\
+      0 & 0
+    \end{pmatrix}
+  \end{align*}
+  Wir berechnen
+  \begin{align*}
+    \ell - R_{\pi}y_p(\pi) = \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix} +
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}
+    = \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+  Damit ist das System lösbar mit einem zwei-dimensionalen Lösungsraum.
+  In der Tat sieht man, dass jede Linearkombination
+  \begin{align*}
+    y(x) = a\exp(2ix) + b\exp(-2ix)
+  \end{align*}
+  aufgrund $\exp(\pm2i\pi) = 1$
+  \begin{align*}
+    y(\pi) - y(-\pi) &= (a\exp(2i\pi) - a\exp(-2i\pi)) + (b\exp(-2i\pi) -b\exp(2i\pi)) = (a-a)+ (b-b) = 0 \\
+    y^{\prime}(\pi) - y^{\prime}(-\pi) &= (2ai\exp(2i\pi) - 2ai\exp(-2i\pi)) + (-2bi\exp(-2i\pi) + 2bi\exp(2i\pi)) = 0 \\
+  \end{align*}
+  die Randwertbedingungen erfüllt. \\
+  Berechnen wir nun die Partikulärlösung für das inhomogene System:
+  \begin{align*}
+    y_p(\pi) &= Y(\pi)\int_{-\pi}^\pi Y^{-1}(s)(4s) ds \\
+    &= \begin{pmatrix}
+      1 & 1 \\ 2i & -2i
+    \end{pmatrix}\int_{-\pi}^\pi
+    \frac{1}{4}\begin{pmatrix}
+      2(\cos(2s) - i\sin(2s)) & -i\cos(2s) - \sin(2s) \\
+      2(\cos(2s) + i\sin(2s)) & i\cos(2s) - \sin(2s)
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 \\ 4s
+    \end{pmatrix} ds \\
+    &= \begin{pmatrix}
+      1 & 1 \\ 2i & -2i
+    \end{pmatrix}\int_{-\pi}^x
+    \begin{pmatrix}
+      -is\cos(2s) - s\sin(2s) \\
+      is\cos(2s) - s\sin(2s)
+    \end{pmatrix}ds \\
+    &= \frac{1}{4}\begin{pmatrix}
+      1 & 1 \\ 2i & -2i
+    \end{pmatrix}
+    \begin{pmatrix}
+      \pi \\
+      \pi
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \frac{\pi}{2} \\ 0
+    \end{pmatrix}
+    \neq \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}.
+  \end{align*}
+  Also ist das inhomogene System nicht lösbar.
+  \item Das zugehörige charakteristische Polynom lautet
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 + 2\lambda + 5 \stackrel{!}{=} 0
+    \iff \lambda = -1 \pm 2i
+  \end{align*}
+  Umschreiben auf lineares System erster Ordnung liefert
+  \begin{align*}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}^{\prime}
+    = \begin{pmatrix}
+      0 & 1 \\
+      -5 & -2
+    \end{pmatrix}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}
+  \end{align*}
+  Die Matrix $B$ lautet
+  \begin{align*}
+    B &= \begin{pmatrix}
+      \exp((-1 + 2i)0) & \exp((-1 - 2i)0) \\ 0 & 0
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+       0 & 0\\ (-1 + 2i)\exp((-1 + 2i)\frac{\pi}{4}) & (-1 -2i)\exp((-1 - 2i)\frac{\pi}{4})
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      1 & 1\\
+      (-1 + 2i)i\exp(\frac{\pi}{4}) & (1 + 2i)i\exp(\frac{\pi}{4})
+    \end{pmatrix},
+  \end{align*}
+  welche klarerweise regulär ist und uns damit eindeutige Lösbarkeit liefert.
+  Um diese zu bestimmen, lösen wir das Gleichungssystem
+  \begin{align*}
+    \begin{pmatrix}
+      1 & 1\\
+      (-1 + 2i)i\exp(\frac{\pi}{4}) & (1 + 2i)i\exp(\frac{\pi}{4})
+    \end{pmatrix}
+    \begin{pmatrix}
+      a \\ b
+    \end{pmatrix} =
+    \begin{pmatrix}
+      2 \\ 1
+    \end{pmatrix}
+  \end{align*}
+  und erhalten $(a,b)^{\top} = (1+2i,1-2i)^{\top}$. Unsere eindeutige Lösung lautet daher
+  \begin{align*}
+    y(x) = (1+2i)\exp(-1 + 2i) + (1-2i)\exp(-1-2i).
+  \end{align*}
 \end{enumerate}
 \end{solution}
