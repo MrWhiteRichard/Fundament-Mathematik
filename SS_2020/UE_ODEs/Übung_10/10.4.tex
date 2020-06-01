@@ -7,7 +7,7 @@ Betrachten Sie das RWP
 \end{align*}
 wobei $p,q$ hinreichend glatt sind, $p > 0$ auf $[a,b]$. Sei $(\alpha_1,\alpha_2) \neq (0,0)$
 und $(\beta_1,\beta_2) \neq (0,0)$. Nehmen Sie an, dass das RWP für $f = 0, \rho_1,\rho_2 = 0$
-nur trivial lösbar sei. Seien weiters $\rho_1,\rho_2$ zwei linear unabhängige Lösungen
+nur trivial lösbar sei. Seien weiters $y_1,y_2$ zwei linear unabhängige Lösungen
 von $Ly = 0$ mit $R_1y_1 = 0$ und $R_2y_2 = 0$. Dann gilt:
 \begin{align*}
   \kappa(x) &:= p(x)(y_1^{\prime}y_2 - y_1y_2^{\prime}) \equiv \text{const} \neq 0 \\
@@ -19,5 +19,48 @@ von $Ly = 0$ mit $R_1y_1 = 0$ und $R_2y_2 = 0$. Dann gilt:
 \end{exercise}
 
 \begin{solution}
-Beweis.
+Berechne
+\begin{align*}
+  \kappa^{\prime}(x) &= p^{\prime}(x)(y_1^{\prime}y_2 - y_1y_2^{\prime})
+  + p(x)(y_1^{\prime}y_2^{\prime} + y_1^{\primeprime}y_2 - y_1^{\prime}y_2^{\prime} - y_1y_2^{\primeprime})
+  = p^{\prime}(x)(y_1^{\prime}y_2 - y_1y_2^{\prime})
+  + p(x)(y_1^{\primeprime}y_2  - y_1y_2^{\primeprime}) \\
+  &= y_2(p^{\prime}(x)y_1^{\prime} + p(x)y_1^{\primeprime}) -
+  y_1(p^{\prime}(x)y_2^{\prime} + p(x)y_2^{\primeprime})
+  = y_2(py_1^{\prime})^{\prime} - y_1(py_2^{\prime})^{\prime} \\
+  &= y_2qy_1 - y_1qy_2 = 0.
+\end{align*}
+Angenommen $\kappa(x) \equiv 0$, dann folgt aufgrund $p(x) > 0$
+\begin{align*}
+  y_1^{\prime}y_2 = y_1y_2^{\prime} \iff
+  \frac{y_1^{\prime}}{y_1} = \frac{y_2^{\prime}}{y_2} \iff
+  (\ln(y_1))^{\prime} = (\ln(y_2))^{\prime} \iff
+  \ln(y_1) = \ln(y_2) + C \iff
+  y_1 = y_2\exp(C)
+\end{align*}
+im Widerspruch zur linearen Unabhängigkeit von $y_1,y_2$. \\
+Um zu zeigen, dass $G$ die Greensche Funktion aus Satz 6.7 ist, müssen wir drei
+Bedingungen nachrechnen:
+\begin{itemize}
+  \item $LG(\cdot,t) = 0$ auf $(a,t) \cup (t,b)$: \\ Für jedes feste $t$ ist $G(\cdot,t)$
+  einfach ein Vielfaches von $y_1$ oder $y_2$ und erfüllt damit sicher $LG(\cdot,t) = 0$.
+  \item $G(\cdot,t)$ ist stetig bei $x = t$: \\
+  Folgt einfach aus der Stetigkeit von $y_1,y_2$, da
+  \begin{align*}
+    \kappa G(t^-,t) = \lim_{\tau \to t^-}y_1(t)y_2(\tau) = y_1(t)y_2(t)
+    = \lim_{\tau \to t^+}y_1(\tau)y_2(t) = \kappa G(t^+,t).
+  \end{align*}
+  \item $\partial_x G(t^+,t)- \partial_x G(t^-,t) = - \frac{1}{p(t)}$:
+  \begin{align*}
+    \kappa(\partial_x G(t^+,t)- \partial_x G(t^-,t)) =
+    \lim_{x \to t^+}y_1^{\prime}(x)y_2(t)- \lim_{x \to t^-}y_1(t)y_2^{\prime}(x)
+    = y_1^{\prime}(t)y_2(t) - y_1(t)y_2^{\prime}(t) = - \frac{\kappa}{p(t)}
+  \end{align*}
+  \item $R_1G(\cdot,t) = R_2G(\cdot,t) = 0$: \\
+  Folgt wieder daraus, dass für festes $t: G(\cdot,t)$ ein Vielfaches einer
+   der Lösungen $y_1,y_2$ ist und aufgrund der Linearität der Randbedingungen
+   folgt $R_1G(\cdot,t) = R_2G(\cdot,t) = 0$.
+\end{itemize}
+Also wissen wir, dass die Funktion $x \mapsto \int_a^b G(x,t)f(t) dt$ die Lösung
+unseres RWP mit $\rho_1 = \rho_2 = 0$ ist.
 \end{solution}
