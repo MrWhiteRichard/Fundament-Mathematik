@@ -1,8 +1,8 @@
 \begin{exercise}
 Betrachten Sie das RWP
-\begin{align*}
+\begin{align}\label{1}
   Ly = -(py^{\prime})^{\prime} + qy = f \text{ auf } (a,b), \qquad R_1y = R_2y = 0.
-\end{align*}
+\end{align}
 Es sei $G$ die Greensche Funktion für dieses RWP (Sie fordern also insbesondere
 eindeutige Lösbarkeit). Es soll gezeigt werden, dass $LG(\cdot,t) = \delta_t$,
 wobei $\delta_t$ die \glqq$\delta$-Distribution\grqq ist. Genauer: Zeigen Sie für
@@ -13,9 +13,15 @@ $t \in (a,b):$
 \end{align*}
 \end{exercise}
 \begin{solution}
-\textit{Wieso können wir eigentlich eindeutige Lösbarkeit fordern? Das steht doch nirgends im Skript...}\\
-Da das Randwerproblem eindeutig lösbar ist, gilt das für alle linke Seiten $f \in C([a,b];\R)$
-und somit insbesondere für alle $\varphi \in C_0^{\infty}(a,b)$. Aus Satz 6.9 und Satz 6.7 wissen wir, dass
+Da das Randwertproblem eindeutig lösbar ist, gilt das für alle linke Seiten $f \in C([a,b];\R)$
+und somit insbesondere für alle $\varphi \in C_0^{\infty}(a,b)$.
+Dazu betrachte zwei Lösungen $y_1,y_2$ für \eqref{1}.
+\begin{align*}
+  L(y_1 - y_2) &= Ly_1 - Ly_2 = 0 \\
+  R_1(y_1 - y_2) &= R_2(y_1 - y_2) = 0
+\end{align*} und da das Problem laut Voraussetzungen für $f = 0, \rho_1 = 0 = \rho_2$
+nur trivial lösbar ist, folgt $y_1 = y_2$.
+Aus Satz 6.9 und Satz 6.7 wissen wir, dass
 \begin{align*}
   y(t) := \int_a^b G(x,t)(L\varphi)(x) dx = \int_a^b G(t,x)(L\varphi)(x) dx.
 \end{align*}

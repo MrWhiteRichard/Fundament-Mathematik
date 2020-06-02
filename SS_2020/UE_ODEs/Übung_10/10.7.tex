@@ -24,7 +24,120 @@
 \end{enumerate}
 \end{exercise}
 \begin{solution}
+\leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item
+  \item Die ODE ist bereits ist selbstadjungierter Form mit $p(x) = 1, q(x) = a$.
+  Bestimmen wir zunächst ein Fundamentalsystem für $-y^{\primeprime} + ay = 0$.
+  Zwei linear unabhängige Lösungen kann man direkt ablesen mit $y_1(x) = \exp(\sqrt{a}x), y_2(x) = \exp(-\sqrt{a}x)$.
+  Das Randwertproblem ist genau dann für alle \\
+  $f \in C([a,b];\R), \rho_1,\rho_2 \in \R$
+  eindeutig lösbar, wenn
+  \begin{align*}
+    0 \stackrel{!}{\neq} \det\left(\begin{pmatrix}
+      R_1y_1 & R_1y_2 \\ R_2y_1 & R_2y_2
+    \end{pmatrix}\right) =
+    \det\left(\begin{pmatrix}
+      \sqrt{a} & -\sqrt{a} \\ \sqrt{a}\exp(\sqrt{a}) & -\sqrt{a}\exp(-\sqrt{a})
+    \end{pmatrix}\right)
+    = a\exp(\sqrt{a}) - a\exp(-\sqrt{a}).
+  \end{align*}
+  Dies wird in offensichtlicher Weise von allen $a > 0$ erfüllt.
+  \item Additionstherome:
+  \begin{align}
+    \sinh(x \pm y) = \sinh(x)\cosh(y) \pm \cosh(x)\sinh(y) \label{sinh} \\
+    \cosh(x \pm y) = \cosh(x)\cosh(y) \pm \sinh(x)\sinh(y) \label{cosh}
+  \end{align}
+  Für die Konstruktion der Greenschen Funktion verwenden wir das (hoffentlich)
+  bequemere Fundamentalsystem
+  \begin{align*}
+  y_1(x) &= \frac{\exp(\sqrt{a}x)+\exp(-\sqrt{a}x)}{2} = \cosh(\sqrt{a}x), \\
+  y_2(x) &= \frac{\exp(\sqrt{a}x)+\exp(-\sqrt{a}x)}{2} = \sinh(\sqrt{a}x)
+  \end{align*}
+  oder das noch bequemere
+  \begin{align*}
+  y_1(x) &= \cosh(\sqrt{a}x), \\
+  y_2(x) &= \cosh(-\sqrt{a})\cosh(\sqrt{a}x) + \sinh(-\sqrt{a})\sinh(\sqrt{a}x) =
+  \cosh(\sqrt{a}(x-1)).
+  \end{align*}
+  Wir machen den Ansatz
+  \begin{align*}
+    G(x,t) = \begin{cases}
+      a_1(t)\cosh(\sqrt{a}x) + a_2(t)\cosh(\sqrt{a}(x-1)), & x \leq t \\
+      b_1(t)\cosh(\sqrt{a}x) + b_2(t)\cosh(\sqrt{a}(x-1)), & x > t
+    \end{cases},
+  \end{align*}
+  welcher nach Konstruktion sicher die Bedingung
+  \begin{itemize}
+    \item $LG(\cdot,t) = 0$ auf $(a,t) \cup (t,b)$ erfüllt.
+    \item $R_1G(\cdot,t) = 0$:
+    \begin{align*}
+      R_1G(\cdot,t) = \partial_xG(0,t) = a_1(t)\sqrt{a}\sinh(0) - a_2(t)\sqrt{a}\sinh(-\sqrt{a}) =  - a_2(t)\sqrt{a}\sinh(-\sqrt{a}) \stackrel{!}{=} 0.
+    \end{align*}
+    Also erhalten wir $a_2(t) = 0$.
+    \item $R_2G(\cdot,t) = 0$:
+    \begin{align*}
+      R_2G(\cdot,t) &= \partial_xG(1,t) = b_1(t)\sqrt{a}\sinh(\sqrt{a}) - b_2(t)\sqrt{a}\sinh(0)
+      = b_1(t)\sqrt{a}\sinh(\sqrt{a}) \stackrel{!}{=} 0
+    \end{align*}
+    Wir erhalten $b_1(t) = 0$.
+    \item $G(\cdot,t)$ ist stetig bei $x = t$: \\
+    \begin{align*}
+      G(t^-,t) = a_1(t)\cosh(\sqrt{a}t) \stackrel{!}{=}
+      b_2(t)\cosh(\sqrt{a}(t-1)) = G(t^+,t).
+    \end{align*}
+    Wir erhalten $a_1(t) = b_2(t)\frac{\cosh(\sqrt{a}(t-1))}{\cosh(\sqrt{a}t)}$.
+    \item $\partial_x G(t^+,t)- \partial_x G(t^-,t) = - \frac{1}{p(t)} = -1$:
+    \begin{align*}
+      \partial_x G(t^+,t)- \partial_x G(t^-,t) =
+      b_2(t)\sqrt{a}\sinh(\sqrt{a}(t-1)) - a_1(t)\sqrt{a}\sinh(\sqrt{a}t) \stackrel{!}{=} -1.
+    \end{align*}
+    Es folgt
+    \begin{align*}
+      b_2(t) &= -\frac{1}{\sqrt{a}\sinh(\sqrt{a}(t-1)) - \frac{\cosh(\sqrt{a}(t-1))}{\cosh(\sqrt{a}t)}\sqrt{a}\sinh(\sqrt{a}t)} \\
+      &= -\frac{\cosh(\sqrt{a}t)}{\sqrt{a}\left(\sinh(\sqrt{a}(t-1))\cosh(\sqrt{a}t) - \cosh(\sqrt{a}(t-1))\sinh(\sqrt{a}t)\right)} \\
+      &= -\frac{\cosh(\sqrt{a}t)}{\sqrt{a}\sinh(-\sqrt{a})}
+      = \frac{\cosh(\sqrt{a}t)}{\sqrt{a}\sinh(\sqrt{a})}
+    \end{align*}
+    \item Insgesamt liefert das
+    \begin{align*}
+      G(x,t) = \begin{cases}
+      \frac{\cosh(\sqrt{a}(t-1))}{\sqrt{a}\sinh(\sqrt{a})}\cosh(\sqrt{a}x), & x \leq t \\
+      \frac{\cosh(\sqrt{a}t)}{\sqrt{a}\sinh(\sqrt{a})}\cosh(\sqrt{a}(x-1)), & x > t
+      \end{cases}.
+    \end{align*}
+  \end{itemize}
+  \item Wir betrachten das äquivalente System erster Ordnung:
+  \begin{align*}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}^{\prime} =
+    \begin{pmatrix}
+      z \\ ay - F(t,y)
+    \end{pmatrix}
+  \end{align*}
+  Wir definieren die Funktion
+  \begin{align*}
+    f(t,y,z) = \begin{pmatrix}
+      z \\ ay - F(t,y)
+    \end{pmatrix}.
+  \end{align*}
+  Gelte $\|(y,z)^{\top} - (\widetilde{y},\widetilde{z})\|_{\infty} \leq \epsilon$. Dann folgt
+  \begin{align*}
+    \|f(t,y,z) - f(t,\widetilde{y},\widetilde{z})\|_{\infty} \leq \max\{\epsilon, |a\epsilon| + |L\epsilon|\} \leq \max\{1,2a\}\epsilon
+  \end{align*}
+  damit die Lipschitz-Stetigkeit von $f$. \\
+  Alternativ können wir das Problem auch in eine Integraldarstellung umformen:
+  \begin{align*}
+    y(t) = \int_0^t\int_0^say(\tau) - F(\tau,y(\tau))d\tau ds
+  \end{align*}
+  Definiere die Funktion
+  \begin{align*}
+    f(t,y) = \int_0^ty - F(\tau,y) d\tau
+  \end{align*}
+  \item Betrachte das Gegenbeispiel $F(t,y) = ay$ mit Lipschitzkonstante $L = a$. Das Randwertproblem lautet nun
+  \begin{align*}
+    y^{\primeprime} = 0, \qquad y^{\prime}(0) = 0 = y^{\prime}(1),
+  \end{align*}
+  welches klarerweise von jeder beliebigen konstanten Funktion gelöst wird.
 \end{enumerate}
 \end{solution}

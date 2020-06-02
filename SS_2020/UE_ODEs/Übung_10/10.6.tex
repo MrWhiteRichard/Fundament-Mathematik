@@ -15,7 +15,7 @@ das Sturm-Liouville Eigenwertproblem, welches durch den Ansatz der Separation
 der Variablen entsteht. Geben Sie eine (formale) Lösung als Reihe an.
 \end{exercise}
 \begin{solution}
-Machen wir den Ansatz mit Seperation der Variablen. Das bedeutet wir setzen
+Machen wir den Ansatz mit Separation der Variablen. Das bedeutet wir setzen
 
 \begin{align*}
   y(x,t)
@@ -35,7 +35,7 @@ Setzen wir nun in unsere Differentialgleichung ein erhalten wir
   \frac{v^\primeprime(x)}{v(x)}
 \end{align*}
 
-Dabei hängt die linke Seite nur von $t$ und die rechte seite nur von $x$ ab. Deswegen
+Dabei hängt die linke Seite nur von $t$ und die rechte Seite nur von $x$ ab. Deswegen
 muss es also eine Konstante $\lambda$ geben, die folgendes erfüllt:
 
 \begin{align*}
@@ -58,7 +58,11 @@ Aus der Vorlesung kennen wir die allgemeinen Lösungen für $v$ und  $w$:
   w(t) = c_3 \sin(c\sqrt{\lambda}t) + c_4 \cos(c\sqrt{\lambda}t)
 \end{align*}
 
-Um nun die Randbedingungen zu erfüllen, setzen wir $c_2 = 0$ und sehen uns die erste Ableitung
+Um nun die Randbedingungen zu erfüllen, setzen wir zuerst $c_2 = 0$ und erhalten
+\begin{align*}
+  y(0,t) = v(0)w(t) = c_1\sin(0)w(t) = 0.
+\end{align*}
+Sehen wir uns nun die erste Ableitung
 von $v$ an (o.B.d.A $c_1 \neq 0$)
 \begin{align*}
   v^\prime(1)
@@ -74,14 +78,14 @@ von $v$ an (o.B.d.A $c_1 \neq 0$)
   \frac{\pi^2}{4}n^2 \quad \text{mit } n\in \Z \backslash\{0\}
 \end{align*}
 
-Wir haben nun mit
+Wir setzen $\lambda = \frac{\pi^2}{4}n^2$ für beliebiges $n \in \N$ und haben nun mit
 
 \begin{align*}
   v(x)w(t)
   =
-  c_1\sin(n\frac{\pi}{2} x)
-  (c_3 \sin(c\frac{\pi}{2}nt) +
-  c_4 \cos(c\frac{\pi}{2}nt))
+  c_1\sin\left(n\frac{\pi}{2} x\right)
+  \left(c_3 \sin\left(c\frac{\pi}{2}nt\right) +
+  c_4 \cos\left(c\frac{\pi}{2}nt\right)\right)
 \end{align*}
 
 eine Lösung unserer Differentialgleichung die auch die Randbedingungen erfüllt.
@@ -90,8 +94,8 @@ Machen wir nun den Ansatz für die Lösung mit dem Superpositionsprinzip
 \begin{align*}
   y(x,t)
   =
-  \sum_{n=1}^{\infty} \sin(\frac{nx\pi}{2})
-  (c_{1,n}\sin(\frac{nct\pi}{2})+c_{2,n}\cos(\frac{nct\pi}{2}))
+  \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
+  \left(c_{1,n}\sin\left(\frac{nct\pi}{2}\right)+c_{2,n}\cos\left(\frac{nct\pi}{2}\right)\right)
 \end{align*}
 
 Um nun die Koeffizienten $c_{1,n},c_{2,n}$ zu erhalten, sehen wir uns die
@@ -100,13 +104,13 @@ Anfangsbedingungen an.
 \begin{align*}
   y_0(x)
   \stackrel{!}{=}
-  \sum_{n=1}^\infty c_{2,n}\sin(\frac{nx\pi}{2}),       \quad x \in (0,1) \\
+  \sum_{n=1}^\infty c_{2,n}\sin\left(\frac{nx\pi}{2}\right),       \quad x \in (0,1) \\
   y_1(x)
   \stackrel{!}{=}
-  \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\sin(\frac{nx\pi}{2}),  \quad x \in (0,1)
+  \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\cos\left(\frac{nx\pi}{2}\right),  \quad x \in (0,1)
 \end{align*}
 
-Falls man nun $y_0$ und $y_1$ antisymmetrisch auf $(-1,1)$
+Falls man nun $y_0$ und $y_1$ (anti)-symmetrisch auf $(-1,1)$
 fortsetzt und dann die Sinusreihen bildet (falls diese dann auch gegen die entsprechenden Funktionen
 konvergieren) erhält man ebenso die Darstellung:
 
@@ -116,13 +120,13 @@ konvergieren) erhält man ebenso die Darstellung:
   \sum_{n=1}^\infty a_n \sin(\pi nx) \\
   y_1(x)
   =
-  \sum_{n=1}^\infty b_n \sin(n \pi x), \quad \text{mit} \\
+  \sum_{n=1}^\infty b_n \cos(n \pi x), \quad \text{mit} \\
   a_n
   =
   \int_0^2 y_0(x)\sin(n\pi x) dx \\
   b_n
   =
-  \int_0^2 y_1(x)\sin(n\pi x) dx \\
+  \int_0^2 y_1(x)\cos(n\pi x) dx \\
 \end{align*}
 
 Womit man zumindest $c_{1,n}$ und $c_{2,n}$ für $n \in 2\N$ bestimmen könnte(?)
