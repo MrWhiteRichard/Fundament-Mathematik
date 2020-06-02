@@ -15,5 +15,116 @@ das Sturm-Liouville Eigenwertproblem, welches durch den Ansatz der Separation
 der Variablen entsteht. Geben Sie eine (formale) Lösung als Reihe an.
 \end{exercise}
 \begin{solution}
-Beweis.
+Machen wir den Ansatz mit Seperation der Variablen. Das bedeutet wir setzen
+
+\begin{align*}
+  y(x,t)
+  =
+  v(x)w(t)
+\end{align*}
+
+Setzen wir nun in unsere Differentialgleichung ein erhalten wir
+
+\begin{align*}
+  \frac{1}{c^2}w^\primeprime(t)v(x)
+  \stackrel{!}{=}
+  v^\primeprime(x)w(t) \\
+  \implies
+  \frac{1}{c^2}\frac{w^\primeprime(t)}{w(t)}
+  =
+  \frac{v^\primeprime(x)}{v(x)}
+\end{align*}
+
+Dabei hängt die linke Seite nur von $t$ und die rechte seite nur von $x$ ab. Deswegen
+muss es also eine Konstante $\lambda$ geben, die folgendes erfüllt:
+
+\begin{align*}
+  \frac{1}{c^2}\frac{w^\primeprime(t)}{w(t)}
+  =
+  -\lambda
+  =
+  \frac{v^\primeprime(x)}{v(x)}
+  \implies
+  \begin{cases}
+    -\lambda v - v^\primeprime = 0 & \text{auf } (0,1), \quad v(0)=0=v^\prime(1) \\
+    -\lambda c^2 w - w^\primeprime = 0 & \text{auf }(0,\infty)
+  \end{cases}
+\end{align*}
+
+Aus der Vorlesung kennen wir die allgemeinen Lösungen für $v$ und  $w$:
+
+\begin{align*}
+  v(x) = c_1 \sin(\sqrt{\lambda}x) + c_2 \cos(\sqrt{\lambda}x) \\
+  w(t) = c_3 \sin(c\sqrt{\lambda}t) + c_4 \cos(c\sqrt{\lambda}t)
+\end{align*}
+
+Um nun die Randbedingungen zu erfüllen, setzen wir $c_2 = 0$ und sehen uns die erste Ableitung
+von $v$ an (o.B.d.A $c_1 \neq 0$)
+\begin{align*}
+  v^\prime(1)
+  =
+  c_1 \sqrt{\lambda}\cos(\sqrt{\lambda})
+  \stackrel{!}{=}
+  0 \\
+  \implies
+  \lambda = 0
+  \lor
+  \lambda
+  =
+  \frac{\pi^2}{4}n^2 \quad \text{mit } n\in \Z \backslash\{0\}
+\end{align*}
+
+Wir haben nun mit
+
+\begin{align*}
+  v(x)w(t)
+  =
+  c_1\sin(n\frac{\pi}{2} x)
+  (c_3 \sin(c\frac{\pi}{2}nt) +
+  c_4 \cos(c\frac{\pi}{2}nt))
+\end{align*}
+
+eine Lösung unserer Differentialgleichung die auch die Randbedingungen erfüllt.
+Machen wir nun den Ansatz für die Lösung mit dem Superpositionsprinzip
+
+\begin{align*}
+  y(x,t)
+  =
+  \sum_{n=1}^{\infty} \sin(\frac{nx\pi}{2})
+  (c_{1,n}\sin(\frac{nct\pi}{2})+c_{2,n}\cos(\frac{nct\pi}{2}))
+\end{align*}
+
+Um nun die Koeffizienten $c_{1,n},c_{2,n}$ zu erhalten, sehen wir uns die
+Anfangsbedingungen an.
+
+\begin{align*}
+  y_0(x)
+  \stackrel{!}{=}
+  \sum_{n=1}^\infty c_{2,n}\sin(\frac{nx\pi}{2}),       \quad x \in (0,1) \\
+  y_1(x)
+  \stackrel{!}{=}
+  \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\sin(\frac{nx\pi}{2}),  \quad x \in (0,1)
+\end{align*}
+
+Falls man nun $y_0$ und $y_1$ antisymmetrisch auf $(-1,1)$
+fortsetzt und dann die Sinusreihen bildet (falls diese dann auch gegen die entsprechenden Funktionen
+konvergieren) erhält man ebenso die Darstellung:
+
+\begin{align*}
+  y_0(x)
+  =
+  \sum_{n=1}^\infty a_n \sin(\pi nx) \\
+  y_1(x)
+  =
+  \sum_{n=1}^\infty b_n \sin(n \pi x), \quad \text{mit} \\
+  a_n
+  =
+  \int_0^2 y_0(x)\sin(n\pi x) dx \\
+  b_n
+  =
+  \int_0^2 y_1(x)\sin(n\pi x) dx \\
+\end{align*}
+
+Womit man zumindest $c_{1,n}$ und $c_{2,n}$ für $n \in 2\N$ bestimmen könnte(?)
+
 \end{solution}
