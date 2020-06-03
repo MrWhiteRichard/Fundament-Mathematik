@@ -12,7 +12,7 @@ Zeige, dass seine Hilbertraumadjungierte $K^\ast \in \mathcal{B}(L^2(\mu))$ der 
   Wir zeigen zuerst $\|K\| \leq \|k\|$; insbesondere ist K ein beschränkter Operator:
   \begin{align}
       \|Kf\|_{L^2(\mu)} = \int_X |Kf(x)|^2 ~\mathrm{d}\mu(x)
-      = \int_X \left|\int_X k(x,y) f(y) ~\mathrm{d}\mu(y)\right|^2 ~\mathrm{d}\mu(x) \\
+      = \int_X \left|\int_X k(x,y) f(y) ~\mathrm{d}\mu(y)\right|^2~\mathrm{d}\mu(x) \\
       \leq \int_X \int_X |k(x,y)|^2 |f(y)|^2 ~\mathrm{d}\mu(y)
       ~\mathrm{d}\mu(x) \leq \|f\|_{L^2(\mu)} \int_X \int_X |k(x,y)|^2 ~\mathrm{d}\mu(y) ~\mathrm{d}\mu(x) \\ \stackrel{\text{Fubini}}{=} \|f\|_{L^2(\mu)} \int_{X^2} |k(x,y)|^2 ~\mathrm{d}(\mu\times\mu)(x,y)
       = \|f\|_{L^2(\mu)} \|k\|_{L^2(\mu\times\mu)}.
@@ -35,18 +35,18 @@ Zeige, dass seine Hilbertraumadjungierte $K^\ast \in \mathcal{B}(L^2(\mu))$ der 
       K^*(f) := \phi^{-1}(K(\phi(f))) = \phi^{-1}\left(K^\prime\left(g \mapsto \int_X f\overline g ~\mathrm{d}\mu\right)\right)
       = \phi^{-1}\left(z \mapsto \int_X f(x) ~\overline{K(z)}(x) ~\mathrm{d}\mu(x)\right) \\
       = \phi^{-1}\left(z \mapsto \int_X f(x)
-      ~\overline{\int_X k(x,y) z(y) \mathrm{d}\mu(y)}
+      ~\overline{\int_X k(x,y) z(y) ~\mathrm{d}\mu(y)}
       ~\mathrm{d}\mu(x)\right)
       = \phi^{-1}\left(z \mapsto \int_X
-      ~\int_X f(x) \overline{k(x,y)} \overline{z(y)} \mathrm{d}\mu(y)
+      ~\int_X f(x) \overline{k(x,y)} \overline{z(y)} ~\mathrm{d}\mu(y)
       ~\mathrm{d}\mu(x)\right) \\
       \stackrel{\text{\textbf{Fubini***}}}{=} \phi^{-1}\left(z \mapsto \int_X
-      ~\int_X f(x) \overline{k(x,y)} \overline{z(y)} \mathrm{d}\mu(x)
+      ~\int_X f(x) \overline{k(x,y)} \overline{z(y)} ~\mathrm{d}\mu(x)
       ~\mathrm{d}\mu(y)\right)
       = \phi^{-1}\left(z \mapsto \int_X
-      \left(\int_X f(x) \overline{k(x,y)} \mathrm{d}\mu(x) \right) \overline{z(y)}
+      \left(\int_X f(x) \overline{k(x,y)} ~\mathrm{d}\mu(x) \right) \overline{z(y)}
       ~\mathrm{d}\mu(y)\right) \\
-      = x \mapsto \int_X f(x) \overline{k(x,y)} \mathrm{d}\mu(x).
+      = x \mapsto \int_X f(x) \overline{k(x,y)} ~\mathrm{d}\mu(x).
   \end{align}
 
   *** \textbf{Begründung warum das integrierbar ist fehlt}
