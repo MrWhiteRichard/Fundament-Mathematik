@@ -13,11 +13,15 @@ sein muss.
 Die Nullstellen direkt zu berechnen sieht eher schwierig aus, daher betrachten wir
 einmal die Extremwerte.
 \begin{align*}
-  f^{\prime}(y) = 1 + r(1 - \tanh(ry)^2) = 1 + r - r\tanh(ry)^2.
+  f^{\prime}(y) &= 1 + r(1 - \tanh(ry)^2) = 1 + r - r\tanh(ry)^2 \\
+  f^{\primeprime}(y) &= -2r^2\tanh(ry)(1 - \tanh(ry)^2).
 \end{align*}
+Es gilt: $f^{\primeprime}(y) > 0$ für $ry < 0$ und $f^{\primeprime}(y) < 0$ für $ry > 0$.
+Die zweite Ableitung von $f$ hat also nur eine Nullstelle und daraus folgt bereits, dass
+$f$ selbst maximal 3 Nullstellen haben kann.\\
 Fall 1: $r \geq 0:$
 \begin{align*}
-  f^{\prime}(y) \geq 1
+  f^{\prime}(y) \geq 1 + r - r = 1.
 \end{align*}
 Fall 2: $-1 < r < 0$:
 \begin{align*}
@@ -28,26 +32,20 @@ Fall 3: $r = -1$:
   f^{\prime}(y) &\geq 0 \\
   f^{\prime}(0) &= 0.
 \end{align*}
-In allen Fällen ist die Funktion also streng monoton steigend und kann damit
+In allen drei Fällen ist die Funktion also streng monoton steigend und kann damit
 nur die Nullstelle $y^* = 0$ besitzen. \\
 Fall 4: $r < -1$:
 \begin{align*}
-  f^{\prime}(0) &= 1 + r - r\tanh(0)^2 = 1 + r < 0 \\
-  \lim_{y \to \pm\infty}f^{\prime}(y) &= 1 + r - r = 1 > 0 \\
+  f^{\prime}(0) = 1 + r - r\tanh(0)^2 = 1 + r < 0
 \end{align*}
 Also ist $f$ in einer Umgebung von $0$ streng monton fallend und es exisitieren
 $y_0 > 0: f(y_0) < 0$ und $y_1 < 0: f(y_1) > 0$. Gleichzeitig gilt
 \begin{align*}
   \lim_{y \to \infty} f(y) &= \infty \\
-  \lim_{y \to -\infty} f(y) & -\infty.
+  \lim_{y \to -\infty} f(y) &= -\infty.
 \end{align*}
-Laut dem Zwischenwertsatz hat $f$ für $r < -1$ also mindestens drei Nullstellen.
-Seien $y_-^*,y_+^*$ die erste negative, beziehungsweise positive Nullstelle von $f$.
-Dann folgt für $y > y_+^*$ aufgrund der Monotonie des Tangens Hyperbolicus:
-\begin{align*}
-  f(y) = y + \tanh(ry) > y_+^* + \tanh(ty_+^*) = 0.
-\end{align*}
-Analog folgt für $y < y_-^*: f(y) < 0$. Also kann $f$ nur genau diese drei Nullstellen haben. \\
+Laut dem Zwischenwertsatz hat $f$ für $r < -1$ also mindestens drei Nullstellen,
+welche nach obiger Überlegung bereits die einzigen Nullstellen sein müssen. \\
 Der Bifurkationspunkt ist also $r = -1$, in welchem aus einer Ruhelage 3 Ruhelagen werden,
 wobei die beiden nichttrivialen Ruhelagen asymptotisch stabil sind und $y^* = 0$
 von einer asymptotisch stabilen Ruhelage zu einer instabilen Ruhelage wird.
