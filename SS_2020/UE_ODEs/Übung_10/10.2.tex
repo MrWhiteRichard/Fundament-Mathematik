@@ -75,7 +75,40 @@
     \end{pmatrix}\right).
   \end{align*}
   Es folgt, dass unser Problem unlösbar ist.
-  \item Unsere Fundamentalmatrix des homogenen Systems lautet für $\alpha \neq 0$
+  \item Zuerst behandeln wir den Fall $\alpha = 0$: \\
+    Die Fundamentalmatrix lautet
+    \begin{align*}
+      Y(x) = \begin{pmatrix}
+        1 & x \\ 0 & 1
+      \end{pmatrix}
+    \end{align*}
+    und wir erhalten
+    \begin{align*}
+      B = R_0Y(0) + R_{\pi}Y(\pi) =
+      \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+      \end{pmatrix}
+      \begin{pmatrix}
+        1 & 0  \\ 0 & 1
+      \end{pmatrix}
+      + \begin{pmatrix}
+        -1 & 0 \\ 0 & -1
+      \end{pmatrix}
+      \begin{pmatrix}
+        1 & \pi  \\ 0 & 1
+      \end{pmatrix}
+      = \begin{pmatrix}
+        0 & -\pi \\ 0 & 0
+      \end{pmatrix}
+    \end{align*}
+    Wieder ist der Lösungsraum ein-dimensional und man kann leicht nachrechnen, dass
+    \begin{align*}
+      y(x) = \begin{pmatrix}
+        a \\ 0
+      \end{pmatrix}, \qquad a \in \R
+    \end{align*}
+    die Randbedingungen erfüllt. \\
+  Für $\alpha \neq 0$ lautet unsere Fundamentalmatrix des homogenen Systems
   \begin{align*}
     Y(x) = \exp(xA) = \begin{pmatrix}
       \cos(\alpha x) & \nicefrac{\sin(\alpha x)}{\alpha}  \\ -\alpha\sin(\alpha x) & \cos(\alpha x)
@@ -115,92 +148,33 @@
   \end{align*}
   Klarerweise löst $y \equiv 0$ unser Problem, damit ist die Existenz einer Lösung
   auf jeden Fall gegeben und wir erhalten mit dem zweiten Teil von Satz 6.3, dass
-  unser Lösungsraum Dimension $\ker B$ hat. Also betrachten wir die lineare
-  (Un)-Abhängigkeit der Spalten von $B$ in Abhängigkeit von $\alpha$.
-  \begin{align*}
-    \lambda(1 - \cos(\alpha \pi), \alpha\sin(\alpha \pi))^{\top} \stackrel{!}{=}
-    (-\nicefrac{\sin(\alpha \pi)}{\alpha},1 - \cos(\alpha \pi))^{\top}
-  \end{align*}
-  Wir erhalten die beiden Gleichungen
-  \begin{align*}
-    \lambda(1 - \cos(\alpha \pi)) &= -\nicefrac{\sin(\alpha \pi)}{\alpha} \\
-    \lambda\alpha\sin(\alpha \pi) &= 1 - \cos(\alpha \pi)
-  \end{align*}
-  Es folgt
-  \begin{align*}
-     -\nicefrac{\sin(\alpha \pi)}{\alpha} \stackrel{!}{=} \alpha\sin(\alpha \pi)
-     \iff \sin(\alpha \pi)(\alpha + \frac{1}{\alpha}) \stackrel{!}{=} 0
-  \end{align*}
-  Diese Gleichheit wird genau von $\alpha \in \Z\backslash\{0\}$ erfüllt. Nun brauchen
-  wir noch eine Fallunterscheidung:
+  unser Lösungsraum Dimension $\ker B$ hat.
+  Nun brauchen wir eine Fallunterscheidung:
   \begin{itemize}
     \item $\alpha \in 2\Z\backslash\{0\}$: \\
-    Es gilt $1 - \cos(\alpha \pi) = 0$ und der Lösungsraum ist zwei-dimensional. Damit können wir eine allgemeine Lösung $y$
-    angeben als
+    Es gilt $1 - \cos(\alpha \pi) = 0 = \sin(\alpha \pi)$ und damit
+    \begin{align*}
+      B = \begin{pmatrix}
+        0 & 0 \\ 0 & 0
+      \end{pmatrix}.
+    \end{align*}
+    Der Kern von $B$ und somit der Lösungsraum ist also zwei-dimensional.
+    Damit können wir eine allgemeine Lösung $y$ angeben als
     \begin{align*}
       y(x) = Y(x)(a,b)^{\top} = (a\cos(\alpha x) + b\frac{\sin(\alpha x)}{\alpha}, -a\alpha\sin(\alpha x) + b\cos(\alpha x)), \qquad a,b \in \R.
     \end{align*}
-    \item $\alpha \in 2\Z+1\backslash\{0\}$: \\
-      Der Lösungsraum ist ein-dimensional und lässt sich angeben als
-      Lösung von $Bx = (0,0)^{\top}$:
+    \item $\alpha \notin 2\Z$: \\
+      Wir berechnen die Determinante von $B$:
       \begin{align*}
-        \begin{pmatrix}
-          1 - \cos(\alpha \pi) & 0 \\
-          0 & 1 - \cos(\alpha \pi)
-        \end{pmatrix}
-        \begin{pmatrix}
-          a \\ b
-        \end{pmatrix}
-        &= \begin{pmatrix}
-          0 \\ 0
-        \end{pmatrix} \iff
-        \begin{pmatrix}
-          a \\ b
-        \end{pmatrix}
-        = \begin{pmatrix}
-          \cos(\alpha \pi) \\ \cos(\alpha \pi)
-        \end{pmatrix}\\
-        y(x) &=
-        \begin{pmatrix}
-          \cos(\alpha \pi)\cos(\alpha x) + \cos(\alpha \pi)\frac{\sin(\alpha x)}{\alpha} \\
-          -\cos(\alpha \pi)\alpha\sin(\alpha x) + \cos(\alpha \pi)\cos(\alpha x)
-        \end{pmatrix}.
+        \det(B) &= \det\left(\begin{pmatrix}
+          1 - \cos(\alpha \pi) & -\nicefrac{\sin(\alpha \pi)}{\alpha} \\
+          \alpha\sin(\alpha \pi) & 1 - \cos(\alpha \pi)
+        \end{pmatrix}\right)
+        = (1 - \cos(\alpha \pi))^2 + \sin(\alpha \pi)^2 \\
+        &= 1 - 2\cos(\alpha \pi) + \cos(\alpha \pi)^2 + \sin(\alpha \pi)^2
+        = 2(1 - \cos(\alpha \pi)) \neq 0.
       \end{align*}
-    \item $\alpha \notin \Z$: \\
-      Der Lösungsraum ist null-dimensional, es gibt also nur die triviale $0$-Lösung.
-    \item $\alpha = 0$:
-      Die Fundamentalmatrix lautet
-      \begin{align*}
-        Y(x) = \begin{pmatrix}
-          1 & x \\ 0 & 1
-        \end{pmatrix}
-      \end{align*}
-      und wir erhalten
-      \begin{align*}
-        B = R_0Y(0) + R_{\pi}Y(\pi) =
-        \begin{pmatrix}
-          1 & 0 \\ 0 & 1
-        \end{pmatrix}
-        \begin{pmatrix}
-          1 & 0  \\ 0 & 1
-        \end{pmatrix}
-        + \begin{pmatrix}
-          -1 & 0 \\ 0 & -1
-        \end{pmatrix}
-        \begin{pmatrix}
-          1 & \pi  \\ 0 & 1
-        \end{pmatrix}
-        = \begin{pmatrix}
-          0 & -\pi \\ 0 & 0
-        \end{pmatrix}
-      \end{align*}
-      Wieder ist der Lösungsraum ein-dimensional und man kann leicht nachrechnen, dass
-      \begin{align*}
-        y(x) = \begin{pmatrix}
-          a \\ 0
-        \end{pmatrix}, \qquad a \in \R
-      \end{align*}
-      die Randbedingungen erfüllt.
+      $B$ ist also regulär und der Lösungsraum ist null-dimensional, es gibt damit nur die triviale $0$-Lösung.
   \end{itemize}
 \end{enumerate}
 \end{solution}
