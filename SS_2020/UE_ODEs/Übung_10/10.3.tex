@@ -295,7 +295,7 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
   \end{align*}
 
     womit die Ränge nicht übereinstimmen und somit das Randwertproblem nicht lösbar ist.
-    
+
   \item Das zugehörige charakteristische Polynom lautet
   \begin{align*}
     \chi(\lambda) = \lambda^2 + 2\lambda + 5 \stackrel{!}{=} 0
@@ -353,11 +353,11 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \end{pmatrix},
   \end{align*}
   welche klarerweise regulär ist und uns damit eindeutige Lösbarkeit liefert.
-  Um diese zu bestimmen, lösen wir das Gleichungssystem $Bx = \ell - R_{\frac{\pi}{4}}y_p(\frac{\pi}{4}) = \ell$
+  Um diese zu bestimmen, lösen wir das Gleichungssystem
   \begin{align*}
     \begin{pmatrix}
       1 & 1\\
-      (-1 + 2i)i\exp(\frac{\pi}{4}) & (1 + 2i)i\exp(\frac{\pi}{4})
+      \exp((-1+2i)\frac{\pi}{4}) & \exp((-1-2i)\frac{\pi}{4})
     \end{pmatrix}
     \begin{pmatrix}
       a \\ b
@@ -366,9 +366,11 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
       2 \\ 1
     \end{pmatrix}
     \end{align*}
-  und erhalten $(a,b)^{\top} = (1+2i,1-2i)^{\top}$. Unsere eindeutige Lösung lautet daher
+  und erhalten $(a,b)^{\top} = (1-\frac{1}{2}i \exp(\frac{\pi}{4}),
+  1+\frac{1}{2}i \exp(\frac{\pi}{4}))^{\top}$.
+  Unsere eindeutige Lösung lautet daher
   \begin{align*}
-    y(x) = (1+2i)\exp((-1 + 2i)x) + (1-2i)\exp((-1-2i)x).
+    y(x) = (1-\frac{1}{2}i \exp(\frac{\pi}{4}))\exp((-1 + 2i)x) + (1+\frac{1}{2}i \exp(\frac{\pi}{4}))\exp((-1-2i)x).
   \end{align*}
 \end{enumerate}
 \end{solution}
