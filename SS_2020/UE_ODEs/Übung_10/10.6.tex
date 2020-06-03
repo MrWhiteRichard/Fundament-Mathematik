@@ -75,17 +75,17 @@ von $v$ an (o.B.d.A $c_1 \neq 0$)
   \lor
   \lambda
   =
-  \frac{\pi^2}{4}n^2 \quad \text{mit } n\in \Z \backslash\{0\}
+  \pi^2\left(n - \frac{1}{2}\right)^2 \quad \text{mit } n\in \Z \backslash\{0\}
 \end{align*}
 
-Um eine nicht-triviale Lösung zu erhalten setzen wir $\lambda = \frac{\pi^2}{4}n^2$ für beliebiges $n \in \N$ und haben nun mit
+Um eine nicht-triviale Lösung zu erhalten setzen wir $\lambda = \pi^2\left(n - \frac{1}{2}\right)^2$ für beliebiges $n \in \N$ und haben nun mit
 
 \begin{align*}
   v(x)w(t)
   =
-  c_1\sin\left(n\frac{\pi}{2} x\right)
-  \left(c_3 \sin\left(c\frac{\pi}{2}nt\right) +
-  c_4 \cos\left(c\frac{\pi}{2}nt\right)\right)
+  c_1\sin\left(\pi\left(n - \frac{1}{2}\right) x\right)
+  \left(c_3 \sin\left(c\pi\left(n - \frac{1}{2}\right)t\right) +
+  c_4 \cos\left(c\pi\left(n - \frac{1}{2}\right)t\right)\right)
 \end{align*}
 
 eine Lösung unserer Differentialgleichung die auch die Randbedingungen erfüllt.
@@ -94,8 +94,8 @@ Machen wir nun den Ansatz für die Lösung mit dem Superpositionsprinzip
 \begin{align*}
   y(x,t)
   =
-  \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
-  \left(c_{1,n}\sin\left(\frac{nct\pi}{2}\right)+c_{2,n}\cos\left(\frac{nct\pi}{2}\right)\right)
+  \sum_{n=1}^{\infty} \sin\left(\pi\left(n - \frac{1}{2}\right) x\right)
+  \left(c_{1,n}\sin\left(c\pi\left(n - \frac{1}{2}\right) t\right)+c_{2,n}\cos\left(c\pi\left(n - \frac{1}{2}\right) t\right)\right)
 \end{align*}
 
 Um nun die Koeffizienten $c_{1,n},c_{2,n}$ zu erhalten, sehen wir uns die
@@ -103,14 +103,14 @@ Anfangsbedingungen an.
 
 \begin{align*}
   y_0(x)
-  &\stackrel{!}{=} y(x,0) = \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
+  &\stackrel{!}{=} y(x,0) = \sum_{n=1}^{\infty} \sin\left(\pi\left(n - \frac{1}{2}\right) x\right)
   \left(c_{1,n}\sin(0)+c_{2,n}\cos(0)\right) \\
-  &= \sum_{n=1}^\infty c_{2,n}\sin\left(\frac{nx\pi}{2}\right),       \quad x \in (0,1) \\
+  &= \sum_{n=1}^\infty c_{2,n}\sin\left(\pi\left(n - \frac{1}{2}\right) x\right),       \quad x \in (0,1) \\
   y_1(x)
   &\stackrel{!}{=}
-  \frac{\partial}{\partial t}y(x,0) = \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
-  \left(c_{1,n}\frac{nc\pi}{2}\cos(0)- c_{2,n}\frac{nc\pi}{2}\sin(0)\right) \\
-  &= \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\sin\left(\frac{nx\pi}{2}\right),  \quad x \in (0,1)
+  \frac{\partial}{\partial t}y(x,0) = \sum_{n=1}^{\infty} \sin\left(\pi\left(n - \frac{1}{2}\right) x\right)
+  \left(c_{1,n}c\pi\left(n - \frac{1}{2}\right)\cos(0)- c_{2,n}c\pi\left(n - \frac{1}{2}\right)\sin(0)\right) \\
+  &= \sum_{n=1}^\infty c_{1,n}c\pi\left(n - \frac{1}{2}\right)\sin\left(\pi\left(n - \frac{1}{2}\right) x\right),  \quad x \in (0,1)
 \end{align*}
 
 Falls man nun $y_0$ und $y_1$ symmetrisch auf $(-1,1)$

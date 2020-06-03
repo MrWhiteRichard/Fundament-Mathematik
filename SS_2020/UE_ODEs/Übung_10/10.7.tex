@@ -125,7 +125,34 @@
   \begin{align*}
     \|f(t,y,z) - f(t,\widetilde{y},\widetilde{z})\|_{\infty} \leq \max\{\epsilon, |a\epsilon| + |L\epsilon|\} \leq \max\{1,2a\}\epsilon
   \end{align*}
-  damit die Lipschitz-Stetigkeit von $f$. \\
+  damit die Lipschitz-Stetigkeit von $f$.
+  Jetzt können wir das dazugehörige Anfangswertproblem betrachten, wenn wir $y(0) = b$ beliebig festsetzen.
+  \begin{align*}
+    \begin{pmatrix}
+      y \\ z
+    \end{pmatrix}^{\prime} =
+    \begin{pmatrix}
+      z \\ ay - F(t,y)
+    \end{pmatrix}, \qquad
+    \begin{pmatrix}
+      y(0) \\ z(0)
+    \end{pmatrix}
+    = \begin{pmatrix}
+      b \\ 0
+    \end{pmatrix}.
+  \end{align*}
+  Dieses Problem ist nun eindeutig lösbar und wir müssen ein $b \in \R$ finden,
+  sodass $y^{\prime}(1) = 0$.
+  Irgendwie müssen wir jetzt verwenden, dass die Abbildung
+  \begin{align*}
+    T_t(y) := \frac{F(t,y)}{a}
+  \end{align*}
+  eine Kontraktion ist und mit dem Banachschen Fixpunktsatz für jedes $t \in [0,1]$
+  ein eindeutiges $y_t \in \R$ exisitiert mit $T_t(y_t) = y_t$. \\
+  Definiere $y(t) = y_t$. Dann gilt:
+  \begin{align*}
+    ay(t) - F(t,y) \equiv 0
+  \end{align*}
   Alternativ können wir das Problem auch in eine Integraldarstellung umformen:
   \begin{align*}
     y(t) &= \int_0^t\int_0^say(\tau) - F(\tau,y(\tau))d\tau ds
@@ -134,9 +161,17 @@
     = \int_0^t\int_\tau^t (ay(\tau) - F(\tau,y(\tau)))ds d\tau \\
     &= \int_0^t(ay(\tau) - F(\tau,y(\tau)))(t - \tau) d\tau
   \end{align*}
-  Definiere die Funktion
+
+
   \begin{align*}
-    f(t,y) = \int_0^ty - F(\tau,y) d\tau
+    y^{\prime}(1) = \int_0^1 ay - F(t,y(t)) dt
+  \end{align*}
+  Definiere die Abbildung
+  \begin{align*}
+    A := \{x \in C([0,1];\R): \forall t \in [0,1]: \|x(t)\| \leq b \}
+  \end{align*}
+  \begin{align*}
+    T(x)(t) := \int_0^t ay - F(t,x(t)) dt
   \end{align*}
   \item Betrachte das Gegenbeispiel $F(t,y) = ay$ mit Lipschitzkonstante $L = a$. Das Randwertproblem lautet nun
   \begin{align*}
