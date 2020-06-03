@@ -126,7 +126,7 @@
     \|f(t,y,z) - f(t,\widetilde{y},\widetilde{z})\|_{\infty} \leq \max\{\epsilon, |a\epsilon| + |L\epsilon|\} \leq \max\{1,2a\}\epsilon
   \end{align*}
   damit die Lipschitz-Stetigkeit von $f$.
-  Jetzt können wir das dazugehörige Anfangswertproblem betrachten, wenn wir $y(0) = b$ beliebig festsetzen.
+  Jetzt können wir das dazugehörige Anfangswertproblem betrachten, wenn wir $y(0) = x$ beliebig festsetzen.
   \begin{align*}
     \begin{pmatrix}
       y \\ z
@@ -141,38 +141,41 @@
       b \\ 0
     \end{pmatrix}.
   \end{align*}
-  Dieses Problem ist nun eindeutig lösbar und wir müssen ein $b \in \R$ finden,
-  sodass $y^{\prime}(1) = 0$.
-  Irgendwie müssen wir jetzt verwenden, dass die Abbildung
+  Definiere $(y_x,y_x^{\prime})^{\top}$ als die eindeutige Lösung des Anfangswertproblem
+  zu dem Startwert $(x,0)^{\top}$ und betrachte die Funktion $f: x \mapsto y_x^{\prime}(1)$.
+  Wir behaupten, dass diese Funktion injektiv ist. Wäre dem nicht so, betrachte $x_1,x_2$, sodass $f(x_1) = f(x_2)$.
+  Es folgt (o.B.d.A. $x_1 > x_2$)
+  \begin{align}\label{ws}
+    (y_{x_1} - y_{x_2})^{\prime}(0) = 0 = (y_{x_1} - y_{x_2})^{\prime}(1)
+  \end{align}
+  und
   \begin{align*}
-    T_t(y) := \frac{F(t,y)}{a}
+    (y_{x_1} - y_{x_2})^{\primeprime}(t) = a(y_{x_1}(t) - y_{x_2}(t)) - (F(t,y_{x_1}(t)) - F(t,y_{x_2}(t))
+    \geq a(y_{x_1}(t) - y_{x_2}(t)) - L|y_{x_1}(t) - y_{x_2}(t)|.
   \end{align*}
-  eine Kontraktion ist und mit dem Banachschen Fixpunktsatz für jedes $t \in [0,1]$
-  ein eindeutiges $y_t \in \R$ exisitiert mit $T_t(y_t) = y_t$. \\
-  Definiere $y(t) = y_t$. Dann gilt:
+  Wir wissen, dass $y_{x_1}(0) = x_1 > x_2 = y_{x_2}(0)$ und damit auch
+  $y_{x_1}(t) > y_{x_2}(t)$ für $t \in [0,\epsilon]$ mit $\epsilon$ hinreichend klein. Für diese $t$ folgt dann
   \begin{align*}
-    ay(t) - F(t,y) \equiv 0
+    (y_{x_1} - y_{x_2})^{\primeprime}(t) \geq (a-L)|y_{x_1}(t) - y_{x_2}(t)| > 0
   \end{align*}
-  Alternativ können wir das Problem auch in eine Integraldarstellung umformen:
+  und damit ist $(y_{x_1} - y_{x_2})^{\prime}$ auf $[0,\epsilon]$ streng monoton wachsend
+  und für $t > 0$ echt positiv und damit ebenso $(y_{x_1} - y_{x_2})$.
+  Daher kann nie der Fall $y_{x_1} - y_{x_2} = 0$ eintreten, weil dafür zuvor
+  $(y_{x_1} - y_{x_2})^{\prime}$ negativ sein müsste und damit wiederum
+  auch $(y_{x_1} - y_{x_2})^{\primeprime}$. \\
+  Es folgt also auf ganz $[0,1]$
   \begin{align*}
-    y(t) &= \int_0^t\int_0^say(\tau) - F(\tau,y(\tau))d\tau ds
-    = \int_0^1\int_0^t \1_{[0,s]}(\tau)(ay(\tau) - F(\tau,y(\tau)))ds d\tau \\
-    &= \int_0^1\int_0^t \1_{[\tau,1]}(s)(ay(\tau) - F(\tau,y(\tau)))ds d\tau
-    = \int_0^t\int_\tau^t (ay(\tau) - F(\tau,y(\tau)))ds d\tau \\
-    &= \int_0^t(ay(\tau) - F(\tau,y(\tau)))(t - \tau) d\tau
+    (y_{x_1} - y_{x_2})^{\primeprime}(t) \geq (a-L)|y_{x_1}(t) - y_{x_2}(t)| > 0
   \end{align*}
-
-
+  im Widerspruch zu \eqref{ws}. Damit haben wir die Eindeutigkeit der Lösung gezeigt
+  und uns fehlt nur noch die Existenz. \\
+  Dafür betrachte wieder $x_1, x_2$ mit $f(x_1) > f(x_2)$. Es folgt
   \begin{align*}
-    y^{\prime}(1) = \int_0^1 ay - F(t,y(t)) dt
+    f_{x_1 - x_2} &= (y_{x_1 - x_2})^{\prime}(1) = (y_{x_1} - y_{x_2})^{\prime}(1) = f(x_1) - f(x_2) > 0 \\
+    f_{x_2 - x_1} &< 0
   \end{align*}
-  Definiere die Abbildung
-  \begin{align*}
-    A := \{x \in C([0,1];\R): \forall t \in [0,1]: \|x(t)\| \leq b \}
-  \end{align*}
-  \begin{align*}
-    T(x)(t) := \int_0^t ay - F(t,x(t)) dt
-  \end{align*}
+  Aufgrund der stetigen Abhängigkeit von den Daten ist $f$ stetig und mit dem Zwischenwertsatz
+  existiert ein $x: f(x) = 0$.
   \item Betrachte das Gegenbeispiel $F(t,y) = ay$ mit Lipschitzkonstante $L = a$. Das Randwertproblem lautet nun
   \begin{align*}
     y^{\primeprime} = 0, \qquad y^{\prime}(0) = 0 = y^{\prime}(1),
