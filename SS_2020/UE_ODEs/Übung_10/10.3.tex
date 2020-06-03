@@ -148,6 +148,154 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \end{pmatrix}.
   \end{align*}
   Also ist das inhomogene System nicht lösbar.
+
+ ----------------------------------------------------------------------------------------------------
+
+  Wenn wir die ODE zuerst in ein System erster Ordnung Umschreiben:
+    \begin{align*}
+      \begin{pmatrix}
+        y \\ z
+      \end{pmatrix}^{\prime} =
+      \begin{pmatrix}
+        0 & 1 \\ -4 & 0
+      \end{pmatrix}
+      \begin{pmatrix}
+        y \\ z
+      \end{pmatrix}, \qquad
+      \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+      \end{pmatrix}
+      \begin{pmatrix}
+        y(-\pi) \\ y^{\prime}(-\pi)
+      \end{pmatrix}
+      +
+      \begin{pmatrix}
+        -1 & 0 \\ 0 & -1
+      \end{pmatrix}
+      \begin{pmatrix}
+        y(\pi) \\ y^{\prime}(\pi)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        0 \\ 0
+      \end{pmatrix}.
+    \end{align*}
+
+  und dann $\exp(tA)$ betrachten erhalten die zugehörige (reele) Fundamentalmatrix:
+
+  \begin{align*}
+    Y(x)
+    =
+    \begin{pmatrix}
+    \cos(2x) & \frac{1}{2}\sin(2x) \\
+    -2\sin(2x) & \cos(2x)
+    \end{pmatrix}
+  \end{align*}
+
+  Berechnen wir hier nun $R_{-\pi}Y(-\pi)+R_{\pi}Y(\pi)$, Also
+
+  \begin{align*}
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+      -1 & 0 \\
+      0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 & 0 \\
+      0 & 0
+    \end{pmatrix}
+  \end{align*}
+
+  Wir berechnen
+  \begin{align*}
+    \ell - R_{\pi}y_p(\pi) = \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix} +
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}
+    = \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+  Damit ist das System lösbar mit einem zwei-dimensionalen Lösungsraum.
+  Jede Linearkombination (mit $a,b \in \R$)
+
+  \begin{align*}
+    y(x) = a \cos(2x) + \frac{b}{2} \sin(2x)
+  \end{align*}
+  erfüllt die Randwertbedingungen:
+
+  \begin{align*}
+    y(-\pi)-y(\pi) = a \cos(2\pi) - \frac{b}{2} \sin(2\pi) - (a \cos(2\pi) + \frac{b}{2} \sin(2\pi)) = 0 \\
+    y^\prime(-\pi)-y^\prime(\pi) = 2a\sin(2\pi) + b\cos(2\pi) -(- 2a\sin(2\pi) + b\cos(2\pi)) = 0
+  \end{align*}
+
+  Betrachten wir nun das halbhomogene System. Dazu berechnen wir die Partikulärlösung.
+
+  \begin{align*}
+    y_p(x)
+    =
+    \begin{pmatrix}
+    \cos(2x) & \frac{1}{2}\sin(2x) \\
+    -2\sin(2x) & \cos(2x)
+    \end{pmatrix}
+    \int_{-\pi}^x \begin{pmatrix}
+      \cos(2t) & \frac{-\sin(2t)}{2} \\
+      2\sin(2t) & \cos(2t)
+    \end{pmatrix}
+    \begin{pmatrix}
+      0 \\
+      4t
+    \end{pmatrix}
+    dt = \\
+    \begin{pmatrix}
+    \cos(2x) & \frac{1}{2}\sin(2x) \\
+    -2\sin(2x) & \cos(2x)
+    \end{pmatrix}
+    \begin{pmatrix}
+      -\frac{\sin(2x)-2x\cos(2x) - 2\pi}{2} \\
+      2x\sin(2x)+cos(2x)-1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \frac{-2x\cos^2(2x)+2x\sin^2(2x)-2\pi \cos(2x)-\sin(2x)}{2} \\
+      4x \cos(2x)\sin(2x) + 2\pi \sin(2x)-\cos(2x) + 1
+    \end{pmatrix}
+  \end{align*}
+
+  Schlussendlich gilt:
+
+  \begin{align*}
+    \ell - R_\pi y_p(\pi)=
+    \begin{pmatrix}
+      \pi + \pi^2 \\
+      0
+    \end{pmatrix}
+    \neq
+    \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+
+    womit die Ränge nicht übereinstimmen und somit das Randwertproblem nicht lösbar ist.
+    
   \item Das zugehörige charakteristische Polynom lautet
   \begin{align*}
     \chi(\lambda) = \lambda^2 + 2\lambda + 5 \stackrel{!}{=} 0
@@ -217,7 +365,7 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \begin{pmatrix}
       2 \\ 1
     \end{pmatrix}
-  \end{align*}
+    \end{align*}
   und erhalten $(a,b)^{\top} = (1+2i,1-2i)^{\top}$. Unsere eindeutige Lösung lautet daher
   \begin{align*}
     y(x) = (1+2i)\exp((-1 + 2i)x) + (1-2i)\exp((-1-2i)x).
