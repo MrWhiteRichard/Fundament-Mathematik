@@ -138,7 +138,7 @@
       y(0) \\ z(0)
     \end{pmatrix}
     = \begin{pmatrix}
-      b \\ 0
+      x \\ 0
     \end{pmatrix}.
   \end{align*}
   Definiere $(y_x,y_x^{\prime})^{\top}$ als die eindeutige Lösung des Anfangswertproblem
@@ -163,17 +163,22 @@
   Daher kann nie der Fall $y_{x_1} - y_{x_2} = 0$ eintreten, weil dafür zuvor
   $(y_{x_1} - y_{x_2})^{\prime}$ negativ sein müsste und damit wiederum
   auch $(y_{x_1} - y_{x_2})^{\primeprime}$. \\
-  Es folgt also auf ganz $[0,1]$
+  Es folgt also auf ganz $(0,1]$
   \begin{align*}
     (y_{x_1} - y_{x_2})^{\primeprime}(t) \geq (a-L)|y_{x_1}(t) - y_{x_2}(t)| > 0
   \end{align*}
   im Widerspruch zu \eqref{ws}. Damit haben wir die Eindeutigkeit der Lösung gezeigt
   und uns fehlt nur noch die Existenz. \\
-  Dafür betrachte wieder $x_1, x_2$ mit $f(x_1) > f(x_2)$. Es folgt
+  Seien $x_1 > x_2 \in \R$ beliebig. Sei o.B.d.A. $f(x_1) >0$. Wieder folgt
   \begin{align*}
-    f_{x_1 - x_2} &= (y_{x_1 - x_2})^{\prime}(1) = (y_{x_1} - y_{x_2})^{\prime}(1) = f(x_1) - f(x_2) > 0 \\
-    f_{x_2 - x_1} &< 0
+    (y_{x_1} - y_{x_2})^{\primeprime}(t) > (a-L)|y_{x_1}(t) - y_{x_2}(t)| \geq (a-L)(x_1 - x_2) > 0
   \end{align*}
+  und aufgrund $(y_{x_1} - y_{x_2})^{\prime}(0) = 0$ auch
+  \begin{align*}
+    f(x_1) - f(x_2) = (y_{x_1} - y_{x_2})^{\prime}(1) > \int_0^1 (a-L)(x_1 - x_2) dt = (a-L)(x_1 - x_2)
+  \end{align*}
+  Wir erhalten also $f(x_2) < f(x_1) - (a-L)(x_1 - x_2)$.
+  Wählen wir nun $x_2$ hinreichend klein, ergibt das $f(x_2) < 0.$
   Aufgrund der stetigen Abhängigkeit von den Daten ist $f$ stetig und mit dem Zwischenwertsatz
   existiert ein $x: f(x) = 0$.
   \item Betrachte das Gegenbeispiel $F(t,y) = ay$ mit Lipschitzkonstante $L = a$. Das Randwertproblem lautet nun
