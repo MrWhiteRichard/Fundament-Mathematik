@@ -38,7 +38,24 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \end{pmatrix}
     \begin{pmatrix}
       y \\ z
+    \end{pmatrix}, \qquad
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 1
     \end{pmatrix}
+    \begin{pmatrix}
+      y(-\pi) \\ y^{\prime}(-\pi)
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+      -1 & 0 \\ 0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      y(\pi) \\ y^{\prime}(\pi)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 \\ 0
+    \end{pmatrix}.
   \end{align*}
   Die zugehörige Fundamentalmatrix lautet
   \begin{align*}
@@ -98,7 +115,7 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
   die Randwertbedingungen erfüllt. \\
   Berechnen wir nun die Partikulärlösung für das inhomogene System:
   \begin{align*}
-    y_p(\pi) &= Y(\pi)\int_{-\pi}^\pi Y^{-1}(s)(4s) ds \\
+    \ell - R_{\pi}y_p(\pi) &= y_p(\pi) =  Y(\pi)\int_{-\pi}^\pi Y^{-1}(s)(4s) ds \\
     &= \begin{pmatrix}
       1 & 1 \\ 2i & -2i
     \end{pmatrix}\int_{-\pi}^\pi
@@ -147,7 +164,31 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \end{pmatrix}
     \begin{pmatrix}
       y \\ z
+    \end{pmatrix}, \qquad
+    \begin{pmatrix}
+      1 & 0 \\ 0 & 0
     \end{pmatrix}
+    \begin{pmatrix}
+      y(0) \\ y^{\prime}(0)
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+      0 & 0 \\ 1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+      y(\frac{\pi}{4}) \\ y^{\prime}(\frac{\pi}{4})
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      2 \\ 1
+    \end{pmatrix}.
+  \end{align*}
+  mit der Fundamentalmatrix
+  \begin{align*}
+    Y(x) = \begin{pmatrix}
+      \exp((-1+2i)x) & \exp((-1-2i)x) \\
+      (-1+2i)\exp((-1+2i)x) & (-1-2i)\exp((-1-2i)x)
+    \end{pmatrix}.
   \end{align*}
   Die Matrix $B$ lautet
   \begin{align*}
@@ -164,7 +205,7 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
     \end{pmatrix},
   \end{align*}
   welche klarerweise regulär ist und uns damit eindeutige Lösbarkeit liefert.
-  Um diese zu bestimmen, lösen wir das Gleichungssystem
+  Um diese zu bestimmen, lösen wir das Gleichungssystem $Bx = \ell - R_{\frac{\pi}{4}}y_p(\frac{\pi}{4}) = \ell$
   \begin{align*}
     \begin{pmatrix}
       1 & 1\\
@@ -179,7 +220,7 @@ Bestimmen Sie Lösungen der folgenden Randwertprobleme, falls diese existieren:
   \end{align*}
   und erhalten $(a,b)^{\top} = (1+2i,1-2i)^{\top}$. Unsere eindeutige Lösung lautet daher
   \begin{align*}
-    y(x) = (1+2i)\exp(-1 + 2i) + (1-2i)\exp(-1-2i).
+    y(x) = (1+2i)\exp((-1 + 2i)x) + (1-2i)\exp((-1-2i)x).
   \end{align*}
 \end{enumerate}
 \end{solution}

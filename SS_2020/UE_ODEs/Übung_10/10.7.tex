@@ -128,7 +128,11 @@
   damit die Lipschitz-Stetigkeit von $f$. \\
   Alternativ können wir das Problem auch in eine Integraldarstellung umformen:
   \begin{align*}
-    y(t) = \int_0^t\int_0^say(\tau) - F(\tau,y(\tau))d\tau ds
+    y(t) &= \int_0^t\int_0^say(\tau) - F(\tau,y(\tau))d\tau ds
+    = \int_0^1\int_0^t \1_{[0,s]}(\tau)(ay(\tau) - F(\tau,y(\tau)))ds d\tau \\
+    &= \int_0^1\int_0^t \1_{[\tau,1]}(s)(ay(\tau) - F(\tau,y(\tau)))ds d\tau
+    = \int_0^t\int_\tau^t (ay(\tau) - F(\tau,y(\tau)))ds d\tau \\
+    &= \int_0^t(ay(\tau) - F(\tau,y(\tau)))(t - \tau) d\tau
   \end{align*}
   Definiere die Funktion
   \begin{align*}

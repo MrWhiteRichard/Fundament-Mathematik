@@ -1,7 +1,20 @@
 \begin{exercise}[23/1]
 
 Sei $S$ der Shift-Operator am $\ell^1(\N)$.
-
+\begin{align*}
+  S:
+  \begin{cases}
+    \ell^1(\N)              & \to     \ell^1(\N) \\
+    (x_1, x_2, x_3, \ldots) & \mapsto (0, x_1, x_2, \ldots)
+  \end{cases}
+\end{align*}
+\begin{align*}
+  S^*:
+  \begin{cases}
+    \ell^1(\N)             & \to     \ell^1(\N) \\
+    (x_1, x_2, x_3, \ldots) & \mapsto (x_2, x_3, x_4, \ldots)
+  \end{cases}
+\end{align*}
 \begin{enumerate}[label = (\alph*)]
 
   \item
@@ -24,7 +37,37 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
+\begin{align*}
+  S^* - \lambda I:
+  \begin{cases}
+    \ell^1(\N)             & \to     \ell^1(\N) \\
+    (x_1, x_2, x_3, \ldots) & \mapsto (x_2 - \lambda x_1, x_3 - \lambda x_2, x_4 - \lambda x_3, \ldots)
+  \end{cases}
+\end{align*}
+\begin{align*}
+  S - \lambda I:
+  \begin{cases}
+    \ell^1(\N)             & \to     \ell^1(\N) \\
+    (x_1, x_2, x_3, \ldots) & \mapsto (- \lambda x_1, x_1 - \lambda x_2, x_2 - \lambda x_3, \ldots)
+  \end{cases}
+\end{align*}
+Sei $x \in \ker(S^* - \lambda I)$. Dann gilt
+\begin{align*}
+  x_2 = \lambda x_1, \quad x_3 = \lambda x_2 = \lambda^2 x_1, \dots, x_n = \lambda x_{n-1} = \lambda^{n-1} x_0
+\end{align*}
+Sei $x_1 \neq 0$. Dann folgt $x \in \ell^1(\N) \iff |\lambda| < 1$.
+Also haben wir für $\lambda < 1$
+\begin{align*}
+  \{0\} \neq \ker(S^* - \lambda I) = \ran(S - \overline{\lambda})^{\bot}.
+\end{align*}
+Betrachte nun $\ran(S^* - \lambda I)$:
+\begin{align*}
+  \ran(S^* - \lambda I) = \{(x_2 - \lambda x_1, x_3 - \lambda x_2, x_4 - \lambda x_3, \ldots): (x_1,x_2,x_3,\dots) \in \ell^1(\N)\}.
+\end{align*}
+Sei $y := (y_1,y_2,y_3,\dots) \in \ell_1(\N)$ beliebig mit $(S^* - \lambda I) (x) = y$. Es folgt
+\begin{align*}
+  x_2 = y_1 + \lambda x_1, \quad x_3 = y_2 + \lambda x_2 = y_2 + \lambda^2x_1 + \lambda y_1,
+  \dots, \quad x_n = y_{n-1} + \lambda x_{n-1} = \lambda^{n-1}x_1 + \sum_{i=1}^{n-1}\lambda^{i-1} y_{n-i}
+\end{align*}
 
 \end{solution}
