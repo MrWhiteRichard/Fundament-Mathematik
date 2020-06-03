@@ -103,11 +103,14 @@ Anfangsbedingungen an.
 
 \begin{align*}
   y_0(x)
-  \stackrel{!}{=}
-  \sum_{n=1}^\infty c_{2,n}\sin\left(\frac{nx\pi}{2}\right),       \quad x \in (0,1) \\
+  &\stackrel{!}{=} y(x,0) = \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
+  \left(c_{1,n}\sin(0)+c_{2,n}\cos(0)\right) \\
+  &= \sum_{n=1}^\infty c_{2,n}\sin\left(\frac{nx\pi}{2}\right),       \quad x \in (0,1) \\
   y_1(x)
-  \stackrel{!}{=}
-  \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\sin\left(\frac{nx\pi}{2}\right),  \quad x \in (0,1)
+  &\stackrel{!}{=}
+  \frac{\partial}{\partial t}y(x,0) = \sum_{n=1}^{\infty} \sin\left(\frac{nx\pi}{2}\right)
+  \left(c_{1,n}\frac{nc\pi}{2}\cos(0)- c_{2,n}\frac{nc\pi}{2}\sin(0)\right) \\
+  &= \sum_{n=1}^\infty c_{1,n}\frac{nc\pi}{2}\sin\left(\frac{nx\pi}{2}\right),  \quad x \in (0,1)
 \end{align*}
 
 Falls man nun $y_0$ und $y_1$ symmetrisch auf $(-1,1)$
@@ -128,7 +131,4 @@ konvergieren) erhält man ebenso die Darstellung:
   &=
   \int_0^2 y_1(x)\sin(n\pi x) dx \\
 \end{align*}
-
-Womit man zumindest $c_{1,n}$ und $c_{2,n}$ für $n \in 2\N$ bestimmen könnte(?)
-
 \end{solution}
