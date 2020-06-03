@@ -11,7 +11,7 @@ nur trivial lösbar sei. Seien weiters $y_1,y_2$ zwei linear unabhängige Lösun
 von $Ly = 0$ mit $R_1y_1 = 0$ und $R_2y_2 = 0$. Dann gilt:
 \begin{align*}
   \kappa(x) &:= p(x)(y_1^{\prime}y_2 - y_1y_2^{\prime}) \equiv \text{const} \neq 0 \\
-  G(x,t) &:= \frac{1}{\kappa}\Bigg\{\begin{matrix}
+  G(x,t) &= \frac{1}{\kappa}\Bigg\{\begin{matrix}
     y_1(t)y_2(x), & a \leq t \leq x \leq b \\
     y_1(x)y_2(t), & a \leq x \leq t \leq b
   \end{matrix}
@@ -30,6 +30,10 @@ Berechne
   = y_2(py_1^{\prime})^{\prime} - y_1(py_2^{\prime})^{\prime} \\
   &= y_2qy_1 - y_1qy_2 = 0.
 \end{align*}
+Oder auch mit der Lagrange-Identität. Sei also angenommen, dass $y_1,y_2 \in C_2([a,b])$. Dann gilt
+\begin{align*}
+  \kappa^{\prime}(x) = (p(x)(y_1^{\prime}y_2 - y_1y_2^{\prime}))^{\prime} = y_1Ly_2 - y_2Ly_1 = 0.
+\end{align*}
 Angenommen $\kappa(x) \equiv 0$, dann folgt aufgrund $p(x) > 0$
 \begin{align*}
   y_1^{\prime}y_2 = y_1y_2^{\prime} \iff
@@ -39,28 +43,62 @@ Angenommen $\kappa(x) \equiv 0$, dann folgt aufgrund $p(x) > 0$
   y_1 = y_2\exp(C)
 \end{align*}
 im Widerspruch zur linearen Unabhängigkeit von $y_1,y_2$. \\
-Um zu zeigen, dass $G$ die Greensche Funktion aus Satz 6.7 ist, müssen wir drei
-Bedingungen nachrechnen:
+Sei $H$ nun eine beliebige Funktion, welche die Bedingungen aus Satz 6.7.
+erfüllt. Wir zeigen, dass daraus bereits $H = G$ folgt.
 \begin{itemize}
-  \item $LG(\cdot,t) = 0$ auf $(a,t) \cup (t,b)$: \\ Für jedes feste $t$ ist $G(\cdot,t)$
-  einfach ein Vielfaches von $y_1$ oder $y_2$ und erfüllt damit sicher $LG(\cdot,t) = 0$.
-  \item $G(\cdot,t)$ ist stetig bei $x = t$: \\
-  Folgt einfach aus der Stetigkeit von $y_1,y_2$, da
+  \item $LH(\cdot,t) = 0$ auf $(a,t) \cup (t,b)$: \\
+  Es folgt für alle $t \in T:$
   \begin{align*}
-    \kappa G(t^-,t) = \lim_{\tau \to t^-}y_1(t)y_2(\tau) = y_1(t)y_2(t)
-    = \lim_{\tau \to t^+}y_1(\tau)y_2(t) = \kappa G(t^+,t).
+    \forall x < t:& \exists \gamma_{1,t}, \gamma_{2,t} \in \R:
+    H(x,t) = \gamma_{1,t}y_1(x) + \gamma_{2,t}y_2(x) \\
+    \forall x > t:& \exists \delta_{1,t}, \delta_{2,t} \in \R:
+    H(x,t) = \gamma_{1,t}y_1(x) + \delta_{2,t}y_2(x)
   \end{align*}
-  \item $\partial_x G(t^+,t)- \partial_x G(t^-,t) = - \frac{1}{p(t)}$:
+  und
   \begin{align*}
-    \kappa(\partial_x G(t^+,t)- \partial_x G(t^-,t)) =
-    \lim_{x \to t^+}y_1^{\prime}(x)y_2(t)- \lim_{x \to t^-}y_1(t)y_2^{\prime}(x)
-    = y_1^{\prime}(t)y_2(t) - y_1(t)y_2^{\prime}(t) = - \frac{\kappa}{p(t)}
+    H(x,t) = \begin{cases}
+      \gamma_1(t)y_1(x) + \gamma_2(t)y_2(x), & x < t \\
+      \delta_1(t)y_1(x) + \delta_2(t)y_2(x), & x > t.
+    \end{cases}
   \end{align*}
-  \item $R_1G(\cdot,t) = R_2G(\cdot,t) = 0$: \\
-  Folgt wieder daraus, dass für festes $t: G(\cdot,t)$ ein Vielfaches einer
-   der Lösungen $y_1,y_2$ ist und aufgrund der Linearität der Randbedingungen
-   folgt $R_1G(\cdot,t) = R_2G(\cdot,t) = 0$.
+  \item $R_1H(\cdot,t) = 0$:
+  \begin{align*}
+    R_1H(\cdot,t) = R_1(\gamma_1(t)y_1 + \gamma_2(t)y_2)
+    = \gamma_1(t)R_1(y_1) + \gamma_2(t)R_1(y_2) = \gamma_2(t)R_1(y_2) \stackrel{!}{=} 0.
+  \end{align*}
+  Da das Problem für $\rho_1 = \rho_2 = 0$ nur trivial lösbar ist, folgt $R_1(y_2) \neq 0$
+  und damit $\gamma_2(t) = 0$.
+  \item $R_2H(\cdot,t) = 0$: \\
+  Analog sieht man ein, dass $\delta_1(t) = 0$.
+  \item $H(\cdot,t)$ ist stetig bei $x = t$:
+  \begin{align*}
+    \gamma_1(t)y_1(t) = \delta_2(t)y_2(t)
+    \iff
+    \gamma_1(t) = \frac{\delta_2(t)y_2(t)}{y_1(t)}
+  \end{align*}
+  \item $\partial_x H(t^+,t)- \partial_x H(t^-,t) = - \frac{1}{p(t)}$:
+  \begin{align*}
+    \partial_x H(t^+,t) - \partial_x H(t^-,t) &= \delta_2(t)y_2^{\prime}(t)- \gamma_1(t)y_1^{\prime}(t)
+    = \delta_2(t)y_2^{\prime}(t)- \frac{\delta_2(t)y_2(t)}{y_1(t)}y_1^{\prime}(t) \\
+    &= \delta_2(t)\left(y_2^{\prime}(t)-  \frac{y_2(t)}{y_1(t)}y_1^{\prime}(t)\right)
+    \stackrel{!}{=} -\frac{1}{p(t)}.
+  \end{align*}
+  Wir erhalten
+  \begin{align*}
+    \delta_2(t) &= -\left(p(t)\left(y_2^{\prime}(t)-  \frac{y_2(t)}{y_1(t)}y_1^{\prime}(t)\right)\right)^{-1}
+    = -\left(p(t)\frac{y_2^{\prime}y_1(t) - y_2(t)y_1^{\prime}(t)}{y_1(t)}\right)^{-1} \\
+    &= \left(\frac{\kappa}{y_1(t)}\right)^{-1} = \frac{y_1(t)}{\kappa}
+  \end{align*}
+  und
+  \begin{align*}
+    \gamma_1(t) = \frac{y_2(t)}{\kappa}
+  \end{align*}
 \end{itemize}
-Also wissen wir, dass die Funktion $x \mapsto \int_a^b G(x,t)f(t) dt$ die Lösung
-unseres RWP mit $\rho_1 = \rho_2 = 0$ ist.
+Insgesamt gilt also
+\begin{align*}
+  H(x,t) = \begin{Bmatrix}
+    \frac{y_2(t)y_1(x)}{\kappa}, & t \leq x \\
+    \frac{y_1(t)y_2(x)}{\kappa}, & t \geq x
+  \end{Bmatrix} = G(x,t).
+\end{align*}
 \end{solution}
