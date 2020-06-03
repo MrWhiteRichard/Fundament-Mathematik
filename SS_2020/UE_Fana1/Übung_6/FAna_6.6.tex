@@ -17,6 +17,68 @@ Zeige, dass $K$ kompakt ist.
 
 \begin{solution}
 
-ToDo!
+Die Linearität von $K$ folgt aus der Linearität des Integrals.
+
+Dass für $f \in C([0,1])$ auch $Kf$ wieder stetig ist, sollt auch klar sein.
+
+Sei nun $f \in C([0,1])$ beliebig mit $\|f\|_{\infty} = 1$. Dann gilt
+
+\begin{align*}
+  \|Kf\|_{\infty} =& \sup_{x \in (0,1)} | \int_{0}^{1} k(x,t)f(t)dt | \leq \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)||f(t)|dt \\
+  \leq& \|f\|_{\infty} \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt = \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt
+\end{align*}
+
+Somit erhalten wir also $\|K\| \leq \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt \leq \|k\|_{\infty}$.
+
+Für die andere Richtung der ersten Ungleichung betrachten wir das $x_0 \in [0,1]$, welches $\int_{0}^{1} |k(x,t)|dt$ maximiert. Dieses existiert, da wir es mit einer stetigen Funktion zu tun haben.
+
+Definiere nun $f(t) := \sgn(k(x_0,t)) \in L^1([0,1])$. Da $C([0,1])$ dicht in $L^1([0,1])$ liegt, können wir eine Folge $(f_n)_{n \in \N}$ finden, mit
+\begin{align*}
+  f_n \stackrel{\|\cdot\|_1}{\to} f, \Forall t \in [0,1]: |f_n(t)| \leq |f(t)|.
+\end{align*}
+
+Damit gilt
+
+\begin{align*}
+  \|K\| \geq& \lim_{n \to \infty} \|Kf_n\| \geq \lim_{n \to \infty} |Kf_n(x_0)| = \lim_{n \to \infty} |\int_{0}^{1} k(x_0,t)f_n(t) dt| \\
+  =& |\int_{0}^{1} k(x_0,t)f(t) dt| = \int_{0}^{1} |k(x_0,t)| dt = \sup_{x \in (0,1)} \int_{0}^{1} |k(x_0,t)| dt.
+\end{align*}
+
+Nun zu der Kompaktheit von $K$.
+
+ Um zu zeigen, dass $K(K_{1}^{\|\cdot\|_{\infty}}(0)) = \{Kf : f \in K_{1}^{\|\cdot\|_{\infty}}(0)\}$ relativ kompakt ist, verwenden wir den Satz von Arzela-Ascoli.
+
+ Es reicht also zu zeigen, dass $K(K_{1}^{\|\cdot\|_{\infty}}(0))$ punktweise beschränkt und gleichgradig stetig ist.
+
+ \begin{enumerate}
+
+ \item Punktweise beschränkt
+
+ Für $x \in [0,1]$ und $f \in K_{1}^{\|\cdot\|_{\infty}}(0)$ beliebig gilt:
+\begin{align*}
+  |Kf(x)| \leq \|Kf\|_{\infty} \leq \|K\| \|f\|_{\infty} \leq \|K\|
+\end{align*}
+
+\item Gleichgradig stetig:
+
+Allgemein gilt für $x_1, x_2 \in [0,1]$ und $f \in K_{1}^{\|\cdot\|_{\infty}}(0)$ beliebig, dass
+\begin{align*}
+  |Kf(x_2) - Kf(x_1)| =& | \int_{0}^{1} k(x_2,t)f(t) - k(x_1,t)f(t) dt| \leq \int_{0}^{1} |f(t)||k(x_2,t)- k(x_1,t)|dt \\
+  \leq& \int_{0}^{1} |k(x_2,t)- k(x_1,t)|dt
+\end{align*}
+
+Sei also $\epsilon > 0$ beliebig, dann wähle $\delta$ so, dass
+\begin{align*}
+  \Forall (x_1,t_1),(x_2,t_2): | (x_1,t_1) - (x_2,t_2)| \leq \delta \Rightarrow | k(x_1,t_1) - k(x_2,t_2)| \leq \epsilon
+\end{align*}
+
+Dann gilt für beliebiges $x_1 \in [0,1]$, dass für alle $f \in K_{1}^{\|\cdot\|_{\infty}}(0)$ und $x_2 \in [x_1-\delta,x_1+\delta]$
+
+\begin{align*}
+  |Kf(x_2) - Kf(x_1)| \leq \int_{0}^{1} |k(x_2,t)- k(x_1,t)|dt \leq \int_{0}^{1} \epsilon dt = \epsilon
+\end{align*}
+
+ \end{enumerate}
+
 
 \end{solution}
