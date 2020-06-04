@@ -20,23 +20,125 @@ Ist der Punkt $-1$ im Spektrum des Operators?
 
 \begin{solution}
 
-$T$ ist der definierte Operator.
-
-Es gilt
+Wir definieren vorerst einen, für die Problemstellung geeigneten Operator.
 
 \begin{align*}
-  |Tf(x)| = |\int_{0}^{x} e^{x \cos t} f(t) dt | \leq \int_{0}^{x} e \|f\| dt = xe\|f\| \Rightarrow \|T\| \leq e
+  T:
+  \begin{cases}
+    C[0, 1] & \to     C[0, 1] \\
+    f       & \mapsto \pbraces
+    {
+      x
+      \mapsto
+      \Int[0][x]{e^{x \cos{t}} f(t)}{t}
+    }
+  \end{cases}
 \end{align*}
+
+Wir wollen zeigen, dass $r(T) = 0$.
+Dazu verwenden wir wieder Satz 6.4.14.
+Wir schätzen also $\norm{T^k}$ ab.
+$\Forall k \in \N:$
 
 \begin{align*}
-  |T^2f(x)| = |\int_{0}^{x} e^{x \cos t} \int_{0}^{t} e^{t \cos s} f(s) ds dt | \leq \int_{0}^{x} e xe\|f\| dt = \frac{x^2}{2}e^2\|f\| \Rightarrow \|T^2\| \leq \frac{e^2}{2(!)}
+  \Forall x \in [0, 1]:
+  \vbraces{(T^k f)(x)}
+  & =
+  \vbraces
+  {
+    \int_0^x
+    \exp{(x \cos{x_1})}
+    \int_0^{x_1}
+    \exp{(x_1 \cos{x_2})}
+    \cdots
+    \int_0^{x_{k-1}}
+    \exp{(x_{k-1} \cos{x_k})}
+    f(x_k)
+    \: dx_k
+    \cdots
+    \: dx_1
+  } \\
+  & \leq
+  e^k
+  \norm[\infty]{f}
+  \vbraces
+  {
+    \int_0^x
+    \int_0^{x_1}
+    \cdots
+    \int_0^{x_{k-1}}
+    \: dx_k
+    \cdots
+    \: dx_1
+  }
+  =
+  e^k
+  \norm[\infty]{f}
+  \frac{x^k}{k!}
+  \leq
+  \norm[\infty]{f}
+  \frac{e^k}{k!} \\
+  \implies &
+  \norm[\infty]{T^k f}
+  \leq
+  \norm[\infty]{f}
+  \frac{e^k}{k!} \\
+  \implies &
+  \norm{T^k}
+  \leq
+  \frac{e^k}{k!}
 \end{align*}
 
-INduktiv sollte gehen
+Der folgende Grenzwert ist fast der selbe, wie in Aufgabe 2.
+
 \begin{align*}
-  \|T^n\| \leq \frac{e^n}{n!}
+  \implies &
+  \max_{\lambda \in \sigma(T)} |\lambda|
+  =
+  r(T)
+  =
+  \lim_{k \to \infty}
+  \sqrt[k]{\norm{T^k}}
+  \leq
+  \lim_{k \to \infty}
+  \sqrt[k]{\frac{e^k}{k!}}
+  =
+  e
+  \lim_{k \to \infty}
+  \sqrt[k]{\frac{1}{k!}}
+  =
+  0 \\
+  \implies &
+  -1
+  \notin
+  \Bbraces{0}
+  =
+  \sigma(T)
+  =
+  \Bbraces
+  {
+    \lambda \in \C:
+    T - \lambda I \notin \Inv{\mathcal{B}}
+  } \\
+  \implies &
+  T + I \in \Inv{\mathcal{B}}
 \end{align*}
 
-Und dann mit Satz 6.4.14, dass $r(T) = 0$.
+Wir betrachten die ursprüngliche Integral-Gleichung.
+
+\begin{align*}
+  \implies &
+  (T + I)(f)(x)
+  =
+  f(x) + \Int[0][x]{e^{x \cos{t}} f(t)}{t}
+  \stackrel{!}{=}
+  x^2 + 1
+  =:
+  g(x) \\
+  \implies &
+  f = (T + I)^{-1}(g)
+\end{align*}
+
+$f$ ist tatsächlich eindeutig.
 
 \end{solution}
