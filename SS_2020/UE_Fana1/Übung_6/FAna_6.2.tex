@@ -20,6 +20,223 @@ Betrachte $T := M S$.
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item
+  Zuerst wollen wir uns ansehen, wie $T$ tatsächlich aussieht.
+
+  \begin{align*}
+    T \vec x
+    & =
+    \pbraces
+    {
+      0,
+      \frac{1!}{2!} x_1,
+      \frac{2!}{3!} x_2,
+      \frac{3!}{4!} x_3,
+      \ldots
+    }, \\
+    T^2 \vec x
+    & =
+    \pbraces
+    {
+      0, 0,
+      \frac{1!}{3!} x_1,
+      \frac{2!}{4!} x_2,
+      \frac{3!}{5!} x_3,
+      \ldots
+    }, \\
+    T^3 \vec x
+    & =
+    \pbraces
+    {
+      0, 0, 0,
+      \frac{1!}{4!} x_1,
+      \frac{2!}{5!} x_2,
+      \frac{3!}{6!} x_3,
+      \ldots
+    }, \\
+    \vdots \\
+    T^k \vec x
+    & =
+    \bigg (
+      \underbrace{0, \ldots, 0}_{k \text{-mal}},
+      \frac{1!}{(k+1)!} x_1,
+      \frac{2!}{(k+2)!} x_2,
+      \frac{3!}{(k+3)!} x_3,
+      \ldots,
+      \frac{n!}{(k+n)!} x_n,
+      \ldots
+    \bigg )
+  \end{align*}
+
+  Wir wollen nun eine geeignete Abschätzung für $\norm{T^k}$ finden.
+  $\Forall \vec x \in \ell^2(\N):$
+
+  \begin{align*}
+    \norm[2]{T^k \vec x}^2
+    & =
+    \sum_{n=1}^\infty
+    \pbraces
+    {
+      \frac{n!}{(k+n)!}
+      x_n
+    }^2
+    \leq
+    \sum_{n=1}^\infty
+    \pbraces
+    {
+      \frac{1}{(k+1)!}
+      x_n
+    }^2
+    =
+    \pbraces{\frac{1}{(k+1)!}}^2
+    \sum_{n=1}^\infty x_n^2
+    =
+    \pbraces{\frac{1}{(k+1)!}}^2
+    \norm[2]{\vec x}^2 \\
+    \implies
+    \norm{T^k}
+    & \leq
+    \frac{1}{(k+1)!}
+  \end{align*}
+
+  Das $\sup$ wird tatsächlich auch angenommen.
+
+  \begin{align*}
+    \norm[2]{(\delta_{(k+1) n})_{n \in \N}} = 1,
+    \quad
+    \norm[2]{T (\delta_{(k+1) n})_{n \in \N}}
+    =
+    \frac{1}{(k+1)!}
+    \implies
+    \norm{T^k}
+    =
+    \frac{1}{(k+1)!}
+  \end{align*}
+
+  Um den Grenzwert zu berechnen, benützen wir einen alt-bekannten Trick.
+
+  \begin{align*}
+    \norm{T^k}^{1/k}
+    =
+    \pbraces{\frac{1}{(k+1)!}}^{1/k}
+    =
+    \exp \ln \frac{1}{(k+1)!}^{1/k}
+    =
+    \exp \pbraces
+    {
+      -\frac{1}{k}
+      \sum_{i=1}^{k+1}
+      \ln{i}
+    }
+  \end{align*}
+
+  \includegraphicsboxed{Blümlinger - Cesaro-Mittel}
+
+  Wir schätzen den Ausdruck im $\exp$ separat ab.
+
+  \begin{align*}
+    \frac{1}{k}
+    \sum_{i=1}^{k+1}
+    \ln{i}
+    \geq
+    \frac{1}{k}
+    \sum_{i=1}^k
+    \ln{i}
+    \xrightarrow{k \to \infty}
+    \lim_{i \to \infty}
+    \ln{i}
+    =
+    \infty
+  \end{align*}
+
+  Weil $\exp$ stetig ist, können wir den $\lim$ hineinziehen.
+
+  \begin{align*}
+    \implies
+    \lim_{k \to \infty}
+    \norm{T^k}^{1/k}
+    =
+    0
+  \end{align*}
+
+  \item
+  Nachdem $T = M S$, können wir auch, laut Proposition 6.5.4 (iv), zeigen, dass $M$ oder $S$ kompakt ist.
+
+  \includegraphicsboxed{Proposition 6.5.4}
+
+  $S$ ist auf jeden Fall mal NICHT kompakt!
+  Sonst wäre, laut Proposition 6.5.4 (iv) $S^\ast S = I$ kompakt!
+  Man erinnere sich, dass, laut Aufgabe ???, $S^\ast$ der umgekehrte Shift-Operator ist. \\
+
+  Wir hoffen also, dass $M$ kompakt ist.
+  Das zeigen wir so, wie in Aufabe ???.
+  Wir approximieren $M$ mit kompakten Operatoren.
+
+  \begin{align*}
+    M_j:
+    \vec \alpha
+    \mapsto
+    \pbraces
+    {
+      \frac{\alpha_1}{1},
+      \ldots,
+      \frac{\alpha_j}{j},
+      0, 0, 0, \ldots
+    }
+  \end{align*}
+
+  Diese Operatoren haben endlichdimensionales Bild, sind also, laut Proposition 6.5.4 (i), kompakt.
+  Wir benötigen also nur noch die konvergenz von $(M_j)_{j \in \N}$ gegen $M$ in der Operator-Norm.
+
+  \begin{align*}
+    \norm[2]{(M - M_j) \vec \alpha}^2
+    & =
+    \sum_{n = j+1}^\infty
+    \pbraces
+    {
+      \frac{\alpha_n}{n}^2
+    }
+    \leq
+    \norm[2]{\vec \alpha}
+    \sum_{n = j+1}^\infty
+    \frac{1}{n^2}, \\
+    \implies
+    \norm{M - M_j}
+    & \leq
+    \sum_{n = j+1}^\infty
+    \xrightarrow{j \to \infty} 0
+  \end{align*}
+
+  Also, ist $M$, laut Proposition 6.5.4 (iii) kompakt.
+  Damit, ist auch $T$ kompakt.
+
+  \item
+  \phantom{}
+
+  \includegraphicsboxed{Satz 6.4.14}
+
+  Laut Satz 6.4.14, ist Also
+
+  \begin{align*}
+    0
+    =
+    \lim_{k \to \infty} \norm{T^k}
+    =
+    r(T)
+    =
+    \max_{\lambda \in \sigma(T)} |\lambda|.
+  \end{align*}
+
+  Weil $T$ nur links-invertierbar ist, ist $0 \in \sigma(T)$.
+  Insgesamt, erhalten wir also $\sigma(T) = \Bbraces{0}$. \\
+
+  Aus der links-Invertierbarkeit von $T$, folgt Injektivität, und damit $\ker{(T - 0 I)} = \ker{T} = \Bbraces{0}$.
+  Also, ist $0 \notin \sigma_p(T)$.
+
+\end{enumerate}
 
 \end{solution}
