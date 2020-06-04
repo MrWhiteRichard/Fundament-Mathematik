@@ -198,20 +198,24 @@ Betrachte $T := M S$.
     \sum_{n = j+1}^\infty
     \pbraces
     {
-      \frac{\alpha_n}{n}^2
-    }
+      \frac{\alpha_n}{n}
+    }^2
     \leq
-    \norm[2]{\vec \alpha}
+    \norm[2]{\vec \alpha}^2
     \sum_{n = j+1}^\infty
     \frac{1}{n^2}, \\
-    \implies
+    \implies &
     \norm{M - M_j}
-    & \leq
-    \sum_{n = j+1}^\infty
+    \leq
+    \sqrt
+    {
+      \sum_{n = j+1}^\infty
+      \frac{1}{n^2}
+    }
     \xrightarrow{j \to \infty} 0
   \end{align*}
 
-  Also, ist $M$, laut Proposition 6.5.4 (iii) kompakt.
+  Laut Proposition 6.5.4 (iii), ist $M$ also kompakt.
   Damit, ist auch $T$ kompakt.
 
   \item
@@ -219,12 +223,12 @@ Betrachte $T := M S$.
 
   \includegraphicsboxed{Satz 6.4.14}
 
-  Laut Satz 6.4.14, ist Also
+  Laut Satz 6.4.14, ist also
 
   \begin{align*}
     0
     =
-    \lim_{k \to \infty} \norm{T^k}
+    \lim_{k \to \infty} \norm{T^k}^{1/k}
     =
     r(T)
     =
