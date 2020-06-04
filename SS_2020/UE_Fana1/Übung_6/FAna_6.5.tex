@@ -107,11 +107,12 @@ Nehmen wir also an, es gibt ein Eigenpaar $\lambda \neq 0, f \neq 0$, also
   \Int[0][x]{f(t)}{t} = \lambda f(x)
 \end{align*}
 
-Aus der Maßtheorie wissen wir, dass $Vf(x)$ stetig ist, somit auch $f$. Damit ist
-$f$ aber auch schon stetig differenzierbar. Nach dem Hauptsatz der Differential und
-Integralrechnung gilt:
+Aus der Maßtheorie wissen wir, dass $V f$ stetig ist, somit auch $f$.
+Laut dem Hauptsatz der Differential- und Integral-Rechnung, ist $f$ aber damit auch schon stetig differenzierbar.
+Wir leiten auf beiden Seiten ab
 
 \begin{align*}
+  \implies
   f^\prime (x)
   =
   \frac{f(x)}{\lambda}
@@ -122,16 +123,18 @@ Die Lösung dieser Differentialgleichung ist
 \begin{align*}
   f(x)
   =
-  c \exp^{\frac{x}{\lambda}}
+  c \exp{\frac{x}{\lambda}},
+  \quad
+  c \in \R.
 \end{align*}
 
 Um die Konstante $c$ zu bestimmen sehen wir uns zuerst
 
 \begin{align*}
-  Vf(0) = \lambda f(0) = 0
+  0 = Vf(0) = \lambda f(0)
 \end{align*}
 
-Damit erhalten wir
+Damit, und $\lambda \neq 0$, erhalten wir
 
 \begin{align*}
   f(0) = 0
@@ -141,13 +144,19 @@ Damit erhalten wir
   f \equiv 0
 \end{align*}
 
-im Widerspruch zu unserer Annahme. Um nun noch zu zeigen, dass $0 \in \sigma_c(V)$
-bemerkten wir zuerst, dass wegen Satz 6.4.14 $\sigma(V) = {0}$ gilt. Außerdem ist,
-wie man sich leicht überzeugt, $0 \notin \sigma_p(V)$. Aus Analysis 3 wissen wir, dass
-$C_c^{\infty}$ dicht in $L^2$ ist.
+im Widerspruch zu unserer Annahme. \\
+
+Wir zeigen jetzt, dass $0 \in \sigma_c(V)$.
+Laut Satz 6.4.14, ist das Spektrum nichtleer.
+Weil $\lambda \neq 0$ anscheinend nicht im Spektrum enthalten ist, muss $\sigma(V) = \Bbraces{0}$. \\
+
+Der Ableitungsoperator ist eine Linksinverse von $V$.
+Also ist $V$ injektiv und $\ker{V} = \Bbraces{0}$.
+Also ist $0 \notin \sigma_p(V)$. \\
 
 \includegraphicsboxed{Blümlinger - Satz 2.5.1.jpg}
 
+Aus Analysis 3 wissen wir, dass $C_c^{\infty}$ dicht in $L^2$ ist.
 Sei nun $f: (0,1) \rightarrow \C$ für die auch $ f \in C^{\infty}$ gilt. Dann ist
 
 \begin{align*}
@@ -163,7 +172,8 @@ Differential und Integralrechnung)
   C_c^{\infty} \subseteq \ran(V)
 \end{align*}
 
-Da diese schon dicht in $L^2(0,1)$ sind also auch insbesondere $\ran(V)$. \\
+Da diese schon dicht in $L^2(0,1)$ sind also auch insbesondere $\ran(V)$.
+Das heißt ja genau, dass $0$ im stetigen Spektrum liegt. \\
 
 \underline{Norm:} \\
 
@@ -172,10 +182,13 @@ Zuguterletzt widmen wir uns noch der Norm von $V$. Dazu wollen wir Proposition
 
 \includegraphicsboxed{Proposition 6.6.2.jpg}
 
-Also $\Vbraces{V} = \sqrt{\Vbraces{V^*V}}$. Mit den Rechenregeln für die Adjungierte
-überzeugt man sich leicht, dass $S:=V^*V$ ein normaler Operator ist, deswegen gilt
-$r(S) = \Vbraces{S}$ (Proposition 6.6.5). Er ist, wegen der
-Kompaktheit von $V$, auch kompakt. Nun ist $S$ definiert durch
+Also $\Vbraces{V} = \sqrt{\Vbraces{V^*V}}$.
+Mit den Rechenregeln für die Adjungierte überzeugt man sich leicht, dass $S:=V^*V$ ein selbstadjungierter, also normaler Operator ist.
+
+\includegraphicsboxed{Proposition 6.6.5}
+
+Laut Proposition 6.6.5, gilt $r(S) = \Vbraces{S}$.
+$S$ ist, wegen der Kompaktheit von $V$, und weil $K(L^2(0, 1))$ ein Ideal ist (vgl. Proposition 6.5.4), auch kompakt.
 
 \begin{align*}
   (Sf)(x)
@@ -185,13 +198,14 @@ Kompaktheit von $V$, auch kompakt. Nun ist $S$ definiert durch
   }{y}
 \end{align*}
 
-Sehen wir uns wieder Eigenpaare $\lambda \neq 0, f \neq 0$ von $S$ an. Dann gilt
+Sehen wir uns wieder Eigenpaare $\lambda \neq 0, f \neq 0$ von $S$ an. D.h.
 
 \begin{align*}
-  Sf(s) = \lambda f(x)
+  Sf(x) = \lambda f(x)
 \end{align*}
 
-Durch zweimaliges differenzieren erhalten wir
+Das Punkt-Spektrum von $S$ zu betrachten reicht ja, weil $S$ kompakt ist.
+Durch zweimaliges differenzieren von $S f$ erhalten wir
 
 \begin{align*}
   \lambda f^\primeprime(x) = -f(x)
@@ -208,7 +222,7 @@ Um die Koeffizienten zu bestimmen wenden wir den Operator an
 
 \begin{align*}
   Sf(x)
-  =&
+  & =
   a \Int[x][1]{
     \Int[0][y]{e^{i\omega t}}{t}
   }{y}
@@ -216,7 +230,7 @@ Um die Koeffizienten zu bestimmen wenden wir den Operator an
   b \Int[x][1]{
       \Int[0][y]{e^{-i\omega t}}{t}
   }{y} \\
-  =&
+  & =
   \frac{1}{\omega^2} f(x)
   +
   \frac{1}{i\omega} (a-b)x
@@ -228,22 +242,40 @@ Um die Koeffizienten zu bestimmen wenden wir den Operator an
   \lambda f(x)
 \end{align*}
 
-Aus dem zweiten und vierten Term erkennen wir, dass $a=b$ sein muss, also mit
-Hilfe der eulerschen Identität $f(x) = 2a \cos(\omega x)$. Aus dem dritten Term,
-da ja $a \neq 0$ weil sonst ja $f = 0$ wäre, erhalten wir $2cos(\omega) = 0$. Damit
-erhalten wir unsere Eigenwerte
+Aus dem zweiten Term erkennen wir, dass $a=b$.
+Also fällt auch der vierte Term weg.
+Also muss auch der dritte Term wegfallen.
 
 \begin{align*}
-  \omega
+  \implies
+  0
   =
-  \frac{2n+1}{2} \pi     \quad n \in \Z
-  \Rightarrow
+  \frac{1}{\omega^2}(ae^{i\omega} + be^{-i\omega})
+  =
+  \frac{a}{\omega^2}
+  (e^{i\omega} + e^{-i\omega})
+  =
+  \frac{a}{\omega^2}
+  2 \cos{\omega}
+\end{align*}
+
+Damit erhalten wir unsere Eigenwerte
+
+\begin{align*}
+  \implies
+  \sqrt{\frac{1}{\lambda_n}}
+  =
+  \omega_n
+  =
+  \frac{2n+1}{2} \pi,
+  \quad n \in \Z
+  \implies
   \lambda_n
   =
   \frac{4}{(2n+1)^2 \pi^2}
 \end{align*}
 
 Um nun $r(S)$ zu erhalten nehmen wir den Betragsgrößten, also $\lambda_0$.
-Damit gilt $\Vbraces{S} = \frac{4}{\pi^2}$ womit wir nun Zuguterletzt
-$\Vbraces{V} = \frac{2}{\pi}$ erhalten.
+Damit gilt $\Vbraces{S} = \frac{4}{\pi^2}$, womit wir nun schließlich $\Vbraces{V} = \frac{2}{\pi}$ erhalten.
+
 \end{solution}
