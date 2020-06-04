@@ -15,8 +15,22 @@ Zeige, dass $\sigma(V) = \sigma_c(V) = \Bbraces{0}$.
 
 \begin{solution}
 
-Der Kern unseres Operators ist die Funktion $\1_{(0,x)}(t)$.
-Das diese in $L^2((0,1) \times (0,1))$ zeigen wir ganz einfach.
+Wir bringen den Operator zunächst auf Standard-Form.
+Dazu, betrachten wir das $\sigma$-endliche Lebesgues-Maß
+$\nu := \lambda$, die Menge $X := (0, 1)$ und die Indikator-Funktion $k: (x, t) \mapsto \1_{(0, x)}(t)$.
+
+\begin{align*}
+  \implies
+  (V f)(x)
+  =
+  \Int[0][x]{f(t)}{t}
+  =
+  \Int[0][1]{\1_{(0, x)}(t) f(t)}{t}
+  =
+  \Int[X]{k(x, t) f(t)}{\lambda(t)}
+\end{align*}
+
+Es gilt übrigens tatsächlich $k \in L^2$.
 
 \begin{align*}
   \int_{(0,1) \times (0,1)} \vbraces{\1_{(0,x)}(t)}^2 d\lambda(t) \times \lambda(x)
@@ -30,21 +44,56 @@ Das diese in $L^2((0,1) \times (0,1))$ zeigen wir ganz einfach.
   \frac{1}{2}
 \end{align*}
 
-Damit haben wir nach IO/1 schon $V \in \mathcal{B}(L^2(0, 1))$ gezeigt und die
-Kompaktheit von $V$ folgt aus IO/2.
+\underline{Beschränktheit:} \\
 
-Um die Adjungierte von $V$ zu erhalten benutzen wir IO/1. Wir betrachten also den
-Integraloperator mit Kern $\1_{(0,t)}(x)$. Für diesen Indikator gilt:
+Laut Aufgabe 3 (IO/1). \\
+
+\underline{Hilbertraumadjungierte:} \\
+
+Laut Aufgabe 3 (IO/1), können wir die Hilbertraumadjungierte sofort hinschreiben als Integraloperator mit Kern
 
 \begin{align*}
-  \1_{(0,t)}(x) = 1
-  \Leftrightarrow
-  0 < x < t < 1
-  \Leftrightarrow
-  \1_{(x,1)}(t) = 1
+  k^\ast(x, t)
+  =
+  \overline{k(t, x)}
+  =
+  \1_{(0, t)}(x).
 \end{align*}
 
-Damit haben wir auch die Darstellung der Adjungierten wie in der Angabe.
+Zunächst noch eine kleine Bemerkung zu unserer Indikator-Funktion.
+
+\begin{align*}
+  \1_{(0, t)}(x) = 1
+  \iff
+  x \in (0, t)
+  \iff
+  0 < x < t < 1
+  \iff
+  t \in (x, 1)
+  \iff
+  \1_{(x, 1)}(t) = 1
+\end{align*}
+
+Jetzt kann uns nichts mehr aufhalten.
+
+\begin{align*}
+  (V^\ast f)(x)
+  =
+  \Int[0][1]{k^\ast(x, t) f(t)}{t}
+  =
+  \Int[0][1]{\1_{(0, t)}(x) f(t)}{t}
+  =
+  \Int[0][1]{\1_{(x, 1)}(t) f(t)}{t}
+  =
+  \Int[x][1]{f(t)}{t}
+\end{align*}
+
+\underline{Kompaktheit:} \\
+
+Offensichtlich, ist $k \in L^2(\lambda \times \lambda)$.
+Laut Aufgabe 4 (IO/2), ist $V$ also kompakt. \\
+
+\underline{Spektrum:} \\
 
 Da wir es mit einem kompakten Operator zu tun haben, sind nach Satz 6.5.12 besteht
 das Spektrum (ausgenommen der $0$) nur aus Eigenwerten.
@@ -114,7 +163,9 @@ Differential und Integralrechnung)
   C_c^{\infty} \subseteq \ran(V)
 \end{align*}
 
-Da diese schon dicht in $L^2(0,1)$ sind also auch insbesondere $\ran(V)$.
+Da diese schon dicht in $L^2(0,1)$ sind also auch insbesondere $\ran(V)$. \\
+
+\underline{Norm:} \\
 
 Zuguterletzt widmen wir uns noch der Norm von $V$. Dazu wollen wir Proposition
 6.6.2 (i) verwenden.
