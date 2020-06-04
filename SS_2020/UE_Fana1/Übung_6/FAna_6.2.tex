@@ -108,6 +108,50 @@ Betrachte $T := M S$.
     \|T^k(x_n)_{n \in \N}\|_2^2 = \left(\frac{1}{(k+1)!}\right)^2,
   \end{align*}
   dass $\|T_k\| = \frac{1}{(k+1)!}$. \\
+
+  \underline{Grenzwert abschätzen (mit Integral):} \\
+
+  Mit den Logarithmus-Regeln, können wir Produkte, also insbesondere Fakultäten, zu Summen machen.
+
+  \begin{align*}
+    \norm{T^k}^{1/k}
+    =
+    \pbraces{\frac{1}{(k+1)!}}^{1/k}
+    =
+    \exp \ln \pbraces{\frac{1}{(k+1)!}}^{1/k}
+    =
+    \exp \pbraces{-\frac{1}{k} \sum_{i=1}^{k+1} \ln{i}}
+  \end{align*}
+
+  Manchmal, kann man Summen mit Integralen abschätzen, die WolframAlpha dann berechnen kann.
+
+  \begin{align*}
+    \frac{1}{k}
+    \sum_{i=1}^{k+1} \ln{i}
+    =
+    \frac{1}{k}
+    \sum_{i=0}^k \ln{(i+1)}
+    \geq
+    \frac{1}{k}
+    \Int[1][k]{\ln{(t+1)}}{t}
+    =
+    \frac{1}{k}
+    \pbraces
+    {
+      -k + (k+2) \ln{(k+2)} - \ln{4}
+    }
+    \xrightarrow{k \to \infty} \infty
+  \end{align*}
+
+  Weil $\exp$ stetig ist, rutscht der $\lim$ rein.
+
+  \begin{align*}
+    \norm{T^k}^{1/k}
+    \xrightarrow{k \to \infty} 0
+  \end{align*}
+
+  \underline{Grenzwert abschätzen (mit Induktion):} \\
+
   Wir zeigen mittels Induktion, dass $k! \geq (\frac{k}{3})^k$.
   Für $k = 1$ stimmt die Ungleichung klarerweise und
   \begin{align*}
@@ -131,35 +175,6 @@ Damit folgt
     \norm{T^k}
     =
     \frac{1}{(k+1)!}
-  \end{align*}
-
-
-
-  Wir schätzen den Ausdruck im $\exp$ separat ab.
-
-  \begin{align*}
-    \frac{1}{k}
-    \sum_{i=1}^{k+1}
-    \ln{i}
-    \geq
-    \frac{1}{k}
-    \sum_{i=1}^k
-    \ln{i}
-    \xrightarrow{k \to \infty}
-    \lim_{i \to \infty}
-    \ln{i}
-    =
-    \infty
-  \end{align*}
-
-  Weil $\exp$ stetig ist, können wir den $\lim$ hineinziehen.
-
-  \begin{align*}
-    \implies
-    \lim_{k \to \infty}
-    \norm{T^k}^{1/k}
-    =
-    0
   \end{align*}
 
   \item
