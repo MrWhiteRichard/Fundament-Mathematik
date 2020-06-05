@@ -48,21 +48,25 @@ Es gibt also eine Folge $(f_n)_{n \in \N} \in C_c^{\infty}$ mit
   f_n \stackrel{\|\cdot\|_1}{\to} f
 \end{align*}
 
-Nach Kusolitsch Satz 13.25 gilt auch Konvergenz im Maß und nach Kusolitsch Satz 7.88 können wir eine Teilfolge $f_{n_l}$ wählen, die $\lambda-$f.ü. konvergiert.
-
-Damit gilt
+Nun gilt 
 
 \begin{align*}
-  \|K\| \geq& \lim_{l \to \infty} \|Kf_{n_l}\| \geq \lim_{l \to \infty} |Kf_{n_l}(x_0)| = \lim_{n \to \infty} |\int_{0}^{1} k(x_0,t)f_{n_l}(t) dt| \\
+  \norm[1]{k(x_0, \cdot) (f_n - f)} \leq \norm[\infty]{k(x_0, \cdot)} \norm[1]{f_n - f} \to 0 \quad \textrm{also} \quad k(x_0, \cdot)f_n \stackrel{\|\cdot\|_1}{\to} k(x_0, \cdot)f
+\end{align*}
+
+Aus Kusolitsch Satz 13.35 folgt nun die gleichmäßige Integrierbarkeit der $\|k(x_0, \cdot)f_n\|$ sowie die Konvergenz $k(x_0, \cdot)f_n \to k(x_0, \cdot)f$ im Maß. Betrachtet man aber die Bedingungen für gleichmäßige Integrierbarkeit in Kusolitsch Satz 13.32 so sind dort ohnehin überall beträge zu finden also sind auch die $k(x_0, \cdot)f_n$ gleichmäßig integrierbar. Daher folgt mit Kusolitsch Satz 13.34 Punkt 2 
+
+\begin{align}
+  \lim_{n \to \infty} \int_0^1 k(x_0, \cdot) f_n = \int_0^1 k(x_0, \cdot) f
+\end{align}
+
+Das können wir nützen und erhalten
+
+\begin{align*}
+  \|K\| \geq& \lim_{n \to \infty} \frac{\|Kf_n\|_\infty}{\|f_n\|_\infty} \geq \lim_{n \to \infty} \frac{|Kf_n(x_0)|}{\|f_n\|_\infty} = \lim_{n \to \infty} \frac{|\int_{0}^{1} k(x_0,t)f_n(t) dt|}{\|f_n\|_\infty} \\
   =& |\int_{0}^{1} k(x_0,t)f(t) dt| = \int_{0}^{1} |k(x_0,t)| dt = \sup_{x \in (0,1)} \int_{0}^{1} |k(x_0,t)| dt.
 \end{align*}
 
-wobei die drittletzte Gleichheit gilt mit Konvergenz durch Majorisierung nach Kusolitsch Satz 9.23.
-
-\begin{align*}
-  \Forall l \in \N, t \in [0,1]: |k(x_0,t)f_{n_l}(t)| = |k(x_0,t)| \leq \|k(x_0,\cdot)\|_{\infty}
-\end{align*}
-Erste Gleichheit ist mir noch nicht klar....Fabian fragen
 
 Nun zu der Kompaktheit von $K$.
 
