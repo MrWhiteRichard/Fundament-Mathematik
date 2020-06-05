@@ -28,11 +28,22 @@ Sei nun $f \in C([0,1])$ beliebig mit $\|f\|_{\infty} = 1$. Dann gilt
   \leq& \|f\|_{\infty} \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt = \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt
 \end{align*}
 
-Somit erhalten wir also $\|K\| \leq \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt \leq \|k\|_{\infty}$.
+Somit erhalten wir laut dem Lemma vom iterierten Supremum also $\|K\| \leq \sup_{x \in (0,1)} \int_{0}^{1} |k(x,t)|dt \leq \|k\|_{\infty}$.
 
-Für die andere Richtung der ersten Ungleichung betrachten wir das $x_0 \in [0,1]$, wo $\int_{0}^{1} |k(x,t)|dt$ das Supremum/ Maximum annimmt. Dieses existiert, da wir es mit einer stetigen Funktion zu tun haben.
+Für die andere Richtung der ersten Ungleichung betrachten wir das $x_0 \in [0,1]$, wo $\int_{0}^{1} |k(x,t)|dt$ das Supremum/ Maximum annimmt. Dieses existiert, da das Parameterintegral stetig ist.
 
-Definiere nun $f(t) := \frac{\overline{k(x,t)}}{|k(x,t)|} \in L^1([0,1])$. Es gibt also eine Folge $(f_n)_{n \in \N} \in C_c^{\infty}$ mit
+Definiere nun
+\begin{align*}
+  f(t) := \begin{cases}
+    \frac{\overline{k(x_0,t)}}{|k(x_0,t)|}, & |k(x_0,t)| \neq 0 \\
+    0, & \text{sonst}
+  \end{cases} \in L^1
+\end{align*}
+\begin{align*}
+  \|K\| \geq \frac{\|Kf\|}{\|f\|} =
+\end{align*}
+
+Es gibt also eine Folge $(f_n)_{n \in \N} \in C_c^{\infty}$ mit
 \begin{align*}
   f_n \stackrel{\|\cdot\|_1}{\to} f
 \end{align*}

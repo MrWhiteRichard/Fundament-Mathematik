@@ -68,60 +68,61 @@ Zeige:
   Daher, muss $\dim \ran{K} \leq \dim{A_n} \leq n$.
 
   \item
-  Sei $K_n$ ein Integraloperator der Form
-\begin{align}
-    K_n f(s) = \int_X \left(\sum_{i=1}^n a_i(s) b_i(t)\right) f(t) \dmu(t).
-\end{align}
-
-$K_n$ hat nach Aufgabe (a) endlichdimensionales Bild und ist daher nach Proposition 6.5.4 kompakt. Wir wollen $K$ nun durch eine Folge $(K_n)_{n \in \mathbb{N}}$ solcher Operatoren approximieren. Es gilt
-\begin{align}
-    \|(K-K_n) f\|_2^2 = \int_X \left| \int_X k(s,t) f(t) \dmu(t) - \int_X \left(\sum_{i=1}^n a_i(s) b_i(t)\right) f(t) \dmu(t) \right|^2 \dmu(s) \\
-    \leq \int_X \left( \int_X |k(s,t) - \sum_{i=1}^n a_i(s) b_i(t)| |f(t)| \dmu(t)\right)^2 \dmu(s) \\
-    \leq \int_X \left(\int_X |k(s,t) - \sum_{i=1}^n a_i(s) b_i(t)|^2 \dmu(t)\right) \left(\int_X |f(t)|^2 \dmu(t)\right) \dmu(s) \\
-    = \|f\|_2 \int_{X^2} |k(s,t) - \sum_{i=1}^n a_i(s) b_i(t)|^2 ~\mathrm{d}(\mu\times\mu)(s,t).
-\end{align}
-
-Aus der Maßtheorie wissen wir, dass wir $k$ von unten durch Treppenfunktionen der Form $t_n(s,t) = \sum_{i=1}^{m_n} \alpha_{n_i} \1_{C_{n_i}}(s,t)$ approximieren können; seien $(t_n)_{n \in \mathbb{N}}$ also von dieser Gestalt und gelte
-\begin{align}
+Aus der Maßtheorie (Lemma 13.37) wissen wir, dass wir $k$ von unten durch Treppenfunktionen der Form $t_n(s,t) = \sum_{i=1}^{m_n} \alpha_{n_i} \1_{C_{n_i}}(s,t)$ approximieren können; seien $(t_n)_{n \in \mathbb{N}}$ also von dieser Gestalt und gelte
+\begin{align*}
     \forall n \in \mathbb{N}:~ \|t_n\|_{L^2(\mu\times\mu)} \leq \|k\|_{L^2(\mu\times\mu)}, ~~\lim\limits_{n \rightarrow \infty}{\|k-t_n\|_{L^2(\mu\times\mu)}} = 0.
-\end{align}
-
-Sei $C \in \mathfrak{S} \times \mathfrak{S}$ beliebig; weil $\mu$ sigmaendlich ist, können wir nach dem Approximationssatz (vgl. Kusolitsch Satz 2.59) ein $D$ aus dem zugehörigen Ring finden, das $C$ beliebig genau approximiert. Genauer erhalten wir für beliebiges $\epsilon > 0$ ein $D$ mit
-\begin{align}
-    D = \bigcup_{i=1}^{l} A_j \times B_j \text{~(wobei~} A_j, B_j \in \mathfrak{S}), ~~\mu\times\mu(C \triangle D) < \epsilon.
-\end{align}
+\end{align*}
+Wir zeigen nun, dass für jede Treppenfunktion $T$ der Integraloperator mit Kern $T$ kompakt ist.
+\begin{align*}
+  T(s,t) := \sum_{i = 1}^n \alpha_i \1C_i(s,t)
+\end{align*}
+Weil $\mu$ sigmaendlich ist, können wir für $i = 1,\dots,n$ nach dem Approximationssatz für messbare Mengen
+$D_i$ aus $\mathfrak{R}(\mathfrak{S} \times \mathfrak{S})$ finden, welche $C_i$ beliebig genau
+approximieren. Also gilt
+\begin{align*}
+    D_i = \bigcup_{k=1}^{l_i} A_{i_k} \times B_{i_k} \text{~(wobei~} A_{i_k}, B_{i_k} \in \mathfrak{S}), ~~\mu\times\mu(C_i \triangle D_i) < \frac{\epsilon}{n|\alpha_i|^2}.
+\end{align*}
 
 Damit gilt
-\begin{align}
-    \|\1_C - \1_D\|_2^2 = \int_{X^2} |\1_C(s,t) - \1_D(s,t)|^2 ~\mathrm{d}(\mu\times\mu)(s,t) = \int_{X^2} \1_{C \triangle D}~\mathrm{d}(\mu\times\mu)(s,t) = \mu\times\mu(C \triangle D) < \epsilon.
-\end{align}
+\begin{align*}
+    \|\1_{C_i} - \1_{D_i}\|_2^2 = \int_{X^2} |\1_{C_i}(s,t) - \1_{D_i}(s,t)|^2
+     ~\mathrm{d}(\mu\times\mu)(s,t) = \int_{X^2} \1_{C_i \triangle D_i}~\mathrm{d}(\mu\times\mu)(s,t) =
+     \mu\times\mu(C_i \triangle D_i) < \/
+     \frac{\epsilon}{n|\alpha_i|^2}.
+\end{align*}
 
-Wir können also eine Folge $D_n$ wählen mit $\|\1_C - \1_D\|_2 < \frac{1}{n},$ also $D_n \xrightarrow{\|.\|_2} C.$
-
-Zurück zur Aufgabe: Für gegebenes $\epsilon > 0$ wählen wir für jedes $C_{n_i}$ ein $D_{n_i}$ mit $\|\1_{C_{n_i}} - \1_{D_{n_i}}\|_2 < \frac{\epsilon}{m_n ~|\alpha_{n_i}|}.$
 
 Mit dieser Wahl ist
-\begin{align}
-    \left\| \sum_{i=1}^{m_n} \alpha_{n_i} \1_{C_{n_i}} - \sum_{i=1}^{m_n} \alpha_{n_i} \1_{D_{n_i}}\right\|_2
-    \leq \sum_{i=1}^{m_n} |\alpha_{n_i}| \|\1_{C_{n_i}} - \1_{D_{n_i}} \|_2 < \epsilon.
-\end{align}
+\begin{align*}
+    \left\| \sum_{i = 1}^n \alpha_i \1C_i -
+    \sum_{i = 1}^n \alpha_i \1D_i\right\|_2^2
+    \leq \sum_{i=1}^{n} |\alpha_{i}|^2 \|\1_{C_{i}} - \1_{D_{i}} \|_2^2 < \epsilon.
+\end{align*}
 
 Weiters gilt
-\begin{align}
-    \sum_{i=1}^{m_n} \alpha_{n_i} \1_{D_{n_i}}(s,t)
-    = \sum_{i=1}^{m_n} \alpha_{n_i} \sum_{j=1}^{l_{n_i}}  \1_{A_{n_{i_j}} \times B_{n_{i_j}}}(s,t)
-    = \sum_{i=1}^{m_n} \sum_{j=1}^{l_{n_i}}   \alpha_{n_i} \1_{A_{n_{i_j}}}(s) \1_{B_{n_{i_j}}}(t).
-\end{align}
+\begin{align*}
+    k_{\epsilon}(s,t) := \sum_{i = 1}^n \alpha_i \1D_i(s,t)
+    = \sum_{i=1}^{n} \alpha_{i} \sum_{j=1}^{l_{i}}  \1_{A_{i_k} \times B_{i_k}}(s,t)
+    = \sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \alpha_{i} \1_{A_{i_k}}(s) \1_{B_{i_k}}(t).
+\end{align*}
 
-Wir finden also Funktionen der Form
-\begin{align}
-    s_{n_q} (s,t) = \sum_{j=1}^{p_{n_q}} \beta_{n_q} \1_{A_{n_{i_j}}}(s) \1_{B_{n_{i_j}}}(t)
-\end{align}
-mit $\|s_{n_q} - t_n\| \xrightarrow{q \rightarrow \infty} 0.$
-Sei nun $\epsilon > 0$ beliebig. Dann gilt für hinreichend große $n$ und $q$
-\begin{align}
-    \| k-s_{n_q} \|_2 \leq \|k - t_n\|_2 + \|t_n - s_{n_q}\|_2 < \epsilon.
-\end{align}
+Sei $K_{\epsilon}$ der dazugehörige Integraloperator
+\begin{align*}
+  K_{\epsilon} f(s) = \int_X \left(\sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \alpha_{i} \1_{A_{i_k}}(s) \1_{B_{i_k}}(t)\right) f(t) \dmu(t).
+\end{align*}
+
+$K_{\epsilon}$ hat nach Aufgabe (a) endlichdimensionales Bild und ist daher nach Proposition 6.5.4 kompakt. Es gilt mit Cauchy-Schwarz-Bunjakowski
+\begin{align*}
+    \|(K_t-K_{\epsilon}) f\|_2^2 = \int_X \left| \int_X T(s,t) f(t) \dmu(t) - \int_X \left(\sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \alpha_{i} \1_{A_{i_k}}(s) \1_{B_{i_k}}(t)\right) f(t) \dmu(t) \right|^2 \dmu(s) \\
+    \leq \int_X \left( \int_X |T(s,t) - \sum_{i = 1}^n \alpha_i \1D_i(s,t)| |f(t)| \dmu(t)\right)^2 \dmu(s) \\
+    \leq \int_X \left(\int_X |T(s,t) - \sum_{i=1}^{n} \sum_{i = 1}^n \alpha_i \1D_i(s,t)|^2 \dmu(t)\right) \left(\int_X |f(t)|^2 \dmu(t)\right) \dmu(s) \\
+    = \|f\|_2^2\int_{X^2} \left| \sum_{i = 1}^n \alpha_i \1C_i -
+    \sum_{i = 1}^n \alpha_i \1D_i\right|^2 \mathrm{d}(\mu\times\mu)(s,t) \leq \|f\|_2^2\epsilon
+\end{align*}
+die Konvergenz in der Operatornorm.
+Jetzt können wir die selbe Rechnung noch einmal für den Integraloperator mit Kern $k$
+und die kompakten Integraloperatoren mit Kern $(t_n)_{n \in \N}$ durchführen und
+erhalten, dass $K$ als Grenzwert kompakter Operatoren wieder kompakt sein muss.
 
 \end{enumerate}
 

@@ -1,17 +1,17 @@
 \begin{exercise}[23/1]
 
-Sei $S$ der Shift-Operator am $\ell^1(\N)$.
+Sei $S$ der Shift-Operator am $\ell^2(\N)$.
 \begin{align*}
   S:
   \begin{cases}
-    \ell^1(\N)              & \to     \ell^1(\N) \\
+    \ell^2(\N)              & \to     \ell^2(\N) \\
     (x_1, x_2, x_3, \ldots) & \mapsto (0, x_1, x_2, \ldots)
   \end{cases}
 \end{align*}
 \begin{align*}
   S^*:
   \begin{cases}
-    \ell^1(\N)             & \to     \ell^1(\N) \\
+    \ell^2(\N)             & \to     \ell^2(\N) \\
     (x_1, x_2, x_3, \ldots) & \mapsto (x_2, x_3, x_4, \ldots)
   \end{cases}
 \end{align*}
@@ -41,14 +41,14 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   \item \begin{align*}
     S^* - \lambda I:
     \begin{cases}
-      \ell^1(\N)             & \to     \ell^1(\N) \\
+      \ell^2(\N)             & \to     \ell^2(\N) \\
       (x_1, x_2, x_3, \ldots) & \mapsto (x_2 - \lambda x_1, x_3 - \lambda x_2, x_4 - \lambda x_3, \ldots)
     \end{cases}
   \end{align*}
   \begin{align*}
     S - \lambda I:
     \begin{cases}
-      \ell^1(\N)             & \to     \ell^1(\N) \\
+      \ell^2(\N)             & \to     \ell^2(\N) \\
       (x_1, x_2, x_3, \ldots) & \mapsto (- \lambda x_1, x_1 - \lambda x_2, x_2 - \lambda x_3, \ldots)
     \end{cases}
   \end{align*}
@@ -60,9 +60,9 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   \end{align*}
   Sei $x \in \ker(S^* - \lambda I)$. Dann gilt
   \begin{align*}
-    x_2 = \lambda x_1, \quad x_3 = \lambda x_2 = \lambda^2 x_1, \dots, x_n = \lambda x_{n-1} = \lambda^{n-1} x_0
+    x_2 = \lambda x_1, \quad x_3 = \lambda x_2 = \lambda^2 x_1, \dots, x_n = \lambda x_{n-1} = \lambda^{n-1} x_1, \dots
   \end{align*}
-  Sei $x_1 \neq 0$. Dann folgt $x \in \ell^1(\N) \iff |\lambda| < 1$.
+  Sei $x_1 \neq 0$. Dann folgt $x \in \ell^2(\N) \iff |\lambda| < 1$.
   Also haben wir für $\lambda < 1$
   \begin{align*}
     \{0\} \neq \ker(S^* - \lambda I) = \ran(S - \overline{\lambda})^{\bot}.
@@ -71,7 +71,7 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   Wir wissen, dass $\ran(S - \overline{\lambda})^{\bot} = \overline{\ran(S - \overline{\lambda})}^{\bot}$
   und damit auch $a \notin \overline{\ran(S - \overline{\lambda})}$. Also ist
   \begin{align*}
-     \overline{\ran(S - \overline{\lambda})} \neq \ell^1(\N).
+     \overline{\ran(S - \overline{\lambda})} \neq \ell^2(\N).
   \end{align*}
   Um zu zeigen, dass $\lambda$ im Residualspektrum liegt, müssen wir jetzt nur noch
   überprüfen, dass $\lambda$ kein Eigenwert von $S$ ist.
@@ -103,8 +103,8 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   \end{align*}
   Gäbe es ein $\lambda \in \sigma_r(S^*)$, dann hätten wir mit
   \begin{align*}
-    \ell^1(\N) \neq \overline{\ran(S^* - \lambda)} = (\ran(S^* - \lambda)^{\bot})^{\bot} =
-    (\ker(S - \overline{\lambda}))^{\bot} = \{0\}^{\bot} = \ell^1(\N)
+    \ell^2(\N) \neq \overline{\ran(S^* - \lambda)} = (\ran(S^* - \lambda)^{\bot})^{\bot} =
+    (\ker(S - \overline{\lambda}))^{\bot} = \{0\}^{\bot} = \ell^2(\N)
   \end{align*}
   einen Widerspruch. Zusammengefasst gilt also:
   \begin{align*}
@@ -118,17 +118,17 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   \end{align*}
   \item Nach Definition ist
   \begin{align*}
-    \sigma_{app}(S) := \{\lambda \in \C: \exists (x_n)_{n \in \N}, x \in \ell^1(\N): \|x_n\| = 1, (S - \lambda)(x_n) \to 0\}.
+    \sigma_{app}(S) := \{\lambda \in \C: \exists (\vv{x_n})_{n \in \N} \subseteq \ell^2(\N): \|x_n\| = 1, (S - \lambda)(x_n) \to 0\}.
   \end{align*}
   Wir kennen bereits die Beziehung
   \begin{align*}
     \{\lambda \in \C: |\lambda| = 1 \} = \sigma_p(S) \cup \sigma_c(S) \subseteq \sigma_{app}(S) \subseteq \sigma(S).
   \end{align*}
-  Sei $\lambda \in \sigma(S), (x_n)_{n \in N} \subset \ell^1(\N): \forall n \in \N: \|x_n\| = 1$ beliebig. Dann gilt
+  Sei $\lambda \in \sigma(S), (x_n)_{n \in N} \subset \ell^2(\N): \forall n \in \N: \|x_n\| = 1$ beliebig. Dann gilt
   \begin{align*}
     \|(S - \lambda)(x_n)\|^2 &=  (\lambda x_{n_1})^2 + \sum_{k \in \N}(x_{n_k}- \lambda x_{n_{k+1}})^2
     \geq |\lambda|^2x_{n_1}^2 + \sum_{k \in \N}(|x_{n_k}|- |\lambda| |x_{n_{k+1}}|)^2 \\
-    &= (1 + \lambda)\underbrace{\sum_{k \in \N}|x_{n_k}|^2}_{= 1} - 2|\lambda|\sum_{k \in \N}|x_{n_k}| |x_{n_{k+1}}|
+    &= (1 + |\lambda|)\underbrace{\sum_{k \in \N}|x_{n_k}|^2}_{= 1} - 2|\lambda|\sum_{k \in \N}|x_{n_k}| |x_{n_{k+1}}|
     \geq 1 + \lambda - 2|\lambda|\underbrace{\|x_n\|_2}_{=1}\underbrace{\|S^*x_n\|_2}_{\leq 1} \geq 1 - |\lambda|,
   \end{align*}
   wobei die vorletzte Ungleichung aufgrund Hölder gilt. \\
@@ -153,7 +153,7 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
     \frac{\lambda^{1-k}}{\sqrt{n}}\right)^2 +\frac{|\lambda|^{1-n}}{n} = \frac{2}{n} \to 0.
   \end{align*}
   \item Fall 1: $|\lambda| > 1$: \\
-  Es gilt $\lambda \in \rho(S)$, also $\ran(S - \lambda) = \ell^1(\N)$ und damit
+  Es gilt $\lambda \in \rho(S)$, also $\ran(S - \lambda) = \ell^2(\N)$ und damit
   $\dim{(\ell^2(\N) / \ran{S - \lambda})} = \dim{(\ell^2(\N) / \ell^2(\N))} = 0$. \\
   Fall 2: $|\lambda| < 1$: \\
   Wir wissen aus der Vorlesung, dass
@@ -164,7 +164,7 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   folgt daher, dass $(S - \lambda)^{-1}$ beschränkt sein muss. Weiters gilt, dass $(S - \lambda)$
   injektiv. Laut Bemerkung 4.3.5 sind diese beiden Bedingungen äquivalent zur Existenz eines $a > 0$, sodass
   \begin{align*}
-    \forall x \in \ell^1(\N): a\|x\| \leq \|(S - \lambda)x\|.
+    \forall x \in \ell^2(\N): a\|x\| \leq \|(S - \lambda)x\|.
   \end{align*}
   Jetzt können wir Lemma 4.3.6 anwenden und erhalten, dass $\ran(S - \lambda)$ abgeschlossen ist. Also gilt
   \begin{align*}
@@ -175,7 +175,7 @@ Sei $S$ der Shift-Operator am $\ell^1(\N)$.
   \begin{align*}
     \dim{(\ell^2(\N) / \ran{S - \lambda})} &= \dim{(\ran{S - \lambda})^{\bot}}
     = \dim(\{(\overline{\lambda}^{n-1} z)_{n \in \N}: z \in \C\}^{\bot})^{\bot} \\
-    &= \dim\overline{\{(\overline{\lambda}^{n-1} z)_{n \in \N}: z \in \C\}} 
+    &= \dim\overline{\{(\overline{\lambda}^{n-1} z)_{n \in \N}: z \in \C\}}
     = \dim\{(\overline{\lambda}^{n-1} z)_{n \in \N}: z \in \C\} = 1.
   \end{align*}
 \end{enumerate}
