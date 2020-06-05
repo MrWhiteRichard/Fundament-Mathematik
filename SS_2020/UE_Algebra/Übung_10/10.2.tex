@@ -1,4 +1,5 @@
 \begin{algebraUE}{335}
+
 Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidischen Ring $\Z [i]$.
 
 \begin{enumerate}
@@ -10,11 +11,18 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
 
   \item Lässt sich $p = a^2 + b^2 = (a+ib)(a-ib) \in \P$ als Summe zweier Quadrate positiver ganzer Zahlen $a,b$ darstellen, so sind die Faktoren $a+ib$ und $a-ib$ prim in $\Z [i]$.
 
+  \item Man bestimmt alle primen Elemente $z \in \Z[i]$ mit $|z|^2 \leq 10$.
+
+  \item Man bestimme in $\Z [i]$ die Primfaktorzerlegungen von $27+6i$ und $-3+4i$.
+
+  \item Man bestimme in $\Z [i]$ einen ggT der Elemente $a = 7+i$ und $b=5$ und stelle ihn in der Form $ax + by$ mit $x,y \in \Z [i]$ dar.
+
 \end{enumerate}
 
 \end{algebraUE}
 
 \begin{solution}
+
 \begin{enumerate}
   \item Siehe Hinweis Aufgabe 324. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
 
@@ -37,6 +45,69 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
   \end{align*}
 
   welche beide natürliche Zahlen $\neq 1$ sind im Widerspruch zu $p$ Primzahl.
+
+  \item Wir wollen zunächst einen Zusammenhang zwischen gewissen primen Elementen herstellen.
+
+  Mit $E:= E(\Z [i])$ überlegt man sich sehr leicht, dass für ein beliebiges $p$ prim in $\Z [i]$ auch jedes Element aus $pE$ prim ist. (genau dann)
+
+  Mit ähnlichen Überlegungen und der Tatsache, dass die Konjugierten von unseren Einheiten wieder Einheiten sein müssen, sieht man auch, dass genau $\overline{p}$ prim ist.
+
+  Insgesamt ist für $p$ prim also die gesamte Menge
+  \begin{align*}
+    P_p := pE \cup \overline{pE}
+  \end{align*}
+  prim. (Diese Menge muss nicht immer 8-elementig sein, sondern kann für $p$ auf den Achsen oder Diagonalen auch nur 4-elementig sein).
+
+  Nun zum eigentlichen Teil der Aufgabe. Wie gerade gesehen, müssen wir nicht wirklich zwischen $a$ und $b$ unterscheiden, können uns also einfach anschauen, welche zwei Quadratzahlen in Summe weniger gleich 10 ergeben.
+
+  \begin{align*}
+    0+0, 1+0, 4+0, 9+0, 1+1, 4+1, 9+1, 4+4
+  \end{align*}
+
+  kommen in Frage. Die ersten beiden entsprechen der Null und den Einheiten, können also femäß Definition nicht prim sein.
+
+  Der dritte Fall ist z.B. $p = 2 = (1+i)(1-i)$, also nicht irreduzibel.
+
+  Der vierte Fall ist z.B. $p = 3$. Für eine beliebige Zerlegung von $3 = cd$ gilt $9 = H(3) = H(cd) = H(c)H(d)$, im nichttrivialen Fall also $H(c)=H(d) = 3$. Das ist allerdings offensichtlich nicht im Wertebereich der Normfunktion. Also ist $P_3 $ prim.
+
+  Den Fall $(1+1) = 2$ und $(4+1) = 5$ behandeln wir gleich gemeinsam, da nach Aufgabenteil (4) z.B. $1+i$ und $2+i$ prim sind.
+
+  Für den vorletzten Fall gilt z.B. $p = 3+i = (2-i)(1+i)$.
+
+  Für den letzten Fall gilt z.B. $p = 2+2i = 2(1+i)$.
+
+  Insgesamt erhalten wir für die gesuchte Menge also
+
+  \begin{align*}
+    P_3 \cup P_{1+i} \cup P_{2+i}
+  \end{align*}
+
+  \item Die Primfaktorzerlegungen kann man sich mit dem Ansatz
+
+  \begin{align*}
+    H(27+6i) = 765 = 17 \cdot 5 \cdot 9 \\
+    H(-3+4i) = 25 = 5 \cdot 5
+  \end{align*}
+
+  leicht überlegen.
+
+  \begin{align*}
+    (27+6i) = (4-i)(6+3i) = (4-i)(2+i)3 \\
+    (-3+4i) = (1+2i)(1+2i)
+  \end{align*}
+
+  Wir wissen von (fast) allen Elementen, dass sie prim sind, bei $4-i$ geht wieder das Argument aus (4).
+
+  \item Zur Bestimmung wenden wir den Euklid-Algorithmus an.
+
+  Im ersten Schritt und zweiten Schritt gilt
+
+  \begin{align*}
+    (7+i) = 5 q_1 + r_1 = 5 \cdot 1 + (2+i) \\
+    5 = (2+i)q_2 + r_2 = (2+i)(2-i) + 0
+  \end{align*}
+
+  Wir terminieren also schon nach zwei Schritten und erhalten als ggT $r_1 = 2+i = (7+i) \cdot 1 + 5 \cdot (-1)$.
 
 
 \end{enumerate}
