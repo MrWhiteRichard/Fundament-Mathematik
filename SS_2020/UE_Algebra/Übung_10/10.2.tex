@@ -1,0 +1,44 @@
+\begin{algebraUE}{335}
+Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidischen Ring $\Z [i]$.
+
+\begin{enumerate}
+  \item Für die Einheitengruppe von $\Z [i]$ gilt $E(\Z [i]) = \{1,-1,i,-i\}$.
+
+  \item Ist $p$ prim in $\Z [i]$ und eine natürliche Zahl, so auch eine Primzahl.
+
+  \item Die Umkehrung gilt nicht: Es gibt Primzahlen, die nicht prim in $\Z [i]$ sind.
+
+  \item Lässt sich $p = a^2 + b^2 = (a+ib)(a-ib) \in \P$ als Summe zweier Quadrate positiver ganzer Zahlen $a,b$ darstellen, so sind die Faktoren $a+ib$ und $a-ib$ prim in $\Z [i]$.
+
+\end{enumerate}
+
+\end{algebraUE}
+
+\begin{solution}
+\begin{enumerate}
+  \item Siehe Hinweis Aufgabe 324. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
+
+  \item Zunächst einemal können wir im folgenden äquivalent von primen und irreduziblen Elementen sprechen (Euklidischer Ring $\Rightarrow$ Faktorieller Ring).
+
+  Wäre $p$ keine Primzahl, dann hätte es zwei Teiler $a,b \in \N$ ungleich $1$ und $p$. Insbesondere sind $a,b \in \Z [i]$ und keine Einheiten (vorherige Aufgabe), also $p$ nicht irreduzibel.
+
+  \item Betrachte $p = 5 = (2+i)(2-i)$. Dieses ist als Primzahl jedoch nicht irreduzibel in $\Z [i]$.
+
+  \item Sei $p = (a+ib)(a-ib) \in \P$ beliebig und angenommen $a+ib$ nicht irreduzibel (prim).
+
+  \begin{align*}
+    \Rightarrow \Exists c,d \in \Z [i] \setminus E(\Z [i]):  cd = a+ib \Rightarrow a - ib = \overline(a+ib) = \overline(cd) = \overline(c) \overline(d)
+  \end{align*}
+
+  Dann würde folgen
+
+  \begin{align*}
+    p = a^2 + b^2 = (a+ib)(a-ib) = cd\overline(c) \overline(d) = c\overline(c)d \overline(d) = H(c)H(d)
+  \end{align*}
+
+  welche beide natürliche Zahlen $\neq 1$ sind im Widerspruch zu $p$ Primzahl.
+
+
+\end{enumerate}
+
+\end{solution}
