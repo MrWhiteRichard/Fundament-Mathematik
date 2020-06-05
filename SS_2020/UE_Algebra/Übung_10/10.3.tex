@@ -12,7 +12,7 @@ Für die euklidische Bewertung wählen wir in dem Fall
   H:K[[x]] \setminus \{0\} \to \N: p \mapsto ord(p)+1
 \end{align*}
 
-wohldefiniert, da für $p \in K[[x]] \setminus \{0\}$, $ord(p) \geq 0$.
+wohldefiniert, da für $p \in K[[x]] \setminus \{0\}$, $ord(p) \geq 0$. (+1 kann man sich wohl sparen, in Algebra ist die 0 bei den natürlichen Zahlen ja dabei oder?)
 
 Wir müssen noch zeigen, dass Division mit Rest möglich ist, Also
 
@@ -47,7 +47,7 @@ Nach Proposition 3.3.6.5 (6) wissen wir bereits, dass $\tilde{g}$ eine Inverse b
   f = x^m \tilde{f} = x^n\tilde{g} \cdot \tilde{g}^{-1}x^{m-n}\tilde{f} = gq + 0
 \end{align*}
 
-also $r = 0$. (Kommt mir bissl spanisch vor dass man da so restlos dividieren kann in dem Fall, vielelicht hab ich was übersehen).
+also $r = 0$.
 
 Der Ring ist also euklidisch und somit bekanntlich auch Hauptideal- und faktorieller Ring.
 
@@ -63,12 +63,12 @@ Dass $x$ (und somit alle assoziierten) irreduzibel sind, folgt für $x = pq$ mit
 
 Angenommen, es gäbe ein irreduzibles Element $p \neq xe, e \in E$, also $ord(p) = n \geq 2$. Dann können wir $p = x^n\tilde{p} = x^{n-1} (x\tilde{p})$ schreiben, wobei beide Faktoren Ordnung größer 0 haben und somit keine Einheiten sind.
 
-Nun zu den Idealen. Wir wissen schon, dass $K[[x]]$ ein Hauptidealring ist, und somit können wir nach Proposition 5.2.2.6 jedes Ideal mit einer Äquivalenzklasse aus der Teilerhalbordnung $(K[[x]]/_{\sim},|)$ identifizieren.
+Nun zu den Idealen. Wir wissen schon, dass $K[[x]]$ ein Hauptidealring ist, und somit können wir nach Proposition 5.2.2.6 jedes Ideal mit einer Äquivalenzklasse aus der Teilerhalbordnung (in dem Fall sogar Totalordnung oder?) $(K[[x]]/_{\sim},|)$ identifizieren.
 
-Diese besteht genau aus den Äquivalenzklassen der Monome. Alle Ideal sind also eindeutig gegeben durch
+Diese besteht genau aus den Äquivalenzklassen der Monome (bzw. Potenzreihen mit Ordnung $n$, Fall $n=1$ oben schon behandelt). Alle Ideale sind also eindeutig gegeben durch
 
 \begin{align*}
-  (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: ord(q) = n\}, n \in \N
+  (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: ord(q) \geq n\}, n \in \N
 \end{align*}
 
 Bin mir ziemlich sicher, dass es so ist, weiß nicht ob die Argumentation zu 100Prozent schlüssig ist.
