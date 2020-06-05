@@ -10,20 +10,21 @@ Zeige, dass seine Hilbertraumadjungierte $K^\ast \in \mathcal{B}(L^2(\mu))$ der 
 \begin{solution}
   Die Linearität von $K$ folgt direkt aus der des Integrals.
   Wir zeigen zuerst $\|K\| \leq \|k\|$; insbesondere ist $K$ ein beschränkter Operator:
-  \begin{align}
+  \begin{align*}
     \|Kf\|_{L^2(\mu)} = \int_X |Kf(x)|^2 ~\mathrm{d}\mu(x)
     = \int_X \left|\int_X k(x,y) f(y) ~\mathrm{d}\mu(y)\right|^2 ~\mathrm{d}\mu(x) \\
     \stackrel{\text{CSB}}{\leq} \int_X \left(\int_X |k(x,y)|^2  ~\mathrm{d}\mu(y)\right) \left(\int_X |f(y)|^2 ~\mathrm{d}\mu(y)\right)
     ~\mathrm{d}\mu(x) \leq \|f\|_{L^2(\mu)} \int_X \int_X |k(x,y)|^2 ~\mathrm{d}\mu(y) ~\mathrm{d}\mu(x) \\ \stackrel{\text{Fubini}}{=} \|f\|_{L^2(\mu)} \int_{X^2} |k(x,y)|^2 ~\mathrm{d}(\mu\times\mu)(x,y)
     = \|f\|_{L^2(\mu)} \|k\|_{L^2(\mu\times\mu)}.
-\end{align}
+\end{align*}
 
   Zur Berechnung der Hilbertraumadjungierten erinnern wir uns an Folgendes:
 
   \begin{itemize}
       \item $L^2(\mu)$ ist isomorph zu seinem eigenen Dualraum vermöge folgender Abbildung:
 
-      $\phi: L^2(\mu) \rightarrow L^2(\mu)^\prime: f \mapsto \int_X f\overline{g} ~\mathrm{d}\mu.$
+      $\phi: L^2(\mu) \rightarrow L^2(\mu)^\prime: f \mapsto
+      (g \mapsto \int_X f\overline{g} ~\mathrm{d}\mu).$
       \item Die Konjugierte von $K$ ist wie folgt definiert:
 
       $K^\prime: L^2(\mu)^\prime \rightarrow L^2(\mu)^\prime:
@@ -31,8 +32,9 @@ Zeige, dass seine Hilbertraumadjungierte $K^\ast \in \mathcal{B}(L^2(\mu))$ der 
   \end{itemize}
 
   Damit berechnen wir
-  \begin{align}
-      K^*(f) := \phi^{-1}(K(\phi(f))) = \phi^{-1}\left(K^\prime\left(g \mapsto \int_X f\overline g ~\mathrm{d}\mu\right)\right)
+  \begin{align*}
+      K^*(f) := \phi^{-1}(K^{\prime}(\phi(f))) =
+      \phi^{-1}\left(K^\prime\left(g \mapsto \int_X f\overline g  ~\mathrm{d}\mu\right)\right)
       = \phi^{-1}\left(z \mapsto \int_X f(x) ~\overline{K(z)}(x) ~\mathrm{d}\mu(x)\right) \\
       = \phi^{-1}\left(z \mapsto \int_X f(x)
       ~\overline{\int_X k(x,y) z(y) ~\mathrm{d}\mu(y)}
@@ -47,7 +49,7 @@ Zeige, dass seine Hilbertraumadjungierte $K^\ast \in \mathcal{B}(L^2(\mu))$ der 
       \left(\int_X f(x) \overline{k(x,y)} ~\mathrm{d}\mu(x) \right) \overline{z(y)}
       ~\mathrm{d}\mu(y)\right) \\
     = y \mapsto \int_X \overline{k(x,y)} f(x) ~\mathrm{d}\mu(x).
-    \end{align}
+    \end{align*}
 
 
 \end{solution}

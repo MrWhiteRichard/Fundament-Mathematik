@@ -103,7 +103,8 @@ Weiters gilt
 \begin{align*}
     k_{\epsilon}(s,t) := \sum_{i = 1}^n \alpha_i \1D_i(s,t)
     = \sum_{i=1}^{n} \alpha_{i} \sum_{j=1}^{l_{i}}  \1_{A_{i_k} \times B_{i_k}}(s,t)
-    = \sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \alpha_{i} \1_{A_{i_k}}(s) \1_{B_{i_k}}(t).
+    = \sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \underbrace{\alpha_{i} \1_{A_{i_k}}(s)}_{\in L^2(\mu)}
+     \underbrace{\1_{B_{i_k}}(t)}_{\in L^2(\mu)}.
 \end{align*}
 
 Sei $K_{\epsilon}$ der dazugehörige Integraloperator
@@ -114,10 +115,10 @@ Sei $K_{\epsilon}$ der dazugehörige Integraloperator
 $K_{\epsilon}$ hat nach Aufgabe (a) endlichdimensionales Bild und ist daher nach Proposition 6.5.4 kompakt. Es gilt mit Cauchy-Schwarz-Bunjakowski
 \begin{align*}
     \|(K_t-K_{\epsilon}) f\|_2^2 = \int_X \left| \int_X T(s,t) f(t) \dmu(t) - \int_X \left(\sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \alpha_{i} \1_{A_{i_k}}(s) \1_{B_{i_k}}(t)\right) f(t) \dmu(t) \right|^2 \dmu(s) \\
-    \leq \int_X \left( \int_X |T(s,t) - \sum_{i = 1}^n \alpha_i \1D_i(s,t)| |f(t)| \dmu(t)\right)^2 \dmu(s) \\
-    \leq \int_X \left(\int_X |T(s,t) - \sum_{i=1}^{n} \sum_{i = 1}^n \alpha_i \1D_i(s,t)|^2 \dmu(t)\right) \left(\int_X |f(t)|^2 \dmu(t)\right) \dmu(s) \\
-    = \|f\|_2^2\int_{X^2} \left| \sum_{i = 1}^n \alpha_i \1C_i -
-    \sum_{i = 1}^n \alpha_i \1D_i\right|^2 \mathrm{d}(\mu\times\mu)(s,t) \leq \|f\|_2^2\epsilon
+    \leq \int_X \left( \int_X \left|T(s,t) - \sum_{i = 1}^n \alpha_i \1D_i(s,t)\right| |f(t)| \dmu(t)\right)^2 \dmu(s) \\
+    \leq \int_X \left(\int_X \left|T(s,t) - \sum_{i = 1}^n \alpha_i \1D_i(s,t)\right|^2 \dmu(t)\right) \left(\int_X |f(t)|^2 \dmu(t)\right) \dmu(s) \\
+    = \|f\|_2^2\int_{X^2} \left| \sum_{i = 1}^n \alpha_i \1C_i(s,t) -
+    \sum_{i = 1}^n \alpha_i \1D_i(s,t)\right|^2 \mathrm{d}(\mu\times\mu)(s,t) \leq \|f\|_2^2\epsilon
 \end{align*}
 die Konvergenz in der Operatornorm.
 Jetzt können wir die selbe Rechnung noch einmal für den Integraloperator mit Kern $k$
