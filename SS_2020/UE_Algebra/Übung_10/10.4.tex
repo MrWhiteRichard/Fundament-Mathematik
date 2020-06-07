@@ -1,9 +1,35 @@
 \begin{algebraUE}{342}
-To Do.
-
+Sei $R$ ein faktorieller Ring. Ist $f = \sum_{i=0}^na_ix^i \in R[x]$ mit Grad $\geq 1$
+ein primitives Polynom und $p \in R$ irreduzibel mit
+\begin{align*}
+  p \nmid a_n, p | a_i, \text{ für } i = 0,\dots,n-1, \text{ und } p^2 \nmid a_0,
+\end{align*}
+dann ist $f$ irreduzibel in $R[x]$.
 \end{algebraUE}
 
 \begin{solution}
-To Do.
-
+Angenommen $f$ wäre nicht irreduzibel, also existieren Nicht-Einheiten $q,r \in R[x]$ mit $f = qr$.
+Da $f$ ein primitives Polynom ist gilt $\ggT\{a_i: i = 1,\dots,n\} = 1_R$ und $q,r$
+müssen ebenso primitiv sein. Es gilt also
+\begin{align*}
+  f = \sum_{i=0}^na_ix^i = \sum_{i = 0}^n \sum_{k= 0}^i q_kr_{i-k}x^i.
+\end{align*}
+Durch Koeffizientenvergleich erhalten wir
+\begin{align*}
+  a_0 &= q_0r_0 \\
+  a_1 &= q_0r_1 + q_1r_0 \\
+  &\vdots \\
+  a_n &= q_0r_n + \dots + q_nr_0.
+\end{align*}
+Da $p$ ein irreduzibles Element eines faktoriellen Ringes ist, ist $p$ prim und es folgt
+aus $p| a_0 = q_0r_0$, dass $p|q_0 \lor p|r_0$. Da zusätzlich $p^2 \nmid a_0$ gilt,
+kann $p$ nur genau einen der Faktoren $q_0,r_0$ teilen. Gelte also o.B.d.A. $p | q_0, p \nmid r_0$.
+Jetzt gehen wir induktiv vor und zeigen $p | q_k, k = 0,\dots,n$. Der Anfang ist bereits getan,
+gelte nun $p | q_{i}, i = 0,\dots,k-1$:
+\begin{align*}
+  p | a_k = q_kr_n + \dots + q_{k-1}r_1 + q_kr_0.
+\end{align*}
+Mit der Induktionsvoraussetzung erhalten wir $p | q_kr_n + \dots + q_{k-1}r_1$
+und daraus folgt $p | q_kr_0$. Da $p \nmid r_0$ gilt damit schon $p | q_k$. \\
+Also können wir $p$ aus $q$ herausheben und $q$ kann nicht primitiv sein. Widerspruch!
 \end{solution}
