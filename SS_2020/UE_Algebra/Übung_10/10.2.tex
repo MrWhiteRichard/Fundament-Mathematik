@@ -11,7 +11,7 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
 
   \item Lässt sich $p = a^2 + b^2 = (a+ib)(a-ib) \in \P$ als Summe zweier Quadrate positiver ganzer Zahlen $a,b$ darstellen, so sind die Faktoren $a+ib$ und $a-ib$ prim in $\Z [i]$.
 
-  \item Man bestimmt alle primen Elemente $z \in \Z[i]$ mit $|z|^2 \leq 10$.
+  \item Man bestimme alle primen Elemente $z \in \Z[i]$ mit $|z|^2 \leq 10$.
 
   \item Man bestimme in $\Z [i]$ die Primfaktorzerlegungen von $27+6i$ und $-3+4i$.
 
@@ -22,49 +22,57 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
 \end{algebraUE}
 
 \begin{solution}
-
+\leavevmode \\
 \begin{enumerate}
-  \item Siehe Hinweis Aufgabe 324. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
+  \item Wir wissen aus UE 324, dass genau jene $x \in \Z[i]$ Einheiten sind,
+  die $|x|^2 = 1$ erfüllen. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
 
-  \item Zunächst einemal können wir im folgenden äquivalent von primen und irreduziblen Elementen sprechen (Euklidischer Ring $\Rightarrow$ Faktorieller Ring).
+  \item Zunächst einmal können wir im folgenden äquivalent von primen und irreduziblen Elementen sprechen (Euklidischer Ring $\Rightarrow$ Faktorieller Ring).
 
-  Wäre $p$ keine Primzahl, dann hätte es zwei Teiler $a,b \in \N$ ungleich $1$ und $p$. Insbesondere sind $a,b \in \Z [i]$ und keine Einheiten (vorherige Aufgabe), also $p$ nicht irreduzibel.
+  Wäre $p$ keine Primzahl, dann hätte es zwei Teiler $a,b \in \N$ ungleich $1$ und $p$. Insbesondere sind $a,b \in \Z [i]$ und keine Einheiten (vorherige Aufgabe), also $p$ nicht irreduzibel. \\
+  Oder auch direkt: Sei $p \in \N \subset \Z[i]$ prim in $\Z[i]$, damit insbesondere prim $\in \Z[i]$,
+  also auch irreduzibel in $\Z$ und daher eine Primzahl.
 
   \item Betrachte $p = 5 = (2+i)(2-i)$. Dieses ist als Primzahl jedoch nicht irreduzibel in $\Z [i]$.
 
   \item Sei $p = (a+ib)(a-ib) \in \P$ beliebig und angenommen $a+ib$ nicht irreduzibel (prim).
 
   \begin{align*}
-    \Rightarrow \Exists c,d \in \Z [i] \setminus E(\Z [i]):  cd = a+ib \Rightarrow a - ib = \overline(a+ib) = \overline(cd) = \overline(c) \overline(d)
+    \Rightarrow \Exists c,d \in \Z [i] \setminus E(\Z [i]):  cd = a+ib \Rightarrow a - ib = \overline{a+ib} = \overline{cd} = \overline{c} \overline{d}
   \end{align*}
 
   Dann würde folgen
 
   \begin{align*}
-    p = a^2 + b^2 = (a+ib)(a-ib) = cd\overline(c) \overline(d) = c\overline(c)d \overline(d) = H(c)H(d)
+    p = a^2 + b^2 = (a+ib)(a-ib) = cd\overline{c} \overline{d} = c\overline{c}d \overline{d} = H(c)H(d)
   \end{align*}
 
-  welche beide natürliche Zahlen $\neq 1$ sind im Widerspruch zu $p$ Primzahl.
+  welche $H(c),H(d)$ natürliche Zahlen $\neq 1$ sind im Widerspruch zu $p$ Primzahl.
 
   \item Wir wollen zunächst einen Zusammenhang zwischen gewissen primen Elementen herstellen.
 
   Mit $E:= E(\Z [i])$ überlegt man sich sehr leicht, dass für ein beliebiges $p$ prim in $\Z [i]$ auch jedes Element aus $pE$ prim ist. (genau dann)
 
-  Mit ähnlichen Überlegungen und der Tatsache, dass die Konjugierten von unseren Einheiten wieder Einheiten sein müssen, sieht man auch, dass genau $\overline{p}$ prim ist.
+  Mit ähnlichen Überlegungen und der Tatsache, dass die Konjugierten von unseren Einheiten wieder Einheiten sein müssen, sieht man auch, dass $p$
+  genau dann prim ist, wenn $\overline{p}$ es ist.
 
   Insgesamt ist für $p$ prim also die gesamte Menge
   \begin{align*}
     P_p := pE \cup \overline{pE}
   \end{align*}
   prim. (Diese Menge muss nicht immer 8-elementig sein, sondern kann für $p$ auf den Achsen oder Diagonalen auch nur 4-elementig sein).
-
-  Nun zum eigentlichen Teil der Aufgabe. Wie gerade gesehen, müssen wir nicht wirklich zwischen $a$ und $b$ unterscheiden, können uns also einfach anschauen, welche zwei Quadratzahlen in Summe weniger gleich 10 ergeben.
+  Der Wertebereich der Normfunktion lautet
+  \begin{align*}
+    H(\Z[i]) &= \{a^2 + b^2: a,b \in \N\} \\
+    H(\Z[i]) \cap \{n \in \N: n \leq 10\} &= \{0,1,2,4,5,8,9,10\}
+  \end{align*}
+  Nun zum eigentlichen Teil der Aufgabe. Wie gerade gesehen, müssen wir nicht wirklich zwischen $a$ und $b$ unterscheiden, können uns also einfach anschauen, welche zwei Quadratzahlen in Summe $\leq 10$ ergeben.
 
   \begin{align*}
     0+0, 1+0, 4+0, 9+0, 1+1, 4+1, 9+1, 4+4
   \end{align*}
 
-  kommen in Frage. Die ersten beiden entsprechen der Null und den Einheiten, können also femäß Definition nicht prim sein.
+  kommen in Frage. Die ersten beiden entsprechen der Null und den Einheiten, können also gemäß Definition nicht prim sein.
 
   Der dritte Fall ist z.B. $p = 2 = (1+i)(1-i)$, also nicht irreduzibel.
 
@@ -96,7 +104,11 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
     (-3+4i) = (1+2i)(1+2i)
   \end{align*}
 
-  Wir wissen von (fast) allen Elementen, dass sie prim sind, bei $4-i$ geht wieder das Argument aus (4).
+  Wir wissen von (fast) allen Elementen, dass sie prim sind, bei $4-i$ geht wieder das Argument aus (4),
+  da $(4+i)(4-i) = 17 \in \P$. \\
+  Noch allgemeine Fragen: Wenn wir x in $\Z[i]$ mit $H(x) = ab$ mit $a,b \in H(\Z[i])$ haben,
+  finden wir dann immer $y,z \in Z[i]$ mit $H(y) = a, H(z) = b, yz = x$? Wenn ja,
+  gibt es eine algorithmische Beschreibung für den Erzeugungsprozess?
 
   \item Zur Bestimmung wenden wir den Euklid-Algorithmus an.
 

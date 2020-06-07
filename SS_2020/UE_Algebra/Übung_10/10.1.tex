@@ -1,6 +1,8 @@
 \begin{algebraUE}{334}
 
-Beweisen Sie Proposition 5.2.3.10. (Proposition muss noch eingefügt werden!)
+Der von $\Z$ und der imaginären Einheit erzeugte Ring $Z[i] = \{a + ib: a,b \in \Z\}$
+(genannt der Ring der ganzen Gauß'schen Zahlen) ist euklidisch vermittels der
+euklidischen Bewertung $H(z) := |z|^2$, folglich auch ein Hauptidealring und faktoriell.
 
 \end{algebraUE}
 
@@ -14,19 +16,20 @@ Die euklidische Bewertung
 
 ist sicher eine Abbildung von $\Z [i] \setminus \{0\} \to \N$.
 
-Wir müssen noch zeigen, dass Division mit Rest möglich ist, Also
+Wir müssen noch zeigen, dass Division mit Rest möglich ist, also
 
 \begin{align*}
-  \Forall a \in \Z [i] \setminus \{0\}, b \in \Z [i] \Exists q,r \in \Z [i]: b = aq + r \text{~mit~} H(r) < H(a).
+  \Forall a \in \Z [i] \setminus \{0\}, b \in \Z [i]: \Exists q,r \in \Z [i]: b = aq + r \text{~mit~} H(r) < H(a).
 \end{align*}
 
 Seien also $a \in \Z [i] \setminus \{0\}, b \in \Z [i]$ beliebig, dann gilt mit der Definition
 
 \begin{align}\label{def}
-  c_r + i c_i := \frac{b}{a} = \frac{b\overline{a}}{a\overline{a}},
+  c_r + i c_i := \frac{b}{a} = \frac{\overbrace{b\overline{a}}^{\in \Z[i]}}{\underbrace{a\overline{a}}_{\in \Z}},
 \end{align}
 
-dass $c_r, c_i \in \Q$. Wir können in jedem Fall ganze Zahlen $q_r, q_i$ finden mit $|c_r-q_r| \leq \frac{1}{2}$ und $|c_i-q_i| \leq \frac{1}{2}$.
+dass $c_r, c_i \in \Q$. Wir können in jedem Fall ganze Zahlen $q_r, q_i$ finden mit $|c_r-q_r| \leq \frac{1}{2}$ und $|c_i-q_i| \leq \frac{1}{2}$
+($q_r := \lfloor |c_r| + \nicefrac{1}{2}\rfloor\sgn(c_r), q_i := \lfloor |c_i| + \nicefrac{1}{2}\rfloor\sgn(c_i)$).
 
 Wir schreiben ein wenig um
 
@@ -45,10 +48,10 @@ wobei der erste Summand in $\Z [i]$ ist, und somit auch der zweite. Der zweite S
 Zunächst gilt
 
 \begin{align*}
-  H((c_r- q_r) + i (c_i - q_i)) = (c_r- q_r)^2 + (c_i - q_i)^2 \leq \frac{1}{2}^2 + \frac{1}{2}^2 < 1.
+  H((c_r- q_r) + i (c_i - q_i)) = (c_r- q_r)^2 + (c_i - q_i)^2 \leq \frac{1}{4} + \frac{1}{4} < 1.
 \end{align*}
 
-Mit der Multiplikativität des Betrages gilt Also
+Mit der Multiplikativität des Betrages gilt also
 
 \begin{align*}
   H(a(c_r- q_r) + i (c_i - q_i)) = H(a) \cdot H((c_r- q_r) + i (c_i - q_i)) < H(a)

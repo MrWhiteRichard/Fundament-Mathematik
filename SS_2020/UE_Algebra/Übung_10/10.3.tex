@@ -9,20 +9,20 @@ Zeigen Sie, dass der Ring $K[[x]]$ der formalen Potenzreihen über einem Körper
 Für die euklidische Bewertung wählen wir in dem Fall
 
 \begin{align*}
-  H:K[[x]] \setminus \{0\} \to \N: p \mapsto ord(p)+1
+  H:K[[x]] \setminus \{0\} \to \N: p \mapsto \ord(p)
 \end{align*}
 
-wohldefiniert, da für $p \in K[[x]] \setminus \{0\}$, $ord(p) \geq 0$. (+1 kann man sich wohl sparen, in Algebra ist die 0 bei den natürlichen Zahlen ja dabei oder?)
+wohldefiniert, da für $p \in K[[x]] \setminus \{0\}$, $\ord(p) \geq 0$.
 
 Wir müssen noch zeigen, dass Division mit Rest möglich ist, Also
 
 \begin{align*}
-  \Forall g \in \Z [i] \setminus \{0\}, f \in \Z [i] \Exists q,r \in \Z [i]: f = gq + r \text{~mit~} H(r) < H(g).
+  \Forall g \in K[[x]] \setminus \{0\}, f \in K[[x]] \Exists q,r \in K[[x]]: f = gq + r \text{~mit~} H(r) < H(g).
 \end{align*}
 
-Seien also $g \in \Z [i] \setminus \{0\}, f \in \Z [i]$ beliebig, dann brauchen wir eine Fallunterscheidung
+Seien also $g \in K[[x]] \setminus \{0\}, f \in K[[x]]$ beliebig, dann brauchen wir eine Fallunterscheidung
 
-Fall 1: $ord(f) < ord(g) \lor f = 0$:
+Fall 1: $\ord(f) < \ord(g) \lor f = 0$:
 
 Dann gilt
 
@@ -30,15 +30,15 @@ Dann gilt
   f = g \cdot 0 + f
 \end{align*}
 
-Mit $r = f = 0 \lor H(r) = ord(f) + 1 < ord(g) + 1 = H(g)$.
+Mit $H(r) = \ord(f) < \ord(g) = H(g) \lor f = r = 0$.
 
-Fall 2: $\underbrace{ord(f)}_{m} \geq \underbrace{ord(g)}_{n}$:
+Fall 2: $\underbrace{\ord(f)}_{m} \geq \underbrace{\ord(g)}_{n}$:
 
 Wir wissen schon, dass wir $f$ und $g$ umschreiben können als
 
 \begin{align*}
-  f = x^m\tilde{f}, ord(\tilde{f}) = 0 \\
-  g = x^n\tilde{g}, ord(\tilde{g}) = 0
+  f = x^m\tilde{f}, \ord(\tilde{f}) = 0 \\
+  g = x^n\tilde{g}, \ord(\tilde{g}) = 0
 \end{align*}
 
 Nach Proposition 3.3.6.5 (6) wissen wir bereits, dass $\tilde{g}$ eine Inverse besitzt, also wählen wir $q = \tilde{g}^{-1}x^{m-n}\tilde{f}$ und erhalten
@@ -51,24 +51,24 @@ also $r = 0$.
 
 Der Ring ist also euklidisch und somit bekanntlich auch Hauptideal- und faktorieller Ring.
 
-Die Einheiten sind, wie bereits vorhin erwähnt $E := E(K[[x]]) = \{p \in K[[x]]: ord(p) = 0\}$. Wir behaupten, dass alle irreduziblen Elemente gegeben sind durch
+Die Einheiten sind, wie bereits vorhin erwähnt $E := E(K[[x]]) = \{p \in K[[x]]: \ord(p) = 0\}$. Wir behaupten, dass alle irreduziblen Elemente gegeben sind durch
 
 \begin{align*}
-  \{p \in K[[x]]: ord(p) = 1\} = xE ( = [x]_{\sim})
+  \{p \in K[[x]]: \ord(p) = 1\} = xE ( = [x]_{\sim})
 \end{align*}
 
-Zunächst zur Gleichheit der beiden Ausdrücke. Wie oben schon verwendet kann man ein $p \in K[[x]]$ genau dann als $x\tilde{p}$ mit $\tilde{p} \in E$ schreiben, wenn $ord(p) = 1$.
+Zunächst zur Gleichheit der beiden Ausdrücke. Wie oben schon verwendet kann man ein $p \in K[[x]]$ genau dann als $x\tilde{p}$ mit $\tilde{p} \in E$ schreiben, wenn $\ord(p) = 1$.
 
-Dass $x$ (und somit alle assoziierten) irreduzibel sind, folgt für $x = pq$ mit beliebigen Potenzreihen $p,q$, da $1 = ord(x) = ord(pq) = ord(p) + ord(q)$. Also muss $ord(p) = 0 \lor ord(q) = 0$ und somit ein Faktor eine Einheit.
+Dass $x$ (und somit alle assoziierten) irreduzibel sind, folgt für $x = pq$ mit beliebigen Potenzreihen $p,q$, da $1 = \ord(x) = \ord(pq) = \ord(p) + \ord(q)$. Also muss $\ord(p) = 0 \lor \ord(q) = 0$ und somit ein Faktor eine Einheit.
 
-Angenommen, es gäbe ein irreduzibles Element $p \neq xe, e \in E$, also $ord(p) = n \geq 2$. Dann können wir $p = x^n\tilde{p} = x^{n-1} (x\tilde{p})$ schreiben, wobei beide Faktoren Ordnung größer 0 haben und somit keine Einheiten sind.
+Angenommen, es gäbe ein irreduzibles Element $p \neq xe, e \in E$, also $\ord(p) = n \geq 2$. Dann können wir $p = x^n\tilde{p} = x^{n-1} (x\tilde{p})$ schreiben, wobei beide Faktoren Ordnung größer 0 haben und somit keine Einheiten sind.
 
 Nun zu den Idealen. Wir wissen schon, dass $K[[x]]$ ein Hauptidealring ist, und somit können wir nach Proposition 5.2.2.6 jedes Ideal mit einer Äquivalenzklasse aus der Teilerhalbordnung (in dem Fall sogar Totalordnung oder?) $(K[[x]]/_{\sim},|)$ identifizieren.
 
 Diese besteht genau aus den Äquivalenzklassen der Monome (bzw. Potenzreihen mit Ordnung $n$, Fall $n=1$ oben schon behandelt). Alle Ideale sind also eindeutig gegeben durch
 
 \begin{align*}
-  (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: ord(q) \geq n\}, n \in \N
+  (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: \ord(q) \geq n\}, n \in \N
 \end{align*}
 
 Bin mir ziemlich sicher, dass es so ist, weiß nicht ob die Argumentation zu 100Prozent schlüssig ist.
