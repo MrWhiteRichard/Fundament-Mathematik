@@ -1,9 +1,19 @@
 \begin{algebraUE}{344}
-To Do.
-
+Seien $R$ ein faktorieller Ring, $f \in R[x]$ mit führendem Koeffizienten $a_n$
+und konstantem Koeffizienten $a_0$ und $p,q \in R$ teilerfremd und das Element
+$\frac{p}{q}$ des Quotientenkörpers $Q$ eine Nullstelle von $f$. Dann gilt $p|a_0$
+und $q | a_n$.
 \end{algebraUE}
 
 \begin{solution}
-To Do.
+\begin{align*}
+  a_n \frac{p^n}{q^n} + \dots + a_0 = 0 \\
+  \iff a_np^n + a_{n-1}p^{n-1}q^1 + \dots + a_1p^1q^{n-1} + a_0q^n = 0 \\
+  \iff a_np^n + a_{n-1}p^{n-1}q^1 + \dots + a_1p^1q^{n-1} = -a_0q^n.
+\end{align*}
+Jetzt gilt $p | p(a_np^{n-1} + a_{n-1}p^{n-2}q^1 + \dots + a_1q^{n-1}) = -a_0q^n$.
+Da $p,q$ teilerfremd sind folgt daraus bereits $p | a_0$.
+Analog sieht man $q |q(a_{n-1}p^{n-1} + \dots + a_1p^1q^{n-2} + a_0q^{n-1}) = -a_np^n$
+und damit $q | a_n$.
 
 \end{solution}
