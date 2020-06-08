@@ -32,4 +32,39 @@ gelte nun $p | q_{i}, i = 0,\dots,k-1$:
 Mit der Induktionsvoraussetzung erhalten wir $p | q_kr_n + \dots + q_{k-1}r_1$
 und daraus folgt $p | q_kr_0$. Da $p \nmid r_0$ gilt damit schon $p | q_k$. \\
 Also können wir $p$ aus $q$ herausheben und $q$ kann nicht primitiv sein. Widerspruch!
+
+Alternativ: (erster Teil fast identisch)
+
+Angenommen $f$ wäre nicht irreduzibel, also existieren Nicht-Einheiten $q,r \in R[x]$ mit $f = qr$.
+Es gilt
+\begin{align*}
+  f = \sum_{i=0}^na_ix^i = \sum_{i = 0}^n \sum_{k= 0}^i q_kr_{i-k}x^i.
+\end{align*}
+Durch Koeffizientenvergleich erhalten wir
+\begin{align*}
+  a_0 &= q_0r_0 \\
+  a_1 &= q_0r_1 + q_1r_0 \\
+  &\vdots \\
+  a_n &= q_0r_n + \dots + q_nr_0.
+\end{align*}
+Da $p$ ein irreduzibles Element eines faktoriellen Ringes ist, ist $p$ prim und es folgt
+aus $p| a_0 = q_0r_0$, dass $p|q_0 \lor p|r_0$. Da zusätzlich $p^2 \nmid a_0$ gilt,
+kann $p$ nur genau einen der Faktoren $q_0,r_0$ teilen. Gelte also o.B.d.A. $p | q_0, p \nmid r_0$.
+
+Nun können sicher nicht alle Koeffizienten $q_0,...,q_n$ durch $p$ teilbar sein, da dies sonst auch $a_n$ wäre. Es gibt also ein minimales $s$, sodass $q_s$ nicht durch $p$ teilbar ist mit
+
+\begin{align*}
+  s \leq grad(q) < grad(f)
+\end{align*}
+
+da $r$ einen Grad größer $0$ hat.
+
+Nun gilt aber für $a_s$
+
+\begin{align*}
+  a_s = q_0 r_s + \dots + q_{s-1}r_1 + q_s r_0
+\end{align*}
+
+Nach Voraussetzung sind alle bis auf den letzten Summanden durch $p$ teilbar (da $p \nmid q_s \land p \nmid r_0$). Das ist aber ein Widerspruch zu $p|a_s$.
+
 \end{solution}
