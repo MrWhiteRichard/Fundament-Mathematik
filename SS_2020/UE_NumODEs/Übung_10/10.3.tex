@@ -5,5 +5,43 @@
 \end{exercise}
 
 \begin{solution}
-  Beweis.
+  Wir beschreiben nochmal die Problemstellung: Für $N \in \N$ haben wir $N$ Körper
+  mit Masse $m_i \in \R$, Position $q_i \in \R^3$ und Momentum $p_i := m_iq_i^{\prime} \in \R^3$
+  für $i = 1,\dots,N$.
+  \begin{align*}
+    \forall i = 1,\dots,N: \quad p_i^{\prime} = \sum_{\stackrel{j = 1}{j \neq 1}}^N gm_im_j \frac{q_j - q_i}{\|q_j - q_i\|_2^3}.
+  \end{align*}
+  Mit $q := (q_1,\dots,q_n)^{\top}, p := (p_1,\dots,p_n)^{\top}$ soll also
+  \begin{align*}
+    H(p,q) := \frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}- \sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}.
+  \end{align*}
+  ein Hamiltonsches System sein. Um dies nachzuprüfen berechnen wir
+  \begin{align*}
+    p_k^{\prime} &= \left(- \nabla_q H(p,q)\right)_k = - \frac{\partial H}{\partial q_k}
+    = -\partial_{q_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}- \sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right) \\
+    &= \partial_{q_k}\left(\sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right)
+    = \partial_{q_k}\left(\sum_{\stackrel{i = 1}{i \neq k}}^{N}g\frac{m_km_i}{\|q_k-q_i\|_2}\right)
+    = \sum_{\stackrel{i = 1}{i \neq k}}^{N}g-\frac{1}{2}2(q_k - q_i)\frac{m_km_i}{\|q_k-q_i\|_2^3}
+    = \sum_{\stackrel{i = 1}{i \neq k}}^{N}gm_km_i\frac{q_i - q_k}{\|q_k-q_i\|_2^3}.
+  \end{align*}
+  Weiters rechnen wir nach
+  \begin{align*}
+    q_k^{\prime} = \left(\nabla_p H(p,q)\right)_k = \partial_{p_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}\right)
+    = \frac{p_k}{m_k}.
+  \end{align*}
+  Nun gilt es noch zu zeigen, dass das totale Momentum $\sum_{i=1}^N p_i$
+  und das totale Winkelmomentum $\sum_{i=1}^N q_i \times p_i$ erhalten bleiben.
+  \begin{align*}
+    \partial_t \sum_{i=1}^N p_i(t) = \sum_{i=1}^N p_i^{\prime}(t)
+    = \sum_{i=1}^N \sum_{\stackrel{j = 1}{j \neq 1}}^N gm_im_j \frac{q_j - q_i}{\|q_j - q_i\|_2^3}
+    = \sum_{i=1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{(q_j - q_i) + (q_i - q_j)}{\|q_j - q_i\|_2^3} = 0.
+  \end{align*}
+  \begin{align*}
+    \partial_t \sum_{i=1}^N q_i \times p_i &= \sum_{i = 1}^Nq_i^{\prime} \times p_i + q_i \times p_i^{\prime}
+    = \sum_{i = 1}^N\underbrace{\frac{p_i}{m_i} \times p_i}_{= 0} + q_i \times \sum_{\stackrel{j = 1}{j \neq 1}}^N gm_im_j \frac{q_j - q_i}{\|q_j - q_i\|_2^3} \\
+    &= \sum_{i = 1}^N \sum_{\stackrel{j = 1}{j \neq 1}}^N gm_im_j \frac{q_i \times q_j - q_i \times q_i}{\|q_j - q_i\|_2^3}
+    = \sum_{i = 1}^N \sum_{\stackrel{j = 1}{j \neq 1}}^N gm_im_j \frac{q_i \times q_j}{\|q_j - q_i\|_2^3} \\
+    &= \sum_{i = 1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{q_i \times q_j + q_j \times q_i}{\|q_j - q_i\|_2^3}
+    = \sum_{i = 1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{q_i \times q_j - q_i \times q_j}{\|q_j - q_i\|_2^3} = 0.
+  \end{align*}
 \end{solution}
