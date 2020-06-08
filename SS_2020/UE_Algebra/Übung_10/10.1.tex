@@ -19,7 +19,7 @@ ist sicher eine Abbildung von $\Z [i] \setminus \{0\} \to \N$.
 Wir müssen noch zeigen, dass Division mit Rest möglich ist, also
 
 \begin{align*}
-  \Forall a \in \Z [i] \setminus \{0\}, b \in \Z [i]: \Exists q,r \in \Z [i]: b = aq + r \text{~mit~} H(r) < H(a).
+  \Forall a \in \Z [i] \setminus \{0\}, b \in \Z [i]: \Exists q,r \in \Z [i]: b = aq + r \text{~mit~} H(r) < H(a) \text{ oder } r = 0.
 \end{align*}
 
 Seien also $a \in \Z [i] \setminus \{0\}, b \in \Z [i]$ beliebig, dann gilt mit der Definition
@@ -40,7 +40,7 @@ Wir schreiben ein wenig um
 Multiplizieren wir \eqref{def} mit $a$, so erhalten wir
 
 \begin{align*}
-  b = a(q_r + i q_i) + a((c_r- q_r) + i (c_i - q_i))
+  b = a(c_r + ic_i) = a(q_r + i q_i) + \underbrace{a((c_r- q_r) + i (c_i - q_i))}_{=: r}
 \end{align*}
 
 wobei der erste Summand in $\Z [i]$ ist, und somit auch der zweite. Der zweite Summand ist also ein Kandidat für das $r$ aus der Definition. Prüfen wir die Bedingung noch nach.
@@ -54,7 +54,7 @@ Zunächst gilt
 Mit der Multiplikativität des Betrages gilt also
 
 \begin{align*}
-  H(a((c_r- q_r) + i (c_i - q_i))) = H(a) \cdot H((c_r- q_r) + i (c_i - q_i)) < H(a)
+  H(a((c_r- q_r) + i (c_i - q_i))) = H(a) \cdot H((c_r- q_r) + i (c_i - q_i)) < H(a).
 \end{align*}
 
 

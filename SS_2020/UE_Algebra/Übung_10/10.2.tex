@@ -25,12 +25,12 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
 \leavevmode \\
 \begin{enumerate}
   \item Wir wissen aus UE 324, dass genau jene $x \in \Z[i]$ Einheiten sind,
-  die $|x|^2 = 1$ erfüllen. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
+  die $N(x) = |x|^2 = 1$ erfüllen. Dazu bemerke, dass nur die angegebenen Elemente Norm $= 1$ haben.
 
   \item Zunächst einmal können wir im folgenden äquivalent von primen und irreduziblen Elementen sprechen (Euklidischer Ring $\Rightarrow$ Faktorieller Ring).
 
   Wäre $p$ keine Primzahl, dann hätte es zwei Teiler $a,b \in \N$ ungleich $1$ und $p$. Insbesondere sind $a,b \in \Z [i]$ und keine Einheiten (vorherige Aufgabe), also $p$ nicht irreduzibel. \\
-  Oder auch direkt: Sei $p \in \N \subset \Z[i]$ prim in $\Z[i]$, damit insbesondere prim $\in \Z[i]$,
+  Oder auch direkt: Sei $p \in \N \subset \Z[i]$ prim in $\Z[i]$, damit insbesondere prim in $\Z$,
   also auch irreduzibel in $\Z$ und daher eine Primzahl.
 
   \item Betrachte $p = 5 = (2+i)(2-i)$. Dieses ist als Primzahl jedoch nicht irreduzibel in $\Z [i]$.
@@ -53,8 +53,9 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
 
   Mit $E:= E(\Z [i])$ überlegt man sich sehr leicht, dass für ein beliebiges $p$ prim in $\Z [i]$ auch jedes Element aus $pE$ prim ist. (genau dann)
 
-  Mit ähnlichen Überlegungen und der Tatsache, dass die Konjugierten von unseren Einheiten wieder Einheiten sein müssen, sieht man auch, dass $p$
-  genau dann prim ist, wenn $\overline{p}$ es ist.
+  Da $p = ab \iff \overline{p} = \overline{a}\overline{b}$ und konjugierte Einheiten wieder Einheiten sind,
+  ist $p$ auch genau dann
+  irreduzibel/prim wenn $\overline{p}$ irreduzibel/prim ist.
 
   Insgesamt ist für $p$ prim also die gesamte Menge
   \begin{align*}
@@ -108,7 +109,8 @@ Begründen Sie folgende Aussagen über den (nach der vorherigen Aufgabe) euklidi
   da $(4+i)(4-i) = 17 \in \P$. \\
   Noch allgemeine Fragen: Wenn wir x in $\Z[i]$ mit $H(x) = ab$ mit $a,b \in H(\Z[i])$ haben,
   finden wir dann immer $y,z \in Z[i]$ mit $H(y) = a, H(z) = b, yz = x$? Wenn ja,
-  gibt es eine algorithmische Beschreibung für den Erzeugungsprozess?
+  gibt es eine algorithmische Beschreibung für den Erzeugungsprozess außer einfach alle endlichen
+  Möglichkeiten ausprobieren?
 
   \item Zur Bestimmung wenden wir den Euklid-Algorithmus an.
 

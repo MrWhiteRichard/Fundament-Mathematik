@@ -50,6 +50,7 @@ Nach Proposition 3.3.6.5 (6) wissen wir bereits, dass $\tilde{g}$ eine Inverse b
 also $r = 0$.
 
 Der Ring ist also euklidisch und somit bekanntlich auch Hauptideal- und faktorieller Ring.
+Zusätzlich haben wir gezeigt, dass $\ord(f) \geq \ord(g) \implies g | f$.
 
 Die Einheiten sind, wie bereits vorhin erwähnt $E := E(K[[x]]) = \{p \in K[[x]]: \ord(p) = 0\}$. Wir behaupten, dass alle irreduziblen Elemente gegeben sind durch
 
@@ -63,15 +64,24 @@ Dass $x$ (und somit alle assoziierten) irreduzibel sind, folgt für $x = pq$ mit
 
 Angenommen, es gäbe ein irreduzibles Element $p \neq xe, e \in E$, also $\ord(p) = n \geq 2$. Dann können wir $p = x^n\tilde{p} = x^{n-1} (x\tilde{p})$ schreiben, wobei beide Faktoren Ordnung größer 0 haben und somit keine Einheiten sind.
 
-Nun zu den Idealen. Wir wissen schon, dass $K[[x]]$ ein Hauptidealring ist, und somit können wir nach Proposition 5.2.2.6 jedes Ideal mit einer Äquivalenzklasse aus der Teilerhalbordnung (in dem Fall sogar Totalordnung oder?) $(K[[x]]/_{\sim},|)$ identifizieren.
+Nun zu den Idealen. Wir wissen schon, dass $K[[x]]$ ein Hauptidealring ist, und somit können wir nach Proposition 5.2.2.6 jedes Ideal mit einer Äquivalenzklasse
+bezüglich der Assoziiertheitsrelation aus der Teilerhalbordnung (in dem Fall sogar Totalordnung) $(K[[x]]/_{\sim},|)$ identifizieren.
 
 Diese besteht genau aus den Äquivalenzklassen der Monome (bzw. Potenzreihen mit Ordnung $n$, Fall $n=1$ oben schon behandelt). Alle Ideale sind also eindeutig gegeben durch
 
 \begin{align*}
   (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: \ord(q) \geq n\}, n \in \N
 \end{align*}
-
-Bin mir ziemlich sicher, dass es so ist, weiß nicht ob die Argumentation zu 100Prozent schlüssig ist.
-
-
+Alternative Argumentation: \\
+Wie man leicht erkennt haben für alle $n \in \N$ mit
+\begin{align*}
+  (x^n) = \{px^n: p \in K[[x]]\} = \{q \in K[[x]]: \ord(q) \geq n\}, n \in \N
+\end{align*}
+unterschiedliche Ideale gegeben. Weiters muss jedes Ideal in der Form darstellbar sein,
+da für $r \in K[[x]]$ beliebig mit $\ord(r) = n$ gilt $x^n | r$, also $\frac{x^n}{r} \in K[[x]]$ und
+\begin{align*}
+  x^n = \frac{x^n}{r}r \in (r) \implies (x^n) \subseteq (r).
+\end{align*}
+Gleichzeitig gilt für alle $p \in K[[x]]: \ord(pr) = \ord(p) + \ord(r) \geq n$.
+Also gilt sogar $(x^n) = (r)$.
 \end{solution}
