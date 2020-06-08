@@ -24,14 +24,16 @@ Durch Koeffizientenvergleich erhalten wir
 Da $p$ ein irreduzibles Element eines faktoriellen Ringes ist, ist $p$ prim und es folgt
 aus $p| a_0 = q_0r_0$, dass $p|q_0 \lor p|r_0$. Da zusätzlich $p^2 \nmid a_0$ gilt,
 kann $p$ nur genau einen der Faktoren $q_0,r_0$ teilen. Gelte also o.B.d.A. $p | q_0, p \nmid r_0$.
-Jetzt gehen wir induktiv vor und zeigen $p | q_k, k = 0,\dots,n$. Der Anfang ist bereits getan,
+Jetzt gehen wir induktiv vor und zeigen $p | q_k, k = 0,\dots,n-1$. Der Anfang ist bereits getan,
 gelte nun $p | q_{i}, i = 0,\dots,k-1$:
 \begin{align*}
   p | a_k = q_kr_n + \dots + q_{k-1}r_1 + q_kr_0.
 \end{align*}
 Mit der Induktionsvoraussetzung erhalten wir $p | q_kr_n + \dots + q_{k-1}r_1$
 und daraus folgt $p | q_kr_0$. Da $p \nmid r_0$ gilt damit schon $p | q_k$. \\
-Also können wir $p$ aus $q$ herausheben und $q$ kann nicht primitiv sein. Widerspruch!
+Wir wissen also $p | q_0r_n + \dots + q_{n-1}r_1$, aber $p \nmid q_0r_n + \dots + q_nr_0$.
+Also muss $q_n \neq 0$ und damit $\grad(q) = \grad(p)$ gelten. Also folgt $\grad(r) = 0$
+und $r$ ist eine Einheit. Widerspruch!
 
 Alternativ: (erster Teil fast identisch)
 
