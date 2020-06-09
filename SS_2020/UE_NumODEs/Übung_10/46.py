@@ -28,7 +28,7 @@ def stabdomain(l, method):
         for j in range(s):
             z = l[j] + l[i]*1j
             first_roots = np.roots(alpha + z*np.array(beta))
-            x = max([abs(first_roots[j]) for j in range(len(first_roots))])
+            x = max([abs(first_roots[j]) for j in range(len(first_roots))] + [0])
             if abs(x-1) < 1e-8:
                 resi.append(1)
                 for k in range(len(first_roots)):
@@ -58,6 +58,7 @@ bash3 = [[0,0,0,-1,1],[-9/24,37/24,-59/24,55/24,0]]
 
 #Adams-Moulton
 moulton1 = [[0,-1,1],[0,1/2,1/2]]
+moulton2 = [[0,0,-1,1],[0,-1/12,8/12,5/12]]
 moulton3 = [[0,0,0,-1,1],[0,1/24,-5/24,19/24,9/24]]
 
 
@@ -66,10 +67,7 @@ fig, ((ax1,ax2),(ax3,ax4),(ax5,ax6),(ax7,ax8)) = plt.subplots(4,2)
 for method, ax, name in zip([bdf1,bdf2,bdf5,bdf10,bash1,bash3,moulton1,moulton3],
 [ax1,ax2,ax3,ax4,ax5,ax6,ax7,ax8], ["BDF1 / Impliziter Euler", "BDF2", "BDF5", "BDF10",
 "Adams-Bashforth (k = 1)", "Adams-Bashforth (k = 3)", "Adams-Moulton (k=1)", "Adams-Moulton (k=3)"]):
-    if ax in (ax1,ax3):
-        l = np.linspace(-3,3,100)
-    else:
-        l = np.linspace(-6,6,100)
+    l = np.linspace(-3,3,61)
     levels = np.array([0,0.1,0.5,1,2])
     levelsf = np.linspace(0,2,101)
     z = stabdomain(l,method)
