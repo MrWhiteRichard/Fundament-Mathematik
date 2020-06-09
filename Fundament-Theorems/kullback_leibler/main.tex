@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{amssymb, amsthm, amsmath, bm}
+\usepackage{biblatex}
+ 
+\addbibresource{bibliography.bib}
+
+\title{Minimization of Kullback-Leibler divergence between a lognormal mixture distribution and a lognormal distribution}
+\author{Fabian Zehetgruber}
+\date{\today}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Assume you own a bank. You do not want your bank to become bankrupt so you do everything you can to prevent this from happening. Already $m \in \mathbb{N}$ years ago you came to the conclusion that a first step to achieve your goal is to record all losses you make. In order to predict your future losses precisely you need a lot of data. Unfortunately, high losses, the ones that concern you the most, do not happen very often. This is why you agreed with $n-1 \in \mathbb{N}$ other banks to also record their losses and to later on exchange your data in order to improve forecasts.\newline
+Looking at these lists of recorded losses and experimenting a bit with modelling them using a distribution function, you decide to use a lognormal distribution.
+The following definition was inspired by \cite{lognormal_distribution}
+
+\begin{definition}
+\label{lognormal-dist}
+We say a random variable $X$ is lognormally distributed, if and only if $Y = \log(X)$ is normally distributed. \newline
+We denote this $X \sim  Lognormal(\mu, \sigma^{2})$, where $\mu \in \mathbb{R}$ and $\sigma \in \mathbb{R}^{+}$. The corresponding probability density function is 
+\begin{equation}
+    f:\mathbb{R}^{+} \rightarrow \mathbb{R}: x \mapsto \frac {1}{x\sigma \sqrt{2\pi}} \exp \left(-\frac{\left(\log(x)-\mu \right)^{2}}{2\sigma^{2}}\right) \text{.}
+\end{equation}{}
+If we need to define the probability density function for all real numbers, just set all values that are not defined to zero.
+\end{definition}
+
+As a next step you fit a lognormal distribution function to each of the $n$ given data sets. Denoting $M:=\left\{1,\dots,n\right\}$, you end up with $n$ lognormally distributed random variables 
+\begin{equation}
+    \forall i \in M: X_{i} \sim Lognormal(\mu_{i}, \sigma^{2}_{i})\text{.}
+\end{equation}{}
+What now? You would like to end up with a single lognormal distribution, because it makes work afterwards a lot easier. How can you do this? You take some time trying various different methods. In the end you decide to use Kullback-Leibler divergence as a tool for finding your distribution.
+
+\section{Properties of the Kullback-Leibler divergence and lognormal distribution}
+\begin{definition}
+Let $X$ be a random variable with probability density function (pdf) $p:\mathbb{R}\rightarrow\mathbb{R}$ and $Y$ with probability density function $q:\mathbb{R}\rightarrow\mathbb{R}$. Then the Kullback-Leibler divergence is defined as
+\begin{equation}
+    D(p\parallel q):=\int _{-\infty }^{\infty }p(x)\log \left({\frac {p(x)}{q(x)}}\right)\,dx \text{.}
+\end{equation}
+\end{definition}
+
+First, let us have a look at some properties of the Kullback-Leibler divergence. I originally found the statement of the following two theorems in \cite{kullback_leibler_divergence}, but for proper formulation, understanding and the proof I had help from a statistician. 
+
+\begin{theorem}
+\label{pdf_under_transformation}
+Let $X$ be a random variable with pdf $p_{X}:\mathbb{R} \rightarrow \mathbb{R}$. Further, $f:\mathbb{R} \rightarrow \mathbb{R}$ should have existing first derivative with $\forall x \in \mathbb{R}: \frac{df}{dx}(x) > 0$. Then the pdf $p_{Y}$ of the random variable $Y = f(X)$ is 
+\begin{equation}
+    p_{Y}:\mathbb{R} \rightarrow \mathbb{R}: y \mapsto p_{X}(f^{-1}(y))\frac{df^{-1}}{dy}(y)
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Denoting $F_{Y}:\mathbb{R} \rightarrow [0,1]$ the cumulative distribution function of $Y$. We obtain 
+\begin{equation}
+    F_{Y}(y)=\mathbb{P}(Y \leq y) = \mathbb{P}\left(f^{-1}(Y) \leq f^{-1}(y)\right) = F_{X}\left(f^{-1}(y)\right) \text{.}
+\end{equation}
+
+Next, we simply get the pdf by taking the derivative
+\begin{equation}
+    p_{Y}(y) = \frac{dF_{Y}}{dy}(y) = \frac{dF_{X} \circ f^{-1}}{dy}(y) = p_{X}\left(f^{-1}(y)\right)\frac{df^{-1}}{dy}(y)
+\end{equation}
+\end{proof}
+
+\begin{theorem}
+\label{invariance-under-transformation}
+Let $W$ and $X$ be a random variable with pdfs $p_{W}$ and $q_{X}$. Further, $f:\mathbb{R} \rightarrow \mathbb{R}$ should have existing first derivative with $\forall x \in \mathbb{R}: \frac{df}{dx}(x) > 0$. Let also $Y := f(W)$ with pdf $p_{Y}$ and $Z := f(X)$ with pdf $q_{Z}$. Then it holds that 
+\begin{equation}
+    D(p_{W} \parallel q_{X}) = D(p_{Y} \parallel q_{Z}) \text{.}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+     D(p_{W} \parallel q_{X}) &= \int _{-\infty }^{\infty }p_{W}(x)\log \left({\frac {p_{W}(x)}{q_{X}(x)}}\right)\,dx  \\
+     &= \int _{-\infty }^{\infty }p_{W}(f^{-1}(y)) \frac{df^{-1}}{dy}(y) \log \left({\frac {p_{W}(f^{-1}(y))}{q_{X}(f^{-1}(y))}}\right)\,dy \\ 
+     &= \int _{-\infty }^{\infty }p_{W}\left(f^{-1}(y)\right) \frac{df^{-1}}{dy}(y) \log \left({\frac {p_{W}\left(f^{-1}(y)\right) \frac{df^{-1}}{dy}(y) }{q_{X}\left(f^{-1}(y)\right) \frac{df^{-1}}{dy}(y)}}\right)\,dy \\
+     &\stackrel{Theorem\ \ref{pdf_under_transformation}}{=} D(p_{Y} \parallel q_{Z})
+\end{align*}
+   
+\end{proof}
+
+The next theorem stems from \cite{runnalls}. The proof can be found there as well.
+
+\begin{theorem}
+\label{k-l-div-min-gauss}
+Let $f(x)$ be a probability density function over $d$ dimensions with well-defined mean $\bm{\mu_{*}}$ and covariance matrix $P_{*}$, where $P_{*}$ is strictly positive-definite. As before, let $(1,\bm{\mu}, P)$ denote the Gaussian density with mean $\bm{\mu}$ and p.d. covariance matrix P. Then the unique minimum value of $D(f,(1,\bm{\mu},P)$ is achieved when $\bm{\mu} = \bm{\mu_{*}}$ and $P = P_{*}$.
+\end{theorem}
+\begin{proof}
+The proof can be found in \cite{runnalls}.
+\end{proof}
+
+The next theorem is one I found in \cite{mixture_distribution}.
+
+\begin{theorem} 
+\label{moments-of-mixture}
+Let $n \in \mathbb{N}$ and $X_{1},\dots,X_{n}$ be a random variables with pdfs $f_{1},\dots,f_{n}$. Let further $w_{1},\dots,w_{n} \in [0,1]$ be weights, such that $\sum_{k=1}^{n}{w_{k}} = 1$. Using these we also have a random variable $X$ for the mixture distribution $f = \sum_{k=1}^{n}{w_{k}f_{k}}$. Finally, let $H$ be a function such that $\forall k \in \{1,\dots,n\}:\mathbb{E}[H(X_{k})]$ exists. Then
+\begin{equation}
+    \mathbb{E}[H(X)] = \sum_{k=1}^{n}{w_{k}\mathbb{E}[H(X_{k})]} \text{.}
+\end{equation}
+    
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+    \mathbb{E}[H(X)] &= \int_{-\infty}^{\infty} {H(x) \sum_{k=1}^{n}{w_{k}f_{k}(x)} dx} \\
+    &= \sum_{k=1}^{n}{w_{k}}\int_{-\infty}^{\infty} {f_{k}(x) H(x)} = \sum_{k=1}^{n}{w_{k}\mathbb{E}[H(X_{k})]} \text{.}
+\end{align*}
+\end{proof}
+
+\section{Minimizing the Kullback-Leibler divergence}
+
+Now we can finally formulate the main theorem of this work. 
+\begin{theorem}
+Let $n \in \mathbb{N}$ and $\forall k \in \{1,\dots,n\}: X_{k} \sim Lognormal(\mu_{k}, \sigma_{k}^{2})$ with pdfs $f_{1},\dots,f_{n}$. Let further $w_{1},\dots,w_{n} \in [0,1]$ be weights, such that $\sum_{k=1}^{n}{w_{k}} = 1$. Using these we also have a random variable $X \ \sim Lognormal(\mu, \sigma^{2})$ for the mixture distribution $f = \sum_{k=1}^{n}{w_{k}f_{k}}$. We also introduce a function $g$, corresponding to $Y \sim Lognormal(\mu_{*}, \sigma_{*}^{2})$, but where the parameters are variables. Then it holds that 
+\begin{equation}
+    \argmin_{(\mu_{*},\sigma_{*}^{2})} D(f \parallel g) = \left( \sum_{k=1}^{n}{w_{k} \mu_{k}},\   \sum_{k=1}^{n}{w_{k}\left(\left(\mu_{k}-\sum_{j=1}^{n} w_{j}\mu_{j}\right)^{2} + \sigma_{k}^{2}\right)} \right)
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+First, we can transform our random variables. Doing this for $Z = \log(Y) \sim \mathcal{N}(\mu, \sigma^{2})$ gives us according to definition \ref{lognormal-dist} a normally distributed random variable with pdf $b$. Transforming $W = \log(X)$ also gives us some new random variable with pdf $a$. Next, according to theorem \ref{invariance-under-transformation}, it holds that 
+\begin{equation}
+    D(f \parallel g) = D(a \parallel b)
+\end{equation}
+
+Then we can make use of theorem \ref{k-l-div-min-gauss}, knowing that $D(a \parallel b)$ obtains the minimum when $\mu_{*} = \mathbb{E}[W]$ and $\sigma_{*}^{2} = \mathbb{V}[W]$. Finally, we can calculate these using theorem \ref{moments-of-mixture}. We get
+\begin{equation}
+    \mathbb{E}[W] = \mathbb{E}[\log(X)] \stackrel{Theorem\ \ref{moments-of-mixture}}{=} \sum_{k=1}^{n}{w_{k}\mathbb{E}[\log(X_{k})]} = \sum_{k=1}^{n}{w_{k}\mu_{k}}
+\end{equation}
+and 
+
+\begin{align*}
+    \mathbb{E}\left[(W-\mathbb{E}[W])^{j}\right] &= \mathbb{E}\left[\left(\log(X)-\mathbb{E}[W]\right)^{j}\right] \\
+    &\stackrel{Theorem\ \ref{moments-of-mixture}}{=} \sum_{k=1}^{n}{w_{k}\mathbb{E}\left[\left(\log(X_{k})-\mathbb{E}[W]\right)^{j}\right] } \\
+    &= \sum_{k=1}^{n}{w_{k}\mathbb{E}\left[\left(\log(X_{k}) - \mathbb{E}[\log(X_{k})] + \mathbb{E}[\log(X_{k})] -\mathbb{E}[W]\right)^{j}\right] }\\
+    &= \sum_{k=1}^{n}{w_{k}\mathbb{E}\left[ \sum_{l=0}^{j} \binom{j}{l} (\mu_{k}- \mathbb{E}[W])^{j-l} \mathbb{E}\left[(\log(X_{k})-\mu_{k})^{l}\right]\right]} \\
+    &= \sum_{k=1}^{n}{w_{k} \sum_{l=0}^{j} \binom{j}{l} (\mu_{k}- \mathbb{E}[W])^{j-l} \mathbb{E}\left[(\log(X_{k})-\mu_{k})^{l}\right]} \text{.}
+\end{align*}
+ This gives us for $j = 2$ after some calculation, at least according to \cite{mixture_distribution},
+ 
+ \begin{equation}
+     \mathbb{V}[W] = \mathbb{E}\left[(W-\mathbb{E}[W])^{2}\right] = \sum _{k=1}^{n}w_{k}((\mu _{k}-\mathbb{E}[W] )^{2}+\sigma _{k}^{2}) \text{.}
+ \end{equation}
+\end{proof}
+
+
+\section{Further interesting notes}
+
+Using the notation from the theorem right above, instead of minimizing $D\left(\sum_{k=1}^{n}{w_{k}f_{k}} \parallel g\right)$, we could also try to minimize $\sum_{k = 1}^{n}w_{k}D(f_{k} \parallel g)$. Using the log sum inequality from \cite{log-sum-inequality}, we can show that 
+
+\begin{align}
+    D\left(\sum_{k=1}^{n}{w_{k}f_{k}} \parallel g\right) &= \int _{-\infty }^{\infty }\sum_{k=1}^{n}{w_{k}f_{k}(x)}\log \left({\frac {\sum_{l=1}^{n}{w_{l}f_{l}(x)}}{\sum_{j=1}^{n}{w_{j}g(x)}}}\right)\,dx \\
+    &\leq \int _{-\infty }^{\infty }\sum_{k=1}^{n}{w_{k}f_{k}(x)}\log \left({\frac {{w_{k}f_{k}(x)}}{{w_{k}g(x)}}}\right)\,dx \\
+    &= \sum_{k=1}^{n}{w_{k}\int _{-\infty }^{\infty }f_{k}(x)}\log \left({\frac {{f_{k}(x)}}{{g(x)}}}\right)\,dx \\
+    &= \sum_{k = 1}^{n}w_{k}D(f_{k} \parallel g)
+\end{align}
+
+Still, the alternative minimization can be done using the explicit formula for the Kullback-Leibler divergence between two lognormal distributions from \cite{k-l-div-between-two-lognormals} and then taking the derivative and setting it to zero in order to find the local and -as one can show- also global minimum. I think it will lead even to the same result. 
+
+\printbibliography
+\end{document}
