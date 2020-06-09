@@ -17,17 +17,17 @@
   \end{align*}
   ein Hamiltonsches System sein. Um dies nachzuprüfen berechnen wir
   \begin{align*}
-    p_k^{\prime} &= \left(- \nabla_q H(p,q)\right)_k = - \frac{\partial H}{\partial q_k}
-    = -\partial_{q_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}- \sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right) \\
-    &= \partial_{q_k}\left(\sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right)
-    = \partial_{q_k}\left(\sum_{\stackrel{i = 1}{i \neq k}}^{N}g\frac{m_km_i}{\|q_k-q_i\|_2}\right)
+     & \left(- \nabla_q H(p,q)\right)_k = - \frac{\partial H}{\partial q_k}
+    = -\partial_{q_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}- \sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right)
+    = \partial_{q_k}\left(\sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right) \\
+    &= \partial_{q_k}\left(\sum_{\stackrel{i = 1}{i \neq k}}^{N}g\frac{m_km_i}{\|q_k-q_i\|_2}\right)
     = \sum_{\stackrel{i = 1}{i \neq k}}^{N}-g\frac{1}{2}2(q_k - q_i)\frac{m_km_i}{\|q_k-q_i\|_2^3}
-    = \sum_{\stackrel{i = 1}{i \neq k}}^{N}gm_km_i\frac{q_i - q_k}{\|q_k-q_i\|_2^3}.
+    = \sum_{\stackrel{i = 1}{i \neq k}}^{N}gm_km_i\frac{q_i - q_k}{\|q_k-q_i\|_2^3} = p_k^{\prime}.
   \end{align*}
   Weiters rechnen wir nach
   \begin{align*}
-    q_k^{\prime} = \left(\nabla_p H(p,q)\right)_k = \partial_{p_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}\right)
-    = \frac{p_k}{m_k}.
+    \left(\nabla_p H(p,q)\right)_k = \partial_{p_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}\right)
+    = \frac{p_k}{m_k} = q_k^{\prime}.
   \end{align*}
   Nun gilt es noch zu zeigen, dass das totale Momentum $\sum_{i=1}^N p_i$
   und das totale Winkelmomentum $\sum_{i=1}^N q_i \times p_i$ erhalten bleiben.
