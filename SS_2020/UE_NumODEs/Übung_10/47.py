@@ -39,25 +39,27 @@ def implicit_midpoint(t,y_0,f,df,tol,max_iter):
     return np.array(y)
 
 
-def symplectic_euler(t,p0,q0,hp,hq,hpq,tol,max_iter):
+def symplectic_euler(t,p0,q0,hp,hq,tol,max_iter):
     p = [p0]
     q = [q0]
     for i in range(len(t)- 1):
         h = t[i+1] - t[i]
         z = [p[i] - h*hq(p[i],q[i])]
-        z.append((z[-1] - p[i] + h*hq(z[-1],q[i])/(1-h*hpq(z[-1],q[i])) + z[-1]))
-        j = 1
-        while True:
-            z.append((z[-1] - p[i] + h*hq(z[-1],q[i])/(1-hpq(z[-1],q[i])) + z[-1]))
-            r = np.linalg.norm(z[-1] - z[-2])/np.linalg.norm(z[-2] - z[-3])
-            j += 1
-            if r >= 1:
-                print("PROBLEM!:", r)
-            if r/(1-r)*np.linalg.norm(np.linalg.norm(z[-1] - z[-2])) <= tol or j >= max_iter:
-                break
+        # z.append(p[i] - h*hq(z[-1],q[i]))
+        # j = 1
+        # while True:
+        #     z.append(p[i] - h*hq(z[-1],q[i]))
+        #     r = np.linalg.norm(z[-1] - z[-2])/np.linalg.norm(z[-2] - z[-3])
+        #     j += 1
+        #     if r >= 1:
+        #         print("PROBLEM!:", r)
+        #     if r/(1-r)*np.linalg.norm(np.linalg.norm(z[-1] - z[-2])) <= tol or j >= max_iter:
+        #         print(z)
+        #         break
         p.append(z[-1])
         q.append(q[i] + h*hp(z[-1],q[i]))
     return p,q
+
 
 
 l = 10
@@ -74,13 +76,11 @@ def hp(p,q):
     return p
 def hq(p,q):
     return g/l*np.sin(q)
-def hpq(p,q):
-    return 0
 
-T =  np.linspace(0,100,10001)
+T =  np.linspace(0,100,101)
 y1 = RK4(T,y0,f)
 y2 = implicit_midpoint(T,y0,f,df,1e-6,10)
-y3p, y3q = symplectic_euler(T,2,1,hp,hq,hpq,tol,max_iter)
+y3p, y3q = symplectic_euler(T,2,1,hp,hq,tol,max_iter)
 plt.figure(1)
 plt.plot(T,np.array(y1)[:,0], label = "q")
 plt.plot(T,np.array(y1)[:,1], label = "p")
