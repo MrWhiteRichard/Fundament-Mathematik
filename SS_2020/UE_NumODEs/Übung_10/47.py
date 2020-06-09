@@ -45,17 +45,6 @@ def symplectic_euler(t,p0,q0,hp,hq,tol,max_iter):
     for i in range(len(t)- 1):
         h = t[i+1] - t[i]
         z = [p[i] - h*hq(p[i],q[i])]
-        # z.append(p[i] - h*hq(z[-1],q[i]))
-        # j = 1
-        # while True:
-        #     z.append(p[i] - h*hq(z[-1],q[i]))
-        #     r = np.linalg.norm(z[-1] - z[-2])/np.linalg.norm(z[-2] - z[-3])
-        #     j += 1
-        #     if r >= 1:
-        #         print("PROBLEM!:", r)
-        #     if r/(1-r)*np.linalg.norm(np.linalg.norm(z[-1] - z[-2])) <= tol or j >= max_iter:
-        #         print(z)
-        #         break
         p.append(z[-1])
         q.append(q[i] + h*hp(z[-1],q[i]))
     return p,q
@@ -77,23 +66,12 @@ def hp(p,q):
 def hq(p,q):
     return g/l*np.sin(q)
 
-T =  np.linspace(0,100,101)
+T =  np.linspace(0,10,10001)
 y1 = RK4(T,y0,f)
 y2 = implicit_midpoint(T,y0,f,df,1e-6,10)
 y3p, y3q = symplectic_euler(T,2,1,hp,hq,tol,max_iter)
-plt.figure(1)
-plt.plot(T,np.array(y1)[:,0], label = "q")
-plt.plot(T,np.array(y1)[:,1], label = "p")
+plt.plot(T,np.array(y1)[:,0]**2/2 - g/l*np.cos(np.array(y1)[:,1]), label = "RK4")
+plt.plot(T,np.array(y2)[:,0]**2/2 - g/l*np.cos(np.array(y2)[:,1]), label = "Implicit Midpoint")
+plt.plot(T,np.array(y3p)**2/2 - g/l*np.cos(np.array(y3q)), label = "Symplectic Euler")
 plt.legend()
-plt.title("RK4")
-plt.figure(2)
-plt.plot(T,np.array(y2)[:,0], label = "q")
-plt.plot(T,np.array(y1)[:,1], label = "p")
-plt.legend()
-plt.title("Implicit Midpoint")
-plt.figure(3)
-plt.plot(T,np.array(y3q), label = "q")
-plt.plot(T,np.array(y3p), label = "p")
-plt.legend()
-plt.title("Symplectic Euler")
 plt.show()
