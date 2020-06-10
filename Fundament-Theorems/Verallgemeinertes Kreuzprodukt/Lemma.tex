@@ -1,0 +1,173 @@
+\begin{lemma*}[Rechenregeln des Verallgemeinerten Kreuzprodukts]
+
+Sei $\times$ das Verallgemeinerte Kreuzprodukt in $\R^n$, mit $n \in \N$.
+
+\begin{enumerate}[label = (\roman*)]
+
+  \item
+  $\times$ verschwindet für linear abhängige Argumente.
+
+  \item
+  $\times$ ist schiefsymmetrisch.
+  D.h.
+  Seien $n \in \N$ und $v^{(1)}, \ldots, v^{(n-1)} \in \R^n$.
+  Dann gilt $\Forall i, j = 1, \ldots, n-1, i \neq j:$
+
+  \begin{align*}
+    \times(v^{(1)}, \ldots, v^{(i)}, \ldots, v^{(j)}, \ldots, v^{(n-1)})
+    =
+    -
+    \times(v^{(1)}, \ldots, v^{(j)}, \ldots, v^{(i)}, \ldots, v^{(n-1)}).
+  \end{align*}
+
+  \item
+  $\times$ ist multi-linear.
+  Insbesondere, ist es distributiv bezüglich Vektor-Addition $+$ und Skalar-Multiplikation $\cdot$.
+
+  \item
+  Seien $n \in \N$ und $v^{(1)}, \ldots, v^{(n-1)} \in C^1(D, \R^n)$, mit $D \subseteq \R$ offen.
+  Dann gilt die Produktregel.
+
+  \begin{align*}
+    \frac{d}{dt}
+    \times(v^{(1)}(t), \ldots, v^{(n)}(t))
+    =
+    \sum_{i=1}^{n-1}
+    \times \pbraces
+    {
+      v^{(1)}(t),
+      \ldots,
+      \frac{d}{dt}
+      v^{(j)}(t),
+      \ldots,
+      v^{(n)}(t)
+    }
+  \end{align*}
+
+\end{enumerate}
+
+All diese Rechenregeln gelten insbesondere für das ursprüngliche Kreuzprodukt.
+
+\end{lemma*}
+
+\begin{proof}
+
+Diese Eigenschaften (i)-(iii) folgen unmittelbar aus denen von Determinanten-Formen.
+Für (iv) gehen wir wie folgt vor.
+Sei $i = 1, \ldots, n$ und die Matrix-Funktion
+
+\begin{align*}
+  M := (v^{(1)}, \ldots, v^{(n-1)}, e_i)
+  \in C^1(D, \R^{n \times n}).
+\end{align*}
+
+Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die letzte Spalte von $M$ ein Einheitsvektor steht, gilt
+
+\begin{align*}
+  \pbraces
+  {
+    \frac{d}{dt}
+    \times(v^{(1)}(t), \ldots, v^{(n)}(t))
+  }_i
+  & =
+  \frac{d}{dt}
+  \pbraces
+  {
+    \times(v^{(1)}(t), \ldots, v^{(n)}(t))
+  }_i
+  =
+  \frac{d}{dt}
+  \det{M(t)}
+  =
+  \frac{d}{dt}
+  \sum_{\sigma \in S_n}
+  \sgn{\sigma}
+  \prod_{k=1}^n
+  m_{k, \sigma(k)}(t) \\
+  & =
+  \frac{d}{dt}
+  \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
+  \sgn{\sigma}
+  \prod_{k=1}^{n-1}
+  m_{k, \sigma(k)}(t)
+  =
+  \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
+  \sgn{\sigma}
+  \frac{d}{dt}
+  \prod_{k=1}^{n-1}
+  m_{k, \sigma(k)}(t) \\
+  & =
+  \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
+  \sgn{\sigma}
+  \sum_{\ell = 1}^{n-1}
+  \pbraces
+  {
+    \prod_{\substack{k=1 \\ k \neq \ell}}^{n-1}
+    m_{k, \sigma(k)}(t)
+  }
+  \frac{d}{dt}
+  m_{\ell, \sigma(\ell)}(t) \\
+  & =
+  \sum_{\ell = 1}^{n-1}
+  \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
+  \sgn{\sigma}
+  \pbraces
+  {
+    \prod_{\substack{k=1 \\ k \neq \ell}}^{n-1}
+    m_{k, \sigma(k)}(t)
+  }
+  \frac{d}{dt}
+  m_{\ell, \sigma(\ell)}(t) \\
+  & =
+  \sum_{\ell = 1}^{n-1}
+  \sum_{\sigma \in S_n}
+  \sgn{\sigma}
+  \pbraces
+  {
+    \prod_{\substack{k=1 \\ k \neq \ell}}^n
+    m_{k, \sigma(k)}(t)
+  }
+  \frac{d}{dt}
+  m_{\ell, \sigma(\ell)}(t) \\
+  & =
+  \sum_{\ell = 1}^{n-1}
+  \det \pbraces
+  {
+    v^{(1)}(t),
+    \ldots,
+    \frac{d}{dt}
+    v^{(\ell)}(t),
+    \ldots,
+    v^{(n)}(t)
+  } \\
+  & =
+  \sum_{\ell = 1}^{n-1}
+  \pbraces
+  {
+    \times \pbraces
+    {
+    v^{(1)}(t),
+    \ldots,
+    \frac{d}{dt}
+    v^{(\ell)}(t),
+    \ldots,
+    v^{(n)}(t)
+    }
+  }_i \\
+  & =
+  \pbraces
+  {
+    \sum_{\ell = 1}^{n-1}
+    \times \pbraces
+    {
+    v^{(1)}(t),
+    \ldots,
+    \frac{d}{dt}
+    v^{(\ell)}(t),
+    \ldots,
+    v^{(n)}(t)
+    }
+  }_i
+\end{align*}
+
+\end{proof}
