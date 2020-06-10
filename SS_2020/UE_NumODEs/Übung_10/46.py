@@ -65,7 +65,7 @@ def stability_domain_levels(l, method):
             z = l[j] + l[i] * 1j
 
             # roots of characteristic polynomial sum
-            rho_z = alpha + z * beta
+            rho_z = alpha - z * beta
             roots = np.roots(rho_z)
 
             # maximum absolute of roots
@@ -108,19 +108,22 @@ def stability_domain_levels(l, method):
 # various multi-step-methods
 
 # BDF
-bdf1  = [coeffs[0], [1, 0]]
-bdf2  = [coeffs[1], [0, 1, 0]]
-bdf5  = [coeffs[4], [0, 0, 0, 0, 1, 0]]
-bdf10 = [coeffs[9], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]]
+bdf1  = [coeffs[0], [1,0]]
+bdf2  = [coeffs[1], [1,0,0]]
+bdf3 = [coeffs[2], [1,0,0,0]]
+bdf5  = [coeffs[4], [1,0, 0, 0, 0, 0]]
+bdf6  = [coeffs[5], [1,0, 0, 0, 0, 0, 0]]
+bdf10 = [coeffs[9], [1,0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 # Adams-Bashforth
-bash1 = [[0, -1, 1],       [-1/2, 3/2, 0]]
-bash3 = [[0, 0, 0, -1, 1], [-9/24, 37/24, -59/24, 55/24, 0]]
+bash0 = [[1,-1], [0,1]]
+bash1 = [[1,-1,0],       [0,3/2,-1/2]]
+bash3 = [[1,-1,0,0,0], [0,55/24,-59/24,37/24,-9/24]]
 
 # Adams-Moulton
-moulton1 = [[0, -1, 1],       [0, 1/2, 1/2]]
-moulton2 = [[0, 0, -1, 1],    [0, -1/12, 8/12, 5/12]]
-moulton3 = [[0, 0, 0, -1, 1], [0, 1/24, -5/24, 19/24, 9/24]]
+moulton1 = [[1,-1,0],       [1/2, 1/2,0]]
+moulton2 = [[1,-1,0,0],    [5/12,8/12,-1/12,0]]
+moulton3 = [[1,-1,0,0,0], [9/24,19/24,-5/24,1/24,0]]
 
 # ---------------------------------------------------------------- #
 
@@ -128,12 +131,12 @@ moulton3 = [[0, 0, 0, -1, 1], [0, 1/24, -5/24, 19/24, 9/24]]
 
 fig, axs = plt.subplots(4, 2, figsize = (15, 15))
 
-methods = [bdf1, bdf2, bdf5, bdf10, bash1, bash3, moulton1, moulton3]
+methods = [bdf1, bdf2, bdf5, bdf6, bash1, bash3, moulton1, moulton3]
 axs     = axs.flatten()
-names   = ["BDF1 / Impliziter Euler", "BDF2", "BDF5", "BDF10", "Adams-Bashforth (k = 1)", "Adams-Bashforth (k = 3)", "Adams-Moulton (k = 1)", "Adams-Moulton (k = 3)"]
+names   = ["BDF1 / Impliziter Euler", "BDF2", "BDF5", "BDF6", "Adams-Bashforth (k = 1)", "Adams-Bashforth (k = 3)", "Adams-Moulton (k = 1)", "Adams-Moulton (k = 3)"]
 
 # mesh
-l = np.linspace(-3, 3, 64)
+l = np.linspace(-30, 30, 64)
 
 for method, ax, name in zip(methods, axs, names):
 
