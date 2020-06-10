@@ -44,13 +44,16 @@ def symplectic_euler(t,p0,q0,hp,hq,tol,max_iter):
     q = [q0]
     for i in range(len(t)- 1):
         h = t[i+1] - t[i]
-        z = [p[i] - h*hq(p[i],q[i])]
-        p.append(z[-1])
-        q.append(q[i] + h*hp(z[-1],q[i]))
+        p.append(p[i] - h*hq(p[i],q[i]))
+        q.append(q[i] + h*hp(p[-1],q[i]))
     return p,q
 
-
-
+def explicit_euler(t,y0,f):
+    y = [y0]
+    for i in range(len(t) - 1):
+        h = t[i+1] - t[i]
+        y.append(y[-1] + h*f(t,y[-1]))
+    return y
 l = 10
 g = 9.81
 tol = 1e-6
@@ -66,12 +69,20 @@ def hp(p,q):
 def hq(p,q):
     return g/l*np.sin(q)
 
-T =  np.linspace(0,10,10001)
+T =  np.linspace(0,100,10001)
 y1 = RK4(T,y0,f)
 y2 = implicit_midpoint(T,y0,f,df,1e-6,10)
-y3p, y3q = symplectic_euler(T,2,1,hp,hq,tol,max_iter)
-plt.plot(T,np.array(y1)[:,0]**2/2 - g/l*np.cos(np.array(y1)[:,1]), label = "RK4")
-plt.plot(T,np.array(y2)[:,0]**2/2 - g/l*np.cos(np.array(y2)[:,1]), label = "Implicit Midpoint")
+y3 = explicit_euler(T,y0,f)
+y3p, y3q = symplectic_euler(T,1,2,hp,hq,tol,max_iter)
+plt.figure(1)
+plt.plot(T,np.array(y1)[:,1]**2/2 - g/l*np.cos(np.array(y1)[:,0]), label = "RK4")
+plt.plot(T,np.array(y2)[:,1]**2/2 - g/l*np.cos(np.array(y2)[:,0]), label = "Implicit Midpoint")
+#plt.plot(T,np.array(y3)[:,1]**2/2 - g/l*np.cos(np.array(y3)[:,0]), label = "Explicit Euler")
 plt.plot(T,np.array(y3p)**2/2 - g/l*np.cos(np.array(y3q)), label = "Symplectic Euler")
+plt.legend()
+plt.figure(2)
+plt.plot(T,np.array(y1)[:,0], label = "RK4")
+plt.plot(T,np.array(y2)[:,0], label = "Implicit Midpoint")
+plt.plot(T,np.array(y3q), label = "Symplectic Euler")
 plt.legend()
 plt.show()
