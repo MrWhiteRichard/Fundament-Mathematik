@@ -20,6 +20,11 @@
      & \left(- \nabla_q H(p,q)\right)_k = - \frac{\partial H}{\partial q_k}
     = -\partial_{q_k}\left(\frac{1}{2}\sum_{i=1}^N \frac{\|p_i\|_2^2}{m_i}- \sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right)
     = \partial_{q_k}\left(\sum_{i = 2}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right) \\
+    &= \partial_{q_k}\left(\sum_{i = k}^N\sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}\right)
+    = \partial_{q_k}\left(\sum_{i = k+1}^N \sum_{j=1}^{i-1}g\frac{m_im_j}{\|q_i-q_j\|_2}
+    + \sum_{j=1}^{k-1}g\frac{m_k m_j}{\norm[2]{q_k-q_j}{}} \right) \\
+    &= \partial_{q_k}\left(\sum_{i = k+1}^N g\frac{m_im_k}{\|q_i-q_k\|_2}
+    + \sum_{j=1}^{k-1}g\frac{m_k m_j}{\norm[2]{q_k-q_j}{}}\right)\\
     &= \partial_{q_k}\left(\sum_{\stackrel{i = 1}{i \neq k}}^{N}g\frac{m_km_i}{\|q_k-q_i\|_2}\right)
     = \sum_{\stackrel{i = 1}{i \neq k}}^{N}-g\frac{1}{2}2(q_k - q_i)\frac{m_km_i}{\|q_k-q_i\|_2^3}
     = \sum_{\stackrel{i = 1}{i \neq k}}^{N}gm_km_i\frac{q_i - q_k}{\|q_k-q_i\|_2^3} = p_k^{\prime}.
@@ -34,14 +39,29 @@
   \begin{align*}
     \partial_t \sum_{i=1}^N p_i(t) = \sum_{i=1}^N p_i^{\prime}(t)
     = \sum_{i=1}^N \sum_{\stackrel{j = 1}{j \neq i}}^N gm_im_j \frac{q_j - q_i}{\|q_j - q_i\|_2^3}
-    = \sum_{i=1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{(q_j - q_i) + (q_i - q_j)}{\|q_j - q_i\|_2^3} = 0.
+    \stackrel{(*)}{=} \sum_{i=1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{(q_j - q_i) + (q_i - q_j)}{\|q_j - q_i\|_2^3} = 0.
   \end{align*}
   \begin{align*}
     \partial_t \sum_{i=1}^N q_i \times p_i &= \sum_{i = 1}^Nq_i^{\prime} \times p_i + q_i \times p_i^{\prime}
     = \sum_{i = 1}^N\underbrace{\frac{p_i}{m_i} \times p_i}_{= 0} + q_i \times \sum_{\stackrel{j = 1}{j \neq i}}^N gm_im_j \frac{q_j - q_i}{\|q_j - q_i\|_2^3} \\
     &= \sum_{i = 1}^N \sum_{\stackrel{j = 1}{j \neq i}}^N gm_im_j \frac{q_i \times q_j - q_i \times q_i}{\|q_j - q_i\|_2^3}
     = \sum_{i = 1}^N \sum_{\stackrel{j = 1}{j \neq i}}^N gm_im_j \frac{q_i \times q_j}{\|q_j - q_i\|_2^3} \\
-    &= \sum_{i = 1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{q_i \times q_j + q_j \times q_i}{\|q_j - q_i\|_2^3}
+    &\stackrel{(*)}{=} \sum_{i = 1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{q_i \times q_j + q_j \times q_i}{\|q_j - q_i\|_2^3}
     = \sum_{i = 1}^N \sum_{j = 1}^{i-1} gm_im_j \frac{q_i \times q_j - q_i \times q_j}{\|q_j - q_i\|_2^3} = 0.
+  \end{align*}
+
+  Dabei sei zur leichteren Erklärung von $(*)$ noch auf diese wunderbare Darstellung
+  verwiesen:
+
+  \begin{align*}
+    \begin{array}{c|ccccc}
+      & 1 & 2 & 3 & \cdots & N \\
+      \hline
+      1 & X & \checkmark & \checkmark & \cdots & \checkmark \\
+      2 & \checkmark & X & \checkmark & \cdots & \checkmark \\
+      3 & \checkmark & \checkmark & X & \cdots & \checkmark \\
+      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+      N & \checkmark & \checkmark &  \checkmark & \cdots & X
+    \end{array}
   \end{align*}
 \end{solution}

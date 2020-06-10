@@ -17,21 +17,39 @@
 \end{exercise}
 
 \begin{solution}
-  $\Psi$ ist symplektisch, also gilt $\forall z \in \R^{2d}: D\Psi(z)^{\top}J\Psi(z) = J$.
+  $\Psi$ ist symplektisch, also gilt
+
+  \begin{align*}
+    \forall z \in \R^{2d}: D\Psi(z)^{\top}JD\Psi(z) = J
+  \end{align*}
+
+  Nach Lemma 6.17 $(\vbraces{\det D\Psi(z)} = 1)$ ist nun $D\Psi(z)$ für alle
+  $z \in \R^{2d}$ invertierbar. Daraus erhalten wir:
+
+  \begin{align*}
+     D\Psi(z)^\top JD\Psi(z) = J
+     \iff
+     D\Psi(z)^\top J = J D\Psi(z)^{-1}
+     \iff
+     J^{-1}(D\Psi(z)^\top)^{-1} = D\Psi(z) J^{-1}
+  \end{align*}
+
   Weiters gilt
+
   \begin{align*}
     Id = D(id(y)) = D(\Psi^{-1} \circ \Psi(y)) = D(\Psi^{-1}(\Psi(y)))D\Psi(y).
   \end{align*}
+
   Also folgt $D\Psi(y)^{-1} =  D(\Psi^{-1}(\Psi(y)))$
   Damit rechnen wir einfach nach ($J^{-1} = -J = J^{\top}$).
+
   \begin{align*}
-    u^{\prime} &= D \Psi(y)y^{\prime} = D\Psi(y)J^{-1}\nabla H(y) =  D\Psi(y)J^{-1}D\Psi(y)^{\top}(D\Psi(y)^{\top})^{-1}\nabla H(y) \\
-    &= D\Psi(y)J^{\top}D\Psi(y)^{\top}(D\Psi(y)^{\top})^{-1}\nabla H(y)
-    = (D\Psi(y)^{\top}JD\Psi(y))^{\top}(D\Psi(y)^{\top})^{-1}\nabla H(y)
-    = J^{\top}(D\Psi(y)^{-1})^{\top}\nabla H(y) \\
-    &= J^{-1}((D\Psi(y))^{-1})^{\top}\nabla H(\Psi^{-1}(u))
-    = J^{-1}D(\Psi^{-1}(\Psi(y)))^{\top}\nabla H(\Psi^{-1}(u)) =
-    J^{-1}D(\Psi^{-1}(u))^{\top}\nabla H(\Psi^{-1}(u)) \\
+    u^{\prime} &= D \Psi(y)y^{\prime}
+    = D\Psi(y)J^{-1}\nabla H(y)\\
+    &= J^{-1}(D\Psi(y)^\top)^{-1} \nabla H(y)\\
+    &= J^{-1}(D\Psi(y)^{-1})^{\top}\nabla H(\Psi^{-1}(u)) \\
+    &= J^{-1}D(\Psi^{-1}(\Psi(y)))^{\top}\nabla H(\Psi^{-1}(u)) \\
+    &= J^{-1}D(\Psi^{-1}(u))^{\top}\nabla H(\Psi^{-1}(u)) \\
     &= J^{-1}D(H \circ \Psi^{-1})^{\top}(u) =  J^{-1}\nabla K(u).
   \end{align*}
 
