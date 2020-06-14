@@ -1,4 +1,8 @@
 \begin{algebraUE}{354}
+Für $K \leq E \leq L$ (als Körper oder auch als Schiefkörper/Divisiomsringe) gilt
+\begin{align*}
+  [L:K] = [L:E]\cdot[E:K].
+\end{align*}
 Beweisen Sie den Gradsatz, indem Sie zeigen: Ist die Familie $(a_i)_{i \in I}$
 eine Basis von $E$ über $K$, die Familie $(b_j)_{j \in J}$ eine Basis von $L$ über $E$,
 so ist die Familie $(a_ib_j)_{(i,j) \in I \times J}$ eine Basis von $L$ über $K$.
@@ -7,17 +11,19 @@ so ist die Familie $(a_ib_j)_{(i,j) \in I \times J}$ eine Basis von $L$ über $K
 \end{algebraUE}
 
 \begin{solution}
+\leavevmode \\
   \begin{itemize}
-      \item \textbf{Erzeugendensystem:} Sei $x \in L/K$ beliebig. Als Element von $L/E$ hat $x$ eine Darstellung der Form
-  \begin{align}
-      x = \sum_{j=1}^n \underbrace{\beta_j}_{\in E/K} b_j = \sum_{j=1}^n \left(\sum_{i=1}^m \alpha_{ij} a_i \right) b_j = \sum_{\substack{i \in \{1, ..., n\} \\ {j\in \{1,...,m\}}}} \alpha_{ij} (a_i b_j).
-  \end{align}
+      \item \textbf{Erzeugendensystem:} Sei $x \in L:K$ beliebig. Fassen wir $L$ als Vektorraum über $E$ auf, erhalten wir für $x$
+      die Darstellung
+  \begin{align*}
+      x = \sum_{j=1}^n \underbrace{\beta_j}_{\in E} b_j = \sum_{j=1}^n \left(\sum_{i=1}^m \underbrace{\alpha_{ij}}_{\in K} a_i \right) b_j = \sum_{\substack{i \in \{1, ..., n\} \\ {j\in \{1,...,m\}}}} \alpha_{ij} (a_i b_j).
+  \end{align*}
   \item \textbf{Linear unabhängig:} Wir betrachten folgende Darstellung des Nullvektors als Linearkombination:
-  \begin{align}
+  \begin{align*}
       0 = \sum_{j=1}^n \sum_{i=1}^m \alpha_{ij} (a_i b_j) = \sum_{j=1}^n \left(\sum_{i=1}^m \alpha_{ij} a_i\right) b_j.
-  \end{align}
-  Weil $(b_j)_{j \in J}$ eine Basis von $L/E$ ist, folgt $\sum_{i=1}^m \alpha_{ij} a_i = 0$ für alle $j.$
+  \end{align*}
+  Weil $(b_j)_{j \in J}$ eine Basis von $L:E$ ist, folgt $\sum_{i=1}^m \alpha_{ij} a_i = 0$ für alle $j = 1,\dots,n.$
 
-  Weil $(a_i)_{i \in I}$ eine Basis von $E/K$ ist, gilt daher für alle $(i,j)$: $\alpha_{ij} = 0$.
+  Weil $(a_i)_{i \in I}$ eine Basis von $E:K$ ist, gilt daher für alle $i = 1,\dots,m$: $\alpha_{ij} = 0$.
   \end{itemize}
 \end{solution}
