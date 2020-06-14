@@ -1,4 +1,4 @@
-\begin{algebraUE}{335}
+\begin{algebraUE}{354}
 Beweisen Sie den Gradsatz, indem Sie zeigen: Ist die Familie $(a_i)_{i \in I}$
 eine Basis von $E$ über $K$, die Familie $(b_j)_{j \in J}$ eine Basis von $L$ über $E$,
 so ist die Familie $(a_ib_j)_{(i,j) \in I \times J}$ eine Basis von $L$ über $K$.
@@ -12,12 +12,12 @@ so ist die Familie $(a_ib_j)_{(i,j) \in I \times J}$ eine Basis von $L$ über $K
   \begin{align}
       x = \sum_{j=1}^n \underbrace{\beta_j}_{\in E/K} b_j = \sum_{j=1}^n \left(\sum_{i=1}^m \alpha_{ij} a_i \right) b_j = \sum_{\substack{i \in \{1, ..., n\} \\ {j\in \{1,...,m\}}}} \alpha_{ij} (a_i b_j).
   \end{align}
-      \item \textbf{Linear unabhängig:} Es gelte $\sum_{(i,j) \in E} \alpha_{ij} (a_i b_j) = 0.$  Aus
-      \begin{align}
-          0 = \sum_{(i,j) \in E} \alpha_{ij} (a_i b_j) = \sum_{(i,j) \in E} \underbrace{(\alpha_{ij} a_i)}_{\in E} b_j
-      \end{align}
-      und weil $(b_j)_{j \in J}$ eine Basis von $L/E$ ist, folgt $\alpha_{ij} a_i = 0$ für alle $(i,j) \in E.$
+  \item \textbf{Linear unabhängig:} Wir betrachten folgende Darstellung des Nullvektors als Linearkombination:
+  \begin{align}
+      0 = \sum_{j=1}^n \sum_{i=1}^m \alpha_{ij} (a_i b_j) = \sum_{j=1}^n \left(\sum_{i=1}^m \alpha_{ij} a_i\right) b_j.
+  \end{align}
+  Weil $(b_j)_{j \in J}$ eine Basis von $L/E$ ist, folgt $\sum_{i=1}^m \alpha_{ij} a_i = 0$ für alle $j.$
 
-      Weil $(a_i)_{i \in I}$ als Basis sicher nicht den Nullvektor enthält, gilt für alle $(i,j) \in E$: $a_i \neq 0$ und somit $a_{ij} = 0$.
+  Weil $(a_i)_{i \in I}$ eine Basis von $E/K$ ist, gilt daher für alle $(i,j)$: $a_{ij} = 0$.
   \end{itemize}
 \end{solution}
