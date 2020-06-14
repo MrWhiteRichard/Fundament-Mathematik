@@ -7,9 +7,17 @@ so ist die Familie $(a_ib_j)_{(i,j) \in I \times J}$ eine Basis von $L$ über $K
 \end{algebraUE}
 
 \begin{solution}
-Linear unabhängig:
-Sei $(a_ib_j)_{(i,j) \in E}, E \subset I \times J, |E| < \infty$ beliebig mit
-\begin{align*}
-  \sum_{i = n}\sum_{j = 1}^m
-\end{align*}
+  \begin{itemize}
+      \item \textbf{Erzeugendensystem:} Sei $x \in L/K$ beliebig. Als Element von $L/E$ hat $x$ eine Darstellung der Form
+  \begin{align}
+      x = \sum_{j=1}^n \underbrace{\beta_j}_{\in E/K} b_j = \sum_{j=1}^n \left(\sum_{i=1}^m \alpha_{ij} a_i \right) b_j = \sum_{\substack{i \in \{1, ..., n\} \\ {j\in \{1,...,m\}}}} \alpha_{ij} (a_i b_j).
+  \end{align}
+      \item \textbf{Linear unabhängig:} Es gelte $\sum_{(i,j) \in E} \alpha_{ij} (a_i b_j) = 0.$  Aus
+      \begin{align}
+          0 = \sum_{(i,j) \in E} \alpha_{ij} (a_i b_j) = \sum_{(i,j) \in E} \underbrace{(\alpha_{ij} a_i)}_{\in E} b_j
+      \end{align}
+      und weil $(b_j)_{j \in J}$ eine Basis von $L/E$ ist, folgt $\alpha_{ij} a_i = 0$ für alle $(i,j) \in E.$
+
+      Weil $(a_i)_{i \in I}$ als Basis sicher nicht den Nullvektor enthält, gilt für alle $(i,j) \in E$: $a_i \neq 0$ und somit $a_{ij} = 0$.
+  \end{itemize}
 \end{solution}
