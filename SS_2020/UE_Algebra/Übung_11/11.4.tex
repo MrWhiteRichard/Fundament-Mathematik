@@ -1,0 +1,71 @@
+\begin{algebraUE}{342}
+Sei $R$ ein faktorieller Ring. Ist $f = \sum_{i=0}^na_ix^i \in R[x]$ mit Grad $\geq 1$
+ein primitives Polynom und $p \in R$ irreduzibel mit
+\begin{align*}
+  p \nmid a_n, p | a_i, \text{ für } i = 0,\dots,n-1, \text{ und } p^2 \nmid a_0,
+\end{align*}
+dann ist $f$ irreduzibel in $R[x]$.
+\end{algebraUE}
+
+\begin{solution}
+Angenommen $f$ wäre nicht irreduzibel, also existieren Nicht-Einheiten $q,r \in R[x]$ mit $f = qr$.
+Es gilt also
+\begin{align*}
+  f = \sum_{i=0}^na_ix^i = \sum_{i = 0}^n \sum_{k= 0}^i q_kr_{i-k}x^i.
+\end{align*}
+Durch Koeffizientenvergleich erhalten wir
+\begin{align*}
+  a_0 &= q_0r_0 \\
+  a_1 &= q_0r_1 + q_1r_0 \\
+  &\vdots \\
+  a_n &= q_0r_n + \dots + q_nr_0.
+\end{align*}
+Da $p$ ein irreduzibles Element eines faktoriellen Ringes ist, ist $p$ prim und es folgt
+aus $p| a_0 = q_0r_0$, dass $p|q_0 \lor p|r_0$. Da zusätzlich $p^2 \nmid a_0$ gilt,
+kann $p$ nur genau einen der Faktoren $q_0,r_0$ teilen. Gelte also o.B.d.A. $p | q_0, p \nmid r_0$.
+Jetzt gehen wir induktiv vor und zeigen $p | q_k, k = 0,\dots,n-1$. Der Anfang ist bereits getan,
+gelte nun $p | q_{i}, i = 0,\dots,k-1$:
+\begin{align*}
+  p | a_k = q_kr_n + \dots + q_{k-1}r_1 + q_kr_0.
+\end{align*}
+Mit der Induktionsvoraussetzung erhalten wir $p | q_kr_n + \dots + q_{k-1}r_1$
+und daraus folgt $p | q_kr_0$. Da $p \nmid r_0$ gilt damit schon $p | q_k$. \\
+Wir wissen also $p | q_0r_n + \dots + q_{n-1}r_1$, aber $p \nmid q_0r_n + \dots + q_nr_0$.
+Also muss $q_n \neq 0$ und damit $\grad(q) = \grad(p)$ gelten. Also folgt $\grad(r) = 0$
+und wir können $r_0$ herausheben im Widerspruch zu $f$ primitiv.
+
+Alternativ: (erster Teil fast identisch)
+
+Angenommen $f$ wäre nicht irreduzibel, also existieren Nicht-Einheiten $q,r \in R[x]$ mit $f = qr$.
+Es gilt
+\begin{align*}
+  f = \sum_{i=0}^na_ix^i = \sum_{i = 0}^n \sum_{k= 0}^i q_kr_{i-k}x^i.
+\end{align*}
+Durch Koeffizientenvergleich erhalten wir
+\begin{align*}
+  a_0 &= q_0r_0 \\
+  a_1 &= q_0r_1 + q_1r_0 \\
+  &\vdots \\
+  a_n &= q_0r_n + \dots + q_nr_0.
+\end{align*}
+Da $p$ ein irreduzibles Element eines faktoriellen Ringes ist, ist $p$ prim und es folgt
+aus $p| a_0 = q_0r_0$, dass $p|q_0 \lor p|r_0$. Da zusätzlich $p^2 \nmid a_0$ gilt,
+kann $p$ nur genau einen der Faktoren $q_0,r_0$ teilen. Gelte also o.B.d.A. $p | q_0, p \nmid r_0$.
+
+Nun können sicher nicht alle Koeffizienten $q_0,...,q_n$ durch $p$ teilbar sein, da dies sonst auch $a_n$ wäre. Es gibt also ein minimales $s$, sodass $q_s$ nicht durch $p$ teilbar ist mit
+
+\begin{align*}
+  s \leq grad(q) < grad(f)
+\end{align*}
+
+da $r$ einen Grad größer $0$ hat.
+
+Nun gilt aber für $a_s$
+
+\begin{align*}
+  a_s = q_0 r_s + \dots + q_{s-1}r_1 + q_s r_0
+\end{align*}
+
+Nach Voraussetzung sind alle bis auf den letzten Summanden durch $p$ teilbar (da $p \nmid q_s \land p \nmid r_0$). Das ist aber ein Widerspruch zu $p|a_s$.
+
+\end{solution}
