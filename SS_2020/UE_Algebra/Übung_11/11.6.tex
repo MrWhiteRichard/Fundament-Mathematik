@@ -8,16 +8,48 @@
 \end{algebraUE}
 
 \begin{solution}
-  \begin{itemize}
-      \item $m_x(y) = y^3 - x^3,$
-      \item $m_x(y) = y^2 - (x + \frac{1}{x})y + 1$
-  \end{itemize}
-  erfüllen mal die Nullstellenbedingung. Der dritte Teil glaub ich geht so: Man kann die gebrochen rationale Funktion mit dem Nenner multiplizieren und dann den Zähler abziehen und erhält mit dieser Vorschrift stets ein Polynom, dass $\alpha$ als Nullstelle hat:
-
+\leavevmode \\
+\begin{itemize}
+  \item   Wir suchen zuerst ein Polynom $m \in \Q(x^3)[y]$ mit $m(x) = 0$.
+    \begin{align*}
+        m(y) = y^3 - x^3.
+    \end{align*}
+    Wir zeigen nun, dass $m$ auch irreduzibel über $\Q(x^3)$ ist. Angenommen $m$
+    hätte eine Nullstelle  $\frac{p(x^3)}{q(x^3)} \in \Q(x^3)$. Dann gilt
+    \begin{align*}
+      \frac{p(x^3)^3}{q(x^3)^3} = x^3
+      \iff \sum_{k=0}^np_kx^{3k} = p(x^3) = q(x^3)x = \sum_{k=0}^mq_kx^{3k+1}.
+    \end{align*}
+    Dies ist aufgrund der linearen Unabhängigkeit der Familie $(x^k)_{k \in \N}$
+    nur in trivialer Weise möglich, was ein Widerspruch zu $q(x^3) \neq 0$ ist.
+    Also ist $m$ irreduzibel über $\Q(x)$ und somit das Minimalpolynom von $x$.
+  \item \begin{align*}
+    m(y) = y^2 - (x + \frac{1}{x})y + 1
+  \end{align*}
+  erfüllt $m(x) = 0$. Um zu zeigen, dass $m$ das gewünschte Minimalpolynom ist,
+  zeigen wir, dass $x$ nicht in $\Q(x + \frac{1}{x})$ liegt und somit keine
+  Nullstelle eines linearen Polynoms sein kann. Angenommen dem wäre so, dann gäbe
+  es $p(x+\frac{1}{x}),q(x+\frac{1}{x}) \in \Q[x+\frac{1}{x}]$ mit
+  \begin{align*}
+    &\frac{p(x+\frac{1}{x})}{q(x+\frac{1}{x})} = x \\
+    &\iff p(x+\frac{1}{x}) = q(x + \frac{1}{x})x \\
+    &\iff \sum_{k=0}^np_k\frac{(x^2+1)^k}{x^k} = \sum_{k=0}^nq_k\frac{(x^2+1)^k}{x^{k-1}} \\
+    &\iff \sum_{k=0}^np_k(x^2+1)^kx^{n-k} = \sum_{k=0}^nq_k(x^2+1)^kx^{n-k+1} \\
+    &\iff \sum_{k=0}^np_k\sum_{j=0}^k\binom{k}{j}x^{2(k-j)}x^{n-k} = \sum_{k=0}^nq_k\sum_{j=0}^k\binom{k}{j}x^{2(k-j)}x^{n-k+1} \\
+    &\iff \sum_{k=0}^np_k\sum_{j=0}^k\binom{k}{j}x^{n+k-2j}= \sum_{k=0}^nq_k\sum_{j=0}^k\binom{k}{j}x^{n+k-2j+1} \\
+  \end{align*}
+  Jetzt steh ich da an.
+  \item Man kann die gebrochen rationale Funktion mit dem Nenner multiplizieren
+  und dann den Zähler abziehen und erhält mit dieser Vorschrift stets ein Polynom,
+  dass $x$ als Nullstelle hat:
   Sei $\alpha = \frac{\sum_{i=1}^n a_i x^i}{\sum_{j=1}^m b_j x^j}$. Das Polynom
-\begin{align}
-m_\alpha(y) := \alpha \left(\sum_{j=1}^m b_j y^j\right) - \sum_{i=1}^n a_i y^i
-\end{align}
+  \begin{align}
+  m_\alpha(y) := \alpha \left(\sum_{j=1}^m b_j y^j\right) - \sum_{i=1}^n a_i y^i
+  \end{align}
 
-erfüllt $m_\alpha(x) = 0.$
+  erfüllt $m_\alpha(x) = 0.$
+\end{itemize}
+
+
+
 \end{solution}
