@@ -12,6 +12,12 @@
 \begin{itemize}
   \item $\Q(x^3)$ ist per Definition der kleinste Körper, welcher $\Q \cup \{x^3\}$
   enthält.
+  \begin{align*}
+    K = \left\{\frac{\sum_{k=0}^np_kx^{3k}}{\sum_{k=0}^mq_kx^{3k}}: p_k,q_k \in \Q, k = 0,\dots,n\right\}
+  \end{align*}
+  faktorisiert nach $\sim$ ist mit Sicherheit ein Körper der $\Q \cup \{x^3\}$ enthält. Klarerweise muss
+  auch jeder Körper, welcher $\Q$ und $\{x^3\}$ enthält, bereits $K/_{\sim}$ enthalten,
+  also ist $K/_{\sim} = \Q(x^3)$. \\
   Wir suchen zuerst ein Polynom $m \in \Q(x^3)[y]$ mit $m(x) = 0$.
     \begin{align*}
         m(y) = y^3 - x^3.
@@ -23,10 +29,10 @@
       \iff \sum_{k=0}^np_kx^{3k} = p(x^3) = q(x^3)x = \sum_{k=0}^mq_kx^{3k+1}.
     \end{align*}
     Dies ist aufgrund der linearen Unabhängigkeit der Familie $(x^k)_{k \in \N}$
-    nur in trivialer Weise möglich, was ein Widerspruch zu $q(x^3) \neq 0$ ist.
+    über $\Q$ nur in trivialer Weise möglich, was ein Widerspruch zu $q(x^3) \neq 0$ ist.
     Also ist $m$ irreduzibel über $\Q(x)$ und somit das Minimalpolynom von $x$.
   \item \begin{align*}
-    m(y) = y^2 - (x + \frac{1}{x})y + 1
+    m(y) = y^2 + 1 - \left(\frac{x^2 + 1}{x}\right)y
   \end{align*}
   erfüllt $m(x) = 0$. Um zu zeigen, dass $m$ das gewünschte Minimalpolynom ist,
   zeigen wir, dass $x$ nicht in $\Q(x + \frac{1}{x})$ liegt und somit keine
