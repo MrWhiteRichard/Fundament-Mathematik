@@ -7,13 +7,21 @@ Gib das Minimialpolynom von $\sqrt{2} + \sqrt{3}$ und $\sqrt{3} + i$ über $\Q$ 
 
   \begin{itemize}
   \item Folgendes Polynome hat $\sqrt{2} + \sqrt{3}$ als Nullstelle:
-
-  $m_1(x) := (x^2 - 5)^2 - 24 = x^4 - 10x^2 + 1 = (x + \sqrt{5+\sqrt{24}})(x + \sqrt{5-\sqrt{24}})(x - \sqrt{5+\sqrt{24}})(x - \sqrt{5-\sqrt{24}}).$
-
+  \begin{align*}
+    m_1(x) := (x^2 - 5)^2 - 24 = x^4 - 10x^2 + 1 = (x + \sqrt{5+\sqrt{24}})(x + \sqrt{5-\sqrt{24}})(x - \sqrt{5+\sqrt{24}})(x - \sqrt{5-\sqrt{24}}).
+  \end{align*}
+  \begin{align*}
+    \left(x + \sqrt{5+\sqrt{24}}\right)\left(x + \sqrt{5-\sqrt{24}}\right) &= \left(x^2 + \left(\sqrt{5+\sqrt{24}} + \sqrt{5-\sqrt{24}}\right)x + 1\right) \\
+    \left(x + \sqrt{5+\sqrt{24}}\right)\left(x - \sqrt{5+\sqrt{24}}\right) &= \left(x^2 - 5 - \sqrt{24}\right) \\
+    \left(x + \sqrt{5+\sqrt{24}}\right)\left(x - \sqrt{5-\sqrt{24}}\right) &= \left(x^2 + \left(\sqrt{5+\sqrt{24}} - \sqrt{5-\sqrt{24}}\right)x - 1\right)
+  \end{align*}
+  Damit ist es nicht möglich die Linearfaktoren über $\R$ zu quadratischen Faktoren in $\Q$
+  zusammenzufassen und das Polynom muss über $\Q$ irreduzibel sein.
   \item Folgendes Polynom hat $\sqrt{3} + i$ als Nullstelle:
-
-  $m_2(x) := (x^2 -2)^2 + 12 = x^4 - 4x^2 + 16 = (x - \sqrt{3} + i)(x - \sqrt{3} - i)(x + \sqrt{3} + i)(x + \sqrt{3} - i).$
-
+  \begin{align*}
+    m_2(x) &:= (x^2 -2)^2 + 12 = x^4 - 4x^2 + 16 = (x - \sqrt{3} + i)(x - \sqrt{3} - i)(x + \sqrt{3} + i)(x + \sqrt{3} - i) \\
+    &= \left(x - 2\sqrt{3}x + 4\right)\left(x + 2\sqrt{3}x + 4\right)
+  \end{align*}
   Hier können wir jeweils die beiden Faktoren, deren Nullstellen sich nur durch Konjugation unterscheiden, zu einem quadratischen Polynom über $\R$ zusammenfassen, welches dann klarerweise irreduzibel ist. In beiden Fällen erhält man Polynome, die nichtrationale Koeffizienten haben. Daher sind beide Polynome irreduzibel über $\Q$.
   \end{itemize}
 \end{solution}

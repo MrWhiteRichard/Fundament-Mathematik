@@ -1,7 +1,32 @@
 \begin{algebraUE}{363}
-  Seien $\alpha, \beta, \gamma \in \C$ die Nullstellen von $x^3 - 2.$ Man bestimme den Grad des Körpers $\Q(\alpha, \beta, \gamma)$ (des Zerfällungskörpers, siehe 6.2.1) über $\Q$.
+  Seien $\alpha, \beta, \gamma \in \C$ die Nullstellen von $f(x) = x^3 - 2.$ Man bestimme den Grad des Körpers $\Q(\alpha, \beta, \gamma)$ (des Zerfällungskörpers, siehe 6.2.1) über $\Q$.
 \end{algebraUE}
 
 \begin{solution}
-Grad ist 3.
+Die Nullstellen lauten
+\begin{align*}
+  \alpha = \sqrt[3]{2}, \quad \beta = \sqrt[3]{2}\exp\left(\frac{2\pi i}{3}\right), \quad \gamma = \sqrt[3]{2}\exp\left(\frac{4\pi i}{3}\right).
+\end{align*}
+Also lässt sich $f$ über $\R$ in irreduzible Polynome über $\R$ faktorisieren:
+\begin{align*}
+  f(x) = (x - \sqrt[3]{2})(x^2 - 2\sqrt[3]{2}\cos\left(\frac{2\pi}{3}\right) + 2\sqrt[3]{4}) = (x - \sqrt[3]{2})(x^2 + \sqrt[3]{2} x + 2\sqrt[3]{4}).
+\end{align*}
+Diese Faktoren liegen nicht in $\Q$ und somit ist $f(x)$ über $\Q$ irreduzibel.
+Daher ist $f(x)$ das Minimalpolynom von $\alpha$ über $\Q$ und es gilt nach Satz 6.1.3.4
+$[\Q(\alpha): Q] = \grad(f) = 3$. \\
+Da $\alpha \in \R$ gilt sicher auch $\Q(\alpha) \subset \R$ und damit ist
+\begin{align*}
+  g(x) = (x^2 + \sqrt[3]{2} x + 2\sqrt[3]{4})
+\end{align*}
+irreduzibel über $\Q(\alpha)$ und somit das Minimalpolynom von $\beta$ über $\Q(\alpha)$.
+Wieder folgt $[\Q(\alpha)(\beta): \Q(\alpha)] = \grad(g) = 2$. \\
+Für $\gamma$ bemerken wir, dass $\alpha + \beta + \gamma = 0 \iff \gamma = -\alpha - \beta \in \Q(\alpha)(\beta)$,
+also $\Q(\alpha)(\beta)(\gamma) = \Q(\alpha)(\beta)$. \\
+Fassen wir zusammen:
+\begin{align*}
+  [\Q(\alpha,\beta,\gamma): \Q] =  [\Q(\alpha)(\beta)(\gamma): \Q]
+  = [\Q(\alpha)(\beta): \Q] = [\Q(\alpha)(\beta): \Q(\alpha)]\cdot[\Q(\alpha): \Q] = 3\cdot2= 6.
+\end{align*}
+Dabei verwenden wir den Gradsatz und die Tatsache, dass $\Q(\alpha,\beta,\gamma) = \Q(\alpha)(\beta)(\gamma)$,
+welche aus der Definition klar ist.
 \end{solution}
