@@ -39,14 +39,12 @@
   Nullstelle eines linearen Polynoms sein kann. Angenommen dem wäre so, dann gäbe
   es $p(x+\frac{1}{x}),q(x+\frac{1}{x}) \in \Q[x+\frac{1}{x}]$ mit
   \begin{align*}
-    &\frac{p(x+\frac{1}{x})}{q(x+\frac{1}{x})} = x \\
-    &\iff p(x+\frac{1}{x}) = q(x + \frac{1}{x})x \\
-    &\iff \sum_{k=0}^np_k\frac{(x^2+1)^k}{x^k} = \sum_{k=0}^nq_k\frac{(x^2+1)^k}{x^{k-1}} \\
-    &\iff \sum_{k=0}^np_k(x^2+1)^kx^{n-k} = \sum_{k=0}^nq_k(x^2+1)^kx^{n-k+1} \\
-    &\iff \sum_{k=0}^np_k\sum_{j=0}^k\binom{k}{j}x^{2(k-j)}x^{n-k} = \sum_{k=0}^nq_k\sum_{j=0}^k\binom{k}{j}x^{2(k-j)}x^{n-k+1} \\
-    &\iff \sum_{k=0}^np_k\sum_{j=0}^k\binom{k}{j}x^{n+k-2j}= \sum_{k=0}^nq_k\sum_{j=0}^k\binom{k}{j}x^{n+k-2j+1} \\
+    \frac{p(x+\frac{1}{x})}{q(x+\frac{1}{x})} = x \iff p(x+\frac{1}{x}) = q(x + \frac{1}{x})x
   \end{align*}
-  Jetzt steh ich da an.
+  Fassen wir $p,q$ als Laurentreihen über $x$ mit endlich vielen Koeffizienten ungleich $0$
+  auf, erhalten wir mit UE 187 $\grad(p) = \grad(q) + \grad(x) = \grad(q) + 1$ und
+  $\ord(p) = \ord(q) + 1$. Allerdings gilt auch $\ord(q) + 1 = \ord(p) = -\grad(p) = -\grad(q) - 1 = \ord(q) - 1$.
+  Widerspruch!
   \item Man kann die gebrochen rationale Funktion mit dem Nenner multiplizieren
   und dann den Zähler abziehen und erhält mit dieser Vorschrift stets ein Polynom,
   dass $x$ als Nullstelle hat:
