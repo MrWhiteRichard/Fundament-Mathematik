@@ -3,7 +3,22 @@ Zeigen Sie, dass das regelmäßige Siebeneck mit Radius 1 nicht konstruierbar is
 \end{algebraUE}
 
 \begin{solution}
-  Wir müssen zeigen, dass die primitive siebente Einheitswurzel $\zeta_7$ nicht konstruierbar ist. Nach Definition ist $\zeta_7$ eine Nullstelle des Polynoms $x^7-1.$ Durch Polynomdivision erhält man die Faktorisierung
+  Wir definieren eine komplexe Zahl $z \in \C$ sei genau dann konstruierbar, wenn ihr
+  Real- und ihr Imaginärteil es sind. Dann behaupten wir, dass jedes
+  aus einer Menge von Punkten $A \supseteq \{(0,0),(0,1)\}$ konstruierbare $z := a + ib \in \C$,
+  in einer Quadratwurzelerweiterung von $\Q(B)$ liegt, wobei
+  $B$ die Menge der Koordinaten aus $A$ bezeichnet.
+  Mit Satz 6.1.6.8 erhalten wir, dass $a,b$ jeweils in einer Quadratwurzelerweiterung $L_a,L_b$ von $\Q(B)$ liegen.
+  Jetzt können wir die Quadratwurzelerweiterungsschritte einfach aneinanderreihen
+  und erhalten eine Quadratwurzelerweiterung $L$, welche $a$ und $b$ erhält.
+  Diese können wir dann gegebenfalls noch mit $i$ erweitern. Da $i^2 = -1$
+  sicher in $L$ liegt, ist auch $L(i)$ eine Quadratwurzelerweiterung. \\
+  Wenn wir das regelmäßige Siebeneck konstruieren können, können wir es auch um
+  den Mittelpunkt $(0,0)$ konstruieren. In diesem Fall stimmen die Koordinaten der Eckpunkte genau
+  mit den Real- und Imaginärteilen siebten komplexen Einheitswurzeln $\zeta_7^i, i = 1,\dots,7$ überein.
+  Wir zeigen, dass die primitive siebte Einheitswurzel $\zeta_7$ nicht in einer
+  Quadratwurzelerweiterung liegen kann und mit der Kontraposition der vorigen Aussage
+  nicht konstruierbar sein kann. Nach Definition ist $\zeta_7$ eine Nullstelle des Polynoms $x^7-1.$ Durch Polynomdivision erhält man die Faktorisierung
   \begin{align}
       x^7-1 = (x-1)\underbrace{(x^6+x^5+x^4+x^3+x^2+x+1)}_{=: m(x)}
   \end{align}
@@ -16,7 +31,8 @@ Zeigen Sie, dass das regelmäßige Siebeneck mit Radius 1 nicht konstruierbar is
 
   was nach dem Eisensteinkriterium irreduzibel ist. $m(x)$ ist also ebenfalls irreduzibel und daher das Minimalpolynom von $\zeta_7.$
 
-  Damit gilt $[\mathbb{Q}(\zeta_7):\mathbb{Q}] = \mathrm{grad}(m(x)) = 6$; der Grad der Körpererweiterung ist also nicht Teiler einer Zweierpotenz und $\zeta_7$ folglich nicht konstruierbar.
+  Damit gilt $[\mathbb{Q}(\zeta_7):\mathbb{Q}] = \mathrm{grad}(m(x)) = 6$; der Grad der Körpererweiterung ist also nicht Teiler einer Zweierpotenz und $\zeta_7$ folglich nicht konstruierbar. Laut Definition ist folglich Real- oder Imaginärteil nicht konstruierbar und auf jeden Fall
+  ist ein Eckpunkt unseres regelmäßigen Siebenecks nicht konstruierbar.
 
 
   *** Alternative***
