@@ -17,4 +17,32 @@ Zeigen Sie, dass das regelmäßige Siebeneck mit Radius 1 nicht konstruierbar is
   was nach dem Eisensteinkriterium irreduzibel ist. $m(x)$ ist also ebenfalls irreduzibel und daher das Minimalpolynom von $\zeta_7.$
 
   Damit gilt $[\mathbb{Q}(\zeta_7):\mathbb{Q}] = \mathrm{grad}(m(x)) = 6$; der Grad der Körpererweiterung ist also nicht Teiler einer Zweierpotenz und $\zeta_7$ folglich nicht konstruierbar.
+
+
+  *** Alternative***
+
+  Wir zeigen, dass wir $\sin(\frac{2 \pi }{7})$ nicht konstruieren können, somit nicht $\cos(\frac{2 \pi }{7})$, also auch nicht $\frac{1}{\cos(\frac{2 \pi }{7})}$ und damit auch nicht das regelmäßige Siebeneck mit Radius 1. (SKIZZE!!)
+
+  Es gilt:
+
+  \begin{align*}
+    \cos(2 \pi) + i \sin(2 \pi) = (\cos(\frac{2 \pi }{7}) + i \sin(\frac{2 \pi }{7}))^{7}
+  \end{align*}
+
+  Ausmultiplizieren und Vergleichen der Imaginärteile (mit Python) führt zu
+
+  \begin{align*}
+    0 = \sin(2 \pi) = \sin(\frac{2 \pi }{7}) (-64 \sin(\frac{2 \pi }{7})^{6} + 112 \sin(\frac{2 \pi }{7})^4 - 56 \sin(\frac{2 \pi }{7})^2) + 7).
+  \end{align*}
+
+  Es ist also $\sin(\frac{2 \pi }{7})$ Nullstelle vom Polynom
+
+  \begin{align*}
+    p(x) = x\underbrace{(-64x^6 + 112x^4 - 56x^2 + 7)}_{=:\tilde{p}(x)}
+  \end{align*}
+
+  Das Polynom $\tilde{p}(x)$ ist nach dem Eisensteinkriterium (mit der Primzahl $7$) irreduzibel und somit Minimalpolynom von $\sin(\frac{2 \pi }{7})$.
+
+  Damit gilt $[\mathbb{Q}(\sin(\frac{2 \pi }{7})):\mathbb{Q}] = \mathrm{grad}(\tilde{p}(x)) = 6$; der Grad der Körpererweiterung ist also nicht Teiler einer Zweierpotenz und $\sin(\frac{2 \pi }{7})$ folglich nicht konstruierbar.
+
 \end{solution}
