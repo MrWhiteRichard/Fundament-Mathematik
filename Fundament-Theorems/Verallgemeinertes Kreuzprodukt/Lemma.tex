@@ -61,7 +61,7 @@ Sei $i = 1, \ldots, n$ und die Matrix-Funktion
   \in C^1(D, \R^{n \times n}).
 \end{align*}
 
-Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die letzte Spalte von $M$ ein Einheitsvektor steht, gilt
+Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass in der letzten Spalte von $M$ ein Einheitsvektor steht, gilt Folgendes.
 
 \begin{align*}
   \pbraces
@@ -83,19 +83,19 @@ Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die l
   \sum_{\sigma \in S_n}
   \sgn{\sigma}
   \prod_{k=1}^n
-  m_{k, \sigma(k)}(t) \\
+  m_{\sigma(k), k}(t) \\
   & =
   \frac{d}{dt}
   \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
   \sgn{\sigma}
   \prod_{k=1}^{n-1}
-  m_{k, \sigma(k)}(t)
+  m_{\sigma(k), k}(t)
   =
   \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
   \sgn{\sigma}
   \frac{d}{dt}
   \prod_{k=1}^{n-1}
-  m_{k, \sigma(k)}(t) \\
+  m_{\sigma(k), k}(t) \\
   & =
   \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
   \sgn{\sigma}
@@ -103,10 +103,10 @@ Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die l
   \pbraces
   {
     \prod_{\substack{k=1 \\ k \neq \ell}}^{n-1}
-    m_{k, \sigma(k)}(t)
+    m_{\sigma(k), k}(t)
   }
   \frac{d}{dt}
-  m_{\ell, \sigma(\ell)}(t) \\
+  m_{\sigma(\ell), \ell}(t) \\
   & =
   \sum_{\ell = 1}^{n-1}
   \sum_{\substack{\sigma \in S_n \\ \sigma(n) = i}}
@@ -114,10 +114,10 @@ Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die l
   \pbraces
   {
     \prod_{\substack{k=1 \\ k \neq \ell}}^{n-1}
-    m_{k, \sigma(k)}(t)
+    m_{\sigma(k), k}(t)
   }
   \frac{d}{dt}
-  m_{\ell, \sigma(\ell)}(t) \\
+  m_{\sigma(\ell), \ell}(t) \\
   & =
   \sum_{\ell = 1}^{n-1}
   \sum_{\sigma \in S_n}
@@ -125,10 +125,10 @@ Laut der Leibnitz-Formel für Determinanten-Formen, und der Tatsache, dass die l
   \pbraces
   {
     \prod_{\substack{k=1 \\ k \neq \ell}}^n
-    m_{k, \sigma(k)}(t)
+    m_{\sigma(k), k}(t)
   }
   \frac{d}{dt}
-  m_{\ell, \sigma(\ell)}(t) \\
+  m_{\sigma(\ell), \ell}(t) \\
   & =
   \sum_{\ell = 1}^{n-1}
   \det \pbraces
