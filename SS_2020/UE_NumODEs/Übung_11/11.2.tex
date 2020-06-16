@@ -96,4 +96,34 @@ Jetzt wähle einfach ganz stumpf $p_0 = q_0 = 1$ mit $H(p_0,q_0) = 1$.
   + p_{\ell}\frac{h^2}{2}(p_{\ell} - hq_{\ell}) + q_{\ell}hp_{\ell}\\
   &= 2H_h(p_{\ell},q_{\ell}) - p_{\ell}hq_{\ell} + q_{\ell}hp_{\ell} = 2H_h(p_{\ell},q_{\ell})
 \end{align*}
+Daraus folgt nun
+\begin{align*}
+  \|H(p,q) - H_h(p,q)\| &= \frac{1}{2}\left\|\begin{pmatrix}
+    p \\ q
+  \end{pmatrix}^{\top}
+  \begin{pmatrix}
+    1 & 0 \\ 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    p \\ q
+  \end{pmatrix} - \begin{pmatrix}
+    p \\ q
+  \end{pmatrix}^{\top}
+  \begin{pmatrix}
+    1 & - \nicefrac{h}{2} \\ -\nicefrac{h}{2} & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    p \\ q
+  \end{pmatrix}\right\|
+  = \frac{1}{2}\left\|\begin{pmatrix}
+    p \\ q
+  \end{pmatrix}^{\top}
+  \begin{pmatrix}
+    0 & - \nicefrac{h}{2} \\ - \nicefrac{h}{2} & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    p \\ q
+  \end{pmatrix}\right\| \\
+  = \frac{1}{2}\|-hpq\| \leq \frac{R^2}{2}h
+\end{align*}
 \end{solution}

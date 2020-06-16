@@ -36,5 +36,30 @@
 \end{exercise}
 
 \begin{solution}
-  Beweis.
+Sei $y_0 := (p_0,q_0)^{\top}$
+  \begin{align*}
+    \Phi^t(y_0) &:= y_{y_0}(t) \\
+    R \circ \Phi^t(y_0) &= R(y_{y_0}(t)) = R\left(
+    \begin{pmatrix}
+      p_0 \\ q_0
+    \end{pmatrix}
+    + \int_0^t f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\right)
+    = R\left(
+    \begin{pmatrix}
+      p_0 \\ q_0
+    \end{pmatrix}\right)
+    + \int_0^t R\circ f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\\
+    &= \begin{pmatrix}
+      -p_0 \\ q_0
+    \end{pmatrix}
+    - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+    = \begin{pmatrix}
+      -p_0 \\ q_0
+    \end{pmatrix}
+    + \int_0^{-t} f(-p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+    = \Phi^{-t}\begin{pmatrix}
+      -p_0 \\ q_0
+    \end{pmatrix} =
+    \Phi^{-t} \circ R(y_0)
+  \end{align*}
 \end{solution}
