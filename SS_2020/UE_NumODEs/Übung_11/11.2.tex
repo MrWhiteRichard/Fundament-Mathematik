@@ -35,5 +35,67 @@
 \end{exercise}
 
 \begin{solution}
-Beweis.
+Symplektischer Euler in unserem Fall macht
+\begin{align*}
+\begin{pmatrix}
+  p_{\ell + 1} \\ q_{\ell + 1}
+\end{pmatrix}
+= \begin{pmatrix}
+  p_{\ell} \\ q_{\ell}
+\end{pmatrix} +
+h\begin{pmatrix}
+  -q_{\ell} \\
+  p_{\ell + 1}
+\end{pmatrix},
+\end{align*}
+also $p_{\ell + 1} = p_{\ell} - hq_{\ell}$ und $q_{\ell + 1} = q_{\ell} + h(p_{\ell} - hq_{\ell})$. \\
+Jetzt wähle einfach ganz stumpf $p_0 = q_0 = 1$ mit $H(p_0,q_0) = 1$.
+\begin{align*}
+  p_1 &= 1 - h, \quad q_1 = 1 + h(1-h) = 1 + h - h^2 \\
+  H(p_1,q_1) &= \frac{(1-h)^2+ (1+h-h^2)^2}{2} = \frac{1+h^2-2h+h^4-2h^3-h^2+2h+1}{2}
+  = \frac{2+h^4-2h^3}{2} < 1 \text{ für } 0 < h < 2.
+\end{align*}
+\begin{align*}
+  &2H_h(p_{\ell + 1},q_{\ell + 1})
+  = \begin{pmatrix}
+    p_{\ell + 1} \\ q_{\ell + 1}
+  \end{pmatrix}^{\top}
+  \begin{pmatrix}
+    1 & - \nicefrac{h}{2} \\ -\nicefrac{h}{2} & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    p_{\ell + 1} \\ q_{\ell + 1}
+  \end{pmatrix}
+  = p_{\ell + 1}\left(p_{\ell + 1} - \frac{h}{2}q_{\ell + 1}\right) +
+  q_{\ell + 1}\left(q_{\ell + 1} - \frac{h}{2}p_{\ell + 1}\right) \\
+  &= (p_{\ell} - hq_{\ell})
+  \left((p_{\ell} - hq_{\ell}) - \frac{h}{2}(q_{\ell} + h(p_{\ell} - hq_{\ell}))\right) +
+  (q_{\ell} + h(p_{\ell} - hq_{\ell}))
+  \left((q_{\ell} + h(p_{\ell} - hq_{\ell})) - \frac{h}{2}(p_{\ell} - hq_{\ell})\right) \\
+  &= (p_{\ell} - hq_{\ell})
+  \left((p_{\ell} - hq_{\ell})\left(1-\frac{h^2}{2}\right) - \frac{h}{2}q_{\ell}\right) +
+  (q_{\ell} + h(p_{\ell} - hq_{\ell}))
+  \left(q_{\ell} + \frac{h}{2}(p_{\ell} - hq_{\ell})\right) \\
+  &= p_{\ell}
+  \left(p_{\ell}- \frac{h}{2}q_{\ell}\right)
+  + p_{\ell}\left(-\frac{h^2}{2}p_{\ell} - hq_{\ell}\left(1-\frac{h^2}{2}\right)\right)
+  -hq_{\ell}\left((p_{\ell} - hq_{\ell})\left(1-\frac{h^2}{2}\right)- \frac{h}{2}q_{\ell}\right) \\
+    &+ q_{\ell}\left(q_{\ell} + \frac{h}{2}p_{\ell}\right)
+  - \frac{h^2}{2}q_{\ell}^2
+  + h(p_{\ell} - hq_{\ell})\left(q_{\ell} + \frac{h}{2}(p_{\ell} - hq_{\ell})\right) \\
+  &= 2H_h(p_{\ell},q_{\ell}) +
+  p_{\ell}\left(-\frac{h^2}{2}p_{\ell} - hq_{\ell}\left(1-\frac{h^2}{2}\right)\right)
+  -q_{\ell}\left(h(p_{\ell} - hq_{\ell})\left(1-\frac{h^2}{2}\right)- \frac{h^2}{2}q_{\ell}\right) \\
+  &+ h(p_{\ell} - hq_{\ell})\left(q_{\ell} + \frac{h}{2}(p_{\ell} - hq_{\ell})\right)
+  - \frac{h^2}{2}q_{\ell}^2 \\
+  &= 2H_h(p_{\ell},q_{\ell}) +
+  p_{\ell}\left(-\frac{h^2}{2}p_{\ell} - hq_{\ell}\left(1-\frac{h^2}{2}\right)\right)
+  + h(p_{\ell} - hq_{\ell})\left(q_{\ell} + \frac{h}{2}(p_{\ell} - hq_{\ell})-
+  q_{\ell}\left(1-\frac{h^2}{2}\right)\right) \\
+  &= 2H_h(p_{\ell},q_{\ell}) +
+  p_{\ell}\left(-\frac{h^2}{2}p_{\ell} - hq_{\ell}\left(1-\frac{h^2}{2}\right)\right)
+  + p_{\ell}\frac{h^2}{2}(p_{\ell} - hq_{\ell}) \\
+  &= 2H_h(p_{\ell},q_{\ell}) - p_{\ell}hq_{\ell}
+\end{align*}
+Wer da noch durchblickt, kann gerne suchen, wo der letzte Term noch wegfällt.
 \end{solution}
