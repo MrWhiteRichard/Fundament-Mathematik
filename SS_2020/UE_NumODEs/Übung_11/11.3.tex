@@ -6,5 +6,26 @@
 \end{exercise}
 
 \begin{solution}
-Beweis.
+\begin{align*}
+  y_1 &= (\Psi^{\nicefrac{h}{2}})^*\circ\Psi^{\nicefrac{h}{2}}(y_0)
+  = (\Psi^{\nicefrac{h}{2}})^*(y_0 + \frac{h}{2}f(y_0))
+  = (\Psi^{-\nicefrac{h}{2}})^{-1}(y_0 + \frac{h}{2}f(y_0)) \\
+  &\iff \Psi^{-\nicefrac{h}{2}}(y_1) = y_0 + \frac{h}{2}f(y_0) \\
+  &\iff y_1 - \frac{h}{2}f(y_1) = y_0 + \frac{h}{2}f(y_0) \\
+  &\iff y_1 = y_0 + \frac{h}{2}(f(y_0) + f(y_1)).
+\end{align*}
+Wir erhalten die implizite Trapezregel, welche bekanntlich Ordnung 2 hat,
+was wir auch erwarten würden, da reversible Methoden gerade Konvergenzordnung haben.
+\begin{align*}
+  y_{0} &= \Psi^{-\nicefrac{h}{2}}(y_{\nicefrac{1}{2}}) = y_{\nicefrac{1}{2}} - \frac{h}{2}f(y_{\nicefrac{1}{2}})
+  \implies y_{\nicefrac{1}{2}} = y_0 + \frac{h}{2}f(y_{\nicefrac{1}{2}})\\
+  y_1 &= \Psi^{\nicefrac{h}{2}}\circ(\Psi^{\nicefrac{h}{2}})^*(y_0)
+  = \Psi^{\nicefrac{h}{2}}((\Psi^{-\nicefrac{h}{2}})^{-1}(y_0))
+  = \Psi^{\nicefrac{h}{2}}(y_0 + \frac{h}{2}f(y_{\nicefrac{1}{2}}))
+  = y_0 + \frac{h}{2}f(y_{\nicefrac{1}{2}}) + \frac{h}{2}f(y_0 + \frac{h}{2}f(y_{\nicefrac{1}{2}})) \\
+  &= y_0 + hf(y_{\nicefrac{1}{2}}) \\
+  y_1 + y_0 &= 2y_0 + hf(y_{\nicefrac{1}{2}}) = 2y_{\nicefrac{1}{2}} \implies
+  y_1 = y_0 + hf\left(\frac{y_0+y_1}{2}\right)
+\end{align*}
+und wir erhalten die implizite Mittelpunktsregel mit Ordnung 2.
 \end{solution}
