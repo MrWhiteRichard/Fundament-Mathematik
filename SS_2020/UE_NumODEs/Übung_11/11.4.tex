@@ -1,10 +1,10 @@
 \begin{exercise}
   Gegeben sei ein beliebiges $m$-stufiges Runge-Kutta-Verfahren mit Butcher-Tableau
-  \renewcommand{\arraystretch}{1.5}
+  \renewcommand{\arraystretch}{1.2}
     $\begin{matrix}
     c & \vline & A \\
     \hline
-    0 & \vline & b^{\top}
+     & \vline & b^{\top}
     \end{matrix}$
     und diskretem Fluss $\Psi^h$. Geben Sie die Butcher-Tableaus
     \begin{enumerate}[label = \textbf{\alph*)}]
@@ -14,5 +14,47 @@
 \end{exercise}
 
 \begin{solution}
-Beweis.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item \begin{align*}
+    y_1 &= \Psi^h(y_0) = y_0 + h\sum_{j=1}^mb_jf(t_0+c_jh,y_0+h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
+    y_0 &= \Psi^{-h}(y_1) = y_1 - h\sum_{j=1}^mb_jf(t_1-c_jh,y_1+h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
+    \implies& y_1 = y_0 + h\sum_{j=1}^mb_jf(t_1 - c_jh,y_1-h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+    = y_0 + h\sum_{j=1}^mb_jf(t_0 + (1-c_j)h,y_0 + h\sum_{\ell=1}^mb_{\ell}k_{\ell} - h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+  \end{align*}
+  Das zugehörige Butcher-Tableau lautet daher
+    \renewcommand{\arraystretch}{1.2}
+    $\begin{matrix}
+    \1 - c& \vline & \1 b^{\top} - A\\
+    \hline
+     & \vline & b^{\top}
+    \end{matrix}$
+  mit $\1 := (1,\dots,1)^{\top} \in \R^m$.
+  \begin{align*}
+    \1 b^{\top} = \begin{pmatrix}
+      b_1 & \hdots & b_m \\
+      \vdots & \ddots & \vdots \\
+      b_1 & \hdots & b_m
+    \end{pmatrix}
+  \end{align*}
+  \item \begin{align*}
+    \Psi^{-\nicefrac{h}{2}}(y_1) &= \Psi^{\nicefrac{h}{2}}(y_0) \\
+    \iff y_1 &= y_0 + \frac{h}{2}\sum_{j=1}^mb_jf(t_0 + \frac{c_j}{2}h,y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+    + \frac{h}{2}\sum_{j=1}^mb_j\overbrace{f(t_1 -\frac{c_j}{2}h,y_1-\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})}^{:= \widetilde{k}_j} \\
+    &= y_0 + \frac{h}{2}\sum_{j=1}^mb_j\left(f(t_0 + \frac{c_j}{2}h, y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})+
+    f(t_0 + (1-\frac{c_j}{2})h,y_1 - \frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})\right) \\
+    &= y_0 + \frac{h}{2}\sum_{j=1}^mb_j\left(f(t_0+\frac{c_j}{2}h,y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})+
+    f(t_0 + (1-\frac{c_j}{2})h,y_0 +\frac{h}{2}\sum_{\ell=1}^m\left(b_{\ell}k_{\ell}+b_{\ell}\widetilde{k}_{\ell}\right) -
+    \sum_{\ell = 1}^m A_{j\ell}k_{\ell})\right)
+  \end{align*}
+  Definiere
+  \begin{align*}
+  \widetilde{b} &:= \frac{1}{2}(b_1,\dots,b_m,b_1,\dots,b_m)^{\top}, \\
+  \widetilde{c} &:= \frac{1}{2}(c_1,\dots,c_m,2-c_1,\dots,2-c_m)^{\top}, \\
+  \widetilde{A} &:= \frac{1}{2}\begin{pmatrix}
+    A & 0 \\
+    b\1 & b\1 - A
+  \end{pmatrix}.
+  \end{align*}
+  Das sind die Zutaten für das benötigte Butcher-Tableau.
+\end{enumerate}
 \end{solution}
