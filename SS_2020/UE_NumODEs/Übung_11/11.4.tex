@@ -15,9 +15,14 @@
 
 \begin{solution}
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item \begin{align*}
-    y_1 &= \Psi^h(y_0) = y_0 + h\sum_{j=1}^mb_jf(t_0+c_jh,y_0+h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
-    y_0 &= \Psi^{-h}(y_1) = y_1 - h\sum_{j=1}^mb_jf(t_1-c_jh,y_1+h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
+  \item
+  Die Definition des diskreten Flusses liefert uns
+  \begin{align*}
+    z_1 &= \Psi^h(z_0) = z_0 + h\sum_{j=1}^mb_jf(t_0+c_jh,z_0+h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
+  \end{align*}
+  Damit erhalten wir für den adjungierten Fluss
+  \begin{align*}
+    y_0 &= \Psi^{-h}(y_1) = y_1 - h\sum_{j=1}^mb_jf(t_1-c_jh,y_1-h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}) \\
     \implies& y_1 = y_0 + h\sum_{j=1}^mb_jf(t_1 - c_jh,y_1-h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
     = y_0 + h\sum_{j=1}^mb_jf(t_0 + (1-c_j)h,y_0 + h\sum_{\ell=1}^mb_{\ell}k_{\ell} - h\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
   \end{align*}
@@ -39,12 +44,12 @@
   \item \begin{align*}
     \Psi^{-\nicefrac{h}{2}}(y_1) &= \Psi^{\nicefrac{h}{2}}(y_0) \\
     \iff y_1 &= y_0 + \frac{h}{2}\sum_{j=1}^mb_jf(t_0 + \frac{c_j}{2}h,y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})
-    + \frac{h}{2}\sum_{j=1}^mb_j\overbrace{f(t_1 -\frac{c_j}{2}h,y_1-\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})}^{:= \widetilde{k}_j} \\
+    + \frac{h}{2}\sum_{j=1}^mb_j\overbrace{f(t_1 -\frac{c_j}{2}h,y_1-\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}\widetilde{k_{\ell}})}^{=: \widetilde{k}_j} \\
     &= y_0 + \frac{h}{2}\sum_{j=1}^mb_j\left(f(t_0 + \frac{c_j}{2}h, y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})+
-    f(t_0 + (1-\frac{c_j}{2})h,y_1 - \frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})\right) \\
+    f(t_0 + (1-\frac{c_j}{2})h,y_1 - \frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}\widetilde{k_{\ell}})\right) \\
     &= y_0 + \frac{h}{2}\sum_{j=1}^mb_j\left(f(t_0+\frac{c_j}{2}h,y_0+\frac{h}{2}\sum_{\ell = 1}^m A_{j\ell}k_{\ell})+
     f(t_0 + (1-\frac{c_j}{2})h,y_0 +\frac{h}{2}\sum_{\ell=1}^m\left(b_{\ell}k_{\ell}+b_{\ell}\widetilde{k}_{\ell}\right) -
-    \sum_{\ell = 1}^m A_{j\ell}k_{\ell})\right)
+    \sum_{\ell = 1}^m A_{j\ell}\widetilde{k_{\ell}})\right)
   \end{align*}
   Definiere
   \begin{align*}
@@ -52,7 +57,7 @@
   \widetilde{c} &:= \frac{1}{2}(c_1,\dots,c_m,2-c_1,\dots,2-c_m)^{\top}, \\
   \widetilde{A} &:= \frac{1}{2}\begin{pmatrix}
     A & 0 \\
-    b\1 & b\1 - A
+    \1b^\top & \1 b^\top - A
   \end{pmatrix}.
   \end{align*}
   Das sind die Zutaten für das benötigte Butcher-Tableau.
