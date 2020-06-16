@@ -36,30 +36,75 @@
 \end{exercise}
 
 \begin{solution}
-Sei $y_0 := (p_0,q_0)^{\top}$
+\leavevmode \\
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Sei $y_0 := (p_0,q_0)^{\top}$
+    \begin{align*}
+      \Phi^t(y_0) &:= y_{y_0}(t) \\
+      R \circ \Phi^t(y_0) &= R(y_{y_0}(t)) = R\left(
+      \begin{pmatrix}
+        p_0 \\ q_0
+      \end{pmatrix}
+      + \int_0^t f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\right)
+      = R\left(
+      \begin{pmatrix}
+        p_0 \\ q_0
+      \end{pmatrix}\right)
+      + \int_0^t R\circ f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\\
+      &= \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+      - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+    \end{align*}
+    Jetzt gilt
+    \begin{align*}
+      \begin{pmatrix}
+        -p_{y_0}(t) \\ q_{y_0}(t)
+      \end{pmatrix}^{\prime}
+      &= \begin{pmatrix}
+        -f_1(p_{y_0}(t),q_{y_0}(t)) \\ f_2(p_{y_0}(t),q_{y_0}(t))
+      \end{pmatrix}
+      = \begin{pmatrix}
+        f_1(-p_{y_0}(t),q_{y_0}(t)) \\ f_2(-p_{y_0}(t),q_{y_0}(t))
+      \end{pmatrix} \\
+      \begin{pmatrix}
+        -p_{y_0}(0) \\ q_{y_0}(0)
+      \end{pmatrix}
+      &= \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+    \end{align*}
+    Also ist $(-p_{y_0},q_{y_0})$ die Lösung des Anfangswertproblems mit Startwert
+    $(p_0,q_0)$ und es gilt
+    \begin{align*}
+      R \circ \Phi^t(y_0) &= \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+      - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+      = \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+      - \int_0^{t} f\circ y_{R(y_0)}(\tau) d\tau \\
+      &= \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+      - y_{R(y_0)}(t)
+      = y_{R(y_0)}(-t) = \Phi^{-t} \circ R(y_0).
+    \end{align*}
+  \item
+  Seien $\Psi^h(y_0) = y_0 + h\sum_{k=1}^mb_jk_j$ und $\Psi^{-h}(R(y_0)) = y_0 + h\sum_{k=1}^mb_jl_j$.
+  Dann gilt
   \begin{align*}
-    \Phi^t(y_0) &:= y_{y_0}(t) \\
-    R \circ \Phi^t(y_0) &= R(y_{y_0}(t)) = R\left(
-    \begin{pmatrix}
-      p_0 \\ q_0
-    \end{pmatrix}
-    + \int_0^t f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\right)
-    = R\left(
-    \begin{pmatrix}
-      p_0 \\ q_0
-    \end{pmatrix}\right)
-    + \int_0^t R\circ f(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau\\
-    &= \begin{pmatrix}
-      -p_0 \\ q_0
-    \end{pmatrix}
-    - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
-    = \begin{pmatrix}
-      -p_0 \\ q_0
-    \end{pmatrix}
-    + \int_0^{-t} f(-p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
-    = \Phi^{-t}\begin{pmatrix}
-      -p_0 \\ q_0
-    \end{pmatrix} =
-    \Phi^{-t} \circ R(y_0)
+    \|k_j + l_j\| = \|f(y + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}) + f(R(y) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})\|
+    \leq L\|y + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell} + R(y) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}\|
   \end{align*}
+  \begin{align*}
+    R \circ \Psi^h (y_0) &= R(y_0 + h\sum_{k=1}^mb_jk_j) = R(y_0)+ h\sum_{k=1}^mb_jR(k_j) \\
+    &= R(y_0)+ h\sum_{k=1}^mb_jR \circ f(y_0 + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})
+    = R(y_0)- h\sum_{k=1}^mb_jf \circ R(y_0 + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}) \\
+    &= R(y_0)- h\sum_{k=1}^mb_jf(R(y_0) + h\sum_{\ell = 1}^mA_{j\ell}R(k_{\ell})) =
+    \Psi^{-h} \circ R(y_0) = R(y_0) + h\sum_{k=1}^mb_jf(R(y_0) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})
+  \end{align*}
+\end{enumerate}
+
 \end{solution}

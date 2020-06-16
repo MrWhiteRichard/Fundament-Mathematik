@@ -17,27 +17,6 @@ Symplektischer Euler 1:
     q_{\ell} + hf_2(p_{\ell},q_{\ell + 1})
   \end{pmatrix}.
 \end{align*}
-Definiere die Funktion
-\begin{align*}
-  F(t + x) := \begin{pmatrix}
-    p(t+x) \\ q(t+h-x)
-  \end{pmatrix}
-\end{align*}
-Taylor:
-\begin{align*}
-  \begin{pmatrix}
-    p(t+h) \\ q(t)
-  \end{pmatrix} =
-  F(t+h) = F(t) + hF^{\prime}(t) + \Landau{h^2}
-  = \begin{pmatrix}
-    p(t) \\ q(t+h)
-  \end{pmatrix}
-  + h
-  \begin{pmatrix}
-    f_1(p(t),q(t+h)) \\ -f_2(p(t),q(t+h))
-  \end{pmatrix}
-  + \Landau{h^2}
-\end{align*}
 Symplektischer Euler 2:
 \begin{align*}
   \begin{pmatrix}
@@ -49,20 +28,22 @@ Symplektischer Euler 2:
     q_{\ell} + hf_2(p_{\ell + 1},q_{\ell})
   \end{pmatrix}.
 \end{align*}
-Taylor:
+Wir zeigen exemplarisch die Konvergenzordnung vom ersten symplektischen
+Euler, im zweiten Fall geht man komplett analog vor.
+Wir entwickeln nach Taylor mit Anschlussstelle $t$ und erhalten
 \begin{align*}
-\begin{pmatrix}
-  p(t) \\ q(t+h)
-\end{pmatrix} =
-F(t) = F(t + h) - hF^{\prime}(t + h) + \Landau{h^2}
-= \begin{pmatrix}
-  p(t+h) \\ q(t)
-\end{pmatrix}
-- h
-\begin{pmatrix}
-  f_1(p(t+h),q(t)) \\ -f_2(p(t+h),q(t))
-\end{pmatrix}
-+ \Landau{h^2}
+  y(t+h) = y(t) + hy^{\prime}(t) + \Landau{h^2} = y(t) + hf(y(t)) + \Landau{h^2} =
+  y(t) + hf(p(t),q(t)) + \Landau{h^2}.
+\end{align*}
+Es folgt
+\begin{align*}
+  \tau(t,y,h) = \|y(t+h) - y(t) - h\Phi(t,y(t),h)\| = \|y(t+h) - y(t) - hf(p(t),q(t+h))\|
+  = h\|f(p(t),q(t)) - f(p(t),q(t+h))\|.
+\end{align*}
+Jetzt verwenden wir die Lipschitzstetigkeit von $f$ und $y$:
+\begin{align*}
+  \tau(t,y,h) = h\|f(p(t),q(t)) - f(p(t),q(t+h))\| \leq hL_1\|(0,q(t)-q(t+h))^{\top}\|
+  \leq hL_1L2\|h\| = L_1L_2h^2
 \end{align*}
 Gegenbeispiel: Probieren wir mal was ganz einfaches:
 \begin{align*}
@@ -85,11 +66,12 @@ Der erste symplektische Euler 1 liefert für $h > 0$
   \begin{pmatrix}
     p_1 \\ q_1
   \end{pmatrix}
-  = \begin{pmatrix}
+  &= \begin{pmatrix}
     1+h \\ \frac{1}{1-h}
   \end{pmatrix} \\
-  \|p(h) - p_1\| = \|\exp(h) - (1+h)\| = \|\sum_{n = 0}^{\infty}\frac{h^n}{n!} - (1+h)\|
-  = \|\sum_{n = 2}^{\infty}\frac{h^n}{n!}\| \geq \|\frac{h^2}{2}\|.
+  \|p(h) - p_1\| &= \|\exp(h) - (1+h)\| = \left\|\sum_{n = 0}^{\infty}\frac{h^n}{n!} - (1+h)\right\|
+  = \left\|\sum_{n = 2}^{\infty}\frac{h^n}{n!}\right\| \geq \left\|\frac{h^2}{2}\right\|.
 \end{align*}
-Damit kann das Verfahren nicht Konsistenzordnung $2$ haben.
+Damit existiert für alle $C > 0$ ein $h_0 > 0$, sodass für alle $h < h_0: \|p(h)-p_1\| \geq Ch^3$.
+und das Verfahren kann nicht Konsistenzordnung $2$ haben.
 \end{solution}
