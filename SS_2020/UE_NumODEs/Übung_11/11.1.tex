@@ -5,5 +5,91 @@
 \end{exercise}
 
 \begin{solution}
-Beweis.
+\leavevmode \\
+Symplektischer Euler 1:
+\begin{align*}
+  \begin{pmatrix}
+    p_{\ell + 1} \\ q_{\ell + 1}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    p_{\ell} + hf_1(p_{\ell},q_{\ell + 1}) \\
+    q_{\ell} + hf_2(p_{\ell},q_{\ell + 1})
+  \end{pmatrix}.
+\end{align*}
+Definiere die Funktion
+\begin{align*}
+  F(t + x) := \begin{pmatrix}
+    p(t+x) \\ q(t+h-x)
+  \end{pmatrix}
+\end{align*}
+Taylor:
+\begin{align*}
+  \begin{pmatrix}
+    p(t+h) \\ q(t)
+  \end{pmatrix} =
+  F(t+h) = F(t) + hF^{\prime}(t) + \Landau{h^2}
+  = \begin{pmatrix}
+    p(t) \\ q(t+h)
+  \end{pmatrix}
+  + h
+  \begin{pmatrix}
+    f_1(p(t),q(t+h)) \\ -f_2(p(t),q(t+h))
+  \end{pmatrix}
+  + \Landau{h^2}
+\end{align*}
+Symplektischer Euler 2:
+\begin{align*}
+  \begin{pmatrix}
+    p_{\ell + 1} \\ q_{\ell + 1}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    p_{\ell} + hf_1(p_{\ell + 1},q_{\ell}) \\
+    q_{\ell} + hf_2(p_{\ell + 1},q_{\ell})
+  \end{pmatrix}.
+\end{align*}
+Taylor:
+\begin{align*}
+\begin{pmatrix}
+  p(t) \\ q(t+h)
+\end{pmatrix} =
+F(t) = F(t + h) - hF^{\prime}(t + h) + \Landau{h^2}
+= \begin{pmatrix}
+  p(t+h) \\ q(t)
+\end{pmatrix}
+- h
+\begin{pmatrix}
+  f_1(p(t+h),q(t)) \\ -f_2(p(t+h),q(t))
+\end{pmatrix}
++ \Landau{h^2}
+\end{align*}
+Gegenbeispiel: Probieren wir mal was ganz einfaches:
+\begin{align*}
+  \begin{pmatrix}
+    p \\ q
+  \end{pmatrix}^{\prime}
+  = \begin{pmatrix}
+    p \\ q
+  \end{pmatrix}, \quad
+  \begin{pmatrix}
+    p(0) \\ q(0)
+  \end{pmatrix} =
+  \begin{pmatrix}
+    1 \\ 1
+  \end{pmatrix}
+\end{align*}
+mit der analytischen Lösung $p(t) = q(t) = \exp(t)$.
+Der erste symplektische Euler 1 liefert für $h > 0$
+\begin{align*}
+  \begin{pmatrix}
+    p_1 \\ q_1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1+h \\ \frac{1}{1-h}
+  \end{pmatrix} \\
+  \|p(h) - p_1\| = \|\exp(h) - (1+h)\| = \|\sum_{n = 0}^{\infty}\frac{h^n}{n!} - (1+h)\|
+  = \|\sum_{n = 2}^{\infty}\frac{h^n}{n!}\| \geq \|\frac{h^2}{2}\|.
+\end{align*}
+Damit kann das Verfahren nicht Konsistenzordnung $2$ haben.
 \end{solution}
