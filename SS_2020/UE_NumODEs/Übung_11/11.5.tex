@@ -38,9 +38,8 @@
 \begin{solution}
 \leavevmode \\
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item Sei $y_0 := (p_0,q_0)^{\top}$
+  \item Sei $y_0 := (p_0,q_0)^{\top}$, laut Definition ist $\Phi^t(y_0) := y_{y_0}(t)$. Es gilt
     \begin{align*}
-      \Phi^t(y_0) &:= y_{y_0}(t) \\
       R \circ \Phi^t(y_0) &= R(y_{y_0}(t)) = R\left(
       \begin{pmatrix}
         p_0 \\ q_0
@@ -58,24 +57,13 @@
     \end{align*}
     Jetzt gilt
     \begin{align*}
-      \begin{pmatrix}
-        -p_{y_0}(t) \\ q_{y_0}(t)
-      \end{pmatrix}^{\prime}
-      &= \begin{pmatrix}
-        -f_1(p_{y_0}(t),q_{y_0}(t)) \\ f_2(p_{y_0}(t),q_{y_0}(t))
-      \end{pmatrix}
-      = \begin{pmatrix}
-        f_1(-p_{y_0}(t),q_{y_0}(t)) \\ f_2(-p_{y_0}(t),q_{y_0}(t))
-      \end{pmatrix} \\
-      \begin{pmatrix}
-        -p_{y_0}(0) \\ q_{y_0}(0)
-      \end{pmatrix}
-      &= \begin{pmatrix}
-        -p_0 \\ q_0
-      \end{pmatrix}
+      R(p_{y_0}(t),q_{y_0}(t))^{\prime} &=
+      R(f(p_{y_0}(t),q_{y_0}(t)))
+      = f(R(p_{y_0}(t),q_{y_0}(t))) \\
+      R(p_{y_0}(0),q_{y_0}(0)) &= (-p_0,q_0)^{\top}.
     \end{align*}
     Also ist $(-p_{y_0},q_{y_0})$ die Lösung des Anfangswertproblems mit Startwert
-    $(p_0,q_0)$ und es gilt
+    $(-p_0,q_0)$ und es gilt
     \begin{align*}
       R \circ \Phi^t(y_0) &= \begin{pmatrix}
         -p_0 \\ q_0
@@ -85,25 +73,48 @@
         -p_0 \\ q_0
       \end{pmatrix}
       - \int_0^{t} f\circ y_{R(y_0)}(\tau) d\tau \\
-      &= \begin{pmatrix}
-        -p_0 \\ q_0
-      \end{pmatrix}
-      - y_{R(y_0)}(t)
-      = y_{R(y_0)}(-t) = \Phi^{-t} \circ R(y_0).
+      &= y_{R(y_0)}(-t) = \Phi^{-t} \circ R(y_0).
     \end{align*}
   \item
-  Seien $\Psi^h(y_0) = y_0 + h\sum_{k=1}^mb_jk_j$ und $\Psi^{-h}(R(y_0)) = y_0 + h\sum_{k=1}^mb_jl_j$.
+  Seien $\Psi^h(y_0) = y_0 + h\sum_{k=1}^mb_jk_j$ und $\Psi^{-h}(R(y_0)) = R(y_0) - h\sum_{k=1}^mb_j\widetilde{k}_j$.
   Dann gilt
   \begin{align*}
-    \|k_j + l_j\| = \|f(y + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}) + f(R(y) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})\|
-    \leq L\|y + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell} + R(y) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}\|
+    \max_{j=1,\dots,m}\|\widetilde{k}_j + R(k_j)\| &= \max_{j=1,\dots,m}
+    \|f(R(y_0) - h\sum_{\ell = 1}^m A_{j\ell}\widetilde{k}_{\ell}) +
+    R(f(y_0 + h\sum_{\ell = 1}^m A_{j\ell}k_{\ell}))\| \\
+    &= \max_{j=1,\dots,m}\|f(R(y_0) + h\sum_{\ell = 1}^m A_{j\ell}\widetilde{k}_{\ell}))
+    - f(R(y_0)) + h\sum_{\ell = 1}^m A_{j\ell}R(k_{\ell}))\| \\
+    &\leq \max_{j=1,\dots,m}L\|h\sum_{\ell = 1}^m A_{j\ell}\widetilde{k}_{\ell} + A_{j\ell}R(k_{\ell})\| \\
+    &\leq \max_{j=1,\dots,m}Lh\sum_{\ell = 1}^m |A_{j\ell}|\|\sum_{\ell = 1}^m\widetilde{k}_{\ell} + R(k_{\ell})\|
+    < \max_{j=1,\dots,m}\|\sum_{\ell = 1}^m\widetilde{k}_{\ell} + R(k_{\ell})\| \text{ für $h$ hinreichend klein.}
   \end{align*}
+  Also folgt für $j = 1,\dots,m: -\widetilde{k}_j = R(k_j)$. Damit berechnen wir
   \begin{align*}
-    R \circ \Psi^h (y_0) &= R(y_0 + h\sum_{k=1}^mb_jk_j) = R(y_0)+ h\sum_{k=1}^mb_jR(k_j) \\
-    &= R(y_0)+ h\sum_{k=1}^mb_jR \circ f(y_0 + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})
-    = R(y_0)- h\sum_{k=1}^mb_jf \circ R(y_0 + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell}) \\
-    &= R(y_0)- h\sum_{k=1}^mb_jf(R(y_0) + h\sum_{\ell = 1}^mA_{j\ell}R(k_{\ell})) =
-    \Psi^{-h} \circ R(y_0) = R(y_0) + h\sum_{k=1}^mb_jf(R(y_0) + h\sum_{\ell = 1}^mA_{j\ell}k_{\ell})
+    R \circ \Psi^h(y_0) = R(y_0 + h\sum_{k=1}^mb_jk_j)
+    = R(y_0) + h\sum_{k=1}^mb_jR(k_j) = R(y_0) - h\sum_{k=1}^mb_j\widetilde{k}_j
+    = \Psi^{-h}(R(y_0)).
+  \end{align*}
+  \item Wenn $M$ symmetrisch positiv definit ist, dann auch $M^{-1}$
+  \begin{align*}
+    f(p,q) = \begin{pmatrix}
+      -\nabla_q H(p,q) \\ \nabla_p H(p,q)
+    \end{pmatrix}
+    = \begin{pmatrix}
+      -\nabla U(q) \\ \frac{1}{2}(M^{-1}p + p^{\top}M^{-1})
+    \end{pmatrix}
+    = \begin{pmatrix}
+      -\nabla U(q) \\ M^{-1}p
+    \end{pmatrix}.
+  \end{align*}
+  Damit gilt nun
+  \begin{align*}
+    R\circ f (p,q) = \begin{pmatrix}
+      \nabla U(q) \\ M^{-1}p
+    \end{pmatrix}
+    = - \begin{pmatrix}
+      -\nabla U(q) \\ M^{-1}(-p)
+    \end{pmatrix}
+    = -f(-p,q) = -f\circ R(p,q).
   \end{align*}
 \end{enumerate}
 
