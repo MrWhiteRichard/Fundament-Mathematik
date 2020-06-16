@@ -54,25 +54,29 @@
         -p_0 \\ q_0
       \end{pmatrix}
       - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+      = \begin{pmatrix}
+        -p_0 \\ q_0
+      \end{pmatrix}
+      + \int_0^{-t} f\circ R(p_{y_0}(-\tau),q_{y_0}(-\tau)) d\tau
     \end{align*}
-    Jetzt gilt
+    Wir definieren nun $\widetilde{y}(t) := R(p_{y_0}(t),q_{y_0}(t))$
     \begin{align*}
-      R(p_{y_0}(t),q_{y_0}(t))^{\prime} &=
-      R(f(p_{y_0}(t),q_{y_0}(t)))
-      = f(R(p_{y_0}(t),q_{y_0}(t))) \\
+      \widetilde{y}^{\prime}(t) = R(p_{y_0}(-t),q_{y_0}(-t))^{\prime} &=
+      -R(f(p_{y_0}(-t),q_{y_0}(-t)))
+      = f(R(p_{y_0}(-t),q_{y_0}(-t))) = f(\widetilde{y}(t))\\
       R(p_{y_0}(0),q_{y_0}(0)) &= (-p_0,q_0)^{\top}.
     \end{align*}
-    Also ist $(-p_{y_0},q_{y_0})$ die Lösung des Anfangswertproblems mit Startwert
+    Also ist $\widetilde{y}(t) = y_{R(y_0)}(t)$ die Lösung des Anfangswertproblems mit Startwert
     $(-p_0,q_0)$ und es gilt
     \begin{align*}
       R \circ \Phi^t(y_0) &= \begin{pmatrix}
         -p_0 \\ q_0
       \end{pmatrix}
-      - \int_0^t f\circ R(p_{y_0}(\tau),q_{y_0}(\tau)) d\tau
+      + \int_0^{-t} f\circ R(p_{y_0}(-\tau),q_{y_0}(-\tau)) d\tau
       = \begin{pmatrix}
         -p_0 \\ q_0
       \end{pmatrix}
-      - \int_0^{t} f\circ y_{R(y_0)}(\tau) d\tau \\
+      + \int_0^{-t} f\circ y_{R(y_0)}(\tau) d\tau \\
       &= y_{R(y_0)}(-t) = \Phi^{-t} \circ R(y_0).
     \end{align*}
   \item
