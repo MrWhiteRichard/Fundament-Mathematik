@@ -37,13 +37,14 @@ Wir entwickeln nach Taylor mit Anschlussstelle $t$ und erhalten
 \end{align*}
 Es folgt
 \begin{align*}
-  \tau(t,y,h) = \|y(t+h) - y(t) - h\Phi(t,y(t),h)\| = \|y(t+h) - y(t) - hf(p(t),q(t+h))\|
-  = h\|f(p(t),q(t)) - f(p(t),q(t+h))\|.
+  \tau(t,y,h) &= \|y(t+h) - y(t) - h\Phi(t,y(t),h)\| \\
+   &= \|y(t+h) - y(t) - hf(p(t),q(t+h))\|
+  \leq h\|f(p(t),q(t)) - f(p(t),q(t+h))\| + \Landau{h^2}.
 \end{align*}
 Jetzt verwenden wir die Lipschitzstetigkeit von $f$ und $y$:
 \begin{align*}
-  \tau(t,y,h) = h\|f(p(t),q(t)) - f(p(t),q(t+h))\| \leq hL_1\|(0,q(t)-q(t+h))^{\top}\|
-  \leq hL_1L_2\|h\| = L_1L_2h^2
+  \tau(t,y,h) = h\|f(p(t),q(t)) - f(p(t),q(t+h))\| + \Landau{h^2} \leq hL_1\|(0,q(t)-q(t+h))^{\top}\| + \Landau{h^2}
+  \leq hL_1L_2\|h\|+ \Landau{h^2} = L_1L_2h^2 + \Landau{h^2} = \Landau{h^2}.
 \end{align*}
 Gegenbeispiel: Probieren wir mal was ganz einfaches:
 \begin{align*}
