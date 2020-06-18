@@ -20,7 +20,57 @@ Zeige, dass der Operator $\Int{\phi}{E}$ genau dann kompakt ist, wenn
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
-
+Der Operator $A := \Int{\phi}{E}$ wird durch folgende Gleichung charakterisiert:
+\begin{align}
+  \left(Ag,h\right) = \int_{\C}\phi dE_{g,h}, \qquad E_{g,h}(\Delta) := (E(\Delta)g,h) = (g,E(\Delta)h).
+\end{align}
+$\phi: \C \to \C$ ist dabei eine beschränkte, messbare Funktion. \\
+Approximiere $A$ mit $A_n := \Int{\phi}{E_{\nicefrac{1}{n}}}$, wobei
+\begin{align*}
+  B_{\nicefrac{1}{n}} &:= \left\{\omega \in \C: |\phi(\omega)| \geq \frac{1}{n}\right\}, \\
+  E_{\nicefrac{1}{n}}(\Delta) &:= E(\Delta \cap B_{\nicefrac{1}{n}}).
+\end{align*}
+Damit wird für $n \in \N$ beliebig klarerweise wieder ein Spektralmaß definiert. \\
+Zwei Behauptungen: \\
+Erstens: $A_n$ hat endlich-dimensionales Bild. \\
+Dazu betrachte $E_{g,h}^{\nicefrac{1}{n}}(\Delta) := (E_{\nicefrac{1}{n}}(\Delta)g,h)$
+\begin{align*}
+  \dim (\ran(E_{\nicefrac{1}{n}}(\C))) = \dim (\ran(E(B_{\nicefrac{1}{n}}))) < \infty.
+\end{align*}
+Nun folgt für alle $h \in \ker(E(B_{\nicefrac{1}{n}}))$
+\begin{align*}
+  (A_ng,h) = (g,E_{\nicefrac{1}{n}}(\Delta)h) = (g,0) = 0,
+\end{align*}
+also $\ker(E(B_{\nicefrac{1}{n}})) \subseteq \ran(A_n)^{\bot}$ und damit
+$\ker(E(B_{\nicefrac{1}{n}}))^{\bot} \supseteq \ran(A_n)$.
+Jetzt verwenden wir, dass $E(B_{\nicefrac{1}{n}})$ ein selbstadjungierter
+Operator ist und erhalten mit Proposition 6.6.2
+\begin{align*}
+  \ker(E(B_{\nicefrac{1}{n}}))^{\bot} = (\ran(E(B_{\nicefrac{1}{n}})^*)^{\bot})^{\bot} = \overline{\ran(E(B_{\nicefrac{1}{n}}))}
+  = \ran(E(B_{\nicefrac{1}{n}})).
+\end{align*}
+Also gilt
+\begin{align*}
+  \dim(\ran(A_n)) \leq \dim(\ran(E(B_{\nicefrac{1}{n}}))) < \infty.
+\end{align*}
+Zweitens: $A_n \to A$ in der Operatornorm. \\
+Dazu berechne zuerst
+\begin{align*}
+  (E - E_{\nicefrac{1}{n}})(\Delta) = E(\Delta) - E(\Delta \cap B_{\nicefrac{1}{n}}) = E(\Delta\cap B_{\nicefrac{1}{n}}^{\complement})
+\end{align*}
+\begin{align*}
+  \|(A - A_n)x\|^2 &= ((A-A_n)x,(A-A_n)x) = \int_{\C}\phi d(E_{x,(A-A_n)x} - E^{\nicefrac{1}{n}}_{x,(A-A_n)x})
+  \leq \|\phi\|_{\infty}|E_{x,(A-A_n)x} - E^{\nicefrac{1}{n}}_{x,(A-A_n)x}|(\C) \\
+  &= \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|E_{x,(A-A_n)x} - E^{\nicefrac{1}{n}}_{x,(A-A_n)x}(\Delta_j)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
+  &=  \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|(E(\Delta_j\cap B_{\nicefrac{1}{n}}^{\complement})x, (A-A_n)x)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\}
+\end{align*}
+Sei umgekehrt $\Int{\phi}{E}$ kompakt. Angenommen, es existiert ein $r_0 > 0$,
+sodass
+\begin{align*}
+  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r_0}} = \infty.
+\end{align*}
+Dann ist insbesondere auch
+\begin{align*}
+  \dim(H) = \dim(\ran(E(\C))) = \infty.
+\end{align*}
 \end{solution}
