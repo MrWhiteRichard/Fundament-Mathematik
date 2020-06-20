@@ -1,12 +1,81 @@
 \begin{exercise}[34/2]
 
-Sei $\mu$ ein endliches positives Maß auf $(\Omega, \mathcal{A})$, und sei $E(\Delta) := M_{\1_\Delta} \in \mathcal{B}(L^2(\mu))$ wobei $M_{\1_\Delta}$ der Multiplikationsoperator mit $\1_\Delta$ ist (d.h. $M_{\1_\Delta} f = \1_\Delta \cdot f$).
-Zeige, dass $E$ ein Spektralmaß ist, und berechne $\Int{\phi}{E}$ für $\phi \in \mathrm{BM}(\Omega, \C)$.
+Sei $\mu$ ein endliches positives Maß auf $(\Omega, \mathcal{A})$,
+und sei $E(\Delta) := M_{\1_\Delta} \in \mathcal{B}(L^2(\mu))$ wobei $M_{\1_\Delta}$
+der Multiplikationsoperator mit $\1_\Delta$ ist (d.h. $M_{\1_\Delta} f = \1_\Delta \cdot f$).
+Zeige, dass $E$ ein Spektralmaß ist, und berechne $A := \Int{\phi}{E}$ für $\phi \in \mathrm{BM}(\Omega, \C)$.
 
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
-
+Wir zeigen zuerst, dass $E$ ein Spektralmaß ist, also
+\begin{itemize}
+  \item $\forall \Delta \in \mathcal{A}: E(\Delta)$ ist eine Orthogonalprojektion: \\
+  Zuallererst bemerken wir, dass $E(\Delta)$ wohldefiniert ist, da für $f \in L^2(\mu)$
+  \begin{align*}
+    \int_\Omega |E(\Delta)f|^2 d\mu = \int_\Delta |f|^2 \leq \|f\|_{L^2}.
+  \end{align*}
+  Damit ist $E(\Delta)$ sogar eine Kontraktion und insbesondere ein beschränkter Operator. \\
+  Man sieht leicht, dass $E(\Delta)$ eine Projektion ist:
+  \begin{align*}
+    E(\Delta)(\lambda f + g) &= M_{\1_\Delta}(\lambda f + g) = \lambda M_{\1_\Delta}f
+    + M_{\1_\Delta}g = \lambda E(\Delta)(f) + E(\Delta)(g), \\
+    E(\Delta)^2 &= M_{\1_\Delta}^2 = M_{\1_\Delta} = E(\Delta).
+  \end{align*}
+  Wir wissen, dass eine Projektion genau dann orthogonal ist, wenn $E(\Delta) = E(\Delta)^*$.
+  Seien $f,g \in L^2(\mu)$ beliebig und berechne
+  \begin{align*}
+    (E(\Delta)f,g) = \int_\Omega \1_\Delta f\overline{g} d\mu
+    = \int_\Omega  f\overline{ \1_\Delta g} d\mu = (f,E(\Delta)g).
+  \end{align*}
+  \item $E(\emptyset) = 0, E(\Omega) = 1$:
+  \begin{align*}
+    E(\emptyset) = M_{\1_{\emptyset}} = 0. \\
+    E(\Omega) = M_{\1_{\Omega}} = I. \\
+  \end{align*}
+  \item $\forall \Delta_1,\Delta_2 \in \mathcal{A}:
+  E(\Delta_1 \cap \Delta_2) = E(\Delta_1)E(\Delta_2)$: \\
+  Seien $\Delta_1,\Delta_2 \in \mathcal{A}, f \in L^2(\mu)$ beliebig. Es gilt
+  \begin{align*}
+    E(\Delta_1 \cap \Delta_2)f = M_{\1_{\Delta_1 \cap \Delta_2}}f
+    = \1_{\Delta_1 \cap \Delta_2}f = \1_{\Delta_1}\1_{\Delta_2}f
+    = E(\Delta_1)E(\Delta_2)f.
+  \end{align*}
+  \item Für alle $(\Delta_n)_{n \in \N} \subset \mathcal{A}$ paarweise disjunkt, $f \in L^2(\mu)$ gilt $E(\dot\bigcup_{n \in \N}\Delta_n)f = \sum_{n \in \N}E(\Delta_n)f$: \\
+  Wir müssen also zeigen, dass die Funktion $\sum_{n \in \N}\1_{\Delta_n}f$
+  in der $L^2(\mu)$-Norm gegen $\1_{\bigcup_{n \in \N}\Delta_n}f$ konvergiert.
+  Die Funktionenfolge $g_k := \sum_{n = 1}^k\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f$ ist monoton nichtfallend mit $g_k \geq -f$ für $k \in \N$
+  und konvergiert punktweise gegen $0$.
+  Mit dem Satz von Beppo Levi folgt daher
+  \begin{align*}
+  \lim_{N \to \infty}\int_\Omega |\sum_{n = 1}^N\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f|^2 d\mu
+  &= \lim_{N \to \infty}\int_\Omega \1_{\bigcup_{n = 1}^N\Delta_n}f -
+  \1_{\bigcup_{n \in \N}\Delta_n}f
+   d\mu \\
+  &= \int_\Omega \lim_{N \to \infty} \1_{\bigcup_{n = 1}^N\Delta_n}f -
+  \1_{\bigcup_{n \in \N}\Delta_n}f d\mu \xrightarrow{N \to \infty} 0.
+  \end{align*}
+\end{itemize}
+Sei nun $\phi \in BM(\Omega,\C)$ beliebig.
+\begin{align*}
+  (Ag,h) = \int_{\Omega}\phi dE_{g,h}.
+\end{align*}
+Die Frage ist jetzt: Was ist $E_{g,h}$ für ein Maß?
+\begin{align*}
+  E_{g,h}(\Delta) = (E(\Delta)g,h).
+\end{align*}
+Mittels dem Approximationssatz für messbare Funktionen können wir $\phi$
+als punktweisen Grenzwert einer Folge von Treppenfunktionen darstellen.
+Da $\phi$ beschränkt ist, können wir diese Folge sogar monoton nichtfallend wählen.
+Wieder bemühen wir den alten Beppo Levi:
+\begin{align*}
+  (Ag,h) &= \int_{\Omega}\phi dE_{g,h} = \int_{\Omega}\lim_{n \to \infty}
+  \sum_{k=0}^{k(n)}\alpha_k\1_{\Delta_k} dE_{g,h}
+  = \lim_{n \to \infty}\int_{\Omega}\sum_{k=0}^{k(n)}\alpha_k\1_{\Delta_k} dE_{g,h} \\
+  &= \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_k\int_{\Omega}\1_{\Delta_k} dE_{g,h}
+  = \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_k(E(\Delta_k)g,h)
+  = \lim_{n \to \infty}\left(\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)g,h\right) \\
+  &= \left(\lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)g,h\right).
+\end{align*}
+Also gilt $\Int{\phi}{E} = \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)$.
 \end{solution}
