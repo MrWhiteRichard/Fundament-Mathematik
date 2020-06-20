@@ -13,47 +13,43 @@ D.h.
 
 \begin{proof}
 
-Seien $i = 1, \ldots, n$ und $A_i$ die Matrix $(v^{(1)}, \ldots, v^{(n-1)})$ ohne die $i$-te Zeile und letzte Spalte.
-
-Sei $j = 1, \ldots, n-1$ und $B_j = (v^{(1)}, \ldots, v^{(n-1)}, v^{(j)})$.
-Weil bei den Vektoren, die $B_j$ bilden, $v^{(j)}$ doppelt vorkommt, sind diese linear abhängig.
-Also, ist $B_j$ singulär und $\det{B_j} = 0$.
+Seien $i = 1, \ldots, n-1$ und $A_i = (v^{(1)}, \ldots, v^{(n-1)}, v^{(i)})$.
+Weil bei den Vektoren, die $A_i$ bilden, $v^{(i)}$ doppelt vorkommt, sind diese linear abhängig.
+Also, ist $A_i$ singulär und $\det{A_i} = 0$.
 
 \begin{align*}
-  v^{(n)}_i
+  v^{(n)}_j
   :=
   \begin{vmatrix}
-    v^{(1)}_1 & v^{(2)}_1 & \cdots & v^{(n-1)}_1 & \delta_{1 i} \\
-    v^{(1)}_2 & v^{(2)}_2 & \cdots & v^{(n-1)}_2 & \delta_{2 i} \\
+    v^{(1)}_1 & v^{(2)}_1 & \cdots & v^{(n-1)}_1 & \delta_{1 j} \\
+    v^{(1)}_2 & v^{(2)}_2 & \cdots & v^{(n-1)}_2 & \delta_{2 j} \\
     \vdots    & \vdots    & \ddots & \vdots      & \vdots \\
-    v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n-1)}_n & \delta_{n i}
+    v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n-1)}_n & \delta_{n j}
   \end{vmatrix},
   \quad
-  \det{B_j}
+  j = 1, \ldots, n,
+  \quad
+  \det{A_i}
   =
   \begin{vmatrix}
-    v^{(1)}_1 & v^{(2)}_1 & \cdots & v^{(n-1)}_1 & v^{(j)}_1 \\
-    v^{(1)}_2 & v^{(2)}_2 & \cdots & v^{(n-1)}_2 & v^{(j)}_2 \\
+    v^{(1)}_1 & v^{(2)}_1 & \cdots & v^{(n-1)}_1 & v^{(i)}_1 \\
+    v^{(1)}_2 & v^{(2)}_2 & \cdots & v^{(n-1)}_2 & v^{(i)}_2 \\
     \vdots    & \vdots    & \ddots & \vdots      & \vdots \\
-    v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n-1)}_n & v^{(j)}_n
+    v^{(1)}_n & v^{(2)}_n & \cdots & v^{(n-1)}_n & v^{(i)}_n
   \end{vmatrix}
   = 0
 \end{align*}
 
-Wir entwickeln $v^{(n)}_i$ und $B_j$ (trotz Singularität) nach der letzten Spalte und erhalten damit $\orthogonal{v^{(n)}}{v^{(j)}}$.
+Wegen der Mulitlinearität von Determinanten-Formen, erhalten damit $\orthogonal{v^{(n)}}{v^{(i)}}$.
 
 \begin{align*}
-  (v^{(n)}, v^{(j)})
+  (v^{(n)}, v^{(i)})
   =
-  \sum_{i=1}^n
-  v^{(n)}_i
-  v^{(j)}_i
+  \sum_{j=1}^n
+  v^{(n)}_j
+  v^{(i)}_j
   =
-  \sum_{i=1}^n
-  (-1)^{n + i} \det{(A_i)}
-  v^{(j)}_i
-  =
-  \det{B_j} = 0
+  \det{A_i} = 0
 \end{align*}
 
 \end{proof}
