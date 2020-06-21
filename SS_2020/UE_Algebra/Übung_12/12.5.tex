@@ -1,11 +1,19 @@
-\begin{algebraUE}{42}
-
-ToDo!
+\begin{algebraUE}{394}
+  Begründe, warum der Faktorring $K := \mathbb{Z}_2[x]/(x^3 + x + 1)$ ein Körper ist und berechne die multiplikative Inverse von $x + (x^3 + x + 1)$ mit dem Euklidischen Algorithmus.
 
 \end{algebraUE}
 
 \begin{solution}
+  Das Polynom $x^3 + x + 1$ ist irreduzibel über $\mathbb{Z}_2,$ da es Grad 3 und keine Nullstellen hat. Deshalb ist $K$ nach dem Satz von Kronecker ein Körper.
 
-ToDo!
+  Da $\mathbb{Z}_2[x]$ als Polynomring in einer Variablen über einem Körper ein euklidischer Ring ist, können wir den Euklidischen Algorithmus anwenden und erhalten in einem Schritt
+  \begin{align}
+  x^3 + x + 1 = x(x^2 + 1) + 1
+  \end{align}
+  und somit $\mathrm{ggT}(x^3 + x + 1, x) = 1.$ Wir können 1 als Linearkombination dieser Polynome darstellen:
+  \begin{align}
+      1 = (x^3 + x + 1) - (x^2 + 1)x.
+  \end{align}
 
+  Aus dieser Darstellung erkennen wir unmittelbar, dass $-(x^2+1)$ multiplikativ invers zur Restklasse von $x$ im Faktorring ist.
 \end{solution}
