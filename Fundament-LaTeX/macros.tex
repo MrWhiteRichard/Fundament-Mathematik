@@ -1,4 +1,5 @@
 % special letters:
+
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -6,33 +7,39 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\T}{\mathbb{T}}
-\newcommand{\1}{\mathbbm{1}}
-\newcommand{\B}{\mathfrak{B}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\V}{\mathbb{V}}
-\renewcommand{\S}{\mathfrak{S}}
 \renewcommand{\P}{\mathbb{P}}
+\newcommand{\1}{\mathbbm{1}}
+
+\newcommand  {\B}{\mathfrak{B}}
+\renewcommand{\S}{\mathfrak{S}}
 
 % quantors:
+
 \newcommand{\Forall}{\forall \,}
 \newcommand{\Exists}{\exists \,}
 \newcommand{\ExistsOnlyOne}{\exists! \,}
 \newcommand{\nExists}{\nexists \,}
 
 % MISC symbols:
+
 \newcommand{\landau}[1]
 {
-    {\scriptstyle \mathcal{O}}
-    \pbraces{#1}
+  {\scriptstyle \mathcal{O}}
+  \pbraces{#1}
 }
+
 \newcommand{\Landau}[1]
 {
-    \mathcal{O}
-    \pbraces{#1}
+  \mathcal{O}
+  \pbraces{#1}
 }
+
 \newcommand{\eps}{\mathrm{eps}}
 
 % graphics in a box:
+
 \newcommandtwoopt
 {\includegraphicsboxed}[3][][]
 {
@@ -56,17 +63,25 @@
 }
 
 % braces:
+
 \newcommand{\pbraces}[1]{{\left  ( #1 \right  )}}
 \newcommand{\bbraces}[1]{{\left  [ #1 \right  ]}}
 \newcommand{\Bbraces}[1]{{\left \{ #1 \right \}}}
 \newcommand{\vbraces}[1]{{\left  | #1 \right  |}}
 \newcommand{\Vbraces}[1]{{\left \| #1 \right \|}}
 \newcommand{\abraces}[1]{{\left < #1 \right >}}
-\newcommand{\floor}[1]{{\left \lfloor #1 \right \rfloor}}
-\newcommand{\ceil} [1]{{\left \lceil  #1 \right \rceil }}
 \newcommand{\round}[1]{\bbraces{#1}}
 
+\newcommand
+{\floor}[1]
+{{\left \lfloor #1 \right \rfloor}}
+
+\newcommand
+{\ceil} [1]
+{{\left \lceil  #1 \right \rceil }}
+
 % special functions:
+
 \newcommand{\norm}  [2][]{\Vbraces{#2}_{#1}}
 \newcommand{\diag}  [1]{\mathrm{diag} \: #1}
 \newcommand{\dist}  [1]{\mathrm{dist} \: #1}
@@ -97,14 +112,48 @@
 \newcommand{\orthogonal}[3][]{#2 ~\bot_{#1}~ #3}
 \newcommand{\Rang}{\mathrm{Rang}}
 
-% MISC:
-\newcommandtwoopt{\Int}[4][][]{\int_{#1}^{#2} #3 \: d #4}
+\newcommand
+{\GL}[2][]
+{\mathrm{GL}_{#1} \pbraces{#2}}
+
+% fractions:
+
 \newcommand{\Frac}[2]{\frac{1}{#1} \pbraces{#2}}
 \newcommand{\nfrac}[2]{\nicefrac{#1}{#2}}
-\newcommand{\fastueberall}{\text{f.ü.}}
-\newcommand{\fastsicher}{\text{f.s.}}
-\newcommand{\primeprime}{{\prime \prime}}
-\newcommand{\primeprimeprime}{{\primeprime \prime}}
-\newcommand{\GL}[2][]{\mathrm{GL}_{#1} \pbraces{#2}}
+
+% derivatives & integrals:
+
+\newcommandtwoopt
+{\Int}[4][][]
+{\int_{#1}^{#2} #3 ~\mathrm{d} #4}
+
+\newcommandtwoopt
+{\Der}[3][][]
+{
+  \frac
+  {\mathrm{d}^{#1} #2}
+  {\mathrm{d} #3^{#1}}
+}
+
+\newcommandtwoopt
+{\pDer}[3][][]
+{
+  \frac
+  {\partial^{#1} #2}
+  {\partial #3^{#1}}
+}
+
+\newcommand
+{\primeprime}
+{{\prime \prime}}
+
+\newcommand
+{\primeprimeprime}
+{{\prime \prime \prime}}
+
+% Text:
+
 \newcommand{\Quote}[1]{\glqq #1\grqq{}}
 \newcommand{\Text}[1]{{\text{#1}}}
+\newcommand{\fastueberall}{\text{f.ü.}}
+\newcommand{\fastsicher}{\text{f.s.}}
