@@ -1,11 +1,31 @@
-\begin{algebraUE}{42}
-
-ToDo!
-
+\begin{algebraUE}{393}
+  Konstruiere einen Körper mit 8 Elementen.
 \end{algebraUE}
 
 \begin{solution}
 
-ToDo!
+  GF(8) = GF($2^3$) hat den Primkörper $\mathbb{Z}_2.$ $x^3-x+1 \in \mathbb{Z}_2[x]$ ist ein irreduzibles Polynom, da es Grad 3 und keine Nullstellen hat. Somit gilt
+  \begin{align}
+      \mathbb{Z}_2/(x^3-x+1) \cong \mathbb{Z}_2(\alpha) = \text{GF}(8).
+  \end{align}
+
+  Es gilt $[\text{GF}(8) : \mathbb{Z}_2] = 3,$ eine Basis ist gegeben durch $\{1, \alpha, \alpha^2\}.$ In dieser können wir nun die Elemente des Körpers darstellen:
+
+  \begin{tabular}[h]{l|r}
+  Elemente & Koordinaten \\
+  \hline
+  0 & (0, 0, 0) \\
+  \alpha^0 = 1 & (1, 0, 0) \\
+  \alpha^1 = \alpha & (0, 1, 0) \\
+  \alpha^2 & (0, 0, 1) \\
+  \alpha^3 = \alpha + 1 & (1, 1, 0) \\
+  \alpha^4 = \alpha\alpha^3 = \alpha^2 + \alpha & (0, 1, 1) \\
+  \alpha^5 = \alpha\alpha^4 = \alpha^2 + \alpha + 1 & (1, 1, 1) \\
+  \alpha^6 = \alpha\alpha^5 = \alpha^2 + \overline2\alpha + 1 & (1, 0, 1) \\
+  \alpha^7 = \alpha^3 + \alpha = \overline2\alpha + 1 = 1 & (1, 0, 0)
+  \end{tabular}
+
+  Die Potenzen $\alpha^j, j \in \{0, ..., 8\}$ sind alle verschieden, $\alpha$ also ein primitives Element von GF(8) und $x^3 - x + 1$ folglich primitiv in $\mathbb{Z}_2[x].$ Damit ist GF(8)* eine zyklische Gruppe, die Multiplikation also durch $\alpha^i \alpha^j = \alpha^{(i+j) \text{~mod~} 7}$ gegeben. Die Addition zweier Elemente ist leicht durch komponentenweise Addition der entsprechenden Koordinatendarstellungen möglich.
+
 
 \end{solution}
