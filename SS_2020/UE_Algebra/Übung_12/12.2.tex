@@ -1,13 +1,26 @@
 \begin{algebraUE}{386}
+  Die Automorphismen von GF($p^n$) sind genau die Abbildungen der Form $a \mapsto a^{p^k}$
+  mit $k = 0,1,\dots,n-1$ (die sogenannten Frobeniusautomorphismen). Sie bilden
+  eine zyklische Gruppe, die vom Automorphismus $a \mapsto a^p$ erzeugt wird.
 
-  \begin{itemize}
-      \item[1.] Sei $p \in \mathbb{P}, k, n \in \mathbb{N}, n \geq 1.$ Dann ist $\varphi: a \mapsto a^p$ ein Automorphismus von GF($p^n$).
-      \item[2.] Die in der Automorphismengruppe Aut(GF($p^n$)) von $\varphi$ erzeugte Untergruppe besteht aus allen $\varphi^k: a \mapsto a^{p^k}$ mit $k \in \{0, ..., n-1\}.$
-      \item[3.] Jeder Automorphismus $\varphi$ eines Körpers $K$ lässt seinen Primkörper $P$ punktweise fest.
-      \item[4.] Jeder Automorphismus von GF($p^n$) ist von der Form $a \mapsto a^{p^k}.$
-  \end{itemize}
+
+Beweisen Sie Satz 6.3.3.3, indem Sie folgendes zeigen:
+\begin{enumerate}
+  \item Ist $p$ eine Primzahl, $k,n \in \N, n \geq 1$, so ist die Abbildung
+  $\varphi: a \mapsto a^p$ ein Automorphismus von GF($p^n$).
+  \item Die in der Automorphismengruppe Aut(GF($p^n$)) von $\varphi$ erzeugte
+  Untergruppe besteht aus allen \\
+  $\varphi^k: a \mapsto a^{p^k}$ mit $k = 0,\dots,n-1$.
+  \item Jeder Automorphismus $\varphi$ eines Körpers $K$ lässt den Primkörper $P$
+  von $K$ punktweise fest. \\
+  \textit{Hinweis:} $P$ wird als Ring mit $1$ von der leeren Menge erzeugt.
+  \item Jeder Automorphismus von GF($p^n$) ist von der Form $a \mapsto a^{p^k}$. \\
+  \textit{Hinweis:} Jeder Automorphismus ist eindeutig durch seinen Wert
+  für ein primitives Element $\alpha$ bestimmt. Als mögliche Werte kommen genau
+  die Konjugierten von $\alpha$ in Frage. Davon gibt es $n$ Stück, genauso viele
+  wie Frobeniusautomorphismen.
+\end{enumerate}
 \end{algebraUE}
-
 \begin{solution}
   \begin{itemize}
       \item[1.] $\varphi$ ist ein Körperhomomorphismus wegen
@@ -34,5 +47,5 @@
   im Widerspruch zu $\mathrm{ord}(\alpha) = p^n - 1$. Es gibt also genau $n$ Frobeniusautomorphismen.
 
   Ein beliebiger Automorphismus $\psi$ ist eindeutig durch seinen Wert für $\alpha$ festgelegt. Sei $f$ das Minimalpolynom von $\alpha$ über $P.$ Nach Proposition 6.3.3.2 (4) kommen als Werte für $\alpha$ unter $\psi$ genau die $n$ verschiedenen Nullstellen von $f$ infrage \textbf{(warum kann keine Nullstelle doppelt vorkommen?)}. Es gibt also $n$ Automorphismen, genauso viele wie Frobeniusautomorphismen.
-
+\end{itemize}
 \end{solution}
