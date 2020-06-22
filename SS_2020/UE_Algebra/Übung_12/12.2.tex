@@ -23,29 +23,38 @@ Beweisen Sie Satz 6.3.3.3, indem Sie folgendes zeigen:
 \end{algebraUE}
 \begin{solution}
   \begin{itemize}
-      \item[1.] $\varphi$ ist ein Körperhomomorphismus wegen
-      \begin{align}
-          \varphi(a + b) = (a + b)^p = a^p + b^p = \varphi(a) + \varphi(b), \\
-          \varphi(ab) = (ab)^p = a^p b^p = \varphi(a) \varphi(b), \\
-          \varphi(0) = 0.
-      \end{align}
+      \item[1.] Sei $p \in \mathbb{P}, k, n \in \mathbb{N}, n \geq 1.$ Dann ist $\varphi: a \mapsto a^p$ ein Automorphismus von GF($p^n$).
+      \item[2.] Die in der Automorphismengruppe Aut(GF($p^n$)) von $\varphi$ erzeugte Untergruppe besteht aus allen $\varphi^k: a \mapsto a^{p^k}$ mit $k \in \{0, ..., n-1\}.$
+      \item[3.] Jeder Automorphismus $\varphi$ eines Körpers $K$ lässt seinen Primkörper $P$ punktweise fest.
+      \item[4.] Jeder Automorphismus von GF($p^n$) ist von der Form $a \mapsto a^{p^k}.$
+  \end{itemize}
 
-  Die Injektivität gilt wegen
-  \begin{align}
-      \varphi(a) = \varphi(b) \Longleftrightarrow a^p = b^p \Longleftrightarrow (a-b)^p = 0 \Longleftrightarrow a - b = 0.
-  \end{align}
-  Weil GF($p^n$) eine endliche Menge ist, folgt aus Injektivität schon Surjektivität.
+    \begin{itemize}
+        \item[1.] $\varphi$ ist ein Körperhomomorphismus wegen
+        \begin{align}
+            \varphi(a + b) = (a + b)^p = a^p + b^p = \varphi(a) + \varphi(b), \\
+            \varphi(ab) = (ab)^p = a^p b^p = \varphi(a) \varphi(b), \\
+            \varphi(0) = 0.
+        \end{align}
 
-  \item[2.] Es gilt $\langle\varphi\rangle = \{\varphi^k~|~ 0 \leq k \leq \mathrm{ord}(\varphi)\}.$ Nach Proposition 6.3.3.2 (5) gibt es genau $n$ Automorphismen von GF($p^n$), es muss also $\mathrm{ord}(\varphi) < n$ gelten.
+    Die Injektivität gilt wegen
+    \begin{align}
+        \varphi(a) = \varphi(b) \Longleftrightarrow a^p = b^p \Longleftrightarrow (a-b)^p = 0 \Longleftrightarrow a - b = 0.
+    \end{align}
+    Weil GF($p^n$) eine endliche Menge ist, folgt aus Injektivität schon Surjektivität.
 
-  \item[3.] $P$ wird als $\text{Ring}_1$ von der leeren Menge erzeugt. Da ein Automorphismus bereits durch seine Einschränkung auf ein Erzeugendensystem eindeutig bestimmt ist, kann es damit nur einen Automorphismus geben. Die Identität ist ein solcher und folglich auch der einzige.
+    \item[2.] Es gilt $\langle\varphi\rangle = \{\varphi^k~|~ 0 \leq k \leq \mathrm{ord}(\varphi)\}.$ Klarerweise haben die $\varphi^k$ die angegebene Form. Dass $\mathrm{ord}(\varphi) < n$ gilt, zeigen wir später.
 
-  \item[4.] Wir zeigen noch, dass die Automorphismen $\varphi^k, k \in \{0, ..., n-1\}$ alle verschieden sind. Angenommen, es gäbe $i, j < n, i \neq j$ mit $a^{p^i} = a^{p^j}$ für alle $a.$ Die multiplikative Gruppe GF($p^n$)* hat ein erzeugendes Element $\alpha.$ Insbesondere gilt für dieses
-  \begin{align}
-      1 = \alpha^{p^j - p^i}
-  \end{align}
-  im Widerspruch zu $\mathrm{ord}(\alpha) = p^n - 1$. Es gibt also genau $n$ Frobeniusautomorphismen.
+    \item[3.] $P$ wird als $\mathrm{Ring}_1$ von der leeren Menge erzeugt. (Der erzeugte $\mathrm{Ring}_1$ ist schon ein Körper, denn für alle $a$ gilt: $(a^{p^n-2}) a = a^{p^n-1} = 1$ -- wir haben also für ein beliebiges $a$ im $\mathrm{Ring}_1$ ein Inverses gefunden.)
 
-  Ein beliebiger Automorphismus $\psi$ ist eindeutig durch seinen Wert für $\alpha$ festgelegt. Sei $f$ das Minimalpolynom von $\alpha$ über $P.$ Nach Proposition 6.3.3.2 (4) kommen als Werte für $\alpha$ unter $\psi$ genau die $n$ verschiedenen Nullstellen von $f$ infrage \textbf{(warum kann keine Nullstelle doppelt vorkommen?)}. Es gibt also $n$ Automorphismen, genauso viele wie Frobeniusautomorphismen.
-\end{itemize}
+    Da ein Automorphismus auf einem $\mathrm{Ring}_1$ bereits durch seine Einschränkung auf ein Erzeugendensystem eindeutig bestimmt ist, kann es damit nur einen Automorphismus geben. Die Identität ist ein solcher und folglich auch der einzige.
+
+    \item[4.] Wir zeigen noch, dass die Automorphismen $\varphi^k, k \in \{0, ..., n-1\}$ alle verschieden sind. Angenommen, es gäbe $i, j < n, i \neq j$ mit $a^{p^i} = a^{p^j}$ für alle $a.$ Die multiplikative Gruppe GF($p^n$)* hat ein erzeugendes Element $\alpha.$ Insbesondere gilt für dieses
+    \begin{align}
+        1 = \alpha^{p^j - p^i}
+    \end{align}
+    im Widerspruch zu $\mathrm{ord}(\alpha) = p^n - 1$. Es gibt also genau $n$ Frobeniusautomorphismen.
+
+    Ein beliebiger Automorphismus $\psi$ ist eindeutig durch seinen Wert für $\alpha$ festgelegt. Sei $f$ das Minimalpolynom von $\alpha$ über $P.$ Als Werte für $\alpha$ unter $\psi$ kommen genau die Nullstellen von $f$ infrage, weil aus (3) unmittelbar folgt, dass ein Automorphismus Nullstellen wieder auf Nullstellen abbilden muss. $f$ hat Grad $n$ und somit maximal $n$ Nullstellen, ergo gibt es auch höchstens $n$ Automorphismen.
+  \end{itemize}}
 \end{solution}
