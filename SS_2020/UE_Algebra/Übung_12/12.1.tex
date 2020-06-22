@@ -10,19 +10,20 @@ leicht ist: Finden Sie so ein Polynom, welches in $U[x]$ irreduzibel ist.)
   U &= \left\{\sum_{k = 0}^na_kt^{5k}: n \in \N, a_k \in \Z/5\Z, k = 0,\dots,n\right\} \\
   p(x) &= x^5 - t^5.
 \end{align*}
-Über $R$ ist $t$ die einzige Nullstelle von $p(x)$. Polynomdivision liefert
+Wenn wir uns nun einen Vorgriff auf UE 391 erlauben sehen wir ein, dass $p(x)$
+über dem Körper $\Z/5\Z$
+entweder irreduzibel ist oder $p$-te Potenz eines linearen Polynoms, wobei
+wir das lineare Polynom durch das Finden einer Nullstelle bestimmen können. Also gilt
 \begin{align*}
-  (x^5-t^5):(x-t) = x^4 + tx^3 + t^2x^2 + t^3x + t^4.
+  p(x) = x^5 - t^5 = (x - t)^5.
 \end{align*}
-
-Da jedes lineare Polynom
-eine Nullstelle in $U$ besitzt, bleibt als einzige Möglichkeit zur Reduktion
-in irreduzible Faktoren die Faktorisierung in ein Polynom $q(x)$ 2-ten und ein Polynom
-$r(x)$ 3-ten Grades übrig (o.B.d.A. normiert).
-Angenommen
+Jetzt sehen wir ein, dass die Faktoren
 \begin{align*}
-  p(x) &= q(x)r(x) = (x^3 + bx^2 + cx + d)(x^2 + fx + g) \\
-  &= x^5 + (f + b)x^4 + (g + bf + c)x^3 +(bg + cf + d)x^2 + (cg + df)x + dg.
+  (x - t)^1 &= x - t \\
+  (x - t)^2 &= x^2 - 2t + t^2 \\
+  (x - t)^3 &= x^3 -3x^2t + 3xt^2 - t^3 \\
+  (x - t)^4 &= x^4 -4x^3t + 6x^2t^2 - 4xt^3 + t^4
 \end{align*}
-
+allesamt nicht in $U[x]$ liegen, also haben wir bereits sogar ein irreduzibles
+Polynom gefunden.
 \end{solution}
