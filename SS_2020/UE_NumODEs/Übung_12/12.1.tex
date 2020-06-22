@@ -6,5 +6,37 @@
 \end{exercise}
 
 \begin{solution}
-  Beweis.
+  Die zu lösende Funktion in unserem Fall lautet mit $Y = (y_1,\dots,y_{N-1}),
+  S := (s_0,\dots,s_{N-1})$
+  \begin{align*}
+    G(Y,S) &= (y_{x_1,y_1,s_1}(x_2),\dots,y_{x_{N-1},y_{N-1},s_{N-1}}(x_N),
+    y^{\prime}_{x_1,y_1,s_1}(x_2),\dots,y^{\prime}_{x_{N-1},y_{N-1},s_{N-1}}(x_N))^{\top} \\
+    &- (y_1,\dots,y_N,s_1,\dots,s_{N-1})^{\top}
+    \stackrel{!}{=} 0.
+  \end{align*}
+  Die Jacobi-Matrix davon lautet
+  \begin{align*}
+    DG(S,Y) = \begin{pmatrix}
+      \partial_{y_1}y_{x_1,y_1,s_1}(x_2) & 0 & \hdots & 0 & & & & \\
+      0 & \ddots & 0  & \vdots & & & & \\
+      \vdots & 0 & \ddots & 0 & & & &\\
+      0 & \hdots & 0 & \partial_{y_{N-1}}y_{x_{N-1},y_{N-1},s_{N-1}}(x_{N}) & & & &\\
+       & & & & \partial_{s_1}y^{\prime}_{x_1,y_1,s_1}(x_2) & 0 & \hdots & 0 \\
+       & & & & 0 & \ddots & 0  & \vdots \\
+       & & & & \vdots & 0 & \ddots & 0 \\
+       & & & & 0 & \hdots & 0 & \partial_{s_N}y^{\prime}_{x_N,y_N,s_N}(x_{N+1}) \\
+  \end{pmatrix}
+  \end{align*}
+  \begin{algorithm}[caption={Mehrzielverfahren.}, label={alg1}]
+   Input: Problembeschreibung $(f,a,b,y_a,y_b)$, Mesh $T = [x_0,\dots,x_N]$, Startwert $s_0$.
+   n := 0
+   repeat
+     Compute solution $y_{s_n}$ of $y^{\primeprime}(x) = f(x,y(x),y^{\prime}(x)), \quad
+     y(a) = y_a, y^{\prime}(a) = s_n$.
+     Compute solution $v_{s_n}$ of $v^{\primeprime}(x) = f_y(x,y_s(x),y_s^{\prime}(x))
+     + f_{y^{\prime}}(x,y_s(x),y_s^{\prime}(x)), \quad v(a) = 0, v^{\prime}(a) = 1$.
+   until Abbruchkriterium des Newton-Verfahren erreicht.
+   n = n + 1
+   Output: Approximation $y_{s_{n-1}}$
+  \end{algorithm}
 \end{solution}
