@@ -2,11 +2,27 @@
 Sei $R$ der Polynomring $(\Z/5\Z)[t]$, und sei $U \subseteq R$ der kleinste
 Unterring mit $1$ von $R$, der das Polynom $t^5$ enthält. Geben Sie ein Polynom
 $p(x) \in U[x]$ an, welches in $R$ die Nullstelle $t$ hat. (Wenn Ihnen das zu
-leicht ist: Finden Sie so ein Polynom, welches in $U[x]$ irreduzibel ist.) 
+leicht ist: Finden Sie so ein Polynom, welches in $U[x]$ irreduzibel ist.)
 \end{algebraUE}
 
 \begin{solution}
+\begin{align*}
+  U &= \left\{\sum_{k = 0}^na_kt^{5k}: n \in \N, a_k \in \Z/5\Z, k = 0,\dots,n\right\} \\
+  p(x) &= x^5 - t^5.
+\end{align*}
+Über $R$ ist $t$ die einzige Nullstelle von $p(x)$. Polynomdivision liefert
+\begin{align*}
+  (x^5-t^5):(x-t) = x^4 + tx^3 + t^2x^2 + t^3x + t^4.
+\end{align*}
 
-ToDo!
+Da jedes lineare Polynom
+eine Nullstelle in $U$ besitzt, bleibt als einzige Möglichkeit zur Reduktion
+in irreduzible Faktoren die Faktorisierung in ein Polynom $q(x)$ 2-ten und ein Polynom
+$r(x)$ 3-ten Grades übrig (o.B.d.A. normiert).
+Angenommen
+\begin{align*}
+  p(x) &= q(x)r(x) = (x^3 + bx^2 + cx + d)(x^2 + fx + g) \\
+  &= x^5 + (f + b)x^4 + (g + bf + c)x^3 +(bg + cf + d)x^2 + (cg + df)x + dg.
+\end{align*}
 
 \end{solution}

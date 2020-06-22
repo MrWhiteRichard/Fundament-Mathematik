@@ -4,8 +4,34 @@ $x^p + a \in K[x]$ ist entweder irreduzibel, oder $p$-te Potenz eines linearen
 Polynoms.
 \end{algebraUE}
 
-\begin{solution}
-
-ToDo!
-
+\begin{solution}\leavevmode \\
+Fall 1: $\exists b \in K: b^p + a = 0$ (In einem endlichen Körper gibt es
+so ein Element immer aufgrund der Frobeniusautomorphismen.) \\
+Dann gilt nach Satz 3.3.4.3.
+\begin{align*}
+  (x - b)^p = x^p + (-b)^p = x^p - (-1)^pa.
+\end{align*}
+Im Spezialfall $p = 2$ gilt $(-1)^2 = 1 = -1$, in allen anderen Fällen ist $p$ ungerade
+und es gilt $(-1)^p = -1$. Also folgt
+\begin{align*}
+  (x - b)^p = x^p + a.
+\end{align*}
+Fall 2: $\nexists b \in K: b^p + a = 0$. \\
+Wir betrachten den Zerfällungskörper $E$ von $x^p + a$. In diesem zerfällt
+das Polynom in Linearfaktoren. Insbesondere hat $x^p + a$ in $E$ eine Nullstelle
+und nach Fall 1 gilt
+\begin{align*}
+  x^p + a = (x - b)^p
+\end{align*}
+mit einem $b \in E\backslash K$.
+Sei nun angenommen, $x^p + a$ wäre nicht
+irreduzibel über $K$, also exisitiert ein $0 < k < p$, sodass
+\begin{align*}
+  x^p - a = \underbrace{(x - b)^k}_{\in K[x]}(x - b)^{p - k}.
+\end{align*}
+Nach der binomischen Formel gilt
+\begin{align*}
+  (x - b)^k = x^k - kbx^{k-1} + \dots + (-b)^k.
+\end{align*}
+Es folgt also $-kb \in K$ und damit auch $b \in K$. Widerspruch!
 \end{solution}
