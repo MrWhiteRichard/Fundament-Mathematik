@@ -10,7 +10,12 @@
     \Landau{h^2}
   \end{align*}
 
-  mit dem Differenzenstern $[1   -2   1]u(x):= 1u(x-h)-2u(x)+1u(x+h)$.
+  mit dem Differenzenstern $\left[
+  \begin{array}{ccc}
+    1 & -2 & 1
+  \end{array}
+  \right]u(x):= 1u(x-h)-2u(x)+1u(x+h)$.
+
   Konstruieren Sie eine Approximation der Form
 
   \begin{align*}
@@ -31,10 +36,70 @@
     \right]
     u(x)
     :=
-    \sum_{i=-1}^2 c_i u(x+ih).
+    \sum_{i=-2}^2 c_i u(x+ih).
   \end{align*}
 \end{exercise}
 
 \begin{solution}
-  Beweis.
+  Für $u \in C^6([a,b])$ liefert uns Taylorentwicklung um $x$
+
+  \begin{align*}
+    u(x+h) &= u(x) &+ hu'(x) &+ \frac{h^2}{2}u''(x) &+ \frac{h^3}{6}u^{(3)}(x) &+ \frac{h^4}{24}u^{(4)}(x) &+ \frac{h^5}{120}u^{(5)}(x) &+ \Landau{h^6}\\
+    u(x+2h) &= u(x) &+ 2hu'(x) &+ \frac{4h^2}{2}u''(x) &+ \frac{8h^3}{6}u^{(3)}(x) &+ \frac{16h^4}{24}u^{(4)}(x) &+ \frac{32h^5}{120}u^{(5)}(x) &+ \Landau{h^6}\\
+    u(x-h) &= u(x) &- hu'(x) &+ \frac{h^2}{2}u''(x) &- \frac{h^3}{6}u^{(3)}(x) &+ \frac{h^4}{24}u^{(4)}(x) &- \frac{h^5}{120}u^{(5)}(x) &+ \Landau{h^6}\\
+    u(x-2h) &= u(x) &- 2hu'(x) &+ \frac{4h^2}{2}u''(x) &- \frac{8h^3}{6}u^{(3)}(x) &+ \frac{16h^4}{24}u^{(4)}(x) &- \frac{32h^5}{120}u^{(5)}(x) &+ \Landau{h^6}
+  \end{align*}
+
+  Da wir wollen, dass alle Terme, bis auf die zweite Ableitung verschwinden, kommen wir auf folgendes lineares Gleichungssystem:
+
+  \begin{align*}
+    \begin{pmatrix}
+      1 & 1 & 1 & 1 & 1 \\
+      1 & 2 & -1 & -2 & 0 \\
+      \nicefrac{1}{6} & \nicefrac{8}{6} & \nicefrac{-1}{6} & \nicefrac{-8}{6} & 0 \\
+      \nicefrac{1}{24} & \nicefrac{16}{24} & \nicefrac{1}{24} & \nicefrac{16}{24} & 0 \\
+      \nicefrac{1}{120} & \nicefrac{32}{120} & \nicefrac{-1}{120} & \nicefrac{-32}{120} & 0 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      c_1 \\
+      c_2 \\
+      c_{-1} \\
+      c_{-2} \\
+      c_{0}
+    \end{pmatrix} =
+    \begin{pmatrix}
+      0 \\ 0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+
+  Eine Lösung dieses Systems ist gegben durch
+  \begin{align*}
+  \begin{pmatrix}
+    c_1 \\
+    c_2 \\
+    c_{-1} \\
+    c_{-2} \\
+    c_{0}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    16 \\ -1 \\ 16 \\ -1 \\ -30
+  \end{pmatrix}
+  \end{align*}
+
+  und es folgt
+
+  \begin{align*}
+  \left[
+  \begin{array}{ccccc}
+  c_{-2} & c_{-1} & c_0 & c_1 & c_ 2
+  \end{array}
+  \right]
+  u(x) = \frac{h^2}{2}u''(x)(16 - 1\cdot 4 + 16 - 1 \cdot 4) + \Landau{h^6} = 12 h^2 u''(x) + \Landau{h^6} \\
+  \Rightarrow u''(x) = \frac{1}{h^2} \frac{1}{12} \left[
+  \begin{array}{ccccc}
+  c_{-2} & c_{-1} & c_0 & c_1 & c_ 2
+  \end{array}
+  \right] u(x) + \Landau{h^4}
+  \end{align*}
+
 \end{solution}
