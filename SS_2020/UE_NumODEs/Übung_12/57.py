@@ -66,10 +66,7 @@ def convergence(k_0):
     plt.grid(True)
     plt.show()
 
-    return True
-
 convergence(1)
-
 k = sp.IndexedBase('k')
 
 matrix = sp.Matrix([[k[2] * sp.pi, -k[1] * sp.pi, -k[1]],
@@ -80,4 +77,4 @@ vector = sp.Matrix([2 * k[2] - k[1] * k[2] - k[1], 0, k[2] - 1])
 
 system = (matrix, vector)
 
-list(sp.linsolve(system))[0]
+print(list(sp.linsolve(system))[0])
