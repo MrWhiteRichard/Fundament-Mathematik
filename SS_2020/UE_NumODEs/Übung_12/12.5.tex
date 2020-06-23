@@ -15,5 +15,75 @@
 \end{exercise}
 
 \begin{solution}
-  Beweis.
+  Wie in der vorigen Aufgabe nehmen wir uns ein hinreichend glattes $u$ und entwickeln erstmal
+
+  \begin{align*}
+    u(x_i-h,y_i) &= u(x_i,y_i) &- h\partial_x u(x_i,y_i) &+ \frac{h^2}{2}\partial_x^2 u(x_i,y_i) &- \frac{h^3}{6}\partial_x^3 u(x_i,y_i) &+ \Landau{h^4}\\
+    u(x_i+h\delta_x,y_i) &= u(x_i,y_i) &+ h\delta_x\partial_x u(x_i,y_i) &+ \frac{h^2 \delta_x^2}{2}\partial_x^2 u(x_i,y_i) &+ \frac{h^3 \delta_x^3}{6}\partial_x^3 u(x_i,y_i) &+ \Landau{h^4}\\
+    u(x_i,y_i-h) &= u(x_i,y_i) &- h\partial_y u(x_i,y_i) &+ \frac{h^2}{2}\partial_y^2 u(x_i,y_i) &- \frac{h^3}{6}\partial_y^3 u(x_i,y_i) &+ \Landau{h^4}\\
+    u(x_i,y_i+h\delta_y) &= u(x_i,y_i) &+ h\delta_y\partial_y u(x_i,y_i) &+ \frac{h^2 \delta_y^2}{2}\partial_y^2 u(x_i,y_i) &+ \frac{h^3 \delta_y^3}{6}\partial_y^3 u(x_i,y_i) &+ \Landau{h^4}
+  \end{align*}
+
+  Wir versuchen zunächst einmal, durch geeignete Kombination der Sternwerte die Terme bis zur Ordnung 3 verschwinden zu lassen (so wie man das im Normalfall tun kann).
+
+  Das Gleichungssystem, das wir hierfür lösen müssen, sieht folgendermaßen aus
+
+  \begin{align*}
+    \begin{pmatrix}
+      1 & 1 & 1 & 1 & 1 \\
+      -1 & \delta_x & 0 & 0 & 0 \\
+      0 & 0 & -1 & \delta_y & 0 \\
+      -\frac{1}{6} & \frac{\delta_x^3}{6} & 0 & 0 & 0 \\
+      0 & 0 & -\frac{1}{6} & \frac{\delta_y^3}{6} & 0 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      c_{x,-1} \\
+      c_{x,1} \\
+      c_{y,-1} \\
+      c_{y,1} \\
+      c_{0}
+    \end{pmatrix} =
+    \begin{pmatrix}
+      0 \\ 0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+  \end{align*}
+
+  Man sieht, dass die Matrix regulär ist und dieses System somit nur trivial lösbar ist.
+  Das heißt wir können die Terme mit Ordnung 3 nicht verschwinden lassen, und müssen uns mit den Termen bis Ordnung 1 begnügen (also nur den ersten 3 Zeilen des Gleichungssystems).
+
+  Eine Lösung hierfür ist offensichtlich gegeben durch
+
+  \begin{align*}
+  \begin{pmatrix}
+  c_{x,-1} \\
+  c_{x,1} \\
+  c_{y,-1} \\
+  c_{y,1} \\
+  c_{0}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    1+\delta_y \\ \frac{1+\delta_y}{\delta_x} \\ 1+\delta_x \\ \frac{1+\delta_x}{\delta_y} \\ -(c_{x,-1}+ c_{x,1} + c_{y,-1} + c_{y,1})
+  \end{pmatrix}
+  \end{align*}
+
+  und es folgt
+
+  \begin{align*}
+  \begin{pmatrix}
+  & c_{y,-1} &\\
+  c_{x,-1} & c_0 & c_{x,1}\\
+  & c_{y,1} &
+  \end{pmatrix}
+  u(x_i,y_i) &= \frac{h^2}{2}\partial_x^2u(x_i,y_i)(1 + \delta_y + (1+\delta_y)\delta_x ) +\frac{h^2}{2}\partial_y^2 u(x_i,y_i)(1 + \delta_x + (1 + \delta_x)\delta_y) + \Landau{h^3} \\
+  &= h^2 \frac{(1 + \delta_x)(1 + \delta_y)}{2} (\partial_x^2 u(x_i,y_i) + \partial_y^2 u(x_i,y_i)) + \Landau{h^3} \\
+  &\Rightarrow \Delta u(x_i,y_i) = \frac{1}{h^2} \frac{2}{(1 + \delta_x)(1 + \delta_y)} \begin{pmatrix}
+  & c_{y,-1} &\\
+  c_{x,-1} & c_0 & c_{x,1}\\
+  & c_{y,1} &
+  \end{pmatrix} u(x_i,y_i) + \Landau{h}.
+  \end{align*}
+
+  (Kann man dann noch vereinfachen)
+
+  Wir erhalten hier also nur Ordnung 1.
 \end{solution}
