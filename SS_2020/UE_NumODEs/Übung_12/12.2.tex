@@ -30,10 +30,10 @@
     \item[a)] Bei konstantem $k_0$ vereinfacht sich unsere Differentialgleichung zu
 
     \begin{align*}
-      -k_0 u ^\primeprime(x) = \cos(x)
+      -k_0 u ^\primeprime(x) = \cos(x).
     \end{align*}
 
-    Durch zweimaliges aufintegrieren erhalten wir für unsere Lösung die Form
+    Durch zweimaliges Integrieren erhalten wir für unsere Lösung die Form
 
     \begin{align*}
       u(x)
@@ -46,19 +46,23 @@
 
     \begin{align*}
       u(0)
-      =
+      = \frac{1}{k_0}(\cos(0)+0a+b) =
       \frac{1}{k_0}(1+b)
       \stackrel{!}{=}
       1
     \end{align*}
 
-    womit wir $b = k_0 -1$ erhalten. Durch die zweite Randbedingung erhält man nun
-    $a = 0$ und damit insgesamt die analytische Lösung
+    womit wir $b = k_0 -1$ erhalten. Durch die zweite Randbedingung erhält man
 
+    \begin{align*}
+      u(2\pi) = \frac{1}{k_0}(\cos(2\pi) + ax + k_0 - 1) =
+      \frac{1}{k_0}(ax + k_0) \stackrel{!}{=} 1,
+    \end{align*}
+    dass $a = 0$ und somit unsere analytische Lösung
     \begin{align*}
       u(x)
       =
-      \frac{1}{k_0}(\cos(x)+k_0-1)
+      \frac{1}{k_0}(\cos(x)+k_0-1).
     \end{align*}
     \FloatBarrier
     \item[b)] Siehe Code.
@@ -97,15 +101,15 @@
     Randwertbedingungen. Zusätzlich soll ja auch $u \in C^1([0,2\pi])$ sein. Wir
     bekommen also noch zwei weitere Gleichungen.
 
-    Aus $u(0)= 1$ erhalten wir, wie schon beim ersten Unterpunkt, $c_{01} = k_1-1$
-    Wegen der Stetigkeit erhalten wir:
+    Aus $u(0)= 1$ erhalten wir, wie schon beim ersten Unterpunkt, $c_{01} = k_1-1$. \\
+    Wegen der Stetigkeit im Punkt $\pi$ erhalten wir:
 
     \begin{align*}
       \frac{1}{k_1}(\cos(\pi) + c_{00}\pi + c_{01})
       &=
-      \lim_{x \rightarrow \pi^+} u(x)
-      \stackrel{!}{=}
       \lim_{x \rightarrow \pi^-} u(x)
+      \stackrel{!}{=}
+      \lim_{x \rightarrow \pi^+} u(x)
       =
       \frac{1}{k_2}(\cos(\pi)+ c_{10}\pi + c_{11}) \\
       &\Rightarrow
@@ -139,7 +143,7 @@
     \end{align*}
 
     Nun können wir ein lineares Gleichungssystem aufstellen um die restlichen
-    Werte zu bestimmen
+    Werte zu bestimmen:
 
     \begin{align*}
       \left( \begin{array}{ccc}
@@ -163,7 +167,10 @@
       \end{array}
       \right)
     \end{align*}
-
+    Die Matrix ist dabei für $k_1k_2 \neq 0$ regulär, da für die Determinante gilt
+    \begin{align*}
+      \det(A) = -k_1k_2\pi -2k_1k_2\pi + k_1k_2\pi = -2k_1k_2\pi.
+    \end{align*}
     Für ein geeignetes Diskretisiertungsverfahren muss man nun unterscheiden, ob
     $N$ gerade oder ungerade ist. Falls $N$ ungerade ist können wir die Diskretisierung
     wie im Skrip durchführen, dann gilt somit

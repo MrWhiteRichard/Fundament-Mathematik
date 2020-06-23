@@ -15,6 +15,7 @@
 \end{exercise}
 
 \begin{solution}
+  Der Laplace-Operator ist definiert als $\Delta u := \partial^2_x u + \partial^2_y u$. \\
   Wie in der vorigen Aufgabe nehmen wir uns ein hinreichend glattes $u$ und entwickeln erstmal
 
   \begin{align*}
@@ -47,8 +48,19 @@
       0 \\ 0 \\ 0 \\ 0 \\ 0
     \end{pmatrix}
   \end{align*}
-
-  Man sieht, dass die Matrix regulär ist und dieses System somit nur trivial lösbar ist.
+  Die Determinante dieser Matrix lautet
+  $\frac{1}{36}(\partial_x\partial_y^3 + \partial_x^3\partial_y
+  - \partial_x^3\partial_y^3 - \partial_x\partial_y)$.
+  Für $0 < x,y \leq 1$ gilt
+  \begin{align*}
+    \partial_x\partial_y^3 + \partial_x^3\partial_y
+    - \partial_x^3\partial_y^3 - \partial_x\partial_y =
+    \partial_x\partial_y(x^2 + y^2 - x^2y^2 - 1) =
+    -\partial_x\partial_y(\partial_x^2 - 1)(\partial_y^2 - 1) < 0.
+  \end{align*}
+  Für $x = 1$ oder $y = 1$ sieht man allerdings, dass die Matrix nicht regulär
+  ist und in diesem Fall die Chance auf höhere Konvergenzordnung noch bestehen bleibt.
+  In unserem Fall ist die Matrix jedoch regulär und dieses System somit nur trivial lösbar.
   Das heißt wir können die Terme mit Ordnung 3 nicht verschwinden lassen, und müssen uns mit den Termen bis Ordnung 1 begnügen (also nur den ersten 3 Zeilen des Gleichungssystems).
 
   Eine Lösung hierfür ist offensichtlich gegeben durch
@@ -69,21 +81,19 @@
   und es folgt
 
   \begin{align*}
-  \begin{pmatrix}
+  \begin{bmatrix}
   & c_{y,-1} &\\
   c_{x,-1} & c_0 & c_{x,1}\\
   & c_{y,1} &
-  \end{pmatrix}
+\end{bmatrix}
   u(x_i,y_i) &= \frac{h^2}{2}\partial_x^2u(x_i,y_i)(1 + \delta_y + (1+\delta_y)\delta_x ) +\frac{h^2}{2}\partial_y^2 u(x_i,y_i)(1 + \delta_x + (1 + \delta_x)\delta_y) + \Landau{h^3} \\
   &= h^2 \frac{(1 + \delta_x)(1 + \delta_y)}{2} (\partial_x^2 u(x_i,y_i) + \partial_y^2 u(x_i,y_i)) + \Landau{h^3} \\
-  &\Rightarrow \Delta u(x_i,y_i) = \frac{1}{h^2} \frac{2}{(1 + \delta_x)(1 + \delta_y)} \begin{pmatrix}
+  &\Rightarrow \Delta u(x_i,y_i) = \frac{1}{h^2} \frac{2}{(1 + \delta_x)(1 + \delta_y)} \begin{bmatrix}
   & c_{y,-1} &\\
   c_{x,-1} & c_0 & c_{x,1}\\
   & c_{y,1} &
-  \end{pmatrix} u(x_i,y_i) + \Landau{h}.
+  \end{bmatrix} u(x_i,y_i) + \Landau{h}.
   \end{align*}
-
-  (Kann man dann noch vereinfachen)
 
   Wir erhalten hier also nur Ordnung 1.
 \end{solution}
