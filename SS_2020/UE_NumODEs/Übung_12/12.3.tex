@@ -8,7 +8,7 @@
   $y_{j,k} \approx y(x_{j,k})$ wie folgt ordnen
 
   \begin{align}\label{sec}
-    y_{1,1}, \dots , y_{N_2 -1}, \text{ }
+    y_{1,1}, \dots , y_{1,N_2 -1}, \text{ }
     y_{2,1}, \dots , y_{2,N_2 -1} \text{ }
     y_{3,1}, \dots
   \end{align}
@@ -24,10 +24,10 @@
     + y_{j,k-1} + y_{j,k+1}
     - 4 y_{j,k})
     =
-    f(x_{jk})
+    f(x_{j,k})
   \end{align*}
 
-  Falls nun $j=0, j=N, k = 0$ oder $k=N$ ,also genau am Gitterrand,
+  Falls nun $j=0, j=N, k = 0$ oder $k=N$, also genau am Gitterrand,
   gilt wegen der Dirichlet-Randbedingungen $y_{j,k} = 0$.
 
   Unsere Unbekannten wie in der Angabe georndet und in einen Vektor verpackt:
@@ -39,7 +39,7 @@
   Die Darstellung von $g_h$ erhält man nun durch
 
   \begin{align*}
-    g_h = (f(x_{11}), f(x_{12}), \dots, f(x_{1,N-1}), f(x_{21}), \dots, f(x_{N-1,N-1}))^\top
+    g_h = (f(x_{1,1}), f(x_{1,2}), \dots, f(x_{1,N-1}), f(x_{2,1}), \dots, f(x_{N-1,N-1}))^\top
   \end{align*}
 
   Für die Matrix $A_h$ erhalten wir durch die obige Gleichung nun
