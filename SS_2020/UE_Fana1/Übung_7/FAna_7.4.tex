@@ -30,6 +30,54 @@ Zeige
 
 \begin{solution}
 
-ToDo!
-
+Man erinnere sich an die Definition von $K: L^2(0,1) \to L^2(0,1)$.
+\begin{align*}
+  K(f) := \left(s \mapsto \int_0^1k(s,t)f(t)d\lambda(t)\right).
+\end{align*}
+Weiters wissen wir noch von letzter Woche, dass $\|K\| = \|k\|_{L^2(\mu \times \mu)}$ und
+dass die Konjugierte der Operator mit Kern $\overline{k(y,x)}$ ist. Ebenso folgt
+aus $k \in C([0, 1]^2) \subset L^2(\lambda \times \lambda)$ mit IO/2, dass $K$
+sogar ein kompakter Operator ist.
+Also ist die neue Version (Korollar 7.2.13) das Spektralsatzes für kompakte,
+selbstadjungierte Operatoren anwendbar.
+\begin{enumerate}[label = (\alph*)]
+  \item Sei $n \in \N$ beliebig. Nach Konstruktion der $e_n$ gilt $e_n \in \ker(K - \lambda_nI)$,
+  also
+  \begin{align*}
+    Ke_n - \lambda_ne_n = 0 &\iff
+    (Ke_n)(s) = \int_0^1 k(s,t)e_n(t)dt = \lambda_n e_n(s) \\
+    &\iff e_n(s) = \int_0^1 k(s,t)e_n(t)\lambda_n^{-1}dt.
+  \end{align*}
+  Wähle nun $(s_n)_{n\in\N} \subset [0,1]$ mit $s_n \to s$ beliebig. Definiere
+  \begin{align*}
+    h_{\ell}(t) := k(s_{\ell},t)e_n(t)\lambda_n^{-1}, \quad
+    h(t) := k(s,t)e_n(t)\lambda_n^{-1}.
+  \end{align*}
+  Wegen der Stetigkeit von $k$ gilt die notationell bereits angedeutete Beziehung
+  $h_{\ell}(t) \to h(t)$ punktweise. Weiters gilt für alle $n \in \N, t \in [0,1]$
+  \begin{align*}
+    |h_{\ell}(t)| = |k(s_{\ell},t)||e_n(t)\lambda_n^{-1}| \leq
+    \|k\|_{\infty}|\lambda_n^{-1}||e_n(t)| =: g(t). \\
+    \int_0^1|g(t)|d\lambda(t) = \|k\|_{\infty}|\lambda_n^{-1}|\int_0^1|e_n(t)|dt
+    \leq \|k\|_{\infty}|\lambda_n^{-1}|\|e_n\|_2\|1\|_2 < \infty,
+  \end{align*}
+  wobei die vorletzte Ungleichung mit Hölder gilt. Mit der dominierten Konvergenz
+  erhalten wir schließlich
+  \begin{align*}
+    \lim_{\ell \to \infty} e_n(s_{\ell}) = \lim_{\ell \to \infty}\int_0^1h_{\ell}(t)dt
+    = \int_0^1h(t)dt = e_n(s).
+  \end{align*}
+  Also ist $e_n$ folgensteig, da $[0,1]$ eine abzählbare Umgebungsbasis hat,
+  folgt nach Blümlinger Satz 1.2.4. sogar die Stetigkeit.
+  \item Sei $f \in L^2(0,1)$ beliebig.
+  \begin{align*}
+    \sum_{n \in \N}\|\lambda_n e_n (f,e_n)\|_{\infty} &=
+    \sum_{n \in \N}|(f,e_n)|\|\lambda_ne_n\|_{\infty} =
+    \sum_{n \in \N}|(f,e_n)|\|Ke_n\|_{\infty} =
+    \sum_{n \in \N}|(f,e_n)|\|\int_0^1k(s,t)e_n(t)dt\|_{\infty} \\ &\leq
+    \sum_{n \in \N}|(f,e_n)|\|(\int_0^1|k(s,t)|^2dt)^{\nicefrac{1}{2}}\|e_n\|^2\|_{\infty} \leq
+    \|k\|_{\infty}\sum_{n \in \N}|(f,e_n)| = \|k\|_{\infty}\|f\|_2,
+  \end{align*}
+  wobei die letzte Gleichung die Parsevalsche Gleichung ist.
+\end{enumerate}
 \end{solution}
