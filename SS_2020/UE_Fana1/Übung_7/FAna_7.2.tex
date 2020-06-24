@@ -48,7 +48,7 @@ Wir zeigen zuerst, dass $E$ ein Spektralmaß ist, also
   und konvergiert punktweise gegen $0$.
   Mit dem Satz von Beppo Levi folgt daher
   \begin{align*}
-  \lim_{N \to \infty}\int_\Omega |\sum_{n = 1}^N\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f|^2 d\mu
+  \lim_{N \to \infty}\int_\Omega \left|\sum_{n = 1}^N\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f\right|^2 d\mu
   &= \lim_{N \to \infty}\int_\Omega \1_{\bigcup_{n = 1}^N\Delta_n}f -
   \1_{\bigcup_{n \in \N}\Delta_n}f
    d\mu \\
@@ -75,21 +75,23 @@ Wieder bemühen wir den alten Beppo Levi:
   &= \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_k\int_{\Omega}\1_{\Delta_k} dE_{g,h}
   = \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_k(E(\Delta_k)g,h)
   = \lim_{n \to \infty}\left(\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)g,h\right) \\
-  &= \left(\lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)g,h\right).
+  &= \left(\lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)g,h\right)
+  = \left(\lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kM_{\1_{\Delta_k}}g,h\right)
+  = \left(M_{\phi}g,h\right).
 \end{align*}
-Also gilt $\Int{\phi}{E} = \lim_{n \to \infty}\sum_{k=0}^{k(n)}\alpha_kE(\Delta_k)$.
-
-**** Alternative Berechnung des Integrals***
+Also gilt $\Int{\phi}{E} = M_{\phi}$. \\
+**** Alternative Berechnung des Integrals:*** \\
 Für alle $g, h \in L^2(\mu)$ folgt aus dem Satz von Radon-Nikodym mit
-\begin{align}
+\begin{align*}
     E_{g, h}(\Delta) = (E(\Delta) g, h) = (\1_\Delta g, h) = \int_{\Delta} g \overline h~\mathrm{d} \mu,
-\end{align}
+\end{align*}
 dass $E_{g, h}$ absolutstetig bezüglich $\mu$ mit Dichte $g\overline h$ ist.
 
 Damit können wir $\int \phi$ d$E$ berechnen:
-\begin{align}
-    ((\int \phi ~\mathrm{d}E)g, h) = \int \phi ~\mathrm{d}E_{g,h} = \int \phi g \overline h~\mathrm{d} \mu = (\phi g, h).
-\end{align}
+\begin{align*}
+    \left(\left(\int \phi ~\mathrm{d}E\right)g, h\right) =
+    \int \phi ~\mathrm{d}E_{g,h} = \int \phi g \overline h~\mathrm{d} \mu = (\phi g, h).
+\end{align*}
 
 Diese Gleichung gilt für alle $g$ und $h$, wir erhalten also $\int \phi ~\mathrm{d}E = M_\phi$.
 \end{solution}

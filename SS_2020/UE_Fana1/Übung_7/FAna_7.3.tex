@@ -13,12 +13,150 @@ Zeige, dass der Limes (das Riemann-Stieltjes Integral)
   (E_{\xi_j} - E_{\xi_{j-1}}),
 \end{align*}
 
-wobei die Riemannzerlegung $\mathcal{R}$ des Intervalles $[a, b]$ die Stützstellen $\xi_j$ und die Zwischenstellen $\alpha_j$ hat, bezüglich der Operatornorm existiert und gleich der (wie in der Vorlesung definierte) Operator $\Int{\phi}{E} - \phi(a) E(\{a\})$ ist.
+wobei die Riemannzerlegung $\mathcal{R}$ des Intervalles $[a, b]$ die Stützstellen $\xi_j$ und die Zwischenstellen $\alpha_j$ hat, bezüglich der Operatornorm existiert und gleich der
+(wie in der Vorlesung definierte) Operator \\
+$\Int{\phi|_{[a,b]}}{E} - \phi(a) E(\{a\})$ ist.
 
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
-
+Wir werden wohl oder übel zeigen müssen, dass obiges Netz ein Cauchy-Netz in der
+Operatornorm ist. Seien $\mathcal{R}_1,\mathcal{R}_2$ also zwei Riemannzerlegungen.
+Wir machen zuerst eine Vorberechnung
+\begin{align*}
+  E_{\xi_j} - E_{\xi_{j-1}} = E((-\infty, \xi_j]) - E((-\infty, \xi_{j-1}])
+  = E((\xi_{j-1},\xi_j]).
+\end{align*}
+Sei nun $\epsilon > 0$ beliebig und wähle $\delta > 0$, sodass für $\forall x,y \in [a,b]: |x - y| < \delta \implies |\phi(x) - \phi(y)| < \frac{\epsilon}{2}$. Dies ist möglich da $\phi$
+auf dem Kompaktum $[a,b]$ stetig und somit sogar gleichmäßig stetig ist. Seien
+$\mathcal{R}_1,\mathcal{R_2}$ zwei beliebige Riemannzerlegungen mit
+$|\mathcal{R}_1|,|\mathcal{R}_2| < \delta$. \\
+Damit gilt nun für alle $x \in \mathcal{H}$ mit der Notation
+$P(\mathcal{R}) := \sum_{j=1}^{n(\mathcal{R})}\phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})$
+\begin{align*}
+  \|(P(\mathcal{R}_1) - P(\mathcal{R}_2))x\| &= \left\|\sum_{j=1}^{n(\mathcal{R}_1)}
+  \phi(\alpha_{1,j})
+  (E_{\xi_{1,j}} - E_{\xi_{1,j-1}})x -
+  \sum_{j=1}^{n(\mathcal{R}_2)}
+  \phi(\alpha_{2,j})
+  (E_{\xi_{2,j}} - E_{\xi_{2,j-1}})x\right\| \\
+  &= \left\|\sum_{j=1}^{n(\mathcal{R}_1)}
+  \phi(\alpha_{1,j})
+  E((\xi_{1,j-1},\xi_{1,j}])x -
+  \sum_{j=1}^{n(\mathcal{R}_2)}
+  \phi(\alpha_{2,j})
+  E((\xi_{2,j-1},\xi_{2,j}])x\right\|.
+\end{align*}
+Sei nun $\mathcal{R} = ((\eta_{k})_{k=0}^{n(\mathcal{R})},(\beta_k)_{k=1}^{n(\mathcal{R})})$
+eine Riemannzerlegung mit
+\begin{align*}
+  \{\xi_{1,j}: j = 0,\dots,n(\mathcal{R}_1)\} \cup \{\xi_{2,j}: j = 0,\dots,n(\mathcal{R}_2)\}
+  \subseteq \{\eta_k: k = 0,\dots,n(\mathcal{R})\}.
+\end{align*}
+Ist $j \in \{1,\dots,n(\mathcal{R}_1)\}$, so gibt es Indizes $k(j-1) < k(j)$, sodass
+\begin{align*}
+  \xi_{1,j-1} = \eta_{k(j-1)} < \dots < \eta_{k(j)} = \xi_{1,j}.
+\end{align*}
+Dann gilt
+\begin{align*}
+  \|(P(\mathcal{R}_1) - P(\mathcal{R}))x\| &= \left\|
+  \sum_{j=1}^{n(\mathcal{R}_1)}\sum_{k =k(j-1)+1}^{k(j)}\phi(\alpha_{1,j})
+  E((\eta_{k-1},\eta_{k}])x -
+  \sum_{j=1}^{n(\mathcal{R})}
+  \phi(\beta_j)
+  E((\eta_{j-1},\eta_{j}])x\right\| \\
+  &= \left\|
+  \sum_{j=1}^{n(\mathcal{R}_1)}\sum_{k =k(j-1)+1}^{k(j)}
+  E((\eta_{k-1},\eta_{k}])
+  \underbrace{(\phi(\alpha_{1,j}) - \phi(\beta_k))}_{<\nicefrac{\epsilon}{2}}x\right\| \\
+  &\leq \frac{\epsilon}{2}\left\|
+  \sum_{j=1}^{n(\mathcal{R})}
+  E((\eta_{j-1},\eta_{j}])x\right\|
+  = \frac{\epsilon}{2}\left\|E((a,b])x\right\| \leq \frac{\epsilon}{2}\|E((a,b])\|\|x\|
+  \leq \frac{\epsilon}{2}\|x\|,
+\end{align*}
+wobei die letzte Ungleichung gilt, da Orthogonalprojektionen Kontraktionen sind. \\
+Analog folgt $\|(P(\mathcal{R}_2) - P(\mathcal{R}))x\| \leq \frac{\epsilon}{2}\|x\|$
+und damit erhalten wir für alle $x \in \mathcal{H}$
+\begin{align*}
+  \|(P(\mathcal{R}_1) - P(\mathcal{R}_2))x\| \leq \epsilon\|x\|.
+\end{align*}
+Also haben wir gezeigt, dass der Limes in der Operatornorm existiert. \\
+Laut Definition gilt für alle $x,y \in \mathcal{H}$
+\begin{align*}
+  \left(\left(\Int{\phi|_{[a,b]}}{E} - \phi(a) E(\{a\})\right)x,y\right) =
+  \Int{\phi|_{[a,b]}}{E_{x,y}} - \phi(a)(E(\{a\})x,y).
+\end{align*}
+Weiters rechnen wir
+\begin{align*}
+  \left(\lim_{|\mathcal{R}| \to 0}\sum_{j=1}^{n(\mathcal{R})}
+  \phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) &=
+  \lim_{|\mathcal{R}| \to 0}
+  \left(\sum_{j=1}^{n(\mathcal{R})}\phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) \\
+  &= \lim_{|\mathcal{R}| \to 0}
+  \left(\sum_{j=1}^{n(\mathcal{R})}\phi(\alpha_j)E((\xi_{j-1},\xi_j])x,y\right).
+\end{align*}
+Für konstantes $\phi|_{[a,b]} \equiv \phi_0$ gilt offensichtlich
+\begin{align*}
+  \left(\lim_{|\mathcal{R}| \to 0}\sum_{j=1}^{n(\mathcal{R})}
+  \phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) =
+  (\phi_0E((a,b])x,y) = \Int{\phi|_{[a,b]}}{E_{x,y}} - \phi(a)(E(\{a\})x,y).
+\end{align*}
+Wie im Beispiel zuvor können wir die Funktion $\phi$ durch eine monotone Folge
+von Treppenfunktionen von unten approximieren, also
+\begin{align*}
+  \phi = \lim_{m \to \infty}\underbrace{\sum_{k=1}^{k(m)}\alpha_{k,m}
+  \1_{[\beta_{k-1,m},\beta_{k,m}]}}_{=: \phi_m}.
+\end{align*}
+Für diese Treppenfunktionen können wir ein Teilnetz an Riemannzerlegungen
+finden, deren Stützstellen die $(\beta_{k,m})_{k=0}^{k(m)}$ umfassen und
+es gilt
+\begin{align*}
+  \left(\lim_{|\mathcal{R}| \to 0}\sum_{j=1}^{n(\mathcal{R})}
+  \phi_m(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) &=
+  \lim_{|\mathcal{R}| \to 0}\left(\sum_{k=1}^{k(m)}
+  \alpha_{k,m}\sum_{j=1}^{j(k)}(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) \\
+  &= \left(\sum_{k=1}^{k(m)}
+  \alpha_{k,m}E((\beta_{k-1,m},\beta_{k,m}])x,y\right) =
+  \Int{\phi_m|_{[a,b]}}{E_{x,y}} - \phi_m(a)(E(\{a\})x,y)
+\end{align*}
+Damit müssen wir jetzt nur noch eine Limes-Vertauschung begründen und wir sind durch:
+\begin{align*}
+  \left(\lim_{|\mathcal{R}| \to 0}\sum_{j=1}^{n(\mathcal{R})}
+  \phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) =
+  \lim_{|\mathcal{R}| \to 0}\lim_{m \to \infty}
+  \underbrace{\left(\sum_{j=1}^{n(\mathcal{R})}
+  \phi_m(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right)}_{=: f_{m,\mathcal{R}}}
+\end{align*}
+Der Grenzwert $\lim_{|\mathcal{R}| \to 0}f_{m,\mathcal{R}}$ für jedes feste $m$
+nach der Rechnung am Anfang erreicht
+und der Grenzwert $f_{\mathcal{R}} := \lim_{m \to \infty}f_{m,\mathcal{R}} =
+\left(\sum_{j=1}^{n(\mathcal{R})}
+\phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right)$ existiert gleichmäßig in $\mathcal{R}$, da
+\begin{align*}
+  \|f_{\mathcal{R}} -f_{m,\mathcal{R}}\| &=
+  \left\|\left(\sum_{j=1}^{n(\mathcal{R})}
+  (\phi(\alpha_j) - \phi_m(\alpha_j))(E_{\xi_j} - E_{\xi_{j-1}})x,y\right)\right\|
+  \leq \max_{j=1}^{n(\mathcal{R})}(\phi(\alpha_j) - \phi_m(\alpha_j))
+  \left\|\left(\sum_{j=1}^{n(\mathcal{R})}
+  (E_{\xi_j} - E_{\xi_{j-1}})x,y\right)\right\| \\
+  &= \max_{j=1}^{n(\mathcal{R})}(\phi(\alpha_j) - \phi_m(\alpha_j))
+  \left\|\left(\sum_{j=1}^{n(\mathcal{R})}
+  E((a,b])x,y\right)\right\| \xrightarrow{m \to \infty} 0.
+\end{align*}
+Also dürfen wir vertauschen und erhalten für alle $x,y \in \mathcal{H}$
+\begin{align*}
+  \left(\lim_{|\mathcal{R}| \to 0}\sum_{j=1}^{n(\mathcal{R})}
+  \phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) &=
+  \lim_{|\mathcal{R}| \to 0}\lim_{m \to \infty}
+  \left(\sum_{j=1}^{n(\mathcal{R})}
+  \phi_m(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) \\
+  &= \lim_{m \to \infty}\lim_{|\mathcal{R}| \to 0}
+  \left(\sum_{j=1}^{n(\mathcal{R})}
+  \phi_m(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})x,y\right) \\
+  &= \lim_{m \to \infty} \Int{\phi_m|_{[a,b]}}{E_{x,y}} - \phi_m(a)(E(\{a\})x,y) \\
+  &= \Int{\phi|_{[a,b]}}{E_{x,y}} - \phi(a)(E(\{a\})x,y) \\
+  &= \left(\left(\Int{\phi|_{[a,b]}}{E} - \phi(a) E(\{a\})\right)x,y\right).
+\end{align*}
+Die vorletzte Gleichung gilt aufgrund monotoner Konvergenz.
 \end{solution}
