@@ -17,7 +17,35 @@ Bestimme das Spektralmaß von $A$, und finde eine Orthonormalbasis des $L^2([0, 
 \end{exercise}
 
 \begin{solution}
-
-ToDo!
-
+Sei $f \in L^2([0,1])$ beliebig. Definiere
+\begin{align*}
+  A_1:& L^2([0,1]) \mapsto L^2([0,1]): (A_1f)(x) = \int_{[0,x]}f d\lambda  \\
+  A_2:& L^2([0,1]) \mapsto L^2([0,1]): (A_2f)(x) = \int_{[0,1]}f d\lambda
+\end{align*}
+$A_2$ ist offensichtlich selbstadjungiert und nach Aufgabe IO/2 auch kompakt.
+Der Operator $A_1$ ist uns auch schon unter dem Namen Volterra-Operator bekannt,
+von dem wir auch bereits wissen, dass er kompakt ist und dass
+$(A_1^*f)(x) = \int_{[x,1]}f d\lambda$. Da die Menge der kompakten Operatoren
+ein linearer Unterraum von $L_b([0,1])$ ist, ist damit auch $A$ kompakt.
+Weiters berechnen wir
+\begin{align*}
+  (Af,g) = (iA_1f - \frac{i}{2}A_2f,g) = i(A_1f,g) - \frac{i}{2}(A_2f,g)
+  = i(f,A_1^*g) - \frac{i}{2}(f,A_2g)
+  = (f,-iA_1^*g + \frac{i}{2}A_2g).
+\end{align*}
+Es gilt
+\begin{align*}
+  -iA_1^*g + \frac{i}{2}A_2g &= \int_x^1 -ig d\lambda + \int_0^1\frac{i}{2}g d\lambda
+  = \int_0^1i\left(\frac{1}{2} -\1_{[x,1]}\right)g d\lambda =
+  \int_0^1i\left(\1_{[0,x]} -\frac{1}{2}\right)g d\lambda \\
+  &= \int_0^x ig d\lambda - \int_0^1 \frac{i}{2}g d\lambda = Ag.
+\end{align*}
+Also ist $A$ selbstadjungiert. Als nächstes wollen wir
+$\sigma(A)\backslash\{0\} = \sigma_p(A)\backslash\{0\} \subset \R$ bestimmen.
+Betrachte also
+\begin{align*}
+  (A f)(x) - \lambda f(x) &= 0 \iff i\Int[{[0, x]}]{f}{\lambda}
+  - \frac{i}{2}\Int[{[0, 1]}]{f}{\lambda} - \lambda f(x) = 0 \\
+  &\iff \Int[{[0, 1]}]{\frac{i}{\lambda}\left(\1_{[0,x]} - \frac{1}{2}\right)f}{\lambda} = f(x)
+\end{align*}
 \end{solution}
