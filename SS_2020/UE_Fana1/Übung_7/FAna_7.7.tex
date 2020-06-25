@@ -30,6 +30,82 @@ Verwende dies, um zu zeigen dass $K$ surjektiv ist und dass $K^{-1}=(L+1)^{-1}+T
 
 \begin{solution}
 
-ToDo!
+\underline{Injektivität:} \\
+
+Elemente $h \in \ker{K}$ sind Lösungen des RWP
+
+\begin{align*}
+  h^\primeprime = h,
+  \quad
+  h(0) = h(1),
+  \quad
+  h^\prime(0) = h^\prime(1).
+\end{align*}
+
+Ein Fundamentalsystem der ODE ist gegeben durch $(e^x, e^{-x})$.
+Lösungen haben daher folgende Form.
+
+\begin{align*}
+  h(x)
+  & =
+  h_1 e^x + h_2 e^{-x},
+  \quad
+  h_1, h_2 \in \C \\
+  \implies
+  h^\prime(x)
+  & =
+  (h_1 e^x + h_2 e^{-x})^\prime
+  =
+  h_1 e^x - h_2 e^{-x}
+\end{align*}
+
+Wir rechnen, unter Berücksichtigung der RWB, nach, dass $h_1 = h_2 = 0$.
+Die erste RWB führt zu
+
+\begin{align*}
+  h_1 + h_2
+  =
+  h(0)
+  =
+  h(1)
+  =
+  h_1 e + h_2 / e
+  \implies
+  h_1 (1 - e) + h_2 (1 - 1/e) = 0.
+\end{align*}
+
+Die zweite RWP führt zu
+
+\begin{align*}
+  h_1 - h_2
+  =
+  h^\prime(0)
+  =
+  h^\prime(1)
+  =
+  h_1 e - h_2 / e
+  \implies
+  h_1 (1 - e) - h_2 (1 - 1/e) = 0.
+\end{align*}
+
+Das lässt sich zu einem homogenen LGS zusammenfassen.
+
+\begin{align*}
+  \underbrace
+  {
+    \begin{pmatrix}
+    1 - e & 1 - 1/e \\
+    1 - e & 1/e - 1
+    \end{pmatrix}
+  }_{\in \GL{2, \R}}
+  \begin{pmatrix}
+    h_1 \\ h_2
+  \end{pmatrix}
+  = 0
+\end{align*}
+
+Dieses hat, aufgrund der Invertiebarkeit der Matrix, nur die triviale Lösung $h_1 = h_2 = 0$.
+Daher, muss $\ker{K} = \Bbraces{0}$.
+Folglich, ist $K$ injektiv.
 
 \end{solution}
