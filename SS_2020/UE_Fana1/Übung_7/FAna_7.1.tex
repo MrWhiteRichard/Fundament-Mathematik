@@ -65,46 +65,28 @@ Also gilt
 Zweitens: $A_n \to A$ in der Operatornorm. \\
 Dazu berechne zuerst
 \begin{align*}
-  (E - E_n)(\Delta) = E(\Delta) - E(\Delta \cap B_n) = E(\Delta\cap B_n^{\complement})
+  E_{g,h}^n(\Delta) = (E^n(\Delta)g,h) = (E(\Delta \cap B_n)g,h) = (E(\Delta)E(B_n)g,h)
+  = E_{E(B_n)g,h}(\Delta).
 \end{align*}
+Also folgt mit
 \begin{align*}
-  \|(A - A_n)x\|^2 &= ((A-A_n)x,(A-A_n)x) = \int_{\C}\phi d(E_{x,(A-A_n)x} - E^n_{x,(A-A_n)x})
-  \leq \|\phi\|_{\infty}|E_{x,(A-A_n)x} - E^n_{x,(A-A_n)x}|(\C) \\
-  &= \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|E_{x,(A-A_n)x} - E^n_{x,(A-A_n)x}(\Delta_j)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &=  \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|(E(\Delta_j\cap B_n^{\complement})x, (A-A_n)x)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &=  \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|((A-A_n)x, E(\Delta_j\cap B_n^{\complement})x)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &=  \|\phi\|_{\infty}\sup\{\sum_{j=1}^{\infty}|\int_{\C}\phi
-  d(E_{x,E(\Delta_j\cap B_n^{\complement})x} - E_{x,E(\Delta_j\cap B_n^{\complement})x}^n)|: \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &\leq \|\phi\|_{\infty}^2 \sup\{\sum_{j=1}^{\infty}|
-  E_{x,E(\Delta_j\cap B_n^{\complement})x} - E_{x,E(\Delta_j\cap B_n^{\complement})x}^n|(\Delta_j): \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &= \|\phi\|_{\infty}^2 \sup\{\sum_{j=1}^{\infty}\sum_{k=1}^{\infty}
-  |E_{x,E(\Delta_{j}\cap B_n^{\complement})x} - E_{x,E(\Delta_{j,k}\cap B_n^{\complement})x}^n(\Delta_{j,k})|: \dot{\bigcup_{k \in \N}}\Delta_{j,k} = \Delta_j, \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &= \|\phi\|_{\infty}^2 \sup\{\sum_{j=1}^{\infty}\sum_{k=1}^{\infty}
-  |(E(\Delta_{j,k}\cap B_n^{\complement})x,E(\Delta_j\cap B_n^{\complement})x)|: \dot{\bigcup_{k \in \N}}\Delta_{j,k} = \Delta_j, \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &= \|\phi\|_{\infty}^2 \sup\{\sum_{j=1}^{\infty}\sum_{k=1}^{\infty}
-  \|(E(\Delta_{j,k}\cap B_n^{\complement})x\|^2: \dot{\bigcup_{k \in \N}}\Delta_{j,k} = \Delta_j, \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &= \|\phi\|_{\infty}^2 \sup\{\|\sum_{j,k=1}^{\infty}
-  E(\Delta_{j,k}\cap B_n^{\complement})x\|^2: \dot{\bigcup_{k \in \N}}\Delta_{j,k} = \Delta_j, \dot{\bigcup_{j \in \N}}\Delta_j = \C\} \\
-  &= \|\phi\|_{\infty}^2 \|E(\C \cap B_n^{\complement})x\|^2
-  \leq \|\phi\|_{\infty}^2 \|E(B_n^{\complement})\|^2 \|x\|^2 \leq \|\phi\|_{\infty}^2\|x\|^2.
+    (A_ng,h) = \int_{\C}\phi dE_{g,h}^n = \int_{\C}\phi dE_{E(B_n)g,h} = (AE(B_n)g,h)
+    = (\Phi_E(\phi)\Phi_E(\1_{B_n}) dE g,h) = (\Phi_E(\1_{B_n}\phi) dE g,h)
 \end{align*}
-Irgendwo zu viel hergeschenkt. \\
-Neuer Versuch: Seien $g,h \in \mathcal{H}$ beliebig:
+dass $A_n = \Phi_E(\1_{B_n}\phi) = \int_{\C} \1_{B_n}\phi dE$.
+Wir definieren $\phi_n := \1_{B_n}\phi$ und bemerken, dass
 \begin{align*}
-|E_{g,h} - E_{g,h}^n|(\C) &=
-\sup\{\sum_{k=1}^\infty|(E_{g,h} - E_{g,h}^n)(\Delta_k)|:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} \\
-&= \sup\{\sum_{k=1}^\infty|(E(\Delta_k \cap B_n^{\complement})g,h)|:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} \\
-&\leq \sup\{\sum_{k=1}^\infty\|E(\Delta_k \cap B_n^{\complement})g\|^2\|h\|^2:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} \\
-&= \|h\|^2\sup\{\|\sum_{k=1}^\infty E(\Delta_k \cap B_n^{\complement})g\|^2:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} \\
-&\leq \|h\|^2\|g\|^2\sup\{\|\sum_{k=1}^\infty E(\Delta_k \cap B_n^{\complement})\|^2:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} \\
-&= \|h\|^2\|g\|^2\sup\{\|E(B_n^{\complement})\|^2:
-\dot{\bigcup_{k=1}^{\infty}\Delta_k} = \C\} = \|h\|^2\|g\|^2\|E(B_n^{\complement})\|^2
+  \|\phi - \phi_n\|_{\infty} = \|(1 - \1_{B_n})\phi\|_{\infty}\sup\{|x|: x \notin B_n\} \leq
+  \frac{1}{n} \xrightarrow{n \to \infty} 0.
 \end{align*}
+Also konvergieren die $\phi_n$ gleichmäßig gegen $\phi$ und mit Satz 7.1.9.(viii)
+folgt, dass
+\begin{align*}
+  \lim_{n \to \infty} A_n = \lim_{n \to \infty}\Phi_E(\1_{B_n}\phi) =
+  \lim_{n \to \infty}\Phi_E(\phi_n) = \Phi_E(\phi) = A
+\end{align*}
+in der Operatornorm und aufrgund der Abgeschlossenheit der kompakten Operatoren
+bezüglich der Operatornorm ist $A$ damit kompakt. \\
 Sei umgekehrt $\Int{\phi}{E}$ kompakt. Angenommen, es existiert ein $r_0 > 0$,
 sodass
 \begin{align*}
