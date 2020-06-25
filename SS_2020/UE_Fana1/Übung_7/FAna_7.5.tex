@@ -42,10 +42,38 @@ Es gilt
 \end{align*}
 Also ist $A$ selbstadjungiert. Als nächstes wollen wir
 $\sigma(A)\backslash\{0\} = \sigma_p(A)\backslash\{0\} \subset \R$ bestimmen.
-Betrachte also
+Eine Eigenfunktion müsste die Gleichung $\lambda f(x) = A f(x)$ fast überall erfüllen, also
 \begin{align*}
-  (A f)(x) - \lambda f(x) &= 0 \iff i\Int[{[0, x]}]{f}{\lambda}
-  - \frac{i}{2}\Int[{[0, 1]}]{f}{\lambda} - \lambda f(x) = 0 \\
-  &\iff \Int[{[0, 1]}]{\frac{i}{\lambda}\left(\1_{[0,x]} - \frac{1}{2}\right)f}{\lambda} = f(x)
+  \lambda f(x) = i \int_0^x f d\lambda - \frac{i}{2}\int_0^1 f d\lambda.
 \end{align*}
+Mit dem Hauptsatz für Lebesgue-Integrale folgt daraus
+\begin{align*}
+  \lambda f^{\prime}(x) = if(x) \quad \lambda- \text{ f. ü.}
+\end{align*}
+Wir können die allgemeine Lösung dieser ODE angeben mit
+\begin{align*}
+  f_{a,\lambda}(t) := a\exp\left(\frac{i}{\lambda}t\right), \quad a \in \C.
+\end{align*}
+Wir berechnen
+\begin{align*}
+  A f_{a,\lambda}(x) &=
+  i \int_0^x f_{a,\lambda} d\lambda - \frac{i}{2}\int_0^1 f_{a,\lambda} d\lambda =
+  i \int_0^x a\exp\left(\frac{i}{\lambda}t\right) d\lambda -
+  \frac{i}{2}\int_0^1 a\exp\left(\frac{i}{\lambda}t\right) d\lambda \\
+  &= ai \frac{\lambda}{i}\left(\exp\left(\frac{i}{\lambda}x\right) - 1\right)
+  - a\frac{i}{2}\frac{\lambda}{i}\left(\exp\left(\frac{i}{\lambda}\right) - 1\right)
+  = \frac{a\lambda}{2}\left(2\left(\exp\left(\frac{i}{\lambda}x\right) - 1\right)
+  - \left(\exp\left(\frac{i}{\lambda}\right) - 1\right)\right) \\
+  &= \lambda f_{a,\lambda}(x) + \frac{a\lambda}{2}
+  \left(\left(1 - \exp\left(\frac{i}{\lambda}\right)\right) -  2\right)
+  \stackrel{!}{=} \lambda f_{a,\lambda}(x)
+\end{align*}
+Also muss gelten
+\begin{align*}
+  \exp\left(\frac{i}{\lambda}\right) = -1 \iff \lambda = \frac{1}{(2k+1)\pi}.
+\end{align*}
+Nun setze $e_k := \frac{f_{1,\lambda_k}}{\|f_{1,\lambda_k}\|_2},
+\lambda_k := \frac{1}{(2k+1)\pi}, k \in \Z$.
+Die Vektoren $e_k$ bilden eine Orthonormalbasis des $L^2([0,1])$ und wir erhalten
+das Spektralmaß $E$ mit $E(\{\lambda_k\}) = P_k = (\cdot,e_k)e_k$.
 \end{solution}

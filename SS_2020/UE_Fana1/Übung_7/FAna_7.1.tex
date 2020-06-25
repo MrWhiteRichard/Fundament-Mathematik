@@ -76,8 +76,8 @@ Also folgt mit
 dass $A_n = \Phi_E(\1_{B_n}\phi) = \int_{\C} \1_{B_n}\phi dE$.
 Wir definieren $\phi_n := \1_{B_n}\phi$ und bemerken, dass
 \begin{align*}
-  \|\phi - \phi_n\|_{\infty} = \|(1 - \1_{B_n})\phi\|_{\infty}\sup\{|x|: x \notin B_n\} \leq
-  \frac{1}{n} \xrightarrow{n \to \infty} 0.
+  \|\phi - \phi_n\|_{\infty} = \|(1 - \1_{B_n})\phi\|_{\infty} = \sup\{|\phi(x)|: x \notin B_n\}
+  \leq \frac{1}{n} \xrightarrow{n \to \infty} 0.
 \end{align*}
 Also konvergieren die $\phi_n$ gleichmäßig gegen $\phi$ und mit Satz 7.1.9.(viii)
 folgt, dass
@@ -87,13 +87,41 @@ folgt, dass
 \end{align*}
 in der Operatornorm und aufrgund der Abgeschlossenheit der kompakten Operatoren
 bezüglich der Operatornorm ist $A$ damit kompakt. \\
-Sei umgekehrt $\Int{\phi}{E}$ kompakt. Angenommen, es existiert ein $r_0 > 0$,
-sodass
+Sei umgekehrt $\Int{\phi}{E}$ kompakt. \\
+Fall 1: $\phi = 0$: \\
+Dann ist für alle $r > 0$
 \begin{align*}
-  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r_0}} = \infty.
+  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r}}
+  = \dim{\ran{E}}(\emptyset) = 0.
 \end{align*}
-Dann ist insbesondere auch
+Fall 2: $\phi \neq 0:$ \\
+Da $A := \int_{\C} \phi dE$ kompakt ist, ist es auch
 \begin{align*}
-  \dim(H) = \dim(\ran(E(\C))) = \infty.
+  AA^* = \int_{\C} \phi dE\int_{\C} \overline{\phi} dE = \int_{\C} |\phi|^2 dE.
 \end{align*}
+Dieser Operator ist somit kompakt und selbstadjungiert und es gilt
+\begin{align*}
+  AA^*x = \sum_{n=1}^{\infty}\lambda_n(x,e_n)e_n, \quad x \in \mathcal{H}
+\end{align*}
+Sei $r > 0$ beliebig. Laut Proposition 6.5.11 gilt, dass
+$F := \{\lambda: |\lambda| \geq r, \lambda \in \sigma_p(AA^*)\}$ eine endliche Menge
+ist.
+Weiters gilt mit Korollar 7.2.11, dass für
+$\lambda \in \sigma(AA^*) : \ran(E(\{\lambda\})) = \ker(AA^* - \lambda I)$
+und $\lambda \in \sigma_p(AA^*) \iff E(\lambda) \neq 0$.
+Proposition 6.5.8 liefert uns $\dim(\ker(AA^* -\lambda I)) < \infty$.
+Sei nun $\lambda \in \sigma_p(AA^*) \cap B_r$. Dann folgt ($\lambda \in \R$)
+\begin{align*}
+  |\phi(\lambda)| &\geq r \\
+  0 &= \|AA^*x - \lambda x\|^2 = (AA^*x - \lambda x,AA^*x - \lambda x)
+  = (AA^*x,AA^*x) + (\lambda x, \lambda x) -(\lambda x,AA^*x) - (AA^*x,\lambda x) \\
+  &= (AA^*x,AA^*x) + (\lambda x, \lambda x) -2\lambda(AA^*x,x)
+  = (AA^*x,AA^*x) + (\lambda x, \lambda x) -2\lambda\int_{\C}|\phi|^2dE_{x,x}
+\end{align*}
+Setzen wir das alles zusammen, erhalten wir
+\begin{align*}
+  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r}} =
+  \dim{\ran{E}}\pbraces{\Bbraces{\lambda \in \sigma_p(A):|\phi(\lambda)| \geq r}}
+\end{align*}
+Wähle eine ONB von $\mathcal{H}$
 \end{solution}
