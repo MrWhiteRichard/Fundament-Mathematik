@@ -22,7 +22,7 @@ Zeige
   Die Eigenfunktionen $e_n$ sind stetig auf $[0, 1]$.
 
   \item
-  Für jedes $f \in L^2(0, 1)$ konvergiert die Reihe $K f = \sum_{n \in \N} \lambda_n (f, e_n) e_n$ absolut und gleichmäßig auf $[0, 1]$.
+  Für jedes $f \in L^2(0, 1)$ konvergiert die Reihe $K f = \sum_{n \in \N} \lambda_n (f, e_n) e_n$ absolut für jedes feste $s$ und gleichmäßig auf $[0, 1]$.
 
 \end{enumerate}
 
@@ -170,48 +170,19 @@ Also ist Korollar 7.2.13 anwendbar.
   $\Forall f \in L^2(0, 1):$
 
   \begin{align*}
-    \norm[\infty]
-    {\lambda_n e_n}
-    =
-    \norm[\infty]
-    {K e_n}
-    =
-    \norm[\infty]
-    {
-      \Int[0][1]
-      {k(s, t) e_n(t)}{t}
-    }
-    \leq
-    \Int[0][1]
-    {
-      \norm[\infty]
-      {k(s, t) e_n(t)}
-    }{t}
-    \leq
-    \norm[\infty]{k}
-    \norm[1]{e_n}
+    \sum_{n \in \N}
+    |(f, e_n)\lambda_n e_n(s)|
+     &= \sum_{n \in \N}
+     |(f, e_n)(k(s,\cdot),e_n)| \leq
+     \left(\sum_{n \in \N}
+     |(f, e_n)|^2\right)^{\nicefrac{1}{2}}
+     \left(\sum_{n \in \N}|(k(s,\cdot),e_n)|^2\right)^{\nicefrac{1}{2}} \\
+    &= \norm[2]{k(s,\cdot)}\norm[2]{f} \leq\norm[\infty]{k}\norm[2]{f}
   \end{align*}
 
-  \begin{align*}
-    \implies
-    \sum_{n \in \N}
-    \norm[\infty]{\lambda_n e_n (f, e_n)}
-    & =
-    \sum_{n \in \N}
-    |(f, e_n)|
-    \norm[\infty]
-    {\lambda_n e_n}
-    \leq
-    \norm[\infty]{k}
-    \sum_{n \in \N}
-    |(f, e_n)|
-    =
-    \norm[\infty]{k}
-    \norm[2]{f}
-  \end{align*}
-
-  Die letzte Gleichung ist die Parsevalsche Gleichung.
-  Also konvergiert die Funktionenreihe absolut und damit auch gleichmäßig. \\
+  Die vorletzte Gleichung ist die Parceval'sche Gleichung.
+  Also konvergiert die Funktionenreihe absolut für jedes feste $s \in [0,1]$
+  und auch gleichmäßig. \\
 
 \end{enumerate}
 
