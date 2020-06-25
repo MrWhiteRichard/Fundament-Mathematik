@@ -30,56 +30,189 @@ Zeige
 
 \begin{solution}
 
-Man erinnere sich an die Definition von $K: L^2(0,1) \to L^2(0,1)$.
+Man erinnere sich an die Definition von $K: L^2(0, 1) \to L^2(0, 1)$.
+
 \begin{align*}
-  K(f) := \left(s \mapsto \int_0^1k(s,t)f(t)d\lambda(t)\right).
+  K(f) :=
+  \pbraces
+  {
+    s
+    \mapsto
+    \Int[0][1]{k(s, t)f(t)}{\lambda(t)}
+  }.
 \end{align*}
-Weiters wissen wir noch von letzter Woche, dass $\|K\| = \|k\|_{L^2(\mu \times \mu)}$ und
-dass die Konjugierte der Operator mit Kern $\overline{k(y,x)}$ ist. Ebenso folgt
-aus $k \in C([0, 1]^2) \subset L^2(\lambda \times \lambda)$ mit IO/2, dass $K$
-sogar ein kompakter Operator ist.
-Also ist die neue Version (Korollar 7.2.13) das Spektralsatzes für kompakte,
-selbstadjungierte Operatoren anwendbar.
+
+Wir wissen von letzter Woche (IO), dass
+
+\begin{itemize}
+
+  \item
+  $\norm[\infty]{k} = \norm[L^2(\mu \times \mu)]{K}$,
+
+  \item
+  die Hilbertraum-Adjugierte $K^\ast$, der Integraloperator mit Kern $\overline{k(y,x)}$ ist, und
+
+  \item
+  dass wegen $k \in C([0, 1]^2) \subset L^2(\lambda \times \lambda)$, $K$ sogar ein kompakter Operator ist.
+
+\end{itemize}
+
+\includegraphicsboxed{Korollar 7.2.13 (Spektralsatz fur kompakte selbstadjungierte Operatoren)}
+
+Also ist Korollar 7.2.13 anwendbar.
+
 \begin{enumerate}[label = (\alph*)]
-  \item Sei $n \in \N$ beliebig. Nach Konstruktion der $e_n$ gilt $e_n \in \ker(K - \lambda_nI)$,
-  also
+
+  \item
+  $\Forall n \in \N:$
+
   \begin{align*}
-    Ke_n - \lambda_ne_n = 0 &\iff
-    (Ke_n)(s) = \int_0^1 k(s,t)e_n(t)dt = \lambda_n e_n(s) \\
-    &\iff e_n(s) = \int_0^1 k(s,t)e_n(t)\lambda_n^{-1}dt.
+    K e_n - \lambda_n e_n = 0
+    & \iff
+    (K e_n)(s)
+    =
+    \Int[0][1]{k(s, t)e_n(t)}{t}
+    =
+    \lambda_n e_n(s) \\
+    & \iff
+    e_n(s)
+    =
+    \Int[0][1]
+    {k(s, t) e_n(t) \lambda_n^{-1}}{t}.
   \end{align*}
-  Wähle nun $(s_n)_{n\in\N} \subset [0,1]$ mit $s_n \to s$ beliebig. Definiere
+
+  Seien $(s_n)_{n \in \N} \subset [0, 1]$, mit $s_n \to s$, $n \in \N$, und
+
   \begin{align*}
-    h_{\ell}(t) := k(s_{\ell},t)e_n(t)\lambda_n^{-1}, \quad
-    h(t) := k(s,t)e_n(t)\lambda_n^{-1}.
+    h_\ell(t)
+    :=
+    \frac{k(s_\ell, t) e_n(t)}{\lambda_n},
+    \quad
+    \ell \in \N,
+    \quad
+    h(t)
+    :=
+    \frac{k(s, t) e_n(t)}{\lambda_n}.
   \end{align*}
-  Wegen der Stetigkeit von $k$ gilt die notationell bereits angedeutete Beziehung
-  $h_{\ell}(t) \to h(t)$ punktweise. Weiters gilt für alle $n \in \N, t \in [0,1]$
+
+  Wegen der Stetigkeit von $k$, gilt die, notationell bereits angedeutete, Beziehung
+
   \begin{align*}
-    |h_{\ell}(t)| = |k(s_{\ell},t)||e_n(t)\lambda_n^{-1}| \leq
-    \|k\|_{\infty}|\lambda_n^{-1}||e_n(t)| =: g(t). \\
-    \int_0^1|g(t)|d\lambda(t) = \|k\|_{\infty}|\lambda_n^{-1}|\int_0^1|e_n(t)|dt
-    \leq \|k\|_{\infty}|\lambda_n^{-1}|\|e_n\|_2\|1\|_2 < \infty,
+    h_\ell
+    \xrightarrow
+    [\ell \to \infty]
+    {\text{punktweise}}
+    h.
   \end{align*}
-  wobei die vorletzte Ungleichung mit Hölder gilt. Mit der dominierten Konvergenz
-  erhalten wir schließlich
+
+  $\Forall t \in [0, 1]:$
+
   \begin{align*}
-    \lim_{\ell \to \infty} e_n(s_{\ell}) = \lim_{\ell \to \infty}\int_0^1h_{\ell}(t)dt
-    = \int_0^1h(t)dt = e_n(s).
+    |h_\ell(t)|
+    =
+    \frac
+    {
+      |k(s_\ell, t)|
+      |e_n(t)|
+    }
+    {|\lambda_n|}
+    \leq
+    \frac
+    {
+      \norm[\infty]{k}
+      |e_n(t)|
+    }
+    {|\lambda_n|}
+    =:
+    g(t) \\
+    \implies
+    \norm[1]{g}
+    =
+    \Int[0][1]
+    {|g(t)|}{\lambda(t)}
+    =
+    \frac
+    {\norm[\infty]{k}}
+    {|\lambda_n|}
+    \underbrace
+    {
+      \Int[0][1]
+      {|e_n(t)|}{t}
+    }_{
+      \leq
+      \norm[2]{e_n}
+      \norm[2]{1}
+    }
+    < \infty
   \end{align*}
-  Also ist $e_n$ folgensteig, da $[0,1]$ eine abzählbare Umgebungsbasis hat,
-  folgt nach Blümlinger Satz 1.2.4. sogar die Stetigkeit.
-  \item Sei $f \in L^2(0,1)$ beliebig.
+
+  Mittels dominierter Konvergenz
+  erhalten wir schließlich, dass $e_n$ folgensteig ist.
+
   \begin{align*}
-    \sum_{n \in \N}\|\lambda_n e_n (f,e_n)\|_{\infty} &=
-    \sum_{n \in \N}|(f,e_n)|\|\lambda_ne_n\|_{\infty} =
-    \sum_{n \in \N}|(f,e_n)|\|Ke_n\|_{\infty} =
-    \sum_{n \in \N}|(f,e_n)|\left\|\int_0^1k(s,t)e_n(t)dt\right\|_{\infty} \\ &\leq
-    \sum_{n \in \N}|(f,e_n)|
-    \left\|\left(\int_0^1|k(s,t)|^2dt\right)^{\nicefrac{1}{2}}\|e_n\|_{L^2}\right\|_{\infty} \leq
-    \|k\|_{\infty}\sum_{n \in \N}|(f,e_n)| = \|k\|_{\infty}\|f\|_{L^2},
+    \lim_{\ell \to \infty}
+    e_n(s_\ell)
+    =
+    \lim_{\ell \to \infty}
+    \Int[0][1]{h_\ell(t)}{t}
+    =
+    \Int[0][1]{h(t)}{t}
+    =
+    e_n(s).
   \end{align*}
-  wobei die letzte Gleichung die Parsevalsche Gleichung ist. Also konvergiert die
-  Funktionenreihe absolut und damit auch gleichmäßig. \\
+
+  \includegraphicsboxed{Blümlinger - Satz 1.2.4}
+
+  Da $\R$ eine abzählbare Umgebungsbasis $(U_{1/n}(q))_{n \in \N, q \in \Q}$ hat, so auch $[0, 1]$.
+  Laut Blümlinger Satz 1.2.4, gilt also sogar Stetigkeit.
+
+  \item
+  $\Forall f \in L^2(0, 1):$
+
+  \begin{align*}
+    \norm[\infty]
+    {\lambda_n e_n}
+    =
+    \norm[\infty]
+    {K e_n}
+    =
+    \norm[\infty]
+    {
+      \Int[0][1]
+      {k(s, t) e_n(t)}{t}
+    }
+    \leq
+    \Int[0][1]
+    {
+      \norm[\infty]
+      {k(s, t) e_n(t)}
+    }{t}
+    \leq
+    \norm[\infty]{k}
+    \norm[1]{e_n}
+  \end{align*}
+
+  \begin{align*}
+    \implies
+    \sum_{n \in \N}
+    \norm[\infty]{\lambda_n e_n (f, e_n)}
+    & =
+    \sum_{n \in \N}
+    |(f, e_n)|
+    \norm[\infty]
+    {\lambda_n e_n}
+    \leq
+    \norm[\infty]{k}
+    \sum_{n \in \N}
+    |(f, e_n)|
+    =
+    \norm[\infty]{k}
+    \norm[2]{f}
+  \end{align*}
+
+  Die letzte Gleichung ist die Parsevalsche Gleichung.
+  Also konvergiert die Funktionenreihe absolut und damit auch gleichmäßig. \\
+
 \end{enumerate}
+
 \end{solution}
