@@ -158,5 +158,29 @@ Also dürfen wir vertauschen und erhalten für alle $x,y \in \mathcal{H}$
   &= \Int{\phi|_{[a,b]}}{E_{x,y}} - \phi(a)(E(\{a\})x,y) \\
   &= \left(\left(\Int{\phi|_{[a,b]}}{E} - \phi(a) E(\{a\})\right)x,y\right).
 \end{align*}
-Die vorletzte Gleichung gilt aufgrund monotoner Konvergenz.
+Die vorletzte Gleichung gilt aufgrund monotoner Konvergenz. \\
+*** Alternative zur Gleichheit: *** \\
+Für jedes $n \in \N$ seien 
+\begin{align*}
+  \forall k \in \{0, \dots, n\}: \xi_k := a + \frac{k (b - a)}{n}.
+\end{align*}
+die Stützstellen einer Riemannzerlegung und wegend der Stetigkeit von $\phi$ auf $[a, b]$ gilt
+\begin{align*}
+  \forall k \in \{1, \dots, n\} \exists \alpha_k \in [\xi_{k-1}, \xi_k]: |\phi(\alpha_k)| = \min\{|\phi(x)| : x \in [\xi_{k - 1}, \xi_k]\},
+\end{align*}
+ein solches $\alpha_k$ nehmen wir jeweils als Zwischenstelle. Da $[a, b]$ kompakt ist das auf $[a, b]$ stetige $\phi$ sogar gleichmäßig stetig und daher konvergiert die Folge von Treppenfunktionen 
+\begin{align*}
+  s_n := \phi(a) \1_{\{a\}} + \sum_{k = 1}^n \phi(\alpha_k) \1_{]\xi_{k-1}, \xi_k]}
+\end{align*}
+punktweise $E$-fast überall gegen $\phi$. Dafür benütigen wir auch, dass $\E(\R \setminus [a, b]) = 0$. Wir wollen den gefundenen Operator
+\begin{align*}
+  A := \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{E_{\xi_j} - E_{\xi_{j - 1}}}
+\end{align*} 
+taufen. Für beliebige $g, h \in H$ berechnen unter Benützung des Satzes über Konvergenz durch Majorisierung
+\begin{align*}
+  (Ag, h) &= \pbraces{\lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{E_{\xi_j}g - E_{\xi_{j - 1}}g}, h} = \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{\pbraces{E_{\xi_j}g, h} - \pbraces{E_{\xi_{j - 1}}g, h}} \\
+  & = \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) E_{g, h}(]\xi_{j - 1}, \xi_j]) = \lim_{n \to \infty} \Int{s_n}{E_{g,h}} - \phi(a) E_{g, h}(\{a\}) = \\
+  &= \Int{\phi}{E_{g, h}} - \phi(a) E_{g, h}(\{a\}) = \pbraces{\pbraces{\Int{\phi}{E} - \phi(a)E(\{a\})}g, h}
+\end{align*}
+Da diese Gleichheit für alle $g, h \in H$ gilt folgt $A = \Int{\phi}{E} - \phi(a)E(\{a\})$.
 \end{solution}
