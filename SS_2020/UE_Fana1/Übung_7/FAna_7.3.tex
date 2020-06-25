@@ -29,7 +29,7 @@ Wir machen zuerst eine Vorberechnung
 \end{align*}
 Sei nun $\epsilon > 0$ beliebig und wähle $\delta > 0$, sodass für $\forall x,y \in [a,b]: |x - y| < \delta \implies |\phi(x) - \phi(y)| < \frac{\epsilon}{2}$. Dies ist möglich da $\phi$
 auf dem Kompaktum $[a,b]$ stetig und somit sogar gleichmäßig stetig ist. Seien
-$\mathcal{R}_1,\mathcal{R_2}$ zwei beliebige Riemannzerlegungen mit
+$\mathcal{R}_1,\mathcal{R}_2$ zwei beliebige Riemannzerlegungen mit
 $|\mathcal{R}_1|,|\mathcal{R}_2| < \delta$. \\
 Damit gilt nun für alle $x \in \mathcal{H}$ mit der Notation
 $P(\mathcal{R}) := \sum_{j=1}^{n(\mathcal{R})}\phi(\alpha_j)(E_{\xi_j} - E_{\xi_{j-1}})$
@@ -75,7 +75,7 @@ Dann gilt
   = \frac{\epsilon}{2}\left\|E((a,b])x\right\| \leq \frac{\epsilon}{2}\|E((a,b])\|\|x\|
   \leq \frac{\epsilon}{2}\|x\|,
 \end{align*}
-wobei die letzte Ungleichung gilt, da Orthogonalprojektionen Kontraktionen sind. \\
+wobei die letzte Ungleichung gilt, da Orthogonalprojektionen Kontraktionen sind, tatsächlich gilt wegen $E([a, b]) = E(\R) = I$ sogar Gleichheit. \\
 Analog folgt $\|(P(\mathcal{R}_2) - P(\mathcal{R}))x\| \leq \frac{\epsilon}{2}\|x\|$
 und damit erhalten wir für alle $x \in \mathcal{H}$
 \begin{align*}
@@ -164,23 +164,23 @@ Für jedes $n \in \N$ seien
 \begin{align*}
   \forall k \in \{0, \dots, n\}: \xi_k := a + \frac{k (b - a)}{n}.
 \end{align*}
-die Stützstellen einer Riemannzerlegung und wegend der Stetigkeit von $\phi$ auf $[a, b]$ gilt
+die Stützstellen einer Riemannzerlegung und wegen der Stetigkeit von $\phi$ auf $[a, b]$ gilt
 \begin{align*}
   \forall k \in \{1, \dots, n\} \exists \alpha_k \in [\xi_{k-1}, \xi_k]: |\phi(\alpha_k)| = \min\{|\phi(x)| : x \in [\xi_{k - 1}, \xi_k]\},
 \end{align*}
-ein solches $\alpha_k$ nehmen wir jeweils als Zwischenstelle. Da $[a, b]$ kompakt ist das auf $[a, b]$ stetige $\phi$ sogar gleichmäßig stetig und daher konvergiert die Folge von Treppenfunktionen 
+ein solches $\alpha_k$ nehmen wir jeweils als Zwischenstelle. Wegen der Kompaktheit von $[a, b]$ ist das auf $[a, b]$ stetige $\phi$ sogar gleichmäßig stetig und daher konvergiert die Folge von Treppenfunktionen 
 \begin{align*}
   s_n := \phi(a) \1_{\{a\}} + \sum_{k = 1}^n \phi(\alpha_k) \1_{]\xi_{k-1}, \xi_k]}
 \end{align*}
-punktweise $E$-fast überall gegen $\phi$. Dafür benütigen wir auch, dass $\E(\R \setminus [a, b]) = 0$. Wir wollen den gefundenen Operator
+punktweise $E$-fast überall gegen $\phi$. Dafür benütigen wir auch, dass $E(\R \setminus [a, b]) = 0$. Wir wollen den bereits im vorigen Schritt gefundenen Operator
 \begin{align*}
   A := \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{E_{\xi_j} - E_{\xi_{j - 1}}}
 \end{align*} 
-taufen. Für beliebige $g, h \in H$ berechnen unter Benützung des Satzes über Konvergenz durch Majorisierung
+taufen. Für beliebige $g, h \in \mathcal{H}$ berechnen unter Benützung des Satzes über Konvergenz durch Majorisierung
 \begin{align*}
   (Ag, h) &= \pbraces{\lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{E_{\xi_j}g - E_{\xi_{j - 1}}g}, h} = \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) \pbraces{\pbraces{E_{\xi_j}g, h} - \pbraces{E_{\xi_{j - 1}}g, h}} \\
   & = \lim_{n \to \infty} \sum_{j = 1}^n \phi(\alpha_j) E_{g, h}(]\xi_{j - 1}, \xi_j]) = \lim_{n \to \infty} \Int{s_n}{E_{g,h}} - \phi(a) E_{g, h}(\{a\}) = \\
   &= \Int{\phi}{E_{g, h}} - \phi(a) E_{g, h}(\{a\}) = \pbraces{\pbraces{\Int{\phi}{E} - \phi(a)E(\{a\})}g, h}
 \end{align*}
-Da diese Gleichheit für alle $g, h \in H$ gilt folgt $A = \Int{\phi}{E} - \phi(a)E(\{a\})$.
+Da diese Gleichheit für alle $g, h \in \mathcal{H}$ gilt folgt $A = \Int{\phi}{E} - \phi(a)E(\{a\})$.
 \end{solution}
