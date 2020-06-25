@@ -13,6 +13,86 @@ Zeige mit Hilfe des Spektralsatzes, dass für $\lambda > \norm{A}$ gilt
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\includegraphicsboxed{Satz 7.2.1 (Spektralsatz für beschränkte selbstadjungierte Operatoren)}
+
+Wir bemerken vorerst, dass $\lambda \in \rho(A)$.
+Damit ist $A - \lambda$ invertierbar und die linke Seite wohldefiniert.
+
+\begin{align*}
+  \text{lhs}~
+  =
+  -\Int{\frac{1}{\lambda - t}}{E(t)}
+  =
+  -\frac{1}{\lambda}
+  \Int{\frac{1}{1 - t / \lambda}}{E(t)}
+  =
+  -\frac{1}{\lambda}
+  \Int{\sum_{n=0}^\infty (t / \lambda)^n}{E(t)}
+  =
+  -\frac{1}{\lambda}
+  \sum_{n=0}^\infty
+  \frac{A^n}{\lambda^n}
+\end{align*}
+
+\includegraphicsboxed{Korollar 7.2.12}
+
+Laut dem Beweis von Korollar 7.2.12, gilt die erste Gleichheit.
+Die geometrische Reihe konviergiert, weil $\Forall t \in \sigma(A):$
+
+\begin{align*}
+  \lambda > \norm{A} \geq r(a) \geq |t|
+  \implies
+  1 > |t / \lambda|.
+\end{align*}
+
+\includegraphicsboxed{Beispiel 7.2.8}
+
+Laut Beispiel 7.2.8, gilt die letzte Gleichheit, weil der Konvergenzradius der geometrischen Reihe als Potenzreihe zwischen $\lambda$ und $\norm{A}$ ist.
+Hier wird der Spektralsatz verwendet.
+
+\begin{align*}
+  \text{rhs}~
+  =
+  -\sum_{n=0}^\infty
+  \frac{A^n}{n!}
+  \Int[0][\infty]{e^{-\lambda t} t^n}{t}
+  =
+  -\sum_{n=0}^\infty
+  \frac{\Gamma(n+1)}{n!}
+  \frac{A^n}{\lambda^{n+1}}
+\end{align*}
+
+Das Integral darf man mit der Reihe vertauschen, weil $e^{t A}$ absolut, und damit gleichmäßig, konvergiert.
+
+\begin{align*}
+  \sum_{n=0}^\infty
+  \norm{\frac{t^n A^n}{n!}}
+  \leq
+  \sum_{n=0}^\infty
+  \frac{(|t| \norm{A})^n}{n!}
+  =
+  e^{|t| \norm{A}} < \infty
+\end{align*}
+
+Die letztere Gleich gelingt durch die Substitution $s = \lambda t$.
+
+\begin{align*}
+  \Int[0][\infty]{e^{-\lambda t} t^n}{t}
+  =
+  \frac{1}{\lambda}
+  \Int
+  [0][\infty]
+  {
+    e^{-s}
+    \frac{s^n}{\lambda^n}
+  }{s}
+  =
+  \frac{1}{\lambda}
+  \Gamma(n+1)
+\end{align*}
+
+Nun ist lhs $=$ lhs, weil ja $\Gamma(n+1) = n!$.
 
 \end{solution}
