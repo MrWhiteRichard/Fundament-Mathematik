@@ -44,9 +44,9 @@ Wir zeigen zuerst, dass $E$ ein Spektralmaß ist, also
   \item Für alle $(\Delta_n)_{n \in \N} \subset \mathcal{A}$ paarweise disjunkt, $f \in L^2(\mu)$ gilt $E(\dot\bigcup_{n \in \N}\Delta_n)f = \sum_{n \in \N}E(\Delta_n)f$: \\
   Wir müssen also zeigen, dass die Funktion $\sum_{n \in \N}\1_{\Delta_n}f$
   in der $L^2(\mu)$-Norm gegen $\1_{\bigcup_{n \in \N}\Delta_n}f$ konvergiert.
-  Die Funktionenfolge $g_k := \sum_{n = 1}^k\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f$ ist monoton nichtfallend mit $g_k \geq -f$ für $k \in \N$
-  und konvergiert punktweise gegen $0$.
-  Mit dem Satz von Beppo Levi folgt daher
+  Die Funktionenfolge $g_k := \1_{\bigcup_{n = 1}^N\Delta_n}f -
+  \1_{\bigcup_{n \in \N}\Delta_n}f$ konvergiert punktweise gegen $0$ und es gilt $|g_k| \leq |f|$ für $k \in \N$. Weiters ist $f \in L^2(\mu) \subseteq L^1(\mu),$ wobei die letzte Inklusion gilt, da $\mu$ ein endliches Maß ist.
+  Mit dem Satz von der dominierten Konvergenz folgt daher
   \begin{align*}
   \lim_{N \to \infty}\int_\Omega \left|\sum_{n = 1}^N\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f\right|^2 d\mu
   &= \lim_{N \to \infty}\int_\Omega \1_{\bigcup_{n = 1}^N\Delta_n}f -
