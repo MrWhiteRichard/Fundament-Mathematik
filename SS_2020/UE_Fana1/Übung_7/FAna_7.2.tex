@@ -44,16 +44,13 @@ Wir zeigen zuerst, dass $E$ ein Spektralmaß ist, also
   \item Für alle $(\Delta_n)_{n \in \N} \subset \mathcal{A}$ paarweise disjunkt, $f \in L^2(\mu)$ gilt $E(\dot\bigcup_{n \in \N}\Delta_n)f = \sum_{n \in \N}E(\Delta_n)f$: \\
   Wir müssen also zeigen, dass die Funktion $\sum_{n \in \N}\1_{\Delta_n}f$
   in der $L^2(\mu)$-Norm gegen $\1_{\bigcup_{n \in \N}\Delta_n}f$ konvergiert.
-  Die Funktionenfolge $g_k := \1_{\bigcup_{n = 1}^N\Delta_n}f -
-  \1_{\bigcup_{n \in \N}\Delta_n}f$ konvergiert punktweise gegen $0$ und es gilt $|g_k| \leq |f|$ für $k \in \N$. Weiters ist $f \in L^2(\mu) \subseteq L^1(\mu),$ wobei die letzte Inklusion gilt, da $\mu$ ein endliches Maß ist.
+  Die Funktionenfolge $g_N := \1_{\bigcup_{n = N+1}^\infty\Delta_n} |f|^2$ konvergiert punktweise gegen $0$ und es gilt $|g_N| \leq |f|^2$ für $N \in \N$.
   Mit dem Satz von der dominierten Konvergenz folgt daher
   \begin{align*}
   \lim_{N \to \infty}\int_\Omega \left|\sum_{n = 1}^N\1_{\Delta_n}f - \1_{\bigcup_{n \in \N}\Delta_n}f\right|^2 d\mu
-  &= \lim_{N \to \infty}\int_\Omega \1_{\bigcup_{n = 1}^N\Delta_n}f -
-  \1_{\bigcup_{n \in \N}\Delta_n}f
+  &= \lim_{N \to \infty}\int_\Omega \1_{\bigcup_{n = N+1}^\infty\Delta_n} |f|^2
    d\mu \\
-  &= \int_\Omega \lim_{N \to \infty} \1_{\bigcup_{n = 1}^N\Delta_n}f -
-  \1_{\bigcup_{n \in \N}\Delta_n}f d\mu = 0.
+  &= \int_\Omega \lim_{N \to \infty} \1_{\bigcup_{n = N+1}^\infty\Delta_n} |f|^2 d\mu = 0.
   \end{align*}
 \end{itemize}
 Sei nun $\phi \in BM(\Omega,\C)$ beliebig.
