@@ -100,10 +100,9 @@ Dann ist für alle $r > 0$
   = \dim{\ran{E}}(\emptyset) = 0.
 \end{align*}
 Fall 2: $\phi \neq 0:$ \\
-Da $\phi$ beschränkt ist, gilt für alle $r > \|\phi\|_{\infty}$
+Angenommen, es existiert ein $r > 0$, sodass
 \begin{align*}
-  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r}}
-  = \dim{\ran{E}}(\emptyset) = 0.
+  \dim{\ran{E}}\pbraces{\underbrace{\Bbraces{w \in \C:|\phi(w)| \geq r}}_{=: B_r}} = \infty.
 \end{align*}
 Da $A := \int_{\C} \phi dE$ kompakt ist, ist es auch
 \begin{align*}
@@ -111,28 +110,25 @@ Da $A := \int_{\C} \phi dE$ kompakt ist, ist es auch
 \end{align*}
 Dieser Operator ist somit kompakt und selbstadjungiert und es gilt
 \begin{align*}
-  AA^*x = \sum_{n=1}^{\infty}\lambda_nP_n, \quad x \in \mathcal{H}
+  AA^*x = \sum_{n=1}^{\infty}\lambda_nP_nx, \quad x \in \mathcal{H}
 \end{align*}
-Sei $r > 0$ beliebig. Laut Proposition 6.5.11 gilt, dass
+Sei zudem $(u_i)_{i \in I}$ eine ONB von $\mathcal{H}$ aus Eigenvektoren von $AA^*$
+und $(u_i)_{i \in J}$ mit $J \subset I$ eine ONB von $E(B_r)$.
+Laut Proposition 6.5.11 gilt, dass
 $F := \{\lambda: |\lambda| \geq r, \lambda \in \sigma_p(AA^*)\}$ eine endliche Menge
 ist.
-Weiters gilt mit Korollar 7.2.11, dass für
-$\lambda \in \sigma(AA^*) : \ran(E(\{\lambda\})) = \ker(AA^* - \lambda I)$
-und $\lambda \in \sigma_p(AA^*) \iff E(\lambda) \neq 0$.
 Proposition 6.5.8 liefert uns $\dim(\ker(AA^* -\lambda I)) < \infty$.
-Sei nun $\lambda \in \sigma_p(AA^*) \cap B_r$. Dann folgt ($\lambda \in \R$)
+Für alle $u_j,j \in J$ gilt nun
 \begin{align*}
-  |\phi(\lambda)| &\geq r \\
-  0 &= \|AA^*x - \lambda x\|^2 = (AA^*x - \lambda x,AA^*x - \lambda x)
-  = (AA^*x,AA^*x) + (\lambda x, \lambda x) -(\lambda x,AA^*x) - (AA^*x,\lambda x) \\
-  &= (AA^*x,AA^*x) + (\lambda x, \lambda x) -2\lambda(AA^*x,x)
-  = (AA^*x,AA^*x) + (\lambda x, \lambda x) -2\lambda\int_{\C}|\phi|^2dE_{x,x}
+  \|AA^*u_j\|^2 &= (AA^*u_j,AA^*u_j) = \int_{\C}|\phi|^2 dE_{u_j,AA^*u_j} \geq \int_{B_r}r^2 dE_{u_j,AA^*u_j} = r^2(E(B_r)u_j,AA^*x) = r(u_j,AA^*u_j)
+  \\
+  &= r(AA^*u_j,u_j) = r\int_{\C}|\phi|^2 dE_{u_j,u_j} \geq r^4(E(B_r)u_j,u_j) = r^4(u_j,u_j) = r^4\|u_j\|^2.
 \end{align*}
-Setzen wir das alles zusammen, erhalten wir
+Damit gilt: Der zugehörige Eigenwert zu $u_j$ muss größer gleich $r^2$ sein und es folgt
 \begin{align*}
-  \dim{\ran{E}}\pbraces{\Bbraces{w \in \C:|\phi(w)| \geq r}} =
-  \dim{\ran{E}}\pbraces{\Bbraces{\lambda \in \sigma_p(A):|\phi(\lambda)| \geq r}}
+  \dim(\ran(\bigoplus_{k \in \N: |\lambda_k| \geq r^2}P_k)) \geq \dim(\ran(E(B_r))) = \infty.
 \end{align*}
-Wähle eine ONB von $\mathcal{H}$ aus Eigenvektoren von $AA^*$.
-Dies ist möglich aufgrund von Korollar 7.2.13. Dann gilt
+Da das Bild einer Summe von Orthogonalprojektionen die direkte Summe der
+einzelnen Bilder ist, muss es ein $k \in \N$ geben mit $\dim(\ran(P_k)) = \infty$ und $AA*$ kann folglich nicht
+kompakt sein und daher auch $A$ nicht. Widerspruch!
 \end{solution}
