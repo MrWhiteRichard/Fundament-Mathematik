@@ -113,22 +113,34 @@ Dieser Operator ist somit kompakt und selbstadjungiert und es gilt
   AA^*x = \sum_{n=1}^{\infty}\lambda_nP_nx, \quad x \in \mathcal{H}
 \end{align*}
 Sei zudem $(u_i)_{i \in I}$ eine ONB von $\mathcal{H}$ aus Eigenvektoren von $AA^*$
-und $(u_i)_{i \in J}$ mit $J \subset I$ eine ONB von $E(B_r)$.
+und betrachte den Operator $AA^*|_{\overline{\ran(E(B_r))}} \in L_b({\overline{\ran(E(B_r))}})$.
+Diese Abbildung ist wohldefiniert, da nach dem ersten Punkt
+\begin{align*}
+  \ran(AA^*E(B_r)) \subseteq \ran(E(B_r))
+\end{align*}
+und damit auch aufgrund der Stetigkeit von $AA^*$
+\begin{align*}
+  \ran(AA^*\overline{E(B_r)}) \subseteq \overline{\ran(AA^*E(B_r))} \subseteq \overline{\ran(E(B_r))}.
+\end{align*}
+Die Einschränkung ist klarerweise wieder kompakt und selbstadjungiert und wir können
+nochmals den Spektralsatz anwenden und erhalten eine ONB $(b_j)_{j \in J}$ von $\overline{E(B_r)}$
+aus Eigenvektoren von $AA^*|_{\overline{\ran(E(B_r))}}$, welche sicher
+auch Eigenvektoren von $AA^*$ sind.
 Laut Proposition 6.5.11 gilt, dass
 $F := \{\lambda: |\lambda| \geq r, \lambda \in \sigma_p(AA^*)\}$ eine endliche Menge
 ist.
 Proposition 6.5.8 liefert uns $\dim(\ker(AA^* -\lambda I)) < \infty$.
-Für alle $u_j,j \in J$ gilt nun
+Für alle $b_j,j \in J$ gilt nun
 \begin{align*}
-  \|AA^*u_j\|^2 &= (AA^*u_j,AA^*u_j) = \int_{\C}|\phi|^2 dE_{u_j,AA^*u_j} \geq \int_{B_r}r^2 dE_{u_j,AA^*u_j} = r^2(E(B_r)u_j,AA^*x) = r(u_j,AA^*u_j)
-  \\
-  &= r(AA^*u_j,u_j) = r\int_{\C}|\phi|^2 dE_{u_j,u_j} \geq r^4(E(B_r)u_j,u_j) = r^4(u_j,u_j) = r^4\|u_j\|^2.
+  \|AA^*b_j\|^2 &= (AA^*b_j,AA^*b_j) = \int_{\C}|\phi|^2 dE_{b_j,AA^*b_j} \\
+   &\geq \int_{B_r}r^2 dE_{b_j,AA^*b_j} = r^2(E(B_r)b_j,AA^*x) = r(b_j,AA^*b_j) = r(AA^*b_j,b_j) = r^2\int_{\C}|\phi|^2 dE_{b_j,b_j} \\
+    &\geq r^4(E(B_r)b_j,b_j) = r^4(b_j,b_j) = r^4\|b_j\|^2.
 \end{align*}
-Damit gilt: Der zugehörige Eigenwert zu $u_j$ muss größer gleich $r^2$ sein und es folgt
+Damit gilt: Der zugehörige Eigenwert zu $b_j$ ist größer gleich $r$ und es gilt
 \begin{align*}
-  \dim(\ran(\bigoplus_{k \in \N: |\lambda_k| \geq r^2}P_k)) \geq \dim(\ran(E(B_r))) = \infty.
+  \dim\left(\ran\left(\bigoplus_{k \in \N: |\lambda_k| \geq r}P_k\right)\right) \geq \dim(\ran(E(B_r))) = \infty.
 \end{align*}
 Da das Bild einer Summe von Orthogonalprojektionen die direkte Summe der
-einzelnen Bilder ist, muss es ein $k \in \N$ geben mit $\dim(\ran(P_k)) = \infty$ und $AA*$ kann folglich nicht
+einzelnen Bilder ist, muss es ein $k \in \N$ geben mit $\dim(\ran(P_k)) = \infty$ und $AA^*$ kann folglich nicht
 kompakt sein und daher auch $A$ nicht. Widerspruch!
 \end{solution}
