@@ -1,0 +1,99 @@
+\begin{example*}
+
+Betrachte die folgenden Butcher-Tableaus.
+
+\begin{align*}
+  \begin{array}{c|c}
+    1 & 1/2 \\
+    \hline
+      & 1
+  \end{array},
+  \quad
+  \begin{array}{c|c c}
+    1 & 1/2 & 0 \\
+    1 & 1/2 & 0 \\
+    \hline
+      & 1/2 & 1/2
+  \end{array},
+  \quad
+  \begin{array}{c|c c}
+    1 & 1/8 & 3/8 \\
+    1 & 1/8 & 3/8 \\
+    \hline
+      & 1/2 & 1/2
+  \end{array}
+\end{align*}
+
+Das Erste liefert
+
+\begin{align*}
+  \Phi_1(t, y, h)
+  =
+  k
+  =
+  f \pbraces{t + h, y + h \frac{k}{2}}.
+\end{align*}
+
+Das Zweite liefert
+
+\begin{align*}
+  \Phi_2(t, y, h)
+  =
+  \frac{k_1 + k_2}{2}
+  =
+  \cdots, \\
+  k_1 = f \pbraces{t + h, y + h \frac{k_1}{2}}, \\
+  k_2 = f \pbraces{t + h, y + h \frac{k_2}{2}}.
+\end{align*}
+
+\begin{align*}
+  \implies
+  k_1 = k_2 = k
+  \implies
+  \cdots
+  =
+  k
+\end{align*}
+
+Das Dritte liefert
+
+\begin{align*}
+  \Phi_3(t, y, h)
+  =
+  \frac{\tilde{k}_1 + \tilde{k}_2}{2}
+  =
+  \cdots, \\
+  \tilde{k}_1
+  =
+  f \pbraces
+  {
+    t + h,
+    y + h \Frac{8}{3 \tilde{k}_1 + \tilde{k}_2}
+  }, \\
+  \tilde{k}_2
+  =
+  f \pbraces
+  {
+    t + h,
+    y + h \Frac{8}{3 \tilde{k}_1 + \tilde{k}_2}
+  }.
+\end{align*}
+
+\begin{align*}
+  \implies
+  \tilde{k}_1 = \tilde{k}_2 =: \tilde{k}
+  \implies
+  \tilde{k}
+  =
+  f (
+    t + h,
+    y + h \tilde{k} \underbrace{(3/8 + 1/8)}_{1/2}
+  )
+  \implies
+  \tilde{k} = k = \cdots
+\end{align*}
+
+Wir erhalten also $\Phi_1 = \Phi_2 = \Phi_3$.
+Die Butcher-Tableaus sind somit äquivalent.
+
+\end{example*}

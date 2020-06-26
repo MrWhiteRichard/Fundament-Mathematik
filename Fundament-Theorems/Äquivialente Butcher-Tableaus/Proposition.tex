@@ -1,0 +1,227 @@
+\begin{proposition*}
+
+Seien folgende Butcher-Tableaus von den Größen $m_1$ bzw. $m_2$.
+
+\begin{align*}
+  \begin{array}{c|c}
+    c^{(1)} & A^{(1)} \\
+    \hline
+            & b^{(1)}
+  \end{array},
+  \quad
+  \begin{array}{c|c}
+    c^{(2)} & A^{(2)} \\
+    \hline
+            & b^{(2)}
+  \end{array}
+\end{align*}
+
+Diese sind äquivalen, wenn Folgendes gilt.
+Es gibt Zerlegungen $(I_\ell^{(1)})_{\ell = 1}^n$ und $(I_\ell^{(2)})_{\ell = 1}^n$ von
+
+\begin{align*}
+  \Bbraces{1, \ldots, m_1}
+  =
+  \bigcup_{\ell = 1}^n I_\ell^{(1)},
+  ~\text{bzw.}~
+  \Bbraces{1, \ldots, m_2}
+  =
+  \bigcup_{\ell = 1}^n I_\ell^{(2)},
+\end{align*}
+
+mit element-weise
+
+\begin{align*}
+  I_1^{(1)}
+  <
+  \cdots
+  <
+  I_n^{(1)},
+  ~\text{und}~
+  I_1^{(2)}
+  <
+  \cdots
+  <
+  I_n^{(2)},
+\end{align*}
+
+sodass $\Forall \ell = 1, \ldots, n:$
+
+\begin{enumerate}
+
+  \item
+  $c_{i_1}^{(1)} = c_{i_1}^{(2)} =: \gamma_\ell$
+  für alle
+  $i_1 \in I_\ell^{(1)}$ und $i_2 \in I_\ell^{(2)}$
+  gleich ist,
+
+  \item
+  $\alpha_\ell^{(1)} := A_i^{(1)}$
+  und
+  $\alpha_\ell^{(2)} := A_i^{(2)}$
+  für alle
+  $i \in I_\ell^{(1)}$ bzw $i \in I_\ell^{(2)}$
+  gleich ist \footnotemark, und
+
+  \footnotetext{Mit $A_j$, ist die $i$-te Zeile von $A$ gemeint (so, wie in NumPy und SymPy).}
+
+  \begin{align*}
+    \sum_{i \in I_l^{(1)}}
+    (\alpha_\ell^{(1)})_i
+    =
+    \sum_{i \in I_l^{(2)}}
+    (\alpha_\ell^{(2)})_i
+    =:
+    a_{l, \ell},
+    \quad
+    l = 1, \ldots, n,
+  \end{align*}
+
+  sowie
+
+  \item
+  \begin{align*}
+    \sum_{i \in I_\ell^{(1)}}
+    b_i^{(1)}
+    =
+    \sum_{i \in I_\ell^{(2)}}
+    b_i^{(2)}.
+  \end{align*}
+
+\end{enumerate}
+
+\end{proposition*}
+
+\begin{proof}
+
+Die erzeugten Einschritt-Funktionen sehen wie folgt aus.
+
+\begin{align*}
+  \Phi_1(t, y, h)
+  =
+  \sum_{i=1}^{m_1}
+  b_i^{(1)} k_i^{(1)},
+  \quad
+  k_i^{(1)}
+  =
+  f \pbraces
+  {
+    t + c_i^{(1)} h,
+    y + h \sum_{j=1}^{m_1} A_{i j}^{(1)} k_j^{(1)}
+  },
+  \quad
+  i = 1, \ldots, m_1, \\
+  \Phi_2(t, y, h)
+  =
+  \sum_{i=1}^{m_2}
+  b_i^{(2)} k_i^{(2)},
+  \quad
+  k_i^{(2)}
+  =
+  f \pbraces
+  {
+    t + c_i^{(2)} h,
+    y + h \sum_{j=1}^{m_2} A_{i j}^{(2)} k_j^{(2)}
+  },
+  \quad
+  i = 1, \ldots, m_2
+\end{align*}
+
+Wir wollen nun zeigen, dass $\Phi_1 = \Phi_2$.
+Dazu, zeigen wir zuerst die Gleichheit der Inkremente in einer beliebigen Zerlegungs-Menge.
+Sei also $\ell = 1, \ldots, n$.
+Seinen weiters $i_\text{min} := \min I_\ell^{(1)}$ und $i_\text{max} := \max I_\ell^{(1)}$.
+
+\begin{align*}
+  \implies
+  k_{i_\text{min}}^{(1)}
+  =
+  \cdots
+  =
+  k_i^{(1)}
+  =
+  f \bigg(
+    t + c_i^{(1)} h,
+    y + h \sum_{j=1}^{m_1}
+    \underbrace
+    {A_{i j}^{(1)}}_{(\alpha_l^{(1)})_j}
+    k_j^{(1)}
+  \bigg)
+  =
+  \cdots
+  =
+  k_{i_\text{max}}^{(1)}
+  =:
+  K_\ell^{(1)}
+\end{align*}
+
+Das sieht man analog für $I_\ell^{(2)}$ und bekommt $K_\ell^{(2)}$.
+Wir zeigen jetzt noch, dass sogar $K_\ell^{(1)} = K_\ell^{(2)}$.
+Seien dazu $i_1 \in I_\ell^{(1)}$ und $i_2 \in I_\ell^{(2)}$.
+
+\begin{align*}
+  \implies
+  \sum_{j=1}^{m_1} A_{i_1, j}^{(1)} k_j^{(1)}
+  =
+  \sum_{l=1}^n
+  \sum_{j \in I_l^{(1)}}
+  A_{i_1, j}^{(1)}
+  \underbrace{k_j^{(1)}}_{K_l^{(1)}}
+  =
+  \sum_{l=1}^n
+  K_l^{(1)}
+  \underbrace
+  {
+    \sum_{j \in I_l^{(1)}}
+    \underbrace{A_{i_1, j}^{(1)}}_{(\alpha_\ell^{(1)})_j}
+  }_{a_{l, \ell}}
+\end{align*}
+
+Analoges sieht man mit $i_2$.
+
+\begin{align*}
+  \implies
+  K_\ell^{(1)}
+  & =
+  f \pbraces
+  {
+    t + \gamma_\ell h,
+    y + h \sum_{l=1}^n K_l^{(1)} a_{l, \ell}
+  }, \\
+  K_\ell^{(2)}
+  & =
+  f \pbraces
+  {
+    t + \gamma_\ell h,
+    y + h \sum_{l=1}^n K_l^{(2)} a_{l, \ell}
+  }
+\end{align*}
+
+Weil Inkremente eindeutig sind, folgt $K_\ell^{(1)} = K_\ell^{(2)} =: K_\ell$.
+
+\begin{align*}
+  \implies
+  \Phi_1(t, y, h)
+  =
+  \sum_{\ell = 1}^n
+  \sum_{i \in I_\ell^{(1)}}
+  b_i^{(1)} k_i^{(1)}
+  =
+  \sum_{\ell = 1}^n
+  K_\ell
+  \sum_{i \in I_\ell^{(1)}}
+  b_i^{(1)}
+  =
+  \sum_{\ell = 1}^n
+  K_\ell
+  \sum_{i \in I_\ell^{(2)}}
+  b_i^{(2)}
+  =
+  \sum_{\ell = 1}^n
+  \sum_{i \in I_\ell^{(1)}}
+  b_i^{(2)} k_i^{(2)}
+  =
+  \Phi_2(t, y, h)
+\end{align*}
+
+\end{proof}
