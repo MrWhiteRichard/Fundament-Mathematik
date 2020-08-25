@@ -74,7 +74,7 @@ Aus der Maßtheorie (Lemma 13.37) wissen wir, dass wir $k$ von unten durch Trepp
 \end{align*}
 Wir zeigen nun, dass für jede Treppenfunktion $T$ der Integraloperator mit Kern $T$ kompakt ist.
 \begin{align*}
-  T(s,t) := \sum_{i = 1}^n \alpha_i \1C_i(s,t)
+  T(s,t) := \sum_{i = 1}^n \alpha_i \1_{C_i}(s,t)
 \end{align*}
 Weil $\mu$ sigmaendlich ist, können wir für $i = 1,\dots,n$ nach dem Approximationssatz für messbare Mengen
 $D_i$ aus $\mathfrak{R}(\mathfrak{S} \times \mathfrak{S})$ finden, welche $C_i$ beliebig genau
@@ -94,14 +94,14 @@ Damit gilt
 
 Mit dieser Wahl ist
 \begin{align*}
-    \left\| \sum_{i = 1}^n \alpha_i \1C_i -
-    \sum_{i = 1}^n \alpha_i \1D_i\right\|_2^2
+    \left\| \sum_{i = 1}^n \alpha_i \1_{C_i} -
+    \sum_{i = 1}^n \alpha_i \1_{D_i}\right\|_2^2
     \leq \sum_{i=1}^{n} |\alpha_{i}|^2 \|\1_{C_{i}} - \1_{D_{i}} \|_2^2 < \epsilon.
 \end{align*}
 
 Weiters gilt
 \begin{align*}
-    k_{\epsilon}(s,t) := \sum_{i = 1}^n \alpha_i \1D_i(s,t)
+    k_{\epsilon}(s,t) := \sum_{i = 1}^n \alpha_i \1_{D_i}(s,t)
     = \sum_{i=1}^{n} \alpha_{i} \sum_{j=1}^{l_{i}}  \1_{A_{i_k} \times B_{i_k}}(s,t)
     = \sum_{i=1}^{n} \sum_{j=1}^{l_{i}}   \underbrace{\alpha_{i} \1_{A_{i_k}}(s)}_{\in L^2(\mu)}
      \underbrace{\1_{B_{i_k}}(t)}_{\in L^2(\mu)}.
