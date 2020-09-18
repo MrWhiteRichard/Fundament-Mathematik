@@ -4,7 +4,6 @@ import os
 
 from PIL import Image, ImageGrab
 
-
 from colors import colors
 from PIL_file_extensions import PIL_file_extensions
 
@@ -124,6 +123,25 @@ def trim_from_clipboard_to_clipboard(trim_out_color = colors['white']):
 
     # send cropped image to clipboard
     send_to_clipboard(image_trimmed)
+
+# ---------------------------------------------------------------- #
+
+def trim_from_clipboard_to_directory(trim_out_color = colors['white']):
+
+    # grab image from clipboard
+    image = ImageGrab.grabclipboard()
+
+    # trim out the border color
+    image_trimmed = trim(image, trim_out_color)
+
+    # go to output folder
+    os.chdir('output')
+
+    # save cropped image in output folder
+    image_trimmed.save('image_trimmed' + '.png')
+
+    # go back to main folder
+    os.chdir('..')
 
 # ---------------------------------------------------------------- #
 
