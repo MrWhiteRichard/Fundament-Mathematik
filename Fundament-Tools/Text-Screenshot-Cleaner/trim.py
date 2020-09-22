@@ -137,8 +137,12 @@ def trim_from_clipboard_to_directory(trim_out_color = colors['white']):
     # go to output folder
     os.chdir('output')
 
+    n = 0
+    while str(n) + '.png' in os.listdir():
+        n += 1
+
     # save cropped image in output folder
-    image_trimmed.save('image_trimmed' + '.png')
+    image_trimmed.save(str(n) + '.png')
 
     # go back to main folder
     os.chdir('..')
@@ -173,7 +177,7 @@ def trim_from_directory_to_directory(files = None, trim_out_color = colors['whit
             os.chdir('..' + '/' + 'output')
 
             # save cropped image in dirctory
-            image_trimmed.save(file_name + '.png')
+            image_trimmed.save(file_name + ' - ' + 'trimmed' + '.png')
 
             # go to input folder
             os.chdir('..' + '/' + 'input')

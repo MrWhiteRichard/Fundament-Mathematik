@@ -1,7 +1,8 @@
 # ---------------------------------------------------------------- #
 
 import os
-import PIL
+
+from PIL import Image, ImageGrab
 
 from colors import *
 from PIL_file_extensions import *
@@ -62,7 +63,7 @@ def go_vertical(image, point_start, direction):
     point_end = (x, y)
     return point_end
 
-def get_length(image, point):
+def get_width(image, point):
 
     """
     returns maximum length of
@@ -82,21 +83,21 @@ def get_length(image, point):
 def get_height(image, point):
 
     """
-    returns maximum height of
+    returns maximum length of
     single colored vertical line
     passing through given point
     on image
     """
 
-    # get left corner
-    corner_upper = go_horizontal(image, point, 'up')
+    # get upper corner
+    corner_upper = go_vertical(image, point, 'up')
 
-    # get right corner
-    corner_lower = go_horizontal(image, point, 'down')
+    # get lower corner
+    corner_lower = go_vertical(image, point, 'down')
 
     return abs(corner_lower[1] - corner_upper[1])
 
-def extract(image, min_length = 64, min_height = 64):
+def extract(image, min_length = 64):
     
     """
     extracts text boxes from given image (e.g. of pdf page)
@@ -114,41 +115,30 @@ def extract(image, min_length = 64, min_height = 64):
     while y < image.size[1]:
 
         # checking if text box was hit
-        if image.getpixel((x, y)) != colors['white']:
+        if image.getpixel((x, y)) == colors['black']:
+            print(f'pixel was hit @ {(x, y)} with color {image.getpixel((x, y))}')
 
+            # store information of pixel pixel hit
             point_hit = (x, y)
 
-            length = get_length(image, (x, y))
-            if length >= min_lenght:
+            width = get_width(image, (x, y))
+            if width >= min_length:
+                print('wide enough')
 
-                x, y = point_most_left = go_horizontal(image, (x, y), 'left')
+                x, y = go_horizontal(image, (x, y), 'left')
 
                 height = get_height(image, (x, y))
-                if height >= min_height:
+                if height >= min_length:
+                    print('high enough')
 
-                    x, y = point_most_up = go_vertical(image, (x, y), 'up')
+                    x, y = go_vertical(image, (x, y), 'up')
 
-                    # checking if point has not moved up
-                    if point_most_left == point_most_up:
+                    image_extracted = image.crop((x, y, x+width, y+height))
+                    images_extracted.append(image_extracted)
+                    print('appended image')
 
-                        image_extracted = image.crop(x, y, x+width, y+height)
-                        images_extracted.append(image_extracted)
-
-                    # else, point must have moved up
-                    else:
-
-                        # checking if "text box" is L- (or U-) shaped
-                        if get_length(image, (x, y)) < min_length:
-
-                            image_extracted = image.crop((x, y, x+width, y+height))
-                            images_extracted.append(image_extracted)
-
-                        else:
-                            x, y = point_hit
-                            y += 1
-                else:
-                    x, y = point_hit
-                    y += 1
+                x, y = point_hit
+                y += 1 + height
             else:
                 x, y = point_hit
                 y += 1
@@ -159,17 +149,17 @@ def extract(image, min_length = 64, min_height = 64):
 
 # ---------------------------------------------------------------- #
 
-def extract_from_clipboard(min_length = 64, min_height = 64):
+def extract_from_clipboard_to_display(min_length = 64):
     
     """
     applies extract to image stored in clipboard
     """
 
     # grab image from clipboard
-    image = PIL.ImageGrab.grabclipboard()
+    image = ImageGrab.grabclipboard()
 
     # extract text boxes from image
-    images_extracted = extract(image, min_length = 64, min_height = 64)
+    images_extracted = extract(image, min_length)
 
     # show extracted images in default image displayer
     for image_extracted in images_extracted:
@@ -177,7 +167,7 @@ def extract_from_clipboard(min_length = 64, min_height = 64):
 
 # ---------------------------------------------------------------- #
 
-def extract_from_directory(files = None, min_length = 64, min_height = 64):
+def extract_from_directory_to_directory(files = None, min_length = 64):
 
     """
     applies extract to files in input folder and
@@ -207,17 +197,17 @@ def extract_from_directory(files = None, min_length = 64, min_height = 64):
             print('extracting', file, '...')
 
             # import image from directory
-            image = PIL.Image.open(file)
+            image = Image.open(file)
 
             # trim out the border color
-            images_extracted = extract(image, min_length = 64, min_height = 64)
+            images_extracted = extract(image, min_length)
 
             # go to output folder
             os.chdir('..' + '/' + 'output')
 
             # save extracted images in dirctory
             for n, image_extracted in enumerate(images_extracted):
-                image_extracted.save(file_name + ' - ' + 'extracted {}'.format(n) + '.png')
+                image_extracted.save(file_name + ' - ' + f'extracted {n}' + '.png')
 
             # go to input folder
             os.chdir('..' + '/' + 'input')
