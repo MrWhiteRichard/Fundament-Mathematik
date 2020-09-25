@@ -1,0 +1,148 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item
+  Definieren Sie: messbare Funktion, Treppenfunktion, Konvergenz im Maß, Konvergenz fast überall, Konvergenz fast gleichmäßig.
+  
+  \item
+  In welchem Sinn (fast überall gleichmäßig/fast gleichmäßig/fast überall/im Maß) konvergieren die folgenden Folgen in $(\R, \mathfrak{B}, \lambda)$?
+  
+  \begin{enumerate}[label = \roman*.]
+  
+    \item
+    $f_n(x) = \sin(x)/n$
+
+    \item
+    $f_n(x) = e^{-n |x|}$
+    
+    \item
+    $f_n(x) = x/n$
+    
+    \item
+    $f_n(x) = f_n(x) =
+    \begin{cases}
+      1 & \text{wenn} \enspace \sqrt{n} - \floor{\sqrt{n}} \leq x \leq \sqrt{n+1} - \floor{\sqrt{n}} \\
+      0 & \text{sonst}.
+    \end{cases}$
+
+  \end{enumerate}
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) Siehe Aufgabe 7 (a) \\
+
+(b) \phantom{}
+
+\begin{itemize}
+
+  \item[i.]
+  \begin{align*}
+     \norm[\infty]{f_n}
+     =
+     \sup_{x \in \R} \vbraces{\sin(x)/n}
+     =
+     1/n
+     \xrightarrow[n \to \infty]{} 0 \\
+     \Rightarrow
+     f_n \xrightarrow[n \to \infty]{\text{glm.}} 0
+     \Rightarrow
+     f_n \xrightarrow[n \to \infty]{\text{fast glm.}} 0
+     \Rightarrow
+     f_n \xrightarrow[n \to \infty]{\text{f.ü.}} 0,
+     \enspace
+     f_n \xrightarrow[n \to \infty]{\text{im Maß}} 0
+   \end{align*}
+
+  \item[ii.]
+  \begin{align*}
+    \Forall A \subseteq \R \setminus \Bbraces{0}:
+    \norm[\infty]{f_n|_A}
+    =
+    \sup_{x \in A} \vbraces{e^{-n |x|}}
+    =
+    e^{-n \inf_{x \in A} |x|}
+    \xrightarrow[n \to \infty]{} 0 \\
+    \Rightarrow
+    f_n \xrightarrow[n \to \infty]{\text{fast glm.}} 0
+    \Rightarrow
+    f_n \xrightarrow[n \to \infty]{\text{f.ü.}} 0,
+    \enspace
+    f_n \xrightarrow[n \to \infty]{\text{im Maß}} 0
+  \end{align*}
+  Sei $N \in \mathfrak{B}$, mit $\lambda(N) = 0$, dann gilt trotzdem noch $\Forall \epsilon > 0: \vbraces{B(0, \epsilon) \cap N^\complement} = \infty$, also konvergiert $(f_n)$ nicht fast überall gleichmäßig.
+
+  \item[iii.]
+  \begin{align*}
+    f_n \xrightarrow[n \to \infty]{\text{punktw.}} 0
+    \Rightarrow
+    f_n \xrightarrow[n \to \infty]{\text{f.ü.}} 0
+  \end{align*}
+  $\Forall \epsilon > 0, \Forall n \in \N:$
+  \begin{align*}
+    \lambda(x/n > \epsilon)
+    =
+    \lambda(x > \epsilon n)
+    =
+    \lambda(]\epsilon n, \infty])
+    =
+    \infty
+  \end{align*}
+  Also konvergiert $(f_n)$ nicht im Maß. \\
+  Wenn $(f_n)$ fast (überall) gleichmäßig konvergiert, dann offensichtlich gegen $0$. Aber $\Forall \epsilon > 0, \Forall N \in \mathfrak{B}:$
+  \begin{align*}
+    \lambda(N) < \epsilon
+    \Rightarrow
+    \Forall n \in \N:
+    \norm[\infty]{f_n|_{N^\complement}}
+    =
+    \sup_{x \in N^\complement} |x|/n
+    =
+    \infty
+  \end{align*}
+  Also konvergiert $(f_n)$ weder fast gleichmäßig, noch fast überall gleichmäßig. \\
+
+  \item[iv.] $\Forall \epsilon > 0:$
+  \begin{align*}
+    \lambda(|f_n| > \epsilon)
+    =
+    \lambda(f_n = 1)
+    =
+    \lambda
+    ([\sqrt{n} - \floor{\sqrt{n}}, \sqrt{n+1} - \floor{\sqrt{n}}])
+    =
+    \sqrt{n+1} - \sqrt{n}
+    \xrightarrow[n \to \infty]{} 0 \\
+    \Rightarrow
+    f_n \xrightarrow[n \to \infty]{\text{im Maß}} 0
+  \end{align*}
+  $\Forall q \in \N^2:$
+  \begin{align*}
+    ]0, 1]
+    =
+    \sum_{i = q}^{(\sqrt{q}+1)^2-1}
+    \left ]
+    \sqrt{i} - \floor{\sqrt{i}}, \sqrt{i+1} - \floor{\sqrt{i}}
+    \right ]
+  \end{align*}
+  Also, muss $\Forall x \in \: ]0, 1], \Forall N \in \N: \Exists n, m \geq N:$
+  \begin{align*}
+    |f_n(x) - f_m(x)| = 1,
+  \end{align*}
+  und es konvergiert $(f_n)$ nicht fast überall und somit auch weder fast gleichmäßig, noch fast überall gleichmäßig.
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

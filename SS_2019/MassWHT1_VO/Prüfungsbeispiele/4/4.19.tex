@@ -1,0 +1,128 @@
+\begin{exercise}
+
+$(X_n)$ sei eine Folge von unabhängigen Zufallsvariablen mit $\P(X_n = 1) = \P(X_n = -1) = 1/2$, $(a_n)$ eine Folge von reellen Zahlen. Zeigen Sie, dass die Reihe
+
+\begin{align*}
+  \sum_{n \in \N} a_n X_n
+\end{align*}
+
+genau dann fast sicher konvergiert, wenn
+
+\begin{align*}
+  \sum_{n \in \N} a_n^2 < \infty.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir benützen den \Quote{Dreireihensatz von Kolmogorov}: Wenn $(X_n)$ unabhängige Zufallsvariablen sind, dann
+
+\begin{align*}
+  \sum_{n \in \N} X_n
+  \enspace \text{konv. f.s.}
+  \Leftrightarrow
+  \Forall \epsilon > 0:
+  \sum_{n \in \N} \P(|X_n| > \epsilon),
+  \sum_{n \in \N} \E(X_n [|X_n| \leq \epsilon]),
+  \sum_{n \in \N} \V(X_n [|X_n| \leq \epsilon])
+  < \infty.
+\end{align*}
+
+Zuerst bemerken wir, dass
+
+\begin{align*}
+  1
+  =
+  \P(X_n = 1) + \P(X_n = -1)
+  =
+  \P(X_n = \pm 1)
+  =
+  \P(|X_n| = 1)
+  =
+  \P(X_n^2 = 1)
+  \Rightarrow
+  \P(X_n \neq \pm 1) = 0.
+\end{align*}
+
+Damit berechnet man die Erwartungswerte
+
+\begin{itemize}
+
+  \item $\E(X_n) = 1 \cdot \P(X_n = 1) + (-1) \cdot \P(X_n = -1) = 0$,
+
+  \item $\E(X_n [|X_n| \leq \epsilon]) \leq \E(X_n) = 0$,
+
+  \item $\E(X_n^2) = 1 \cdot \P(X_n^2 = 1) = 1$,
+
+  \item $\E(X_n^2 [|X_n| \leq \epsilon]) = \E(X_n^2 [X_n^2 \leq \epsilon^2]) =
+  \begin{cases}
+    \E(X_n^2) = 1 & \text{wenn} \enspace \epsilon^2 \geq 1 \\
+    0             & \text{sonst}
+  \end{cases}$,
+
+\end{itemize}
+
+und Varianzen (mit dem \Quote{Verschiebungssatz von Steiner})
+
+\begin{itemize}
+
+  \item $\V(X_n) = \E(X_n^2) - \E(X_n)^2 = 1^2 - 0 = 1$
+
+  \item $\V(X_n [X_n \leq \epsilon]) = \E(X_n^2 [X_n \leq \epsilon]) - \E(X_n [X_n \leq \epsilon])^2 =
+  \begin{cases}
+    \E(X_n^2) = 1 & \text{wenn} \enspace \epsilon^2 \geq 1 \\
+    0             & \text{sonst}
+  \end{cases}$
+
+\end{itemize}
+
+\begin{itemize}
+
+  \item[\Quote{$\Rightarrow$}] $\Exists \epsilon > 0$
+  \begin{align*}
+    \infty
+    >
+    \sum_{n \in \N} \V(a_n X_n [|a_n X_n| \leq \epsilon])
+    =
+    \sum_{n \in \N} a_n^2
+  \end{align*}
+
+  \item[\Quote{$\Leftarrow$}]
+  \begin{itemize}
+
+    \item $a_n^2 \to 0
+    \Rightarrow
+    |a_n| \to 0
+    \Rightarrow
+    |a_n X_n| \to 0$,
+    d.h. $\Forall \epsilon > 0: \Exists N \in \N: \Forall n \geq N: |a_n X_n| < \epsilon$ und
+    \begin{align*}
+      \sum_{n \in \N} \P(X_n > \epsilon) < \infty.
+    \end{align*}
+
+    \item
+    \begin{align*}
+      \sum_{n \in \N} \E(a_n X_n [|a_n X_n| \leq \epsilon])
+      \leq
+      \sum_{n \in \N} a_n \E(X_n) = 0
+    \end{align*}
+
+    \item
+    \begin{align*}
+      \sum_{n \in \N} \E(a_n X_n [|a_n X_n| \leq \epsilon])
+      \leq
+      \sum_{n \in \N} a_n^2 \V(X_n)
+      =
+      \sum_{n \in \N} a_n^2
+    \end{align*}
+
+  \end{itemize}
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

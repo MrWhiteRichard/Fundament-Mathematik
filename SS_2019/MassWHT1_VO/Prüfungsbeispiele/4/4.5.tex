@@ -1,0 +1,64 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item
+  Definieren Sie das Integral einer nichtnegativen Treppenfunktion, einer nichtnegativen messbaren Funktion, einer messbaren und einer fast uberall messbaren Funktion.
+  
+  \item
+  Es sei
+  
+  \begin{align*}
+    F(x) =
+    \begin{cases}
+      0     & \text{wenn} \enspace  x < 0, \\
+      x + 1 & \text{wenn} \enspace 1 \leq x < 2, \\
+      2x^2  & \text{wenn} \enspace 2 \leq x < 3, \\
+      20    & \text{wenn} \enspace 3 \leq x.
+    \end{cases}
+  \end{align*}
+
+  Überzeugen Sie sich, dass $F$ eine Verteilungsfunktion ist und bestimmen Sie $\Int{f}{\mu_F}$ für $f(x) = e^x$.
+
+  \item
+  Formulieren und beweisen Sie den Satz von der Konvergenz durch Majorisierung.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) Sei $t = \sum_{i=1}^n a_i A_i$ eine nichtnegative, messbare Treppenfunktion auf $(\Omega, \mathfrak{S}, \mu)$, dann
+
+\begin{align*}
+  \Int{t}{\mu} := \sum_{i=1}^n a_i \mu(A_i).
+\end{align*}
+
+Sei $f$ eine nichtnegative, messbare Funktion, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \sup \Bbraces{\Int{t}{\mu}: f \geq t \geq 0, t \text{Treppenf.}}.
+\end{align*}
+
+Sei $f$ eine messbare Funktion, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \Int{f^+}{\mu} - \Int{f^-}{\mu}.
+\end{align*}
+
+Sei $f$ eine fast überall messbare Funktion, d.h. $\Exists N \in \mathfrak{S}: \mu(N) = 0, fN^\complement \enspace \text{messb.}$, dann
+
+\begin{align*}
+  \Int{f}{\mu} := \Int[N^\complement]{f}{\mu}.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,88 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item
+  Definieren Sie: Ring, Semiring, Sigmaring, Algebra, Sigmaalgebra, Dynkin-System, monotones System.
+  
+  \item
+  Von welchem Typ sind folgende Mengensysteme über $\Omega = \R$?
+  
+  \begin{align*}
+    \mathfrak{C}_1 & = \Bbraces{A \subseteq \R: |A| < \infty}, \\
+    \mathfrak{C}_2 & = \Bbraces{A \subseteq \R: |A| < 5}, \\
+    \mathfrak{C}_3 & = \Bbraces{A \subseteq \R: |A| < \infty, \enspace \text{gerade}}, \\
+    \mathfrak{C}_4 & = \Bbraces{A \subseteq \R: \card(A) \leq \aleph_0}, \\
+  \end{align*}
+
+\end{enumerate}
+
+\end{exercise}
+
+\begin{solution}
+
+(a) $\emptyset \neq \mathfrak{R}_\sigma \subseteq 2^\Omega \Text{Sigmaring} : \Leftrightarrow$
+\begin{itemize}
+  \item $\Forall (A_n) \in \mathfrak{R}_\sigma, \text{disj.}: \sum_{n \in \N} A_n \in \mathfrak{R}_\sigma$
+  \item $\Forall A, B \in \mathfrak{R}_\sigma: A \setminus B \in \mathfrak{R}_\sigma,$
+\end{itemize}
+
+Für den Rest: Siehe Aufgabe 3 (a). \\
+
+(b)
+
+\begin{itemize}
+
+  \item $\mathfrak{C}_1$ ist
+  \begin{itemize}
+    \item ein Ring, weil mit $|A|, |B| < \infty$, auch $|A \cup B|, |A \setminus B| < \infty$,
+    \item ein Semiring, weil Ring,
+    \item kein Sigmaring, weil $\Forall n \in \N: \Bbraces{n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$,
+    \item keine Algebra, weil $\R \notin \mathfrak{C}_1$,
+    \item keine Sigmaalgebra, weil kein Algebra,
+    \item kein Dynkin-System, weil kein monotones System,
+    \item und kein monotones System, weil $\Forall n \in \N: \Bbraces{1, \leq, n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$.
+  \end{itemize}
+
+  \item$\mathfrak{C}_2$ ist
+  \begin{itemize}
+    \item kein Ring, weil $|A|, |B| < 5$, im Allgemeinen nicht $|A \cup B| < 5$ folgt,
+    \item ein Semiring, weil $\mathfrak{C}_2$ stabil bzgl. (endlicher) Durchschnitte ist, und $\Forall x \in \R: \Bbraces{x} \in \mathfrak{C}_2$, also \Quote{Leitern} gebaut werden können, bzgl. denen $\mathfrak{C}_2$ stabil ist,
+    \item kein Sigmaring, weil kein Ring,
+    \item keine Algebra, weil kein Ring,
+    \item keine Sigmaalgebra, weil kein Algebra,
+    \item kein Dynkin-System, weil $\Forall n \in \N: \Bbraces{n} \in \mathfrak{C}_1$, aber $\N \notin \mathfrak{C}_1$,
+    \item ein monotones System, weil jede monotone Mengenfolge, nur höchstens $5$ verschiedene Folgenglieder haben kann, also fast überall konstant ist.
+  \end{itemize}
+
+  \item $\mathfrak{C}_3$ ist
+  \begin{itemize}
+    \item kein Ring, weil kein Semiring,
+    \item kein Semiring, weil $\Bbraces{-1, 0}, \Bbraces{0, 1} \in \mathfrak{C}_3$, aber $\Bbraces{-1, 0} \cap \Bbraces{0, 1} = \Bbraces{0} \notin \mathfrak{C}_3$,
+    \item kein Sigmaring, weil kein Semiring,
+    \item keine Algebra, weil kein Semiring,
+    \item keine Sigmaalgebra, weil kein Semiring,
+    \item kein Dynkin-System, weil kein monotones System,
+    \item kein monotones System, weil $\Forall n \in \N: \Bbraces{1, \ldots, 2n} \in \mathfrak{C}_3$, aber $\N \notin \mathfrak{C}_3$.
+  \end{itemize}
+
+  \item $\mathfrak{C}_4$ ist
+  \begin{itemize}
+    \item ein Ring, weil Sigmaring,
+    \item ein Semiring, weil Sigmaring,
+    \item ein Sigmaring, weil mit $\card(A_n), \card(A), \card(B) \leq \aleph_0$, $n \in \N$, auch $\card(\bigcup_{n \in \N} A_n), \card(A \setminus B) \leq \aleph_0$,
+    \item keine Algebra, weil $\card(\R) > \aleph_0$,
+    \item keine Sigmaalgebra, weil keine Algebra,
+    \item kein Dynkin-System, weil $\card(\R) > \aleph_0$,
+    \item ein monotones System, weil Sigmaring.
+  \end{itemize}
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

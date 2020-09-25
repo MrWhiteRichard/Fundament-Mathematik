@@ -1,0 +1,73 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei $\Omega = (0, 1] \times (0, 1]$ und
+
+\begin{align*}
+  \mathfrak{T}
+  =
+  \Bbraces{(a, b] \times (0, 1]: 0 \leq a \leq b \leq 1}
+  \cup
+  \Bbraces{(0, 1] \times (a, b]: 0 \leq a \leq b \leq 1}
+\end{align*}
+
+Ferner sei
+
+\begin{align*}
+  \mu((a, b] \times (0, 1]) = \mu((0, 1] \times (a, b]) = b - a
+\end{align*}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item
+  Zeigen Sie: $\mu$ ist ein Inhalt auf $\mathfrak{T}$.
+  
+  \item
+  Zeigen Sie $\mathfrak{T}$ ist kein Semiring.
+  
+  \item
+  Zeigen Sie: Die Fortsetzung von $\mu$ zu einem Inhalt auf dem erzeugten Ring ist nicht eindeutig bestimmt.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+(a) Offensichtlich gilt $\Forall A \in \mathfrak{T}: \mu(A) \geq 0$. Zu zeigen, bleibt also nur noch die Additivität. Seien dazu $A_1, \ldots, A_n \in \mathfrak{T}$ disjunkt und $\sum_{i=1}^n A_i \in \mathfrak{T}$. $A_1, \ldots, A_n$ wollen wir aber darstellen, mit $\Forall i = 1, \ldots, n: \Exists a_i, b_i \in (0, 1):$
+
+\begin{align*}
+  A_i = (a_i, b_i] \times (0, 1]
+  \enspace \text{oder} \enspace
+  A_i = (0, 1] \times (a_i, b_i].
+\end{align*}
+
+Weil $A_1, \ldots, A_n$ ja disjunkt sind, müssen sie aber alle die selbe, einer der oberen, Darstellungen haben. Weil $\sum_{i=1}^n A_i \in \mathfrak{T}$, müssen $A_1, \ldots, A_n$ auch direkt an einender angrenzen. Das führt zu
+
+\begin{align*}
+  \sum_{i=1}^n \mu(A_i)
+  =
+  \sum_{i=1}^n b_i - a_i
+  =
+  \mu(\sum_{i=1}^n A_i).
+\end{align*}
+
+(b) $\mathfrak{T}$ ist nicht stabil bzgl. (endlichen) Durchschnitten, weil $\Forall a, b, c, d \in (0, 1): a \leq b$, $c \leq d \Rightarrow$
+
+\begin{align*}
+  (a, b] \times (0, 1]
+  \cap
+  (0, 1] \times (c, d]
+  =
+  (a, b] \times (c, d]
+  \notin \mathfrak{T}
+\end{align*}
+
+(c)
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

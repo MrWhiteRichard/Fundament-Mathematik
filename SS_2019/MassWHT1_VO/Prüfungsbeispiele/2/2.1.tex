@@ -1,0 +1,86 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{align*}
+  F(x, y) =
+  \begin{cases}
+    x y^2 & \text{falls} \enspace y > 0. \\
+    0     & \text{sonst}
+  \end{cases}
+\end{align*}
+
+ist eine zweidimensionale Verteilungsfunktion. Bestimmen Sie das Maß des Einheitskreises.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{itemize}
+
+  \item \Quote{Rechtsstetigkeit}: Tatsächlich gilt sogar $\Forall x \in \R: F(x, 0 + 0) = F(x, 0) = 0$.
+
+  \item \Quote{nichtnegativer Differenzenoperator}: Seien $a, b \in \R^2$, mit $a \leq b$.
+  \begin{align*}
+    \Delta^{(a, b)} F(x)
+    & =
+    \Delta_1^{(a_1, b_1)}
+    \Delta_2^{(a_2, b_2)}
+    F(x) \\
+    & =
+    \Delta_1^{(a_1, b_1)}
+    \pbraces{F(x_1, b_2) - F(x_1, a_2)} \\
+    & =
+    \pbraces{\Delta_1^{(a_1, b_1)} F(x_1, b_2)} -
+    \pbraces{\Delta_1^{(a_1, b_1)} F(x_1, a_2)} \\
+    & =
+    \pbraces{F(b_1, b_2) - F(a_1, b_2)} -
+    \pbraces{F(b_1, a_2) - F(a_1, a_2)} \\
+    & =
+    \pbraces{b_1 b_2^2 - a_1 b_2^2} -
+    \pbraces{b_1 a_2^2 - a_1 a_2^2} \\
+    & =
+    b_2^2 (b_1 - a_1) - a_2^2 (b_1 - a_1) \\
+    & =
+    (b_1 - a_1) (b_2^2 - a_2^2)
+    \geq
+    0
+  \end{align*}
+
+\end{itemize}
+
+Die untere Hälfte des Einheitskreises, hat offensichtlich Maß Null. Die Obere, werden wir mit Untersummen approximieren. Dazu betrachten wir vorerst die rechte Hälfte.
+
+\begin{align*}
+  \sum_{i=0}^{n-1}
+  \mu_F
+  \pbraces
+  {
+    \Bigg ]
+      \pbraces{\frac{i}{n}, 0},
+      \pbraces{\frac{i+1}{n}, \sqrt{1 - \pbraces{\frac{i+1}{n}}^2}}
+    \Bigg ]
+  }
+  =
+  \sum_{i=0}^{n-1}
+  \pbraces{\frac{i+1}{n} - \frac{i}{n}}
+  \pbraces{\sqrt{1 - \pbraces{\frac{i+1}{n}}^2}^2 - 0^2} \\
+  \xrightarrow[n \to \infty]{}
+  \Int[0][1]{1 - x^2}{x}
+  =
+  1 - \frac{x^3}{3} \Bigg |_0^1
+  =
+  \frac{2}{3}
+\end{align*}
+
+Nachdem dieser Ausdruck symmetrisch um die $y$-Achse ist (Quadrat), gilt dieser auch für die linke Hälfte und damit $\mu_F(B(0, 1)) = \frac{4}{3}$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
