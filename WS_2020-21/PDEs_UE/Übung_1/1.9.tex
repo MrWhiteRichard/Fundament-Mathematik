@@ -73,7 +73,206 @@
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+
+    \item
+
+    \begin{align*}
+        \pderivative[][w]{x}(x, y)
+        & =
+        A (C \cos{\mu y} + D \sin{\mu y}) \\
+        \pderivative[2][w]{x}(x, y)
+        & = 0 \\
+        \pderivative[][w]{y}(x, y)
+        & =
+        (Ax + B) (-\mu C \sin{\mu y} + \mu D \cos{\mu y}) \\
+        \pderivative[2][w]{y}(x, y)
+        & =
+        (Ax + B) (-\mu^2 C \cos{\mu y} - \mu^2 D \sin{\mu y})
+        =
+        -\lambda w(x, y)
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \underbrace
+        {
+            \pderivative[2][w]{x}(x, y)
+        }_0
+        +
+        \underbrace
+        {
+            \pderivative[2][w]{y}(x, y)
+        }_{
+            -\lambda w(x, y)
+        }
+        +
+        \lambda w(x, y) = 0
+    \end{align*}
+
+    \item
+    
+    \begin{align*}
+        \pderivative[][w]{x}(x, y, z, t)
+        & =
+        w(x, y, z, t)
+        \frac{-2 (x - x_0)}{4a (t - t_0)} \\
+        \pderivative[2][w]{x}(x, y, z, t)
+        & =
+        w(x, y, z, t)
+        \frac{4 (x - x_0)^2}{16 a^2 (t - t_0)^2}
+        +
+        w(x, y, z, t)
+        \frac{-1}{2a (t - t_0)}
+        =
+        w(x, y, z, t)
+        \frac{1}{2a (t - t_0)}
+        \pbraces
+        {
+            \frac{(x - x_0)^2}{2a (t - t_0)} - 1
+        } \\
+        \pderivative[2][w]{y}(x, y, z, t)
+        & = \cdots =
+        w(x, y, z, t)
+        \frac{1}{2a (t - t_0)}
+        \pbraces
+        {
+            \frac{(y - y_0)^2}{2a (t - t_0)} - 1
+        } \\
+        \pderivative[2][w]{z}(x, y, z, t)
+        & = \cdots =
+        w(x, y, z, t)
+        \frac{1}{2a (t - t_0)}
+        \pbraces
+        {
+            \frac{(z - z_0)^2}{2a (t - t_0)} - 1
+        } \\
+        \pderivative[][w]{t}(x, y, z, t)
+        & =
+        \frac{A}{(t - t_0)^{5/2}}
+        (-3/2)
+        \exp
+        {
+            \bbraces
+            {
+                -\frac
+                {
+                    (x - x_0)^2
+                    +
+                    (y - y_0)^2
+                    +
+                    (z - z_0)^2
+                }{
+                    4 a (t - t_0)
+                }
+            }
+        }
+        + \\
+        & \frac{A}{(t - t_0)^{3/2}}
+        \exp
+        {
+            \bbraces
+            {
+                -\frac
+                {
+                    (x - x_0)^2
+                    +
+                    (y - y_0)^2
+                    +
+                    (z - z_0)^2
+                }{
+                    4 a (t - t_0)
+                }
+            }
+        }
+        \pbraces
+        {
+            -\frac
+            {
+                (x - x_0)^2
+                +
+                (y - y_0)^2
+                +
+                (z - z_0)^2
+            }{
+                4 a (t - t_0)^2
+            }
+        }
+        (-1) \\
+        & =
+        w(x, y, z, t)
+        \frac{1}{t - t_0}
+        \pbraces
+        {
+            -3/2
+            +
+            \frac
+            {
+                (x - x_0)^2
+                +
+                (y - y_0)^2
+                +
+                (z - z_0)^2
+            }{
+                4 a (t - t_0)
+            }
+        }        
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \text{rhs}
+        =
+        a
+        \Bigg (
+            & w(x, y, z, t)
+            \frac{1}{2a (t - t_0)}
+            \pbraces
+            {
+                \frac{(x - x_0)^2}{2a (t - t_0)} - 1
+            }
+            + \\
+            & w(x, y, z, t)
+            \frac{1}{2a (t - t_0)}
+            \pbraces
+            {
+                \frac{(y - y_0)^2}{2a (t - t_0)} - 1
+            }
+            + \\
+            & w(x, y, z, t)
+            \frac{1}{2a (t - t_0)}
+            \pbraces
+            {
+                \frac{(z - z_0)^2}{2a (t - t_0)} - 1
+            }
+        \Bigg ) \\
+        & =
+        w(x, y, z, t)
+        \frac{1}{2 (t - t_0)}
+        \pbraces
+        {
+            \pbraces
+            {
+                \frac{(x - x_0)^2}{2a (t - t_0)} - 1
+            }
+            +
+            \pbraces
+            {
+                \frac{(y - y_0)^2}{2a (t - t_0)} - 1
+            }
+            +
+            \pbraces
+            {
+                \frac{(z - z_0)^2}{2a (t - t_0)} - 1
+            }
+        }
+        =
+        \text{lhs}
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
