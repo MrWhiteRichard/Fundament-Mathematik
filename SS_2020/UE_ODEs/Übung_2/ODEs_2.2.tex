@@ -1,13 +1,13 @@
 \begin{exercise}
     Hier könnte Ihre Werbung stehen!
     \begin{enumerate}[label = \alph*)]
-        \item Wenden Sie die Picardsche Fixpunktiteration mit Startfunktion $y_0 = 0$ auf das AWP 
+        \item Wenden Sie die Picardsche Fixpunktiteration mit Startfunktion $y_0 = 0$ auf das AWP
             \begin{align*}
                 y^\prime = y, \quad y(0) = 1
             \end{align*}
             an. Gegen welche Funktion konvergiert die Iteration? Wie groß ist das Existenzintervall der Lösung?
 
-        \item Wenden Sie die Picardsche Fixpunktiteration mit Startfunktion $y_0 = 0$ auf das AWP 
+        \item Wenden Sie die Picardsche Fixpunktiteration mit Startfunktion $y_0 = 0$ auf das AWP
         \begin{align*}
             y^\prime(t) = 2t - 2\sqrt{\max{0, y(t)}}, \quad y(0) = 0
         \end{align*}
@@ -25,13 +25,13 @@
         Man sieht unmittelbar, dass die Behauptung für $y_0$ richtig ist. Sei sie nun für $y_n$ richtig.
         Dann gilt
         \begin{align*}
-            y_{n+1}(t) &= 1 + \int_0^t \sum_{k = 0}^{n-1} \frac{\tau^k}{k!} d\tau = 1 +  \sum_{k = 0}^{n-1}\frac{1}{k!} \int_0^t \tau^k d\tau = 1 + \sum_{k = 0}^{n-1} \frac{\tau^{k + 1}}{(k+1)!} = \sum_{k = 0}^n \frac{t^k}{k!}
+            y_{n+1}(t) &= 1 + \int_0^t \sum_{k = 0}^{n-1} \frac{\tau^k}{k!} d\tau = 1 +  \sum_{k = 0}^{n-1}\frac{1}{k!} \int_0^t \tau^k d\tau = 1 + \sum_{k = 0}^{n-1} \frac{t^{k + 1}}{(k+1)!} = \sum_{k = 0}^n \frac{t^k}{k!}
         \end{align*}
-        und wir sehen unmittlebar, dass die Folge gegen $\exp$ konvergiert. Die Funktion $\exp$ ist eine Lösung der Differentialgleichung und zwar auf ganz $\R$.
+        und wir sehen unmittelbar, dass die Folge gegen $\exp(t)$ konvergiert. Die Funktion $\exp$ ist eine Lösung der Differentialgleichung und zwar auf ganz $\R$.
 
         \item Im zweiten Teil der Aufgabe gilt
         \begin{align*}
-            y_n(t) = 
+            y_n(t) =
             \begin{cases}
                 0 &, n \in 2 \pbraces{\N \cup \Bbraces{0}} \\
                 t^2 &, n \in 2 \pbraces{\N \cup \Bbraces{0}} + 1
@@ -39,7 +39,7 @@
         \end{align*}
         Für $y_0$ ist diese Behauptung offensichtlich richtig. Gelte die Behauptung nun für ein $n \in \N$.
         \begin{enumerate}[label = \roman*)]
-            \item Im ersten Fall sei $n \in 2 \pbraces{\N \cup \Bbraces{0}}$. damit gilt $y_n = 0$, also 
+            \item Im ersten Fall sei $n \in 2 \pbraces{\N \cup \Bbraces{0}}$. damit gilt $y_n = 0$, also
             \begin{align*}
                 y_{n+1}(t) = \int_0^t \pbraces{2\tau - 2 \sqrt{\max\Bbraces{0, y_n(\tau)}}} d\tau = \int_0^t 2\tau d\tau = t^2
             \end{align*}
@@ -53,11 +53,11 @@
         \begin{align*}
             \vbraces{f\pbraces{s,x}- f\pbraces{s,0}} \leq L\vbraces{x} \Leftrightarrow 2\sqrt{\max\Bbraces{0, x}} \leq L\vbraces{x}
         \end{align*}
-        Wählen wir nun $\epsilon \in \R^+$ so klein, dass mit $z := \frac{\epsilon^2}{16L^2}$ der Punkt $(s, z) \in U$ liegt und jedenfalls $\epsilon < 4$ erfüllt ist, so gilt 
+        Wählen wir nun $\epsilon \in \R^+$ so klein, dass mit $z := \frac{\epsilon^2}{16L^2}$ der Punkt $(s, z) \in U$ liegt und jedenfalls $\epsilon < 4$ erfüllt ist, so gilt
         \begin{align*}
             2\sqrt{\max\Bbraces{0, z}} = \frac{\epsilon}{2L} \leq \frac{\epsilon^2}{16 L} \Rightarrow 8 \leq 2\epsilon < 8
         \end{align*}
         und das ist ein Widerspruch, weshalb $f$ im zweiten Argument im Punkt $(s,0)$ nicht lipschitzstetig sein kann.
     \end{enumerate}
-    
+
 \end{solution}
