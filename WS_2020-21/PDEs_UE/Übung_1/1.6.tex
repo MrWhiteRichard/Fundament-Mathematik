@@ -16,7 +16,119 @@ mit $a_2, a_1, a_0 \in \R$ durch die Transformation $z(t) = y(e^t)$.
 
 \begin{solution}
 
-ToDo!
+Wir wollen eine ODE lösen, in der $z, z^\prime, z^\primeprime$ vorkommen.
+Man kann aber nicht einfach bei den Ableitungen $e^t$ für $x$ substituieren.
+Das liegt daran, dass $y^\prime = y^\prime$, wir wollen aber eigentlich ($z$) nach $t$ ableiten.
+Aushilfe bietet die Kettenregel ...
+
+\begin{align*}
+    z(t)
+    =
+    y(e^t)
+    & \iff
+    y(e^t)
+    =
+    z(t) \\
+    z^\prime(t)
+    =
+    y^\prime(e^t) e^t
+    & \iff
+    y^\prime(e^t)
+    =
+    z^\prime(t) e^{-t} \\
+    z^\primeprime(t)
+    =
+    \derivative{t}
+    \bbraces
+    {
+        y^\prime(e^t) e^t
+    }
+    =
+    \underbrace
+    {
+        \derivative{t}
+        \bbraces
+        {
+            y^\prime(e^t)
+        }
+    }_{
+        y^\primeprime(e^t) e^t
+    }
+    e^t
+    +
+    \underbrace
+    {
+        y^\prime(e^t)
+    }_{
+        z^\prime(t) e^{-t}
+    }
+    e^t
+    & \iff
+    y^\primeprime(e^t)
+    =
+    (
+        z^\primeprime(t)
+        -
+        z^\prime(t)
+    )
+    e^{-2t}
+\end{align*}
+
+JETZT können wir endlich substituieren.
+
+\begin{align*}
+    \text{rhs}
+    =
+    a_2 (e^t)^2 y^\primeprime(e^t)
+    +
+    a_1 e^t y^\prime(e^t)
+    +
+    a_0 y(e^t)
+    & =
+    a_2 e^{2t}
+    (
+        z^\primeprime(t)
+        -
+        z^\prime(t)
+    )
+    e^{-2t}
+    +
+    a_1 e^t
+    z^\prime(t)
+    e^{-t}
+    +
+    a_0
+    z(t) \\
+    & =
+    a_2 z^\primeprime(t) + (a_1 - a_2) z^\prime(t) + a_0 z(t)
+\end{align*}
+
+Diese ODE lässt sich nun leicht lösen.
+
+\begin{align*}
+    Z := (z, z^\prime)^T
+    \implies
+    Z^\prime(t)
+    =
+    \underbrace
+    {
+        \begin{pmatrix}
+            0               & 1 \\
+            \frac{a_0}{a_2} & \frac{a_2 - a_1}{a_2}
+        \end{pmatrix}
+    }_{=: A}
+    Z(t)
+    \implies
+    Z(t) = e^{tA}
+\end{align*}
+
+Wenn man das $z$ gefunden hat, muss man nur noch rücksubstituieren.
+
+\begin{align*}
+    z(t) = y(e^t)
+    \iff
+    z(\ln{x}) = y(x)
+\end{align*}
 
 \end{solution}
 
