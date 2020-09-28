@@ -12,7 +12,62 @@ Wenn ja, berechnen Sie $\norm{D}$.
 
 \begin{solution}
 
-ToDo!
+Wir zeigen, dass der Operator $D$ auf $\mathcal{P}([0, 1])$ unbeschränkt ist.
+
+Dazu, definieren wir die folgenden Polynome.
+
+\begin{align*}
+    p_0(x) & := 1 \\
+    p_1(x) & := 1/2 + x/2 \\
+    p_2(x) & := 1/3 + x/3 + x^2 / 3 \\
+    \vdots & \\
+    p_n(x) & := \sum_{i=0}^n \frac{x^i}{n+1}, \quad n \in \N_0
+\end{align*}
+
+Für $n \in \N_0$ berechnen wir die Norm von $p_n$ ...
+
+\begin{align*}
+    \norm[\infty]{p_n}
+    :=
+    \sup_{x \in [0, 1]} |p_n(x)|
+    =
+    \sum_{i=0}^n \frac{1}{n+1} = 1
+\end{align*}
+
+... und dessen Ableitung $p_n^\prime(x) = \sum_{i=1}^n \frac{i x^i}{n+1}$ ...
+
+\begin{align*}
+    \norm[\infty]{p_n^\prime}
+    :=
+    \sup_{x \in [0, 1]} |p_n^\prime(x)|
+    =
+    \sum_{i=1}^n \frac{i}{n+1}
+    =
+    \frac{1}{n+1} \frac{n (n+1)}{2} = n/2.
+\end{align*}
+
+Damit, kann $\norm{D}$ beliebig groß werden.
+
+\begin{align*}
+    \implies
+    \norm{D}
+    :=
+    \sup
+    \Bbraces
+    {
+        \frac
+        {
+            \norm[\infty]{Dp}
+        }{
+            \norm[\infty]{p}
+        }:
+        p \in \mathcal{P}([0, 1]) \setminus \Bbraces{0}
+    }
+    \geq
+    \frac{\norm[\infty]{p_n^\prime}}{\norm[\infty]{p_n}}
+    =
+    n/2 \xrightarrow{n \to \infty} \infty
+\end{align*}
 
 \end{solution}
 
