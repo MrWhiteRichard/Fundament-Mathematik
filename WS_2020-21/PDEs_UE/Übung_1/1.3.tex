@@ -16,7 +16,50 @@ Beweisen Sie mithilfe der Ungleichung von Cauchy-Schwarz:
 
 \begin{solution}
 
-ToDo!
+Bezeichne $(\cdot, \cdot)$ das euklidische Skalarprodukt im $\R^3$.
+Der Übersicht halber definieren wir noch $a, b \in \R^3$.
+
+\begin{align*}
+    a & := \pbraces
+    {
+        \sqrt{x (3x + y)},
+        \sqrt{y (3y + z)},
+        \sqrt{z (3z + x)}
+    }^T, \\
+    b & := (1, 1, 1)^T
+\end{align*}
+
+\begin{align*}
+    \implies
+    \text{lhs}
+    =
+    (a, b)
+    \stackrel{\text{CSB}}{\leq}
+    \norm[2]{a} \norm[2]{b}
+    & =
+    (
+        \underbrace
+        {1^2 + 1^2 + 1^2}_{3}
+    )^{1/2}
+    (
+        \underbrace{x (3x + y)}_{3x^2 + xy}
+        +
+        \underbrace{y (3y + z)}_{3y^2 + yz}
+        +
+        \underbrace{z (3z + x)}_{3z^2 + zx}
+    )^{1/2} \\
+    & \stackrel{!}{\leq}
+    \sqrt{3} \sqrt{3}
+    (
+        \underbrace
+        {x^2 + 2xy + y^2 + 2yz + z^2 + 2zx}_{(x + y + z)^2}
+    )^{1/2}
+    \stackrel{!}{=}
+    \text{rhs}
+\end{align*}
+
+Bei dem ersten \Quote{!}, verlangen wir, dass $xy, yz, zx \geq 0$;
+Bei dem zweiten, gehen wir davon aus, dass in der Angabe ein $3$er statt einem $2$er stehen sollte.
 
 \end{solution}
 
