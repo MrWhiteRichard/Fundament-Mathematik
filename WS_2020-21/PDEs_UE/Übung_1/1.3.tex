@@ -61,6 +61,38 @@ Der Übersicht halber definieren wir noch $a, b \in \R^3$.
 Bei dem ersten \Quote{!}, verlangen wir, dass $xy, yz, zx \geq 0$;
 Bei dem zweiten, gehen wir davon aus, dass in der Angabe ein $3$er statt einem $2$er stehen sollte.
 
+
+--------------------bessere Alternative--------------------------
+
+\begin{align*}
+    a & := \pbraces
+    {
+        \sqrt{x},
+        \sqrt{y},
+        \sqrt{z}
+    }^T, \\
+    b & := \pbraces
+    {
+        \sqrt{3x + y},
+        \sqrt{3y + z},
+        \sqrt{3z + x}
+    }^T, \\
+\end{align*}
+
+\begin{align*}
+    \implies
+    \text{lhs}
+    =
+    (a, b)
+    \stackrel{\text{CSB}}{\leq}
+    \norm[2]{a} \norm[2]{b}
+    & =
+    (x + y + z)^{1/2}
+    (4(x+y+z)
+    )^{1/2} = 2(x+y+z)
+\end{align*}
+
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
