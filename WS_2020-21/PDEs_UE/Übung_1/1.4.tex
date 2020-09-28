@@ -18,7 +18,39 @@ Beweisen Sie mithilfe der hölderschen Ungleichung:
 
 \begin{solution}
 
-ToDo!
+Bezeichne $(\cdot, \cdot)$ das euklidische Skalarprodukt im $\R^2$.
+Der Übersicht halber definieren wir noch $x = (a, b)^T, y = (1, 1)^T \in \R^2$.
+Weiters, wählen wir $p := 3$ und die entsprechende Hölder-Konjugierte $q$.
+
+\begin{align*}
+    \frac{1}{p} + \frac{1}{q}
+    \stackrel{!}{=} 1
+    \impliedby
+    q := \frac{1}{1 - 1/p} = \frac{p}{p-1} = 3/2
+\end{align*}
+
+\begin{align*}
+    \implies
+    \text{rhs}
+    =
+    (x, y)^3
+    \stackrel{\text{Hölli}}{\leq}
+    \norm[3]{x}^3 \norm[3/2]{y}^3
+    =
+    (|a|^3 + |b|^3)
+    \underbrace
+    {
+        \pbraces
+        {
+            \pbraces
+            {
+                |1|^{3/2} + |1|^{3/2}
+            }^{2/3}
+        }^3
+    }_4
+    =
+    \text{lhs}
+\end{align*}
 
 \end{solution}
 
