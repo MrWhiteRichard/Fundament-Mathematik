@@ -16,7 +16,73 @@ Berechnen Sie die Operatornorm von
 
 \begin{solution}
 
-ToDo!
+Wir zeigen, dass die Operatornorm $\norm{T} = \pi / \sqrt{6}$ ist.
+
+Sei dazu $x \in \ell^2$.
+Laut der Cauchy-Schwarz-Ungleichung gilt folgende Abschätzung.
+
+\begin{align*}
+    \norm[1]{Tx}^2
+    =
+    \sum_{n=1}^\infty
+    \vbraces
+    {
+        \frac{x_n}{n}
+    }
+    =
+    \sum_{n=1}^\infty
+    \vbraces{x_n}
+    \vbraces
+    {
+        \frac{1}{n}
+    }
+    \stackrel{\text{CSB}}{\leq}
+    \underbrace
+    {
+        \pbraces
+        {
+            \sum_{n=1}^\infty
+            x_n^2
+        }
+    }_{
+        \norm[1]{x}^2
+    }
+    \underbrace
+    {
+        \pbraces
+        {
+            \sum_{n=1}^\infty
+            \frac{1}{n^2}
+        }
+    }_{
+        \pi^2 / 6
+    }
+\end{align*}
+
+Dadurch erhalten wir eine Abschätzung nach oben für die Operatornorm von $T$.
+
+\begin{align*}
+    \norm{T}
+    :=
+    \sup
+    \Bbraces
+    {
+        \norm[1]{Tx}:
+        x \in \ell^2,
+        \norm[2]{x} = 1
+    }
+    \leq
+    \pi / \sqrt{6}
+\end{align*}
+
+Für die andere Ungleichung, betrachten wir die Folge $x := (1/n)_{n \in \N} \in \ell^2$.
+
+\begin{align*}
+    \implies
+    Tx = (1/n^2)_{n \in \N} \in \ell^1
+    \implies
+    \norm{T} \geq \norm[1]{Tx} = \pi / \sqrt{6}
+\end{align*}
 
 \end{solution}
 
