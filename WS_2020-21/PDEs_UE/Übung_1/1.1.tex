@@ -67,9 +67,13 @@ Dadurch erhalten wir eine Abschätzung nach oben für die Operatornorm von $T$.
     \sup
     \Bbraces
     {
-        \norm[1]{Tx}:
-        x \in \ell^2,
-        \norm[2]{x} = 1
+        \frac
+        {
+            \norm[1]{Tx}
+        }{
+            \norm[2]{x}
+        }:
+        x \in \ell^2 \setminus \Bbraces{0}
     }
     \leq
     \pi / \sqrt{6}
@@ -81,7 +85,16 @@ Für die andere Ungleichung, betrachten wir die Folge $x := (1/n)_{n \in \N} \in
     \implies
     Tx = (1/n^2)_{n \in \N} \in \ell^1
     \implies
-    \norm{T} \geq \norm[1]{Tx} = \pi / \sqrt{6}
+    \norm{T}
+    \geq
+    \frac
+        {
+            \norm[1]{Tx}
+        }{
+            \norm[2]{x}
+        }
+    =
+    \pi / \sqrt{6}
 \end{align*}
 
 \end{solution}
