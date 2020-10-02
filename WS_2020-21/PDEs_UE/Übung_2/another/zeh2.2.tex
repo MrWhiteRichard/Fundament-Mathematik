@@ -1,0 +1,91 @@
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+
+    \item Lösen Sie das Randwertproblem für die Laplacegleichung in ebenen Polarkoordinaten
+    
+    \begin{align*}
+        (\Delta u)(r, \varphi)
+        & =
+        0 ~\text{für}~ r < R, \\
+        u(R, \varphi)
+        & =
+        f(\varphi) ~\text{für alle}~ \varphi,
+    \end{align*}
+
+    wobei
+
+    \begin{align*}
+        \Delta u
+        =
+        u_{rr} + \frac{1}{r} u + \frac{1}{r^2} u_{\varphi \varphi}
+    \end{align*}
+
+    der Laplaceoperator in Polarkoordinaten, $R > 0$ eine positive Konstante und $f$ eine stückweise stetig differenzierbare $2 \pi$-periodische Funktion ist?
+
+    \item Wie sieht die Lösung konkret im Fall
+    
+    \begin{align*}
+        f(\varphi)
+        =
+        \begin{cases}
+            0,  \varphi = 0, \pi \\
+            1,  0 < \varphi < \pi \\
+            -1, \pi < \varphi < 2 \pi
+        \end{cases}
+    \end{align*}
+
+    mit $R = 1$ aus?
+
+\end{enumerate}
+
+\textit{Hinweis:}
+Verwenden Sie einen Separationsansatz.
+Betrachten Sie dazu zunächst Einzellösungen $u_n$ der Gestalt $u_n(r, \varphi) = v_n(r) \cdot w_n(\varphi)$ (mit $w_n$ $2 \pi$-periodisch), welche die Differentialgleichung erfüllen und insbesondere $C^2$ im Nullpunkt sind.
+Die gesuchte Gesamtlösung ergibt sich dann als Summe über die Einzellösungen $u_n$ mit geeigneten Koeffizienten.
+Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung stoßen, verwenden Sie Aufgabe 6 von Blatt 1 oder schlagen sie in einer beliebigen Quelle ein Fundamentalsystem von Lösungen nach.
+
+\end{exercise}
+
+\begin{solution}
+	Wir verwenden den Hinweis und machen den Ansatz $u(r, \varphi) = v(\varphi) w(\varphi)$. Einsetzen in die Differentialgleichung liefert
+	\begin{align*}
+	v_{rr}(r)w(\varphi) + \frac{1}{r} v_r(r)w(\varphi) + \frac{1}{r^2} v(r)w_{\varphi\varphi}(\varphi) = 0 \Leftrightarrow \frac{r^2v_{rr}(r) + rv_r(r)}{v(r)} = -\frac{w_{\varphi\varphi}(\varphi)}{w(\varphi)} = \lambda
+	\end{align*}
+	mit einer Konstante $\lambda$, da die linke Seite nur von $r$ und die rechte Seite nur von $\varphi$ abhängt. Wir erhalten also die Differentialgleichung 
+	\begin{align*}
+	w_{\varphi\varphi} + \lambda w = 0 \quad \text{mit dem charakteristischen Polynom} \quad \chi(\mu) = \mu^2 + \lambda.
+	\end{align*}
+	Den Fall $\lambda = 0$ behandeln wir extra, ansonsten erhalten wir die Lösung 
+	\begin{align*}
+	w(\varphi) = c_1 \exp\left(i \varphi \sqrt{\lambda} \right) + c_2 \exp\left(-i \varphi \sqrt{\lambda} \right).
+	\end{align*}
+	Nach dem Hinweis soll diese Lösung $2\pi$-periodisch sein, also $\sqrt{\lambda} \in \Z$ und damit $\lambda = n^2$ mit $n \in \N$. Da wir nun wissen, dass $\lambda > 0$ ist können wir ein anderes Fundamentalsystem wählen und die Lösung $w_n(\varphi) = c_{n,1} \sin(n\varphi) + c_{n,2} \cos(n\varphi)$ anschreiben.
+	
+	Als zweite Differentialgleichung erhalten wir die homogene eulersche Differentialgeichung 
+	\begin{align*}
+	a_2 r^2 v_{rr} + a_1 r v_r + a_0 v = 0 \quad \text{mit} \quad a_2 = 1, \quad a_1 = 1 \quad \text{und} \quad a_0 = -\lambda
+	\end{align*}
+	Wie wir solch eine Differentialgleichung lösen wissen wir schon von Aufgabe 6 auf Blatt 1. Wir definieren 
+	\begin{align*}
+	\mu_\pm := \frac{a_2 - a_1 \pm \sqrt{(a_2 - a_1)^2 - 4a_2a_0}}{2a_2} = \pm \sqrt{\lambda}  
+	\end{align*}
+	und erhalten unter Berücksichtigung von $\lambda = n^2$ mit $n \in \N$ die Lösung
+	\begin{align*}
+	v_n(r) = c_{n,3} r^{\mu_+} + c_{n,4} r^{\mu_-} = c_{n,3} r^{n} + c_{n,4} r^{-n}.
+	\end{align*}
+	Schauen wir nocheinmal in den Hinweis so sehen wir, dass zweimal stetige Differenzierbarkeit besonders im Nullpunkt wichtig ist, dort ist allerdings $v_n$ nur definiert, falls $c_{n,4} = 0$ erfüllt ist. Damit gilt $v_n(r) = c_{n,3} r^{n}$.
+	Insgesamt erhalten wir also 
+	\begin{align*}
+	u_n(r,\varphi) = v_n(r) w_n(\varphi) = r^n \left(b_{n,1} \sin(n\varphi) + b_{n,2} \cos(n\varphi)\right)
+	\end{align*}
+	\textbf{hier nochmal nachprüfen ob die DGL erfüllt ist!}
+	und gemäß hinweis die Summe
+	\begin{align*}
+	u(r, \varphi) = \sum_{n \in \N} r^n \left(b_{n,1} \sin(n\varphi) + b_{n,2} \cos(n\varphi)\right)
+	\end{align*}
+	als Gesamtlösung.
+\end{solution}
+
