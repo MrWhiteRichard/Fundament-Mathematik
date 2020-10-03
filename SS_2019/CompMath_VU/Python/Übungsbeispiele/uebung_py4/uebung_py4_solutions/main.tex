@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{amsmath, amssymb, mathtools}
+
+\parindent 0pt
+
+\title{CompMath: Python-Übung 4}
+\author{Richard Weiss vs. Asst. Prof. Kevin Sturm}
+\date{May 2019}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problem 4.}
+
+Let $L = (\ell_{ij})_{i, j = 1, \ldots, n} \in \mathbb{R}^{n \times n}$ be a regular (i.e. $L$ has full rank) and lower triangular matrix (i.e. $\ell_{ij} = 0$ for $i < j$). We write $L$ in the block form
+
+\begin{equation*}
+    L =
+    \begin{pmatrix}
+        L_{11} & 0      \\
+        L_{21} & L_{22} \\
+    \end{pmatrix}
+\end{equation*}
+
+with $L_{11} \in \mathbb{R}^{p \times p}$, $L_{21} \in \mathbb{R}^{q \times p}$ and $L_{22} \in \mathbb{R}^{q \times q}$, where $p + q = n$.
+
+\begin{itemize}
+    \item[(a)] Show that $\det(L) = \prod_{j = 1}^n \ell_{jj}.$ \\
+    
+    \textbf{Solution.} \\
+    In der Summe $\sum_{\sigma \in S_n} \text{sgn} \, \sigma \cdot \prod_{j = 1}^n \ell_{\sigma(j)j}$ liegt höchstens dann ein Summand $\neq 0$ vor, falls $\sigma(1) = 1, \sigma(2) < 2, \ldots, \sigma(n) \leq n$, also $\sigma = \text{id}_{1, 2, \ldots, n}$. 
+    
+    \textit{(Havlicek, 2012, Lineare Algebra für Technische Mathematiker)}
+    
+    \item[(b)] Show that
+    \begin{equation*}
+        L^{-1} = 
+        \begin{pmatrix}
+            L_{11}^{-1}                     & 0             \\
+            -L_{22}^{-1}L_{21}L_{11}^{-1}   & L_{22}^{-1}   \\
+        \end{pmatrix}
+        \text{.}
+    \end{equation*}
+    
+    \textbf{Solution.} \\
+    To verify this, we multiply the matrices block-wise:
+    
+    \begin{equation*}
+        L^{-1} \cdot L = 
+        \begin{pmatrix}
+            L_{11}^{-1}                     & 0             \\
+            -L_{22}^{-1}L_{21}L_{11}^{-1}   & L_{22}^{-1}   \\
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+            L_{11} & 0 \\
+            L_{21} & L_{22}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            E_p &   0   \\
+            0   &   E_q
+        \end{pmatrix}
+        = E_n \text{.}
+    \end{equation*} \\
+\end{itemize}
+
+\textbf{Problem 7.}
+
+Let $U = (u_{ij} \in \mathbb{C}^{n \times n}$ be an upper triangular and regular matrix, i.e., $u_{jk} = 0$ for $j > k$, such that $u_{jj} \neq 0$ for all $j = 1, \ldots, n$.
+
+\begin{itemize}
+    \item[(a)] Show that for every $b \in \mathbb{C}^n$, there exists a unique solution $x \in \mathbb{C}^n$ of $Ux = b$.
+    
+    \textbf{Solution.} \\
+    We know that
+    
+    \begin{equation} \label{LEqS}
+        Ux =
+        \begin{pmatrix}
+            u_{11}  &   \cdots  &   u_{1n}  \\
+                    &   \ddots  &   \vdots  \\
+            0       &           &   u_{nn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1     \\
+            \vdots  \\
+            x_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            b_1     \\
+            \vdots  \\
+            b_n
+        \end{pmatrix}
+    \end{equation}
+    
+    Because $U$ is regular, all columns (as vectors) are \textit{linearly independent}. Hence, $u_{11} \neq 0$, because the first column $u_1 \neq \Vec{0}$.
+    But then, $u_{22} \neq 0$, for elsewise, $u_2$ would be a multiple of $u_1$.
+    But then, $u_{jj} \neq 0$, for elsewise, $u_j \in [u_1, \ldots, u_{j-1}]$.
+    
+    Now, we can multiply $U \cdot x$ from \eqref{LEqS}, and extract the unique solution to $x_n = \frac{b_n}{u_{nn}}$. This gives us a unique solution for $x_{n-1}$ and even $x_j$.
+\end{itemize}
+
+\textbf{Problem 8.}
+
+The integral $\int_a^b f dx$ of a continuous function $f: [a, b] \rightarrow \mathbb{R}$ can be approximated by so called quadrature formulas
+
+\begin{equation*}
+    \int_a^b f \, dx \approx \sum_{j = 1}^n \omega_j f(x_j)
+\end{equation*}
+
+where one fixes some vector $x = (x_1, \ldots, x_n) \in [a, b]^n$ with $x_1 < \cdots <
+x_n$ and approximates the function $f$ by some polynomial $p(x) = \sum_{j = 1}^n a_j x^{j-1}$ of degree $\leq n - 1$ with $p(x_j) = f(x_j)$ for all $j = 1, \ldots, n$. The weights $\omega_j$ are defined as the solution of
+
+\begin{equation} \label{approx_1}
+    \int_a^b q \, dx = \sum_{j = 1}^n \omega_j q(x_j)
+    \text{ for all polynomials $q$ of degree $\leq n - 1$.}
+\end{equation}
+
+\begin{itemize}
+    \item[(a)] Show that \eqref{approx_1} is equivalent to
+    
+    \begin{equation} \label{approx_2}
+        \int_a^b x^k \, dx = \sum_{j = 1}^n \omega_j x_j^k
+        \text{ for all $k \in \{0, \ldots, n - 1\}$.}
+    \end{equation}
+    
+    \textbf{Solution.} \\
+    Let $n \in \mathbb{N}$, $a, b \in \mathbb{R}$, where $a < b$ and $x_1, \ldots, x_n \in [a, b]$, where $x_1 \leq \ldots \leq x_n$. \\
+    Note, that $x \neq (x_1, \ldots, x_n).$
+    \begin{itemize}
+        \item["$\Rightarrow$"] Obviously, $q(x) \coloneqq x^k$ is a polynomial of degree $k \leq n - 1$.
+        
+        \item["$\Leftarrow$"] Let $q(x) = \sum_{i = 0}^k a_i x^{i}$ be an arbitrary polynomial of degree $k \leq n - 1$. Applying \eqref{approx_2} and basic integration rules, we can write
+        
+        \begin{equation*}
+            \int_a^b q \, dx =
+            \int_a^b \sum_{i = 0}^k a_i x^i \, dx =
+            \sum_{i = 0}^k a_i \int_a^b x^i \, dx \stackrel{\eqref{approx_2}}{=}
+            \sum_{i = 0}^k a_i \sum_{j = 1}^n \omega_{ij} x_j^i =
+            \sum_{j = 1}^n \sum_{i = 0}^k \omega_{ij} a_i x_j^i \stackrel{!}{=}
+            \sum_{j = 1}^n \omega_j q(x_j)
+            \text{.}
+        \end{equation*}
+        
+        The last equation holds true, because \eqref{approx_2} actually means:
+        
+        \begin{equation*}
+            \forall n \in \mathbb{N}:
+            \forall a, b \in \mathbb{R}, a < b:
+            \forall x = (x_1, \ldots, x_n) \in \mathbb{R}^n:
+            \exists \omega_1, \ldots \omega_n \in \mathbb{R}:
+            \forall k = 0, \ldots, n - 1:
+        \end{equation*}
+        \begin{equation*}
+            \int_a^b x^k \, dx = \sum_{j = 1}^n \omega_j x_j^k
+        \end{equation*}
+        
+        Hence, $\forall j = 1, \ldots, n:\forall i = 0, \ldots, k: \omega_{ij} = \omega_j.$
+    \end{itemize}
+    
+    \item[(b)] Write a function \texttt{integrate} which takes the vector $x = (x_1, \ldots, x_n) \in [a, b]^n$ and the function value vector $(f(x_1), \ldots, f(x_n))$ and which returns the approximated value of the integral $\sum_{j = 1}^n \omega_j f(x_j)$. Avoid loops and use appropriate vector functions and arithmetic instead. \\
+    Hint: \eqref{approx_2} is a linear system in $(\omega_1, \ldots, \omega_n) \in \mathbb{R}^n$, which you can solve with scipy.
+    
+    \textbf{Solution.} \\
+    (Thx for the hint Prof., now we know, what \eqref{approx_2} actually means.) \\
+    
+    Using \eqref{approx_2}, we can write $\forall k = 0, \ldots, n - 1$, that
+    
+    \begin{equation*}
+        I_k \coloneqq
+        \frac{b^{k + 1} - a^{k + 1}}{k + 1} =
+        \int_a^b x^k dx =
+        \sum_{j = 1}^n \omega_j x_j^k = 
+        \omega_1 x_1^k + \cdots + \omega_n x_n^k
+    \end{equation*}
+    
+    Similarly to below, this yields
+    
+    \begin{equation*}
+        \underbrace{
+        \begin{pmatrix}
+            1           &   \cdots  &   1           \\
+            x_1         &   \cdots  &   x_n         \\
+            \vdots      &   \ddots  &   \vdots      \\
+            (x_1)^{n-1} &   \cdots  &   (x_n)^{n-1}
+        \end{pmatrix}
+        }_{X \coloneqq}
+        \begin{pmatrix}
+            \omega_1    \\
+            \vdots      \\
+            \omega_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            I_0     \\
+            \vdots  \\
+            I_{n-1}
+        \end{pmatrix}
+    \end{equation*}
+    
+    With these values $\omega_1, \ldots, \omega_n$, we can calculate the sum $\sum_{j = 1}^n \omega_j f(x_j)$. \\
+    
+    \textbf{We don't actually need this, but I wrote it anyhow ...}
+    
+    Let $p(x) = \sum_{j = 1}^n a_j x^{j - 1}$ be a polynomial of degree $\leq n - 1$ and $\forall j = 1, \ldots, n: p(x_j) = f(x_j)$.
+    
+    \begin{equation*}
+        \begin{matrix}
+            a_1 x_1^0 + \cdots + a_n x_1^{n-1} = f(x_1) \\
+            \vdots \\
+            a_1 x_n^0 + \cdots + a_n x_n^{n-1} = f(x_n)
+    \end{matrix}
+    \qquad \Rightarrow \qquad
+    \underbrace{
+    \begin{pmatrix}
+        1       &   x_1     &   \cdots  &   (x_1)^{n-1} \\
+        1       &   x_2     &   \cdots  &   (x_2)^{n-1} \\
+        \vdots  &   \vdots  &   \ddots  &   \vdots      \\
+        1       &   x_n     &   \cdots  &   (x_n)^{n-1}
+    \end{pmatrix}
+    }_{= X^T}
+    \begin{pmatrix}
+        a_1     \\
+        \vdots  \\
+        a_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        f(x_1)  \\
+        \vdots  \\
+        f(x_n)
+    \end{pmatrix}
+    \text{.}
+    \end{equation*}
+    
+    This gives us the values $a_1, \ldots, a_n$, of the approximation polynomial $p$ of $f$.
+\end{itemize}
+
+\end{document}

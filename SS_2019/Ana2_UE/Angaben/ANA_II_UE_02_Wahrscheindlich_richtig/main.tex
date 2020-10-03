@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{relsize}
+\usepackage{amsmath, amssymb}
+
+\title{
+    \textbf{Übungen zu Analysis 2, 2. Übung 19. 3. 2019} \\
+    \smaller ENTWÜRZT
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\setcounter{enumi}{10}
+
+\item Beweisen Sie die Ungleichung von Young: Für $A, B > 0$, $p, q > 1$, $\frac{1}{p} + \frac{1}{q} = 1$ gilt
+
+\[
+    A^{\frac{1}{p}} B^{\frac{1}{q}} \leq
+    \frac{A}{p} + \frac{B}{q}
+\]
+
+Hinw.: Verwenden Sie die Konvexität der Exponentialfunktion.
+
+\item Beweisen Sie die Ungleichung von Hölder: Für $p, q > 1$, $\frac{1}{p} + \frac{1}{q} = 1$, gilt für $(x_1, ..., x_n), (y_1, ..., y_n) \in \mathbb{R}^n
+$
+
+\[
+    \sum_{k=1}^n |x_k y_k| \leq
+    \Bigg( \sum_{k=1}^n |x_k|^p \Bigg)^{1/p}
+    \Bigg( \sum_{k=1}^n |y_k|^p \Bigg)^{1/q}
+    \text{.}
+\]
+
+\item Zeigen Sie , dass für $1 \leq p < \infty$, $( \sum\nolimits_{k=1}^n |x_k|^p )^{1/p}$ eine Norm auf $\mathbb{R}^n$ ist. \\
+Hinw.: Für die Dreiecksungleichung zeige man
+
+\[
+    \sum_{k=1}^n |x_k + y_k|^p \leq
+    \sum_{k=1}^n |x_k| |x_k + y_k|^{p-1} +
+    \sum_{k=1}^n |y_k| |x_k + y_k|^{p-1}
+\]
+
+und wende die Hölder-Ungleichung an.
+
+\item Man zeige, dass alle Normen $|| \cdot ||_p, || \cdot ||_q$, für $1 \leq p, q \leq \infty$ auf $\mathbb{R}^n$ äquivalent sind. Man zeige insbesondere, dass für $1 \leq p < q < \infty$, $|| \cdot ||_p \geq || \cdot ||_q \geq || \cdot ||_{\infty}$. \\
+Hinw.: Man verwende, dass aus $0 < p < q$ und $\lambda \in [0, 1]$, $\lambda^q \leq \lambda^p$ folgt.
+
+\item Bestimmen Sie die Operatornormen der Identität als Abbildung
+
+\[
+    (\mathbb{R}^n, || \cdot ||_p) \rightarrow (\mathbb{R}^n, || \cdot ||_q)
+    \text{ für }
+    1 \leq p < q \leq \infty
+\]
+
+und von
+
+\[
+    (\mathbb{R}^n, || \cdot ||_2) \rightarrow (\mathbb{R}^n, || \cdot ||_1)
+    \text{,}
+\]
+
+sowie von $A_x: (\mathbb{R}^n, || \cdot ||_2) \rightarrow \mathbb{R}$, $A_x y = (x, y)$ ($( \cdot, \cdot )$ Skalarprodukt). \\
+(Scheinbar nicht obligatorischer) Hinw.: Mit dem Skalarprodukt, ist tatsächlich jenes, aus der Schulmathematik gemeint. d.h. also, wir identifizieren $A_x$ mit $x^T$ und behandeln $A_x y$ als "Matrix-Matrix" Produkt.
+
+\item Zeigen Sie, dass die Gruppe $SO_n(\mathbb{R})$, der orthogonalen $n \times n$-Matrizen mit Determinante $1$, abgeschlossen (wahrscheindlich im topologischen Sinne) in $GL_n(\mathbb{R})$ ist, wenn man $GL_n(\mathbb{R})$ als Teilmenge des $\mathbb{R}^{n \times n}$ auffasst. \\
+Hinw.: Verwenden Sie, dass eine $n \times n$-Matrix genau dann orthogonal ist, wenn alle ihre Spaltenvektoren Euklidische Norm $1$ haben und ihre Determinante $\pm 1$ ist. Verwenden Sie dann Prop. 6.1.12.
+
+\item Zeigen Sie, dass für $A: (\mathbb{R}^n, || \cdot ||_p) \rightarrow (\mathbb{R}^n, || \cdot ||_p)$ und $||A|| < \ln{2}$ (!! siehe Beispiel 9.2.10 (iii) !!), die Abbildung $x \mapsto e^A x$ bijektiv ist.
+
+\item Zeigen Sie, dass für $r, s \in \mathbb{R}$ und $A$ eine $n \times n$-Matrix, $e^{rA} e^{sA} = e^{(r+s)A}$ gilt. \\
+Hinw.: Berechnen Sie $\frac{d}{dr} (e^{rA} e^{(u-r)A})$.
+
+\item Für
+
+\[
+    F: \mathbb{R} \rightarrow \mathbb{R}^3: t \mapsto
+    \begin{pmatrix}
+        t \cosh{t} \\
+        t e^{t^2} \\
+        1
+    \end{pmatrix}
+    \text{,}
+\]
+
+berechne man $\int_{0}^{1} F(t) dt$ und $F'$.
+
+\item Berechnen Sie die Abbildungsnorm der lin. Abbildung $T$:
+
+\[
+    Tf(x) =
+    \begin{pmatrix}
+        \int_{0}^{x} F(t) dt \\
+        \int_{x}^{1} F(s) ds
+    \end{pmatrix}
+\]
+
+als Abbildung
+
+\[
+    ( C[0, 1], || \cdot ||_{\infty} ) \rightarrow (
+    ( C[0, 1], || \cdot ||_{\infty} ) \times
+    ( C[0, 1], || \cdot ||_{\infty} ), || \cdot ||_1 )
+    \text{,}
+\]
+
+bzw. nach
+
+\[
+    ( C[0, 1], || \cdot ||_{\infty} ) \rightarrow (
+    ( C[0, 1], || \cdot ||_{\infty} ) \times
+    ( C[0, 1], || \cdot ||_{\infty} ), || \cdot ||_{\infty} )
+    \text{.}
+\]
+
+\end{enumerate}
+
+\end{document}
