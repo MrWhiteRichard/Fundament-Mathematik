@@ -19,7 +19,315 @@ Lösen Sie folgendes Problem mithilfe der Methode der Charakteristiken und geben
 
 \begin{solution}
 
-ToDo!
+Das dazugehorige Anfangswertproblem lautet
+
+\begin{align*}
+    \pderivative[][x]{s} = y + u,
+    \pderivative[][y]{s} = y,
+    \pderivative[][u]{s} = x - y,
+\end{align*}
+
+mit Anfangswerten
+
+\begin{align*}
+    x(0, t) = t,
+    y(0, t) = 1,
+    u(0, t) = 1 + t.
+\end{align*}
+
+Anstatt sofort ein lineares $(3 \times 3)$-System aufzustellen, bemerken wir zunächst, dass $y(s, t) = e^s$.
+Wir benötigen also bloß folgendes inhomogene lineare $(2 \times 2)$-System (mit konstanten koeffizienten im linearen Teil).
+
+\begin{align*}
+    v(s)
+    :=
+    \begin{pmatrix}
+        x(s, t) \\ u(s, t)
+    \end{pmatrix}
+    \implies
+    v^\prime
+    =
+    \underbrace
+    {
+        \begin{pmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{pmatrix}
+    }_{=: A} v
+    +
+    \underbrace
+    {
+        \begin{pmatrix}
+            e^s \\ -e^s
+        \end{pmatrix}
+    }_{=: b(s)},
+    \quad
+    v(0)
+    =
+    \begin{pmatrix}
+        t \\ 1 + t
+    \end{pmatrix}
+\end{align*}
+
+Wir bestimmen die Eigenwerte $\lambda_{1, 2}$.
+
+\begin{align*}
+    & \implies
+    \chi_A(\lambda)
+    =
+    \begin{vmatrix}
+        -\lambda & 1 \\
+         1       & -\lambda
+    \end{vmatrix}
+    =
+    \lambda^2 - 1^2
+    =
+    (\lambda + 1)
+    (\lambda - 1) \\
+    & \implies
+    \lambda_{1, 2} = \pm 1
+\end{align*}
+
+Wir bestimmen die zugehörigen Eigenvektoren $v_{1, 2}$.
+
+\begin{align*}
+    A - \lambda_1
+    =
+    \begin{pmatrix}
+        -1 &  1 \\
+         1 & -1
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        1 & -1 \\
+        0 &  0
+    \end{pmatrix}
+    & \implies
+    v_1 \in
+    \Span \Bbraces
+    {
+        \begin{pmatrix}
+            1 \\ 1
+        \end{pmatrix}
+    } \\
+    A - \lambda_2
+    =
+    \begin{pmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        1 & 1 \\
+        0 & 0
+    \end{pmatrix}
+    & \implies
+    v_2 \in
+    \Span \Bbraces
+    {
+        \begin{pmatrix}
+            1 \\ -1
+        \end{pmatrix}
+    }
+\end{align*}
+
+Wir fassen zusammen:
+
+\begin{align*}
+    \Lambda := \diag{(\lambda_1, \lambda_2)},
+    \quad
+    V := (v_1, v_2)
+\end{align*}
+
+Wir berechnen die Inverse von $V$.
+
+\begin{align*}
+    \begin{bmatrix}
+        V \\
+        \hline
+        I_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 &  1 \\
+        1 & -1 \\
+        \hline
+        1 & 0 \\
+        0 & 1
+    \end{bmatrix}
+    \mapsto
+    \begin{bmatrix}
+        1 & 2 \\
+        1 & 0 \\
+        \hline
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+    \mapsto
+    \begin{bmatrix}
+        2 & 1 \\
+        0 & 1 \\
+        \hline
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+    \mapsto
+    \begin{bmatrix}
+        1 & 1 \\
+        0 & 1 \\
+        \hline
+        1/2 & 1 \\
+        1/2 & 0
+    \end{bmatrix}
+    \mapsto
+    \begin{bmatrix}
+        1 & 0 \\
+        0 & 1 \\
+        \hline
+        1/2 &  1/2 \\
+        1/2 & -1/2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        I_2 \\
+        \hline
+        V^{-1}
+    \end{bmatrix}
+\end{align*}
+
+Somit, können wir die Exponentialmatrix von $A$ ausrechnen.
+
+\begin{align*}
+    \implies
+    e^{sA}
+    =
+    V s^{s \Lambda} V^{-1}
+    & =
+    \begin{pmatrix}
+        1 &  1 \\
+        1 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{s \lambda_1} & 0 \\
+        0               & e^{s \lambda_2}
+    \end{pmatrix}
+    \frac{1}{2}
+    \begin{pmatrix}
+        1 &  1 \\
+        1 & -1
+    \end{pmatrix} \\
+    & =
+    \begin{pmatrix}
+        e^s &  e^{-s} \\
+        e^s & -e^{-s}
+    \end{pmatrix}
+    \frac{1}{2}
+    \begin{pmatrix}
+        1 &  1 \\
+        1 & -1
+    \end{pmatrix}
+    =
+    \frac{1}{2}
+    \begin{pmatrix}
+        e^s + e^{-s} & e^s - e^{-s} \\
+        e^s - e^{-s} & e^s + e^{-s}
+    \end{pmatrix}
+\end{align*}
+
+Nachdem ein Fundamentalsystem nach Spaltenumformungen wieder ein Fundamentalsystem bleibt, werden wir die Exponentialmatrix transformieren.
+Das soll die folgenden Rechnungen vereinfachen.
+
+\begin{align*}
+    e^{sA}
+    \mapsto
+    \begin{pmatrix}
+        e^s & -e^{-s} / s \\
+        e^s &  e^{-s} / 2
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        e^s & -e^{-s} \\
+        e^s &  e^{-s}
+    \end{pmatrix}
+    =: Y(s)
+\end{align*}
+
+Die Inverse bekommen wir mit dem Determinanten-Trick.
+
+\begin{align*}
+    Y(s)^{-1}
+    =
+    \begin{pmatrix}
+         e^{-s} & e^{-s} \\
+        -e^s    & e^s
+    \end{pmatrix}
+\end{align*}
+
+Damit, können wir die Partikulärlösung nun konkret hinschreiben.
+
+\begin{align*}
+    \implies
+    \begin{pmatrix}
+        x(s, t)  \\ u(s, t)
+    \end{pmatrix}
+    =
+    v(s)
+    =
+    Y(s)
+    \pbraces
+    {
+        Y(0)^{-1} v_0
+        +
+        \Int[0][s]{Y(\xi)^{-1} b(\xi)}{\xi}
+    }
+    =
+    \begin{pmatrix}
+        t e^s + e^s - e^{-s} \\
+        t e^s + e^{-s}
+    \end{pmatrix}
+\end{align*}
+
+Wir erhalten insgesamt also folgende Lösung unserer ODE.
+
+\begin{align*}
+    x(s, t) = t e^s + e^s - e^{-s},
+    \quad
+    y(s, t) = e^s,
+    \quad
+    u(s, t) = t e^s + e^{-s}
+\end{align*}
+
+Wir transformieren $(s, t) \mapsto (x, y)$, indem wir die ersten beiden Gleichungen nach $s$ und $t$ auflösen und in die dritte einsetzen.
+Das funktioniert, weil
+
+\begin{align*}
+    \det \pderivative[][(x, y)]{(s, t)}
+    =
+    \begin{vmatrix}
+        x_s & x_t \\
+        y_s & y_t
+    \end{vmatrix}
+    =
+    \begin{vmatrix}
+        t e^s + e^s + e^{-s} & e^s \\
+        e^s                  & 0
+    \end{vmatrix}
+    =
+    -e^{2s} \neq 0.
+\end{align*}
+
+Konkret ...
+
+\begin{align*}
+    & \implies
+    s = \ln{y} \\
+    & \implies
+    t = x/y - 1 + 1/y^2 \\
+    & \implies
+    u = x - y + 2/y
+\end{align*}
+
+Die Lösung ist auf $\R \times (\R \setminus \Bbraces{0})$ definiert.
 
 \end{solution}
 
