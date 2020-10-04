@@ -122,6 +122,7 @@ Damit, ist ein Fundamentalsystem gemeint.
 Nachdem die ODE konstante Koeffizienten hat, ist die Exponentialmatrix $e^{sA}$ ein Solches.
 Um sie zu finden, müssen wir $A$ diagonalisieren (oder zumindest die Jordan-Normalform finden).
 Dazu, berechnen wir die Eigenwerte $\lambda_{1, 2, 3}$ von $A$, als Nullstellen des Charakteristischen Polynoms $\chi_A$.
+Man  kann  sich,  durch  Laplace-entwickelnnach der rechten (unteren) Spalte (Zeile) viel Arbeit ersparen.
 
 \begin{align*}
     & \implies
@@ -259,7 +260,7 @@ display(eigen_info)
 \end{lstlisting}
 
 Wir fassen die Eigenvektoren (jeweils die angegebenen Repräsentanten) in eine Transformationsmatrix $V := (v_1, v_2, v_3)$ zusammen, und und berechnen deren Determinante.
-Man kann sich, durch Laplace-entwickeln nach der linken unteren Spalte (oder Zeile) viel Arbeit sparen.
+Man kann sich, durch Laplace-entwickeln nach der linken (unteren) Spalte (Zeile) viel Arbeit ersparen.
 
 \begin{align*}
     \implies
@@ -283,7 +284,7 @@ Man kann sich, durch Laplace-entwickeln nach der linken unteren Spalte (oder Zei
 \end{align*}
 
 Nachdem die Determinante $\det{V}$ nicht verschwindet, muss $V$ invertierbar sein.
-Wir invertieren $V$, wie üblich:
+Wir invertieren $V$ wie üblich:
 Durch Spaltenumformungen (d.h. von links drauf-multiplizieren von geeigneten regulären Permutations-Matrizen $P_1, \ldots, P_n$), so lange, bis
 
 \begin{align*}
@@ -371,13 +372,13 @@ Der Übersicht halber, schreiben wir die Matrizen über bzw. unter einander.
     \end{bmatrix}
 \end{multline*}
 
-Also, ist $A$ diagonalisierbar.
+Also, ist $A$ diagonalisierbar, mit
 
 \begin{align*}
     \implies
     A = V \Lambda V^{-1},
     \quad
-    \Lambda := \diag(\lambda_1, \lambda_2, \lambda_3)
+    \Lambda := \diag(\lambda_1, \lambda_2, \lambda_3).
 \end{align*}
 
 Somit, können wir die Exponentialmatrix (das Fundamentalsystem) $e^{sA}$ endlich ausrechnen.
@@ -471,7 +472,7 @@ Wir setzten nun in die Formel für die Partikulärlösung ein.
     {
         \pbraces{e^{0A}}^{-1}
     }_{I_3}
-    v_0
+    v(0)
     +
     e^{sA}
     \Int[0][s]
@@ -534,13 +535,13 @@ Das funktioniert, laut dem \Quote{Hauptsatz über implizite Funktionen} bzw. \Qu
     \det \pderivative[][(x, y)]{(s, t)}
     =
     \begin{vmatrix}
-        x_s & y_s \\
-        x_t & y_t
+        x_s & x_t \\
+        y_s & y_t
     \end{vmatrix}
     =
     \begin{vmatrix}
-        -t \sin{s} & -t \cos{s} \\
-        \cos{s}    & -\sin{s}
+        -t \sin{s} &  \cos{s} \\
+        -t \cos{s} & -\sin{s}
     \end{vmatrix}
     =
     t \sin^2{s} + t \cos^2{s}
