@@ -36,7 +36,59 @@ für $(t, x) \in I \times \R$.
 
 \begin{solution}
 
-ToDo!
+\begin{enumerate}[label = (\roman*)]
+	\item Unsere Differentialgleichung hat die Form 
+	\begin{align*}
+	a(t, x, u) u_t + b(t, x, u)u_x = c(t, x, u) \quad \text{mit} \quad a(t,x,u) = 1, \quad b(t,x,u) = g(u), \quad c(t,x,u) = 0.
+	\end{align*}
+	Wir haben gelernt wie man so eine Differentialgleichung mit der Charakteristikenmethode löst. Dafür lösen wir als erstes das System an Differentialgleichungen 
+	\begin{align*}
+	\pderivative[][t]{s} = a(t,x,u) = 1, \quad \pderivative[][x]{s} = b(t,x,u) = g(u), \quad \pderivative[][u]{s} = c(t,x,u) = 0.
+	\end{align*}
+	Aus der Nebenbedingung ergeben sich für die Lösungen noch zusätzlich die Bedingungen 
+	\begin{align*}
+	t(0,y) = 0, \quad x(0,y) = y \quad \text{und} \quad u(0,y) = f(y).
+	\end{align*}
+	Leicht sieht man, dass $t(s,y) = s$ und $u(s,y) = f(y)$ gesuchte Lösungen sind. Dieses wissen nützen wir um die verbleibende Lösung zu finden.
+	\begin{align*}
+	\pderivative[][x]{s}(s,y) = g(u(s,y)) = g(f(y)), \quad \text{also} \quad x(s,y) = sg(f(y)) + y.¸
+	\end{align*}
+	Für festes $y$ ist also eine Charakteristik gegeben durch $(t_y(s), x_y(s), u_y(s)) = (s, sg(f(y)) + y, f(y))$. \\
+	Sind die Voraussetzungen von Satz 2.3 erfüllt? Wir rechnen nach.
+	\begin{align*}
+	\det \pderivative[][(t,x)]{(s,y)} = \det
+	\begin{pmatrix}
+	t_s(0,y) & t_y(0,y) \\
+	x_s(0,y) & t_y(0,y)
+	\end{pmatrix} 
+	= \det
+	\begin{pmatrix}
+	a & \overline{t_y}(y) \\
+	b & \overline{t_y}(y)
+	\end{pmatrix} 
+	= \det
+	\begin{pmatrix}
+	1 & 0 \\
+	g(f(y)) & 1
+	\end{pmatrix} 
+	= 1 \neq 0
+	\end{align*}
+	Und wir sehen, dass die Voraussetzungen des Satzes erfüllt sind, es gibt also lokal eine Lösung.
+	
+	\item Nun haben wir es mit einem Spezialfall des bisher betrachteten zu tun, nämlich mit $g(u) = u$ und $f(x) = -x$. Wir nützen die Ergebnisse vom vorigen Teil und erhalten 
+	\begin{align*}
+	t(s,y) = s, \quad x(s,y) = sg(f(y)) + y = sg(-y) + y = -sy + y = y(1 - s), \quad u(s,y) = f(y) = -y
+	\end{align*}
+	Es ergibt sich also
+	\begin{align*}
+	t = s \quad \text{und damit} \quad x = y(1 - s) = y(1 - t), \quad \text{umgeformt} \quad y = \frac{x}{1 - t}
+	\end{align*}
+	und damit als Lösung
+	\begin{align*}
+	u(t,x) = u(s(t,x), y(t,x)) = y(t,x) = \frac{x}{t - 1}, 
+	\end{align*}
+	eine auf $\R \setminus \{1\} \times \R$ definierte Funktion.
+\end{enumerate}
 
 \end{solution}
 
