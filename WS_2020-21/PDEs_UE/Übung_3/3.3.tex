@@ -2,7 +2,64 @@
 
 \begin{exercise}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+    \item Zeigen Sie, dass die Funktion
+    
+    \begin{align*}
+        f(x)
+        =
+        \begin{cases}
+            \ln{|x|} & x \neq 0 \\
+            0        & x = 0
+        \end{cases}
+    \end{align*}
+
+    eine reguläre Distribution definiert, die punktweise Ableitung
+
+    \begin{align*}
+        f^\prime(x)
+        =
+        \begin{cases}
+            \frac{1}{x}        & x \neq 0 \\
+            \text{undefiniert} & x = 0
+        \end{cases}
+    \end{align*}
+
+    jedoch nicht.
+
+    \item Es bezeichne $\pv{(\frac{1}{x})}$ die Distribution
+    
+    \begin{align*}
+        \langle \pv{\pbraces{\frac{1}{x}}}, \varphi \rangle
+        =
+        \lim_{\varepsilon \to 0+}
+        \pbraces
+        {
+            \Int[-\infty][-\varepsilon]
+            {
+                \frac{\varphi(x)}{x}
+            }{x}
+            +
+            \Int[\varepsilon][\infty]
+            {
+                \frac{\varphi(x)}{x}
+            }{x}
+        }
+        =
+        \lim_{\varepsilon \to 0+}
+        \Int[|x| > \varepsilon]
+        {
+            \frac{\varphi(x)}{x}
+        }{x}.
+    \end{align*}
+
+    Zeigen Sie, dass $\abraces{\pv{(\frac{1}{x})}, \varphi} = \Int[0][\infty]{\frac{\varphi(x) - \varphi(-x)}{x}}{x}$.
+
+    \item Überprüfen Sie, dass $(\ln{|x|})^\prime = \pv{(\frac{1}{x})}$ in $\mathcal{D}^\prime(\R)$ gilt.
+
+\end{enumerate}
 
 \end{exercise}
 
