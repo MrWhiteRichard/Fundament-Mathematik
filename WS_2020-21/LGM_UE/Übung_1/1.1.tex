@@ -45,7 +45,106 @@ Begründen Sie Ihre Antwort (Beweis oder Gegenbeispiel).
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = \alph*.]
+
+    \item
+
+    \begin{align*}
+        \Bbraces{x} = \Bbraces{y}
+        \iff
+        \Forall z:
+        \underbrace{z \in \Bbraces{x}}_{\iff z = x}
+        \iff
+        \underbrace{z \in \Bbraces{y}}_{\iff z = y}
+        \iff
+        x = y
+    \end{align*}
+
+    \item
+
+    \begin{align*}
+        \Bbraces{x, z} = \Bbraces{y, z}
+        \iff
+        \Forall a:
+        \underbrace{a \in \Bbraces{x, z}}_{\iff a = x \lor a = z}
+        \iff
+        \underbrace{a \in \Bbraces{y, z}}_{\iff a = y \lor a = z}
+    \end{align*}
+
+    Damit wir die obige Formel verwenden können (der Übersicht halber), wählen wir $a := x$.
+
+    \begin{itemize}
+        
+        \item
+        [\Quote{$a = y$}:]
+        Q.E.D
+
+        \item
+        [\Quote{$a \neq y$}:]
+
+        \begin{align*}
+            \implies
+            x = a = z
+            \implies
+            |\Bbraces{x, z}| = 1 \neq 2 = |\Bbraces{y, z}|
+        \end{align*}
+
+    \end{itemize}
+
+    \item
+
+    \begin{align*}
+        \implies
+        x_1 \in \Bbraces{y_1, y_2}
+        \iff
+        x_1 = y_1 \lor x_1 = y_2
+    \end{align*}
+
+    \begin{align*}
+        \text{o.B.d.A}~ x_1 = y_1
+        \stackrel{\text{b.}}{\implies}
+        ~\text{(12)}
+    \end{align*}
+
+    \item $X := \Bbraces{x_1, x_2, x_3}$, $Y := \Bbraces{y_1, y_2, y_3}$
+
+    \begin{itemize}
+
+        \item
+        [\Quote{$|X| = 1$}:]
+        \begin{align*}
+            \Bbraces{x_1} = \Bbraces{y_1}
+            \stackrel{\text{a.}}{\implies}
+            ~\text{Behauptung}
+        \end{align*}
+
+        \item
+        [\Quote{$|X| = 2$}:]
+        \begin{align*}
+            \Bbraces{x_1, x_2} = \Bbraces{y_1, y_2}
+            \stackrel{\text{c.}}{\implies}
+            ~\text{Behauptung}
+        \end{align*}
+
+        \item
+        [\Quote{$|X| = 3$}:]
+        \begin{align*}
+            \implies
+            & \Exists f: X = Y \to \Bbraces{1, 2, 3} ~\text{bijektiv} \\
+            \implies
+            & \Exists \pi_x \in S_3: (f(x_1), f(x_2), f(x_3)) = (\pi_x(1), \pi_x(2), \pi_x(3)) = \cdots, \\
+            & \Exists \pi_y \in S_3: (f(y_1), f(y_2), f(y_3)) = (\pi_y(1), \pi_y(2), \pi_y(3)) \\
+            \implies
+            & (f(y_{(\pi_y^{-1} \circ \pi_x)(1)}), f(y_{(\pi_y^{-1} \circ \pi_x)(2)}), f(y_{(\pi_y^{-1} \circ \pi_x)(3)})) = \\
+            & (\pi_y((\pi_y^{-1} \circ \pi_x)(1)), \pi_y((\pi_y^{-1} \circ \pi_x)(2)), \pi_y((\pi_y^{-1} \circ \pi_x)(3))) = \cdots \\
+            \implies
+            & x_1 = y_{(\pi_y^{-1} \circ \pi_x)(1)}, x_2 = y_{(\pi_y^{-1} \circ \pi_x)(2)}, x_3 = y_{(\pi_y^{-1} \circ \pi_x)(3)}
+        \end{align*}
+
+    \end{itemize}
+\end{enumerate}
 
 \end{solution}
 
