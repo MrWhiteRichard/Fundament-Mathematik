@@ -1,0 +1,47 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[24]
+
+Sei $n$ riesig, $k \leq 2^n$. Geben Sie eine Formel in den Variablen $p_1,\dots,p_n$ an,
+die von genau $k$ Belegungen erfüllt wird. Versuchen Sie, eine möglichst kleine Formel zu finden.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir stellen zuerst $k \in \{0,\dots,2^n-1\}$ binär dar:
+\begin{align*}
+  k = \sum_{i=0}^{n-1}a_i2^i, \quad a_i \in \{0,1\}.
+\end{align*}
+Als nächstes definieren wir für $i \in \{0,\dots,n-1\}$ disjunkte Mengen $B_i$
+von Belegungen mit $|B_i| = 2^i$ wie folgt:
+\begin{align*}
+  B_{n-1} &:= \{b: b(p_1) = 0\} \\
+  B_{n-2} &:= \{b: b(p_1) = 1, b(p_2) = 0\} \\
+  &\vdots \\
+  B_{1} &:= \{b: b(p_1) = 1, \dots, b(p_{n-2}) = 1, b(p_{n-1}) = 0\} \\
+  B_{0} &:= \{b: b(p_1) = 1, \dots, b(p_{n-1}) = 1, b(p_{n}) = 0\}.
+\end{align*}
+Jetzt müssen wir noch Formeln $A_i$ finden, sodass die Menge aller Belegungen die $A_i$
+erfüllen genau $B_i$ ist. Das funktioniert so:
+\begin{align*}
+  A_{n-1} &:= \neg p_1 \\
+  A_{n-2} &:= p_1 \land \neg p_2 \\
+  &\vdots \\
+  A_{1} &:= p_1 \land \dots \land p_{n-2} \land \neg p_{n-1}\\
+  A_{0} &:= p_1 \land \dots \land p_{n-1} \land \neg p_{n}\\
+\end{align*}
+Die Disjunktion aller $A_i$ liefert dann schließlich eine Formel, die von der
+Vereinigung aller $B_i$ erfüllt wird.
+Da die Mengen $B_i$ paarweise disjunkt sind, ist die Mächtigkeit von der Vereinigung
+gleich der Summe der einzelnen Mächtigkeiten.
+
+Für vorgegebenes $k$ betrachten wir also die Disjunktion aller $A_i$ mit $i \in \{i \in \{0,\dots,n-1\}: a_i \neq 0 \}$. \\
+Wir verwenden also maximal $\sum_{i=0}^{n-1}2(n-i) + n - 1 = n^2 + 1 = O(n^2)$ Symbole. Es geht also anscheinend noch besser.
+
+Zur Vollständigkeit halber sei noch gesagt, dass für $k = 2^n$ einfach die Formel $T$ gewählt werden kann.
+\end{solution}
+
+% --------------------------------------------------------------------------------
