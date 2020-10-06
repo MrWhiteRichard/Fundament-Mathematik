@@ -132,15 +132,21 @@ Begründen Sie Ihre Antwort (Beweis oder Gegenbeispiel).
         [\Quote{$|X| = 3$}:]
         \begin{align*}
             \implies
-            & \Exists f: X = Y \to \Bbraces{1, 2, 3} ~\text{bijektiv} \\
+            & \Exists f:
+            X = Y \to \Bbraces{1, 2, 3},
+            ~\text{bijektiv},
+            \begin{cases}
+                x_1 \mapsto 1 \\
+                x_2 \mapsto 2 \\
+                x_3 \mapsto 3
+            \end{cases} \\
             \implies
-            & \Exists \pi_x \in S_3: (f(x_1), f(x_2), f(x_3)) = (\pi_x(1), \pi_x(2), \pi_x(3)) = \cdots, \\
-            & \Exists \pi_y \in S_3: (f(y_1), f(y_2), f(y_3)) = (\pi_y(1), \pi_y(2), \pi_y(3)) \\
+            & \Exists \pi \in S_3: (f(y_1), f(y_2), f(y_3)) = (\pi(1), \pi(2), \pi(3)) \\
             \implies
-            & (f(y_{(\pi_y^{-1} \circ \pi_x)(1)}), f(y_{(\pi_y^{-1} \circ \pi_x)(2)}), f(y_{(\pi_y^{-1} \circ \pi_x)(3)})) = \\
-            & (\pi_y((\pi_y^{-1} \circ \pi_x)(1)), \pi_y((\pi_y^{-1} \circ \pi_x)(2)), \pi_y((\pi_y^{-1} \circ \pi_x)(3))) = \cdots \\
+            & (f(y_{\pi^{-1}(1)}), f(y_{\pi^{-1}(2)}), f(y_{\pi^{-1}(3)})) = (\pi(\pi^{-1}(1)), \pi(\pi^{-1}(2)), \pi(\pi^{-1}(3))) = \\
+            & (1, 2, 3) = (f(x_1), f(x_2), f(x_3)) \\
             \implies
-            & x_1 = y_{(\pi_y^{-1} \circ \pi_x)(1)}, x_2 = y_{(\pi_y^{-1} \circ \pi_x)(2)}, x_3 = y_{(\pi_y^{-1} \circ \pi_x)(3)}
+            & x_1 = y_{\pi^{-1}(1)}, x_2 = y_{\pi^{-1}(2)}, x_3 = y_{\pi^{-1}(3)}
         \end{align*}
 
     \end{itemize}
