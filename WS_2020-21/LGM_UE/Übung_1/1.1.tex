@@ -115,21 +115,40 @@ Begründen Sie Ihre Antwort (Beweis oder Gegenbeispiel).
         \item
         [\Quote{$|X| = 1$}:]
         \begin{align*}
+            \implies
             \Bbraces{x_1} = \Bbraces{y_1}
             \stackrel{\text{a.}}{\implies}
-            ~\text{Behauptung}
+            ~\text{(123)}
         \end{align*}
 
         \item
         [\Quote{$|X| = 2$}:]
+        Wir finden folgendes Gegenbeispiel:
+
+        \begin{gather*}
+            a \neq b, \\
+            x_1 := x_2 := y_1 := a, \quad x_3 := y_2 := y_3 := b
+        \end{gather*}
+
+        $X = \Bbraces{a, b} = Y$, also gelten die Vorraussetzungen tatsächlich.
+        Wenn, dann müssen (123) oder (132) gelten, weil
+
         \begin{align*}
-            \Bbraces{x_1, x_2} = \Bbraces{y_1, y_2}
-            \stackrel{\text{c.}}{\implies}
-            ~\text{Behauptung}
+            x_1 = y_1,
+            \quad
+            x_1 \neq y_2,
+            \quad
+            x_1 \neq y_3.
         \end{align*}
+
+        Nun gilt aber weder $x_2 = y_2$ noch $x_2 = y_3$.
+        Also tritt keiner der in der Angabe genannten Fälle auf.
 
         \item
         [\Quote{$|X| = 3$}:]
+        Laut Definition der Mächtigkeit, finden wir eine Bijektion $f: X \to \Bbraces{1, 2, 3}$.
+        Diese können wir sogar wie folgt wählen.
+
         \begin{align*}
             \implies
             & \Exists f:
@@ -139,23 +158,44 @@ Begründen Sie Ihre Antwort (Beweis oder Gegenbeispiel).
                 x_1 \mapsto 1 \\
                 x_2 \mapsto 2 \\
                 x_3 \mapsto 3
-            \end{cases} \\
-            \implies
-            & \Exists \pi \in S_3: (f(y_1), f(y_2), f(y_3)) = (\pi(1), \pi(2), \pi(3)) \\
-            \implies
-            & (f(y_{\pi^{-1}(1)}), f(y_{\pi^{-1}(2)}), f(y_{\pi^{-1}(3)})) = (\pi(\pi^{-1}(1)), \pi(\pi^{-1}(2)), \pi(\pi^{-1}(3))) = \\
-            & (1, 2, 3) = (f(x_1), f(x_2), f(x_3)) \\
-            \implies
-            & x_1 = y_{\pi^{-1}(1)}, x_2 = y_{\pi^{-1}(2)}, x_3 = y_{\pi^{-1}(3)}
+            \end{cases}
         \end{align*}
 
+        Weil $f$ aber nun auch auf $Y$ mitdefiniert ist, erhalten wir folgende Permutation $\pi$.
+
+        \begin{align*}
+            \implies
+            & \Exists \pi \in S_3: (f(y_1), f(y_2), f(y_3)) = (\pi(1), \pi(2), \pi(3)) \\
+        \end{align*}
+
+        Wir permutieren die Indizes von $y$, bzw. Argumente von $\pi$ mit $\pi^{-1}$.
+
+        \begin{align*}
+            \implies
+            (f(y_{\pi^{-1}(1)}), f(y_{\pi^{-1}(2)}), f(y_{\pi^{-1}(3)}))
+            =
+            (\pi(\pi^{-1}(1)), \pi(\pi^{-1}(2)), \pi(\pi^{-1}(3)))
+            =
+            (1, 2, 3)
+            =
+            (f(x_1), f(x_2), f(x_3))
+        \end{align*}
+
+        Jetzt können wir aber auf beiden Seiten komponentenweise $f^{-1}$ anwenden.
+
+        \begin{align*}
+            \implies
+            x_1 = y_{\pi^{-1}(1)},
+            x_2 = y_{\pi^{-1}(2)},
+            x_3 = y_{\pi^{-1}(3)}
+        \end{align*}
+
+        (123)-(321) beschreiben $6$ verschiedene Permutationen aus $S_3$.
+        Weil $|S_3| = 3! = 6$, müssen diese bereits alle sein.
+        Insbesondere, ist $\pi^{-1}$ eine davon.
+
     \end{itemize}
-	\textbf{Hier sei noch auf folgendes Beispiel hingewiesen:} Sei $a \neq b$ und 
-	\begin{align*}
-	x_1 = x_2 = y_1 = a \quad \text{sowie} \quad x_3 = y_2 = y_3 = b \quad \text{also} \quad \\
-	\{x_1, x_2, x_3\} = \{a,a,b\} = \{a,b\}  = \{a,b,b\} = \{y_1, y_2, y_3\}.
-	\end{align*}
-	Nun gilt $x_1 \neq y_2$ und $x_1 \neq y_3$, aber $x_1 = y_1$, es bleiben also noch die Permutationen $(123)$ und $(132)$ als Möglichkeiten. Nun gilt aber weder $x_2 = y_2$ noch $x_2 = y_3$ also tritt keiner der in der Angabe genannten Fälle auf.
+
 \end{enumerate}
 
 \end{solution}
