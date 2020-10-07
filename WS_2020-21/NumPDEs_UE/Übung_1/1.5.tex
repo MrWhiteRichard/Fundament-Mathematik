@@ -2,8 +2,25 @@
 
 \begin{exercise}
 
-ToDo!
+Programmieren Sie eine Gauss-Quadratur mit $m$ Stützstellen in einem Intervall $(a,b)$.
+Verwenden Sie dazu die Berechnung der Stützstellen und Gewichte über das Eigenwertproblem der
+Tridiagonalmatrix
 
+\begin{align}
+  \begin{pmatrix}
+  0 & \beta_1 & & & \\
+  \beta_1 & 0 & \ddots & & \\
+  & \ddots & \ddots & \beta_{n-2} & \\
+  & & \beta_{n-2} & 0 & \beta_{n-1} \\
+  & & & \beta_n-1 & 0
+  \end{pmatrix}
+  \in \R^{n \times n}, \quad
+  \beta_n = \frac{n}{\sqrt{4n^2 -1}}
+\end{align}
+
+Für letzeres können Sie einen fertigen Eigenwertlöser verwenden. Testen Sie ihr Programm an
+unterschiedlichen Funktionen. Bestimmen Sie dafür den Quadraturfehler numerisch und vergleichen
+Sie ihn mit theoretischen Fehlerschranken.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
