@@ -18,7 +18,7 @@ Zeigen Sie:
 \begin{enumerate}[label = \alph*]
     \item \begin{tabular}{|c|c|c|c|c|}
     \hline
-    $p_1$ & $p_2$ & $\neg (p_1 \land p_2)$ & $\neg p_1 \lor \neg p_2$ & $\neg (p_1 \land p_2) \Leftrightarrow \neg p_1 \lor \neg p_2$ \\
+    $p_1$ & $p_2$ & $\neg (p_1 \land p_2)$ & $\neg p_1 \lor \neg p_2$ & $\neg (p_1 \land p_2) \leftrightarrow \neg p_1 \lor \neg p_2$ \\
     \hline
     $1$ & $1$ & $0$ & $0$ & $1$\\
     \hline
@@ -29,6 +29,7 @@ Zeigen Sie:
     $0$ & $0$ & $1$ & $1$ & $1$\\
     \hline
     \end{tabular}
+	Wir wissen also, dass die letzte Aussage eine Tautologie ist, nach Satz II.1.9 aus dem Skriptum gilt die zu zeigende Äquivalenz.
     \item \begin{tabular}{|c|c|c|c|c|}
     \hline
     $A$ & $B$ & $\neg (A \land B)$ & $\neg A \lor \neg B$ & $\neg (A \land B) \Leftrightarrow \neg A \lor \neg B$ \\
@@ -43,7 +44,19 @@ Zeigen Sie:
     \hline
     \end{tabular}
 \end{enumerate}
-
+\textbf{Eine weitere Lösung für (b)}, die sich stark an Abschnitt II.1.C im Skriptum orientiert. Wir wählen zwei beliebige aussagenlogische Formeln $A$ und $B$. Sei nun $V$ eine Variablenmenge so, dass $A \in \mathcal{F}(V)$ und $B \in \mathcal{F}(V)$ und $\{p_1, p_2\} \subseteq V$. Hier ist $\mathcal{F}(V)$ die Menge aller Formeln über der Variablenmenge $V$. Wir definieren
+\begin{align*}
+g: V \to \mathcal{F}(V): x \mapsto
+\begin{cases}
+A & , x = p_1 \\
+B & , x \neq p_1
+\end{cases}.
+\end{align*}
+Nach Bemerkung II.1.15 im Skriptum lässt sich $g$ eindeutig zu einem Formelhomomorphismus $f:\mathcal{F}(V) \to \mathcal{F}(V)$ fortsetzen. Aus Punkt (a) wissen wir, dass $\varphi := \neg (p_1 \land p_2) \leftrightarrow \neg p_1 \lor \neg p_2$ eine Tautologie ist, mit Satz II.1.16 ist auch 
+\begin{align*}
+f(\varphi) = \neg (A \land B) \leftrightarrow \neg A \lor \neg B
+\end{align*}
+eine Tautologie und mit Satz II.1.9 schließlich gilt die zu zeigende Äquivalenz.
 \end{solution}
 
 % --------------------------------------------------------------------------------
