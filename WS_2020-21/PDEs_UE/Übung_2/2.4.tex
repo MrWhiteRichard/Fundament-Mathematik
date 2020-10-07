@@ -19,6 +19,8 @@ wobei $\psi$ eine beliebige Funktion ist.
 
 % --------------------------------------------------------------------------------
 
+% \begin{comment}
+
 \begin{solution}
 
 Wir bringen zunächst die PDE in die allgemeine Form aus dem Skript (bzw. Vorlesung).
@@ -508,7 +510,7 @@ Wir setzten nun in die Formel für die Partikulärlösung ein.
     \Bigg ) \\
     & =
     \begin{pmatrix}
-        t \cos{s} \\ -t \sin{s} \\ e^s (\psi(t) + 1) - 1
+        t \cos{s} \\ t \sin{s} \\ e^s (\psi(t) + 1) - 1
     \end{pmatrix}
     \begin{array}{c}
         A \\ \mapsto \\ \pderivative{s}
@@ -523,7 +525,7 @@ Wir erhalten insgesamt also folgende Lösung unserer ODE.
 \begin{align*}
     x(s, t) = t \cos{s},
     \quad
-    y(s, t) = -t \sin{s},
+    y(s, t) = t \sin{s},
     \quad
     u(s, t) = e^s (\psi(t) + 1) - 1
 \end{align*}
@@ -540,11 +542,9 @@ Das funktioniert, laut dem \Quote{Hauptsatz über implizite Funktionen} bzw. \Qu
     \end{vmatrix}
     =
     \begin{vmatrix}
-        -t \sin{s} &  \cos{s} \\
-        -t \cos{s} & -\sin{s}
+        -t \sin{0} & \cos{0} \\
+         t \cos{0} & \sin{0}
     \end{vmatrix}
-    =
-    t \sin^2{s} + t \cos^2{s}
     =
     t \neq 0.
 \end{align*}
@@ -555,13 +555,13 @@ Konkret, dividieren wir die ersten beiden Gleichungen ...
     \implies
     \frac{y}{x}
     =
-    -\frac{t}{t} \frac{\sin{s}}{\cos{s}}
+    \frac{t}{t} \frac{\sin{s}}{\cos{s}}
     =
-    -\tan{s}
+    \tan{s}
     \implies
     s = \arctan
     {
-        \pbraces{-\frac{y}{x}}
+        \pbraces{\frac{y}{x}}
     }
 \end{align*}
 
@@ -575,7 +575,7 @@ Konkret, dividieren wir die ersten beiden Gleichungen ...
     {
         (t \cos{s})^2
         +
-        (-t \sin{s})^2
+        (t \sin{s})^2
     }
     =
     |t|
@@ -596,10 +596,7 @@ Einsetzen liefert das endgültige Ergebnis.
     \implies
     u(x, y)
     =
-    \exp \arctan \pbraces
-    {
-        -\frac{y}{x}
-    }
+    \exp \arctan \frac{y}{x}
     \pbraces
     {
         \psi \pbraces
@@ -636,9 +633,11 @@ display(residuum)
 
 \end{solution}
 
+% \end{comment}
+
 % --------------------------------------------------------------------------------
 
-\textbf{zweite lösung}
+% \begin{comment}
 
 \begin{solution}
 	Wir bringen zunächst die PDE in die allgemeine Form aus dem Skript (bzw. Vorlesung).
@@ -718,3 +717,5 @@ display(residuum)
 	u(x,y) = \left(\psi\left(\frac{x}{\cos\left(\arctan\left(\frac{y}{x}\right)\right)}\right) + 1\right) \exp\left(\arctan\left(\frac{y}{x}\right)\right) - 1.
 	\end{align*}
 \end{solution}
+
+% \end{comment}

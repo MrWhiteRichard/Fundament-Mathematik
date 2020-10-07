@@ -309,7 +309,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         \chi(\mu) = \mu^2 + \lambda
     \end{align*}
     
-    Für $\lambda = 0$ erhalten wir die folgende Lösung.
+    Für $\lambda \neq 0$ erhalten wir die folgende Lösung.
 
     \begin{align*}
         w(\varphi)
@@ -330,23 +330,22 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
     \end{align*}
 
     Die Lösung soll $2 \pi$-periodisch sein, also $\sqrt{\lambda} \in \Z \setminus \Bbraces{0}$, also $\lambda = n^2$ mit $n \in \Z \setminus \Bbraces{0}$.
-    Weil $\sqrt{\lambda} \in \R$, dürfen wir ein trigonometrisches Fundamentalsystem wählnen.
+    Weil $\sqrt{\lambda} \in \R$, dürfen wir ein trigonometrisches Fundamentalsystem wählen.
     Wir schreiben die möglichen Lösungen wie folgt an.
     (Für $-n \in \N$, können wir das $-1$ aus dem $\sin$ ziehen und in das $c_{n, 1}$ stecken und der $\cos$ schluckt es sowieso.)
 
     \begin{align*}
         w_n(\varphi)
         =
-        c_{n, 1} \sin(n \varphi)
+        c_{n, 1} \cos(n \varphi)
         +
-        c_{n, 2} \cos(n \varphi),
+        c_{n, 2} \sin(n \varphi),
         \quad
         n \in \N,
         c_{n, 1}, c_{n, 2} \in \R
     \end{align*}
 
     Sei nun $\lambda = 0$.
-    Das liefert aber keine $2 \pi$-periodische Lösungskandidaten, also ignorieren wir diesen Fall.
 
     \begin{align*}
         \implies
@@ -369,6 +368,9 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         \quad
         c_{0, 1}, c_{0, 2} \in \R
     \end{align*}
+
+    Davon sind aber bloß die konstanten Funktionen $2 \pi$-periodische Lösungskandidaten.
+    Daher, muss $c_{0, 1} = 0$.
 
     Wir widmen uns nun der $\varphi$-ODE.
     Diese ist eine homogene eulersche Differentialgeichung.
@@ -402,7 +404,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         \pm \sqrt{\lambda}  
     \end{align*}
 
-    Weil $\lambda \neq 0$, muss $\sqrt{\lambda} \neq -\sqrt{\lambda}$, und wir erhalten wir die folgende Lösung.
+    Für $\lambda \neq 0$, muss $\sqrt{\lambda} \neq -\sqrt{\lambda}$, und wir erhalten wir die folgende Lösung.
     (Für $-n \in \N$, vertauschen die Konstanten $c_{n, 3}$ und $c_{n, 4}$.)
 
     \begin{align*}
@@ -415,11 +417,23 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         c_{n, 3}, c_{n, 4} \in \R
     \end{align*}
 
+    Für $\lambda = 0$ erhalten wir
+
+    \begin{align*}
+        v_n(r)
+        =
+        c_{n, 3} r^n + c_{n, 4} r^n \ln{r},
+        \quad
+        n = 0,
+        \quad
+        c_{n, 3}, c_{n, 4} \in \R
+    \end{align*}
+
     $u$ soll nun $C^2$ im Nullpunkt sein.
     Dort ist allerdings $v_n$ nur definiert, falls $c_{n, 4} = 0$.
     Insgesamt liefert der Separationsansatz folgende Lösungskandidaten.
 
-    \begin{align*}
+    \begin{gather*}
         u_n(r,\varphi)
         =
         v_n(r) w_n(\varphi)
@@ -427,17 +441,17 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         c_{n, 3} r^n
         \pbraces
         {
-            c_{n, 1} \sin(n \varphi)
+            c_{n, 1} \cos(n \varphi)
             +
-            c_{n, 2} \cos(n \varphi)
+            c_{n, 2} \sin(n \varphi)
         }
         =
         r^n
         \pbraces
         {
-            a_n \sin(n \varphi)
+            a_n \cos(n \varphi)
             +
-            b_n \cos(n \varphi)
+            b_n \sin(n \varphi)
         }, \\
         n \in \N,
         \quad
@@ -445,26 +459,35 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         \quad
         a_n := c_{n, 3} c_{n, 1},
         \quad
-        b_n := c_{n, 3} c_{n, 2}
-    \end{align*}
+        b_n := c_{n, 3} c_{n, 2} \\
+        u_0(r, \varphi)
+        =
+        v_0(r) w_0(\varphi)
+        =
+        c_{0, 3}
+        c_{0, 2}
+        =:
+        a_0, \\
+        c_{0, 3}, c_{0, 2} \in \R,
+    \end{gather*}
 
     Weil jeder einzelne dieser Lösungskandidaten seinen Beitrag leisten könnte, summieren wir diese und hoffen (durch die Koeffizienten) auf das Beste.
+    (Sei dabei $b_0 \in \R$ beliebig. Es leistet aber keinen Beitrag und dient nur zur Formalität.)
 
     \begin{align*}
         u(r, \varphi)
         \stackrel{!}{=}
-        \sum_{n=1}^\infty
+        \sum_{n=0}^\infty
         r^n
         \pbraces
         {
-            a_n \sin(n \varphi)
+            a_n \cos(n \varphi)
             +
-            b_n \cos(n \varphi)
+            b_n \sin(n \varphi)
         }
     \end{align*}
 
     Wir wollen nun noch die Koeffizienten bestimmen.
-    Laut Abbildung \ref{fig:Blue_K_3.1.9}, konvergiert die Fouriereihe von $u(R, \cdot) = f$.
 
     \includegraphicsboxed[Blue_K_3.1.9][Blümlinger - Analysis 3]{Blümlinger - Korollar 3.1.9.png}
 
@@ -486,18 +509,22 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
     \begin{itemize}
 
         \item \Quote{Wohldefiniertheit}:
-        Warum ist $u(r, \varphi)$ auch für $r < R$ wohldefiniert?
-        D.h. Warum konvergiert die Fouriereihe?
+        Sei $\varphi \in \R$ fest.
+        Laut Abbildung \ref{fig:Blue_K_3.1.9}, konvergiert die Fouriereihe von $u(R, \cdot) = f$.
+        Diese kann man (für jenes feste $\varphi$) als Potenzreihe in $R$ auffassen.
+        Weil diese ja in $R$ konvergiert, hat sie auch einen (sogar noch) größeren Konvergenzradius.
+        Insbesondere konvergiert auch (die Potenzreihe) $u(r, \varphi)$.
 
         \item \Quote{Ableitung}:
-        Mysteriöserweise dürfen wir Ableitung und Reihe vertauschen.
-        
+        Weil $u(r, \varphi)$ als Potenzreihe absolut und somit gleichmäßig konvergiert, dürfen wir Limitten, also auch Ableitungsoperatoren hineinziehen.
+
         \begin{align*}
+            \implies
             (\Delta u)(r, \varphi)
             & =
             u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\varphi \varphi} \\
             & =
-            \sum_{n=1}^\infty
+            \sum_{n=2}^\infty
             n (n-1) r^{n-2}
             \pbraces
             {
@@ -506,7 +533,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
                 b_n \cos(n \varphi)
             } \\
             & +
-            \sum_{n=1}^\infty
+            \sum_{n=2}^\infty
             n r^{n-2}
             \pbraces
             {
@@ -515,7 +542,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
                 b_n \cos(n \varphi)
             } \\
             & -
-            \sum_{n=1}^\infty
+            \sum_{n=2}^\infty
             n^2 r^{n-2}
             \pbraces
             {
@@ -524,7 +551,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
                 b_n \cos(n \varphi)
             } \\
             & =
-            \sum_{n=1}^\infty
+            \sum_{n=2}^\infty
             (
                 n (n-1) r^{n-2}
                 +
@@ -542,7 +569,7 @@ Falls Sie dabei auf die homogene eulersche Differentialgleichung 2. Ordnung sto�
         \end{align*}
 
         \item \Quote{Randbedingung}:
-        Na! Das passt scho!
+        Das folgt unmittelbar aus der \Quote{Wahl} der Fourierkoeffizienten.
 
     \end{itemize}
 
