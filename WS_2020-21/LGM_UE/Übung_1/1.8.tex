@@ -39,4 +39,19 @@ Fall 3: $j > i:$
 Damit erfüllen alle $b_i$ tatsächlich die Formel $A$ und wir erhalten insgesamt $n+1$ mögliche Belegungen.
 \end{solution}
 
+\textbf{zweite Lösung mit Induktion:}
+
+\begin{solution}
+	Wir definieren 
+	\begin{align*}
+	A_n := (p_1 \to p_2) \land (p_2 \to p_3) \land \dots \land (p_{n-1} \to p_n) \quad \text{und} \quad W_n := \{b \mid b \text{ ist Belegung und } \hat{b}(A_n) = 1¸\}
+	\end{align*}
+	sowie $c_n := \vbraces{W_n}$. Wir Behaupten, dass $c_n = n + 1$ gilt. Da $c_2 = 3$ gilt stimmt die Aussage für $n = 2$. Sei nun also $n \geq 2$ und $c_n = n + 1$. Wir wählen ein beliebiges $b \in W_{n + 1}$ und betrachten zwei Fälle.
+	\begin{enumerate}[label = Fall \arabic*:]
+		\item $b(p_{n + 1}) = 1$. Dann gilt mit Sicherheit, also unabhängig vom Wert $b(p_n)$, die Gleichheit $b(p_n \rightarrow p_{n+1}) = 1$. Wegen $\hat{b}(A_{n+1}) = 1$ ist außerdem $\hat{b}(A_{n}) = 1$. Umgekehrt gilt für jede Belegung $b$ mit $b(p_{n+1}) = 1$ und $\hat{b}(A_n) = 1$ auch $\hat{b}(A_{n+1}) = 1$. Insgesamt erhalten wir so $c_n$ Belegungen für welche die Formel wahr ist.
+		\item $b(p_{n + 1}) = 1$. Dann muss schon für alle $k$ die Gleichheit $b(p_k) = 0$ gelten. Umgekehrt gilt für $b = 0$ auch $\hat{b}(A_{n + 1}) = 1$ also erhalten wir in dem Fall noch $1$ Belegung für welche die Formel wahr ist. 
+	\end{enumerate}
+	Summieren wir auf so ergibt sich $c_{n + 1} = c_n + 1 = n + 2$.
+\end{solution}
+
 % --------------------------------------------------------------------------------
