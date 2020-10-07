@@ -19,25 +19,127 @@ Welche der folgenden Formeln sind Tautologien?
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-\phantom{}
-\begin{enumerate}[label = \alph*.]
-    \item
-    Betrachte die Negation:
 
-    \begin{align*}
-      \neg ((p_1 \to p_2) \to (p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &\iff
-      (p_1 \to p_2) \land \neg ((p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) \\
-      &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land \neg ((p_1 \lor p_3) \to (p_2 \lor p_4)) \\
-      &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land (p_1 \lor p_3) \land \neg (p_2 \lor p_4) \\
-      &\iff (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3) \land (\neg p_2 \land \neg p_4) \\
-      &\iff (\neg p_2 \land \neg p_4) \land (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3)
-    \end{align*}
-    Aus der ersten und der zweiten Konjuktion erhalten wir $(\neg p_1 \land \neg p_2 \land \neg \neg p_4)$.
-    Mit der dritten erhalten wir auch $(\neg p_4)$ und damit kann $(p_1 \lor p_3)$ nicht mehr erfüllt werden.
-    Also ist die Negation der Aussage eine Kontradiktion und die originale Aussage eine Tautologie.
-    \item
-    Definiere $A := (p_1 \lor p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+\phantom{}
+
+\begin{enumerate}[label = \alph*.]
+
+  \item
+  
+  \begin{align*}
+    & (p_1 \to p_2) \to ((p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) \\
+    & \iff
+    \neg (p_1 \to p_2) \lor ((p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) \\
+    & \iff
+    (p_1 \land \neg p_2) \lor \neg (p_3 \to p_4) \lor ((p_1 \lor p_3) \to (p_2 \lor p_4)) \\
+    & \iff
+    (p_1 \land \neg p_2) \lor (p_3 \land \neg p_4) \lor \neg (p_1 \lor p_3) \lor p_2 \lor p_4 \\
+    & \iff
+    (p_1 \land \neg p_2) \lor (p_3 \land \neg p_4) \lor (\neg p_1 \land \neg p_3) \lor p_2 \lor p_4 \\
+    & \stackrel{!}{\iff} \bot
+  \end{align*}
+
+  Dann sind aber alle Konjunktionen $\iff \bot$.
+  Insbesondere, sind die letzten beiden $\iff \bot$, ihre Negationen also $\iff \top$.
+  Weil aber die ersten beiden $\iff \bot$, müssen $p_1 \iff p_2 \iff \bot$, ihre Negationen aber $\iff \top$.
+  Dann wäre die mittlere aber $\iff \top$.
+  Widerspruch!
+
+  \item
+
+  \begin{align*}
+    & (p_1 \to p_3) \to ((p_2 \to p_3) \to ((p_1 \lor p_2) \to p_3)) \\
+    & \iff
+    \neg (p_1 \to p_3) \lor ((p_2 \to p_3) \to ((p_1 \lor p_2) \to p_3)) \\
+    & \iff
+    (p_1 \land \neg p_3) \lor \neg (p_2 \to p_3) \lor ((p_1 \lor p_2) \to p_3) \\
+    & \iff
+    (p_1 \land \neg p_3) \lor (p_2 \land \neg p_3) \lor \neg (p_1 \lor p_2) \lor p_3 \\
+    & \iff
+    (p_1 \land \neg p_3) \lor (p_2 \land \neg p_3) \lor (\neg p_1 \land \neg p_2) \lor p3 \\
+    & \stackrel{!}{\iff} \bot
+  \end{align*}
+
+  Dann sind aber alle Konjunktionen $\iff \bot$.
+  Insbesondere, ist die letzte $\iff \bot$, ihre Negation also $\iff \top$.
+  Die ersten beiden sind ebenfalls $\iff \bot$, also $p_1 \iff p_2 \iff \bot$, bzw. $\neg p_1 \iff \neg p_2 \iff \top$.
+  Dann wäre aber die vorletzte $\iff \top$.
+  Widerspruch!
+
+  \item
+
+  \begin{align*}
+    & (p_1 \to p_3) \to ((p_2 \to p_3) \to ((p_1 \lor p_2) \to p_3)) \\
+    & \stackrel{\text{b.}}{\iff}
+    (p_1 \land \neg p_3) \lor (p_2 \land \neg p_3) \lor \neg p_1 \lor \neg p_2 \lor p_3 \\
+    & \stackrel{!}{\iff} \bot
+  \end{align*}
+
+  Dann sind aber alle Konjunktionen $\iff \bot$.
+  Insbesondere, sind die letzten drei $\iff \bot$, ihre Negationen also $\iff \top$.
+  Dann wären aber auch die ersten beiden $\iff \top$.
+  Widerspruch!
+
+  \item
+
+  \begin{align*}
+    & (p_1 \to (p_2 \to p_3)) \to ((p_1 \land p_2) \to p_3) \\
+    & \iff
+    \neg (p_1 \to (p_2 \to p_3)) \lor ((p_1 \land p_2) \to p_3) \\
+    & \iff
+    (p_1 \land \neg (p_2 \to p_3)) \lor \neg (p_1 \land p_2) \lor p_3 \\
+    & \iff
+    (p_1 \land p_2 \land \neg p_3) \lor \neg p_1 \lor \neg p_2 \lor p_3 \\
+    & \stackrel{!}{\iff} \bot
+  \end{align*}
+
+  Dann sind aber alle Disjunktionen $\iff \bot$.
+  Insbesondere, sind die letzten drei $\iff \bot$, ihre Negationen also $\iff \top$.
+  Dann wäre aber auch die erste $\iff \top$.
+  Widerspruch!
+
+  \item
+
+  \begin{align*}
+    & (p_1 \to p_2) \lor (p_2 \to p_1) \\
+    & \iff
+    \neg p_1 \lor p_2 \lor \neg p_2 \lor p_1 \\
+    & \iff
+    (p_1 \lor \neg p_1) \lor (p_2 \lor \neg p_2)
+  \end{align*}
+
+  Offensichtlich liegt eine Tautologie vor.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \alph*.]
+
+  \item Betrachte die Negation:
+
+  \begin{align*}
+    \neg ((p_1 \to p_2) \to (p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &\iff
+    (p_1 \to p_2) \land \neg ((p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) \\
+    &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land \neg ((p_1 \lor p_3) \to (p_2 \lor p_4)) \\
+    &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land (p_1 \lor p_3) \land \neg (p_2 \lor p_4) \\
+    &\iff (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3) \land (\neg p_2 \land \neg p_4) \\
+    &\iff (\neg p_2 \land \neg p_4) \land (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3)
+  \end{align*}
+
+  Aus der ersten und der zweiten Konjuktion erhalten wir $(\neg p_1 \land \neg p_2 \land \neg \neg p_4)$.
+  Mit der dritten erhalten wir auch $(\neg p_4)$ und damit kann $(p_1 \lor p_3)$ nicht mehr erfüllt werden.
+  Also ist die Negation der Aussage eine Kontradiktion und die originale Aussage eine Tautologie.
+
+  \item Definiere $A := (p_1 \lor p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
+
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$
     & $C$ & $C \to B \to A$\\
@@ -58,11 +160,13 @@ Welche der folgenden Formeln sind Tautologien?
     \hline
     $0$ & $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$\\
     \hline
-    \end{tabular} \\
-    Es liegt also eine Tautologie vor.
-    \item
-    Definiere $A := (p_1 \land p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+  \end{tabular} \\
+
+  Es liegt also eine Tautologie vor.
+
+  \item Definiere $A := (p_1 \land p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
+
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$
     & $C$ & $C \to B \to A$\\
@@ -83,11 +187,13 @@ Welche der folgenden Formeln sind Tautologien?
     \hline
     $0$ & $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$\\
     \hline
-    \end{tabular} \\
-    Es liegt also keine Tautologie vor.
-    \item
-    Definiere $A:= (p_1 \land p_2) \to p_3, \quad B := p_1 \to p_2 \to p_3$. \\
-    \begin{tabular}{|c|c|c|c|c|c|}
+  \end{tabular} \\
+
+  Es liegt also keine Tautologie vor.
+
+  \item Definiere $A:= (p_1 \land p_2) \to p_3, \quad B := p_1 \to p_2 \to p_3$. \\
+
+  \begin{tabular}{|c|c|c|c|c|c|}
     \hline
     $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$\\
     \hline
@@ -107,13 +213,18 @@ Welche der folgenden Formeln sind Tautologien?
     \hline
     $0$ & $0$ & $0$ & $1$ & $1$ & $1$\\
     \hline
-    \end{tabular} \\
-    Es liegt also eine Tautologie vor.
-    \item
-    \begin{align*}
-      (p_1 \to p_2) \lor (p_2 \to p_1) \iff (\neg p_1 \lor p_2) \lor (\neg p_2 \lor p_1) \iff (\neg p_1 \lor p_1) \lor (\neg p_2 \lor p_2).
-    \end{align*}
-    und es liegt eine Tautologie vor.
+  \end{tabular} \\
+
+  Es liegt also eine Tautologie vor.
+
+  \item
+
+  \begin{align*}
+    (p_1 \to p_2) \lor (p_2 \to p_1) \iff (\neg p_1 \lor p_2) \lor (\neg p_2 \lor p_1) \iff (\neg p_1 \lor p_1) \lor (\neg p_2 \lor p_2).
+  \end{align*}
+
+  und es liegt eine Tautologie vor.
+
 \end{enumerate}
 
 \end{solution}
