@@ -5,7 +5,7 @@
 Welche der folgenden Formeln sind Tautologien?
 
 \begin{enumerate}[label = \alph*.]
-    \item $(p_1 \to p_2) \to (p_3 \to p_3) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))$. \\
+    \item $(p_1 \to p_2) \to (p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))$. \\
     (Implikationen werden von rechts nach links geklammert;
     $A \to B \to C$ ist als Abkürzung für $(A \to (B \to C))$ zu lesen, NICHT als $((A \to B) \to C)$, und auch NICHT als $(A \to B) \land (B \to C)$.
     \item $(p_1 \to p_3) \to (p_2 \to p_3) \to ((p_1 \lor p_2) \to p_3)$.
@@ -21,21 +21,20 @@ Welche der folgenden Formeln sind Tautologien?
 \begin{solution}
 \phantom{}
 \begin{enumerate}[label = \alph*.]
-    \item Wir wählen die partielle Belegung $b$ mit
+    \item
+    Betrachte die Negation:
+
     \begin{align*}
-    b: p_1 \mapsto 0, \quad p_2 \mapsto 0, p_3 \mapsto 1, p_4 \mapsto 0
+      \neg ((p_1 \to p_2) \to (p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &\iff
+      (p_1 \to p_2) \land \neg ((p_3 \to p_4) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) \\
+      &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land \neg ((p_1 \lor p_3) \to (p_2 \lor p_4)) \\
+      &\iff (p_1 \to p_2) \land (p_3 \to p_4) \land (p_1 \lor p_3) \land \neg (p_2 \lor p_4) \\
+      &\iff (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3) \land (\neg p_2 \land \neg p_4) \\
+      &\iff (\neg p_2 \land \neg p_4) \land (\neg p_1 \lor p_2) \land (\neg p_3 \lor p_4) \land (p_1 \lor p_3)
     \end{align*}
-    und erhalten damit
-    \begin{align*}
-      \hat{b}(p_2 \lor p_4) &= 0 \\
-      \hat{b}(p_1 \lor p_3) &= 1 \\
-      \hat{b}((p_1 \lor p_3) \to (p_2 \lor p_4)) &= 0 \\
-      \hat{b}(p_3 \to p_3) &= 1 \\
-      \hat{b}((p_3 \to p_3) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &= 0 \\
-      \hat{b}(p_1 \to p_2) &= 1 \\
-      \hat{b}((p_1 \to p_2) \to (p_3 \to p_3) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &= 0.
-    \end{align*}
-    Also liegt keine Tautologie vor.
+    Aus der ersten und der zweiten Konjuktion erhalten wir $(\neg p_1 \land \neg p_2 \land \neg \neg p_4)$.
+    Mit der dritten erhalten wir auch $(\neg p_4)$ und damit kann $(p_1 \lor p_3)$ nicht mehr erfüllt werden.
+    Also ist die Negation der Aussage eine Kontradiktion und die originale Aussage eine Tautologie.
     \item
     Definiere $A := (p_1 \lor p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
