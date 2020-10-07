@@ -17,29 +17,72 @@ Können wir daraus schließen,
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-\phantom{}
-\begin{itemize}
-    \item Ja! Vollständige Induktion nach der Mächtigkeit der Menge.
-    Unsere Induktionsbehauptung lautet: Für alle Mengen $B$ mit $|B| = n$ gilt
+
+  \phantom{}
+
+  \begin{itemize}
+
+    \item Ja!
+    Beweis:
+    Vollständige Induktion nach der Mächtigkeit der Menge:
+    Unsere Induktionsbehauptung lautet
+
     \begin{align*}
-      E(B) \implies \forall b: E(B \cup \{b\})
+      \Forall n \in \N:
+      \Forall A ~\text{Menge}, |A| = n:
+      E(A) \implies \forall x: E(A \cup \Bbraces{x}).
     \end{align*}
-    Den Induktionsanfang für $n = 1$ erhalten wir aus der Voraussetzung.
-    Gelte die Eigenschaft nun für alle Mengen $A$ mit $|A| = n$ und sei $B$
-    mit $|B| = n + 1$ beliebig. Wähle ein beliebiges $x_0  \in B$. Dann gilt
+    
+    Den Induktionsanfang für $n = 1$ erhalten wir aus der Voraussetzung. \\
+    Gelte die $E(A)$ für alle Mengen $A$ mit $|A| = n$.
+    Sei $B$ mit $|B| = n + 1$ beliebig.
+    Wähle ein beliebiges $x \in B$.
+    Wir setzen $A := B \setminus \Bbraces{x}$.
+
     \begin{align*}
-      B = \left(B\setminus\{x_0\}\right) \cup \{x_0\}
+      \implies
+      |A| = |B \setminus \Bbraces{x}| = |B| - 1 = n
+      \implies
+      E(A)
     \end{align*}
-    und aufgrund $|B\setminus\{x_0\}| = n$ gilt nach Induktionsvoraussetzung $E(B)$
-    \item Nein! Gegenbeispiel: $E(A)$ sei die Eigenschaft $|A| < \infty$.
+
+    Nach Induktionsvoraussetzung erhalten wir also $E(A \cup \Bbraces{x})$.
+    Damit gilt aber auch $E(B)$, weil
+
+    \begin{align*}
+      \implies
+      B = (B \setminus \Bbraces{x}) \cup \Bbraces{x}
+      =
+      A \cup \Bbraces{x}.
+    \end{align*}
+  
+    \item Nein!
+    Gegenbeispiel:
+
+    \begin{align*}
+      E(A) :\iff |A| < \infty,
+      \quad
+      A ~\text{Menge}
+    \end{align*}
+
     Klarerweise erfüllen alle Singletons $E$.
-    Gelte nun $E(A)$, also $|A| \leq \infty$. Also existiert ein $n \in \N$
-    mit $|A| = n$ und somit folgt für alle
+    Gelte nun $E(A)$, für eine Menge $A$, also $|A| < \infty$.
+
     \begin{align*}
-      b: |A \cup \{b\}| \leq n + 1
-    \end{align*} und daher gilt auch $E(A \cup \{b\})$. \\
-    Aber bereits abzählbar unendliche Mengen erfüllen die Eigenschaft nicht mehr.
-\end{itemize}
+      \implies
+      \Forall b:
+      |A \cup \Bbraces{b}| \leq |A| + 1 < \infty
+    \end{align*}
+    
+    Daher gilt auch $E(A \cup \Bbraces{b})$.
+    $E$ gilt aber nicht für unendliche Mengen (d.h. Mengen mit unendlicher Mächtigkeit).
+
+    \item Nein!
+    Gegenbeispiel (von vorher):
+    Bereits abzählbar unendliche Mengen sind unendlich.  
+    Sie erfüllen daher die Eigenschaft $E$ nicht mehr.
+
+  \end{itemize}
 
 \end{solution}
 
