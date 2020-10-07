@@ -19,8 +19,102 @@ Welche der folgenden Formeln sind Tautologien?
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{enumerate}[label = \alph*.]
+    \item Wir wählen die partielle Belegung $b$ mit
+    \begin{align*}
+    b: p_1 \mapsto 0, \quad p_2 \mapsto 0, p_3 \mapsto 1, p_4 \mapsto 0
+    \end{align*}
+    und erhalten damit
+    \begin{align*}
+      \hat{b}(p_2 \lor p_4) &= 0 \\
+      \hat{b}(p_1 \lor p_3) &= 1 \\
+      \hat{b}((p_1 \lor p_3) \to (p_2 \lor p_4)) &= 0 \\
+      \hat{b}(p_3 \to p_3) &= 1 \\
+      \hat{b}((p_3 \to p_3) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &= 0 \\
+      \hat{b}(p_1 \to p_2) &= 1 \\
+      \hat{b}((p_1 \to p_2) \to (p_3 \to p_3) \to ((p_1 \lor p_3) \to (p_2 \lor p_4))) &= 0.
+    \end{align*}
+    Also liegt keine Tautologie vor.
+    \item
+    Definiere $A := (p_1 \lor p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$
+    & $C$ & $C \to B \to A$\\
+    \hline
+    $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $1$ & $0$ & $0$ & $0$ & $1$ & $0$ & $1$\\
+    \hline
+    $1$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $0$ & $0$ & $0$ & $1$ & $0$ & $0$ & $1$\\
+    \hline
+    $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $1$ & $0$ & $0$ & $0$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    \end{tabular} \\
+    Es liegt also eine Tautologie vor.
+    \item
+    Definiere $A := (p_1 \land p_2) \to p_3, \quad B := p_2 \to p_3, \quad C:= p_1 \to p_3$. \\
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$
+    & $C$ & $C \to B \to A$\\
+    \hline
+    $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $1$ & $0$ & $0$ & $0$ & $1$ & $0$ & $0$\\
+    \hline
+    $1$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $0$ & $0$ & $1$ & $1$ & $1$ & $0$ & $0$\\
+    \hline
+    $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $1$ & $0$ & $1$ & $0$ & $0$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $0$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    \end{tabular} \\
+    Es liegt also keine Tautologie vor.
+    \item
+    Definiere $A:= (p_1 \land p_2) \to p_3, \quad B := p_1 \to p_2 \to p_3$. \\
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $p_1$ & $p_2$ & $p_3$ & $A$ & $B$ & $B \to A$\\
+    \hline
+    $1$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $1$ & $0$ & $0$ & $0$ & $1$\\
+    \hline
+    $1$ & $0$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $1$ & $0$ & $0$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $1$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $1$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $1$ & $0$ & $1$ & $1$ & $1$\\
+    \hline
+    $0$ & $0$ & $0$ & $1$ & $1$ & $1$\\
+    \hline
+    \end{tabular} \\
+    Es liegt also eine Tautologie vor.
+    \item
+    \begin{align*}
+      (p_1 \to p_2) \lor (p_2 \to p_1) \iff (\neg p_1 \lor p_2) \lor (\neg p_2 \lor p_1) \iff (\neg p_1 \lor p_1) \lor (\neg p_2 \lor p_2).
+    \end{align*}
+\end{enumerate}
 
 \end{solution}
 

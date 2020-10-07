@@ -17,8 +17,29 @@ Können wir daraus schließen,
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{itemize}
+    \item Ja! Vollständige Induktion nach der Mächtigkeit der Menge.
+    Unsere Induktionsbehauptung lautet: Für alle Mengen $B$ mit $|B| = n$ gilt
+    \begin{align*}
+      E(B) \implies \forall b: E(B \cup \{b\})
+    \end{align*}
+    Den Induktionsanfang für $n = 1$ erhalten wir aus der Voraussetzung.
+    Gelte die Eigenschaft nun für alle Mengen $A$ mit $|A| = n$ und sei $B$
+    mit $|B| = n + 1$ beliebig. Wähle ein beliebiges $x_0  \in B$. Dann gilt
+    \begin{align*}
+      B = \left(B\setminus\{x_0\}\right) \cup \{x_0\}
+    \end{align*}
+    und aufgrund $|B\setminus\{x_0\}| = n$ gilt nach Induktionsvoraussetzung $E(B)$
+    \item Nein! Gegenbeispiel: $E(A)$ sei die Eigenschaft $|A| < \infty$.
+    Klarerweise erfüllen alle Singletons $E$.
+    Gelte nun $E(A)$, also $|A| \leq \infty$. Also existiert ein $n \in \N$
+    mit $|A| = n$ und somit folgt für alle
+    \begin{align*}
+      b: |A \cup \{b\}| \leq n + 1
+    \end{align*} und daher gilt auch $E(A \cup \{b\})$. \\
+    Aber bereits abzählbar unendliche Mengen erfüllen die Eigenschaft nicht mehr.
+\end{itemize}
 
 \end{solution}
 

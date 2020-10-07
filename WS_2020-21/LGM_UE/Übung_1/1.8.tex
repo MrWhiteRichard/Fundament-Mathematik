@@ -3,16 +3,40 @@
 \begin{exercise}[22]
 
 Sei $n \geq 2$.
-Geben Sie eine Formel (in den Variablen $p_1, \ldots, p_n$) an, die von genau $n$ Belegungen erfüllt wird.
+Wieviele Belegungen (der Variablen $p_1,\dots,p_n$) erfüllen die Formel
+\begin{align*}
+  A := (p_1 \to p_2) \land (p_2 \to p_3) \land \dots \land (p_{n-1} \to p_n)?
+\end{align*}
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+Sei $b$ eine Belegung und wähle den kleinsten Index $i$, sodass $b(p_i) = 1$
+(falls so ein Index nicht existiert, setze $i := n + 1$).
+Soll $b$ nun die Formel $A$ erfüllen muss jedenfalls für $j > i: b(p_j) = 1$ gelten (Induktion).
+Damit gibt es maximal $n+1$ Belegungen, die die Formel erfüllen können.
+Definiere also
+\begin{align*}
+  b_i: p_j \mapsto \begin{cases}
+    0 & j < i \\
+    1 & j \geq i
+  \end{cases}, i = 1,\dots,n+1.
+\end{align*}
+Fall 1: $j < i:$
+\begin{align*}
+  b_i(p_{j-1}) = 0, \quad b_i(p_j) = 0 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
+\end{align*}
+Fall 2: $j = i$
+\begin{align*}
+  b_i(p_{j-1}) = 0, \quad b_i(p_j) = 1 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
+\end{align*}
+Fall 3: $j > i:$
+\begin{align*}
+  b_i(p_{j-1}) = 1, \quad b_i(p_j) = 1 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
+\end{align*}
+Damit erfüllen alle $b_i$ tatsächlich die Formel $A$ und wir erhalten insgesamt $n+1$ mögliche Belegungen.
 \end{solution}
 
 % --------------------------------------------------------------------------------
