@@ -2,8 +2,9 @@
 
 \begin{exercise}[24]
 
-Sei $n$ riesig, $k \leq 2^n$. Geben Sie eine Formel in den Variablen $p_1,\dots,p_n$ an,
-die von genau $k$ Belegungen erfüllt wird. Versuchen Sie, eine möglichst kleine Formel zu finden.
+Sei $n$ groß, $k \leq 2^n$.
+Geben Sie eine Formel in den Variablen $p_1, \dots, p_n$ an, die von genau $k$ Belegungen erfüllt wird.
+Versuchen Sie, eine möglichst kleine Formel zu finden (mit etwa $\Landau{n}$ Symbolen).
 
 \end{exercise}
 
@@ -55,6 +56,58 @@ gibt für $n_1 < \dots < n_l$ Anlass zur allgemeinen Formel
 & \lor_{i=1}^l \left(\neg p_{n_i} \land \bigwedge_{j=1}^{n_i - 1} p_j \right) \\
 \Leftrightarrow & (p_1 \land \dots \land p_{n_1 - 1}) \land \bigwedge_{i=2}^{l-1} \left(\left(\lor_{j=1}^i \neg p_{n_j}\right) \lor \left(\bigwedge_{k = n_i}^{n_{i+1}} p_k\right)\right) \land (\neg p_{n_1} \lor \dots \lor \neg p_{n_{l-1}} \lor (p_{n_{l-1}} \land \dots \land p_{n_l-1} \land \neg p_{n_l}))
 \end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Man kann auch eine leicht einzusehende Formel mit $\Landau{n \cdot 2^n}$ Symbolen konstruieren.
+Dazu betrachten wir die Binärdarstellungen.
+
+\begin{align*}
+  \Forall k = 0, \ldots, 2^n - 1:
+  \ExistsOnlyOne k_1, \ldots, k_n \in \Bbraces{0, 1}:
+  k = \sum_{i=1}^n k_i 2^{i-1}
+\end{align*}
+
+In der folgenden Tabelle ist die Formel, die wir für allgemeine $k$ konstruieren werden, mal für die ersten paar $k$ aufgedröselt.
+In der letzten Spalte steht jedes $W$ bzw. $F$, an der $k$-ten Stelle von links, für ein $p_k$ bzw. $\neg p_k$.
+Diese werden horizontal mit $\land$ und anschließend vertikal mit $\lor$ verknüpft. \\
+
+\begin{tabular}{|l|l|l|l|l|l|}
+  \hline
+  $k$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
+  \hline
+  $k-1$ & $0$ & $1$ & $2$ & $3$ & $4$ \\
+  \hline
+  Binärdarschreibweise von $k-1$ & $0$ & $1$ & $10$ & $11$ & $100$ \\
+  \hline
+  Formel (angedeutet) & $W \cdots W$ & \makecell{$W W \cdots W$ \\ $F W \cdots W$} & \makecell{$W W W \cdots W$ \\ $F W W \cdots W$ \\ $W F W \cdots W$} & \makecell{$W W W \cdots W$ \\ $F W W \dots W$ \\ $W F W \dots W$ \\ $F F W \cdots W$} & \makecell{$W W W W \cdots W$ \\ $F W W W \dots W$ \\ $W F W W \dots W$ \\ $F F W W \cdots W$ \\ $W W F W \cdots W$} \\
+  \hline
+\end{tabular} \\
+
+Um unsere Formel möglichst \Quote{schön} hinzuschreiben, definieren wir folgenden Ausdruck.
+
+\begin{align*}
+  (b \cdot \neg) p :=
+  \begin{cases}
+    p,      & b = 1 \\
+    \neg p, & b = 0
+  \end{cases},
+  \quad
+  b \in \Bbraces{0, 1}
+\end{align*}
+
+Die folgende Formel ist nun für genau $k = 0, \ldots, 2^n$ Belegungen von $p_1, \ldots, p_n$ wahr.
+Man beachte, dass die leere Disjunktion ($k = 0$) stets falsch ist.
+
+\begin{align*}
+  \bigvee_{\ell = 0}^{k-1}
+  \bigwedge_{i=1}^n
+  (\ell_i \cdot \neg) p_i
+\end{align*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
