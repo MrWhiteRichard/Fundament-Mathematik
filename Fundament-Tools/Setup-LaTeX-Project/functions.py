@@ -66,10 +66,10 @@ def setup_exercise_main(path_exercise_folder, lva_name, exercise_number, exercis
     main_content_new = main_content_old[:index+1:] + ['\n'] + main_content_add + main_content_old[index+1::]
 
     x_1 = '  Titel \\\\\r\n'
-    y_1 = '  ' + lva_name + ' - ' + u'Übung' + ' ' + r'\\' + '\n'
+    y_1 = '  ' + lva_name + ' - ' + r'\\' + '\n'
 
     x_2 = '  \\textit{Untertitel}\r\n'
-    y_2 = '  ' + r'\textit{' + f'{exercise_number}. UE am {exercise_date}' + r'}' + '\n'
+    y_2 = '  ' + r'\textit{' + f'{exercise_number}. ' + u'Übung' + f' am {exercise_date}' + r'}' + '\n'
 
     for x, y in [(x_1, y_1), (x_2, y_2)]:
 
