@@ -350,13 +350,13 @@ Die zweite Differentialgleichung lässt sich leicht lösen, nämlich ist $y(s,t)
     \pderivative[2][x]{s} = \pderivative[][y]{s} + \pderivative[][u]{s} = y  + x - y = x \quad \text{und} \quad \pderivative[2][u]{s} = \pderivative[][x]{s} - \pderivative[][y]{s} = y + u - y = u,
 \end{align*}
 
-also zweimal die gleiche homogene Differentialgleichung. Diese haben das charakteristische Polynom $\chi(\lambda) = \lambda^2 -1$ also die Lösung $x(s,t) = c_1 e^s + c_2 e^{-s}$ und $u(s,t) = c_3 e^s + c_4 e^{-s}$, wobei die scheinbaren Konstanten noch von $t$ abhängen können. Nun wissen wir außerdem 
+also zweimal die gleiche homogene Differentialgleichung. Diese haben das charakteristische Polynom $\chi(\lambda) = \lambda^2 -1$ also die Lösung $x(s,t) = c_1 e^s + c_2 e^{-s}$ und $u(s,t) = c_3 e^s + c_4 e^{-s}$, wobei die scheinbaren Konstanten noch von $t$ abhängen können. Nun wissen wir außerdem
 
 \begin{align*}
-    c_1 e^s - c_2 e^{-s} = \pderivative[][x]{s}(s)\stackrel{!}{=} y + u = e^s + c_3 e^s + c_4 e^{-s}, \quad \text{also} \quad c_1 = 1 + c_3 \quad \text{und} \quad -c_2 = c_4 
+    c_1 e^s - c_2 e^{-s} = \pderivative[][x]{s}(s)\stackrel{!}{=} y + u = e^s + c_3 e^s + c_4 e^{-s}, \quad \text{also} \quad c_1 = 1 + c_3 \quad \text{und} \quad -c_2 = c_4
 \end{align*}
 
-Diese beiden Gleichungen können wir nützen und erhalten 
+Diese beiden Gleichungen können wir nützen und erhalten
 
 \begin{align*}
     t = x(0,t) = c_1 + c_2 \quad \text{und} \quad 1 + t = u(0,t) = c_3 + c_4 = c_1 - 1 - c_2
@@ -374,10 +374,10 @@ also die Funktionen
     x(s,t) = (1 + t) e^s - e^{-s} \quad \text{und} \quad u(s,t) = t e^s + e^{-s}
 \end{align*}
 
-Aus $y = e^s$ erhalten wir schnell $s = \ln(y)$ und damit 
+Aus $y = e^s$ erhalten wir schnell $s = \ln(y)$ und damit
 
 \begin{align*}
-    x = (1+t) e^s - e^{-s} = (1 + t)y - y^{-1} \quad \text{umgeformt also} \quad t = \frac{x}{y} + y^{-2} - 1 
+    x = (1+t) e^s - e^{-s} = (1 + t)y - y^{-1} \quad \text{umgeformt also} \quad t = \frac{x}{y} + y^{-2} - 1
 \end{align*}
 
 woraus sich insgesamt
@@ -393,3 +393,158 @@ Die Lösung ist auf $\R \times \R \setminus \{0\}$ wohldefiniert.
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+
+\begin{solution}
+Wie bereits in den vorigen beiden Aufgaben lösen wir
+
+\begin{align*}
+    \pderivative[][x]{s} = y + u \quad \text{mit} \quad x(0,t) = t, \qquad
+    \pderivative[][y]{s} = y \quad \text{mit} \quad y(0,t) = 1, \qquad
+    \pderivative[][u]{s} = x - y \quad \text{mit} \quad u(0,t) = 1 + t .
+\end{align*}
+
+Wir haben hier also ein System gewöhnlicher Differentialgleichungen:
+
+\begin{align*}
+  A =\left(
+  \begin{array}{ccc}
+  0 & 1 & 1 \\
+  0 & 1 & 0 \\
+  1 & -1 & 0
+  \end{array}
+  \right) \\
+  \left(
+  \begin{array}{c}
+    x_s \\
+    y_s \\
+    u_s
+  \end{array}
+  \right) =
+  A
+  \left(
+  \begin{array}{c}
+    x \\
+    y \\
+    u
+  \end{array}
+  \right)
+\end{align*}
+
+Wir wissen, dass $e^{sA}$ ein Fundamentalsystem bildet. Um dieses zu berechnen,
+sehen wir uns die Diagonalzerlegung von $A$ (mithilfe eines Matrizenrechners) an:
+
+\begin{align*}
+  A =
+  \left(
+  \begin{array}{ccc}
+    1 & 1 & -1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 1
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{ccc}
+    1 & & \\
+    & 1 & \\
+    & & -1
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{ccc}
+  0 & 1 & 0 \\
+  \frac{1}{2} & - \frac{1}{2} & \frac{1}{2} \\
+  - \frac{1}{2} & \frac{1}{2} & \frac{1}{2}
+  \end{array}
+  \right)
+\end{align*}
+
+Dann gilt:
+
+\begin{align*}
+  e^{sA} = V
+  \left(
+  \begin{array}{ccc}
+  e^s & & \\
+  & e^s & \\
+  & & e^{-s}
+  \end{array}
+  \right) V^{-1}
+  =
+  \left(
+  \begin{array}{ccc}
+    \frac{e^s + e^{-s}}{2} & \frac{e^s - e^{-s}}{2} & \frac{e^s - e^{-s}}{2} \\
+    0 & e^s & 0 \\
+    \frac{e^s - e^{-s}}{2} & \frac{e^{-s}-e^s}{2} & \frac{e^s + e^{-s}}{2}
+  \end{array}
+  \right)
+\end{align*}
+
+Unsere Partikulärlösung ist schließlich gegeben durch:
+
+\begin{align*}
+\left(
+\begin{array}{c}
+  x \\
+  y \\
+  u
+\end{array}
+\right)(s)
+=
+e^{sA} \left(
+\begin{array}{c}
+  t \\
+  1 \\
+  1+t
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+  te^s + e^s - e^{-s} \\
+  e^s \\
+  te^s +e^{-s}
+\end{array}
+\right)
+\end{align*}
+
+Also
+\begin{align*}
+  x(s,t) = te^s + e^s - e^{-s} \\
+  y(s,t) = e^s \\
+  u(s,t) =   te^s +e^{-s}
+\end{align*}
+
+Wir können Rücktransformieren da
+
+\begin{align*}
+    \det \pderivative[][(x, y)]{(s, t)}
+    =
+    \begin{vmatrix}
+        x_s(0,t) & x_t(0,t) \\
+        y_s(0,t) & y_t(0,t)
+    \end{vmatrix}
+    =
+    \begin{vmatrix}
+        t & 1 \\
+        1 & 0
+    \end{vmatrix}
+    =
+    -1 \neq 0.
+\end{align*}
+
+Wir sehen direkt $ s = \ln(y)$, also auch
+
+\begin{align*}
+  x = y(t+1) - \frac{1}{y}
+  \Rightarrow
+  t = \frac{x}{y} + \frac{1}{y^2} - 1
+\end{align*}
+
+Setzen wir nun in $u(s,t)$ ein erhalten wir unsere Lösungsfunktion die auf
+$\R \times \R \setminus \{0 \}$ wohldefiniert ist:
+
+\begin{align*}
+  u(x,y) = x + \frac{2}{y} - y
+\end{align*}
+\end{solution}
