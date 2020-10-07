@@ -4,7 +4,7 @@
 
 Zeigen Sie:
 
-\begin{enumerate}[label = \alph*]
+\begin{enumerate}[label = \alph*.]
     \item $\neg (p_1 \land p_2) \Leftrightarrow \neg p_1 \lor \neg p_2$.
     \item Für alle Formeln $A$ und $B$ gilt $\neg (A \land B) \Leftrightarrow \neg A \lor \neg B$.
 \end{enumerate}
@@ -19,38 +19,35 @@ Zeigen Sie:
 
 \begin{enumerate}[label = \alph*]
 
-    \item \phantom{} \\
+    \item Die folgende Wahrheitstafel zeigt, dass die \Quote{rhs} und \Quote{lhs} äquivalent sind. \\
 
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $p_1$ & $p_2$ & $\neg (p_1 \land p_2)$ & $\neg p_1 \lor \neg p_2$ & $\neg (p_1 \land p_2) \leftrightarrow \neg p_1 \lor \neg p_2$ \\
+        $p_1$ & $p_2$ & $\neg (p_1 \land p_2)$ & $\neg p_1 \lor \neg p_2$ \\
         \hline
-        $1$ & $1$ & $0$ & $0$ & $1$\\
+        $1$ & $1$ & $0$ & $0$ \\
         \hline
-        $1$ & $0$ & $1$ & $1$ & $1$\\
+        $1$ & $0$ & $1$ & $1$ \\
         \hline
-        $0$ & $1$ & $1$ & $1$ & $1$\\
+        $0$ & $1$ & $1$ & $1$ \\
         \hline
-        $0$ & $0$ & $1$ & $1$ & $1$\\
+        $0$ & $0$ & $1$ & $1$ \\
         \hline
-    \end{tabular} \\
+    \end{tabular}
 
-    Wir wissen also, dass die letzte Aussage eine Tautologie ist.
-    Nach Satz II.1.9 aus dem Skriptum gilt die zu zeigende Äquivalenz.
-
-    \item \phantom{} \\
+    \item GEHT DAS AUCH?! \\
     
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $A$ & $B$ & $\neg (A \land B)$ & $\neg A \lor \neg B$ & $\neg (A \land B) \Leftrightarrow \neg A \lor \neg B$ \\
+        $A$ & $B$ & $\neg (A \land B)$ & $\neg A \lor \neg B$ \\
         \hline
-        $1$ & $1$ & $0$ & $0$ & $1$\\
+        $1$ & $1$ & $0$ & $0$ \\
         \hline
-        $1$ & $0$ & $1$ & $1$ & $1$\\
+        $1$ & $0$ & $1$ & $1$ \\
         \hline
-        $0$ & $1$ & $1$ & $1$ & $1$\\
+        $0$ & $1$ & $1$ & $1$ \\
         \hline
-        $0$ & $0$ & $1$ & $1$ & $1$\\
+        $0$ & $0$ & $1$ & $1$ \\
         \hline
     \end{tabular}        
 
@@ -62,48 +59,66 @@ Zeigen Sie:
 
 \begin{solution}
 
-\textbf{Eine weitere Lösung für (a)} \\
-Eine (vielleicht) etwas übersichtlichere Wahrheitstafel.
+\begin{enumerate}[label = \alph*.]
 
-\begin{align*}
-    \begin{array}{cccccccccc}
-        \neg & (p_1 & \land & p_2) & \iff & \neg & p_1 & \lor & \neg & p_2 \\
-        \hline
-        2 & 0 & 1 & 0 & 3 & 1 & 0 & 2 & 1 & 0 \\
-        \hline
-        F & W & W & W & W & F & & F & F & \\
-        W & W & F & F & W & F & & W & W & \\
-        W & F & F & W & W & W & & W & F & \\
-        W & F & F & F & W & W & & W & W &
-    \end{array}
-\end{align*}
+    \item Eine (vielleicht) etwas übersichtlichere Wahrheitstafel.
 
-\end{solution}
+    \begin{align*}
+        \begin{array}{cccccccccc}
+            \neg & (p_1 & \land & p_2) & \iff & \neg & p_1 & \lor & \neg & p_2 \\
+            \hline
+            2 & 0 & 1 & 0 & 3 & 1 & 0 & 2 & 1 & 0 \\
+            \hline
+            F & W & W & W & W & F & & F & F & \\
+            W & W & F & F & W & F & & W & W & \\
+            W & F & F & W & W & W & & W & F & \\
+            W & F & F & F & W & W & & W & W &
+        \end{array}
+    \end{align*}
 
-% --------------------------------------------------------------------------------
+    \item Wir wählen zwei beliebige aussagenlogische Formeln $A$ und $B$.
+    Sei $\mathcal{F}(V)$ die Menge aller Formeln über der Variablenmenge $V$.
+    Sei nun $V$ eine Variablenmenge, sodass $A \in \mathcal{F}(V)$ und $B \in \mathcal{F}(V)$ und $\Bbraces{p_1, p_2} \subseteq V$ und $p_1 \neq p_2$.
+    Wir definieren
 
-\begin{solution}
+    \begin{align*}
+        g:
+        V \to \mathcal{F}(V):
+        x \mapsto
+        \begin{cases}
+            A, & x = p_1 \\
+            B, & x \neq p_1
+        \end{cases}.
+    \end{align*}
+    
+    \includegraphicsboxed{Bemerkung II.1.15.png}
 
-\textbf{Eine weitere Lösung für (b)} \\
-Diese orientiert sich stark an Abschnitt II.1.C im Skriptum.
-Wir wählen zwei beliebige aussagenlogische Formeln $A$ und $B$. Sei nun $V$ eine Variablenmenge so, dass $A \in \mathcal{F}(V)$ und $B \in \mathcal{F}(V)$ und $\{p_1, p_2\} \subseteq V$ und $p_1 \neq p_2$. Hier ist $\mathcal{F}(V)$ die Menge aller Formeln über der Variablenmenge $V$.
-Wir definieren
+    \begin{figure}[h!]
+        \begin{boxedin}
+            \begin{center}
+                \includegraphics[width = 0.75 \textwidth]{Definition II.1.14.1.png} \\
+                \includegraphics[width = 0.125 \textwidth]{Definition II.1.14.2.png}
+            \end{center}
+        \end{boxedin}
+    \end{figure}
 
-\begin{align*}
-    g: V \to \mathcal{F}(V): x \mapsto
-    \begin{cases}
-        A & , x = p_1 \\
-        B & , x \neq p_1
-    \end{cases}.
-\end{align*}
+    Nach Bemerkung II.1.15 im Skriptum, lässt sich $g$ eindeutig zu einem Formelhomomorphismus (vgl. Definition II.1.14) $f:\mathcal{F}(V) \to \mathcal{F}(V)$ fortsetzen.
 
-Nach Bemerkung II.1.15 im Skriptum lässt sich $g$ eindeutig zu einem Formelhomomorphismus $f:\mathcal{F}(V) \to \mathcal{F}(V)$ fortsetzen. Aus Punkt (a) wissen wir, dass $\varphi := \neg (p_1 \land p_2) \leftrightarrow \neg p_1 \lor \neg p_2$ eine Tautologie ist, mit Satz II.1.16 ist auch 
+    \includegraphicsboxed{Satz II.1.9.png}
 
-\begin{align*}
-    f(\varphi) = \neg (A \land B) \leftrightarrow \neg A \lor \neg B
-\end{align*}
+    Aus (a) und Satz II.1.9. wissen wir, dass $\varphi := \neg (p_1 \land p_2) \leftrightarrow \neg p_1 \lor \neg p_2$ eine Tautologie ist.
 
-eine Tautologie und mit Satz II.1.9 schließlich gilt die zu zeigende Äquivalenz.
+    \includegraphicsboxed{Satz II.1.16.png}
+
+    Mit Satz II.1.16 ist auch $f(\varphi)$ eine Tautologie.
+
+    \begin{align*}
+        f(\varphi) = \neg (A \land B) \leftrightarrow \neg A \lor \neg B
+    \end{align*}
+
+    Mit Satz II.1.9 gilt die zu zeigende Äquivalenz.
+
+\end{enumerate}
 
 \end{solution}
 
