@@ -28,7 +28,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 &4: \quad \textbf{Für}~ i := 1, \dots, n &\\
 &5: \quad \quad \textbf{Wenn}~ x = A[i] &\\
 &6: \quad \quad \quad j := i &\\
-&7: \quad \quad \quad \textbf{Ende Prozedur} &\\
+&7: \quad \quad \quad \textbf{Abbruch} &\\
 &8: \quad \quad \textbf{Ende Wenn} &\\
 &9: \quad \textbf{Ende Für} &\\
 &10: \textbf{Ende Prozedur}
@@ -62,6 +62,26 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 
     \item Offensichtlich ist $\texttt{j}$ für $\texttt{i} = \texttt{n}$ das gewünschte Ergebnis.
   \end{enumerate}
+  \item Best-Case: $A[1] = x:$
+  \begin{align*}
+    T(A) = c_2 + c_3 + c_4 + c_5 + c_6 + c_7 + c_8 + c_9 = \Landau{1}
+  \end{align*}
+  Worst-Case: $A[n] = x:$
+  \begin{align*}
+    T(A) = (n+1)(c_2 + c_9) + c_3 + c_4 + n(c_5 + c_8) + c_6 + c_7 = \Landau{n}
+  \end{align*}
+  Average-Case: Sei $\pi \in S_n$ beliebig. Für jedes $x \in \{1,\dots,n\}$
+  und $i \in \{1,\dots,n\}$
+  gibt es genau $n!/n$ Permuationen, die $x = \pi(i)$ erfüllen.
+  Für $x = \pi(i)$ muss die Wenn-Bedingung genau $i$-Mal überprüft werden und wir erhalten
+  für die durchschnittliche Anzahl der Wenn-Bedingungsüberprüfungen
+  \begin{align*}
+    \overline{t} = \sum_{i=1}^n \frac{i}{n} = \frac{n+1}{2}.
+  \end{align*}
+  Damit gilt
+  \begin{align*}
+    T(A) = \frac{n+1}{2}(c_2 + c_9) + c_3 + c_4 + \frac{n+1}{2}(c_5 + c_8) + c_6 + c_7 = \Landau{n}
+  \end{align*}
 \end{enumerate}
 
 \end{solution}
