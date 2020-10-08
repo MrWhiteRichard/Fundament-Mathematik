@@ -13,45 +13,83 @@ Wieviele Belegungen (der Variablen $p_1,\dots,p_n$) erfüllen die Formel
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Sei $b$ eine Belegung und wähle den kleinsten Index $i$, sodass $b(p_i) = 1$
+
+	Sei $b$ eine Belegung und wähle den kleinsten Index $i$, sodass $b(p_i) = 1$
 (falls so ein Index nicht existiert, setze $i := n + 1$).
 Soll $b$ nun die Formel $A$ erfüllen muss jedenfalls für $j > i: b(p_j) = 1$ gelten (Induktion).
 Damit gibt es maximal $n+1$ Belegungen, die die Formel erfüllen können.
 Definiere also
+
 \begin{align*}
   b_i: p_j \mapsto \begin{cases}
     0 & j < i \\
     1 & j \geq i
   \end{cases}, i = 1,\dots,n+1.
 \end{align*}
+
 Fall 1: $j < i:$
+
 \begin{align*}
   b_i(p_{j-1}) = 0, \quad b_i(p_j) = 0 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
 \end{align*}
+
 Fall 2: $j = i$
+
 \begin{align*}
   b_i(p_{j-1}) = 0, \quad b_i(p_j) = 1 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
 \end{align*}
+
 Fall 3: $j > i:$
+
 \begin{align*}
   b_i(p_{j-1}) = 1, \quad b_i(p_j) = 1 \implies \hat{b_i}(p_{j-1} \to p_j) = 1
 \end{align*}
+
 Damit erfüllen alle $b_i$ tatsächlich die Formel $A$ und wir erhalten insgesamt $n+1$ mögliche Belegungen.
+
 \end{solution}
 
-\textbf{zweite Lösung mit Induktion:}
+% --------------------------------------------------------------------------------
 
 \begin{solution}
-	Wir definieren 
+
+\begin{align*}
+	A_n & := (p_1 \to p_2) \land (p_2 \to p_3) \land \dots \land (p_{n-1} \to p_n), \\
+	W_n & := \Bbraces{b \mid b ~\text{ist Belegung und}~ \hat{b}(A_n) = 1}, \\
+	c_n & := \vbraces{W_n}
+\end{align*}
+
+Wir zeigen mit Induktion nach $n$, dass $c_n = n + 1$, für $n \geq 2$ gilt.
+Der Induktionsanfang ist trivial.
+Für den Induktionsschritt sei $n \geq 2$ und $c_n = n + 1$.
+Für $b \in W_{n + 1}$ gibt es zwei Fälle.
+
+\begin{enumerate}[label = Fall \arabic*:]
+
+	\item $b(p_{n + 1}) = 1$.
+	Unabhängig von $b(p_n)$, ist $\hat{b}(p_n \rightarrow p_{n+1}) = 1$.
+	Damit, ist aber $A_{n+1} \iff A_n$.
+	Insgesamt erhalten wir durch die Induktionsvoraussetzung $c_n = n + 1$ Belegungen für welche die Formel $A_{n+1}$ wahr ist.
+
+	\item $b(p_{n + 1}) = 0$.
+	Damit $\hat{b}(A_{n+1}) = 1$, muss $\Forall k = 1, \ldots, n: b(p_k) = 0$.
+	Sonst ist für das größte solche $k$:
+	
 	\begin{align*}
-	A_n := (p_1 \to p_2) \land (p_2 \to p_3) \land \dots \land (p_{n-1} \to p_n) \quad \text{und} \quad W_n := \{b \mid b \text{ ist Belegung und } \hat{b}(A_n) = 1¸\}
+		b(p_k) = 1, b(p_{k+1}) = 0
+		\implies
+		\hat{b}(p_k \to p_{k+1}) = 0
+		\implies
+		\hat{b}(A_{n+1}) = 0.
 	\end{align*}
-	sowie $c_n := \vbraces{W_n}$. Wir Behaupten, dass $c_n = n + 1$ gilt. Da $c_2 = 3$ gilt stimmt die Aussage für $n = 2$. Sei nun also $n \geq 2$ und $c_n = n + 1$. Wir wählen ein beliebiges $b \in W_{n + 1}$ und betrachten zwei Fälle.
-	\begin{enumerate}[label = Fall \arabic*:]
-		\item $b(p_{n + 1}) = 1$. Dann gilt mit Sicherheit, also unabhängig vom Wert $b(p_n)$, die Gleichheit $b(p_n \rightarrow p_{n+1}) = 1$. Wegen $\hat{b}(A_{n+1}) = 1$ ist außerdem $\hat{b}(A_{n}) = 1$. Umgekehrt gilt für jede Belegung $b$ mit $b(p_{n+1}) = 1$ und $\hat{b}(A_n) = 1$ auch $\hat{b}(A_{n+1}) = 1$. Insgesamt erhalten wir so $c_n$ Belegungen für welche die Formel wahr ist.
-		\item $b(p_{n + 1}) = 1$. Dann muss schon für alle $k$ die Gleichheit $b(p_k) = 0$ gelten. Umgekehrt gilt für $b = 0$ auch $\hat{b}(A_{n + 1}) = 1$ also erhalten wir in dem Fall noch $1$ Belegung für welche die Formel wahr ist. 
-	\end{enumerate}
-	Summieren wir auf so ergibt sich $c_{n + 1} = c_n + 1 = n + 2$.
+
+	Umgekehrt gilt für die triviale Belegung $b = 0$ auch $\hat{b}(A_{n+1}) = 1$.
+	Also, erhalten wir in dem Fall noch $1$ Belegung (die triviale) für welche die Formel wahr ist.
+
+\end{enumerate}
+
+Summieren wir auf so ergibt sich $c_{n + 1} = c_n + 1 = n + 2$.
+
 \end{solution}
 
 % --------------------------------------------------------------------------------

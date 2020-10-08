@@ -2,8 +2,20 @@
 
 \begin{exercise}
 
-ToDo!
+Gegeben sei eine Zerlegung $a = x_0 < x_1 < \dots < x_N = b$ des Intervalls
+$\bbraces{a,b}$ mit $N \geq 2$. Auf dieser Zerlegung sei
+$\mathbb{S}_0^p := \Bbraces{v \in C(\bbraces{a,b}): \forall j = 0, \dots, N-1 : v\mid_{\bbraces{x_j , x_{j+1}}} \in \prod_p}$
+der Spline-Raum aus stückweisen Polynomen vom Grad $p$.
 
+Zeigen Sie, dass eine Konstante $C>0$ existiert sodass für alle Funktionen
+$u \in C^{p+1}(\bbraces{a,b})$ gilt
+
+\begin{align}
+  \inf_{v\in \mathbb{S}^p_0} \norm[L^2((a,b))]{u' - v'}
+  \leq C \norm[\infty]{u^{(p+1)}} \Bigg( \max_{j=0, \dots, N-1} (x_{j+1} - x_j)\Bigg)^p
+\end{align}
+
+\textit{Hinweis:} Verwenden Sie eine Interpolationsfehlerdarstellung.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
