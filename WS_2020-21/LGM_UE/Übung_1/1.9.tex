@@ -48,8 +48,17 @@ Zusatz: Wir überlegen uns für $0 < l < m \leq n$ und die Formel $A_{n-l} \lor 
 \begin{align*}
 (p_1 \land p_2 \land \dots \land p_{l-1} \land \neg p_l) \lor (p_1 \land p_2 \land \dots \land p_{m-1} \land \neg p_m) \land \neg p_l) \lor (p_1 \land p_2 \land \dots \land p_{n-1} \land \neg p_n) \\
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor (p_l \land \dots \land p_{m-1} \land \neg p_m) \lor (p_l \land \dots \land p_{n-1} \land \neg p_n)) \\
+<<<<<<< HEAD
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor ((p_l \land \dots \land p_{m-1}) \land (\neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n)))) 
 \end{align*}
+
+\Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor ((p_l \land \dots \land p_{m-1}) \land (\neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n))))
+\end{align*}
+Zum Beispiel lässt sich für $k = 2^{n-1}$ folgende Vereinfachung vornehmen:
+\begin{align*}
+  A_{n-1} \lor \dots \lor A_{0} \iff \neg p_1 \lor (p_1 \land [\neg p_2 \lor (p_2 \land [\neg p_3 \lor (\dots [\neg p_{n-1} \land p_n)])])
+\end{align*}
+Damit können wir also die Anzahl der benötigten Symbole auf $O(n)$ reduzieren.
 
 \end{solution}
 
