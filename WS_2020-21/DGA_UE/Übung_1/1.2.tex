@@ -12,7 +12,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 
     \item Machen Sie für diesen Algorithmus eine best-case-Analyse, eine worst-case-Analyse und eine average-case-Analyse (für die average-case-Analyse soll das Modell der Zufallspermutationen verwendet werden, d.h. alle Permutationen von $\Bbraces{1, \ldots, n}$ sind gleich wahrscheinlich.
     Weiters soll angenommen werden, dass $x$ im Datensatz enthalten ist).
-    
+
 \end{enumerate}
 
 \end{exercise}
@@ -21,7 +21,48 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 
 \begin{solution}
 
-ToDo!
+\begin{flalign*}
+&1: \textbf{Prozedur}~ \textsc{Sequentielle Suche} (A,x) &\\
+&2: \quad n := A.\textit{Länge} &\\
+&3: \quad j := \NIL &\\
+&4: \quad \textbf{Für}~ i := 1, \dots, n &\\
+&5: \quad \quad \textbf{Wenn}~ x = A[i] &\\
+&6: \quad \quad \quad j := i &\\
+&7: \quad \quad \quad \textbf{Ende Prozedur} &\\
+&8: \quad \quad \textbf{Ende Wenn} &\\
+&9: \quad \textbf{Ende Für} &\\
+&10: \textbf{Ende Prozedur}
+\end{flalign*}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item Unsere Schleifeninvariante ist:
+  \begin{align*}
+    I(\texttt{A},\texttt{x},\texttt{j},\texttt{i}):
+    (\texttt{j} = \NIL \land \Forall \texttt{k} < \texttt{i}: \texttt{x} \neq \texttt{A}[\texttt{k}])
+    \lor
+    \texttt{x} = \texttt{A}[\texttt{j}]
+  \end{align*}
+
+  \begin{enumerate}[label = \arabic*.]
+    \item $I$ ist zu Beginn des ersten Durchlaufs der Schleife wahr.
+    Dort ist $\texttt{j} = \NIL$.
+    \item
+    Es gelte $I(\texttt{A},\texttt{x},\texttt{j},\texttt{i})$. Entweder $\texttt{x}=\texttt{A}[\texttt{j}]$, dann wurde die Prozedur bereits beendet, oder wir befinden uns in der Codezeile $4$.
+
+    Es gilt $\texttt{A}^\prime = \texttt{A}$ sowie $\texttt{x}^\prime = \texttt{x}$ weil sich $\texttt{A}$ und $\texttt{x}$ nie ändern. Weil die For-Schleife nach oben zählt, ist $\texttt{i}^\prime = \texttt{i} + 1$.
+
+    \begin{enumerate}[label = \Roman*.]
+      \item Fall ($\texttt{x}^\prime = \texttt{A}^\prime[\texttt{i}^\prime]$): Dann ist $\texttt{j}^\prime = \texttt{i}^\prime$ und daher $\texttt{x}^\prime = \texttt{A}^\prime[\texttt{j}^\prime]$ und die Prozedur wird beendet.
+
+      \item Fall ($\texttt{x}^\prime \neq \texttt{A}^\prime[\texttt{i}^\prime]$): Dann bleibt $\texttt{j}^\prime = \texttt{j}$ und $\Forall \texttt{k} < \texttt{i}^\prime: \texttt{x} \neq \texttt{A}[\texttt{k}]$ wegen der Schleifeninvariante und der Fallunterscheidungsbedingung.
+    \end{enumerate}
+
+    Also gilt auch $I(\texttt{A}^\prime, \texttt{x}^\prime, \texttt{j}^\prime, \texttt{i}^\prime)$
+
+    \item Offensichtlich ist $\texttt{j}$ für $\texttt{i} = \texttt{n}$ das gewünschte Ergebnis.
+  \end{enumerate}
+\end{enumerate}
 
 \end{solution}
 
