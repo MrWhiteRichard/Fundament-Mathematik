@@ -23,25 +23,20 @@ def SelSort(A):
             A[k] = tmp
     return A
 
-
 #Bubble-Sort
 
 def BubSort(A):
     n = len(A)
-    tmp = 0
     def sorted(A): # ist A sortiert? falls (A[i],A[i+1]) Gegenbeispiel, gib [0,i] aus
         i = 0
         for i in range(n):
             if i < n-1 and (A[i] > A[i+1]):
-                return [0,i]
-        return [1,1]
+                return 0,i
+        return 1,1
 
     while sorted(A)[0] == 0: # Vertauschen von A[i] und A[i+1]
         i = sorted(A)[1]
-        tmp = A[i]
-        A[i] = A[i+1]
-        A[i+1] = tmp
-
+        A[i], A[i+1] = A[i+1], A[i]
     return A
 
 
