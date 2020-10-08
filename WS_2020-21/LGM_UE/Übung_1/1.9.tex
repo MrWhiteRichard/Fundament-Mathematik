@@ -51,10 +51,14 @@ Zusatz: Wir überlegen uns für $0 < l < m \leq n$ und die Formel $A_{n-l} \lor 
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor ((p_l \land \dots \land p_{m-1}) \land (\neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n)))) \\
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor (p_l \land \dots \land p_{m-1})) \land (\neg p_l \lor \neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n))
 \end{align*}
-gibt für $n_1 < \dots < n_l$ Anlass zur allgemeinen Formel 
+gibt für $1 = n_0 \leq n_1 < \dots < n_l$ Anlass zur allgemeinen Formel 
 \begin{align*}
-& \lor_{i=1}^l \left(\neg p_{n_i} \land \bigwedge_{j=1}^{n_i - 1} p_j \right) \\
-\Leftrightarrow & (p_1 \land \dots \land p_{n_1 - 1}) \land \bigwedge_{i=2}^{l-1} \left(\left(\lor_{j=1}^i \neg p_{n_j}\right) \lor \left(\bigwedge_{k = n_i}^{n_{i+1}} p_k\right)\right) \land (\neg p_{n_1} \lor \dots \lor \neg p_{n_{l-1}} \lor (p_{n_{l-1}} \land \dots \land p_{n_l-1} \land \neg p_{n_l}))
+\lor_{i=1}^l \left(\neg p_{n_i} \land \bigwedge_{j=1}^{n_i - 1} p_j \right)
+\stackrel{?}{\Leftrightarrow} \bigwedge_{i=0}^{l - 1} \left(\left(\lor_{j=1}^i \neg p_{n_j}\right) \lor \left(\bigwedge_{k = n_i + 1}^{n_{i+1} - 1} p_k\right)\right) 
+\end{align*}
+aber die Formel schaut auch nicht kürzer aus. 
+\begin{align*}
+content...
 \end{align*}
 \end{solution}
 
