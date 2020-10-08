@@ -44,22 +44,26 @@ Wir verwenden also maximal $\sum_{i=0}^{n-1}2(n-i) + n - 1 = n^2 + 1 = O(n^2)$ S
 
 Zur Vollständigkeit halber sei noch gesagt, dass für $k = 2^n$ einfach die Formel $T$ gewählt werden kann.
 
-Zusatz: Wir überlegen uns für $0 < l < m \leq n$ und die Formel $A_{n-l} \lor A_{n-m}$ die Äquivalenz
+Zusatz: Wir betrachten die allgemeine Rechenregel
+\begin{align*}
+  (A \land B) \lor (A \land C) \iff A \land (B \lor C).
+\end{align*}
+Wir überlegen uns für $0 < l < m \leq n$ und die Formel $A_{n-l} \lor A_{n-m}$ die Äquivalenz
 \begin{align*}
 (p_1 \land p_2 \land \dots \land p_{l-1} \land \neg p_l) \lor (p_1 \land p_2 \land \dots \land p_{m-1} \land \neg p_m) \land \neg p_l) \lor (p_1 \land p_2 \land \dots \land p_{n-1} \land \neg p_n) \\
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor (p_l \land \dots \land p_{m-1} \land \neg p_m) \lor (p_l \land \dots \land p_{n-1} \land \neg p_n)) \\
-<<<<<<< HEAD
-\Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor ((p_l \land \dots \land p_{m-1}) \land (\neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n)))) 
-\end{align*}
-\begin{align*}
 \Leftrightarrow (p_1 \land \dots \land p_{l-1}) \land (\neg p_l \lor ((p_l \land \dots \land p_{m-1}) \land (\neg p_m \lor (p_m \land \dots \land p_{n-1} \land \neg p_n))))
 \end{align*}
 Zum Beispiel lässt sich für $k = 2^{n-1}$ folgende Vereinfachung vornehmen:
 \begin{align*}
   A_{n-1} \lor \dots \lor A_{0} \iff \neg p_1 \lor (p_1 \land [\neg p_2 \lor (p_2 \land [\neg p_3 \lor (\dots [\neg p_{n-1} \land p_n)])])
 \end{align*}
+Allgemein können wir die Formel $A_k$ schreiben, wenn wir $i_1$ als den größten Index, für den $a_i \neq 0$ gilt,
+$i_2$ als den zweitgrößten, ... und $i_{j_k}$ als den kleinsten:
+\begin{align*}
+  (p_1 \land \dots \land p_{n - i_1 - 1}) \land (\neg p_{n - i_1} \lor [p_{n - i_1} \land \dots \land (\neg p_{n - i_2} \lor [\dots\land(\neg p_{n - i_{j_k}} \lor [p_{n - i_{j_k}} \land \neg p_{n - i_{j_k}+1}])])])
+\end{align*}
 Damit können wir also die Anzahl der benötigten Symbole auf $O(n)$ reduzieren.
-
 \end{solution}
 
 % --------------------------------------------------------------------------------
