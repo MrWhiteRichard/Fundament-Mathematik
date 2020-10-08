@@ -2,16 +2,60 @@
 
 \begin{exercise}
 
-ToDo!
+Sei $H$ ein Hilbert-Raum mit Skalarprodukt $(\cdot;\cdot)_H$, $a : H \times H \rightarrow \R$
+eine stetige, elliptische und symmetrische Bilinearform und $f \in H^*$ ein stetiges,
+lineares Funktional. Weiter sei
 
+\begin{align}
+  J(v) := \frac{1}{2} a(v;v) - f(v), \quad v \in H.
+\end{align}
+
+\begin{itemize}
+  \item[\textbf{a)}]
+    Zeigen Sie, dass $u \in H$ genau dann eine Lösung von $a(u;\cdot) = f$ in $H$ ist,
+    wenn es das Funktional $J$ auf $H$ minimiert.
+  \item[\textbf{b)}]
+    Sei nun $H_0 \subset H$ ein linearer Teilraum, $g \in H$ und
+    $H_g := \Bbraces{v \in H: v - g \in H_0}$. Zeigen Sie, dass $u \in H_g$ genau
+    dann eine Lösung von $a(u; \cdot) = f$ in $H_0$ ist, wenn es das Funktional $J$
+    auf $H_g$ minimiert.
+\end{itemize}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-ToDo!
+\begin{itemize}
+  \item[\textbf{a)}]
+  Dass $a$ elliptisch ist bedeutet, es existiert $C > 0$ sodass
 
+  \begin{align*}
+    a(u;u) \geq C \norm[H]{u}^2
+  \end{align*}
+
+  Sei also $u \in H$ eine Lösung von $a(u;\cdot) = f$ in $H$ und $v \in H$ beliebig.
+  Dann gilt:
+
+  \begin{align*}
+    2(J(v) - J(u)) &=
+     a(v;v) - 2f(v) - a(u;u) + 2f(u) \\
+     &=
+     a(v;v) -2a(u;v) + a(u;u) \\
+     &=
+     a(v-u;v) - a(u;v) + a(u;u) \\
+     &=
+     a(v-u;v) - a(v;u) + a(u;u) \\
+     &=
+     a(v-u;v) + a(u-v;u) \\
+     &=
+     a(v-u;v-u)
+     \geq
+     C \norm[H]{v-u}^2
+  \end{align*}
+
+
+\end{itemize}
 \end{solution}
 
 % --------------------------------------------------------------------------------

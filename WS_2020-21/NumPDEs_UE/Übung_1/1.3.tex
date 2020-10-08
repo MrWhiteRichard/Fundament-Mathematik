@@ -2,8 +2,33 @@
 
 \begin{exercise}
 
-ToDo!
+Sei $H$ ein Hilbert-Raum mit Skalarprodukt $(\cdot;\cdot)_H$, $a : H \times H \rightarrow \R$
+eine stetige, elliptische und symmetrische Bilinearform, $u \in H$ und $V \subset H$ ein abgeschlossener,
+nicht-trivialer linearer Unterraum. Zeigen Sie
+\begin{itemize}
+  \item[\textbf{a)}]
+    Es existiert ein Minimierer $u_0 \in V$ von $a(u- \cdot; u- \cdot)$ auf $V$.
+  \item[\textbf{b)}]
+    Für diesen Minimierer gilt $a(u-u_0,v) = 0$ für alle $v \in V$.
+  \item[\textbf{c)}]
+    Dieser Minimierer ist eindeutig.
+  \item[\textbf{d)}]
+    Die Abbildung $P: u \mapsto Pu := u_0$ ist ein Projektor auf $V$ mit
+    \begin{align}
+      \sup_{v \in H \setminus \Bbraces{0}}
+      \frac{a(Pv;Pv)}{a(v;v)} = 1
+    \end{align}
+\end{itemize}
+\textit{Hinweis zu a:} Wählen Sie eine Minimierungsfolge $(v_n)_{n \in \N}$ von
+$\inf_{v \in V} a(u-v;u-v)$ und zeigen Sie, dass diese Folge eine Cauchy-Folge ist.
+Hilfreich kann dabei folgende Identität sein:
 
+\begin{align}
+  a(v_n - v_m ; v_n - v_m )
+  =
+  2a(v_n - u; v_n - u) + 2a(v_m - u; v_m - u) -
+  4a\Bigg(\frac{1}{2}(v_n + v_m ) - u;\frac{1}{2}(v_n + v_m )- u\Bigg)
+\end{align}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
