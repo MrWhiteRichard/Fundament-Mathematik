@@ -1,0 +1,98 @@
+% --------------------------------------------------------------------------------
+\begin{exercise}
+
+Lösen Sie folgendes Problem für $x > 0$ mithilfe der Methode der Charakteristiken:
+
+\begin{align*}
+    -y u_x + x u_y
+    & =
+    u + 1 \\
+    u(x, 0)
+    & =
+    \psi(x)
+\end{align*}
+
+wobei $\psi$ eine beliebige Funktion ist.
+
+\end{exercise}
+
+\begin{solution}
+	Wir bringen zunächst die PDE in die allgemeine Form aus dem Skript (bzw. Vorlesung).
+
+	\begin{gather*}
+	a(x, y, u) = -y,
+	\quad
+	b(x, y, u) = x,
+	\quad
+	c(x, y, u) = u + 1, \\
+	\overline{x}(t) = t,
+	\quad
+	\overline{y}(t) = 0,
+	\quad
+	\overline{u}(t) = \psi(t), \\
+	\Gamma = \Bbraces
+	{
+		(
+		(
+		\overline{x}(t),
+		\overline{y}(t)
+		):
+		t \in \R
+		)
+	} \in \R^2,
+	\quad
+	S = \Bbraces
+	{
+		(
+		(
+		\overline{x}(t),
+		\overline{y}(t),
+		\overline{u}(t)
+		):
+		t \in \R
+		)
+	} \in \R^3
+	\end{gather*}
+	Das dazugehorige Anfangswertproblem lautet
+
+	\begin{align*}
+	\pderivative[][x]{s} = a = -y, \quad
+	\pderivative[][y]{s} = b = -x, \quad
+	\pderivative[][u]{s} = c = u + 1,
+	\end{align*}
+
+	mit Anfangswerten
+
+	\begin{align*}
+	x(0, t) = \overline{x}(t) = t, \quad
+	y(0, t) = \overline{y}(t) = 0, \quad
+	u(0, t) = \overline{u}(t) = \psi(t).
+	\end{align*}
+	Zuerst suchen wir eine Lösung für $u$. Wir können die Variablen separieren und berechnen dann
+	\begin{align*}
+	\int (1 + u)^{-1} = \ln(1 + u) + c_1 \quad \text{und erhalten} \quad \ln(1 + u) + c_1 = s \\ \text{und gemeinsam mit der Nebenbedingung} \quad u(s,t) = (\psi(t) + 1) e^s - 1
+	\end{align*}
+	Die anderen beiden Differentialgleichungen leiten wir ein weiteres Mal ab und erhalten
+	\begin{align*}
+	\pderivative[2][x]{s} = - \pderivative[][y]{s} = -x \quad \text{und} \quad \pderivative[2][y]{s} = \pderivative[][x]{s} = -y
+	\end{align*}
+	also zweimal die gleiche Differentialgleichung mit dem charakteristischen Polynom $\chi(\lambda) = \lambda^2 + 1$ also den Lösungen $y(s,t) = c_2 \sin(s) + c_3 \cos(s)$ und $x(s,t) = c_4 \sin(s) + c_5 \cos(s)$.
+	Nun soll außerdem
+	\begin{align*}
+	c_3 = y(0,t) \stackrel{!}{=} 0 \quad \text{gelten, und damit} \quad c_4 \cos(s) - c_5 \sin(s) = \pderivative[][x]{s} \stackrel{!}{=} -y = -c_2 \sin(s)
+	\end{align*}
+	also $c_4 = 0$ und $c_2 = c_5$. Uns bleibt $x(s,t) = c_2 \cos(s)$ und $y(s,t) = c_2 \sin(s)$. Nun wissen wir außerdem
+	\begin{align*}
+	c_2 = x(0,t) \stackrel{!}{=} t \quad \text{also} \quad x(s,t) = t \cos(s) \quad \text{und} \quad y(s,t) = t \sin(s).
+	\end{align*}
+	Daraus erhalten wir
+	\begin{align*}
+	t = \frac{x}{\cos(s)} \quad \text{und} \quad y = t \sin(s) = x \tan(s) \quad \text{also} \quad s = \arctan\left(\frac{y}{x}\right) \quad \text{und} \quad t = \frac{x}{\cos\left(\arctan\left(\frac{y}{x}\right)\right)}.
+	\end{align*}
+	So ergibt sich die Lösung
+	\begin{align*}
+	u(x,y) = \left(\psi\left(\frac{x}{\cos\left(\arctan\left(\frac{y}{x}\right)\right)}\right) + 1\right) \exp\left(\arctan\left(\frac{y}{x}\right)\right) - 1.
+	\end{align*}
+\end{solution}
+
+% \end{comment}
