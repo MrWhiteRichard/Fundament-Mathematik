@@ -63,17 +63,18 @@ def bubble_sort(A):
     Der Algorithmus vergleicht der Reihe nach je zwei benachbarte Zahlenund vertauscht diese, falls sie nicht in der richtigen Reihenfolge angeordnet sind.
     Dieses Verfahren wird so lange wiederholt, bis alle Zahlen der Eingabe sortiert sind.
     """
+
     print('#', '-'*64, '#', '\n')
 
     print('n := A.Länge =', len(A), '\n')
     n = len(A)
 
-    for i in range(n-1):
+    for i in range(n):
         print('i :=', i)
 
         print(f'A_{i} =', A)
 
-        for j in range(n-i-1):
+        for j in range(n-(i+1)):
             print()
             print(tab, end = '')
             print('j :=', j)
