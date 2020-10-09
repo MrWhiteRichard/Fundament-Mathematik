@@ -12,7 +12,7 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     Anschließend sucht er das zweitkleinste Element und bringtes an die zweite Position, usw.
 
     \item Bubble-Sort:
-    Der Algorithmus vergleicht der Reihe nach je zwei benachbarte Zahlenund vertauscht diese, falls sie nicht in der richtigen Reihenfolge angeordnet sind.
+    Der Algorithmus vergleicht der Reihe nach je zwei benachbarte Zahlen und vertauscht diese, falls sie nicht in der richtigen Reihenfolge angeordnet sind.
     Dieses Verfahren wird so lange wiederholt, bis alle Zahlen der Eingabe sortiert sind.
 
 \end{enumerate}
@@ -35,7 +35,7 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     &3:  \quad \textbf{Für}~ i := 1, \dots, n-1 & \\
     &4:  \quad \quad k := i & \\
     &5:  \quad \quad \textbf{Für}~ j := i+1, \dots, n & \\
-    &6:  \quad \quad \quad \textbf{Wenn}~ A[k] < A[j] & \\
+    &6:  \quad \quad \quad \textbf{Wenn}~ A[j] < A[k] & \\
     &7:  \quad \quad \quad \quad k := j & \\
     &8:  \quad \quad \quad \textbf{Ende Wenn}~ & \\
     &9:  \quad \quad \textbf{Ende Für}~ & \\
@@ -45,9 +45,9 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
   \end{flalign*}
 
   $Z := \Bbraces{2, \dots, 7, 10}$ ist die Menge der Zeilen, die beim Algorithmus wesentliche Operationen ausführen.
-  Wir können also voraussetzen dass für $z \in Z$ eine Konstante $c_z$ existiert, welche die Zeit angibt, die zur Ausfuhrung von der $z$-ten Zeile benötigt wird.
+  Wir können also voraussetzen dass für $z \in Z$ eine Konstante $c_z$ existiert, welche die Zeit angibt, die zur Ausführung von der $z$-ten Zeile benötigt wird.
   Sei $A$ das Eingabedatenfeld und $n$ die Länge von $A$.
-  Dann belaufen sich die Kosten der Anwendung von Einfugesortieren auf das Datenfeld $A$ auf
+  Dann belaufen sich die Kosten der Anwendung von Selection-Sort auf das Datenfeld $A$ auf
 
   \begin{align*}
     T(A)
@@ -72,7 +72,7 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     },
   \end{align*}
 
-  wobei $t_{ij}$ mit $1$ oder $0$ angibt, ob die $9$-te Zeile ausgeführt wird oder nicht.
+  wobei $t_{ij}$ mit $1$ oder $0$ angibt, ob die $7$-te Zeile ausgeführt wird oder nicht.
   Die $t_{ij}$ hängen offensichtlich von $A$ ab.
   Um die Anzahl der Schritte zu bekommen, setzen wir für alle $z \in Z$ einfach $c_z := 1$.
 
@@ -89,8 +89,8 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     }
   \end{align*}
 
-  Im worst-case ist die Liste absteigend sortiert.
-  Die Bedingung in der $6$-ten Zeile hält also stets und
+  Im best-case ist die Liste aufsteigend sortiert.
+  Die Bedingung in der $6$-ten Zeile hält also nie und
 
   \begin{align*}
     \Forall i = 1, \dots, n-1:
@@ -175,34 +175,30 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     =
     1 + \sum_{i=1}^n \pbraces {1 + \sum_{j=1}^{n-i} (1 + 1)}
     =
-    1 + \sum_{i=1}^n 1 + \sum_{i=1}^n \sum_{j=1}^{n-1} 2
+    1 + \sum_{i=1}^n 1 + 2(n-i)
     =
-    1 + n + \sum_{i=1}^n 2 (n - 1)
+    1 + n + 2\sum_{i=1}^{n-i}i
     =
-    1 + n + \sum_{i=1}^n 2n - \sum_{i=1}^n 1 \\
+    1 + n + (n-1)n\\
     =
-    1 + n + 2n^2 - n
-    =
-    2n^2 + 1
+    n^2 + 1
     =
     \Landau{n^2}
   \end{multline*}
 
   \begin{multline*}
     \implies
-    S_{\mathrm{b}}(A)
+    S_{\mathrm{s}}(A)
     =
-    1 + \sum_{i=1}^n \pbraces{1 + \sum_{j=1}^{n-i} 1}
+    1 + \sum_{i=1}^n \pbraces {1 + \sum_{j=1}^{n-i} (1 + 0)}
     =
-    1 + \sum_{i=1}^n 1 + \sum_{i=1}^n \sum_{j=1}^{n-i} 1
+    1 + \sum_{i=1}^n 1 + (n-i)
     =
-    1 + n + \sum_{i=1}^n (n - i)
+    1 + n + \sum_{i=1}^{n-i}i
     =
-    1 + n + \sum_{i=1}^n n - \sum_{i=1}^n i \\
+    1 + n + (n-1)n/2\\
     =
-    1 + n + n^2 - \frac{n (n + 1)}{2}
-    =
-    \frac{n^2}{2} + \frac{n}{2} + 1
+    \frac{n^2 + n}{2} + 1
     =
     \Landau{n^2}
   \end{multline*}

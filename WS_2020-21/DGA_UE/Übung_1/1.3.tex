@@ -14,7 +14,7 @@
     Begründen Sie, warum die Laufzeit der binären Suche im schlechtesten Fall $\Landau{\log{n}}$ ist.
 
     \item Beim Algorithmus Einfügesortieren wird die sequentielle Suche verwendet, um das bereits sortierte Teilfeld $A[1, \ldots, n]$ (rückwärts) zu durchsuchen.
-    Kann stattdessendie binäre Suche verwendet werden, um die worst-case-Laufzeit von Insertion Sort auf $\Landau{\log{n}}$ zu verbessern?
+    Kann stattdessen die binäre Suche verwendet werden, um die worst-case-Laufzeit von Insertion Sort auf $\Landau{\log{n}}$ zu verbessern?
 
 \end{enumerate}
 
@@ -23,9 +23,37 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\begin{enumerate}[label = (\alph*)]
+\item
+\begin{flalign*}
+&1: \textbf{Prozedur}~ \textsc{Divide-and-Conquer-Suche} (A,x, j := 0) &\\
+&2: \quad n := A.\textit{Länge} &\\
+&3: \quad \textbf{Wenn}~ n \neq 1: &\\
+&4: \quad \quad k := \lfloor\nicefrac{n}{2}\rfloor &\\
+&5: \quad \quad \textbf{Wenn}~ x > A[k]: &\\
+&6: \quad \quad \quad j := j + k &\\
+&7: \quad \quad \quad B := A[k+1,\dots,n] &\\
+&8: \quad \quad \quad \textsc{Divide-and-Conquer-Suche} (B,x,j) &\\
+&9: \quad \quad \textbf{Sonst Wenn}~ x < A[k]: &\\
+&10: \quad \quad \quad B := A[1,\dots,k-1]&\\
+&11: \quad \quad \quad \textsc{Divide-and-Conquer-Suche} (B,x,j) &\\
+&12: \quad \quad \textbf{Sonst}: &\\
+&13: \quad \quad \quad j := j + k&\\
+&14: \quad \quad \textbf{Ende Wenn} &\\
+&15: \quad \textbf{Sonst Wenn}~ A[1] = x:&\\
+&16: \quad \quad j := j + 1&\\
+&17: \quad \textbf{Sonst} &\\
+&18: \quad \quad j := NIL&\\
+&19: \quad \textbf{Ende Wenn} &\\
+&20: \textbf{Ende Prozedur}
+\end{flalign*}
 
-ToDo!
+Die Wenn-Bedingung in Zeile 2 wird maximal $\lceil\log_2(n)\rceil$ mal überprüft
+und damit wird jede Zeile innerhalb des Wenn-Blocks maximal $\lceil\log_2(n)\rceil$ mal ausgeführt.
+Alle anderen Zeilen werden maximal einmal ausgeführt.
 
+\item Ja.
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
