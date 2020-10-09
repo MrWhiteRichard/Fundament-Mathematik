@@ -2,16 +2,137 @@
 
 \begin{exercise}
 
-ToDo!
+Überlegen Sie sich einen Pseudocode für die folgenden Algorithmen und bestimmen Sie die Anzahl der notwendigen Schritte, die (in Ihrem Pseudocode) nötig sind, um eine $n$-elementige Menge zu sortieren.
+Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Selection Sort:
+    der Algorithmus sucht zunächst das kleinste Element und bringt es an die erste Position.
+    Anschließend sucht er das zweitkleinste Element und bringtes an die zweite Position, usw.
+
+    \item Bubble-Sort:
+    Der Algorithmus vergleicht der Reihe nach je zwei benachbarte Zahlenund vertauscht diese, falls sie nicht in der richtigen Reihenfolge angeordnet sind.
+    Dieses Verfahren wird so lange wiederholt, bis alle Zahlen der Eingabe sortiert sind.
+
+\end{enumerate}
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
 
-ToDo!
+\begin{enumerate}[label = (\alph*)]
 
+\item
+\begin{flalign*}
+&1: \textbf{Prozedur}~ \textsc{Selection Sort} (A) &\\
+&2:  \quad n := A.\textit{Länge} &\\
+&3:  \quad \textbf{Für}~ i := 1, \dots, n &\\
+&4:  \quad \quad x := A[i] &\\
+&5:  \quad \quad k := i &\\
+&6:  \quad \quad \textbf{Für}~ j := i+1, \dots, n &\\
+&7:  \quad \quad \quad \textbf{Wenn}~ x < A[j] &\\
+&8:  \quad \quad \quad \quad x := A[j] &\\
+&9:  \quad \quad \quad \quad k := j &\\
+&10:  \quad \quad \quad \textbf{Ende Wenn}~ &\\
+&11:  \quad \quad \textbf{Ende Für}~ &\\
+&12: \quad  \quad A[k],A[i] := A[i],x &\\
+&13: \quad  \textbf{Ende Für}~ &\\
+&14: \textbf{Ende Prozedur}
+\end{flalign*}
+
+Die notwendigen Schritte setzen sich wie folgt zusammen
+(die $t_j$ sind dabei $1$ wenn die Codezeile $8$ ausgeführt werden muss und $0$ sonst):
+\begin{align*}
+  1 + \sum_{i = 1}^n \pbraces{1 +\pbraces{\sum_{j = i+1}^n (1 + t_j)} +1} \\
+\end{align*}
+Für den worst-case (also $\Forall j \in \N :t_j = 1$) erhalten wir
+
+\begin{multline*}
+  1 + \sum_{i = 1}^n \pbraces{2 +\sum_{j = i+1}^n 2}
+  =
+  1 + \sum_{i = 1}^n (2 + 2(n - i))
+  =
+  1 + \sum_{i = 1}^n 2 + 2\sum_{i = 1}^n n - 2\sum_{i = 1}^n i \\
+  =
+  1 + 2n + 2n^2 - 2\frac{n(n+1)}{2}
+  =
+  n^2 + n + 1
+  =
+  \Landau{n^2}
+\end{multline*}
+
+Für den best-case (also $\Forall j \in \N :t_j = 0$) erhalten wir
+
+\begin{multline*}
+  1 + \sum_{i = 1}^n \pbraces{2 +\sum_{j = i+1}^n 1}
+  =
+  1 + \sum_{i = 1}^n (2 + n - i)
+  =
+  1 + \sum_{i = 1}^n 2 + \sum_{i = 1}^n n - \sum_{i = 1}^n i \\
+  =
+  1 + 2n + n^2 - \frac{n(n+1)}{2}
+  =
+  \frac{n^2 + 3n}{2} + 1
+  =
+  \Landau{n^2}
+\end{multline*}
+
+
+\item
+\begin{flalign*}
+&1: \textbf{Prozedur}~ \textsc{Bubble Sort}(A) &\\
+&2: \quad n := A.\textit{Länge} &\\
+&3: \quad \textbf{Für}~ i := 1, \dots, n &\\
+&4: \quad \quad \textbf{Für}~ j := 1, \dots, n-i &\\
+&5: \quad \quad \quad \textbf{Wenn}~ A[j+1] < A[j] &\\
+&6: \quad \quad \quad \quad A[j], A[j+1] := A[j+1], A[j] &\\
+&7: \quad \quad \quad \textbf{Ende Wenn} &\\
+&8: \quad \quad \textbf{Ende Für} &\\
+&9: \quad \textbf{Ende Für} &\\
+&10: \textbf{Ende Prozedur}
+\end{flalign*}
+
+Die notwendigen Schritte setzen sich wie folgt zusammen
+(die $t_j$ sind dabei $1$ wenn die Codezeile $7$ ausgeführt werden muss und $0$ sonst):
+
+\begin{align*}
+  1 + \sum_{i=1}^n \sum_{j=1}^{n-i} (1 + t_j)
+\end{align*}
+
+Für den worst-case (also $\Forall j \in \N :t_j = 1$) erhalten wir
+
+\begin{align*}
+    1 + \sum_{i=1}^n \sum_{j=1}^{n-i} (1 + 1)
+    =
+    1 + \sum_{i=1}^n 2(n-i)
+    =
+    1 + 2\sum_{i=1}^n n - 2\sum_{i=1}^n i
+    =
+    1 + 2n^2 - 2\frac{n(n+1)}{2}
+    =
+    n^2-n + 1
+    =
+    \Landau{n^2}
+\end{align*}
+
+Für den best-case (also $\Forall j \in \N :t_j = 0$) erhalten wir
+
+\begin{align*}
+  1 + \sum_{i=1}^n \sum_{j=1}^{n-i} 1
+  =
+  1 + \sum_{i=1}^n n - \sum_{i=1}^n i
+  =
+  1 + n^2 - \frac{n(n+1)}{2}
+  =
+  \frac{n^2 - n}{2} + 1
+  =
+  \Landau{n^2}
+\end{align*}
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
