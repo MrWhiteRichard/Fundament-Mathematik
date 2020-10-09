@@ -22,66 +22,104 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 \begin{solution}
 
 \begin{flalign*}
-&1: \textbf{Prozedur}~ \textsc{Sequentielle Suche} (A,x) &\\
-&2: \quad n := A.\textit{Länge} &\\
-&3: \quad j := \NIL &\\
-&4: \quad \textbf{Für}~ i := 1, \dots, n &\\
-&5: \quad \quad \textbf{Wenn}~ x = A[i] &\\
-&6: \quad \quad \quad j := i &\\
-&7: \quad \quad \quad \textbf{Abbruch} &\\
-&8: \quad \quad \textbf{Ende Wenn} &\\
-&9: \quad \textbf{Ende Für} &\\
-&10: \textbf{Ende Prozedur}
+  &1:  \textbf{Prozedur}~ \textsc{Sequentielle Suche} (A,x) & \\
+  &2:  \quad n := A.\textit{Länge} & \\
+  &3:  \quad i := \NIL & \\
+  &4:  \quad \textbf{Für}~ j := 1, \dots, n & \\
+  &5:  \quad \quad \textbf{Wenn}~ x = A[j] & \\
+  &6:  \quad \quad \quad i := j & \\
+  &7:  \quad \quad \quad \textbf{Ende Prozedur} & \\
+  &8:  \quad \quad \textbf{Ende Wenn} & \\
+  &9:  \quad \textbf{Ende Für} & \\
+  &10: \textbf{Ende Prozedur}
 \end{flalign*}
 
 \begin{enumerate}[label = (\alph*)]
 
-  \item Unsere Schleifeninvariante ist:
+  \item Bezeichne $\texttt{n}$ die Länge eines Datenfelds $\texttt{A}$, $\texttt{i}$ den (potentiellen) kleinsten Index von einer Variable $\texttt{x}$ (vielleicht) aus $\texttt{A}$, und $\texttt{j}$ die laufende Variable der Schleife der $4$-ten Zeile.
+  Unsere Schleifeninvariante lautet wie folgt.
+
   \begin{align*}
-    I(\texttt{A},\texttt{x},\texttt{j},\texttt{i}):
-    (\texttt{j} = \NIL \land \Forall \texttt{k} < \texttt{i}: \texttt{x} \neq \texttt{A}[\texttt{k}])
-    \lor
-    \texttt{x} = \texttt{A}[\texttt{j}]
+    I(\texttt{A}, \texttt{x}, \texttt{i}, \texttt{j}):
+    \texttt{j} \leq \texttt{n}
+    \land
+    (
+      (
+        \texttt{i} = \NIL
+        \land
+        \Forall \texttt{k} < \texttt{j}:
+        \texttt{x} \neq \texttt{A}[\texttt{k}]
+      )
+      \lor
+      \texttt{x} = \texttt{A}[\texttt{i}]
+    )
   \end{align*}
 
   \begin{enumerate}[label = \arabic*.]
-    \item $I$ ist zu Beginn des ersten Durchlaufs der Schleife wahr.
-    Dort ist $\texttt{j} = \NIL$.
-    \item
-    Es gelte $I(\texttt{A},\texttt{x},\texttt{j},\texttt{i})$. Entweder $\texttt{x}=\texttt{A}[\texttt{j}]$, dann wurde die Prozedur bereits beendet, oder wir befinden uns in der Codezeile $4$.
 
-    Es gilt $\texttt{A}^\prime = \texttt{A}$ sowie $\texttt{x}^\prime = \texttt{x}$ weil sich $\texttt{A}$ und $\texttt{x}$ nie ändern. Weil die For-Schleife nach oben zählt, ist $\texttt{i}^\prime = \texttt{i} + 1$.
+    \item Zu Beginn des ersten Durchlaufs der Schleife ist $\texttt{i} = \NIL$.
+    $I(\texttt{A}, \texttt{x}, \texttt{i}, \texttt{j})$ ist hier also wahr.
+
+    \item Es gelte $I(\texttt{A},\texttt{x},\texttt{i},\texttt{j})$.
+    Falls $\texttt{x} = \texttt{A}[\texttt{i}]$, dann hat der Algorithmus bereits terminiert.
+    Ansonsten gelten $\texttt{i} = \NIL$, und $\Forall \texttt{k} < \texttt{j}: \texttt{x} \neq \texttt{A}[\texttt{k}]$, und die Schleife in der $4$-ten Zeile wird ein weiteres mal instanziert.
+    Offensichtlich gilt $\texttt{A}^\prime = \texttt{A}$ sowie $\texttt{x}^\prime = \texttt{x}$ weil sich $\texttt{A}$ und $\texttt{x}$ nie ändern.
+    Weil die Schleife in der $4$-ten Zeile nach oben zählt, ist $\texttt{j}^\prime = \texttt{j} + 1$.
+    Für den Wert von $\texttt{i}^\prime$ machen wir eine Fallunterscheidungsbedingung.
 
     \begin{enumerate}[label = \Roman*.]
-      \item Fall ($\texttt{x}^\prime = \texttt{A}^\prime[\texttt{i}^\prime]$): Dann ist $\texttt{j}^\prime = \texttt{i}^\prime$ und daher $\texttt{x}^\prime = \texttt{A}^\prime[\texttt{j}^\prime]$ und die Prozedur wird beendet.
+      
+      \item Fall ($\texttt{x}^\prime = \texttt{A}^\prime[\texttt{j}^\prime]$):
+      Dann wird die $6$-te Zeile ausgeführt und $\texttt{i}^\prime = \texttt{j}^\prime$.
+      Anschließend terminiert der Algorithmus.
 
-      \item Fall ($\texttt{x}^\prime \neq \texttt{A}^\prime[\texttt{i}^\prime]$): Dann bleibt $\texttt{j}^\prime = \texttt{j}$ und $\Forall \texttt{k} < \texttt{i}^\prime: \texttt{x} \neq \texttt{A}[\texttt{k}]$ wegen der Schleifeninvariante und der Fallunterscheidungsbedingung.
+      \item Fall ($\texttt{x}^\prime \neq \texttt{A}^\prime[\texttt{j}^\prime]$):
+      Dann wird die $6$-te Zeile nicht ausgeführt und es bleibt $\texttt{i}^\prime = \texttt{i}$.
+      Wegen $I(\texttt{A}, \texttt{x}, \texttt{i}, \texttt{j})$ gilt $\Forall \texttt{k} < \texttt{j}: \texttt{x} \neq \texttt{A}[\texttt{k}]$ und wegen der Fallunterscheidungsbedingung gilt $\texttt{x}^\prime \neq \texttt{A}^\prime[\texttt{j}^\prime]$.
+      Insgesamt folgt daher $\Forall \texttt{k} < \texttt{j}^\prime: \texttt{x} \neq \texttt{A}[\texttt{k}]$.
     \end{enumerate}
 
-    Also gilt auch $I(\texttt{A}^\prime, \texttt{x}^\prime, \texttt{j}^\prime, \texttt{i}^\prime)$
+    Also gilt auch $I(\texttt{A}^\prime, \texttt{x}^\prime, \texttt{j}^\prime, \texttt{i}^\prime)$.
 
-    \item Offensichtlich ist $\texttt{j}$ für $\texttt{i} = \texttt{n}$ das gewünschte Ergebnis.
+    \item Offensichtlich ist $\texttt{i}$ für $\texttt{j} = \texttt{n}$ das gewünschte Ergebnis.
+
   \end{enumerate}
-  \item Best-Case: $A[1] = x:$
-  \begin{align*}
-    T(A) = c_2 + c_3 + c_4 + c_5 + c_6 + c_7 + c_8 + c_9 = \Landau{1}
-  \end{align*}
-  Worst-Case: $A[n] = x:$
-  \begin{align*}
-    T(A) = (n+1)(c_2 + c_9) + c_3 + c_4 + n(c_5 + c_8) + c_6 + c_7 = \Landau{n}
-  \end{align*}
-  Average-Case: Sei $\pi \in S_n$ beliebig. Für jedes $x \in \{1,\dots,n\}$
-  und $i \in \{1,\dots,n\}$
-  gibt es genau $n!/n$ Permuationen, die $x = \pi(i)$ erfüllen.
-  Für $x = \pi(i)$ muss die Wenn-Bedingung genau $i$-Mal überprüft werden und wir erhalten
-  für die durchschnittliche Anzahl der Wenn-Bedingungsüberprüfungen
-  \begin{align*}
-    \overline{t} = \sum_{i=1}^n \frac{i}{n} = \frac{n+1}{2}.
-  \end{align*}
-  Damit gilt
-  \begin{align*}
-    T(A) = \frac{n+1}{2}(c_2 + c_9) + c_3 + c_4 + \frac{n+1}{2}(c_5 + c_8) + c_6 + c_7 = \Landau{n}
-  \end{align*}
+
+  \item
+  
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Average-Case:
+    Sei $\pi \in S_n$ beliebig. Für jedes $x \in \{1,\dots,n\}$
+    und $i \in \{1,\dots,n\}$
+    gibt es genau $n!/n$ Permuationen, die $x = \pi(i)$ erfüllen.
+    Für $x = \pi(i)$ muss die Wenn-Bedingung genau $i$-Mal überprüft werden und wir erhalten
+    für die durchschnittliche Anzahl der Wenn-Bedingungsüberprüfungen
+    
+    \begin{align*}
+      \overline{t} = \sum_{i=1}^n \frac{i}{n} = \frac{n+1}{2}.
+    \end{align*}
+    
+    Damit gilt
+    
+    \begin{align*}
+      T(A) = \frac{n+1}{2}(c_2 + c_9) + c_3 + c_4 + \frac{n+1}{2}(c_5 + c_8) + c_6 + c_7 = \Landau{n}
+    \end{align*}  
+
+    \item Worst-Case:
+    $A[n] = x:$
+    \begin{align*}
+      T(A) = (n+1)(c_2 + c_9) + c_3 + c_4 + n(c_5 + c_8) + c_6 + c_7 = \Landau{n}
+    \end{align*}
+  
+    \item Best-Case:
+    $A[1] = x:$
+    \begin{align*}
+      T(A) = c_2 + c_3 + c_4 + c_5 + c_6 + c_7 + c_8 + c_9 = \Landau{1}
+    \end{align*}
+  
+  \end{enumerate}
+
 \end{enumerate}
 
 \end{solution}
