@@ -125,3 +125,38 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}
+	\begin{flalign*}
+	&1:  \textbf{Prozedur}~ \textsc{Sequentielle Suche} (A,x) & \\
+	&2:  \quad j := 1 & \\
+	&3:  \quad \textbf{Solange}~ j \leq A.L"ange~ und ~ A[j] \neq x & \\
+	&4:  \quad \quad j := j + 1 & \\
+	&5:  \quad \textbf{Ende Solange} & \\
+	&6:  \quad \textbf{Wenn}~ j = A.L"ange + 1 & \\
+	&7:  \quad \quad j := NIL & \\
+	&8:  \quad \textbf{Ende Wenn} & \\
+	&9:  \textbf{Ende Prozedur} 
+	\end{flalign*}
+	Wir wollen nun einen Korrektheitsbeweis führen. Dafür bezeichnen wir mit $k$ den Schleifendurchlauf und definieren die Schleifeninvariante $I(j,k): j = k$. Nun gilt
+	\begin{enumerate}[label = (\arabic*)]
+		\item Zu Beginn der Schleife befinden wir uns im ersten Schleifendurchlauf, also $k = 1$ und tatsächlich gilt auch $j = 1 = k$.
+		\item Sei nun $I(j,k)$ zu Beginn des $k$-ten Schleifendurchlaufs erfüllt, also $j = k$. Nun wird in der Schleife $j := j + 1 = k + 1$, was dann auch zu Beginn des $k+1$-ten Schleifendurchlaufs gültig ist.
+		\item Bei Beendigung der Schleife ist $j = A.L"ange + 1$ oder $A[j] = x$. Im ersten Fall wird Zeile 8 ausgeführt und der Algorithmus endet mit $j = NIL$. Im zweiten Fall sind wir ohnehin fertig.
+	\end{enumerate}
+	Nun wollen wir noch den Aufwand des Algorithmus analysieren. Sei dazu $t$ die Anzahl der Ausführungen des Schleifenkopfes und $s$ die Anzahl der Ausführungen von Zeile 7. Allgemein gilt nun
+	\begin{align*}
+	T(A,x) = (c_3 + c_5)t + c_4 (t-1) + c_7 s + c_2 + c_6 + c_8
+	\end{align*}
+	für den Aufwand.
+	\begin{enumerate}[label = (\arabic*)]
+		\item Im besten Fall ist $A[1] = x$, folglich $s = 0$ und $t = 1$. Damit ergibt sich $T(A,x) = c_2 + c_3 + c_5 + c_6 + c_8 = \Landau{1}$.
+		\item Im schlechtesten Fall ist $x$ nicht in der Liste $A$ enthalten und es ist $s = 1$ und $t = n + 1$. Es ergibt sich ein Aufwand von $T(A,x) = (c_3 + c_5) (n + 1) + n c_4 + c_2 + c_6 + c_7 + c_8 = \Landau{n}$.
+		\item Zur Analyse des durchschnittlichen Falls nehmen wir an, dass $x$ in der Liste $A$ enthalten ist und an jeder Stelle mit der gleichen Wahrscheinlichkeit, nämlich $\frac{1}{n}$ vorzufinden ist. Mit Sicherheit ist also $s = 0$ und wir berechnen 
+		\begin{align*}
+		\overline{t} = \sum_{i=1}^n \frac{i}{n} = \frac{n+1}{2}.
+		\end{align*}
+		und erhalten mit $t = \overline{t}$ den Aufwand $T(A,x) = (c_3 + c_5) \frac{n + 1}{2} + c_4 \frac{n - 1}{2} + c_2 + c_6 + c_8 = \Landau{n}$.
+	\end{enumerate}
+\end{solution}
+

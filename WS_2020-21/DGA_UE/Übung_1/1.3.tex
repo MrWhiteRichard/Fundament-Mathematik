@@ -57,3 +57,29 @@ Alle anderen Zeilen werden maximal einmal ausgeführt.
 \end{solution}
 
 % --------------------------------------------------------------------------------
+\begin{solution}
+	\begin{flalign*}
+	&~1: \textbf{Prozedur}~ \textsc{Divide-and-Conquer-Suche} (A,x) &\\
+	&~2: \quad a := 0 &\\
+	&~3: \quad e := A.L"ange + 1 &\\
+	&~4: \quad j := \lfloor(e - a) / 2\rfloor &\\
+	&~5: \quad \textbf{Solange}~ e - a > 1 ~ und ~ A[a + j] \neq x &\\
+	&~6: \quad \quad \textbf{Wenn}~ x > A[a + j]&\\
+	&~7: \quad \quad \quad a := a + j &\\
+	&~8: \quad \quad \textbf{Sonst} &\\
+	&~9: \quad \quad \quad b := a + j &\\
+	&10: \quad \quad \textbf{Ende Wenn}&\\
+	&11: \quad \quad j := \lfloor(e - a) / 2\rfloor &\\
+	&12: \quad \textbf{Ende Solange}: &\\
+	&13: \quad \textbf{Wenn}~ j = 0&\\
+	&14: \quad \quad j := NIL &\\
+	&15: \quad \textbf{Ende Wenn}&\\
+	&16: \textbf{Ende Prozedur}
+	\end{flalign*}
+	Hier ist nicht ganz klar was in der Angabe mit begr"unden gemeint ist. Ein sauberer Beweis oder die Bemerkung, dass die Länge des Datenfeldes sich stets halbiert, die Schleife also sicher nicht "ofter als $\lceil\log_2(n)\rceil$ Mal ausgef"uhrt wird. 
+	
+	Beim Algorithmus Einfügesortieren wird die äußere Schleife stets $n$ Mal durchlaufen, ersetzt man die innere Schleife durch ein ähnliches Verfahren wie die Prozedur Divide-and-Conquer-Suche so wird im schlechtesten Fall die innere Schleife im $j$-ten Durchlauf der äußeren Schleife $\lceil\log_2(j)\rceil$ Mal durchlaufen. Ergibt sich so ein Aufwand von
+	\begin{align*}
+	\sum_{j = 2}^{n} \lceil\log_2(j)\rceil = \Landau{n \log(n)}?
+	\end{align*}
+\end{solution}
