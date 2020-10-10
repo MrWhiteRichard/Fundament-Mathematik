@@ -25,7 +25,7 @@ lineares Funktional. Weiter sei
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
+\phantom{}
 \begin{itemize}
   \item[\textbf{a)}]
   Dass $a$ elliptisch ist bedeutet, es existiert $C > 0$ sodass
@@ -34,8 +34,11 @@ lineares Funktional. Weiter sei
     a(u;u) \geq C \norm[H]{u}^2
   \end{align*}
 
-  Sei also $u \in H$ eine Lösung von $a(u;\cdot) = f$ in $H$ und $v \in H$ beliebig.
-  Dann gilt:
+  Sei also $u \in H$ die eindeutig bestimmte Lösung von $a(u;\cdot) = f$ in $H$, also
+  \begin{align*}
+    \forall v \in H: a(u;v) = f(v).
+  \end{align*}
+  Dann gilt für $v \in H$ beliebig:
 
   \begin{align*}
     2(J(v) - J(u)) &=
@@ -53,8 +56,33 @@ lineares Funktional. Weiter sei
      \geq
      C \norm[H]{v-u}^2
   \end{align*}
+  Also ist $u$ ein Minimum von $J$. \\
+  Mit der selben Rechnung folgt ebenso, dass Minima von $J$ eindeutig sind.
+  Damit ist bereits jedes Minimum von $J$ auch eine Lösung von $a(u;\cdot) = f$ in $H$.
 
-
+  \item[\textbf{b)}]
+  Nach Punkt a) ist das Minimum $u_0$ von $J$ in $H_0$ genau die eindeutige Lösung von
+  $a(u;\cdot) = f$ auf $H_0$. Sei $g \in H$ beliebig.
+  Definiere $f_g(v_0) := f(v_0)  - a(g;v_0)$ und wähle $u_g \in H_0$, sodass
+  \begin{align*}
+    \forall v_0 \in H_0: a(u_g;v_0) = f_g(v_0)
+  \end{align*}
+  Damit folgt für $u := u_g + g$
+  \begin{align*}
+    a(u;v_0) = a(u_g;v_0) + a(g;v_0) = f_g(v_0) + a(g;v_0) = f(v_0).
+  \end{align*}
+  Weiters gilt für $v_0 + g \in H_g$ beliebig
+  \begin{align*}
+    2(J(v_0 + g) - J(u_g + g)) &= a(v_0 + g; v_0 + g) - a(u_g + g; u_g + g) + 2f(u_g - v_0) \\
+    &= a(v_0 ; v_0) + a(g;g) + 2a(g; v_0) - a(u_g; u_g) - a(g;g) - 2a(g; u_g) + 2f(u_g - v_0) \\
+    &= a(v_0 ; v_0)  - a(u_g; u_g) + 2(f(u_g - v_0) - a(g;u_g - v_0)) \\
+    &= a(v_0 ; v_0)  - a(u_g; u_g) + 2f_g(u_g - v_0) \\
+    &= a(v_0 ; v_0)  - a(u_g; u_g) + 2a(u_g;u_g - v_0) \\
+    &= a(v_0 ; v_0)  + a(u_g; u_g) - 2a(u_g;v_0) \\
+    &= a(v_0 - u_g; v_0 - u_g) \geq C\|v_0 - u_g\|_H^2
+  \end{align*}
+  Also ist $u = u_g + g$ ein Minimum von $J$ auf $H_g$, welches nach obiger Rechnung
+  ebenfalls eindeutig ist.
 \end{itemize}
 \end{solution}
 
