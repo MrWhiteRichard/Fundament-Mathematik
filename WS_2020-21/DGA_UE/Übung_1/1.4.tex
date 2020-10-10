@@ -14,9 +14,23 @@ Zeigen Sie, dass die harmonischen Zahlen $H_n = \sum_{k=1}^n \frac{1}{k}$ die Ab
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+\begin{enumerate}
+\item
+\begin{align*}
+  H_n = 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}\sum_{j=0}^{\min\{n - 2^i,2^i - 1\}} \frac{1}{2^i + j}
+  \leq 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}\sum_{j=0}^{2^i - 1} \frac{1}{2^i}
+  = 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}1 = 1 + \floorbraces{\log_2(n)}
+\end{align*}
+\item
+Definiere $f(x) = \frac{1}{x}$. Betrachte die Zerlegung
+$\mathcal{Z}_n = \{1,2,3,\dots,n\}$ des Intervalls $[1,n]$.
+Da $f$ monoton fallend ist, ist $\sum_{k=2}^n\frac{1}{k}$
+die zugehörige Untersumme von $f$ zu $\mathcal{Z}_n$ und es gilt
+\begin{align*}
+  H_n =  1 + \sum_{k=2}^n\frac{1}{k} \leq \int_1^n \frac{1}{x} dx
+  = 1 + \log(n) - \log(1) = 1 + \log_2(n)\log(2).
+\end{align*}
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
