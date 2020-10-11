@@ -22,7 +22,23 @@ $u \in C^{p+1}(\bbraces{a,b})$ gilt
 
 \begin{solution}
 
-ToDo!
+Sei $L_n: C^n([a,b]) \to \Pi_n$ die Abbildung, welche einer Funktion $f$ das
+Lagrange-Interpolationspolynom zuordnet und $N_{n+1}$ das $(n+1)$-te Newton-Basispolynom.
+Dann gilt
+\begin{align*}
+  \|f^{(k)} - (L_nf)^{(k)}\|_{\infty} \leq \frac{|b-a|^{p+1-k}}{(n-k+1)!}\|f^{(n+1)}\|_{\infty}
+\end{align*}
+Für $u \in C^{(p+1)}([a,b])$ beliebig wähle also $v_0 \in \mathbb{S}_0^p$, sodass
+\begin{align*}
+  \forall j = 0,\dots,N-1: v\mid_{\bbraces{x_j , x_{j+1}}} = L_p(f\mid_{\bbraces{x_j , x_{j+1}}}) \in \Pi_p.
+\end{align*}
+für beliebige Zerlegungen $x_j = t_{j,1} < \dots < t_{j,p+1} = x_{j+1}$.
+\begin{align*}
+  \inf_{v\in \mathbb{S}^p_0} \norm[L^2((a,b))]{u' - v'} &\leq \norm[L^2((a,b))]{u' - v_0'} \\
+  &\leq (a-b)\sum_{j=0}^{N-1}\|u^{\prime} - L_p(u\mid_{\bbraces{x_j , x_{j+1}}})^{\prime}\|_{\infty}^2
+  \leq (a-b)\sum_{j=0}^{N-1}\frac{|x_{j+1} - x_j|^{p}}{p!}\|u^{(p+1)}\|_{\infty,[x_j,x_{j+1}]} \\
+  &\leq \frac{N(a-b)}{p!}\Bigg( \max_{j=0, \dots, N-1} (x_{j+1} - x_j)\Bigg)^p\|u^{(p+1)}\|_{\infty,[a,b]}
+\end{align*}
 
 \end{solution}
 
