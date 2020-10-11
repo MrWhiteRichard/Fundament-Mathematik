@@ -5,7 +5,7 @@
 Zeigen Sie, dass die harmonischen Zahlen $H_n = \sum_{k=1}^n \frac{1}{k}$ die Abschätzung $H_n = \Landau{\log{n}}$ gilt, indem Sie
 
 \begin{enumerate}
-    \item die Summe durch $N = \floorbraces{\log_2{n}}$ Blöcke der Gestalt $\sum_{j=0}^{2^i - 1} \frac{1}{2^i + j}$ (wobei $i= 1, \ldots, N$) abschätzen und anhand dieser Aufteilung $\sum_{k=1}^n \frac{1}{k} \log_2{n}$ verifizieren.
+    \item die Summe durch $N = \floorbraces{\log_2{n}}$ Blöcke der Gestalt $\sum_{j=0}^{2^i - 1} \frac{1}{2^i + j}$ (wobei $i= 1, \ldots, N$) abschätzen und anhand dieser Aufteilung $\sum_{k=1}^n \frac{1}{k} \leq 1 + \log_2{n}$ verifizieren.
     \item das Cauchy’sche Integralkriterium verwenden.
 \end{enumerate}
 
@@ -14,23 +14,83 @@ Zeigen Sie, dass die harmonischen Zahlen $H_n = \sum_{k=1}^n \frac{1}{k}$ die Ab
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+\phantom{}
+
 \begin{enumerate}
-\item
-\begin{align*}
-  H_n = 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}\sum_{j=0}^{\min\{n - 2^i,2^i - 1\}} \frac{1}{2^i + j}
-  \leq 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}\sum_{j=0}^{2^i - 1} \frac{1}{2^i}
-  = 1 + \sum_{i=1}^{\floorbraces{\log_2{n}}}1 = 1 + \floorbraces{\log_2(n)}
-\end{align*}
-\item
-Definiere $f(x) = \frac{1}{x}$. Betrachte die Zerlegung
-$\mathcal{Z}_n = \{1,2,3,\dots,n\}$ des Intervalls $[1,n]$.
-Da $f$ monoton fallend ist, ist $\sum_{k=2}^n\frac{1}{k}$
-die zugehörige Untersumme von $f$ zu $\mathcal{Z}_n$ und es gilt
-\begin{align*}
-  H_n =  1 + \sum_{k=2}^n\frac{1}{k} \leq \int_1^n \frac{1}{x} dx
-  = 1 + \log(n) - \log(1) = 1 + \log_2(n)\log(2).
-\end{align*}
+
+  \item
+
+  \begin{multline*}
+    \Bbraces{1, \dots, n}
+    =
+    \sum_{i=0}^{\floorbraces{\log_2{n}} - 1}
+    \Bbraces{2^i, \dots, 2^{i+1} - 1}
+    +
+    \Bbraces{2^{\floorbraces{\log_2{n}}}, \dots, 2^{\log_2{n}}} \\
+    =
+    \sum_{i=0}^{\floorbraces{\log_2{n}} - 1}
+    \Bbraces{2^i + 0, \dots, 2^i + (2^i - 1)}
+    +
+    \Bbraces{2^{\floorbraces{\log_2{n}}}, \dots, n}
+    \subseteq
+    \sum_{i=0}^{\floorbraces{\log_2{n}}}
+    \Bbraces{2^i, \dots, 2^i + (2^i - 1)}
+  \end{multline*}
+
+  \begin{multline*}
+    \implies
+    H_n
+    =
+    \sum_{k=1}^n \frac{1}{k}
+    =
+    \sum_{i=0}^{\floorbraces{\log_2{n}} - 1}
+    \pbraces
+    {
+      \sum_{j=0}^{2^i - 1}
+      \frac{1}{2^i + j}
+    }
+    +
+    \sum_{k = 2^\floorbraces{\log_2{n}}}^n
+    \frac{1}{k}
+    \leq
+    \sum_{i=0}^{\floorbraces{\log_2{n}}}
+    \sum_{j=0}^{2^i - 1}
+    \frac{1}{2^i + j}
+    \leq
+    \sum_{i=0}^{\floorbraces{\log_2{n}}}
+    \sum_{j=0}^{2^i - 1}
+    \frac{1}{2^i} \\
+    =
+    \sum_{i=0}^{\floorbraces{\log_2{n}}}
+    \frac{2^i}{2^i}
+    =
+    1 + \floorbraces{\log_2{n}}
+    =
+    1 + \floorbraces{\frac{\log{n}}{\log{2}}}
+    \leq
+    \Landau{\log{n}}
+  \end{multline*}
+
+  \item
+
+  Definiere $f(x) = \frac{1}{x}$. Betrachte die Zerlegung $\mathcal{Z}_n = \Bbraces{1, 2, 3, \dots, n}$ des Intervalls $[1, n]$.
+  Da $f$ monoton fallend ist, ist $\sum_{k=2}^n\frac{1}{k}$ die zugehörige Untersumme von $f$ zu $\mathcal{Z}_n$ und es gilt
+
+  \begin{align*}
+    H_n
+    =
+    1 + \sum_{k=2}^n \frac{1}{k}
+    \leq
+    1 + \Int[1][n]{\frac{1}{x}}{x}
+    =
+    1 + \log{n} - \log{1}
+    =
+    \Landau{\log{n}}.
+  \end{align*}
+
 \end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------

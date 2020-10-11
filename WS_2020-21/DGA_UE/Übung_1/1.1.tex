@@ -33,13 +33,13 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     &1: \textbf{Prozedur}~ \textsc{Selection Sort} (A) & \\
     &2:  \quad n := A.\textit{Länge} & \\
     &3:  \quad \textbf{Für}~ i := 1, \dots, n-1 & \\
-    &4:  \quad \quad k := i & \\
+    &4:  \quad \quad i_{min} := i & \\
     &5:  \quad \quad \textbf{Für}~ j := i+1, \dots, n & \\
-    &6:  \quad \quad \quad \textbf{Wenn}~ A[j] < A[k] & \\
-    &7:  \quad \quad \quad \quad k := j & \\
+    &6:  \quad \quad \quad \textbf{Wenn}~ A[j] < A[i_{min}] & \\
+    &7:  \quad \quad \quad \quad i_{min} := j & \\
     &8:  \quad \quad \quad \textbf{Ende Wenn}~ & \\
     &9:  \quad \quad \textbf{Ende Für}~ & \\
-    &10: \quad  \quad A[k], A[i] := A[i], A[k] & \\
+    &10: \quad  \quad A[i_{min}], A[i] := A[i], A[i_{min}] & \\
     &11: \quad  \textbf{Ende Für}~ & \\
     &12: \textbf{Ende Prozedur}
   \end{flalign*}
@@ -89,8 +89,8 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     }
   \end{align*}
 
-  Im best-case ist die Liste aufsteigend sortiert.
-  Die Bedingung in der $6$-ten Zeile hält also nie und
+  Im worst-case ist die Liste absteigend sortiert.
+  Die Bedingung in der $6$-ten Zeile hält also immer und
 
   \begin{align*}
     \Forall i = 1, \dots, n-1:
@@ -116,7 +116,7 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     \Landau{n^2}.
   \end{multline*}
 
-  Im worst-case ist die Liste aufsteigend sortiert.
+  Im best-case ist die Liste aufsteigend sortiert.
   Die Bedingung in der $6$-ten Zeile hält also nie und
 
   \begin{align*}
