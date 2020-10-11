@@ -67,7 +67,7 @@ Alle anderen Zeilen werden maximal einmal ausgeführt.
 	&~6: \quad \quad \textbf{Wenn}~ x > A[a + j]&\\
 	&~7: \quad \quad \quad a := a + j &\\
 	&~8: \quad \quad \textbf{Sonst} &\\
-	&~9: \quad \quad \quad b := a + j &\\
+	&~9: \quad \quad \quad e := a + j &\\
 	&10: \quad \quad \textbf{Ende Wenn}&\\
 	&11: \quad \quad j := \lfloor(e - a) / 2\rfloor &\\
 	&12: \quad \textbf{Ende Solange}: &\\
@@ -80,6 +80,7 @@ Alle anderen Zeilen werden maximal einmal ausgeführt.
 	
 	Beim Algorithmus Einfügesortieren wird die äußere Schleife stets $n$ Mal durchlaufen, ersetzt man die innere Schleife durch ein ähnliches Verfahren wie die Prozedur Divide-and-Conquer-Suche so wird im schlechtesten Fall die innere Schleife im $j$-ten Durchlauf der äußeren Schleife $\lceil\log_2(j)\rceil$ Mal durchlaufen. Ergibt sich so ein Aufwand von
 	\begin{align*}
-	\sum_{j = 2}^{n} \lceil\log_2(j)\rceil = \Landau{n \log(n)}?
+	\sum_{j = 2}^{n} \lceil\log_2(j)\rceil &\geq \sum_{j = 2}^{n} \log_2(j) \geq \int_1^n \log_2(x) dx = \frac{1}{\log(2)} \int_1^n \log(x) dx \\
+	&= \frac{1}{\log(2)}((n\log(n) - n) - (1\log(1) - 1)) = \frac{1}{\log(2)}(n(\log(n) - 1) + 1)
 	\end{align*}
 \end{solution}
