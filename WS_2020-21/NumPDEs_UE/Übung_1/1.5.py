@@ -70,11 +70,10 @@ def test(f, n_max, exact):
     a = -1
     b = 1
 
-    approximates = [gaussian_quadrature(a, b, n, f) for n in range(n_max)]
+    approximates = [gaussian_quadrature(a, b, n, f) for n in range(1,n_max)]
     errors = [abs(approximate - exact) for approximate in approximates]
     print(errors)
-    plt.semilogy(range(n_max), errors)
-
+    plt.semilogy(range(1,n_max), errors)
     plt.xlabel('$n$')
     plt.ylabel('$\epsilon(n)$')
     plt.grid(linestyle = ':')
