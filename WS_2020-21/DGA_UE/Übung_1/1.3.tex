@@ -30,39 +30,48 @@
 
 	\item
 
-	\begin{flalign*}
-		1&:  \textbf{Prozedur}~ \textsc{Divide-and-Conquer-Suche} (A, x, j := 0) & \\
-		2&:  \quad n := A.\textit{Länge} & \\
-		3&:  \quad \textbf{Wenn}~ n \neq 1 & \\
-		4&:  \quad \quad k := \floorbraces{\nicefrac{n}{2}} & \\
-		5&:  \quad \quad \textbf{Wenn}~ x > A[k] & \\
-		6&:  \quad \quad \quad j := j + k & \\
-		7&:  \quad \quad \quad B := A[k+1, \dots, n] & \\
-		8&:  \quad \quad \quad \textsc{Divide-and-Conquer-Suche} (B, x, j) & \\
-		9&:  \quad \quad \textbf{Sonst Wenn}~ x < A[k] & \\
-		10&: \quad \quad \quad B := A[1, \dots, k-1] & \\
-		11&: \quad \quad \quad \textsc{Divide-and-Conquer-Suche} (B, x, j) & \\
-		12&: \quad \quad \textbf{Sonst} & \\
-		13&: \quad \quad \quad j := j + k & \\
-		14&: \quad \quad \textbf{Ende Wenn} & \\
-		15&: \quad \textbf{Sonst Wenn}~ A[1] = x & \\
-		16&: \quad \quad j := j + 1 & \\
-		17&: \quad \textbf{Sonst} & \\
-		18&: \quad \quad j := \NIL & \\
-		19&: \quad \textbf{Ende Wenn} & \\
-		20&: \textbf{Ende Prozedur}
+  \begin{flalign*}
+		1&:  \textbf{Prozedur}~ \textsc{Divide-and-Conquer-Suche} (A, x) & \\
+		2&:  \quad a := 1 & \\
+		3&:  \quad b := A.\textit{Länge} & \\
+		4&:  \quad j := \floorbraces{(b - a) / 2} & \\
+		5&:  \quad \textbf{Solange}~ b - a > 0 ~\textbf{und}~ A[a + j] \neq x & \\
+		6&:  \quad \quad \textbf{Wenn}~ A[a + j] < x & \\
+		7&:  \quad \quad \quad a := a + j + 1 & \\
+		8&:  \quad \quad \textbf{Sonst} & \\
+		9&:  \quad \quad \quad b := a + j - 1& \\
+		10&: \quad \quad \textbf{Ende Wenn} & \\
+		11&: \quad \quad j := \floorbraces{(b - a) / 2} & \\
+		12&: \quad \textbf{Ende Solange} & \\
+		13&: \quad \textbf{Wenn}~ j = 0 & \\
+		14&: \quad \quad j := \NIL & \\
+    15&: \quad \textbf{Sonst} & \\
+    16&: \quad \quad j := j + a & \\
+		17&: \quad \textbf{Ende Wenn} & \\
+		18&: \textbf{Ende Prozedur}
 	\end{flalign*}
 
-	Die Wenn-Bedingung in der $2$-ten Zeile wird maximal $\ceilbraces{\log_2(n)}$ mal überprüft
-	und damit wird jede Zeile innerhalb des Wenn-Blocks maximal $\ceilbraces{\log_2(n)}$ mal ausgeführt.
-	Alle anderen Zeilen werden maximal einmal ausgeführt.
+	In jedem Schritt des Solange-Block wird $(b-a)$ mindestens halbiert (oder die Schleife bricht ab): \\
+  Fall 1: $A[a+j] < x$
+  \begin{align*}
+    b^{\prime} - a^{\prime} = b - a - j - 1 = b - a - \floorbraces{(b - a) / 2} - 1 \leq \frac{b-a}{2}
+  \end{align*}
+  Fall 2: $A[a+j] > x$
+  \begin{align*}
+    b^{\prime} - a^{\prime} = a + j - 1 - a = j - 1 \leq \frac{b - a}{2}
+  \end{align*}
+  Fall 3: $A[a+j] = x$ \\
+  Die Solange-Bedingung ist nicht mehr erfüllt und wir haben den letzten Schleifendurchlauf erreicht. \\
+  Insgesamt ist nach $\ceilbraces{\log_2(n)}$ in jedem Fall die Solange-Bedingung verletzt und somit
+  wird der Solange-Block maximal $\ceilbraces{\log_2(n)}$ oft ausgeführt, was
+  uns insgesamt auf einen Aufwand von $\Landau{n}$ führt.
 
 	\begin{flalign*}
 		1&:  \textbf{Prozedur}~ \textsc{Divide-and-Conquer-Suche} (A, x) & \\
 		2&:  \quad a := 0 & \\
 		3&:  \quad b := A.\textit{Länge} + 1 & \\
 		4&:  \quad j := \floorbraces{(b - a) / 2} & \\
-		5&:  \quad \textbf{Solange}~ b - a > 1 ~\textbf{und}~ A[a + j] \neq x & \\
+		5&:  \quad \textbf{Solange}~ b - a > 0 ~\textbf{und}~ A[a + j] \neq x & \\
 		6&:  \quad \quad \textbf{Wenn}~ A[a + j] < x & \\
 		7&:  \quad \quad \quad a := a + j + 1 & \\
 		8&:  \quad \quad \textbf{Sonst} & \\
@@ -75,14 +84,13 @@
 		15&: \quad \textbf{Ende Wenn} & \\
 		16&: \textbf{Ende Prozedur}
 	\end{flalign*}
-
 	Es ist nicht ganz klar, was in der Angabe mit begründen gemeint ist.
 	Ein sauberer Beweis oder die Bemerkung, dass die Länge des Datenfeldes sich stets halbiert, die Schleife also sicher nicht öfter als $\ceilbraces{\log_2(n)}$ Mal ausgeführt wird?
 
 	\item \phantom{}
-	
+
 	\includegraphicsboxed{Hetzl - Algorithmus 2 - Einfügesortieren.png}
-	
+
 	Beim Algorithmus Einfügesortieren wird die äußere Schleife stets $(n - 1)$-Mal durchlaufen.
 	Ersetzt man die innere Schleife durch ein ähnliches Verfahren wie die Prozedur Divide-and-Conquer-Suche, so wird im schlechtesten Fall die innere Schleife im $j$-ten Durchlauf der äußeren Schleife $\ceilbraces{\log_2{j}}$-Mal durchlaufen.
 	Es ergibt sich so folgender Aufwand.

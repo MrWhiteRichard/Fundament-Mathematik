@@ -160,27 +160,27 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
 
   \begin{align*}
     \implies
-    T(A) = c_2 + \sum_{i=1}^n \pbraces{c_3 + \sum_{j=1}^{n-i} (c_5 + c_6 \cdot t_{ij})} \\
+    T(A) = c_2 + c_3 + \sum_{i=1}^n \pbraces{c_3 + c_4 + \sum_{j=1}^{n-i} (c_4 + c_5 + c_6 \cdot t_{ij})} \\
   \end{align*}
 
   \begin{align*}
     \implies
-    S(A) = 1 + \sum_{i=1}^n \pbraces{1 + \sum_{j=1}^{n-i} (1 + t_{ij})}
+    S(A) = 2 + \sum_{i=1}^n \pbraces{2 + \sum_{j=1}^{n-i} (2 + t_{ij})}
   \end{align*}
 
   \begin{multline*}
     \implies
     S_{\mathrm{s}}(A)
     =
-    1 + \sum_{i=1}^n \pbraces {1 + \sum_{j=1}^{n-i} (1 + 1)}
+    2 + \sum_{i=1}^n \pbraces {2 + \sum_{j=1}^{n-i} (2 + 1)}
     =
-    1 + \sum_{i=1}^n (1 + 2(n-i))
+    2 + \sum_{i=1}^n (2 + 3(n-i))
     =
-    1 + \sum_{i=1}^n 1 + \sum_{i=1}^n 2n - \sum_{i=1}^n i \\
+    2 + \sum_{i=1}^n 2 + \sum_{i=1}^n 3n - \sum_{i=1}^n 3i \\
     =
-    1 + n + 2n^2 - \frac{n (n + 1)}{2}
+    2 + 2n + 3n^2 - \frac{3n (n + 1)}{2}
     =
-    \frac{3n^2}{2} + \frac{n}{2} + 1
+    \frac{3n^2}{2} + \frac{n}{2} + 2
     =
     \Landau{n^2}
   \end{multline*}
@@ -189,15 +189,15 @@ Wenden Sie die Algorithmen auf den Datensatz $6, 77, 45, 103, 4, 17$ an.
     \implies
     S_{\mathrm{b}}(A)
     =
-    1 + \sum_{i=1}^n \pbraces {1 + \sum_{j=1}^{n-i} (1 + 0)}
+    2 + \sum_{i=1}^n \pbraces {2 + \sum_{j=1}^{n-i} (2 + 0)}
     =
-    1 + \sum_{i=1}^n (1 + (n-i))
+    2 + \sum_{i=1}^n (2 + 2(n-i))
     =
-    1 + \sum_{i=1}^n 1 + \sum_{i=1}^n n - \sum_{i=1}^n i \\
+    2 + \sum_{i=1}^n 2 + \sum_{i=1}^n 2n - \sum_{i=1}^n 2i \\
     =
-    1 + n + n^2 - \frac{n (n + 1)}{2}
+    2 + 2n + 2n^2 - n (n + 1)
     =
-    \frac{n^2}{2} + \frac{n}{2} + 1
+    n^2 + n + 2
     =
     \Landau{n^2}
   \end{multline*}

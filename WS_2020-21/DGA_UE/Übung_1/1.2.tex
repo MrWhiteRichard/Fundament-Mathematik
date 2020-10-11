@@ -28,7 +28,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
   4&:  \quad \textbf{Für}~ j := 1, \dots, n & \\
   5&:  \quad \quad \textbf{Wenn}~ x = A[j] & \\
   6&:  \quad \quad \quad i := j & \\
-  7&:  \quad \quad \quad \textbf{Ende Prozedur} & \\
+  7&:  \quad \quad \quad \textbf{Abbruch} & \\
   8&:  \quad \quad \textbf{Ende Wenn} & \\
   9&:  \quad \textbf{Ende Für} & \\
   10&: \textbf{Ende Prozedur}
@@ -57,7 +57,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 
   \begin{enumerate}[label = \arabic*.]
 
-    \item Zu Beginn des ersten Durchlaufs der Schleife ist $\texttt{i} = \NIL$.
+    \item Zu Beginn des ersten Durchlaufs der Schleife ist $\texttt{i} = \NIL$ und $\texttt{j} = 1$.
     $I(\texttt{A}, \texttt{x}, \texttt{i}, \texttt{j})$ ist hier also wahr.
 
     \item Es gelte $I(\texttt{A},\texttt{x},\texttt{i},\texttt{j})$.
@@ -69,7 +69,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
     Für den Wert von $\texttt{i}^\prime$ machen wir eine Fallunterscheidungs.
 
     \begin{enumerate}[label = \Roman*.]
-      
+
       \item Fall ($\texttt{x}^\prime = \texttt{A}^\prime[\texttt{j}^\prime]$):
       Dann wird die $6$-te Zeile ausgeführt und $\texttt{i}^\prime = \texttt{j}^\prime$.
       Anschließend terminiert der Algorithmus.
@@ -102,7 +102,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
       =
       \Landau{n}
     \end{align*}
-  
+
     \item Average-Case:
 
     Nachdem im Skriptum vorausgesetzt wird (ohne darauf hinzuweisen), dass die Einträge von $A$ verschieden sind und damit o.B.d.A $\Bbraces{1, \dots, n}$, werden wir das hier auch tun.
@@ -123,7 +123,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 
     Für $\pi \in S_n$ und $\pi(i) = x$ mit $i = 1, \dots, n$, muss die Wenn-Bedingung in der $5$-ten Zeile genau $i$-Mal überprüft werden.
     Weil alle Permutationen aus $S_n$ gleich wahrscheinlich sind, erhalten wir für die durchschnittliche Anzahl der Wenn-Bedingungs-Überprüfungen
-    
+
     \begin{align*}
       \overline{t}
       =
@@ -141,7 +141,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
       c_2 + c_3 + (c_4 + c_5) \frac{n + 1}{2} + c_6
       =
       \Landau{n}
-    \end{align*}  
+    \end{align*}
 
     \item Best-Case:
 
@@ -154,7 +154,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
       =
       \Landau{1}
     \end{align*}
-  
+
   \end{enumerate}
 
 \end{enumerate}
@@ -173,7 +173,7 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 	&6:  \quad \textbf{Wenn}~ j = A.L"ange + 1 & \\
 	&7:  \quad \quad j := NIL & \\
 	&8:  \quad \textbf{Ende Wenn} & \\
-	&9:  \textbf{Ende Prozedur} 
+	&9:  \textbf{Ende Prozedur}
 	\end{flalign*}
 	Wir wollen nun einen Korrektheitsbeweis führen. Dafür bezeichnen wir mit $k$ den Schleifendurchlauf und definieren die Schleifeninvariante $I(j,k): j = k$. Nun gilt
 	\begin{enumerate}[label = (\arabic*)]
@@ -189,11 +189,10 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 	\begin{enumerate}[label = (\arabic*)]
 		\item Im besten Fall ist $A[1] = x$, folglich $s = 0$ und $t = 1$. Damit ergibt sich $T(A,x) = c_2 + c_3 + c_5 + c_6 + c_8 = \Landau{1}$.
 		\item Im schlechtesten Fall ist $x$ nicht in der Liste $A$ enthalten und es ist $s = 1$ und $t = n + 1$. Es ergibt sich ein Aufwand von $T(A,x) = (c_3 + c_5) (n + 1) + n c_4 + c_2 + c_6 + c_7 + c_8 = \Landau{n}$.
-		\item Zur Analyse des durchschnittlichen Falls nehmen wir an, dass $x$ in der Liste $A$ enthalten ist und an jeder Stelle mit der gleichen Wahrscheinlichkeit, nämlich $\frac{1}{n}$ vorzufinden ist. Mit Sicherheit ist also $s = 0$ und wir berechnen 
+		\item Zur Analyse des durchschnittlichen Falls nehmen wir an, dass $x$ in der Liste $A$ enthalten ist und an jeder Stelle mit der gleichen Wahrscheinlichkeit, nämlich $\frac{1}{n}$ vorzufinden ist. Mit Sicherheit ist also $s = 0$ und wir berechnen
 		\begin{align*}
 		\overline{t} = \sum_{i=1}^n \frac{i}{n} = \frac{n+1}{2}.
 		\end{align*}
 		und erhalten mit $t = \overline{t}$ den Aufwand $T(A,x) = (c_3 + c_5) \frac{n + 1}{2} + c_4 \frac{n - 1}{2} + c_2 + c_6 + c_8 = \Landau{n}$.
 	\end{enumerate}
 \end{solution}
-
