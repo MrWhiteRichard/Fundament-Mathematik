@@ -12,7 +12,7 @@ Tridiagonalmatrix
   \beta_1 & 0 & \ddots & & \\
   & \ddots & \ddots & \beta_{n-2} & \\
   & & \beta_{n-2} & 0 & \beta_{n-1} \\
-  & & & \beta_n-1 & 0
+  & & & \beta_{n-1} & 0
   \end{pmatrix}
   \in \R^{n \times n}, \quad
   \beta_n = \frac{n}{\sqrt{4n^2 -1}}
@@ -20,15 +20,22 @@ Tridiagonalmatrix
 
 Für letzeres können Sie einen fertigen Eigenwertlöser verwenden. Testen Sie ihr Programm an
 unterschiedlichen Funktionen. Bestimmen Sie dafür den Quadraturfehler numerisch und vergleichen
-Sie ihn mit theoretischen Fehlerschranken.
+Sie ihn mit theoretischen Fehlerschranken.ToDo!
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-ToDo!
-
+Theoretische Fehlerschranke für Gauß-Quadraturen mit $n + 1$ Quadraturknoten:
+\begin{align*}
+  Q(f) - Q_n(f) = \frac{f^{(2n+2)}(\xi)}{(2n+2)!}\int_a^bw(x)\prod_{j=0}^n(x - x_j)^2dx,
+  \quad \text{für ein } \xi \in (a,b).
+\end{align*}
+Für $w(x) \equiv 0$ folgt also
+\begin{align*}
+  |Q(f) - Q_n(f)| \leq 2\frac{\|f^{(2n+2)}\|_{\infty,[a,b]}}{(2n+2)!}\max_{j=0}^{N-1} (x_{j+1} - x_j)^p
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
