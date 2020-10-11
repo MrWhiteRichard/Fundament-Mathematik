@@ -6,14 +6,14 @@
 
 \begin{enumerate}[label = (\alph*)]
 
-    \item Zeigen Sie mittels vollständiger Induktion, dass ein Algorithmus, dessen Laufzeit $t(n)$ (wobei $n = 2^k$, $k \in \Z^+$) der Rekursion
+    \item Zeigen Sie mittels vollständiger Induktion, dass ein Algorithmus, dessen Laufzeit $T(n)$ (wobei $n = 2^k$, $k \in \Z^+$) der Rekursion
 
     \begin{align*}
         T(n)
         =
         \begin{cases}
             1                    & \text{für}~ n = 2 \\
-            2T (\frac{n}{2}) + 1 & \text{für}~ n = 2^k, k > 1
+            2 T(\frac{n}{2}) + 1 & \text{für}~ n = 2^k, k > 1
         \end{cases}
     \end{align*}
 
@@ -26,7 +26,7 @@
         =
         \begin{cases}
             2                    & \text{für}~ n = 2 \\
-            2T (\frac{n}{2}) + 1 & \text{für}~ n = 2^k, k > 1
+            2 T(\frac{n}{2}) + n & \text{für}~ n = 2^k, k > 1
         \end{cases}
     \end{align*}
 
@@ -41,63 +41,78 @@
 
 \begin{solution}
 
+\phantom{}
+
 \begin{enumerate}[label = (\alph*)]
 
-\item Für den Induktionsanfang setzen wir $k=1$, also $n=2^1$ und sehen sofort
+  \item Wir führen Induktion nach $k$ (und schreiben immer $2^k$ statt $n$).
 
-\begin{align*}
-  T(2^1)
-  =
-  2 - 1
-  =
-  1
-\end{align*}
+  IA($k=1$):
 
-Um den Induktionsschritt durchzuführen sei die Induktionsbehauptung für alle $2^j$,
-wobei $j < k$, wahr. Dann erhalten wir für $n=2^k$:
+  \begin{align*}
+    \implies
+    T(2^1)
+    =
+    T(2)
+    =
+    1
+    =
+    2 - 1
+    =
+    2^1 - 1
+  \end{align*}
 
-\begin{align*}
-  T(2^k)
-  =
-  2 T(2^{k-1}) + 1
-  \stackrel{\text{IV}}{=}
-  2(2^{k-1} - 1) + 1
-  =
-  2^k - 1
-  =
-  n - 1
-\end{align*}
+  IV: $T(2^{k-1}) = 2^{k-1} - 1$ \\
+  IS($k-1 \mapsto k$):
 
-\item Für den Induktionsanfang setzen wir $k=1$, also $n=2^1$ und sehen sofort
+  \begin{align*}
+    \implies
+    T(2^k)
+    =
+    2 T(2^{k-1}) + 1
+    \stackrel{\text{IV}}{=}
+    2 (2^{k-1} - 1) + 1
+    =
+    2^k - 2 + 1
+    =
+    2^k - 1
+  \end{align*}
 
-\begin{align*}
-  T(2^1)
-  =
-  2 \cdot 1
-  =
-  2
-\end{align*}
+  \item Wir führen Induktion nach $k$ (und schreiben immer $2^k$ statt $n$).
 
-Um den Induktionsschritt durchzuführen sei die Induktionsbehauptung für alle $2^j$,
-wobei $j < k$, wahr. Dann erhalten wir für $n=2^k$:
+  IA($k=1$):
 
-\begin{align*}
-  T(2^k)
-  =
-  2 T(2^{k-1}) + 2^k
-  \stackrel{\text{IV}}{=}
-  2 (2^{k-1} \log_2{(2^{k-1})}) + 2^k
-  =
-  2^k(k-1) + 2^k
-  =
-  2^k k - 2^k + 2^k
-  =
-  2^k \log_2{(2^k)}
-  =
-  n \log_2{(n)}
-\end{align*}
+  \begin{align*}
+    \implies
+    T(2^1)
+    =
+    T(2)
+    =
+    2
+    =
+    2^1 \log_2{2^1}
+  \end{align*}
+
+  IV: $T(2^{k-1}) = 2^{k-1} \log_2{2^{(k-1)}}$ \\
+  IS($k-1 \mapsto k$):
+
+  \begin{align*}
+    \implies
+    T(2^k)
+    =
+    2 T(2^{k-1}) + 2^k
+    \stackrel{\text{IV}}{=}
+    2 (2^{k-1} \log_2{2^{k-1}}) + 2^k
+    =
+    2^k(k-1) + 2^k
+    =
+    2^k k - 2^k + 2^k
+    =
+    2^k \log_2{(2^k)}
+  \end{align*}
 
 \end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
