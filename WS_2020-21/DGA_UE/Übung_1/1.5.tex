@@ -20,6 +20,7 @@ Die Grundidee dahinter ist die Umformung $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots 
 \phantom{}
 
 \begin{enumerate}[label = (\roman*)]
+<<<<<<< HEAD
 
   \item Wir nehmen an, dass Polynome als Arrays übergeben werden mit $p[0] = a_0, \dots, p[n] = a_n$.
 
@@ -42,6 +43,45 @@ Die Grundidee dahinter ist die Umformung $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots 
     &4: \quad \textbf{Für}~ i = n-1, \dots, 1 & \\
     &5: \quad \quad y := p[i] + x \cdot y & \\
     &6: \quad \textbf{Ende Für} & \\
+=======
+    \item Wir nehmen an, dass Polynome als Arrays übergeben werden mit $p[0] = a_0, \dots, p[n] = a_n$.
+    \begin{flalign*}
+    &1: \textbf{Prozedur}~ \textsc{Horner-Schema} (p,x) &\\
+    &2: \quad y := p[n]*x &\\
+    &3: \quad \textbf{Für}~ i = n-1,\dots,1: &\\
+    &4: \quad \quad  y := y + p[i] &\\
+    &5: \quad \quad  y := x*y &\\
+    &6: \quad \textbf{Ende Für} &\\
+    &7: \quad y := y + p[0] &\\
+    &8: \textbf{Ende Prozedur}
+    \end{flalign*}
+    \begin{flalign*}
+    &1: \textbf{Prozedur}~ \textsc{Horner-Schema} (p,x) &\\
+    &2: \quad y := p[n] &\\
+    &3: \quad \textbf{Für}~ i = n-1,\dots,0: &\\
+    &4: \quad \quad  y := p[i] + x * y &\\
+    &5: \quad \textbf{Ende Für} &\\
+    &6: \textbf{Ende Prozedur}
+    \end{flalign*}
+    \item
+    \begin{flalign*}
+    &1: \textbf{Prozedur}~ \textsc{Polynom-Auswerten} (p,x) &\\
+    &2: \quad y := p[0] &\\
+    &3: \quad z := 1 &\\
+    &4: \quad \textbf{Für}~ i = 1,\dots,n: &\\
+    &5: \quad \quad  z := z*x &\\
+    &6: \quad \quad  y := y + p[i]*z &\\
+    &7: \quad \textbf{Ende Für} &\\
+    &8: \textbf{Ende Prozedur}
+    \end{flalign*}
+    \begin{flalign*}
+    &1: \textbf{Prozedur}~ \textsc{Polynom-Auswerten} (p,x) &\\
+    &2: \quad y := p[0] &\\
+    &3: \quad \textbf{Für}~ i = 1,\dots,n: &\\
+    &4: \quad \quad  y := y + p[i]*x &\\
+    &5: \quad \quad  x := x * x &\\
+    &6: \quad \textbf{Ende Für} &\\
+>>>>>>> e5655399655276b3ecc3227a7ee2879234e5af98
     &7: \textbf{Ende Prozedur}
   \end{flalign*}
   
