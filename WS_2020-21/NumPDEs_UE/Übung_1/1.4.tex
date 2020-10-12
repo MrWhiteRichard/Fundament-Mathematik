@@ -28,26 +28,94 @@ Verwenden Sie eine Interpolationsfehlerdarstellung.
 
 \begin{solution}
 
-Sei $L_n: C^n([a,b]) \to \Pi_n$ die Abbildung, welche einer Funktion $f$ das Lagrange-Interpolationspolynom zuordnet und $N_{n+1}$ das $(n+1)$-te Newton-Basispolynom.
-Dann gilt
+Sei $L_p: C^{p+1}([x_a, x_b]) \to \Pi_p$ der (lineare) Lagrange-Interpolationspolynom-Operator (für eine Zerlegung $x_a \leq t_0 \cdots < t_p \leq x_b$).
+
+\includegraphicsboxed
+[Innerberger, Nannen \& Praetorius - Numerics of differential equations]
+{Innerberger, Nannen & Praetorius - Numerics of differential equations - Lemma 3.18 (Lagrange Interpolation).png}
 
 \begin{align*}
-  \|f^{(k)} - (L_nf)^{(k)}\|_{\infty} \leq \frac{|b-a|^{p+1-k}}{(n-k+1)!}\|f^{(n+1)}\|_{\infty}
+  \implies
+  \Forall f \in C^{p+1}([x_a, x_b]),
+  \Forall k = 0, \dots, p:
+  \norm[\infty]
+  {
+    f^{(k)} - (L_p f)^{(k)}
+  }
+  \leq
+  \frac
+  {
+    (x_b - x_a)^{p+1-k}
+  }{
+    (p + 1 - k)!
+  }
+  \norm[\infty]
+  {
+    f^{(p+1)}
+  }
 \end{align*}
 
-Für $u \in C^{(p+1)}([a,b])$ beliebig wähle also $v_0 \in \S_0^p$, sodass
+Seien $u \in C^{(p+1)}([a, b])$ und $x_j = t_{j, 1} < \dots < t_{j, p+1} = x_{j+1}$, $j = 0, \dots, N-1$ Zerlegungen.
 
 \begin{align*}
-  \forall j = 0,\dots,N-1: v\mid_{\bbraces{x_j , x_{j+1}}} = L_p(f\mid_{\bbraces{x_j , x_{j+1}}}) \in \Pi_p.
+  \implies
+  \Exists v_0 \in \S_0^p:
+  \Forall j = 0, \dots, N-1:
+  v_0|_{[x_j , x_{j+1}]}
+  =
+  L_p(u|_{[x_j , x_{j+1}]})
+  \in
+  \Pi_p.
 \end{align*}
 
-für beliebige Zerlegungen $x_j = t_{j,1} < \dots < t_{j,p+1} = x_{j+1}$.
-
 \begin{align*}
-  \inf_{v\in \S^p_0} \norm[L^2((a,b))]{u^\prime - v^\prime} &\leq \norm[L^2((a,b))]{u^\prime - v_0^\prime} \\
-  &\leq (a-b)\sum_{j=0}^{N-1}\|u^{\prime} - L_p(u\mid_{\bbraces{x_j , x_{j+1}}})^{\prime}\|_{\infty}^2
-  \leq (a-b)\sum_{j=0}^{N-1}\frac{|x_{j+1} - x_j|^{p}}{p!}\|u^{(p+1)}\|_{\infty,[x_j,x_{j+1}]} \\
-  &\leq \frac{N(a-b)}{p!}\Bigg( \max_{j=0, \dots, N-1} (x_{j+1} - x_j)\Bigg)^p\|u^{(p+1)}\|_{\infty,[a,b]}
+  \implies
+  \inf_{v \in \S^p_0}
+  \norm[L^2((a, b))]{u^\prime - v^\prime}^2
+  & \leq
+  \norm[L^2((a, b))]{u^\prime - v_0^\prime}^2 \\
+  & =
+  \Int[a][b]
+  {|u^\prime - v_0^\prime|^2}
+  {\lambda} \\
+  & =
+  \sum_{j=0}^{N-1}
+  \Int[x_i][x_{i+1}]
+  {
+    |
+      (u|_{[x_j , x_{j+1}]})^\prime
+      -
+      (v_0|_{[x_j , x_{j+1}]})^\prime
+    |^2
+  }
+  {\lambda} \\
+  & \leq
+  (a - b)
+  \sum_{j=0}^{N-1}
+  \norm[\infty]
+  {
+    (u|_{[x_j , x_{j+1}]})^\prime
+    -
+    L_p(u|_{[x_j , x_{j+1}]})^\prime
+  }^2 \\
+  & \leq
+  (a - b)
+  \sum_{j=0}^{N-1}
+  \frac
+  {
+    {x_{j+1} - x_j}^{p}
+  }{p!}
+  \norm
+  [{\infty, [x_j,x_{j+1}]}]
+  {u^{(p+1)}} \\
+  & \leq
+  \frac{N (a - b)}{p!}
+  \pbraces
+  {
+    \max_{j=0, \dots, N-1}
+    (x_{j+1} - x_j)
+  }^p
+  \norm[\infty]{u^{(p+1)}}
 \end{align*}
 
 \end{solution}
