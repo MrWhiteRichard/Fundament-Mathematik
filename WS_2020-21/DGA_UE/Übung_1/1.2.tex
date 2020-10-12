@@ -175,11 +175,11 @@ Gegeben sei ein $n$-elementiger Datenfeld $A[1, \ldots, n]$ und ein Wert $x$.
 	&8:  \quad \textbf{Ende Wenn} & \\
 	&9:  \textbf{Ende Prozedur}
 	\end{flalign*}
-	Wir wollen nun einen Korrektheitsbeweis führen. Dafür bezeichnen wir mit $k$ den Schleifendurchlauf und definieren die Schleifeninvariante $I(j,k): j = k$. Nun gilt
+	Wir wollen nun einen Korrektheitsbeweis führen. Dafür bezeichnen wir mit $k$ den Schleifendurchlauf und definieren die Schleifeninvariante $I(j): \forall k < j: A[k] \neq x $. Nun gilt
 	\begin{enumerate}[label = (\arabic*)]
-		\item Zu Beginn der Schleife befinden wir uns im ersten Schleifendurchlauf, also $k = 1$ und tatsächlich gilt auch $j = 1 = k$.
-		\item Sei nun $I(j,k)$ zu Beginn des $k$-ten Schleifendurchlaufs erfüllt, also $j = k$. Nun wird in der Schleife $j := j + 1 = k + 1$, was dann auch zu Beginn des $k+1$-ten Schleifendurchlaufs gültig ist.
-		\item Bei Beendigung der Schleife ist $j = A.L"ange + 1$ oder $A[j] = x$. Im ersten Fall wird Zeile 8 ausgeführt und der Algorithmus endet mit $j = NIL$. Im zweiten Fall sind wir ohnehin fertig.
+		\item Zu Beginn der Schleife ist $j = 1$ also gibt es gar kein $k \in \N$ das $k < j$ erfüllt, damit ist $I(j)$ erfüllt.
+		\item Sei nun $I(j)$ erfüllt. Da die Schleife durchlaufen wird gilt $A[j] \neq x$. Insgesamt zu Beginn des $n + 1$-ten Schleifendurchlaufs also aus der Voraussetzung und dem Argument eben $\forall k < j + 1: A[k] \neq x$. 
+		\item Bei Beendigung der Schleife ist $j = A.L"ange + 1$ oder $A[j] = x$. Im ersten Fall gilt $\forall k < A.L"ange + 1: A[k] \neq x$ also ist $x$ nicht in $A$ enthalten, der Algorithmus endet mit $NIL$. Sonst gibt der Algorithmus klarerweise ein $j$ aus, für das $A[j] = x$ gilt. 
 	\end{enumerate}
 	Nun wollen wir noch den Aufwand des Algorithmus analysieren. Sei dazu $t$ die Anzahl der Ausführungen des Schleifenkopfes und $s$ die Anzahl der Ausführungen von Zeile 7. Allgemein gilt nun
 	\begin{align*}
