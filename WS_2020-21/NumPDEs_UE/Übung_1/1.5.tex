@@ -29,44 +29,37 @@ Bestimmen Sie dafür den Quadraturfehler numerisch und vergleichen Sie ihn mit t
 
 \begin{solution}
 
-Theoretische Fehlerschranke für Gauß-Quadraturen mit $n + 1$ Quadraturknoten:
+In unserem Fall ist die Gewichtsfunktion (vermutlich) $\omega \equiv 1$.
+
+\includegraphicsboxed[Nannen - Numerik A]{Nannen - Numerik A - Satz 4.18.png}
+
+Zur Bestimmung der Knoten und Gewichte verwenden wir das Resultat aus Abbildung \ref{fig:NNAS4.23}.
+
+\begin{figure}[h!]
+  \begin{boxedin}
+    \begin{center}
+      \includegraphics[width = 0.75 \textwidth]{Nannen - Numerik A - Satz 4.23.1.png} \\
+      \vspace{0.5 cm}
+      \includegraphics[width = 0.75 \textwidth]{Nannen - Numerik A - Satz 4.23.2.png}
+      \caption{Nannen - Numerik A}
+      \label{fig:NNAS4.23}
+    \end{center}
+  \end{boxedin}
+\end{figure}
+
+Um von einem einem beliebigen Intervall $[a, b]$ auf das Referenz-Intervall $[-1, 1]$ zu skalieren, verwenden wir den Diffeomorphismus $\Phi$.
 
 \begin{align*}
-  Q(f) - Q_n(f)
-  =
-  \frac
-  {
-    f^{(2n + 2)}(\xi)
-  }{
-    (2n + 2)!
-  }
-  \Int[a][b]
-  {
-    w(x)
-    \prod_{j=0}^n
-    (x - x_j)^2
-  }{x},
-  \quad
-  \text{für ein}~
-  \xi \in (a, b).
-\end{align*}
-
-Für $w(x) \equiv 0$ folgt also
-
-\begin{align*}
-  |Q(f) - Q_n(f)|
-  \leq
-  2 \frac
-  {
-    \norm
-    [{\infty, [a, b]}]
-    {f^{(2n + 2)}}
-  }
-  {
-    (2n + 2)!
-  }
-  \max_{j=0}^{N-1}
-  (x_{j+1} - x_j)^p.
+  \Phi:
+  [a, b] \to [-1, 1]:
+  \xi \mapsto \Frac{b-a}{2 \xi - (a + b)}
+  \implies
+  \Phi^\prime \equiv \frac{2}{b - a}
+  \implies
+  \Int[a][b]{f(x)}{x}
+  \stackrel{\text{TRAFO}}{=}
+  \frac{2}{b - a}
+  \Int[-1][1]{f(\Phi(\xi))}{\xi}
 \end{align*}
 
 \end{solution}
