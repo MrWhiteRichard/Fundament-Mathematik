@@ -31,8 +31,30 @@ Zeigen Sie:
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{enumerate}[label = (\roman*)]
+	\item Sei also $f \in C^\infty(\R^n)$ und $y \in \R^n$. Wir verwenden die Taylorsche Formel, siehe dazu Kaltenbäck Satz 10.2.10, und erhalten
+	\begin{align*}
+	f(y) = f(x) + \int_0^1 df((1-t)x + ty)(y - x) dt = f(x) + \sum_{i = 1}^n (y_i - x_i) \int_0^1 \pderivative[][f]{x_i} ((1-t)x + ty) dt.
+	\end{align*}
+	Mit der Definition 
+	\begin{align*}
+	f_i := -\int_0^1  \pderivative[][f]{x_i} ((1-t)x + ty) dt
+	\end{align*}
+	und einer einfachen Umformung erhalten wir die gewünschte Gestalt.
+	\item Sei $T \in \mathcal{D}^\prime(\R)$ mit $xT = 0$ und $\varphi \in \mathcal{D}(\R)$. Gemäß Hinweis wählen wir ein $\chi \in \mathcal{D}(\R)$ mit $\forall x \in \supp{\varphi}: \chi(x) = 1$ (gibt es sowas?). Wir berechnen
+	\begin{align*}
+	\abraces{T,\varphi} = \abraces{T, \chi \varphi} \stackrel{(i)}{=} \abraces{T, \chi (\varphi(0) + x\varphi_1)} = \varphi(0) \abraces{T, \chi} + \underbrace{\abraces{xT, \chi \varphi_1}}_{=0}.
+	\end{align*}
+	\item Sei $u \in \mathcal{D}^\prime(\R)$ mit $u^\prime = 0$. Wir erinnern uns an den Beweis von Blümlingers Prop. 6.14. Sei $\Psi_0$ eine Testfunktion die $\int_\R \Psi_0 d\lambda = 1$ erfüllt. Wir definieren für beliebiges $\phi \in \mathcal{D}(\R)$ die Funktion $\zeta := \phi - \int_\R \phi d\lambda \Psi_0$, welche $\int_\R \zeta d\lambda = 0$ erfüllt. Die Funktion $\theta(x) := \int_{-\infty}^{x} \zeta d\lambda$ ist aus $\mathcal{D}(\R)$ und es gilt $\theta^\prime = \zeta$. So erhalten wir die Darstellung $\phi = \theta^\prime + \int_\R \phi d\lambda \Psi_0$. So können wir berechnen
+	\begin{align*}
+	\abraces{u, \phi} = \abraces{u, \theta^\prime} + \abraces{u, \int_\R \phi d\lambda \Psi_0} = \abraces{u^\prime, \theta} + \int_\R \phi d\lambda \abraces{u, \Psi_0} = \abraces{\abraces{u, \Psi_0}, \phi}
+	\end{align*}
+	\item Sei $f \in C^\infty(\R)$. Es gilt
+	\begin{align*}
+	\abraces{f \delta^\prime, \varphi} = \abraces{\delta^\prime, f\varphi} = - (f\varphi)^\prime (0) = -f(0) \varphi^\prime(0) - f^\prime(0) \varphi(0) = f(0) \abraces{\delta^\prime, \phi} - f^\prime(0) \abraces{\delta, \varphi}
+	\end{align*}
+\end{enumerate}
 
 \end{solution}
 
