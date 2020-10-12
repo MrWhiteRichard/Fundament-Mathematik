@@ -23,15 +23,20 @@ Zeigen Sie
 \end{enumerate}
 
 \textit{Hinweis zu a:}
-
-Wählen Sie eine Minimierungsfolge $(v_n)_{n \in \N}$ von $d := \inf_{v \in V} a(u-v;u-v)$ und zeigen Sie, dass diese Folge eine Cauchy-Folge ist.
+Wählen Sie eine Minimierungsfolge $(v_n)_{n \in \N}$ von $d := \inf_{v \in V} a(u - v; u - v)$ und zeigen Sie, dass diese Folge eine Cauchy-Folge ist.
 Hilfreich kann dabei folgende Identität sein:
 
 \begin{align}
-  a(v_n - v_m ; v_n - v_m )
+  a(v_n - v_m ; v_n - v_m)
   =
-  2a(v_n - u; v_n - u) + 2a(v_m - u; v_m - u) -
-  4a\Bigg(\frac{1}{2}(v_n + v_m ) - u;\frac{1}{2}(v_n + v_m )- u\Bigg)
+  2 a(v_n - u; v_n - u)
+  +
+  2 a(v_m - u; v_m - u) -
+  4 a\pbraces
+  {
+    \frac{1}{2}(v_n + v_m) - u;
+    \frac{1}{2}(v_n + v_m) - u
+  }
 \end{align}
 
 \end{exercise}
@@ -40,72 +45,135 @@ Hilfreich kann dabei folgende Identität sein:
 
 \begin{solution}
 
+Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder ein Hilbertraum ist.
+
 \begin{enumerate}[label = \textbf{\alph*)}]
 
-  \item Sei $(v_n)_{n\in\N}$ eine Minimierungsfolge aus dem Hinweis.
+  \item Wähle eine Minimierungsfolge $(v_n)_{n \in \N}$ von $d := \inf_{v \in V} a(u - v; u - v)$.
+  Wir zeigen, dass diese Folge eine Cauchy-Folge ist.
 
   \begin{align*}
-    M\|v_n - v_m\|_H^2 &\leq
-    a(v_n - v_m ; v_n - v_m ) \\
+    M \norm[H]{v_n - v_m}^2
+    & \leq
+    a(v_n - v_m; v_n - v_m ) \\
     &=
-    2a(v_n - u; v_n - u) + 2a(v_m - u; v_m - u) -
-    4a\Bigg(\frac{1}{2}(v_n + v_m ) - u;\frac{1}{2}(v_n + v_m )- u\Bigg) \\
-    &\leq \underbrace{2a(v_n - u; v_n - u)}_{\to 2d} + \underbrace{2a(v_m - u; v_m - u)}_{\to 2d} - 4d
+    2 a(v_n - u; v_n - u)
+    +
+    2 a(v_m - u; v_m - u)
+    -
+    4 a\pbraces
+  {
+    \frac{1}{2}(v_n + v_m) - u;
+    \frac{1}{2}(v_n + v_m) - u
+  } \\
+  & \leq
+  2 \underbrace
+  {
+    a(v_n - u; v_n - u)
+  }_{
+    \xrightarrow{n \to \infty} d
+  }
+  +
+  2 \underbrace{
+    a(v_m - u; v_m - u)
+  }_{
+    \xrightarrow{m \to \infty} d
+  }
+  - 4d
+  \xrightarrow{n, m \to \infty} 0
   \end{align*}
 
-  Also ist $(v_n)_{n \in \N}$ eine Cauchy-Folge, welche aufgrund der Abgeschlossenheit von $V$ gegen einen Grenzwert $u_0 \in V$ konvergiert.
-  Die Funktion $f(v) := a(u-v,u-v)$ ist nun als Verknüpfung von stetigen Abbildungen wieder stetig.
+  Weil $V$ ja ein Hilbertraum also vollständig ist, konvergiert $(v_n)_{n \in \N}$ als Cauchy-Folge gegen einen Grenzwert $u_0 \in V$.
+  Die Funktion $v \mapsto a(u - v, u - v)$ ist als Verknüpfung von stetigen Abbildungen wieder stetig.
   Damit ist $u_0$ tatsächlich ein gesuchter Minimierer.
 
-  \item
+  \item Sei $v \in V$.
 
   \begin{align*}
-    \forall v \in V: a(u - u_0, u - u_0) &\leq a(u - u_0 + v, u - u_0 + v) \\
-    &= a(u - u_0, u - u_0) + a(v,v) + 2a(u - u_0, v) \\
-    &\implies 0 \leq a(v,v) + 2a(u - u_0, v)
+    & \implies
+    a(u - u_0, u - u_0)
+    \leq
+    a(u - u_0 + v, u - u_0 + v)
+    =
+    a(u - u_0, u - u_0) + a(v, v) + 2 a(u - u_0, v) \\
+    & \implies
+    0 \leq a(v, v) + 2 a(u - u_0, v)
   \end{align*}
 
+  Dazu leiten wir einen Widerspruch her.
   Angenommen $a(u - u_0, v) \neq 0$.
-  Dann betrachte die quadratische Gleichung
+  Dann betrachte die folgende quadratische Gleichung.
 
   \begin{align*}
-    \lambda^2 a(v,v) + \lambda a(u-u_0,v) = 0
+    \lambda^2 a(v, v) + \lambda a(u - u_0, v) = 0
+    \implies
+    \lambda_1 = 0
+    \implies
+    \lambda a(v, v) + a(u - u_0, v) = 0
+    \implies
+    \lambda_2 \neq 0
   \end{align*}
 
-  mit den Nullstellen $-\frac{a(u-u_0,v)}{2} \pm \sqrt{\frac{a^2(u-u_0,v)^2}{4}}$.
-  Die Gleichung hat zwei unterschiedliche Nullstellen, also existiert ein $\lambda \in \R$, sodass
+  Die Gleichung hat zwei unterschiedliche Nullstellen.
 
   \begin{align*}
-    a(\lambda v, \lambda v) + a(u-u_0,\lambda v) = \lambda^2 a(v,v) + \lambda a(u-u_0,v) < 0.
+    \implies
+    \Exists \lambda \in \R:
+    a(\lambda v, \lambda v) + a(u - u_0, \lambda v)
+    =
+    \lambda^2 a(v,v) + \lambda a(u - u_0, v) < 0.
   \end{align*}
 
   Widerspruch!
 
-  \item Sei $u_1$ ein weiterer Minimierer.
-  Da $u_1 - u_0 \in V$ folgt
-  
+  \item Sei $u_1 \in V$ ein weiterer Minimierer.
+  Weil $V$ ein linearer Unterraum ist, ist $u_1 - u_0 \in V$.
+  Die Aussage aus b) gilt also für $u_0$ und $u_1$.
+
   \begin{align*}
-    M\|u_1-u_0\|_H^2 &\leq a(u_1 - u_0, u_1 - u_0) = a(u_1 - u_0, u_1 - u_0) - a(u - u_0, u_1 - u_0) \\
-    &= a(u_1 -u, u_1 - u_0) = 0.
+    \implies
+    M \norm[H]{u_1 - u_0}^2
+    \leq
+    a(u_1 - u_0, u_1 - u_0)
+    =
+    a(u_1 - u_0, u_1 - u_0)
+    -
+    \underbrace{a(u - u_0, u_1 - u_0)}_0
+    =
+    a(u_1 - u, u_1 - u_0) = 0.
   \end{align*}
   
-  \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u-u,u-u) = 0$.
-  Seien $u,v \in H$ beliebig.
+  \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u - u, u - u) = 0$.
+  Seien $u, v \in H$ beliebig.
+  $\Forall w \in V:$
 
   \begin{align*}
-    \forall w \in V&:~a(u + \lambda v - (P(u) + \lambda P(v)),u + \lambda v - (P(u) + \lambda P(v))) \\
-    &= a(u - P(u), u - P(u)) + \lambda^2a(v - P(v), v - P(v)) +
-    2\lambda a(u - P(u), v - P(v))\\
-    &\leq a(u - w, u - w) + \lambda^2a(v - w/\lambda, v - w/\lambda)
-    + 2\lambda a(u - P(u), v - w/\lambda) \\
-    &= a(u - w, u - w) + a(\lambda v - w, \lambda v - w)
-    + 2 a(u - P(u),\lambda v - w)
+    &
+    a(u + \lambda v - (P(u) + \lambda P(v)), u + \lambda v - (P(u) + \lambda P(v))) \\
+    & =
+    a(u - P(u), u - P(u))
+    +
+    \lambda^2 a(v - P(v), v - P(v))
+    +
+    2 \lambda a(u - P(u), v - P(v)) \\
+    & \leq
+    a(u - w, u - w)
+    +
+    \lambda^2 a(v - w / \lambda, v - w / \lambda)
+    +
+    2 \lambda a(u - P(u), v - w/\lambda) \\
+    & =
+    a(u - w, u - w)
+    +
+    a(\lambda v - w, \lambda v - w)
+    +
+    2 a(u - P(u), \lambda v - w)
   \end{align*}
 
-  Nach Lax-Milgram
+  Laut Exercise 6 gilt
 
   \begin{align*}
-    a(x,y) = (Gx,y)
+    a(x, y) = (Gx, y).
   \end{align*}
 
 \end{enumerate}
