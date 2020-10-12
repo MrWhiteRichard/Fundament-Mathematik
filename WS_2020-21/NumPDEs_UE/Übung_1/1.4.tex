@@ -2,39 +2,49 @@
 
 \begin{exercise}
 
-Gegeben sei eine Zerlegung $a = x_0 < x_1 < \dots < x_N = b$ des Intervalls
-$\bbraces{a,b}$ mit $N \geq 2$. Auf dieser Zerlegung sei
-$\mathbb{S}_0^p := \Bbraces{v \in C(\bbraces{a,b}): \forall j = 0, \dots, N-1 : v\mid_{\bbraces{x_j , x_{j+1}}} \in \prod_p}$
-der Spline-Raum aus stückweisen Polynomen vom Grad $p$.
+Gegeben sei eine Zerlegung $a = x_0 < x_1 < \dots < x_N = b$ des Intervalls $[a, b]$ mit $N \geq 2$.
+Auf dieser Zerlegung sei $\S_0^p := \Bbraces{v \in C([a, b]): \Forall j = 0, \dots, N-1 : v|_{\bbraces{x_j, x_{j+1}}} \in \Pi_p}$ der Spline-Raum aus stückweisen Polynomen vom Grad $p$.
 
-Zeigen Sie, dass eine Konstante $C>0$ existiert sodass für alle Funktionen
-$u \in C^{p+1}(\bbraces{a,b})$ gilt
+Zeigen Sie, dass eine Konstante $C > 0$ existiert sodass für alle Funktionen $u \in C^{p+1}([a, b])$ gilt
 
 \begin{align}
-  \inf_{v\in \mathbb{S}^p_0} \norm[L^2((a,b))]{u' - v'}
-  \leq C \norm[\infty]{u^{(p+1)}} \Bigg( \max_{j=0, \dots, N-1} (x_{j+1} - x_j)\Bigg)^p
+  \inf_{v \in \S^p_0}
+  \norm[L^2((a, b))]{u^\prime - v^\prime}
+  \leq
+  C \norm[\infty]{u^{(p+1)}}
+  \pbraces
+  {
+    \max_{j=0, \dots, N-1}
+    (x_{j+1} - x_j)
+  }^p.
 \end{align}
 
-\textit{Hinweis:} Verwenden Sie eine Interpolationsfehlerdarstellung.
+\textit{Hinweis:}
+Verwenden Sie eine Interpolationsfehlerdarstellung.
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-Sei $L_n: C^n([a,b]) \to \Pi_n$ die Abbildung, welche einer Funktion $f$ das
-Lagrange-Interpolationspolynom zuordnet und $N_{n+1}$ das $(n+1)$-te Newton-Basispolynom.
+Sei $L_n: C^n([a,b]) \to \Pi_n$ die Abbildung, welche einer Funktion $f$ das Lagrange-Interpolationspolynom zuordnet und $N_{n+1}$ das $(n+1)$-te Newton-Basispolynom.
 Dann gilt
+
 \begin{align*}
   \|f^{(k)} - (L_nf)^{(k)}\|_{\infty} \leq \frac{|b-a|^{p+1-k}}{(n-k+1)!}\|f^{(n+1)}\|_{\infty}
 \end{align*}
-Für $u \in C^{(p+1)}([a,b])$ beliebig wähle also $v_0 \in \mathbb{S}_0^p$, sodass
+
+Für $u \in C^{(p+1)}([a,b])$ beliebig wähle also $v_0 \in \S_0^p$, sodass
+
 \begin{align*}
   \forall j = 0,\dots,N-1: v\mid_{\bbraces{x_j , x_{j+1}}} = L_p(f\mid_{\bbraces{x_j , x_{j+1}}}) \in \Pi_p.
 \end{align*}
+
 für beliebige Zerlegungen $x_j = t_{j,1} < \dots < t_{j,p+1} = x_{j+1}$.
+
 \begin{align*}
-  \inf_{v\in \mathbb{S}^p_0} \norm[L^2((a,b))]{u' - v'} &\leq \norm[L^2((a,b))]{u' - v_0'} \\
+  \inf_{v\in \S^p_0} \norm[L^2((a,b))]{u^\prime - v^\prime} &\leq \norm[L^2((a,b))]{u^\prime - v_0^\prime} \\
   &\leq (a-b)\sum_{j=0}^{N-1}\|u^{\prime} - L_p(u\mid_{\bbraces{x_j , x_{j+1}}})^{\prime}\|_{\infty}^2
   \leq (a-b)\sum_{j=0}^{N-1}\frac{|x_{j+1} - x_j|^{p}}{p!}\|u^{(p+1)}\|_{\infty,[x_j,x_{j+1}]} \\
   &\leq \frac{N(a-b)}{p!}\Bigg( \max_{j=0, \dots, N-1} (x_{j+1} - x_j)\Bigg)^p\|u^{(p+1)}\|_{\infty,[a,b]}
