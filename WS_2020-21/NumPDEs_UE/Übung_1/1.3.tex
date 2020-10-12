@@ -50,7 +50,9 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
 \begin{enumerate}[label = \textbf{\alph*)}]
 
   \item Wähle eine Minimierungsfolge $(v_n)_{n \in \N}$ von $d := \inf_{v \in V} a(u - v; u - v)$.
-  Wir zeigen, dass diese Folge eine Cauchy-Folge ist.
+  Wir zeigen, dass diese Folge eine Cauchy-Folge ist. \\
+  (Die Identität aus der Angabe erhält man durch Anwendung der Parallelogrammregel
+  auf die Elemente $v_n -u$ und $v_m - u$.)
 
   \begin{align*}
     M \norm[H]{v_n - v_m}^2
@@ -136,13 +138,13 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     \leq
     a(u_1 - u_0, u_1 - u_0)
     =
-    a(u_1 - u_0, u_1 - u_0)
+    a(u_1 - u, u_1 - u_0)
     -
     \underbrace{a(u - u_0, u_1 - u_0)}_0
     =
     a(u_1 - u, u_1 - u_0) = 0.
   \end{align*}
-  
+
   \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u - u, u - u) = 0$.
   Seien $u, v \in H$ beliebig.
   $\Forall w \in V:$
@@ -167,15 +169,14 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     +
     a(\lambda v - w, \lambda v - w)
     +
-    2 a(u - P(u), \lambda v - w)
+    2 a(u - P(u), \lambda v - w) \\
+    &=   a(u - w, u - w)
+      +
+      a(\lambda v - w, \lambda v - w)
+      +
+      2 a(u -w, \lambda v - w) - 2a(P(u) -w, \lambda v - w) \\
+    &= a(u + \lambda v - 2w, u + \lambda v - 2w) - 2a(P(u) -w, \lambda v - w)
   \end{align*}
-
-  Laut Exercise 6 gilt
-
-  \begin{align*}
-    a(x, y) = (Gx, y).
-  \end{align*}
-
 \end{enumerate}
 
 \end{solution}
