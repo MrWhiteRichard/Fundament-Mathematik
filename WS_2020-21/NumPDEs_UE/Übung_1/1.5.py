@@ -31,7 +31,7 @@ quad_gauss_reference = lambda n, f: sum([weight * f(node) for weight, node in we
 
 Phi = lambda a, b, xi: (a + b + xi * (b - a)) / 2
 Phi_inverse = lambda a, b, eta: (2 * eta - (a + b)) / (b - a)
-quad_gauss = lambda a, b, n, f: abs(a + b) / 2 * quad_gauss_reference(n, lambda xi: f(Phi(a, b, xi)))
+quad_gauss = lambda a, b, n, f: (b - a) / 2 * quad_gauss_reference(n, lambda xi: f(Phi(a, b, xi)))
 
 # ---------------------------------------------------------------- #
 
@@ -89,7 +89,7 @@ def test_3(a, b, n_max, f, exact):
     plt.show()
 
 a = -1
-b = 10
+b = 1
 n_max = 10
 f = np.exp
 F = f
