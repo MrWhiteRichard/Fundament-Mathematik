@@ -38,36 +38,15 @@ Wir bekommen in unserem Fall also folgende (mehr oder weniger scharfe) Schranken
 \begin{align*}
   Q(f) - Q_n(f)
   \leq
-  \underbrace
+  \frac
   {
-    \frac
-    {
-      \norm[\infty]{f^{(2n+2)}}
-    }{
-      (2n + 2)!
-    }
-    \pbraces
-    {
-      \max_{i,j=0}^n
-      (x_i - x_j)
-    }^{(2n+2)}
-    (b - a)
-    }_{
-    =: \varepsilon^{(1)}_f(n)
+    \norm[\infty]{f^{(2n+2)}}
+  }{
+    (2n + 2)!
   }
-  \leq
-  \underbrace
-  {
-    \frac
-    {
-      \norm[\infty]{f^{(2n+2)}}
-    }{
-      (2n + 2)!
-    }
-    (b - a)^{(2n+3)}
-  }_{
-    =: \varepsilon^{(2)}_f(n)
-  }
+  (b - a)^{(2n+3)}
+  =:
+  \varepsilon_f(n)
 \end{align*}
 
 Zur Bestimmung der Knoten und Gewichte verwenden wir das Resultat aus Abbildung \ref{fig:NNAS4.23}.
@@ -95,11 +74,11 @@ Um von einem einem beliebigen Intervall $[a, b]$ auf das Referenz-Intervall $[-1
   [a, b] \to [-1, 1]:
   \eta \mapsto \Frac{b-a}{2 \eta - (a + b)},
   \quad
-  \Phi^\prime \equiv \frac{a + b}{2} \\
+  \Phi^\prime \equiv \frac{b - a}{2} \\
   \implies
   \Int[a][b]{f(x)}{x}
   \stackrel{\text{TRAFO}}{=}
-  \frac{|a + b|}{2}
+  \frac{b - a}{2}
   \Int[-1][1]{f(\Phi(\xi))}{\xi}
 \end{align*}
 
