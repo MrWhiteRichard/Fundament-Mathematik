@@ -75,26 +75,61 @@ def test_2(p_array, n_max):
 # ---------------------------------------------------------------- #
 
 
-def test_3(a, b, n_max, f, exact):
+def test_3(a, b, n_max, f, exact, error_theoretical):
 
-    approximates = [quad_gauss(a, b, n, f) for n in range(1, n_max)]
-    errors = [abs(exact - approximate) for approximate in approximates]
+    n_array = np.array(range(1, n_max))
 
-    plt.plot(range(1, n_max), errors)
+    approximates = [quad_gauss(a, b, n, f) for n in n_array]
+    errors_practical = [abs(exact - approximate) for approximate in approximates]
+    errors_theoretical = np.vectorize(error_theoretical)(n_array)
+
+    plt.semilogy(n_array, errors_practical,   label = 'practice')
+    plt.semilogy(n_array, errors_theoretical, label = 'theory')
 
     plt.xlabel('$n$')
     plt.ylabel('$\epsilon(n)$')
+    plt.legend()
     plt.grid(linestyle = ':')
 
     plt.show()
 
-a = -1
+# np.exp
+
+a = 0
 b = 1
 n_max = 10
 f = np.exp
 F = f
 exact = F(b) - F(a)
 
-test_3(a, b, n_max, f, exact)
+error_theoretical = lambda n: np.exp(b) * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+
+# test_3(a, b, n_max, f, exact, error_theoretical)
+
+# np.sin
+
+a = 0
+b = 1
+n_max = 10
+f = np.sin
+F = lambda x : -np.cos(x)
+exact = F(b) - F(a)
+
+error_theoretical = lambda n: 1 * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+
+# test_3(a, b, n_max, f, exact, error_theoretical)
+
+# np.cos
+
+a = 0
+b = 1
+n_max = 32
+f = np.cos
+F = np.sin
+exact = F(b) - F(a)
+
+error_theoretical = lambda n: 1 * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+
+# test_3(a, b, n_max, f, exact, error_theoretical)
 
 # ---------------------------------------------------------------- #
