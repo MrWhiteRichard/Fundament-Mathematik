@@ -7,7 +7,7 @@ Zeigen Sie:
 \begin{enumerate}[label = (\roman*)]
 
     \item Ist $f \in C^\infty(\R^n)$ und $y \in \R^n$, dann gibt es Funktionen $f_i \in C^\infty(\R^n)$ sodass
-    
+
     \begin{align*}
         f(x) = f(y) + \sum_{i=1}^n (x_i - y_i) f_i(x).
     \end{align*}
@@ -15,7 +15,7 @@ Zeigen Sie:
     \item Gilt $xT = 0$ für eine Distribution $T \in \mathcal{D}^\prime(\R)$, so ist $T = c \delta$ für eine Konstante $c$.
     \item $u \in \mathcal{D}^\prime(\R)$ mit $u^\prime = 0$ impliziert $u = ~\text{const}$.
     \item Für jedes $f \in C^\infty(\R)$ existieren Konstanten $c_0, c_1$ sodass
-    
+
     \begin{align*}
         f \delta^\prime
         =
@@ -35,11 +35,11 @@ Zeigen Sie:
 \begin{enumerate}[label = (\roman*)]
 	\item Sei also $f \in C^\infty(\R^n)$ und $y \in \R^n$. Wir verwenden die Taylorsche Formel, siehe dazu Kaltenbäck Satz 10.2.10, und erhalten
 	\begin{align*}
-	f(y) = f(x) + \int_0^1 df((1-t)x + ty)(y - x) dt = f(x) + \sum_{i = 1}^n (y_i - x_i) \int_0^1 \pderivative[][f]{x_i} ((1-t)x + ty) dt.
+	f(x) = f(y) + \int_0^1 df((1-t)y + tx)(x - y) dt = f(y) + \sum_{i = 1}^n (x_i - y_i) \int_0^1 \pderivative[][f]{y_i} ((1-t)y + tx) dt.
 	\end{align*}
-	Mit der Definition 
+	Mit der Definition
 	\begin{align*}
-	f_i := -\int_0^1  \pderivative[][f]{x_i} ((1-t)x + ty) dt
+	f_i := \int_0^1  \pderivative[][f]{y_i} ((1-t)y + tx) dt
 	\end{align*}
 	und einer einfachen Umformung erhalten wir die gewünschte Gestalt.
 	\item Sei $T \in \mathcal{D}^\prime(\R)$ mit $xT = 0$ und $\varphi \in \mathcal{D}(\R)$. Gemäß Hinweis wählen wir ein $\chi \in \mathcal{D}(\R)$ mit $\forall x \in \supp{\varphi}: \chi(x) = 1$ (gibt es sowas?). Wir berechnen
