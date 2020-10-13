@@ -35,47 +35,10 @@ quad_gauss = lambda a, b, n, f: (b - a) / 2 * quad_gauss_reference(n, lambda xi:
 
 # ---------------------------------------------------------------- #
 
-def test_1(p_max, n):
+# in seconds
+PAUSE = 4
 
-    for p in range(p_max+1):
-
-        result_decimal  = quad_gauss(0, 1, n, lambda x: x**p)
-        result_fraction = str(Fraction(result_decimal).limit_denominator(1000))
-
-        print(result_decimal)
-        print(result_fraction)
-        print()
-
-# test_1(30, 10)
-
-# ---------------------------------------------------------------- #
-
-def test_2(p_array, n_max):
-
-    a = 0
-    b = 1
-
-    for p in p_array:
-
-        approximates = [quad_gauss(a, b, n, lambda x: x**p) for n in range(n_max)]
-        exact = b ** (p+1) / (p+1) - a ** (p+1) / (p+1)
-        errors = [abs(approximate - exact) for approximate in approximates]
-
-        plt.plot(range(n_max), errors, label = f'$x^{{{p}}}$')
-
-    plt.legend()
-    plt.xlabel('$n$')
-    plt.ylabel('$\epsilon(n)$')
-    plt.grid(linestyle = ':')
-
-    plt.show()
-
-# test_2([1, 2, 4, 8, 16], 10)
-
-# ---------------------------------------------------------------- #
-
-
-def test_3(a, b, n_max, f, exact, error_theoretical):
+def test(a, b, n_max, f, exact, error_theoretical, name):
 
     n_array = np.array(range(1, n_max))
 
@@ -83,53 +46,76 @@ def test_3(a, b, n_max, f, exact, error_theoretical):
     errors_practical = [abs(exact - approximate) for approximate in approximates]
     errors_theoretical = np.vectorize(error_theoretical)(n_array)
 
+    fig = plt.figure()
+
     plt.semilogy(n_array, errors_practical,   label = 'practice')
     plt.semilogy(n_array, errors_theoretical, label = 'theory')
 
+    plt.suptitle('Gauß-Quadratur von' + ' ... ' + name)
     plt.xlabel('$n$')
     plt.ylabel('$\epsilon(n)$')
     plt.legend()
     plt.grid(linestyle = ':')
 
-    plt.show()
+    plt.draw()
+    plt.pause(PAUSE)
+    # fig.show()
 
-# np.exp
+# -------------------------------- #
 
 a = 0
 b = 1
 n_max = 10
+
+function_data = []
+
+# -------------------------------- #
+
 f = np.exp
 F = f
-exact = F(b) - F(a)
+sup = f(b)
+name = '$x \mapsto \exp{(x)}$'
 
-error_theoretical = lambda n: np.exp(b) * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+function_data.append((f, F, sup, name))
 
-# test_3(a, b, n_max, f, exact, error_theoretical)
+# -------------------------------- #
 
-# np.sin
-
-a = 0
-b = 1
-n_max = 10
 f = np.sin
 F = lambda x : -np.cos(x)
-exact = F(b) - F(a)
+sup = 1
+name = '$x \mapsto \sin{(x)}$'
 
-error_theoretical = lambda n: 1 * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+function_data.append((f, F, sup, name))
 
-# test_3(a, b, n_max, f, exact, error_theoretical)
+# -------------------------------- #
 
-# np.cos
-
-a = 0
-b = 1
-n_max = 32
 f = np.cos
 F = np.sin
-exact = F(b) - F(a)
+sup = 1
+name = '$x \mapsto \cos{(x)}$'
 
-error_theoretical = lambda n: 1 * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+function_data.append((f, F, sup, name))
 
-# test_3(a, b, n_max, f, exact, error_theoretical)
+# -------------------------------- #
+
+p_array = [1, 2, 4, 8]
+
+for p in p_array:
+
+    f = lambda x: x ** p
+    F = lambda x: x ** (p + 1) / (p + 1)
+    sup = f(b)
+    name = f'$x \mapsto x^{{{p}}}$'
+
+    function_data.append((f, F, sup, name))
+
+# -------------------------------- #
+
+for f, F, sup, name in function_data:
+
+    exact = F(b) - F(a)
+    error_theoretical = lambda n: sup * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
+
+    test(a, b, n_max, f, exact, error_theoretical, name)
 
 # ---------------------------------------------------------------- #
