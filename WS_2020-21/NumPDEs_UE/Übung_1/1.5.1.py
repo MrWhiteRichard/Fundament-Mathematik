@@ -36,7 +36,7 @@ quad_gauss = lambda a, b, n, f: (b - a) / 2 * quad_gauss_reference(n, lambda xi:
 # ---------------------------------------------------------------- #
 
 # in seconds
-PAUSE = 4
+PAUSE = 1
 
 def test(a, b, n_max, f, exact, error_theoretical, name):
 
@@ -59,7 +59,7 @@ def test(a, b, n_max, f, exact, error_theoretical, name):
 
     plt.draw()
     plt.pause(PAUSE)
-    # fig.show()
+    # plt.show()
 
 # -------------------------------- #
 
@@ -81,7 +81,9 @@ function_data.append((f, F, sup, name))
 # -------------------------------- #
 
 f = np.sin
-F = lambda x : -np.cos(x)
+F = np.vectorize(
+    lambda x : -np.cos(x)
+)
 sup = 1
 name = '$x \mapsto \sin{(x)}$'
 
@@ -98,20 +100,23 @@ function_data.append((f, F, sup, name))
 
 # -------------------------------- #
 
-p_array = [1, 2, 4, 8]
-
-for p in p_array:
+def monomial(p):
 
     f = lambda x: x ** p
     F = lambda x: x ** (p + 1) / (p + 1)
     sup = f(b)
     name = f'$x \mapsto x^{{{p}}}$'
 
-    function_data.append((f, F, sup, name))
+    return f, F, sup, name
+
+p_array = [1, 2, 4, 8]
+
+for p in p_array:
+    function_data.append(monomial(p))
 
 # -------------------------------- #
 
-for f, F, sup, name in function_data:
+for f, F, sup, name in function_data[:]:
 
     exact = F(b) - F(a)
     error_theoretical = lambda n: sup * (b - a) ** (2 * n + 3) / np.math.factorial(2 * n + 2)
