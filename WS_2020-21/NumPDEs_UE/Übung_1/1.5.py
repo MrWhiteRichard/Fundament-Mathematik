@@ -29,8 +29,9 @@ def weights_nodes(n):
 
 quad_gauss_reference = lambda n, f: sum([weight * f(node) for weight, node in weights_nodes(n)])
 
-Phi = lambda a, b, xi: (2 * xi - (a + b)) / (b - a)
-quad_gauss = lambda a, b, n, f: 2 / (b - a) * quad_gauss_reference(n, lambda xi: f(Phi(a, b, xi)))
+Phi = lambda a, b, xi: (a + b + xi * (b - a)) / 2
+Phi_inverse = lambda a, b, eta: (2 * eta - (a + b)) / (b - a)
+quad_gauss = lambda a, b, n, f: abs(a + b) / 2 * quad_gauss_reference(n, lambda xi: f(Phi(a, b, xi)))
 
 # ---------------------------------------------------------------- #
 

@@ -47,18 +47,22 @@ Zur Bestimmung der Knoten und Gewichte verwenden wir das Resultat aus Abbildung 
   \end{boxedin}
 \end{figure}
 
-Um von einem einem beliebigen Intervall $[a, b]$ auf das Referenz-Intervall $[-1, 1]$ zu skalieren, verwenden wir den Diffeomorphismus $\Phi$.
+Um von einem einem beliebigen Intervall $[a, b]$ auf das Referenz-Intervall $[-1, 1]$ zu transformieren, verwenden wir den Diffeomorphismus $\Phi^{-1}$.
 
 \begin{align*}
   \Phi:
-  [a, b] \to [-1, 1]:
-  \xi \mapsto \Frac{b-a}{2 \xi - (a + b)}
+  [-1, 1] \to [a, b]:
+  \xi \mapsto \Frac{2}{a + b + \xi (b - a)} \\
   \implies
-  \Phi^\prime \equiv \frac{2}{b - a}
+  \Phi^{-1}:
+  [a, b] \to [-1, 1]:
+  \eta \mapsto \Frac{b-a}{2 \eta - (a + b)},
+  \quad
+  \Phi^\prime \equiv \frac{a + b}{2} \\
   \implies
   \Int[a][b]{f(x)}{x}
   \stackrel{\text{TRAFO}}{=}
-  \frac{2}{b - a}
+  \frac{|a + b|}{2}
   \Int[-1][1]{f(\Phi(\xi))}{\xi}
 \end{align*}
 
