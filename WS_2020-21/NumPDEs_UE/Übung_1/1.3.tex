@@ -145,40 +145,78 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     a(u_1 - u, u_1 - u_0) = 0.
   \end{align*}
 
-  \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u - u, u - u) = 0$. \\
-  Für die Linearität seien $u, v \in H$ beliebig fest. Dann gilt nach \textbf{b)} für alle $w \in V$
+  \item Klarerweise ist $P|_V = \id_V$, weil $a(u - u, u - u) = 0$.
+  Also ist $P$ idempotent. \\
+  Nun zur Linearität.
+
+  \begin{itemize}
+
+    \item Additivität:
+
+    Seien $u, v \in H$.
+    Wegen \textbf{b)} gilt $\Forall w \in V:$
+
+      \begin{align*}
+        a(u + v - P(u + v); w) & = 0, \\
+        a(u - Pu; w) & = 0, \\
+        a(v - Pv; w) & = 0
+      \end{align*}
+
+    Das gilt also insbesondere für $w := P(u + v) - (Pu + Pv) \in V$.
+    Wir sind fertig, wenn wir zeigen können, dass $w = 0$.
+    Weil $a$ elliptisch ist, $\Exists M > 0:$
 
     \begin{align*}
-      a(u + v - P(u+v); w) &= 0 \\
-      a(u - P(u); w) &= 0 \\
-      a(v - P(v); w) &= 0
+      0 =
+      a(u - Pu; w)
+      +
+      a(v - Pv; w)
+      -
+      a(u + v - P(u + v); w)
+      =
+      a(w; w)
+      \geq
+      M \norm[H]{w}^2
+      \geq 0.
     \end{align*}
 
-  Wählen wir nun $w := P(u + v) - (P(u) + P(v))$ gilt mit der Elliptizität
+    \item Homogenität:
 
-  \begin{align*}
-    0
-    =
-    &- a(u + v - P(u + v);P(u + v) - (P(u) + P(v))) \\
-    &+ a(u - P(u);P(u + v) - (P(u) + P(v))) \\
-    &+ a(v - P(v);P(u + v) - (P(u) + P(v))) \\
-    &=
-    a(P(u + v) - (P(u) + P(v));P(u + v) - (P(u) + P(v)))
-    \geq
-    M \norm[H]{P(u + v) - (P(u) + P(v))}
-  \end{align*}
+    Sei $\lambda \in \R$.
 
-  Also $P(u + v) = P(u) + P(v)$. Für $\lambda \in \R$ gilt schließlich ($\Forall w \in V$)
+    \begin{enumerate}[label = \arabic*.]
 
-  \begin{align*}
-    a(\lambda u - \lambda P(u);\lambda u - \lambda P(u))
-    =
-    \lambda^2 a(u - P(u);u - P(u))
-    \leq
-    \lambda^2 a(u - w; u - w)
-    =
-    a(\lambda u - w; \lambda u - w)
-  \end{align*}
+      \item Fall ($\lambda = 0$):
+      
+      Weil $a$ elliptisch mit $M$ ist, gilt $\Forall w \in V:$
+
+      \begin{align*}
+        a(\lambda u - w; \lambda u - w)
+        =
+        a(w; w)
+        \geq
+        M \norm[H]{w}
+        \geq
+        0 = a(\lambda u - \lambda Pu; \lambda u - \lambda Pu).
+      \end{align*}
+
+      \item Fall ($\lambda \neq 0$):
+
+      \begin{multline*}
+        \implies
+        \Forall w \in \lambda^{-1} V = V:
+        a(\lambda u - \lambda Pu;\lambda u - \lambda Pu)
+        =
+        \lambda^2 a(u - Pu;u - Pu) \\
+        \leq
+        \lambda^2 a(u - w; u - w)
+        =
+        a(\lambda u - \lambda w; \lambda u - \lambda w)
+      \end{multline*}
+    
+    \end{enumerate}
+
+\end{itemize}
 
   Nun zur \Quote{Operatornorm}.
 
