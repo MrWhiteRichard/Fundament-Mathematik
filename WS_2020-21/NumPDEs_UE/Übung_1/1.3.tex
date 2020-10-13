@@ -161,7 +161,7 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     =
     &- a(u + v - P(u + v);P(u + v) - (P(u) + P(v))) \\
     &+ a(u - P(u);P(u + v) - (P(u) + P(v))) \\
-    &+ a(v + P(v);P(u + v) - (P(u) + P(v))) \\
+    &+ a(v - P(v);P(u + v) - (P(u) + P(v))) \\
     &=
     a(P(u + v) - (P(u) + P(v));P(u + v) - (P(u) + P(v)))
     \geq
@@ -180,35 +180,53 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     a(\lambda u - w; \lambda u - w)
   \end{align*}
 
-  Um die Eigenschaft des Supremums einzusehen, zeigen wir zuerst mithilfe der Elliptizität und \textbf{b)}
+  Nun zur \Quote{Operatornorm}.
 
-  \begin{align*}
-    a(v; Pv)
-    =
-    a(v; Pv) - a(v-Pv; Pv)
-    =
-    a(Pv; Pv)
-    \geq
-    0
-  \end{align*}
+  \begin{itemize}
 
-  Damit weisen wir nach
+    \item
+    [\Quote{$\geq$}:]
 
-  \begin{multline*}
-    a(Pv; Pv)
-    \leq
-    a(-Pv; -Pv) + a(v; v)
-    =
-    a(v-Pv; v-Pv) + a(v-Pv; Pv) \\
-    =
-    a(v-Pv; v)
-    \leq
-    a(v-Pv; v) + a(v; Pv)
-    =
-    a(v; v)
-  \end{multline*}
+    Weil wir ja bereits wissen, dass $P|_V = \id_V$, müssen wir dazu bloß ein $u \in V$ betrachten.
 
-  Klarerweise wird das Supremum für $v \in V$ auch angenommen.
+    \item
+    [\Quote{$\leq$}:]
+
+    Sei $u \in H \setminus \Bbraces{0}$.
+    Wegen \textbf{b)} und weil $a$ elliptische ist, $\Exists M > 0:$
+
+    \begin{align*}
+      0 \leq M \norm[H]{u - Pu}^2
+      \leq
+      a(u - Pu; u - Pu)
+      =
+      a(u - Pu; u)
+      -
+      \underbrace{a(u - Pu; Pu)}_0.
+    \end{align*}
+
+    $a$ ist außerdem symmetrisch.
+
+    \begin{multline*}
+      a(Pu; Pu)
+      =
+      a(Pu; Pu)
+      +
+      \underbrace{a(u - Pu; Pu)}_0
+      =
+      a(Pu + u - Pu; Pu) \\
+      \leq
+      \underbrace{a(u; Pu)}_{a(Pu; u)}
+      +
+      \underbrace{a(u - Pu; u)}_{\geq 0}
+      =
+      a(Pu + u - Pu; u)
+      =
+      a(u, u)
+    \end{multline*}
+
+  \end{itemize}
+
 \end{enumerate}
 
 \end{solution}
