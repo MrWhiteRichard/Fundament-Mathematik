@@ -24,11 +24,24 @@ und zeigen Sie, dass
 \begin{solution}
 \phantom{}
 \begin{enumerate}[label = (\roman*)]
-	\item Sei $\phi \in \mathcal{R}$ beliebig. Es gilt
+	\item Sei $\phi \in \mathcal{D}(\R)$ beliebig. Es gilt
 	\begin{align*}
 	\left|\abraces{\sin(\lambda x), \phi}\right| = \left|\frac{1}{\lambda}\abraces{\cos(\lambda x), \phi^\prime}\right| \leq \frac{1}{|\lambda|} \int_\R \left|\cos(\lambda x) \varphi^\prime(x)\right| dx \leq \frac{1}{|\lambda|} \int_\R \left|\varphi^\prime(x)\right| dx \rightarrow 0
 	\end{align*}
 	für $\lambda$ gegen $\infty$.
+	\item Sei $\phi \in \mathcal{D}(\R)$ beliebig und sei $\supp(\phi)\subseteq [a, b]$.
+	\begin{align*}
+	\left|\abraces{\frac{\sin(\lambda x)}{x}, \phi}\right| \leq \norm[\infty]{\phi}\int_a^b \vbraces{\frac{\sin(\lambda x)}{x}} dx \leq \norm[\infty]{\phi}\int_a^b \vbraces{\frac{1}{\lambda}} dx = \norm[\infty]{\phi} \frac{b - a}{\vbraces{\lambda}} \to 0
+	\end{align*}
+	f"ur $\lambda$ gegen $\infty$.
+	\item Mit dem Satz über die monotone Konvergenz gilt
+	\begin{align*}
+	\lim_{a \to 0+}\abraces{\arctan\pbraces{\frac{x}{a}}, \phi} = \lim_{a \to 0+} \int_\R \arctan\pbraces{\frac{x}{a}} \phi(x) dx = \int_\R \lim_{a \to 0+} \arctan\pbraces{\frac{x}{a}} \phi(x) dx = \pi \abraces{H - \frac{1}{2}, \phi},
+	\end{align*}
+	wobei $H$ die Heaviside-Funktion ist und nach Beispiel 3.12 die Gleichheit $H^\prime = \delta$ gilt. Mit Lemma 3.13 erhalten wir
+	\begin{align*}
+	\frac{a}{x^2 + a^2} = \pbraces{\arctan\pbraces{\frac{x}{a}}}^\prime \to \pbraces{\pi\pbraces{H - \frac{1}{2}}}^\prime = \pi \delta
+	\end{align*}
 \end{enumerate}
 
 \end{solution}
