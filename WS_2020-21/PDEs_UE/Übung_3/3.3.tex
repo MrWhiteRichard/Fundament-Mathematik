@@ -66,8 +66,53 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{enumerate}[label = (\roman*)]
+	\item Gegeben sei eine beliebige kompakte Menge $K \subseteq \R$. Wir wählen $a \in [1, \infty]$ mit $K \subseteq [-a, a]$. Nun ist
+	\begin{align*}
+	\int_K \vbraces{f(x)} dx &\leq 2 \pbraces{\int_1^a \log(x) dx - \int_0^1 \log(x) dx} \\
+	&= 2 \pbraces{(\log(a)a - a) - (\log(1)1 - 1) - \pbraces{(\log(1)1 - 1) - \lim_{\epsilon \to 0+} (\log(\epsilon)\epsilon - \epsilon )}} \\
+	&= \log(a)a - a + 2 < \infty.
+	\end{align*}
+	Betrachte hingegen 
+	\begin{align*}
+	\int_0^1 \vbraces{f^\prime(x)} dx = \int_0^1 \frac{1}{x} dx = \log(1) - \lim_{\epsilon \to 0+} \log(\epsilon) = \infty.
+	\end{align*}
+	\item Wir berechnen
+	\begin{align*}
+	\abraces{\pv\pbraces{\frac{1}{x}}, \phi} &= \lim_{\varepsilon \to 0+}
+	\pbraces
+	{
+		\Int[-\infty][-\varepsilon]
+		{
+			\frac{\varphi(t)}{t}
+		}{t}
+		+
+		\Int[\varepsilon][\infty]
+		{
+			\frac{\varphi(x)}{x}
+		}{x}
+	} \\
+	&= \lim_{\varepsilon \to 0+}
+	\pbraces
+	{
+	-\Int[\varepsilon][\infty]
+	{
+		\frac{\varphi(-x)}{x}
+	}{x}
+	+
+	\Int[\varepsilon][\infty]
+	{
+		\frac{\varphi(x)}{x}
+	}{x}
+	} = \Int[0][\infty]{\frac{\varphi(x) - \varphi(-x)}{x}}{x}
+	\end{align*}
+	\item 
+	\begin{align*}
+	\abraces{\pbraces{\log|x|}^\prime, \phi} &= -\abraces{\log|x|, \phi^\prime} = -\Int[\R][]{\log|x| \phi^\prime(x)}{x} = -\Int[0][\infty]{\log|x| (\phi^\prime(x) + \phi^\prime(-x))}{x} \\
+	&= -\Int[0][\infty]{\log|x| (\phi(x) - \phi(-x))^\prime}{x} = \Int[0][\infty]{\frac{\varphi(x) - \varphi(-x)}{x}}{x} = \abraces{\pv\pbraces{\frac{1}{x}}, \phi}
+	\end{align*}
+\end{enumerate}
 
 \end{solution}
 
