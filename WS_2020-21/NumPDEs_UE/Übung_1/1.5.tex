@@ -33,6 +33,43 @@ In unserem Fall ist die Gewichtsfunktion (vermutlich) $\omega \equiv 1$.
 
 \includegraphicsboxed[Nannen - Numerik A]{Nannen - Numerik A - Satz 4.18.png}
 
+Wir bekommen in unserem Fall also folgende (mehr oder weniger scharfe) Schranken.
+
+\begin{align*}
+  Q(f) - Q_n(f)
+  \leq
+  \underbrace
+  {
+    \frac
+    {
+      \norm[\infty]{f^{(2n+2)}}
+    }{
+      (2n + 2)!
+    }
+    \pbraces
+    {
+      \max_{i,j=0}^n
+      (x_i - x_j)
+    }^{(2n+2)}
+    (b - a)
+    }_{
+    =: \varepsilon^{(1)}_f(n)
+  }
+  \leq
+  \underbrace
+  {
+    \frac
+    {
+      \norm[\infty]{f^{(2n+2)}}
+    }{
+      (2n + 2)!
+    }
+    (b - a)^{(2n+3)}
+  }_{
+    =: \varepsilon^{(2)}_f(n)
+  }
+\end{align*}
+
 Zur Bestimmung der Knoten und Gewichte verwenden wir das Resultat aus Abbildung \ref{fig:NNAS4.23}.
 
 \begin{figure}[h!]
