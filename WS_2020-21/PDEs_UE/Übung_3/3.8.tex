@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-Zeigen SIe, dass die Faltung
+Zeigen Sie, dass die Faltung
 
 \begin{align*}
     (f \ast g)(x)
@@ -19,8 +19,44 @@ Berechnen Sie dann $f \ast f \ast \ldots \ast f$ ($n \in N$ Faktoren) für $f(t)
 
 \begin{solution}
 
-ToDo!
+  Seien die Träger von $f$ und $g$ o. B. d. A. nach unten beschränkt, d. h. es gebe ein $C \in \R$, sodass
+  \begin{align}
+      (-\infty, C) \cap (\text{supp} f \cup \text{supp} g) = \emptyset.
+  \end{align}
 
+  Die Faltung $f \ast g$ ist definiert durch
+  \begin{align}
+      (f \ast g)(x) = \int_\R f(x-y) ~g(y) \text{~d}y.
+  \end{align}
+
+  Damit der Integrand nicht Null ist, müssen also $x - y$ und $y$ jeweils größer als $C$ sein. Wir machen eine Fallunterscheidung:
+
+  \begin{itemize}
+      \item \underline{Fall 1: $x < 2C.$} In diesem Fall gilt für $y > C$
+      \begin{align}
+          x < 2C < y + C
+      \end{align} und damit $x - y < C$. Deshalb ist der Integrand und damit $f \ast g(x)$ in diesem Fall stets Null.
+      \item \underline{Fall 2: $x > 2C.$} Das Integral vereinfacht sich zu
+  \begin{align}
+     (f \ast g)(x) = \int_{C}^{x-C} f(x-y) ~g(y) \text{~d}y.
+  \end{align}
+  Für festes $x$ ist $[C, x-C]$ eine kompakte Menge. Weil für Kompakta $L^2 \subseteq L^1$ gilt, sind $f$ und $g$ lokal sogar quadratisch integrierbar. Die Existenz des Integrals ist somit eine unmittelbare Folgerung aus der Ungleichung von Cauchy-Schwarz (hoffentlich :D).
+  \end{itemize}
+
+  Wir wollen nun die n-te Faltung der Heaviside-Funktion $H$ induktiv berechnen. Die Behauptung ist
+  \begin{align}
+      H \ast^{(n)} H(t) = \mathbbm{1}_{(0, \infty)} (t) ~ \frac{t^n}{n!}.
+  \end{align}
+
+  Für $n = 1$ gilt nach dem ersten Aufgabenteil (mit $C = 0$)
+  \begin{align}
+      H \ast H(t) = \mathbbm{1}_{(0, \infty)} (t) ~ \int_0^t H(t-y) ~H(y) \text{~d}y = \mathbbm{1}_{(0, \infty)} (t) ~ \int_0^t 1 \text{~d}y = \mathbbm{1}_{(0, \infty)} (t) ~ t.
+  \end{align}
+
+  Im Induktionsschritt gilt (der Träger von $H \ast^{(n-1)} H$ ist nach Induktionsvoraussetzung nach unten durch Null beschränkt) wieder mit Teil eins
+  \begin{align}
+      H \ast^{(n)} H(t) = H \ast (H \ast^{(n-1)} H) = \mathbbm{1}_{(0, \infty)}(t) ~ \int_0^t \frac{y^{n-1}}{(n-1)!} \text{~d}y =  \mathbbm{1}_{(0, \infty)}(t) ~ \frac{t^n}{n!}.
+  \end{align}
 \end{solution}
 
 % --------------------------------------------------------------------------------
