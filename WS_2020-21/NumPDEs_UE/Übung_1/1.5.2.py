@@ -46,7 +46,7 @@ def test_exp(a,b,n_max):
     plt.semilogy(n_arr, theo_err, label = "Theoretischer Fehler")
     plt.legend()
     plt.grid(linestyle = ':')
-    plt.show
+    plt.show()
 
 def test_sin(a,b,n_max):
     n_arr = [i for i in range(1,n_max)]
@@ -56,17 +56,18 @@ def test_sin(a,b,n_max):
     plt.semilogy(n_arr, theo_err, label = "Theoretischer Fehler")
     plt.legend()
     plt.grid(linestyle = ':')
-    plt.show
+    plt.show()
 
-def test_monome(a,b,n_max,g):
+def test_monome(a,b,n_max,exponents):
     n_arr = [i for i in range(1,n_max)]
-    err_arr = [abs(gauss_quadrature(lambda x: x**g,n,a,b) - (b**(g+1)/(g+1)-a**(g+1)/(g+1))) for n in n_arr]
-    plt.semilogy(n_arr, err_arr, label = "Fehler aus Quadratur")
+    for g in exponents:
+        err_arr = [abs(gauss_quadrature(lambda x: x**g,n,a,b) - (b**(g+1)/(g+1)-a**(g+1)/(g+1))) for n in n_arr]
+        plt.semilogy(n_arr, err_arr, label = "x^{}".format(g))
     plt.legend()
     plt.grid(linestyle = ':')
-    plt.show
+    plt.show()
 
 
 test_exp(a,b,n_max)
 #test_sin(a,b,n_max)
-#test_monome(a,b,n_max,13)
+test_monome(a,b,n_max,[1,2,4,8,16])
