@@ -145,76 +145,42 @@ Zunächst sei bemerkt, dass $V$ selber, aufgrund der Abgeschlossenheit, wieder e
     a(u_1 - u, u_1 - u_0) = 0.
   \end{align*}
 
-  \item   \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u - u, u - u) = 0$. \\
-    Für die Linearität seien $u, v \in H$ beliebig fest.
-    Mit der Parallelogrammregel erhalten wir
+  \item $P$ ist auf $V$ klarerweise die Identität auf $V$, da $a(u - u, u - u) = 0$. \\
+  Für die Linearität seien $u, v \in H$ beliebig fest. Dann gilt nach \textbf{b)} für alle $w \in V$
+
     \begin{align*}
-    &
-    a(u + \lambda v - (P(u) + \lambda P(v)), u + \lambda v - (P(u) + \lambda P(v))) \\
-    & =
-    2a(u - P(u), u - P(u)) +  2(\lambda v - \lambda P(v), \lambda v - \lambda P(v))
-    - a(u - P(u) - v + P(v), u - P(u) - v + P(v)).
-    \end{align*}
-    Betrachten wir den letzten Term separat:
-    \begin{align*}
-      & a(u - P(u) - v + P(v), u - P(u) - v + P(v)) \\
-      &= a(u-v,u-v) + a(P(v)-P(u),P(v)-P(u)) + 2a(u-v,P(v)-P(u)).
-    \end{align*}
-    Wieder interessieren wir uns besonders für den letzten Term:
-    \begin{align*}
-      2a(u-v,P(v)-P(u)) &= 2a(u,P(v) - P(u)) - 2a(v,P(v) - P(u)) \\
-      &= 2a(P(u) + (u - P(u)), P(v) - P(u)) - 2a(P(v) + (v - P(v)), P(v) - P(u)).
-    \end{align*}
-    Da $P(v) - P(u) \in V$ können wir die Identität aus b) verwenden und erhalten
-    \begin{align*}
-      2a(u-v,P(u)-P(v)) &= 2a(P(u) + (u -P(u)), P(u) -P(v)) - 2a(P(v) + (v - P(v)), P(v) - P(u)) \\
-      &= 2a(P(u) - P(v), P(v) - P(u)).
-    \end{align*}
-    Also setzen wir zurück ein
-    \begin{align*}
-      &a(u - P(u) - v + P(v), u - P(u) - v + P(v)) \\
-      &=a(u-v,u-v) + a(P(u)-P(v),P(u)-P(v)) + 2a(P(u) - P(v), P(v) - P(u)) \\
-      &= a(u-v,u-v) - a(P(u)-P(v),P(u)-P(v)).
-    \end{align*}
-    Damit folgt aufgrund der Minimierungseigenschaft von $P(u)$ und $P(v)$ für alle $w \in V$
-    \begin{align*}
-      & a(u + \lambda v - (P(u) + \lambda P(v)), u + \lambda v - (P(u) + \lambda P(v))) \\
-      &= 2a(u - P(u), u - P(u)) +  2\lambda^2(v - P(v), v - P(v))
-      - a(u-v,u-v) + a(P(u)-P(v),P(u)-P(v)) \\
-      &\leq 2a(u - w, u - w) +  2(\lambda v - w, \lambda v - w)
-      - a(u-v,u-v) = a(u + \lambda v - 2w, u + \lambda v - 2w)
-    \end{align*}
-    Alte Rechnung:
-    \begin{align*}
-      &
-      a(u + \lambda v - (P(u) + \lambda P(v)), u + \lambda v - (P(u) + \lambda P(v))) \\
-      & =
-      a(u - P(u), u - P(u))
-      +
-      \lambda^2 a(v - P(v), v - P(v))
-      +
-      2 \lambda a(u - P(u), v - P(v)) \\
-      & \leq
-      a(u - w, u - w)
-      +
-      \lambda^2 a(v - w / \lambda, v - w / \lambda)
-      +
-      2 \lambda a(u - P(u), v - w/\lambda) \\
-      & =
-      a(u - w, u - w)
-      +
-      a(\lambda v - w, \lambda v - w)
-      +
-      2 a(u - P(u), \lambda v - w) \\
-      &=   a(u - w, u - w)
-        +
-        a(\lambda v - w, \lambda v - w)
-        +
-        2 a(u -w, \lambda v - w) - 2a(P(u) -w, \lambda v - w) \\
-      &= a(u + \lambda v - 2w, u + \lambda v - 2w) - 2a(P(u) -w, \lambda v - w)
+      a(u + v - P(u+v); w) &= 0 \\
+      a(u - P(u); w) &= 0 \\
+      a(v - P(v); w) &= 0
     \end{align*}
 
-  Um die Eigenschaft des Supremums einzusehen, zeigen wir zuerst mithilfe der Ellipzität und \textbf{b)}
+  Wählen wir nun $w := P(u + v) - (P(u) + P(v))$ gilt mit der Elliptizität
+
+  \begin{align*}
+    0
+    =
+    &- a(u + v - P(u + v);P(u + v) - (P(u) + P(v))) \\
+    &+ a(u - P(u);P(u + v) - (P(u) + P(v))) \\
+    &+ a(v + P(v);P(u + v) - (P(u) + P(v))) \\
+    &=
+    a(P(u + v) - (P(u) + P(v));P(u + v) - (P(u) + P(v)))
+    \geq
+    M \norm[H]{P(u + v) - (P(u) + P(v))}
+  \end{align*}
+
+  Also $P(u + v) = P(u) + P(v)$. Für $\lambda \in \R$ gilt schließlich ($\Forall w \in V$)
+
+  \begin{align*}
+    a(\lambda u - \lambda P(u);\lambda u - \lambda P(u))
+    =
+    \lambda^2 a(u - P(u);u - P(u))
+    \leq
+    \lambda^2 a(u - w; u - w)
+    =
+    a(\lambda u - w; \lambda u - w)
+  \end{align*}
+
+  Um die Eigenschaft des Supremums einzusehen, zeigen wir zuerst mithilfe der Elliptizität und \textbf{b)}
 
   \begin{align*}
     a(v; Pv)
