@@ -31,8 +31,25 @@ Zeigen Sie:
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{enumerate}[label = (\roman*)]
+	\item Sei $f \in C(\Omega)$. Wir definieren die Mengen
+	\begin{align*}
+	A := \overline{\{x \in \Omega \mid f(x) \neq 0 \}}, \qquad B := \bigcup \left\{U \subseteq \Omega \mid \forall \phi \in \mathcal{D}(\Omega): \pbraces{\supp(\phi) \subseteq U \Rightarrow \Int[\Omega][]{f\phi}{\lambda^n} = 0} \right\}
+	\end{align*}
+	und wollen $A = \Omega \setminus B$ zeigen. 
+	\begin{enumerate}
+		\item[$\subseteq$:] Sei $x \in A$ und $V \subseteq \Omega$ eine beliebige offene Umgebung von $x$. Nach Definition von $A$ gibt es ein $y \in V$ mit $f(y) \neq 0$, o.B.d.A $f(y) > 0$. Wegen der Stetigkeit von $f$ finden wir nun eine Umgebung $W$ von $y$ mit $f(W) > 0$. Nun wählen wir ein $0 \neq \phi \in \mathcal{D}(\Omega)$ mit $\phi \geq 0$ und $\supp(\phi) \subseteq W$. Nun ist aber $\Int[\Omega][]{f\phi}{\lambda^n} > 0$, also ist $x \notin B$ und damit ist $x \in \Omega \setminus B$.
+		\item[$\supseteq$:] Sei $x \in A^c$, also gibt es eine Umgebung $V$ von $x$ mit $f(V) = 0$. Für alle $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ gilt also $\Int[\Omega][]{f\phi}{\lambda^n} = 0$ also $V \subseteq B$ und damit $x \in B$. 
+	\end{enumerate}
+	\item Definieren wir die kompakte Menge $K := \supp(\psi)$, so gilt $\vbraces{\abraces{T, \psi}} \leq C \norm[C^m(K)]{\psi} = 0$
+	\item \textbf{fehlt!!}
+	\item Seien $T \in \mathcal{D}^\prime(\Omega)$ und $f \in C^\infty(\Omega)$ so, dass $fT = 0$. Sei $x \in \Omega$ so, dass $f(x) \neq 0$, o.B.d.A $f(x) > 0$. Wegen der Stetigkeit von $f$ finden wir eine Umgebung $U$ von $x$ mit $f(U) > 0$. Für ein beliebiges gegebenes $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ definieren wir $\psi := \frac{\phi}{f}$ und erhalten
+	\begin{align*}
+	\abraces{T, \phi} = \abraces{T, f\psi} = \abraces{fT, \psi} = 0
+	\end{align*}
+	und damit ist $x \notin \supp(T)$.
+\end{enumerate}
 
 \end{solution}
 

@@ -25,8 +25,20 @@ Zeigen Sie, dass
 
 \begin{solution}
 
-ToDo!
-
+Wir beginnen mit der Rechnung 
+\begin{align*}
+\frac{1}{x - i\varepsilon} = \frac{x + i \varepsilon}{x^2 + \varepsilon^2} = \frac{x}{x^2 + \varepsilon^2} + i\frac{\varepsilon}{x^2 + \varepsilon^2}.
+\end{align*}
+Gegen was der zweite Summand konvergiert wissen wir schon aus der zweiten Aufgabe. K"ummern wir uns also um den Ersten. Könnten wir beispielsweise für ein beliebiges $\phi \in \mathcal{D}(\R)$ zeigen, dass (evtl Satz von der monotonen Konvergenz?)
+\begin{align*}
+\lim_{\varepsilon \to 0+} \abraces{\log\pbraces{\sqrt{x^2 + \varepsilon^2}}, \phi}&= \lim_{\varepsilon \to 0+} \Int[\R][]{\log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)}{x} = \Int[\R][]{\lim_{\varepsilon \to 0+}\log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)}{x} = \\
+&= \Int[\R][]{\log|x| \phi(x)}{x} = \abraces{\log|x|, \phi},
+\end{align*}
+so würde mit Lemma 3.13 schon 
+\begin{align*}
+\frac{x}{x^2 + \varepsilon^2} = \pbraces{\log\pbraces{\sqrt{x^2 + \varepsilon^2}}}^\prime \to \pbraces{\log|x|} = \pv\pbraces{\frac{1}{x}}
+\end{align*}
+folgen.
 \end{solution}
 
 % --------------------------------------------------------------------------------
