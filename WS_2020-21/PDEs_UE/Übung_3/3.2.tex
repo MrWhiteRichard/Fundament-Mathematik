@@ -29,7 +29,34 @@ und zeigen Sie, dass
 	\left|\abraces{\sin(\lambda x), \phi}\right| = \left|\frac{1}{\lambda}\abraces{\cos(\lambda x), \phi^\prime}\right| \leq \frac{1}{|\lambda|} \int_\R \left|\cos(\lambda x) \varphi^\prime(x)\right| dx \leq \frac{1}{|\lambda|} \int_\R \left|\varphi^\prime(x)\right| dx \rightarrow 0
 	\end{align*}
 	für $\lambda$ gegen $\infty$.
-	\item Sei $\phi \in \mathcal{D}(\R)$ beliebig und sei $\supp(\phi)\subseteq [a, b]$.
+	\item Sei $\phi \in \mathcal{D}(\R)$ beliebig und $\text{supp~}\phi \subseteq [-a,a]$. Es gilt
+
+\begin{align}
+    \left\langle \frac{\sin(\lambda x)}{x}, \phi\right\rangle =
+    \int_\R \frac{\sin(\lambda x)}{x} \phi(x) \text{~d}x=
+    \underbrace{\int_{|x| > a} \frac{\sin(\lambda x)}{x} \phi(x) \text{~d}x}_{= 0} +
+    \int_{|x| < a} \frac{\sin(\lambda x)}{x} \phi(x) \text{~d}x = \\
+    \int_{|x| < a} \frac{\sin(\lambda x)}{x} (\phi(x) - \phi(0)) \text{~d}x + \phi(0) \int_{|x| < a} \frac{\sin(\lambda x)}{x} \text{~d}x.
+\end{align}
+
+Wir definieren $\psi(x) := \frac{\phi(x) - \phi(0)}{x}$ und erkennen, dass wir $\psi$ mit $\psi(0) := \phi^\prime(0)$ stetig fortsetzen können. Wir wenden auf das linke Integral partielle Integration und die Dreiecksungleichung an und sehen, dass es für $\lambda \rightarrow \infty$ gegen Null geht:
+\begin{align}
+\left|\int_{|x| < a} \sin(\lambda x) ~\psi(x) \text{~d}x\right|
+=
+\left|-\frac{1}{\lambda} \cos(\lambda x) ~ \psi(x) \Big|_{t=-a}^a \right| +
+\left|\frac{1}{\lambda} \int_{|x| < a} \cos(\lambda x) ~\psi^\prime(x) \text{~d}x
+\right| \\
+\leq \frac{1}{\lambda} (2 \|\psi\| + 2a \|\psi^\prime\|)
+\stackrel{\lambda \rightarrow \infty}{\longrightarrow} 0.
+\end{align}
+Für das zweite Integral substituieren wir $x \backslash \frac{x}{\lambda}$ und verwenden wir unser Wissen aus der Analysis:
+\begin{align}
+    \lim_{\lambda \rightarrow \infty} \int_{-\lambda}^{\lambda} \frac{\sin{(\lambda x)}}{x} \text{~d}x = \pi
+\end{align}
+und somit
+\begin{align}
+\left\langle \frac{\sin(\lambda x)}{x}, \phi\right\rangle = \pi\delta.
+\end{align}
 	\item Mit dem Satz über die majorisierte Konvergenz gilt
 	\begin{align*}
 	\lim_{a \to 0+}\abraces{\arctan\pbraces{\frac{x}{a}}, \phi} = \lim_{a \to 0+} \int_\R \arctan\pbraces{\frac{x}{a}} \phi(x) dx = \int_\R \lim_{a \to 0+} \arctan\pbraces{\frac{x}{a}} \phi(x) dx = \pi \abraces{H - \frac{1}{2}, \phi},
