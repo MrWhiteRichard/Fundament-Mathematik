@@ -36,7 +36,7 @@ quad_gauss = lambda a, b, n, f: (b - a) / 2 * quad_gauss_reference(n, lambda xi:
 # ---------------------------------------------------------------- #
 
 # in seconds
-PAUSE = 1
+PAUSE = 10
 
 def test(a, b, n_max, f, exact, error_theoretical, name):
 
@@ -64,7 +64,7 @@ def test(a, b, n_max, f, exact, error_theoretical, name):
 # -------------------------------- #
 
 a = 0
-b = 1
+b = 100
 n_max = 10
 
 function_data = []
