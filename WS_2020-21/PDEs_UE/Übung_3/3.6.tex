@@ -34,28 +34,57 @@ Eine Distribution heißt \textit{positiv} wenn $\abraces{u, \varphi} \geq 0$ fü
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
 \phantom{}
+
 \begin{enumerate}[label = (\roman*)]
-	\item Seien $K \subseteq \Omega$ kompakt und $\phi \in \mathcal{D}(K)$. Wir wählen eine Funktion $\chi \in \mathcal{D}(\Omega)$ mit $\forall x \in K: \chi(x) = 1$ und mit $\chi \geq 0$ (gibt es so eine Funktion? auch hier funktioniert die Konstruktion aus Aufgabe 1). Wir bemerken noch, dass für eine positive Distribution $u$ aus $\varphi \leq 0$ auch $\abraces{u,\varphi} \leq 0$ folgt und berechnen
-	\begin{align*}
-	\abraces{u, \pbraces{\phi - \chi\norm[C(K)]{\phi}}} \leq 0 \Leftrightarrow \abraces{u, \phi} \leq \abraces{u, \chi} \norm[C(K)]{\phi}
+
+    \item Seien $K \subseteq \Omega$ kompakt und $u \in \mathcal{D}(K)^\prime$ positiv sowie $\varphi \in \mathcal{D}(K)$.
+    Laut der Konstruktion aus Aufgabe 1, $\Exists \chi \in \mathcal{D}(\Omega):$
+
+    \begin{align*}
+        \Forall x \in K: \chi(x) = 1,
+        \quad
+        \chi \geq 0.
+    \end{align*}
+    
+    Laut der Definition der Supremumsnorm gilt $\phi := \varphi - \chi \norm[C(K)]{\varphi} \leq 0$.
+    Wegen der Linearität von $u$, folgt aus $\phi \leq 0$ auch $\abraces{u, \phi} \leq 0$.
+
+    \begin{align*}
+        \implies
+        \abraces{u, \phi} \leq 0
+        \iff
+        \abraces{u, \varphi} \leq \abraces{u, \chi} \norm[C(K)]{\varphi}
 	\end{align*}
-	\item Wir wählen die Funktion 
-	\begin{align*}
-	\phi(x) =
-	\begin{cases}
-	\exp\pbraces{\frac{1}{x^2 - 1}} &, \vbraces{x} < 1 \\
-	0 &, \vbraces{x} \geq 1,
-	\end{cases}
+
+    \item Wir wählen die Funktion $\varphi$ welche, wie wir aus der Vorlesung wissen, aus $\mathcal{D}(\R)$ ist und $\varphi \geq 0$ erfüllt.
+
+    \begin{align*}
+        \varphi(x)
+        =
+        \begin{cases}
+            \exp\pbraces{\frac{1}{x^2 - 1}}, & \vbraces{x} < 1, \\
+            0,                               & \vbraces{x} \geq 1
+        \end{cases}
 	\end{align*}
-	welche, wie wir aus der Vorlesung wissen, aus $\mathcal{D}(\R)$ ist und $\phi \geq 0$ erfüllt. Außerdem nimmt die Funktion im Punkt $0$ ihr Maximum an. Deshalb ist sicher
-	\begin{align*}
+
+    Man beachte, dass $\supp{\varphi} \subseteq [-1, 1]$.
+    Außerdem nimmt die Funktion im Punkt $0$ ihr Maximum an.
+
+    \begin{align*}
+    \implies
+    \Forall x \in [-1, 1]:
+    \varphi(x) \leq \varphi(0)
+    \implies
 	\abraces{T, \varphi} = \Int[-1][1]
 	{
 		\frac{\varphi(x) - \varphi(0)}{|x|}
 	}{x} < 0 
 	\end{align*}
-	und damit $T$ nicht positiv.
+
+    Damit $T$ nicht positiv.
+
 \end{enumerate}
 
 \end{solution}
