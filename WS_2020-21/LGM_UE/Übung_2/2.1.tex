@@ -6,7 +6,7 @@ Sei $\Sigma \cup \Bbraces{A}$ eine Menge von aussagenlogischen Formeln.
 Zeigen Sie:
 
 \begin{enumerate}
-    \item $\Sigma$ ist genau dann erfüüllbar, wenn zumindest eine der Mengen $\Sigma \cup \Bbraces{A}$, $\Sigma \cup \Bbraces{\neg A}$ erfüllbar ist.
+    \item $\Sigma$ ist genau dann erfüllbar, wenn zumindest eine der Mengen $\Sigma \cup \Bbraces{A}$, $\Sigma \cup \Bbraces{\neg A}$ erfüllbar ist.
     \item $\Sigma$ ist genau dann $\ast$erfüllbar, wenn zumindest eine der Mengen $\Sigma \cup \Bbraces{A}$, $\Sigma \cup \Bbraces{\neg A}$ $\ast$erfüllbar ist.
 \end{enumerate}
 
@@ -15,8 +15,19 @@ Zeigen Sie:
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
+\phantom{}
+\begin{enumerate}
+	\item 
+	\begin{enumerate}
+		\item[`$\Rightarrow$']  Sei $\Sigma$ erfüllbar und $b$ eine Belegung aller in $\Sigma \cup \{A\}$ vorkommenden Variablen, sodass $\hat{b}(\Sigma) = 1$ gilt. 
+		\begin{enumerate}[label = Fall \arabic*:]
+			\item $\hat{b}(A) = 1$. Dann ist $\hat{b}(\Sigma \cup \{A\}) =1$.
+			\item $\hat{b}(A) = 0$. Dann ist $\hat{b}(\neg A) = 1$ und damit $\hat{b}(\Sigma \cup \{\neg A\}) =1$.
+		\end{enumerate}
+		\item[`$\Leftarrow$'] Sei $\Sigma \cup \{A\}$ oder $\Sigma \cup \{\neg A\}$ erfüllbar. In jedem Fall ist natürlich $\Sigma$ als Teilmenge ebenfalls erfüllbar.
+	\end{enumerate}
+	\item Wir bemerken, dass aus der Erfüllbarkeit auch die *Erfüllbarkeit folgt. Nun werfen wir einen Blick auf die Lösung von Aufgabe 26 und erkennen, dass auch die umgekehrte Implikation gilt. Die Menge $\Sigma$ ist also *erfüllbar genau dann wenn sie erfüllbar ist. Nach dem vorherigen Punkt ist das genau dann der Fall, wenn $\Sigma \cup \{A\}$ oder $\Sigma \cup \{\neg A\}$ erfüllbar ist.
+\end{enumerate}
 
 \end{solution}
 
