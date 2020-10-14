@@ -43,16 +43,19 @@ Zeigen Sie:
 		\item[$\supseteq$:] Sei $x \in A^c$, also gibt es eine Umgebung $V$ von $x$ mit $f(V) = 0$. Für alle $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ gilt also $\Int[\Omega][]{f\phi}{\lambda^n} = 0$ also $V \subseteq B$ und damit $x \in B$.
 	\end{enumerate}
 	\item Definieren wir die kompakte Menge $K := \supp(\psi)$, so gilt $\vbraces{\abraces{T, \psi}} \leq C \norm[C^m(K)]{\psi} = 0$
-	\item Nach Definition von supp $T$ gilt also
+	\item Nach Definition von $\supp{T}$ gilt also
 \begin{align}
-    \text{supp~}\phi \subseteq \bigcup \left\{U \subseteq \Omega \text{~offen} \mid \forall \psi \in \mathcal{D}(\Omega): \text{~supp~}\psi \subseteq U \implies \langle T, \psi\rangle = 0 \right\}.
+    \supp\phi \subseteq \bigcup \left\{U \subseteq \Omega \text{~offen} \mid \forall \psi \in \mathcal{D}(\Omega): \supp\psi \subseteq U \implies \langle T, \psi\rangle = 0 \right\} =: V.
 \end{align}
-Die rechte Menge ist kompakt, die linke eine Vereinigung offener Mengen. Nach dem Satz von Heine-Borel existiert eine endliche Teilüberdeckung:
-\begin{align}
-     \text{supp~}\phi \subseteq \bigcup_{i = 0}^n U_i,
-\end{align}
-wobei für alle $\psi$ mit supp $\psi \subseteq U_i$ gilt: $\langle T, \psi\rangle = 0.$ \textbf{braucht man das überhaupt?}
-Wir wählen eine dieser Überdeckung untergeordnete, lokal endliche $C^\infty$-Zerlegung der Eins $(\zeta_k)_{k=0}^\infty$. Wegen der lokalen Endlichkeit und der Linearität von $T$ gilt
+Mit der Identität als Karte ist die offene Menge $V$ eine $C^\infty$ Mannigfaltigkeit und wird wie man oben sieht überdeckt.Wir wählen eine dieser Überdeckung untergeordnete, lokal endliche $C^\infty$-Zerlegung der Eins $(\zeta_k)_{k=0}^\infty$. Nun gilt für beliebiges $l \in \N$, einen Multiindex $\alpha \in \N_0^n$ und jedes $x \in \Omega$
+\begin{align*}
+\vbraces{\underbrace{\sum_{k=1}^l \zeta_k(x) D^\alpha \phi(x)}_{=:\psi_l}} =  \vbraces{D^\alpha \phi(x) \sum_{k=1}^l \zeta_k(x) } \leq \vbraces{D^\alpha \phi(x)}.
+\end{align*}
+Also gilt auch $\sup_{x \in \Omega}  \vbraces{\psi_l} \leq \sup_{x \in \Omega} \vbraces{D^\alpha \phi(x)} < \infty$ womit wir sehen, dass der linke Grenzwert für $l \to \infty$ existiert. Klarerweise gilt für alle $l \in \N$, dass $\supp\psi_l \subseteq \supp \phi$. Wegen der lokalen Endlichkeit (hineinziehen des Differentialoperators) und der eben gezeigten Konvergenz gilt
+\begin{align*}
+\lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \pbraces{\phi(x) - \psi_l(x)}} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \sum_{k=l}^\infty \zeta_k(x)\phi(x)} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{\sum_{k=l+1}^\infty \zeta_k(x)D^\alpha \phi(x)} = 0.
+\end{align*}
+Die Folge von Fuktionen $\psi_l$ konvergiert also im Sinne von Definition 3.2. Damit und mit der Stetigkeit von $T$ im Sinne der eben gezeigten Konvergenz gilt 
 \begin{align}
     \langle T, \phi \rangle = \langle T, \sum_{k \in \N} \zeta_k \phi \rangle = \sum_{k \in \N} \langle T, \zeta_k \phi \rangle = \sum_{k \in \N} 0 = 0.
 \end{align}
