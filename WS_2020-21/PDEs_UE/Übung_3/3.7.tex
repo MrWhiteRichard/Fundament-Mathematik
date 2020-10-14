@@ -37,13 +37,25 @@ Zeigen Sie:
 	\begin{align*}
 	A := \overline{\{x \in \Omega \mid f(x) \neq 0 \}}, \qquad B := \bigcup \left\{U \subseteq \Omega \mid \forall \phi \in \mathcal{D}(\Omega): \pbraces{\supp(\phi) \subseteq U \Rightarrow \Int[\Omega][]{f\phi}{\lambda^n} = 0} \right\}
 	\end{align*}
-	und wollen $A = \Omega \setminus B$ zeigen. 
+	und wollen $A = \Omega \setminus B$ zeigen.
 	\begin{enumerate}
 		\item[$\subseteq$:] Sei $x \in A$ und $V \subseteq \Omega$ eine beliebige offene Umgebung von $x$. Nach Definition von $A$ gibt es ein $y \in V$ mit $f(y) \neq 0$, o.B.d.A $f(y) > 0$. Wegen der Stetigkeit von $f$ finden wir nun eine Umgebung $W$ von $y$ mit $f(W) > 0$. Nun wählen wir ein $0 \neq \phi \in \mathcal{D}(\Omega)$ mit $\phi \geq 0$ und $\supp(\phi) \subseteq W$. Nun ist aber $\Int[\Omega][]{f\phi}{\lambda^n} > 0$, also ist $x \notin B$ und damit ist $x \in \Omega \setminus B$.
-		\item[$\supseteq$:] Sei $x \in A^c$, also gibt es eine Umgebung $V$ von $x$ mit $f(V) = 0$. Für alle $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ gilt also $\Int[\Omega][]{f\phi}{\lambda^n} = 0$ also $V \subseteq B$ und damit $x \in B$. 
+		\item[$\supseteq$:] Sei $x \in A^c$, also gibt es eine Umgebung $V$ von $x$ mit $f(V) = 0$. Für alle $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ gilt also $\Int[\Omega][]{f\phi}{\lambda^n} = 0$ also $V \subseteq B$ und damit $x \in B$.
 	\end{enumerate}
 	\item Definieren wir die kompakte Menge $K := \supp(\psi)$, so gilt $\vbraces{\abraces{T, \psi}} \leq C \norm[C^m(K)]{\psi} = 0$
-	\item \textbf{fehlt!!}
+	\item Nach Definition von supp $T$ gilt also
+\begin{align}
+    \text{supp~}\phi \subseteq \bigcup \left\{U \subseteq \Omega \text{~offen} \mid \forall \psi \in \mathcal{D}(\Omega): \text{~supp~}\psi \subseteq U \implies \langle T, \psi\rangle = 0 \right\}.
+\end{align}
+Die rechte Menge ist kompakt, die linke eine Vereinigung offener Mengen. Nach dem Satz von Heine-Borel existiert eine endliche Teilüberdeckung:
+\begin{align}
+     \text{supp~}\phi \subseteq \bigcup_{i = 0}^n U_i,
+\end{align}
+wobei für alle $\psi$ mit supp $\psi \subseteq U_i$ gilt: $\langle T, \psi\rangle = 0.$ \textbf{braucht man das überhaupt?}
+Wir wählen eine dieser Überdeckung untergeordnete, lokal endliche $C^\infty$-Zerlegung der Eins $(\zeta_k)_{k=0}^\infty$. Wegen der lokalen Endlichkeit und der Linearität von $T$ gilt
+\begin{align}
+    \langle T, \phi \rangle = \langle T, \sum_{k \in \N} \zeta_k \phi \rangle = \sum_{k \in \N} \langle T, \zeta_k \phi \rangle = \sum_{k \in \N} 0 = 0.
+\end{align}
 	\item Seien $T \in \mathcal{D}^\prime(\Omega)$ und $f \in C^\infty(\Omega)$ so, dass $fT = 0$. Sei $x \in \Omega$ so, dass $f(x) \neq 0$, o.B.d.A $f(x) > 0$. Wegen der Stetigkeit von $f$ finden wir eine Umgebung $U$ von $x$ mit $f(U) > 0$. Für ein beliebiges gegebenes $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ definieren wir $\psi := \frac{\phi}{f}$ und erhalten
 	\begin{align*}
 	\abraces{T, \phi} = \abraces{T, f\psi} = \abraces{fT, \psi} = 0
