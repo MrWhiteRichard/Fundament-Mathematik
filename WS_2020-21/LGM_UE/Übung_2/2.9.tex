@@ -63,15 +63,6 @@ Nachdem wir Formeln angeben müssen, ist es sicher keine schlechte Idee, die Ang
 
 \begin{enumerate}[label = \arabic*.]
 
-	\item $\varphi_1 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)$
-    \item $\varphi_2 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
-    \land  \left(\bigwedge_{j=1}^k \pbraces{\pbraces{\bigvee_{i=1}^n p_{i,j}} \rightarrow \pbraces{\bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)}}\right)$
-	\item $\varphi_3 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right) \land
-  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
-  \item $\varphi_4 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
-  \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right)$
-%=======
-
   \item
 
   \begin{align*}
@@ -111,7 +102,7 @@ Nachdem wir Formeln angeben müssen, ist es sicher keine schlechte Idee, die Ang
     \bigwedge_{i=1}^n \bigvee_{j=1}^kp_{i,j} \\
     \phi_2
     & :=
-    \bigwedge_{i=1}^n \bigvee_{j_1=1}^kp_{i,j_1}
+    \bigwedge_{i=1}^n \bigwedge_{j_1=1}^kp_{i,j_1}
     \to
     \bigwedge_{\substack{j_2=1 \\ j_2\neq j_1}}^{k}\neg p_{i,j_2}
   \end{align*}
@@ -145,7 +136,7 @@ Nachdem wir Formeln angeben müssen, ist es sicher keine schlechte Idee, die Ang
   \begin{align*}
     \phi_3
     :=
-    \bigwedge_{j=1}^k \bigvee_{i_1=1}^np_{i_1,j}
+    \bigwedge_{j=1}^k \bigwedge_{i_1=1}^np_{i_1,j}
     \to
     \bigwedge_{\substack{i_2=1 \\ i_2\neq i_1}}^{n}\neg p_{i_2,j}
   \end{align*}
@@ -217,6 +208,29 @@ Nachdem wir Formeln angeben müssen, ist es sicher keine schlechte Idee, die Ang
 Für $k < n$ gibt es keine injektive Funktion von $A$ nach $B$, also ist $\varphi_2$ unerfüllbar, für $k \geq n$ gibt es schon eine, also ist $\varphi_2$ dann erfüllbar.
 Das kann man sich auf anschaulich mit einem klassischen Funktions-Diagramm skizzieren:
 Zwei getrennte Kreise (Ellipsen), die Punkte beinhalten, die jeweils zwischen den Kreisen verbunden sind.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+  \item $\varphi_1 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)$
+
+  \item $\varphi_2 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  \land  \left(\bigwedge_{j=1}^k \pbraces{\pbraces{\bigvee_{i=1}^n p_{i,j}} \rightarrow \pbraces{\bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)}}\right)$
+
+  \item $\varphi_3 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right) \land
+  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
+
+  \item $\varphi_4 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right)$
+
+\end{enumerate}
 
 \end{solution}
 
