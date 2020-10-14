@@ -5,7 +5,7 @@
 Seien $A = \Bbraces{a_1, \dots, a_n}$ und $B = \Bbraces{b_1, \dots, b_k}$ endliche Mengen.
 Sei $P = \Bbraces{p_{i, j} \mid 1 \leq i \leq n, 1 \leq j \leq k}$ eine Menge aussagenlogischer Variablen.
 Jede Belegung $b$ von $P$ induziert eine Relation $R_b \subseteq A \times B$ durch $(a_i, b_j) \in R_b$ gdw $b(p_{i, j}) = 1$.
-Finden SIe aussagenlogische Formeln $\varphi_1, \varphi_2, \varphi_3, \varphi_4$ so dass:
+Finden Sie aussagenlogische Formeln $\varphi_1, \varphi_2, \varphi_3, \varphi_4$ so dass:
 
 \begin{enumerate}[label = \arabic*.]
     \item $\hat{b}(\varphi_1) = 1$ gdw $R_b$ ist eine Funktion
@@ -28,10 +28,14 @@ Für welche $(n, k) \in \N \times \N$ ist $\varphi_2$ unerfüllbar? \\
 \begin{solution}
 \phantom{}
 \begin{enumerate}[label = \arabic*.]
-	\item $\varphi_1 = \bigvee_{f \in B^A}\pbraces{\bigwedge_{i=1}^n p_{if(i)} \land \pbraces{\bigwedge_{i=1}^n \bigwedge_{j \neq f(i)} \neg p_{ij}}}$ 
-	\item $\varphi_1 = \bigvee_{f \in B^A ~ injektiv}\pbraces{\bigwedge_{i=1}^n p_{if(i)} \land \pbraces{\bigwedge_{i=1}^n \bigwedge_{j \neq f(i)} \neg p_{ij}}}$
-	\item $\varphi_1 = \bigvee_{f \in B^A ~ surjektiv}\pbraces{\bigwedge_{i=1}^n p_{if(i)} \land \pbraces{\bigwedge_{i=1}^n \bigwedge_{j \neq f(i)} \neg p_{ij}}}$
-	\item $\varphi_1 = \bigvee_{f \in B^A ~ bijektiv}\pbraces{\bigwedge_{i=1}^n p_{if(i)} \land \pbraces{\bigwedge_{i=1}^n \bigwedge_{j \neq f(i)} \neg p_{ij}}}$
+	\item $\varphi_1 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)$
+	\item $\varphi_2 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right)$
+	\item $\varphi_3 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right) \land
+  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
+	\item $\varphi_4 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right) \land
+  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
 \end{enumerate}
 Für $k < n$ gibt es keine injektive Funktion von $A$ nach $B$, also ist $\varphi_2$ unerfüllbar, für $k \geq n$ gibt es schon eine, also ist $\varphi_2$ dann erfüllbar.
 
