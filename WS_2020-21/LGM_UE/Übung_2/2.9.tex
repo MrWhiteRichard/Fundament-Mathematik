@@ -26,8 +26,43 @@ Für welche $(n, k) \in \N \times \N$ ist $\varphi_2$ unerfüllbar? \\
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-\phantom{}
+
+Nachdem wir Formeln angeben müssen, ist es sicher keine schlechte Idee, die Angabe auch in Formeln aufzuschreiben.
+
+\begin{align*}
+  P =
+  \begin{Bmatrix}
+    p_{11}, & \cdots & p_{1k}, \\
+    \vdots  & \ddots & \vdots \\
+    p_{n1}, & \cdots & p_{nk}
+  \end{Bmatrix},
+  \quad
+  \begin{matrix}
+    A = \Bbraces{a_1, \dots, a_n}, \\
+    B = \Bbraces{b_1, \dots, b_k}
+  \end{matrix}
+\end{align*}
+
+\begin{align*}
+  b: p \to \Bbraces{0, 1}
+  \rightsquigarrow
+  R_b
+  =
+  \Bbraces
+  {
+    (a_i, b_j) \in A \times B:
+    \:
+    \begin{matrix}
+      i = 1, \dots, n, \\
+      j = 1, \dots, k,
+    \end{matrix}
+    \quad
+    b(p_{ij}) = 1
+  }
+\end{align*}
+
 \begin{enumerate}[label = \arabic*.]
+%<<<<<<< HEAD
 	\item $\varphi_1 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)$
 	\item $\varphi_2 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
   \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right)$
@@ -38,8 +73,155 @@ Für welche $(n, k) \in \N \times \N$ ist $\varphi_2$ unerfüllbar? \\
 	\item $\varphi_4 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
   \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right) \land
   \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
+%=======
+
+  \item
+
+  \begin{align*}
+    R_b ~\text{Funktion}
+    :\iff
+    & \Forall a_i \in A:
+    \ExistsOnlyOne b_j \in B:
+    (a_i, b_j) \in R_b \\
+    \iff
+    & \Forall a_i \in A:
+    \Exists b_j \in B:
+    (a_i, b_j) \in R_b
+    ~ \land \\
+    & \Forall a_i \in A:
+    \Forall b_{j_1}, b_{j_2} \in B:
+    (a_i, b_{j_1}), (a_i, b_{j_2}) \in R_b
+    \implies
+    b_{j_1} = b_{j_2} \\
+    \iff
+    & \Forall a_i \in A:
+    \Exists b_j \in B:
+    (a_i, b_j) \in R_b
+    ~ \land \\
+    & \Forall a_i \in A:
+    \Forall b_{j_1} \in B:
+    (a_i, b_{j_1}) \in R_b
+    \implies
+    \Forall b_{j_2} \in B \setminus \Bbraces{b_{j_1}}:
+    (a_i, b_{j_2}) \not \in R_b
+  \end{align*}
+
+  Wir brauchen für unsere Formel also $2$ Bauteile.
+
+  \begin{align*}
+    \phi_1
+    & :=
+    \bigwedge_{i=1}^n \bigvee_{j=1}^kp_{i,j} \\
+    \phi_2
+    & :=
+    \bigwedge_{i=1}^n \bigvee_{j_1=1}^kp_{i,j_1}
+    \to
+    \bigwedge_{\substack{j_2=1 \\ j_2\neq j_1}}^{k}\neg p_{i,j_2}
+  \end{align*}
+
+  \begin{align*}
+    \rightsquigarrow
+    \varphi_1 := \phi_1 \land \phi_2
+  \end{align*}
+
+  \item Sei $R_b$ eine Funktion.
+  
+  \begin{align*}
+    R_b ~\text{injektiv}
+    :\iff
+    & \Forall a_{i_1}, a_{i_2} \in A:
+    \Forall b_j \in B:
+    (a_{i_1}, b_j), (a_{i_1}, b_j) \in R_b
+    \implies
+    a_{i_1} = a_{i_2} \\
+    \iff
+    & \Forall b_j \in B:
+    \Forall a_{i_1} \in A:
+    (a_{i_1}, b_j) \in R_b
+    \implies
+    \Forall a_{i_2} \in A \setminus \Bbraces{a_{i_1}}:
+    (a_{i_2}, b_j) \not \in R_b
+  \end{align*}
+
+  Wir brauchen also noch folgendes, zu $\phi_2$ analoges, Bauteil.
+
+  \begin{align*}
+    \phi_3
+    :=
+    \bigwedge_{j=1}^k \bigvee_{i_1=1}^np_{i_1,j}
+    \to
+    \bigwedge_{\substack{i_2=1 \\ i_2\neq i_1}}^{n}\neg p_{i_2,j}
+  \end{align*}
+
+  \begin{align*}
+    \rightsquigarrow
+    \varphi_2
+    :=
+    \varphi_1 \land \phi_3
+  \end{align*}
+  
+  % $\varphi_2 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  % \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right)$
+
+  \item Sei $R_b$ eine Funktion.
+  
+  \begin{align*}
+    R_b ~\text{surjektiv}
+    :\iff
+    & \Forall b_j \in B:
+    \Exists a_i \in A:
+    (a_i, b_j) \in R_b
+  \end{align*}
+
+  Wir brauchen also noch folgendes, zu $\phi_1$ analoges, Bauteil.
+
+  \begin{align*}
+    \phi_4
+    :=
+    \bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}
+  \end{align*}
+  
+  \begin{align*}
+    \rightsquigarrow
+    \varphi_3
+    :=
+    \varphi_1 \land \phi_4
+  \end{align*}
+
+  % $\varphi_3 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right) \land
+  % \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
+  
+  \item Sei $R_b$ eine Funktion.
+  
+  \begin{align*}
+    R_b ~\text{bijektiv}
+    :\iff
+    R_b ~\text{injektiv}
+    \land
+    R_b ~\text{surjektiv}
+  \end{align*}
+
+  \begin{align*}
+    \rightsquigarrow
+    \varphi_4
+    :=
+    \varphi_2 \land \varphi_3
+    =
+    \varphi_1 \land \phi_3 \land \phi_4
+    =
+    \phi_1 \land \phi_2 \land \phi_3 \land \phi_4
+  \end{align*}
+
+  % $\varphi_4 = \bigwedge_{i=1}^n \bigvee_{j=1}^k\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{k}\neg p_{i,l}\right)
+  % \land  \left(\bigwedge_{j=1}^k \bigvee_{i=1}^n\left(p_{i,j} \land \bigwedge_{l=1,l\neq j}^{n}\neg p_{l,j}\right)\right) \land
+  % \left(\bigwedge_{j=1}^k \bigvee_{i=1}^np_{i,j}\right)$
+
+>>>>>>> 2cdca767f99f912839e6d658507e56ada174c613
 \end{enumerate}
+
 Für $k < n$ gibt es keine injektive Funktion von $A$ nach $B$, also ist $\varphi_2$ unerfüllbar, für $k \geq n$ gibt es schon eine, also ist $\varphi_2$ dann erfüllbar.
+Das kann man sich auf anschaulich mit einem klassischen Funktions-Diagramm skizzieren:
+Zwei getrennte Kreise (Ellipsen), die Punkte beinhalten, die jeweils zwischen den Kreisen verbunden sind.
 
 \end{solution}
 
