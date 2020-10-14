@@ -2,7 +2,7 @@
 
 \begin{exercise}[40]
 
-Zeigen Sie, dass die leere Klausel mit (mhrfach ausgeführter) Resolution aus den Klauseln $\Bbraces{\Bbraces{\neg p, q}; \Bbraces{\neg r, s}; \Bbraces{p, r}; \Bbraces{\neg q}; \Bbraces{\neg s}}$ herleitbar ist.
+Zeigen Sie, dass die leere Klausel mit (mehrfach ausgeführter) Resolution aus den Klauseln $M = \Bbraces{\Bbraces{\neg p, q}; \Bbraces{\neg r, s}; \Bbraces{p, r}; \Bbraces{\neg q}; \Bbraces{\neg s}}$ herleitbar ist.
 Was hat dies mit Aufgabe 21 zu tun?
 
 \end{exercise}
@@ -11,7 +11,24 @@ Was hat dies mit Aufgabe 21 zu tun?
 
 \begin{solution}
 
-ToDo!
+Definiere
+\begin{align*}
+  C_1 &:= \Bbraces{\neg p, q} \\
+  C_2 &:= \Bbraces{\neg r, s} \\
+  C_3 &:= \Bbraces{p, r} \\
+  C_4 &:= \Bbraces{\neg q} \\
+  C_5 &:= \Bbraces{\neg s} \\
+  C_6 &:= \Res_p(C_3,C_1) = \{q, r\} \\
+  C_7 &:= \Res_r(C_6,C_2) = \{q, s\} \\
+  C_8 &:= \Res_q(C_7,C_4) = \{s\} \\
+  C_9 &:= \Res_s(C_8,C_5) = \emptyset.
+\end{align*}
+Damit ist $(C_1,\dots,C_9)$ eine Resolutionswiderlegung von $M$. \\
+Bei Aufgabe 21 galt es zu entscheiden, ob gewisse Formeln Tautologien sind oder nicht.
+Dazu kann man natürlich auch zuerst die Formeln auf KNF bringen und darauf den
+Resolutionsalgorithmus anwenden, welcher in endlich vielen Schritten eine
+unter Resolution abgeschlossene Menge bringt. Enthält diese die leere Menge,
+so ist die Formel widerlegbar, also keine Tautologie, anderenfalls schon.
 
 \end{solution}
 
