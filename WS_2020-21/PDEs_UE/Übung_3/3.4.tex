@@ -67,26 +67,29 @@ Daher, ist insbesondere $\phi \in C(\R)$.
 
 \begin{align*}
     f_\varepsilon:
-    (-\delta, \delta) \to \R:
+    [a,b] \to \R:
     x \mapsto \log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x),
     \quad
     f:
-    (-\delta, \delta) \to \R:
-    x \mapsto \log{|x|} \phi(x) \\
-    \implies
-    f_\epsilon
-    \xrightarrow[\text{monoton}]{\varepsilon \to 0} f
+    [a,b] \to \R:
+    x \mapsto \log{|x|} \phi(x)
 \end{align*}
 
 Seien $a \in \R^-$, $b \in \R^+$, sodass $\supp{\phi} \subseteq [a, b]$.
-Wir können also,
-\begin{itemize}
-    \item einmal mit dem Satz von der monotonen Konvergenz, und
-    \item zweimal mit dem Satz von der dominierten Konvergenz
-\end{itemize}
+Wir können also mit dem Satz von der dominierten Konvergenz
 
-die Folgende Vertauschung des Grenzwerts mit dem Integral rechtfergiten.
-
+die folgende Vertauschung des Grenzwerts mit dem Integral rechtfertigen.
+Auf den Intervallen $[a,-\delta], [\delta, b]$ ist für $\epsilon^2 < \delta/2$
+die Funktion
+\begin{align*}
+  g(x) = \max\{|\log\pbraces{\sqrt{a^2 + \varepsilon^2}}|, |\log\pbraces{\sqrt{b^2 + \varepsilon^2}}| |\log\pbraces{\sqrt{\delta/2}}|\}|\phi(x)|
+\end{align*} eine
+integrierbare Majorante.
+Während für das Intervall $[-\delta,\delta]$ für $ \delta^2 + \epsilon^2 < 1$ die Ungleichung
+\begin{align*}
+  |\log\pbraces{\sqrt{x^2 + \varepsilon^2}}| \leq |\log(|x|)|
+\end{align*}
+gilt, also können wir als integrierbare Majorante $g(x) = |\log{|x|}\phi(x)|$ nehmen.
 \begin{align*}
     \lim_{\varepsilon \to 0+}
     \abraces{\log \pbraces{\sqrt{x^2 + \varepsilon^2}}, \phi}
@@ -100,26 +103,12 @@ die Folgende Vertauschung des Grenzwerts mit dem Integral rechtfergiten.
     \lim_{\varepsilon \to 0+}
     \pbraces
     {
-        \Int[a][-\delta]{\log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)}{x}
+        \Int[a][-\delta]{f_\varepsilon(x)\phi(x)}{x}
         +
-        \Int[-\delta][\delta]{f_\varepsilon(x)}{x}
+        \Int[-\delta][\delta]{f_\varepsilon(x)\phi(x)}{x}
         +
-        \Int[\delta][b]{\log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)}{x}
+        \Int[\delta][b]{f_\varepsilon(x) \phi(x)}{x}
     } \\
-    & =
-    \Int[a][-\delta]
-    {
-        \lim_{\varepsilon \to 0+}
-        \log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)
-    }{x}
-    +
-    \Int[-\delta][\delta]{f(x)}{x}
-    +
-    \Int[\delta][b]
-    {
-        \lim_{\varepsilon \to 0+}
-        \log\pbraces{\sqrt{x^2 + \varepsilon^2}} \phi(x)
-    }{x} \\
     & =
     \Int[\R][]{\log|x| \phi(x)}{x}
     =
