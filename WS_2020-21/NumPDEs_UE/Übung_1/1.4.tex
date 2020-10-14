@@ -28,7 +28,7 @@ Verwenden Sie eine Interpolationsfehlerdarstellung.
 
 \begin{solution}
 
-Sei $L_p: C^{p+1}([x_a, x_b]) \to \Pi_p$ der (lineare) Lagrange-Interpolationspolynom-Operator (für eine Zerlegung $x_a \leq t_0 \cdots < t_p \leq x_b$).
+Sei $L_p: C^{p+1}([x_a, x_b]) \to \Pi_p$ der (lineare) Lagrange-Interpolationspolynom-Operator (für eine Zerlegung $x_a \leq t_0 < \cdots < t_p \leq x_b$).
 
 \includegraphicsboxed
 [Innerberger, Nannen \& Praetorius - Numerics of differential equations]
@@ -70,6 +70,12 @@ Seien $u \in C^{(p+1)}([a, b])$ und $x_j = t_{j, 1} < \dots < t_{j, p+1} = x_{j+
 
 \begin{align*}
   \implies
+  \pbraces
+  {
+    \inf_{v \in \S^p_0}
+    \norm[L^2((a, b))]{u^\prime - v^\prime}
+  }^2
+  \leq
   \inf_{v \in \S^p_0}
   \norm[L^2((a, b))]{u^\prime - v^\prime}^2
   & \leq
@@ -80,7 +86,7 @@ Seien $u \in C^{(p+1)}([a, b])$ und $x_j = t_{j, 1} < \dots < t_{j, p+1} = x_{j+
   {\lambda} \\
   & =
   \sum_{j=0}^{N-1}
-  \Int[x_i][x_{i+1}]
+  \Int[x_j][x_{j+1}]
   {
     |
       (u|_{[x_j , x_{j+1}]})^\prime
@@ -101,21 +107,27 @@ Seien $u \in C^{(p+1)}([a, b])$ und $x_j = t_{j, 1} < \dots < t_{j, p+1} = x_{j+
   & \leq
   (b-a)
   \sum_{j=0}^{N-1}
-  \frac
-  {
-    ({x_{j+1} - x_j})^{2p}
-  }{p!^2}
-  \norm
-  [{\infty, [x_j,x_{j+1}]}]
-  {u^{(p+1)}}^2 \\
-  & \leq
-  \frac{N (b-a)}{p!^2}
   \pbraces
   {
-    \max_{j=0, \dots, N-1}
-    (x_{j+1} - x_j)
-  }^{2p}
-  \norm[\infty]{u^{(p+1)}}^2
+    \frac
+    {
+      ({x_{j+1} - x_j})^{p}
+    }{p!}
+    \norm
+    [{\infty, [x_j,x_{j+1}]}]
+    {u^{(p+1)}}
+  }^2 \\
+  & \leq
+  \pbraces
+  {
+    \frac{N (b-a)}{p!}
+    \pbraces
+    {
+      \max_{j=0, \dots, N-1}
+      (x_{j+1} - x_j)
+    }^{p}
+    \norm[\infty]{u^{(p+1)}}
+  }^2
 \end{align*}
 
 \end{solution}
