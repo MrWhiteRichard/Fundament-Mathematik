@@ -35,11 +35,11 @@ Zeigen Sie:
 \begin{enumerate}[label = (\roman*)]
 	\item Sei $f \in C(\Omega)$. Wir definieren die Mengen
 	\begin{align*}
-	A := \overline{\{x \in \Omega \mid f(x) \neq 0 \}}, \qquad B := \bigcup \left\{U \subseteq \Omega \mid \forall \phi \in \mathcal{D}(\Omega): \pbraces{\supp(\phi) \subseteq U \Rightarrow \Int[\Omega][]{f\phi}{\lambda^n} = 0} \right\}
+	A := \overline{\{x \in \Omega \mid f(x) \neq 0 \}}, \qquad B := \bigcup \left\{U \subseteq \Omega \text{offen} \mid \forall \phi \in \mathcal{D}(\Omega): \pbraces{\supp(\phi) \subseteq U \Rightarrow \Int[\Omega][]{f\phi}{\lambda^n} = 0} \right\}
 	\end{align*}
 	und wollen $A = \Omega \setminus B$ zeigen.
 	\begin{enumerate}
-		\item[$\subseteq$:] Sei $x \in A$ und $V \subseteq \Omega$ eine beliebige offene Umgebung von $x$. Nach Definition von $A$ gibt es ein $y \in V$ mit $f(y) \neq 0$, o.B.d.A $f(y) > 0$. Wegen der Stetigkeit von $f$ finden wir nun eine Umgebung $W$ von $y$ mit $f(W) > 0$. Nun wählen wir ein $0 \neq \phi \in \mathcal{D}(\Omega)$ mit $\phi \geq 0$ und $\supp(\phi) \subseteq W$. Nun ist aber $\Int[\Omega][]{f\phi}{\lambda^n} > 0$, also ist $x \notin B$ und damit ist $x \in \Omega \setminus B$.
+		\item[$\subseteq$:] Sei $x \in A$ und $V \subseteq \Omega$ eine beliebige offene Umgebung von $x$. Nach Definition von $A$ gibt es ein $y \in V$ mit $f(y) \neq 0$, o.B.d.A $f(y) > 0$. Wegen der Stetigkeit von $f$ finden wir nun eine Umgebung $W \subset V$ von $y$ mit $f(W) > 0$. Nun wählen wir ein $0 \neq \phi \in \mathcal{D}(\Omega)$ mit $\phi \geq 0$ und $\supp(\phi) \subseteq W$. Nun ist aber $\Int[\Omega][]{f\phi}{\lambda^n} > 0$, also ist $x \notin B$ und damit ist $x \in \Omega \setminus B$.
 		\item[$\supseteq$:] Sei $x \in A^c$, also gibt es eine Umgebung $V$ von $x$ mit $f(V) = 0$. Für alle $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ gilt also $\Int[\Omega][]{f\phi}{\lambda^n} = 0$ also $V \subseteq B$ und damit $x \in B$.
 	\end{enumerate}
 	\item Definieren wir die kompakte Menge $K := \supp(\psi)$, so gilt $\vbraces{\abraces{T, \psi}} \leq C \norm[C^m(K)]{\psi} = 0$
@@ -49,15 +49,18 @@ Zeigen Sie:
 \end{align}
 Mit der Identität als Karte ist die offene Menge $V$ eine $C^\infty$ Mannigfaltigkeit und wird wie man oben sieht überdeckt.Wir wählen eine dieser Überdeckung untergeordnete, lokal endliche $C^\infty$-Zerlegung der Eins $(\zeta_k)_{k=0}^\infty$ mit $\forall k \in \N_0: \zeta_k \geq 0$. Nun gilt für beliebiges $l \in \N$, einen Multiindex $\alpha \in \N_0^n$ und jedes $x \in \Omega$
 \begin{align*}
-\vbraces{\underbrace{\sum_{k=1}^l \zeta_k(x) D^\alpha \phi(x)}_{=:\psi_l}} =  \vbraces{D^\alpha \phi(x) \sum_{k=1}^l \zeta_k(x) } \leq \vbraces{D^\alpha \phi(x)}.
+\vbraces{\sum_{k=1}^l \zeta_k(x) D^\alpha \phi(x)} =  \vbraces{D^\alpha \phi(x) \sum_{k=1}^l \zeta_k(x) } \leq \vbraces{D^\alpha \phi(x)}.
 \end{align*}
-Also gilt auch $\sup_{x \in \Omega}  \vbraces{\psi_l} \leq \sup_{x \in \Omega} \vbraces{D^\alpha \phi(x)} < \infty$ womit wir sehen, dass der linke Grenzwert für $l \to \infty$ existiert. Klarerweise gilt für alle $l \in \N$, dass $\supp\psi_l \subseteq \supp \phi$. Wegen der lokalen Endlichkeit (hineinziehen des Differentialoperators) und der eben gezeigten Konvergenz gilt
+Definiere $\psi_l := \sum_{k=1}^l\zeta_k(x)\phi(x)$.
+Also gilt auch $\sup_{x \in \Omega}  \vbraces{D^\alpha\psi_l} \leq \sup_{x \in \Omega} \vbraces{D^\alpha \phi(x)} < \infty$ womit wir sehen, dass der linke Grenzwert für $l \to \infty$ existiert. Klarerweise gilt für alle $l \in \N$, dass $\supp\psi_l \subseteq \supp \phi$. Wegen der lokalen Endlichkeit (hineinziehen des Differentialoperators) und der eben gezeigten Konvergenz gilt
 \begin{align*}
-\lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \pbraces{\phi(x) - \psi_l(x)}} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \sum_{k=l}^\infty \zeta_k(x)\phi(x)} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{\sum_{k=l+1}^\infty \zeta_k(x)D^\alpha \phi(x)} = 0.
+\lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \pbraces{\phi(x) - \psi_l(x)}} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{D^\alpha \sum_{k=l}^\infty \zeta_k(x)\phi(x) - D^\alpha \psi_l(x)} = \lim_{l \to \infty} \sup_{x\in\Omega} \vbraces{\sum_{k=l+1}^\infty \zeta_k(x)D^\alpha \phi(x)} = 0.
 \end{align*}
-Die Folge von Fuktionen $\psi_l$ konvergiert also im Sinne von Definition 3.2. Damit und mit der Stetigkeit von $T$ im Sinne der eben gezeigten Konvergenz gilt 
+Die Folge von Funktionen $\psi_l$ konvergiert also im Sinne von Definition 3.2 gegen $\phi$. Damit und mit der Stetigkeit von $T$ im Sinne der eben gezeigten Konvergenz gilt
 \begin{align}
-    \langle T, \phi \rangle = \langle T, \sum_{k \in \N} \zeta_k \phi \rangle = \sum_{k \in \N} \langle T, \zeta_k \phi \rangle = \sum_{k \in \N} 0 = 0.
+    \langle T, \phi \rangle = \langle T, \sum_{k \in \N} \zeta_k \phi \rangle =
+    \lim_{l \to \infty} \langle T, \psi_l\rangle =
+    \sum_{k \in \N} \langle T, \zeta_k \phi \rangle = \sum_{k \in \N} 0 = 0.
 \end{align}
 	\item Seien $T \in \mathcal{D}^\prime(\Omega)$ und $f \in C^\infty(\Omega)$ so, dass $fT = 0$. Sei $x \in \Omega$ so, dass $f(x) \neq 0$, o.B.d.A $f(x) > 0$. Wegen der Stetigkeit von $f$ finden wir eine Umgebung $U$ von $x$ mit $f(U) > 0$. Für ein beliebiges gegebenes $\phi \in \mathcal{D}(\Omega)$ mit $\supp(\phi) \subseteq U$ definieren wir $\psi := \frac{\phi}{f}$ und erhalten
 	\begin{align*}
