@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-Eine Distribution $u \in \mathcal{D}^\prime(\Omega)$ heißt von endlicher Ordnung wenn es ein $m \in \N_0$ gibt sodass man fur alle kompakten Mengen $K \subset \Omega$ eine Konstante $C > 0$ finden kann, sodass für alle $\varphi \in \mathcal{D}(K)$ gilt:
+Eine Distribution $u \in \mathcal{D}^\prime(\Omega)$ heißt von endlicher Ordnung wenn es ein $m \in \N_0$ gibt sodass man für alle kompakten Mengen $K \subset \Omega$ eine Konstante $C > 0$ finden kann, sodass für alle $\varphi \in \mathcal{D}(K)$ gilt:
 
 \begin{align*}
     |\abraces{u, \varphi}|
@@ -28,7 +28,92 @@ Bestimmen Sie die Ordnung folgender Distributionen ($\Omega \subset \R^n$ offen)
 
 \begin{solution}
 
-ToDo!
+\begin{enumerate}[label = (\roman*)]
+  \item Wir behaupten, die Ordnung ist $0$. Sei dazu $K \subset \Omega$ eine beliebige kompakte Menge, $C=1$, $\varphi \in \mathcal{D}(K)$:
+
+  \begin{align*}
+    |\abraces{\delta, \varphi}|
+    = |\varphi(0)|
+    \leq
+    \norm[C(K)]{\varphi}
+  \end{align*}
+
+  Die Ungleichung ist für $0 \in K$ klar, ansonsten ist $0 \notin \supp(\varphi)$ und die Ungleichung trivialerweise erfüllt.
+
+
+  \item Wir behaupten, die Ordnung ist $0$. Sei dazu wieder $K \subset \Omega$ eine beliebige kompakte Menge, $\varphi \in \mathcal{D}(K)$:
+
+  \begin{align*}
+      |\abraces{f, \varphi}|
+      =
+      |\int_K f(x) \varphi(x) dx|
+      \leq
+      \int_K |f(x)| |\varphi(x)| dx
+      \leq
+      \norm[C(K)]{\varphi} \norm[L^1 (K)]{f|_K}
+  \end{align*}
+
+  Mit $C = \norm[L^1 (K)]{f|_K}$ als Konstante (in $\varphi$) haben wir die Behauptung also gezeigt.
+
+  \item Wir behaupten, die Ordnung ist kleiner (eventuell gleich) $|\alpha|$.
+  Erinnern wir uns zuerst an die Defintion der Norm.
+
+  \begin{align*}
+    \norm[C^k (K)]{\phi}
+    =
+    \sum_{|\alpha| \leq k} \sup_{x \in K} |D^\alpha \phi(x)|
+  \end{align*}
+
+  Sei nun $K \subset \Omega$ eine beliebige kompakte Menge, $C = 1$, $\varphi \in \mathcal{D}(K)$:
+
+  \begin{align*}
+    |\abraces{\varphi \mapsto \partial^\alpha \varphi(x_0), \varphi}|
+    =
+    |\partial^\alpha \varphi(x_0)|
+    \leq
+    \norm[C^{|\alpha|}(K)]{\varphi}
+  \end{align*}
+
+  Wie in $(i)$ gilt die Ungleichung sowohl für $x_0 \in K$ als auch $x_0 \notin K$.
+
+  \item Hier unterscheiden wir
+  \begin{enumerate}[label = \arabic*.]
+    \item Fall: $\max |\alpha_j| < \infty$. Dann wählen wir $m = \max |\alpha_j|$.
+    Für kompaktes $K \subset \Omega$ gilt, da die Folge $x_j$ in $\Omega$ keinen Häufungspunkt hat
+
+    \begin{align*}
+      C_K := |\Bbraces{j \in \N : x_j \in K}| < \infty
+    \end{align*}
+
+    Das $C_K$ sei nun also unsere Konstante. Dann gilt für $\varphi \in \mathcal{D}(K)$
+
+    \begin{align*}
+      |\abraces{\varphi \mapsto \sum_{j \in \N} \partial^{\alpha_j} \varphi(x_j), \varphi}|
+      =
+      |\sum_{x_j \in \K} \partial^{\alpha_j} \varphi(x_j)|
+      \leq
+      \sum_{x_j \in \K} |\partial^{\alpha_j} \varphi(x_j)|
+      \leq
+      C_K \norm[C^m(K)]{\varphi}
+    \end{align*}
+
+    \item Fall: Nun gibt es also $j \in \N$ sodass $|\alpha_j| = \infty$. Sei nun
+    $m \in \N_0$ beliebig. Wählen wir nun eine kompakte Menge $K_m$ sodass es ein
+    $j_0 \in \N: x_{j_0} \in K \land |\alpha_{j_0}| > m$ gibt. Es soll von allen Folgengliedern
+    nur $x_{j_0} \in K$ (solange keine doppelt vorkommen ist das auch möglich). Dann gilt für
+    $\varphi \in \mathcal{D}(K)$
+
+    \begin{align*}
+      |\sum_{j \in \N} \partial^{\alpha_j} \varphi(x_j)|
+      =
+      |\partial^{\alpha_{j_0}} \varphi(x_{j_0})|
+    \end{align*}
+
+    und damit, wenn wir in $(iii)$ noch Gleichheit für die Ordnung zeigen können,
+    ist die Ordnung größer $m$.
+
+  \end{enumerate}
+\end{enumerate}
 
 \end{solution}
 
