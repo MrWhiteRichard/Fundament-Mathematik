@@ -66,14 +66,40 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
 \phantom{}
+
 \begin{enumerate}[label = (\roman*)]
-	\item Gegeben sei eine beliebige kompakte Menge $K \subseteq \R$. Wir wählen $a \in [1, \infty]$ mit $K \subseteq [-a, a]$. Nun ist
-	\begin{align*}
-	\int_K \vbraces{f(x)} dx &\leq 2 \pbraces{\int_1^a \log(x) dx - \int_0^1 \log(x) dx} \\
-	&= 2 \pbraces{(\log(a)a - a) - (\log(1)1 - 1) - \pbraces{(\log(1)1 - 1) - \lim_{\epsilon \to 0+} (\log(\epsilon)\epsilon - \epsilon )}} \\
-	&= \log(a)a - a + 2 < \infty.
-	\end{align*}
+
+    \item Gegeben sei eine beliebige kompakte Menge $K \subseteq \R$.
+    Wir wählen $a \in \R^+$ mit $K \subseteq [-a, a]$.
+    Laut der Regel von L'Hospital, gilt
+
+    \begin{align*}
+        \ln{(\epsilon)} \epsilon = 0.
+    \end{align*}
+
+    \begin{multline*}
+        \implies
+        \Int[K]{|f(x)|}{x}
+        \leq
+        \Int[-a][a]{\ln{|x|}}{x}
+        =
+        2 \Int[0][a]{\ln{x}}{x} \\
+        =
+        2 \pbraces
+        {
+            (\ln{(a)} a - a)
+            -
+            \pbraces
+            {
+                \lim_{\epsilon \to 0+}
+                (\ln{(\epsilon)} \epsilon - \epsilon)
+            }
+        }
+        =
+        2 (\ln{(a)} a - a) < \infty
+	\end{multline*}
 	Betrachte hingegen 
 	\begin{align*}
 	\int_0^1 \vbraces{f^\prime(x)} dx = \int_0^1 \frac{1}{x} dx = \log(1) - \lim_{\epsilon \to 0+} \log(\epsilon) = \infty.
