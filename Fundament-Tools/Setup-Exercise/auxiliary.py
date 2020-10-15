@@ -7,138 +7,203 @@ import codecs
 
 # ---------------------------------------------------------------- #
 
-path_script_folder = os.getcwd()
-path_script_folder_dissected = path_script_folder.split('\\')
+script_folder_path = os.getcwd()
+script_folder_path_dissected = script_folder_path.split('\\')
 
 # if script is terminated from super folder of script_super_folder ...
-script_super_folder = 'Fundament-Tools'
-if script_super_folder not in path_script_folder_dissected:
-    path_script_folder_dissected.append(script_super_folder)
-    path_script_folder = '\\'.join(path_script_folder_dissected)
+script_super_folder_name = 'Fundament-Tools'
+if script_super_folder_name not in script_folder_path_dissected:
+
+    script_folder_path_dissected.append(script_super_folder_name)
+    script_folder_path = '\\'.join(script_folder_path_dissected)
 
 # if script is terminated from super folder of script_folder ...
-script_folder = 'Setup-LaTeX-Project'
-if script_folder not in path_script_folder_dissected:
-    path_script_folder_dissected.append(script_folder)
-    path_script_folder = '\\'.join(path_script_folder_dissected)
+script_folder_name = 'Setup-Exercise'
+if script_folder_name not in script_folder_path_dissected:
 
-path_source_folder = '\\'.join(path_script_folder_dissected[:-2:] + ['Fundament-LaTeX', 'Templates'])
+    script_folder_path_dissected.append(script_folder_name)
+    script_folder_path = '\\'.join(script_folder_path_dissected)
+
+source_folder_path = '\\'.join(
+    script_folder_path_dissected[:-2:] + ['Fundament-LaTeX', 'Templates']
+)
 
 # ---------------------------------------------------------------- #
 
 def exercise_and_solution_file_names(
-    path_exercise_folder,
+    exercise_folder_path,
     lva_name,
-    exercise_number,
-    exercise_amount,
+    exercise_session_number,
+    exercise_number_min,
+    exercise_number_max,
     exercise_date
 ):
 
-    Numbers = itertools.product(*[[exercise_number], range(1, exercise_amount+1)])
-    destination_file_name  = lambda numbers: '.'.join([str(number) for number in numbers]) + '.tex'
-    return [destination_file_name(numbers) for numbers in Numbers]
+    return [
+        f'{exercise_session_number}.{exercise_number}' + '.tex'
+        for exercise_number in range(
+            exercise_number_min,
+            exercise_number_max + 1
+        )
+    ]
 
 # ---------------------------------------------------------------- #
 
 def setup_exercises_and_solutions(
-    path_exercise_folder,
+    exercise_folder_path,
     lva_name,
-    exercise_number,
-    exercise_amount,
+    exercise_session_number,
+    exercise_number_min,
+    exercise_number_max,
     exercise_date
 ):
 
-    for destination_file_name in exercise_and_solution_file_names(
-        path_exercise_folder,
+    for exercise_and_solution_file_name in exercise_and_solution_file_names(
+        exercise_folder_path,
         lva_name,
-        exercise_number,
-        exercise_amount,
+        exercise_session_number,
+        exercise_number_min,
+        exercise_number_max,
         exercise_date
     ):
 
-        # copy 'exercise and solution.tex' as destination_file_name
-        path_source_file      = path_source_folder + '\\' + 'exercise and solution.tex'
-        path_destination_file = path_exercise_folder + '\\' + destination_file_name
-        shutil.copyfile(path_source_file, path_destination_file)
+        # copy 'exercise and solution.tex' as destination_file_name ...
+
+        source_file_name = 'exercise and solution.tex'
+        destination_file_name = exercise_and_solution_file_name
+
+        destination_folder_path = exercise_folder_path
+
+        source_file_path      = source_folder_path      + '\\' + source_file_name
+        destination_file_path = destination_folder_path + '\\' + destination_file_name
+        shutil.copyfile(source_file_path, destination_file_path)
 
 # ---------------------------------------------------------------- #
 
 def setup_exercise_main(
-    path_exercise_folder,
+    exercise_folder_path,
     lva_name,
-    exercise_number,
-    exercise_amount,
+    exercise_session_number,
+    exercise_number_min,
+    exercise_number_max,
     exercise_date
 ):
-    
-    # copy 'main.tex' as 'main.tex'
-    path_source_file      = path_source_folder   + '\\' + 'main.tex'
-    path_destination_file = path_exercise_folder + '\\' + 'main.tex'
-    shutil.copyfile(path_source_file, path_destination_file)
 
-    # read content of 'main.tex' as array of lines
-    with codecs.open(path_source_file, 'r', 'utf-8') as main:
+    # -------------------------------- #
+
+    # copy 'main.tex' as 'main.tex'
+
+    source_file_name = 'main.tex'
+    destination_file_name = 'main.tex'
+
+    destination_folder_path = exercise_folder_path
+
+    source_file_path      = source_folder_path      + '\\' + source_file_name
+    destination_file_path = destination_folder_path + '\\' + destination_file_name
+    shutil.copyfile(source_file_path, destination_file_path)
+
+    # -------------------------------- #
+
+    # read old content of 'main.tex' as array of lines
+    with codecs.open(source_file_path, 'r', 'utf-8') as main:
         main_content_old = main.readlines()
+        # print('main_content_old', main_content_old)
+
+    # -------------------------------- #
 
     # stuff that gets added to 'main.tex'
-    main_content_add = [
+    main_content_add = ['\n'] + [
         r'\input{' + exercise_and_solution_file_name + r'}' + '\n'
         for exercise_and_solution_file_name in exercise_and_solution_file_names(
-            path_exercise_folder,
+            exercise_folder_path,
             lva_name,
-            exercise_number,
-            exercise_amount,
+            exercise_session_number,
+            exercise_number_min,
+            exercise_number_max,
             exercise_date
         )
     ]
 
-    # get index of line that says '\maketitle'
-    index = main_content_old.index(r'\maketitle' + '\n')
+    # get index of line that says '\maketitle',
+    # will insert new content beneath that line
+    index = main_content_old.index(r'\maketitle' + '\r' + '\n')
 
     # new content of 'main.tex'
-    main_content_new = main_content_old[:index+1:] + ['\n'] + main_content_add + main_content_old[index+1::]
+    main_content_new = main_content_old[:index+1:] + main_content_add + main_content_old[index+1::]
 
-    x_1 = '  ' + 'Titel' + ' ' + r'\\' + '\n'
-    y_1 = '  ' + lva_name + ' ' + r'\\' + '\n'
+    # ---------------- #
 
-    x_2 = '  ' + r'\textit{' + Untertitel + r'}' + '\n'
-    y_2 = '  ' + r'\textit{' + f'{exercise_number}.' + ' ' + u'Übung' + ' ' + f'am {exercise_date}' + r'}' + '\n'
+    if exercise_number_min != 0:
 
-    for x, y in [(x_1, y_1), (x_2, y_2)]:
+        # add counter ...
+
+        main_content_old = main_content_new
+        main_content_add = ['\n'] + [r'\def' + ' ' + r'\lastexercisenumber' + r'{' + str(exercise_number_min - 1) + r'}'] + ['\n']
+
+        # get index of line that says '\documentclass{article}',
+        # will insert new content beneath that line
+        index = main_content_old.index(r'\documentclass{article}' + '\r' + '\n')
+
+        # new content of 'main.tex'
+        main_content_new = main_content_old[:index+1:] + main_content_add + main_content_old[index+1::]
+
+    # ---------------- #
+
+    # replace title ...
+
+    main_content = main_content_new
+    main_content_replace = [
+        (
+            '  ' + 'Titel' + ' ' + r'\\' + '\r' + '\n',
+            '  ' + lva_name + ' ' + r'\\' + '\r' + '\n'
+        ),
+        (
+            '  ' + r'\textit{' + 'Untertitel' + r'}' + '\r' + '\n',
+            '  ' + r'\textit{' + f'{exercise_session_number}.' + ' ' + u'Übung' + ' ' + f'am {exercise_date}' + r'}' + '\r' + '\n'
+        )
+    ]
+
+    for x, y in main_content_replace:
 
         # get index of line that says x
-        index = main_content_new.index(x)
+        index = main_content.index(x)
 
         # change it to y
-        main_content_new[index] = y
+        main_content[index] = y
 
-    # write new content to 'main.tex'
-    with codecs.open(path_destination_file, 'w', 'utf-8') as main:
-        main.writelines(main_content_new)
+    # -------------------------------- #
+
+    # write new content of 'main.tex' as array of lines
+    # replace old content with new content
+    with codecs.open(destination_file_path, 'w', 'utf-8') as main:
+        main.writelines(main_content)
 
 # ---------------------------------------------------------------- #
 
 def setup_exercise(
-    path_exercise_folder,
+    exercise_folder_path,
     lva_name,
-    exercise_number,
-    exercise_amount,
+    exercise_session_number,
+    exercise_number_min,
+    exercise_number_max,
     exercise_date
 ):
 
     setup_exercises_and_solutions(
-        path_exercise_folder,
+        exercise_folder_path,
         lva_name,
-        exercise_number,
-        exercise_amount,
+        exercise_session_number,
+        exercise_number_min,
+        exercise_number_max,
         exercise_date
     )
 
     setup_exercise_main(
-        path_exercise_folder,
+        exercise_folder_path,
         lva_name,
-        exercise_number,
-        exercise_amount,
+        exercise_session_number,
+        exercise_number_min,
+        exercise_number_max,
         exercise_date
     )
 
