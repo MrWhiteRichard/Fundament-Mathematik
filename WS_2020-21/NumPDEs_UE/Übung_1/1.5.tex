@@ -63,6 +63,126 @@ Zur Bestimmung der Knoten und Gewichte verwenden wir das Resultat aus Abbildung 
   \end{boxedin}
 \end{figure}
 
+Um einzusehen, dass die Eigenwerte und Eigenvektoren der Matrix $T_n$ in der Angabe tatsächlich von Nutzem sind, gehen wir wie folgt vor.
+
+\begin{itemize}
+
+  \item Zuerst berechnen wir deren charakteristisches Polynom $p_n$ von $T_n$.
+  Dazu verwenden wir Vollständige Induktion und Laplace-Entwicklung.
+
+  \begin{align*}
+    p_0(\lambda)
+    & :=
+    1, \\
+    p_1(\lambda)
+    & =
+    \det
+    \begin{pmatrix}
+      -\lambda
+    \end{pmatrix}
+    =
+    -\lambda, \\
+    p_2(\lambda)
+    & =
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1 \\
+      \beta_1  & -\lambda
+    \end{pmatrix}
+    \lambda^2 - \beta_1^2
+    =
+    -\lambda p_1(\lambda) - \beta_1^2, \\
+    & \vdots \\
+    p_n(\lambda)
+    & =
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1  &        &             &             &             &             \\
+      \beta_1  & -\lambda & \ddots &             &             &             &             \\
+              & \ddots   & \ddots & \ddots      &             &             &             \\
+              &          & \ddots & -\lambda    & \beta_{n-3} &             &             \\
+              &          &        & \beta_{n-3} & -\lambda    & \beta_{n-2} &             \\
+              &          &        &             & \beta_{n-2} & -\lambda    & \beta_{n-1} \\
+              &          &        &             &             & \beta_{n-1} & -\lambda
+    \end{pmatrix} \\
+    & =
+    -\lambda
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1  &        &             &             &             \\
+      \beta_1  & -\lambda & \ddots &             &             &             \\
+              & \ddots   & \ddots & \ddots      &             &             \\
+              &          & \ddots & -\lambda    & \beta_{n-3} &             \\
+              &          &        & \beta_{n-3} & -\lambda    & \beta_{n-2} \\
+              &          &        &             & \beta_{n-2} & -\lambda
+    \end{pmatrix}
+    -
+    \beta_{n-1}
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1  &        &             &             &             \\
+      \beta_1  & -\lambda & \ddots &             &             &             \\
+              & \ddots   & \ddots & \ddots      &             &             \\
+              &          & \ddots & -\lambda    & \beta_{n-3} &             \\
+              &          &        & \beta_{n-3} & -\lambda    & \beta_{n-2} \\
+              &          &        &             &             & \beta_{n-1}
+    \end{pmatrix} \\
+    & =
+    -\lambda
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1  &        &             &             &             \\
+      \beta_1  & -\lambda & \ddots &             &             &             \\
+              & \ddots   & \ddots & \ddots      &             &             \\
+              &          & \ddots & -\lambda    & \beta_{n-3} &             \\
+              &          &        & \beta_{n-3} & -\lambda    & \beta_{n-2} \\
+              &          &        &             & \beta_{n-2} & -\lambda
+    \end{pmatrix}
+    -
+    \beta_{n-1}^2
+    \det
+    \begin{pmatrix}
+      -\lambda & \beta_1  &        &             &             \\
+      \beta_1  & -\lambda & \ddots &             &             \\
+              & \ddots   & \ddots & \ddots      &             \\
+              &          & \ddots & -\lambda    & \beta_{n-3} \\
+              &          &        & \beta_{n-3} & -\lambda
+    \end{pmatrix} \\
+    & =
+    -\lambda p_{n-1}(\lambda) - \beta_{n-1}^2 p_{n-2}(\lambda)
+  \end{align*}
+
+  Nun stellen wir einen Zusammenhang zwischen den Polynomen vom Prof. Nannen aus \ref{fig:NNAS4.23} her.
+  Dazu verwenden wir Vollständige Induktion.
+
+  \begin{align*}
+    q_0(x) & = 1 = p_0(x) \\
+    q_1(x) & = x = -p_1(x) \\
+    & \vdots \\
+    q_n(x)
+    & =
+    x q_{n-1}(x) - \beta_{n-1}^2 q_{n-2}(x) \\
+    & =
+    x (-1)^{n-1} p_{n-1}(x) - \beta_{n-1}^2 (-1)^{n-2} p_{n-2}(x) \\
+    & =
+    (-1)^n \pbraces
+    {
+      -x p_{n-1}(x) - \beta_{n-1}^2 p_{n-2}(x)
+    } \\
+    & =
+    (-1)^n p_n(x)
+  \end{align*}
+
+  \item Nachdem sich diese nur (für $n$ ungerade) um ein Vorzeichen unterscheiden, haben sie dieselben Nullstellen.
+  Man bekommt also auch die Gauss-Knoten durch die Eigenwerte von $T_n$.
+
+  \item Die Eigenvektoren sollten jetzt idealerweise auch gleich sein.
+  Dann könnte man folgendes Behaupten:
+
+  Man bekommt also auch die Gauss-Gewichte durch die Eigenvektoren von $T_n$.
+
+\end{itemize}
+
 Um von einem einem beliebigen Intervall $[a, b]$ auf das Referenz-Intervall $[-1, 1]$ zu transformieren, verwenden wir den Diffeomorphismus $\Phi^{-1}$.
 
 \begin{align*}
