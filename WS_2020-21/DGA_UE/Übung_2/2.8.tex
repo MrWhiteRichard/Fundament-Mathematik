@@ -2,7 +2,14 @@
 
 \begin{exercise}
 
-ToDo!
+Zeigen Sie:
+\begin{align*}
+  f(n) := 2^{2^{\floorbraces{\log_2(\log_2(n))}}} = \Landau{n}
+\end{align*}
+und bestimmen Sie die größte Zahl $c > 0$, sodass
+\begin{align*}
+  2^{2^{\floorbraces{\log_2(\log_2(n))}}} = \Omega(n^c)
+\end{align*}
 
 \end{exercise}
 
@@ -10,8 +17,28 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
-
+Es gilt
+\begin{align*}
+  \forall n \in \N: 2^{2^{\floorbraces{\log_2(\log_2(n))}}} \leq 2^{2^{\log_2(\log_2(n))}} = n,
+\end{align*}
+also ist $2^{2^{\floorbraces{\log_2(\log_2(n))}}} = \Landau{n}$. Umgekehrt gilt
+\begin{align*}
+  \forall n \in \N: 2^{2^{\floorbraces{\log_2(\log_2(n))}}} \geq 2^{2^{\log_2(\log_2(n)) - 1}}
+  = 2^{\log_2(n)/2} = \sqrt{n},
+\end{align*}
+also ist $f(n) = \Omega(n^{1/2})$. Sei nun $c > 1/2$ beliebig.
+Betrachte die Folge $a_n := 2^{2^n} - 1$. Es gilt
+\begin{align*}
+  f(a_n) = 2^{2^{\floorbraces{\log_2(\log_2(a_n))}}} &= 2^{2^{\floorbraces{\log_2(\log_2(2^{2^n} - 1))}}}
+  = 2^{2^{n-1}} \\
+  \frac{f(a_n)}{a_n^c} &= \frac{2^{2^{n-1}}}{(2^{2^n} - 1)^c}
+  = \frac{(2^{2^n})^{1/2}}{(2^{2^n} - 1)^c} \leq \frac{(2^{2^n})^{1/2}}{(2^{2^n}/2)^c}
+  = (1/2)^c(2^{2^n})^{1/2 - c} \xrightarrow{n \to \infty} 0.
+\end{align*}
+Damit folgt
+\begin{align*}
+  \liminf \frac{f(n)}{n^c} = 0 \iff f(n) \neq \Omega(n^c).
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
