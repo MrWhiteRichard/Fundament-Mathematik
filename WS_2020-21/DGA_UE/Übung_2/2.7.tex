@@ -2,15 +2,86 @@
 
 \begin{exercise}
 
-ToDo!
+Zum asymptotischen Vergleich von Folgen:
+\begin{enumerate}[label = (\alph*)]
+  \item Vergleichen Sie das asymptotische Verhalten von $f(n) = n!$ und $g(n) = (n + 2)!$,
+  also überlegen Sie sich ob eine (welche) der Funktionen ein ${\scriptstyle \mathcal{O}}, \mathcal{O}, \omega, \Omega, \Theta$
+  der anderen Funktion ist.
+  \item Vergleichen Sie das asymptotische Verhalten von $f(n) = n^{\log_2(4)}$ und
+  $g(n) = 3^{\log_2(n)}$, also überlegen Sie sich ob eine (welche) der Funktionen
+  ein ${\scriptstyle \mathcal{O}}, \mathcal{O}, \omega, \Omega, \Theta$ der anderen Funktion ist.
+  \item Zeigen Sie an Hand der Defintion, dass für positive Funktionen $f$ und $g$
+  die Beziehung
+  \begin{align*}
+    \max\{f(n),g(n)\} = \Theta(f(n) + g(n))
+  \end{align*}
+  gilt.
+  \item Gilt selbige Beziehung ebenfalls für $\min\{f(n),g(n)\}$?
+  \item Folgt aus $f(n) = \Landau{g(n)}$, dass $2^{f(n)} = \Landau{2^{g(n)}}$?
+  \item Gilt für alle positiven Funktionen $f$ die Beziehung $f(n) = \Landau{f(n)^2}$?
+  \item Finden Sie eine Funktion $f$, sodass weder $f(n) = \Landau{n}$ noch $f(n) = \Omega(n)$ gilt.
+\end{enumerate}
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Definitionen:
+\begin{align*}
+  \Landau{f} &:= \{g: \N \to \R: \exists C > 0, n_0 \in \N: \forall n \geq n_0:
+  |g(n)| \leq C|f(n)|\} \\
+  \Omega(f) &:= \{g: \N \to \R: \exists C > 0, n_0 \in \N: \forall n \geq n_0:
+  C|f(n)| \leq |g(n)|\} \\
+  \Theta(f) &:= \{g: \N \to \R: \exists C, D > 0, n_0 \in \N: \forall n \geq n_0:
+  C|f(n)| \leq |g(n)|\leq D|f(n)|\} \\
+  \landau{f} &:= \{g: \N \to \R: \forall C > 0: \exists n_0 \in \N: \forall n \geq n_0:
+  |g(n)| \leq C|f(n)|\} \\
+  \omega(f) &:= \{g: \N \to \R: \forall C > 0: \exists n_0 \in \N: \forall n \geq n_0:
+  C|f(n)| \leq |g(n)|\}
+\end{align*}
+\begin{enumerate}[label = (\alph*)]
+  \item Es gilt
+  \begin{align*}
+    g(n) &= (n + 2)(n + 1)f(n) = (n^2 + 3n + 2)f(n) \\
+    \limsup \left|\frac{f(n)}{g(n)}\right| &= \limsup \left|\frac{1}{n^2 + 3n + 2}\right|
+    =0 \iff f = \landau{g} \iff g = \omega(f).
+  \end{align*}
 
-ToDo!
+  \item
+  Da $\log_2(3/4) < 0$ folgt
+  \begin{align*}
+    g(n) &= 3^{\log_2(n)}n = 3^{\log_3(n)\log_2(3)} = n^{\log_2(3)} \\
+    \limsup \left|\frac{g(n)}{f(n)}\right| &= \limsup \left|\frac{n^{\log_2(3)}}{n^{\log_2(4)}}\right|
+    = \limsup \left|n^{\log_2(3/4)}\right| = 0 \iff f = \landau{g} \iff g = \omega(f).
+  \end{align*}
+  \item Es gilt
+  \begin{align*}
+    \max\{f(n), g(n)\} \leq |f(n) + g(n)| \leq 2\max\{|f(n)|,|g(n)|\} = 2\max\{f(n),g(n)\}.
+  \end{align*}
+  \item Gegenbeispiel: $f(n) = 0, \quad g(n) = 1$.
+  \item Gegenbeispiel: $f(n) = n, \quad g(n) = -n$. \\
+  Es gilt $|f(n)| = |g(n)|$, aber
+  \begin{align*}
+    \limsup \left|\frac{2^{f(n)}}{2^{g(n)}}\right| = \limsup \left|2^{2n}\right| = \infty \iff f(n) \neq \Landau{g(n)}.
+  \end{align*}
+  \item Gegenbeispiel: $f(n) = 1/n$. Es gilt
+  \begin{align*}
+    \limsup \left|\frac{f(n)}{f(n)^2}\right| = \limsup \left|n\right| = \infty \iff f(n) \neq \Landau{f(n)^2}.
+  \end{align*}
+  \item Definiere
+  \begin{align*}
+    f(n) = \begin{cases}
+      0, & n \in 2\N \\
+      n^2, & n \in 2\N + 1.
+    \end{cases}
+  \end{align*}
+  Es folgt
+  \begin{align*}
+    \liminf \left|\frac{f(n)}{n}\right| &= 0 \iff f \neq \Omega(n) \\
+    \limsup \left|\frac{f(n)}{n}\right| &= \infty \iff f \neq \Landau{n}.
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
