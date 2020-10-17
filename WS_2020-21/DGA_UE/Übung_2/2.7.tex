@@ -65,6 +65,23 @@ Definitionen:
   \begin{align*}
     \limsup \left|\frac{2^{f(n)}}{2^{g(n)}}\right| = \limsup \left|2^{2n}\right| = \infty \iff f(n) \neq \Landau{g(n)}.
   \end{align*}
+  Alternativ: $f(n) = \log_2(n), g(n) = \log_4(n)$. Es gilt
+  \begin{align*}
+    \log_2(n)
+    =
+    \log_2(4) \log_4(n)
+  \end{align*}
+  Aber
+  \begin{align*}
+    \limsup_{n  \to \infty} \vbraces{\frac{2^{\log_2(n)}}{2^{\log_4(n)}}}
+    =
+    \limsup_{n  \to \infty} \vbraces{\frac{n}{2^\frac{\log_2(n)}{\log_2(4)}}}
+    =
+    \limsup_{n  \to \infty} \vbraces{\frac{n}{\sqrt{n}}}
+    =
+    \infty
+  \end{align*}
+
   \item Gegenbeispiel: $f(n) = 1/n$. Es gilt
   \begin{align*}
     \limsup \left|\frac{f(n)}{f(n)^2}\right| = \limsup \left|n\right| = \infty \iff f(n) \neq \Landau{f(n)^2}.
