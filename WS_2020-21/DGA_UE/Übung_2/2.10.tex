@@ -2,14 +2,103 @@
 
 \begin{exercise}
 
-Gegeben sei die Adjazenzmatrix eines gerichteten Graphens $G = (V,E)$, welcher
-keine Schlingen (also Kanten $(v,v), v \in V$) und keine Mehrfachkanten enthält.
-Eine universelle Senke in solch einem gerichteten Graphen $G$ ist ein Knoten $s$
-mit Hingrad $d^-(s) = |V| - 1$ und Weggrad $d^+(s) = 0$. Man zeige, dass es möglich
-ist, durch Untersuchen der Adjazenzmatrix $A$ in Laufzeit $O(|V|)$ festzustellen,
-ob $G$ solch eine universelle Senke enthält oder nicht. \\
+Gegeben sei die Adjazenzmatrix eines gerichteten Graphens $G = (V,E)$, welcher keine Schlingen (also Kanten $(v,v), v \in V$) und keine Mehrfachkanten enthält.
+Eine universelle Senke in solch einem gerichteten Graphen $G$ ist ein Knoten $s$ mit Hingrad $d^-(s) = |V| - 1$ und Weggrad $d^+(s) = 0$.
+Man zeige, dass es möglich ist, durch Untersuchen der Adjazenzmatrix $A$ in Laufzeit $O(|V|)$ festzustellen, ob $G$ solch eine universelle Senke enthält oder nicht.
 
 \end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Definition 2.1}
+\includegraphicsboxed{Definition 2.3}
+
+Offensichtlich sind universelle Senken (u.S.) eindeutig.
+Wir führen weiters folgende Übersetzungen durch:
+
+\begin{itemize}
+
+  \item keine Schlingen: \\
+  d.h. alle Diagonaleinträge sin $0$ \\
+  d.h. $\Forall i = 1, \dots, |V|: A_{ii} = 0$
+
+  \item keine Mehrfachkanten:\\
+  d.h. gespiegelte $1$-Einträge sind $0$-Einträge \\
+  d.h. $\Forall j, j = 1, \dots, |V|: A_{ij} = 1 \implies A_{j, i} = 0$
+
+  \item $s$ u.S. \\
+  d.h. $s$-te Zeile hat nur $0$er \& $s$-te Spalte hat genau einen $0$er \\
+  d.h. $A_s^T = 0 \land (\underbrace{1, \dots, 1}_{(s-1) \text{-mal}}, 0, \underbrace{1, \dots, 1}_{|V| \text{-mal}})^T$
+
+\end{itemize}
+
+\begin{align*}
+  \begin{array}{c|ccccccccccc}
+            & 1 & 2 & 3 & \cdots & s - 1 & s      & s + 1 & \cdots & |V| - 2 & |V| - 1 & |V| \\
+    \hline
+    1       & 0 &   &   &        &       & 1      &       &        &         &         &     \\
+    2       &   & 0 &   &        &       & 1      &       &        &         &         &     \\
+    3       &   &   & 0 &        &       & 1      &       &        &         &         &     \\
+    \vdots  &   &   &   & \ddots &       & \vdots &       &        &         &         &     \\
+    s - 1   &   &   &   &        & 0     & 1      &       &        &         &         &     \\
+    s       & 0 & 0 & 0 & \cdots & 0     & 0      & 0     & \cdots & 0       & 0       & 0   \\
+    s + 1   &   &   &   &        &       & 1      & 0     &        &         &         &     \\
+    \vdots  &   &   &   &        &       & \vdots &       & \ddots &         &         &     \\
+    |V| - 2 &   &   &   &        &       & 1      &       &        & 0       &         &     \\
+    |V| - 1 &   &   &   &        &       & 1      &       &        &         & 0       &     \\
+    |V|     &   &   &   &        &       & 1      &       &        &         &         & 0
+  \end{array}
+\end{align*}
+
+\begin{flalign*}
+   1&: \textbf{Prozedur}~ \textsc{universelle Senke} (G) \\
+   2&: \quad (V, E) := G \\
+   3&: \quad A := \textsc{Adjazenzmatrix}(G) \\
+   4&: \quad i := 1 \\
+   5&: \quad j := 2 \\
+   6&: \quad \textbf{Solange}~ \max \Bbraces{i, j} \leq |V| \\
+   7&: \quad \quad \textbf{Wenn}~ A_{ij} = 0 \\
+    &: \quad \quad \implies \text{$j$-te Spalte hat mehr als (nicht genau) einen $0$er!} \\
+    &: \quad \quad \implies \text{$j$ keine u.S.} \\
+   8&: \quad \quad \quad s := i \\
+   9&: \quad \quad \quad j := \max \Bbraces{i, j} + 1 \\
+  10&: \quad \quad \textbf{Sonst} \\
+    &: \quad \quad \implies A_{ij} = 1 \\
+    &: \quad \quad \implies \text{$i$-te Zeile hat nicht nur $0$er!} \\
+    &: \quad \quad \implies \text{$i$ keine u.S.} \\
+  11&: \quad \quad \quad s := j \\
+  12&: \quad \quad \quad i := \max \Bbraces{i, j} + 1 \\
+  13&: \quad \quad \textbf{Ende Wenn} \\
+  14&: \quad \textbf{Ende Solange} \\
+  15&: \quad \textbf{Für}~ r := 1, \dots, |V| \\
+  16&: \quad \quad \textbf{Wenn}~ r \neq s \\
+    &: \quad \quad \implies (r, s) ~\text{kein Diagonaleintrag} \\
+  17&: \quad \quad \quad \textbf{Wenn}~ A_{rs} = 0 \\
+    &: \quad \quad \quad \implies \text{$s$-te Spalte hat mehr als (nicht genau) einen $0$er!} \\
+    &: \quad \quad \quad \implies \text{$s$ keine u.S.} \\
+  18&: \quad \quad \quad \quad s := \NIL \\
+  19&: \quad \quad \quad \quad \textbf{Ende Prozedur} \\
+    &: \quad \quad \quad \textbf{Sonst} \\
+    &: \quad \quad \quad \implies A_{rs} = 1 \\
+    &: \quad \quad \quad \implies A_{sr} = 0 \\
+  20&: \quad \quad \quad \textbf{Ende Wenn} \\
+    &: \quad \quad \textbf{Sonst} \\
+    &: \quad \quad \implies r = s =: t \\
+    &: \quad \quad \implies (t, t) ~\text{Diagonaleintrag} \\
+    &: \quad \quad \implies A_{tt} = 0 \\
+  21&: \quad \quad \textbf{Ende Wenn} \\
+  22&: \quad \textbf{Ende Für} \\
+    &: \quad \implies \Forall r = 1, \dots, |V|: (A_{sr} = 0) \land (s \neq r \implies A_{rs} = 1) \\
+    &: \quad \implies \text{$s$-te Zeile hat nur $0$er \& $s$-te Spalte hat genau einen $0$er} \\
+    &: \quad \implies \text{$s$ u.S.} \\
+  23&: \textbf{Ende Prozedur}
+\end{flalign*}
+
+\end{solution}
 
 % --------------------------------------------------------------------------------
 
