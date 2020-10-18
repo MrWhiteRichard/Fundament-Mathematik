@@ -15,61 +15,16 @@ Es existiert in dem Graphen ein Dreieck (induzierter Teilgraph mit $3$ Knoten) m
 
 \begin{solution}
 
-\phantom{}
 
 \includegraphicsboxed[Schubfachprinzip]{Schubfachprinzip.png}
 
-Seien $V$ die Ecken (\Quote{vertices}) und $E$ die Kanten (\Quote{edges}) von $G$.
-Offensichtlich ist $|V| = 6$.
-Jede Ecke ist mit jeder anderen ($5$ Stück) verbunden.
-Wenn wir ein Eck wegnehmen und seine Kanten \Quote{ernten} (vgl. \Quote{Blätter} $\rightsquigarrow$ \Quote{Früchte}?), dann verlieren die übrigen Ecken jeweils eine Kante.
-Insgesamt erntet man daher nicht $6 \cdot 5 = 30$ Kanten, sondern bloß die Hälfte.
-
-\begin{align*}
-  \implies
-  |E|
-  =
-  \sum_{n=6}^1 (n - 1)
-  =
-  \sum_{n=1}^6 (n - 1)
-  =
-  \sum_{n=0}^5 n
-  =
-  \sum_{n=1}^5 n
-  =
-  \frac{5 (5 + 1)}{2}
-  =
-  15
-\end{align*}
-
-Sei $f$ eine von $2^{15}$ beliebigen \Quote{Färbungs-Funktionen}.
-
-\begin{align*}
-  f:
-  E \to \Bbraces{\text{blau}, \text{rot}}:
-  e \mapsto ~\text{Farbe von}~ e
-\end{align*}
-
-Um das Schubfachprinzip anzuwenden, teile $G$ nun in die beiden Graphen $G_{\text{blau}}$ und $G_{\text{rot}}$ auf.
-
-\begin{align*}
-  G_{\text{blau}} := (V_{\text{blau}}, E_{\text{blau}}) := (V, f^{-1}(\text{blau})),
-  \quad
-  G_{\text{rot}}  := (V_{\text{rot}}, E_{\text{rot}})   :=(V, f^{-1}(\text{rot}))
-  \quad
-  \implies
-  E_{\text{rot}} + E_{\text{blue}} = E
-\end{align*}
-
-Die beiden neuen Graphen enthalten alle Knoten von $G$, und genau die Kanten ihrer jeweiligen Farbe enthalten.
-
-Weil $|E_{\text{blau}}| + |E_{\text{rot}}| = |E| = 15$, muss einer dieser beiden Graphen, laut Schubfachprinzip, mindestens $8$ Kanten enthalten.
-o.B.d.A sei dies $G_{\text{blau}} = (V_{\text{blau}}, E_{\text{blau}})$.
-
-\includegraphicsboxed{Lemma 2-2.png}
-
-Weil $G_{\text{blau}}$ endlich und nicht-leer ist, aber $|E_{\text{blau}}| \geq 8 > 5 = 6 - 1 = |V| - 1$, ist $G_{\text{blau}}$ nicht, laut Lemma 2.2, nicht zyklenfrei.
-Das bedeutet, dass es ein Dreieck in $G_{\text{blau}}$ mit nur blauen Kanten gibt.
+Bezeichne die Knoten von $G$ mit $A,B,C,D,E,F$. \\
+Vom Knoten $A$ gehen insgesamt 5 Kanten aus, also gibt es mindestens 3 Kanten, die die gleiche Farbe haben.
+O.b.d.A. seien die Kanten $\overline{AB}, \overline{AC}, \overline{AD}$ allesamt rot. \\
+Nun betrachte die Kanten $\overline{BC}, \overline{CD}, \overline{BD}$. \\
+Fall 1: Alle diese Kanten sind blau. Dann besteht das Dreieck $\overline{BCD}$ nur aus blauen Kanten. \\
+Fall 2: Es existiert eine rote Kante unter den dreien: Dann besteht eines
+der Dreiecke $\overline{ABC}, \overline{ABD}, \overline{ACD}$ nur aus roten Kanten.
 
 \end{solution}
 
