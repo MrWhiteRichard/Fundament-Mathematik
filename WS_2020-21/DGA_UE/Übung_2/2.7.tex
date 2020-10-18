@@ -36,10 +36,14 @@ Zum asymptotischen Vergleich von Folgen:
 
 \phantom{}
 
+\begin{comment}
+
 \includegraphicsboxed{Definition 1.4.png}
 \includegraphicsboxed{Definition 1.5.png}
 \includegraphicsboxed{Lemma 1.2.png}
 \includegraphicsboxed{Lemma 1.3.png}
+
+\end{comment}
 
 \begin{enumerate}[label = (\alph*)]
 
@@ -57,12 +61,12 @@ Zum asymptotischen Vergleich von Folgen:
     \stackrel{1.3.5}{\iff}
     g \in \omega(f)
     \stackrel{1.3.1}{\subseteq}
-    \Omega(g)
+    \Omega(f)
   \end{align*}
 
   \begin{align*}
     \implies
-    \frac{g(n)}{f(n)} \xrightarrow{n \to \infty} 0
+    \frac{g(n)}{f(n)} \xrightarrow{n \to \infty} \infty
   \end{align*}
 
   \begin{align*}
@@ -78,13 +82,17 @@ Zum asymptotischen Vergleich von Folgen:
 
   \begin{align*}
     \implies
-    g \not \in \Theta(f)
+    g
+    \not \in
+    \Landau(f) \cap \Omega(f)
     \stackrel{2.1.1}{=}
-    \Landau(f) \cap \Omega(f) \\
+    \Theta(f) \\
     \implies
-    g \not \in \Theta(g)
-    \stackrel{2.1.1}{=}
+    f
+    \not \in
     \Landau(g) \cap \Omega(g)
+    \stackrel{2.1.1}{=}
+    \Theta(g)
   \end{align*}
 
   \item
@@ -114,7 +122,9 @@ Zum asymptotischen Vergleich von Folgen:
  
   \item
 
-  \begin{figure}[h!]
+  \begin{comment}
+
+    \begin{figure}[h!]
     \begin{boxedin}
       \vspace{0.5 cm}
       \hspace{0.5 cm}
@@ -128,7 +138,9 @@ Zum asymptotischen Vergleich von Folgen:
     \end{boxedin}
   \end{figure}
 
-  Seien $c := 1/2$ und $d := 1$, dann gilt, wegen der Darstellung des Maximums aus \ref{fig:KFAL2.2.12}, $\ForAlmostAll n \in \N:$
+  \end{comment}
+
+  Seien $c := 1/2$ und $d := 1$, dann gilt $\ForAlmostAll n \in \N:$
 
   \begin{multline*}
     c (f(n) + g(n))
