@@ -120,36 +120,26 @@ Weiter unten ist ein Algorithmus ausgeführt, der diese eben beschriebenen Schri
   2&:  \quad n := A.\textit{Zeilenanzahl} & \\
   3&:  \quad Senke := NIL & \\
   4&:  \quad i := 1 & \\
-  4&:  \quad j := 2 & \\
-  6&:  \quad \textbf{Solange } i \leq n \land j \leq n: & \\
-  7&:  \quad \quad b := A[i,j] & \\
-  8&:  \quad \quad \textbf{Wenn } b = 0: & \\
-  9&:  \quad \quad \quad j := \max\{i + 1, j + 1\} & \\
-  8&:  \quad \quad \textbf{Ende Wenn} & \\
-  10&:  \quad \quad \textbf{Wenn } b = 1: & \\
-  11&:  \quad \quad \quad  i := \max\{i + 1, j + 1\} & \\
-  8&:  \quad \quad \textbf{Ende Wenn} & \\
-  8&:  \quad  \textbf{Ende Solange} & \\
-  12&: \quad s := 0 & \\
-  13&: \quad z := 0 & \\
-  12&: \quad \textbf{Wenn } i = n: & \\
-  13&: \quad \quad \textbf{Für } k = 1,\dots,n: & \\
-  14&: \quad \quad \quad z := z + A[j,k] & \\
-  14&: \quad \quad \quad s := s + A[k,j] & \\
-  8&:  \quad \quad \textbf{Ende Für} & \\
-  12&: \quad \quad \textbf{Wenn } z = 0 \land s = n - 1: & \\
-  13&: \quad \quad \quad \text{Senke} := j & \\
-  8&:  \quad \quad \textbf{Ende Wenn} & \\
-  12&: \quad \textbf{Sonst Wenn } j = n: & \\
-  13&: \quad \quad \textbf{Für } k = 1,\dots,n: & \\
-  14&: \quad \quad \quad z := z + A[i,k] & \\
-  14&: \quad \quad \quad s := s + A[k,i] & \\
-  8&:  \quad \quad \textbf{Ende Für} & \\
-  12&: \quad \quad \textbf{Wenn } z = 0 \land s = n - 1: & \\
-  13&: \quad \quad \quad \text{Senke} := i & \\
-  8&:  \quad \quad \textbf{Ende Wenn} & \\
-  8&:  \quad \textbf{Ende Wenn} & \\
-  12&: \textbf{Ende Prozedur} &
+  5&:  \quad j := 2 & \\
+  6&:  \quad s := 1 & \\
+  7&:  \quad \textbf{Solange } \max\{i,j\}  \leq n: & \\
+  8&:  \quad \quad \textbf{Wenn } A[i,j] = 0: & \\
+  9&:  \quad \quad \quad j := \max\{i, j\} + 1 & \\
+  10&:  \quad \quad \quad s := i & \\
+  11&:  \quad \quad \textbf{Ende Wenn} & \\
+  12&:  \quad \quad \textbf{Wenn } A[i,j] = 1: & \\
+  13&:  \quad \quad \quad  i := \max\{i, j\} + 1 & \\
+  14&:  \quad \quad \quad s := j & \\
+  15&:  \quad \quad \textbf{Ende Wenn} & \\
+  16&:  \quad  \textbf{Ende Solange} & \\
+  17&: \quad \textbf{Für } k = 1,\dots,n: & \\
+  18&: \quad \quad \textbf{Wenn } k \neq s: & \\
+  19&: \quad \quad \quad \textbf{Wenn } A[k,j] = 0: & \\
+  20&: \quad \quad \quad \quad s := NIL & \\
+  21&:  \quad \quad \quad \textbf{Ende Wenn} & \\
+  22&:  \quad \quad \textbf{Ende Wenn} & \\
+  23&:  \quad  \textbf{Ende Für} & \\
+  24&: \textbf{Ende Prozedur} &
 \end{flalign*}
 Der Solange-Block wird maximal $|V|$-Mal ausgeführt, ebenso die Für-Schleife weiter unten,
 insgesamt entscheidet der Algorithmus also in $\Landau{|V|}$ Schritten, ob es eine
