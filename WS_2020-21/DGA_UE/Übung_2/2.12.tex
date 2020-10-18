@@ -2,19 +2,29 @@
 
 \begin{exercise}
 
-Beweisen Sie, dass es unter je neun Punkten in einem Würfel der Kantenlänge 2 stets
-zwei Punkte gibt, deren Abstand höchstens $\sqrt{3}$ ist. \\
+Beweisen Sie, dass es unter je neun Punkten in einem Würfel der Kantenlänge $2$ stets zwei Punkte gibt, deren Abstand höchstens $\sqrt{3}$ ist.
+
 (Hinweis: Schubfachprinzip)
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-Man teile den Würfel in acht Teilwürfel der Kantenlänge 1 auf.
-Laut dem Schubfachprinzip existiert nun ein Teilwürfel, in welchem mindestens
-zwei Punkte zu finden sind. Der maximale Abstand zweier Punkte im Einheitswürfel
- im $\R^3$ ist $\sqrt{3}$.
+Man partitioniere den Würfel $W$ in $8$ Teilwürfel aus $\mathcal{W} := \Bbraces{W_{abc}: a, b, c = 1, 2}$ der Kantenlänge $1$.
+
+\begin{align*}
+    \implies
+    W = \sum_{a, b, c = 1}^2 W_{abc}
+\end{align*}
+
+Sei $P := \Bbraces{p_1, \dots, p_9} \subseteq W$ die Menge der $9$ Punkte.
+Nun ist aber $|P| = 9 > 8 = |\mathcal{W}|$.
+Laut dem Schubfachprinzip existiert daher keine injektive Funktion $P \to \mathcal{W}$.
+Das bedeutet, es gibt einen Teilwürfel $\widetilde{W} \in \mathcal{W}$, in welchem mindestens zwei verschiedene Punkte $\widetilde{p_1}, \widetilde{p_2} \in P \cap \widetilde{W}$ zu finden sind.
+Der maximale Abstand zweier Punkte im Einheitswürfel (also auch in $\widetilde{W} \subseteq \R^3$) ist $\diam[2]{\widetilde{W}} = \sqrt{3}$.
+Insbesondere, ist daher auch $d_2(\widetilde{p_1}, \widetilde{p_2}) \leq \sqrt{3}$.
 
 \end{solution}
 
