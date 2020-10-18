@@ -80,9 +80,15 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
       & \implies
       f(a_n) = 2^{2^{\floorbraces{\log_2{(\log_2{(a_n)})}}}}
       =
-      2^{2^{\floorbraces{\log_2 \pbraces{\log_2 \pbraces{2^{2^n} - 1}}}}}
-      =
-      2^{2^{\floorbraces{\log_2{\log_2{2^{2^{n-1}}}}}}}
+      \underbrace
+      {
+        2^{2^{\floorbraces{\log_2 \pbraces{\log_2 \pbraces{2^{2^n} - 1}}}}}
+      }_{
+        \stackrel{\text{scharf}}{<}
+        2^{2^{\floorbraces{\log_2{\log_2{2^{2^n}}}}}}
+        =
+        2^{2^n}
+      }
       =
       2^{2^{n-1}} \\
       & \implies
