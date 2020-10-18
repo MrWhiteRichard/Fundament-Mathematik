@@ -24,7 +24,7 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
 
 \begin{enumerate}
 
-  \item 
+  \item
 
   \begin{align*}
     \implies
@@ -40,7 +40,13 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
     \Landau(n)
   \end{align*}
 
-  \item Wir behaupten, dass $c = 1/2$.
+  \item Wir behaupten, dass
+  
+  \begin{align*}
+    1/2 = c := \sup{C},
+    \quad
+    C := \Bbraces{d > 0: 2^{2^{\floorbraces{\log_2{(\log_2{n})}}}} = \Omega(n^d)}.
+  \end{align*}
 
   \begin{itemize}
 
@@ -48,7 +54,7 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
     [\Quote{$\leq$}:]
 
     \begin{align*}
-      \implies
+      & \implies
       \Forall n \in \N:
       2^{2^{\floorbraces{\log_2{(\log_2{n})}}}}
       \geq
@@ -60,7 +66,9 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
       =
       \sqrt{n}
       =
-      \Omega(n^c)
+      \Omega(n^{1/2}) \\
+      & \implies
+      1/2 \in C
     \end{align*}
 
     \item
