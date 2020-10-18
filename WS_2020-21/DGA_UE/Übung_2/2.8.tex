@@ -73,7 +73,7 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
 
     \item
     [\Quote{$\geq$}:]
-    Angenommen $c > 1/2$, dann ist $1/2 - c < 0$.
+    Sei $d > 1/2$, dann ist $1/2 - d < 0$.
     Betrachte die Folge $a_n := 2^{2^n} - 1$.
 
     \begin{align*}
@@ -86,28 +86,28 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
       =
       2^{2^{n-1}} \\
       & \implies
-      \frac{f(a_n)}{a_n^c}
+      \frac{f(a_n)}{a_n^d}
       =
-      \frac{2^{2^{n-1}}}{(2^{2^n} - 1)^c}
+      \frac{2^{2^{n-1}}}{(2^{2^n} - 1)^d}
       =
-      \frac{(2^{2^n})^{1/2}}{(2^{2^n} - 1)^c}
+      \frac{(2^{2^n})^{1/2}}{(2^{2^n} - 1)^d}
       \leq
-      \frac{(2^{2^n})^{1/2}}{(2^{2^n}/2)^c}
+      \frac{(2^{2^n})^{1/2}}{(2^{2^n}/2)^d}
       \leq
-      2^c \frac{(2^{2^n})^{1/2}}{(2^{2^n})^c}
+      2^d \frac{(2^{2^n})^{1/2}}{(2^{2^n})^d}
       =
-      2^c (2^{2^n})^{1/2 - c}
+      2^d (2^{2^n})^{1/2 - d}
       \xrightarrow{n \to \infty}
       0 \\
       & \implies
       \liminf_{n \to \infty}
-      \frac{f(n)}{n^c} = 0
+      \frac{f(n)}{n^d} = 0
       \iff
-      f(n) \neq \Omega(n^c)
+      f(n) \neq \Omega(n^d) \\
+      & \implies
+      d \not \in C
     \end{align*}
 
-    Widerspruch!
-  
   \end{itemize}
 
 \end{enumerate}
