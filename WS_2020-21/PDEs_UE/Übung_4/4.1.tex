@@ -16,8 +16,21 @@ wobei $\nu$ der äußere Normaleneinheitsvektor auf $\partial\Omega$ ist.
 
 \begin{solution}
 
-\phantom{}
-
+Klarerweise ist $\1_\Omega$ eine $L^1_{\mathrm{loc}}$-Funktion, somit ist der Ausdruck
+auf der linken Seite wohldefiniert und es gilt (da der Laplace-Operator formal selbstadjungiert ist)
+\begin{align*}
+  \langle \Delta \1_\Omega, \varphi \rangle
+  = \langle  \1_\Omega, \Delta \varphi \rangle
+  = \int_{\R^n}\1_\Omega \Delta \varphi dx
+  = \int_{\Omega} \Delta \varphi dx
+  = \int_{\Omega} \mathrm{div} (\nabla \varphi) dx.
+\end{align*}
+Mit dem Integralsatz von Gauß erhalten wir nun
+\begin{align*}
+  \int_{\Omega} \mathrm{div} (\nabla \varphi) dx
+  = \int_{\partial\Omega} \nabla \varphi \nu ds
+  = \int_{\partial\Omega} \frac{\partial \varphi}{\partial \nu} ds.
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
