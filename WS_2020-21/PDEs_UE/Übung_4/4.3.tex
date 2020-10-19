@@ -11,7 +11,7 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
   Berechnen Sie die allgemeine Lösung $v$ und damit $u$.
   \item Wählen Sie die Konstanten in $u$ so, dass
   \begin{align*}
-    \lim_{t \to 0^+} u(t,x) = 0 \text{ für } x < 0, \quad \lim_{t \to 0^+} u(t,x) = 1
+    \lim_{t \to 0^+} u(x,t) = 0 \text{ für } x < 0, \quad \lim_{t \to 0^+} u(x,t) = 1
     \text{ für } x > 0.
   \end{align*}
   \item Zeigen Sie, dass für $\varphi \in \mathcal{D}(\R)$ die Funktion
@@ -27,12 +27,59 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\begin{align*}
-  u_t - u_{xx} &= \partial_t v(x/\sqrt{t}) - \partial_{xx}v(x/\sqrt{t})
-  = -\frac{x}{2\sqrt{t}^3}v^{\prime}(x/\sqrt{t}) - \frac{1}{t}v^{\primeprime}(x/\sqrt{t}) \\
-  &= - \frac{z}{2t}v^{\prime}(z) - \frac{1}{t}v^{\primeprime}(z)
-\end{align*}
+\phantom{}
+\begin{enumerate}[label = (\roman*)]
+  \item Da $t > 0$ gilt
+  \begin{align*}
+    0 &= u_t - u_{xx} = \partial_t v(x/\sqrt{t}) - \partial_{xx}v(x/\sqrt{t})
+    = -\frac{x}{2\sqrt{t}^3}v^{\prime}(x/\sqrt{t}) - \frac{1}{t}v^{\primeprime}(x/\sqrt{t})
+    = - \frac{z}{2t}v^{\prime}(z) - \frac{1}{t}v^{\primeprime}(z) \\
+    &\iff \frac{z}{2}v^{\prime}(z) + v^{\primeprime}(z) = 0.
+  \end{align*}
+  Nun lösen wir die gewöhnliche Differentialgleichung für $w := v^{\prime}$
+  \begin{align*}
+    w^{\prime}(z) + \frac{z}{2}w(z) = 0 &\iff \frac{w^{\prime}(z)}{w(z)} = -\frac{z}{2}
+    \iff \ln(w(z))^{\prime} = -\frac{z}{2} \iff \ln(w(z)) = -\frac{z^2}{4} + C_0 \\
+    &\iff w(z) = C_1\exp\left(-z^2/4\right).
+  \end{align*}
+  Also erhalten wir $v(z) = C_1\int_0^z \exp(-s^2/4) ds + C_2$ und
+  $u(x,t) = v(x/\sqrt{t}) = C_1\int_0^{x/\sqrt{t}} \exp(-s^2/4) ds + C_2$.
+  \item
+  \begin{align*}
+    \lim_{t \to 0^+} u(t,x) = \lim_{t \to 0^+} C_1\int_0^{x/\sqrt{t}} \exp(-s^2/4) ds + C_2
+    = \sgn(x)\sqrt{\pi}C_1 + C_2.
+  \end{align*}
+  Wir erhalten also die Gleichungen
+  \begin{align*}
+    -\sqrt{\pi}C_1 + C_2 &= 0   \iff C_2 = C_1\sqrt{\pi}\\
+    \sqrt{\pi}C_1 + C_2 &= 1 \iff 2C_1\sqrt{\pi} = 1 \iff C_1 = \frac{1}{2\sqrt{\pi}}
+    \iff C_2 = \frac{1}{2}.
+  \end{align*}
+  Unter diesen zusätzlichen Bedingungen lautet unsere Lösung nun
+  \begin{align*}
+    u(x,t) = \frac{1}{2\sqrt{\pi}}\int_0^{x/\sqrt{t}}\exp(-s^2/4)ds + \frac{1}{2}.
+  \end{align*}
+  \item
+  \begin{align*}
+    f_t - f_{xx} &= \partial_t((\partial_x u(\cdot,t)\ast \varphi)(x))
+    - \partial_{xx}(\partial_x u(\cdot,t)\ast \varphi)(x) \\
+    &= (\partial_{tx} u(\cdot,t) \ast \varphi)(x) - (\partial_{xxx} u(\cdot,t) \ast \varphi)(x) \\
+    &= ((\partial_{tx} u(\cdot,t) - \partial_{xxx} u(\cdot,t)) \ast \varphi)(x) \\
+    &= ((\partial_{x} (\partial_t u(\cdot,t) - \partial_{xx} u(\cdot,t))) \ast \varphi)(x) = 0.
+  \end{align*}
+  \begin{align*}
+    \lim_{t \to 0^+} f(t,x) &= \lim_{t \to 0^+} (\partial_x u(\cdot,t)\ast \varphi)(x)
+    = \lim_{t \to 0^+} (u(\cdot,t)\ast \varphi^{\prime})(x)
+    = \lim_{t \to 0^+} \int_{\R}u(x-y,t) \varphi^{\prime}(y) dy \\
+    &= \int_{\R}\lim_{t \to 0^+} u(x-y,t) \varphi^{\prime}(y) dy
+    = \int_{-\infty}^x \lim_{t \to 0^+} u(x-y,t) \varphi^{\prime}(y) dy
+    + \int_{x}^{\infty} \lim_{t \to 0^+} u(x-y,t) \varphi^{\prime}(y) dy \\
+    &= \int_{-\infty}^x \varphi^{\prime}(y) dy = \varphi(x).
+  \end{align*}
+  Das wären einmal die formalen Rechnungen der Aufgabe. \\
+  Die wahren Teile der Aufgabe (warum man den Limes ins Integral ziehen darf, oder ob
+  die Voraussetzungen von Lemma 3.14 erfüllt sind) seien vorerst dem aufmerksamen Leser überlassen.
+\end{enumerate}
 
 \end{solution}
 
