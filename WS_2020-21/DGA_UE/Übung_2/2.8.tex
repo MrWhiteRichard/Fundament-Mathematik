@@ -24,7 +24,7 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
 
 \begin{enumerate}
 
-  \item 
+  \item
 
   \begin{align*}
     \implies
@@ -40,7 +40,13 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
     \Landau(n)
   \end{align*}
 
-  \item Wir behaupten, dass $c = 1/2$.
+  \item Wir behaupten, dass
+  
+  \begin{align*}
+    1/2 = c := \sup{C},
+    \quad
+    C := \Bbraces{d > 0: 2^{2^{\floorbraces{\log_2{(\log_2{n})}}}} = \Omega(n^d)}.
+  \end{align*}
 
   \begin{itemize}
 
@@ -48,7 +54,7 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
     [\Quote{$\leq$}:]
 
     \begin{align*}
-      \implies
+      & \implies
       \Forall n \in \N:
       2^{2^{\floorbraces{\log_2{(\log_2{n})}}}}
       \geq
@@ -60,46 +66,54 @@ und bestimmen Sie die größte Zahl $c > 0$, sodass
       =
       \sqrt{n}
       =
-      \Omega(n^c)
+      \Omega(n^{1/2}) \\
+      & \implies
+      1/2 \in C
     \end{align*}
 
     \item
     [\Quote{$\geq$}:]
-    Angenommen $c > 1/2$, dann ist $1/2 - c < 0$.
+    Sei $d > 1/2$, dann ist $1/2 - d < 0$.
     Betrachte die Folge $a_n := 2^{2^n} - 1$.
 
     \begin{align*}
       & \implies
       f(a_n) = 2^{2^{\floorbraces{\log_2{(\log_2{(a_n)})}}}}
       =
-      2^{2^{\floorbraces{\log_2 \pbraces{\log_2 \pbraces{2^{2^n} - 1}}}}}
-      =
-      2^{2^{\floorbraces{\log_2{\log_2{2^{2^{n-1}}}}}}}
+      \underbrace
+      {
+        2^{2^{\floorbraces{\log_2 \pbraces{\log_2 \pbraces{2^{2^n} - 1}}}}}
+      }_{
+        \stackrel{\text{scharf}}{<}
+        2^{2^{\floorbraces{\log_2{\log_2{2^{2^n}}}}}}
+        =
+        2^{2^n}
+      }
       =
       2^{2^{n-1}} \\
       & \implies
-      \frac{f(a_n)}{a_n^c}
+      \frac{f(a_n)}{a_n^d}
       =
-      \frac{2^{2^{n-1}}}{(2^{2^n} - 1)^c}
+      \frac{2^{2^{n-1}}}{(2^{2^n} - 1)^d}
       =
-      \frac{(2^{2^n})^{1/2}}{(2^{2^n} - 1)^c}
+      \frac{(2^{2^n})^{1/2}}{(2^{2^n} - 1)^d}
       \leq
-      \frac{(2^{2^n})^{1/2}}{(2^{2^n}/2)^c}
+      \frac{(2^{2^n})^{1/2}}{(2^{2^n}/2)^d}
       \leq
-      2^c \frac{(2^{2^n})^{1/2}}{(2^{2^n})^c}
+      2^d \frac{(2^{2^n})^{1/2}}{(2^{2^n})^d}
       =
-      2^c (2^{2^n})^{1/2 - c}
+      2^d (2^{2^n})^{1/2 - d}
       \xrightarrow{n \to \infty}
       0 \\
       & \implies
       \liminf_{n \to \infty}
-      \frac{f(n)}{n^c} = 0
+      \frac{f(n)}{n^d} = 0
       \iff
-      f(n) \neq \Omega(n^c)
+      f(n) \neq \Omega(n^d) \\
+      & \implies
+      d \not \in C
     \end{align*}
 
-    Widerspruch!
-  
   \end{itemize}
 
 \end{enumerate}

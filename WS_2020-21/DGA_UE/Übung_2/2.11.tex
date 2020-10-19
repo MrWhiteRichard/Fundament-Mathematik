@@ -13,11 +13,28 @@ Es existiert in dem Graphen ein Dreieck (induzierter Teilgraph mit $3$ Knoten) m
 
 % --------------------------------------------------------------------------------
 
+\includegraphicsboxed[Schubfachprinzip]{Schubfachprinzip.png}
+
+% --------------------------------------------------------------------------------
+
 \begin{solution}
 
-\phantom{}
+Bezeichne die Knoten von $G$ mit $A,B,C,D,E,F$. \\
+Vom Knoten $A$ gehen insgesamt 5 Kanten aus, also gibt es mindestens 3 Kanten, die die gleiche Farbe haben.
+O.b.d.A. seien die Kanten $\overline{AB}, \overline{AC}, \overline{AD}$ allesamt rot. \\
+Nun betrachte die Kanten $\overline{BC}, \overline{CD}, \overline{BD}$. \\
+Fall 1: Alle diese Kanten sind blau. Dann besteht das Dreieck $\overline{BCD}$ nur aus blauen Kanten. \\
+Fall 2: Es existiert eine rote Kante unter den dreien: Dann besteht eines
+der Dreiecke $\overline{ABC}, \overline{ABD}, \overline{ACD}$ nur aus roten Kanten.
 
-\includegraphicsboxed[Schubfachprinzip]{Schubfachprinzip.png}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+% WRONG SOLUTION
+
+\begin{comment}
+
+\begin{solution}
 
 Seien $V$ die Ecken (\Quote{vertices}) und $E$ die Kanten (\Quote{edges}) von $G$.
 Offensichtlich ist $|V| = 6$.
@@ -69,8 +86,11 @@ o.B.d.A sei dies $G_{\text{blau}} = (V_{\text{blau}}, E_{\text{blau}})$.
 \includegraphicsboxed{Lemma 2-2.png}
 
 Weil $G_{\text{blau}}$ endlich und nicht-leer ist, aber $|E_{\text{blau}}| \geq 8 > 5 = 6 - 1 = |V| - 1$, ist $G_{\text{blau}}$ nicht, laut Lemma 2.2, nicht zyklenfrei.
+% WRONG CONCLUTION
 Das bedeutet, dass es ein Dreieck in $G_{\text{blau}}$ mit nur blauen Kanten gibt.
 
-\end{solution}
+\begin{solution}
+
+\end{comment}
 
 % --------------------------------------------------------------------------------
