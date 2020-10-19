@@ -12,7 +12,7 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
   \item Wählen Sie die Konstanten in $u$ so, dass
   \begin{align*}
     \lim_{t \to 0^+} u(t,x) = 0 \text{ für } x < 0, \quad \lim_{t \to 0^+} u(t,x) = 1
-    \text{ für } x < 0.
+    \text{ für } x > 0.
   \end{align*}
   \item Zeigen Sie, dass für $\varphi \in \mathcal{D}(\R)$ die Funktion
   $f(x,t) = (\partial_x u(\cdot,t)\ast \varphi)(x)$ (Faltung in der $x$-Variablen)
@@ -28,7 +28,11 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+  u_t - u_{xx} &= \partial_t v(x/\sqrt{t}) - \partial_{xx}v(x/\sqrt{t})
+  = -\frac{x}{2\sqrt{t}^3}v^{\prime}(x/\sqrt{t}) - \frac{1}{t}v^{\primeprime}(x/\sqrt{t}) \\
+  &= - \frac{z}{2t}v^{\prime}(z) - \frac{1}{t}v^{\primeprime}(z)
+\end{align*}
 
 \end{solution}
 

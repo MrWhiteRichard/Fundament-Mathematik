@@ -8,7 +8,7 @@ Zeigen Sie, dass
 \end{align*}
 eine Fundamentallösung des Differentialoperators $L(u) = \mathrm{div} u$ auf $\R^n$ ist,
 wobei $\sigma_n$ die Oberfläche der Einheitskugel im $\R^n$ ist. Achtung:
-Obwohl $F$ eigentlich eine vektorwertige Distribution ist $L_{\mathrm{loc}}^1(\R^n)^n$ ist,
+Obwohl $F$ eigentlich eine vektorwertige Distribution in $L_{\mathrm{loc}}^1(\R^n)^n$ ist,
 wird das nicht gebraucht um die Behauptung
 \begin{align*}
   \langle \mathrm{div} F, \varphi \rangle = \varphi(0)
@@ -21,8 +21,24 @@ ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
+Eine Fundamentallösung von $L(u) = \mathrm{div} u$ mit Pol in $\xi$ ist definitionsgemäß
+eine distributionelle Lösung von $L(U_{\xi}) = \delta_{\xi}$. Wir berechnen also
+für $\phi \in \mathcal{D}(\R^n)$ beliebig
+\begin{align*}
+  \langle L F, \phi \rangle
+  &= \left\langle \frac{1}{\sigma_n}\mathrm{div}\frac{x}{|x|}, \phi \right\rangle
+  = \frac{1}{\sigma_n}\sum_{i=1}^n\left\langle \partial_i\left(\frac{x_i}{|x|}\right), \phi \right\rangle \\
+  &= -\frac{1}{\sigma_n}\sum_{i=1}^n\left\langle \frac{x_i}{|x|}, \partial_i\phi \right\rangle
+  = -\frac{1}{\sigma_n}\sum_{i=1}^n\int_{\R^n}\frac{x_i}{|x|}\partial_i\phi dx  \\
+  &= -\frac{1}{\sigma_n}\int_{\R^n}\frac{x}{|x|}\nabla \phi dx  \\
+\end{align*}
+Für $|x| \neq 0$ gilt
+\begin{align*}
+  \frac{1}{\sigma_n}\sum_{i=1}^n\partial_i\left(\frac{x_i}{|x|^n}\right)
+  &= \frac{1}{\sigma_n}\sum_{i=1}^n\frac{\left(\sum_{i=1}^nx_i^2\right)^{n/2} - x_i2x_i\frac{n}{2}\left(\sum_{i=1}^nx_i^2\right)^{n/2 - 1}}{\left(\sum_{i=1}^nx_i^2\right)^n} \\
+  &= \frac{1}{\sigma_n}\sum_{i=1}^n\frac{1 - \frac{nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} \\
+  &= \frac{1}{\sigma_n}\frac{n - n\frac{\sum_{i=1}^nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} = 0.
+\end{align*}
 
 \end{solution}
 
