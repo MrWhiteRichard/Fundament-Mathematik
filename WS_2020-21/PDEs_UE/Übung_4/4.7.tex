@@ -8,7 +8,7 @@ auf $\R$:
   \item $L(u) = u^{\prime}$
   \item $L(u) = u^{\primeprime}$
   \item $L(u) = u^{\prime} - au (a \neq 0)$ \\
-  \textit{Hinweis:} Bestimmen SIe die allgemeine Lösung $u_{hom}$ der homogenen
+  \textit{Hinweis:} Bestimmen Sie die allgemeine Lösung $u_{hom}$ der homogenen
   Differentialgleichung $Lu = 0$ und verwenden Sie einen Ansatz der Form
   $U_0(x) = C_1u_{hom}(x)$ für $x < 0, U_0(x) = C_2u_{hom}(x)$ für $x > 0$ mit
   $C_1,C_2 \in \R)$.
@@ -21,6 +21,69 @@ auf $\R$:
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = (\roman*)]
+  \item Wir wählen die Heaviside-Funktion
+  \begin{align*}
+    H(x) = \begin{cases}
+      0 &: x < 0 \\
+      1 &: x \geq 0
+    \end{cases}
+  \end{align*}
+  und rechnen für $\phi \in \mathcal{D}(\R)$ beliebig nach
+  \begin{align*}
+    \langle H^{\prime}, \phi \rangle = - \langle H, \phi^{\prime} \rangle
+    = -\int_0^{\infty}\phi^{\prime}(x) dx = \phi(0) = \langle \delta, \phi \rangle.
+  \end{align*}
+  Also ist die Heaviside-Funktion eine Fundamentallösung zur Polstelle $0$.
+  Für eine Fundamentallösung $U_{\xi}$ zur Polstelle $\xi \in \R$ gehen wir nach folgender Formel vor:
+  \begin{align*}
+    U_{\xi}(x) = \tau_{-\xi}U_0(x) = \tau_{-\xi}H(x) = H(x -\xi) =  \begin{cases}
+      0 &: x < \xi \\
+      1 &: x \geq \xi
+    \end{cases}.
+  \end{align*}
+  \item Die Lösung ist aus dem Skript bekannt:
+  \begin{align*}
+    g(x,\xi) = \begin{cases}
+      x(\xi - 1) &: x \leq \xi \\
+      \xi(x - 1) &: x  > \xi
+    \end{cases}
+  \end{align*}
+  \item
+  Wir lösen $Lu = u^{\prime} - au \stackrel{!}{=} 0$.
+  \begin{align*}
+    \frac{u^{\prime}}{u} = a \iff \ln(u)^{\prime} = a
+    \iff \ln(u) = ax + C
+    \iff u = D\exp(ax)
+  \end{align*}
+  Wir machen den Ansatz
+  \begin{align*}
+    U_0(x) = \begin{cases}
+      C_1\exp(ax) &: x < 0 \\
+      C_2\exp(ax) &: x \geq 0
+    \end{cases}
+  \end{align*}
+  und setzen für $\phi \in \mathcal{D}(\R)$ beliebig ein:
+  \begin{align*}
+    \langle L(U_0), \phi \rangle
+    &= -\langle U_0, \phi^{\prime} - a\phi \rangle
+  = -\int_{\R}U_0(\phi^{\prime} - a\phi)dx \\
+  &= -\int_{-\infty}^0C_1\exp(ax)(\phi^{\prime} - a\phi)dx
+  -\int_0^{\infty}C_2\exp(ax)(\phi^{\prime} - a\phi)dx \\
+  &= C_1\exp(ax)\phi\mid_{-\infty}^0  C_2\exp(ax)\phi\mid_{0}^{\infty}\\
+  &= (C_1-C_2)\exp(0)\phi(0) = (C_1 - C_2)\langle \delta, \phi \rangle
+  \end{align*}
+  Für $C_1 - C_2 = 1$ ist also $U_0$ eine Fundamentallösung
+  an der Polstelle $0$. Wählen wir also der Einfachheit halber $C_1 = 1$ und $C_2 = 0$, dann erhalten wir
+  \begin{align*}
+    U_{\xi}(x) = \tau_{-\xi}U_0(x) =
+    \begin{cases}
+      \exp(ax) &: x < \xi \\
+      0 &: x \geq \xi
+    \end{cases}.
+  \end{align*}
+\end{enumerate}
+
 
 \end{solution}
 
