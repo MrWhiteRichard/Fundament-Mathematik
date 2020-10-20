@@ -76,9 +76,16 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
     + \int_{x}^{\infty} \lim_{t \to 0^+} u(x-y,t) \varphi^{\prime}(y) dy \\
     &= \int_{-\infty}^x \varphi^{\prime}(y) dy = \varphi(x).
   \end{align*}
-  Das wären einmal die formalen Rechnungen der Aufgabe. \\
-  Die wahren Teile der Aufgabe (warum man den Limes ins Integral ziehen darf, oder ob
+  Die Vertauschung von Grenzwert und Integral gelingt mittels dominierter Konvergenz
+  wegen der Abschätzung
+  \begin{align*}
+    |u(x-y,t)| = \frac{1}{2\sqrt{\pi}}\int_0^{(x-y)/\sqrt{t}}\exp(-s^2/4)ds + \frac{1}{2}
+    \leq \frac{1}{2\sqrt{\pi}}\int_0^{\infty}\exp(-s^2/4)ds + \frac{1}{2}
+  \end{align*} \\
+  Die wahren Teile der Aufgabe (ob
   die Voraussetzungen von Lemma 3.14 erfüllt sind) seien vorerst dem aufmerksamen Leser überlassen.
+  Konkret ist also noch zu zeigen, dass $\partial_x u(\cdot,t)$ und $u(\cdot,t)$
+  $L_{\mathrm{loc}}^1$-Funktionen sind.
 \end{enumerate}
 
 \end{solution}
