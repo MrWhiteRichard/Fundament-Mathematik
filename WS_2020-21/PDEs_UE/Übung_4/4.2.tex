@@ -6,7 +6,7 @@ Zeigen Sie, dass
 \begin{align*}
   F = \frac{1}{\sigma_n}\frac{x}{|x|^n}
 \end{align*}
-eine Fundamentallösung des Differentialoperators $L(u) = \mathrm{div} u$ auf $\R^n$ ist,
+eine Fundamentallösung des Differentialoperators $L(u) = \mathrm{div}(u)$ auf $\R^n$ ist,
 wobei $\sigma_n$ die Oberfläche der Einheitskugel im $\R^n$ ist. Achtung:
 Obwohl $F$ eigentlich eine vektorwertige Distribution in $L_{\mathrm{loc}}^1(\R^n)^n$ ist,
 wird das nicht gebraucht um die Behauptung
@@ -21,18 +21,30 @@ ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Eine Fundamentallösung von $L(u) = \mathrm{div} u$ mit Pol in $\xi$ ist definitionsgemäß
+Eine Fundamentallösung von $L(u) = \mathrm{div}(u)$ mit Pol in $\xi$ ist definitionsgemäß
 eine distributionelle Lösung von $L(U_{\xi}) = \delta_{\xi}$. Wir berechnen also
-für $\phi \in \mathcal{D}(\R^n)$ beliebig
+für $\phi \in \mathcal{D}(\R^n)$ beliebig und $A$ eine offene, beschränkte Obermenge
+von $\supp(\phi)$ mit $C^1$-Rand:
 \begin{align*}
   \langle L F, \phi \rangle
   &= \left\langle \frac{1}{\sigma_n}\sum_{i = 1}^n\partial_i\left(\frac{x_i}{|x|^n}\right), \phi \right\rangle
   = -\frac{1}{\sigma_n}\sum_{i = 1}^n\left\langle \left(\frac{x_i}{|x|^n}\right), \partial_i\phi \right\rangle \\
   &= -\frac{1}{\sigma_n}\sum_{i = 1}^n\int_{\R^n}\left(\frac{x_i}{|x|^n}\right)\partial_i\phi(x)dx
+  = \lim_{\epsilon \to 0^+}-\frac{1}{\sigma_n}\int_{A\backslash\overline{B_{\epsilon}(0)}}
+  \left(\frac{x}{|x|^n}\right)\nabla \phi(x)dx \\
+  &= \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
+  - \int_{\partial A}\frac{x}{|x|^n}\underbrace{\phi(x)}_{=0}\nu ds
+  - \int_{\partial B_{\epsilon}(0)}\frac{x}{|x|^n}\phi(x)\nu ds\right) \\
+  &= \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
+  + \int_{\partial B_{\epsilon}(0)}\frac{\epsilon^2}{\epsilon^{n+1}}\phi(x) ds\right) \\
+  &\stackrel{MWS}{=} \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
+  + \epsilon^{1-n}\epsilon^{n-1}\sigma_n\phi(x_{\epsilon})\right) \\
+  &= \lim_{\epsilon \to 0^+}\left(\phi(x_{\epsilon})\right) = \phi(0)\\
 \end{align*}
 Für $|x| \neq 0$ gilt
 \begin{align*}
-  \frac{1}{\sigma_n}\sum_{i=1}^n\partial_i\left(\frac{x_i}{|x|^n}\right)
+  \mathrm{div}\left(\frac{x}{|x|^n}\right)
+  =\frac{1}{\sigma_n}\sum_{i=1}^n\partial_i\left(\frac{x_i}{|x|^n}\right)
   &= \frac{1}{\sigma_n}\sum_{i=1}^n\frac{\left(\sum_{i=1}^nx_i^2\right)^{n/2} - x_i2x_i\frac{n}{2}\left(\sum_{i=1}^nx_i^2\right)^{n/2 - 1}}{\left(\sum_{i=1}^nx_i^2\right)^n} \\
   &= \frac{1}{\sigma_n}\sum_{i=1}^n\frac{1 - \frac{nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} \\
   &= \frac{1}{\sigma_n}\frac{n - n\frac{\sum_{i=1}^nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} = 0.
