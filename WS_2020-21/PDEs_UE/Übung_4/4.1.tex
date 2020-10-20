@@ -2,13 +2,16 @@
 
 \begin{exercise}
 
-Sei $\Omega$ eine beschränkte Teilmenge von $\R^n$ mit $C^{\infty}$-Rand und $\1_\Omega$ ihre
-Indikatorfunktion. Zeigen Sie
+Sei $\Omega$ eine beschränkte Teilmenge von $\R^n$ mit $C^{\infty}$-Rand und $\1_\Omega$ ihre Indikatorfunktion.
+Zeigen Sie
+
 \begin{align*}
-  \langle \Delta \1_\Omega, \varphi \rangle
-  = \int_{\partial\Omega} \frac{\partial \varphi}{\partial \nu} ds,
+  \abraces{\Delta \1_\Omega, \varphi}
+  =
+  \Int[\partial \Omega]{\pderivative[][\varphi]{\nu}}{s},
 \end{align*}
-wobei $\nu$ der äußere Normaleneinheitsvektor auf $\partial\Omega$ ist.
+
+wobei $\nu$ der äußere Normaleneinheitsvektor auf $\partial \Omega$ ist.
 
 \end{exercise}
 
@@ -16,21 +19,32 @@ wobei $\nu$ der äußere Normaleneinheitsvektor auf $\partial\Omega$ ist.
 
 \begin{solution}
 
-Klarerweise ist $\1_\Omega$ eine $L^1_{\mathrm{loc}}$-Funktion, somit ist der Ausdruck
-auf der linken Seite wohldefiniert und es gilt (da der Laplace-Operator formal selbstadjungiert ist)
-\begin{align*}
+Klarerweise ist $\1_\Omega \in L^1_{\mathrm{loc}}$.
+Somit ist der Ausdruck auf der linken Seite, als Linearkkombination von Ableitungen von dieser Distribution, wohldefiniert.
+Der Laplace-Operator $\Delta$ ist formal selbstadjungiert und $\Delta = \Div(\nabla)$.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width = 0.75 \textwidth]{Satz 1.5 (Gauß).png}
+\end{figure}
+
+\begin{multline*}
+  \implies
   \langle \Delta \1_\Omega, \varphi \rangle
-  = \langle  \1_\Omega, \Delta \varphi \rangle
-  = \int_{\R^n}\1_\Omega \Delta \varphi dx
-  = \int_{\Omega} \Delta \varphi dx
-  = \int_{\Omega} \mathrm{div} (\nabla \varphi) dx.
-\end{align*}
-Mit dem Integralsatz von Gauß erhalten wir nun
-\begin{align*}
-  \int_{\Omega} \mathrm{div} (\nabla \varphi) dx
-  = \int_{\partial\Omega} \nabla \varphi \nu ds
-  = \int_{\partial\Omega} \frac{\partial \varphi}{\partial \nu} ds.
-\end{align*}
+  =
+  \langle  \1_\Omega, \Delta \varphi \rangle
+  =
+  \Int[\R^n]{\1_\Omega \Delta \varphi}{x}
+  =
+  \Int[\Omega]{\Delta \varphi}{x}
+  =
+  \Int[\Omega]{\Div(\nabla \varphi)}{x} \\
+  \stackrel{\text{Gauß}}{=}
+  \Int[\partial \Omega]{\nabla \varphi \cdot \nu}{s}
+  =
+  \Int[\partial \Omega]{\frac{\partial \varphi}{\partial \nu}}{s}
+\end{multline*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
