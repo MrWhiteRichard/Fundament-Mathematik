@@ -17,8 +17,93 @@ ist eine Fundamentallösung von $\Delta^2$ mit Pol in $(0,0)$ im $\R^2$, wobei
 
 \begin{solution}
 
-\phantom{}
+Wir zeigen also für beliebiges $\phi \in \mathcal{D}(\R^2)$:
 
+\begin{align*}
+  \langle \Delta^2u, \phi \rangle
+  :=
+  \langle u, \Delta^2 \phi \rangle
+  \stackrel{!}{=}
+  \phi(0)
+\end{align*}
+
+Wir machen einen Ansatz wie im Skript: Sei $\Omega_\varepsilon = \R^2 \setminus \overline{B_\varepsilon(0)}$, dann soll
+
+\begin{align*}
+  \phi(0)
+  \stackrel{!}{=}
+  \lim_{\varepsilon \rightarrow 0}\int_{\Omega_\varepsilon} u \Delta^2 \phi dx
+\end{align*}
+
+Nun integrieren wir viermal partiell gemäß dem Satz von Gauß:
+
+\begin{align*}
+  \int_{\Omega_\varepsilon} u \Delta^2 \phi dx
+  =
+  \int_{\Omega_\varepsilon} u \text{div}\underbrace{\nabla \Delta \phi}_F dx
+  =
+  -\int_{\Omega_\varepsilon} \underbrace{\nabla u}_{F} \cdot \nabla \underbrace{\Delta \phi}_{u} dx
+  +
+  \int_{\partial \Omega_\varepsilon} u(\nabla \Delta \phi \cdot \nu) ds
+  = \\
+  \int_{\Omega_\varepsilon} \underbrace{\text{div}\nabla u}_{\Delta u} \underbrace{\Delta \phi}_{\text{div} \nabla \phi} dx
+  -
+  \int_{\partial \Omega_\varepsilon} \Delta \phi (\nabla u \cdot \nu) ds
+  +
+  \int_{\partial \Omega_\varepsilon} u(\nabla \Delta \phi \cdot \nu) ds
+  = \\
+  -\int_{\Omega_\varepsilon} \nabla \Delta u \cdot \nabla \phi dx
+  +
+  \int_{\partial \Omega_\varepsilon} \Delta u (\nabla \phi \cdot \nu) ds
+  -
+  \int_{\partial \Omega_\varepsilon} \Delta \phi (\nabla u \cdot \nu) ds
+  +
+  \int_{\partial \Omega_\varepsilon} u(\nabla \Delta \phi \cdot \nu) ds
+  = \\
+  \underbrace{\int_{\Omega_\varepsilon} \Delta^2 u \phi dx}_{0}
+  -
+  \int_{\partial \Omega_\varepsilon} \phi (\nabla \Delta u \cdot \nu) ds
+  +
+  \int_{\partial \Omega_\varepsilon} \Delta u (\nabla \phi \cdot \nu) ds
+  -
+  \int_{\partial \Omega_\varepsilon} \Delta \phi (\nabla u \cdot \nu) ds
+  +
+  \int_{\partial \Omega_\varepsilon} u(\nabla \Delta \phi \cdot \nu) ds
+\end{align*}
+
+Die Integrale über den Rand sehen wir uns einzeln an. Dabei ist der Normalenvektor an
+$\partial \Omega_\varepsilon$ gegeben durch
+
+\begin{align*}
+  \nu(x,y)
+  =
+  -\frac{1}{\varepsilon}
+  \left(\begin{array}{c}
+    x \\
+    y
+  \end{array}\right)
+\end{align*}
+
+Für das erste wenden wir den Mittelwertsatz der Integralrechnung an: Es existiert
+ein $x_\varepsilon \in \partial B_\varepsilon(0)$, sodass
+
+\begin{align*}
+  -\int_{\partial \Omega_\varepsilon} \phi (\nabla \Delta u \cdot \nu) ds
+  =
+  -\int_{\partial \Omega_\varepsilon} \phi
+  \begin{pmatrix} x \\ y \end{pmatrix}
+  \frac{1}{2\pi (x^2+y^2)} \cdot
+  - \begin{pmatrix} x \\ y \end{pmatrix}
+  \frac{1}{\varepsilon} ds
+  =
+  \phi(x_\varepsilon) \frac{1}{2\pi \varepsilon} \int_{\partial \Omega_\varepsilon} 1 ds
+  =
+  \phi(x_\varepsilon)
+  \stackrel{\varepsilon \rightarrow 0}{\longrightarrow}
+  \phi(0)
+\end{align*}
+
+Das zweite transformieren wir in Polarkoordinaten, also $x = r\cos(\varphi), y = r\sin(\varphi)$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
