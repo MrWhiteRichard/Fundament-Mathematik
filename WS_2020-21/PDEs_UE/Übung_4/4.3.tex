@@ -60,6 +60,8 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
     u(x,t) = \frac{1}{2\sqrt{\pi}}\int_0^{x/\sqrt{t}}\exp(-s^2/4)ds + \frac{1}{2}.
   \end{align*}
   \item
+  Da $u(\cdot,t)$ und $\partial_x u(\cdot,1)$ stetig sind, sind sie insbesondere
+  auch lokal integrierbar und es folgt mit Lemma 3.14
   \begin{align*}
     f_t - f_{xx} &= \partial_t((\partial_x u(\cdot,t)\ast \varphi)(x))
     - \partial_{xx}(\partial_x u(\cdot,t)\ast \varphi)(x) \\
@@ -67,6 +69,7 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
     &= ((\partial_{tx} u(\cdot,t) - \partial_{xxx} u(\cdot,t)) \ast \varphi)(x) \\
     &= ((\partial_{x} (\partial_t u(\cdot,t) - \partial_{xx} u(\cdot,t))) \ast \varphi)(x) = 0.
   \end{align*}
+
   \begin{align*}
     \lim_{t \to 0^+} f(t,x) &= \lim_{t \to 0^+} (\partial_x u(\cdot,t)\ast \varphi)(x)
     = \lim_{t \to 0^+} (u(\cdot,t)\ast \varphi^{\prime})(x)
@@ -82,10 +85,6 @@ Gegeben $v \in C^2(\R)$, sei $u(x,t) = v\left(x/\sqrt{t}\right)$ für $t > 0$ un
     |u(x-y,t)| = \frac{1}{2\sqrt{\pi}}\int_0^{(x-y)/\sqrt{t}}\exp(-s^2/4)ds + \frac{1}{2}
     \leq \frac{1}{2\sqrt{\pi}}\int_0^{\infty}\exp(-s^2/4)ds + \frac{1}{2}
   \end{align*} \\
-  Die wahren Teile der Aufgabe (ob
-  die Voraussetzungen von Lemma 3.14 erfüllt sind) seien vorerst dem aufmerksamen Leser überlassen.
-  Konkret ist also noch zu zeigen, dass $\partial_x u(\cdot,t)$ und $u(\cdot,t)$
-  $L_{\mathrm{loc}}^1$-Funktionen sind.
 \end{enumerate}
 
 \end{solution}
