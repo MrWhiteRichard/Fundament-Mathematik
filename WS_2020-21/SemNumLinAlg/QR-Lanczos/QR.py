@@ -50,6 +50,23 @@ def QR_shift2(A,tol):
     return A, np.diag(A)
 
 
+def Lanczos(A):
+    n = A.shape[1]
+    v = np.random.rand(n)
+    v = np.array([v/np.linalg.norm(v)])
+    gam = np.array([v[0].T@A@v[0]])
+    w = np.array([(A - gam[0]*np.identity(n))@v[0]])
+    delta = [np.linalg.norm(w)]
+    j = 0
+    while delta[j] > 1e-5 and j < 100:
+        v = np.vstack((v, w/delta[j]))
+        j +=1
+        gam = np.vstack((gam,v[j].T@A@v[j]))
+        w = (A - gam[j]*np.identity(n))@v[j] - delta[j-1]*v[j-1]
+        delta.append(np.linalg.norm(w))
+    T = np.diag(delta[:-1], -1) + np.diag(gam) + np.diag(delta[:-1], 1)
+    return QR_shift(T)
+
 #Matrix, EV = QR_simple(A_1,tol)
 Matrix, EV = QR_shift(A_1,tol)
 #Matrix, EV = QR_shift2(A_1,tol)
