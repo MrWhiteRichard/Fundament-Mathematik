@@ -110,15 +110,15 @@ Das zweite transformieren wir in Polarkoordinaten, also $x = r\cos(\varphi), y =
 Da $\Delta u = \frac{\ln(x^2 +y^2) + 2}{4 \pi}$ erhalten wir unter Anwendung der CS-Ungleichung
 
 \begin{align*}
-  |\frac{1}{4\pi} \int_{\partial \Omega_\varepsilon} (\ln(x^2 + y^2) + 2) (\nabla \phi \cdot \nu) ds|
+  \left|\frac{1}{4\pi} \int_{\partial \Omega_\varepsilon} (\ln(x^2 + y^2) + 2) (\nabla \phi \cdot \nu) ds\right|
   \leq
-  \frac{\norm{\nabla \phi}}{4 \pi} (\int_0^\varepsilon \int_0^{2 \pi} \ln(r^2) r d\varphi dr) + \underbrace{\int_{\partial \Omega_\varepsilon} 2 ds}_{\stackrel{\varepsilon \rightarrow 0}{\longrightarrow 0}})
+  \frac{\norm{\nabla \phi}}{4 \pi} \left(\int_0^\varepsilon \int_0^{2 \pi} \ln(r^2) r d\varphi dr + \underbrace{\int_{\partial \Omega_\varepsilon} 2 ds}_{\xrightarrow{\varepsilon \rightarrow 0}0}\right)
   =
   \frac{\norm{\nabla \phi}}{2} \int_0^\varepsilon \ln(r^2) r dr
   = \\
-  \frac{\norm{\nabla \phi}}{2} (r^2\ln(r) - \frac{r^2}{2})\Big|_{r = 0}^\varepsilon
+  \frac{\norm{\nabla \phi}}{2} \left[\frac{r^2\ln(r^2) - r^2}{2}\right]_{r = 0}^\varepsilon
   =
-  \norm{\nabla \phi}\frac{\varepsilon^2(2\ln(\varepsilon)-1)}{4}
+  \norm{\nabla \phi}\frac{\varepsilon^2(\ln(\varepsilon^2)-1)}{4}
   \stackrel{\varepsilon \rightarrow 0}{\longrightarrow}
   0
 \end{align*}
@@ -127,20 +127,20 @@ Beim dritten berechnen wir nun zuerst $\nabla u \cdot \nu = \frac{(x^2+y^2)\ln(\
 Dann erhalten wir wiederum mit TRAFO:
 
 \begin{align*}
-  |\int_{\partial \Omega_\varepsilon} \Delta \phi (\nabla u \cdot \nu) ds|
+  \left|\int_{\partial \Omega_\varepsilon} \Delta \phi (\nabla u \cdot \nu) ds\right|
   \leq
-  \norm{\phi}  \int_0^\varepsilon \int_0^{2 \pi} \frac{r^4\ln{r}}{4\pi} + \frac{r}{8\pi} d\varphi dr
+  \norm{\Delta\phi}  \int_0^\varepsilon \int_0^{2 \pi} \frac{r^3\ln{r}}{4\pi} + \frac{r^3}{8\pi} d\varphi dr
   =
-  \norm{\phi} \int_0^\varepsilon \frac{r^4\ln{r}}{2} + \frac{r}{4} dr
+  \norm{\Delta\phi} \int_0^\varepsilon \frac{r^3\ln{r}}{2} + \frac{r^3}{4} dr
   =
-  \norm{\phi}(\frac{5\varepsilon^5 \ln{\varepsilon} - \varepsilon^5}{50} + \frac{\varepsilon^2}{8})
+  \norm{\Delta\phi}\left(\frac{4\varepsilon^4 \ln{\varepsilon} - \varepsilon^4}{16} + \frac{\varepsilon^4}{32}\right)
   \stackrel{\varepsilon \rightarrow 0}{\longrightarrow}
   0
 \end{align*}
 Auch beim letzten können wir das so durchführen:
 
 \begin{align*}
-  |\frac{1}{8\pi} \int_{\partial \Omega_\varepsilon} (x^2 + y^2)(\ln(\sqrt{x^2 + y^2})) (\nabla \Delta \phi \cdot \nu) ds|
+  \left|\frac{1}{8\pi} \int_{\partial \Omega_\varepsilon} (x^2 + y^2)(\ln(\sqrt{x^2 + y^2})) (\nabla \Delta \phi \cdot \nu) ds\right|
   \leq
   \frac{\norm{\nabla \Delta \phi}}{8 \pi} \int_0^\varepsilon \int_0^{2 \pi} r^3 \ln(r) d\varphi dr
   =
