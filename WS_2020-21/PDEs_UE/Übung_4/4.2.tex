@@ -204,7 +204,7 @@ Dazu bemerken wir, dass das Normalvektorfeld auf $\partial B_\epsilon(0)$ wie fo
 Mit dem Mittelwertsatz der Integralrechnung berechnen wir den Rest.
 
 \begin{multline*}
-  \Int
+  -\Int
   [\partial B_\epsilon(0)]
   {
     \frac{x}{|x|^n}
@@ -247,13 +247,35 @@ Mit dem Mittelwertsatz der Integralrechnung berechnen wir den Rest.
   \phi(x_{\epsilon})
 \end{multline*}
 
-Formal gilt noch zu zeigen, dass $\frac{x_i}{|x|^n}$ eine $L^1_{\mathrm{loc}}$-Funktion ist
+Formal gilt noch zu zeigen, dass $F_i = \frac{x_i}{|x|^n}$ eine $L^1_{\mathrm{loc}}$-Funktion ist, dazu betrachten wir
+das Integral über den Radialanteil in sphärischen Koordinaten. Dort betrachten wir eine Kugel die unser Kompaktum umfasst. Dann gilt
+für $g(x) = |x|^{1-n}$, da $r = |x|$
+
+\begin{align*}
+  \int_0^r z^{1-n}z^{n-1} dz = r
+  <
+  \infty
+\end{align*}
+
+Damit ist nach folgender Rechnung auch $\sum_{i=1}^n |F_i|$, und somit auch $F_i$ eine $L^1_{\mathrm{loc}}$-Funktion.
 
 \begin{align*}
   \Int[K]
   {
-    \frac{x_i}{|x|^n}
+    \sum_{i=1}^n\frac{|x_i|}{|x|^n}
   }{x}
+  \stackrel{CS}{\leq}
+  \Int[K]
+  {
+   n \frac{|x|}{|x|^n}
+  }{x}
+  =
+  n\Int[K]
+  {
+    |x|^{1-n}
+  }{x}
+  <
+  \infty
 \end{align*}
 
 \end{solution}

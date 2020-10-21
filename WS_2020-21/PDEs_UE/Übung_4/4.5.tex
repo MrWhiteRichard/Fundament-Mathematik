@@ -6,7 +6,7 @@ Bestimmen Sie die formal adjungierten Operatoren von
 \begin{enumerate}[label = (\roman*)]
   \item $L\phi = a(x,y)\phi_x + b(x,y)\phi_y + c(x,y)\phi, \quad \phi \in \mathcal{D}(\R^2)$,
   \item $L\phi = x^2\phi^{\primeprime} + \phi^{\prime} - 3x^2\phi, \quad \phi \in \mathcal{D}(\R)$,
-  \item $L\phi = \Delta\phi + v(x)\nabla \phi, \quad \phi \in \mathcal{D}(\R^n)$,
+  \item $L\phi = \Delta\phi + v(x)\nabla \cdot \phi, \quad \phi \in \mathcal{D}(\R^n)$,
 \end{enumerate}
 mit $a,b,c \in C^{\infty}(\R^2)$ und $v \in C^{\infty}(\R^n;\R^n)$.
 
@@ -21,7 +21,11 @@ mit $a,b,c \in C^{\infty}(\R^2)$ und $v \in C^{\infty}(\R^n;\R^n)$.
 \begin{enumerate}[label = (\roman*)]
   \item
   \begin{align*}
-    L^*(\phi) = -a_x(x,y)\phi - a(x,y)\phi_x - b_y(x,y)\phi - b(x,y)\phi_y + c(,x,y)\phi
+    L^*(\phi)
+    &=
+    - \partial_x(a(x,y) \phi) - \partial_y(b(x,y) \phi) + c(x,y) \phi \\
+    &=
+    -a_x(x,y)\phi - a(x,y)\phi_x - b_y(x,y)\phi - b(x,y)\phi_y + c(x,y)\phi
   \end{align*}
   \item
   \begin{align*}
@@ -31,7 +35,19 @@ mit $a,b,c \in C^{\infty}(\R^2)$ und $v \in C^{\infty}(\R^n;\R^n)$.
   \end{align*}
   \item
   \begin{align*}
-    L^*(\phi) = \Delta\phi -\mathrm{div}(v)\phi - v\nabla\phi
+    L \phi
+    =
+    \Delta \phi + \sum_{i=1}^n v_i \partial_{x_i}\phi
+  \end{align*}
+  Nun bleibt $\Delta \phi$ nach Definition des formal adjungierten Operators erhalten und es gibt sich insgesamt
+  \begin{align*}
+    L^*(\phi)
+    =
+    \Delta \phi - \sum_{i=1}^n \partial_{x_i}(v_i \phi)
+    =
+    \Delta \phi - \sum_{i=1}^n \partial_{x_i} v_i \phi - \sum_{i=1}^n v_i \partial_{x_i} \phi
+    =
+    \Delta\phi -\mathrm{div}(v)\phi - v\nabla\phi
   \end{align*}
 \end{enumerate}
 

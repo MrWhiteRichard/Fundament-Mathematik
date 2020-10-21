@@ -23,7 +23,7 @@ Wir behaupten per Induktion
 \end{align*}\\
 Betrachte zuerst den Fall $n=1$:
 \begin{align*}
-  U_0(x) &= \1_{[0,\infty[}(x)\frac{x^{\alpha}}{\alpha!} \\
+  U_0(x) &= \1_{[0,\infty[}(x)\frac{x^{\alpha-1}}{\alpha-1!} \\
   \langle \partial_{\alpha} U_0, \phi \rangle &= (-1)^{\alpha} \langle U_0, \phi^{(\alpha)} \rangle \\
   &= (-1)^{\alpha} \int_0^{\infty} \frac{x^{\alpha - 1}}{(\alpha - 1)!} \phi^{(\alpha)}(x) dx \\
   &= (-1)^{\alpha}(-1)^{\alpha - 1}\int_0^{\infty}\frac{x^0}{0!}\phi^{\prime}(x)dx \\
@@ -31,7 +31,7 @@ Betrachte zuerst den Fall $n=1$:
 \end{align*}
 Nun zum Induktionsschritt $n-1 \rightsquigarrow n$:
 \begin{align*}
-  \langle \partial_{\alpha}, \phi \rangle &= (-1)^{|\alpha|}\int_{\R^n}\prod_{i=1}^n \1_{[0,\infty[}(x_i) \frac{x_i^{\alpha_i - 1}}{(\alpha_i - 1)!}\partial_{\alpha}\phi(x)dx \\
+  \langle \partial_{\alpha} U_0, \phi \rangle &= (-1)^{|\alpha|}\int_{\R^n}\prod_{i=1}^n \1_{[0,\infty[}(x_i) \frac{x_i^{\alpha_i - 1}}{(\alpha_i - 1)!}\partial_{\alpha}\phi(x)dx \\
   &= (-1)^{|\alpha|}\int_{\R^{n-1}}\int_{0}^{\infty}\prod_{i=1}^n \1_{[0,\infty[}(x_i) \frac{x_i^{\alpha_i - 1}}{(\alpha_i - 1)!}\partial_{\alpha}\phi(x) dx_n d\overline{x} \\
   &= (-1)^{|\alpha|}\int_{\R^{n-1}}\prod_{i=1}^{n-1} \1_{[0,\infty[}(x_i) \frac{x_i^{\alpha_i - 1}}{(\alpha_i - 1)!}\int_{0}^{\infty} \frac{x^{\alpha_n - 1}}{(\alpha_n - 1)!}\partial_{\alpha}\phi(\overline{x},x_n) dx_n d\overline{x} \\
   &= (-1)^{|\alpha|}(-1)^{\alpha_n}\int_{\R^{n-1}}\prod_{i=1}^{n-1} \1_{[0,\infty[}(x_i) \frac{x_i^{\alpha_i - 1}}{(\alpha_i - 1)!}\phi(\overline{x},0)d\overline{x}  = (-1)^{|\alpha|}(-1)^{\sum_{i=1}^n\alpha_n}\phi(0) = \phi(0).\\
