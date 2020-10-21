@@ -31,20 +31,27 @@
 % and hence, completely ignored
 
 \ifnum \thesection = 0
-{\newtheorem{exercise}{Aufgabe}}
+{
+  \newtheorem{exercise}{Aufgabe}
+}
 \else
-{\newtheorem{exercise}{Aufgabe}[section]}
+{
+  \newtheorem{exercise}{Aufgabe}[section]
+}
 \fi
 
 \ifdef
-{\lastexercisenumber}
-{\setcounter{exercise}{\lastexercisenumber}}
-
-\newcommand{\solution}
 {
-    \renewcommand{\proofname}{Lösung}
-    \renewcommand{\qedsymbol}{}
-    \proof
+  \lastexercisenumber
+}{
+  \setcounter{exercise}{\lastexercisenumber}
+}
+
+\newenvironment{solution}
+{
+  \begin{proof}[Lösung]
+}{
+  \end{proof}
 }
 
 \renewcommand{\proofname}{Beweis}
@@ -56,7 +63,13 @@
 \newcolumntype
 {x}
 [1]
-{!{\centering\arraybackslash\vrule width #1}}
+{
+  !{
+    \centering
+    \arraybackslash
+    \vrule
+    width #1}
+}
 
 % environment selbst (the big cheese)
 \newenvironment
@@ -80,12 +93,7 @@
 % -------------------------------- %
 % MISC "Ein-Deutschungen"
 
-\renewcommand
-{\figurename}
-{Abbildung}
-
-\renewcommand
-{\tablename}
-{Tabelle}
+\renewcommand{\figurename}{Abbildung}
+\renewcommand{\tablename} {Tabelle}
 
 % -------------------------------- %
