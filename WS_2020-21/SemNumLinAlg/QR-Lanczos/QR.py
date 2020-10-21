@@ -52,16 +52,17 @@ def QR_shift2(A,tol):
 
 def Lanczos(A):
     n = A.shape[1]
-    v = np.random.rand(n)
-    v = np.array([v/np.linalg.norm(v)])
-    gam = np.array([v[0].T@A@v[0]])
-    w = np.array([(A - gam[0]*np.identity(n))@v[0]])
+    v0 = np.random.rand(n)
+    v = [v0/np.linalg.norm(v0)]
+    gam = [v[0].T@A@v[0]]
+    w = (A - gam[0]*np.identity(n))@v[0]
     delta = [np.linalg.norm(w)]
     j = 0
     while delta[j] > 1e-5 and j < 100:
-        v = np.vstack((v, w/delta[j]))
+        print(delta[j])
+        v.append(w/delta[j])
         j +=1
-        gam = np.vstack((gam,v[j].T@A@v[j]))
+        gam.append(v[j].T@A@v[j])
         w = (A - gam[j]*np.identity(n))@v[j] - delta[j-1]*v[j-1]
         delta.append(np.linalg.norm(w))
     T = np.diag(delta[:-1], -1) + np.diag(gam) + np.diag(delta[:-1], 1)
