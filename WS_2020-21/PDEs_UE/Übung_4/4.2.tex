@@ -3,45 +3,185 @@
 \begin{exercise}
 
 Zeigen Sie, dass
+
 \begin{align*}
   F = \frac{1}{\sigma_n}\frac{x}{|x|^n}
 \end{align*}
-eine Fundamentallösung des Differentialoperators $L(u) = \mathrm{div}(u)$ auf $\R^n$ ist,
-wobei $\sigma_n$ die Oberfläche der Einheitskugel im $\R^n$ ist. Achtung:
-Obwohl $F$ eigentlich eine vektorwertige Distribution in $L_{\mathrm{loc}}^1(\R^n)^n$ ist,
-wird das nicht gebraucht um die Behauptung
+
+eine Fundamentallösung des Differentialoperators $L(u) = \Div(u)$ auf $\R^n$ ist, wobei $\sigma_n$ die Oberfläche der Einheitskugel im $\R^n$ ist.
+Achtung:
+Obwohl $F$ eigentlich eine vektorwertige Distribution in $L_{\mathrm{loc}}^1(\R^n)^n$ ist, wird das nicht gebraucht um die Behauptung
+
 \begin{align*}
-  \langle \mathrm{div} F, \varphi \rangle = \varphi(0)
+  \abraces{\Div F, \varphi} = \varphi(0)
 \end{align*}
-zu zeigen, da
-$\mathrm{div} F = \frac{1}{\sigma_n}\sum_{i}\partial_i\left(\frac{x_i}{|x|^n}\right) \in \mathcal{D}^{\prime}(\R)$
-ist.
+
+zu zeigen, da $\Div F = \frac{1}{\sigma_n}\sum_{i} \partial_i \pbraces{\frac{x_i}{|x|^n}} \in \mathcal{D}^{\prime}(\R)$ ist.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Eine Fundamentallösung von $L(u) = \mathrm{div}(u)$ mit Pol in $\xi$ ist definitionsgemäß
-eine distributionelle Lösung von $L(U_{\xi}) = \delta_{\xi}$. Wir berechnen also
-für $\phi \in \mathcal{D}(\R^n)$ beliebig und $A$ eine offene, beschränkte Obermenge
-von $\supp(\phi)$ mit $C^1$-Rand:
+
+\phantom{}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics
+  [width = 0.75 \textwidth]
+  {Definition 3-19.png}
+\end{figure}
+
+Sei $\phi \in \mathcal{D}(\R^n)$.
+Wir wollen im Folgenden partiell integrieren.
+
+\includegraphicsboxed
+{Analogon der partiellen Integration.png}
+
+Die Partielle Integration basiert auf dem Integral-Satz von Gauß.
+Um diesen anzuwenden, brauchen wir eine offene und beschränkte Menge.
+Das garantieren wir formal, indem wir $\Omega \supseteq \supp(\phi)$ als offene und beschränkte Menge mit $C^1$-Rand wählen und durch $\Omega_\epsilon := \Omega \setminus \overline{B_\epsilon(0)}$ für $\epsilon > 0$ die Singularität $0$ rausschneiden.
+Wir integrieren somit nur auf $\Omega$ bzw. $\Omega_\epsilon$.
+(Außerhalb des Trägers, verschwindet alles).
+
 \begin{align*}
-  \langle L F, \phi \rangle
-  &= \left\langle \frac{1}{\sigma_n}\sum_{i = 1}^n\partial_i\left(\frac{x_i}{|x|^n}\right), \phi \right\rangle
-  = -\frac{1}{\sigma_n}\sum_{i = 1}^n\left\langle \left(\frac{x_i}{|x|^n}\right), \partial_i\phi \right\rangle \\
-  &= -\frac{1}{\sigma_n}\sum_{i = 1}^n\int_{\R^n}\left(\frac{x_i}{|x|^n}\right)\partial_i\phi(x)dx
-  = \lim_{\epsilon \to 0^+}-\frac{1}{\sigma_n}\int_{A\backslash\overline{B_{\epsilon}(0)}}
-  \left(\frac{x}{|x|^n}\right)\nabla \phi(x)dx \\
-  &= \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
-  - \int_{\partial A}\frac{x}{|x|^n}\underbrace{\phi(x)}_{=0}\nu ds
-  - \int_{\partial B_{\epsilon}(0)}\frac{x}{|x|^n}\phi(x)\nu ds\right) \\
-  &= \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
-  + \int_{\partial B_{\epsilon}(0)}\frac{\epsilon^2}{\epsilon^{n+1}}\phi(x) ds\right) \\
-  &\stackrel{MWS}{=} \lim_{\epsilon \to 0^+}\frac{1}{\sigma_n}\left(\int_{A\backslash\overline{B_{\epsilon}(0)}}\mathrm{div}\left(\frac{x}{|x|^n}\right) \phi(x)dx
-  + \epsilon^{1-n}\epsilon^{n-1}\sigma_n\phi(x_{\epsilon})\right) \\
-  &= \lim_{\epsilon \to 0^+}\left(\phi(x_{\epsilon})\right) = \phi(0)\\
+  \implies
+  \abraces{L F, \phi}
+  & =
+  \abraces{\Div F, \phi}
+  =
+  \abraces
+  {
+    \frac{1}{\sigma_n}
+    \sum_{i = 1}^n
+    \partial_i
+    \pbraces
+    {
+      \frac{x_i}{|x|^n}
+    },
+    \phi
+  }
+  =
+  \frac{1}{\sigma_n}
+  \sum_{i=1}^n
+  \abraces
+  {
+    \partial_i
+    \pbraces
+    {
+      \frac{x_i}{|x|^n}
+    },
+    \phi
+  }
+  =
+  -\frac{1}{\sigma_n}
+  \sum_{  1}^n
+  \abraces
+  {
+    \frac{x_i}{|x|^n},
+    \partial_i \phi
+  } \\
+  & =
+  -\frac{1}{\sigma_n}
+  \abraces
+  {
+    \sum_{i=1}^n
+    \frac{x_i}{|x|^n},
+    \partial_i \phi
+  }
+  =
+  -\frac{1}{\sigma_n}
+  \Int[\Omega]
+  {
+    \sum_{i = 1}^n
+    \frac{x_i}{|x|^n}
+    \partial_i \phi
+  }{x}
+  =
+  -\frac{1}{\sigma_n}
+  \Int
+  [\Omega]
+  {
+    \frac{x}{|x|^n}
+    \cdot
+    \nabla \phi(x)
+  }{x} \\
+  & =
+  \lim_{\epsilon \to 0^+}
+  -\frac{1}{\sigma_n}
+  \Int
+  [\Omega_\epsilon]
+  {
+    \frac{x}{|x|^n}
+    \cdot
+    \nabla \phi(x)
+  }{x}
+  \stackrel{\text{PI}}{=}
+  \lim_{\epsilon \to 0^+}
+  \frac{1}{\sigma_n}
+  \pbraces
+  {
+    \Int
+    [\Omega_\epsilon]
+    {
+      \Div
+      \pbraces
+      {
+        \frac{x}{|x|^n}
+      }
+      \phi(x)
+    }{x}
+    -
+    \Int
+    [\partial \Omega_\epsilon]
+    {
+      \frac{x}{|x|^n}
+      \phi(x)
+      \cdot
+      \nu
+    }{s}
+  } \\
+  & =
+  \lim_{\epsilon \to 0^+}
+  \frac{1}{\sigma_n}
+  \Bigg (
+    \Int
+    [\Omega_\epsilon]
+    {
+      \Div
+      \pbraces
+      {
+        \frac{x}{|x|^n}
+      }
+      \phi(x)
+    }{x}
+    -
+    \underbrace
+    {
+      \Int
+      [\partial \Omega]
+      {
+        \frac{x}{|x|^n}
+        \phi(x)
+        \cdot
+        \nu
+      }{s}
+    }_0
+    -
+    \Int
+    [\partial B_\epsilon(0)]
+    {
+      \frac{x}{|x|^n}
+      \phi(x)
+      \cdot
+      \nu
+    }{s}
+  \Bigg )
 \end{align*}
-Für $|x| \neq 0$ gilt
+
+Wir kümmern uns nun um die übrigen Integrale separat.
+Das Erste fällt weg, weil
+
 \begin{align*}
   \mathrm{div}\left(\frac{x}{|x|^n}\right)
   =\frac{1}{\sigma_n}\sum_{i=1}^n\partial_i\left(\frac{x_i}{|x|^n}\right)
@@ -49,10 +189,73 @@ Für $|x| \neq 0$ gilt
   &= \frac{1}{\sigma_n}\sum_{i=1}^n\frac{1 - \frac{nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} \\
   &= \frac{1}{\sigma_n}\frac{n - n\frac{\sum_{i=1}^nx_i^2}{\sum_{i=1}^nx_i^2}}{\left(\sum_{i=1}^nx_i^2\right)^{n/2}} = 0.
 \end{align*}
-Formal gilt noch zu zeigen, dass $\frac{x_i}{|x|^n}$ eine $L^1_{\mathrm{loc}}$-Funktion ist
+
+Das Zweite wird zu genau dem Rest, den wir brauchen.
+Dazu bemerken wir, dass das Normalvektorfeld auf $\partial B_\epsilon(0)$ wie folgt aussieht.
+
 \begin{align*}
-  \int_{K}\frac{x_i}{|x|^n} dx = 
+  |x| = \epsilon,
+  \quad
+  \nu(x)
+  =
+  -\frac{x}{|x|}
 \end{align*}
+
+Mit dem Mittelwertsatz der Integralrechnung berechnen wir den Rest.
+
+\begin{multline*}
+  \Int
+  [\partial B_\epsilon(0)]
+  {
+    \frac{x}{|x|^n}
+    \phi(x)
+    \cdot
+    \nu
+  }{s}
+  =
+  \Int
+  [\partial B_\epsilon(0)]
+  {
+    \frac{x \cdot x}{|x|^{n+1}}
+    \phi(x)
+  }{s}
+  =
+  \Int
+  [\partial B_\epsilon(0)]
+  {
+    \frac{|x|^2}{|x|^{n+1}}
+    \phi(x)
+  }{s}
+  =
+  \Int
+  [\partial B_{\epsilon}(0)]
+  {
+    \frac{\epsilon^2}{\epsilon^{n+1}}
+    \phi(x)
+  }{s} \\
+  \stackrel{\text{MWS}}{=}
+  \epsilon^{1-n}
+  \phi(x_\epsilon)
+  \meas \partial B_{\epsilon}(0)
+  =
+  \epsilon^{1-n}
+  \epsilon^{n-1}
+  \sigma_n
+  \phi(x_\epsilon)
+  =
+  \sigma_n
+  \phi(x_{\epsilon})
+\end{multline*}
+
+Formal gilt noch zu zeigen, dass $\frac{x_i}{|x|^n}$ eine $L^1_{\mathrm{loc}}$-Funktion ist
+
+\begin{align*}
+  \Int[K]
+  {
+    \frac{x_i}{|x|^n}
+  }{x}
+\end{align*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
