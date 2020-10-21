@@ -126,7 +126,7 @@ def trim_from_clipboard_to_clipboard(trim_out_color = colors['white']):
 
 # ---------------------------------------------------------------- #
 
-def trim_from_clipboard_to_directory(trim_out_color = colors['white']):
+def trim_from_clipboard_to_directory(file_name = None, trim_out_color = colors['white']):
 
     # grab image from clipboard
     image = ImageGrab.grabclipboard()
@@ -137,12 +137,16 @@ def trim_from_clipboard_to_directory(trim_out_color = colors['white']):
     # go to output folder
     os.chdir('output')
 
-    n = 0
-    while str(n) + '.png' in os.listdir():
-        n += 1
+    if file_name == None:
+
+        n = 0
+        while str(n) + '.png' in os.listdir():
+            n += 1
+
+        file_name = str(n)
 
     # save cropped image in output folder
-    image_trimmed.save(str(n) + '.png')
+    image_trimmed.save(file_name + '.png')
 
     # go back to main folder
     os.chdir('..')
