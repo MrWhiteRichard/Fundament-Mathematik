@@ -39,7 +39,7 @@ Nun integrieren wir viermal partiell gemäß dem Satz von Gauß:
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[width = 0.75 \textwidth]{Gauß-PI.jpg}
+  \includegraphics[width = 0.75 \textwidth]{Gauss-PI.jpg}
 \end{figure}
 
 \begin{align*}
@@ -155,6 +155,19 @@ Auch beim letzten können wir das so durchführen:
 
 Damit ist diese Funktion also wirklich eine Fundamentallösung.
 
+\\
+\textbf{Alternative Lösung:}
+
+Durch elementares Ableiten erhält man
+\begin{align}
+    (\Delta u)(x, y) = \frac{\log(\sqrt{x^2 + y^2}) + 1}{2 \pi}.
+\end{align}
+Nach Satz 4.1 ist $\frac{\log(r)}{2 \pi}$ eine Fundamentallösung des Laplace-Operators, wobei $r = \sqrt{x^2 + y^2}$. Daher gilt
+\begin{align}
+    \left\langle \Delta^2 u, \phi \right\rangle =  \left\langle \Delta \left( \frac{\log(\sqrt{x^2 + y^2}) + 1}{2 \pi}\right), \phi \right\rangle
+    = \\ \left\langle \Delta \left( \frac{\log(\sqrt{x^2 + y^2})}{2 \pi}\right) + \underbrace{\Delta \frac{1}{2 \pi}}_{= 0}, \phi \right\rangle =
+    \left\langle \Delta \frac{\log(r)}{2 \pi}, \phi \right\rangle \stackrel{\text{Satz 4.1}}= \langle \delta_0, \phi \rangle.
+\end{align}
 \end{solution}
 
 % --------------------------------------------------------------------------------
