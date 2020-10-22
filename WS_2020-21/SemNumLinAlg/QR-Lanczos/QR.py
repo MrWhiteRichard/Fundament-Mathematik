@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.linalg import block_diag
 
 
 tol = 1e-16
@@ -69,12 +70,49 @@ def Lanczos(A):
     return QR_shift(T)
 
 #Matrix, EV = QR_simple(A_1,tol)
-Matrix, EV = QR_shift(A_1,tol)
+#Matrix, EV = QR_shift(A_1,tol)
 #Matrix, EV = QR_shift2(A_1,tol)
 #Matrix, EV = QR_simple(A_2,tol)
 #Matrix, EV = QR_shift(A_2,tol)
 #Matrix, EV = QR_shift2(A_2,tol)
 
 
-print(np.round(Matrix.real,2))
-print(EV.real)
+#print(np.round(Matrix.real,2))
+#print(EV.real)
+    
+
+A = np.diag([1,1,1], -1) + np.diag([2,2,2,2]) + np.diag([3,3,3], 1)
+
+def QR_decomp_hesse(A):
+    n = A.shape[0]
+    Q = np.eye(n,n)
+    
+    for i in range(0,n-1):
+#        root = (abs(A[i,i])**2+abs(A[i+1,i])**2)**(1/2)
+#        c = A[i,i]/root
+#        s = A[i+1,i]/root
+        if abs(A[i,i]) >= abs(A[i+1,i]):
+            t = A[i+1,i]/abs(A[i,i])
+            root = (1+abs(t)**2)**(1/2)
+            c = A[i,i]/(abs(A[i,i])*root)
+            s = t/root
+        else:
+            t = A[i,i]/abs(A[i+1,i])
+            root = (1+abs(t)**2)**(1/2)
+            s = A[i+1,i]/(abs(A[i+1,i])*root)
+            c = t/root
+        
+        M = np.array([[c.conj(), s.conj()], [-s, c]])
+        G = block_diag(np.eye(i,i), M, np.eye(n-i-2, n-i-2))
+        Q = G@Q
+#        print(G)
+        for j in range(i, n):
+            A[i,j] = c.conj()*A[i,j] + s.conj()*A[i+1,j]
+            A[i+1,j] = -s*A[i,j] + c*A[i+1,j]
+    
+    return Q, A
+
+Q,R = QR_decomp_hesse(A)
+print(np.round(Q,3))
+print(np.round(R,3))
+print(np.round(Q@R,3))
