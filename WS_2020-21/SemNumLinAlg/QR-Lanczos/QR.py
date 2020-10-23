@@ -79,14 +79,14 @@ def Lanczos(A):
 
 #print(np.round(Matrix.real,2))
 #print(EV.real)
-    
+
 
 A = np.diag([1,1,1], -1) + np.diag([2,2,2,2]) + np.diag([3,3,3], 1)
 
 def QR_decomp_hesse(A):
     n = A.shape[0]
     Q = np.eye(n,n)
-    
+
     for i in range(0,n-1):
 #        root = (abs(A[i,i])**2+abs(A[i+1,i])**2)**(1/2)
 #        c = A[i,i]/root
@@ -101,16 +101,17 @@ def QR_decomp_hesse(A):
             root = (1+abs(t)**2)**(1/2)
             s = A[i+1,i]/(abs(A[i+1,i])*root)
             c = t/root
-        
+
         M = np.array([[c.conj(), s.conj()], [-s, c]])
         G = block_diag(np.eye(i,i), M, np.eye(n-i-2, n-i-2))
         Q = G@Q
 #        print(G)
         for j in range(i, n):
-            A[i,j] = c.conj()*A[i,j] + s.conj()*A[i+1,j]
-            A[i+1,j] = -s*A[i,j] + c*A[i+1,j]
-    
-    return Q, A
+            temp_1 = A[i,j]
+            A[i,j] = c.conj()*temp_1 + s.conj()*A[i+1,j]
+            A[i+1,j] = -s*temp_1 + c*A[i+1,j]
+
+    return Q.T, A
 
 Q,R = QR_decomp_hesse(A)
 print(np.round(Q,3))
