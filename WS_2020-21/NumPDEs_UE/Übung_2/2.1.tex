@@ -34,21 +34,30 @@ elliptisch ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Wir betrachten auf $H \times H$ das durch $a$ induzierte Skalarprodukt und zeigen,
+dass dadurch eine äquivalente Norm induziert wird.
 \begin{align*}
-  (\forall u \in H: \alpha \|u\|_H^2 \leq a(u;u) \leq \beta\|u\|_H^2 )\iff \alpha \leq \beta.
+  ((u_1;u_2);(v_1;v_2))_a := a(u_1;v_1) + a(u_2;v_2)
 \end{align*}
 \begin{align*}
-  b((u_1;u_2),(u_1;u_2)) &= a(u_1;u_1) + Ca(u_1;u_2) + a(u_2;u_2)
-  \geq \alpha\left(\|u_1\|_H^2 + \|u_2\|_H^2\right) - |Ca(u_1;u_2)| \\
-  &\geq \alpha\left(\|u_1\|_H^2 + \|u_2\|_H^2\right) - \beta|C|\|u_1\|_H\|u_2\|_H \\
-  &= \frac{\beta|C|}{2}\left(\|u_1\|_H - \|u_2\|_H\right)^2 + \left(\alpha - \frac{|C|\beta}{2}\right)(\|u_1\|_H^2 + \|u_2\|_H^2) \\
-  &\geq \left(\alpha - \frac{|C|\beta}{2}\right)(\|u_1\|_H^2 + \|u_2\|_H^2)
-  = \left(\alpha - \frac{|C|\beta}{2}\right)\|(u_1,u_2\|_{H\times H}^2
+  \|(u_1;u_2)\|_a^2 &= a(u_1;u_1) + a(u_2;u_2) \geq \alpha (\|u_1\|_H^2 + \|u_2\|_H^2)
+  = \alpha \|(u_1;u_2)\|_{H \times H}^2 \\
+  \|(u_1;u_2)\|_a^2 &= a(u_1;u_1) + a(u_2;u_2) \leq \beta (\|u_1\|^2 + \|u_2\|_H^2)
+  = \beta \|(u_1;u_2)\|_{H \times H}^2
 \end{align*}
+Jetzt zeigen wir die Elliptizität zunächst für die $a$-Norm und verwenden anschließend
+die Norm-Äquivalenz:
 \begin{align*}
-  \alpha - \frac{|C|\beta}{2} > 0 \iff |C| < 2\frac{\alpha}{\beta} \leq 2.
+  b((u_1;u_2),(u_1;u_2)) &= a(u_1;u_1) + Ca(u_1;u_2) + a(u_2;u_2) \\
+  &\geq a(u_1;u_1) + a(u_2;u_2) - |C||a(u_1;u_2)| \\
+  &\geq a(u_1;u_1) + a(u_2;u_2) - |C|\sqrt{a(u_1;u_1)a(u_2;u_2)} \\
+  &= \frac{|C|}{2}\left(\sqrt{a(u_1;u_1)} - \sqrt{a(u_2;u_2)}\right)^2
+  + \left(1 - \frac{|C|}{2}\right)(a(u_1;u_1) + a(u_2;u_2)) \\
+  &\geq \left(1 - \frac{|C|}{2}\right)(a(u_1;u_1) + a(u_2;u_2))
+  = \left(1 - \frac{|C|}{2}\right)\|(u_1;u_2)\|_a^2 \\
+  &\geq \beta\left(1 - \frac{|C|}{2}\right)\|(u_1;u_2)\|_{H \times H}^2
 \end{align*}
-
+Damit ist die Aussage genau für $|C| < 2$ gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------
