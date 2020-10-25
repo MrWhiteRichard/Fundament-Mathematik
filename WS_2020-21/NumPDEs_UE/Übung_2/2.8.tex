@@ -1,26 +1,222 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}
-Zeigen Sie, dass ein stetiger und wohldefinierter Spuroperator $\gamma: H^1(\Omega) \rightarrow L^2(\partial \Omega)$
-in den folgenden Fällen existiert.
+
+Zeigen Sie, dass ein stetiger und wohldefinierter Spuroperator $\gamma: H^1(\Omega) \rightarrow L^2(\partial \Omega)$ in den folgenden Fällen existiert.
 
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item $\Omega = Q:=(0,1)^2$
-  \item Sei $\Omega$ ein beschränktes, stückweise $C^1$-glattes Gebiet. Genauer soll
-  $\partial \Omega$ aus $M \in \N$ Stücken $\Gamma_i$ mit $i = 1,\dots,M$ bestehen,
-  sodass invertierbare Abbildungen $s_i \in C^1(Q,\Omega)$ existieren für die gilt
+
+  \item $\Omega = Q := (0, 1)^2$
+
+  \item Sei $\Omega$ ein beschränktes, stückweise $C^1$-glattes Gebiet.
+  Genauer soll $\partial \Omega$ aus $M \in \N$ Stücken $\Gamma_i$ mit $i = 1, \dots, M$ bestehen, sodass invertierbare Abbildungen $s_i \in C^1(Q,\Omega)$ existieren für die gilt
+
   \begin{enumerate}[label = (\alph*)]
-    \item $s_i((0,1) \times \{0\}) = \Gamma_i$
+
+    \item $s_i((0, 1) \times \Bbraces{0}) = \Gamma_i$
+
     \item $\det s_i^\prime (\tilde{x}) > 0$ für alle $\tilde{x} \in \Omega$ und
-    \item es existiert eine Konstante $C > 0$ mit $\sup_{\tilde{x} \in Q}\norm[2]{s_i^\prime (\tilde{x})} < C$ und
-    $\sup_{\tilde{x} \in Q}\norm[2]{(s_i^\prime (\tilde{x}))^{-1}} < C$.
+
+    \item es existiert eine Konstante $C > 0$ mit $\sup_{\tilde{x} \in Q}\norm[2]{s_i^\prime (\tilde{x})} < C$ und $\sup_{\tilde{x} \in Q}\norm[2]{(s_i^\prime (\tilde{x}))^{-1}} < C$.
+
   \end{enumerate}
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+Zu zeigen ist allgemein Folgendes.
+
+\begin{align*}
+  \ExistsOnlyOne \gamma \in C
+  (
+    H^1(\Omega);
+    L^2(\partial \Omega)
+  ):
+  \Forall u \in C^1(\overline{\Omega}):
+  \gamma u = u|_{\partial \Omega}
+\end{align*}
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+
+  \item
+
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Schritt (\Quote{$C^1$-Stetigkeit}):
+
+    Wir betrachten $\gamma$ zunächst nur auf $C^1(\overline{\Omega})$.
+    Dort zeigen wir Stetigkeit.
+    $\Forall u \in C^1(\overline{\Omega}):$
+
+    \begin{multline*}
+      \norm[L^2(\partial \Omega)]{\gamma u}^2
+      =
+      \norm[L^2(\partial \Omega)]{u|_{\partial \Omega}}^2
+      =
+      \Int[\partial \Omega]{|u|_{\partial \Omega}|^2}{s} \\
+      =
+      \Int[0][1]{|u(0, t)|^2}{t}
+      +
+      \Int[0][1]{|u(1, t)|^2}{t}
+      +
+      \Int[0][1]{|u(t, 0)|^2}{t}
+      +
+      \Int[0][1]{|u(t, 1)|^2}{t}
+    \end{multline*}
+
+    Wir betrachten zunächst das erste Integral auf der rechten Seite.
+    Wir erinnern wir uns an die vorletzte Vorlesung.
+
+    \includegraphicsboxed
+    [NumPDEs Vorlesung 21.10.2020 28:40]
+    {2.8 Vorwissen.png}
+
+    Darin wurde gezeigt, dass $\Exists c > 0: \Forall t \in (0, 1):$
+
+    \begin{align*}
+      |u(0, t)|^2
+      \leq
+      c
+      \Int[0][1]
+      {
+        \pbraces
+        {
+          |u(s, t)|^2
+          +
+          \vbraces
+          {
+            \pderivative[][u]{s}(s, t)
+          }^2
+        }
+      }{s}.
+    \end{align*}
+
+    Wir integrieren die Ungleichung bezüglich $t$ und erhalten eine Abschätzung unseres ersten Integrals.
+
+    \begin{multline*}
+      \implies
+      \Int[0][1]{|v(0, t)|^2}{t}
+      \leq
+      c
+      \Int[0][1]
+      {
+        \Int[0][1]
+        {
+          \pbraces
+          {
+            |u(s, t)|^2
+            +
+            \vbraces
+            {
+              \pderivative[][u]{s}(s, t)
+            }^2
+          }
+        }{s}
+      }{t} \\
+      \leq
+      c
+      \pbraces
+      {
+        \Int[\Omega]{|u|^2}{x}
+        +
+        \Int[\Omega]{|\nabla u|^2}{x}
+      }
+      =
+      c \norm[H^1(\Omega)]{u}
+    \end{multline*}
+
+    Die anderen $3$ Integrale funktionieren analog.
+    Wir erhalten also insgesamt Stetigkeit von $\gamma$ in $u$.
+
+    \item Schritt (\Quote{Existenz} bzw. \Quote{Fortestzung}):
+
+    Wir wollen $\gamma$ nun von $C^1(\overline{\Omega})$ auf seine $\norm[H^1(\Omega)]{\cdot}$-Vervollständigung $H^1(\Omega)$ fortsetzen.
+    Sei dazu $u \in H^1(\Omega)$.
+
+    \begin{align*}
+      \implies
+      \Exists (u_n)_{n \in \N} \in C^1(\overline{\Omega})^\N:
+      \lim_{n \to \infty}
+      \norm[H^1(\Omega)]{u - u_n}
+      =
+      0
+    \end{align*}
+
+    Offenbar ist $(u_n)_{n \in \N}$ dabei eine Cauchy-Folge.
+    Wegen Schritt 1, ist daher auch $(\gamma u_n)_{n \in \N}$ eine Cauchy-Folge.
+    So wie es bei Vervollständigungen meistens gehandhabt wird, wählen wir als $\gamma u$ den (in der Tat existentn) Grenzwert letzterer Cauchy-Folge. \\
+
+    Diese Wahl von $\gamma u$ ist in der Tat wohldefiniert.
+    Sei nämlich $(\widetilde{u}_n)_{n \in \N} \in C^1(\overline{\Omega})^\N$ eine weitere Folge, mit
+
+    \begin{align*}
+      \lim_{n \to \infty}
+      \norm[H^1(\Omega)]{u - \widetilde{u}_n}
+      =
+      0.
+    \end{align*}
+
+    Wir nutzen die Dreiecksungleichung.
+
+    \begin{align*}
+      \implies
+      \norm[L^1(\Omega)]{\gamma u - \gamma \widetilde{u}_n}
+      \leq
+      \norm[L^1(\Omega)]{\gamma u - \gamma u_n}
+      +
+      \norm[L^1(\Omega)]{\gamma u_n - \gamma \widetilde{u}_n}
+      \xrightarrow[n \to \infty]{!}
+      0
+    \end{align*}
+
+    Der erste Summand verschwindet laut der Definition von $\gamma u$;
+    der Zweite wegen der Stetigkeit (bzw. Beschränktheit) von $\gamma$ auf $C^1(\overline{\Omega})$.
+
+    \begin{multline*}
+      \norm[L^1(\Omega)]{\gamma u_n - \gamma \widetilde{u}_n}
+      =
+      \norm[L^1(\Omega)]{\gamma (u_n - \widetilde{u}_n)}
+      \leq
+      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \norm[H^1(\Omega)]{u_n - \widetilde{u}_n} \\
+      \leq
+      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \pbraces
+      {
+        \norm[H^1(\Omega)]{u_n - u}
+        +
+        \norm[H^1(\Omega)]{u - \widetilde{u}_n}
+      }
+      \xrightarrow[]{n \to \infty}
+      0
+    \end{multline*}
+
+    \item Schritt ($H^1$-Stetigkeit):
+    
+    \begin{align*}
+      \norm[L^2(\partial \Omega)]{\gamma u}
+      =
+      \lim_{n \to \infty}
+      \norm[L^2(\Omega)]{u_n|_{\partial \Omega}}
+      \leq
+      \lim_{n \to \infty}
+      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \norm[H^1(\Omega)]{u_n}
+      =
+      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \norm[H^1(\Omega)]{u}
+    \end{align*}
+
+  \end{enumerate}
+
+  \item ToDo!
+
+\end{enumerate}
 
 \end{solution}
 
