@@ -1,63 +1,166 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}
-Sei $H$ ein Hilbertraum und $a: H \times H \rightarrow \R$ eine stetige,
-ellipitische und symmetrische Bilinearform, d.h. es existieren Konstanten
-$\alpha, \beta > 0$ sodass
+
+Sei $H$ ein Hilbertraum und $a: H \times H \rightarrow \R$ eine stetige, ellipitische und symmetrische Bilinearform, d.h. es existieren Konstanten $\alpha, \beta > 0$ sodass
 
 \begin{align*}
-  a(u;v)
+  a(u; v)
   \leq
   \beta \norm{u}\norm{v},
   \quad
-  a(u,u) \geq \alpha \norm{u}^2,
+  a(u; u) \geq \alpha \norm{u}^2,
   \quad
-  u,v \in H.
+  u, v \in H.
 \end{align*}
 
 Wir definieren auf dem Hilbertraum $H \times H$ mit Skalarprodukt
 
 \begin{align*}
-  ((u_1;u_2);(v_1;v_2))_{H \times H} := (u_1;v_1)_H + (u_2;v_2)_H
+  (
+    (u_1; u_2);
+    (v_1; v_2)
+  )_{
+    H \times H
+  }
+  :=
+  (u_1; v_1)_H
+  +
+  (u_2; v_2)_H
 \end{align*}
 
 die Bilinearform
 
 \begin{align*}
-  b((u_1;u_2);(v_1;v_2)) := a(u_1;v_1) + Ca(u_1;v_2) + a(u_2;v_2)
+  b
+  (
+    (u_1; u_2);
+    (v_1; v_2)
+  )
+  :=
+  a(u_1; v_1)
+  +
+  C a(u_1; v_2)
+  +
+  a(u_2;v_2)
 \end{align*}
 
-mit einem beliebigen $C \in \R$. Zeigen Sie, dass für $|C| < 2$ die Bilinearform $b$
-elliptisch ist.
+mit einem beliebigen $C \in \R$. Zeigen Sie, dass für $|C| < 2$ die Bilinearform $b$ elliptisch ist.
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Wir betrachten auf $H \times H$ das durch $a$ induzierte Skalarprodukt und zeigen,
-dass dadurch eine äquivalente Norm induziert wird.
+
+Wir betrachten auf $H \times H$ das durch $a$ induzierte Skalarprodukt $(\cdot; \cdot)_\ast$.
+
 \begin{align*}
-  ((u_1;u_2);(v_1;v_2))_a := a(u_1;v_1) + a(u_2;v_2)
+  (
+    (u_1; u_2);
+    (v_1; v_2)
+  )_\ast
+  :=
+  a(u_1; v_1) + a(u_2; v_2)
 \end{align*}
+
+Dadurch wird eine zu $\norm[H \times H]{\cdot}$ äquivalente Norm $\norm[\ast]{\cdot}$ induziert.
+Das folgt aus der Elliptizität bzw. Stetigkeit von $a$.
+
 \begin{align*}
-  \|(u_1;u_2)\|_a^2 &= a(u_1;u_1) + a(u_2;u_2) \geq \alpha (\|u_1\|_H^2 + \|u_2\|_H^2)
-  = \alpha \|(u_1;u_2)\|_{H \times H}^2 \\
-  \|(u_1;u_2)\|_a^2 &= a(u_1;u_1) + a(u_2;u_2) \leq \beta (\|u_1\|^2 + \|u_2\|_H^2)
-  = \beta \|(u_1;u_2)\|_{H \times H}^2
+  \norm[\ast]{(u_1; u_2)}^2
+  =
+  a(u_1; u_1) + a(u_2; u_2)
+  \:
+  \Bigg \{
+  \begin{matrix}
+    \geq
+    \alpha
+    (
+      \norm[H]{u_1}^2
+      +
+      \norm[H]{u_2}^2
+    )
+    =
+    \alpha
+    \norm[H \times H]{(u_1; u_2)}^2 \\  
+    \leq
+    \beta
+    (
+      \norm[H]{u_1}^2
+      +
+      \norm[H]{u_2}^2
+    )
+    =
+    \beta
+    \norm[H \times H]{(u_1; u_2)}^2
+  \end{matrix}
 \end{align*}
-Jetzt zeigen wir die Elliptizität zunächst für die $a$-Norm und verwenden anschließend
-die Norm-Äquivalenz:
+
+Jetzt zeigen wir die Elliptizität für $\norm[\ast]{\cdot}$ für $|C| < 2$.
+Dann benutzen wir deren Äquivalenz zu $\norm[H \times H]{\cdot}$, um auch Elliptizität für diese zu garantieren.
+Dazu verwenden wir die Cauchy-Schwarz-Bunjakowski Ungleichung und eine passende quadratische Ergänzung.
+
 \begin{align*}
-  b((u_1;u_2),(u_1;u_2)) &= a(u_1;u_1) + Ca(u_1;u_2) + a(u_2;u_2) \\
-  &\geq a(u_1;u_1) + a(u_2;u_2) - |C||a(u_1;u_2)| \\
-  &\geq a(u_1;u_1) + a(u_2;u_2) - |C|\sqrt{a(u_1;u_1)a(u_2;u_2)} \\
-  &= \frac{|C|}{2}\left(\sqrt{a(u_1;u_1)} - \sqrt{a(u_2;u_2)}\right)^2
-  + \left(1 - \frac{|C|}{2}\right)(a(u_1;u_1) + a(u_2;u_2)) \\
-  &\geq \left(1 - \frac{|C|}{2}\right)(a(u_1;u_1) + a(u_2;u_2))
-  = \left(1 - \frac{|C|}{2}\right)\|(u_1;u_2)\|_a^2 \\
-  &\geq \alpha\left(1 - \frac{|C|}{2}\right)\|(u_1;u_2)\|_{H \times H}^2
+  b((u_1; u_2),(u_1; u_2))
+  & =
+  a(u_1; u_1) + C a(u_1; u_2) + a(u_2; u_2) \\
+  & \geq
+  a(u_1; u_1) + a(u_2; u_2) - |C| |a(u_1; u_2)| \\
+  & \stackrel
+  {
+    \text{CSB}
+  }{\geq}
+  a(u_1; u_1)
+  +
+  a(u_2; u_2)
+  -
+  2 \frac{|C|}{2}
+  \sqrt{a(u_1; u_1)}
+  \sqrt{a(u_2; u_2)} \\
+  & =
+  \frac{|C|}{2}
+  \pbraces
+  {
+    \sqrt{a(u_1; u_1)}
+    -
+    \sqrt{a(u_2; u_2)}
+  }^2
+  +
+  \pbraces
+  {
+    1 - \frac{|C|}{2}
+  }
+  (
+    a(u_1; u_1)
+    +
+    a(u_2; u_2)
+  ) \\
+  & \geq
+  \pbraces
+  {
+    1 - \frac{|C|}{2}
+  }
+  (
+    a(u_1; u_1)
+    +
+    a(u_2; u_2)
+  )
+  =
+  \pbraces
+  {
+    1 - \frac{|C|}{2}
+  }
+  \norm[\ast]{(u_1; u_2)}^2 \\
+  & \geq
+  \alpha
+  \pbraces
+  {
+    1 - \frac{|C|}{2}
+  }
+  \norm[H \times H]{(u_1; u_2)}^2
 \end{align*}
-Damit ist die Aussage genau für $|C| < 2$ gezeigt.
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
