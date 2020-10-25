@@ -49,24 +49,24 @@ Zu zeigen ist allgemein Folgendes.
 
     \item Schritt (\Quote{$C^1$-Stetigkeit}):
 
-    Wir betrachten $\gamma$ zunächst nur auf $C^1(\overline{\Omega})$.
+    Wir betrachten $\gamma$ zunächst nur auf $C^1(\overline{Q})$.
     Dort zeigen wir Stetigkeit.
-    $\Forall u \in C^1(\overline{\Omega}):$
+    $\Forall u \in C^1(\overline{Q}):$
 
     \begin{multline*}
-      \norm[L^2(\partial \Omega)]{\gamma u}^2
+      \norm[L^2(\partial Q)]{\gamma u}^2
       =
-      \norm[L^2(\partial \Omega)]{u|_{\partial \Omega}}^2
+      \norm[L^2(\partial Q)]{u|_{\partial Q}}^2
       =
-      \Int[\partial \Omega]{|u|_{\partial \Omega}|^2}{s} \\
+      \Int[\partial Q]{|u|_{\partial Q}|^2}{(x, y)} \\
       =
-      \Int[0][1]{|u(0, t)|^2}{t}
+      \Int[0][1]{|u(0, y)|^2}{y}
       +
-      \Int[0][1]{|u(1, t)|^2}{t}
+      \Int[0][1]{|u(1, y)|^2}{y}
       +
-      \Int[0][1]{|u(t, 0)|^2}{t}
+      \Int[0][1]{|u(x, 0)|^2}{x}
       +
-      \Int[0][1]{|u(t, 1)|^2}{t}
+      \Int[0][1]{|u(x, 1)|^2}{x}
     \end{multline*}
 
     Wir betrachten zunächst das erste Integral auf der rechten Seite.
@@ -76,31 +76,31 @@ Zu zeigen ist allgemein Folgendes.
     [NumPDEs Vorlesung 21.10.2020 28:40]
     {2.8 Vorwissen.png}
 
-    Darin wurde gezeigt, dass $\Exists c > 0: \Forall t \in (0, 1):$
+    Darin wurde gezeigt, dass $\Exists c > 0: \Forall y \in (0, 1):$
 
     \begin{align*}
-      |u(0, t)|^2
+      |u(0, y)|^2
       \leq
       c
       \Int[0][1]
       {
         \pbraces
         {
-          |u(s, t)|^2
+          |u(x, y)|^2
           +
           \vbraces
           {
-            \pderivative[][u]{s}(s, t)
+            \pderivative[][u]{x}(x, y)
           }^2
         }
-      }{s}.
+      }{x}.
     \end{align*}
 
-    Wir integrieren die Ungleichung bezüglich $t$ und erhalten eine Abschätzung unseres ersten Integrals.
+    Wir integrieren die Ungleichung bezüglich $y$ und erhalten eine Abschätzung unseres ersten Integrals.
 
     \begin{multline*}
       \implies
-      \Int[0][1]{|v(0, t)|^2}{t}
+      \Int[0][1]{|u(0, y)|^2}{y}
       \leq
       c
       \Int[0][1]
@@ -109,25 +109,25 @@ Zu zeigen ist allgemein Folgendes.
         {
           \pbraces
           {
-            |u(s, t)|^2
+            |u|^2
             +
             \vbraces
             {
-              \pderivative[][u]{s}(s, t)
+              \pderivative[][u]{y}
             }^2
           }
-        }{s}
-      }{t} \\
+        }{x}
+      }{y} \\
       \leq
       c
       \pbraces
       {
-        \Int[\Omega]{|u|^2}{x}
+        \Int[Q]{|u|^2}{(x, y)}
         +
-        \Int[\Omega]{|\nabla u|^2}{x}
+        \Int[Q]{\norm[2]{\nabla u}^2}{(x, y)}
       }
       =
-      c \norm[H^1(\Omega)]{u}
+      c \norm[H^1(Q)]{u}
     \end{multline*}
 
     Die anderen $3$ Integrale funktionieren analog.
@@ -135,14 +135,14 @@ Zu zeigen ist allgemein Folgendes.
 
     \item Schritt (\Quote{Existenz} bzw. \Quote{Fortestzung}):
 
-    Wir wollen $\gamma$ nun von $C^1(\overline{\Omega})$ auf seine $\norm[H^1(\Omega)]{\cdot}$-Vervollständigung $H^1(\Omega)$ fortsetzen.
-    Sei dazu $u \in H^1(\Omega)$.
+    Wir wollen $\gamma$ nun von $C^1(\overline{Q})$ auf seine $\norm[H^1(Q)]{\cdot}$-Vervollständigung $H^1(Q)$ fortsetzen.
+    Sei dazu $u \in H^1(Q)$.
 
     \begin{align*}
       \implies
-      \Exists (u_n)_{n \in \N} \in C^1(\overline{\Omega})^\N:
+      \Exists (u_n)_{n \in \N} \in C^1(\overline{Q})^\N:
       \lim_{n \to \infty}
-      \norm[H^1(\Omega)]{u - u_n}
+      \norm[H^1(Q)]{u - u_n}
       =
       0
     \end{align*}
@@ -152,11 +152,11 @@ Zu zeigen ist allgemein Folgendes.
     So wie es bei Vervollständigungen meistens gehandhabt wird, wählen wir als $\gamma u$ den (in der Tat existentn) Grenzwert letzterer Cauchy-Folge. \\
 
     Diese Wahl von $\gamma u$ ist in der Tat wohldefiniert.
-    Sei nämlich $(\widetilde{u}_n)_{n \in \N} \in C^1(\overline{\Omega})^\N$ eine weitere Folge, mit
+    Sei nämlich $(\widetilde{u}_n)_{n \in \N} \in C^1(\overline{Q})^\N$ eine weitere Folge, mit
 
     \begin{align*}
       \lim_{n \to \infty}
-      \norm[H^1(\Omega)]{u - \widetilde{u}_n}
+      \norm[H^1(Q)]{u - \widetilde{u}_n}
       =
       0.
     \end{align*}
@@ -165,32 +165,32 @@ Zu zeigen ist allgemein Folgendes.
 
     \begin{align*}
       \implies
-      \norm[L^1(\Omega)]{\gamma u - \gamma \widetilde{u}_n}
+      \norm[L^1(Q)]{\gamma u - \gamma \widetilde{u}_n}
       \leq
-      \norm[L^1(\Omega)]{\gamma u - \gamma u_n}
+      \norm[L^1(Q)]{\gamma u - \gamma u_n}
       +
-      \norm[L^1(\Omega)]{\gamma u_n - \gamma \widetilde{u}_n}
+      \norm[L^1(Q)]{\gamma u_n - \gamma \widetilde{u}_n}
       \xrightarrow[n \to \infty]{!}
       0
     \end{align*}
 
-    Der erste Summand verschwindet laut der Definition von $\gamma u$;
-    der Zweite wegen der Stetigkeit (bzw. Beschränktheit) von $\gamma$ auf $C^1(\overline{\Omega})$.
+    Der erste Summand verschwindet laut der Definition von $\gamma u$ und der zweite wegen der Stetigkeit (bzw. Beschränktheit) von $\gamma$ auf $C^1(\overline{Q})$.
+    Genauer ...
 
     \begin{multline*}
-      \norm[L^1(\Omega)]{\gamma u_n - \gamma \widetilde{u}_n}
+      \norm[L^1(Q)]{\gamma u_n - \gamma \widetilde{u}_n}
       =
-      \norm[L^1(\Omega)]{\gamma (u_n - \widetilde{u}_n)}
+      \norm[L^1(Q)]{\gamma (u_n - \widetilde{u}_n)}
       \leq
-      \norm{\gamma|_{C^1(\overline{\Omega})}}
-      \norm[H^1(\Omega)]{u_n - \widetilde{u}_n} \\
+      \norm{\gamma|_{C^1(\overline{Q})}}
+      \norm[H^1(Q)]{u_n - \widetilde{u}_n} \\
       \leq
-      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \norm{\gamma|_{C^1(\overline{Q})}}
       \pbraces
       {
-        \norm[H^1(\Omega)]{u_n - u}
+        \norm[H^1(Q)]{u_n - u}
         +
-        \norm[H^1(\Omega)]{u - \widetilde{u}_n}
+        \norm[H^1(Q)]{u - \widetilde{u}_n}
       }
       \xrightarrow[]{n \to \infty}
       0
@@ -199,24 +199,254 @@ Zu zeigen ist allgemein Folgendes.
     \item Schritt ($H^1$-Stetigkeit):
     
     \begin{align*}
-      \norm[L^2(\partial \Omega)]{\gamma u}
+      \norm[L^2(\partial Q)]{\gamma u}
       =
       \lim_{n \to \infty}
-      \norm[L^2(\Omega)]{u_n|_{\partial \Omega}}
+      \norm[L^2(Q)]{u_n|_{\partial Q}}
       \leq
       \lim_{n \to \infty}
-      \norm{\gamma|_{C^1(\overline{\Omega})}}
-      \norm[H^1(\Omega)]{u_n}
+      \norm{\gamma|_{C^1(\overline{Q})}}
+      \norm[H^1(Q)]{u_n}
       =
-      \norm{\gamma|_{C^1(\overline{\Omega})}}
+      \norm{\gamma|_{C^1(\overline{Q})}}
+      \norm[H^1(Q)]{u}
+    \end{align*}
+
+  \end{enumerate}
+
+  \item
+
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Schritt (\Quote{$C^1$-Stetigkeit}):
+    
+    Das ist der einzige Schritt, den wir noch ausführen.
+    Der Rest funktioniert analog zu \textbf{b)}.
+    Sei dazu $u \in C^1(\overline{\Omega})$.
+
+    Zunächst aber einige Abschätzungen für die Funktionaldeterminante.
+    Sei dazu $i = 1, \dots, M$.
+    Die Normen $\norm[\text{max}]{\cdot}$ und $\norm[2]{\cdot}$ sind äquivalent, vermöge der Konstanten $\widetilde{C} > 0$.
+
+    \begin{multline}
+      \label{eq:det1}
+      \det \partial s_i
+      =
+      \det
+      \begin{pmatrix*}
+        \pderivative[][(s_i)_x]{x} & \pderivative[][(s_i)_x]{y} \\
+        \pderivative[][(s_i)_y]{x} & \pderivative[][(s_i)_y]{y}
+      \end{pmatrix*}
+      =
+      \pderivative[][(s_i)_x]{x}
+      \pderivative[][(s_i)_y]{y}
+      -
+      \pderivative[][(s_i)_y]{x}
+      \pderivative[][(s_i)_x]{y} \\
+      \leq
+      4 \norm[\text{max}]{\partial s_i}
+      \leq
+      4 \widetilde{C} \norm[2]{\partial s_i}
+      <
+      4 \widetilde{C} C
+      =:
+      C^\prime
+    \end{multline}
+
+    Analoges gilt für die Inverse.
+
+    \begin{align}
+      \label{eq:det2}
+      \det (\partial s_i)^{-1}
+      =
+      \cdots
+      \leq
+      4 \widetilde{C} \norm[2]{(\partial s_i)^{-1}}
+      <
+      4 \widetilde{C} C
+      =
+      C^\prime
+    \end{align}
+
+    Dies führt zu einer weiteren Abschätzung, diesmal nach unten.
+
+    \begin{align}
+      \label{eq:det3}
+      \implies
+      \det (\partial s_i)
+      =
+      (\det (\partial s_i)^{-1})^{-1}
+      >
+      (C^\prime)^{-1}
+      \implies
+      1
+      <
+      \det (\partial s_i)
+      (C^\prime)^{-1}
+    \end{align}
+
+    Laut der mehrdimensionalen Kettenregel und Definition der Abbildungsnormen als $\sup$, gilt folgende Abschätzung.
+
+    \begin{align}
+      \label{eq:Kettenregel-Ungleichung}
+      \implies
+      \norm[2]{\partial (u \circ s_i)}^2
+      =
+      \norm[2]{(\partial u \circ s_i)(\partial s_i)}^2
+      \leq
+      \norm[2]{\partial u \circ s_i}^2
+      \norm[2]{\partial s_i}^2
+      <
+      \norm[2]{\partial u \circ s_i}^2
+      C^2
+    \end{align}
+
+    Wir werden im Folgenden die Transformationsformel verwenden.
+
+    \includegraphicsboxed
+    [Blümlinger - Analysis 3]
+    {Satz 4.3.1 (Transformationsformel - Blümlinger.png}
+
+    \begin{enumerate}[label = \arabic*.]
+
+      \item Teil-Abschätzung:
+      
+      \begin{multline}
+        \label{eq:part1}
+        \norm[L^1(Q)]{u \circ s_i}^2
+        =
+        \Int[Q]
+        {
+          |u \circ s_i|^2
+          |
+            \underbrace
+            {
+              \det (\partial s_i)
+              \det (\partial s_i)^{-1}
+            }_1
+          |
+        }{(x, y)} \\
+        \stackrel
+        {
+          \text{TRAFO}
+        }{=}
+        \Int[s_i(Q)]
+        {
+          |u|^2
+          |\det (\partial s_i)^{-1}|
+        }{(x, y)}
+        \stackrel{\eqref{eq:det2}}{\leq}
+        C^\prime
+        \Int[s_i(Q)]{|u|^2}{(x, y)}
+      \end{multline}
+
+      \item Teil-Abschätzung:
+      
+      \begin{multline}
+        \label{eq:part2}
+        \norm[L^2(Q)]{\nabla (u \circ s_i)}^2
+        =
+        \Int[Q]{\norm[2]{\partial (u \circ s_i)}^2}{(x, y)}
+        \stackrel{\eqref{eq:Kettenregel-Ungleichung}}{\leq}
+        C^2 \Int[Q]{\norm[2]{\partial u \circ s_i}^2}{(x, y)} \\
+        \stackrel{\eqref{eq:det3}}{\leq}
+        C^2 C^\prime \Int[Q]{\norm[2]{\partial u \circ s_i}^2 |\det \partial s_i|}{(x, y)}
+        \stackrel
+        {
+          \text{TRAFO}
+        }{=}
+        C^2 C^\prime \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+      \end{multline}
+
+    \end{enumerate}
+
+    Wir fügen jetzt endlich Alles zusammen!
+    Sei dabei $\overline{C} > 0$ die Operatornorm des Trace-Operators aus \textbf{a)}.
+
+    \begin{align*}
+      \norm[L^1(\partial \Omega)]{\gamma u}
+      & =
+      \sum_{i=1}^M
+      \Int[\Gamma_i]{|u|^2}{(x, y)}
+      \stackrel
+      {
+        \text{TRAFO}
+      }{=}
+      \sum_{i=1}^M
+      \Int[0][1]{|(u \circ s_i)(x, 0)|^2 |\det \partial s_i(x, 0)|}{x} \\
+      & \stackrel{\eqref{eq:det1}}{\leq}
+      C^\prime
+      \sum_{i=1}^M
+      \norm[L^2(\partial Q)]{u \circ s_i}^2 \\
+      & \stackrel
+      {
+        \textbf{a)}
+      }{\leq}
+      C^\prime
+      \overline{C}
+      \sum_{i=1}^M
+      \norm[H^1(Q)]{u \circ s_i}^2
+      =
+      C^\prime
+      \overline{C}
+      \sum_{i=1}^M
+      \pbraces
+      {
+        \norm[L^2(\Omega)]{u \circ s_i}^2
+        +
+        \norm[L^2(\Omega)]{\nabla (u \circ s_i)}^2
+      } \\
+      & \stackrel
+      {
+        \eqref{eq:part1},
+        \eqref{eq:part2}
+      }{\leq}
+      C^\prime
+      \overline{C}
+      \sum_{i=1}^M
+      \pbraces
+      {
+        C^\prime
+        \Int[s_i(Q)]{\norm[2]{u}^2}{(x, y)}
+        +
+        C^2 C^\prime
+        \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+      } \\
+      & \leq
+      (
+        C^\prime
+        \max \Bbraces{1, C}
+      )^2
+      \overline{C}
+      \Bigg (
+        \underbrace
+        {
+          \sum_{i=1}^M
+          \Int[s_i(Q)]{\norm[2]{u}^2}{(x, y)}
+        }_{
+          \norm[L^2(\Omega)]{u}
+        }
+        +
+        \underbrace
+        {
+          \sum_{i=1}^M
+          \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+        }_{
+          \norm[2]{\nabla u}^2
+        }
+      \Bigg ) \\
+      & =
+      (
+        C^\prime
+        \max \Bbraces{1, C}
+      )^2
+      \overline{C}
       \norm[H^1(\Omega)]{u}
     \end{align*}
 
   \end{enumerate}
 
-  \item ToDo!
-
-\end{enumerate}
+  \end{enumerate}
 
 \end{solution}
 
