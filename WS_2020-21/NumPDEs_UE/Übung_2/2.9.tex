@@ -92,7 +92,7 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
     Laut Theorem 2.15 und Corollary 2.13 (Friedrichs Inequality), bildet die linke Seite von (2.16) ein Skalarprodukt (in $u$ und $v$) auf dem abgeschlossenen $H_D^1(\Omega)$.
     Wir erhalten also einen Hilbertraum.
     Die rechte Seite von (2.16) bildet ein lineares Funktional (in $v$).
-    
+
     \begin{figure}[h!]
         \centering
         \includegraphics[width = 0.95 \textwidth]{Theorem 1.2 (Riesz).png}
@@ -108,11 +108,11 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
 
     \begin{multline*}
         \implies
-        \norm[L^1(\Omega)]{\nabla u}^2
+        \norm[L^2(\Omega)]{\nabla u}^2
         =
-        (\nabla u; \nabla u)_{L^1(\Omega)}
+        (\nabla u; \nabla u)_{L^2(\Omega)}
         \stackrel{\text{(2.16)}}{=}
-        (f; u)_{L^1(\Omega)}
+        (f; u)_{L^2(\Omega)}
         +
         (\phi; \gamma u)_{L^2(\Gamma_N)} \\
         \leq
@@ -235,6 +235,47 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
         }
     \end{align*}
 
+    \item Wir berechnen mit Partieller Integration, da ja $u \in C^2(\overline{\Omega})$, für $v \in H_D^1(\Omega)$:
+
+    \begin{multline*}
+      (\nabla u; \nabla v)_{L^2(\Omega)}
+      =
+      \Int[\Omega]{\nabla u \nabla v}{x}
+      =
+      -\Int[\Omega]{\Delta u v}{x} + \Int[\partial \Omega]{v(\nabla u \cdot n)}{s} \\
+      =
+      -(\Delta u; v)_{L^2(\Omega)}
+      + \Int[\Gamma_N]{v \frac{\partial u}{\partial n}}{s}
+      + \underbrace{\Int[\Gamma_D]{v \frac{\partial u}{\partial n}}{s}}_{0}
+      =
+      -(\Delta u; v)_{L^2(\Omega)} + (\frac{\partial u}{\partial n}; v)_{L^2(\Gamma_N)}
+    \end{multline*}
+
+    Da nun $u$ auch $(2.16)$ löst erhalten wir durch bilden der Differenz:
+
+    \begin{align*}
+      0 = (f + \Delta u, v)_{L^2(\Omega)} + (\phi - \frac{\partial u}{\partial n}, v)_{L^2(\Gamma_N)}
+    \end{align*}
+
+    Da dies für beliebige $v \in H_D^1(\Omega)$ gilt, schließen wir daraus, dass beide Summanden schon $0$ sind.
+    Wegen $\mathrm{D}(\Omega) \subset H^1_0(\Omega) \subset H^1_D(\Omega)$ und da $f + \Delta u \in C(\Omega) \subset L^1_{loc}(\Omega)$ folgt damit aus dem Fundamentallemma der Variationsrechnung
+
+    \begin{align*}
+        -\Delta u = f \quad \text {f.ü. in} \quad \Omega
+    \end{align*}
+
+    und wegen der Stetigkeit sogar überall.
+    Mit der selben Argumentation (da $\Gamma_N$ offen ist) erhalten wir
+
+    \begin{align*}
+      \frac{\partial u}{\partial n} = \phi \quad \text{auf} \quad \Gamma_N
+    \end{align*}
+
+    Um noch $u = 0$ auf $\Gamma_D$ zu zeigen, bemerken wir, dass $u \in H^1_D(\Omega)$ und wegen der Stetigkeit $\gamma u = u|_{\Gamma}$ also
+
+    \begin{align*}
+      0 = (\gamma u)|_{\Gamma_D} = u|_{\Gamma_D}
+    \end{align*}
 \end{enumerate}
 
 \end{solution}
