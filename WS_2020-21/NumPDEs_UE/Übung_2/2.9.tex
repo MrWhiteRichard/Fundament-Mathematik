@@ -1,8 +1,13 @@
 % --------------------------------------------------------------------------------
-
+\pagebreak
 \begin{exercise}
-
-Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
+Beweisen Sie:
+\FloatBarrier
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 0.95 \textwidth]{Proposition 2.17.png}
+\end{figure}
+\FloatBarrier
 
 \end{exercise}
 
@@ -10,12 +15,9 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
 
 \begin{solution}
 
-\phantom{}
+Mixed Boundary Value Problem:
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 0.95 \textwidth]{Proposition 2.17.png}
-\end{figure}
+
 
 \begin{figure}[h!]
     \centering
@@ -49,34 +51,28 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
     [mAdpI-PD-J]
     {mehrdimensionales Analogon der partiellen Integration.png}
 
-    Wir benutzen Partielle Integration, so wie in \ref{fig:mAdpI-PD-J}, mit $v$ und $\nabla u$ statt $u$ bzw. $F$.
-
-    \begin{multline*}
-        \implies
-        \text{rhs}
-        =
-        \Int[\Omega]{f v}{x}
-        +
-        \Int[\Gamma_N]{\phi v}{s}
-        =
-        -\Int[\Omega]{(\Delta u) v}{x}
-        +
-        \Int[\Gamma_N]{\pderivative[][u]{\nu} v}{s}
-        +
-        \underbrace
-        {
-            \Int[\Gamma_D]{\pderivative[][u]{\nu} v}{s}
-        }_0 \\
-        =
-        -\Int[\Omega]{\Div(\nabla u) v}{x}
-        +
-        \Int[\partial \Omega]{(\nabla u \cdot \nu) v}{s}
-        \stackrel{\text{PI}}{=}
-        \Int[\Omega]{\nabla u \cdot \nabla u}{x}
-        =
-        \text{lhs}
-    \end{multline*}
-
+    Wir wissen bereits aus Proposition 1.1. dass die gewünschte
+    Gleichheit zumindest für Funktionen aus $C_D^1(\overline{\Omega})$ gilt.
+    Für festes $u$ sind die linke und rechte Seite der Gleichung jeweils
+    lineare, stetige Funktionale auf $H_D^1(\Omega)$.
+    Genauer gilt aufgrund der Stetigkeit des Trace-Operators
+    \begin{align*}
+      (\nabla u; \nabla v)_{L^2(\Omega)} &\leq \|\nabla u\|_{L^2(\Omega)}\|\nabla v\|_{L^2(\Omega)}
+      \leq \|\nabla u\|_{L^2(\Omega)}\|v\|_{H_D^1(\Omega)} \\
+      (f;v)_{L^2(\Omega)} + (\phi;\gamma v)_{L^2(\Gamma_N)} &\leq
+      \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)} + \|\phi\|_{L^2(\Gamma_N)}\|\gamma v\|_{L^2(\Gamma_N)}
+      \leq \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)} + C\|\phi\|_{L^2(\Gamma_N)}\|v\|_{H_D^1(\Omega)} \\
+      &\leq (\|f\|_{L^2(\Omega)} + C\|\phi\|_{L^2(\Gamma_N)})\|v\|_{H_D^1(\Omega)}.
+    \end{align*}
+    Für beliebiges $v \in H_D^1(\Omega)$ wähle nun eine Folge
+    $(v_n)_{n \in \N} \subset C_D^1(\overline{\Omega})$ mit $v_n \xrightarrow{n \to \infty} v$.
+    Aufgrund der Stetigkeit der obigen Operatoren folgt
+    \begin{align*}
+    (\nabla u; \nabla v)_{L^2(\Omega)}
+    &= \lim_{n \to \infty} (\nabla u; \nabla v_n)_{L^2(\Omega)} \\
+    &= \lim_{n \to \infty} (f;v_n)_{L^2(\Omega)} + (\phi;\gamma v_n)_{L^2(\Gamma_N)}
+    = (f;v)_{L^2(\Omega)} + (\phi;\gamma v)_{L^2(\Gamma_N)}.
+    \end{align*}
     \item
 
     \begin{figure}[h!]
@@ -144,9 +140,10 @@ Beweisen Sie Proposition $2.17$ aus dem Vorlesungsskript.
     Mit Corollary 2.13 (Friedrichs Inequality), Cauchy-Schwarz-Bunjakowski, und der Stetigkeit (d.h. Beschränktheit) von $\gamma$ erhalten wir die gewünschten Ungleichungen.
 
     \begin{align*}
-        \norm[H^1(\Omega)]{u}
+        \norm[H^1(\Omega)]{u}^2
+        = \|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega)}^2
         & \stackrel{\text{2.13}}{\leq}
-        \widetilde{C}_F
+        (1 + \widetilde{C}_F^2)
         \pbraces
         {
             \sup_{v \in H_0^1(\Omega) \setminus \Bbraces{0}}
