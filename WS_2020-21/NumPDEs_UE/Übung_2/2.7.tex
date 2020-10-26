@@ -124,7 +124,7 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
       L^2(\Omega) \\
       f
       \mapsto
-      \sum_{n \in \Z}
+      \sum_{n = -N}^N
       (f; \phi_n)_{H^1(\Omega)} \phi_n
     \end{cases},
     \quad
@@ -145,8 +145,8 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
       (f, \phi_n)_{H^1(\Omega)} \phi_n
     } \\
     &= \left\|\sum_{|n| > N}(f, \phi_n)_{H^1(\Omega)} \phi_n\right\|_{L^2(\Omega)}
-    \leq \sum_{|n| > N}\left\|(f, \phi_n)_{H^1(\Omega)} \phi_n\right\|_{L^2(\Omega)} \\
-    &\leq \sqrt{\sum_{|n| > N}\|(f, \phi_n)_{H^1(\Omega)}\|_{H^1(\Omega)}^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
+    \leq \sum_{|n| > N}\left|(f, \phi_n)_{H^1(\Omega)}| \|\phi_n\right\|_{L^2(\Omega)} \\
+    &\leq \sqrt{\sum_{|n| > N}|(f, \phi_n)_{H^1(\Omega)}|^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
   \end{align*}
   Weiters gilt mit
   der Bessel'schen Ungleichung:
@@ -156,10 +156,10 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
   {(2.13) - Blümlinger - Analysis 3.png}
 
   \begin{align*}
-  \sqrt{\sum_{|n| > N}\|(f, \phi_n)_{H^1(\Omega)}\|_{H^1(\Omega)}^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
+  \sqrt{\sum_{|n| > N}|(f, \phi_n)_{H^1(\Omega)}|^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
   \leq \|f\|_{H^1(\Omega)}\underbrace{\sqrt{\sum_{|n| > N}\frac{1}{1 + 4n^2\pi^2}}}_{\xrightarrow{N \to \infty} 0}
   \end{align*}
-  Also haben wir die Operatorkonvergenz von $T_n$ gegen $T$ gezeigt.
+  Also haben wir die Operatorkonvergenz von $T_N$ gegen $T$ gezeigt.
   \item Unsere ONB vom $L^2(\Omega)$ lautet wie folgt.
 
   \begin{align*}
@@ -188,8 +188,8 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
   \end{align*}
   Nun berechne noch $\|\widetilde{\phi}_n\|_{H^1(\Omega)}$:
   \begin{align*}
-    \|\widetilde{\phi}_n\|_{H^1(\Omega)}
-    &= \|\widetilde{\phi}_n\|_{L^2(\Omega)}  + \|\nabla \widetilde{\phi}_n\|_{L^2(\Omega)}
+    \|\widetilde{\phi}_n\|_{H^1(\Omega)}^2
+    &= \|\widetilde{\phi}_n\|_{L^2(\Omega)}^2  + \|\nabla \widetilde{\phi}_n\|_{L^2(\Omega)}^2
     = 1 + \int_0^1\int_0^1 \|(2\pi in_1, 2\pi in_2)\widetilde{\phi}_n(x_1,x_2)\|^2 dx_1 dx_2 \\
     &= 1 + 4\pi^2(n_1^2 + n_2^2)
   \end{align*}
