@@ -1,13 +1,8 @@
 % --------------------------------------------------------------------------------
-\pagebreak
+
 \begin{exercise}
-Beweisen Sie:
-\FloatBarrier
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 0.95 \textwidth]{Proposition 2.17.png}
-\end{figure}
-\FloatBarrier
+
+Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
 
 \end{exercise}
 
@@ -15,13 +10,21 @@ Beweisen Sie:
 
 \begin{solution}
 
-Mixed Boundary Value Problem:
-
-
+\phantom{}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width = 0.55 \textwidth]{(2.15).png}
+    \includegraphics[width = 0.95 \textwidth]{Proposition 2.17.png}
+\end{figure}
+
+\begin{figure}[h!]
+    \begin{boxedin}
+        \begin{center}
+            \hspace{4 cm}
+            \includegraphics[width = 0.55 \textwidth]{(2.15).png}
+            \caption{mixed boundary value problem}
+        \end{center}
+    \end{boxedin}
 \end{figure}
 
 \begin{enumerate}[label = (\roman*)]
@@ -45,11 +48,6 @@ Mixed Boundary Value Problem:
         =:
         H^1_D(\Omega)
     \end{align*}
-
-    \includegraphicsboxed
-    [mehrdimensionales Analogon der partiellen Integration - Partielle Differentialgleichungen - Jüngel]
-    [mAdpI-PD-J]
-    {mehrdimensionales Analogon der partiellen Integration.png}
 
     Wir wissen bereits aus Proposition 1.1. dass die gewünschte
     Gleichheit zumindest für Funktionen aus $C_D^1(\overline{\Omega})$ gilt.
@@ -141,8 +139,14 @@ Mixed Boundary Value Problem:
 
     \begin{align*}
         \norm[H^1(\Omega)]{u}^2
-        = \|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega)}^2
-        & \stackrel{\text{2.13}}{\leq}
+        & =
+        \norm[L^2(\Omega)]{u}^2
+        +
+        \norm[L^2(\Omega)]{\nabla u}^2 \\
+        & \stackrel
+        {
+            \text{2.13}
+        }{\leq}
         (1 + \widetilde{C}_F^2)
         \pbraces
         {
