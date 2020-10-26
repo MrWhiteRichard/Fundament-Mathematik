@@ -76,13 +76,12 @@ Zu zeigen ist allgemein Folgendes.
     [NumPDEs Vorlesung 21.10.2020 28:40]
     {2.8 Vorwissen.png}
 
-    Darin wurde gezeigt, dass $\Exists c > 0: \Forall y \in (0, 1):$
+    Darin wurde gezeigt, dass $\Exists C > 0: \Forall y \in (0, 1):$
 
     \begin{align*}
       |u(0, y)|^2
       \leq
-      c
-      \Int[0][1]
+      C\Int[0][1]
       {
         \pbraces
         {
@@ -102,7 +101,7 @@ Zu zeigen ist allgemein Folgendes.
       \implies
       \Int[0][1]{|u(0, y)|^2}{y}
       \leq
-      c
+      C
       \Int[0][1]
       {
         \Int[0][1]
@@ -113,13 +112,13 @@ Zu zeigen ist allgemein Folgendes.
             +
             \vbraces
             {
-              \pderivative[][u]{y}
+              \pderivative[][u]{x}
             }^2
           }
         }{x}
       }{y} \\
       \leq
-      c
+      C
       \pbraces
       {
         \Int[Q]{|u|^2}{(x, y)}
@@ -131,7 +130,7 @@ Zu zeigen ist allgemein Folgendes.
     \end{multline*}
 
     Die anderen $3$ Integrale funktionieren analog.
-    Wir erhalten also insgesamt Stetigkeit von $\gamma$ in $u$.
+    Wir erhalten also insgesamt Stetigkeit von $\gamma$ auf $C^1(\overline{Q})$.
 
     \item Schritt (\Quote{Existenz} bzw. \Quote{Fortestzung}):
 
@@ -147,9 +146,10 @@ Zu zeigen ist allgemein Folgendes.
       0
     \end{align*}
 
-    Offenbar ist $(u_n)_{n \in \N}$ dabei eine Cauchy-Folge.
+    Offenbar ist $(u_n)_{n \in \N}$ dabei eine Cauchy-Folge in $C^1(\overline{Q})$.
     Wegen Schritt 1, ist daher auch $(\gamma u_n)_{n \in \N}$ eine Cauchy-Folge.
-    So wie es bei Vervollständigungen meistens gehandhabt wird, wählen wir als $\gamma u$ den (in der Tat existentn) Grenzwert letzterer Cauchy-Folge. \\
+    So wie es bei Vervollständigungen meistens gehandhabt wird, wählen wir als $\gamma u$ den
+    (in der Tat existenten) Grenzwert in $L^2(\partial \Omega)$ letzterer Cauchy-Folge. \\
 
     Diese Wahl von $\gamma u$ ist in der Tat wohldefiniert.
     Sei nämlich $(\widetilde{u}_n)_{n \in \N} \in C^1(\overline{Q})^\N$ eine weitere Folge, mit
@@ -197,7 +197,7 @@ Zu zeigen ist allgemein Folgendes.
     \end{multline*}
 
     \item Schritt ($H^1$-Stetigkeit):
-    
+
     \begin{align*}
       \norm[L^2(\partial Q)]{\gamma u}
       =
@@ -219,7 +219,7 @@ Zu zeigen ist allgemein Folgendes.
   \begin{enumerate}[label = \arabic*.]
 
     \item Schritt (\Quote{$C^1$-Stetigkeit}):
-    
+
     Das ist der einzige Schritt, den wir noch ausführen.
     Der Rest funktioniert analog zu \textbf{b)}.
     Sei dazu $u \in C^1(\overline{\Omega})$.
@@ -282,7 +282,7 @@ Zu zeigen ist allgemein Folgendes.
       1
       <
       \det (\partial s_i)
-      (C^\prime)^{-1}
+      C^\prime
     \end{align}
 
     Laut der mehrdimensionalen Kettenregel und Definition der Abbildungsnormen als $\sup$, gilt folgende Abschätzung.
@@ -310,7 +310,7 @@ Zu zeigen ist allgemein Folgendes.
     \begin{enumerate}[label = \arabic*.]
 
       \item Teil-Abschätzung:
-      
+
       \begin{multline}
         \label{eq:part1}
         \norm[L^1(Q)]{u \circ s_i}^2
@@ -341,7 +341,7 @@ Zu zeigen ist allgemein Folgendes.
       \end{multline}
 
       \item Teil-Abschätzung:
-      
+
       \begin{multline}
         \label{eq:part2}
         \norm[L^2(Q)]{\nabla (u \circ s_i)}^2
@@ -377,7 +377,7 @@ Zu zeigen ist allgemein Folgendes.
       & \stackrel{\eqref{eq:det1}}{\leq}
       C^\prime
       \sum_{i=1}^M
-      \norm[L^2(\partial Q)]{u \circ s_i}^2 \\
+      \norm[L^2(\partial Q)]{u \circ s_i \mid_{\partial Q}}^2 \\
       & \stackrel
       {
         \textbf{a)}
