@@ -148,6 +148,9 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
             \text{2.13}
         }{\leq}
         (1 + \widetilde{C}_F^2)
+        \norm[L^2(\Omega)]{\nabla u}^2 \\
+        & \leq
+        (1 + \widetilde{C}_F^2)
         \pbraces
         {
             \sup_{v \in H_0^1(\Omega) \setminus \Bbraces{0}}
@@ -165,7 +168,7 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
             }{
                 \norm[H^{1/2}(\Gamma)]{w}
             }
-        } \\
+        } \norm[H^1(\Omega)]{u} \\
         & \stackrel{\text{CSB}}{\leq}
         \widetilde{C}_F
         \pbraces
@@ -187,7 +190,7 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
             }{
                 \norm[H^{1/2}(\Gamma)]{w}
             }
-        } \\
+        } \norm[H^1(\Omega)]{u}\\
         & =
         \widetilde{C}_F
         \Bigg (
@@ -221,7 +224,7 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
                 <
                 \infty
             }
-        \Bigg ) \\
+        \Bigg ) \norm[H^1(\Omega)]{u}\\
         & \leq
         \pbraces
         {
@@ -233,13 +236,13 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
             \norm[L^2(\Omega)]{f}
             +
             \norm[L^2(\Gamma_N)]{\phi}
-        }
+        }\norm[H^1(\Omega)]{u}
     \end{align*}
 
-    \item Wir berechnen mit Partieller Integration, da ja $u \in C^2(\overline{\Omega})$, für $v \in H_D^1(\Omega)$:
+    \item Wir berechnen mit Partieller Integration nach Korollar 2.12, da ja $u \in C^2(\overline{\Omega})$, für $v \in H_D^1(\Omega)$:
 
     \begin{multline*}
-      (\nabla u; \nabla v)_{L^2(\Omega)}
+      (f;v)_{L^2(\Omega)} + (\phi;\gamma v)_{L^2(\Gamma_N)} = (\nabla u; \nabla v)_{L^2(\Omega)}
       =
       \Int[\Omega]{\nabla u \nabla v}{x}
       =
@@ -249,24 +252,26 @@ Beweisen Sie Proposition 2.17 aus dem Vorlesungsskript.
       + \Int[\Gamma_N]{v \frac{\partial u}{\partial n}}{s}
       + \underbrace{\Int[\Gamma_D]{v \frac{\partial u}{\partial n}}{s}}_{0}
       =
-      -(\Delta u; v)_{L^2(\Omega)} + (\frac{\partial u}{\partial n}; v)_{L^2(\Gamma_N)}
+      -(\Delta u; v)_{L^2(\Omega)} + \left(\frac{\partial u}{\partial n}; \gamma v\right)_{L^2(\Gamma_N)}
     \end{multline*}
 
     Da nun $u$ auch $(2.16)$ löst erhalten wir durch bilden der Differenz:
 
     \begin{align*}
-      0 = (f + \Delta u, v)_{L^2(\Omega)} + (\phi - \frac{\partial u}{\partial n}, v)_{L^2(\Gamma_N)}
+      0 = (f + \Delta u, v)_{L^2(\Omega)} + (\phi - \frac{\partial u}{\partial n}, \gamma v)_{L^2(\Gamma_N)}
     \end{align*}
 
-    Da dies für beliebige $v \in H_D^1(\Omega)$ gilt, schließen wir daraus, dass beide Summanden schon $0$ sind.
-    Wegen $\mathrm{D}(\Omega) \subset H^1_0(\Omega) \subset H^1_D(\Omega)$ und da $f + \Delta u \in C(\Omega) \subset L^1_{loc}(\Omega)$ folgt damit aus dem Fundamentallemma der Variationsrechnung
+    Da laut Theorem 2.15 $H_0^1(\Omega) = \ker(\gamma)$, gilt für alle $v \in H_0^1(\Omega)$,
+    dass beide Summanden verschwinden müssen.
+    Wegen $\mathrm{D}(\Omega) \subset H^1_0(\Omega)$ und da $f + \Delta u \in C(\Omega) \subset L^1_{\mathrm{loc}}(\Omega)$ folgt damit aus dem Fundamentallemma der Variationsrechnung
 
     \begin{align*}
         -\Delta u = f \quad \text {f.ü. in} \quad \Omega
     \end{align*}
 
     und wegen der Stetigkeit sogar überall.
-    Mit der selben Argumentation (da $\Gamma_N$ offen ist) erhalten wir
+    Da nach Voraussetzung $u  \in C^2(\overline{\Omega})$ ist auch $\phi - \frac{\partial u}{\partial n}
+    \in C^1(\overline{\Omega}) \subset L^1_{\mathrm{loc}}$ und es folgt
 
     \begin{align*}
       \frac{\partial u}{\partial n} = \phi \quad \text{auf} \quad \Gamma_N
