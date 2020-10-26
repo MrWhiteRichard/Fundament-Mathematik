@@ -36,13 +36,26 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
 \begin{enumerate}[label = \textbf{\alph*)}]
 
   \item Unsere ONB vom $L^2(\Omega)$ lautet wie folgt.
-  
+
   \begin{align*}
     \widetilde{\phi}_n(x) = \exp{(2 \pi i n x)},
     \quad
     n \in \Z,
     \quad
     x \in \Omega
+  \end{align*}
+
+  Zur Überprüfung der Orthonormalität berechnen wir
+  \begin{align*}
+    (\widetilde{\phi}_n, \widetilde{\phi}_m)
+    &= \int_\Omega \widetilde{\phi}_n(x) \overline{\widetilde{\phi}_m(x)} dx
+    = \int_0^1 \exp(2\pi inx) \exp(-2\pi imx) dx
+    = \int_0^1 \exp(2\pi ix(n -m)) dx \\
+    &= \int_0^1 \cos(2\pi x(n-m)) + i\sin(2\pi x(n-m)) dx \\
+    &=  \begin{cases}\left[\frac{\sin(2\pi x(n-m))}{2\pi(n-m)}\right]_{x=0}^1
+    - i\left[\frac{\cos(2\pi x(n-m))}{2\pi(n-m)}\right]_{x=0}^1 = 0 &, n \neq m \\
+      1 &, n = m
+    \end{cases}.
   \end{align*}
 
   Diese gilt es, zu einer ONB vom $H^1(\Omega)$ zu machen.
@@ -64,9 +77,7 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
     \norm[L^2(\Omega)]{\widetilde{\phi}_n}^2
     +
     \norm[L^2(\Omega)]{\widetilde{\phi}_n^\prime}^2
-    1
-    +
-    (2 \pi i n)^2
+    = 1 + (2 \pi n)^2
     \underbrace
     {
       \Int[0][1]{|\exp{(2 \pi i n x)}|^2}{x}
@@ -75,7 +86,7 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
       \norm[L^2(\Omega)]{\widetilde{\phi}_n}^2
       =
       1
-    }
+    } = 1 + 4n^2\pi^2
   \end{align*}
 
   Die Orthogonalitätseigenschaft von $(\phi_n)_{n \in \Z}$ bzgl. $\norm[H^1(\Omega)]{\cdot}$ folgt aus derer von $(\widetilde{\phi}_n)_{n \in \Z}$ bzgl. $\norm[L^2(\Omega)]{\cdot}$.
@@ -99,7 +110,7 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
       H^1(\Omega) \to L^2(\Omega) \\
       f
       \mapsto
-      \sum_{n = -\infty}^\infty
+      \sum_{n \in \Z}
       (f; \phi_n)_{H^1(\Omega)} \phi_n
     \end{cases},
     \quad
@@ -113,7 +124,7 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
       L^2(\Omega) \\
       f
       \mapsto
-      \sum_{n = -\infty}^\infty
+      \sum_{n \in \Z}
       (f; \phi_n)_{H^1(\Omega)} \phi_n
     \end{cases},
     \quad
@@ -122,79 +133,35 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
 
   Um Operatornorm-Konvergenz zu zeigen, wählen wir $f \in L^2(\Omega)$ beliebig und schätzen (mit der Dreiecksungleichung) wie folgt ab.
 
-  \begin{multline*}
-    \implies
+  \begin{align*}
     \norm[L^2(\Omega)]{T f - T_n f}
-    =
+    &=
     \norm[L^2(\Omega)]
     {
-      \sum_{n = -\infty}^\infty
+      \sum_{n \in \Z}
       (f, \phi_n)_{H^1(\Omega)} \phi_n
       -
       \sum_{n = -N}^N
       (f, \phi_n)_{H^1(\Omega)} \phi_n
     } \\
-    \leq
-    \sum_{n = -\infty}^\infty
-    \norm[L^2(\Omega)]
-    {
-      (f, \phi_n)_{H^1(\Omega)}
-      \phi_n
-    }
-    +
-    \sum_{n = -N}^N
-    \norm[L^2(\Omega)]
-    {
-      (f, \phi_n)_{H^1(\Omega)}
-      \phi_n
-    }
-  \end{multline*}
-
-  Wir schätzen o.B.d.A. nur den ersten Summanden weiter ab.
-  Dazu verwenden wir die Cauchy-Schwarz-Bunjakovski und Bessel'sche Ungleichung.
+    &= \left\|\sum_{|n| > N}(f, \phi_n)_{H^1(\Omega)} \phi_n\right\|_{L^2(\Omega)}
+    \leq \sum_{|n| > N}\left\|(f, \phi_n)_{H^1(\Omega)} \phi_n\right\|_{L^2(\Omega)} \\
+    &\leq \sqrt{\sum_{|n| > N}\|(f, \phi_n)_{H^1(\Omega)}\|_{H^1(\Omega)}^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
+  \end{align*}
+  Weiters gilt mit
+  der Bessel'schen Ungleichung:
 
   \includegraphicsboxed
   [\cite{Ana3}]
   {(2.13) - Blümlinger - Analysis 3.png}
 
   \begin{align*}
-    \implies
-    \sum_{n = -\infty}^\infty
-    |(f, \phi_n)_{H^1(\Omega)}|
-    \norm[L^2(\Omega)]{\phi_n}
-    \stackrel
-    {
-      \text{CSB}
-    }
-    {\leq}
-    \underbrace
-    {
-      \pbraces
-      {
-        \sum_{n=N+1}^\infty
-        |(f, \phi_n)_{H^1(\Omega)}|^2
-      }^{1/2}
-    }_{
-      \stackrel
-      {
-        \text{BESS}
-      }{\leq}
-      \norm[H^1(\Omega)]{\phi_n}
-    }
-    \underbrace
-    {
-      \pbraces
-      {
-        \sum_{n=N+1}^\infty
-        \norm[L^2(\Omega)]{\phi_n}^2
-      }^{1/2}
-    }_{
-      \xrightarrow{N \to \infty} 0
-    }
+  \sqrt{\sum_{|n| > N}\|(f, \phi_n)_{H^1(\Omega)}\|_{H^1(\Omega)}^2 \sum_{|n| > N}\|\phi_n\|_{L^2(\Omega)}^2}
+  \leq \|f\|_{H^1(\Omega)}\underbrace{\sqrt{\sum_{|n| > N}\frac{1}{1 + 4n^2\pi^2}}}_{\xrightarrow{N \to \infty} 0}
   \end{align*}
-
+  Also haben wir die Operatorkonvergenz von $T_n$ gegen $T$ gezeigt.
   \item Unsere ONB vom $L^2(\Omega)$ lautet wie folgt.
-  
+
   \begin{align*}
     \widetilde{\phi}_n
     =
@@ -206,9 +173,29 @@ Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
     \quad
     x \in \Omega
   \end{align*}
-
+  Wir überprüfen nur noch die Orthonormalität und zeigen, dass
+  $\sum_{n \in \Z^2}\|\widetilde{\phi}_n\|_{H^1(\Omega)}^{-1} < \infty$.
   Der Rest ist analog zu \textbf{a)}.
 
+  \begin{align*}
+    (\widetilde{\phi}_n, \widetilde{\phi}_m)_{L^2(\Omega)}
+    &= \int_0^1\int_0^1\exp(2\pi(n_1x_1 + n_2x_2))\exp(-2\pi(m_1x_1 + m_2x_2)) dx_1 dx_2 \\
+    &= \int_0^1\exp(2\pi(n_1 - m_1)x_1)dx_1 \int_0^1\exp(2\pi(n_2 - m_2)x_2)dx_2 \\
+    &= \begin{cases}
+      1 &, (n_1,n_2) = (m_1,m_2) \\
+      0 &, \text{ sonst}
+    \end{cases}.
+  \end{align*}
+  Nun berechne noch $\|\widetilde{\phi}_n\|_{H^1(\Omega)}$:
+  \begin{align*}
+    \|\widetilde{\phi}_n\|_{H^1(\Omega)}
+    &= \|\widetilde{\phi}_n\|_{L^2(\Omega)}  + \|\nabla \widetilde{\phi}_n\|_{L^2(\Omega)}
+    = 1 + \int_0^1\int_0^1 \|(2\pi in_1, 2\pi in_2)\widetilde{\phi}_n(x_1,x_2)\|^2 dx_1 dx_2 \\
+    &= 1 + 4\pi^2(n_1^2 + n_2^2)
+  \end{align*}
+
+  Großes Problem! Die Reihe divergiert laut Wolfram-Alpha, also
+  lässt sich die Argumentation aus a) doch nicht so schön übertragen.
 \end{enumerate}
 
 \end{solution}
