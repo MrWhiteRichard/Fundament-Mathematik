@@ -141,8 +141,10 @@ Mixed Boundary Value Problem:
 
     \begin{align*}
         \norm[H^1(\Omega)]{u}^2
-        = \|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega)}^2
-        & \stackrel{\text{2.13}}{\leq}
+        &= \|u\|_{L^2(\Omega)}^2 + \|\nabla u\|_{L^2(\Omega)}^2
+         \stackrel{\text{2.13}}{\leq}
+        (1 + \widetilde{C}_F^2)\|\nabla u\|_{L^2(\Omega)}^2 \\
+        &\leq
         (1 + \widetilde{C}_F^2)
         \pbraces
         {
@@ -161,7 +163,7 @@ Mixed Boundary Value Problem:
             }{
                 \norm[H^{1/2}(\Gamma)]{w}
             }
-        } \\
+        } \norm[H^1(\Omega)]{u} \\
         & \stackrel{\text{CSB}}{\leq}
         \widetilde{C}_F
         \pbraces
@@ -183,7 +185,7 @@ Mixed Boundary Value Problem:
             }{
                 \norm[H^{1/2}(\Gamma)]{w}
             }
-        } \\
+        } \norm[H^1(\Omega)]{u}\\
         & =
         \widetilde{C}_F
         \Bigg (
@@ -217,7 +219,7 @@ Mixed Boundary Value Problem:
                 <
                 \infty
             }
-        \Bigg ) \\
+        \Bigg ) \norm[H^1(\Omega)]{u}\\
         & \leq
         \pbraces
         {
@@ -229,13 +231,13 @@ Mixed Boundary Value Problem:
             \norm[L^2(\Omega)]{f}
             +
             \norm[L^2(\Gamma_N)]{\phi}
-        }
+        }\norm[H^1(\Omega)]{u}
     \end{align*}
 
-    \item Wir berechnen mit Partieller Integration, da ja $u \in C^2(\overline{\Omega})$, für $v \in H_D^1(\Omega)$:
+    \item Wir berechnen mit Partieller Integration nach Korollar 2.12, da ja $u \in C^2(\overline{\Omega})$, für $v \in H_D^1(\Omega)$:
 
     \begin{multline*}
-      (\nabla u; \nabla v)_{L^2(\Omega)}
+      (f;v)_{L^2(\Omega)} + (\phi;\gamma v)_{L^2(\Gamma_N)} = (\nabla u; \nabla v)_{L^2(\Omega)}
       =
       \Int[\Omega]{\nabla u \nabla v}{x}
       =
@@ -245,13 +247,13 @@ Mixed Boundary Value Problem:
       + \Int[\Gamma_N]{v \frac{\partial u}{\partial n}}{s}
       + \underbrace{\Int[\Gamma_D]{v \frac{\partial u}{\partial n}}{s}}_{0}
       =
-      -(\Delta u; v)_{L^2(\Omega)} + (\frac{\partial u}{\partial n}; v)_{L^2(\Gamma_N)}
+      -(\Delta u; v)_{L^2(\Omega)} + \left(\frac{\partial u}{\partial n}; \gamma v\right)_{L^2(\Gamma_N)}
     \end{multline*}
 
     Da nun $u$ auch $(2.16)$ löst erhalten wir durch bilden der Differenz:
 
     \begin{align*}
-      0 = (f + \Delta u, v)_{L^2(\Omega)} + (\phi - \frac{\partial u}{\partial n}, v)_{L^2(\Gamma_N)}
+      0 = (f + \Delta u, v)_{L^2(\Omega)} + (\phi - \frac{\partial u}{\partial n}, \gamma v)_{L^2(\Gamma_N)}
     \end{align*}
 
     Da dies für beliebige $v \in H_D^1(\Omega)$ gilt, schließen wir daraus, dass beide Summanden schon $0$ sind.
