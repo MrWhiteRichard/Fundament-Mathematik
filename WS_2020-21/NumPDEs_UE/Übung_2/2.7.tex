@@ -1,19 +1,215 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}
-\phantom{}
-\begin{enumerate}[label = \textbf{\alph*)}]
-  \item Sei $\Omega = (0,1)$ das offene Einheitsintervall. Beweisen Sie, dass der Raum
-  $H^1(\Omega)$ kompakt in den Raum $L^2(\Omega)$ eingebettet ist.
 
-  \item Sei $\Omega = (0,1)^2$ das offene Einheitsquadrat. Beweisen Sie, dass der Raum
-  $H^1_0(\Omega)$ kompakt in den Raum $L^2(\Omega)$ eingebettet ist.
+\phantom{}
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+
+  \item Sei $\Omega = (0,1)$ das offene Einheitsintervall.
+  Beweisen Sie, dass der Raum $H^1(\Omega)$ kompakt in den Raum $L^2(\Omega)$ eingebettet ist.
+
+  \item Sei $\Omega = (0,1)^2$ das offene Einheitsquadrat.
+  Beweisen Sie, dass der Raum $H^1_0(\Omega)$ kompakt in den Raum $L^2(\Omega)$ eingebettet ist.
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Definition - Sobolevräume.png}
+\includegraphicsboxed{Definition - Sobolevräume ++.png}
+
+\includegraphicsboxed
+[\cite{Ana3}]
+[S2.6.6BA3]
+{Satz 2.6.6 - Blümlinger - Analysis 3.png}
+
+Wir zeigen, dass der lineare Einbettungsoperator $T: H^1(\Omega) \to L^2(\Omega)$ Grenzwert von kompakten Operatoren $(T_N)_{N \in \N}$ (mit endlich-dimensionalem Bild), bezüglich der Operatornorm, ist.
+Für deren Konstruktion benutzen die ONBs vom $L^2$ von \cite[Satz 2.6.6]{Ana3}.
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+
+  \item Unsere ONB vom $L^2(\Omega)$ lautet wie folgt.
+  
+  \begin{align*}
+    \widetilde{\phi}_n(x) = \exp{(2 \pi i n x)},
+    \quad
+    n \in \Z,
+    \quad
+    x \in \Omega
+  \end{align*}
+
+  Diese gilt es, zu einer ONB vom $H^1(\Omega)$ zu machen.
+  Dazu, werden wir die obere ONB bezüglich $\norm[H^1(\Omega)]{\cdot}$ normieren, d.h.
+
+  \begin{align*}
+    \phi_n
+    :=
+    \widetilde{\phi}_n
+    /
+    \norm[H^1(\Omega)]{\widetilde{\phi}_n}
+    n \in \Z.
+  \end{align*}
+
+  \begin{align*}
+    \implies
+    \norm[H^1(\Omega)]{\widetilde{\phi}_n}^2
+    =
+    \norm[L^2(\Omega)]{\widetilde{\phi}_n}^2
+    +
+    \norm[L^2(\Omega)]{\widetilde{\phi}_n^\prime}^2
+    1
+    +
+    (2 \pi i n)^2
+    \underbrace
+    {
+      \Int[0][1]{|\exp{(2 \pi i n x)}|^2}{x}
+    }_{
+      =
+      \norm[L^2(\Omega)]{\widetilde{\phi}_n}^2
+      =
+      1
+    }
+  \end{align*}
+
+  Die Orthogonalitätseigenschaft von $(\phi_n)_{n \in \Z}$ bzgl. $\norm[H^1(\Omega)]{\cdot}$ folgt aus derer von $(\widetilde{\phi}_n)_{n \in \Z}$ bzgl. $\norm[L^2(\Omega)]{\cdot}$.
+  $\Forall n, m \in \Z, n \neq m:$
+
+  \begin{align*}
+    (\phi_n, \phi_m)_{H^1(\Omega)}
+    =
+    (\phi_n, \phi_m)_{L^2(\Omega)}
+    +
+    (\phi_n^\prime, \phi_m^\prime)_{L^2(\Omega)}
+    =
+    0
+  \end{align*}
+
+  Wir betrachten nun also die folgenden beiden Operatoren.
+
+  \begin{align*}
+    T:
+    \begin{cases}
+      H^1(\Omega) \to L^2(\Omega) \\
+      f
+      \mapsto
+      \sum_{n = -\infty}^\infty
+      (f; \phi_n)_{H^1(\Omega)} \phi_n
+    \end{cases},
+    \quad
+    T_N:
+    \begin{cases}
+      H^1(\Omega)
+      \to
+      \Span
+      \Bbraces{\phi_n}_{n = 0}^{\pm N}
+      \subseteq
+      L^2(\Omega) \\
+      f
+      \mapsto
+      \sum_{n = -\infty}^\infty
+      (f; \phi_n)_{H^1(\Omega)} \phi_n
+    \end{cases},
+    \quad
+    N \in \N
+  \end{align*}
+
+  Um Operatornorm-Konvergenz zu zeigen, wählen wir $f \in L^2(\Omega)$ beliebig und schätzen (mit der Dreiecksungleichung) wie folgt ab.
+
+  \begin{multline*}
+    \implies
+    \norm[L^2(\Omega)]{T f - T_n f}
+    =
+    \norm[L^2(\Omega)]
+    {
+      \sum_{n = -\infty}^\infty
+      (f, \phi_n)_{H^1(\Omega)} \phi_n
+      -
+      \sum_{n = -N}^N
+      (f, \phi_n)_{H^1(\Omega)} \phi_n
+    } \\
+    \leq
+    \sum_{n = -\infty}^\infty
+    \norm[L^2(\Omega)]
+    {
+      (f, \phi_n)_{H^1(\Omega)}
+      \phi_n
+    }
+    +
+    \sum_{n = -N}^N
+    \norm[L^2(\Omega)]
+    {
+      (f, \phi_n)_{H^1(\Omega)}
+      \phi_n
+    }
+  \end{multline*}
+
+  Wir schätzen o.B.d.A. nur den ersten Summanden weiter ab.
+  Dazu verwenden wir die Cauchy-Schwarz-Bunjakovski und Bessel'sche Ungleichung.
+
+  \includegraphicsboxed
+  [\cite{Ana3}]
+  {(2.13) - Blümlinger - Analysis 3.png}
+
+  \begin{align*}
+    \implies
+    \sum_{n = -\infty}^\infty
+    |(f, \phi_n)_{H^1(\Omega)}|
+    \norm[L^2(\Omega)]{\phi_n}
+    \stackrel
+    {
+      \text{CSB}
+    }
+    {\leq}
+    \underbrace
+    {
+      \pbraces
+      {
+        \sum_{n=N+1}^\infty
+        |(f, \phi_n)_{H^1(\Omega)}|^2
+      }^{1/2}
+    }_{
+      \stackrel
+      {
+        \text{BESS}
+      }{\leq}
+      \norm[H^1(\Omega)]{\phi_n}
+    }
+    \underbrace
+    {
+      \pbraces
+      {
+        \sum_{n=N+1}^\infty
+        \norm[L^2(\Omega)]{\phi_n}^2
+      }^{1/2}
+    }_{
+      \xrightarrow{N \to \infty} 0
+    }
+  \end{align*}
+
+  \item Unsere ONB vom $L^2(\Omega)$ lautet wie folgt.
+  
+  \begin{align*}
+    \widetilde{\phi}_n
+    =
+    \exp{(2 \pi i n \cdot x)}
+    =
+    \exp{(2 \pi i (n_1 x_1 + n_2 x_1))},
+    \quad
+    n \in \Z^2,
+    \quad
+    x \in \Omega
+  \end{align*}
+
+  Der Rest ist analog zu \textbf{a)}.
+
+\end{enumerate}
 
 \end{solution}
 
