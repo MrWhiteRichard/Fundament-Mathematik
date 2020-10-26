@@ -58,7 +58,7 @@ Zu zeigen ist allgemein Folgendes.
       =
       \norm[L^2(\partial Q)]{u|_{\partial Q}}^2
       =
-      \Int[\partial Q]{|u|_{\partial Q}|^2}{(x, y)} \\
+      \Int[\partial Q]{|u(x, y)|_{\partial Q}|^2}{(x, y)} \\
       =
       \Int[0][1]{|u(0, y)|^2}{y}
       +
@@ -109,11 +109,11 @@ Zu zeigen ist allgemein Folgendes.
         {
           \pbraces
           {
-            |u|^2
+            |u(x, y)|^2
             +
             \vbraces
             {
-              \pderivative[][u]{y}
+              \pderivative[][u]{y}(x, y)
             }^2
           }
         }{x}
@@ -228,40 +228,45 @@ Zu zeigen ist allgemein Folgendes.
     Sei dazu $i = 1, \dots, M$.
     Die Normen $\norm[\text{max}]{\cdot}$ und $\norm[2]{\cdot}$ sind äquivalent, vermöge der Konstanten $\widetilde{C} > 0$.
 
-    \begin{multline}
-      \label{eq:det1}
-      \det \partial s_i
+    \begin{align}
+      \det \partial s_i(x, y)
+      &
+      \notag
       =
       \det
       \begin{pmatrix*}
-        \pderivative[][(s_i)_x]{x} & \pderivative[][(s_i)_x]{y} \\
-        \pderivative[][(s_i)_y]{x} & \pderivative[][(s_i)_y]{y}
-      \end{pmatrix*}
+        \pderivative[][(s_i)_x(x, y)]{x} & \pderivative[][(s_i)_x(x, y)]{y} \\
+        \pderivative[][(s_i)_y(x, y)]{x} & \pderivative[][(s_i)_y(x, y)]{y}
+      \end{pmatrix*} \\
+      &
+      \label{eq:det1}
       =
-      \pderivative[][(s_i)_x]{x}
-      \pderivative[][(s_i)_y]{y}
+      \pderivative[][(s_i)_x(x, y)]{x}
+      \pderivative[][(s_i)_y(x, y)]{y}
       -
-      \pderivative[][(s_i)_y]{x}
-      \pderivative[][(s_i)_x]{y} \\
+      \pderivative[][(s_i)_y(x, y)]{x}
+      \pderivative[][(s_i)_x(x, y)]{y} \\
+      &
+      \notag
       \leq
-      4 \norm[\text{max}]{\partial s_i}
+      4 \norm[\max]{\partial s_i(x, y)}
       \leq
-      4 \widetilde{C} \norm[2]{\partial s_i}
+      4 \widetilde{C} \norm[2]{\partial s_i(x, y)}
       <
       4 \widetilde{C} C
       =:
       C^\prime
-    \end{multline}
+    \end{align}
 
     Analoges gilt für die Inverse.
 
     \begin{align}
       \label{eq:det2}
-      \det (\partial s_i)^{-1}
+      \det (\partial s_i(x, y))^{-1}
       =
       \cdots
       \leq
-      4 \widetilde{C} \norm[2]{(\partial s_i)^{-1}}
+      4 \widetilde{C} \norm[2]{(\partial s_i(x, y))^{-1}}
       <
       4 \widetilde{C} C
       =
@@ -271,35 +276,44 @@ Zu zeigen ist allgemein Folgendes.
     Dies führt zu einer weiteren Abschätzung, diesmal nach unten.
 
     \begin{align}
-      \label{eq:det3}
+      &
+      \notag
       \implies
-      \det (\partial s_i)
+      \det \partial s_i(x, y)
       =
-      (\det (\partial s_i)^{-1})^{-1}
+      (\det (\partial s_i(x, y))^{-1})^{-1}
       >
-      (C^\prime)^{-1}
+      (C^\prime)^{-1} \\
+      &
+      \label{eq:det3}
       \implies
       1
       <
-      \det (\partial s_i)
+      \det (\partial s_i(x, y))
       (C^\prime)^{-1}
     \end{align}
 
     Laut der mehrdimensionalen Kettenregel und Definition der Abbildungsnormen als $\sup$, gilt folgende Abschätzung.
 
-    \begin{align}
+    \begin{multline}
       \label{eq:Kettenregel-Ungleichung}
       \implies
-      \norm[2]{\partial (u \circ s_i)}^2
+      \norm[2]{\partial (u \circ s_i)(x, y)}^2
       =
-      \norm[2]{(\partial u \circ s_i)(\partial s_i)}^2
+      \norm[2]
+      {
+        (
+          (\partial u \circ s_i)(x, y)
+        )(
+          \partial s_i(x, y)
+        )}^2 \\
       \leq
-      \norm[2]{\partial u \circ s_i}^2
-      \norm[2]{\partial s_i}^2
+      \norm[2]{(\partial u \circ s_i)(x, y)}^2
+      \norm[2]{\partial s_i(x, y)}^2
       <
-      \norm[2]{\partial u \circ s_i}^2
+      \norm[2]{(\partial u \circ s_i)(x, y)}^2
       C^2
-    \end{align}
+    \end{multline}
 
     Wir werden im Folgenden die Transformationsformel verwenden.
 
@@ -317,12 +331,12 @@ Zu zeigen ist allgemein Folgendes.
         =
         \Int[Q]
         {
-          |u \circ s_i|^2
+          |(u \circ s_i)(x, y)|^2
           |
             \underbrace
             {
-              \det (\partial s_i)
-              \det (\partial s_i)^{-1}
+              \det (\partial s_i(x, y))
+              \det (\partial s_i(x, y))^{-1}
             }_1
           |
         }{(x, y)} \\
@@ -333,11 +347,11 @@ Zu zeigen ist allgemein Folgendes.
         \Int[s_i(Q)]
         {
           |u|^2
-          |\det (\partial s_i)^{-1}|
+          |\det (\partial s_i(x, y))^{-1}|
         }{(x, y)}
         \stackrel{\eqref{eq:det2}}{\leq}
         C^\prime
-        \Int[s_i(Q)]{|u|^2}{(x, y)}
+        \Int[s_i(Q)]{|u(x, y)|^2}{(x, y)}
       \end{multline}
 
       \item Teil-Abschätzung:
@@ -346,16 +360,22 @@ Zu zeigen ist allgemein Folgendes.
         \label{eq:part2}
         \norm[L^2(Q)]{\nabla (u \circ s_i)}^2
         =
-        \Int[Q]{\norm[2]{\partial (u \circ s_i)}^2}{(x, y)}
-        \stackrel{\eqref{eq:Kettenregel-Ungleichung}}{\leq}
-        C^2 \Int[Q]{\norm[2]{\partial u \circ s_i}^2}{(x, y)} \\
-        \stackrel{\eqref{eq:det3}}{\leq}
-        C^2 C^\prime \Int[Q]{\norm[2]{\partial u \circ s_i}^2 |\det \partial s_i|}{(x, y)}
+        \Int[Q]{\norm[2]{\partial (u \circ s_i)(x, y)}^2}{(x, y)}
+        \stackrel
+        {
+          \eqref{eq:Kettenregel-Ungleichung}
+        }{\leq}
+        C^2 \Int[Q]{\norm[2]{(\partial u \circ s_i)(x, y)}^2}{(x, y)} \\
+        \stackrel
+        {
+          \eqref{eq:det3}
+        }{\leq}
+        C^2 C^\prime \Int[Q]{\norm[2]{(\partial u \circ s_i)(x, y)}^2 |\det \partial s_i|}{(x, y)}
         \stackrel
         {
           \text{TRAFO}
         }{=}
-        C^2 C^\prime \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+        C^2 C^\prime \Int[s_i(Q)]{\norm[2]{\partial u(x, y)}^2}{(x, y)}
       \end{multline}
 
     \end{enumerate}
@@ -367,7 +387,7 @@ Zu zeigen ist allgemein Folgendes.
       \norm[L^1(\partial \Omega)]{\gamma u}
       & =
       \sum_{i=1}^M
-      \Int[\Gamma_i]{|u|^2}{(x, y)}
+      \Int[\Gamma_i]{|u(x, y)|^2}{(x, y)}
       \stackrel
       {
         \text{TRAFO}
@@ -407,10 +427,10 @@ Zu zeigen ist allgemein Folgendes.
       \pbraces
       {
         C^\prime
-        \Int[s_i(Q)]{\norm[2]{u}^2}{(x, y)}
+        \Int[s_i(Q)]{|u(x, y)|^2}{(x, y)}
         +
         C^2 C^\prime
-        \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+        \Int[s_i(Q)]{\norm[2]{\partial u(x, y)}^2}{(x, y)}
       } \\
       & \leq
       (
@@ -422,7 +442,7 @@ Zu zeigen ist allgemein Folgendes.
         \underbrace
         {
           \sum_{i=1}^M
-          \Int[s_i(Q)]{\norm[2]{u}^2}{(x, y)}
+          \Int[s_i(Q)]{|u(x, y)|^2}{(x, y)}
         }_{
           \norm[L^2(\Omega)]{u}
         }
@@ -430,7 +450,7 @@ Zu zeigen ist allgemein Folgendes.
         \underbrace
         {
           \sum_{i=1}^M
-          \Int[s_i(Q)]{\norm[2]{\partial u}^2}{(x, y)}
+          \Int[s_i(Q)]{\norm[2]{\partial u(x, y)}^2}{(x, y)}
         }_{
           \norm[2]{\nabla u}^2
         }
