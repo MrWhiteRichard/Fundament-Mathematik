@@ -14,8 +14,25 @@ $G$ auf $\Omega = (0,\infty)$, also für festes $x \in \Omega$ gelten
 
 \begin{solution}
 
-\phantom{}
-
+Wir suchen also eine Funktion $G$ mit
+\begin{align*}
+  G(x,0) &= 0, \quad x > 0 \\
+  G_y(x,y) - aG(x,y) &= \delta_x, \quad x,y > 0
+\end{align*}
+Wir kennen aus der letzten Übung eine Fundamentallösung für den Operator $L(u) = u^{\prime} - au$
+mit Polstelle $x$:
+\begin{align*}
+  U_{x}(y) = \begin{cases}
+    0 &: y < x \\
+    \exp(a(y-x)) &: y \geq x
+  \end{cases}
+\end{align*}
+Es sieht so aus, als hätten wir Glück gehabt: Für $x > 0$ ist $U_x(0) = 0$.
+Also definieren wir
+\begin{align*}
+  G(x,y) := U_x(y)
+\end{align*}
+und haben gewonnen!
 \end{solution}
 
 % --------------------------------------------------------------------------------
