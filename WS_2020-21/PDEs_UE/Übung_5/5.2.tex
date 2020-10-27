@@ -39,6 +39,64 @@ gilt. \\
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = (\roman*)]
+  \item Lösen wir also das homogene Problem mit Randbedingung $u(1) = 0$:
+  \begin{align*}
+    -\frac{d}{dx}\left(k(x)\frac{du}{dx}\right) = 0
+    \iff -k(x)u^{\prime}(x) = C
+    \iff u(x) = C\int_x^1 \frac{1}{k(y)} dy
+  \end{align*}
+  Setzen wir $C = 1$ erhalten wir eine Lösung $K(x) = \int_x^1 \frac{1}{k(y)}dy$. \\
+  Rechnen wir mal mal:
+  \begin{align*}
+    -(k(x)u^{\prime}(x))^{\prime}K(x) = f(x)K(x)
+  \end{align*}
+  \item
+  Integrieren wir mal:
+  \begin{align*}
+    -\int_0^1(k(x)u^{\prime}(x))^{\prime}K(x)dx
+    &= \int_0^1f(x)K(x)dx \\
+    \iff -[k(x)u^{\prime}(x)K(x)]_{x=0}^1 + \int_0^1k(x)u^{\prime}(x)K^{\prime}(x)
+    &= \int_0^1f(x)K(x)dx \\
+    \iff k(0)u^{\prime}(0)K(0) - \underbrace{k(1)u^{\prime}(1)K(1)}_{=0} - \int_0^1u^{\prime}(x)
+    &= \int_0^1f(x)K(x)dx \\
+    \iff k(0)u^{\prime}(0)K(0) + \underbrace{(u(0) - u(1))}_{=0}
+    &= \int_0^1f(x)K(x)dx \\
+    \iff u^{\prime}(0) &= \frac{\int_0^1f(x)K(x)dx}{k(0)K(0)}
+  \end{align*}
+  \item
+  \begin{align*}
+    -(k(x)u^{\prime}(x))^{\prime} = f(x) &\iff u^{\prime}(x)
+    = \frac{u^{\prime}(0) - \int_0^x f(y)dy + }{k(x)} \\
+    &\iff u(x) = \int_0^x \frac{u^{\prime}(0) - \int_0^y f(z) dz}{k(y)}dy
+  \end{align*}
+  Also erhalten wir mit
+  \begin{align*}
+    g(x,y) = \1_{(0,x)}(y)\frac{u^{\prime}(0) - \int_0^y f(z) dz}{k(y)f(y)}
+  \end{align*}
+  die lange gesuchte greensche Funktion.
+  \item Wie ist die erste Gleichheit zu verstehen? Ich mein, ich kann für festes $x$
+  zeigen, dass $\delta_x$ rauskommt, aber was soll $\delta(x-y)$ heißen????????Hmmmmm....
+  \begin{align*}
+    -\left\langle\frac{d}{dy}\left(k(y)\frac{dg}{dy}(x,y)\right), \phi(y) \right\rangle &=
+    \left\langle \frac{dg}{dy}(x,y), k(y)\phi^{\prime}(y) \right\rangle \\
+    &= -\int_0^1 g(x,y)(k(y)\phi^{\prime}(y))^{\prime} dy \\
+    &= -[g(x,y)k(y)\phi^{\prime}(y)]_{y=0}^1 + \int_0^1k(y)\phi^{\prime}(y)g_y(x,y)dy \\
+    &= \int_0^1k(y)\phi^{\prime}(y)g_y(x,y)dy \\
+    &= \int_0^xk(y)\phi^{\prime}(y)
+    \frac{f(y)^2k(y) - (u^{\prime}(0) - \int_0^yf(z)dz)(k^{\prime}(y)f(y) + k(y)f^{\prime}(y))}
+    {k(y)^2f(y)^2}dy \\
+    &= \int_0^x\phi^{\prime}(y)\left[1 -
+    \underbrace{\frac{k(y)(u^{\prime}(0) - \int_0^yf(z)dz)(k^{\prime}(y)f(y)
+    + k(y)f^{\prime}(y))}{k(y)^2f(y)^2}}_{= 0???}\right] dy \\
+    &= \phi(x) - \phi(0) = \phi(x).
+  \end{align*}
+  Randbedingungen:
+  \begin{align*}
+    g(x,0) &= \1_{(0,x)}(0)\frac{u^{\prime}(0) - \int_0^0 f(z) dz}{k(0)f(0)} = 0 \\
+    g(x,1) &= \1_{(0,x)}(1)\frac{u^{\prime}(1) - \int_0^1 f(z) dz}{k(1)f(1)} = 0 \\
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
