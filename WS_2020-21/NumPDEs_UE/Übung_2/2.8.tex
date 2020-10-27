@@ -290,7 +290,7 @@ Zu zeigen ist allgemein Folgendes.
       1
       <
       \det (\partial s_i(x, y))
-      (C^\prime)^{-1}
+      C^\prime
     \end{align}
 
     Laut der mehrdimensionalen Kettenregel und Definition der Abbildungsnormen als $\sup$, gilt folgende Abschätzung.
@@ -327,7 +327,7 @@ Zu zeigen ist allgemein Folgendes.
 
       \begin{multline}
         \label{eq:part1}
-        \norm[L^1(Q)]{u \circ s_i}^2
+        \norm[L^2(Q)]{u \circ s_i}^2
         =
         \Int[Q]
         {
@@ -384,7 +384,7 @@ Zu zeigen ist allgemein Folgendes.
     Sei dabei $\overline{C} > 0$ die Operatornorm des Trace-Operators aus \textbf{a)}.
 
     \begin{align*}
-      \norm[L^1(\partial \Omega)]{\gamma u}
+      \norm[L^2(\partial \Omega)]{\gamma u}^2
       & =
       \sum_{i=1}^M
       \Int[\Gamma_i]{|u(x, y)|^2}{(x, y)}
@@ -444,7 +444,7 @@ Zu zeigen ist allgemein Folgendes.
           \sum_{i=1}^M
           \Int[s_i(Q)]{|u(x, y)|^2}{(x, y)}
         }_{
-          \norm[L^2(\Omega)]{u}
+          \norm[L^2(\Omega)]{u}^2
         }
         +
         \underbrace
@@ -452,7 +452,7 @@ Zu zeigen ist allgemein Folgendes.
           \sum_{i=1}^M
           \Int[s_i(Q)]{\norm[2]{\partial u(x, y)}^2}{(x, y)}
         }_{
-          \norm[2]{\nabla u}^2
+          \norm[L^2(\Omega)]{\nabla u}^2
         }
       \Bigg ) \\
       & =
@@ -461,7 +461,7 @@ Zu zeigen ist allgemein Folgendes.
         \max \Bbraces{1, C}
       )^2
       \overline{C}
-      \norm[H^1(\Omega)]{u}
+      \norm[H^1(\Omega)]{u}^2
     \end{align*}
 
   \end{enumerate}
