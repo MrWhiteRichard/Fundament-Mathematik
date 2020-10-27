@@ -21,6 +21,24 @@ und $(x,t) \in \R^2$.
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = (\roman*)]
+  \item
+  \begin{align*}
+    \langle L(G(x,t)), \phi(x,t)\rangle
+    &= \langle G(x,t), \phi_{tt}(x,t) - c^2\phi_{xx}(x,t)\rangle \\
+    &= \int_{\R^2}\frac{1}{2c}H(t)[H(x+ct) - H(x-ct)](\phi_{tt}(x,t) - c^2\phi_{xx}(x,t))d(x,t) \\
+    &= \frac{1}{2c}\int_{0}^{\infty}\int_{\R}[H(x+ct) - H(x-ct)](\phi_{tt}(x,t) - c^2\phi_{xx}(x,t)) dx dt \\
+    &=  \frac{1}{2c}\int_{0}^{\infty}\int_{-ct}^{ct}c^2\phi_{xx}(x,t) - \phi_{tt}(x,t) dx  dt \\
+    &=  \frac{1}{2c}\left(\int_{0}^{\infty}c^2(\phi_{x}(ct,t) - \phi_x(-ct,t))dt -
+     \int_{\R}\int_{\R}\1_{[0,\infty]}(t)\1_{[-ct,ct]}(x) \phi_{tt}(x,t) dt dx\right) \\
+    &=  \frac{1}{2c}\left(\int_{0}^{\infty}c^2(\phi_{x}(ct,t) - \phi_x(-ct,t))dt -
+    \int_{\R}\int_{\R}\1_{[0,\infty]}(t)\1_{[-\frac{c}{x},\frac{c}{x}]}(t) \phi_{tt}(x,t) dt dx\right) \\
+    &=  \frac{1}{2c}\left(\int_{0}^{\infty}c^2(\phi_{x}(ct,t) - \phi_x(-ct,t))dt -
+    \int_{\R}\int_0^{c/|x|} \phi_{tt}(x,t) dt dx\right) \\
+    &=  \frac{1}{2c}\left(\int_{0}^{\infty}c^2(\phi_{x}(ct,t) - \phi_x(-ct,t))dt -
+    \int_{\R}\phi_t(x,\frac{c}{|x|}) - \phi_t(x,0) dx\right) \\
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
