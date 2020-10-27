@@ -1,4 +1,6 @@
 import numpy as np
+from scipy import sparse
+import scipy.sparse.linalg
 from scipy.linalg import block_diag
 
 
@@ -11,6 +13,10 @@ B_inv = np.linalg.inv(B)
 A_1 = B_inv@A_1@B
 A_2 = B_inv@A_2@B
 
+N = 20
+b = np.random.rand(N,N)
+b_symm = (b + b.T)/2
+
 def QR_simple(A,tol):
     i = 0
     while abs(A[1,0]) > tol:
@@ -20,7 +26,7 @@ def QR_simple(A,tol):
     print(i)
     return A, np.diag(A)
 
-def QR_shift(A,tol):
+def QR_shift(A,tol=1e-12):
     m = A.shape[1]
     i = 0
     for n in range(m-1,0,-1):
@@ -33,7 +39,7 @@ def QR_shift(A,tol):
     print(i)
     return A, np.diag(A)
 
-def QR_shift2(A,tol):
+def QR_shift2(A,tol=1e-12):
     m = A.shape[1]
     i = 0
     for n in range(m-1,0,-1):
@@ -43,7 +49,8 @@ def QR_shift2(A,tol):
                 rho = w[0]
             else:
                 rho = w[1]
-            Q,R = np.linalg.qr(A-rho*np.identity(m))
+            #Q,R = np.linalg.qr(A-rho*np.identity(m))
+            Q,R = QR_decomp_hesse(A-rho*np.identity(m))
             A = R@Q + rho*np.identity(m)
             i += 1
         A[n,:n-m] = 0
@@ -51,7 +58,7 @@ def QR_shift2(A,tol):
     return A, np.diag(A)
 
 
-def Lanczos(A):
+def Lanczos(A,k):
     n = A.shape[1]
     v0 = np.random.rand(n)
     v = [v0/np.linalg.norm(v0)]
@@ -59,29 +66,20 @@ def Lanczos(A):
     w = (A - gam[0]*np.identity(n))@v[0]
     delta = [np.linalg.norm(w)]
     j = 0
-    while delta[j] > 1e-5 and j < 100:
-        print(delta[j])
+    while delta[j] > 1e-5 and j<n-1:
+       #print(delta[j])
         v.append(w/delta[j])
         j +=1
         gam.append(v[j].T@A@v[j])
         w = (A - gam[j]*np.identity(n))@v[j] - delta[j-1]*v[j-1]
         delta.append(np.linalg.norm(w))
     T = np.diag(delta[:-1], -1) + np.diag(gam) + np.diag(delta[:-1], 1)
-    return QR_shift(T)
-
-#Matrix, EV = QR_simple(A_1,tol)
-#Matrix, EV = QR_shift(A_1,tol)
-#Matrix, EV = QR_shift2(A_1,tol)
-#Matrix, EV = QR_simple(A_2,tol)
-#Matrix, EV = QR_shift(A_2,tol)
-#Matrix, EV = QR_shift2(A_2,tol)
+    return QR_shift2(T[:k,:k])
 
 
-#print(np.round(Matrix.real,2))
-#print(EV.real)
 
+#A = np.diag([0,0,0], -1) + np.diag([2.2,2.9,4,8]) + np.diag([3.,3.,3.], 1)
 
-A = np.diag([1,1,1], -1) + np.diag([2,2,2,2]) + np.diag([3,3,3], 1)
 
 def QR_decomp_hesse(A):
     n = A.shape[0]
@@ -105,15 +103,29 @@ def QR_decomp_hesse(A):
         M = np.array([[c.conj(), s.conj()], [-s, c]])
         G = block_diag(np.eye(i,i), M, np.eye(n-i-2, n-i-2))
         Q = G@Q
-#        print(G)
         for j in range(i, n):
             temp_1 = A[i,j]
             A[i,j] = c.conj()*temp_1 + s.conj()*A[i+1,j]
             A[i+1,j] = -s*temp_1 + c*A[i+1,j]
-
     return Q.T, A
 
-Q,R = QR_decomp_hesse(A)
-print(np.round(Q,3))
-print(np.round(R,3))
-print(np.round(Q@R,3))
+#Q,R = QR_decomp_hesse(A)
+#print(np.round(Q,3))
+#print(np.round(R,3))
+#print(np.round(Q@R,3))
+
+#Matrix, EV = QR_simple(A_1,tol)
+#Matrix, EV = QR_shift(A_1,tol)
+Matrix, EV = Lanczos(b_symm,15)
+#Matrix, EV = QR_simple(A_2,tol)
+#Matrix, EV = QR_shift(A_2,tol)
+#Matrix, EV = QR_shift2(A_2,tol)
+
+EV_2, X = scipy.sparse.linalg.eigs(b_symm,15)
+#print(np.round(Matrix.real,2))
+EV_1 = sorted(EV.real)
+print(EV_1)
+EV_2 = sorted(EV_2.real)
+print(EV_2)
+test = np.array([EV_1])-np.array([EV_2])
+print(np.max(test))
