@@ -14,7 +14,74 @@ Dirichlet-Problem für $\Delta$ auf dem Keil
 
 \begin{solution}
 
-\phantom{}
+Betrachte die Fundamentallösung von $\Delta$ mit Pol $(\xi,\eta) \in \Omega$.
+Nun ergänzen wir diese Fundamentallösung mit insgesamt sieben Spiegelpolen,
+mit alternierenden Vorzeichen. Die Pole lauten also wie folgt:
+
+\begin{align*}
+  +(\xi,\eta), \quad& -(\eta,\xi) \\
+  +(-\eta,\xi), \quad& -(-\xi,\eta) \\
+  +(-\xi,-\eta), \quad& -(-\eta,-\xi) \\
+  +(\eta,-\xi), \quad& -(\xi,-\eta)
+\end{align*}
+
+Die Summe aller dieser Fundamentallösung hat dann genau einen Pol in unserem Keil und lautet
+
+\begin{align*}
+  G(x,y,\xi,\eta) = \frac{1}{4\pi}(
+  \ln((x-\xi)^2 + (y-\eta)^2) -
+  \ln((x-\eta)^2 + (y - \xi)^2) +
+  \ln((x + \eta)^2 + (y - \xi)^2) -
+  \ln((x+ \xi)^2 + (y - \eta)^2) + \\
+  \ln((x + \xi)^2 + (y + \eta)^2) -
+  \ln((x + \eta)^2 + (y + \xi)^2) +
+  \ln((x - \eta)^2 + \ln(y + \xi)^2) -
+  \ln((x - \xi)^2 + (y + \eta)^2))
+\end{align*}
+Klarerweise ist diese Funktion eine Fundamentallösung in unserem Gebiet $\Omega$.
+Für die Randbedingungen an $\partial \Omega = \{(x,y) \in \R_+^2: y = 0 \lor x = y\}$. \\
+Fall 1: $y = 0$
+\begin{align*}
+  G(x,0,\xi,\eta) &= \frac{1}{4\pi}(
+  \ln((x-\xi)^2 + \eta^2) -
+  \ln((x-\eta)^2 + \xi^2) +
+  \ln((x + \eta)^2 + \xi^2) -
+  \ln((x+ \xi)^2 + \eta^2) + \\
+  &\ln((x + \xi)^2 + \eta^2) -
+  \ln((x + \eta)^2 + \xi^2) +
+  \ln((x - \eta)^2 + \xi^2) -
+  \ln((x - \xi)^2 + \eta^2)) \\
+  &= \frac{1}{4\pi}(
+  \underbrace{\ln((x-\xi)^2 + \eta^2) -
+  \ln((x - \xi)^2 + \eta^2)}_{=0} -
+  \underbrace{\ln((x-\eta)^2 + \xi^2) +
+  \ln((x - \eta)^2 + \xi^2)}_{=0} + \\
+  &\underbrace{\ln((x + \eta)^2 + \xi^2) -
+  \ln((x + \eta)^2 + \xi^2)}{=0} -
+  \underbrace{\ln((x+ \xi)^2 + \eta^2) +
+  \ln((x + \xi)^2 + \eta^2)}_{=0})
+\end{align*}
+Fall 2: $x = y$
+\begin{align*}
+  G(x,x,\xi,\eta) &= \frac{1}{4\pi}(
+  \ln((x-\xi)^2 + (x-\eta)^2) -
+  \ln((x-\eta)^2 + (x - \xi)^2) +
+  \ln((x + \eta)^2 + (x - \xi)^2) -
+  \ln((x+ \xi)^2 + (x - \eta)^2) + \\
+  &\ln((x + \xi)^2 + (x + \eta)^2) -
+  \ln((x + \eta)^2 + (x + \xi)^2) +
+  \ln((x - \eta)^2 + \ln(x + \xi)^2) -
+  \ln((x - \xi)^2 + (x + \eta)^2)) \\
+  &= \frac{1}{4\pi}(
+  \underbrace{\ln((x-\xi)^2 + (x-\eta)^2) -
+  \ln((x-\eta)^2 + (x - \xi)^2)}_{=0} +
+  \underbrace{\ln((x + \eta)^2 + (x - \xi)^2) -
+  \ln((x+ \xi)^2 + (x - \eta)^2)}_{=0} + \\
+  &\underbrace{\ln((x + \xi)^2 + (x + \eta)^2) -
+  \ln((x + \eta)^2 + (x + \xi)^2)}_{=0} +
+  \underbrace{\ln((x - \eta)^2 + \ln(x + \xi)^2) -
+  \ln((x - \xi)^2 + (x + \eta)^2)}_{=0}).
+\end{align*}
 
 \end{solution}
 
