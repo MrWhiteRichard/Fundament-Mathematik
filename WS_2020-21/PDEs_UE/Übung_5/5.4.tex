@@ -162,55 +162,20 @@ Also insgesamt
   \langle \delta, \phi \rangle
 \end{align*}
 
-\item Um eine Lösung mit $G(x,\xi)$ darzustellen verwenden wir wieder Satz $3.21$.
+\item Um eine Lösung mit $G(x,\xi)$ darzustellen verwenden wir wieder Satz $3.21$. Dieser besagt, dass
+$G(x,0) \ast f$ eine distributionelle Lösung von $L(u) = f$ ist. Mit den Rechenregeln für Distributionen gilt für alle $\phi \in \mathcal{D}(\Omega)$
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics
-  [width = 0.75 \textwidth]
-  {Satz 3-21.png}
-\end{figure}
-
-Dieser besagt, dass $G(x,0) \ast f$ eine distributionelle Lösung von $L(u) = f$ ist.
-Mit den Rechenregeln für Distributionen gilt $\Forall \phi \in \mathcal{D}(\Omega):$
-
-\begin{multline*}
+\begin{align*}
   \langle g \ast f, \phi \rangle
   =
   \langle g, \phi \ast Rf \rangle
   =
   \Int[\R^3]{g(|y|)(\phi \ast Rf)(y)}{y}
   =
-  \Int[\R^3]
-  {
-    \Int[\R^3]
-    {
-      g(|y|)
-      f(x - y)
-      \phi(x)
-    }{x}
-  }{y} \\
-  =
-  \Int[\R^3]
-  {
-    \Int[\R^3]
-    {
-      g(|y|)
-      f(x - y)
+  \Int[\R^3]{
+    \Int[\R^3]{g(|y|) f(x-y) \phi(x)}{x}
     }{y}
-    \phi(x)
-  }{x}
-  =
-  \abraces
-  {
-    \Int[\R^3]
-    {
-      g(|y|)
-      f(x - y)
-    }{y},
-    \phi
-  }
-\end{multline*}
+\end{align*}
 
 wobei $(Rf)(x) = f(-x)$ und die zweite Gleichheit wegen $g \in L^1_{\mathrm{loc}}(\R^3)$ gilt. Daher ist
 
@@ -272,28 +237,40 @@ Um die Neumann-Randbedingunen zu erfüllen, Spiegeln wir ebenfalls aber addieren
 
 Auch diese hat in $\Omega$ nur einen Pol und die Randbedingung rechnen wir wieder nach, wobei der Normalenvektor durch $\nu = (0,0,-\xi_3)$ gegeben ist.
 
+% \begin{align*}
+%   S_3\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
+%   =
+%   -S_3\frac{\partial G_\mathrm{Neu}}{\partial \xi_3}(x, \xi)
+%   =
+%   -S_3(\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) + \frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
+%   =
+%   \dfrac{\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
+%   \left(x_1-{\xi}_1\right)^2}}}{\left(\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
+%   \left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
+%   +
+%   \dfrac{\mathrm{i}k\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k
+%   \sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(-{\xi}_3\right)^2+
+%   \left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2} \\
+%   +
+%   \dfrac{\mathrm{i}k\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
+%   \left(x_1-{\xi}_1\right)^2}}}{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}
+%   +
+%   \dfrac{\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
+%   \left(x_1-{\xi}_1\right)^2}}}{\left(\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
+%   =
+%   0
+% \end{align*}
+
+Wir berechnen mit $r = \sqrt{(x_1-\xi_1)^2 + (x_2-\xi_2)^2 + (0-\xi_3)^2} =
+\sqrt{(x_1-\xi_1)^2 + (x_2-\xi_2)^2 + (0+\xi_3)^2}$
 \begin{align*}
-  S_3\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
-  =
-  -S_3\frac{\partial G_\mathrm{Neu}}{\partial \xi_3}(x, \xi)
-  =
-  -S_3(\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) + \frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
-  =
-  \dfrac{\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
-  \left(x_1-{\xi}_1\right)^2}}}{\left(\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
-  \left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
-  +
-  \dfrac{\mathrm{i}k\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k
-  \sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(-{\xi}_3\right)^2+
-  \left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2} \\
-  +
-  \dfrac{\mathrm{i}k\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
-  \left(x_1-{\xi}_1\right)^2}}}{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}
-  +
-  \dfrac{\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
-  \left(x_1-{\xi}_1\right)^2}}}{\left(\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
-  =
-  0
+S_3\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
+&=
+-S_3\frac{\partial G_\mathrm{Neu}}{\partial x_3}(x, \xi)
+=
+-S_3(\frac{\partial G}{\partial x_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) + \frac{\partial G}{\partial x_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
+&= \frac{\frac{-2ik\xi_3}{r}\exp(ikr) - \exp(ikr)\frac{-2\xi_3}{r}}{r^2}
++ \frac{\frac{2ik\xi_3}{r}\exp(ikr) - \exp(ikr)\frac{2\xi_3}{r}}{r^2} = 0.
 \end{align*}
 \end{enumerate}
 \end{solution}
