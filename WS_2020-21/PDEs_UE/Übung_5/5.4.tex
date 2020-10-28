@@ -111,7 +111,7 @@ wählen wir $g = C \frac{1}{r}e^{ikr}$ mit der noch unbestimmten Konstante $C$ u
   0
 \end{multline*}
 
-Um zu zeigen, dass die Funktion auch Fundamentallösung ist sei $\phi \in \mathcal{D}(\R^3)$ beliebig, $\Omega_\varepsilon = \R^3 \setminus B_\varepsilon(0)$, dann ist (mit PI nach Gauss)
+Um zu zeigen, dass die Funktion $G(x, \xi) = g(|x - \xi|)$ auch Fundamentallösung ist sei $\phi \in \mathcal{D}(\R^3)$ beliebig, $\Omega_\varepsilon = \R^3 \setminus B_\varepsilon(0)$, dann ist (mit PI nach Gauss)
 
 \begin{align*}
   \langle (\Delta_x + k^2)G(\cdot, 0), \phi \rangle
@@ -126,7 +126,7 @@ Um zu zeigen, dass die Funktion auch Fundamentallösung ist sei $\phi \in \mathc
     + \Int[\Omega_\varepsilon]{G(x, 0)k^2 \phi(x)}{x}
     + \Int[\partial \Omega_\varepsilon]{G(x,0) \nabla \phi \cdot \nu}{s} \\
   &=
-  \underbrace{\Int[\Omega_\varepsilon]{(\Delta_x + k^2)G(x, 0) \phi(x)}{x}}_0
+  \underbrace{\Int[\Omega_\varepsilon]{(\Delta_x + k^2)G(x, 0) \phi(x)}{x}}_{=0}
     + \Int[\partial \Omega_\varepsilon]{G(x,0) \nabla \phi \cdot \nu}{s}
     - \Int[\partial \Omega_\varepsilon]{\phi \nabla G(x,0) \cdot \nu}{s} \\
 \end{align*}
@@ -223,8 +223,8 @@ Diese Funktion hat in $\Omega$ nur den Pol $(\xi_1, \xi_2, \xi_3)$ und erfüllt 
 \begin{align*}
   G((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) - G((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))
   = \\
-  C(\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}
-    -\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }})
+  -\frac{1}{S_3}\left(\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}
+    -\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}\right)
   =
   0
 \end{align*}
@@ -238,15 +238,25 @@ Um die Neumann-Randbedingunen zu erfüllen, Spiegeln wir ebenfalls aber addieren
 Auch diese hat in $\Omega$ nur einen Pol und die Randbedingung rechnen wir wieder nach, wobei der Normalenvektor durch $\nu = (0,0,-\xi_3)$ gegeben ist.
 
 \begin{align*}
-  \frac{1}{C}\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
+  S_3\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
   =
-  \frac{1}{C}-\frac{\partial G_\mathrm{Neu}}{\partial \xi_3}(x, \xi)
+  -S_3\frac{\partial G_\mathrm{Neu}}{\partial \xi_3}(x, \xi)
   =
-  \frac{1}{C}(-\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) -\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
+  -S_3(\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) + \frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
   =
-  -\dfrac{\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}-\dfrac{\mathrm{i}k\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2} \\
-  -
-  \dfrac{\mathrm{i}k\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}-\dfrac{\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
+  \dfrac{\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
+  \left(x_1-{\xi}_1\right)^2}}}{\left(\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+
+  \left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
+  +
+  \dfrac{\mathrm{i}k\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k
+  \sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(-{\xi}_3\right)^2+
+  \left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2} \\
+  +
+  \dfrac{\mathrm{i}k\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
+  \left(x_1-{\xi}_1\right)^2}}}{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}
+  +
+  \dfrac{\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+
+  \left(x_1-{\xi}_1\right)^2}}}{\left(\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
   =
   0
 \end{align*}
