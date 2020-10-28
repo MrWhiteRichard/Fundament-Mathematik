@@ -35,10 +35,10 @@ dar, wobei $f$ und $g$ stetig und beschränkt auf $(0, \infty)$ sind. Ist diese 
   \centering
   \includegraphics
   [width = 0.75 \textwidth]
-  {Definition 4.3.png}
+  {Definition 4-3.png}
 \end{figure}
 
-%\includegraphicsboxed{(4.4).png}
+%\includegraphicsboxed{(4-4).png}
 
 Wir verwenden die Fundamentallösung im $\R^2$,
 
@@ -55,21 +55,21 @@ Wir verwenden die Fundamentallösung im $\R^2$,
 Die Spiegelungsmethode liefert nach richtiger Anwendung beide Teile von (4.4).
 
 \begin{enumerate}
-  
+
   \item Nachdem wir, durch addieren von gespiegelten Fundamentallösungen, nur Pole außerhalb von $\Omega$ einführen, und uns auf $\Omega$ am Ende beschränken, ist der erste Teil automatisch gegeben.
 
   \item Wir wollen im zweiten Teil, dass die Greensche Funktion mit $(\xi, \eta) \in \partial \Omega$ verschwindet.
   Schematisch lässt sich das mit Matrizen ausdrücken.
   Der Text unter den Matrizen soll die Spiegelung beschreiben.
   Die Summe der Matrizen soll (auf dem Rand) $0$ werden.
-  
+
   \begin{align*}
     \underbrace
     {
       \begin{pmatrix}
           & N &   \\
         W &   & O \\
-          & S &  
+          & S &
       \end{pmatrix}
     }_{
       \text{keine}
@@ -80,7 +80,7 @@ Die Spiegelungsmethode liefert nach richtiger Anwendung beide Teile von (4.4).
       \begin{pmatrix}
           & S &   \\
         W &   & O \\
-          & N &  
+          & N &
       \end{pmatrix}
     }_{
       x ~\text{Achse}
@@ -91,7 +91,7 @@ Die Spiegelungsmethode liefert nach richtiger Anwendung beide Teile von (4.4).
       \begin{pmatrix}
           & N &   \\
         O &   & W \\
-          & S &  
+          & S &
       \end{pmatrix}
     }_{
       y ~\text{Achse}
@@ -102,7 +102,7 @@ Die Spiegelungsmethode liefert nach richtiger Anwendung beide Teile von (4.4).
       \begin{pmatrix}
           & S &   \\
         O &   & W \\
-          & N &  
+          & N &
       \end{pmatrix}
     }_{
       x \& y ~\text{Achse}
@@ -195,22 +195,22 @@ Insgesamt erhalten wir durch die Spiegelungsmethode folgenden Kandidaten für di
   & =
   \frac{1}{2 \pi}
   \Big (
-    \ln \sqrt{(x + \xi)^2 + (y + \eta)^2}
-    +
+    \ln \sqrt{(x - \xi)^2 + (y - \eta)^2}
+    -
     \ln \sqrt{(x - \xi)^2 + (y + \eta)^2} \\
-    & \qquad +
-    \ln \sqrt{(x + \xi)^2 + (y + \eta)^2}
+    & \qquad -
+    \ln \sqrt{(x + \xi)^2 + (y - \eta)^2}
     +
     \ln \sqrt{(x + \xi)^2 + (y + \eta)^2}
   \Big ) \\
   & =
   \frac{1}{4 \pi}
   \Big (
-    \ln ((x + \xi)^2 + (y + \eta)^2)
-    +
+    \ln ((x - \xi)^2 + (y - \eta)^2)
+    -
     \ln ((x - \xi)^2 + (y + \eta)^2) \\
     & \qquad +
-    \ln ((x + \xi)^2 + (y + \eta)^2)
+    \ln ((x + \xi)^2 + (y - \eta)^2)
     +
     \ln ((x + \xi)^2 + (y + \eta)^2)
     \Big )
@@ -220,10 +220,10 @@ Insgesamt erhalten wir durch die Spiegelungsmethode folgenden Kandidaten für di
     \centering
     \includegraphics
     [width = 0.75 \textwidth]
-    {Satz 4.4 (Repräsentationsformel für das Dirichlet-Problem.png}
+    {Satz 4-4 (Repraesentationsformel fuer das Dirichlet-Problem.png}
   \end{figure}
 
-  Wir wollen die Repräsentationsformel für das Dirichlet-Problem benutzen.
+  Wir wollen die Repräsentationsformel für das Dirichlet-Problem benutzen um einen Lösungskandidaten zu finden.
   Unsere Rand-Funktionen können wir zu einer zusammenfassen.
 
   \begin{align*}
@@ -468,7 +468,7 @@ Insgesamt erhalten wir durch die Spiegelungsmethode folgenden Kandidaten für di
         |f(\xi) - f(x_0)|
       }{\xi}
     }_{
-      \text{siehe Beweis von Satz 5.4}
+      \text{siehe Beweis von Satz 4.5}
     }
   \end{align*}
 
@@ -477,84 +477,16 @@ Insgesamt erhalten wir durch die Spiegelungsmethode folgenden Kandidaten für di
   Dazu bemerken wir, dass $g$ und $f$ beschränkt sind.
 
   \begin{align*}
-    \cdots
-    \leq
-    \underbrace
-    {
-      \sup_{\eta \in (0, \infty)}
+    \cdots \leq \sup_{\eta \in (0, \infty)}
       |g(\eta) - f(x_0)|
-    }_{
-      < \infty
-    }
     \Int[0][\infty]
-    {
-      \underbrace
-      {
-        K_\xi(x, y, \eta)
-      }_{
-        \xrightarrow[y \to 0]{} 0
-      }
-    }{\eta}
+    {  K_\xi(x, y, \eta)}{\eta}
+    = \frac{2}{\pi}\underbrace{\sup_{\eta \in (0, \infty)}
+      |g(\eta) - f(x_0)|}_{< \infty}  \arctan \frac{y}{x}
+      \xrightarrow{y \to 0} 0.
   \end{align*}
 
-  Um den $y$-$\lim$ ins Integral reinzuziehen, splitten wir es auf und dominieren.
-
-  \begin{align*}
-    \Int[0][y]{K_\xi(x, y, \eta)}{\eta}
-    +
-    \Int[y][\infty]{K_\xi(x, y, \eta)}{\eta}
-  \end{align*}
-
-  Die folgenden rechten Seiten sind von $y$ unabhängige und integrierbare Majoranten auf $(0, y)$ bzw. $(0, \infty)$.
-
-  \begin{align*}
-    |K_\xi(x, y, \eta)|
-    \leq
-    \frac{1}{\pi}
-    \pbraces
-    {
-      \vbraces
-      {
-        \frac{x}{x^2 + (y + \eta)^2}
-      }
-      +
-      \vbraces
-      {
-        \frac{x}{x^2 + (y - \eta)^2}
-      }
-    }
-    \begin{cases}
-      \stackrel{\eta < y}{\leq}
-      \frac{1}{\pi}
-      \pbraces
-      {
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-        +
-        \vbraces
-        {
-          \frac{x}{x^2}
-        }
-      } \\
-      \stackrel{\eta > y}{\leq}
-      \frac{1}{\pi}
-      \pbraces
-      {
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-        +
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-      }
-    \end{cases}
-  \end{align*}
-
+  Eindeutigkeit gilt nicht, da $u(x,y) + Cxy$ für $C \in \R$ ebenso eine Lösung ist.
 \end{solution}
 
 % --------------------------------------------------------------------------------
