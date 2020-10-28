@@ -66,36 +66,44 @@ gilt. \\
   \end{align*}
   \item
   \begin{align*}
-    -(k(x)u^{\prime}(x))^{\prime} = f(x) &\iff u^{\prime}(x)
-    = \frac{u^{\prime}(0) - \int_0^x f(y)dy + }{k(x)} \\
-    &\iff u(x) = \int_0^x \frac{u^{\prime}(0) - \int_0^y f(z) dz}{k(y)}dy
+    -(k(x)u^{\prime}(x))^{\prime} = f(x) &\iff -k(x)u^{\prime}(x) = \int_{0}^xf(x)dx - k(0)u^{\prime}(0)  \\
+    &\iff u^{\prime}(x)
+    = \frac{k(0)u^{\prime}(0) - \int_0^x f(y)dy}{k(x)} \\
+    &\iff u(x) = \int_0^x \frac{k(0)u^{\prime}(0) - \int_0^y f(z) dz}{k(y)}dy \\
+    &\iff u(x) =  k(0)u^{\prime}(0)\int_0^x \frac{1}{k(y)} - \int_0^y \frac{f(z)}{k(y)} dz dy \\
+    &\iff u(x) =  k(0)u^{\prime}(0)(K(0) - K(x)) - \int_0^x\int_0^y \frac{f(z)}{k(y)} dz dy \\
+    &\iff u(x) =  \frac{\int_0^1f(y)K(y)dy}{K(0)}(K(0) - K(x)) - \int_0^x\int_0^y \frac{f(z)}{k(y)} dz dy \\
+    &\iff u(x) = \int_0^1\frac{f(z)K(z)}{K(0)}(K(0) - K(x))dz - \int_0^1\int_0^1\1_{[0,x]}(y) \1_{[0,y]}(z) \frac{f(z)}{k(y)}dy dz\\
+    &\iff u(x) = \int_0^1\frac{f(z)K(z)}{K(0)}(K(0) - K(x)) - f(z)\int_0^1\1_{[0,x]}(y) \1_{[z,1]}(y) \frac{1}{k(y)}dy dz\\
+    &\iff u(x) = \int_0^1\frac{f(z)K(z)}{K(0)}(K(0) - K(x)) - f(z)\1_{[0,x]}(z)(K(z) - K(x)) dz\\
+    &\iff u(x) = \int_0^1f(z)\left[\frac{K(z)}{K(0)}(K(0) - K(x)) - \1_{[0,x]}(z)(K(z) - K(x))\right] dz\\
   \end{align*}
   Also erhalten wir mit
   \begin{align*}
-    g(x,y) = \1_{(0,x)}(y)\frac{u^{\prime}(0) - \int_0^y f(z) dz}{k(y)f(y)}
+    g(x,z) = \frac{K(z)}{K(0)}(K(0) - K(x)) - \1_{[0,x]}(z)(K(z) - K(x))
   \end{align*}
   die lange gesuchte greensche Funktion.
-  \item Wie ist die erste Gleichheit zu verstehen? Ich mein, ich kann für festes $x$
-  zeigen, dass $\delta_x$ rauskommt, aber was soll $\delta(x-y)$ heißen????????Hmmmmm....
+  \item Zuerst die Randbedingungen, die sind einfacher (und wir brauchen sie für die erste Gleichheit noch):
+  \begin{align*}
+    g(x,0) &= \frac{K(0)}{K(0)}(K(0) - K(x)) - \1_{[0,x]}(0)(K(0) - K(x))
+    = (K(0) - K(x)) - (K(0) - K(x)) = 0,\\
+    g(x,1) &= \frac{K(1)}{K(0)}(K(0) - K(x)) - \1_{[0,x]}(1)(K(1) - K(x)) = 0.
+  \end{align*}
+  Wie ist die erste Gleichheit zu verstehen? Ich kann für festes $x$
+  zeigen, dass $\delta_x$ rauskommt...
   \begin{align*}
     -\left\langle\frac{d}{dy}\left(k(y)\frac{dg}{dy}(x,y)\right), \phi(y) \right\rangle &=
-    \left\langle \frac{dg}{dy}(x,y), k(y)\phi^{\prime}(y) \right\rangle \\
+    -\left\langle g(x,y), (k(y)\phi^{\prime}(y))^{\prime} \right\rangle \\
     &= -\int_0^1 g(x,y)(k(y)\phi^{\prime}(y))^{\prime} dy \\
     &= -[g(x,y)k(y)\phi^{\prime}(y)]_{y=0}^1 + \int_0^1k(y)\phi^{\prime}(y)g_y(x,y)dy \\
     &= \int_0^1k(y)\phi^{\prime}(y)g_y(x,y)dy \\
-    &= \int_0^xk(y)\phi^{\prime}(y)
-    \frac{f(y)^2k(y) - (u^{\prime}(0) - \int_0^yf(z)dz)(k^{\prime}(y)f(y) + k(y)f^{\prime}(y))}
-    {k(y)^2f(y)^2}dy \\
-    &= \int_0^x\phi^{\prime}(y)\left[1 -
-    \underbrace{\frac{k(y)(u^{\prime}(0) - \int_0^yf(z)dz)(k^{\prime}(y)f(y)
-    + k(y)f^{\prime}(y))}{k(y)^2f(y)^2}}_{= 0???}\right] dy \\
-    &= \phi(x) - \phi(0) = \phi(x).
+    &= \int_0^xk(y)\phi^{\prime}(y)\left(\frac{K(x) - K(0)}{K(0)k(y)} + \frac{1}{k(y)}\right)dy
+    + \int_x^1k(y)\phi^{\prime}(y)\left(\frac{K(x) - K(0)}{K(0)k(y)}\right)dy\\
+    &= \int_0^x\phi^{\prime}(y)\frac{K(x)}{K(0)}dy + \int_x^1\phi^{\prime}(y)\frac{K(x) - K(0)}{K(0)} \\
+    &= \frac{K(x)}{K(0)}\phi(x) - \phi(0) + \phi(1)\frac{K(x) - K(0)}{K(0)} - \phi(x)\frac{K(x) - K(0)}{K(0)}= \phi(x).
   \end{align*}
-  Randbedingungen:
-  \begin{align*}
-    g(x,0) &= \1_{(0,x)}(0)\frac{u^{\prime}(0) - \int_0^0 f(z) dz}{k(0)f(0)} = 0 \\
-    g(x,1) &= \1_{(0,x)}(1)\frac{u^{\prime}(1) - \int_0^1 f(z) dz}{k(1)f(1)} = 0 \\
-  \end{align*}
+  Zum Schluss verwenden wir die kuriose Tatsache, dass $\phi(0) = \phi(1) = 0$,
+  da $\phi$ eine Testfunktion auf $[0,1]$ ist.
 \end{enumerate}
 
 \end{solution}
