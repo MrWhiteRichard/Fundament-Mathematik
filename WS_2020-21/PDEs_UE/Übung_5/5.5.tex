@@ -23,22 +23,26 @@ und $(x,t) \in \R^2$.
 \phantom{}
 \begin{itemize}
     \item[(i)] \begin{align*}
-    \langle G, L\phi \rangle =
-    \int_{\R^2} G(x, t) L\phi(x, t) =
-    \int_{\R} \int_{\R} \frac{1}{2c} \underbrace{H(t)}_{\mathbbm{1}_{(0, \infty}(t)}\left[ \underbrace{H(x+ct) - H(x-ct)}_{\mathbbm{1}_{(-ct, ct)}(x)}\right] \left( \phi_{tt}(x, t) - c^2 \phi_{xx}(x, t) \right) = \\
-    \frac{1}{2c} \left(
+    \langle LG, \phi \rangle = \langle G, L\phi \rangle &=
+    \int_{\R^2} G(x, t) L\phi(x, t) \\
+     &= \int_{\R} \int_{\R} \frac{1}{2c} \underbrace{H(t)}_{\mathbbm{1}_{(0, \infty)}(t)}
+    \left[ \underbrace{H(x+ct) - H(x-ct)}_{\mathbbm{1}_{(-ct, ct)}(x)}\right]
+    \left( \phi_{tt}(x, t) - c^2 \phi_{xx}(x, t) \right) dt dx \\
+    &= \frac{1}{2c} \left(
     \int_\R \int_{|x|/c}^\infty \phi_{tt}(x, t) \mathrm{~d}t \mathrm{~d}x
-    - c^2 \int_0^\infty \int_{-ct}^{ct} \phi_{xx}(x, t) \mathrm{~d}x \mathrm{~d}t \right) = \\
-    \int_\R - \phi_t(x, |x|/c)
-    - c^2 \int_0^\infty \phi_x(ct, t) \mathrm{~d}x - \phi_x(-ct, t) \mathrm{~d}t
-    = \\
-    \frac{1}{2c}\left(- \int_\R \phi_t(x, |x|/c) \mathrm{~d}x
-    - c^2 \int_0^\infty \phi_x(ct, t) \mathrm{~d}t + c^2 \int_0^\infty \phi_x(-ct, t) \mathrm{~d}t\right) =
-    - \frac{1}{2c} \int_\R \phi_t(x, |x|/c) \mathrm{~d}x
-    \stackrel{(u = x/c)}{~=~} \\
-    - \frac{1}{2c} \left(c \int_0^\infty \phi_t(cu, u) \mathrm{~d}u + c \int_0^\infty \phi_t(-cu, u) \mathrm{~d}u\right) = \\
-    - \frac{1}{2} \left( \int_0^\infty c \phi_x(cu, u) + \phi_t(cu, u) \mathrm{~d}u + \int_0^\infty - c \phi_x(-cu, u) + \phi_t(-cu, u) \mathrm{~d}u \right) \stackrel{(\ast)}{~=~} \\
-    - \frac{1}{2} \left(\phi(cu, u) \big|_{u=0}^\infty + \phi(-cu, u) \big|_{u=0}^\infty \right) = \phi(0).
+    - c^2 \int_0^\infty \int_{-ct}^{ct} \phi_{xx}(x, t) \mathrm{~d}x \mathrm{~d}t \right)\\
+    &= \frac{1}{2c} \left( \int_\R - \phi_t(x, |x|/c)
+    - c^2 \int_0^\infty \phi_x(ct, t)  - \phi_x(-ct, t) \mathrm{~d}x\mathrm{~d}t \right)\\
+    &= \frac{1}{2c}\left(- \int_\R \phi_t(x, |x|/c) \mathrm{~d}x
+    - c^2 \int_0^\infty \phi_x(ct, t) \mathrm{~d}t + c^2
+    \int_0^\infty \phi_x(-ct, t) \mathrm{~d}t\right)\\
+    &\stackrel{(u = x/c)}{=~} - \frac{1}{2c} \left(c \int_0^\infty \phi_t(cu, u) \mathrm{~d}u + c
+    \int_0^\infty \phi_t(-cu, u) \mathrm{~d}u + c^2 \int_0^\infty \phi_x(ct, t) \mathrm{~d}t
+    - c^2\int_0^\infty \phi_x(-ct, t) \mathrm{~d}t\right) \\
+    &= - \frac{1}{2} \left( \int_0^\infty c \phi_x(cu, u) + \phi_t(cu, u) \mathrm{~d}u +
+    \int_0^\infty - c \phi_x(-cu, u) + \phi_t(-cu, u) \mathrm{~d}u \right) \\
+    &\stackrel{(\ast)}{~=~} - \frac{1}{2}
+    \left(\phi(cu, u) \big|_{u=0}^\infty + \phi(-cu, u) \big|_{u=0}^\infty \right) = \phi(0).
 \end{align*}
 
 Die Gleichheit ($\ast$) folgt hierbei aus der Kettenregel:
@@ -49,7 +53,7 @@ Die Gleichheit ($\ast$) folgt hierbei aus der Kettenregel:
 
 \item[(ii)] Weil $L$ ein Differentialoperator mit konstanten Koeffizienten ist, erhalten wir gemäß Satz 3.21 eine Fundamentallösung im Pol $\xi = (\xi_1, \xi_2)$ durch
 \begin{align*}
-(t, x) \mapsto G(x - \xi_2, t - \xi_2).
+(t, x) \mapsto G(x - \xi_1, t - \xi_2).
 \end{align*}
 
 \item[(iii)]
