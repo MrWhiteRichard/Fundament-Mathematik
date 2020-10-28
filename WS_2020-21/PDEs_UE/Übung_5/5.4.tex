@@ -162,20 +162,55 @@ Also insgesamt
   \langle \delta, \phi \rangle
 \end{align*}
 
-\item Um eine Lösung mit $G(x,\xi)$ darzustellen verwenden wir wieder Satz $3.21$. Dieser besagt, dass
-$G(x,0) \ast f$ eine distributionelle Lösung von $L(u) = f$ ist. Mit den Rechenregeln für Distributionen gilt für alle $\phi \in \mathcal{D}(\Omega)$
+\item Um eine Lösung mit $G(x,\xi)$ darzustellen verwenden wir wieder Satz $3.21$.
 
-\begin{align*}
+\begin{figure}[h!]
+  \centering
+  \includegraphics
+  [width = 0.75 \textwidth]
+  {Satz 3-21.png}
+\end{figure}
+
+Dieser besagt, dass $G(x,0) \ast f$ eine distributionelle Lösung von $L(u) = f$ ist.
+Mit den Rechenregeln für Distributionen gilt $\Forall \phi \in \mathcal{D}(\Omega):$
+
+\begin{multline*}
   \langle g \ast f, \phi \rangle
   =
   \langle g, \phi \ast Rf \rangle
   =
   \Int[\R^3]{g(|y|)(\phi \ast Rf)(y)}{y}
   =
-  \Int[\R^3]{
-    \Int[\R^3]{g(|y|) f(x-y) \phi(x)}{x}
+  \Int[\R^3]
+  {
+    \Int[\R^3]
+    {
+      g(|y|)
+      f(x - y)
+      \phi(x)
+    }{x}
+  }{y} \\
+  =
+  \Int[\R^3]
+  {
+    \Int[\R^3]
+    {
+      g(|y|)
+      f(x - y)
     }{y}
-\end{align*}
+    \phi(x)
+  }{x}
+  =
+  \abraces
+  {
+    \Int[\R^3]
+    {
+      g(|y|)
+      f(x - y)
+    }{y},
+    \phi
+  }
+\end{multline*}
 
 wobei $(Rf)(x) = f(-x)$ und die zweite Gleichheit wegen $g \in L^1_{\mathrm{loc}}(\R^3)$ gilt. Daher ist
 
