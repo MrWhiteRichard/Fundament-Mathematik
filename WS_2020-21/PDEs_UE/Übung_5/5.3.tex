@@ -477,84 +477,14 @@ Insgesamt erhalten wir durch die Spiegelungsmethode folgenden Kandidaten für di
   Dazu bemerken wir, dass $g$ und $f$ beschränkt sind.
 
   \begin{align*}
-    \cdots
-    \leq
-    \underbrace
-    {
-      \sup_{\eta \in (0, \infty)}
+    \cdots \leq \sup_{\eta \in (0, \infty)}
       |g(\eta) - f(x_0)|
-    }_{
-      < \infty
-    }
     \Int[0][\infty]
-    {
-      \underbrace
-      {
-        K_\xi(x, y, \eta)
-      }_{
-        \xrightarrow[y \to 0]{} 0
-      }
-    }{\eta}
+    {  K_\xi(x, y, \eta)}{\eta}
+    = \frac{2}{\pi}\underbrace{\sup_{\eta \in (0, \infty)}
+      |g(\eta) - f(x_0)|}_{< \infty}  \arctan \frac{y}{x}
+      \xrightarrow{y \to 0} 0.
   \end{align*}
-
-  Um den $y$-$\lim$ ins Integral reinzuziehen, splitten wir es auf und dominieren.
-
-  \begin{align*}
-    \Int[0][y]{K_\xi(x, y, \eta)}{\eta}
-    +
-    \Int[y][\infty]{K_\xi(x, y, \eta)}{\eta}
-  \end{align*}
-
-  Die folgenden rechten Seiten sind von $y$ unabhängige und integrierbare Majoranten auf $(0, y)$ bzw. $(0, \infty)$.
-
-  \begin{align*}
-    |K_\xi(x, y, \eta)|
-    \leq
-    \frac{1}{\pi}
-    \pbraces
-    {
-      \vbraces
-      {
-        \frac{x}{x^2 + (y + \eta)^2}
-      }
-      +
-      \vbraces
-      {
-        \frac{x}{x^2 + (y - \eta)^2}
-      }
-    }
-    \begin{cases}
-      \stackrel{\eta < y}{\leq}
-      \frac{1}{\pi}
-      \pbraces
-      {
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-        +
-        \vbraces
-        {
-          \frac{x}{x^2}
-        }
-      } \\
-      \stackrel{\eta > y}{\leq}
-      \frac{1}{\pi}
-      \pbraces
-      {
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-        +
-        \vbraces
-        {
-          \frac{x}{x^2 + \eta^2}
-        }
-      }
-    \end{cases}
-  \end{align*}
-
 \end{solution}
 
 % --------------------------------------------------------------------------------
