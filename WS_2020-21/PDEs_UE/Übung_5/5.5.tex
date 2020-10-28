@@ -24,15 +24,15 @@ und $(x,t) \in \R^2$.
 \begin{itemize}
     \item[(i)] \begin{align*}
     \langle LG, \phi \rangle = \langle G, L\phi \rangle &=
-    \int_{\R^2} G(x, t) L\phi(x, t) \\
+    \int_{\R^2} G(x, t) L\phi(x, t) \mathrm{~d}t \mathrm{~d}x \\
      &= \int_{\R} \int_{\R} \frac{1}{2c} \underbrace{H(t)}_{\mathbbm{1}_{(0, \infty)}(t)}
     \left[ \underbrace{H(x+ct) - H(x-ct)}_{\mathbbm{1}_{(-ct, ct)}(x)}\right]
-    \left( \phi_{tt}(x, t) - c^2 \phi_{xx}(x, t) \right) dt dx \\
+    \left( \phi_{tt}(x, t) - c^2 \phi_{xx}(x, t) \right) \mathrm{~d}t \mathrm{~d}x \\
     &= \frac{1}{2c} \left(
     \int_\R \int_{|x|/c}^\infty \phi_{tt}(x, t) \mathrm{~d}t \mathrm{~d}x
     - c^2 \int_0^\infty \int_{-ct}^{ct} \phi_{xx}(x, t) \mathrm{~d}x \mathrm{~d}t \right)\\
-    &= \frac{1}{2c} \left( \int_\R - \phi_t(x, |x|/c)
-    - c^2 \int_0^\infty \phi_x(ct, t)  - \phi_x(-ct, t) \mathrm{~d}x\mathrm{~d}t \right)\\
+    &= \frac{1}{2c} \left( \int_\R - \phi_t(x, |x|/c)\mathrm{~d}x
+    - c^2 \int_0^\infty \phi_x(ct, t)  - \phi_x(-ct, t) \mathrm{~d}t \right)\\
     &= \frac{1}{2c}\left(- \int_\R \phi_t(x, |x|/c) \mathrm{~d}x
     - c^2 \int_0^\infty \phi_x(ct, t) \mathrm{~d}t + c^2
     \int_0^\infty \phi_x(-ct, t) \mathrm{~d}t\right)\\
@@ -58,12 +58,12 @@ Die Gleichheit ($\ast$) folgt hierbei aus der Kettenregel:
 
 \item[(iii)]
 \begin{align*}
-    \langle \partial_t G, \phi \rangle = - \langle G, \partial_t \phi \rangle =
+    \langle \partial_t G, \phi \rangle &= - \langle G, \partial_t \phi \rangle =
     - \int_{\R^2} G(x, t) \partial_t \phi(x, t) \mathrm{~d}(x, t) =
-    - \frac{1}{2c} \int_\R \int_{|x|/c}^\infty \partial_t \phi(x, t)    \mathrm{~d}t \mathrm{~d}x = \\
-    \frac{1}{2c} \int_\R \phi(x, |x|/c) \mathrm{~d}x =
-    \frac{1}{2c} \left( \int_0^\infty \phi(x, x/c) \mathrm{~d}x \int_0^\infty \phi(-x, x/c) \mathrm{~d}x \right) \stackrel{(u = x/c)}{~=~} \\
-    \frac{1}{2} \int_0^\infty \phi(cu, u) + \phi(-cu, u) \mathrm{~d}u.
+    - \frac{1}{2c} \int_\R \int_{|x|/c}^\infty \partial_t \phi(x, t)    \mathrm{~d}t \mathrm{~d}x \\
+    &= \frac{1}{2c} \int_\R \phi(x, |x|/c) \mathrm{~d}x =
+    \frac{1}{2c} \left( \int_0^\infty \phi(x, x/c) \mathrm{~d}x \int_0^\infty \phi(-x, x/c) \mathrm{~d}x \right)  \\
+    &\stackrel{(u = x/c)}{~=~} \frac{1}{2} \int_0^\infty \phi(cu, u) + \phi(-cu, u) \mathrm{~d}u.
 \end{align*}
 
 \end{itemize}
