@@ -38,8 +38,129 @@ mit der Wellenzahl $k > 0$, der Wellenquelle $f \in \mathcal{D}(\R^3)$ und dem W
 
 \begin{solution}
 
-\phantom{}
+Da unser Ableitungsoperator nur konstante Koeffizienten hat suchen wir eine Lösung mit Pol in $0$ und verschieben diese dann nach Satz $3.21$ um eine Polstelle in $\xi$ zu erhalten.
+Unsere Funktion $g$ soll nun radialsymmetrisch sein mit Radius $r = |x| = \sqrt{x_1^2 + x_2^2 +x_3^2}$.Wir berechnen zuerst für $i \in \{1,2,3\}$
 
+\begin{align*}
+  \frac{\partial r}{\partial x_i}
+  =
+  \frac{x_i}{\sqrt{x_1^2 + x_2^2 + x_3^2}}
+  =
+  \frac{x_i}{r}
+\end{align*}
+
+Dann gilt
+
+\begin{align*}
+  \frac{\partial G}{\partial x_i}
+  =
+  g^\prime (r) \frac{\partial r}{\partial x_i}
+  =
+  g^\prime (r) \frac{x_i}{r}
+\end{align*}
+
+Ferner ist
+
+\begin{align*}
+  \frac{\partial^2 G}{\partial x_i^2}
+  =
+  g^\primeprime(r) \frac{x_i^2}{r^2}
+    + g^\prime(r) \frac{1}{r}
+    - g^\prime(r) \frac{x_i}{r}\frac{x_i}{r^2}
+\end{align*}
+
+Also erhalten wir insgesamt
+
+\begin{align*}
+  (\Delta_x +k^2) G
+  =
+  \sum_{i=1}^3 \frac{\partial^2 G}{\partial x_i^2} + k^2 G
+  =
+  g^\primeprime(r) \sum_{i=1}^3 \frac{x_i^2}{r^2}
+    + g^\prime(r) \frac{3}{r}
+    - g^\prime(r) \sum_{i=1}^3 \frac{x_i^2}{r^3}
+    + k^2 g(r)
+  =
+  g^\primeprime(r) + \frac{2}{r} g^\prime(r) + k^2g(r)
+\end{align*}
+
+Also wird $(\Delta_x +k^2) G = 0$ zu einer gewöhnlichen Differentialgleichung für $g$ die für $r>0$ zu lösen ist.
+
+\begin{align*}
+  0 = g^\primeprime(r) + \frac{2}{r} g^\prime(r) + k^2g(r)
+\end{align*}
+
+Durch Multiplikation mit $r$ und unter der Verwendung der Produktregel bekommen wir
+
+\begin{align*}
+  \frac{\partial^2}{\partial r^2}(rg) + k^2(rg) = 0
+\end{align*}
+
+Lösungen dieser Differentialgleichung sind gegeben durch $g = C \frac{1}{r}e^{\pm ikr}, C \in \C$. Um der sommerfeldschen Ausstrahlungsbedingung zu genügen
+wählen wir $g = C \frac{1}{r}e^{ikr}$ mit der noch unbestimmten Konstante $C$ und rechnen nach
+
+\begin{multline*}
+  \lim_{r \to \infty} r \pbraces{\pderivative{r} - i k} g(r)
+  =
+  \lim_{r \to \infty} r \pbraces{C \frac{ik e^{ikr}r - e^{ikr}}{r^2} - ikC e^{ikr} \frac{1}{r}} \\
+  =
+  \lim_{r \to \infty} r \pbraces{\frac{1}{r^2} e^{ikr}(ikr - 1) - ikC e^{ikr} \frac{1}{r}}
+  =
+  \lim_{r \to \infty} \frac{1}{r} e^{ikr}ikr C - \frac{1}{r}e^{ikr}C - e^{ikr}ik C
+  =
+  0
+\end{multline*}
+
+Um zu zeigen, dass die Funktion auch Fundamentallösung ist sei $\phi \in \mathcal{D}(\R^3)$ beliebig, $\Omega_\varepsilon = \R^3 \setminus B_\varepsilon(0)$, dann ist (mit PI nach Gauss)
+
+\begin{align*}
+  \langle (\Delta_x + k^2)G(\cdot, 0), \phi \rangle
+  &=
+  \langle G(\cdot, 0), (\Delta_x + k^2) \phi \rangle
+  =
+  \Int[\Omega_\varepsilon]{G(x, 0) (\Delta + k^2) \phi(x)}{x}
+  =
+  \Int[\Omega_\varepsilon]{G(x, 0) \Delta \phi(x)}{x} + \Int[\Omega_\varepsilon]{G(x, 0)k^2 \phi(x)}{x} \\
+  &=
+  -\Int[\Omega_\varepsilon]{\nabla G(x, 0) \cdot \nabla \phi(x)}{x}
+    + \Int[\Omega_\varepsilon]{G(x, 0)k^2 \phi(x)}{x}
+    + \Int[\partial \Omega_\varepsilon]{G(x,0) \nabla \phi \cdot \nu}{s} \\
+  &=
+  \underbrace{\Int[\Omega_\varepsilon]{(\Delta_x + k^2)G(x, 0) \phi(x)}{x}}_0
+    + \Int[\partial \Omega_\varepsilon]{G(x,0) \nabla \phi \cdot \nu}{s}
+    - \Int[\partial \Omega_\varepsilon]{\phi \nabla G(x,0) \cdot \nu}{s} \\
+\end{align*}
+
+Die beiden Randintegrale schauen wir uns für $\varepsilon \rightarrow 0$ noch einmal genauer an.
+
+\begin{align*}
+  \pbraces{\Int[\partial \Omega_\varepsilon]{G(x,0) \nabla \phi \cdot \nu}{s}}
+  \leq
+  \underbrace{|g(\varepsilon)|}_{\frac{C}{\varepsilon}} \underbrace{\text{meas}(\partial \Omega_\varepsilon)}_{\varepsilon^2 S_3} \max_{x \in \R^3}|\nabla \phi(x)|
+  \stackrel{\varepsilon \to 0}{\longrightarrow}
+  0
+\end{align*}
+
+Beim zweiten verwenden wir $\nu(x) = - r$, wenden den MWS der Integralrechnung an und wählen $C = -\frac{1}{S_3}$
+
+\begin{align*}
+  - \Int[\partial \Omega_\varepsilon]{\phi \nabla g(|x|) \cdot \nu}{s}
+  &\stackrel{\text{MWS}}{=}
+  \phi(x_\varepsilon) \frac{\partial g}{\partial r}(\varepsilon) \Int[\partial \Omega_\varepsilon]{s} \\
+  =
+  \phi(x_\varepsilon) C \frac{ik e^{ik\varepsilon}\varepsilon - e^{ik\varepsilon}}{\varepsilon^2} \varepsilon^2 S_3
+  &=
+  -\phi(x_\varepsilon) \underbrace{(ik e^{ik\varepsilon}\varepsilon - e^{ik\varepsilon})}_{\stackrel{\varepsilon \to 0}{\longrightarrow} -1}
+  \stackrel{\varepsilon \to 0}{\longrightarrow}
+  \phi(0)
+\end{align*}
+Also insgesamt
+
+\begin{align*}
+  \langle (\Delta_x + k^2)G(\cdot, 0), \phi \rangle
+  =
+  \langle \delta, \phi \rangle
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
