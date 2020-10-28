@@ -37,8 +37,8 @@ mit der Wellenzahl $k > 0$, der Wellenquelle $f \in \mathcal{D}(\R^3)$ und dem W
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-Da unser Ableitungsoperator nur konstante Koeffizienten hat suchen wir eine Lösung mit Pol in $0$ und verschieben diese dann nach Satz $3.21$ um eine Polstelle in $\xi$ zu erhalten.
+\begin{enumerate}[label = (\roman*)]
+\item Da unser Ableitungsoperator nur konstante Koeffizienten hat suchen wir eine Lösung mit Pol in $0$ und verschieben diese dann nach Satz $3.21$, den wir anwenden können da unser Differentialoperator ja konstante Koeffizienten hat, um eine Polstelle in $\xi$ zu erhalten.
 Unsere Funktion $g$ soll nun radialsymmetrisch sein mit Radius $r = |x| = \sqrt{x_1^2 + x_2^2 +x_3^2}$.Wir berechnen zuerst für $i \in \{1,2,3\}$
 
 \begin{align*}
@@ -118,8 +118,8 @@ Um zu zeigen, dass die Funktion auch Fundamentallösung ist sei $\phi \in \mathc
   &=
   \langle G(\cdot, 0), (\Delta_x + k^2) \phi \rangle
   =
-  \Int[\Omega_\varepsilon]{G(x, 0) (\Delta + k^2) \phi(x)}{x}
-  =
+  \Int[\Omega_\varepsilon]{G(x, 0) (\Delta + k^2) \phi(x)}{x} \\
+  &=
   \Int[\Omega_\varepsilon]{G(x, 0) \Delta \phi(x)}{x} + \Int[\Omega_\varepsilon]{G(x, 0)k^2 \phi(x)}{x} \\
   &=
   -\Int[\Omega_\varepsilon]{\nabla G(x, 0) \cdot \nabla \phi(x)}{x}
@@ -146,7 +146,7 @@ Beim zweiten verwenden wir $\nu(x) = - r$, wenden den MWS der Integralrechnung a
 \begin{align*}
   - \Int[\partial \Omega_\varepsilon]{\phi \nabla g(|x|) \cdot \nu}{s}
   &\stackrel{\text{MWS}}{=}
-  \phi(x_\varepsilon) \frac{\partial g}{\partial r}(\varepsilon) \Int[\partial \Omega_\varepsilon]{s} \\
+  \phi(x_\varepsilon) \frac{\partial g}{\partial r}(\varepsilon) \Int[\partial \Omega_\varepsilon]{1}{s} \\
   =
   \phi(x_\varepsilon) C \frac{ik e^{ik\varepsilon}\varepsilon - e^{ik\varepsilon}}{\varepsilon^2} \varepsilon^2 S_3
   &=
@@ -161,6 +161,94 @@ Also insgesamt
   =
   \langle \delta, \phi \rangle
 \end{align*}
+
+\item Um eine Lösung mit $G(x,\xi)$ darzustellen verwenden wir wieder Satz $3.21$. Dieser besagt, dass
+$G(x,0) \ast f$ eine distributionelle Lösung von $L(u) = f$ ist. Mit den Rechenregeln für Distributionen gilt für alle $\phi \in \mathcal{D}(\Omega)$
+
+\begin{align*}
+  \langle g \ast f, \phi \rangle
+  =
+  \langle g, \phi \ast Rf \rangle
+  =
+  \Int[\R^3]{g(|y|)(\phi \ast Rf)(y)}{y}
+  =
+  \Int[\R^3]{
+    \Int[\R^3]{g(|y|) f(x-y) \phi(x)}{x}
+    }{y}
+\end{align*}
+
+wobei $(Rf)(x) = f(-x)$ und die zweite Gleichheit wegen $g \in L^1_{\mathrm{loc}}(\R^3)$ gilt. Daher ist
+
+\begin{align*}
+  (G(x,0) \ast f)(x)
+  =
+  \Int[\R^3]{g(|y|) f(x-y)}{y}
+\end{align*}
+
+Weil $f$ eine Testfunktion ist, ist die Faltung $G \ast f \in C^{\infty}(\R^3)$ und damit auch eine klassische Lösung.
+
+Um einzusehen, dass die Lösung für rotationssymmetrisches $f$ auch rotationssymmetrisch ist seien $x_1, x_2 \in \R^3$ mit
+$|x_1| = |x_2|$ und $R$ die Rotationsabbildung, die $x_1$ auf $x_2$ abbildet
+
+\begin{align*}
+  (g \ast f)(x_1)
+  =
+  \Int[\R^3]{g(|x_1|) f(|x_1 - y|)}{y}
+  \stackrel{\text{TRAFO}}{=}
+  \Int[\R^3]{g(|x_2|) f(|x_2 - Ry|) \underbrace{|\det(R)^{-1}|}_1}{y}
+  =
+  (g \ast f)(x_2)
+\end{align*}
+
+\item Wir schreiben noch einmal genau auf, was $G_{\mathrm{Dir}}$ und $G_{\mathrm{Neu}}$ erfüllen sollen:
+
+\begin{align*}
+  \Delta G_\mathrm{Dir}(\cdot, \xi) = \delta_\xi ~\text{in}~ \Omega,&
+  \quad
+  G_\mathrm{Dir}(\cdot, \xi) = 0 ~\text{auf}~ \partial \Omega \\
+  \Delta G_\mathrm{Neu}(\cdot, \xi) = \delta_\xi ~\text{in}~ \Omega,&
+  \quad
+  \frac{\partial G_\mathrm{Neu}}{\partial \nu}(\cdot, \xi) = 0 ~\text{auf}~ \partial \Omega
+\end{align*}
+
+Um die Dirichlet-Randbedingung zu erfüllen Spiegeln wir in der $(x,y)-$Ebene und erhalten so mit $x = (x_1,x_2,x_3), \xi = (\xi_1, \xi_2, \xi_3)$
+
+\begin{align*}
+  G_\mathrm{Dir}(x,\xi) = G(x,(\xi_1, \xi_2, \xi_3)) - G(x,(\xi_1,\xi_2, -\xi_3))
+\end{align*}
+
+Diese Funktion hat in $\Omega$ nur den Pol $(\xi_1, \xi_2, \xi_3)$ und erfüllt somit die erste Bedingung. Die Randbedingung rechnen wir nach:
+\begin{align*}
+  G((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) - G((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))
+  = \\
+  C(\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}
+    -\frac{e^{ik\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }}}{\sqrt{(x_1 - \xi_1)^2 + (x_2 - \xi_2)^2 + \xi_3^2 }})
+  =
+  0
+\end{align*}
+
+Um die Neumann-Randbedingunen zu erfüllen, Spiegeln wir ebenfalls aber addieren die Funktionen
+
+\begin{align*}
+  G_\mathrm{Neu}(x,\xi) = G(x,(\xi_1, \xi_2, \xi_3)) + G(x,(\xi_1,\xi_2, -\xi_3))
+\end{align*}
+
+Auch diese hat in $\Omega$ nur einen Pol und die Randbedingung rechnen wir wieder nach, wobei der Normalenvektor durch $\nu = (0,0,-\xi_3)$ gegeben ist.
+
+\begin{align*}
+  \frac{1}{C}\frac{\partial G_\mathrm{Neu}}{\partial \nu}(x, \xi)
+  =
+  \frac{1}{C}-\frac{\partial G_\mathrm{Neu}}{\partial \xi_3}(x, \xi)
+  =
+  \frac{1}{C}(-\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1, \xi_2, \xi_3)) -\frac{\partial G}{\partial \xi_3}((x_1,x_2,0),(\xi_1,\xi_2, -\xi_3))) \\
+  =
+  -\dfrac{\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}-\dfrac{\mathrm{i}k\left(-{\xi}_3\right)\mathrm{e}^{\mathrm{i}k\sqrt{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(-{\xi}_3\right)^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2} \\
+  -
+  \dfrac{\mathrm{i}k\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}-\dfrac{\xi_3\mathrm{e}^{\mathrm{i}k\sqrt{\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2}}}{\left(\xi_3^2+\left(x_2-{\xi}_2\right)^2+\left(x_1-{\xi}_1\right)^2\right)^\frac{3}{2}}
+  =
+  0
+\end{align*}
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
