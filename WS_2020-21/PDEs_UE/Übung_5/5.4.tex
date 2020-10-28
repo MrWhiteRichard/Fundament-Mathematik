@@ -188,15 +188,16 @@ wobei $(Rf)(x) = f(-x)$ und die zweite Gleichheit wegen $g \in L^1_{\mathrm{loc}
 Weil $f$ eine Testfunktion ist, ist die Faltung $G \ast f \in C^{\infty}(\R^3)$ und damit auch eine klassische Lösung.
 
 Um einzusehen, dass die Lösung für rotationssymmetrisches $f$ auch rotationssymmetrisch ist seien $x_1, x_2 \in \R^3$ mit
-$|x_1| = |x_2|$ und $R$ die Rotationsabbildung, die $x_1$ auf $x_2$ abbildet
+$|x_1| = |x_2|$ und $R$ die Rotationsabbildung, die $x_2$ auf $x_1$ abbildet
 
 \begin{align*}
   (g \ast f)(x_1)
   =
   \Int[\R^3]{g(|x_1|) f(|x_1 - y|)}{y}
-  \stackrel{\text{TRAFO}}{=}
-  \Int[\R^3]{g(|x_2|) f(|x_2 - Ry|) \underbrace{|\det(R)^{-1}|}_1}{y}
+  = \Int[\R^3]{g(|R(x_1)|) f(|R(x_1 - y)|)}{y} \\
   =
+  \Int[\R^3]{g(|x_2|) f(|x_2 - Ry|) }{y}
+  \stackrel{TRAFO}{=} \Int[\R^3]{g(|x_2|) f(|x_2 - u|) \underbrace{|\det(R^{-1})|}_{=1}}{u} =
   (g \ast f)(x_2)
 \end{align*}
 
