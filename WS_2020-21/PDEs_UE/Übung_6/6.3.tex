@@ -12,11 +12,21 @@ Zeigen Sie:
 
 \end{exercise}
 
+
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+  \begin{itemize}
 
-ToDo!
+  \item[(i)] Durch Anwenden von Ketten- und Produktregel erhalten wir
+  \begin{align}
+      \frac{\partial^2 v}{\partial^2 x_i} = \frac{\partial v}{\partial x_i} \left(\frac{\partial v}{\partial x_i}\right) = \frac{\partial v}{\partial x_i} \left(\phi^\prime(u(x)) \frac{\partial u}{\partial x_i}\right) = \phi^{\prime\prime}(u(x)) \left(\frac{\partial u}{\partial x_i}\right)^2 + \phi^\prime(u(x)) \frac{\partial^2 u}{\partial^2 x_i}.
+  \end{align}
+  Aus der Konvexität von $\phi$ und der Harmonität von $u$ folgt daraus
+  \begin{align}
+      \Delta v(x) = \underbrace{\phi^{\prime\prime}(u(x))}_{\geq 0, \text{~weil $\phi$ konvex}} \sum_{i=1}^n \left(\frac{\partial u}{\partial x_i}\right)^2 + \phi^\prime(u(x)) \underbrace{\sum_{i=1}^n \frac{\partial^2 u}{\partial^2 x_i}}_{= 0} \geq 0.
+  \end{align}
+  \end{itemize}
 
 \end{solution}
 
