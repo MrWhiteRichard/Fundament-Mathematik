@@ -13,16 +13,19 @@ versuchen Sie dann $v$ durch eine besser geeignete Funktion $\phi \in C^2(\Omega
 
 \begin{solution}
 
-Wähle zunächst $v(x) = -\frac{1}{S_nR^{n-1}}\1_{B_R(0)}(x)$. Dann folgt
-\begin{align*}
-  u*v(x) = \int_{\R^n}u(x-y)v(y) dy = -\frac{1}{S_nR^{n-1}}\int_{B_R(0)}u(x-y) dy = \frac{1}{S_nR^{n-1}}\int_{B_R(x)}u(y) dy = u(x).
-\end{align*}
-Jetzt versuchen wir $v$ durch $C^{\infty}$-Funktionen zu approximieren,
-wobei $(\eta_{\epsilon})$ ein radialsymmetrischer Mollifier ist:
-\begin{align*}
-  v_{\epsilon} := v*\eta_{\epsilon}
-\end{align*}
-Wir wissen $\lim_{\epsilon  \to 0}\|v*\eta_{\epsilon} - v\|_{L^p} = 0$
+
+
+	Wir wählen eine Testfunktion $\varphi$ mit den Eigenschaften
+	\begin{align*}
+	\supp \varphi \subseteq \overline{B_1(0)}, \quad \varphi \geq 0, \quad \Int[\R^n]{\varphi}{\lambda^n} = 1, \quad |x| = |y| \Rightarrow \varphi(x) = \varphi(y).
+	\end{align*}
+	Die skalierte Standardtestfunktion bietet sich dafür an. Weiters definieren wir für alle $\varepsilon \in \R^+$ die Funktion $\varphi_\varepsilon (x) := \varepsilon^{-n} \varphi\pbraces{\frac{1}{\varepsilon}x}$. Gegeben sei eine beliebige kompakte Menge $K \subseteq \Omega$. Wählen wir nun $0 < \delta < \dist(\partial \Omega, K)$ so gilt für jedes $x \in K$
+	\begin{align*}
+	(u \ast \varphi_\delta)(x) &= \Int[B_\delta(x)]{\varphi_\delta(x - y) u(y) }{\lambda^n} = \Int[0][\delta]{\Int[\partial B_\rho(x)]{\varphi_\delta(x - y) u(y) }{H^{n-1}(y)}}{\rho} \\
+	 &= \Int[0][\delta]{\delta^{-n} \tilde{\varphi}\pbraces{\frac{\rho}{\delta}}\Int[\partial B_\rho(x)]{ u(y) }{H^{n-1}(y)}}{\rho} = \delta^{-n} \Int[0][\delta]{\tilde{\varphi}\pbraces{\frac{\rho}{\delta}}S_n \rho^{n-1} u(x)}{\rho} \\
+	 &= \delta^{-n} S_n u(x) \Int[0][1]{\tilde{\varphi}(\eta) (\eta \delta)^{n-1} \delta }{\eta} = u(x) S_n  \Int[0][1]{\tilde{\varphi}(\eta) \eta^{n-1} \delta }{\eta} \\
+	 &= u(x) \Int[B_1(0)]{\varphi(z)}{\lambda^n(z)} = u(x)
+	\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
