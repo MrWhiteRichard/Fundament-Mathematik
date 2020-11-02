@@ -16,30 +16,31 @@ Zeigen Sie:
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
   \begin{itemize}
 
   \item[(i)] Durch Anwenden von Ketten- und Produktregel erhalten wir
-  \begin{align}
+  \begin{align*}
       \frac{\partial^2 v}{\partial^2 x_i} = \frac{\partial v}{\partial x_i} \left(\frac{\partial v}{\partial x_i}\right) = \frac{\partial v}{\partial x_i} \left(\phi^\prime(u(x)) \frac{\partial u}{\partial x_i}\right) = \phi^{\prime\prime}(u(x)) \left(\frac{\partial u}{\partial x_i}\right)^2 + \phi^\prime(u(x)) \frac{\partial^2 u}{\partial^2 x_i}.
-  \end{align}
+  \end{align*}
   Aus der Konvexität von $\phi$ und der Harmonität von $u$ folgt daraus
-  \begin{align}
+  \begin{align*}
       \Delta v(x) = \underbrace{\phi^{\prime\prime}(u(x))}_{\geq 0, \text{~weil $\phi$ konvex}} \sum_{i=1}^n \left(\frac{\partial u}{\partial x_i}\right)^2 + \phi^\prime(u(x)) \underbrace{\sum_{i=1}^n \frac{\partial^2 u}{\partial^2 x_i}}_{= 0} \geq 0.
-  \end{align}
+  \end{align*}
   \item[(ii)] Nach Definition ist $|\nabla u|^2 = \sum_{i=1}^n \left(\frac{\partial u}{\partial x_i}\right)^2$. Wir berechnen
-\begin{align}
+\begin{align*}
     \frac{\partial^2}{\partial^2 x_j} \left(\frac{\partial u}{\partial x_i}\right)^2 (x) = \frac{\partial}{\partial x_j} \left(2 \frac{\partial u}{\partial x_i} \cdot \frac{\partial^2 u}{\partial x_j \partial x_i} \right)(x) = \\
     2 \left(\frac{\partial^2 u}{\partial x_j \partial x_i}\right)^2 (x) + 2\frac{\partial u}{\partial x_i} \cdot \frac{\partial^3 u}{\partial^2 x_j \partial x_i} (x).
-\end{align}
+\end{align*}
 Durch Summation und aus dem Satz von Schwarz erhalten wir
-\begin{align}
+\begin{align*}
     \frac{\partial^2}{\partial^2 x_j} |\nabla u|^2 (x) = 2 \sum_{i=1}^n \left[ \left(\frac{\partial^2 u}{\partial x_j \partial x_i} \right)^2(x) + \frac{\partial u}{\partial x_i}(x) \cdot \frac{\partial}{\partial x_i} \left(\frac{\partial^2 u}{\partial^2 x_j}\right)(x) \right].
-\end{align}
+\end{align*}
 Abermaliges Summieren liefert
-\begin{align}
+\begin{align*}
     \frac{1}{2} \Delta v (x) = \sum_{j=1}^n \sum_{i=1}^n \left(\frac{\partial^2 u}{\partial x_j \partial x_i} \right)^2(x) +
     \sum_{i=1}^n \frac{\partial u}{\partial x_i}(x) \cdot \frac{\partial}{\partial x_i} \left( \underbrace{\sum_{j=1}^n \frac{\partial^2 u}{\partial^2 x_j}(x)}_{= 0} \right) \geq 0.
-\end{align}
+\end{align*}
   \end{itemize}
 
 \end{solution}

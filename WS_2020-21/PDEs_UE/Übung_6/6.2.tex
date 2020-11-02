@@ -2,8 +2,8 @@
 
 \begin{exercise}
 
-Zeigen Sie, dass die Aussage von Beispiel 1. schon für $u \in C^1(\Omega)$ gilt und $u$ dann sogar in $C^\infty(\Omega)$ ist.
-Hinweis:
+Zeigen Sie, dass die Aussage von Beispiel 1. schon für $u \in C^1(\Omega)$ gilt und $u$ dann sogar in $C^\infty(\Omega)$ ist. \\
+\textit{Hinweis:}
 schreiben sie die Mittelwerteigenschaft als $u(x) = u \ast v$ für eine geeignete Funktion $v$;
 versuchen Sie dann $v$ durch eine besser geeignete Funktion $\phi \in C^2(\Omega)$ zu ersetzen.
 
@@ -13,8 +13,16 @@ versuchen Sie dann $v$ durch eine besser geeignete Funktion $\phi \in C^2(\Omega
 
 \begin{solution}
 
-ToDo!
-
+Wähle zunächst $v(x) = -\frac{1}{S_nR^{n-1}}\1_{B_R(0)}(x)$. Dann folgt
+\begin{align*}
+  u*v(x) = \int_{\R^n}u(x-y)v(y) dy = -\frac{1}{S_nR^{n-1}}\int_{B_R(0)}u(x-y) dy = \frac{1}{S_nR^{n-1}}\int_{B_R(x)}u(y) dy = u(x).
+\end{align*}
+Jetzt versuchen wir $v$ durch $C^{\infty}$-Funktionen zu approximieren,
+wobei $(\eta_{\epsilon})$ ein radialsymmetrischer Mollifier ist:
+\begin{align*}
+  v_{\epsilon} := v*\eta_{\epsilon}
+\end{align*}
+Wir wissen $\lim_{\epsilon  \to 0}\|v*\eta_{\epsilon} - v\|_{L^p} = 0$
 \end{solution}
 
 % --------------------------------------------------------------------------------
