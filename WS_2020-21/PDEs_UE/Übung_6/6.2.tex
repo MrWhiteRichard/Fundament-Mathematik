@@ -15,17 +15,35 @@ versuchen Sie dann $v$ durch eine besser geeignete Funktion $\phi \in C^2(\Omega
 
 
 
-	Wir wählen eine Testfunktion $\varphi$ mit den Eigenschaften
+	Wir wählen eine radialsymmetrische Testfunktion $\varphi$ mit den Eigenschaften
 	\begin{align*}
-	\supp \varphi \subseteq \overline{B_1(0)}, \quad \varphi \geq 0, \quad \Int[\R^n]{\varphi}{\lambda^n} = 1, \quad |x| = |y| \Rightarrow \varphi(x) = \varphi(y).
+	\supp \varphi \subseteq \overline{B_1(0)}, \quad \varphi \geq 0, \quad \Int[\R^n]{\varphi}{\lambda^n} = 1.
 	\end{align*}
-	Die skalierte Standardtestfunktion bietet sich dafür an. Weiters definieren wir für alle $\varepsilon \in \R^+$ die Funktion $\varphi_\varepsilon (x) := \varepsilon^{-n} \varphi\pbraces{\frac{1}{\varepsilon}x}$. Gegeben sei eine beliebige kompakte Menge $K \subseteq \Omega$. Wählen wir nun $0 < \delta < \dist(\partial \Omega, K)$ so gilt für jedes $x \in K$
+	Die skalierte Standardtestfunktion
+  \begin{align*}
+    \varphi(x) = \begin{cases}
+      \left(\int_{B_1(0)}\exp\left(\frac{1}{|y|^2-1}\right) dy\right)
+      \exp\left(\frac{1}{|x|^2-1}\right), & x \in B_1(0) \\
+      0, & \text{sonst}
+    \end{cases}
+  \end{align*} bietet sich dafür an. Weiters definieren wir für alle $\varepsilon \in \R^+$ die Funktion $\varphi_\varepsilon (x) := \varepsilon^{-n} \varphi\pbraces{\frac{1}{\varepsilon}x}$.
+  Definiere die offene Menge $\Omega_{\delta} := \{x \in \Omega: \dist(x,\partial\Omega) > \delta\}$.
+  Dann folgt für $x \in \Omega_{\delta}$ und beliebiges $\delta > 0$ wegen $B_{\delta}(x) \subset \Omega$
 	\begin{align*}
-	(u \ast \varphi_\delta)(x) &= \Int[B_\delta(x)]{\varphi_\delta(x - y) u(y) }{\lambda^n} = \Int[0][\delta]{\Int[\partial B_\rho(x)]{\varphi_\delta(x - y) u(y) }{H^{n-1}(y)}}{\rho} \\
-	 &= \Int[0][\delta]{\delta^{-n} \tilde{\varphi}\pbraces{\frac{\rho}{\delta}}\Int[\partial B_\rho(x)]{ u(y) }{H^{n-1}(y)}}{\rho} = \delta^{-n} \Int[0][\delta]{\tilde{\varphi}\pbraces{\frac{\rho}{\delta}}S_n \rho^{n-1} u(x)}{\rho} \\
-	 &= \delta^{-n} S_n u(x) \Int[0][1]{\tilde{\varphi}(\eta) (\eta \delta)^{n-1} \delta }{\eta} = u(x) S_n  \Int[0][1]{\tilde{\varphi}(\eta) \eta^{n-1} \delta }{\eta} \\
-	 &= u(x) \Int[B_1(0)]{\varphi(z)}{\lambda^n(z)} = u(x)
+	(u \ast \varphi_\delta)(x) &= \Int[B_\delta(x)]{\varphi_\delta(x - y) u(y) }{\lambda^n}
+  = \Int[0][\delta]{\Int[\partial B_\rho(x)]{\varphi_\delta(x - y) u(y) }{H^{n-1}(y)}}{\rho} \\
+	 &= \Int[0][\delta]{\delta^{-n} \varphi\pbraces{\frac{\rho}{\delta}}
+   \Int[\partial B_\rho(x)]{ u(y) }{H^{n-1}(y)}}{\rho} = \delta^{-n}
+   \Int[0][\delta]{\varphi\pbraces{\frac{\rho}{\delta}}S_n \rho^{n-1} u(x)}{\rho} \\
+	 &\stackrel{\eta = \rho/\delta}{=} \delta^{-n} S_n u(x) \Int[0][1]{\varphi(\eta) (\eta \delta)^{n-1} \delta }{\eta}
+   = u(x) S_n  \Int[0][1]{\varphi(\eta) \eta^{n-1}  }{\eta} \\
+	 &= u(x) \Int[0][1]{\int_{\partial B_{\eta}(0)}\varphi(z)  dz}{\eta}
+   = u(x) \Int[B_1(0)]{\varphi(z)}{\lambda^n(z)} = u(x)
 	\end{align*}
+  Mit Lemma 3.14 erhalten wir also $u \in C^{\infty}(\Omega_{\delta})$
+  und da Stetigkeit eine lokale Eigenschaft ist, folgt mit der Tatsache, dass
+  $\bigcup_{\delta > 0}\Omega_\delta = \Omega$ schon $u \in C^{\infty}(\Omega)$.
+  Also können wir Aufgabe 1 anwenden.
 \end{solution}
 
 % --------------------------------------------------------------------------------
