@@ -21,8 +21,24 @@ Zeigen Sie, dass $u$ harmonisch ist.
 
 \begin{solution}
 
-ToDo!
-
+Wir führen den Beweis mit Kontraposition. Sei also $u$ nicht harmonisch, also gibt es $y \in \Omega$ mit $\Delta u(y) \neq 0$. Da $\Omega$ offen ist gibt es ein $R \in \R^+$ sodass $\overline{B_R(y)} \subseteq \Omega$. Wir definieren eine Funktion 
+\begin{align*}
+m: (0, R) \to \R : r \mapsto \frac{1}{S_n r^{n - 1}} \Int[\partial B_r(y)]{u(x)}{H^{n - 1}(x)}.
+\end{align*}
+Wir erhalten für beliebiges $r \in (0, R)$ die Gleichheit
+\begin{align*}
+m(r) = \frac{1}{S_n r^{n - 1}} \Int[\partial B_r(y)]{u(x)}{H^{n - 1}(x)} = \frac{1}{S_n}  \Int[\partial B_1(0)]{u(y + rz)}{H^{n - 1}(z)}
+\end{align*}
+und $z \in \partial B_1(0)$ erhalten wir mit der Ungleichung von Cauchy-Schwarz die Abschätzung
+\begin{align*}
+|\partial_r(u(y + rz))| = |\nabla u(y + rz) \cdot z| \leq \norm[2]{\nabla u(y + rz)} \norm[2]{z} \leq \sup\Bbraces{\norm[2]{\nabla u(y + rz)} : z \in \partial B_1(0)} < \infty.
+\end{align*}
+Nach dem Satz von der majorisierten Konvergenz ist daher $m$ differenzierbar und es gilt mit dem Satz von Gauß
+\begin{align*}
+m^\prime(r) &= \frac{1}{S_n}  \Int[\partial B_1(0)]{\partial_r(u(y + rz))}{H^{n - 1}(z)} \\
+            &= \frac{1}{S_n}  \Int[\partial B_1(0)]{\nabla u(y + rz) \cdot z}{H^{n - 1}(z)} = \frac{1}{S_n}  \Int[B_1(0)]{\Delta u(y + rz)}{\lambda^n(z)}
+\end{align*}
+Schließlich erkennen wir, dass es ein $\rho \in (0, R)$ gibt so, dass $u$ auf $B_\rho(y)$ das Vorzeichen nicht wechselt und daher sicher $m^\prime(\rho) \neq 0$, also ist $m$ nicht konstant und daher erfüllt $u$ die Mittelwerteigenschaft nicht.
 \end{solution}
 
 % --------------------------------------------------------------------------------

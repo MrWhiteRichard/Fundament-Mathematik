@@ -1,0 +1,33 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[109]
+
+Skizzieren Sie einen (halb-)formalen Beweis einer der Formeln aus den vorigen
+beiden Beispielen.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir skizzieren den Beweis für
+$[\forall x A(x)] \land [\forall x B(x)] \rightarrow \forall x[A(x) \land B(x)]$: \\
+Wir zeigen dazu $\{\forall x A(x), \forall x B(x)\} \vdash \forall x[A(x) \land B(x)]$
+und erhalten einen Beweis für die eigentliche Formel durch zweimaliges Anwenden
+des Deduktionstheorem und einer geeigneten Tautologie.
+\begin{flalign*}
+  1&: \forall x A(x), \forall x B(x) \vdash (\forall x A(x)) \rightarrow A(x) & \text{(Substitution)} \\
+  2&: \forall x A(x), \forall x B(x) \vdash (\forall x B(x)) \rightarrow B(x) & \text{(Substitution)} \\
+  3&: \forall x A(x), \forall x B(x) \vdash \forall x A(x) & \text{(Axiom)} \\
+  4&: \forall x A(x), \forall x B(x) \vdash \forall x B(x) & \text{(Axiom)} \\
+  5&: \forall x A(x), \forall x B(x) \vdash A(x) & \text{(MP)} \\
+  6&: \forall x A(x), \forall x B(x) \vdash B(x) & \text{(MP)} \\
+  7&: \forall x A(x), \forall x B(x) \vdash A(x) \rightarrow B(x) \rightarrow A(x) \land B(x)
+  & \text{(Tautologie)} \\
+  8&: \forall x A(x), \forall x B(x) \vdash B(x) \rightarrow A(x) \land B(x) & \text{(MP)} \\
+  9&: \forall x A(x), \forall x B(x) \vdash A(x) \land B(x) & \text{(MP)} \\
+  27&: \forall x A(x), \forall x B(x) \vdash \forall x[A(x) \land B(x)] & \text{(Generalisierungstheorem)} \\
+\end{flalign*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
