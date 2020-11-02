@@ -8,7 +8,7 @@ und $\psi(y)$ statt $\psi(z/x)$ bzw. $\psi(z/y)$. \\
 Zeigen Sie $\neg \exists y \psi(y) \vdash \exists y \psi(y) \rightarrow \chi$
 und $\exists x  \psi(x) \vdash \exists x (\varphi \rightarrow \psi(x))$
 für alle Formeln $\chi, \varphi$ und schließen Sie daraus
-$\neg \exists x (\exists y \psi(y) \rightarrow \psi(x))$. \\
+$\vdash \exists x (\exists y \psi(y) \rightarrow \psi(x))$. \\
 (Die Formel $\exists y A \rightarrow B$) wird als $(\exists y A) \rightarrow B$ gelesen.)
 
 \end{exercise}
@@ -29,14 +29,28 @@ Formaler Beweis für $\exists x  \psi(x) \vdash \exists x (\varphi \rightarrow \
 3&: \forall x( \neg (\varphi \rightarrow \psi(x)) \rightarrow \neg \psi(x)) & \text{(Allquantor vor Tautologie = Axiom)} \\
 4&: \forall x( \neg (\varphi \rightarrow \psi(x)) \rightarrow \neg \psi(x)) \rightarrow
 \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x) & \text{(Distributivität)} \\
-5&: \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x) & \text{MP(4,3)} \\
+5&: \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x) & \text{(MP(4,3))} \\
 6&: (\forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x))
 \rightarrow (\neg \forall x \neg \psi(x) \rightarrow \neg \forall x( \neg (\varphi \rightarrow \psi(x)))) & \text{(Tautologie)} \\
-7&: \neg \forall x( \neg (\varphi \rightarrow \psi(x))) & \text{MP(6,5)} \\
-8&: \neg \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \exists x (\varphi \rightarrow \psi(x))
+7&: \neg \forall x \neg \psi(x) \rightarrow \neg \forall x( \neg (\varphi \rightarrow \psi(x))) & \text{(MP(6,5))} \\
+8&: \neg \forall x \neg \psi(x) & \text{(MP(2,1))} \\
+9&: \neg \forall x( \neg (\varphi \rightarrow \psi(x))) & \text{(MP(7,8))} \\
+10&: \neg \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \exists x (\varphi \rightarrow \psi(x))
 & \text{(Existenz-Axiom)} \\
-9&: \exists x (\varphi \rightarrow \psi(x)) & \text{(MP(8,7))}
+11&: \exists x (\varphi \rightarrow \psi(x)) & \text{(MP(10,9))}
 \end{flalign*}
+Für den (halbformalen) Beweis von $\vdash \exists x (\exists y \psi(y) \rightarrow \psi(x))$
+verwenden wir zunächst zweimal das Deduktionstheorem, sowie eine schwache Einführung
+des Existenzquantors und erhalten
+für die Wahl $\chi = \phi(x)$ und $\varphi = \exists y \psi(y)$:
+\begin{flalign*}
+  &\vdash \neg \exists y \psi(y) \rightarrow \exists y \psi(y) \rightarrow \psi(x) & \text{(Deduktion)}\\
+  &\vdash \neg \exists y \psi(y) \rightarrow \exists z(\exists y \psi(y) \rightarrow \psi) &
+  \text{(schwache Einführung von $\exists$)}\\
+  & \vdash \exists x  \psi(x) \rightarrow \exists x (\exists y \psi(y) \rightarrow \psi(x)) & \text{(Deduktion)}\\
+\end{flalign*}
+Weiters wissen wir bereits $\vdash \exists x \psi(x) \rightarrow \exists y \psi(y)$.
+Damit ist die Aussage mittels Beweis durch Fallunterscheidung gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------
