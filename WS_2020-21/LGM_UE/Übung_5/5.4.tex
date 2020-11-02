@@ -11,8 +11,24 @@ beiden Beispielen.
 
 \begin{solution}
 
-\phantom{}
-
+Wir skizzieren den Beweis für
+$\exists x [A(x) \land B(x)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]$:\\
+Wir beweisen stattdessen
+$[\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg(A(x) \land B(x))] $ und schließen
+dann mit Tautologien auf die eigentliche Formel.
+Wir kennen bereits einen (halbformalen) Beweis von
+$[\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg A(x) \land \neg B(x)]$.
+Jetzt müssen wir nur noch die offensichtliche Tautologie
+mit dem Distributivitäts-Axiom kombinieren und wir sind fertig:
+\begin{flalign*}
+  &\vdash \forall x \underbrace{(\neg A(x) \land \neg B(x))}_{A} \rightarrow
+  \underbrace{(\neg(A(x) \land B(x)))}_{B}
+  & \text{(Allquantor vor Tautologie)}\\
+  &\vdash [\forall x (A \rightarrow B)]
+  \rightarrow [\forall x A \rightarrow \forall x B] & \text{(Distributivität)} \\
+  &\vdash [\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg(A(x) \land B(x))]
+  & \text{(Tautologie + MP)}
+\end{flalign*}
 \end{solution}
 
 % --------------------------------------------------------------------------------

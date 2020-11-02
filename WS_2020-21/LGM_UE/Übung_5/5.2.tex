@@ -16,8 +16,36 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
 \phantom{}
+\begin{enumerate}
+  \item Unter Verwendung der starken Einführung des Allquantors erhalten wir den halbformalen Beweis:
+  \begin{flalign*}
+    & \Phi \vdash A \rightarrow B \\
+    & \Phi \vdash (A \rightarrow B) \rightarrow (\neg B \rightarrow A) & \text{(Tautologie)}\\
+    & \Phi \vdash \neg B \rightarrow \neg A & \text{(MP)} \\
+    & \Phi \vdash \neg B \rightarrow \forall x \neg A & \text{(starke Einführung von $\forall$)} \\
+    & \Phi \vdash \exists x A \rightarrow \neg \forall x \neg A & \text{(Existenz-Axiom)} \\
+    & \Phi \vdash (\neg B \rightarrow \forall x \neg A) \rightarrow
+    (\exists x A \rightarrow \neg \forall x \neg A) \rightarrow (\exists x A \rightarrow B)
+    & \text{(Tautologie)} \\
+    & \Phi \vdash (\exists x A \rightarrow \neg \forall x \neg A)
+    \rightarrow (\exists x A \rightarrow B) & \text{(MP)} \\
+    & \Phi \vdash \exists x A \rightarrow B & \text{(MP)} \\
+  \end{flalign*}
+  \item Formulierung der schwachen $\exists$-Einführung:
+  \begin{align*}
+    \frac{\Phi \vdash \varphi \rightarrow  \psi[x/t]}{\Phi \vdash \varphi \rightarrow \exists x \psi},
+    \qquad \text{wenn die Substitution erlaubt ist.}
+  \end{align*}
+  Nun der halbformale Beweis (Tautologien bitte dazudenken):
+  \begin{flalign*}
+    &\Phi \vdash \neg \psi[x/t] \rightarrow \neg \varphi & \text{(Tautologie + MP)} \\
+    &\Phi \vdash \forall x \neg \psi \rightarrow \neg \psi[x/t] & \text{(Substitutions-Axiom)} \\
+    &\Phi \vdash \forall x \neg \psi \rightarrow \neg \varphi & \text{(Tautologie + MP)} \\
+    &\Phi \vdash \varphi \rightarrow \exists x \psi & \text{(Tautologie + MP)} \\
+  \end{flalign*}
+\end{enumerate}
+
 
 \end{solution}
 
