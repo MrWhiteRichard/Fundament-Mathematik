@@ -4,16 +4,89 @@
 
 Sei $U \subseteq \R^n$ offen und beschränkt und $u \in H^1(U)$.
 Angenommen, $f \in C^1(\R)$ und $\sup_{y \in \R} |f^\prime(y)| < \infty$. Zeigen Sie, dass $f \circ u \in H^1(U)$ und $\partial_i(f \circ u) = f^\prime(u) \partial_i u$ gilt.
-Zeigen Sie dasselbe Resultat für unbeschränkte $u$ unter der zusätzlichen Voraussetzung $f(0) = 0$.
+Zeigen Sie dasselbe Resultat für unbeschränkte $U$ unter der zusätzlichen Voraussetzung $f(0) = 0$.
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+Wir wissen zweierlei Dinge:
+\begin{align*}
+  H^1(U) &:= \overline{\{u \in C^{\infty}(U); \|u\|_{H^1(U)} < \infty\}} \\
+  u \in H^1(U) &\iff u \in L^2(U) \land \partial_i u \in L^2(U), \quad i=1,\dots,n.
+\end{align*}
+Definitionsgemäß können wir also $u$ in der $\|\cdot\|_{H^1(U)}$-Norm durch
+$C^{\infty}(U)$-Funktionen $u_n$ mit $\|u_n\|_{H^1(U)} < \infty$ approximieren.
+Wir zeigen zuerst $f \circ u \in L^2(\Omega)$. Da $f \in C^1(\R)$ und die Ableitung
+beschränlt ist, ist $f$ auch Lipschitz-stetig mit Lipschitz-Konstante $L$ und es folgt
+\begin{align*}
+  \|f\circ u - f\circ u_n\|_{L^2(U)}^2 &= \int_U (f \circ u - f\circ u_n)^2 dx
+  = \int_U (f(u(x))- f(u_n(x)))^2 dx \\
+  &\leq \int_U L^2(u(x) - u_n(x))^2 dx = L^2\|u - u_n\|_{L^2(U)}^2
+  \leq L^2\|u - u_n\|_{H^1(U)}^2  \xrightarrow{n \to \infty} 0.
+\end{align*}
+Fall 1: $U$ unbeschränkt, aber dafür $f(0) = 0$:
+\begin{align*}
+  \|f\circ u_n\|_{L^2(U)}^2 = \int_U f(u_n(x))^2dx = \int_U [f(u_n(x)) - f(0)]^2 dx
+  \leq \int_U L^2u_n(x)^2 = L^2\|u_n\|_{L^2(U)} < \infty
+\end{align*}
+Fall 2: $U$ beschränkt: ($f^2$ ist auch noch Lipschitz-stetig und für beschränkte Mengen
+gilt $L^2(U) \subset L^1(U)$)
+\begin{align*}
+  \|f\circ u_n\|_{L^2(U)}^2 &= \int_U f(u_n(x))^2dx = \int_U f^2(u_n(x)) - f^2(0) dx + \int_U f^2(0) dx \\
+  &\leq \int_U \tilde{L}|u_n(x)| dx + \lambda^n(U)f^2(0) < \tilde{L}\|u_n\|_{L^1(U)} + \lambda^n(U)f^2(0)
+  < \infty
+\end{align*}
+Da alle $f\circ u_n \in L^2(U)$ ist aufgrund der Abgeschlossenheit von $L^2(U)$
+auch $f\circ u \in L^2(U)$. \\
+Jetzt müssen wir noch die distributionellen Ableitungen von $f\circ u$ nachprüfen:
+Sei dazu $\phi \in \mathcal{D}(U)$ beliebig.
+\begin{align*}
+  \langle \partial_i(f\circ u_n), \phi \rangle &= - \langle f\circ u_n, \partial_i \phi \rangle \\
+  &= -\int_U f(u_n(x)) \partial_i\phi(x) dx = \int_U \partial_i f(u_n(x)) \phi(x) dx
+  - \underbrace{\int_{\partial U} f(u_n(x))\phi(x) dx}_{=0} \\
+  &= \int_U f^\prime(u_n(x)) \partial_i u_n(x) \phi(x) dx
+  = \langle f^{\prime}(u_n)\partial_i u_n, \phi \rangle
+\end{align*}
+Dichtheitsargumente:
+\begin{align*}
+  \langle \partial_i(f\circ u_n) - \partial_i(f\circ u), \phi \rangle
+  = \int_U[f(u_n(x)) - f(u(x))]\partial_i\phi(x) dx \leq
+  \|f\circ u_n - f\circ u\|_{L^2(U)}\|\partial_i \phi\|_{L^2(U)} \xrightarrow{n \to \infty} 0.
+\end{align*}
+Damit folgt
+\begin{align*}
+  \langle \partial_i (f \circ u), \phi \rangle
+  = \lim_{n \to \infty}\langle \partial_i (f \circ u_n), \phi \rangle
+  = \lim_{n \to \infty}\langle f^{\prime}(u_n)\partial_i u_n, \phi \rangle.
+\end{align*}
+Berechnen wir nun den letzten Grenzwert
+\begin{align*}
+  \langle f^{\prime}(u_n)\partial_i u_n - f^{\prime}(u)\partial_i u, \phi \rangle &=
+  \int_U [f^{\prime}(u_n(x))\partial_i u_n(x) - f^{\prime}(u(x))\partial_i u(x)] \phi(x) dx \\
+  &= \int_U [(f^{\prime}(u_n(x)) -f^{\prime}(u(x)))\partial_i u_n(x)
+  + (\partial_i u_n(x) - \partial_i u(x))f^{\prime}(u(x))]\phi(x) dx \\
+  &\leq \|(f^{\prime}(u_n) - f^{\prime}(u))\phi(x)\|_{L^2(U)}
+  \underbrace{\|\partial_i u_n(x)\|_{L^2(U)}}_{< \infty}
+   + \underbrace{\|\partial_i u_n - \partial_i u\|_{L^2(U)}\|f^{\prime}(u)\phi\|_{L^2(U)}}_{\to 0}
+\end{align*}
+Mit majorisierter Konvergenz erhalten wir aufgrund
+$(f^{\prime}(u_n(x) - f^{\prime}(u(x))^2 < 4\sup_{y \in \R}f^{\prime}(y)^2$
+\begin{align*}
+  \lim_{n \to \infty}\int_U (f^{\prime}(u_n(x)) - f^{\prime}(u(x)))^2\phi(x)^2 dx
+  &= \int_{\supp(\phi)} \phi(x)^2\lim_{n \to \infty}(f^{\prime}(u_n(x)) - f^{\prime}(u(x)))^2 dx \\
+  &= \int_{\supp(\phi)}\phi(x)^2(f^{\prime}(u(x)) - f^{\prime}(u(x)))^2 dx = 0.
+\end{align*}
+Insgesamt erhalten wir also $\langle \partial_i (f \circ u), \phi \rangle = f^{\prime}(u)\partial_i u$.
+Jetzt gilt es noch zu überprüfen, dass diese distributionellen Ableitungen wieder
+in $L^2(U)$ liegen:
+\begin{align*}
+  \int_{U}(f^{\prime}(u(x))\partial_i u(x))^2 dx
+  \leq \sup_{y \in \R}f^{\prime}(y)^2\|\partial_i u\|_{L^2(U)}^2
+  \leq \sup_{y \in \R}f^{\prime}(y)^2\|u\|_{H^1(U)}^2 < \infty.
+\end{align*}
+Damit ist auch $f \circ u \in H^1(U)$ und das Beispiel ist gelöst.
 \end{solution}
 
 % --------------------------------------------------------------------------------

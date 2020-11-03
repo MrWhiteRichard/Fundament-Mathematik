@@ -31,4 +31,25 @@ mit dem Distributivitäts-Axiom kombinieren und wir sind fertig:
 \end{flalign*}
 \end{solution}
 
+\begin{solution}
+	
+	Wir skizzieren den Beweis für
+	$\exists x [A(x) \land B(x)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]$:\\
+	\begin{flalign*}
+	&\vdash (\forall x \neg A(x)) \rightarrow  \neg A(y) 							           & \text{(Substitutionsaxiom)}\\
+	&\vdash A(y) \rightarrow \exists x A(x)              							           & \text{(Tautologie \eqref{eq:taut3} + Existenzaxiom + MP)} \\
+	&\vdash B(y) \rightarrow \exists x B(x)              							           & \text{(analog)} \\
+	&\vdash [A(y) \land B(y)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]              & \text{(Tautologie \eqref{eq:taut8} + MP)} \\
+	&\vdash \exists y ´[A(y) \land B(y)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]   & (\exists\text{-Einführung stark)} \\
+	&\vdash [\forall y \neg P(y)] \rightarrow [\forall x \neg P(x)]                            & \text{(haben wir bereits bewiesen)} \\
+	&\vdash [\exists x P(x)] \rightarrow [\exists y P(y)]                                      & \text{(Tautologien \eqref{eq:taut3} und \eqref{eq:taut4} + Existenzaxiom + MP)} \\
+	&\vdash \exists x [A(x) \land B(x)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]    & \text{(Tautologie \eqref{eq:taut4} + MP)}
+	\end{flalign*}
+	Tautologien
+	\begin{align}
+	(p \rightarrow q) \rightarrow ((r \rightarrow s) \rightarrow ((p \land r) \rightarrow (q \land s))) \label{eq:taut8}
+	\end{align}
+\end{solution}
+
+
 % --------------------------------------------------------------------------------
