@@ -3,7 +3,7 @@
 \begin{exercise}
 
 Zeigen Sie:
-Ist $w$ harmonisch auf einer offenen Menge $\Omega \subseteq \R^n$, $r > 0$, $x \in \Omega$ sodass $\overline{B_r(x)} \subseteq \Omega$, dann gilt für alle $i = 1 \dots n:$
+Ist $w$ harmonisch auf einer offenen Menge $\Omega \subseteq \R^n$, $r > 0$, $x \in \Omega$ sodass $\overline{B_r(x)} \subseteq \Omega$, dann gilt für alle $i = 1, \dots, n:$
 
 \begin{align*}
     |\partial_i w|
@@ -29,9 +29,43 @@ Zeigen Sie weiters, dass für jeden Multiindex $\alpha$ mit $|\alpha| = k$ gilt:
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+Mit dem Satz von Schwarz erhalten wir, dass auch $\partial_i w$ harmonisch und
+somit folgt mit der Mittelwerteigenschaft, sowie dem Satz vor dem Satz von Gauß aus Ana3:
+\begin{align*}
+  |\partial_iw(x)|
+  &= \left|\frac{n}{S_nr^n}\int_{B_{r}(x)}\partial_iw(y) dy\right| \\
+  &= \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\nu_i(y) dS(y)\right| \\
+  &= \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\frac{y_i}{|y|} dS(y)\right| \\
+  &\leq \left|\frac{n}{S_nr^n}S_nr^{n-1}\|w\|_{L^{\infty}(\partial B_{r}(x))}\right| \\
+  &= \frac{n}{r}\|w\|_{L^{\infty}(\partial B_{r}(x))} \leq \frac{n}{r}\|w\|_{L^{\infty}(B_{r}(x))}
+\end{align*}
+Sei $\alpha$ nun ein beliebiger Multiindex der
+Ordnung $k$, wähle $i$ und $\beta$, sodass
+$\partial^{\alpha}w = \partial_i(\partial^{\beta}w)$. Da $\partial^{\alpha}w$
+wieder harmonisch ist folgt
+\begin{align*}
+  |\partial^\alpha w(x)|
+  &= \left|\frac{k^nn}{S_nr^n}\int_{B_{r/k}(x)}\partial^{\alpha}w(y) dy\right| \\
+  &= \left|\frac{k^nn}{S_nr^n}\int_{B_{r/k}(x)}\partial_i(\partial^{\beta}w(y)) dy\right| \\
+  &= \left|\frac{k^nn}{S_nr^n}\int_{\partial B_{r/k}(x)}\partial^{\beta}w(y)\frac{y_i}{|y|} dy\right| \\
+  &\leq \left|\frac{k^nn}{S_nr^n}\frac{S_nr^{n-1}}{k^{n-1}}
+  \|\partial^\beta w\|_{L^{\infty}(\partial B_{r/k}(x))}\right| \\
+  &= \frac{kn}{r}\|\partial^\beta w\|_{L^{\infty}(\partial B_{r/k}(x))}
+  \leq \frac{kn}{r}\|\partial^\beta w\|_{L^{\infty}( B_{r/k}(x))}
+\end{align*}
+Jetzt gilt es die Prozedur zu iterieren. Für $y \in \partial B_{r/k}(x)$
+gilt $B_{r/k}(y) \subset B_{2r/k} \subset \Omega$.
+\begin{align*}
+  |\partial^{\beta}w(y)| &= \left|\frac{k^nn}{S_nr^n}\int_{B_{r/k}(y)}\partial^{\beta}w(z) dz\right| \\
+  &= \cdots \leq \frac{kn}{r}\|\partial^{\gamma}w\|_{L^{\infty}(B_{2r/k(x)})}
+\end{align*}
+Da wir den Prozess insgesamt
+$k$-mal iterieren müssen, haben wir den Radius $r/k$ gewählt. Ingesamt erhalten wir damit
+\begin{align*}
+  |\partial^{\alpha}w(x)| \leq \left(\frac{kn}{r}\right)^k\|w\|_{L^{\infty}(B_r(x))}.
+\end{align*}
+Wenn irgendjemand weiß, wie man das schön induziert, scheue er sich nicht,
+die Prozedur hier umzuschreiben.
 \end{solution}
 
 % --------------------------------------------------------------------------------
