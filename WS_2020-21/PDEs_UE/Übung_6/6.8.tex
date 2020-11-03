@@ -12,8 +12,24 @@ ist $u \in H^1(\Omega)$, dann sind auch $u^+ = \max \Bbraces{u, 0}$, $u^- = - \m
 
 \begin{solution}
 
-ToDo!
-
+\begin{align*}
+  f(x) &:= |x| \in C(\R)
+\end{align*}
+Sei $\eta_\delta$ der Standard-Mollifier. Dann ist $f\ast \eta_\delta \in C^{\infty}(\R)$
+und es gilt $(f\ast\eta_\delta) \circ u \in H^1(\Omega)$, falls $f\ast\eta_\delta(0) = 0$.
+Berechnen wir die Ableitung von $f\ast\eta_\delta:$
+\begin{align*}
+  |(f\ast\eta_\delta)^{\prime}(x)| = |f^{\prime}\ast\eta_\delta(x)| = |\sgn\ast\eta_\delta(x)| \leq 1.
+\end{align*}
+Schaun wir uns $f\ast\eta_\delta(0)$ an:
+\begin{align*}
+  f\ast\eta_\delta(0) = \int_{\R}f(-y)\eta_\delta(y) dy \neq 0.
+\end{align*}
+Zu zeigen:
+\begin{align*}
+  \|(f\ast\eta_\delta) \circ u - f\circ u\|_{H^1(U)} \xrightarrow{\delta \to 0} 0.
+\end{align*}
+Ana3: $\|f- f\ast\eta_\delta\|_{L^p(\Omega)} \to 0$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
