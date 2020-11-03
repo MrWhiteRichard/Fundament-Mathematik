@@ -19,19 +19,19 @@ $\vdash \exists x (\exists y \psi(y) \rightarrow \psi(x))$. \\
 Formaler Beweis für $\neg \exists y \psi(y) \vdash \exists y \psi(y) \rightarrow \chi$:
 \begin{flalign*}
 1&: \neg \exists y \psi(y) & \\
-2&: \neg \exists y \psi(y) \rightarrow \exists y \psi(y) \rightarrow \chi & \text{(Tautologie)} \\
+2&: \neg \exists y \psi(y) \rightarrow \exists y \psi(y) \rightarrow \chi & \text{(Tautologie \eqref{eq:taut1})} \\
 3&: \exists y \psi(y) \rightarrow \chi & \text{MP(2,1)}
 \end{flalign*}
 Formaler Beweis für $\exists x  \psi(x) \vdash \exists x (\varphi \rightarrow \psi(x))$:
 \begin{flalign*}
 1&: \exists x \psi(x) & \\
 2&: \exists x \psi(x) \rightarrow \neg \forall x \neg \psi(x) & \text{(Existenz-Axiom)} \\
-3&: \forall x( \neg (\varphi \rightarrow \psi(x)) \rightarrow \neg \psi(x)) & \text{(Allquantor vor Tautologie = Axiom)} \\
+3&: \forall x( \neg (\varphi \rightarrow \psi(x)) \rightarrow \neg \psi(x)) & \text{(Allquantor vor Tautologie \eqref{eq:taut2} = Axiom)} \\
 4&: \forall x( \neg (\varphi \rightarrow \psi(x)) \rightarrow \neg \psi(x)) \rightarrow
 \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x) & \text{(Distributivität)} \\
 5&: \forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x) & \text{(MP(4,3))} \\
 6&: (\forall x( \neg (\varphi \rightarrow \psi(x))) \rightarrow \forall x \neg \psi(x))
-\rightarrow (\neg \forall x \neg \psi(x) \rightarrow \neg \forall x( \neg (\varphi \rightarrow \psi(x)))) & \text{(Tautologie)} \\
+\rightarrow (\neg \forall x \neg \psi(x) \rightarrow \neg \forall x( \neg (\varphi \rightarrow \psi(x)))) & \text{(Tautologie \eqref{eq:taut3})} \\
 7&: \neg \forall x \neg \psi(x) \rightarrow \neg \forall x( \neg (\varphi \rightarrow \psi(x))) & \text{(MP(6,5))} \\
 8&: \neg \forall x \neg \psi(x) & \text{(MP(2,1))} \\
 9&: \neg \forall x( \neg (\varphi \rightarrow \psi(x))) & \text{(MP(7,8))} \\
@@ -39,6 +39,13 @@ Formaler Beweis für $\exists x  \psi(x) \vdash \exists x (\varphi \rightarrow \
 & \text{(Existenz-Axiom)} \\
 11&: \exists x (\varphi \rightarrow \psi(x)) & \text{(MP(10,9))}
 \end{flalign*}
+Hier eine Liste der verwendeten Tautologien:
+\begin{align}
+\neg p \rightarrow (p \rightarrow q) \label{eq:taut1} \\
+\neg(p \rightarrow q) \rightarrow \neg q \label{eq:taut2} \\
+(p \rightarrow q) \leftrightarrow (\neg q \rightarrow \neg p) \label{eq:taut3} \\
+(p \rightarrow q) \rightarrow ((q \rightarrow r) \rightarrow (p \rightarrow r))) \label{eq:taut4}
+\end{align}
 Für den (halbformalen) Beweis von $\vdash \exists x (\exists y \psi(y) \rightarrow \psi(x))$
 verwenden wir zunächst zweimal das Deduktionstheorem, sowie eine schwache Einführung
 des Existenzquantors und erhalten
@@ -50,7 +57,7 @@ für die Wahl $\chi = \phi(x)$ und $\varphi = \exists y \psi(y)$:
   & \vdash \exists x  \psi(x) \rightarrow \exists x (\exists y \psi(y) \rightarrow \psi(x)) & \text{(Deduktion)}\\
 \end{flalign*}
 Weiters wissen wir bereits $\vdash \exists x \psi(x) \rightarrow \exists y \psi(y)$.
-Damit ist die Aussage mittels Beweis durch Fallunterscheidung gezeigt.
+Damit ist die Aussage mittels der Tautologie \eqref{eq:taut4} und Beweis durch Fallunterscheidung gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------

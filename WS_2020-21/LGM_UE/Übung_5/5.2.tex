@@ -21,17 +21,21 @@
   \item Unter Verwendung der starken Einführung des Allquantors erhalten wir den halbformalen Beweis:
   \begin{flalign*}
     & \Phi \vdash A \rightarrow B \\
-    & \Phi \vdash (A \rightarrow B) \rightarrow (\neg B \rightarrow A) & \text{(Tautologie)}\\
+    & \Phi \vdash (A \rightarrow B) \rightarrow (\neg B \rightarrow \neg A) & \text{(Tautologie \eqref{eq:taut3})}\\
     & \Phi \vdash \neg B \rightarrow \neg A & \text{(MP)} \\
     & \Phi \vdash \neg B \rightarrow \forall x \neg A & \text{(starke Einführung von $\forall$)} \\
     & \Phi \vdash \exists x A \rightarrow \neg \forall x \neg A & \text{(Existenz-Axiom)} \\
     & \Phi \vdash (\neg B \rightarrow \forall x \neg A) \rightarrow
     (\exists x A \rightarrow \neg \forall x \neg A) \rightarrow (\exists x A \rightarrow B)
-    & \text{(Tautologie)} \\
+    & \text{(Tautologie \eqref{eq:taut5})} \\
     & \Phi \vdash (\exists x A \rightarrow \neg \forall x \neg A)
     \rightarrow (\exists x A \rightarrow B) & \text{(MP)} \\
     & \Phi \vdash \exists x A \rightarrow B & \text{(MP)} \\
   \end{flalign*}
+  Hier noch weitere verwendete Tautologien:
+  \begin{align}
+  (\neg p \rightarrow q) \rightarrow ((r \rightarrow \neg q) \rightarrow (r \rightarrow p)) \label{eq:taut5}
+  \end{align}
   \item Formulierung der schwachen $\exists$-Einführung:
   \begin{align*}
     \frac{\Phi \vdash \varphi \rightarrow  \psi[x/t]}{\Phi \vdash \varphi \rightarrow \exists x \psi},
@@ -39,10 +43,10 @@
   \end{align*}
   Nun der halbformale Beweis (Tautologien bitte dazudenken):
   \begin{flalign*}
-    &\Phi \vdash \neg \psi[x/t] \rightarrow \neg \varphi & \text{(Tautologie + MP)} \\
+    &\Phi \vdash \neg \psi[x/t] \rightarrow \neg \varphi & \text{(Tautologie \eqref{eq:taut3} + MP)} \\
     &\Phi \vdash \forall x \neg \psi \rightarrow \neg \psi[x/t] & \text{(Substitutions-Axiom)} \\
-    &\Phi \vdash \forall x \neg \psi \rightarrow \neg \varphi & \text{(Tautologie + MP)} \\
-    &\Phi \vdash \varphi \rightarrow \exists x \psi & \text{(Tautologie + MP)} \\
+    &\Phi \vdash \forall x \neg \psi \rightarrow \neg \varphi & \text{(Tautologie \eqref{eq:taut4} + MP)} \\
+    &\Phi \vdash \varphi \rightarrow \exists x \psi & \text{(Existenzaxiom + Tautologien \eqref{eq:taut3} und \eqref{eq:taut4} + MP)} \\
   \end{flalign*}
 \end{enumerate}
 
