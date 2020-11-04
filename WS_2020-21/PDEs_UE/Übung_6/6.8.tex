@@ -69,8 +69,7 @@ Zwischen den Nullstellen gibt es keine Vorzeichenwechsel, deswegen schließen wi
   0
 \end{align*}
 
-dass $\forall x \in [0, \frac{1}{n}]: g_n(x) \geq 0$, also $x \geq p_n(x)$. Wegen der
-Symmetrie der $p_n$ gilt dann schließlich $\forall x \in [-\frac{1}{n},\frac{1}{n}]: |x| \geq p_n(x)$.
+dass $\forall x \in [0, \frac{1}{n}]: g_n(x) \geq 0$, also $x \geq p_n(x)$. Weil die $p_n$ gerade Funktionen sind, gilt dann schließlich $\forall x \in [-\frac{1}{n},\frac{1}{n}]: |x| \geq p_n(x)$.
 Nun zeigen wir die Konvergenz in $L^2(\Omega)$:
 
 \begin{align*}
@@ -108,7 +107,7 @@ Wobei wir unsere integrierbare Majorante mit $|\1_{
     =
     \Int[\Omega]{\1_{
       [-\frac{1}{n}, \frac{1}{n}]
-      }(u(x)) \Big(p_n(u(x))-f_m^\prime(u(x))\Big)^2
+      }(u(x)) \Big(p_n^\prime(u(x))-f_m^\prime(u(x))\Big)^2 (\partial_i u(x))^2
     }{x}
     =
     \cdots
@@ -116,56 +115,48 @@ Wobei wir unsere integrierbare Majorante mit $|\1_{
 
 Wir machen eine Fallunterscheidung für $p_n^\prime - f_m^\prime$:
 \begin{enumerate}[label = \textbf{Fall \roman*:}]
-  \item $\frac{1}{m} \leq x \leq \frac{1}{n}$: Hier gilt
+  \item $\frac{1}{m} \leq y \leq \frac{1}{n}$: Hier gilt
 
     \begin{align*}
-      f_m^\prime(x) - p_n^\prime(x)
+      f_m^\prime(y) - p_n^\prime(y)
       =
-      1 - 3nx + 2n^3 x^3
+      1 - 3ny + 2n^3 y^3
       \leq
-      1 + 2n^3 x^3
+      1 + 2n^3 y^3
+      \leq
+      3 \\
+      p_n^\prime(y) - f_m^\prime(y)
+      =
+      3ny - 2n^3 y^3 - 1
+      \leq
+      3ny
       \leq
       3
     \end{align*}
 
-  \item $0 \leq x < \frac{1}{m}$: Hier gilt
+  \item $0 \leq y < \frac{1}{m}$: Hier gilt
 
     \begin{align*}
-      p_m^\prime(x) - p_n^\prime(x)
+      p_m^\prime(y) - p_n^\prime(y)
       =
-      2x^3(n^3-m^3) + 3x(m-n)
+      2y^3(n^3-m^3) + 3y(m-n)
       \leq
       3 \frac{m-n}{m}
       \leq
       3 (1 - \frac{n}{m})
       \leq
-      3
-    \end{align*}
-
-  \item $-\frac{1}{m} > x >0$: Hier gilt
-
-    \begin{align*}
-      p_n^\prime(x) - p_m^\prime(x)
+      3 \\
+      p_n^\prime(y) - p_m^\prime(y)
       =
-      2x^3(m^3-n^3) + 3x(n-m)
+      2y^3(m^3-n^3) + 3y(n-m)
       \leq
-      2 \frac{m^3-n^3}{m^3}
-      \leq
-      3
-    \end{align*}
-
-  \item $-\frac{1}{n} \geq x \geq -\frac{1}{m}$: Hier gilt
-
-    \begin{align*}
-      p_n^\prime(x) - f_m^\prime(x)
-      =
-      3nx - 2n^3x^3 - 1
+      2y^3(m^3-n^3)
       \leq
       3
     \end{align*}
 \end{enumerate}
 
-Wir können also $p_n^\prime - f_m^\prime$ in jedem Fall mit $3$ abschätzen und erhalten so insgesamt
+Wir können also $|p_n^\prime - f_m^\prime|$ in jedem Fall mit $3$ abschätzen (da die Ableitungen ungerade Funktionen sind) und erhalten so insgesamt
 
 \begin{align*}
   \cdots
