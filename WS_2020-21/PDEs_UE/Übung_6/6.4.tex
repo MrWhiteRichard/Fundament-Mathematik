@@ -17,25 +17,27 @@ Zeigen Sie, dass für eine Funktion $u \in C^2((a, b)) \cap C([a, b])$ folgende 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	\phantom{} 
+	\phantom{}
 	\begin{enumerate}[label = (\roman*)]
 		\item Wir führen den Beweis durch Kontraposition. Sei $x_0$ das Maximum von $u$, also $\forall x \in (a, b): u(x) \leq u(x_0)$. Damit gilt $u^\prime(x_0) = 0$ und $u^{\prime\prime}(x_0) \leq 0$ und daher
 		\begin{align*}
-		u^{\prime\prime}(x_0) + g(x_0) u^\prime(x_0) = u^{\prime\prime}(x_0) \leq 0.
+		0 < u^{\prime\prime}(x_0) + g(x_0) u^\prime(x_0) = u^{\prime\prime}(x_0) \leq 0. \quad \lightning
 		\end{align*}
 		\item Wir führen einen Beweis durch Widerspruch. Wir wählen eine Stelle $x_0 \in (a,b)$ an der $u$ das Maximum annimmt, also $\forall x \in (a,b): u(x) \leq u(x_0)$. Weiters wissen wir, da $u$ nicht konstant ist, dass es ein $\eta \in (a,b)$ gibt mit $u(\eta) < u(x_0)$. Ohne Beschränkung der Allgemeinheit sei $\eta > x_0$. Nun definieren wir
 		\begin{align*}
 		x_1 := \sup\Bbraces{y \in [x_0, b) \mid \forall z \in [x_0, y]: u(z) = u(x_0)} < b.
 		\end{align*}
-		Als nächstes wählen wir $0 < \delta_0 < b - x_1$. Nach Definition von $x_1$ finden wir ein $x_2 \in (x_1,x_1 + \delta_0)$ mit $u(x_2) < u(x_1)$ und danach mit dem Mittelwertsatz ein $x_3 \in (x_1, x_2]$ mit $u^\prime(x_3) < 0$. Da $x_1$ Maximum von $u$ ist gilt $u^\prime(x_1) = 0$ und $u^{\prime\prime}(x_1) \leq 0$ daher finden wir wieder mit dem Mittelwertsatz ein $x_4 \in (x_1, x_3]$ mit $u^{\prime\prime}(x_4) < 0$. Als nächstes wählen wir $\delta_1 \in (0, \delta_0)$ mit $u^{\prime\prime}(x_4) < - \delta_1$.  Sei 
+
+    ---------------------------------alte Version--------------------------------------------------------\\
+		Als nächstes wählen wir $0 < \delta_0 < b - x_1$. Nach Definition von $x_1$ finden wir ein $x_2 \in (x_1,x_1 + \delta_0)$ mit $u(x_2) < u(x_1)$ und danach mit dem Mittelwertsatz ein $x_3 \in (x_1, x_2]$ mit $u^\prime(x_3) < 0$. Da $x_1$ Maximum von $u$ ist gilt $u^\prime(x_1) = 0$ und $u^{\prime\prime}(x_1) \leq 0$ daher finden wir wieder mit dem Mittelwertsatz ein $x_4 \in (x_1, x_3]$ mit $u^{\prime\prime}(x_4) < 0$. Als nächstes wählen wir $\delta_1 \in (0, \delta_0)$ mit $u^{\prime\prime}(x_4) < - \delta_1$.  Sei
 		\begin{align*}
 		M := \sup\Bbraces{|g(y)|: y \in [x_1,x_1 + \delta_1]}.
-		\end{align*} 
+		\end{align*}
 		Nun wählen wir $\delta_2 \in (0, \delta_1)$ mit $\delta_2 < \frac{1}{2M}$. Nach Voraussetzung gilt $u^{\prime\prime}(x_1) = u^{\prime\prime}(x_1) + g(x_1) u^\prime(x_1) \geq 0$, also $u^{\prime\prime}(x_1) = 0$. Nach dem Zwischenwersatz können wir daher
 		\begin{align*}
 		x_5 := \inf\Bbraces{z \in (x_1, x_1 + \delta_1): u^{\prime\prime}(z) = -\delta_2}
 		\end{align*}
-		definieren. Da die Menge wegen der Stetigkeit von $u^{\prime\prime}$ abgeschlossen ist handelt es sich tatsächlich um ein Minimum. Noch ein letzetes Mal verwenden wir den Mittelwertsatz und erhalten ein $x_6 \in (x_1, x_5)$ mit 
+		definieren. Da die Menge wegen der Stetigkeit von $u^{\prime\prime}$ abgeschlossen ist handelt es sich tatsächlich um ein Minimum. Noch ein letzetes Mal verwenden wir den Mittelwertsatz und erhalten ein $x_6 \in (x_1, x_5)$ mit
 		\begin{align*}
 		u^\prime(x_5) = u^\prime(x_1) + u^{\prime\prime}(x_6) (x_5 - x_1) = u^{\prime\prime}(x_6) (x_5 - x_1)
 		\end{align*}
@@ -44,7 +46,30 @@ Zeigen Sie, dass für eine Funktion $u \in C^2((a, b)) \cap C([a, b])$ folgende 
 		0 &\leq u^{\prime\prime}(x_5) + g(x_5) u^\prime (x_5) = u^{\prime\prime}(x_5) + g(x_5) u^{\prime\prime}(x_6)(x_5 - x_1) \\
 		&\leq u^{\prime\prime}(x_5) + M |u^{\prime\prime}(x_6)| \frac{1}{2M} \leq -\delta_2 + \frac{\delta_2}{2} = -\frac{\delta_2}{2} < 0
 		\end{align*}
-		Ein Widerspruch!
+		Ein Widerspruch!\\
+    ---------------------------------neue Version--------------------------------------------------------\\
+    Als nächstes wählen wir $0 < \delta_0 < b - x_1$.
+    \begin{align*}
+    M := \sup\Bbraces{|g(y)|: y \in [x_1,x_1 + \delta_0]}.
+    \end{align*}
+    Nun wähle $\delta_1 < \frac{1}{2M}$.
+    Nach Definition von $x_1$ finden wir ein $x_2 \in (x_1,x_1 + \delta_1)$ mit $u(x_2) < u(x_1)$ und danach mit dem Mittelwertsatz ein $x_3 \in (x_1, x_2]$ mit $u^\prime(x_3) < 0$.
+    Da $x_1$ Maximum von $u$ ist gilt $u^\prime(x_1) = 0$ und $u^{\prime\prime}(x_1) \leq 0$ daher
+    finden wir wieder mit dem Mittelwertsatz ein $x_4 \in (x_1, x_3]$ und ein $n \in \N$ mit $u^{\prime\prime}(x_4) < -\frac{1}{n}$.
+    \begin{align*}
+      x_5 := \min \left\{x \in (x_1,x_1+\delta_1): u^{\primeprime}(x) = -\frac{1}{n}\right\}
+    \end{align*}
+    Wieder mit dem Mittelwertsatz existiert ein $x_6 \in (x_1,x_5)$
+    \begin{align*}
+    u^\prime(x_6) = u^\prime(x_1) + u^{\prime\prime}(x_6) (x_5 - x_1) = u^{\prime\prime}(x_6) (x_5 - x_1)
+    \end{align*}
+    Also gilt
+    \begin{align*}
+    0 &\leq u^{\prime\prime}(x_5) + g(x_5) u^\prime (x_5)
+    = u^{\prime\prime}(x_5) + g(x_5) u^{\prime\prime}(x_6)(x_5 - x_1) \\
+    &\leq -\frac{1}{n} + M\frac{1}{n}\frac{1}{2M} = -\frac{1}{n}\left(1 - \frac{1}{2}\right) < 0.
+    \end{align*}
+    Ein Widerspruch!
 	\end{enumerate}
 
 
