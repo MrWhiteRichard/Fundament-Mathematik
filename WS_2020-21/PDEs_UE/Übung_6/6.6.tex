@@ -35,27 +35,35 @@ Somit folgt mit der Mittelwerteigenschaft, sowie dem Satz vor dem Satz von Gauß
 
 \begin{align*}
   |\partial_iw(x)|
-  &= \left|\frac{n}{S_nr^n}\int_{B_{r}(x)}\partial_iw(y) dy\right| \\
-  &= \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\nu_i(y) dS(y)\right| \\
-  &= \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\frac{y_i}{|y|} dS(y)\right| \\
-  &\leq \left|\frac{n}{S_nr^n}S_nr^{n-1}\|w\|_{L^\infty(\partial B_{r}(x))}\right| \\
-  &= \frac{n}{r}\|w\|_{L^\infty(\partial B_{r}(x))} \leq \frac{n}{r}\|w\|_{L^\infty(B_{r}(x))}.
+  & =
+  \left|\frac{n}{S_nr^n}\int_{B_{r}(x)}\partial_iw(y) dy\right| \\
+  & =
+  \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\nu_i(y) dS(y)\right| \\
+  & =
+  \left|\frac{n}{S_nr^n}\int_{\partial B_{r}(x)}w(y)\frac{y_i}{|y|} dS(y)\right| \\
+  & \leq
+  \frac{n}{S_nr^n}S_nr^{n-1}\|w\|_{L^\infty(\partial B_{r}(x))} \\
+  & =
+  \frac{n}{r}\|w\|_{L^\infty(\partial B_{r}(x))} \leq \frac{n}{r}\|w\|_{L^\infty(B_{r}(x))}.
 \end{align*}
 
 Sei $\alpha$ nun ein beliebiger Multiindex der Ordnung $k$.
 Wähle $i$ und $\beta$, sodass $\partial^\alpha w = \partial_i(\partial^\beta w)$.
 ($\beta$ hat Ordnung $k-1$.)
-Da $\partial^\alpha w$ wieder harmonisch ist folgt
+Da $\partial^\alpha w$ wieder harmonisch ist, können wir die obere Abschätzung anwenden.
 
 \begin{align*}
+  \implies
   |\partial^\alpha w(x)|
-  &= \left|\frac{k^nn}{S_nr^n}\int_{B_{r/k}(x)}\partial^\alpha w(y) dy\right| \\
-  &= \left|\frac{k^nn}{S_nr^n}\int_{B_{r/k}(x)}\partial_i(\partial^\beta w(y)) dy\right| \\
-  &= \left|\frac{k^nn}{S_nr^n}\int_{\partial B_{r/k}(x)}\partial^\beta w(y)\frac{y_i}{|y|} dy\right| \\
-  &\leq \left|\frac{k^nn}{S_nr^n}\frac{S_nr^{n-1}}{k^{n-1}}
-  \|\partial^\beta w\|_{L^\infty(\partial B_{r/k}(x))}\right| \\
-  &= \frac{kn}{r}\|\partial^\beta w\|_{L^\infty(\partial B_{r/k}(x))}
-  \leq \frac{kn}{r}\|\partial^\beta w\|_{L^\infty( B_{r/k}(x))}.
+  =
+  |\partial_i (\partial^\beta w)(x)|
+  \leq
+  \frac{kn}{r}
+  \norm
+  [
+    L^\infty( B_{r/k}(x))
+  ]
+  {\partial^\beta w}
 \end{align*}
 
 Jetzt gilt es die Prozedur zu iterieren.
@@ -86,6 +94,17 @@ Analog zu obiger Rechnunge erhalten wir also Folgendes.
 
 Weil $y$ beliebig war, gilt die Abschätzung auch mit linker Seite $\norm[L^\infty( B_{r/k}(x))]{\partial^\beta w}$.
 Nach der $k$-ten Iteration erhalten wir damit die Behauptung.
+Hier ist sie nochmal (extra für Christian) \dots
+
+\begin{align*}
+  |\partial^\alpha w(x)|
+  \leq
+  \pbraces
+  {
+      \frac{kn}{r}
+  }^k
+  \norm[L^\infty(B_r(x))]{w}
+\end{align*}
 
 \end{solution}
 
