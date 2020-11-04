@@ -11,25 +11,187 @@ ist $u \in H^1(\Omega)$, dann sind auch $u^+ = \max \Bbraces{u, 0}$, $u^- = - \m
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Wir zeigen nach dem Hinweis zuerst $|u| \in H^1(\Omega)$ für $u \in H^1(\Omega)$. Dazu approximieren wir
+die Betragsfunktion mit $n \in \N$ bel. durch
 
 \begin{align*}
-  f(x) &:= |x| \in C(\R)
+  f_n(x)
+  :=
+  \begin{cases}
+    p_n(x) \quad , |x| < \frac{1}{n} \\
+    |x|  \quad , |x| \geq \frac{1}{n}
+  \end{cases}
 \end{align*}
-Sei $\eta_\delta$ der Standard-Mollifier. Dann ist $f\ast \eta_\delta \in C^{\infty}(\R)$
-und es gilt $(f\ast\eta_\delta) \circ u \in H^1(\Omega)$, falls $f\ast\eta_\delta(0) = 0$.
-Berechnen wir die Ableitung von $f\ast\eta_\delta:$
+
+wobei $p_n$ das Hermite-Interpolationspolynom ist, sodass also $p_n(\pm \frac{1}{n}) = \frac{1}{n}$ und
+$p_n^\prime(\pm \frac{1}{n}) = \pm 1$ gilt. Explizit ist
+
 \begin{align*}
-  |(f\ast\eta_\delta)^{\prime}(x)| = |f^{\prime}\ast\eta_\delta(x)| = |\sgn\ast\eta_\delta(x)| \leq 1.
+  p_n(x)
+  =
+  -\frac{n^3}{2}x^4 + \frac{3n}{2}x^2
+  =
+  x^2(-\frac{n^3}{2}x^2 + \frac{3n}{2})
 \end{align*}
-Schaun wir uns $f\ast\eta_\delta(0)$ an:
+
+Es gilt also $f_n \in C^1(\R), f_n(0) = 0,\sup_{y \in \R}|f_n^\prime(y)|<\infty$ und damit können wir nach
+Aufgabe $7$ schließen, dass $\forall n \in \N: f_n \circ u \in H^1(\Omega)$ und $\partial_i (f_n \circ u) =
+f_n^\prime \circ u \partial_i u$. Nun gilt es
+
 \begin{align*}
-  f\ast\eta_\delta(0) = \int_{\R}f(-y)\eta_\delta(y) dy \neq 0.
+  \norm[H^1(\Omega)]{f_n \circ u - f \circ u}
+  \xrightarrow{n \to \infty}
+  0
 \end{align*}
-Zu zeigen:
+
+also die Konvergenz von $f_n \circ u$ gegen $|u|$ in $H^1(\Omega)$ zu zeigen. Dazu zeigen wir
+die Konvergenz der Funktionenfolge als auch deren Ableitungen in $L^2(\Omega)$.
+Um später majorisierte Konvergenz anwenden zu können, zeigen wir zuerst noch $\forall x \in [-\frac{1}{n},\frac{1}{n}]: |x| \geq p_n(x)$. Dazu sei $g_n(x):= x - p_n(x)$, explizit
+
 \begin{align*}
-  \|(f\ast\eta_\delta) \circ u - f\circ u\|_{H^1(U)} \xrightarrow{\delta \to 0} 0.
+  g_n(x)
+  =
+  x(1 + \frac{n^3}{2}x^3 - \frac{3n}{2}) \\
+  g_n(x) = 0
+  \Leftrightarrow
+  x = 0 \lor x = \frac{1}{n} \lor x = - \frac{2}{n}
 \end{align*}
-Ana3: $\|f- f\ast\eta_\delta\|_{L^p(\Omega)} \to 0$.
+
+Zwischen den Nullstellen gibt es keine Vorzeichenwechsel, deswegen schließen wir mit
+
+\begin{align*}
+  g_n(\frac{1}{2n})
+  =
+  \frac{1}{2n}(1 + \frac{1}{16} - \frac{3}{4})
+  =
+  \frac{1}{2n} \frac{5}{16}
+  >
+  0
+\end{align*}
+
+dass $\forall x \in [0, \frac{1}{n}]: g_n(x) \geq 0$, also $x \geq p_n(x)$. Wegen der
+Symmetrie der $p_n$ gilt dann schließlich $\forall x \in [-\frac{1}{n},\frac{1}{n}]: |x| \geq p_n(x)$.
+Nun zeigen wir die Konvergenz in $L^2(\Omega)$:
+
+\begin{align*}
+  \lim_{n \to \infty} \norm[L^2(\Omega)]{f \circ u - f_n \circ u}^2
+  =
+  \lim_{n \to \infty} \Int[\Omega]{f(u(x)) - f_n(u(x))^2}{x}
+  =
+  \lim_{n \to \infty} \Int[\Omega]{\1_{
+    [-\frac{1}{n}, \frac{1}{n}]
+    }(u(x)) \Big(|u(x)|-p_n(u(x))\Big)^2
+    }{x} \\
+  =
+  \Int[\Omega]{\underbrace{\lim_{n \to \infty}\1_{
+    [-\frac{1}{n}, \frac{1}{n}]
+    }(u(x))}_{0} \Big(|u(x)|-p_n(u(x))\Big)^2}{x}
+  =
+  0
+\end{align*}
+
+Wobei wir unsere integrierbare Majorante mit $|\1_{
+  [-\frac{1}{n}, \frac{1}{n}]
+  }(u(x)) \Big(|u(x)|-p_n(u(x))\Big)^2| \leq 4|u(x)|^2$
+  wobei wir die zuvor gezeigte Abschätzung der $p_n$ verwenden. Nun zeigen wir die Konvergenz der
+  Ableitungen, dabei zeigen wir, dass die Folge der Ableitungen eine Cauchy-Folge in $L^2(\Omega)$ ist, womit
+  wir erhalten, dass $f_n \circ u$ eine Cauchy-Folge in $H^1(\Omega)$ ist.
+
+  Seien also $n,m \in \N, n < m$, $\epsilon > 0$ beliebig.
+
+  \begin{align*}
+    \norm[L^2(\Omega)]{\partial_i (f_n \circ u) - \partial_i (f_m \circ u)}^2
+    =
+    \norm[L^2(\Omega)]{(f_n^\prime \circ u - f_m^\prime \circ u) \partial_i u}^2
+    =
+    \Int[\Omega]{\Big(f_n^\prime(u(x)) - f_m^\prime(u(x))\Big)^2 (\partial_i u(x))^2}{x} \\
+    =
+    \Int[\Omega]{\1_{
+      [-\frac{1}{n}, \frac{1}{n}]
+      }(u(x)) \Big(p_n(u(x))-f_m^\prime(u(x))\Big)^2
+    }{x}
+    =
+    \cdots
+  \end{align*}
+
+Wir machen eine Fallunterscheidung für $p_n^\prime - f_m^\prime$:
+\begin{enumerate}[label = \textbf{Fall \roman*:}]
+  \item $\frac{1}{m} \leq x \leq \frac{1}{n}$: Hier gilt
+
+    \begin{align*}
+      f_m^\prime(x) - p_n^\prime(x)
+      =
+      1 - 3nx + 2n^3 x^3
+      \leq
+      1 + 2n^3 x^3
+      \leq
+      3
+    \end{align*}
+
+  \item $0 \leq x < \frac{1}{m}$: Hier gilt
+
+    \begin{align*}
+      p_m^\prime(x) - p_n^\prime(x)
+      =
+      2x^3(n^3-m^3) + 3x(m-n)
+      \leq
+      3 \frac{m-n}{m}
+      \leq
+      3 (1 - \frac{n}{m})
+      \leq
+      3
+    \end{align*}
+
+  \item $-\frac{1}{m} > x >0$: Hier gilt
+
+    \begin{align*}
+      p_n^\prime(x) - p_m^\prime(x)
+      =
+      2x^3(m^3-n^3) + 3x(n-m)
+      \leq
+      2 \frac{m^3-n^3}{m^3}
+      \leq
+      3
+    \end{align*}
+
+  \item $-\frac{1}{n} \geq x \geq -\frac{1}{m}$: Hier gilt
+
+    \begin{align*}
+      p_n^\prime(x) - f_m^\prime(x)
+      =
+      3nx - 2n^3x^3 - 1
+      \leq
+      3
+    \end{align*}
+\end{enumerate}
+
+Wir können also $p_n^\prime - f_m^\prime$ in jedem Fall mit $3$ abschätzen und erhalten so insgesamt
+
+\begin{align*}
+  \cdots
+  \leq
+  9 \Int[\Omega]{\1_{
+    [-\frac{1}{n}, \frac{1}{n}]
+    }(u(x)) (\partial_i u(x))^2}{x}
+    <
+    \epsilon \quad \text{für}~ n ~\text{hinreichend groß}
+\end{align*}
+Diese letzte Ungleichung erhalten wir widerum durch majorisierte Konvergenz, da sich der
+Integrand durch $(\partial_i(u(x)))^2$ abschätzen lässt.
+
+Da wir nun wissen, dass $f_n \circ u$ eine Cauchy-Folge in $H^1(\Omega)$ ist und wir schon
+$f_n \circ u \rightarrow f \circ u$ in $L^2(\Omega)$ gezeigt haben, folgern wir $f_n \circ u \rightarrow f \circ u$ in $H^1(\Omega)$.
+
+Um noch die ersten beiden Aussagen zu zeigen schreiben wir
+
+\begin{align*}
+  \max\{u,0\}
+  &=
+  \frac{u + 0 + |u - 0|}{2} \in H^1(\Omega) \\
+  -\min\{u, 0\}
+  &=
+  -\frac{u + 0 - |u - 0|}{2} \in H^1(\Omega)
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
