@@ -19,7 +19,7 @@ Wir wissen zweierlei Dinge:
 Definitionsgemäß können wir also $u$ in der $\|\cdot\|_{H^1(U)}$-Norm durch
 $C^{\infty}(U)$-Funktionen $u_n$ mit $\|u_n\|_{H^1(U)} < \infty$ approximieren.
 Wir zeigen zuerst $f \circ u \in L^2(\Omega)$. Da $f \in C^1(\R)$ und die Ableitung
-beschränlt ist, ist $f$ auch Lipschitz-stetig mit Lipschitz-Konstante $L$ und es folgt
+beschränlt ist, ist $f$ auch Lipschitz-stetig mit Lipschitz-Konstante $L := \sup_{y \in \R} |f^\prime(y)|$ (folgt aus MWS) und es folgt
 \begin{align*}
   \|f\circ u - f\circ u_n\|_{L^2(U)}^2 &= \int_U (f \circ u - f\circ u_n)^2 dx
   = \int_U (f(u(x))- f(u_n(x)))^2 dx \\
@@ -31,12 +31,12 @@ Fall 1: $U$ unbeschränkt, aber dafür $f(0) = 0$:
   \|f\circ u_n\|_{L^2(U)}^2 = \int_U f(u_n(x))^2dx = \int_U [f(u_n(x)) - f(0)]^2 dx
   \leq \int_U L^2u_n(x)^2 = L^2\|u_n\|_{L^2(U)} < \infty
 \end{align*}
-Fall 2: $U$ beschränkt: ($f^2$ ist auch noch Lipschitz-stetig und für beschränkte Mengen
-gilt $L^2(U) \subset L^1(U)$)
+Fall 2: $U$ beschränkt: (für beschränkte Mengen gilt $L^2(U) \subset L^1(U)$)
 \begin{align*}
-  \|f\circ u_n\|_{L^2(U)}^2 &= \int_U f(u_n(x))^2dx = \int_U f^2(u_n(x)) - f^2(0) dx + \int_U f^2(0) dx \\
-  &\leq \int_U \tilde{L}|u_n(x)| dx + \lambda^n(U)f^2(0) < \tilde{L}\|u_n\|_{L^1(U)} + \lambda^n(U)f^2(0)
-  < \infty
+  \|f\circ u_n\|_{L^2(U)}^2 &= \int_U f(u_n(x))^2dx = \int_U (f(u_n(x)) - f(0))^2 dx - \int_U f(0)^2 dx + 2f(0) \int_U f(u_n(x)) dx \\
+  &\leq \int_U L^2 |u_n(x)|^2 dx - \lambda^n(U)f(0)^2 + 2f(0) \int_U f(u_n(x)) -f(0) + f(0) dx \\
+  &\leq L^2\|u_n\|_{L^2(U)} + \lambda^n(U)f(0)^2 + 2f(0) L \int_U u_n(x)dx \\
+  &\leq L^2\|u_n\|_{H^1(U)} + \lambda^n(U)f(0)^2 + 2f(0) L \|u_n\|_{L^1(U)} < \infty
 \end{align*}
 Da alle $f\circ u_n \in L^2(U)$ ist aufgrund der Abgeschlossenheit von $L^2(U)$
 auch $f\circ u \in L^2(U)$. \\
