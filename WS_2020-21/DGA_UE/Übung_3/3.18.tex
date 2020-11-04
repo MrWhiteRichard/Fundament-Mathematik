@@ -12,8 +12,29 @@ $ac - bd$ sowie den Imaginärteil $ad + bc$ getrennt ausgeben.
 
 \begin{solution}
 
-ToDo!
+  \begin{flalign*}
+     1&: \textbf{Prozedur}~ \textsc{komplexe Multiplikation} (\{a,b,c,d\}) \\
+     2&: P_1 := (a-b)d \\
+     3&: P_2 := (d-c)a \\
+     4&: P_3 := (c+d)b \\
+     5&: \textbf{Antworte}~ P_1 - P_2 ; P_1 + P_3 \\
+     6&: \textbf{Ende Prozedur}
+  \end{flalign*}
 
+  Der Algorithmus leistet das gewünschte, da
+  \begin{align*}
+    P_1 - P_2
+    =
+    ad - bd - (ad - ac)
+    =
+    ac - bd
+    \quad
+    P_1 + P_3
+    =
+    ad - bd + bc + bd
+    =
+    ad + bc
+  \end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
