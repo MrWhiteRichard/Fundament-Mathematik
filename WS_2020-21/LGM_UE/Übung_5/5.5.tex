@@ -25,13 +25,12 @@ $A$ und $B$:
   $\Sigma \vdash \neg(A \lor B)$, was einen Widerspruch zur Konsistenz von $\Sigma$ liefert. \\
   Gelte umgekehrt $\Sigma \vdash A$. Dann folgt mit der Tautologie $A \rightarrow A \lor B$
   auch $\Sigma \vdash A \lor B$. Analoges gilt unter der Voraussetzung $\Sigma \vdash B$.
-  \item Gelte $\Sigma \vdash A \land B$ und $\Sigma \nvdash A$.
-  Hier passiert nichts Neues, wieder finden wir eine Tautologie $\neg A \rightarrow \neg(A \land B)$
-  und somit einen Widerspruch zu Konsistenz. Analog für $\Sigma \nvdash B$. \\
+  \item Gelte $\Sigma \vdash A \land B$. Mit der Tautologie $(A \land B) \rightarrow A$ gilt schließen wir $\Sigma \vdash A$ und $\Sigma \vdash B$. \\
   Gelte umgekehrt $\Sigma \vdash A $ und $\Sigma \vdash B$. Jetzt finden wir wieder
   eine Tautologie mit $A \rightarrow B \rightarrow A \land B$ und erhalten mit
   Modus Ponens $\Sigma \vdash A \land B$.
-  \item Folgt unmittelbar aus Konsistenz und Vollständigkeit.
+  \item Angenommen es gilt $\Sigma \vdash \neg A$ und $\Sigma \vdash A$. Dann können wir die Tautologie $A \rightarrow (\neg A \rightarrow \perp)$ verwenden und $\Sigma \vdash \perp$ schließen. Widerspruch zur Konsistenz. \\
+  Gelte $\Sigma \nvdash A$. Wegen der Vollständigkeit muss dann $\Sigma \vdash \neg A$ gelten. 
 \end{itemize}
 
 \end{solution}
