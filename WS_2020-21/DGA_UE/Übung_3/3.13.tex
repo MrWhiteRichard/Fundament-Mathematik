@@ -4,7 +4,7 @@
 
 Gegeben sei ein zusammenhängender ungerichteter Graph $G = (V,E)$ mit einer geraden Anzahl an Knoten.
 Zeigen Sie, dass es einen (nicht notwendigerweise zusammenhängenden) Untergraph mit
-Knotenmenge $V$ gibt (also einen Graph $G^\prime = (V, E^\prime)$ mit $E^\prime \subset E$),
+Knotenmenge $V$ gibt (also einen Graph $G^\prime = (V, E^\prime)$ mit $E^\prime \subseteq E$),
 in dem alle Knotengrade ungerade sind.
 
 (Hinweis: beweisen Sie die Behauptung für Bäume und begründen Sie, warum diese Annahme reicht.)
@@ -14,9 +14,38 @@ in dem alle Knotengrade ungerade sind.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Der Grad eines Knoten $v \in V$
+ist definert als $\grad(x) = |\{\{x,y\}: \{x,y\} \in E\}|$. \\
+Wir beweisen die Aussage mit Induktion nach $n := |V|$: \\
+Für $n = 2$ gibt es genau eine Kante, welche die beiden Knoten verbindet,
+also gilt die Aussage bereits für $E^{\prime} = E$. \\
+Induktionsschritt: $n \rightsquigarrow n + 2$: \\
+Betrachte einen beliebigen Baum $G$ mit $V = \{x_1,\dots,x_{n+2}\}$.
+Nun existiert ein $v \in V$ mit $\grad(v) = 1$ (o.B.d.A. $v = x_{n+2}$).
+Nun ist $G_1 = (V_1,E_1)$ mit
+\begin{align*}
+  V_1 &:= \{x_1,\dots,x_{n+1}\} \\
+  E_1 &:= \{\{x,y\} \in E: x,y \in V_1\}
+\end{align*}
+klarerweise immer noch zyklenfrei und zusammenhängend und wir können
+ein weiteres $v \in V_1$ mit $\grad(v) = 1$ (o.B.d.A: $v = x_{n+1}$) finden, sodass
+dann $G = (V_2,E_2)$ mit
+\begin{align*}
+  V_2 &:= \{x_1,\dots,x_{n}\} \\
+    E_1 &:= \{\{x,y\} \in E: x,y \in V_2\}
+\end{align*}
+ein zusammenhängender, zyklenfreier Graph ist, auf den wir die Induktionsvoraussetzung
+anwenden können, also erhalten wir $E_2^{\prime} \subseteq E_2$, sodass
+für alle $v \in V_2: \grad(v) = 1$. \\
+Nun definieren wir $E^{\prime} = E_2^{\prime} \cup \{\{x_n,x_{n+1}\}\}$, welches
+die Bedingung dann für alle $v \in V$ erfüllt. \\
 
-ToDo!
 
+Für einen beliebig zusammenhängenden Graphen $G = (V,E)$ mit gerader Knotenanzahl
+erinnern wir uns daran, dass
+ein Baum genau ein minimal zusammenhängender Graph ist.
+Also finden wir in jedem Fall ein $E_1 \subseteq E$, sodass $G_1 = (V,E_1)$
+ein Baum ist und wir das soeben gezeigte anwenden können.
 \end{solution}
 
 % --------------------------------------------------------------------------------

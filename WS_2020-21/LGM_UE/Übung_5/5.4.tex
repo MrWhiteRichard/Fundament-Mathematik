@@ -21,18 +21,20 @@ $[\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg A
 Jetzt müssen wir nur noch die offensichtliche Tautologie
 mit dem Distributivitäts-Axiom kombinieren und wir sind fertig:
 \begin{flalign*}
-  &\vdash \forall x \underbrace{(\neg A(x) \land \neg B(x))}_{A} \rightarrow
-  \underbrace{(\neg(A(x) \land B(x)))}_{B}
+  &\vdash [\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg A(x) \land \neg B(x)] \\
+  &\vdash \forall x \underbrace{(\neg A(x) \land \neg B(x))}_{C} \rightarrow
+  \underbrace{(\neg(A(x) \land B(x)))}_{D}
   & \text{(Allquantor vor Tautologie)}\\
-  &\vdash [\forall x (A \rightarrow B)]
-  \rightarrow [\forall x A \rightarrow \forall x B] & \text{(Distributivität)} \\
+  &\vdash [\forall x (C \rightarrow D)]
+  \rightarrow [\forall x C \rightarrow \forall x D] & \text{(Distributivität)} \\
+  &\vdash \forall x C \rightarrow \forall x D & \text{(MP)} \\
   &\vdash [\forall x \neg A(x)] \land [\forall x \neg B(x)] \rightarrow \forall x [\neg(A(x) \land B(x))]
   & \text{(Tautologie + MP)}
 \end{flalign*}
 \end{solution}
 
 \begin{solution}
-	
+
 	Wir skizzieren den Beweis für
 	$\exists x [A(x) \land B(x)] \rightarrow [\exists x A(x)] \land [\exists x B(x)]$:\\
 	\begin{flalign*}
