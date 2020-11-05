@@ -45,7 +45,33 @@ Für einen beliebig zusammenhängenden Graphen $G = (V,E)$ mit gerader Knotenanz
 erinnern wir uns daran, dass
 ein Baum genau ein minimal zusammenhängender Graph ist.
 Also finden wir in jedem Fall ein $E_1 \subseteq E$, sodass $G_1 = (V,E_1)$
+ein Baum ist und wir das soeben gezeigte anwenden können.  \\
+
+*****Ich glaub nicht, dass die Lösung so passt, weil ja $x_{n+2}$ in dem Fall jetzt zum Beispiel Grad $0$ hätte oder?***** Alternative Lösung: \\
+
+Der Grad eines Knoten $v \in V$
+ist definert als $\grad(x) = |\{\{x,y\}: \{x,y\} \in E\}|$. \\
+Wir beweisen die Aussage mit Induktion nach $n := |E| = |V-1|$: \\
+
+Für $n = 1$ gibt es genau eine Kante, welche die beiden Knoten verbindet,
+also gilt die Aussage bereits für $E^{\prime} = E$. \\
+
+Induktionsschritt: $n \rightsquigarrow n + 2$: \\
+Betrachte einen beliebigen Baum $G = (V,E)$.
+O.B.d.A. existiert ein $v \in V$ mit $\grad(v) = 2k$ (sonst ist die Aussage schon erfüllt). Sei $\{x_1,\dots,x_{2k}\} = \{x \in E: \{x,v \} \in V\}$.
+Da ganz $G$ aus einer ungeraden Anzahl von Knoten besteht, gibt es also mindestens einen von $v$ ausgehenden \textquoteleft{Arm}\textquoteright ~$G_i$, der auch aus einer geraden Anzahl von Knoten besteht.
+
+Mit einem \textquoteleft{Arm}\textquoteright ~ $G_i$ ist hier jeweils die Zusammenhangskomponente von $G$ gemeint, die genau einen Knoten $\{x_i,v\}$ enthält und alle anderen Knoten $\{x_j,v\}$ für $j \neq i$ nicht.
+
+Wenn wir von $G$ nun den Knoten $\{x_i,v\}$ des \textquoteleft{Armes}\textquoteright ~$G_i$ mit gerader Knotenanzahl entfernen, bekommen wir zwei Zusammenhangskomponenten mit ungerader Knotenanzahl (die natürlich zyklenfrei und somit Bäume sind). Beide haben eine Knotenanzahl $\leq n$ und somit können wir die IV auf beide anwenden. \\
+
+
+Für einen beliebig zusammenhängenden Graphen $G = (V,E)$ mit gerader Knotenanzahl
+erinnern wir uns daran, dass
+ein Baum genau ein minimal zusammenhängender Graph ist.
+Also finden wir in jedem Fall ein $E_1 \subseteq E$, sodass $G_1 = (V,E_1)$
 ein Baum ist und wir das soeben gezeigte anwenden können.
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
