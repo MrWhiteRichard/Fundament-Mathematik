@@ -22,8 +22,50 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
 
 \begin{solution}
 
-ToDo!
+\begin{enumerate}[label = (\alph*)]
+  \item Zu mühsam :D
+  \item
+  \begin{flalign*}
+     1&: \textbf{Prozedur}~ \textsc{runsverschmelzen} (runs) \\
+     2&: \quad m := runs.Länge \\
+     3&: \quad C = runs[1] \\
+     3&: \quad \textbf{Für}~ i = 2,\dots,m \\
+     4&: \quad \quad C = \textsc{verschmelzen} (C, runs[i])  \\
+     10&: \quad \textbf{Ende Für} \\
+     10&: \quad \textbf{Antworte~} C \\
+     6&: \textbf{Ende Prozedur}
+  \end{flalign*}
 
+  \begin{flalign*}
+     1&: \textbf{Prozedur}~ \textsc{natural merge sort} (A) \\
+     2&: \quad n := A.Länge \\
+     3&: \quad runs := [] \\
+     3&: \quad \textbf{Solange}~ i \leq n \\
+     4&: \quad \quad j := 0  \\
+     6&: \quad \quad run := [A[i]] \\
+     5&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1]  \\
+     8&: \quad \quad \quad j := j+1 \\
+     8&: \quad \quad \quad run.append(A[i+j]) \\
+     10&: \quad \quad \textbf{Ende Solange} \\
+     10&: \quad \quad runs.append(run) \\
+     10&: \quad \quad i := i+j+1 \\
+     10&: \quad \textbf{Ende Solange} \\
+     10&: \quad \textbf{Antworte~} \textsc{runsverschmelzen} (runs) \\
+     6&: \textbf{Ende Prozedur}
+  \end{flalign*}
+
+    \item Best-Case: Die Liste ist schon aufsteigend sortiert, der Aufwand liegt also nur in der Schleife in der zweiten Prozedur und somit erhalten wir $\Theta(n)$. \\
+
+    Worst-Case: Die Liste ist absteigend sortiert, wir müssen also die Prozedur Verschmelzen für $i = 2,\dots,n$ auf die Datenfelder $C$ und $runs[i]$ der Länge $i-1$ und $1$ anwenden. Wir kommen also insgesamt auf einen Aufwand von
+
+    \begin{align*}
+      \Theta(n) + \sum_{i=2}^{n} \Theta(i) = \Theta(n) + \frac{\Theta(n^2+n)}{2} = \Theta(n^2)
+    \end{align*}
+
+    Macht das so Sinn??
+
+\end{enumerate}
 \end{solution}
+
 
 % --------------------------------------------------------------------------------
