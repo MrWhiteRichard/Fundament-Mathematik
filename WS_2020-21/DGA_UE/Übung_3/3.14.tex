@@ -21,7 +21,25 @@ wenn $i < j$ und $A[i] > A[j]$ gilt.
 
 \begin{solution}
 
-ToDo!
+Wenn wir die Werte des Datenbereichs auf $\{1,\dots,n\}$
+einschränken, bezeichnet die Anzahl der Inversionen genau die Anzahl der Fehlstände,
+der durch $A[1,\dots,n]$ induzierten Permutation.
+\begin{enumerate}[label = (\alph*)]
+  \item Betrachte das Feld $A[1,\dots,n] = [n,\dots,1]$.
+  Klarerweise gilt für alle $i < j: A[i] > A[j]$.
+  \begin{align*}
+    |\{(i,j): 1 \leq i < j \leq n\}| = \left|\bigcup_{j\leq n}\{(i,j): 1 \leq i < j\}\right|
+    = \sum_{j=1}^n j-1 = \frac{n(n-1)}{2}
+  \end{align*}
+  \item Für jedes $j = 2,\dots,n$ entspricht die Anzahl der inneren Schleifendurchläufe genau
+  der Anzahl aller $i < j$ mit $A[i] > A[j]$. Insgesamt ist die Anzahl der inneren
+  Schleifendurchläufe also genau die Anzahl der Inversionen des Datenfelds.
+  \item
+  \begin{flalign*}
+    1&: \textbf{Prozedur}~ \textsc{Inversionsanzahlfinden} 
+    12&: \textbf{Ende Prozedur}
+  \end{flalign*}
+\end{enumerate}
 
 \end{solution}
 
