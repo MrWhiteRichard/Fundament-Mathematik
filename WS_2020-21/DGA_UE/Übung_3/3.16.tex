@@ -2,39 +2,127 @@
 
 \begin{exercise}
 
-Die FIbonacci-Zahlen seien durch die Rekursion $F_n = F_{n-1} + F_{n-2}$ für $n \geq 2$ mit
-Anfangswerten $F_0 = 0$ und $F_1 = 1$ definiert. Die FIbonacci-Zahlen können effizient mittels folgender
-auf Matrizenmultiplikation beruhender Formel berechnet werden:
+Die Fibonacci-Zahlen seien durch die Rekursion $F_n = F_{n-1} + F_{n-2}$ für $n \geq 2$ mit Anfangswerten $F_0 = 0$ und $F_1 = 1$ definiert.
+Die FIbonacci-Zahlen können effizient mittels folgender auf Matrizenmultiplikation beruhender Formel berechnet werden:
 
 \begin{align*}
   \begin{pmatrix}
     F_{n+1} & F_n \\
-    F_n & F_{n-1}
+    F_n     & F_{n-1}
   \end{pmatrix}
   =
   \begin{pmatrix}
     1 & 1 \\
     1 & 0
   \end{pmatrix}^n
-  \quad \text{für}~ n \geq 1
+  \quad
+  ~\text{für}~
+  n \geq 1
 \end{align*}
 
-\begin{enumerate}[label = (\alph*)]
+\begin{enumerate}[label = \alph*.]
+
   \item Beweisen Sie diese Formel durch vollständige Induktion.
+
   \item Überlegen Sie sich einen Algorithmus, der
   $\begin{pmatrix}
-  1 & 1 \\
-  1 & 0
+    1 & 1 \\
+    1 & 0
   \end{pmatrix}^n$
   in nur logarithmisch vielen Schritten berechnet.
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-ToDo!
+Wir nennen die linke Matrix $L_n$ und die rechte $R_n$.
+
+\begin{enumerate}[label = \alph*.]
+
+  \item IA($n = 0$):
+
+  \begin{align*}
+    F_{-1} := 0
+    \implies
+    A_0 = I_2 = B_0
+  \end{align*}
+
+  IS($n \mapsto n + 1$):
+  
+  \begin{multline*}
+    \implies
+    R_{n+1}
+    =
+    R_n
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix}
+    =
+    L_n
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      F_{n+1} & F_n \\
+      F_n     & F_{n-1}
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix} \\
+    =
+    \begin{pmatrix}
+      F_{n+1} + F_n & F_{n+1} \\
+      F_n + F_{n-1} & F_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      F_{n+2} & F_{n+1} \\
+      F_{n+1} & F_n
+    \end{pmatrix}
+    =
+    L_{n+1}
+  \end{multline*}
+
+  \item Sei $n$ eine Zweierpotenz, d.h. $n \in \Bbraces{2^k: k \in \N_0}$.
+  
+  \begin{align*}
+    \implies
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix}^n
+    =
+    \begin{pmatrix}
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix}^{2^k}
+    =
+    \underbrace
+    {
+      \pbraces
+      {
+        \begin{pmatrix}
+          1 & 1 \\
+          1 & 0
+        \end{pmatrix}^2
+        \cdots
+      }^2
+    }_{
+      k \text{-mal}
+    }
+  \end{align*}
+
+  Hätte man die explizite Darstellung der Fibonacci-Zahlen, so ginge dies sogar in konstanter Zeit.
+
+\end{enumerate}
 
 \end{solution}
 
