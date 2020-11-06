@@ -3,10 +3,8 @@
 \begin{exercise}
 
 \begin{enumerate}[label = (\alph*)]
-  \item Wie schnell könnte man eine $(kn \times n)$-Matrix $A$ mit einer $(n \times kn)$-Matrix
-  $B$ multiplizieren, d.h. $C = A \cdot B$ berechenen, wenn man Strassens Algorithmus als Unterprogramm verwendet?
-  \item Benantworten Sie die gleiche Frage, wenn die Reihenfolge der Eingabematrizen vertauscht ist, man also
-  $\tilde{C} = B \cdot A$ bestimmen möchte.
+  \item Wie schnell könnte man eine $(kn \times n)$-Matrix $A$ mit einer $(n \times kn)$-Matrix $B$ multiplizieren, d.h. $C = A \cdot B$ berechenen, wenn man Strassens Algorithmus als Unterprogramm verwendet?
+  \item Benantworten Sie die gleiche Frage, wenn die Reihenfolge der Eingabematrizen vertauscht ist, man also $\tilde{C} = B \cdot A$ bestimmen möchte.
 \end{enumerate}
 
 \end{exercise}
@@ -15,10 +13,71 @@
 
 \begin{solution}
 
-\begin{enumerate}[label = (\alph*)]
-  \item Man kann die Matrizen als Blockmatrizen auffassen und muss somit zur Berechnung der $(kn \times kn)$-Matrix $k^2$ Blöcke der Größe $n \times n$ durch je eine Multiplikation von zwei $(n \times n)$-Matrizen berechnen. Es ergibt sich also eine Laufzeit von $T(n,k) = \Theta(k^2n^{\log 7})$. (Wenn wir für den Strassen-Algorithmus wieder voraussetzen, dass $n$ eine Zweierpotenz ist).
+\phantom{}
 
-  \item Analog zu oben betrachten wir wieder die Multiplikation von $(n \times n)$-Blockmatrizen. Hier benötigen wir $k$ Multiplikationen und $k-1$ Additionen. Es ergibt sich also eine Laufzeit von $T(n,k) = \Theta(kn^{\log 7})$.
+\begin{enumerate}[label = (\alph*)]
+
+  \item Man kann die Matrizen als Blockmatrizen auffassen.
+  
+  \begin{align*}
+    A
+    =
+    \begin{pmatrix}
+      A_1 \\ \vdots \\ A_k
+    \end{pmatrix},
+    \quad
+    B
+    =
+    (B_1 \cdots B_k),
+    \quad
+    A_1, \dots, A_k,
+    B_1, \dots, B_k \enspace
+    (n \times n) \text{-Matrizen}
+  \end{align*}
+
+  Man muss somit, zur Berechnung der $(kn \times kn)$-Matrix $C$, für $k^2$ Blöcke der Größe $n \times n$ durch je eine $(n \times n)$-Matrix-Multiplikation durchführen.
+  Dies kann jeweils mit Strassens Algorithmus gemacht werden.
+
+  \begin{align*}
+    C
+    =
+    AB
+    =
+    \begin{pmatrix}
+      A_1 \\ \vdots \\ A_k
+    \end{pmatrix}
+    (B_1 \cdots B_k)
+    =
+    \begin{pmatrix}
+      A_1 B_1 & \cdots & A_1 B_k \\
+      \vdots  & \ddots & \vdots \\
+      A_k B_1 & \cdots & A_k B_k
+    \end{pmatrix}
+  \end{align*}
+  
+  Sei $n$ eine Zweierpotenz.
+  Strassens Algorithmus hat den Aufwand $S(n) = \Theta(n^{\log 7})$.
+  Es ergibt sich also eine Laufzeit von $T(n, k) = k^2 S(n) = \Theta(k^2 n^{\log 7})$.
+
+  \item Analog zu oben betrachten wir wieder die $(n \times n)$-Matrix-Multiplikation von $(n \times n)$-Blockmatrizen.
+  Hier benötigen wir $k$ viele $(n \times n)$-Matrix-Multiplikationen und $k - 1$ viele $(n \times n)$-Matrix-Additionen.
+
+  \begin{align*}
+    \tilde{C}
+    =
+    BA
+    =
+    (B_1 \cdots B_k)
+    \begin{pmatrix}
+      A_1 \\ \vdots \\ A_k
+    \end{pmatrix}
+    =
+    \sum_{i=1}^k
+    B_i A_i
+  \end{align*}
+
+  Es ergibt sich also eine Laufzeit von $T(n, k) = k S(n) = \Theta(k n^{\log 7})$.
+
 \end{enumerate}
 
 \end{solution}
