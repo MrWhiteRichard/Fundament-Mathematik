@@ -34,11 +34,32 @@ der durch $A[1,\dots,n]$ induzierten Permutation.
   \item Für jedes $j = 2,\dots,n$ entspricht die Anzahl der inneren Schleifendurchläufe genau
   der Anzahl aller $i < j$ mit $A[i] > A[j]$. Insgesamt ist die Anzahl der inneren
   Schleifendurchläufe also genau die Anzahl der Inversionen des Datenfelds.
-  \item
+  \item Wir adaptieren den Verschmelzen-Algorithmus für unsere Zwecke:
   \begin{flalign*}
-    1&: \textbf{Prozedur}~ \textsc{Inversionsanzahlfinden} (A) & \\
-    12&: \textbf{Ende Prozedur}
+    1&: \textbf{Prozedur}~ \textsc{InversionsVerschmelzen} (A,B) & \\
+    2&: \text{Sei $C$ ein neues Datenfeld  der Länge} A.\textit{Länge} + B.\textit{Länge} & \\
+    3&: i := 1 & \\
+    4&: j := 1 & \\
+    5&: n := 0 & \\
+    5&: \textbf{Für}\ k := 1,\dots,A.\textit{Länge} + B.\textit{Länge} & \\
+    6&: \quad \textbf{Falls}\ j > B.\textit{Länge}\ \text{oder}\
+        (i \leq A.\textit{Länge}\ \text{und}\ A[i] \leq B[j])\ \textbf{dann} & \\
+    7&: \quad \quad C[k] := A[i] & \\
+    8&: \quad \quad i := i + 1 & \\
+    9&: \quad \textbf{Sonst}\ & \\
+    10&: \quad \quad C[k] := B[j] & \\
+    11&: \quad \quad \textbf{Falls}\ i \leq A.\textit{Länge}\ \textbf{dann} & \\
+    12&: \quad \quad \quad n := n + 1 & \\
+    13&: \quad \quad \textbf{Ende Falls} & \\
+    14&: \quad \quad j := j + 1 & \\
+    15&: \quad \textbf{Ende Falls} & \\
+    16&: \textbf{Ende Für} & \\
+    17&: \textbf{Antworte}\ C;n & \\
+    18&: \textbf{Ende Prozedur}
   \end{flalign*}
+  Jetzt müssen nur noch im Hauptteil von Merge-Sort die $n$ aufaddiert werden und
+  man erhält zusätzlich zur Sortierung die Anzahl der Fehlstände mit Laufzeit $\Theta(n \log n)$
+  im Worst-Case.
 \end{enumerate}
 
 \end{solution}
