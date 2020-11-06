@@ -3,7 +3,7 @@
 \begin{exercise}
 
 Die Fibonacci-Zahlen seien durch die Rekursion $F_n = F_{n-1} + F_{n-2}$ für $n \geq 2$ mit Anfangswerten $F_0 = 0$ und $F_1 = 1$ definiert.
-Die FIbonacci-Zahlen können effizient mittels folgender auf Matrizenmultiplikation beruhender Formel berechnet werden:
+Die Fibonacci-Zahlen können effizient mittels folgender auf Matrizenmultiplikation beruhender Formel berechnet werden:
 
 \begin{align*}
   \begin{pmatrix}
@@ -43,16 +43,22 @@ Wir nennen die linke Matrix $L_n$ und die rechte $R_n$.
 
 \begin{enumerate}[label = \alph*.]
 
-  \item IA($n = 0$):
+  \item IA($n = 1$): $F_2 = F_1 + F_0 = 1$.
 
   \begin{align*}
-    F_{-1} := 0
-    \implies
-    A_0 = I_2 = B_0
+  \begin{pmatrix}
+    F_2 & F_1 \\
+    F_1 & F_0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & 0
+  \end{pmatrix}^1
   \end{align*}
 
   IS($n \mapsto n + 1$):
-  
+
   \begin{multline*}
     \implies
     R_{n+1}
@@ -91,36 +97,22 @@ Wir nennen die linke Matrix $L_n$ und die rechte $R_n$.
     L_{n+1}
   \end{multline*}
 
-  \item Sei $n$ eine Zweierpotenz, d.h. $n \in \Bbraces{2^k: k \in \N_0}$.
-  
-  \begin{align*}
-    \implies
-    \begin{pmatrix}
-      1 & 1 \\
-      1 & 0
-    \end{pmatrix}^n
-    =
-    \begin{pmatrix}
-      1 & 1 \\
-      1 & 0
-    \end{pmatrix}^{2^k}
-    =
-    \underbrace
-    {
-      \pbraces
-      {
-        \begin{pmatrix}
-          1 & 1 \\
-          1 & 0
-        \end{pmatrix}^2
-        \cdots
-      }^2
-    }_{
-      k \text{-mal}
-    }
-  \end{align*}
+  \item Stelle $n$ binär dar, also $n = \sum_{k= 0}^{\lfloor \log(n)\rfloor}a_k2^k$.
+  Hat man den Koeffizientenvektor $A$ berechnet, führt folgender Algorithmus zum Ziel:
 
-  Hätte man die explizite Darstellung der Fibonacci-Zahlen, so ginge dies sogar in konstanter Zeit.
+  \begin{flalign*}
+  1&: \textbf{Prozedur}~ \textsc{Berechne} (A) & \\
+  2&: \quad m := A.\textit{Länge} & \\
+  3&: \quad F := [[1,0],[0,1]] & \\
+  3&: \quad B := [[1,0],[0,1]] & \\
+  4&: \quad \textbf{Für}~ i = 0,\dots,m & \\
+  5&: \quad B = B*[[1,1],[1,0]] & \\
+  4&: \quad \quad \textbf{Falls}~ A[i] = 1 & \\
+  5&: \quad \quad \quad F = F*B & \\
+  6&: \quad \textbf{Ende Für} & \\
+  7&: \quad \textbf{Antworte~} F & \\
+  8&: \textbf{Ende Prozedur}
+  \end{flalign*}
 
 \end{enumerate}
 
