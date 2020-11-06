@@ -13,7 +13,7 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
     2,4,3,1,7,6,8,9,0,5
   \end{align}
   \item Schreiben Sie einen Pseudocode für Natural Merge-Sort.
-  \item Machen Sie eine Best- sowie eine Worst-Case-Analyse für das Laufzeiverhalten von Natural Merge-Sort
+  \item Machen Sie eine Best- sowie eine Worst-Case-Analyse für das Laufzeitverhalten von Natural Merge-Sort
   bei einem Eingabefeld der Größe $n$.
 \end{enumerate}
 \end{exercise}
@@ -37,7 +37,7 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
   \item
   \begin{flalign*}
      1&: \textbf{Prozedur}~ \textsc{runsverschmelzen} (runs) & \\
-     2&: \quad m := runs.Laenge & \\
+     2&: \quad m := runs.\textit{Länge} & \\
      3&: \quad C = runs[1] & \\
      4&: \quad \textbf{Für}~ i = 2,\dots,m & \\
      5&: \quad \quad C = \textsc{verschmelzen} (C, runs[i]) & \\
@@ -48,14 +48,14 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
 
   \begin{flalign*}
      1&: \textbf{Prozedur}~ \textsc{natural merge sort} (A) & \\
-     2&: \quad n := A.Laenge & \\
+     2&: \quad n := A.\textit{Länge} & \\
      3&: \quad runs := [~] & \\
      4&: \quad \textbf{Solange}~ i \leq n & \\
      5&: \quad \quad j := 0 & \\
      6&: \quad \quad run := [A[i]] \\
      7&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] & \\
-     8&: \quad \quad \quad j := j+1 & \\
-     9&: \quad \quad \quad run.append(A[i+j]) & \\
+     8&: \quad \quad \quad run.append(A[i+j+1]) & \\
+     9&: \quad \quad \quad j := j+1 & \\
      10&: \quad \quad \textbf{Ende Solange} & \\
      11&: \quad \quad runs.append(run) & \\
      12&: \quad \quad i := i+j+1 & \\
@@ -63,8 +63,11 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
      14&: \quad \textbf{Antworte~} \textsc{runsverschmelzen} (runs) & \\
      15&: \textbf{Ende Prozedur}
   \end{flalign*}
+  Man könnte den Algorithmus evtl. noch optimieren, indem man die Runs noch
+  aufsteigend nach ihrer Länge sortiert, damit man sich beim Verschmelzen etwas Aufwand spart.
 
-    \item Best-Case: Die Liste ist schon aufsteigend sortiert, der Aufwand liegt also nur in der Schleife in der zweiten Prozedur und somit erhalten wir $\Theta(n)$. \\
+    \item Das erstellen der Runs gelingt immer in linearem Aufwand, daher gilt für den Best-Case: \\
+    Die Liste ist schon aufsteigend sortiert, der Aufwand liegt also nur in der Erstellung der Runs und somit erhalten wir $\Theta(n)$. \\
 
     Worst-Case: Die Liste ist absteigend sortiert, wir müssen also die Prozedur Verschmelzen für $i = 2,\dots,n$ auf die Datenfelder $C$ und $runs[i]$ der Länge $i-1$ und $1$ anwenden. Wir kommen also insgesamt auf einen Aufwand von
 
@@ -72,7 +75,7 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
       \Theta(n) + \sum_{i=2}^{n} \Theta(i) = \Theta(n) + \frac{\Theta(n^2+n)}{2} = \Theta(n^2)
     \end{align*}
 
-    Macht das so Sinn??
+    Macht das so Sinn? Ja.
 
 \end{enumerate}
 \end{solution}
