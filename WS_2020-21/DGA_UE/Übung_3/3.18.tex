@@ -2,9 +2,8 @@
 
 \begin{exercise}
 
-Zeigen Sie, wie man komplexe Zahlen $a + bi$ und $c + di$ mit nur drei Multiplikationen reeller Zahlen
-multiplizieren kann. Der Algorithmus sollte $a,b,c$ und $d$ als Eingabe bekommen und den Realteil
-$ac - bd$ sowie den Imaginärteil $ad + bc$ getrennt ausgeben.
+Zeigen Sie, wie man komplexe Zahlen $a + bi$ und $c + di$ mit nur drei Multiplikationen reeller Zahlen multiplizieren kann.
+Der Algorithmus sollte $a, b, c$ und $d$ als Eingabe bekommen und den Realteil $ac - bd$ sowie den Imaginärteil $ad + bc$ getrennt ausgeben.
 
 \end{exercise}
 
@@ -13,28 +12,30 @@ $ac - bd$ sowie den Imaginärteil $ad + bc$ getrennt ausgeben.
 \begin{solution}
 
   \begin{flalign*}
-     1&: \textbf{Prozedur}~ \textsc{komplexe Multiplikation} (\{a,b,c,d\}) \\
-     2&: P_1 := (a-b)d \\
-     3&: P_2 := (d-c)a \\
-     4&: P_3 := (c+d)b \\
-     5&: \textbf{Antworte}~ P_1 - P_2 ; P_1 + P_3 \\
-     6&: \textbf{Ende Prozedur}
+    1&: \textbf{Prozedur}~ \textsc{komplexe Multiplikation}(a, b, c, d) \\
+    2&: \quad P_1 := (a - b) d \\
+    3&: \quad P_2 := (d - c) a \\
+    4&: \quad P_3 := (c + d) b \\
+    5&: \quad \textbf{Antworte}~ P_1 - P_2, P_1 + P_3 \\
+    6&: \textbf{Ende Prozedur}
   \end{flalign*}
 
-  Der Algorithmus leistet das gewünschte, da
+  Der Algorithmus leistet das Gewünschte, da
+
   \begin{align*}
     P_1 - P_2
     =
-    ad - bd - (ad - ac)
+    (ad - bd) - (ad - ac)
     =
-    ac - bd
+    ac - bd,
     \quad
     P_1 + P_3
     =
-    ad - bd + bc + bd
+    (ad - bd) + (bc + bd)
     =
-    ad + bc
+    ad + bc.
   \end{align*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
