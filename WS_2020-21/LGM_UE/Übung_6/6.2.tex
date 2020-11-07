@@ -12,9 +12,25 @@ gilt. (Was ist mit der linken Seite gemeint?)
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
-
+In der Vorlesung haben wir definiert:
+\begin{align*}
+  \mathscr{M}&: M = \{[c]_{\sim}: c \text{ Konstantensymbol} \} \\
+  c \sim d &:\iff \Sigma \vdash c = d.
+\end{align*}
+Die Definition der Äquivalenzrelation kann auf natürliche Weise auf die Menge
+aller geschlossenen Terme in $\mathscr{L}$ ausgedehnt werden. Mit $t^{\mathscr{M}} = [t]_{\sim}$
+ist also gemeint: Es gibt ein Konstantensymbol $c$, sodass $\Sigma \vdash c = t$. \\
+Die linke Seite macht aus den ersten Blick keinen Sinn, da unsere Interpretation
+nur Konstanten, Funktionssymbole und Relationssymbole interpretiert. Da wir
+es allerdings nur mit geschlossenen Termen zu tun haben, kommen keine Variablen in $t$
+vor und der Wert $\overline{b}(t)$ ist daher unabhängig von der konkreten Wahl
+der Belegung $b$ und kann somit als Definition für $t^{\mathscr{M}}$ gewählt werden. \\
+Wir beweisen die Aussage mit Induktion nach dem Aufbau der geschlossenen Terme. \\
+Für alle Konstantensymbole folgt die Aussage direkt aus der Definition: $c^{\mathscr{M}} = [c]_{\sim}$.
+Da wir nur geschlossene Terme betrachten kommen keine Variablen darin vor. \\
+Sei $t = f(t_1,\dots,t_k)$ beliebig, nach Voraussetzung existieren also $c_1,\dots,c_k$, sodass
+$(\Sigma \vdash c_i  = t_i), i = 1,\dots,k$. Mit den Leibniz-Axiomen leitet man schnell
+$\Sigma \vdash f(c_1,\dots,c_k) = f(t_1,\dots,t_k) = t$ her, also $t^{\mathscr{M}} = [t]_{\sim}$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
