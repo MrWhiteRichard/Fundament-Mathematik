@@ -1,0 +1,58 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[117]
+
+Sei $\mathscr{L}$ eine (möglicherweise überabzählbare) Sprache der Prädikatenlogik,
+$\Sigma_0$ eine konsistente Theorie in $\mathscr{L}$. Sei $P$ die Menge aller konsistenten
+Theorien $\Sigma \supseteq \Sigma_0$ in der Sprache $\mathscr{L}$. Durch die
+Relation $\subseteq$ wird $P$ partiell geordnet. \\
+Zeigen Sie:
+\begin{itemize}
+  \item Jede Kette in $P$ (also jede durch $\subseteq$ total geordnete Teilmenge $K \subseteq P$)
+  ist beschränkt. (Das heißt, für jede Kette $K \subseteq P$ gibt es $\Sigma^* \in P$,
+  sodass für alle $\Sigma \in K$ die Beziehung $\Sigma \subseteq \Sigma^*$ gilt.)
+  \item Wenn $\Sigma \in P_{\mathscr{L}}$ maximal ist (also: Es gibt kein
+  $\Sigma^{\prime} \subsetneq$ in $P$), dann ist $\Sigma$ vollständig.
+  \item Schließen Sie aus dem Lemma von Zorn, dass es zu jeder konsistenten Theorie
+  $\Sigma_0$ eine vollständige konsistente Theorie $\Sigma_1 \supseteq \Sigma_0$ gibt.
+\end{itemize}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+\phantom{}
+\begin{itemize}
+  \item Sei $K$ beliebige Kette in $P$. Dann gilt sicher für alle
+  $\Sigma \in K: \Sigma \subseteq \bigcup K$. \\
+  Es bleibt also noch zu zeigen, dass $\bigcup K \in P$:
+  Es gilt sicher $\Sigma_0 \subseteq \bigcup K$. \\
+  Angenommen, $\bigcup K$
+  wäre nicht konsisent, also $\bigcup K \vdash \bot$. Dann gibt es eine endliche
+  Herleitung von $\bot$ aus $\bigcup K$. Daher gibt es eine endliche Teilmenge $K^{\prime} \subseteq K$,
+  sodass alle nichtlogischen Axiome in der Herleitung von $\bot$ ist $\bigcup K^{\prime}$ liegen
+  und somit $\bigcup K^{\prime} \vdash \bot$. Nun ist $K$ eine Totalordnung, also
+  existiert ein größtes Element in
+  $\Sigma_0 \in K^{\prime}: \forall \Sigma \in K: \Sigma_0 \supseteq \Sigma$.
+  Daher gilt auch $\Sigma_0 \supseteq \bigcup K^{\prime}$ und damit erhalten wir
+  den Widerspruch $\Sigma_0 \vdash \bot$.
+  \item Sei $\Sigma^* \in P_{\mathscr{L}}$ maximal: Angenommen $\Sigma^*$ wäre nicht vollständig,
+  also finden wir eine geschlossene Formel $\sigma$ in $\mathscr{L}$, sodass weder
+  $\Sigma^* \vdash \sigma$ noch $\Sigma^* \vdash \neg \sigma$. Nun können wir eine
+  der beiden Formeln zu $\Sigma^*$ hinzufügen und bleiben vollständig. Warum?
+  Wäre dem nicht so, dann könnten wir $\Sigma^* \cup \sigma \vdash \bot$
+  und $\Sigma^* \cup \neg \sigma \vdash \bot$ herleiten. Nach zweimaliger
+  Anwendung des Deduktionstheorem haben wir hiermit einen halbformalen Beweis
+  durch Fallunterscheidung für $\Sigma^* \vdash \bot$ dastehen. Widerspruch!
+  Damit ist $\Sigma^*$ nicht maximal, nochmal Widerspruch! \\
+  Also muss $\Sigma^*$ bereits vollständig sein.
+  \item Jetzt müssen wir die Resultate nur noch zusammenfügen. In Punkt 1
+  haben wir die Voraussetzung für das Lemma von Zorn überprüft, also
+  gibt es maximale Elemente $\Sigma_1 \subseteq \Sigma_0$, welche laut Punkt 2
+  bereits vollständig sein müssen.
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
