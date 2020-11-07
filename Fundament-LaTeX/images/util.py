@@ -37,6 +37,8 @@ for image_file_name in image_file_names:
 
 # ---------------------------------------------------------------- #
 
+"""
+
 with codecs.open('ODEs.txt', 'r', 'utf-8') as file:
     content = file.read()
     content = content.split('\r\n')
@@ -46,6 +48,21 @@ for n in range(90):
     os.rename(
         f'ODEs - {n+1}.png',
         f'ODEs - {content[n]}.png'
+    )
+
+"""
+
+# ---------------------------------------------------------------- #
+
+with codecs.open('LGM.txt', 'r', 'utf-8') as file:
+    content = file.read()
+    content = content.split('\r\n')
+
+for n in range(225+1):
+
+    os.rename(
+        f'{n}.png',
+        f'LGM - {content[n]}.png'
     )
 
 # ---------------------------------------------------------------- #
