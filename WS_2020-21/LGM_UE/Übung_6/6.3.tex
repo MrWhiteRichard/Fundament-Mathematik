@@ -24,8 +24,27 @@ $\exists^{\geq n}$ und den Kompaktheitssatz.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
+Wir wissen, dass zu jedem positiven $n \in \N$ eine (zyklische) Gruppe der Ordnung $n$
+existiert, sowie Gruppen von unendlicher Ordnung.
+\begin{itemize}
+  \item
+  \begin{align*}
+    \sigma_G = \forall x \forall y \forall z (x*(y*z) = (x*y)*z)\ \land \\
+    \exists e \forall x (e*x = x = x*e)\ \land \\
+    \forall x (x * x^{-1} = x^{-1} * x = e)
+  \end{align*}
+  \item Angenommen, es existiert eine Formel $\sigma_{eG}$, sodass $\Mod(\sigma_{eG})$
+  die Klasse aller endlichen Gruppen ist. Dann ist $\Sigma := \{\exists^{\geq n}: n \in \N\} \cup \{\sigma_{eG}\}$ erfüllbar, da jede englische Teilmenge erfüllbar ist.
+  $\Sigma$ selbst ist aber klarerweise unerfüllbar. Widerspruch!
+  \item Geht nicht, da sonst $\neg \sigma_{uG}$ alle endlichen Gruppen beschreiben würde.
+  \item Angenommen, es existiert eine Formelmenge $\Sigma_{eG}$, sodass $\Mod(\Sigma_{eG})$
+  die Klasse aller endlichen Gruppen ist.
+  Betrachte mal wieder $\Sigma := \{\exists^{\geq n}: n \in \N\}\, \cup\, \Sigma_{eG}$.
+  Wieder ist jede endliche Teilmenge davon erfüllbar, aber um $\Sigma$ zu erfüllen,
+  müssten wir eine endliche Gruppe finden, deren Ordnung jedes $n \in \N$ übersteigt.
+  Widerspruch!
+  \item $\Sigma_{uG} = \{\exists^{\geq n}: n \in \N\} \cup \{\sigma_G\}$
+\end{itemize}
 
 \end{solution}
 
