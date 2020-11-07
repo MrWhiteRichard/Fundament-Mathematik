@@ -54,6 +54,8 @@ for n in range(90):
 
 # ---------------------------------------------------------------- #
 
+"""
+
 with codecs.open('LGM.txt', 'r', 'utf-8') as file:
     content = file.read()
     content = content.split('\r\n')
@@ -63,6 +65,23 @@ for n in range(225+1):
     os.rename(
         f'{n}.png',
         f'LGM - {content[n]}.png'
+    )
+
+"""
+
+# ---------------------------------------------------------------- #
+
+os.chdir('NumPDEs')
+
+with codecs.open('NumPDEs.txt', 'r', 'utf-8') as file:
+    content = file.read()
+    content = content.split('\r\n')
+
+for n, title in enumerate(content):
+
+    os.rename(
+        f'{n}.png',
+        f'NumPDEs - {title}.png'
     )
 
 # ---------------------------------------------------------------- #
