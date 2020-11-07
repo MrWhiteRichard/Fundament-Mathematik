@@ -16,7 +16,23 @@ enthält, sowie für jedes Element Ihrer Menge eine neue Konstante.
 
 \begin{solution}
 
-\phantom{}
+Wir bewegen uns in einer Sprache $\mathscr{L}$ mit einem zweistelligen Relationssymbol $\leq$
+und einer Konstantenmenge $C$, sodass es eine bijektive Abbildung $f: P \to C$ gibt (außerhalb der Sprache). Definiere
+\begin{align*}
+  \Sigma := \{(c \leq c) \land
+  (c \leq d \rightarrow d \leq c \rightarrow c = d) \land
+  (c \leq d \lor d \leq c) \land
+  (c \leq d \rightarrow d \leq e \rightarrow c \leq e): c,d,e \in C\} \\
+  \cup \{ich weiß noch nicht was wir hier noch brauchen\}
+\end{align*}
+Jede endliche Teilmenge von $\Sigma$ ist erfüllbar. Dafür die endliche Menge $M$
+an Konstantensymbole die in $\Sigma$ vorkommen. Diese Menge können wir nun mit
+einer linearen Ordnung versehen, z.B. betrachten wir die nach der Definition der
+Endlichkeit existierende Bijektion $f: M \to \{1,\dots,n\}$ für ein $n \in \N$ und
+definieren $m_1 \leq m_2:\iff f(m_1) \leq_\N f(m_2)$ für $m_1,m_2 \in M$.
+Nach dem Kompaktheitssatz ist dann auch $\Sigma$ erfüllbar.
+Wie können wir jetzt erzwingen, dass das Universum der Struktur, welche $\Sigma$
+erfüllt, gleich $P$ ist?
 
 \end{solution}
 
