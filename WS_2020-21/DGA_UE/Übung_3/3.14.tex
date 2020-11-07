@@ -37,7 +37,7 @@ der durch $A[1,\dots,n]$ induzierten Permutation.
   \item Wir adaptieren den Verschmelzen-Algorithmus für unsere Zwecke:
   \begin{flalign*}
     1&: \textbf{Prozedur}~ \textsc{InversionsVerschmelzen} (A,B) & \\
-    2&: \text{Sei $C$ ein neues Datenfeld  der Länge} A.\textit{Länge} + B.\textit{Länge} & \\
+    2&: \text{Sei $C$ ein neues Datenfeld  der Länge } A.\textit{Länge} + B.\textit{Länge} & \\
     3&: i := 1 & \\
     4&: j := 1 & \\
     5&: n := 0 & \\
@@ -60,6 +60,24 @@ der durch $A[1,\dots,n]$ induzierten Permutation.
   Jetzt müssen nur noch im Hauptteil von Merge-Sort die $n$ aufaddiert werden und
   man erhält zusätzlich zur Sortierung die Anzahl der Fehlstände mit Laufzeit $\Theta(n \log n)$
   im Worst-Case.
+  \begin{flalign*}
+  1&: \textbf{Prozedur}~ \textsc{VInversionszähler} (A) & \\
+  2&: \textbf{Falls } A.\textit{Länge} = 2& \\
+  3&: \quad \textbf{Falls } A[2] < A[1] & \\
+  4&: \quad \quad \textbf{Antworte } 1 & \\
+  5&: \quad \textbf{Sonst} & \\
+  6&: \quad  \quad \textbf{Antworte } 0  & \\
+  7&: \quad \textbf{Ende Falls} & \\
+  8&: \textbf{Sonst} & \\
+  9&: \quad m := \left\lceil \frac{A.\textit{Länge}}{2} \right\rceil & \\
+  10&: \quad L := A[1, \dots, m] & \\
+  11&: \quad R := A[m+1, \dots, A.\textit{Länge}] & \\
+  12&: \quad n_L := \textit{VInversionszähler(L)} & \\
+  13&: \quad n_R := \textit{VInversionszähler}(R) & \\
+  14&: \quad \textbf{Antworte } n_L + n_R + \textit{InversionsVerschmelzen}(L, R) & \\
+  15&: \textbf{Ende Falls} & \\
+  16&: \textbf{Ende Prozedur}
+  \end{flalign*}
 \end{enumerate}
 
 \end{solution}

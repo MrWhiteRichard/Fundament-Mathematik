@@ -197,6 +197,18 @@ Wir nennen die linke Matrix $L_n$ und die rechte $R_n$.
   15&: \quad \textbf{Antworte}~ F & \\
   16&: \textbf{Ende Prozedur}
   \end{flalign*}
+  
+  Eine andere Möglichkeit die womöglich funktioniert ist die Folgende.
+  
+  \begin{flalign*}
+  1&: \textbf{Prozedur}~ \textsc{MatrixPotenzieren}(M, n) & \\
+  2&: \textbf{Falls } n = 1 & \\
+  3&: \quad \textbf{Antworte } M & \\
+  4&: \textbf{Sonst} & \\
+  5&: \quad \textbf{Antworte } \textit{MatrixPotenzieren}\pbraces{M, \left\lfloor \frac{n}{2} \right \rfloor} \cdot \textit{MatrixPotenzieren}\pbraces{M, \left\lceil \frac{n}{2} \right\rceil} & \\
+  6&: \textbf{Ende Falls} & \\
+  7&: \textbf{Ende Prozedur}
+  \end{flalign*}
 
 \end{enumerate}
 

@@ -50,18 +50,19 @@ bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zus
      1&: \textbf{Prozedur}~ \textsc{natural merge sort} (A) & \\
      2&: \quad n := A.\textit{Länge} & \\
      3&: \quad runs := [~] & \\
-     4&: \quad \textbf{Solange}~ i \leq n & \\
-     5&: \quad \quad j := 0 & \\
-     6&: \quad \quad run := [A[i]] \\
-     7&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] & \\
-     8&: \quad \quad \quad run.append(A[i+j+1]) & \\
-     9&: \quad \quad \quad j := j+1 & \\
-     10&: \quad \quad \textbf{Ende Solange} & \\
-     11&: \quad \quad runs.append(run) & \\
-     12&: \quad \quad i := i+j+1 & \\
-     13&: \quad \textbf{Ende Solange} & \\
-     14&: \quad \textbf{Antworte~} \textsc{runsverschmelzen} (runs) & \\
-     15&: \textbf{Ende Prozedur}
+     4&: \quad i := 1 & \\
+     5&: \quad \textbf{Solange}~ i \leq n & \\
+     6&: \quad \quad j := 0 & \\
+     7&: \quad \quad run := [A[i]] \\
+     8&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] & \\
+     9&: \quad \quad \quad run.append(A[i+j+1]) & \\
+     10&: \quad \quad \quad j := j+1 & \\
+     11&: \quad \quad \textbf{Ende Solange} & \\
+     12&: \quad \quad runs.append(run) & \\
+     13&: \quad \quad i := i+j+1 & \\
+     14&: \quad \textbf{Ende Solange} & \\
+     15&: \quad \textbf{Antworte~} \textsc{runsverschmelzen} (runs) & \\
+     16&: \textbf{Ende Prozedur}
   \end{flalign*}
   Man könnte den Algorithmus evtl. noch optimieren, indem man die Runs noch
   aufsteigend nach ihrer Länge sortiert, damit man sich beim Verschmelzen etwas Aufwand spart.
