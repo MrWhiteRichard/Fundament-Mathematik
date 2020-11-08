@@ -2,28 +2,152 @@
 
 \begin{exercise}
 
+\phantom{}
+
 \begin{enumerate}[label = \textbf{\alph*)}]
+
   \item Sei $(T_j)_{j \in \N} \subset \R^2$ eine Folge von nicht-degenerierten Dreiecken.
-  Zeigen Sie, dass die shape regularity Konstanten $\sigma(T_j) = h_{T_j} / \rho_{T_j}$ genau dann gegen unendlich divergieren
-  wenn der kleinste Winkel in $T_j$ gegen Null geht.
-  \item Eine alternative Definition der shape regularity Konstante ist gegeben durch
-  $\tilde{\sigma}(T) := h_T / r_t$, wobei
+  Zeigen Sie, dass die shape regularity Konstanten $\sigma(T_j) = h_{T_j} / \rho_{T_j}$ genau dann gegen unendlich divergieren wenn der kleinste Winkel in $T_j$ gegen Null geht.
+
+  \item Eine alternative Definition der shape regularity Konstante ist gegeben durch $\tilde{\sigma}(T) := h_T / r_t$, wobei
 
   \begin{align*}
-    r_T := \max\{\text{diam}(B): B~ \text{ein Kreis enthalten in}~ T\}.
+    r_T := \max
+    \Bbraces
+    {
+      \text{diam}(B):
+      B ~\text{ein Kreis enthalten in}~ T
+    }.
   \end{align*}
 
   Wie hängen $\sigma(T)$ und $\tilde{\sigma}(T)$ zusammen?
+
 \end{enumerate}
-
+  
 \end{exercise}
+  
+  % --------------------------------------------------------------------------------
+  
+  \begin{solution}
 
-% --------------------------------------------------------------------------------
+  \phantom{}
 
-\begin{solution}
+  \begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[scale=1.25]
 
-ToDo!
+      \coordinate [label = left:        $A$] (A) at (0, 0);
+      \coordinate [label = below right: $B$] (B) at (8, 0);
+      \coordinate [label = above:       $C$] (C) at (2, 4);
+      \draw
+        (A) -- node [below]       {$c$}
+        (B) -- node [above right] {$a$}
+        (C) -- node [above left]  {$b$}
+        cycle;
 
-\end{solution}
+        \coordinate (M) at (2, 0);
+        \draw (C) -- node [right] {$h$} (M);
 
-% --------------------------------------------------------------------------------
+        \draw (1, 0) node [above] {$c_A$};
+        \draw (5, 0) node [above] {$c_B$};
+
+        \draw (0.5, 0) arc (0:64:0.5);
+        \draw (0.25, 0.15) node {$\alpha$};
+
+        \draw (7, 0) arc (180:146:1);
+        \draw (7.25, 0.2) node {$\beta$};
+
+        \draw (2, 3) arc (270:243.5:1);
+        \draw (2, 3) arc (270:326:1);
+        \draw (2.35, 3.4) node {$\gamma$};
+
+        \draw (2.25, 0) arc (0:90:0.25);
+        \draw (2.1, 0.1) node {$\cdot$};
+
+      \end{tikzpicture}
+      \caption{Dreieck $T$}
+      \label{fig:dreieck}
+  \end{figure}
+  
+  \begin{enumerate}[label = \textbf{\alph*)}]
+  
+    \item Sei $T$ ein Dreieck.
+    Man betrachte die Skizze aus Abbildung \ref{fig:dreieck}.
+    Der $\sin$-Satz besagt Folgendes.
+
+    \begin{align*}
+      \frac{a}{\sin \alpha}
+      =
+      \frac{b}{\sin \beta}
+      =
+      \frac{c}{\sin \gamma}
+    \end{align*}
+  
+    $\arcsin$ steigt monoton und $c \geq a, b$.
+
+    \begin{align*}
+      \implies
+      \gamma
+      =
+      \arcsin \frac{c \sin \gamma}{c}
+      \geq
+      \begin{cases}
+        \arcsin \frac{a \sin \gamma}{c} = \alpha \\
+        \arcsin \frac{b \sin \gamma}{c} = \beta
+      \end{cases}
+    \end{align*}
+    
+    Also ist $\gamma$ der größte Winkel ($\to$ uninteressant).
+  
+    \begin{align*}
+      \implies
+      \sigma(T)
+      =
+      \frac{c}{h}
+      =
+      \frac{c_A + c_B}{h}
+      =
+      \frac{c_A}{h} + \frac{c_B}{h}
+      =
+      \frac{1}{\tan \alpha} + \frac{1}{\tan \beta}
+    \end{align*}
+  
+    Daraus folgt die Behauptung.
+  
+    \item Sei $r$ der Inkreis-Radius und $d = 2r$ der Inkreis-Durchmesser.
+    Wikipedia kennt folgende Formel.
+  
+    \begin{align*}
+      r = \frac{2 |T|}{a + b + c} = \frac{ch}{a + b + c}
+    \end{align*}
+  
+    \begin{align*}
+      \implies
+      \sigma(T)
+      =
+      \frac{c}{h}
+      \leq
+      \frac{c}{d}
+      =
+      \tilde{\sigma}(T)
+      =
+      \frac{c}{d}
+      =
+      \frac{c}
+      {
+        2 \frac{ch}{a + b + c}
+      }
+      =
+      \frac{a + b + c}{2h}
+      \leq
+      \frac{3c}{2h}
+      =
+      \frac{3}{2} \sigma(T)
+    \end{align*}
+  
+  \end{enumerate}
+  
+  \end{solution}
+  
+  % --------------------------------------------------------------------------------
+  
