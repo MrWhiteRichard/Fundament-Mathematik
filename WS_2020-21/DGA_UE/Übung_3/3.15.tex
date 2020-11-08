@@ -2,83 +2,132 @@
 
 \begin{exercise}
 
-Natural Merge-Sort ist eine Variante von Merge-Sort, die bereits vorsortierte Teilfolgen
-(sogenannte runs) ausnutzt. Ein run ist eine Teilfolge aufeinanderfolgender Glieder $x_i, x_{i+1}, \dots, x_{i+k}$ mit $x_i \leq x_{i+1} \leq \dots \leq x_{i+k}$. Die Basis für den Verschmelzen-Vorgang bilden hier nicht
-die rekursiv oder iterativ gewonnenen Zweiergruppen, sondern die runs. Im ersten Durchlauf des Algorithmus
-bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zusammen.
+Natural Merge-Sort ist eine Variante von Merge-Sort, die bereits vorsortierte Teilfolgen (sogenannte runs) ausnutzt. Ein run ist eine Teilfolge aufeinanderfolgender Glieder $x_i, x_{i+1}, \dots, x_{i+k}$ mit $x_i \leq x_{i+1} \leq \dots \leq x_{i+k}$.
+Die Basis für den Verschmelzen-Vorgang bilden hier nicht die rekursiv oder iterativ gewonnenen Zweiergruppen, sondern die runs.
+Im ersten Durchlauf des Algorithmus bestimmt man die runs, anschließend fügt man die runs mittels VERSCHMELZEN zusammen.
 
 \begin{enumerate}[label = (\alph*)]
+
   \item Sortieren Sie folgende Liste mittels Natural Merge-Sort:
+
   \begin{align}
-    2,4,3,1,7,6,8,9,0,5
+    2, 4, 3, 1, 7, 6, 8, 9, 0, 5
   \end{align}
+
   \item Schreiben Sie einen Pseudocode für Natural Merge-Sort.
-  \item Machen Sie eine Best- sowie eine Worst-Case-Analyse für das Laufzeitverhalten von Natural Merge-Sort
-  bei einem Eingabefeld der Größe $n$.
+
+  \item Machen Sie eine Best- sowie eine Worst-Case-Analyse für das Laufzeitverhalten von Natural Merge-Sort bei einem Eingabefeld der Größe $n$.
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
+
 \begin{solution}
+
 \phantom{}
+
 \begin{enumerate}[label = (\alph*)]
-  \item Zuerst bestimmen wir die Runs:
+
+  \item Wir haben dafür ein Python-Programm geschrieben.
+  Der Output lautet wie folgt.
+
+  \begin{verbatim}
+    # ---------------------------------------------------------------- # 
+
+    [[2, 4], [3], [1, 7], [6, 8, 9], [0, 5]]
+
+    [2, 4]
+    [2, 3, 4]
+    [1, 2, 3, 4, 7]
+    [1, 2, 3, 4, 6, 7, 8, 9]
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    # ---------------------------------------------------------------- #
+  \end{verbatim}
+
+  Jetzt machen wir's manuell.
+  Zuerst bestimmen wir die Runs.
+
   \begin{align*}
-    [2,4],[3],[1,7],[6,8,9],[0,5]
+    [2, 4], [3], [1, 7], [6, 8, 9], [0, 5]
   \end{align*}
-  Nun verschmelzen wir:
+
+  Nun verschmelzen wir.
+
   \begin{align*}
-    &[2,4],[3],[1,7],[6,8,9],[0,5] \rightsquigarrow
-    [2,3,4],[1,7],[6,8,9],[0,5] \rightsquigarrow \\
-    &[1,2,3,4,7],[6,8,9],[0,5] \rightsquigarrow
-    [1,2,3,4,6,7,8,9],[0,5] \rightsquigarrow
-    [0,1,2,3,4,5,6,7,8,9].
+    [2, 4], [3], [1, 7], [6, 8, 9], [0, 5]
+    & \rightsquigarrow
+    [2, 3, 4], [1, 7], [6, 8, 9], [0, 5] \\
+    & \rightsquigarrow
+    [1, 2, 3, 4, 7], [6, 8, 9], [0, 5] \\
+    & \rightsquigarrow
+    [1, 2, 3, 4, 6, 7, 8, 9], [0, 5] \\
+    & \rightsquigarrow
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   \end{align*}
+
   \item
+
   \begin{flalign*}
-     1&: \textbf{Prozedur}~ \textsc{runsverschmelzen} (runs) & \\
-     2&: \quad m := runs.\textit{Länge} & \\
-     3&: \quad C = runs[1] & \\
-     4&: \quad \textbf{Für}~ i = 2,\dots,m & \\
-     5&: \quad \quad C = \textsc{verschmelzen} (C, runs[i]) & \\
-     6&: \quad \textbf{Ende Für} & \\
-     7&: \quad \textbf{Antworte~} C & \\
+     1&: \textbf{Prozedur}~ \textsc{Runs Verschmelzen} (R) \\
+     2&: \quad m := R.\textit{Länge} \\
+     3&: \quad C := R[1] \\
+     4&: \quad \textbf{Für}~ i = 2, \dots, m \\
+     5&: \quad \quad C := \textsc{Verschmelzen} (C, R[i]) \\
+     6&: \quad \textbf{Ende Für} \\
+     7&: \quad \textbf{Antworte~} C \\
      8&: \textbf{Ende Prozedur}
   \end{flalign*}
 
   \begin{flalign*}
-     1&: \textbf{Prozedur}~ \textsc{natural merge sort} (A) & \\
-     2&: \quad n := A.\textit{Länge} & \\
-     3&: \quad runs := [~] & \\
-     4&: \quad i := 1 & \\
-     5&: \quad \textbf{Solange}~ i \leq n & \\
-     6&: \quad \quad j := 0 & \\
-     7&: \quad \quad run := [A[i]] \\
-     8&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] & \\
-     9&: \quad \quad \quad run.append(A[i+j+1]) & \\
-     10&: \quad \quad \quad j := j+1 & \\
-     11&: \quad \quad \textbf{Ende Solange} & \\
-     12&: \quad \quad runs.append(run) & \\
-     13&: \quad \quad i := i+j+1 & \\
-     14&: \quad \textbf{Ende Solange} & \\
-     15&: \quad \textbf{Antworte~} \textsc{runsverschmelzen} (runs) & \\
+     1&: \textbf{Prozedur}~ \textsc{Natural Merge Sort} (A) \\
+     2&: \quad \text{Sei $R$ ein neuer Datenfeld der Länge $0$.} \\
+     3&: \quad n := A.\textit{Länge} \\
+     4&: \quad i := 1 \\
+     5&: \quad \textbf{Solange}~ i \leq n \\
+     6&: \quad \quad j := 0 \\
+     7&: \quad \quad r := (A[i]) \\
+     8&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] \\
+     9&: \quad \quad \quad r.\textit{append}(A[i+j+1]) \\
+     10&: \quad \quad \quad j := j + 1 \\
+     11&: \quad \quad \textbf{Ende Solange} \\
+     12&: \quad \quad R.\textit{append}(r) \\
+     13&: \quad \quad i := i + j + 1 \\
+     14&: \quad \textbf{Ende Solange} \\
+     15&: \quad \textbf{Antworte}~ \textsc{Runs Verschmelzen} (R) \\
      16&: \textbf{Ende Prozedur}
   \end{flalign*}
-  Man könnte den Algorithmus evtl. noch optimieren, indem man die Runs noch
-  aufsteigend nach ihrer Länge sortiert, damit man sich beim Verschmelzen etwas Aufwand spart.
 
-    \item Das erstellen der Runs gelingt immer in linearem Aufwand, daher gilt für den Best-Case: \\
-    Die Liste ist schon aufsteigend sortiert, der Aufwand liegt also nur in der Erstellung der Runs und somit erhalten wir $\Theta(n)$. \\
+  Man könnte den Algorithmus evtl. noch optimieren, indem man die Runs aufsteigend nach ihrer Länge sortiert.
+  Damit spart man sich beim Verschmelzen etwas Aufwand.
 
-    Worst-Case: Die Liste ist absteigend sortiert, wir müssen also die Prozedur Verschmelzen für $i = 2,\dots,n$ auf die Datenfelder $C$ und $runs[i]$ der Länge $i-1$ und $1$ anwenden. Wir kommen also insgesamt auf einen Aufwand von
+  \item Sei $A$ ein Datenfeld der Länge $n$.
+  Das Erstellen der Runs gelingt immer in linearem Aufwand.
+  
+  \begin{itemize}
 
-    \begin{align*}
-      \Theta(n) + \sum_{i=2}^{n} \Theta(i) = \Theta(n) + \frac{\Theta(n^2+n)}{2} = \Theta(n^2)
-    \end{align*}
+    \item Best-Case:
 
-    Macht das so Sinn? Ja.
+    Sei das Datenfeld bereits aufsteigend sortiert.
+    Der Aufwand liegt also nur in der Erstellung der Runs.
+    Somit erhalten wir linearen Aufwand.
+
+    \item Worst-Case:
+    
+    Sei das Datenfeld absteigend sortiert.
+    Wir erhalten also $n$ Runs der Länge $1$.
+    Abgesehen vom Erstellen der Runs, müssen wir die Prozedur Verschmelzen für $i = 2, \dots, n$, also $(n-1)$-mal, auf die Datenfelder $C$ und $R[i]$ der Länge $i-1$ bzw. $1$ anwenden.
+    Verschmelzen hat linearen Aufwand.
+    Wir kommen also insgesamt auf quadratischen Aufwand.
+
+  \end{itemize}
 
 \end{enumerate}
+
 \end{solution}
 
 
