@@ -17,13 +17,12 @@ enthält, sowie für jedes Element Ihrer Menge eine neue Konstante.
 \begin{solution}
 
 Wir bewegen uns in einer Sprache $\mathscr{L}$ mit einem zweistelligen Relationssymbol $\leq$
-und einer Konstantenmenge $C$, sodass es eine bijektive Abbildung $f: P \to C$ gibt (außerhalb der Sprache). Definiere
+und einer Konstantenmenge $C = \{c_p: p \in P \}$. Definiere
 \begin{align*}
   \Sigma := \{(c \leq c) \land
   (c \leq d \rightarrow d \leq c \rightarrow c = d) \land
   (c \leq d \lor d \leq c) \land
-  (c \leq d \rightarrow d \leq e \rightarrow c \leq e): c,d,e \in C\} \\
-  \cup \{ich weiß noch nicht was wir hier noch brauchen\}
+  (c \leq d \rightarrow d \leq e \rightarrow c \leq e): c,d,e \in C\}
 \end{align*}
 Jede endliche Teilmenge von $\Sigma$ ist erfüllbar. Dafür die endliche Menge $M$
 an Konstantensymbole die in $\Sigma$ vorkommen. Diese Menge können wir nun mit
@@ -31,9 +30,16 @@ einer linearen Ordnung versehen, z.B. betrachten wir die nach der Definition der
 Endlichkeit existierende Bijektion $f: M \to \{1,\dots,n\}$ für ein $n \in \N$ und
 definieren $m_1 \leq m_2:\iff f(m_1) \leq_\N f(m_2)$ für $m_1,m_2 \in M$.
 Nach dem Kompaktheitssatz ist dann auch $\Sigma$ erfüllbar.
-Wie können wir jetzt erzwingen, dass das Universum der Struktur, welche $\Sigma$
-erfüllt, gleich $P$ ist?
-
+Also existiert eine Struktur $\mathscr{L}$, welche $\Sigma$ erfüllt. Nun definiere
+\begin{align*}
+  p \leq q: \iff c_p^{\mathscr{M}} \leq^{\mathscr{M}} c_q^{\mathscr{M}}, \quad p,q \in P.
+\end{align*}
+Diese Vorschrift ist wohldefiniert, da wir unsere Konstantensymbolmenge so
+gewählt haben, dass es zu jedem $p \in P$ genau ein wohlunterschiedenes Konstantensymbol $c_p$ gibt.
+Nun gilt es noch nachzuprüfen, dass dadurch tatsächlich eine lineare Ordnung definiert wird:
+Reflexivität, Transivität und Totalität übertragen sich direkt aufgrund den Gesetzen in $\Sigma$.
+Die Antisymmetrie folgt ebenso aus den Gesetzen, sowie der Voraussetzung, dass $c_p, c_q$
+für $p \neq q$ unterschiedliche Konstantensymbole bezeichnen.
 \end{solution}
 
 % --------------------------------------------------------------------------------

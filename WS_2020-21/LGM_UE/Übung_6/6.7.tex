@@ -13,9 +13,19 @@ vollständig und die andere unvollständig sein soll.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
-
+Bezeichne $c$ das einzige Konstantensymbol in unserer Sprache und $R$ das
+einzige Relationssymbol:
+\begin{align*}
+  \Sigma = \{\forall x \forall y\, (x = y = c)\}
+\end{align*}
+Jedes einelementige Modell erfüllt $\Sigma$, daher ist $\Sigma$ konsistent.
+Ebenso ist $\Sigma$ eine Henkintheorie, da $\Sigma$ gar keine geschlossene
+Formeln der Form $\exists x \varphi$ enthält. $\Sigma$ ist aber nicht vollständig,
+da die geschlossene Formel $\exists x R(x)$ nicht entscheidbar ist.
+\begin{align*}
+  \Sigma^{\prime} = \{\forall x \forall y\, (x = y = c), \exists x R(x), R(c)\}
+\end{align*}
+ist dafür eine vollständige, konsisente Henkintheorie.
 \end{solution}
 
 % --------------------------------------------------------------------------------
