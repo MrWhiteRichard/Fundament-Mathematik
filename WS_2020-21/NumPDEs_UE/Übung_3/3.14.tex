@@ -10,8 +10,54 @@ Formulieren und beweisen Sie das Lemma $3.8$ explizit für den Fall $m=2$.
 
 \begin{solution}
 
-ToDo!
-
+Wir berechnen zuerst mit $D(u \circ \Phi) = Du(\Phi(x))D\Phi(x) = Du(\Phi(x))B$
+\begin{align*}
+  \partial_k\partial_j(u\circ\Phi)(x) =
+  \partial_k \left(\sum_{n=1}^d \partial_n u(\Phi(x))B_{nj}\right) =
+  \sum_{n=1}^dB_{nj}\partial_k(\partial_n u(\Phi(x))) =
+  \sum_{n=1}^d\sum_{m=1}^d \partial_m\partial_n u(\Phi(x))B_{nj}B_{mk}
+\end{align*}
+Jetzt verwenden wir Cauchy-Schwarz:
+\begin{align*}
+  |\partial_k\partial_j(u \circ \Phi)(x)|^2 &\leq
+  \left(\sum_{n,m=1}^d|\partial_m\partial_n u(\Phi(x))|^2\right)
+  \left(\sum_{n,m=1}^d|B_{nj}B_{mk}|^2\right) \\
+  &= \left(\sum_{n,m=1}^d|\partial_m\partial_n u(\Phi(x))|^2\right)
+  \left(\sum_{n=1}^dB_{nj}^2\sum_{m=1}^dB_{mk}^2\right) \\
+\end{align*}
+Jetzt beweisen wir die Trafo für $u \in C^{\infty}(\overline{T})$:
+\begin{align*}
+  |\det(B)|\|D^2(u\circ\Phi)\|^2_{L^2(\hat{T})}
+  &= \int_{\hat{T}}\sum_{j=1}^d\sum_{k=1}^d |\partial_k\partial_j(u\circ\Phi)(x)|^2
+  |\det D\Phi(x)| dx \\
+  &\leq \sum_{j=1}^d\sum_{k=1}^d\left(\sum_{n=1}^dB_{nj}^2\sum_{m=1}^dB_{mk}^2\right)
+  \int_{\hat{T}}\left(\sum_{n,m=1}^d|\partial_m\partial_n u(\Phi(x))|^2\right)|\det D\Phi(x)| dx \\
+  &= \sum_{j=1}^d\sum_{k=1}^d\left(\sum_{n=1}^dB_{nj}^2\sum_{m=1}^dB_{mk}^2\right)
+  \|D^2u\|_{L^2(T)}^2 \\
+  &= \left(\sum_{j=1}^d\sum_{n=1}^dB_{nj}^2\right)\left(\sum_{k=1}^d\sum_{m=1}^dB_{mk}^2\right)
+  \|D^2u\|_{L^2(T)}^2 \\
+  &= \|B\|_F^4\|D^2u\|_{L^2(T)}^2.
+\end{align*}
+Jetzt erweitern wir das Resultat mit Dichtheitsargumenten auf den ganzen $H^2(T)$: \\
+$C^{\infty}(\overline{T})$ liegt dicht in $H^2(T)$. Für $u \in C^{\infty}(\overline{T})$
+gilt aufgrund der obigen Abschätzung, kombiniert mit dem Resulat für $m=0$
+aus der Vorlesung
+\begin{align*}
+  \|u\circ \Phi\|_{H^2(\hat{T})} \leq C\|u\|_{H^2(T)}.
+\end{align*}
+Damit ist $\Psi: u \mapsto u \circ \Phi$ auf einem dichten
+Teilraum von $H^2(T)$ gleichmäßig stetig und kann somit eindeutig zu einem
+stetigen Operator auf dem ganzen Raum fortgesetzt werden.
+Für beliebiges $u \in H^2(T)$ wähle nun $(u_n)_{n \in \N} \subset C^{\infty}(\overline{T})$
+mit $u_n \to u$. Aufgrund der Stetigkeit von $\Psi$ erhalten wir damit auch
+$u_n \circ \Phi = \Psi u_m \to \Psi u$ in $H^2(\hat{T})$.
+Der Fall für $m=0$ liefert uns sogar $u_m \to u$ in $L^2(\hat{T})$ und damit $u \circ \Phi = \Psi u$.
+Da die rechte und linke Seite der Ungleichung klarerweise stetig in $u$ sind, erhalten wir somit
+\begin{align*}
+  \|D^2(u\circ\Phi)\|_{L^2(\hat{T})} &= \lim_{n\to\infty}\|D^2(u_n\circ\Phi)\|_{L^2(\hat{T})} \\
+  &\leq \lim_{n\to\infty} |\det(B)|^{-1/2}\|B\|_F^2\|D^2u_n\|_{L^2(T)}
+  = |\det B|^{-1/2}\|B\|_F^2\|D^2u\|_{L^2(T)}
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
