@@ -25,6 +25,57 @@ $\Sigma_2 := \Sigma \cup \{\forall x \forall y \forall z (xEy \lor yEz \lor xEz)
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = \alph*.]
+\item Definiere dafür die Formel
+\begin{align*}
+  &\exists^{\geq n} = \forall x \exists x_1 \cdots \exists x_n\, (x_1 \neq x_2 \land x_1 \neq x_3
+  \land \cdots \land x_{n-1} \neq x_n \land xEx_1 \land \cdots \land xEx_n) \\
+  &\Sigma = \{\forall x\, (xEx), \forall x \forall y\, (xEy \rightarrow yEx),
+  \forall x \forall y \forall z\, (xEy \rightarrow yEz \rightarrow xEz)\} \cup
+  \{\exists^{\geq n}: n \in \N\}
+\end{align*}
+\item Wir behaupten dass es bis auf Isomorphie nur zwei unterschiedliche Modelle von $\Sigma_2$ gibt.
+Zuerst bemerken wir dafür, dass die Gesetze in $\Sigma_2$ bereits erzwingen, dass es in allen Modellen $\mathscr{M}$ von $\Sigma_2$ maximal zwei Äquivalenzklassen
+geben kann. Gäbe es nämlich mindestens drei, so könnten wir $x,y,z \in M$ aus jeweils unterschiedlichen
+Äquivalenzklassen wählen, welche dann die Formel $\forall x \forall y \forall z (xEy \lor yEz \lor xEz)$
+verletzen würden. \\
+Jetzt gilt es also noch zu zeigen, dass alle Modelle von $\Sigma_2$ mit der gleichen
+Anzahl an Äquivalenzklassen paarweise isomorph sind. Für Modelle mit einer einzigen
+Äquivalenzklasse ist die Interpretation von $E$ bereits zwangsläufig die Allrelation
+und somit stellt jede Bijektion zwischen den Universen bereits eine mit den Interpretationen
+von $E$ verträgliche Abbildung, also eine Isomorphie dar. So eine Bijektion exisitiert
+immer, da wir hier nur von abzählbaren Modellen sprechen. \\
+Für Modelle $\mathscr{M}_1,\mathscr{M}_2$ mit jeweils zwei Äquivalenzklassen müssen
+wir also eine Bijektion finden, welche mit der von den Interpretationen von $E$
+induzierten Partitionen $M_1 = P_1 \cup Q_1, M_2 = P_2 \cup Q_2$ verträglich ist,
+also $f(P_1) = P_2, f(Q_1) = Q_2$ beispielsweise. Dies ist immer möglich, da die Modelle
+$\mathscr{P_1}: P_1, E|_{P_1 \times P_1}$, usw. allesamt Modelle von $\Sigma_2$
+mit nur einer einzigen Äquivalenzklasse sind, wo denen wir bereits wissen,
+dass sie paarweise isomoprh sind. Wir erhalten also Isomorphien $f_p: P_1 \to P_2, p_q: Q_1 \to Q_2$.
+Schließlich ist $f = f_p \cup f_q$ die gesuchte Bijektion zwischen $\mathscr{M}_1$
+und $\mathscr{M}_2$.
+\item Wir geben drei Partitionen auf $\R$ an:
+\begin{enumerate}[label = \arabic*)]
+  \item $\{\R\}$
+  \item $\{\R\backslash\Q,\Q\}$
+  \item $\{\R^+\cup\{0\},\R^-\}$
+\end{enumerate}
+Klarerweise ist die induzierte Äquivalenzrelation von 1) nichtisomorph zu 2) und 3).
+Die Äquivalenzrelationen von 2) und 3) sind nicht isomorph, weil es keine Bijektion von
+$\Q$ nach $\R^+\cup\{0\}$ oder $\R^-$ gibt.
+\item Wir wissen, dass wir alle konsistenten Theorien vervollständigen können,
+also existiert zumindest eine vollständige Theorie $\Sigma^{\prime} \subseteq \Sigma_2$.
+In einer vollständigen Theorie wird auf jeden Fall die Formel
+$\sigma^{\prime} = \forall x \forall y (xEy)$ entschieden. Damit wird auf jeden Fall die Anzahl
+der Äquivalenzklassen festgelegt. Wir können zu $\Sigma_2$ sowohl $\sigma^{\prime}$,
+als auch $\neg \sigma^{\prime}$ hinzufügen und bleiben konsistent.
+Damit gibt es genau zwei mögliche Vervollständigungen von $\Sigma_2$:
+Eine lässt nur eine unendliche Äquivalenzklasse zu, die andere erlaubt nur Modelle mit
+zwei unendlichen Äquivalenzklassen. \\
+Was ist mit abzänlbar / nicht abzählbar unendlichen Äquivalenzklassen?
+Kommen da noch mehr vollständige Theorien dazu?
+Was heißt ``dieselben Konsequenzen''  genau?
+\end{enumerate}
 
 \end{solution}
 
