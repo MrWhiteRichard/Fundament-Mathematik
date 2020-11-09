@@ -13,6 +13,9 @@ Zeigen Sie, dass es einen (nicht notwendigerweise zusammenhängenden) Untergraph
 
 \begin{comment}
 
+# Die Aussage, die hier gezeigt wird ist zu stark!
+# Es gibt ein Gegenbeispiel in Beispiel 2.11!
+
 \begin{solution}
 Der Grad eines Knoten $v \in V$ ist definert als
 
@@ -83,21 +86,46 @@ Schließlich setzen wir $E^\prime := E_2^\prime \cup \Bbraces{\Bbraces{x_{n+1}, 
 
 \begin{solution}
 
-Der Grad eines Knoten $v \in V$
-ist definert als $\grad(x) = |\{\{x, y\}: \{x, y\} \in E\}|$. \\
-Wir beweisen die Aussage mit Induktion nach $n := |E| = |V-1|$: \\
+Der Grad eines Knoten $v \in V$ ist definert als
 
-Für $n = 1$ gibt es genau eine Kante, welche die beiden Knoten verbindet, 
-also gilt die Aussage bereits für $E^\prime = E$. \\
+\begin{align*}
+  \grad(x)
+  =
+  |\Bbraces{\Bbraces{x, y}: \Bbraces{x, y} \in E}|.
+\end{align*}
 
-Induktionsschritt: $n \rightsquigarrow n + 2$: \\
-Betrachte einen beliebigen Baum $G = (V, E)$.
-O.B.d.A. existiert ein $v \in V$ mit $\grad(v) = 2k$ (sonst ist die Aussage schon erfüllt). Sei $\{x_1, \dots, x_{2k}\} = \{x \in E: \{x, v \} \in V\}$.
-Da ganz $G$ aus einer geraden Anzahl von Knoten besteht (und somit aus einer ungeraden Anzahl an Kanten), gibt es also mindestens einen von $v$ ausgehenden \textquoteleft{Arm}\textquoteright ~$G_i$, der aus einer geraden Anzahl von Kanten besteht.
+Wir beweisen die Aussage mit Induktion nach $n := |E| = |V-1|$. \\
 
-Mit einem \textquoteleft{Arm}\textquoteright ~ $G_i$ ist hier jeweils die Zusammenhangskomponente von $G$ gemeint, die genau einen Kanten $\{x_i, v\}$ enthält und alle anderen Kanten $\{x_j, v\}$ für $j \neq i$ nicht.
+IA($n = 1$):
 
-Wenn wir von $G$ nun die Kante $\{x_i, v\}$ des \textquoteleft{Armes}\textquoteright ~$G_i$ mit gerader Kantenanzahl entfernen, bekommen wir zwei Zusammenhangskomponenten mit ungerader Kantenanzahl (die natürlich zyklenfrei und somit Bäume sind). Beide haben eine Kantenanzahl $\leq n$ und somit können wir die IV auf beide anwenden. \\
+Es gibt genau eine Kante, welche die beiden Knoten verbindet.
+Also gilt die Aussage bereits für $E^\prime = E$. \\
+
+IS($n \mapsto n + 2$):
+
+Betrachte einen beliebigen Baum $G = (V, E)$ mit einer geraden Anzahl an Knoten.
+O.B.d.A. $\Exists v \in V: \grad(v) = 2k$, $k \in \N$, sonst wäre die Aussage schon erfüllt.
+Wir betrachten Menge aller Kanten aus $E$, die an $v$ angrenzen.
+
+\begin{align*}
+  \Bbraces{x_1, \dots, x_{2k}}
+  =
+  \Bbraces{x \in E: \Bbraces{x, v} \in V}  
+\end{align*}
+
+Löscht man diese Kanten und den Knoten $v$ aus $G$, so zerfällt der neue Graph in Zusammenhangskomponenten $G_1^\prime, \dots, G_{2k}^\prime$.
+Für $i = 1, \dots, 2k$, ergänzen wir $G_i^\prime$ um den Knoten $v$ und Kante $\Bbraces{x_i, v}$ zum \Quote{Ast} $G_i$. \\
+
+$G$ besteht aus einer geraden Anzahl von Knoten und somit aus einer ungeraden Anzahl an Kanten.
+Also gibt es also mindestens einen (von $v$ ausgehenden) Ast $G_i$, der eine gerade Kanten-Zahl hat.
+(Wenn alle Äste (gerade viele) ungerade Kanten-Zahl hätten, wäre die Gesamt-Kanten-Zahl gerade mal ungerade, also gerade!)
+\Quote{$G \setminus G_i}$ hat dann eine ungerade Kanten-Zahl, weil \Quote{$G = G_i + G \setminus G_i$} ja eine ungerade Kanten-Zahl hat. \\
+
+Wir löschen von $G$ nun die Kante $\Bbraces{x_i, v}$ (des Asts $G_i$ (mit gerader Kanten-Zahl)).
+Dann erhalten wir zwei Zusammenhangskomponenten mit ungerader Kantenanzahl $\leq n$.
+Die sind wieder Bäume.
+Somit können wir die Induktionsvoraussetzung auf Beide anwenden.
+Wir vereinigen die resultierenden Graphen und erhalten $G^\prime = (V, E^\prime)$. \\
 
 Sei $G = (V, E)$ ein beliebiger zusammenhängender Graph mit gerader Knotenanzahl.
 Ein Baum ist genau ein minimal zusammenhängender Graph.
