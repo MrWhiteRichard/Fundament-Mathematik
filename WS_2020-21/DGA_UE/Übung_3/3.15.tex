@@ -34,7 +34,7 @@ Im ersten Durchlauf des Algorithmus bestimmt man die runs, anschließend fügt m
   Der Output lautet wie folgt.
 
   \begin{verbatim}
-    # ---------------------------------------------------------------- # 
+    # ---------------------------------------------------------------- #
 
     [[2, 4], [3], [1, 7], [6, 8, 9], [0, 5]]
 
@@ -91,7 +91,7 @@ Im ersten Durchlauf des Algorithmus bestimmt man die runs, anschließend fügt m
      5&: \quad \textbf{Solange}~ i \leq n \\
      6&: \quad \quad j := 0 \\
      7&: \quad \quad r := [A[i]] \\
-     8&: \quad \quad \textbf{Solange}~ A[i+j] \leq A[i+j+1] \\
+     8&: \quad \quad \textbf{Solange}~ i+j+1 \leq n~ \textbf{und}~ A[i+j] \leq A[i+j+1] \\
      9&: \quad \quad \quad r.\textit{append}(A[i+j+1]) \\
      10&: \quad \quad \quad j := j + 1 \\
      11&: \quad \quad \textbf{Ende Solange} \\
@@ -107,7 +107,7 @@ Im ersten Durchlauf des Algorithmus bestimmt man die runs, anschließend fügt m
 
   \item Sei $A$ ein Datenfeld der Länge $n$.
   Das Erstellen der Runs gelingt immer in linearem Aufwand.
-  
+
   \begin{itemize}
 
     \item Best-Case:
@@ -117,7 +117,7 @@ Im ersten Durchlauf des Algorithmus bestimmt man die runs, anschließend fügt m
     Somit erhalten wir linearen Aufwand.
 
     \item Worst-Case:
-    
+
     Sei das Datenfeld absteigend sortiert.
     Wir erhalten also $n$ Runs der Länge $1$.
     Abgesehen vom Erstellen der Runs, müssen wir die Prozedur Verschmelzen für $i = 2, \dots, n$, also $(n-1)$-mal, auf die Datenfelder $C$ und $R[i]$ der Länge $i-1$ bzw. $1$ anwenden.
