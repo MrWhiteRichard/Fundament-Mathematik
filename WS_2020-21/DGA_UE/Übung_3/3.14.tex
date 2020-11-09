@@ -83,7 +83,8 @@ Wenn wir die Werte des Datenbereichs auf $\Bbraces{1, \dots, n}$ einschränken, 
     \caption{\cite{DGA}}
   \end{figure}
 
-  \item Wir adaptieren den Verschmelzen-Algorithmus für unsere Zwecke.
+  \item Wir Modifizieren den Algorithmus \Quote{Merge-Sort} in passender Weise.
+  Man erhält, zusätzlich zum sortierten Datenfeld, die Anzahl der Fehlstände, mit Laufzeit $\Theta(n \log n)$ im Worst-Case.
 
   \begin{flalign*}
      1&: \textbf{Prozedur}~ \textsc{Inversions-Verschmelzen} (A, B) \\
@@ -95,33 +96,35 @@ Wenn wir die Werte des Datenbereichs auf $\Bbraces{1, \dots, n}$ einschränken, 
      6&: \quad \quad \textbf{Falls}~ j > B.\textit{Länge} ~\text{oder}~ (i \leq A.\textit{Länge} ~\text{und}~ A[i] \leq B[j]) ~\textbf{dann} \\
      7&: \quad \quad \quad C[k] := A[i] \\
      8&: \quad \quad \quad \quad i := i + 1 \\
-     9&: \quad \quad \textbf{Sonst}~ \\
+     9&: \quad \quad \textbf{Sonst} \\
     10&: \quad \quad \quad C[k] := B[j] \\
-    11&: \quad \quad \quad n := n + A.\textit{Länge} - i + 1\\
-      &: \quad \quad \quad \implies \text{Wenn}~B[j]<A[i]~\text{dann auch für}~A[i+1],...,A[A.\textit{Länge}] \\
-    12&: \quad \quad \quad \textbf{Ende Falls} \\
-    13&: \quad \quad \quad j := j + 1 \\
-    14&: \quad \quad \textbf{Ende Falls} \\
-    15&: \quad \textbf{Ende Für} \\
-    16&: \quad \textbf{Antworte}~ C, n \\
-    17&: \textbf{Ende Prozedur}
+    11&: \quad \quad \quad j := j + 1 \\
+    12&: \quad \quad \quad \textbf{Falls}~ i \leq A.\textit{Länge} \\
+      &: \quad \quad \quad \implies B[j] < A[i] \leq A[i+1] \leq \cdots \leq A[A.\textit{Länge}] \\
+    13&: \quad \quad \quad \quad n := n + (A.\textit{Länge} - i + 1) \\
+    14&: \quad \quad \quad \textbf{Ende Falls} \\
+    15&: \quad \quad \textbf{Ende Falls} \\
+    16&: \quad \textbf{Ende Für} \\
+    17&: \quad \textbf{Antworte}~ C, n \\
+    18&: \textbf{Ende Prozedur}
   \end{flalign*}
 
-  Jetzt müssen nur noch im Hauptteil von Merge-Sort die $n$ aufaddiert werden und man erhält zusätzlich zur Sortierung die Anzahl der Fehlstände mit Laufzeit $\Theta(n \log n)$ im Worst-Case.
+  Streng genommen, ist die Zeile $12$ redundant.
+  Die Prozedur wird dadurch nur besser lesbar.
 
   \begin{flalign*}
    1&: \textbf{Prozedur}~ \textsc{VInversionszähler} (A) \\
-   2&: \quad \textbf{Falls}~ A.\textit{Länge} = 1\\
+   2&: \quad \textbf{Falls}~ A.\textit{Länge} = 1 \\
    3&: \quad \quad \textbf{Antworte}~ A, 0 \\
-   4&: \quad \quad \textbf{Ende Falls} \\
-   5&: \quad \textbf{Sonst} \\
-   6&: \quad \quad m := \left\lceil \frac{A.\textit{Länge}}{2} \right\rceil \\
-   7&: \quad \quad L := A[1, \dots, m] \\
-   8&: \quad \quad R := A[m+1, \dots, A.\textit{Länge}] \\
-   9&: \quad \quad L^\prime, n_L := \textsc{VInversionszähler}(L) \\
-  10&: \quad \quad R^\prime, n_R := \textsc{VInversionszähler}(R) \\
-  11&: \quad \quad C, n = \textsc{Inversions-Verschmelzen}(L^\prime, R^\prime) \\
-  12&: \quad \quad \textbf{Antworte}~ C, n_L + n_R + n \\
+   4&: \quad \textbf{Sonst} \\
+   5&: \quad \quad m := \ceilbraces{\frac{A.\textit{Länge}}{2}} \\
+   6&: \quad \quad L := A[1, \dots, m] \\
+   7&: \quad \quad R := A[m+1, \dots, A.\textit{Länge}] \\
+   8&: \quad \quad L^\prime, n_L := \textsc{VInversionszähler}(L) \\
+   9&: \quad \quad R^\prime, n_R := \textsc{VInversionszähler}(R) \\
+  10&: \quad \quad A^\prime, n_A := \textsc{Inversions-Verschmelzen}(L^\prime, R^\prime) \\
+  11&: \quad \quad n := n_L + n_R + n_A \\
+  12&: \quad \quad \textbf{Antworte}~ A^\prime, n \\
   13&: \quad \textbf{Ende Falls} \\
   14&: \textbf{Ende Prozedur}
   \end{flalign*}
