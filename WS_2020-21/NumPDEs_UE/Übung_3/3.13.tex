@@ -2,181 +2,280 @@
 
 \begin{exercise}
 
-Sei $\hat{Q}:= (0,1) \times (0,1)$ und $\hat{T}$ das offene Dreieck mit den Eckpunkten
-$(0,0),(1,0),(0,1)$. Sei weiters
-
-\begin{align*}
-  \Psi:
-  \begin{cases}
-    \R^2 &\rightarrow \R^2 \\
-    (x,y) & \mapsto (x,(1-x)y)
-  \end{cases}
-\end{align*}
-
-\begin{enumerate}[label = \textbf{\alph*)}]
-  \item Zeigen Sie, dass die Abbildung $\Psi$ ein Diffeomorphismus zwischen $\hat{Q}$ und $\hat{T}$ ist.
-  \item Seien für $N, M \in \N$ zwei Quadraturformeln $Q_N, Q_M$ der Ordnung $N$ bzw. $M$ auf dem
-  Einheitsintervall gegeben. Konstruieren Sie daraus eine Quadraturformel $Q_{\hat{Q}}$ auf $\hat{Q}$.
-  Welche Funktionen werden durch $Q_{\hat{Q}}$ exakt integriert?
-  \item Verwenden Sie die Abbildung $\Psi$ und die Quadratur aus b) um eine Quadratur $Q_{\hat{T}}$ auf $\hat{T}$
-  zu konstruieren. Welche Funktionen werden durch $Q_{\hat{T}}$ exakt integriert?
-  \end{enumerate}
-\end{exercise}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
-
-Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R_+^2: x + y < 1\}$.
-
-\begin{enumerate}[label = \textbf{\alph*)}]
-  \item Zeigen wir zuerst die Wohldefiniertheit von $\Psi: \hat{Q} \rightarrow \hat{T}$.
-  Sei dazu $(x,y) \in \hat{Q}$. Da $\hat{Q}$ ja genau das offene Einheitsquadrat ist,
-  gibt es also $\varepsilon_x, \varepsilon_y \in (0,1): x = 1 - \varepsilon_x, y = 1 -\varepsilon_y$. Dann gilt also
-
+  Sei $\hat Q := (0, 1) \times (0, 1)$ und $\hat T$ das offene Dreieck mit den Eckpunkten $(0, 0), (1, 0), (0, 1)$.
+  Sei weiters
+  
   \begin{align*}
-    x + (1-x)y
-    =
-    x + y - xy
-    =
-    1 - \varepsilon_x + 1 - \varepsilon_y - (1 - \varepsilon_x)(1 - \varepsilon_y)
-    =
-    1 - \varepsilon_x \varepsilon_y
-    <
-    1
-  \end{align*}
-
-  Also bildet $\Psi$ nach $\hat{T}$ ab. Die Inverse ist gegeben durch
-
-  \begin{align*}
-    \Psi^{-1}: \begin{cases}
-    \hat{T} \rightarrow \hat{Q} \\
-    (x,y) \mapsto (x, \frac{y}{1-x})
+    \Psi:
+    \begin{cases}
+      \R^2   & \to \R^2 \\
+      (x, y) & \mapsto (x, (1 - x)y)
     \end{cases}
   \end{align*}
- $\Psi^{-1}$ ist als Abbildung von $\hat{T} \to \hat{Q}$ wohldefiniert, das für $(x,y) \in T$
- \begin{align*}
-   x < 1, \quad x+y < 1 \iff y < 1 - x \iff \frac{y}{1-x} < 1.
- \end{align*}
-  Das diese Funktion wirklich die Inverse ist rechnen wir einfach einfach nach
-
+  
+  \begin{enumerate}[label = \textbf{\alph*)}]
+  
+    \item Zeigen Sie, dass die Abbildung $\Psi$ ein Diffeomorphismus zwischen $\hat Q$ und $\hat T$ ist.
+  
+    \item Seien für $N, M \in \N$ zwei Quadraturformeln $Q_N, Q_M$ der Ordnung $N$ bzw. $M$ auf dem Einheitsintervall gegeben.
+    Konstruieren Sie daraus eine Quadraturformel $Q_{\hat Q}$ auf $\hat Q$.
+    Welche Funktionen werden durch $Q_{\hat Q}$ exakt integriert?
+  
+    \item Verwenden Sie die Abbildung $\Psi$ und die Quadratur aus b) um eine Quadratur $Q_{\hat T}$ auf $\hat T$ zu konstruieren.
+    Welche Funktionen werden durch $Q_{\hat T}$ exakt integriert?
+  
+  \end{enumerate}
+  
+  \end{exercise}
+  
+  % --------------------------------------------------------------------------------
+  
+  \begin{solution}
+  
   \begin{align*}
-    (\Psi^{-1} \circ \Psi)(x,y)
+    \hat Q
     =
-    \Psi^{-1}(x,(1-x)y)
+    (0, 1)^2
     =
-    \left(x, \frac{(1-x)y}{1-x}\right)
+    \Bbraces{(x, y) \in \R^2: 0 < x, y < 1},
+    \quad
+    \hat T
     =
-    (x,y) \\
-    (\Psi \circ \Psi^{-1})(x,y)
-    =
-    \Psi\left(x, \frac{y}{1-x}\right)
-    =
-    \left(x,(1-x)\frac{y}{1-x}\right)
-    =
-    (x,y)
+    \Bbraces{(x, y) \in (\R^+)^2: x + y < 1}
   \end{align*}
+  
+  \begin{enumerate}[label = \textbf{\alph*)}]
+  
+    \item
+    
+    \begin{enumerate}[label = \arabic*.]
+  
+      \item Schritt:
+  
+      Wir zeigen, dass $\Psi: \hat Q \to \hat T$ tatsächlich von $\hat Q$ nach $\hat T$ geht.
+      Sei dazu $(x, y) \in \hat Q$.
+  
+      \begin{align*}
+        \implies
+        \Exists \varepsilon_x, \varepsilon_y \in (0, 1):
+        x = 1 - \varepsilon_x,
+        y = 1 - \varepsilon_y
+      \end{align*}
+  
+      \begin{align*}
+        \implies
+        x + (1 - x) y
+        =
+        x + y - xy
+        =
+        1 - \varepsilon_x + 1 - \varepsilon_y - (1 - \varepsilon_x)(1 - \varepsilon_y)
+        =
+        1 - \varepsilon_x \varepsilon_y
+        <
+        1
+      \end{align*}
+  
+      \item Schritt:
+  
+      \begin{align*}
+        \Psi^{-1}:
+        \begin{cases}
+          \hat T & \to \hat Q \\
+          (x, y) & \mapsto (x, \frac{y}{1 - x})
+        \end{cases}
+      \end{align*}
 
-  Um zu zeigen, dass $\Psi$ ein Diffeomorphismus ist, sehen wir uns die Ableitungsmatrizen an
+      Wir zeigen, dass $\Psi^{-1}: \hat T \to \hat Q$ tatsächlich von $\hat T$ nach $\hat Q$ geht.
+      Sei dazu $(x, y) \in \hat T$.
 
-  \begin{align*}
-    D\Psi(x,y)
-    =
-    \begin{pmatrix}
-      1 & 0 \\
-      -y & 1-x
-    \end{pmatrix}, \quad \mathrm{Det} D\Psi(x,y) = 1 - x > 0 \\
-    D\Psi^{-1}(x,y)
-    =
-    \begin{pmatrix}
-      1 & 0 \\
-      \frac{y}{(1-x)^2} & \frac{1}{1-x}
-    \end{pmatrix}, \quad \mathrm{Det} D\Psi^{-1}(x,y) = \frac{1}{1-x} > 0
-  \end{align*}
+      \begin{align*}
+        \implies
+        x < 1, \quad x + y < 1
+        \implies
+        x < 1, \quad y < 1 - x
+        \implies
+        x < 1, \quad \frac{y}{1-x} < 1
+      \end{align*}
 
-  \item Die gegebenen Quadraturformeln sind für Polynome vom Grad $N-1$ bzw Grad $M-1$ exakt
-
-  \begin{align*}
-    \forall p \in \Pi_{N-1}:
-    Q_N(p) = Q(p)
-    \quad \text{d.h.}~
-    \sum_{i = 1}^n \alpha_i p(x_i)
-    =
-    \Int[0][1]{p(x)}{x} \\
-    \forall q \in \Pi_{M-1}:
-    Q_M(q) = Q(q)
-    \quad \text{d.h.}~
-    \sum_{j = 1}^m \beta_j q(y_j)
-    =
-    \Int[0][1]{q(x)}{x}
-  \end{align*}
-
-  Wobei die $\alpha_i, \beta_j$ die Gewichte und $x_i, y_j$ die Stützstellen sind.
-  Wir definieren unsere Quadraturformel auf $\hat{Q}$ wie folgt:
-
-  \begin{align*}
-    Q_{\hat{Q}}(f)
-    :=
-    \sum_{i=1}^n \sum_{j=1}^m \alpha_i \beta_j f(x_i, y_j)
-  \end{align*}
-
-  Wir behaupten, dass diese exakt ist für
-
-  \begin{align*}
-    r \in \Pi_{N-1,M-1} := \mathcal{L}\{x^i y^j: i,j \in \N_0, i < N, j < M\}
-  \end{align*}
-
-  Für solche Polynome gilt
-
-  \begin{align*}
-  Q_{\hat{Q}}(r)
-  =
-  \sum_{i=1}^n \sum_{j=1}^m \alpha_i \beta_j r(x_i, y_j)
-  =
-  \sum_{i=1}^n \alpha_i \sum_{j=1}^m \beta_j r(x_i, y_j)
-  =
-  \sum_{i=1}^n \alpha_i \Int[0][1]{r(x_i,y)}{y}
-  =
-  \Int[0][1]{\sum_{i=1}^n \alpha_i r(x_i,y)}{y} \\
-  =
-  \Int[0][1]{
-      \Int[0][1]{r(x,y)}{x}
-            }{y}
-  \end{align*}
-
-  \item Um nun eine Quadraturformel auf $\hat{T}$ zu konstruieren verwenden wir die vorhergehenden Aufgabenteile
-  und die Transformationsfomel
-
-  \begin{align*}
-    Q_{\hat{T}}(f)
-    :=
-    Q_{\hat{Q}}((f\circ \Psi) |\det D\Psi|)
-  \end{align*}
-
-  Durch diese Quadraturformel werden genau die Polynome der Form
-
-  \begin{align*}
-    p: (p \circ \Psi)(x,y) |\det D\Psi(x,y)| = p(x,(1-x)y)(1-x)\in \Pi_{N-1,M-1}
-  \end{align*}
-
-  exakt integriert. Die Bedingung wird mit Sicherheit von allen $p \in \Pi_{N-2,\min\{N-2,M-1\}}$
-  erfüllt. Das folgt aus
-
-  \begin{align*}
-  Q_{\hat{T}}(p)
-  &:=
-  Q_{\hat{Q}}((p\circ \Psi) |\det D\Psi|)
-  \stackrel{\textbf{b)}}{=}
-  \Int[0][1]{
-      \Int[0][1]{(p \circ \Psi)(x,y) |\det D\Psi|}{x}
-            }{y} \\
-  &=
-  \Int[\hat{Q}]{(p \circ \Psi)|\det D\Psi|}{\lambda^2}
-  \stackrel{\mathrm{TRAFO}}{=}
-  \Int[\hat{T}]{p}{\lambda^2}
-  \end{align*}
-\end{enumerate}
-
-\end{solution}
-
-% --------------------------------------------------------------------------------
+      Diese Funktion ist wirklich die Inverse.
+      Das rechnen wir einfach nach.
+    
+      \begin{align*}
+        (\Psi^{-1} \circ \Psi)(x, y)
+        =
+        \Psi^{-1}(x, (1 - x) y)
+        =
+        \pbraces{x, \frac{(1 - x) y}{1 - x}}
+        =
+        (x, y) \\
+        (\Psi \circ \Psi^{-1})(x, y)
+        =
+        \Psi \pbraces{x, \frac{y}{1 - x}}
+        =
+        \pbraces{x, (1 - x) \frac{y}{1 - x}}
+        =
+        (x, y)
+      \end{align*}
+  
+      \item Schritt:
+      
+      $\Psi$ und $\Psi^{-1}$ sind differenzierbar und deren Jakobimatrizen stetig und invertierbar.
+      Also sind $\Psi$ und $\Psi^{-1}$ stetig differenzierbar und $\Psi$ ein Diffeomorphismus.
+  
+      \begin{align*}
+        D \Psi(x, y)
+        =
+        \begin{pmatrix}
+          1  & 0 \\
+          -y & 1 - x
+        \end{pmatrix},
+        & \quad
+        \det D \Psi(x, y) = 1 - x > 0 \\
+        D \Psi^{-1}(x, y)
+        =
+        \begin{pmatrix}
+          1                   & 0 \\
+          \frac{y}{(1 - x)^2} & \frac{1}{1 - x}
+        \end{pmatrix},
+        & \quad
+        \det D \Psi^{-1}(x, y) = \frac{1}{1 - x} > 0
+      \end{align*}
+    
+    \end{enumerate}
+  
+  
+    \item Die gegebenen Quadraturformeln $Q_N$ und $Q_M$ integrieren Polynome vom maximalen Grad $N - 1$ bzw. $M - 1$ exakt, d.h.
+  
+    \begin{align*}
+      \Forall p \in \Pi_{N - 1}:
+      Q_N(p)
+      =
+      \sum_{i = 1}^n \alpha_i p(x_i)
+      =
+      \Int[0][1]{p(x)}{x}
+      =
+      Q(p), \\
+      \Forall q \in \Pi_{M - 1}:
+      Q_M(q)
+      =
+      \sum_{j = 1}^m \beta_j q(y_j)
+      =
+      \Int[0][1]{q(x)}{x}
+      =
+      Q(q).
+    \end{align*}
+  
+    Für $i = 1, \dots, n$ und $j = 1, \dots, m$ sind $\alpha_i$, $\beta_j$ die Gewichte und $x_i, y_j$ die Stützstellen der Quadraturformeln $Q_N$ bzw. $Q_M$.
+    Wir definieren unsere Quadraturformel auf $\hat Q$ wie folgt.
+  
+    \begin{align*}
+      Q_{\hat Q}(f)
+      :=
+      \sum_{i=1}^n
+      \sum_{j=1}^m
+      \alpha_i \beta_j
+      f(x_i, y_j)
+    \end{align*}
+  
+    Diese integriert Polynome vom maximalen Grad $N - 1$ in der ersten Variable und maximalen Grad $M - 1$ in der zweiten Variable exakt, d.h.
+  
+    \begin{align*}
+      \Forall p \in \Pi_{N - 1, M - 1}
+      :=
+      \mathcal{L}
+      \Bbraces{x^i y^j: i, j \in \N_0, i < N, j < M}:
+    \end{align*}
+  
+    \begin{multline*}
+      Q_{\hat Q}(r)
+      =
+      \sum_{i=1}^n
+      \sum_{j=1}^m
+      \alpha_i \beta_j
+      p(x_i, y_j)
+      =
+      \sum_{i=1}^n
+      \alpha_i
+      \sum_{j=1}^m
+      \beta_j
+      p(x_i, y_j) \\
+      =
+      \sum_{i=1}^n
+      \alpha_i
+      \Int[0][1]{p(x_i, y)}{y}
+      =
+      \Int[0][1]
+      {
+        \sum_{i=1}^n
+        \alpha_i
+        p(x_i, y)
+      }{y}
+      =
+      \Int[0][1]
+      {
+        \Int[0][1]{p(x, y)}{x}
+      }{y}.
+    \end{multline*}
+  
+    \item Um nun eine Quadraturformel auf $\hat T$ zu konstruieren verwenden wir die vorigen Aufgabenteile und die Transformationsfomel.
+  
+    \begin{align*}
+      Q_{\hat T}(f)
+      :=
+      Q_{\hat Q}((f \circ \Psi) |\det D \Psi|)
+    \end{align*}
+  
+    Sei $p$ ein Polynom der folgenden Form.
+  
+    \begin{align*}
+      p: (p \circ \Psi) |\det D \Psi| \in \Pi_{N - 1, M - 1}
+    \end{align*}
+  
+    \begin{multline*}
+      \implies
+      Q_{\hat T}(p)
+      :=
+      Q_{\hat Q}((p\circ \Psi) |\det D \Psi|)
+      \stackrel
+      {
+        \textbf{b)}
+      }{=}
+      \Int[0][1]
+      {
+        \Int[0][1]
+        {
+          (p \circ \Psi)(x, y)
+          |\det D \Psi|
+        }{x}
+      }{y}
+      =
+      \Int[\hat Q]
+      {
+        (p \circ \Psi)
+        |\det D \Psi|
+      }{\lambda^2} \\
+      \stackrel
+      {
+        \mathrm{TRAFO}
+      }{=}
+      \Int[\Psi(\hat Q)]{p}{\lambda^2}
+      =
+      \Int[0][1]
+      {
+        \Int[0][1 - x]{p(x, y)}{y}
+      }{x}
+      =
+      \Int[0][1]
+      {
+        \Int[0][1 - y]{p(x, y)}{x}
+      }{y}
+      \end{multline*}
+  
+    Durch diese Quadraturformel werden also jene Polynome exakt integriert.
+  
+  \end{enumerate}
+  
+  \end{solution}
+  
+  % --------------------------------------------------------------------------------
+  
