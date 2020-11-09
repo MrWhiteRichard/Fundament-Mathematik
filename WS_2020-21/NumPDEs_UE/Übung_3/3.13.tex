@@ -27,7 +27,159 @@ $(0,0),(1,0),(0,1)$. Sei weiters
 
 \begin{solution}
 
-Siehe Numerik Übungsbsp.
+Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Zeigen wir zuerst die Wohldefiniertheit von $\Psi: \hat{Q} \rightarrow \hat{T}$.
+  Sei dazu $(x,y) \in \hat{Q}$. Da $\hat{Q}$ ja genau das offene Einheitsquadrat ist,
+  gibt es also $\varepsilon_x, \varepsilon_y \in (0,1): x = 1 - \varepsilon_x, y = 1 -\varepsilon_y$. Dann gilt also
+
+  \begin{align*}
+    x + (1-x)y
+    =
+    x + y - xy
+    =
+    1 - \varepsilon_x + 1 - \varepsilon_y - (1 - \varepsilon_x)(1 - \varepsilon_y)
+    =
+    1 - \varepsilon_x \varepsilon_y
+    <
+    1
+  \end{align*}
+
+  Also bildet $\Psi$ nach $\hat{T}$ ab. Die Inverse ist gegeben durch
+
+  \begin{align*}
+    \Psi^{-1}: \begin{cases}
+    \hat{T} \rightarrow \hat{Q} \\
+    (x,y) \mapsto (x, \frac{y}{1-x})
+    \end{cases}
+  \end{align*}
+
+  Das diese Funktion wirklich die Inverse ist rechnen wir einfach einfach nach
+
+  \begin{align*}
+    (\Psi^{-1} \circ \Psi)(x,y)
+    =
+    \Psi^{-1}(x,(1-x)y)
+    =
+    (x, \frac{(1-x)y}{1-x})
+    =
+    (x,y) \\
+    (\Psi \circ \Psi^{-1})(x,y)
+    =
+    \Psi(x, \frac{y}{1-x})
+    =
+    (x,(1-x)\frac{y}{1-x})
+    =
+    (x,y)
+  \end{align*}
+
+  Um zu zeigen, dass $\Psi$ ein Diffeomorphismus ist, sehen wir uns die Ableitungsmatrizen an
+
+  \begin{align*}
+    D\Psi(x,y)
+    =
+    \begin{pmatrix}
+      1 & 0 \\
+      -y & 1-x
+    \end{pmatrix} \\
+    D\Psi^{-1}(x,y)
+    =
+    \begin{pmatrix}
+      1 & 0 \\
+      \frac{y}{(1-x)^2} & \frac{1}{1-x}
+    \end{pmatrix}
+  \end{align*}
+
+  \item Die gegebenen Quadraturformeln sind für Polynome vom Grad $N-1$ bzw Grad $M-1$ exakt
+
+  \begin{align*}
+    \forall p \in \Pi_{N-1}:
+    Q_N(p) = Q(p)
+    \quad \text{d.h.}~
+    \sum_{i = 1}^n \alpha_i p(x_i)
+    =
+    \Int[0][1]{p(x)}{x} \\
+    \forall q \in \Pi_{M-1}:
+    Q_M(q) = Q(q)
+    \quad \text{d.h.}~
+    \sum_{j = 1}^m \beta_j q(y_j)
+    =
+    \Int[0][1]{q(x)}{x}
+  \end{align*}
+
+  Wobei die $\alpha_i, \beta_j$ die Gewichte und $x_i, y_j$ die Stützstellen sind.
+  Wir definieren unsere Quadraturformel auf $\hat{Q}$ wie folgt:
+
+  \begin{align*}
+    Q_{\hat{Q}}(f)
+    :=
+    \sum_{i=1}^n \sum_{j=1}^m \alpha_i \beta_j f(x_i, y_j)
+  \end{align*}
+
+  Wir behaupten, dass diese exakt ist für
+
+  \begin{align*}
+    r \in \Pi_{N-1,M-1} := \mathcal{L}\{x^i y^j: i,j \in \N_0, i < N, j < M\}
+  \end{align*}
+
+  Für solche Polynome gilt
+
+  \begin{align*}
+  Q_{\hat{Q}}(r)
+  =
+  \sum_{i=1}^n \sum_{j=1}^m \alpha_i \beta_j r(x_i, y_j)
+  =
+  \sum_{i=1}^n \alpha_i \sum_{j=1}^m \beta_j r(x_i, y_j)  Q
+  =
+  \sum_{i=1}^n \alpha_i \Int[0][1]{r(x_i,y)}{y}
+  =
+  \Int[0][1]{\sum_{i=1}^n \alpha_i r(x_i,y)}{y} \\
+  =
+  \Int[0][1]{
+      \Int[0][1]{r(x,y)}{x}
+            }{y}
+  \end{align*}
+
+  \item Um nun eine Quadraturformel auf $\hat{T}$ zu konstruieren verwenden wir die Vorhergehenden Aufgabenteile
+  und die Transformationsfomel
+
+  \begin{align*}
+    Q_{\hat{T}}(f)
+    :=
+    Q_{\hat{Q}}((f\circ \Psi) |\det D\Psi|)
+  \end{align*}
+
+  Durch diese Quadraturformel werden genau die Polynome der Form
+
+  \begin{align*}
+    p: (p \circ \Psi) |\det D\Psi| \in \Pi_{N-1,M-1}
+  \end{align*}
+
+  exakt integriert. Das folgt aus
+
+  \begin{align*}
+  Q_{\hat{T}}(p)
+  :=
+  Q_{\hat{Q}}((p\circ \Psi) |\det D\Psi|)
+  \stackrel{\textbf{b)}}{=}
+  \Int[0][1]{
+      \Int[0][1]{(p \circ \Psi)(x,y) |\det D\Psi|}{x}
+            }{y} \\
+  =
+  \Int[\hat{Q}]{(p \circ \Psi)|\det D\Psi|}{\lambda^2}
+  \stackrel{\mathrm{TRAFO}}{=}
+  \Int[\Psi(\hat{Q})]{p}{\lambda^2}
+  =
+  \Int[0][1]{
+      \Int[0][1-x]{p(x,y)}{y}
+            }{x}
+  =
+  \Int[0][1]{
+      \Int[0][1-y]{p(x,y)}{x}
+            }{y}
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
