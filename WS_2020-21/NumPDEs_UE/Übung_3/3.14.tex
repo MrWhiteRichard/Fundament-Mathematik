@@ -23,7 +23,8 @@ Formulieren und beweisen Sie das Lemma $3.8$ explizit für den Fall $m=2$.
   u \mapsto u \circ \Phi
 \end{align*}
 
-Wir zeigen zuerst die gleichmäßige Stetigkeit von $\Phi$, d.h. $\Exists C > 0:$
+Wir zeigen zuerst die Wohldefiniertheit von $\Psi$ als linearer und
+beschränkter Operator, d.h. $\Exists C > 0:$
 
 \begin{align*}
   \norm[H^2(\hat T)]{\Psi u}
@@ -31,7 +32,7 @@ Wir zeigen zuerst die gleichmäßige Stetigkeit von $\Phi$, d.h. $\Exists C > 0:
   C \norm[H^2(T)]{u}.
 \end{align*}
 
-Dazu zeigen wir zunächst die folgenden Abschätzungen für $m = 0, 1, 2$.
+Dazu zeigen wir zunächst die Transformationsfomel für $u \in C^{\infty}(\overline{T})$ und $m = 0,1,2$.
 
 \begin{enumerate}[label = \arabic*.]
 
@@ -50,7 +51,7 @@ Dazu zeigen wir zunächst die folgenden Abschätzungen für $m = 0, 1, 2$.
   \end{align*}
 
   \item Abschätzung ($m = 1$):
-  
+
   \begin{align*}
     \implies
     \partial_j (u \circ \Phi)(x)
@@ -149,30 +150,30 @@ Dazu zeigen wir zunächst die folgenden Abschätzungen für $m = 0, 1, 2$.
     D(u \circ \Phi) = Du(\Phi(x))D\Phi(x) = Du(\Phi(x))B
   \end{align*}
 
-  \begin{multline*}
+  \begin{align*}
     \implies
     \partial_k \partial_j (u \circ \Phi)(x)
-    =
+    &=
     \partial_k \pbraces
     {
       \sum_{n=1}^d
       \partial_n u(\Phi(x)) B_{nj}
     } \\
-    =
+    &=
     \sum_{n=1}^d
     B_{nj} \partial_k (\partial_n u(\Phi(x)))
     =
     \sum_{n=1}^d
     \sum_{m=1}^d
     \partial_m \partial_n u(\Phi(x)) B_{nj} B_{mk}
-  \end{multline*}
+  \end{align*}
 
   Jetzt verwenden wir Cauchy-Schwarz-Bunjakovski.
 
-  \begin{multline*}
+  \begin{align*}
     \implies
     |\partial_k \partial_j (u \circ \Phi)(x)|^2
-    \stackrel
+    &\stackrel
     {
       \mathrm{CSB}
     }
@@ -186,7 +187,7 @@ Dazu zeigen wir zunächst die folgenden Abschätzungen für $m = 0, 1, 2$.
     {
       \sum_{n,m=1}^d |B_{nj} B_{mk}|^2
     } \\
-    =
+    &=
     |D^2 u(\Phi(x))|^2
     \pbraces
     {
@@ -198,7 +199,7 @@ Dazu zeigen wir zunächst die folgenden Abschätzungen für $m = 0, 1, 2$.
       \sum_{m=1}^d
       B_{mk}^2
     }
-  \end{multline*}
+  \end{align*}
 
   Jetzt verwenden wir die Transformationsfomel.
 
@@ -317,7 +318,8 @@ Mit diesen Abschätzungen bekommen wir die Stetigkeit von $\Psi$, d.h. $\Exists 
 Als nächstes erweitern wir das Resultat mit Dichtheitsargumenten auf den ganzen $H^2(T)$.
 
 $C^{\infty}(\overline{T})$ liegt ja dicht in $H^2(T)$.
-$\Phi$ kann somit (eindeutig) stetig auf dem ganzen Raum $H^2(T)$ fortgesetzt werden.
+$\Phi$ kann somit (eindeutig) stetig auf dem ganzen Raum $H^2(T)$ fortgesetzt werden
+(sogar normerhaltend).
 
 Wir wollen nun zeigen, dass für $\Forall u \in H^2(T):$
 
@@ -335,7 +337,7 @@ Aufgrund der $\norm[H^2]{\cdot}$-Stetigkeit von $\Psi$, erhalten wir damit auch
 
 \begin{align*}
   \implies
-  u_n \circ \Phi \xrightarrow[n \to \infty]{H^2(T)} \Psi u.
+  u_n \circ \Phi = \Psi(u_n) \xrightarrow[n \to \infty]{H^2(T)} \Psi u.
 \end{align*}
 
 Weil $\norm[L^2]{\cdot} \leq \norm[H^2]{\cdot}$, erhalten wir für $(u_n)_{n \in \N}$ auch $L^2(T)$-Konvergenz.
@@ -367,7 +369,7 @@ Nun ist jede Norm $\norm{\cdot}$ in sich selbst stetig ($\norm{\cdot}$-stetig), 
   u_n \circ \Phi \xrightarrow[n \to \infty]{H^2(\hat T)} u \circ \Phi.
 \end{align*}
 
-Ähnlich wie vorher gilt $\norm[L^2]{D (\cdot)}, \norm[L^2]{D^2 (\cdot)} \leq \norm[H^2]{\cdot}$.
+Ähnlich wie vorher gilt $\norm[L^2]{D^2 (\cdot)} \leq \norm[H^2]{\cdot}$.
 
 \begin{align*}
   \implies
@@ -377,13 +379,13 @@ Nun ist jede Norm $\norm{\cdot}$ in sich selbst stetig ($\norm{\cdot}$-stetig), 
 \end{align*}
 
 
-\begin{multline*}
+\begin{align*}
   \implies
   \norm[L^2(\hat T)]{D^2(u\circ\Phi)}
-  =
+  &=
   \lim_{n \to \infty}
   \norm[L^2(\hat T)]{D^2(u_n\circ\Phi)} \\
-  \leq
+  &\leq
   \lim_{n \to \infty}
   |\det B|^{-1/2}
   \norm[F]{B}^2
@@ -392,7 +394,7 @@ Nun ist jede Norm $\norm{\cdot}$ in sich selbst stetig ($\norm{\cdot}$-stetig), 
   |\det B|^{-1/2}
   \norm[F]{B}^2
   \norm[L^2(T)]{D^2 u}
-\end{multline*}
+\end{align*}
 
 \end{solution}
 
