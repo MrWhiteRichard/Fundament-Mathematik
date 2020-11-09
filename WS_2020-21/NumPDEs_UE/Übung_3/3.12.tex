@@ -11,9 +11,9 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
   \item Zeigen Sie, dass die Funktionen
 
   \begin{align}
-    \lambda_1(x, y) := 1-x-y, 
+    \lambda_1(x, y) := 1-x-y,
     \quad
-    \lambda_2(x, y) := x, 
+    \lambda_2(x, y) := x,
     \quad
     \lambda_3(x, y) := y
   \end{align}
@@ -32,7 +32,7 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
 
   Die folgenden Einschränkungen der Polynome $p_{jk}$ sind dabei jeweils eindimensionale Polynome vom maximalen Grad $p-2: \xi \mapsto p_{12}(\xi, 0), \xi \mapsto p_{13}(0, \xi)$ und $\xi \mapsto p_{23}(\xi, 1-\xi)$.
 
-  \item Erklären Sie andhand des Referenzdreiecks mit den Eckpunkten $(0, 0)$, $(1, 0)$ und $(0, 1)$ die Bedeutung dieser Aufgabe auf eine Erweiterung von Proposition $3.1$ auf Polynomräume höheren Grades.
+  \item Erklären Sie anhand des Referenzdreiecks mit den Eckpunkten $(0, 0)$, $(1, 0)$ und $(0, 1)$ die Bedeutung dieser Aufgabe auf eine Erweiterung von Proposition $3.1$ auf Polynomräume höheren Grades.
 
 \end{enumerate}
 
@@ -51,24 +51,16 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
   (\lambda_3 \lambda_1)(x, y) & = y - xy - y^2 \\
   (\lambda_1 \lambda_2 \lambda_3)(x, y) & = xy - x^2 y - x y^2
 \end{align*}
-
+Wir bezeichnen mit $B_p$ die kanonische Basis des $P_p$ und zeigen, dass
+sich die gewünschten Basen durch eine Matrixtransformation der kanonischen Basis
+darstellen lassen.
 \begin{align*}
   B_p(x, y) := (1, x, y, x^2, xy, y^2, \dots, x^p, \dots, y^p)
 \end{align*}
 
 \begin{enumerate}[label = \textbf{\alph*)}]
 
-  \item
-
-  \begin{align*}
-    \Lambda_0 := (1)
-  \end{align*}
-
-  \begin{align*}
-    \implies
-    B_0(x, y) = \Lambda_0(x, y)
-  \end{align*}
-  
+  \item $\Lambda_0(x,y) := (1) = B_0(x,y)$
   \item
 
   \begin{align*}
@@ -91,7 +83,7 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
           &    &  1
       \end{pmatrix}
     }_{
-      =: T_1 \in \GL(6, \R)
+      =: T_1 \in \GL(3, \R)
     }
     B_1(x, y)
     =
@@ -118,9 +110,9 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
       \pbraces
       {
         \begin{array}{ccc|ccc}
-          &     &    &    & & \\
-          & T_1 &    &    & & \\
-          &     &    &    & & \\
+        1  &  -1   & -1   &    & & \\
+          & 1 &    &    & & \\
+          &     & 1   &    & & \\
           \hline
           & 1   &    & -1 & -1 & \\
           &     &    &    &  1 & \\
@@ -136,7 +128,7 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
   \end{align*}
 
   \item Wir definieren unsere Basis rekursiv.
-  
+
   RA($p = 3$):
 
   \begin{align*}
@@ -189,7 +181,7 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
   bei den anderen dürfen wir es uns jeweils aussuche, z.B. immer $x$.
   Wir erhalten $|\Lambda_p \setminus \Lambda_{p-1}| = p$ neue Polynome.
   Für das $(p+1)$-te Polynom nehmen wir die 2. oder 4. Form mal $y$.
-  
+
   \begin{align*}
     \begin{Bmatrix}
       p_{12} \lambda_1 \lambda_2 \\
@@ -226,7 +218,7 @@ Sei $P_p:= \mathcal{L} \Bbraces{x^i y^j: i, j \geq 0 \land i+j \leq p}$ für $p 
     \end{Bmatrix}
     \mapsto \dots
   \end{align*}
-  
+
   \item
 
   \begin{figure}[h!]
