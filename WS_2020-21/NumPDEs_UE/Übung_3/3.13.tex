@@ -27,7 +27,7 @@ $(0,0),(1,0),(0,1)$. Sei weiters
 
 \begin{solution}
 
-Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
+Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R_+^2: x + y < 1\}$.
 
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Zeigen wir zuerst die Wohldefiniertheit von $\Psi: \hat{Q} \rightarrow \hat{T}$.
@@ -54,7 +54,10 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
     (x,y) \mapsto (x, \frac{y}{1-x})
     \end{cases}
   \end{align*}
-
+ $\Psi^{-1}$ ist als Abbildung von $\hat{T} \to \hat{Q}$ wohldefiniert, das für $(x,y) \in T$
+ \begin{align*}
+   x < 1, \quad x+y < 1 \iff y < 1 - x \iff \frac{y}{1-x} < 1.
+ \end{align*}
   Das diese Funktion wirklich die Inverse ist rechnen wir einfach einfach nach
 
   \begin{align*}
@@ -62,14 +65,14 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
     =
     \Psi^{-1}(x,(1-x)y)
     =
-    (x, \frac{(1-x)y}{1-x})
+    \left(x, \frac{(1-x)y}{1-x}\right)
     =
     (x,y) \\
     (\Psi \circ \Psi^{-1})(x,y)
     =
-    \Psi(x, \frac{y}{1-x})
+    \Psi\left(x, \frac{y}{1-x}\right)
     =
-    (x,(1-x)\frac{y}{1-x})
+    \left(x,(1-x)\frac{y}{1-x}\right)
     =
     (x,y)
   \end{align*}
@@ -82,13 +85,13 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
     \begin{pmatrix}
       1 & 0 \\
       -y & 1-x
-    \end{pmatrix} \\
+    \end{pmatrix}, \quad \mathrm{Det} D\Psi(x,y) = 1 - x > 0 \\
     D\Psi^{-1}(x,y)
     =
     \begin{pmatrix}
       1 & 0 \\
       \frac{y}{(1-x)^2} & \frac{1}{1-x}
-    \end{pmatrix}
+    \end{pmatrix}, \quad \mathrm{Det} D\Psi^{-1}(x,y) = \frac{1}{1-x} > 0
   \end{align*}
 
   \item Die gegebenen Quadraturformeln sind für Polynome vom Grad $N-1$ bzw Grad $M-1$ exakt
@@ -130,7 +133,7 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
   =
   \sum_{i=1}^n \sum_{j=1}^m \alpha_i \beta_j r(x_i, y_j)
   =
-  \sum_{i=1}^n \alpha_i \sum_{j=1}^m \beta_j r(x_i, y_j)  Q
+  \sum_{i=1}^n \alpha_i \sum_{j=1}^m \beta_j r(x_i, y_j)
   =
   \sum_{i=1}^n \alpha_i \Int[0][1]{r(x_i,y)}{y}
   =
@@ -141,7 +144,7 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
             }{y}
   \end{align*}
 
-  \item Um nun eine Quadraturformel auf $\hat{T}$ zu konstruieren verwenden wir die Vorhergehenden Aufgabenteile
+  \item Um nun eine Quadraturformel auf $\hat{T}$ zu konstruieren verwenden wir die vorhergehenden Aufgabenteile
   und die Transformationsfomel
 
   \begin{align*}
@@ -153,31 +156,24 @@ Wir bemerken zuerst $\hat{T} = \{(x,y) \in \R^2: x + y < 1\}$.
   Durch diese Quadraturformel werden genau die Polynome der Form
 
   \begin{align*}
-    p: (p \circ \Psi) |\det D\Psi| \in \Pi_{N-1,M-1}
+    p: (p \circ \Psi)(x,y) |\det D\Psi(x,y)| = p(x,(1-x)y)(1-x)\in \Pi_{N-1,M-1}
   \end{align*}
 
-  exakt integriert. Das folgt aus
+  exakt integriert. Die Bedingung wird mit Sicherheit von allen $p \in \Pi_{N-2,\min\{N-2,M-1\}}$
+  erfüllt. Das folgt aus
 
   \begin{align*}
   Q_{\hat{T}}(p)
-  :=
+  &:=
   Q_{\hat{Q}}((p\circ \Psi) |\det D\Psi|)
   \stackrel{\textbf{b)}}{=}
   \Int[0][1]{
       \Int[0][1]{(p \circ \Psi)(x,y) |\det D\Psi|}{x}
             }{y} \\
-  =
+  &=
   \Int[\hat{Q}]{(p \circ \Psi)|\det D\Psi|}{\lambda^2}
   \stackrel{\mathrm{TRAFO}}{=}
-  \Int[\Psi(\hat{Q})]{p}{\lambda^2}
-  =
-  \Int[0][1]{
-      \Int[0][1-x]{p(x,y)}{y}
-            }{x}
-  =
-  \Int[0][1]{
-      \Int[0][1-y]{p(x,y)}{x}
-            }{y}
+  \Int[\hat{T}]{p}{\lambda^2}
   \end{align*}
 \end{enumerate}
 
