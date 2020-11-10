@@ -8,25 +8,7 @@ import codecs
 # ---------------------------------------------------------------- #
 
 script_folder_path = os.getcwd()
-script_folder_path_dissected = script_folder_path.split('\\')
-
-# if script is terminated from super folder of script_super_folder ...
-script_super_folder_name = 'Fundament-Tools'
-if script_super_folder_name not in script_folder_path_dissected:
-
-    script_folder_path_dissected.append(script_super_folder_name)
-    script_folder_path = '\\'.join(script_folder_path_dissected)
-
-# if script is terminated from super folder of script_folder ...
-script_folder_name = 'Setup-Exercise'
-if script_folder_name not in script_folder_path_dissected:
-
-    script_folder_path_dissected.append(script_folder_name)
-    script_folder_path = '\\'.join(script_folder_path_dissected)
-
-source_folder_path = '\\'.join(
-    script_folder_path_dissected[:-2:] + ['Fundament-LaTeX', 'Templates']
-)
+source_folder_path = script_folder_path + r'/../../Fundament-LaTeX/Templates'
 
 # ---------------------------------------------------------------- #
 
