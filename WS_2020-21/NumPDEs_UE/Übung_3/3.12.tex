@@ -229,16 +229,43 @@ darstellen lassen.
     \caption{\cite{NumPDEs}}
   \end{figure}
 
-  Die Basisvektoren aus $\Lambda_p$ sind nodal, d.h.
+  \begin{comment}
 
-  \begin{align*}
-    \Forall \lambda \in \Lambda_p,
-    \Forall E \in \mathcal{E}_{T_\mathrm{ref}}:
-    \lambda(E) \in \Bbraces{0, 1}.
-  \end{align*}
+  Ganz Allgemein:
 
-  Das sieht man leicht durch Einsetzten der Refernez-Eckpunkte.
-  Es sei dabei bemerkt, dass wir nur mit $x$ bzw. $y$ multipliziert haben.
+  Sei $B$ eine Polynombasis von $P_p$, und $n := \dim P_p = |B|$.
+  Seien $(x_1, y_1), \dots, (x_n, y_n) \in \K^2$ paarweise verschiedene Interpolations-Knoten und $p(x_1, y_1), \dots, p(x_n, y_n) \in \K$ Interpolations-Werte.
+  Durch ein lineares Gleichungssystem mit Vandermonde-Matrix bzgl. $B$ und $(x_1, y_1), \dots, (x_n, y_n)$ als linke Seite und $(p(x_1, y_1), \dots, p(x_n, y_n))^T$ als rechte Seite, können wir die Koeffizienten eines eindeutigen Polynoms $p \in P_p$ finden, dass an den Interpolations-Knoten die gewünschten Interpolations-Werte annimmt. \\
+
+  In unserem Fall:
+
+  Wenn wir in Proposition 3.1 von Ordnung $p$ nach $p + 1$ gehen, dann müssen wir $p + 1$ Interpolations-Knoten (aus dem Dreieck) und -Werte hinzufügen.
+
+  Wir wollen, dass unser (durch die lokale Interpolation auf den Dreiecken zusammengesetzter) Spline stetig ist.
+  Außerhalb der Kanten ist das immer der Fall.
+  Auf den Kanten müssten die angrenzenden Interpolations-Polynome übereinstimmen.
+
+  Das erzielen wir, indem wir beim Ordnungs-Übergang zu jeder Kante genau einen Interpolations-Knoten hinzufügen.
+  (Den Rest packen wir ins Innere der Dreiecke.)
+  Für jede Kante sind die darauf eingeschränkten Interpolations-Polynome eindeutig bestimmt.
+  Insbesondere stimmen angrenzende Polynome darauf überein.
+
+  \end{comment}
+
+  Wir können mit der Basis aus \textbf{d)} \Quote{verallgemeinerte Hutfunktionen} bauen, d.h. eine Basis des Spline-Raums der Ordnung $p$ mit Funktionen, die Definitionsbereich im Gebiet $\Omega \subset \R^2$ haben.
+  Diese Basisfunktionen sind, so wie die normalen Hutfunktionen, stetig und haben lokalen $\supp$.
+
+  Das ist klar für Basisfunktionen, die sich aus Polynomen vom Typ (i) zusammensetzen, weil das ja gerade die normalen Hutfunktionen sind.
+  Für die vom Typ (iii) ist das auch klar, weil die am Rand des jeweiligen Dreiecks (d.h. auf allen Kanten) verschwinden.
+  Basisfunktionen bestehend aus Polynomen vom Typ (ii) verschwinden nur auf $2$ Kanten.
+
+  Sie sind aber dennoch stetig und besitzen lokalen $\supp$.
+  Betrachten wir dazu zwei Dreiecke $T_1, T_2 \in \mathcal{T}$ mit gemeinsamer Kante $E$.
+  Seien $b_1$ und $b_2$ (Basis-Polynome) die Teile einer verallgemeinerten Hutfunktionen $b$ vom Typ (ii) auf den Dreiecken $T_1$ bzw. $T_2$, die auf $E$ nicht verschwinden.
+  Sei $(x, y) \in E$.
+  Für die Stetigkeit soll gelten, dass $b_1(x, y) = b_2(x, y)$.
+  Nachdem $b_1$ und $b_2$ durch Transformation von $b_0$, dem zugehörigen Basis-Polynom auf dem Referenzdreieck $T_\mathrm{ref}$, auf $T_1$ bzw. $T_2$ gebildet werden, ist dies der Fall.
+  (Die Transformation interessiert sich ja nicht für konkrete Dreiecke, sondern nur für den Punkt, wohin man transformieren will.)
 
 \end{enumerate}
 
