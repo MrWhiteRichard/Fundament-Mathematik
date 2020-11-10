@@ -80,8 +80,8 @@ def setup_exercise_main(
 
     destination_folder_path = exercise_folder_path
 
-    source_file_path      = source_folder_path      + '\\' + source_file_name
-    destination_file_path = destination_folder_path + '\\' + destination_file_name
+    source_file_path      = source_folder_path      + '/' + source_file_name
+    destination_file_path = destination_folder_path + '/' + destination_file_name
     shutil.copyfile(source_file_path, destination_file_path)
 
     # -------------------------------- #
