@@ -109,14 +109,15 @@ darstellen lassen.
     {
       \pbraces
       {
-        \begin{array}{ccc|ccc}
+        \begin{array}{c|cc|ccc}
         1  &  -1   & -1   &    & & \\
+        \hline
           & 1 &    &    & & \\
           &     & 1   &    & & \\
           \hline
           & 1   &    & -1 & -1 & \\
           &     &    &    &  1 & \\
-          &     &  1 & -1 &    & -1
+          &     &  1 &  & -1  & -1
         \end{array}
       }
     }_{
@@ -138,86 +139,108 @@ darstellen lassen.
       \Lambda_2(x, y) \\
       x \lambda_1(x, y) \lambda_2(x, y) \\
       x \lambda_2(x, y) \lambda_3(x, y) \\
-      y \lambda_3(x, y) \lambda_1(x, y) \\
-      x \lambda_3(x, y) \lambda_1(x, y)
+      x \lambda_3(x, y) \lambda_1(x, y) \\
+      y \lambda_3(x, y) \lambda_1(x, y)
     \end{pmatrix}
     =
     \begin{pmatrix}
       \Lambda_2 \\
       p_{12} \lambda_1 \lambda_2 \\
       p_{23} \lambda_2 \lambda_3 \\
+      \lambda_1 \lambda_2 \lambda_3 \\
       p_{31} \lambda_3 \lambda_1 \\
-      \lambda_1 \lambda_2 \lambda_3
     \end{pmatrix}
     (x, y)
   \end{align*}
 
-  $\Lambda_3$ ist linear unabhängig, weil $\Lambda_2$ es ist und jede Funktion $f$, ist zu $\id \cdot f$.
-  Wir müssen die Transformationsmatrix also nicht einmal explizit hinschreiben. \\
+  \begin{align*}
+    \implies
+    \underbrace
+    {
+      \pbraces
+      {
+        \begin{array}{c|cc|ccc|ccc|c}
+        1  &  -1   & -1   &    & & &&&&\\
+        \hline
+          & 1 &    &    & & &&&&\\
+          &     & 1   &    & & &&&&\\
+          \hline
+          & 1   &    & -1 & -1 & &&&&\\
+          &     &    &    &  1 & &&&&\\
+          &     &  1 &  & -1 & -1 &&&& \\
+          \hline
+          &&& 1 &  &    & -1 & -1 & &\\
+          &&&&     &    &    &  1 & &\\
+          &&&&    1 &  &  & -1 & -1 & \\
+          \hline
+          &&&&     &  1 &  &  & -1 & -1\\
+        \end{array}
+      }
+    }_{
+      =: T_3 \in \GL(10, \R)
+    }
+    \begin{pmatrix}
+      1 \\ x \\ y \\ x^2 \\ xy \\ y^2 \\ x^3 \\ x^2y \\ xy^2 \\ y^3
+    \end{pmatrix}
+    =
+    \Lambda_3(x, y)
+  \end{align*}
+
+  $T_3$ ist eine untere Block-Diagonalmatrix, und da die einzelnen Blöcke regulär sind,
+  auch insgesamt regulär. \\
 
   RS($p \mapsto p+1$):
+  Nun verallgemeinern wir die Transformationsmatrix, welche wir für den Schritt \\
+  $p = 2 \rightsquigarrow 3$ verwendet haben.
 
-  (i)-(iii) bedeuten hier, dass man $p_{12}$ mit $x$ und $p_{21}$ mit $y$ sowie $p_{23}, p_{123}$ entweder mit $x$ oder $y$ multiplizieren darf.
-  Die Polynome werden dann (i)-(iii) im $p+1$ setting erfüllen.
+  Dafür bemerken wir zuerst, dass wir Basisfunktionen von Typ (ii) oder (iii) des $P_p$
+  allesamt mit $x$ oder $y$ multiplizieren können, sodass die neu entstehenden Funktionen
+  Basisfunktionen von $P_{p+1}$ desselben Typs sind.
 
-  Seien $\Lambda_{p-1}$ und $\Lambda_p$ Basen von $P_p$ bzw. $P_{p-1} \subset P_p \subset P_{p+1}$.
-  Wir ergänzen $\Lambda_p$ zu einer Basis $\Lambda_{p+1}$ von $P_{p+1}$, die (i)-(iii) für $p+1$ erfüllt.
-
-  Die Elemente aus $\Lambda_p \setminus \Lambda_{p-1}$ (und $\Lambda_{p-1}$) haben folgende Form.
-
+  Die Idee für den Aufbau der Basis von $P_{p+1}$ lautet wie folgt: \\
   \begin{align*}
-    p_{12} \lambda_1 \lambda_2,
-    \quad
-    p_{23} \lambda_2 \lambda_3,
-    \quad
-    p_{31} \lambda_3 \lambda_1,
-    \quad
-    p_{123} \lambda_1 \lambda_2 \lambda_3,
-    \quad
-    (\text{und}~ \lambda_1, \lambda_2, \lambda_3)
+    \Lambda_{p+1} = (\Lambda_{p-1},\Lambda_p\backslash\Lambda_{p-1}, x(\Lambda_p\backslash\Lambda_{p-1}),
+    y\lambda_p^*),
   \end{align*}
-
-  Polynome 1. und 3. Form multiplizieren wir mit $x$ bzw $y$;
-  bei den anderen dürfen wir es uns jeweils aussuche, z.B. immer $x$.
-  Wir erhalten $|\Lambda_p \setminus \Lambda_{p-1}| = p$ neue Polynome.
-  Für das $(p+1)$-te Polynom nehmen wir die 2. oder 4. Form mal $y$.
-
+  wobei $\lambda_p^*$ die letzte Basisfunktion des $P_p$ bezeichnet. Diese
+  enthält immer den Summanden $y^p$.
+  Wir bemerken, dass die kanonische Basis einen ähnlichen Aufbau hat:
   \begin{align*}
-    \begin{Bmatrix}
-      p_{12} \lambda_1 \lambda_2 \\
-      p_{23} \lambda_2 \lambda_3 \\
-      p_{31} \lambda_3 \lambda_1 \\
-      p_{123} \lambda_1 \lambda_2 \lambda_3
-    \end{Bmatrix}
-    \mapsto
-    \begin{Bmatrix}
-      x \, p_{12} \lambda_1 \lambda_2 \\
-      x \, p_{23} \lambda_2 \lambda_3 \\
-      y \, p_{31} \lambda_3 \lambda_1 \\
-      x \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      y \, p_{123} \lambda_1 \lambda_2 \lambda_3
-    \end{Bmatrix}
-    \mapsto
-    \begin{Bmatrix}
-      x x \, p_{12} \lambda_1 \lambda_2 \\
-      x x \, p_{23} \lambda_2 \lambda_3 \\
-      y y \, p_{31} \lambda_3 \lambda_1 \\
-      x x \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      x y \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      y y \, p_{123} \lambda_1 \lambda_2 \lambda_3
-    \end{Bmatrix}
-    \mapsto
-    \begin{Bmatrix}
-      x x x \, p_{12} \lambda_1 \lambda_2 \\
-      x x x \, p_{23} \lambda_2 \lambda_3 \\
-      y y y \, p_{31} \lambda_3 \lambda_1 \\
-      x x x \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      x x y \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      x y y \, p_{123} \lambda_1 \lambda_2 \lambda_3 \\
-      y y y \, p_{123} \lambda_1 \lambda_2 \lambda_3
-    \end{Bmatrix}
-    \mapsto \dots
+  B_{p+1} = (B_{p-1},B_p\backslash B_{p-1}, x(B_p\backslash B_{p-1}),
+  y^{p+1})
   \end{align*}
+  Damit können wir jetzt die allgemeine Transformationsmatrix aufstellen:
+  \begin{align*}
+    \pbraces
+    {
+      \begin{array}{ccc|ccc|ccc|c}
+        &    &    &    & & &&&&\\
+        & T_{p-1} &    &    & & &&&&\\
+        &     &    &    & & &&&&\\
+        \hline
+        &    &  &  &  & &&&&\\
+        &  * &  &  & T_p^* & &&&&\\
+        &    &  &  &  &  &&&& \\
+        \hline
+        &    &  &&&&  &  & &\\
+        &  * &  &&*&&  & T_p^* & &\\
+        &    &  &&&&  &  &  & \\
+        \hline
+        &*&&&*&&&*&& 1\\
+      \end{array}
+    }
+  B_{p+1}(x,y)
+  =
+  \Lambda_{p+1}(x, y)
+  \end{align*}
+ $T_p^*$ bezeichnet dabei den untersten Diagonalblock von $T_p$.
+ Laut Induktionsvoraussetzung sind sowohl $T_{p-1}$, als auch $T_p^*$
+ regulär, damit ist $T_{p+1}$ als Block-Diagonalmatrix von regulären Blöcken wieder
+ regulär. \\
+ Die Matrix liefert tatsächlich die oben beschriebene Basis, da für den
+ Basisvektor $x^py^{p-i} \in B_{p+1}$
+ $x(x^py^{p-i}) \in B_{p+1}$ genau der um $p$ Plätze nach rechts verschobene Basisvektor
+ ist.
 
   \item
 
