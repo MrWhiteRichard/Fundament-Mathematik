@@ -15,22 +15,19 @@ gilt. (Was ist mit der linken Seite gemeint?)
 In der Vorlesung haben wir definiert:
 \begin{align*}
   \mathscr{M}&: M = \{[c]_{\sim}: c \text{ Konstantensymbol} \} \\
-  c \sim d &:\iff \Sigma \vdash c = d.
+  c \sim d &:\iff \Sigma \vdash c = d. \\
+  f^\mathscr{M}([t_1]_\sim, \dots, [t_n]_\sim) &:= [f(t_1, \dots, t_m)]_\sim
 \end{align*}
-Die Definition der Äquivalenzrelation kann auf natürliche Weise auf die Menge
-aller geschlossenen Terme in $\mathscr{L}$ ausgedehnt werden. Mit $t^{\mathscr{M}} = [t]_{\sim}$
-ist also gemeint: Es gibt ein Konstantensymbol $c$, sodass $\Sigma \vdash c = t$. \\
-Die linke Seite macht aus den ersten Blick keinen Sinn, da unsere Interpretation
-nur Konstanten, Funktionssymbole und Relationssymbole interpretiert. Da wir
-es allerdings nur mit geschlossenen Termen zu tun haben, kommen keine Variablen in $t$
-vor und der Wert $\overline{b}(t)$ ist daher unabhängig von der konkreten Wahl
-der Belegung $b$ und kann somit als Definition für $t^{\mathscr{M}}$ gewählt werden. \\
-Wir beweisen die Aussage mit Induktion nach dem Aufbau der geschlossenen Terme. \\
-Für alle Konstantensymbole folgt die Aussage direkt aus der Definition: $c^{\mathscr{M}} = [c]_{\sim}$.
-Da wir nur geschlossene Terme betrachten kommen keine Variablen darin vor. \\
-Sei $t = f(t_1,\dots,t_k)$ beliebig, nach Voraussetzung existieren also $c_1,\dots,c_k$, sodass
-$(\Sigma \vdash c_i  = t_i), i = 1,\dots,k$. Mit den Leibniz-Axiomen leitet man schnell
-$\Sigma \vdash f(c_1,\dots,c_k) = f(t_1,\dots,t_k) = t$ her, also $t^{\mathscr{M}} = [t]_{\sim}$.
+Zuerst wollen wir uns überlegen, wie die Gleichung zu interpretieren ist. Für jeden geschlossenen Term $t$ erhalten wir mit dem Substitutionsaxiom, einem Existenzaxiom, einem Gleichheitsaxiom, einem Leibnizaxiom, sowie (zumindest) einer Tautologie und ein paar Mal Modus Ponens $\Sigma \vdash \exists x(x = t)$. Da $\Sigma$ eine Henkintheorie ist bekommen wir damit eine Konstante $c_t$ mit $\Sigma \vdash c_t = t$. Also ist $[t]_\sim := [c_t]_\sim$. Aufgrund der Gleichheitsaxiome ist die Defintion unabhängig vom Repräsentanten. \\
+Im Folgenden wollen wir, ohne dies zu beweisen, verwenden, dass die Menge aller geschlossenen Terme die kleinste Menge ist, welche alle Konstanten enthält und bezüglich Funktionen abgeschlossen ist. So können wir also die geschlossenen Terme aufbauen, für Konstanten ist $c^\mathscr{M}$ ohnehin definiert, für $t = f(t_1, \dots, t_k)$ definieren wir $t^\mathscr{M} := f^\mathscr{M}(t_1^\mathscr{M}, \dots, t_k^\mathscr{M})$.  \\
+Nun beweisen wir die Aussage mit Induktion nach dem Aufbau der geschlossenen Terme. \\
+Für alle Konstantensymbole folgt die Aussage direkt aus der Definition: $c^{\mathscr{M}} = [c]_{\sim}$. \\
+Sei $t = f(t_1,\dots,t_k)$ beliebig, wobei $t_1^\mathscr{M} = [t_1]_\sim, \dots, t_k^\mathscr{M} = [t_k]_\sim$. Ganz formal gilt 
+\begin{align*}
+t^\mathscr{M} := f^\mathscr{M}(t_1^\mathscr{M}, \dots, t_k^\mathscr{M}) = f^\mathscr{M}([t_1]_\sim, \dots, [t_k]_\sim) = [f(t_1, \dots, t_k)]_\sim = [t]_\sim
+\end{align*} 
+Zu zeigen bleibt, dass es hier keine Abhängigkeit vom Repräsentanten gibt. Sei also $[s_1]_\sim = [t_1]_\sim, \dots, [s_k]_\sim = [t_k]_\sim$. Nach obiger Definition gibt es Konstanten $c_1,\dots,c_k$, sodass für alle $i \in \{1, \dots, k\}$ die Ausdrücke
+$(\Sigma \vdash c_i  = t_i)$ und $(\Sigma \vdash c_i  = s_i)$ gelten. Mit den Gleichheitsaxiomen und den Leibniz-Axiomen leitet man schnell $\Sigma \vdash f(s_1,\dots,s_k) = f(t_1,\dots,t_k)$ her. Für $d \in [c]_\sim$ gilt $\Sigma \vdash c = d$ und daher $c^\mathscr{M} = d^\mathscr{M}$. Also sind alle Definitionen unabhängig von den Repräsentanten.
 \end{solution}
 
 % --------------------------------------------------------------------------------
