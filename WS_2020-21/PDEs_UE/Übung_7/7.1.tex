@@ -38,8 +38,8 @@ und integrieren sie über $B_{1/2}(0)$
 \begin{align*}
   \int_{B_{1/2}(0)}|\nabla u|^2 dx = \int_0^{1/2}\int_0^{2\pi}\frac{4}{r\ln(r^2)^2} d\varphi dr
 = 2\pi\int_0^{1/2}\frac{1}{r\ln(r)^2} dr
-\stackrel{u = \ln(r)}{=} 8\pi \int_{-\infty}^{-\ln(2)} \frac{1}{u^2} du
-  = 2\pi[-\frac{1}{u}]_{-\infty}^{-\ln(2)} = \frac{8\pi}{\ln(2)}.
+\stackrel{u = \ln(r)}{=} 2\pi \int_{-\infty}^{-\ln(2)} \frac{1}{u^2} du
+  = 2\pi[-\frac{1}{u}]_{-\infty}^{-\ln(2)} = \frac{2\pi}{\ln(2)}.
 \end{align*}
 Jetzt müssen wir noch nachweisen, dass die distributionelle Ableitung
 tatsächlich mit der punktweisen Ableitung übereinstimmt.
@@ -50,13 +50,14 @@ Wir berechnen also für $\Omega_\epsilon := B_{1/2}(0)\backslash B_\epsilon(0)$
   + \int_{\Omega_\epsilon}\frac{2x}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy \\
   &= \int_{B_\epsilon(0)}\frac{2x}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy
   - \int_{\Omega_\epsilon}u(x,y)\phi_x dxdy +
-  \int_{\partial \Omega_\epsilon}u(x,y)\phi_x ds
+  \int_{\partial \Omega_\epsilon}u(x,y)\phi_x\nu_x ds
 \end{align*}
 Das Randintegral lässt sich schreiben  als
 \begin{align*}
-  \int_{\partial \Omega_\epsilon}u(x,y)\phi_x ds
-  = \ln(-\ln(\epsilon))\int_{\partial B_\epsilon(0)}\phi(x) ds = \ln(-\ln(\epsilon))\phi(x_\epsilon)\epsilon S_n
-  = \phi(x_\epsilon)S_n\frac{\ln(-\ln(\epsilon))}{\frac{1}{\epsilon}}.
+  \left|\int_{\partial \Omega_\epsilon}u(x,y)\phi_x\nu_x ds\right|
+  \leq |\ln(-\ln(\epsilon))|\int_{\partial B_\epsilon(0)}|\phi_x(x)| ds =
+  |\ln(-\ln(\epsilon))\phi_x(x_\epsilon)|\epsilon S_2
+  = \left|\phi_x(x_\epsilon)S_2\frac{\ln(-\ln(\epsilon))}{\frac{1}{\epsilon}}\right|.
 \end{align*}
 Mit der Regel von l'Hospital erhalten wir
 \begin{align*}
@@ -67,9 +68,9 @@ Mit der Regel von l'Hospital erhalten wir
 Schließlich schätzen wir noch das erste Integral ab
 \begin{align*}
   \left|\int_{B_\epsilon(0)}\frac{2x}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy\right|
-  &\leq -\int_{B_\epsilon(0)}\frac{2\sqrt{x^2 +y^2}}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy
-  = -2\int_0^\epsilon\int_0^{2\pi}\frac{r^2}{\ln(r^2)r^2} d\phi dr \\
-  &= -4\pi\int_0^\epsilon \frac{1}{2\ln(r)} dr \leq -2\pi \frac{\epsilon}{\ln(\epsilon)}
+  &\leq -\|\phi\|_\infty\int_{B_\epsilon(0)}\frac{2\sqrt{x^2 +y^2}}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy
+  = -2\|\phi\|_\infty\int_0^\epsilon\int_0^{2\pi}\frac{r^2}{\ln(r^2)r^2} d\varphi dr \\
+  &= -4\pi\|\phi\|_\infty\int_0^\epsilon \frac{1}{2\ln(r)} dr \leq -2\pi \frac{\epsilon}{\ln(\epsilon)}
   \xrightarrow{\epsilon \to 0} 0.
 \end{align*}
 Insgesamt erhalten wir also
