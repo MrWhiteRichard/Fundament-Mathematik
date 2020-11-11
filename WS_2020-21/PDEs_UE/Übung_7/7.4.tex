@@ -17,8 +17,37 @@
 
 \begin{solution}
 
-ToDo!
-
+Wir führen einen Widerspruchsbeweis. Angenommen, es gäbe keine solche Konstante,
+dann finden wir eine Folge $(u_n)_{n \in \N} \subset H^1(\Omega)$ mit
+\begin{align*}
+  \|u_n - \overline{u_n}\|_{L^2(\Omega)} \geq n\|\nabla u\|_{L^2(\Omega)}
+\end{align*}
+Definiere nun $v_n := \frac{u_n - \overline{u_n}}{\|u_n - \overline{u_n}\|_{L^2(\Omega)}}$.
+Dann folgt
+\begin{align*}
+  \|v_n\|_{L^2(\Omega)} &= 1, \\
+  \qquad \|\nabla v_n\|_{L^2(\Omega)} &\leq \frac{1}{n}, \\
+  \int_\Omega v_n &= \frac{1}{\|u_n -\overline{u_n}\|_{L^2(\Omega)}}
+  \left(\int_{\Omega}u_n - \frac{1}{|\Omega}u_n dx dy\right)
+  = \frac{1}{\|u_n -\overline{u_n}\|_{L^2(\Omega)}}
+  \left(\int_{\Omega}u_n dy - \int_\Omega u_n dx\right) = 0.
+\end{align*}
+Insbesondere ist $(v_n)_{n \in \N}$ eine beschränkte Folge in $H^1(\Omega)$.
+Aus dem Satz von Rellich-Kondrachov erhalten wir vermöge der kompakten Einbettung
+$H^1(\Omega) \hookrightarrow H^0(\Omega) = L^2(\Omega)$ eine konvergente Teilfolge
+$(v_{n_k})_{k\in \N}$ in $L^2(\Omega)$. Für den Grenzwert $v := \lim_{k \to \infty} v_{n_k}$ gilt
+\begin{align*}
+  \|v\|_{L^2(\Omega)} = 1, \quad \int_\Omega v = 0.
+\end{align*}
+Außerdem ist $(v_{n_k})_{k \in \N}$ sogar eine Cauchy-Folge in $H^1(\Omega)$
+und konvergiert daher in $H^1(\Omega)$ gegen den selben Grenzwert.
+Aus der Stetigkeit von $\|\nabla(\cdot)\|_{L^2(\Omega)}$ bezüglich der $H^1(\Omega)$-Norm,
+folgt also
+\begin{align*}
+  \|\nabla v\| = \lim_{k \to \infty}\|\nabla v_{n_k}\|_{L^2(\Omega)} = 0
+\end{align*}
+Laut Hinweis dürfen wir nun behaupten, dass $v$ bereits konstant sein muss.
+Aus $\int_\Omega v = 0$ folgt damit sogar $v \equiv 0$ im Widerspruch zu $\|v\|_{L^2(\Omega)} = 1$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
