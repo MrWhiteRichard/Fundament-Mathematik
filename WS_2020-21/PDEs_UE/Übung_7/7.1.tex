@@ -12,7 +12,20 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Wir berechnen zuerst naiv die punktweise Ableitung
+Zunächst einmal wollen wir zeigen, dass $u(x, y) \in H^1(B_{1/2}(0))$.
+\begin{align*}
+  \int_{B_{1/2}(0)}u^2 dx = \int_0^{1/2}\int_0^{2\pi}\left(\ln\left(\ln \frac{1}{\sqrt{x^2 + y^2}}\right)\right)^2 r d\varphi dr = 2\pi \int_0^{1/2}\left(\ln\left(\ln \frac{1}{r}\right)\right)^2 r  dr
+\end{align*}
+
+Um zu zeigen, dass der Integrand stetig auf $[0,1]$ ist (und somit das Integral existiert), müssen wir noch die Stetigkeit im Punkt $0$ zeigen. Dafür verwenden wir die Regel von de l'Hospital:
+
+\begin{align*}
+  & \lim_{r \to 0}\frac{\left(\ln(-\ln r )\right)^2}{\frac{1}{r}} \\
+  =& \lim_{r \to 0}\frac{2\left(\ln(-\ln r)\right) \cdot \frac{1}{-\ln r}\cdot (-\frac{1}{r})}{-\frac{1}{r^2}} = \lim_{r \to 0} -2 \cdot \frac{\left(\ln\left(-\ln r \right)\right)}{\frac{1}{r} \cdot \ln r} \\
+  =& -2 \cdot \lim_{r \to 0} \frac{\frac{1}{-\ln r} \cdot -\frac{1}{r}}{\frac{1}{r} \cdot \frac{1}{r} - \frac{1}{r^2} \ln r} = -2 \cdot \lim_{r \to 0} \frac{r}{\ln r (1 - \ln r)} = 0
+\end{align*}
+
+Wir berechnen nun zuerst naiv die punktweise Ableitung
 \begin{align*}
   \frac{\partial}{\partial x} u(x,y) &= -\frac{2}{\ln(x^2+y^2)}
   \frac{\partial}{\partial x}(-\frac{1}{2}\ln(x^2+y^2)) =
