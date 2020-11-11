@@ -97,9 +97,9 @@ Dazu zeigen wir zunächst die Transformationsfomel für $u \in C^{\infty}(\overl
     & =
     \Int[\hat T]
     {
-      \sum_j^d
+      \sum_{j=1}^d
       |\partial_j (u \circ \Phi)(x)|^2
-      |\det D \Phi(x)
+      |\det D \Phi(x)|
     }{x} \\
     & \leq
     \Int[\hat T]
@@ -135,7 +135,7 @@ Dazu zeigen wir zunächst die Transformationsfomel für $u \in C^{\infty}(\overl
       \sum_{n=1}^d
       B_{nj}^2
     }
-    \Int[\hat T]
+    \Int[T]
     {
       |Du(x)|^2
     }{x} \\
@@ -303,13 +303,13 @@ Mit diesen Abschätzungen bekommen wir die Stetigkeit von $\Psi$, d.h. $\Exists 
   |\det B|^{-1/2}
   \pbraces
   {
-    \norm[L^2(\hat T)]{u}^2
+    \norm[L^2(T)]{u}^2
     +
     \norm[F]{B}^2
-    \norm[L^2(\hat T)]{Du}^2
+    \norm[L^2(T)]{Du}^2
     +
     \norm[F]{B}^4
-    \norm[L^2(\hat T)]{D^2 u}^2
+    \norm[L^2(T)]{D^2 u}^2
   }
   \leq
   C^2 \norm[H^2(T)]{u}^2.
@@ -324,7 +324,7 @@ $\Phi$ kann somit (eindeutig) stetig auf dem ganzen Raum $H^2(T)$ fortgesetzt we
 Wir wollen nun zeigen, dass für $\Forall u \in H^2(T):$
 
 \begin{align*}
-  \Psi u = u \circ \Psi.
+  \Psi u = u \circ \Phi.
 \end{align*}
 
 Sei dazu $u \in H^2(T)$ und $(u_n)_{n \in \N} \subset C^{\infty}(\overline{T})$ mit
@@ -364,7 +364,7 @@ Weil Grenzwerte eindeutig sind, folgt unsere Behauptung.
 Nun ist jede Norm $\norm{\cdot}$ in sich selbst stetig ($\norm{\cdot}$-stetig), und
 
 \begin{align*}
-  u_n \xrightarrow[n \to \infty]{H^2(\hat T)} u,
+  u_n \xrightarrow[n \to \infty]{H^2(T)} u,
   \quad
   u_n \circ \Phi \xrightarrow[n \to \infty]{H^2(\hat T)} u \circ \Phi.
 \end{align*}
@@ -373,7 +373,7 @@ Nun ist jede Norm $\norm{\cdot}$ in sich selbst stetig ($\norm{\cdot}$-stetig), 
 
 \begin{align*}
   \implies
-  D^2 u_n \xrightarrow[n \to \infty]{L^2(\hat T)} D^2 u,
+  D^2 u_n \xrightarrow[n \to \infty]{L^2(T)} D^2 u,
   \quad
   D^2 (u_n \circ \Phi) \xrightarrow[n \to \infty]{L^2(\hat T)} D^2 (u \circ \Phi)
 \end{align*}

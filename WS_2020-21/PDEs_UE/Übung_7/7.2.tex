@@ -14,7 +14,28 @@
 
 \begin{solution}
 
-ToDo!
+\begin{itemize}
+  \item[a)] Wir führen den Beweis mittels Induktion nach $k$:
+  \begin{itemize}
+    \item[$k = 0:$] $\|uv\|_{H^0(\Omega)}^2 = \int_\Omega (uv)^2 dx \leq
+    \left(\max_{x \in \overline{\Omega}}v(x)\right)^2 \|u\|_{H^0(\Omega)}^2 < \infty$
+    \item[$k \rightsquigarrow k+1:$] Sei $u \in H^{k+1}(\Omega), v \in C^{\infty}(\overline{\Omega})$
+    beliebig.
+    \begin{align*}
+      \int_\Omega uvD^i\phi dx &= \int_\Omega u D^i(v\phi)dx  - \int_\Omega u(D^i v)\phi dx \\
+      &= -\int_\Omega D^i(u)v\phi dx - \int_\Omega u(D^iv)\phi dx
+      = -\int_\Omega (D^i(u)v + uD^iv)\phi dx
+    \end{align*}
+    Also erhalten wir $D^i(uv) = D^i(u)v + uD^i(v)$. Für $|\alpha| = k + 1$ beliebig
+    folgt somit wegen \\
+    $H^{k+1}(\Omega) \subset H^k(\Omega)$
+    \begin{align*}
+      \int_\Omega (D^{\alpha}(uv))^2 dx = \int_\Omega (D^\beta D^i (uv))^2 dx
+    = \int_\Omega \overbrace{(D^\beta(\underbrace{D^i(u)}_{\in H^k(\Omega)}v)}^{\in L^2(\Omega)}
+      + \overbrace{D^\beta(\underbrace{u}_{\in H^k(\Omega)}D^i(v))}^{\in L^2(\Omega)})^2 dx < \infty
+    \end{align*}
+  \end{itemize}
+\end{itemize}
 
 \end{solution}
 

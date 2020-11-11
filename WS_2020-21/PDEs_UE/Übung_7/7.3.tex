@@ -13,8 +13,34 @@
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
+\begin{itemize}
+    \item[(a)] Wähle $\alpha = -\frac{1}{2}$, dann ist $u(x,y) = y^{\alpha}$ auf der $y$-Achse
+    sicher nicht stetig bis zum Rand und somit nicht in $C^0(\overline{\Omega})$.
+    \begin{align*}
+      \|u\|_{L^2(\Omega)} &= \int_0^1\int_{x^{1/5}}^1 (y^{-1/2})^2 dy dx
+      = -\int_0^1 \ln(x^{1/5}) dx = -\frac{1}{5}[x\ln(x) - x]_0^1 = \frac{1}{5} \\
+      \left\|\frac{\partial}{\partial y}u\right\|_{L^2(\Omega)} &=
+      \int_0^1\int_{x^{1/5}}^1 \left(-\frac{1}{2}y^{-3/2}\right)^2 dy dx
+      = \frac{1}{4}\int_0^1\left[-\frac{1}{2}y^{-2}\right]_{x^{1/5}}^1 dx \\
+      &= -\frac{1}{8}\int_0^1 1 - x^{-2/5} dx = -\frac{1}{8}\left(1 - \frac{5}{3}\right) = \frac{1}{12} \\
+      \left\|\frac{\partial^2}{\partial y^2}u(x,y)\right\| &=
+      \int_0^1\int_{x^{1/5}}^1 \left(\frac{3}{4}y^{-5/2}\right)^2 dy dx
+      = \frac{9}{16}\int_0^1 \left[-\frac{1}{4}y^{-4}\right]_{x^{1/5}}^1 dx \\
+      &= -\frac{9}{64}\int_0^1 1 - x^{-4/5} dx = -\frac{9}{64}(1 - 5) = \frac{9}{16}
+    \end{align*}
+    Da die $x$-Ableitungen wegfallen, ist $u \in H^2(\Omega)$.
+    \item[b)]
+    \includegraphicsboxed{PDEs - Satz 5.9 (Einbettungssatz von Sobolev).png}
+    In unserem Fall ist die Bedingung $k - n/2 = 2 - 1 > 0 = m$ erfüllt, also
+    muss die Bedingung an $\partial \Omega$ verletzt sein.
+    In der Tat kann man zeigen, dass der Rand sich in keiner Umgebung von $(0,0)$
+    durch eine Lipschitz-stetige Funktion darstellen lassen kann, da
+    \begin{align*}
+      \lim_{x \to 0^+}\frac{x^{1/5}}{x} = x^{-4/5} = +\infty.
+    \end{align*}
+\end{itemize}
 
-ToDo!
 
 \end{solution}
 
