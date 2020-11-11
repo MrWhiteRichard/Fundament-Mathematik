@@ -55,7 +55,7 @@ Wir berechnen also für $\Omega_\epsilon := B_{1/2}(0)\backslash B_\epsilon(0)$
 Das Randintegral lässt sich schreiben  als
 \begin{align*}
   \int_{\partial \Omega_\epsilon}u(x,y)\phi_x ds
-  = \ln(-\ln(\epsilon))\int_{B_\epsilon(0)}\phi(x) ds = \ln(-\ln(\epsilon))\phi(x_\epsilon)\epsilon S_n
+  = \ln(-\ln(\epsilon))\int_{\partial B_\epsilon(0)}\phi(x) ds = \ln(-\ln(\epsilon))\phi(x_\epsilon)\epsilon S_n
   = \phi(x_\epsilon)S_n\frac{\ln(-\ln(\epsilon))}{\frac{1}{\epsilon}}.
 \end{align*}
 Mit der Regel von l'Hospital erhalten wir
@@ -78,7 +78,7 @@ Insgesamt erhalten wir also
 \lim_{\epsilon \to 0}\left(\int_{B_\epsilon(0)}\frac{2x}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy
 + \int_{\Omega_\epsilon}\frac{2x}{\ln(x^2+y^2)(x^2+y^2)}\phi dxdy\right) \\
 &= \lim_{\epsilon \to 0}- \int_{\Omega_\epsilon}u(x,y)\phi_x dxdy
-= \int_{B_{1/2}(0)}u(x,y)\phi_x dxdy
+= -\int_{B_{1/2}(0)}u(x,y)\phi_x dxdy
 \end{align*}
 Damit ist die punktweise Ableitung tatsächlich auch die schwache Ableitung.
 \end{solution}
