@@ -31,26 +31,34 @@
 
 % graphics in a box:
 
-\newcommandtwoopt
-{\includegraphicsboxed}[3][][]
+% \newcommandtwoopt
+% {\includegraphicsboxed}[3][][]
+% {
+%   \begin{figure}[!h]
+%     \begin{boxedin}
+%       \ifthenelse{\isempty{#1}}
+%       {
+%         \begin{center}
+%           \includegraphics[width = 0.75 \textwidth]{#3}
+%           \label{fig:#2}
+%         \end{center}
+%       }{
+%         \begin{center}
+%           \includegraphics[width = 0.75 \textwidth]{#3}
+%           \caption{#1}
+%           \label{fig:#2}
+%         \end{center}
+%       }
+%     \end{boxedin}
+%   \end{figure}
+% }
+
+\newcommand{\includegraphicsboxed}[1]
 {
-  \begin{figure}[!h]
-    \begin{boxedin}
-      \ifthenelse{\isempty{#1}}
-      {
-        \begin{center}
-          \includegraphics[width = 0.75 \textwidth]{#3}
-          \label{fig:#2}
-        \end{center}
-      }{
-        \begin{center}
-          \includegraphics[width = 0.75 \textwidth]{#3}
-          \caption{#1}
-          \label{fig:#2}
-        \end{center}
-      }
-    \end{boxedin}
-  \end{figure}
+  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \centering
+    \includegraphics[width = 0.75 \textwidth]{#1}
+  \end{tcolorbox}
 }
 
 % braces:
