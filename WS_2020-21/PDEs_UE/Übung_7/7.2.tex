@@ -35,7 +35,25 @@
       + \overbrace{D^\beta(\underbrace{u}_{\in H^k(\Omega)}D^i(v))}^{\in L^2(\Omega)})^2 dx < \infty
     \end{align*}
   \end{itemize}
-  \item[b)]
+  \item[(b)] Wir wählen eine Folge $(u_n)_{n \in \N}$ aus $C^\infty(\Omega)$ mit $\lim_{n \rightarrow \infty} \|u_n - u\|_{H^1(\Omega)} = 0.$
+
+Zuerst berechnen wir für festes $i \leq n$
+\begin{align*}
+    &\int_\Omega (D^i\left((u_n-u) v)\right)^2 \mathrm{~d}\lambda^n\\
+    &= \int_{\Omega} (D^i(u_n-u)v + (u_n-u)D^iv)^2 \mathrm{~d}\lambda^n\\
+    &\leq \|v\|^2_\infty \|u_n - u\|^2_{H^1(\Omega)} + 2 \int_{\Omega} v (D^iv) (u_n-u) D^i(u_n - u) \mathrm{~d}\lambda^n + \|D^iv\|^2_\infty \|u_n - u\|^2_{H^1(\Omega)}\\
+    &\leq \underbrace{\|u_n - u\|^2_{H^1(\Omega)}}_{\xrightarrow[]{n \rightarrow \infty}{} 0} \left(\|v^2\|_\infty + \|D^iv\|^2_\infty\right) + 2\|vD^iv\|^2_\infty \underbrace{\|u_n-u\|_{L^2(\Omega)}}_{\xrightarrow[]{n \rightarrow \infty}{} 0} \underbrace{\|D^i(u_n-u)\|_{L^2(\Omega)}}_{\xrightarrow[]{n \rightarrow \infty}{} 0} \xrightarrow[]{n \rightarrow \infty}{} 0.
+\end{align*}
+Deshalb gilt
+\begin{align*}
+    \| u_n v - uv \|^2_{H^1(\Omega)}
+    &= \| (u_n-u) v\|^2_{H^1(\Omega)}\\
+    &= \int_\Omega((u_n-v) v)^2 \mathrm{~d}\lambda^n
+    + \sum_{i = 1}^n \int_\Omega (D^i\left((u_n-u) v)\right)^2 \mathrm{~d}\lambda^n\\
+    &\leq \|v\|^2_\infty \underbrace{\|u_n - u\|^2_{H^1(\Omega)}}_{\xrightarrow[]{n \rightarrow \infty}{} 0} + \sum_{i = 1}^n \underbrace{\int_{\Omega} (D^i\left((u_n-u) v)\right)^2 \mathrm{~d}\lambda^n}_{\xrightarrow[]{n \rightarrow \infty}{} 0} \xrightarrow[]{n \rightarrow \infty}{} 0.
+\end{align*}
+
+Als Grenzwert der Folge der $C^\infty$-Funktionen $u_n v$ liegt $uv$ damit in $H^1(\Omega).$
 \end{itemize}
 
 \end{solution}
