@@ -1,0 +1,70 @@
+\begin{exercise}
+  \begin{enumerate}[label = \alph*]
+  \item Lösen Sie die Rekursion $T(1) = 2$ und $T(n) = T(n-1) + 2$ für $n \geq 2$, indem Sie widerholt in die Rekursion einsetzen, bis Sie $T(n)$ erkennen. Verifizieren Sie ihr Ergebnis anschließend mit der Substitutionsmethode.
+
+  \item Lösen Sie die Rekursion $T(1) = 2$ und $T(n) = 3T(n-1) + 2$ für $n \geq 2$, indem Sie widerholt in die Rekursion einsetzen, bis Sie $T(n)$ erkennen. Verifizieren Sie ihr Ergebnis anschließend mit der Substitutionsmethode.
+  \end{enumerate}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+\begin{enumerate}[label = \alph*]
+  \item Setzen wir also zuerst ein paar mal ein:
+
+  \begin{align*}
+    T(1) = 2 \\
+    T(2) = 4 \\
+    T(3) = 6 \\
+  \end{align*}
+ Die Vermutung ist, dass $T(n) = 2n$. Mit Induktion lässt sich dies leicht bestätigen: \\
+  IA$(n=2)$:
+
+  \begin{align*}
+    T(2) = 4 = 2 \cdot 2
+  \end{align*}
+  IV: $T(n) = 2n$ \\
+
+  IS:$n \mapsto n+1$
+  \begin{align*}
+    T(n+1)
+    =
+    T(n) + 2
+    \stackrel{IV}{=}
+    2n + 2
+    =
+    2(n+1)
+  \end{align*}
+
+  \item Einsetzen in die Rekursion liefert
+
+  \begin{align*}
+    T(1) = 2 \\
+    T(2) = 8 \\
+    T(3) = 26 \\
+    T(4) = 80
+  \end{align*}
+
+  Die Vermutung ist, dass $T(n) = 3^n - 1$. Wiederum zeigen wir das mit Induktion: \\
+  IA$(n=2)$:
+
+  \begin{align*}
+    T(2) = 8 = 3^2 - 1
+  \end{align*}
+  IV: $T(n) = 3^n - 1$ \\
+
+  IS:$n \mapsto n+1$
+  \begin{align*}
+    T(n+1)
+    =
+    3T(n) + 2
+    \stackrel{IV}{=}
+    3(3^n - 1) + 2
+    =
+    3^{n+1} - 1
+  \end{align*}
+  \end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
