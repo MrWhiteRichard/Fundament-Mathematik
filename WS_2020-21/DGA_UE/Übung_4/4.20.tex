@@ -1,0 +1,86 @@
+\begin{exercise}
+  Lösen Sie folgendes System von Rekursionen
+
+  \begin{align*}
+    a_{n+1} = 2 a_n + b_n, \quad b_{n+1} = 4 a_n - b_n, \quad \text{für}~ n \geq 1
+  \end{align*}
+
+  mit den Anfangsbedingungen $a_0 = 1, b_0 = 0$ indem Sie das System in eine äquivalente Rekursion $2.$ Ordnung umschreiben.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+  Wir formen zuerst die erste Rekursion um und setzen in die zweite ein
+
+  \begin{align*}
+    &a_n = 2a_{n-1} + b_{n-1}
+    \Leftrightarrow
+    b_{n-1} = a_n - 2a_{n-1} \\
+    \Rightarrow~
+    & b_n = 4a_{n-1} - 2a_{n-1} + a_n
+    =
+    2a_{n-1} + a_n\\
+    \Rightarrow~
+    &b_{n-1} = 2a_{n-2} + a_{n-1}
+  \end{align*}
+
+  Setzen wir nun $b_{n-1}$ in die Gleichung aus der ersten Zeile ein erhalten wir also
+
+  \begin{align*}
+    a_n
+    =
+    3a_{n-1} + 2a_{n-2}, \quad \text{für}~ n \geq 2
+  \end{align*}
+
+  Mit den Anfangsbedingungen $a_0 = 1, a_1 = 2$. Diese Rekursion $2.$ Ordnung lösen wir nun mithilfe von Satz $4.2$, das charakteristische Polynom unserer Rekursionsgleichung lautet:
+
+  \begin{align*}
+    \chi(z)
+    =
+    z^2 - 3z - 2
+  \end{align*}
+
+  Die Nullstellen sind:
+
+  \begin{align*}
+    \chi(z) = 0
+    \Leftrightarrow
+    z_{1,2}
+    =
+    \frac{3}{2} \pm \frac{\sqrt{17}}{2}
+  \end{align*}
+
+  Allgemeine Lösungen unserer Rekursion haben also die Form:
+
+  \begin{align*}
+    a_n
+    =
+    c_0 \Big(\frac{3 +\sqrt{17}}{2}\Big)^n + c_1 \Big(\frac{3 -\sqrt{17}}{2}\Big)^n
+  \end{align*}
+
+  Um nun $c_0, c_1$ zu bestimmen sehen wir uns die Anfangsbedingungen an.
+
+  \begin{align*}
+    c_0 + c_1 = 1 \\
+    c_0 \Big(\frac{3 +\sqrt{17}}{2}\Big) + c_1\Big(\frac{3 -\sqrt{17}}{2}\Big) = 2
+  \end{align*}
+
+  Die Lösung dieses LGS ist gegeben durch
+
+  \begin{align*}
+    c_0 = \frac{\sqrt{17} + 17}{34} \quad
+    c_1 = \frac{-\sqrt{17} +17}{34}
+  \end{align*}
+
+  Somit lautet die Lösung der Rekursion $2.$ Ordnung
+
+  \begin{align*}
+  a_n
+  =
+  \frac{\sqrt{17} + 17}{34} \Big(\frac{3 +\sqrt{17}}{2}\Big)^n
+    + \frac{-\sqrt{17} +17}{34} \Big(\frac{3 -\sqrt{17}}{2}\Big)^n
+  \end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
