@@ -1,0 +1,34 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+	Lösen Sie die Rekursion $n a_n = (n + 1) a_{n - 1} + 2n$ mit $a_0 = 2$. 
+
+\end{exercise}
+
+
+\begin{solution}
+
+	Wir dividieren auf beiden Seiten durch $n$ und erhalten die Rekursionsgleichung 
+	\begin{align*}
+	a_n = \frac{n + 1}{n} a_{n - 1} + 2, \quad a_1 = 2
+	\end{align*}
+	Um diese auf die Form des Skriptums zu bringen definieren wir $x_n := a_{n + 1}$ und erhalten 
+	\begin{align*}
+	x_n = \frac{n + 2}{n + 1} x_{n -1} + 2, \quad x_0 = 2
+	\end{align*}
+	Nun wissen wir aus Satz 4.1, dass 
+	\begin{align*}
+	x_n = \sum_{i = 0}^n 2 \prod_{j =  i + 1}^n \frac{j + 2}{j + 1}  = 2 \sum_{i = 0}^n \prod_{j =  i + 1}^n \frac{j + 2}{j + 1} = 2 \sum_{i = 0}^n \frac{n + 2}{i + 2} = 2 (n + 2) \sum_{i=2}^{n+2} \frac{1}{i} 
+	\end{align*}
+	Eine Lösung der Rekursionsgleichung ist. Mit Induktion erkennen wir
+	\begin{align*}
+	\prod_{j=i+1}^i = 1 = \frac{i + 1}{i +1}, \quad \prod_{j = i+1}^{n + 1} \frac{j + 2}{j + 1} = \frac{n + 3}{n + 2} \frac{n + 2}{i + 1} = \frac{(n + 1) + 2}{i + 1}
+	\end{align*}
+	und 
+	\begin{align*}
+	\sum_{i = 2}^2 \frac{1}{i} = \frac{1}{2}, \quad \sum_{i = 2}^{n + 3} \frac{1}{i} = ?
+	\end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
