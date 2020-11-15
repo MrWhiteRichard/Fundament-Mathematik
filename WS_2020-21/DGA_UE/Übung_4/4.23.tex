@@ -47,13 +47,13 @@ und betrachte die Koeffizienten dieser Matrix.
   \end{align*}
   allgemeine Lösung:
   \begin{align*}
-    a_n = c_0(-1)^n + c_14^n
+    a_n = \alpha_0(-1)^n + \alpha_1 4^n
   \end{align*}
   Anfangsbedingungen:
   \begin{align*}
-    a_0 = 1 &\stackrel{!}{=} c_0 + c_1 \\
-    a_1 = 3 &\stackrel{!}{=} -c_0 + 4c_1 = 4c_1 + c_1 - 1 \iff c_1 = \frac{4}{5}
-    \iff c_0 = \frac{1}{5}.
+    a_0 = 1 &\stackrel{!}{=} \alpha_0 + \alpha_1 \\
+    a_1 = 3 &\stackrel{!}{=} -\alpha_0 + 4\alpha_1 = 4\alpha_1 + \alpha_1 - 1 \iff \alpha_1 = \frac{4}{5}
+    \iff \alpha_0 = \frac{1}{5}.
   \end{align*}
   explizite Lösung:
   \begin{align*}
@@ -63,8 +63,8 @@ und betrachte die Koeffizienten dieser Matrix.
   \item Wir erkennen aus der Darstellung in a), dass wir $b_n, d_n$ durch die
   selbe Rekursiongleichung berechnen können mit Anfangswerten $b_0 = 0, b_1 = 2$.
   \begin{align*}
-    b_0 = 0 &\stackrel{!}{=} c_0 + c_1 \\
-    b_1 = 2 &\stackrel{!}{=} -c_0 + 4c_1 = 4c_1 + c_1 \iff c_1 = \frac{2}{5} \iff c_0 = -\frac{2}{5}.
+    b_0 = 0 &\stackrel{!}{=} \beta_0 + \beta_1 \\
+    b_1 = 2 &\stackrel{!}{=} -\beta_0 + 4\beta_1 = 4\beta_1 + \beta_1 \iff \beta_1 = \frac{2}{5} \iff \beta_0 = -\frac{2}{5}.
   \end{align*}
   explizite Lösung von $b_n,d_n$:
   \begin{align*}
@@ -74,7 +74,7 @@ und betrachte die Koeffizienten dieser Matrix.
   Also besteht der Aufwand des Algorithmus lediglich darin, die $4$-er Potenzen
   zu berechnen, sowie eine konstante Anzahl von Additionen und Multiplikationen.
   Wie beim Algorithmus zur expliziten Berechnung der Fibonacci-Zahlen können
-  wir $n = \sum_{i=0}^k a_i2^i$ in Binärform darstellen und $4^n = \sum_{i=0}^k a_i4^{2^i}$
+  wir $n = \sum_{i=0}^k a_i2^i$ in Binärform darstellen und $4^n = \prod_{i=0}^k 4^{a_i 2^i}$
   in logarithmischer Zeit berechnen, insgesamt erhalten wir also $\Landau(\log(n))$
   für den Aufwand. 
 \end{enumerate}
