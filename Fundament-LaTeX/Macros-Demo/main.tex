@@ -1,0 +1,329 @@
+\documentclass{article}
+
+\input{../../Fundament-LaTeX/packages.tex}
+\input{../../Fundament-LaTeX/macros.tex}
+\input{../../Fundament-LaTeX/environments.tex}
+
+\addbibresource{../../Fundament-LaTeX/references.bib}
+
+\graphicspath{{../images/}}
+
+\parindent 0pt
+
+\title
+{
+  Citation-Demo
+}
+\author
+{
+    Richard Weiss
+%   \and
+%   Florian Schager
+%   \and
+%   Christian Sallinger
+%   \and
+%   Fabian Zehetgruber
+%   \and
+%   Paul Winkler
+%   \and
+%   Christian Göth
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ---------------------------------------------------------------- %
+
+\section{Special Letters}
+
+\verb|\N, \Z, \Q, \R, \C, \K, \T, \E, \V, \S, \P, \1|
+$$\N, \Z, \Q, \R, \C, \K, \T, \E, \V, \S, \P, \1$$
+
+% ---------------------------------------------------------------- %
+
+\section{Quantors}
+
+\verb|\Forall, \Exists, \nExists, \ExistsOnlyOne, \nExistsOnlyOne, \ForAlmostAll|
+
+\begin{align*}
+    \Forall x: P(x),
+    \quad
+    \Exists x: P(x),
+    \quad
+    \nExists x: P(x),
+    \quad
+    \ExistsOnlyOne x: P(x),
+    \quad
+    \nExistsOnlyOne x: P(x),
+    \quad
+    \ForAlmostAll x: P(x)
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{Graphics in a Box}
+
+\verb|\includegraphicsboxed|
+
+\begin{figure}[h!]
+    \centering
+    \includegraphicsboxed{Ana3/Ana3 - Satz 4.3.1 (Transformationsformel).png}
+    \caption{Test}
+    \label{fig:test}
+\end{figure}
+
+% ---------------------------------------------------------------- %
+
+\section{Braces}
+
+\verb|\pbraces, \bbraces, \Bbraces, \vbraces, \Vbraces, \abraces|
+
+\begin{align*}
+    \pbraces{\sum_{n=1}^\infty a_n},
+    \quad
+    \bbraces{\sum_{n=1}^\infty a_n},
+    \quad
+    \Bbraces{\sum_{n=1}^\infty a_n},
+    \quad
+    \vbraces{\sum_{n=1}^\infty a_n},
+    \quad
+    \Vbraces{\sum_{n=1}^\infty a_n},
+    \quad
+    \abraces{\sum_{n=1}^\infty a_n},
+\end{align*}
+
+\verb|\floorbraces, \ceilbraces|
+
+\begin{align*}
+    \floorbraces{\frac{n}{2}},
+    \quad
+    \ceilbraces{\frac{n}{2}},
+\end{align*}
+
+\verb|\abs, \round, \floor, \ceil|
+
+\begin{align*}
+    \abs{x},
+    \quad
+    \round{x},
+    \quad
+    \floor{x},
+    \quad
+    \ceil{x}
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{MISC}
+
+\subsection{Metric Spaces}
+
+\verb|\norm, \metric, \dist, \diam|
+
+\begin{align*}
+    \norm[\infty]{f},
+    \quad
+    \metric_2(x, y),
+    \quad
+    \dist_1(A, B),
+    \quad
+    \diam_p C
+\end{align*}
+
+\subsection{Orthogonality}
+
+\verb|\orthogonal|
+
+\begin{align*}
+    \orthogonal[\sigma]{x}{y}
+\end{align*}
+
+\subsection{Exclusive \Quote{or}}
+
+\verb|\lxor|
+
+\begin{align*}
+    A \lxor B
+\end{align*}
+
+\subsection{O-notation}
+
+\verb|\Landau, \landau|
+
+\begin{align*}
+    \Landau(n),
+    \quad
+    \landau(n)
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{Math Operators}
+
+\subsection{Hyperbolic Trigonometric Function Inverses}
+
+\verb|\areasinh, \areacosh, \areatanh|
+
+\begin{align*}
+    \areasinh x,
+    \quad
+    \areacosh x,
+    \quad
+    \areatanh x
+\end{align*}
+
+\subsection{Special Functions}
+
+\verb|\id, \sgn, \Inv, \erf, \pv|
+
+\begin{align*}
+    \id(x),
+    \quad
+    \sgn(\sigma),
+    \quad
+    \Inv{f},
+    \quad
+    \erf(x),
+    \quad
+    \pv(x)
+\end{align*}
+
+\subsection{Operations on sets}
+
+\verb|\meas, \card, \Span, \mean|
+
+\begin{align*}
+    \meas A,
+    \quad
+    \card A,
+    \quad
+    \Span \Bbraces{x_1, \dots, x_n},
+    \quad
+    \mean \Bbraces{x_1, \dots, x_n}
+\end{align*}
+
+\subsection{Number theory stuff}
+
+\verb|\ggT, kgV, \Mod|
+
+\begin{align*}
+    \ggT (a, b),
+    \quad
+    \kgV (a, b),
+    \quad
+    a \equiv b \, (\Mod)
+\end{align*}
+
+\subsection{Polynomial Stuff}
+
+\verb|\ord, \grad|
+
+\begin{align*}
+    \ord p,
+    \quad
+    \grad p
+\end{align*}
+
+\subsection{Function Properties}
+
+\verb|\Ker, \Ran, \supp, \graph|
+
+\begin{align*}
+    \Ker f,
+    \quad
+    \Ran f,
+    \quad
+    \supp f,
+    \quad
+    \graph f
+\end{align*}
+
+\subsection{Matrix Stuff}
+
+\verb|\GL, \SL, \diag|
+
+\begin{align*}
+    \GL_n \R,
+    \quad
+    \SL_n \R,
+    \quad
+    \diag (d_1, \dots, d_n)
+\end{align*}
+
+\subsection{Algebra Stuff}
+
+\verb|\At, \Ob, \Hom, \End, \Aut|
+
+\begin{align*}
+    \At B,
+    \quad
+    \Ob \mathcal{C},
+    \quad
+    \Hom_{\mathcal{C}} (A, B),
+    \quad
+    \End_{\mathcal{R}} A,
+    \quad
+    \Aut V
+\end{align*}
+
+\subsection{Constants}
+
+\verb|\Nil, \eps|
+
+\begin{align*}
+    \NIL,
+    \quad
+    \eps
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{Extra Fractions}
+
+\verb|\Frac, \nfrac|
+
+\begin{align*}
+    \Frac{x_1, \dots, x_n}{b - a},
+    \quad
+    \nfrac{n}{2}
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{Derivatives \& Integrals}
+
+\verb|\Int, \derivative, \pderivative, \primeprime, \primeprimeprime, \Div|
+
+\begin{align*}
+    \Int[a][b]{f}{x},
+    \quad
+    \derivative[n][f]{x}(x),
+    \quad
+    \pderivative[n][f]{\nu}(x),
+    \quad
+    f^\prime,
+    \quad
+    f^\primeprime,
+    \quad
+    f^\primeprimeprime,
+    \quad
+    \Div f
+\end{align*}
+
+% ---------------------------------------------------------------- %
+
+\section{Text}
+
+\verb|\Quote|
+
+\begin{center}
+    \Quote{Hello World!}
+\end{center}
+
+% ---------------------------------------------------------------- %
+
+\printbibliography
+
+\end{document}
