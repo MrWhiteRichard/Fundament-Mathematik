@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-	Lösen Sie die Rekursion $n a_n = (n + 1) a_{n - 1} + 2n$ mit $a_0 = 2$. 
+	Lösen Sie die Rekursion $n a_n = (n + 1) a_{n - 1} + 2n$ mit $a_0 = 0$. 
 
 \end{exercise}
 
@@ -23,11 +23,21 @@
 	\end{align*}
 	Eine Lösung der Rekursionsgleichung ist. Mit Induktion erkennen wir
 	\begin{align*}
-	\prod_{j=i+1}^i = 1 = \frac{i + 1}{i +1}, \quad \prod_{j = i+1}^{n + 1} \frac{j + 2}{j + 1} = \frac{n + 3}{n + 2} \frac{n + 2}{i + 1} = \frac{(n + 1) + 2}{i + 1}
+	\prod_{j=i+1}^i = 1 = \frac{i + 2}{i + 2}, \quad \prod_{j = i+1}^{n + 1} \frac{j + 2}{j + 1} = \frac{n + 3}{n + 2} \frac{n + 2}{i + 2} = \frac{(n + 1) + 2}{i + 2}
 	\end{align*}
 	und 
 	\begin{align*}
 	\sum_{i = 2}^2 \frac{1}{i} = \frac{1}{2}, \quad \sum_{i = 2}^{n + 3} \frac{1}{i} = ?
+	\end{align*}
+	Wir erhalten schließlich
+	\begin{align*}
+	a_n = x_{n - 1} = 2 (n + 1) \sum_{i = 2}^{n + 1} \frac{1}{i}.
+	\end{align*}
+	Machen wir noch die Probe.
+	\begin{align*}
+	a_0 &= 0 \\ 
+	2n(n + 1) \sum_{i = 2}^{n + 1} \frac{1}{i} &= n a_n \stackrel{!}{=} (n + 1) a_{n - 1} + 2n = (n + 1) 2n \sum_{i = 2}^{n} \frac{1}{i} + 2n \\
+	&= 2n (n + 1)  \sum_{i = 2}^{n} \frac{1}{i} + 2n (n + 1) \frac{1}{n + 1} = \quad 2n(n + 1) \sum_{i = 2}^{n + 1} \frac{1}{i}
 	\end{align*}
 \end{solution}
 
