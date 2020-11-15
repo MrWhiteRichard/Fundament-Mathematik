@@ -1,11 +1,38 @@
 \begin{exercise}
-\phantom{}
+Die Türme von Hanoi: Gegeben seien drei Stäbe $A,B,C$ und $n$ verschieden große
+Scheiben. Anfangs seien alle Scheiben der Größe nach auf Stab $A$ aufgereiht, die
+größte ganz unten. Dieser Turm von Scheiben soll nun unter folgenden Regeln von
+$A$ nach $B$ transferiert werden:
+\begin{itemize}
+  \item In jedem Zug darf nur eine Scheibe bewegt werden.
+  \item Eine größere Scheibe darf nie über einer kleineren platziert werden.
+\end{itemize}
+Sei $a_n$ die minimale Anzahl der benötigten Züge. Ermitteln Sie $a_n$ durch
+Aufstellen und Lösen einer Rekursion.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-\phantom{}
+In den Regeln in der Angabe ist nicht explizit verlangt, dass immer nur die
+oberste Scheibe bewegt werden kann. Also bewegen wir einfach die unterste
+zuerst und erhalten einfach $a_n = n$. :) \\
+Ernsthafte Lösung: \\
+Wir haben in EProg einen rekurisven Algorithmus dafür programmiert, der
+folgende Rekursion verwendet:
+\begin{enumerate}
+  \item Verschiebe die obersten $n-1$ Scheiben von Pfosten $A$ auf Pfosten $B$.
+  \item Verschiebe die größte Scheibe von Pfosten $A$ auf Pfosten $C$.
+  \item Verschibe die $n-1$ Scheiben von Pfosten $B$ auf Pfosten $C$.
+\end{enumerate}
+Also erhalten wir für $a_n$ folgende Rekursionsgleichung:
+\begin{align*}
+  a_n = 2a_{n-1} + 1, \quad n \geq 2.
+\end{align*}
+mit der expliziten Lösung
+\begin{align*}
+  a_n = \sum_{i=1}^n\prod_{j=i+1}^n2 = 2^n - 1.
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
