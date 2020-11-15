@@ -27,43 +27,32 @@ $x,y$ und $z$ bei der Berechnung von $F(n,a,b,c)$. Bestimmen Sie eine Rekursions
 \begin{solution}
 Klarerweise gilt $a(0) = 1, a(1) = 0$. Wir erhalten außerdem die Rekursion
 \begin{align*}
-  a(n) = a(n-1) + 3a(n-2) + 1.
+  a(n) = 2a(n-1) + 3a(n-2) + 1.
 \end{align*}
 Diese inhomogene, lineare Rekursionsgleichung 2-ter Ordnung mit konstanten
-Koeffizienten lässt sich durch $a(n) = y(n) - \frac{d}{C-1} = y(n) - \frac{1}{4}$ lösen, wobei $y(n)$
+Koeffizienten lässt sich durch $a(n) = y(n) - \frac{d}{C-1} = y(n) - \frac{1}{5}$ lösen, wobei $y(n)$
 Lösung von
 \begin{align*}
-  y(0) &= a(0) + \frac{1}{4} = \frac{5}{4}, \quad y(1) = a(1) + \frac{1}{4} = \frac{1}{4}, \\
-  y(n) &= y(n-1) + 3y(n-2), \quad n \geq 2.
+  y(0) &= a(0) + \frac{1}{5} = \frac{6}{5}, \quad y(1) = a(1) + \frac{1}{5} = \frac{1}{5}, \\
+  y(n) &= 2y(n-1) + 3y(n-2), \quad n \geq 2.
 \end{align*}
 Das charakteristische Polynom davon lautet
 \begin{align*}
-  \chi(\lambda) = \lambda^2 - \lambda - 3 \implies \lambda_{1,2} = \frac{1}{2} \pm \sqrt{\frac{1}{4} + 3}
-  = \frac{1}{2} \pm \frac{\sqrt{13}}{2}.
+  \chi(\lambda) = \lambda^2 - 2\lambda - 3 \implies \lambda_{1,2} = 1 \pm 2.
 \end{align*}
 Also erhalten wir die Lösung
 \begin{align*}
-  y(n) = c_0\left(\frac{1}{2} + \frac{\sqrt{13}}{2}\right)^n +
-        c_1\left(\frac{1}{2} - \frac{\sqrt{13}}{2}\right)^n.
+  y(n) = c_0(-1)^n + c_1(3)^n.
 \end{align*}
 Lösen wir die Konstanten nach den Anfangsbedingungen auf:
 \begin{align*}
-  \frac{5}{4} = y(0) &\stackrel{!}{=} c_0 + c_1 \\
-  \frac{1}{4} = y(1) &\stackrel{!}{=} c_0\left(\frac{1}{2} + \frac{\sqrt{13}}{2}\right) +
-        c_1\left(\frac{1}{2} - \frac{\sqrt{13}}{2}\right)
-        =c_0\left(\frac{1}{2} + \frac{\sqrt{13}}{2}\right) +
-              (\frac{5}{4} - c_0)\left(\frac{1}{2} - \frac{\sqrt{13}}{2}\right) \\
-        &= c_0\left(2\frac{\sqrt{13}}{2}\right) + \frac{5}{4}\left(\frac{1}{2} - \frac{\sqrt{13}}{2}\right)
-        = c_0\sqrt{13} + \frac{5 - 5\sqrt{13}}{8} \\
-        \iff c_0 &= \frac{\frac{1}{4} - \frac{5 - 5\sqrt{13}}{8}}{\sqrt{13}}
-        = \frac{5\sqrt{13}- 3}{8\sqrt{13}} = \frac{5}{8} - \frac{3}{8\sqrt{13}} \\
-        \iff c_1 &= \frac{5}{4} - \frac{5}{8} + \frac{3}{8\sqrt{13}}
-        = \frac{5}{8} + \frac{3}{8\sqrt{13}}
+  \frac{6}{5} = y(0) &\stackrel{!}{=} c_0 + c_1 \\
+  \frac{1}{5} = y(1) &\stackrel{!}{=} -c_0  + 3c_1 = 3c_1 + c_1 - \frac{6}{5}
+  \iff c_1 = \frac{7}{20} \iff c_0 =  \frac{17}{20}
 \end{align*}
 Schließlich erhalten wir für $a(n)$:
 \begin{align*}
-  a(n) = y(n) - \frac{1}{4} = \left(\frac{5}{8} - \frac{3}{8\sqrt{13}}\right)\left(\frac{1}{2} +
-   \frac{\sqrt{13}}{2}\right)^n + \left(\frac{5}{8} + \frac{3}{8\sqrt{13}}\right)\left(\frac{1}{2} - \frac{\sqrt{13}}{2}\right)^n - \frac{1}{4}.
+  a(n) = y(n) - \frac{1}{5} = \frac{7}{20}(-1)^n + \frac{17}{20}3^n - \frac{1}{5}
 \end{align*}
 \end{solution}
 
