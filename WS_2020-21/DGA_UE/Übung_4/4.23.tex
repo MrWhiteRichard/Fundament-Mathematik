@@ -1,0 +1,85 @@
+\begin{exercise}
+In Übungsblatt 3 haben wir gesehen, wie sich die Fibonacci-Zahlen mithilfe von
+Potenzen der Matrix $\begin{pmatrix}1 & 1 \\ 1 & 0\end{pmatrix}$ effizient berechnen
+lassen. Man kann diese Methode adaptieren, um Zahlenfolgen, die andere Rekursionsgleichungen
+erfüllen, zu berechnen. Wir betrachten im Folgenden die Potenzen der Matrix
+\begin{align*}
+  M = \begin{pmatrix}
+    3 & 2 \\ 2 & 0
+  \end{pmatrix}.
+\end{align*}
+Definiere
+\begin{align*}
+  M_n := M^n = \begin{pmatrix}3 & 2 \\ 2 & 0\end{pmatrix}^n
+  = \begin{pmatrix}a_n & b_n \\ c_n & d_n\end{pmatrix}
+\end{align*}
+und betrachte die Koeffizienten dieser Matrix.
+\begin{enumerate}[label = \alph*)]
+  \item Geben Sie eine Rekursion für die Zahlenfolge $(a_n)_{n \geq 0}$ an.
+  \item Lösen Sie diese Rekursion, um eine explizite Formel für $a_n$ zu erhalten.
+  \item Geben Sie einen Algorithmus zur effizienten Berechnung von $M^n$ an
+  und analysieren Sie dessen Laufzeit in Abhängigkeit von $n$ ($\Landau$-Notation genügt).
+\end{enumerate}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+\phantom{}
+\begin{enumerate}[label = \alph*)]
+  \item
+  \begin{align*}
+    \begin{pmatrix}a_n & b_n \\ c_n & d_n\end{pmatrix}
+    = \begin{pmatrix}3 & 2 \\ 2 & 0\end{pmatrix}\cdot
+    \begin{pmatrix}a_{n-1} & b_{n-1} \\ c_{n-1} & d_{n-1}\end{pmatrix}
+    = \begin{pmatrix}
+      3a_{n-1} + 2c_{n-1} & 3b_{n-1} + 2d_{n-1} \\ 2a_{n-1} & 2b_{n-1}
+    \end{pmatrix}
+  \end{align*}
+  Wir erhalten die Rekursion
+  \begin{align*}
+    a_n &= 3a_{n-1} + 2c_{n-1} = 3a_{n-1} + 4a_{n-2}.
+  \end{align*}
+  \item Nullstellen des charakteristischen Polynoms:
+  \begin{align*}
+    \chi(\lambda) = \lambda^2 - 3\lambda - 4, \quad \lambda_{1,2} = \frac{3}{2} \pm \sqrt{\frac{9}{4} + 4}
+    = \frac{3}{2} \pm \frac{5}{2}
+  \end{align*}
+  allgemeine Lösung:
+  \begin{align*}
+    a_n = c_0(-1)^n + c_14^n
+  \end{align*}
+  Anfangsbedingungen:
+  \begin{align*}
+    a_0 = 1 &\stackrel{!}{=} c_0 + c_1 \\
+    a_1 = 3 &\stackrel{!}{=} -c_0 + 4c_1 = 4c_1 + c_1 - 1 \iff c_1 = \frac{4}{5}
+    \iff c_0 = \frac{1}{5}.
+  \end{align*}
+  explizite Lösung:
+  \begin{align*}
+    a_n &= \frac{1}{5}(-1)^n  + \frac{4}{5}4^n \\
+    c_n &= 2a_{n-1} = \frac{2}{5}(-1)^{n-1} + \frac{8}{5}4^{n-1} = -\frac{2}{5}(-1)^n + \frac{2}{5}4^n
+  \end{align*}
+  \item Wir erkennen aus der Darstellung in a), dass wir $b_n, d_n$ durch die
+  selbe Rekursiongleichung berechnen können mit Anfangswerten $b_0 = 0, b_1 = 2$.
+  \begin{align*}
+    b_0 = 0 &\stackrel{!}{=} c_0 + c_1 \\
+    b_1 = 2 &\stackrel{!}{=} -c_0 + 4c_1 = 4c_1 + c_1 \iff c_1 = \frac{2}{5} \iff c_0 = -\frac{2}{5}.
+  \end{align*}
+  explizite Lösung von $b_n,d_n$:
+  \begin{align*}
+    b_n &= -\frac{2}{5}(-1)^n + \frac{2}{5}4^n \\
+    d_n &= 2b_{n-1} = -\frac{4}{5}(-1)^{n-1} + \frac{4}{5}4^{n-1} = \frac{4}{5}(-1)^n + \frac{1}{5}4^n
+  \end{align*}
+  Also besteht der Aufwand des Algorithmus lediglich darin, die $4$-er Potenzen
+  zu berechnen, sowie eine konstante Anzahl von Additionen und Multiplikationen.
+  Wie beim Algorithmus zur expliziten Berechnung der Fibonacci-Zahlen können
+  wir $n = \sum_{i=0}^k a_i2^i$ in Binärform darstellen und $4^n = \sum_{i=0}^k a_i4^{2^i}$
+  in logarithmischer Zeit berechnen, insgesamt erhalten wir also $\Landau(\log(n))$
+  für den Aufwand. 
+\end{enumerate}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
