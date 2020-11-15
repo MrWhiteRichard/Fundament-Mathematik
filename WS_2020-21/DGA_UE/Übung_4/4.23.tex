@@ -76,7 +76,23 @@ und betrachte die Koeffizienten dieser Matrix.
   Wie beim Algorithmus zur expliziten Berechnung der Fibonacci-Zahlen können
   wir $n = \sum_{i=0}^k a_i2^i$ in Binärform darstellen und $4^n = \prod_{i=0}^k 4^{a_i 2^i}$
   in logarithmischer Zeit berechnen, insgesamt erhalten wir also $\Landau(\log(n))$
-  für den Aufwand. 
+  für den Aufwand. Im folgenden Algorithmus ist $m \leq \left\lfloor \log(n) \right\rfloor$.
+    \begin{flalign*}
+  1&: \textbf{Prozedur}~ \textsc{ZahlPotenzieren}(x,n) \\
+  2&: \quad u := \textsc{Binärkoeffizienten}(n) \\
+  3&: \quad m := u.\textit{Länge} \\
+  4&: \quad y := 1 \\
+  6&: \quad \textbf{Für}~ k = 0, \dots, m \\
+  7&: \quad \quad \textbf{Falls}~ a_k = 1 \\
+  8&: \quad \quad \quad y := y \cdot x \\
+  9&: \quad \quad \textbf{Ende Falls} \\
+  11&: \quad \quad \textbf{Falls}~ k < m \\
+  12&: \quad \quad \quad x := x^2 \\
+  13&: \quad \quad \textbf{Ende Falls} \\
+  14&: \quad \textbf{Ende Für} \\
+  15&: \quad \textbf{Antworte}~ y \\
+  16&: \textbf{Ende Prozedur}
+  \end{flalign*}
 \end{enumerate}
 
 
