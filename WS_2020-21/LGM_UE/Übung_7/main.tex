@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\input{../../../Fundament-LaTeX/packages.tex}
+\input{../../../Fundament-LaTeX/macros.tex}
+\input{../../../Fundament-LaTeX/environments.tex}
+
+\parindent 0pt
+
+\title
+{
+  Logik und Grundlagen der Mathematik \\
+  \vspace{4pt}
+  \normalsize
+  \textit{5. Übung am 05.11.2020}
+}
+\author
+{
+  Richard Weiss
+  \and
+  Florian Schager
+  \and
+  Fabian Zehetgruber
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+\section*{Skolemtheorien}
+Sei $\Sigma$ eine Theorie in der Sprache $\mathscr{L}$. Wir nennen $\Sigma$ eine
+Skolem-Theorie, wenn es für alle $n \geq 0$ und alle Formeln der Form $\exists y \psi$
+mit den freien Variablen $x_1,\dots,x_n$ ein $n$-stelliges Funktionssymbol $f$ gibt,
+sodass $\sigma \vdash \exists y \psi \rightarrow \psi[y/f(\overline{x})]$ (wobei wir
+$f(\overline{x})$ statt $f(x_1,\dots,x_n)$ schreiben). \\
+Für zwei $\mathscr{L}$-Strukturen $\mathscr{M}_1$ und $\mathscr{M}_2$ mit $M_1 \subseteq M_2$
+sagen wir $\mathscr{M}_1 \leq \mathscr{M}_2$ (``$\mathscr{M}_1$ ist Unterstruktur von $\mathscr{M}_2$''),
+wenn für alle Funktionssymbole $f$ in $\mathscr{L}$ gilt, dass
+$f^{\mathscr{M}_1} = f^{\mathscr{M}_2}\upharpoonright M_1$ (genauer:
+$f^{\mathscr{M}_1} = f^{\mathscr{M}_2}\upharpoonright M_1^k$) wenn $k$ die Stelligkeit von $f$ ist),
+sowie $c^{\mathscr{M}_1} = c^{\mathscr{M}_2}$ für alle Konstantensymbole, und
+$R^{\mathscr{M}_1} = R^{\mathscr{M}_2}\cap M^k$ für alle ($k$-stelligen) Relationssymbole $R$. \\
+Wir schreiben $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$, wenn erstens $\mathscr{M}_1 \leq \mathscr{M}_2$
+gilt, und überdies für jede Formel $\varphi$ und jede Belegung $b$ mit Werten in
+$M_1: \mathscr{M}_1 \vDash \varphi[b] \iff \mathscr{M}_2 \vDash \varphi[b]$.
+\input{7.1.tex}
+\input{7.2.tex}
+\input{7.3.tex}
+\input{7.4.tex}
+\input{7.5.tex}
+\input{7.6.tex}
+
+
+
+\end{document}
