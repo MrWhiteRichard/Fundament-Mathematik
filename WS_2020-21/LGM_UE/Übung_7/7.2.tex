@@ -8,13 +8,18 @@ $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ und $M_1 \neq M_2$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Sei $\mathscr{L} = (0)$ eine Sprache mit einem einzigen Konstantensymbol.
-Wähle
+Wir betrachten eine Sprache ohne Gleichheitsrelation und ohne Konstantensymbole, allerdings
+mit einer einstelligen Relation $R$.
 \begin{align*}
-  \mathscr{M}_1 &= (\N,0^{\mathscr{M}_1} = 0) \\
-  \mathscr{M}_1 &= (\N \cup \{\infty\},0^{\mathscr{M}_1} = 0) \\
+  \mathscr{M}_1 &= (\{0\}, R^{\mathscr{M}_1}= \emptyset) \\
+  \mathscr{M}_2 &= (\{0,1\}, R^{\mathscr{M}_2}= \emptyset) \\
 \end{align*}
-Weiß nicht ob das zielführend ist...
+Jede Atomformel hat also die Form $R(x)$ und ist sowohl in $\mathscr{M}_1$,
+als auch in $\mathscr{M}_2$ unter jeder Belegung $b$ falsch. \\
+Wir zeigen mittels Induktion nach dem Formelaufbau, dass jede Formel
+entweder unter jeder Belegung in $\mathscr{M}_1$ und $\mathscr{M}_1$ wahr oder
+unter jeder Belegung $\mathscr{M}_1$ und $\mathscr{M}_1$ falsch ist. \\
+Induktiv über den Formelaufbau zeigt man dann, dass das bereits für alle Formeln gelten muss.
 \end{solution}
 
 % --------------------------------------------------------------------------------
