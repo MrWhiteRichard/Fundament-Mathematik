@@ -2,8 +2,23 @@
 
 \begin{exercise}
 
-\phantom{}
-
+Sei $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit $\partial\Omega \in C^1$.
+Betrachten Sie die Poisson-Gleichung mit Neumann-Randbedingungen
+\begin{align}
+\begin{cases}
+  -\Delta u = f & \text{in } \Omega, \\
+  \nabla u \cdot \nu = 0 & \text{auf } \Omega,
+\end{cases} \label{neumann}
+\end{align}
+wobei $f \in L^2(\Omega)$.
+\begin{enumerate}[label = \alph*)]
+  \item Bestimmen Sie die schwache Formulierung für das Randwertproblem \eqref{neumann}
+  \item Beweisen Sie die Existenz und Eindeutigkeit einer schwachen Lösung $u \in V$,
+  wobei $V := \{v \in H^1(\Omega): \int_\Omega v(x)dx = 0\}$, für das RWP \eqref{neumann}. \\
+  \textit{Hinweis:} Poincaré-Ungleichung aus Aufgabe 4 von letzter Woche.
+  \item Diskutieren Sie die Existenz und Eindeutigkeit von schwachen und klassischen
+  Lösungen von \eqref{neumann}, falls $\int_\Omega f(x)dx \neq 0$.
+\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,7 +26,62 @@
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = \alph*)]
+  \item Wir multiplizieren die Differentialgleichung mit $v \in H^1(\Omega)$
+  und integrieren über $\Omega$
+  \begin{align*}
+    \int_\Omega -\Delta u v dx = \int_\Omega fv dx \iff
+    \int_\Omega \nabla u \nabla v dx = \int_{\partial\Omega}(\nabla u \nu)v ds + \int_\Omega fv dx
+  \end{align*}
+  Wir definieren
+  \begin{align*}
+    a(u,v) &:= \int_\Omega \nabla u \nabla v dx \\
+    F(v) &:= \int_{\partial \Omega} \underbrace{(\nabla u \nu)}_{=0}v ds + \int_\Omega fv dx
+    = \int_\Omega fv dx.
+  \end{align*}
+  Dann lautet die schwache Formulierung: Finde $u \in H^1(\Omega)$, sodass
+  \begin{align*}
+    a(u,v) = F(v) \quad \text{für alle } v \in H^1(\Omega).
+  \end{align*}
+  \item Wir wollen wieder das Lemma von Lax-Milgram auf den Hilbertraum $V$ anwenden. Dafür prüfen wir
+  die Voraussetzungen an
 
+  \begin{itemize}
+    \item Stetigkeit von $a$:
+    \begin{align*}
+      |a(u,v)| \leq \|\nabla u\|_{L^2(\Omega)}\|\nabla v\|_{L^2(\Omega)}
+      \leq \|u\|_{H^1(\Omega)}\|v\|_{H^1(\Omega)}
+    \end{align*}
+    \item Koerzivität von $a$:
+    \begin{align*}
+      a(u,u) = \int_\Omega \nabla u \nabla u dx = \|\nabla u\|_{L^2(\Omega)}^2
+      \geq \frac{1}{C^2+1}(\|u\|_{L^2(\Omega)}^2+ \|\nabla u\|_{L^2(\Omega)}^2)
+      = \frac{1}{C^2+1}\|u\|_{H^1(\Omega)}^2
+    \end{align*}
+    \item Stetigkeit von $F$:
+    \begin{align*}
+      |F(v)| \leq \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)} \leq \|f\|_{L^2(\Omega)}\|v\|_{H^1(\Omega)}
+    \end{align*}
+  \end{itemize}
+  Mit dem Lemma von Lax-Milgram existiert nun genau ein $u \in V$, sodass
+  \begin{align*}
+    a(u,v) = F(v) \quad \text{für alle } v \in V.
+  \end{align*}
+  Damit $u$ auch eine schwache Lösung ist, müssen wir diese Gleichheit jetzt noch
+  für alle $w \in H^1(\Omega)$ zeigen. Mit $\overline{w} := \frac{1}{|\Omega|}\int_\Omega w(x) dx$ gilt
+  \begin{align*}
+    w \in H^1(\Omega) &\implies w - \overline{w} \in V \\
+    a(u,w) &= a(u,w) - \int_\Omega \nabla u \underbrace{\nabla \overline{w}}_{=0}
+    = a(u,w-\overline{w}) = F(w-\overline{w}) = F(w) - \overline{w}\underbrace{\int_\Omega f}_{=0} dx = F(w)
+  \end{align*}
+  \item Für $\int_\Omega f(x) dx \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt mit
+  dem Satz von Gauß für Sobolev-Funktionen
+  \begin{align*}
+    0 \neq \int_\Omega f(x) dx = -\int_\Omega \Delta u = \int_{\partial \Omega} \nabla u \cdot \nu ds
+    = \int_{\partial \Omega} 0 ds = 0.
+  \end{align*}
+ein Widerspruch! Also kann es in dem Fall keine schwachen und insbesondere keine klassischen Lösungen geben.
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
