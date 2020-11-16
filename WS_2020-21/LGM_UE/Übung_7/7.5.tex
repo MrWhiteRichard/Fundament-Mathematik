@@ -1,7 +1,7 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}[173]
-Finden Sie (durch Skolemisierung) eine Formel in Pränexformel ohne Existenzquantoren,
+Finden Sie (durch Skolemisierung) eine Formel in Pränexform ohne Existenzquantoren,
 die zur Formel
 \begin{align*}
   \exists x \exists y \forall z\, ((P(x) \lor P(y))\land \neg P(z))
@@ -12,7 +12,17 @@ erfüllungsäquivalent ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	$\forall z\, ((P(c) \lor P(d))\land \neg P(z))$
+Wir wissen aus der Vorlesung, dass für eine Formel $\psi$ und eine Konstante $c$,
+welche nicht in $\psi$ vorkommt, die Formeln
+\begin{align*}
+  &\exists x\, \psi \quad \text{und}\\
+  &\psi[x/c]
+\end{align*}
+erfüllungsäquivalent ist. Wenden wir diese Erfüllungsäquivalent zweimal an,
+dann erhalten wir mit Konstanten $c,d$, welche nicht in $P$ vorkommen:
+\begin{align*}
+  \forall z\, ((P(c) \lor P(d))\land \neg P(z))
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
@@ -20,7 +30,7 @@ erfüllungsäquivalent ist.
 % --------------------------------------------------------------------------------
 
 \begin{exercise}[174]
-Finden Sie (durch Skolemisierung) eine Formel in Pränexformel ohne Existenzquantoren,
+Finden Sie (durch Skolemisierung) eine Formel in Pränexform ohne Existenzquantoren,
 die zur Formel
 \begin{align*}
   \forall z \exists x \exists y \, ((P(x) \lor P(y))\land \neg P(z))
@@ -31,7 +41,15 @@ erfüllungsäquivalent ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	$\forall z \, ((P(g(z)) \lor P(f(z)))\land \neg P(z))$
+Hier verwenden wir zweimal die Erfüllungsäquivalenz von
+\begin{align*}
+  &\forall x\, \exists y\, \psi \quad \text{und} \\
+  &\forall x\, \psi[y/f(x)],
+\end{align*}
+wobei wir voraussetzen, dass $P$ eine bereinigte Formel ist. Wir erhalten also:
+\begin{align*}
+  \forall z \, ((P(g(z)) \lor P(f(z)))\land \neg P(z)).
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
