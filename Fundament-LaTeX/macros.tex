@@ -28,14 +28,24 @@
 
 % ---------------------------------------------------------------- %
 
-% graphics in a box:
+% graphics:
 
 \newcommand{\includegraphicsboxed}[1]
 {
-  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
-    \centering
+  \begin{center}
+    \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+      \begin{center}
+        \includegraphics[width = 0.75 \textwidth]{#1}
+      \end{center}
+    \end{tcolorbox}
+  \end{center}
+}
+
+\newcommand{\includegraphicsunboxed}[1]
+{
+  \begin{center}
     \includegraphics[width = 0.75 \textwidth]{#1}
-  \end{tcolorbox}
+  \end{center}
 }
 
 % ---------------------------------------------------------------- %
