@@ -50,9 +50,12 @@ wobei $f \in L^2(\Omega)$.
 
     \begin{align*}
         -\Delta u = f
-        & \implies
-        (-\Delta u) v = f v \\
-        & \implies
+        \implies
+        (-\Delta u) v = f v
+    \end{align*}
+
+    \begin{align*}
+        \implies
         \Int[\Omega]{f v}{x}
         =
         -\Int[\Omega]{(\Delta u) v}{x}
@@ -69,7 +72,8 @@ wobei $f \in L^2(\Omega)$.
 
     Dabei haben wir Satz 5.8 (Gauß für Sobolev-Funktionen) verwendet.
 
-    \includegraphicsboxed{PDEs/PDEs_-_Satz_5-8_Gauss_fuer_Sobolev-Funktionen.png}
+    \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-8_Gauss_fuer_Sobolev-Funktionen.png}
+
     \begin{align*}
         a(u, v) := \Int[\Omega]{\nabla u \cdot \nabla v}{x},
         \quad
@@ -110,7 +114,13 @@ wobei $f \in L^2(\Omega)$.
 
         \item Option (Satz 5.18 (Lemma von Lax-Milgram)):
 
+        \begin{center}
+            \includegraphics[width = 0.75 \textwidth]{PDEs/PDEs_-_Definition_5-17-1.png}
+            \includegraphics[width = 0.75 \textwidth]{PDEs/PDEs_-_Definition_5-17-2.png}
+        \end{center}
+
         \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-18_(Lemma_von_Lax-Milgram).png}
+        
         \begin{itemize}
 
             \item Stetigkeit von $a$:
@@ -148,7 +158,16 @@ wobei $f \in L^2(\Omega)$.
 
             \begin{align*}
                 \abs{F(v)}
+                =
+                \abs{\Int[\Omega]{f v}{x}}
                 \leq
+                \Int[\Omega]{\abs{f v}}{x}
+                =
+                \norm[L^1(\Omega)]{f v}
+                \stackrel
+                {
+                \mathrm{CSB}
+                }{\leq}
                 \norm[L^2(\Omega)]{f} \norm[L^2(\Omega)]{v}
                 \leq
                 \norm[L^2(\Omega)]{f} \norm[H^1(\Omega)]{v}
@@ -159,6 +178,8 @@ wobei $f \in L^2(\Omega)$.
         \item Option (Satz 5.1 (Darstellungssatz von Riesz)):
 
         \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-1_(Darstellungssatz_von_Riesz).png}
+
+
         Aus der 2. poincaréschen Ungleichung erhalten wir $\Exists C > 0: \Forall v \in V:$
 
         \begin{align*}
@@ -208,7 +229,7 @@ wobei $f \in L^2(\Omega)$.
 
     \end{enumerate}
 
-    Mit dem Lemma von Lax-Milgram, bzw. Darstellungssatz von Riesz existiert nun genau ein $u \in V$, sodass $a(u, v) = F(v)$ für alle $v \in V$.
+    Laut dem Lemma von Lax-Milgram, bzw. Darstellungssatz von Riesz existiert nun genau ein $u \in V$, sodass $a(u, v) = F(v)$ für alle $v \in V$.
 
     \begin{align*}
         \implies
