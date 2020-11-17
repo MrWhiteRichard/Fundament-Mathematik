@@ -4,21 +4,29 @@
 
 Sei $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit $\partial\Omega \in C^1$.
 Betrachten Sie die Poisson-Gleichung mit Neumann-Randbedingungen
+
 \begin{align}
-\begin{cases}
-  -\Delta u = f & \text{in } \Omega, \\
-  \nabla u \cdot \nu = 0 & \text{auf } \Omega,
-\end{cases} \label{neumann}
+    \begin{cases}
+    -\Delta u = f & \text{in } \Omega, \\
+    \nabla u \cdot \nu = 0 & \text{auf}~ \Omega, 
+    \end{cases}
+    \label{neumann}
 \end{align}
+
 wobei $f \in L^2(\Omega)$.
+
 \begin{enumerate}[label = \alph*)]
-  \item Bestimmen Sie die schwache Formulierung für das Randwertproblem \eqref{neumann}
-  \item Beweisen Sie die Existenz und Eindeutigkeit einer schwachen Lösung $u \in V$,
-  wobei $V := \{v \in H^1(\Omega): \int_\Omega v(x)dx = 0\}$, für das RWP \eqref{neumann}. \\
-  \textit{Hinweis:} Poincaré-Ungleichung aus Aufgabe 4 von letzter Woche.
-  \item Diskutieren Sie die Existenz und Eindeutigkeit von schwachen und klassischen
-  Lösungen von \eqref{neumann}, falls $\int_\Omega f(x)dx \neq 0$.
+
+    \item Bestimmen Sie die schwache Formulierung für das Randwertproblem \eqref{neumann}.
+
+    \item Beweisen Sie die Existenz und Eindeutigkeit einer schwachen Lösung $u \in V$, wobei $V := \{v \in H^1(\Omega): \int_\Omega v(x)dx = 0\}$, für das RWP \eqref{neumann}.
+    \textit{Hinweis:}
+    Poincaré-Ungleichung aus Aufgabe 4 von letzter Woche.
+
+    \item Diskutieren Sie die Existenz und Eindeutigkeit von schwachen und klassischen Lösungen von \eqref{neumann}, falls $\int_\Omega f(x)dx \neq 0$.
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -26,62 +34,251 @@ wobei $f \in L^2(\Omega)$.
 \begin{solution}
 
 \phantom{}
-\begin{enumerate}[label = \alph*)]
-  \item Wir multiplizieren die Differentialgleichung mit $v \in H^1(\Omega)$
-  und integrieren über $\Omega$
-  \begin{align*}
-    \int_\Omega -\Delta u v dx = \int_\Omega fv dx \iff
-    \int_\Omega \nabla u \nabla v dx = \int_{\partial\Omega}(\nabla u \nu)v ds + \int_\Omega fv dx
-  \end{align*}
-  Wir definieren
-  \begin{align*}
-    a(u,v) &:= \int_\Omega \nabla u \nabla v dx \\
-    F(v) &:= \int_{\partial \Omega} \underbrace{(\nabla u \nu)}_{=0}v ds + \int_\Omega fv dx
-    = \int_\Omega fv dx.
-  \end{align*}
-  Dann lautet die schwache Formulierung: Finde $u \in H^1(\Omega)$, sodass
-  \begin{align*}
-    a(u,v) = F(v) \quad \text{für alle } v \in H^1(\Omega).
-  \end{align*}
-  \item Wir wollen wieder das Lemma von Lax-Milgram auf den Hilbertraum $V$ anwenden. Dafür prüfen wir
-  die Voraussetzungen an
 
-  \begin{itemize}
-    \item Stetigkeit von $a$:
+\includegraphicsboxed{PDEs/PDEs - Blatt 4 Aufgabe 4 poincarésche Ungleichung).png}
+
+\begin{enumerate}[label = \alph*)]
+
+    \item Das RWP \eqref{neumann} entspricht genau (5.17) aus dem Skriptum mit
+    
     \begin{align*}
-      |a(u,v)| \leq \|\nabla u\|_{L^2(\Omega)}\|\nabla v\|_{L^2(\Omega)}
-      \leq \|u\|_{H^1(\Omega)}\|v\|_{H^1(\Omega)}
+        A := I, \quad b := 0, \quad c := 0, \quad g := 0.
     \end{align*}
-    \item Koerzivität von $a$:
+
+    \includegraphicsboxed{PDEs/PDEs - (5.17).png}
+
+    Wir führen die Umformulierung dennoch nochmal durch.
+    Wir multiplizieren die Differentialgleichung mit $v \in H^1(\Omega)$, integrieren über $\Omega$ und integrieren partiell:
+
     \begin{align*}
-      a(u,u) = \int_\Omega \nabla u \nabla u dx = \|\nabla u\|_{L^2(\Omega)}^2
-      \geq \frac{1}{C^2+1}(\|u\|_{L^2(\Omega)}^2+ \|\nabla u\|_{L^2(\Omega)}^2)
-      = \frac{1}{C^2+1}\|u\|_{H^1(\Omega)}^2
+        -\Delta u = f
+        & \implies
+        (-\Delta u) v = f v \\
+        & \implies 
+        \Int[\Omega]{f v}{x}
+        =
+        -\Int[\Omega]{(\Delta u) v}{x}
+        =
+        -\Int[\Omega]{(\Div \nabla u) v}{x}
+        \stackrel
+        {
+            \mathrm{Gauß}
+        }{=}
+        \Int[\Omega]{\nabla u \cdot \nabla v}{x}
+        -
+        \Int[\partial \Omega]{\underbrace{(\nabla u \cdot \nu)}_0 v}{s}
     \end{align*}
-    \item Stetigkeit von $F$:
+
+    Dabei haben wir Satz 5.8 (Gauß für Sobolev-Funktionen) verwendet.
+
+    \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-8_(Gauss_für_Sobolev-Funktionen).png}
+
     \begin{align*}
-      |F(v)| \leq \|f\|_{L^2(\Omega)}\|v\|_{L^2(\Omega)} \leq \|f\|_{L^2(\Omega)}\|v\|_{H^1(\Omega)}
+        a(u, v) := \Int[\Omega]{\nabla u \cdot \nabla v}{x},
+        \quad
+        F(v) := \Int[\Omega]{f v}{x}
     \end{align*}
-  \end{itemize}
-  Mit dem Lemma von Lax-Milgram existiert nun genau ein $u \in V$, sodass
-  \begin{align*}
-    a(u,v) = F(v) \quad \text{für alle } v \in V.
-  \end{align*}
-  Damit $u$ auch eine schwache Lösung ist, müssen wir diese Gleichheit jetzt noch
-  für alle $w \in H^1(\Omega)$ zeigen. Mit $\overline{w} := \frac{1}{|\Omega|}\int_\Omega w(x) dx$ gilt
-  \begin{align*}
-    w \in H^1(\Omega) &\implies w - \overline{w} \in V \\
-    a(u,w) &= a(u,w) - \int_\Omega \nabla u \underbrace{\nabla \overline{w}}_{=0}
-    = a(u,w-\overline{w}) = F(w-\overline{w}) = F(w) - \overline{w}\underbrace{\int_\Omega f}_{=0} dx = F(w)
-  \end{align*}
-  \item Für $\int_\Omega f(x) dx \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt mit
-  dem Satz von Gauß für Sobolev-Funktionen
-  \begin{align*}
-    0 \neq \int_\Omega f(x) dx = -\int_\Omega \Delta u = \int_{\partial \Omega} \nabla u \cdot \nu ds
-    = \int_{\partial \Omega} 0 ds = 0.
-  \end{align*}
-ein Widerspruch! Also kann es in dem Fall keine schwachen und insbesondere keine klassischen Lösungen geben.
+
+    Also lautet die schwache Formulierung wie folgt:
+    Finde $u \in H^1(\Omega)$, sodass $a(u, v) = F(v)$ für alle $v \in H^1(\Omega)$ gilt.
+
+    \begin{align*}
+        u \in H^1(\Omega):
+        \Forall v \in H^1(\Omega):
+        a(u, v) = F(v)
+    \end{align*}
+
+    \item $V$ ist, als $\Ker$ einer stetigen Funktion, ein Hilbertraum.
+    
+    \begin{align*}
+        \abs{\Int[\Omega]{v}{x}}
+        \leq
+        \norm[L^1(\Omega)]{v}
+        \stackrel
+        {
+            \mathrm{CSB}
+        }{\leq}
+        \norm[L^2(\Omega)]{1} \norm[L^2(\Omega)]{v}
+        \leq
+        \underbrace{|\Omega|}_\infty \norm[H^1(\Omega)]{v}
+    \end{align*}
+
+    \begin{align*}
+        V = \Ker \pbraces{H^1(\Omega) \to \R, v \mapsto \Int[\Omega]{v}{x}}
+    \end{align*}
+
+    Wir haben hier zwei Optionen.
+    
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Option (Satz 5.18 (Lemma von Lax-Milgram)):
+
+        \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-18_(Lemma_von_Lax-Milgram).png}
+
+        \begin{itemize}
+
+            \item Stetigkeit von $a$:
+
+            \begin{align*}
+                \abs{a(u, v)}
+                \leq
+                \norm[L^2(\Omega)]{\nabla u} \cdot \norm[L^2(\Omega)]{\nabla v}
+                \leq
+                \norm[H^1(\Omega)]{u} \norm[H^1(\Omega)]{v}
+            \end{align*}
+
+            \item Koerzivität von $a$:
+
+            \begin{align*}
+                a(u, u)
+                =
+                \Int[\Omega]{\nabla u \nabla u}{x}
+                =
+                \norm[L^2(\Omega)]{\nabla u}^2
+                \stackrel
+                {
+                    \mathrm{P}
+                }{\geq}
+                \frac{1}{C^2 + 1}
+                \pbraces
+                {
+                   \norm[L^2(\Omega)]{u} + \norm[L^2(\Omega)]{\nabla u}^2
+                }
+                =
+                \frac{1}{C^2 + 1} \norm[H^1(\Omega)]{u}
+            \end{align*}
+
+            \item Stetigkeit von $F$:
+
+            \begin{align*}
+                \abs{F(v)}
+                \leq
+                \norm[L^2(\Omega)]{f} \norm[L^2(\Omega)]{v}
+                \leq
+                \norm[L^2(\Omega)]{f} \norm[H^1(\Omega)]{v}
+            \end{align*}
+
+        \end{itemize}
+
+        \item Option (Satz 5.1 (Darstellungssatz von Riesz)):
+        
+        \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-1_(Darstellungssatz_von_Riesz).png}
+
+        Aus der 2. poincaréschen Ungleichung erhalten wir $\Exists C > 0: \Forall v \in V:$
+
+        \begin{align*}
+            \norm[L^2(\Omega)]{\nabla v}^2
+            \leq
+            \norm[H^1(\Omega)]{\nabla v}^2
+            =
+            \norm[L^2(\Omega)]{v - \overline{v}}^2 + \norm[L^2(\Omega)]{\nabla v}^2
+            \stackrel
+            {
+                \mathrm{P}
+            }{\leq}
+            (C^2 + 1) \norm[L^2(\Omega)]{\nabla v}^2.
+        \end{align*}
+
+        Daher definiert $a: V \times V \to \R$ ein zu $(\cdot, \cdot)_{H^1(\Omega)}$ äquivalentes Skalarprodukt auf $V$.
+        Das macht $(V, a)$ zu einem Hilbertraum.
+
+        \begin{align*}
+            \implies
+            a \sim (\cdot, \cdot)_{H^1(\Omega)} ~\text{auf}~ V
+            \implies
+            (V, a) ~\text{Hilbertraum}
+        \end{align*}
+
+        Nicht zuletzt ist $F \in V^\prime$ ein lineares und (bzgl. $a$) stetiges Funktional.
+
+        \begin{multline*}
+            \abs{F(v)}
+            =
+            \abs{\Int[\Omega]{f v}{x}}
+            \leq
+            \Int[\Omega]{\abs{f v}}{x}
+            \stackrel
+            {
+                \mathrm{CSB}
+            }{\leq}
+            \norm[L^2(\Omega)]{f} \norm[L^2(\Omega)]{v} \\
+            =
+            \norm[L^2(\Omega)]{f} \norm[L^2(\Omega)]{v - \overline{v}}
+            \stackrel
+            {
+                \mathrm{P}
+            }{\leq}
+            \norm[L^2(\Omega)]{f} C \norm[L^2(\Omega)]{\nabla v}
+        \end{multline*}
+
+    \end{enumerate}
+
+    Mit dem Lemma von Lax-Milgram, bzw. Darstellungssatz von Riesz existiert nun genau ein $u \in V$, sodass $a(u, v) = F(v)$ für alle $v \in V$.
+
+    \begin{align*}
+        \implies
+        \ExistsOnlyOne u \in V:
+        \Forall v \in V:
+        a(u, v) = F(v)
+    \end{align*}    
+
+    Damit $u$ auch eine schwache Lösung in $H^1(\Omega)$ (und nicht nur in $V$) ist, müssen wir diese Gleichheit jetzt noch für alle $w \in H^1(\Omega)$ zeigen.
+    Sei also $w \in H^1(\Omega)$, dann ist $w - \overline{w} \in V$.
+
+    \begin{align*}
+        w \in H^1(\Omega)
+        \implies
+        \Int[\Omega]{w - \overline{w}}{x}
+        =
+        \Int[\Omega]{w}{x} - \Int[\Omega]{\overline{w}}{x}
+        =
+        \Int[\Omega]{w}{x} - |\Omega| \overline{w}
+        =
+        0
+        \implies
+        w - \overline{w} \in V
+    \end{align*}
+
+    Damit können wir den oberen Teil auf $w - \overline{w}$ anwenden.
+
+    \begin{multline*}
+        a(u, w)
+        =
+        a(u, w) - \Int[\Omega]{\nabla u \underbrace{\nabla \overline{w}}_0}{x}
+        =
+        a(u, w) - a(u, \overline{w})
+        =
+        a(u, w - \overline{w}) \\
+        =
+        F(w - \overline{w})
+        =
+        F(w) - F(\overline{w})
+        =
+        F(w) - \Int[\Omega]{f \overline{w}}{x}
+        =
+        F(w) - \overline{w} \underbrace{\Int[\Omega]{f}{x}}_0
+        =
+        F(w)
+    \end{multline*}
+    
+    \item Für $\Int[\Omega]{f(x)}{x} \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt mit Satz 5.8 (Gauß für Sobolev-Funktionen) ein Widerspruch!
+
+    \begin{align*}
+        0
+        \neq
+        \Int[\Omega]{f(x)}{x}
+        =
+        -\Int[\Omega]{\Delta u}
+        =
+        \Int[\partial \Omega]{\underbrace{\nabla u \cdot \nu}_0}{s}
+        =
+        0
+    \end{align*}
+
+    Also kann es in dem Fall keine schwachen und insbesondere keine klassischen Lösungen geben.
+
 \end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
