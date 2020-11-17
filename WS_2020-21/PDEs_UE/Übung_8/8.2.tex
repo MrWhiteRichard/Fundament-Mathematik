@@ -4,22 +4,36 @@
 
 Sei $\Omega \subset \R^n$ ein beschränktes Gebiet mit $\partial\Omega \in C^2$.
 Zeigen Sie, dass die \textit{biharmonische Gleichung}
+
 \begin{align*}
-  \Delta^2 u = f \text{ in } \Omega, \quad u = \nabla u \cdot \nu = 0 \text{ auf } \partial\Omega
+  \Delta^2 u = f ~\text{in}~ \Omega,
+  \quad
+  u = \nabla u \cdot \nu = 0 ~\text{auf}~ \partial \Omega
 \end{align*}
-eine schwache Lösung besitzt, falls $f \in L^2(\Omega)$. Hierbei ist $\nu$ der
-äußere Normaleneinheitsvektor auf $\partial\Omega$. Anleitung:
+
+eine schwache Lösung besitzt, falls $f \in L^2(\Omega)$.
+Hierbei ist $\nu$ der äußere Normaleneinheitsvektor auf $\partial\Omega$.
+Anleitung:
+
 \begin{enumerate}[label = (\alph*)]
+
   \item Zeigen Sie zunächst, dass die schwache Formulierung des obigen Randwertproblems
+
   \begin{align*}
-    \int_\Omega \Delta u \Delta v dx = \int_\Omega f v dx \text{ für alle } v \in H_0^2(\Omega)
+    \Int[\Omega]{\Delta u \Delta v}{x} = \Int[\Omega]{f v}{x}
+    ~\text{für alle}~ v \in H_0^2(\Omega)
   \end{align*}
+
   lautet.
-  \item Zeigen Sie, dass $a(u,v) = \int_\Omega \Delta u \Delta v dx$ eine stetige
-  und koerzive Bilinearform ist. Verwenden Sie hierbei folgende Ungleichung:
-  Für alle $u \in H_0^2(\Omega)$ gilt $\|u\|_{H^2(\Omega)} \leq C\|\Delta u\|_{L^2(\Omega)}$.
+
+  \item Zeigen Sie, dass $a(u, v) = \Int[\Omega]{\Delta u \Delta v}{x}$ eine stetige und koerzive Bilinearform ist.
+  Verwenden Sie hierbei folgende Ungleichung:
+  Für alle $u \in H_0^2(\Omega)$ gilt $\norm[H^2(\Omega)]{u} \leq C \norm[L^2(\Omega)]{\Delta u}$.
+
   \item Zeigen Sie die Existenz einer schwachen Lösung des Randwertproblems.
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -27,6 +41,183 @@ eine schwache Lösung besitzt, falls $f \in L^2(\Omega)$. Hierbei ist $\nu$ der
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+  \item Laut Satz 5.4 (Charakterisierng von Sobolevfunktionen) folgt aus $v \in H_0^2(\Omega)$, dass $\nabla v \in H_0^1(\Omega)$.
+  
+  \begin{align*}
+    v \in H_0^2(\Omega)
+    \implies
+    \nabla v \in H_0^1(\Omega)
+  \end{align*}
+
+  Wir multiplizieren die Differentialgleichung mit $v \in H^1(\Omega)$, integrieren über $\Omega$ und integrieren zweimal partiell:
+
+  \begin{align*}
+    \Delta^2 u = f
+    \implies
+    (\Delta u) v = f v
+  \end{align*}
+
+  \begin{align*}
+    \implies
+    F(v)
+    & :=
+    \Int[\Omega]{f v}{x}
+    =
+    \Int[\Omega]{(\Delta^2 u) v}{x}
+    =
+    \Int[\Omega]{(\Div \nabla \Delta u) v}{x} \\
+    & \stackrel
+    {
+      \mathrm{Gauß}
+    }{=}
+    -\Int[\Omega]{\nabla \Delta u \cdot \nabla v}{x}
+    +
+    \Int[\partial \Omega]{\underbrace{(\nabla u \cdot \nu)}_0 v}{x} \\
+    & \stackrel
+    {
+      \mathrm{Gauß}
+    }{=}
+    \Int[\Omega]{\Delta u \Div \nabla v}{x}
+    -
+    \Int[\partial \Omega]{(\underbrace{\nabla v}_0 \cdot \nu) \Delta u}{s}
+    =
+    \Int[\Omega]{\Delta u \Delta v}{x}
+    =:
+    a(u, v)
+  \end{align*}
+
+  \item
+
+  \begin{itemize}
+    \item Stetigkeit:
+    
+    \begin{align*}
+      \abs{\Delta v}^2
+      =
+      \abs
+      {
+        \sum_{i=1}^n
+        \pderivative[2]{x_i} u
+      }^2
+      \stackrel
+      {
+        \mathrm{CSB}
+      }{\leq}
+      \pbraces
+      {
+        \sum_{i=1}^n
+        1^2
+      }
+      \pbraces
+      {
+        \sum_{i=1}^n
+        \abs{\pderivative[2]{x_i} u}^2
+      }
+      \leq
+      n
+      \sum_{i,j=1}^n
+      \abs
+      {
+        \frac{\partial^2}{\partial x_i \partial x_j} u
+      }^2
+      =
+      n \abs{\Hess u}^2
+    \end{align*}
+    
+    \begin{align*}
+      \implies
+      \abs{a(u, v)}
+      & =
+      \abs{\Int[\Omega]{\Delta u \Delta v}{x}}
+      \leq
+      \Int[\Omega]{\abs{\Delta u \Delta v}}{x}
+      \stackrel
+      {
+        \mathrm{CSB}
+      }{\leq}
+      \pbraces
+      {
+        \Int[\Omega]{\abs{\Delta u}^2}{x}
+      }^{1/2}
+      \pbraces
+      {
+        \Int[\Omega]{\abs{\Delta v}^2}{x}
+      }^{1/2} \\
+      & \leq
+      \pbraces
+      {
+        \Int[\Omega]{n \abs{\Hess u}^2}{x}
+      }^{1/2}
+      \pbraces
+      {
+        \Int[\Omega]{n \abs{\Hess v}^2}{x}
+      }^{1/2} \\
+      & =
+      n
+      \pbraces
+      {
+        \Int[\Omega]{\abs{\Hess u}^2}{x}
+      }^{1/2}
+      \pbraces
+      {
+        \Int[\Omega]{\abs{\Hess v}^2}{x}
+      }^{1/2} \\
+      & =
+      n \norm[L^2(\Omega)]{\Hess u} \norm[L^2(\Omega)]{\Hess v}
+      \leq
+      n \norm[H^1(\Omega)]{u} \norm[H^1(\Omega)]{v}
+    \end{align*}
+
+    \item Koerzivität:
+    
+    \begin{align*}
+      a(u, u)
+      =
+      \Int[\Omega]{\Delta u \Delta u}{x}
+      =
+      \Int[\Omega]{\abs{\Delta u}^2}{x}
+      =
+      \norm[L^2(\Omega)]{\Delta u}^2
+      \geq
+      C^{-2} \norm[H^2(\Omega)]{u}^2
+    \end{align*}
+
+  \end{itemize}
+
+  \item Laut Konstruktion, ist $H_0^2$ ist mit $(\cdot, \cdot)_{H^2(\Omega)}$ ein Hilberbraum.
+  In (b) haben wir gezeigt, dass die Bilinearform $a$ stetig und koerziv ist.
+  $F \in H^{-1}(\Omega)$ ist ein lineares und stetiges Funktional.
+
+  \begin{align*}
+    \abs{F(v)}
+    =
+    \abs{\Int[\Omega]{f v}{x}}
+    \leq
+    \Int[\Omega]{\abs{f v}}{x}
+    =
+    (\norm[L^1(\Omega)]{f v})
+    \stackrel
+    {
+      \mathrm{CSB}
+    }{\leq}
+    \norm[L^2(\Omega)]{f} \norm[L^2(\Omega)]{v}
+    \leq
+    \norm[L^2(\Omega)]{f} \norm[H^2(\Omega)]{v}
+  \end{align*}
+
+  Laut dem Lemma von Lax-Milgram existiert nun genau ein $u \in H_0^2(\Omega)$, sodass $a(u, v) = F(v)$ für alle $v \in H_0^2(\Omega)$.
+
+  \begin{align*}
+      \implies
+      \ExistsOnlyOne u \in H_0^2(\Omega):
+      \Forall v \in H_0^2(\Omega):
+      a(u, v) = F(v)
+  \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
