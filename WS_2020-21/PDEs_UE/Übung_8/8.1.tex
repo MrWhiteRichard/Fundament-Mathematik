@@ -8,7 +8,7 @@ Betrachten Sie die Poisson-Gleichung mit Neumann-Randbedingungen
 \begin{align}
     \begin{cases}
     -\Delta u = f & \text{in } \Omega, \\
-    \nabla u \cdot \nu = 0 & \text{auf}~ \Omega, 
+    \nabla u \cdot \nu = 0 & \text{auf}~ \Omega,
     \end{cases}
     \label{neumann}
 \end{align}
@@ -17,13 +17,13 @@ wobei $f \in L^2(\Omega)$.
 
 \begin{enumerate}[label = \alph*)]
 
-    \item Bestimmen Sie die schwache Formulierung für das Randwertproblem \eqref{neumann}.
+    \item Bestimmen Sie die schwache Formulierung für das Randwertproblem (1).
 
-    \item Beweisen Sie die Existenz und Eindeutigkeit einer schwachen Lösung $u \in V$, wobei $V := \{v \in H^1(\Omega): \int_\Omega v(x)dx = 0\}$, für das RWP \eqref{neumann}.
+    \item Beweisen Sie die Existenz und Eindeutigkeit einer schwachen Lösung $u \in V$, wobei $V := \{v \in H^1(\Omega): \int_\Omega v(x)dx = 0\}$, für das RWP (1).
     \textit{Hinweis:}
     Poincaré-Ungleichung aus Aufgabe 4 von letzter Woche.
 
-    \item Diskutieren Sie die Existenz und Eindeutigkeit von schwachen und klassischen Lösungen von \eqref{neumann}, falls $\int_\Omega f(x)dx \neq 0$.
+    \item Diskutieren Sie die Existenz und Eindeutigkeit von schwachen und klassischen Lösungen von (1), falls $\int_\Omega f(x)dx \neq 0$.
 
 \end{enumerate}
 
@@ -35,18 +35,16 @@ wobei $f \in L^2(\Omega)$.
 
 \phantom{}
 
-\includegraphicsboxed{PDEs/PDEs - Blatt 4 Aufgabe 4 poincarésche Ungleichung).png}
-
+\includegraphicsboxed{PDEs/PDEs_-_Blatt_4_Aufgabe_4_poincaresche_Ungleichung.png}
 \begin{enumerate}[label = \alph*)]
 
-    \item Das RWP \eqref{neumann} entspricht genau (5.17) aus dem Skriptum mit
-    
+    \item Das RWP (1) entspricht genau (5.17) aus dem Skriptum mit
+
     \begin{align*}
         A := I, \quad b := 0, \quad c := 0, \quad g := 0.
     \end{align*}
 
-    \includegraphicsboxed{PDEs/PDEs - (5.17).png}
-
+    \includegraphicsboxed{PDEs/PDEs_-_5-17.png}
     Wir führen die Umformulierung dennoch nochmal durch.
     Wir multiplizieren die Differentialgleichung mit $v \in H^1(\Omega)$, integrieren über $\Omega$ und integrieren partiell:
 
@@ -54,7 +52,7 @@ wobei $f \in L^2(\Omega)$.
         -\Delta u = f
         & \implies
         (-\Delta u) v = f v \\
-        & \implies 
+        & \implies
         \Int[\Omega]{f v}{x}
         =
         -\Int[\Omega]{(\Delta u) v}{x}
@@ -71,8 +69,7 @@ wobei $f \in L^2(\Omega)$.
 
     Dabei haben wir Satz 5.8 (Gauß für Sobolev-Funktionen) verwendet.
 
-    \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-8_(Gauss_für_Sobolev-Funktionen).png}
-
+    \includegraphicsboxed{PDEs/PDEs_-_Satz_5-8_Gauss_fuer_Sobolev-Funktionen.png}
     \begin{align*}
         a(u, v) := \Int[\Omega]{\nabla u \cdot \nabla v}{x},
         \quad
@@ -89,7 +86,7 @@ wobei $f \in L^2(\Omega)$.
     \end{align*}
 
     \item $V$ ist, als $\Ker$ einer stetigen Funktion, ein Hilbertraum.
-    
+
     \begin{align*}
         \abs{\Int[\Omega]{v}{x}}
         \leq
@@ -108,13 +105,12 @@ wobei $f \in L^2(\Omega)$.
     \end{align*}
 
     Wir haben hier zwei Optionen.
-    
+
     \begin{enumerate}[label = \arabic*.]
 
         \item Option (Satz 5.18 (Lemma von Lax-Milgram)):
 
         \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-18_(Lemma_von_Lax-Milgram).png}
-
         \begin{itemize}
 
             \item Stetigkeit von $a$:
@@ -161,9 +157,8 @@ wobei $f \in L^2(\Omega)$.
         \end{itemize}
 
         \item Option (Satz 5.1 (Darstellungssatz von Riesz)):
-        
-        \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-1_(Darstellungssatz_von_Riesz).png}
 
+        \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-1_(Darstellungssatz_von_Riesz).png}
         Aus der 2. poincaréschen Ungleichung erhalten wir $\Exists C > 0: \Forall v \in V:$
 
         \begin{align*}
@@ -220,7 +215,7 @@ wobei $f \in L^2(\Omega)$.
         \ExistsOnlyOne u \in V:
         \Forall v \in V:
         a(u, v) = F(v)
-    \end{align*}    
+    \end{align*}
 
     Damit $u$ auch eine schwache Lösung in $H^1(\Omega)$ (und nicht nur in $V$) ist, müssen wir diese Gleichheit jetzt noch für alle $w \in H^1(\Omega)$ zeigen.
     Sei also $w \in H^1(\Omega)$, dann ist $w - \overline{w} \in V$.
@@ -260,7 +255,7 @@ wobei $f \in L^2(\Omega)$.
         =
         F(w)
     \end{multline*}
-    
+
     \item Für $\Int[\Omega]{f(x)}{x} \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt mit Satz 5.8 (Gauß für Sobolev-Funktionen) ein Widerspruch!
 
     \begin{align*}
