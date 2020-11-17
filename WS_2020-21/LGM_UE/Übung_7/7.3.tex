@@ -7,7 +7,19 @@ Geben Sie ein explizites Beispiel einer konsistenten Skolemtheorie an.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Was ist überhaupt eine Skolemtheorie?
+	Wir betrachten die Theorie 
+	\begin{align*}
+	\Sigma := \{\forall x \forall y (x = y)\}
+	\end{align*}
+	und wollen bemerken, dass wir die Gleichheitsrelation verweden. Nun wählen wir eine beliebige Formel der Form $\exists y \psi$ mit den freien Variablen $x_1, \dots, x_n$, wobei $n \in \N$. Aus der Vorlesung wissen wir bereits
+	\begin{align*}
+	\Sigma \vdash \exists y \psi \rightarrow \psi[y/f(\overline{x})] \Leftrightarrow \Sigma \vDash \exists y \psi \rightarrow \psi[y/f(\overline{x})]
+	\end{align*}
+	also reicht es wenn wir zeigen, dass der rechte Ausdruck wahr ist. Nehmen wir also ein Modell $\mathscr{M}$ in dem $\Sigma$ gilt. Die Theorie sagt uns, dass unser Modell genau ein Element $m$ hat. Nun berechnen wir für eine Belegung $b$ mit $\widehat{b}(\exists \psi) = 1$ den Wert
+	\begin{align*}
+	\widehat b(\psi[y/f(\overline{x})]) = \widehat{b_{y \to \overline{b}(f(\overline{x}))}}(\psi) = \widehat{b_{y \to m}}(\psi) = \sup\{\widehat{b_{x \to k}}(\psi) \mid k \in M\} = \widehat{b}(\exists \psi) = 1
+	\end{align*}
+	wobei unsere Sprache ein $n$-stelliges Funktionssymbol $f$ enthalten soll. Also ist unsere Theorie eine Skolemtheorie.
 \end{solution}
 
 % --------------------------------------------------------------------------------

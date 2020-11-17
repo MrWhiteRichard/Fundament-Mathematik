@@ -14,7 +14,24 @@ Zeigen Sie $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-\phantom{}
+	In einem ersten Schritt wollen wir für alle quantorenfreien Formeln $\psi$ und alle Belegungen $b$ mit Werten in $M_1$ zeigen, dass 
+	\begin{align*}
+	\mathscr{M}_1 \vDash \varphi[b] \iff \mathscr{M}_2 \vDash \varphi[b]
+	\end{align*}
+	gilt. Zuerst kümmern wir uns um die Terme.
+	\begin{align*}
+	\overline{b}_1(c) &= c^{\mathscr{M}_1} = c^{\mathscr{M}_2} = \overline{b}_2(c), \\
+	\overline{b}_1(f(t_1, \dots, t_k)) &= f^{\mathscr{M}_1}(\overline{b}_1(t_1), \dots, \overline{b}_1(t_k)) = f^{\mathscr{M}_2}(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k)) = \overline{b}_2(f(t_1, \dots, t_k))
+	\end{align*}
+	Also wissen wir jetzt $\overline{b}_1 = \overline{b}_2$ und schreiben stets einfach $\overline{b}$. Insbesondere hat $\overline{b}$ nur Werte in $M_1$. Als nächstes kommen die Atomformeln. Wir berechnen
+	\begin{align*}
+	\widehat{b}_1(R(t_1, \dots, t_k)) = 1 \Leftrightarrow (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_1} \Leftrightarrow  (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}_2(R(t_1, \dots, t_k)) = 1.
+	\end{align*}
+	Schließlich berechnen wir in einem letzten Schritt exemplarisch 
+	\begin{align*}
+	\widehat{b}_1(\psi_1 \land \psi_2) = \widehat{b}_1(\psi_1) \land_B \widehat{b}_1 (\psi_2) = \widehat{b}_2(\psi_1) \land_B \widehat{b}_2(\psi_2) = \widehat{b}_2(\psi_1 \land \psi_2)
+	\end{align*}
+	und haben die Aussage für alle quantorenfreien Formlen also gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------
