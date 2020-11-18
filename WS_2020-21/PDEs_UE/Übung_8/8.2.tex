@@ -44,20 +44,31 @@ Anleitung:
 
 \begin{enumerate}[label = (\alph*)]
 
-  \item Laut Satz 5.4 (Charakterisierng von Sobolevfunktionen) folgt aus $v \in H_0^2(\Omega)$, dass $\nabla v \in H_0^1(\Omega)$.
-
-  \begin{align*}
-    v \in H_0^2(\Omega)
-    \implies
-    \nabla v \in H_0^1(\Omega)
-  \end{align*}
+  \item Aus der Definition von $H_0^2(\Omega)$ folgt, dass wir $v \in H_0^2(\Omega)$,
+    dass wir $v$ darstellen können als
+    \begin{align*}
+    v = \lim_{n \to \infty}v_n \text{ in } H^2(\Omega), \quad (v_n)_{n\in\N} \subset C_0^{\infty}(\Omega)
+    \end{align*}
+    Es gilt also
+    \begin{align*}
+      \|v-v_n\|_{H^2(\Omega)} = \left(\sum_{|\alpha|\leq 2}\int_\Omega (D^\alpha(v-v_n))^2dx\right)^{1/2}
+      \xrightarrow{n \to \infty} 0.
+    \end{align*}
+    Dami folgt aber auch
+    \begin{align*}
+      \|\nabla v - \nabla v_n\|_{H^1(\Omega)} = \|\nabla(v-v_n)\|_{H^1(\Omega)} &= \left(\sum_{|\alpha|\leq 1}\int_\Omega (D^\alpha\nabla(v-v_n))^2dx\right)^{1/2} \\
+      &\leq \left(\sum_{|\alpha|\leq 2}\int_\Omega (D^\alpha(v-v_n))^2dx\right)^{1/2}
+      = \|v-v_n\|_{H^2(\Omega)}
+      \xrightarrow{n \to \infty} 0.
+    \end{align*}
+  Also gilt auch $\nabla v \in \overline{C_0^{\infty}(\Omega)}^{\|\cdot\|_{H^1(\Omega)}} = H_0^1(\Omega)$ und daher $T(\nabla v) = T(v) = 0$. \\
 
   Wir multiplizieren die Differentialgleichung mit $v \in H_0^2(\Omega)$, integrieren über $\Omega$ und integrieren zweimal partiell:
 
   \begin{align*}
     \Delta^2 u = f
     \implies
-    (\Delta u) v = f v
+    (\Delta^2 u) v = f v
   \end{align*}
 
   \begin{align*}
@@ -75,14 +86,14 @@ Anleitung:
     }{=}
     -\Int[\Omega]{\nabla \Delta u \cdot \nabla v}{x}
     +
-    \Int[\partial \Omega]{(\nabla (\Delta u) \cdot \nu) \underbrace{v}_{=0}}{x} \\
+    \Int[\partial \Omega]{(\nabla (\Delta u) \cdot \nu) \underbrace{T(v)}_{=0}}{x} \\
     & \stackrel
     {
       \mathrm{Gauß}
     }{=}
     \Int[\Omega]{\Delta u \Div \nabla v}{x}
     -
-    \Int[\partial \Omega]{(\underbrace{\nabla v}_0 \cdot \nu) \Delta u}{s}
+    \Int[\partial \Omega]{(\underbrace{T(\nabla v)}_{=0} \cdot \nu) \Delta u}{s}
     =
     \Int[\Omega]{\Delta u \Delta v}{x}
     =:
@@ -92,7 +103,7 @@ Anleitung:
   \item
 
   \begin{itemize}
-    \item Stetigkeit:
+    \item Stetigkeit: ($|\Hess u|$ bezeichnet die Frobenius-Norm der Hesse-Matrix.)
 
     \begin{align*}
       \abs{\Delta v}^2
