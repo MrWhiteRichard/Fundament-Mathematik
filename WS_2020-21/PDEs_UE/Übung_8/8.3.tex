@@ -147,21 +147,21 @@ $u$ setzen wir daher an als quadratischen Spline mit Stützstellen $0, \frac{1}{
   & :=
   \begin{cases}
     c_1 x^2 + c_2 x + c_3, & 0 \leq x < \frac{1}{2}, \\
-    c_3 x^2 + c_5 x + c_6, & \frac{1}{2} < x \leq 1
+    c_4 x^2 + c_5 x + c_6, & \frac{1}{2} < x \leq 1
   \end{cases} \\
   \implies
   u^\prime(x)
   & =
   \begin{cases}
-    2 c_1 x^2 + c_2, & 0 \leq x < \frac{1}{2}, \\
-    2 c_3 x^2 + c_5, & \frac{1}{2} < x \leq 1
+    2 c_1 x + c_2, & 0 \leq x < \frac{1}{2}, \\
+    2 c_4 x + c_5, & \frac{1}{2} < x \leq 1
   \end{cases} \\
   \implies
   u^\primeprime(x)
   & =
   \begin{cases}
     2 c_1, & 0 \leq x < \frac{1}{2}, \\
-    2 c_3, & \frac{1}{2} < x \leq 1
+    2 c_4, & \frac{1}{2} < x \leq 1
   \end{cases}
 \end{align*}
 
@@ -195,7 +195,7 @@ Das können wir auch schön als Lineares Gleichungssystem schreiben und lösen.
     2 & 2 & 0 & -1 & -1 & 0 \\
     2 & 0 & 0 &  0 &  0 & 0 \\
     0 & 0 & 0 &  2 &  0 & 0 \\
-    \frac{1}{2} & \frac{1}{2} & 1 & -\frac{1}{4} & -\frac{1}{2} & -1 \\
+    \frac{1}{4} & \frac{1}{2} & 1 & -\frac{1}{4} & -\frac{1}{2} & -1 \\
     0 & 0 & 1 &  0 &  0 & 0 \\
     0 & 0 & 0 &  1 &  1 & 1
   \end{pmatrix}
@@ -228,7 +228,7 @@ Von diesem müssen wir noch zeigen, dass $u \in H_0^1(\Omega)$.
 \begin{enumerate}[label = \arabic*.]
 
   \item Schritt (\Quote{$H^1$}):
-  
+
   \begin{enumerate}[label = (\roman*)]
 
     \item $u$ ist stetig, also auch $u^2$.
@@ -241,7 +241,7 @@ Von diesem müssen wir noch zeigen, dass $u \in H_0^1(\Omega)$.
     \end{align*}
 
     \item Wir zeigen zunächst, dass die distributionelle Ableitung $u^\prime$ von $u$ wie folgt aussieht.
-    
+
     \begin{align*}
       u^\prime(x)
       \stackrel{!}{=}
@@ -304,13 +304,13 @@ Von diesem müssen wir noch zeigen, dass $u \in H_0^1(\Omega)$.
     Daher können wir analog zu (ii) argumentieren, dass $u^\prime \in L^2(\Omega)$.
 
     \begin{align*}
-      u \in L^2(\Omega)
+      \Rightarrow u \in H^1(\Omega)
     \end{align*}
 
   \end{enumerate}
 
   \item Schritt (\Quote{$H_0$}):
-  
+
   $u$ ist stetig und verschwindet am Rand.
   Laut Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen), sind wir fertig.
 
