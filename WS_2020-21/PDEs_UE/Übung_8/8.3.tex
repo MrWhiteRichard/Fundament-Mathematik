@@ -6,7 +6,7 @@ Sei $\Omega = (0,1)$. Lösen Sie das folgende Problem: Gesucht ist ein $u \in H_
 \begin{align*}
   \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) - v(x) dx = 0 \text{ für alle } v \in H_0^1(\Omega),
 \end{align*}
-wobei $a(x) = \1_{(0,1/2]}(x) + 2\cdot\1_{(1/2,1)}(x)$.
+wobei $a(x) = \1_{(0,\frac{1}{2}]}(x) + 2\cdot\1_{(\frac{1}{2},1)}(x)$.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -18,18 +18,18 @@ des Sobolevschen Einbettungssatzes $v \in C(\overline{\Omega})$ ist und somit
 $Tv = v|\partial\Omega, Tu = u|\partial\Omega$:
 \begin{align*}
   \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) &= \int_\Omega v(x) dx \\
-  \iff \int_0^{1/2} u^{\prime}(x)v^{\prime}(x)dx + 2\int_{1/2}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
-  \iff u^{\prime}(1/2)v(1/2) - u^{\prime}(1/2)v(1/2) -
-  2\int_{1/2}^1 u^{\primeprime}(x)v(x) dx \int_0^{1/2}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
-  \iff - 2\int_{1/2}^1 u^{\primeprime}(x)v(x) dx - \int_0^{1/2}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
+  \iff \int_0^{\frac{1}{2}} u^{\prime}(x)v^{\prime}(x)dx + 2\int_{\frac{1}{2}}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
+  \iff u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} - u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} -
+  2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
+  \iff - 2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
   \iff \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx = 0
 \end{align*}
 Ansatz: Suche $u \in C^1(\Omega) \subset H_1(\Omega)$, sodass $u^{\primeprime}(x)a(x) + 1 = 0$ punktweise, sowie $u(0) = u(1) = 0$.
 \begin{align*}
   u(x) = -\int\int \frac{1}{a(z)} dz dy  &=
-  -\int_0^x\int_0^y \1_{(0,1/2]}(x) + \frac{1}{2}\cdot\1_{(1/2,1)}(x) dz dy  \\
-  &= -\int_0^x y - \frac{2y-1}{4}\1_{(1/2,1)}(y) + C dy \\
-  &= -\frac{x^2}{2} - \frac{x^2-x}{4}\1_{(1/2,1)}(x) + Cx + D
+  -\int_0^x\int_0^y \1_{(0,\frac{1}{2}]}(x) + \frac{1}{2}\cdot\1_{(\frac{1}{2},1)}(x) dz dy  \\
+  &= -\int_0^x y - \frac{2y-1}{4}\1_{(\frac{1}{2},1)}(y) + C dy \\
+  &= -\frac{x^2}{2} - \frac{x^2-x}{4}\1_{(\frac{1}{2},1)}(x) + Cx + D
 \end{align*}
 Damit $u \in H_0^1(\Omega)$, muss noch $u(0) = u(1) = 0$ erreicht werden
 \begin{align*}
@@ -38,16 +38,16 @@ Damit $u \in H_0^1(\Omega)$, muss noch $u(0) = u(1) = 0$ erreicht werden
 \end{align*}
 Unser Lösungskandidat $u \in C^1(\Omega)$ ist also
 \begin{align*}
-  u(x) &= -\frac{1}{4}(2x^2-2x- (x^2-x)\1_{(1/2,1)}(x)) \\
-  u^{\prime}(x) &= -\frac{1}{4}(4x -2 - (2x-1)\1_{(1/2,1)}(x))
+  u(x) &= -\frac{1}{4}(2x^2-2x- (x^2-x)\1_{(\frac{1}{2},1)}(x)) \\
+  u^{\prime}(x) &= -\frac{1}{4}(4x -2 - (2x-1)\1_{(\frac{1}{2},1)}(x))
 \end{align*}
 Berechne nun die distributionelle Ableitung von $u^{\prime}(x)$:
 \begin{align*}
   \langle u^{\primeprime}, \phi \rangle &= \langle u^{\prime}, -\phi^{\prime}\rangle
-  = -\int_0^1 u^{\prime}(x)\phi^{\prime}(x) dx = \frac{1}{4}\left(\int_0^{1/2}(4x-2)\phi^{\prime}(x) dx +
-  \int_{1/2}^1(4x-2-2x+1)\phi^{\prime}(x) dx\right) \\
-  &= \frac{1}{4}\left([(4x-2)\phi(x)]_{x=0}^{1/2} + [(2x-1)\phi(x)]_{x=0}^{1/2} -
-  4\int_0^{1/2}\phi(x) - 2\int_{1/2}^1\phi(x)dx\right) \\
+  = -\int_0^1 u^{\prime}(x)\phi^{\prime}(x) dx = \frac{1}{4}\left(\int_0^{\frac{1}{2}}(4x-2)\phi^{\prime}(x) dx +
+  \int_{\frac{1}{2}}^1(4x-2-2x+1)\phi^{\prime}(x) dx\right) \\
+  &= \frac{1}{4}\left([(4x-2)\phi(x)]_{x=0}^{\frac{1}{2}} + [(2x-1)\phi(x)]_{x=0}^{\frac{1}{2}} -
+  4\int_0^{\frac{1}{2}}\phi(x) - 2\int_{\frac{1}{2}}^1\phi(x)dx\right) \\
   &= -\int_0^1 \frac{1}{a(x)}\phi(x) dx.
 \end{align*}
 Also ist $u \in H_0^2(\Omega) \cap C^1(\Omega)$, es gilt $a(x)u^{\primeprime}(x) + 1 = 0$
@@ -55,15 +55,275 @@ fast überall. Damit können wir alle Schritte aus der Motivation genauso wieder
 zurückgehen und erhalten
 \begin{align*}
   \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx &= 0 \\
-  \iff - \int_0^{1/2}u^{\primeprime}(x)v(x) -2\int_{1/2}^1 u^{\primeprime}(x)v(x) dx
+  \iff - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) -2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx
   &= \int_0^1 v(x) dx \\
-   \iff \underbrace{u^{\prime}(1/2)v(1/2) - u^{\prime}(1/2)v(1/2)}_{=0} - \int_0^{1/2}u^{\primeprime}(x)v(x)
-  -2 \int_{1/2}^1 u^{\primeprime}(x)v(x) dx  &=
+   \iff \underbrace{u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} - u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}}}_{=0} - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x)
+  -2 \int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx  &=
   \int_0^1 v(x) dx \\
-  \stackrel{PI}{\iff} \int_0^{1/2} u^{\prime}(x)v^{\prime}(x)dx +
-  2\int_{1/2}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
+  \stackrel{PI}{\iff} \int_0^{\frac{1}{2}} u^{\prime}(x)v^{\prime}(x)dx +
+  2\int_{\frac{1}{2}}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
   \iff \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) &= \int_\Omega v(x) dx
 \end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir stellen zunächst einen Ansatz für $u$ auf, indem wir partiell integrieren (streng genommen nach Satz 5.8 (Gauß für Sobolev-Funktionen)).
+
+\begin{align*}
+  0
+  & \stackrel{!}{=}
+  \Int[\Omega]{a(x) u^\prime(x) v^\prime(x) - v(x)}{x}
+  =
+  \Int[0][\frac{1}{2}]{u^\prime(x) v^\prime(x)}{x}
+  +
+  \Int[\frac{1}{2}][1]{2 u^\prime(x) v^\prime(x)}{x}
+  -
+  \Int[\Omega]{v(x)}{x} \\
+  & \stackrel
+  {
+    \mathrm{PI}
+  }{=}
+  u^\prime(x) v(x) \Big |_{x=0}^{\frac{1}{2}}
+  -
+  \Int[0][\frac{1}{2}]{u^\primeprime(x) v(x)}{x}
+  +
+  2 u^\prime(x) v(x) \Big |_{x=\frac{1}{2}}^1
+  -
+  \Int[\frac{1}{2}][1]{2 u^\primeprime(x) v(x)}{x}
+  -
+  \Int[\Omega]{v(x)}{x} \\
+  & =
+  u^\prime \pbraces{\frac{1}{2} +} v\pbraces{\frac{1}{2} -}
+  -
+  \Int[0][\frac{1}{2}]{u^\primeprime(x) v(x)}{x}
+  -
+  2 u^\prime \pbraces{\frac{1}{2} -} v\pbraces{\frac{1}{2} +}
+  -
+  \Int[\frac{1}{2}][1]{2 u^\primeprime(x) v(x)}{x}
+  -
+  \Int[\Omega]{v(x)}{x}
+\end{align*}
+
+\begin{align*}
+  \implies
+  u^\prime \pbraces{\frac{1}{2} +} v\pbraces{\frac{1}{2} -}
+  -
+  \Int[0][\frac{1}{2}]{u^\primeprime(x) v(x)}{x}
+  -
+  2 u^\prime \pbraces{\frac{1}{2} -} v\pbraces{\frac{1}{2} +}
+  -
+  \Int[\frac{1}{2}][1]{2 u^\primeprime(x) v(x)}{x}
+  \stackrel{!}{=}
+  \Int[\Omega]{v(x)}{x}
+\end{align*}
+
+Laut Satz 5.9 (Einbettungssatz von Sobolev), ist $v$ stetig.
+
+\begin{align*}
+  \implies
+  v \in C(\Omega)
+\end{align*}
+
+\includegraphicsunboxed{PDEs/PDEs_-_Satz_5-9_(Einbettungssatz_von_Sobolev).png}
+
+Laut Satz 5.6 (Spur von Sobolevfunktionen) und Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen), muss $v \in H_0^1(\Omega)$ am Rand $\partial \Omega = \Bbraces{0, 1}$ verschwinden.
+
+\begin{align*}
+  \implies
+  v(0) = v(1) = 0
+\end{align*}
+
+\includegraphicsunboxed{PDEs/PDEs_-_Satz_5-6_(Spur_von_Sobolevfunktionen).png}
+\includegraphicsunboxed{PDEs/PDEs_-_Satz_5-7_(Charakterisierung_von_H_0^1-Funktionen).png}
+
+Das müsste auch für $u$ gelten.
+$u$ setzen wir daher an als quadratischen Spline mit Stützstellen $0, \frac{1}{2}, 1$ an.
+
+\begin{align*}
+  u(x)
+  & :=
+  \begin{cases}
+    c_1 x^2 + c_2 x + c_3, & 0 \leq x < \frac{1}{2}, \\
+    c_3 x^2 + c_5 x + c_6, & \frac{1}{2} < x \leq 1
+  \end{cases} \\
+  \implies
+  u^\prime(x)
+  & =
+  \begin{cases}
+    2 c_1 x^2 + c_2, & 0 \leq x < \frac{1}{2}, \\
+    2 c_3 x^2 + c_5, & \frac{1}{2} < x \leq 1
+  \end{cases} \\
+  \implies
+  u^\primeprime(x)
+  & =
+  \begin{cases}
+    2 c_1, & 0 \leq x < \frac{1}{2}, \\
+    2 c_3, & \frac{1}{2} < x \leq 1
+  \end{cases}
+\end{align*}
+
+Aus unserer oberern Umformulierung können wir nun folgende Bedingungen ziehen.
+
+\begin{align*}
+  \implies
+  \begin{cases}
+    u^\prime \pbraces{\frac{1}{2} -} = 2 u^\prime \pbraces{\frac{1}{2} +}
+    & \implies 2 (2 c_1 \pbraces{\frac{1}{2}} + c_2) = 2 c_4 \pbraces{\frac{1}{2}} + c_5 \\
+    u^\primeprime
+    =
+    \begin{cases}
+      -1,  & 0 \leq x < \frac{1}{2}, \\
+      -\frac{1}{2} & \frac{1}{2} < x \leq 1
+    \end{cases}
+    & \implies 2 c_1 = -1, \quad 2 c_4 = -\frac{1}{2} \\
+    u\pbraces{\frac{1}{2} -} = u\pbraces{\frac{1}{2} +}
+    & \implies c_1 \pbraces{\frac{1}{2}}^2 + c_2 \pbraces{\frac{1}{2}} + c_3 = c_4 \pbraces{\frac{1}{2}}^2 + c_5 \pbraces{\frac{1}{2}} + c_6 \\
+    u(0) = 0
+    & \implies c_3 = 0 \\
+    u(1) = 0
+    & \implies c_4 + c_5 + c_6 = 0
+    \end{cases}
+\end{align*}
+
+Das können wir auch schön als Lineares Gleichungssystem schreiben und lösen.
+
+\begin{align*}
+  \begin{pmatrix}
+    2 & 2 & 0 & -1 & -1 & 0 \\
+    2 & 0 & 0 &  0 &  0 & 0 \\
+    0 & 0 & 0 &  2 &  0 & 0 \\
+    \frac{1}{2} & \frac{1}{2} & 1 & -\frac{1}{4} & -\frac{1}{2} & -1 \\
+    0 & 0 & 1 &  0 &  0 & 0 \\
+    0 & 0 & 0 &  1 &  1 & 1
+  \end{pmatrix}
+  c
+  =
+  \begin{pmatrix}
+    0 \\ -1 \\ -\frac{1}{2} \\ 0 \\ 0 \\ 0
+  \end{pmatrix}
+  \implies
+  c
+  =
+  \begin{pmatrix}
+    -\frac{1}{2} \\ \frac{11}{24} \\ 0 \\ -\frac{1}{4} \\ \frac{1}{6} \\ \frac{1}{12}
+  \end{pmatrix}
+\end{align*}
+
+Damit erhalten wir unseren Kandidaten für $u$.
+
+\begin{align*}
+  u(x)
+  =
+  \begin{cases}
+    -\frac{1}{2} x^2 + \frac{11}{24} x,      & 0 \leq x < \frac{1}{2}, \\
+    -\frac{1}{4} x^2 + \frac{1}{6} x + \frac{1}{12}, & \frac{1}{2} < x \leq 1
+  \end{cases}
+\end{align*}
+
+Von diesem müssen wir noch zeigen, dass $u \in H_0^1(\Omega)$.
+
+\begin{enumerate}[label = \arabic*.]
+
+  \item Schritt (\Quote{$H^1$}):
+  
+  \begin{enumerate}[label = (\roman*)]
+
+    \item $u$ ist stetig, also auch $u^2$.
+    $\overline{\Omega}$ ist kompakt.
+    Daher ist $u^2$ integrierbar, d.h. $u$ quadratisch integrierbar auf $\Omega$.
+
+    \begin{align*}
+      u \in C(\Omega) & \implies u^2 \in C(\Omega) \\
+      \overline{\Omega} ~\text{kompakt}~ & \implies u^2 \in L^1(\Omega) \implies u \in L^2(\Omega)
+    \end{align*}
+
+    \item Wir zeigen zunächst, dass die distributionelle Ableitung $u^\prime$ von $u$ wie folgt aussieht.
+    
+    \begin{align*}
+      u^\prime(x)
+      \stackrel{!}{=}
+      \begin{cases}
+        -x + \frac{11}{24},   & 0 \leq x < \frac{1}{2}, \\
+        -\frac{1}{2} x + \frac{1}{6}, & \frac{1}{2} < x \leq 1
+      \end{cases}
+    \end{align*}
+
+    Dazu rechnen wir, via partieller Integration, $\Forall \varphi \in \mathcal{D}(\Omega):$
+
+    \begin{align*}
+      \abraces{u^\prime, \varphi}
+      & :=
+      -\abraces{u, \varphi^\prime} \\
+      & =
+      -\Int[0][\frac{1}{2}]{\pbraces{-\frac{1}{2} x^2 + \frac{11}{24} x} \varphi^\prime(x)}{x} \\
+      & \quad
+      -\Int[\frac{1}{2}][1]{\pbraces{-\frac{1}{4} x^2 + \frac{1}{6} x + \frac{1}{12}} \varphi^\prime(x)}{x} \\
+      & \stackrel
+      {
+        \mathrm{PI}
+      }{=}
+      \Int[0][\frac{1}{2}]{\pbraces{-x + \frac{11}{24}} \varphi(x)}{x}
+      +
+      \frac{1}{2} x^2 \varphi(x) \Big |_{x=0}^{\frac{1}{2}}
+      -
+      \frac{11}{24} x \varphi(x) \Big |_{x=0}^{\frac{1}{2}} \\
+      & \quad
+      \Int[\frac{1}{2}][1]{\pbraces{-\frac{1}{2} x + \frac{1}{6}} \varphi(x)}{x}
+      +
+      \frac{1}{4} x \varphi(x) \Big |_{x=\frac{1}{2}}^1
+      -
+      \frac{1}{6} x \varphi(x) \Big |_{x=\frac{1}{2}}^1
+      -
+      \frac{1}{12} \varphi(x) \Big |_{x=\frac{1}{2}}^1 \\
+      & =
+      \frac{1}{2} \pbraces{\frac{1}{2}}^2 \varphi \pbraces{\frac{1}{2}} - \frac{11}{24} \pbraces{\frac{1}{2}} \varphi \pbraces{\frac{1}{2}}
+      -
+      \frac{1}{2} \pbraces{\frac{1}{2}}^2 \varphi \pbraces{\frac{1}{2}} + \frac{1}{6} \pbraces{\frac{1}{2}} \varphi \pbraces{\frac{1}{2}} + \frac{1}{12} \varphi \pbraces{\frac{1}{2}} \\
+      & \quad
+      +
+      \Int[0][1]{u^\prime(x) \varphi(x)}{x} \\
+      & =
+      \underbrace
+      {
+        \pbraces
+        {
+          \frac{1}{8} - \frac{11}{48} - \frac{1}{16} + \frac{1}{12} + \frac{1}{12}
+        }
+      }_0
+      \varphi \pbraces{\frac{1}{2}}
+      +
+      \Int[0][1]{u^\prime(x) \varphi(x)}{x} \\
+      & =
+      \Int[0][1]{u^\prime(x) \varphi(x)}{x}
+    \end{align*}
+
+    $u^\prime$ hat nur eine Unstetigkeitsstelle (in $\frac{1}{2}$).
+    Daher können wir analog zu (ii) argumentieren, dass $u^\prime \in L^2(\Omega)$.
+
+    \begin{align*}
+      u \in L^2(\Omega)
+    \end{align*}
+
+  \end{enumerate}
+
+  \item Schritt (\Quote{$H_0$}):
+  
+  $u$ ist stetig und verschwindet am Rand.
+  Laut Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen), sind wir fertig.
+
+  \begin{align*}
+    u \in C(\Omega)
+    \implies
+    T(u) = u |_{\partial \Omega} = 0
+    \implies
+    u \in H_0^1(\Omega)
+  \end{align*}
+
+\end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
