@@ -8,7 +8,7 @@ Betrachten Sie die Poisson-Gleichung mit Neumann-Randbedingungen
 \begin{align}
     \begin{cases}
     -\Delta u = f & \text{in } \Omega, \\
-    \nabla u \cdot \nu = 0 & \text{auf}~ \Omega,
+    \nabla u \cdot \nu = 0 & \text{auf}~ \partial\Omega,
     \end{cases}
     \label{neumann}
 \end{align}
@@ -81,10 +81,9 @@ wobei $f \in L^2(\Omega)$.
     \end{align*}
 
     Also lautet die schwache Formulierung wie folgt:
-    Finde $u \in H^1(\Omega)$, sodass $a(u, v) = F(v)$ für alle $v \in H^1(\Omega)$ gilt.
+    Finde $u \in H^1(\Omega)$, sodass
 
     \begin{align*}
-        u \in H^1(\Omega):
         \Forall v \in H^1(\Omega):
         a(u, v) = F(v)
     \end{align*}
@@ -101,7 +100,7 @@ wobei $f \in L^2(\Omega)$.
         }{\leq}
         \norm[L^2(\Omega)]{1} \norm[L^2(\Omega)]{v}
         \leq
-        \underbrace{|\Omega|}_\infty \norm[H^1(\Omega)]{v}
+        \underbrace{|\Omega|^{1/2}}_{<\infty} \norm[H^1(\Omega)]{v}
     \end{align*}
 
     \begin{align*}
@@ -277,14 +276,15 @@ wobei $f \in L^2(\Omega)$.
         F(w)
     \end{multline*}
 
-    \item Für $\Int[\Omega]{f(x)}{x} \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt mit Satz 5.8 (Gauß für Sobolev-Funktionen) ein Widerspruch!
+    \item Für $\Int[\Omega]{f(x)}{x} \neq 0$ und eine schwache Lösung $u \in H^1(\Omega)$ folgt
+    nach Integrieren der Differentialgleichung mit Satz 5.8 (Gauß für Sobolev-Funktionen) ein Widerspruch!
 
     \begin{align*}
         0
         \neq
         \Int[\Omega]{f(x)}{x}
         =
-        -\Int[\Omega]{\Delta u}
+        -\Int[\Omega]{\Delta u}{x}
         =
         \Int[\partial \Omega]{\underbrace{\nabla u \cdot \nu}_0}{s}
         =
