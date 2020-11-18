@@ -7,11 +7,14 @@ Geben Sie ein explizites Beispiel einer konsistenten Skolemtheorie an.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	Wir betrachten die Theorie 
+	Wir betrachten die Theorie
 	\begin{align*}
-	\Sigma := \{\forall x \forall y (x = y)\}
+	\Sigma := \{\forall x \forall y (x = y)\}.
 	\end{align*}
-	und wollen bemerken, dass wir die Gleichheitsrelation verweden. Nun wählen wir eine beliebige Formel der Form $\exists y \psi$ mit den freien Variablen $x_1, \dots, x_n$, wobei $n \in \N$. Aus der Vorlesung wissen wir bereits
+	$\Sigma$ wird von jedem ein-elementigen Modell erfüllt und ist somit konsistent.
+	Wählen wir nun eine beliebige Formel der Form $\exists y \psi$
+	mit den freien Variablen $x_1, \dots, x_n$, wobei $n \in \N$.
+	Aus der Vorlesung wissen wir bereits
 	\begin{align*}
 	\Sigma \vdash \exists y \psi \rightarrow \psi[y/f(\overline{x})] \Leftrightarrow \Sigma \vDash \exists y \psi \rightarrow \psi[y/f(\overline{x})]
 	\end{align*}
@@ -19,7 +22,15 @@ Geben Sie ein explizites Beispiel einer konsistenten Skolemtheorie an.
 	\begin{align*}
 	\widehat b(\psi[y/f(\overline{x})]) = \widehat{b_{y \to \overline{b}(f(\overline{x}))}}(\psi) = \widehat{b_{y \to m}}(\psi) = \sup\{\widehat{b_{x \to k}}(\psi) \mid k \in M\} = \widehat{b}(\exists \psi) = 1
 	\end{align*}
-	wobei unsere Sprache ein $n$-stelliges Funktionssymbol $f$ enthalten soll. Also ist unsere Theorie eine Skolemtheorie.
+	wobei unsere Sprache ein $n$-stelliges Funktionssymbol $f$ enthalten soll.
+	Damit gilt für jede beliebige Belegung $b$, jede Formel $\psi$ mit freien Variablen
+	$\overline{x}$ und jedes Modell $\mathscr{M}$ mit $\mathscr{M} \vDash \Sigma$
+	\begin{align*}
+		\hat{b}(\exists y \psi \rightarrow \psi[y/f(\overline{x})]) = 1
+		\implies \mathscr{M} \vDash \exists y \psi \rightarrow \psi[y/f(\overline{x})]
+		\implies \Sigma \vDash \exists y \psi \rightarrow \psi[y/f(\overline{x})].
+	\end{align*}
+	Also ist unsere Theorie eine Skolemtheorie.
 \end{solution}
 
 % --------------------------------------------------------------------------------

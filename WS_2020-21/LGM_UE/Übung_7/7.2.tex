@@ -5,40 +5,14 @@ Finden Sie ein Beispiel $\mathscr{L},\mathscr{M}_1,\mathscr{M}_2$, sodass
 $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ und $M_1 \neq M_2$.
 \end{exercise}
 
-% --------------------------------------------------------------------------------
-
-\begin{solution}
-Wir betrachten eine Sprache ohne Gleichheitsrelation und ohne Konstantensymbole, allerdings
-mit einer einstelligen Relation $R$.
-\begin{align*}
-  \mathscr{M}_1 &= (\{0\}, R^{\mathscr{M}_1}= \emptyset) \\
-  \mathscr{M}_2 &= (\{0,1\}, R^{\mathscr{M}_2}= \emptyset) \\
-\end{align*}
-Jede Atomformel hat also die Form $R(x)$ und ist sowohl in $\mathscr{M}_1$,
-als auch in $\mathscr{M}_2$ unter jeder Belegung $b$ falsch. \\
-Wir zeigen mittels Induktion nach dem Formelaufbau, dass jede Formel
-entweder unter jeder Belegung in $\mathscr{M}_1$ und $\mathscr{M}_2$ wahr oder
-unter jeder Belegung in $\mathscr{M}_1$ und $\mathscr{M}_2$ falsch ist. \\
-Induktiv über den Formelaufbau zeigt man dann, dass das bereits für alle Formeln gelten muss.
-Exemplarisch rechnen wir für die Konjunktion nach: \\
-Fall 1: $\phi_1,\phi_2$ unter jeder Belegung in $\mathscr{M}_i, i =1,2$ wahr,
-dann auch $\phi_1 \land \phi_2$ unter jeder Belegung in $\mathscr{M}_i, i= 1,2$ wahr. \\
-Sonst: $\phi_1$ oder $\phi_2$ unter jeder Belegung in $\mathscr{M}_i, i = 1,2$ falsch,
-dann auch $\phi_1 \land \phi_2$ unter jeder Belegung in $\mathscr{M}_i, i=1,2$ falsch. \\
-Da der Wahrheitswert jeder quantorenfreien Formel unabhängig von der Belegung ist,
-verändern Quantoren den Wahrheitswert der Formel nicht und können ignoriert werden.
-\end{solution}
-
-% --------------------------------------------------------------------------------
-
 \begin{solution}
 	Da wir das Gleichheitssymbol ohnehin in unserer Sprache haben wollen wir uns nicht weiter belasten und nicht mehr in unsere Sprache aufnehmen, also keine Konstantensymbole, Funktionssymbole oder weitere Relationssymbole. Wäre $M_1$ endlich mit $n \in \N$ Elementen, dann gelten wegen $ |M_2| > |M_1| = n$ die Aussagen
 	\begin{align*}
 	\mathscr{M}_1 \nvDash \exists^{\geq n + 1} \ [b], \quad \mathscr{M}_2 \vDash \exists^{\geq n + 1} \ [b]
-	\end{align*} 
-	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N$ sowie $\mathscr{M}_2 = \Z$. Nach Satz IV.5.11. gibt es zu jeder Formel $\varphi$ eine Formel $\varphi^P$ in Pränexform mit $\vDash \varphi \leftrightarrow \varphi^P$. Es reicht also Formeln der Form 
+	\end{align*}
+	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N$ sowie $\mathscr{M}_2 = \Z$. Nach Satz IV.5.11. gibt es zu jeder Formel $\varphi$ eine Formel $\varphi^P$ in Pränexform mit $\vDash \varphi \leftrightarrow \varphi^P$. Es reicht also Formeln der Form
 	 \begin{align*}
 	 Qx_1 \dots Qx_m \pbraces{\bigwedge_{i = 1}^n \bigvee_{j = 1}^{k_i} x_{f(i,j)} = x_{g(i,j)} }
 	 \end{align*}
-	 wobei $Q \in \{\exists, \forall\}$ und $f,g: \{(i,j) \mid i \in \{1, \dots, n\} \land j \in \{1, \dots, k_i\}\} \to \N \setminus\{0\}$, die Matrix haben wir hier in konjunktive Normalform (heißt das so?) gebracht. 
+	 wobei $Q \in \{\exists, \forall\}$ und $f,g: \{(i,j) \mid i \in \{1, \dots, n\} \land j \in \{1, \dots, k_i\}\} \to \N \setminus\{0\}$, die Matrix haben wir hier in konjunktive Normalform (heißt das so?) gebracht.
 \end{solution}
