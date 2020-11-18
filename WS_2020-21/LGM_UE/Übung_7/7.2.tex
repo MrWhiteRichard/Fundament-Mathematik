@@ -10,9 +10,17 @@ $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ und $M_1 \neq M_2$.
 	\begin{align*}
 	\mathscr{M}_1 \nvDash \exists^{\geq n + 1} \ [b], \quad \mathscr{M}_2 \vDash \exists^{\geq n + 1} \ [b]
 	\end{align*}
-	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N$ sowie $\mathscr{M}_2 = \Z$. Nach Satz IV.5.11. gibt es zu jeder Formel $\varphi$ eine Formel $\varphi^P$ in Pränexform mit $\vDash \varphi \leftrightarrow \varphi^P$. Es reicht also Formeln der Form
+	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N \setminus \{0\}$ sowie $\mathscr{M}_2 = \N$. Angenommen es gibt eine Formel $\varphi$ und eine Belegung $b$ mit Werten in $M_1$ mit
 	 \begin{align*}
-	 Qx_1 \dots Qx_m \pbraces{\bigwedge_{i = 1}^n \bigvee_{j = 1}^{k_i} x_{f(i,j)} = x_{g(i,j)} }
+	 (\mathscr{M}_1 \vDash \varphi \ [b] \land \mathscr{M}_2 \nvDash \varphi \ [b]) \lor (\mathscr{M}_1 \nvDash \varphi \ [b] \land \mathscr{M}_2 \vDash \varphi \ [b])
 	 \end{align*}
-	 wobei $Q \in \{\exists, \forall\}$ und $f,g: \{(i,j) \mid i \in \{1, \dots, n\} \land j \in \{1, \dots, k_i\}\} \to \N \setminus\{0\}$, die Matrix haben wir hier in konjunktive Normalform (heißt das so?) gebracht.
+	 Wir betrachten den Linken Teil als ersten Fall. Nach Satz IV.5.11 gibt es eine Formel $\varphi^\prime$ in Pränexform mit $\vDash \varphi \leftrightarrow \varphi^\prime$. Also gilt $\mathscr{M}_1 \vDash \varphi^\prime \ [b]$ und $\mathscr{M}_2 \nvDash \varphi^\prime \ [b]$. Die Formel $\varphi^\prime$ muss mindestens einen Allquantor enthalten, weil für Existenzquantoren gilt 
+	 \begin{align*}
+	 \sup\{\widehat{b_{x \to m}} \mid m \in M_1 \} \leq \sup\{\widehat{b_{x \to m}} \mid m \in M_2 \}
+	 \end{align*}
+	 Also muss es irgendwo eine Teilforlme $\psi$ von $\varphi^\prime$ geben mit
+	 \begin{align*}
+	 \inf\{\widehat{b_{x \to m}}(\psi) \mid m \in M_2\} = 0, \quad \inf\{\widehat{b_{x \to m}}(\psi) \mid m \in M_1\} = 1
+	 \end{align*}
+	 also $\widehat{b_{x \to 0}}(\psi) = 0$. Die Formel $\psi$ muss die Variable $x$ enthalten, also einen Teil der Form $x = y$. Wegen $\widehat{b_{x \to m}}(\psi) = 1$ für alle $m \in M_1$ muss die Fomel in Wirklichkeit schon die Form $x = x$ haben und damit gilt aber $\widehat{b_{x \to 0}}(\psi) = 1$
 \end{solution}
