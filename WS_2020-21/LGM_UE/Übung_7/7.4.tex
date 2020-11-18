@@ -14,65 +14,80 @@ Zeigen Sie $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	In einem ersten Schritt wollen wir für alle quantorenfreien Formeln $\psi$ und alle Belegungen $b$ mit Werten in $M_1$ zeigen, dass 
+  Notation: Sei $b$ Belegung mit Werten in $M_1 \subseteq M_2$:
+  \begin{align*}
+    \overline{b}_i &:= \overline{b}_{\mathscr{M}_i}, \quad i = 1,2 \\
+    \hat{b}_i &:= \hat{b}_{\mathscr{M}_i}, \quad i = 1,2. \\
+  \end{align*}
+	In einem ersten Schritt wollen wir für alle quantorenfreien Formeln $\psi$ und alle Belegungen $b$ mit Werten in $M_1$ zeigen, dass
 	\begin{align*}
 	\mathscr{M}_1 \vDash \varphi[b] \iff \mathscr{M}_2 \vDash \varphi[b]
 	\end{align*}
 	gilt. Zuerst kümmern wir uns um die Terme.
 	\begin{align*}
 	\overline{b}_1(c) &= c^{\mathscr{M}_1} = c^{\mathscr{M}_2} = \overline{b}_2(c), \\
-	\overline{b}_1(f(t_1, \dots, t_k)) &= f^{\mathscr{M}_1}(\overline{b}_1(t_1), \dots, \overline{b}_1(t_k)) = f^{\mathscr{M}_2}(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k)) = \overline{b}_2(f(t_1, \dots, t_k))
+  \overline{b}_1(x) &= b(x) = \overline{b}_2(x), \\
+	\overline{b}_1(f(t_1, \dots, t_k)) &= f^{\mathscr{M}_1}(\overline{b}_1(t_1), \dots, \overline{b}_1(t_k))
+  = f^{\mathscr{M}_1}\underbrace{(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k))}_{\in M_1^k} =
+  f^{\mathscr{M}_2}(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k))
+  = \overline{b}_2(f(t_1, \dots, t_k))
 	\end{align*}
 	Also wissen wir jetzt $\overline{b}_1 = \overline{b}_2$ und schreiben stets einfach $\overline{b}$. Insbesondere hat $\overline{b}$ nur Werte in $M_1$. Als nächstes kommen die Atomformeln. Wir berechnen
 	\begin{align*}
 	\widehat{b}_1(R(t_1, \dots, t_k)) = 1 \Leftrightarrow (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_1} \Leftrightarrow  (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}_2(R(t_1, \dots, t_k)) = 1.
 	\end{align*}
-	Schließlich berechnen wir in einem letzten Schritt exemplarisch 
+	Schließlich berechnen wir in einem letzten Schritt exemplarisch
 	\begin{align*}
 	\widehat{b}_1(\psi_1 \land \psi_2) = \widehat{b}_1(\psi_1) \land_B \widehat{b}_1 (\psi_2) = \widehat{b}_2(\psi_1) \land_B \widehat{b}_2(\psi_2) = \widehat{b}_2(\psi_1 \land \psi_2)
 	\end{align*}
-	und haben die Aussage für alle quantorenfreien Formlen also gezeigt.
+	und haben die Aussage für alle quantorenfreien Formeln also gezeigt.
 	\begin{enumerate}
-		\item[`` $\Leftarrow$ ''] Gegeben also eine Formel $\varphi$ und eine Belegung $b$ mit Werten in $M_1$ mit $\mathscr{M}_2 \vDash \varphi \ [b]$. Nun gilt $\mathscr{M}_2 \vDash \Sigma$ und $\Sigma \vDash \varphi \leftrightarrow \varphi^\prime$, wobei $\varphi^\prime$ eine reine Allformel ist. Also gilt 
+		\item[`` $\Leftarrow$ ''] Gegeben also eine Formel $\varphi$ und eine Belegung $b$ mit Werten in $M_1$ mit $\mathscr{M}_2 \vDash \varphi \ [b]$. Nun gilt $\mathscr{M}_2 \vDash \Sigma$ und $\Sigma \vDash \varphi \leftrightarrow \varphi^\prime$, wobei $\varphi^\prime$ eine reine Allformel ist. Also gilt
 		\begin{align*}
 		\mathscr{M}_2 \vDash \varphi^\prime \ [b], \quad \varphi^\prime = \forall x_n \dots \forall x_1(\psi).
 		\end{align*}
-		wobei $\psi$ die Matrix, also quantorenfrei ist. Wir Behaupten
+		wobei $\psi$ die Matrix, also quantorenfrei ist. Wir behaupten
 		\begin{align*}
-		\forall n \in \N \forall \psi \forall b ((b \text{ Belegung mit Werten in } M_1 \land \psi \text{ quantorenfrei }) \\
-		\Rightarrow (\mathscr{M}_2 \vDash \forall x_n \dots \forall x_1 (\psi) \Rightarrow \mathscr{M}_1 \vDash \forall x_n \dots \forall x_1 (\psi))
-		\end{align*} 
+		\forall n \in \N\, \forall \psi\, \forall b\, (b \text{ Belegung mit Werten in } M_1 \land \psi \text{ quantorenfrei}) \\
+		\Rightarrow (\mathscr{M}_2 \vDash \forall x_n \dots \forall x_1 (\psi)[b] \Rightarrow \mathscr{M}_1 \vDash \forall x_n \dots \forall x_1 (\psi)[b])
+		\end{align*}
 		Ist $n = 0$ bleibt nur die quantorenfreie Formel $\psi$ stehen und die Behauptung stimmt aufgrund des oben gezeigten. Angenommen wir wissen es nun schon für $n \geq 0$, so gilt
 		\begin{align*}
 		1 = \widehat{b}_2(\forall x_{n + 1} \dots \forall x_1 (\psi)) &= \inf\{\widehat{(b_{x_{n + 1} \to m}})_2(\forall x_n \dots \forall x_1(\psi)) \mid m \in M_2\} \\
 		&\leq \inf\{\widehat{(b_{x_{n + 1} \to m}})_2(\forall x_n \dots \forall x_1(\psi)) \mid m \in M_1\} \\
-		&= \inf\{\widehat{(b_{x_{n + 1} \to m}})_1(\forall x_n \dots \forall x_1(\psi)) \mid m \in M_1\} \\
+		&\leq \inf\{\widehat{(b_{x_{n + 1} \to m}})_1(\forall x_n \dots \forall x_1(\psi)) \mid m \in M_1\} \\
 		&= \widehat{b}_1(\forall x_{n + 1} \dots \forall x_1 (\psi)).
 		\end{align*}
-		Also gilt $\mathscr{M}_1 \vDash \varphi^\prime \ [b]$ und wegen $\mathscr{M}_1 \vDash \Sigma$ kommen wir wieder zurück zu $\mathscr{M}_1 \vDash \varphi \ [b]$. 
-		
+		Also gilt $\mathscr{M}_1 \vDash \varphi^\prime \ [b]$ und wegen
+    $\mathscr{M}_1 \vDash \varphi \leftrightarrow \varphi^{\prime}$
+    kommen wir wieder zurück zu $\mathscr{M}_1 \vDash \varphi \ [b]$.
+
 		\item[`` $\Rightarrow$ ''] Hier bemerken wir, dass es zu jeder Formel $\varphi$ eine reine Existenzformel $\varphi^\prime$ gibt mit $\Sigma \vDash \varphi \leftrightarrow \varphi^\prime$. Um das einzusehen betrachten wir $\neg \varphi$ und finden eine reine Allformel $\tilde{\varphi}$ mit $\Sigma \vDash \neg \varphi \leftrightarrow \tilde{\varphi}$. Mit einer Tautologie folgt
 		\begin{align*}
-		\Sigma \vDash \varphi \leftrightarrow \neg \tilde{\varphi}
+		\Sigma &\vDash \varphi \leftrightarrow \neg \tilde{\varphi} \\
+    \neg \tilde{\varphi} &= \neg \forall x_1\,\cdots\forall x_k\,\psi \leftrightarrow
+    \exists x_1 \neg \forall x_1,\cdots \forall x_k \leftrightarrow \cdots \leftrightarrow \exists x_1\, \cdots \exists x_k\, \neg \psi
 		\end{align*}
-		und von da an kommen wir mit den Existenzaxiomen auf eine reine Existenzformel $\varphi^\prime$. Nun können wir die andere Richtung fast vollständig wiederverwerten.\\ 
-		Gegeben also eine Formel $\varphi$ und eine Belegung $b$ mit Werten in $M_1$ mit $\mathscr{M}_1 \vDash \varphi \ [b]$. Nun gilt $\mathscr{M}_1 \vDash \Sigma$ und $\Sigma \vDash \varphi \leftrightarrow \varphi^\prime$, wobei $\varphi^\prime$ eine reine Existenzformel ist. Also gilt 
+		und von da an kommen wir mit den Existenzaxiomen auf eine reine Existenzformel $\varphi^\prime$. Nun können wir die andere Richtung fast vollständig wiederverwerten.\\
+		Gegeben also eine Formel $\varphi$ und eine Belegung $b$ mit Werten in $M_1$ mit $\mathscr{M}_1 \vDash \varphi \ [b]$. Nun gilt $\mathscr{M}_1 \vDash \Sigma$ und $\Sigma \vDash \varphi \leftrightarrow \varphi^\prime$, wobei $\varphi^\prime$ eine reine Existenzformel ist. Also gilt
 		\begin{align*}
 		\mathscr{M}_1 \vDash \varphi^\prime \ [b], \quad \varphi^\prime = \exists x_n \dots \exists x_1(\psi).
 		\end{align*}
-		wobei $\psi$ die Matrix, also quantorenfrei ist. Wir Behaupten
+		wobei $\psi$ die Matrix, also quantorenfrei ist. Wir behaupten
 		\begin{align*}
 		\forall n \in \N \forall \psi \forall b ((b \text{ Belegung mit Werten in } M_1 \land \psi \text{ quantorenfrei }) \\
-		\Rightarrow (\mathscr{M}_1 \vDash \exists x_n \dots \exists x_1 (\psi) \Rightarrow \mathscr{M}_2 \vDash \exists x_n \dots \exists x_1 (\psi))
-		\end{align*} 
+		\Rightarrow (\mathscr{M}_1 \vDash \exists x_n \dots \exists x_1 (\psi)[b] \Rightarrow \mathscr{M}_2 \vDash \exists x_n \dots \exists x_1 (\psi)[b])
+		\end{align*}
 		Ist $n = 0$ bleibt nur die quantorenfreie Formel $\psi$ stehen und die Behauptung stimmt aufgrund des oben gezeigten. Angenommen wir wissen es nun schon für $n \geq 0$, so gilt
 		\begin{align*}
 		1 = \widehat{b}_1(\exists x_{n + 1} \dots \exists x_1 (\psi)) &= \sup\{\widehat{(b_{x_{n + 1} \to m}})_1(\exists x_n \dots \exists x_1(\psi)) \mid m \in M_1\} \\
 		&\leq \sup\{\widehat{(b_{x_{n + 1} \to m}})_1(\exists x_n \dots \exists x_1(\psi)) \mid m \in M_2\} \\
-		&= \sup\{\widehat{(b_{x_{n + 1} \to m}})_2(\exists x_n \dots \exists x_1(\psi)) \mid m \in M_2\} \\
+		&\leq \sup\{\widehat{(b_{x_{n + 1} \to m}})_2(\exists x_n \dots \exists x_1(\psi)) \mid m \in M_2\} \\
 		&= \widehat{b}_2(\exists x_{n + 1} \dots \exists x_1 (\psi)).
 		\end{align*}
-		Also gilt $\mathscr{M}_2 \vDash \varphi^\prime \ [b]$ und wegen $\mathscr{M}_2 \vDash \Sigma$ kommen wir wieder zurück zu $\mathscr{M}_2 \vDash \varphi \ [b]$.
+		Also gilt $\mathscr{M}_2 \vDash \varphi^\prime \ [b]$ und wegen
+    $\mathscr{M}_2 \vDash \varphi \leftrightarrow \varphi^{\prime}$
+    kommen wir wieder zurück zu $\mathscr{M}_2 \vDash \varphi \ [b]$.
 	\end{enumerate}
 \end{solution}
 
