@@ -51,7 +51,27 @@ Seien $\Omega \subset \R^n$ ein beschränktes Gebiet und $f:\R \times \overline{
     =
     \underbrace
     {
-      f_u(\vartheta\begin{pmatrix}u_1(x) \\ u_2(x)\end{pmatrix} u_1(x) - \left(1 - \vartheta \begin{pmatrix}u_1(x) \\ u_2(x)\end{pmatrix}\right) u_2(x)), x)
+      f_u
+      \pbraces
+      {
+        \vartheta
+        \begin{pmatrix}
+          u_1(x) \\ u_2(x)
+        \end{pmatrix}
+        u_1(x)
+        -
+        \pbraces
+        {
+          1
+          -
+          \vartheta
+          \begin{pmatrix}
+            u_1(x) \\ u_2(x)
+          \end{pmatrix}
+        }
+        u_2(x),
+        x
+      }
     }_{
       =: c(x)
     }
@@ -72,6 +92,15 @@ Seien $\Omega \subset \R^n$ ein beschränktes Gebiet und $f:\R \times \overline{
     u = 0 ~\text{auf}~ \partial \Omega
   \end{align*}
 
+  \begin{align*}
+    \implies
+    \inf_{x \in \partial \Omega} u(x)
+    =
+    \sup_{x \in \partial \Omega} u(x)
+    =
+    0
+  \end{align*}
+
   Laut Voraussetzung ist $c \geq 0$.
 
   \begin{align*}
@@ -82,11 +111,6 @@ Seien $\Omega \subset \R^n$ ein beschränktes Gebiet und $f:\R \times \overline{
   \end{align*}
 
   Wir können also Satz 5.27 (Schwaches Maximumprinzip für $c \geq 0$) auf das konstruierte RWP anwenden.
-  Wir wissen, dass $\inf_{x \in \partial \Omega} u(x)
-  =
-  \sup_{x \in \partial \Omega} u(x)
-  =
-  0 $ und damit folgt
 
   \includegraphicsboxed{PDEs/PDEs_-_(5-20).png}
 

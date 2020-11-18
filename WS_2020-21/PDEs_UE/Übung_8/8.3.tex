@@ -130,7 +130,7 @@ Laut Satz 5.9 (Einbettungssatz von Sobolev), ist $v$ stetig.
 
 \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-9_(Einbettungssatz_von_Sobolev).png}
 
-Laut Satz 5.6 (Spur von Sobolevfunktionen) und Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen), muss $v \in H_0^1(\Omega)$ am Rand $\partial \Omega = \Bbraces{0, 1}$ verschwinden.
+Laut Satz 5.6 (Spur von Sobolevfunktionen) und Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen), muss $v \in H_0^1(\Omega) \cap C(\Omega)$ am Rand $\partial \Omega = \Bbraces{0, 1}$ verschwinden.
 
 \begin{align*}
   \implies
@@ -141,7 +141,7 @@ Laut Satz 5.6 (Spur von Sobolevfunktionen) und Satz 5.7 (Charakterisierung von $
 \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-7_(Charakterisierung_von_H_0-1-Funktionen).png}
 
 Das müsste auch für $u$ gelten.
-$u$ setzen wir daher an als quadratischen Spline mit Stützstellen $0, \frac{1}{2}, 1$ an.
+$u$ setzen wir daher an als quadratischen Spline mit Stützstellen $0, \frac{1}{2}, 1$.
 
 \begin{align*}
   u(x)
@@ -306,10 +306,17 @@ Von diesem müssen wir noch zeigen, dass $u \in H_0^1(\Omega)$.
 
     \begin{align*}
       \implies
-      u \in H^1(\Omega)
+      u^\prime \in L^2(\Omega)
     \end{align*}
 
   \end{enumerate}
+
+  \begin{align*}
+    \implies
+    u, u^\prime \in L^2(\Omega)
+    \implies
+    u \in H^1(\Omega)
+  \end{align*}
 
   \item Schritt (\Quote{$H_0$}):
 

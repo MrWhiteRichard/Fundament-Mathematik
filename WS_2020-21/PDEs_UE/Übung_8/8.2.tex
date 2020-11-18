@@ -44,24 +44,68 @@ Anleitung:
 
 \begin{enumerate}[label = (\alph*)]
 
-  \item Aus der Definition von $H_0^2(\Omega)$ folgt, dass wir $v \in H_0^2(\Omega)$,
-    dass wir $v$ darstellen können als
-    \begin{align*}
-    v = \lim_{n \to \infty}v_n \text{ in } H^2(\Omega), \quad (v_n)_{n\in\N} \subset C_0^{\infty}(\Omega)
-    \end{align*}
-    Es gilt also
-    \begin{align*}
-      \|v-v_n\|_{H^2(\Omega)} = \left(\sum_{|\alpha|\leq 2}\int_\Omega (D^\alpha(v-v_n))^2dx\right)^{1/2}
-      \xrightarrow{n \to \infty} 0.
-    \end{align*}
-    Dami folgt aber auch
-    \begin{align*}
-      \|\nabla v - \nabla v_n\|_{H^1(\Omega)} = \|\nabla(v-v_n)\|_{H^1(\Omega)} &= \left(\sum_{|\alpha|\leq 1}\int_\Omega (D^\alpha\nabla(v-v_n))^2dx\right)^{1/2} \\
-      &\leq \left(\sum_{|\alpha|\leq 2}\int_\Omega (D^\alpha(v-v_n))^2dx\right)^{1/2}
-      = \|v-v_n\|_{H^2(\Omega)}
-      \xrightarrow{n \to \infty} 0.
-    \end{align*}
-  Also gilt auch $\nabla v \in \overline{C_0^{\infty}(\Omega)}^{\|\cdot\|_{H^1(\Omega)}} = H_0^1(\Omega)$ und daher $T(\nabla v) = T(v) = 0$. \\
+  \item Wir zeigen zunächst, dass für $v \in H_0^2(\Omega)$ auch $\nabla v \in H_0^1(\Omega)$.
+  Aus der Definition von $H_0^2(\Omega) = \overline{C_0^{\infty}(\Omega)}^{\norm[H^2(\Omega)]{\cdot}}$ folgt, dass wir $H_0^2(\Omega)$-Funktionen als $\norm[H^2(\Omega)]{\cdot}$-Grenzwert von $C_0^\infty(\Omega)$-Funktionen darstellen können.
+
+  \begin{align*}
+    v \in H_0^2(\Omega) = \overline{C_0^{\infty}(\Omega)}^{\norm[H^2(\Omega)]{\cdot}}
+    \implies
+    \Exists (v_n)_{n \in \N} \subset C_0^{\infty}(\Omega):
+    v_n \xrightarrow[n \to \infty]{H^2(\Omega)} v
+  \end{align*}
+
+  \begin{align*}
+    \implies
+    \norm[H^2(\Omega)]{v - v_n}
+    =
+    \pbraces
+    {
+      \sum_{|\alpha| \leq 2}
+      \Int[\Omega]{\abs{D^\alpha(v - v_n)}^2}{x}
+    }^{1/2}
+    \xrightarrow{n \to \infty}
+    0
+  \end{align*}
+
+  \begin{multline*}
+    \implies
+    \norm[H^1(\Omega)]{\nabla v - \nabla v_n}
+    =
+    \norm[H^1(\Omega)]{\nabla(v - v_n)}
+    =
+    \pbraces
+    {
+      \sum_{|\alpha| \leq 1}
+      \Int[\Omega]{\abs{D^\alpha \nabla(v - v_n)}^2}{x}
+    }^{1/2} \\
+    \leq
+    \pbraces
+    {
+      \sum_{|\alpha| \leq 2}
+      \Int[\Omega]{\abs{D^\alpha(v - v_n)}^2}{x}
+    }^{1/2}
+    =
+    \norm[H^2(\Omega)]{v - v_n}
+    \xrightarrow{n \to \infty}
+    0
+  \end{multline*}
+
+  \begin{align*}
+    \implies
+    \nabla v \in \overline{C_0^{\infty}(\Omega)}^{\norm[H^1(\Omega)]{\cdot}} = H_0^1(\Omega)
+  \end{align*}
+
+  Laut Satz 5.7 (Charakterisierung von $H_0^1$-Funktionen) verschwindet der Trace von $v$.
+  Das gilt nun aber auch für $\nabla v$.
+
+  \begin{align*}
+    \implies
+    T(\nabla v) = 0,
+    \quad
+    T(v) = 0
+  \end{align*}
+
+  \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-7_(Charakterisierung_von_H_0-1-Funktionen).png}
 
   Wir multiplizieren die Differentialgleichung mit $v \in H_0^2(\Omega)$, integrieren über $\Omega$ und integrieren zweimal partiell:
 
@@ -86,14 +130,14 @@ Anleitung:
     }{=}
     -\Int[\Omega]{\nabla \Delta u \cdot \nabla v}{x}
     +
-    \Int[\partial \Omega]{(\nabla (\Delta u) \cdot \nu) \underbrace{T(v)}_{=0}}{x} \\
+    \Int[\partial \Omega]{(\nabla (\Delta u) \cdot \nu) \underbrace{T(v)}_0}{x} \\
     & \stackrel
     {
       \mathrm{Gauß}
     }{=}
     \Int[\Omega]{\Delta u \Div \nabla v}{x}
     -
-    \Int[\partial \Omega]{(\underbrace{T(\nabla v)}_{=0} \cdot \nu) \Delta u}{s}
+    \Int[\partial \Omega]{(\underbrace{T(\nabla v)}_0 \cdot \nu) \Delta u}{s}
     =
     \Int[\Omega]{\Delta u \Delta v}{x}
     =:
@@ -103,7 +147,10 @@ Anleitung:
   \item
 
   \begin{itemize}
-    \item Stetigkeit: ($|\Hess u|$ bezeichnet die Frobenius-Norm der Hesse-Matrix.)
+    \item Stetigkeit:
+    
+    $|\cdot|$ bezeichnet hier (unter Anderem) die Frobenius-Norm.
+    $\Hess$ liefert die Hesse-Matrix.
 
     \begin{align*}
       \abs{\Delta v}^2
@@ -200,7 +247,7 @@ Anleitung:
 
   \item Laut Konstruktion, ist $H_0^2$ ist mit $(\cdot, \cdot)_{H^2(\Omega)}$ ein Hilberbraum.
   In (b) haben wir gezeigt, dass die Bilinearform $a$ stetig und koerziv ist.
-  $F \in H^{-1}(\Omega)$ ist ein lineares und stetiges Funktional.
+  $F \in H^{-2}(\Omega)$ ist ein lineares und stetiges Funktional.
 
   \begin{align*}
     \abs{F(v)}
