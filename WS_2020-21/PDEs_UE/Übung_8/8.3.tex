@@ -12,7 +12,10 @@ wobei $a(x) = \1_{(0,1/2]}(x) + 2\cdot\1_{(1/2,1)}(x)$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Motivation: Für $u \in C^1(\Omega) \cap H^2(\Omega)$ gilt
+Motivation: Für $u \in C^1(\Omega) \cap H^2(\Omega)$ und $v \in H_0^1(\Omega)$ gilt
+mit partieller Integration für Sobolevfunktionen, sowie der Tatsache, dass aufgrund
+des Sobolevschen Einbettungssatzes $v \in C(\overline{\Omega})$ ist und somit
+$Tv = v|\partial\Omega, Tu = u|\partial\Omega$:
 \begin{align*}
   \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) &= \int_\Omega v(x) dx \\
   \iff \int_0^{1/2} u^{\prime}(x)v^{\prime}(x)dx + 2\int_{1/2}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
@@ -26,7 +29,7 @@ Ansatz: Suche $u \in C^1(\Omega) \subset H_1(\Omega)$, sodass $u^{\primeprime}(x
   u(x) = -\int\int \frac{1}{a(z)} dz dy  &=
   -\int_0^x\int_0^y \1_{(0,1/2]}(x) + \frac{1}{2}\cdot\1_{(1/2,1)}(x) dz dy  \\
   &= -\int_0^x y - \frac{2y-1}{4}\1_{(1/2,1)}(y) + C dy \\
-  &= -\frac{x^2}{2} + \frac{x^2-x}{4}\1_{(1/2,1)}(x) + Cx + D
+  &= -\frac{x^2}{2} - \frac{x^2-x}{4}\1_{(1/2,1)}(x) + Cx + D
 \end{align*}
 Damit $u \in H_0^1(\Omega)$, muss noch $u(0) = u(1) = 0$ erreicht werden
 \begin{align*}
@@ -47,8 +50,9 @@ Berechne nun die distributionelle Ableitung von $u^{\prime}(x)$:
   4\int_0^{1/2}\phi(x) - 2\int_{1/2}^1\phi(x)dx\right) \\
   &= -\int_0^1 \frac{1}{a(x)}\phi(x) dx.
 \end{align*}
-Also gilt auch für die distributionelle Ableitung $a(x)u^{\primeprime}(x) + 1 = 0$
-fast überall und somit für alle $v \in H_0^1(\Omega)$
+Also ist $u \in H_0^2(\Omega) \cap C^1(\Omega)$, es gilt $a(x)u^{\primeprime}(x) + 1 = 0$
+fast überall. Damit können wir alle Schritte aus der Motivation genauso wieder
+zurückgehen und erhalten
 \begin{align*}
   \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx &= 0 \\
   \iff - \int_0^{1/2}u^{\primeprime}(x)v(x) -2\int_{1/2}^1 u^{\primeprime}(x)v(x) dx
@@ -60,9 +64,6 @@ fast überall und somit für alle $v \in H_0^1(\Omega)$
   2\int_{1/2}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
   \iff \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) &= \int_\Omega v(x) dx
 \end{align*}
-Bei der partiellen Integration verwenden wir die stetige Differenzierbarkeit von $u$,
-sowie den Einbettungssatz von Sobolev für die Stetigkeit von
-$v \in H^1(\Omega) \subset C(\overline{\Omega})$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
