@@ -32,5 +32,13 @@ verändern Quantoren den Wahrheitswert der Formel nicht und können ignoriert we
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	Ein weiterer Vorschlag ist $\mathscr{L} = \{\leq\}$ und $\mathscr{M}_1 = 2\N$ sowie $\mathscr{M}_2 = \N$. Auch hier ist mir noch kein sauberer Beweis gelungen.
+	Da wir das Gleichheitssymbol ohnehin in unserer Sprache haben wollen wir uns nicht weiter belasten und nicht mehr in unsere Sprache aufnehmen, also keine Konstantensymbole, Funktionssymbole oder weitere Relationssymbole. Wäre $M_1$ endlich mit $n \in \N$ Elementen, dann gelten wegen $ |M_2| > |M_1| = n$ die Aussagen
+	\begin{align*}
+	\mathscr{M}_1 \nvDash \exists^{\geq n + 1} \ [b], \quad \mathscr{M}_2 \vDash \exists^{\geq n + 1} \ [b]
+	\end{align*} 
+	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N$ sowie $\mathscr{M}_2 = \Z$. Nach Satz IV.5.11. gibt es zu jeder Formel $\varphi$ eine Formel $\varphi^P$ in Pränexform mit $\vDash \varphi \leftrightarrow \varphi^P$. Es reicht also Formeln der Form 
+	 \begin{align*}
+	 Qx_1 \dots Qx_m \pbraces{\bigwedge_{i = 1}^n \bigvee_{j = 1}^{k_i} x_{f(i,j)} = x_{g(i,j)} }
+	 \end{align*}
+	 wobei $Q \in \{\exists, \forall\}$ und $f,g: \{(i,j) \mid i \in \{1, \dots, n\} \land j \in \{1, \dots, k_i\}\} \to \N \setminus\{0\}$, die Matrix haben wir hier in konjunktive Normalform (heißt das so?) gebracht. 
 \end{solution}
