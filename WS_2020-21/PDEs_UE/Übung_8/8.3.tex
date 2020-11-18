@@ -22,32 +22,33 @@ $Tv = v|\partial\Omega, Tu = u|\partial\Omega$:
   \iff u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} - u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} -
   2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
   \iff - 2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
-  \iff \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx = 0
+  \iff \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx &= 0
 \end{align*}
 Ansatz: Suche $u \in C^1(\Omega) \subset H_1(\Omega)$, sodass $u^{\primeprime}(x)a(x) + 1 = 0$ punktweise, sowie $u(0) = u(1) = 0$.
 \begin{align*}
   u(x) = -\int\int \frac{1}{a(z)} dz dy  &=
-  -\int_0^x\int_0^y \1_{(0,\frac{1}{2}]}(x) + \frac{1}{2}\cdot\1_{(\frac{1}{2},1)}(x) dz dy  \\
-  &= -\int_0^x y - \frac{2y-1}{4}\1_{(\frac{1}{2},1)}(y) + C dy \\
-  &= -\frac{x^2}{2} - \frac{x^2-x}{4}\1_{(\frac{1}{2},1)}(x) + Cx + D
+  -\int\int \1_{(0,\frac{1}{2}]}(x) + \frac{1}{2}\cdot\1_{(\frac{1}{2},1)}(x) dz dy  \\
+  &= -\int y - \frac{2y-1}{4}\1_{(\frac{1}{2},1)}(y) + C dy \\
+  &= -\frac{x^2}{2} + \frac{4x^2-4x+1}{16}\1_{(\frac{1}{2},1)}(x) + Cx + D
 \end{align*}
 Damit $u \in H_0^1(\Omega)$, muss noch $u(0) = u(1) = 0$ erreicht werden
 \begin{align*}
-  0 &\stackrel{!}{=} u(1) = -\frac{1}{2} - \frac{1-1}{4} + C + D \iff C + D = \frac{1}{2} \\
-  0 &\stackrel{!}{=} u(0) = D \iff D = 0 \iff C = \frac{1}{2} \\
+  0 &\stackrel{!}{=} u(1) = -\frac{1}{2} + \frac{1-1 + 1}{4} + C + D \iff C + D = \frac{1}{4} \\
+  0 &\stackrel{!}{=} u(0) = D \iff D = 0 \iff C = \frac{1}{4} \\
 \end{align*}
 Unser Lösungskandidat $u \in C^1(\Omega)$ ist also
 \begin{align*}
-  u(x) &= -\frac{1}{4}(2x^2-2x- (x^2-x)\1_{(\frac{1}{2},1)}(x)) \\
-  u^{\prime}(x) &= -\frac{1}{4}(4x -2 - (2x-1)\1_{(\frac{1}{2},1)}(x))
+  u(x) &= -\frac{1}{16}(8x^2-4x - (4x^2-4x+1)\1_{(\frac{1}{2},1)}(x)) \\
+  u^{\prime}(x) &= -\frac{1}{16}(16x - 4 - (8x-4)\1_{(\frac{1}{2},1)}(x))
 \end{align*}
 Berechne nun die distributionelle Ableitung von $u^{\prime}(x)$:
 \begin{align*}
   \langle u^{\primeprime}, \phi \rangle &= \langle u^{\prime}, -\phi^{\prime}\rangle
-  = -\int_0^1 u^{\prime}(x)\phi^{\prime}(x) dx = \frac{1}{4}\left(\int_0^{\frac{1}{2}}(4x-2)\phi^{\prime}(x) dx +
-  \int_{\frac{1}{2}}^1(4x-2-2x+1)\phi^{\prime}(x) dx\right) \\
-  &= \frac{1}{4}\left([(4x-2)\phi(x)]_{x=0}^{\frac{1}{2}} + [(2x-1)\phi(x)]_{x=0}^{\frac{1}{2}} -
-  4\int_0^{\frac{1}{2}}\phi(x) - 2\int_{\frac{1}{2}}^1\phi(x)dx\right) \\
+  = -\int_0^1 u^{\prime}(x)\phi^{\prime}(x) dx =
+  \frac{1}{16}\left(\int_0^{\frac{1}{2}}(16x-4)\phi^{\prime}(x) dx +
+  \int_{\frac{1}{2}}^1(16x-4-8x+4)\phi^{\prime}(x) dx\right) \\
+  &= \frac{1}{16}\left([(16x-4)\phi(x)]_{x=0}^{\frac{1}{2}} + [8x\phi(x)]_{x=1/2}^{1} -
+  16\int_0^{\frac{1}{2}}\phi(x) - 8\int_{\frac{1}{2}}^1\phi(x)dx\right) \\
   &= -\int_0^1 \frac{1}{a(x)}\phi(x) dx.
 \end{align*}
 Also ist $u \in H_0^2(\Omega) \cap C^1(\Omega)$, es gilt $a(x)u^{\primeprime}(x) + 1 = 0$
