@@ -20,7 +20,7 @@ def substitute(substitutions):
 
 # ---------------------------------------------------------------- #
 
-def rename(LVA)
+def rename(LVA):
 
     os.chdir(LVA)
 
