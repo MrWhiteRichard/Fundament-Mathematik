@@ -19,39 +19,66 @@ $Tv = v|\partial\Omega, Tu = u|\partial\Omega$:
 \begin{align*}
   \int_\Omega a(x)u^{\prime}(x)v^{\prime}(x) &= \int_\Omega v(x) dx \\
   \iff \int_0^{\frac{1}{2}} u^{\prime}(x)v^{\prime}(x)dx + 2\int_{\frac{1}{2}}^1 u^{\prime}(x)v^{\prime}(x) dx &= \int_0^1 v(x) dx \\
-  \iff u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} - u^{\prime}\pbraces{\frac{1}{2}}v\pbraces{\frac{1}{2}} -
-  2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
-  \iff - 2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
-  \iff \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx &= 0
+  \iff u^{\prime}\pbraces{\frac{1}{2}-}v\pbraces{\frac{1}{2}} - 2u^{\prime}\pbraces{\frac{1}{2}+}v\pbraces{\frac{1}{2}} -
+  2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
+  \iff u^{\prime}\pbraces{\frac{1}{2}-}v\pbraces{\frac{1}{2}} - 2u^{\prime}\pbraces{\frac{1}{2}+}v\pbraces{\frac{1}{2}} - 2\int_{\frac{1}{2}}^1 u^{\primeprime}(x)v(x) dx - \int_0^{\frac{1}{2}}u^{\primeprime}(x)v(x) &= \int_0^1 v(x) dx \\
+  \iff \int_0^1 v(x)(a(x)u^{\primeprime}(x) + 1) dx &=
+  \left(u^{\prime}\pbraces{\frac{1}{2}-}- 2u^{\prime}\pbraces{\frac{1}{2}-}\right)v\pbraces{\frac{1}{2}}
 \end{align*}
-Ansatz: Suche $u \in C^1(\Omega) \subset H_1(\Omega)$, sodass $u^{\primeprime}(x)a(x) + 1 = 0$ punktweise, sowie $u(0) = u(1) = 0$.
+Ansatz: Suche $u \in C(\Omega) \subset H_1(\Omega)$, sodass $u^{\primeprime}(x)a(x) + 1 = 0$ punktweise, sowie $u(0) = u(1) = 0, u^{\prime}(1/2-) - 2u^{\prime}(1/2+) = 0$.
 \begin{align*}
-  u(x) = -\int\int \frac{1}{a(z)} dz dy  &=
-  -\int\int \1_{(0,\frac{1}{2}]}(x) + \frac{1}{2}\cdot\1_{(\frac{1}{2},1)}(x) dz dy  \\
-  &= -\int y - \frac{2y-1}{4}\1_{(\frac{1}{2},1)}(y) + C dy \\
-  &= -\frac{x^2}{2} + \frac{4x^2-4x+1}{16}\1_{(\frac{1}{2},1)}(x) + Cx + D
+  u|_{[0,1/2]}(x) = -\int\int \frac{1}{a(z)} dz dy  &=
+  -\int\int 1 dz dy  \\
+  &= -\int y + C dy \\
+  &= -\frac{x^2}{2} + C_1x + D_1
 \end{align*}
-Damit $u \in H_0^1(\Omega)$, muss noch $u(0) = u(1) = 0$ erreicht werden
+Bestimme nun die Konstanten:
 \begin{align*}
-  0 &\stackrel{!}{=} u(1) = -\frac{1}{2} + \frac{1-1 + 1}{4} + C + D \iff C + D = \frac{1}{4} \\
-  0 &\stackrel{!}{=} u(0) = D \iff D = 0 \iff C = \frac{1}{4} \\
+  0 &\stackrel{!}{=} u(0) = D_1 \iff D_1 = 0 \\
+  u\pbraces{\frac{1}{2}-} &= -\frac{1}{8} + \frac{C_1}{2} \\
+  u^{\prime}\pbraces{\frac{1}{2}-} &= -\frac{1}{2} + C_1
 \end{align*}
-Unser Lösungskandidat $u \in C^1(\Omega)$ ist also
 \begin{align*}
-  u(x) &= -\frac{1}{16}(8x^2-4x - (4x^2-4x+1)\1_{(\frac{1}{2},1)}(x)) \\
-  u^{\prime}(x) &= -\frac{1}{16}(16x - 4 - (8x-4)\1_{(\frac{1}{2},1)}(x))
+  u|_{[1/2,1]}(x) = -\int\int \frac{1}{a(z)} dz dy  &=
+  -\int\int \frac{1}{2} dz dy  \\
+  &= -\int \frac{y}{2} + C_2 dy \\
+  &= -\frac{x^2}{4} + C_2x + D_2
 \end{align*}
+\begin{align*}
+  0 &\stackrel{!}{=} u(1) = -\frac{1}{4} + C_2 + D_2 \iff C_2 + D_2 = \frac{1}{4} \\
+  0 &\stackrel{!}{=} u^{\prime}\pbraces{\frac{1}{2}-} - 2u^{\prime}\pbraces{\frac{1}{2}} =
+  -\frac{1}{2} + C_1 + \frac{1}{2} - 2C_2 \iff C_1 - 2C_2 = 0 \\
+  0 &\stackrel{!}{=} u\pbraces{\frac{1}{2}-} - u\pbraces{\frac{1}{2}+}
+  = -\frac{1}{8} + \frac{C_1}{2} + \frac{1}{16} - \frac{C_2}{2} - D_2
+  \iff C_1 - C_2 - 2D_2 = \frac{1}{8} \\
+  &\iff 2C_2 - C_2 -2\left(\frac{1}{4} - C_2\right) = \frac{1}{8}
+  \iff 3C_2  = \frac{5}{8} \iff C_2 = \frac{5}{24} \\
+  &\iff C_1 = \frac{5}{12} \iff D_2 = \frac{1}{24}
+\end{align*}
+Damit lautet unser Lösungskandidat
+\begin{align*}
+  u(x) &= \begin{cases}
+    -\frac{x^2}{2} + \frac{5x}{12}, & 0\leq x \leq \frac{1}{2} \\
+    -\frac{x^2}{4} + \frac{5x}{24} + \frac{1}{24}, & \frac{1}{2} < x \leq 1.
+  \end{cases} \\
+  u^{\prime}(x) &= \begin{cases}
+    -x + \frac{5}{12}, & 0\leq x \leq \frac{1}{2} \\
+    -\frac{x}{2} + \frac{5}{24}, & \frac{1}{2} < x \leq 1.
+  \end{cases} \\
+\end{align*}
+Da $u$ stetig ist, stimmt zumindest die erste distributionelle Ableitung
+mit der klassischen Ableitung überein. \\
 Berechne nun die distributionelle Ableitung von $u^{\prime}(x)$:
 \begin{align*}
   \langle u^{\primeprime}, \phi \rangle &= \langle u^{\prime}, -\phi^{\prime}\rangle
   = -\int_0^1 u^{\prime}(x)\phi^{\prime}(x) dx =
-  \frac{1}{16}\left(\int_0^{\frac{1}{2}}(16x-4)\phi^{\prime}(x) dx +
-  \int_{\frac{1}{2}}^1(16x-4-8x+4)\phi^{\prime}(x) dx\right) \\
-  &= \frac{1}{16}\left([(16x-4)\phi(x)]_{x=0}^{\frac{1}{2}} + [8x\phi(x)]_{x=1/2}^{1} -
-  16\int_0^{\frac{1}{2}}\phi(x) - 8\int_{\frac{1}{2}}^1\phi(x)dx\right) \\
+  \frac{1}{24}\left(\int_0^{\frac{1}{2}}(4x-2)\phi^{\prime}(x) dx +
+  \int_{\frac{1}{2}}^1(2x-1)\phi^{\prime}(x) dx\right) \\
+  &= \frac{1}{4}\left([(4x-2)\phi(x)]_{x=0}^{\frac{1}{2}} + [(2x-1)\phi(x)]_{x=1/2}^{1} -
+  4\int_0^{\frac{1}{2}}\phi(x) - 2\int_{\frac{1}{2}}^1\phi(x)dx\right) \\
   &= -\int_0^1 \frac{1}{a(x)}\phi(x) dx.
 \end{align*}
-Also ist $u \in H_0^2(\Omega) \cap C^1(\Omega)$, es gilt $a(x)u^{\primeprime}(x) + 1 = 0$
+Also ist $u \in H_0^2(\Omega)$, es gilt $a(x)u^{\primeprime}(x) + 1 = 0$
 fast überall. Damit können wir alle Schritte aus der Motivation genauso wieder
 zurückgehen und erhalten
 \begin{align*}

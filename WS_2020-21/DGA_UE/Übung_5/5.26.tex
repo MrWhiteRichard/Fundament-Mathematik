@@ -15,8 +15,15 @@ zu bestimmen ($a \geq 1$). Überprüfen Sie Ihre Schranke mittels Substitutionsm
 
 \begin{solution}
 
-ToDo!
-
+Hier stelle man sich einen schönen Rekursionsbaum vor. \\
+Aus ebenjenem Baum liest man leicht unsere Vermutung für die asymptotische obere Schranke ab. \\
+Wir zeigen mittels vollständiger Induktion: $T(na) \leq n^2 + nT(a)$.
+\begin{align*}
+  n = 1&: \quad T(a) \leq 1^2 + 1T(a) \\
+  n \rightsquigarrow n+1&: \quad T((n+1)a) = T(na) + T(a) + n \leq n^2 + nT(a) + T(a) + n
+  \leq (n+1)^2 + (n+1)T(a).
+\end{align*}
+Daher erhalten wir $T(na) = \Landau(n^2)$
 \end{solution}
 
 % --------------------------------------------------------------------------------
