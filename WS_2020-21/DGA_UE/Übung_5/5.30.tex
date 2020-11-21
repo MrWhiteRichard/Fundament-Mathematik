@@ -14,9 +14,15 @@ für $n > t$ und $a_n = 1$ für $n \leq t$ mit $f,g,h: \N \rightarrow \N^+$ und 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+Wir zeigen zuerst die obere Schranke $a_n \leq 2n - 1$:
+\begin{align*}
+  a_n = a_{f(n)} + a_{g(n)} + a_{h(n)} + 1 \leq 2(f(n) + g(n) + h(n)) - 3 + 1 \leq 2n.
+\end{align*}
+Untere Schranke: $a_n \geq n$:
+\begin{align*}
+  a_n = a_{f(n)} + a_{g(n)} + a_{h(n)} + 1 \geq f(n) + g(n) + h(n) + 1 = n + 1 \geq n.
+\end{align*}
+Damit haben wir insgesamt $a_n = \Theta(n)$ gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------

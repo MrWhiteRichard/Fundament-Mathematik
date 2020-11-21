@@ -16,8 +16,21 @@ zu finden. Verifizieren Sie Ihre Schranke mittels Substitutionsmethode.
 
 \begin{solution}
 
-ToDo!
-
+\begin{align*}
+  \Tree [n/5 n/5 n/5 n/5 (4n)/5 ].n
+\end{align*}
+\begin{align*}
+  T(n) = n + \frac{8n}{5} + \frac{64n}{25} + \cdots
+\end{align*}
+obere Schranke: $T(n) \leq n^2$
+\begin{align*}
+  T(5n) = 4T(n) + T(4n) + n \leq 4n^2 + 16n^2 + n \leq
+  (5n)^2.
+\end{align*}
+untere Schranke: $T(n) \geq n$:
+\begin{align*}
+  T(5n) = 4T(n) + T(4n) + n \geq 4n + 4n + n \geq 5n. 
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------

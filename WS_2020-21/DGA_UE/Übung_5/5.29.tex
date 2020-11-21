@@ -5,19 +5,34 @@
 Gegeben ist die Divide-and-Conquer-Rekursion
 
 \begin{align*}
-  T(n) = aT(\frac{n}{b}) + f(n)
+  T(n) = aT\left(\frac{n}{b}\right) + f(n)
 \end{align*}
 
-wobei $f(n)$ eine nichtnegative Funktion mit asymptotischen Wachstum $\Theta(n^{\log_ba}\log n)$ ist. Zeigen Sie für den Fall $n = b^k, k \in \N$, dass $T(n) = \Theta(n^{\log_ba}\log^2 (n))$
+wobei $f(n)$ eine nichtnegative Funktion mit asymptotischen Wachstum $\Theta(n^{\log_b(a)}\log (n))$ ist. Zeigen Sie für den Fall $n = b^k, k \in \N$, dass $T(n) = \Theta(n^{\log_b(a)}\log^2 (n))$
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-ToDo!
-
+Wir gehen wie im Beweis des Master-Theorems vor:
+\begin{align*}
+  T(n) &= \Theta\left(n^{\log_b(a)}\right) +
+  \underbrace{\sum_{w \in X_I(n)}a^{|w|}f\left(\frac{n}{b^{|w|}}\right)}_{=: g(n)} \\
+  g(n) &= \Theta\left(\sum_{w \in X_I(n)}a^{|w|}
+  \left(\frac{n}{b^{|w|}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{|w|}}\right))\right) \\
+  &\stackrel{?}{=} \Theta\left(\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}a^{j}
+  \left(\frac{n}{b^{j}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{j}}\right)\right) \\
+  &= \Theta\left(n^{\log_b(a)}\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}
+  \left(\frac{a}{b^{\log_b(a)}}\right)^j \log \left(\frac{n}{b^{j}}\right)\right) \\
+  &= \Theta\left(n^{\log_b(a)}\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}
+  \log(n) - j\log(b)\right) \\
+  &= \Theta\left(n^{\log_b(a)}\lfloor \log_b(n) \rfloor\left(\log(n) -
+  \log(b)\frac{\lfloor \log_b(n) \rfloor -1}{2}\right)\right) \\
+  &= \Theta\left(n^{\log_b(a)}\lfloor \log_b(n) \rfloor^2\right)
+  =  \Theta\left(n^{\log_b(a)}\log^2(n)\right)
+\end{align*}
+Das ? machen wir im Skript genauso, ich weiß aber nicht genau warum wir das dürfen.
 \end{solution}
 
 % --------------------------------------------------------------------------------
