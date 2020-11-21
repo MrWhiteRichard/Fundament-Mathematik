@@ -19,10 +19,10 @@ Wir gehen wie im Beweis des Master-Theorems vor:
 \begin{align*}
   T(n) &= \Theta\left(n^{\log_b(a)}\right) +
   \underbrace{\sum_{w \in X_I(n)}a^{|w|}f\left(\frac{n}{b^{|w|}}\right)}_{=: g(n)} \\
-  g(n) &= \sum_{w \in X_I(n)}a^{|w|}
-  \Theta\left(\left(\frac{n}{b^{|w|}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{|w|}}\right))\right) \\
-  &\stackrel{?}{=} \sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}a^{j}
-  \Theta\left(\left(\frac{n}{b^{j}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{j}}\right)\right) \\
+  g(n) &= \Theta\left(\sum_{w \in X_I(n)}a^{|w|}
+  \left(\frac{n}{b^{|w|}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{|w|}}\right))\right) \\
+  &\stackrel{?}{=} \Theta\left(\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}a^{j}
+  \left(\frac{n}{b^{j}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{j}}\right)\right) \\
   &= \Theta\left(n^{\log_b(a)}\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}
   \left(\frac{a}{b^{\log_b(a)}}\right)^j \log \left(\frac{n}{b^{j}}\right)\right) \\
   &= \Theta\left(n^{\log_b(a)}\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}
