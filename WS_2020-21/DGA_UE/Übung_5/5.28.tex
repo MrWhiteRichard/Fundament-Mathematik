@@ -18,8 +18,67 @@ Finden Sie für folgende Rekursionen $T(n)$ asymptotische untere und obere Schra
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
+\includegraphicsboxed{DGA/DGA - Satz 4.4 (Master-Theorem für Teile-und-herrsche-Rekursionsgleichungen).png}
 
-ToDo!
+\begin{enumerate}[label = \alph*]
+  \item Es ist $a = 2, b = 3$ und wir sind im Fall $3.$ (mit $c := \frac{2}{3}$), denn
+
+    \begin{align*}
+      2f(\frac{n}{3})
+      =
+      \frac{2}{3}n \log(\frac{n}{3})
+      =
+      \frac{2}{3}n \Big( \log n - \log 3\Big)
+      \leq
+      \frac{2}{3} n\log n
+    \end{align*}
+  Also gilt $T(n) = \Theta(n\log n)$.
+
+  \item Es ist $a = 1, b = \frac{9}{8}$ und wir sind im Fall $3.$ (mit $c := \frac{8}{9}$), denn
+    \begin{align*}
+      f(\frac{8n}{9})
+      =
+      \frac{8}{9}n
+    \end{align*}
+  Also gilt $T(n) = \Theta(n)$.
+
+  \item Es ist $a = 11, b = 3$ und wir sind im Fall $1.$ (mit $\varepsilon := \log_3(11)-1.5$), denn
+
+    \begin{align*}
+      \log_3(11) \approx 2.182 > 1.5 \implies \varepsilon > 0 \\
+      f(n)
+      =
+      \Landau(n^{\log_3(11)-\varepsilon})
+    \end{align*}
+  Also gilt $T(n) = \Theta(n^{\log_3(11)})$.
+
+  \item Es ist $a = 4, b = 2$ und wir sind im Fall $1.$ (mit $\varepsilon := 1$), denn
+
+    \begin{align*}
+      f(n)
+      =
+      \Landau(n^{\log_2(4)-1})
+    \end{align*}
+  Also gilt $T(n) = \Theta(n^2)$.
+
+  \item Es ist $a = 4, b = 2$ und wir sind im Fall $2.$, denn
+    \begin{align*}
+      f(n) = \Theta(n^2)
+    \end{align*}
+  Also gilt $T(n) = \Theta(n^2 \log n)$.
+
+  \item Es ist $a = 4, b = 2$ und wir sind im Fall $3.$ (mit $c := \frac{1}{2}$), denn
+
+    \begin{align*}
+      4f(\frac{n}{2})
+      =
+      4 \Big(\frac{n}{2}\Big)^3
+      =
+      \frac{1}{2} n^3
+    \end{align*}
+  Also gilt $T(n) = \Theta(n^3)$
+\end{enumerate}
 
 \end{solution}
 

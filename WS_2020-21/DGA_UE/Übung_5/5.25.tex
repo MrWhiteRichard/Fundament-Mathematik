@@ -10,7 +10,42 @@ Lösen Sie die Rekursion $T(1) = 1$ und $T(n) = 3T(\frac{n}{2}) + n^2 + n$ für 
 
 \begin{solution}
 
-ToDo!
+Setzen wir also zuerst ein paar mal ein (und addieren dabei nicht direkt damit man das Schema erkennen kann):
+
+\begin{align*}
+  T(2^0) &= 1 \\
+  T(2^1) &= 3 + 4 + 2 = 2 + 3 + 2^2 \\
+  T(2^2) &= 3\cdot2 + 3^2 +3\cdot2^2 + 2^4 + 2^2 = 2^2 + 2\cdot3 + 3^2+ 2^4+ 3\cdot2^2\\
+  T(2^3) &= 3^2\cdot2 + 3^3 +2^2\cdot3^2 +3\cdot2^4 +3\cdot2^2 + 2^6 +2^3 = 2^3 + 2^2\cdot3 + 2\cdot3^2 + 3^3 + 2^4+ 2^6 +3\cdot2^4 + 3^2\cdot2^2
+\end{align*}
+
+Wir stellen die Vermutung
+
+\begin{align*}
+  T(2^k) = \sum_{i=0}^k 2^{k-i}3^i + \sum_{i=0}^{k-1} 2^{2(k-i)} 3^i
+\end{align*}
+auf. Um diese zu Verifizieren verwenden wir Induktion (über $k$). \\
+IA$(k=0)$:
+
+\begin{align*}
+  T(1) = 1 = 2^0 \cdot 3^0
+\end{align*}
+IV: $T(2^k) = \sum_{i=0}^k 2^{k-i}3^i + \sum_{i=0}^{k-1} 2^{2(k-i)} 3^i$ \\
+
+IS:~$k \mapsto k+1$
+\begin{align*}
+  T(2^{k+1})
+  &=
+  3T(2^k) + 2^{2(k+1)} + 2^{k+1}
+  \stackrel{IV}{=}
+  3(\sum_{i=0}^k 2^{k-i}3^i + \sum_{i=0}^{k-1} 2^{2(k-i)} 3^i) + 2^{2(k+1)} + 2^{k+1} \\
+  &=
+  \sum_{i=0}^k 2^{k-i}3^{i+1} + \sum_{i=0}^{k-1} 2^{2(k-i)} 3^{i+1} + 2^{2(k+1)} + 2^{k+1}
+  =
+  \sum_{i=1}^{k+1} 2^{k-(i-1)}3^{i} + \sum_{i=1}^{k} 2^{2[k-(i-1)]} 3^{i} + 2^{2(k+1)} + 2^{k+1} \\
+  &=
+  \sum_{i=0}^{k+1} 2^{k+1-i}3^{i} + \sum_{i=0}^{k} 2^{2[(k+1)-i]} 3^{i}
+\end{align*}
 
 \end{solution}
 
