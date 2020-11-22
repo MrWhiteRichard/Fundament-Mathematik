@@ -34,3 +34,39 @@ untere Schranke: $T(n) \geq n$:
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}	
+	\begin{align*}
+	\Tree [n/5 n/5 n/5 n/5 (4n)/5 ].n
+	\end{align*}
+	Der Baum hat Arität $5$ und eine Tiefe von $\log_{\frac{5}{4}}(n)$. Die Anzahl der Blätter können wir abschätzen durch $5^{\log_\frac{5}{4}(n)} = n^{\log_{\frac{5}{4}}(5)}$. Durch das Masterheorem kann man sich 
+	\begin{align*}
+	T(n) = 4 T\pbraces{\frac{n}{5}} + T\pbraces{\frac{4n}{5}} + n \leq 5 T\pbraces{\frac{4n}{5}} + n = \Landau\pbraces{n^{\log_\frac{5}{4}(5)}} \\
+	T(n) = 4 T\pbraces{\frac{n}{5}} + T\pbraces{\frac{4n}{5}} + n \geq 5 T\pbraces{\frac{n}{5}} + n = \Omega\pbraces{n\log(n)}
+	\end{align*} 
+	klar machen, wie man das aus dem Rekursionsbaum ablesen kann weiß ich nicht. Hier jedenfalls der Beweis.
+	Für den Induktionsanfang wollen wir $\forall m \in \{n_0, \dots, 5n_0 - 1\} \ \pbraces{T(m) \stackrel{!}{\leq} c_0 m^{\log_\frac{5}{4}(5)}}$ beziehungsweise $T(m) \geq c_1 m \log(m)$.
+	Für alle $n \geq 5n_0$ wünschen wir uns
+	\begin{align*}
+	c_0 n^{\log_\frac{5}{4}(5)} \stackrel{!}{\geq} T(n) = 4 T\pbraces{\frac{n}{5}} + T\pbraces{\frac{4n}{5}} + n \leq 4 c_0 \pbraces{\frac{n}{5}}^{\log_\frac{5}{4}(5)} + c_0 \pbraces{\frac{4n}{5}}^{\log_\frac{5}{4}(5)} + n \\
+	\Leftarrow c_0 n^{\log_{\frac{5}{4}}(5)} \pbraces{1 - 4  \pbraces{\frac{1}{5}}^{\log_\frac{5}{4}(5)} - \pbraces{\frac{4}{5}}^{\log_\frac{5}{4}(5)}} \geq n 
+	\end{align*}
+	wobei $\pbraces{\frac{4}{5}}^{\log_\frac{5}{4}(5)} = \pbraces{\frac{5}{4}}^{-\log_\frac{5}{4}(5)} = \frac{1}{5}$.
+	Es sieht so aus als müssten wir keine Bedingungen an $n_0$ stellen, für $c_0$ wollen wir
+	\begin{enumerate}
+		\item $\forall m \in \{n_0, \dots, 5n_0 - 1\} \ \pbraces{T(m) \leq c_0 m^{\log_\frac{5}{4}(5)}}$
+		\item $\forall n \geq 5n_0 \ \pbraces{c_0 n^{\log_{\frac{5}{4}}(5)} \pbraces{1 - 4  \pbraces{\frac{1}{5}}^{\log_\frac{5}{4}(5)} - \pbraces{\frac{4}{5}}^{\log_\frac{5}{4}(5)}} \geq n}$
+	\end{enumerate}
+	Nun das gleiche noch für die untere Schranke. 
+	\begin{align*}
+	c_1 n\log(n) \leq T(n) = 4 T\pbraces{\frac{n}{5}} + T\pbraces{ \frac{4n}{5}} + n \geq c_1 \frac{4n}{5} \log\pbraces{\frac{n}{5}} + c_1 \frac{4n}{5} \log\pbraces{\frac{4n}{5}} + n \\
+	\Leftarrow c_1 4n (\log(n) - \log(5)) + c_1 4n (\log(4) + \log(n) - \log(5)) + 5n - c_1 5n \log(n) \geq 0 \\
+	\Leftarrow c_1 n(3 \log(n) - 8 \log(5) + 4 \log(4)) + 5n \geq 0
+	\end{align*}
+	Wir wünschen uns also $n_0$ und $c_1$ mit 
+		\begin{enumerate}
+		\item $\forall n \geq n_0 \pbraces{3 \log(n) - 8 \log(5) + 4 \log(4) \geq 0}$
+		\item $\forall m \in \{n_0, \dots, 5n_0 - 1\} \ \pbraces{T(m) \geq c_1 m^{\log_\frac{5}{4}(5)}}$
+		\item $\forall n \geq 5n_0 \ \pbraces{c_1 n(3 \log(n) - 8 \log(5) + 4 \log(4)) + 5n \geq 0}$
+	\end{enumerate}
+\end{solution}
