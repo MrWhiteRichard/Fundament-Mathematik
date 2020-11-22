@@ -5,7 +5,7 @@
 Verwenden Sie einen Rekursionsbaum, um eine asymptotische untere sowie eine asymptotisch obere Schranke (brauchen nicht dieselbe Größenordnung zu haben) für die Rekursion
 
 \begin{align*}
-  T(n) = 4T(\frac{n}{5}) + T(\frac{4n}{5}) + n
+  T(n) = 4T\left(\frac{n}{5}\right) + T\left(\frac{4n}{5}\right) + n
 \end{align*}
 
 zu finden. Verifizieren Sie Ihre Schranke mittels Substitutionsmethode.
@@ -27,9 +27,11 @@ obere Schranke: $T(n) \leq n^2$
   T(5n) = 4T(n) + T(4n) + n \leq 4n^2 + 16n^2 + n \leq
   (5n)^2.
 \end{align*}
-untere Schranke: $T(n) \geq n$:
+untere Schranke: $T(n) \geq n\log(n)$ für $n > 2$:
 \begin{align*}
-  T(5n) = 4T(n) + T(4n) + n \geq 4n + 4n + n \geq 5n.
+  T(5n) &= 4T(n) + T(4n) + n \geq 4n\log(n) + 4n\log(4n) + n = 4n\log(4n^2) + n
+  = 8n\log(2n) + n \\
+   &= 5\log((2n)^{8/5}) + n \geq 5\log(5n)
 \end{align*}
 \end{solution}
 
