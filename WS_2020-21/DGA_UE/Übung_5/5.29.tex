@@ -36,3 +36,16 @@ Das ? machen wir im Skript genauso, ich weiß aber nicht genau warum wir das dü
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}
+	Wir schauen uns noch einen alternativen Beweis an. Dafür definieren wir für alle $k \in \N$ die Funktion $S(k) := T(b^k)$ und erhalten für $k \in \N^+$
+	\begin{align*}
+	S(k) = T(b^k) = aT(b^{k-1}) + f(b^k) = a S(k-1) + f(b^k)
+	\end{align*}
+	Nun wollen wir $S(k) = \Theta(a^k k^2 (\log(b))^2)$ beweisen, wobei $f(b^k) = \Theta(a^k k\log(b))$. Wir wählen zuerst ein $c_0 > 0$ und ein $k_0 \in \N$, sodass für alle $k \geq k_0$ gilt, dass $f(b^k) \leq c_0 a^k k \log(b)$. Weiters wünschen wir uns für alle $k \geq k_0$
+	\begin{align*}
+	c_1 a^k k^2 (\log(b))^2 \geq S(k) = a S(k-1) + f(b^k) \leq  c_1 a^k (k - 1)^2 (\log(b))^2 + c_0 a^k k \log(b) \\
+	\Leftarrow c_1 a^k (\log(b))^2( k^2 - (k -1)^2) \geq c_0 a^k k \log(b) \\
+	\Leftarrow c_1 \geq \frac{c_0 k}{(2k -1) \log(b)}
+	\end{align*}
+\end{solution}
