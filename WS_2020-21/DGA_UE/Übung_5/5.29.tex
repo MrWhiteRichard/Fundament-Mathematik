@@ -44,8 +44,14 @@ Das ? machen wir im Skript genauso, ich weiß aber nicht genau warum wir das dü
 	\end{align*}
 	Nun wollen wir $S(k) = \Theta(a^k k^2 (\log(b))^2)$ beweisen, wobei $f(b^k) = \Theta(a^k k\log(b))$. Wir wählen zuerst ein $c_0 > 0$ und ein $k_0 \in \N$, sodass für alle $k \geq k_0$ gilt, dass $f(b^k) \leq c_0 a^k k \log(b)$. Weiters wünschen wir uns für alle $k \geq k_0$
 	\begin{align*}
-	c_1 a^k k^2 (\log(b))^2 \geq S(k) = a S(k-1) + f(b^k) \leq  c_1 a^k (k - 1)^2 (\log(b))^2 + c_0 a^k k \log(b) \\
+	c_1 a^k k^2 (\log(b))^2 \stackrel{!}{\geq} S(k) = a S(k-1) + f(b^k) \leq  c_1 a^k (k - 1)^2 (\log(b))^2 + c_0 a^k k \log(b) \\
 	\Leftarrow c_1 a^k (\log(b))^2( k^2 - (k -1)^2) \geq c_0 a^k k \log(b) \\
 	\Leftarrow c_1 \geq \frac{c_0 k}{(2k -1) \log(b)}
+	\end{align*}
+	und zuletzt wollen wir noch, um beim Induktionsanfang keine Probleme zu bekommen, $S(k_0) \geq c_1 a^{k_0} k_0^2 (\log(b))^2$. \\
+	Für die andere Abschätzung wollen wir $c_2 > 0$ und $k_1 \in \N$, sodass für alle $k \geq k_0$ die Ungleichung $f(b^k) \geq c_2 a^k k \log(b)$ gilt. Diesmal handeln wir den Induktionsanfang gleich ab und wünschen uns $c_3 > 0$ mit $S(k_0) \geq c_3 a^{k_0} k_0^2 (\log(b))^2 $. Darüber hinaus wollen wir noch für alle $k > k_0$
+	\begin{align*}
+	c_3 a^k k^2 (\log(b))^2 \stackrel{!}{\leq} S(k) = a S(k-1) + f(b^k) \geq c_3 a^k (k - 1)^2 (\log(b))^2 + c_2 a^k k \log(b) \\
+	\Leftarrow c_3 \leq \frac{c_2 k}{(2k - 1) \log(b)}   
 	\end{align*}
 \end{solution}
