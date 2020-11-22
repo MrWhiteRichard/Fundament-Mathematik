@@ -50,7 +50,17 @@ untere Schranke: $T(n) \geq n$:
     \sum_{i=0}^{\log_{\frac{5}{4}}(n)-1} \Big(\frac{8}{5}\Big)^i n + n^{\log_{\frac{5}{4}}(5)} = \Landau\pbraces{n^{\log_\frac{5}{4}(5)}}
   \end{align*}
 
+  Für die untere Schranke betrachten wir
 
+  \begin{align*}
+	\Tree [n/5 n/5 n/5 n/5 n/5 ].n
+	\end{align*}
+
+  Hier haben alle Ebenen den Aufwand $n$, die Tiefe ist $\log_5(n)$ und die Anzahl der Blätter $5^{\log_5(n)} = n$. Somit
+
+  \begin{align*}
+    T(n) = \sum_{i=0}^{\log_5(n)-1} n + n = \Omega(n \log n)
+  \end{align*}
   Hier jedenfalls der Beweis.
 	Für den Induktionsanfang wollen wir $\forall m \in \{n_0, \dots, 5n_0 - 1\} \ \pbraces{T(m) \stackrel{!}{\leq} c_0 m^{\log_\frac{5}{4}(5)}}$ beziehungsweise $T(m) \geq c_1 m \log(m)$.
 	Für alle $n \geq 5n_0$ wünschen wir uns
