@@ -10,5 +10,17 @@ $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ und $M_1 \neq M_2$.
 	\begin{align*}
 	\mathscr{M}_1 \nvDash \exists^{\geq n + 1} \ [b], \quad \mathscr{M}_2 \vDash \exists^{\geq n + 1} \ [b]
 	\end{align*}
-	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N \setminus \{0\}$ sowie $\mathscr{M}_2 = \N$.
+	 Also müssen $M_1$ und $M_2$ mindestens abzählbar undendlich viele Elemente haben. Wir wählen $\mathscr{M}_1 = \N \setminus \{0\}$ sowie $\mathscr{M}_2 = \N$. Wir zeigen zuerst mittels Induktion nach Formelaufbau
+	 \begin{align*}
+	 \forall \varphi \forall x \forall b \exists k \in \N \setminus  \{0\} \forall l \geq k (x \text{ Variable }, \varphi \text{ Formel }, b \text{ Belegung mit Werten in } M_1 \Rightarrow \widehat{b_{x \to 0}}(\varphi) = \widehat{b_{x \to l}}(\varphi))
+	 \end{align*}
+	 Für eine Atomformel der Form $x = x$ ist die Aussage Trivial, für eine der Form $x = y$ wählen wir $k > b(y)$. Exemplarisch rechnen wir
+	 \begin{align*}
+	 \widehat{b_{x \to 0}}(\varphi_1 \land \varphi_2) = \widehat{b_{x \to 0}}(\varphi_1) \land_B \widehat{b_{x \to 0}}(\varphi_2) = \widehat{b_{x \to k_1}}(\varphi_1) \land_B  \widehat{b_{x \to k_2}}(\varphi_2) = \widehat{b_{x \to \max\{k_1, k_2\}}}(\varphi_1 \land \varphi_2).
+	 \end{align*}
+	 Weiters gilt 
+	 \begin{align*}
+	 \widehat{b_{x \to 0}}(\forall \varphi) = \inf\{\widehat{(b_{x \to 0})_{y \to m}}(\varphi) \mid m \in M_1\} =  \inf\{\widehat{(b_{y \to m})_{x \to 0}}(\varphi) \mid m \in M_1\} = \inf\{\widehat{(b_{y \to m})_{x \to k_m}}(\varphi) \mid m \in M_1\}
+	 \end{align*}
+	 Hier weiß ich nicht mehr weiter...
 \end{solution}

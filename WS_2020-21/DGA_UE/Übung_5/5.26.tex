@@ -28,4 +28,31 @@ Wir zeigen mittels vollständiger Induktion: $T(na) \leq n^2 + nT(a)$.
 Daher erhalten wir $T(na) = \Landau(n^2)$
 \end{solution}
 
+\begin{solution}
+
+	\begin{align*}
+	\Tree [.n [.n-a [ n-3a T(a) ].n-2a T(a) ].n-a [.T(a) ].T(a) ]
+	\end{align*}
+	
+	Der Baum hat eine Tiefe von $\frac{n}{a}$ und auf jeder Höhe hat er zwei Blätter also insgesamt $2\frac{n}{a}$ Blätter. Außerdem ist der Aufwand in Tiefe $k$ gegeben durch $n - ka + T(a)$. Wir berechenen
+	\begin{align*}
+	\sum_{k=0}^{\frac{n}{a} - 1} (n - ka + T(a)) + 2 \frac{n}{a} = a \sum_{k = 1}^{\frac{n}{a} - 1} k + \frac{n}{a} (T(a) + 2) 
+	\end{align*}
+	Also ist die Vermutung $T(n) = \Landau(n^2)$. Wir wollen also zeigen
+	\begin{align*}
+	\exists c >0 \ \exists n_0 \in \N \ \forall n \geq n_0 \ T(n) \leq c n^2
+	\end{align*}
+	Für alle $n < a$ gilt dies können wir ein beliebiges $c > 0$ aussuchen, da $T(n) = 0$. Außerdem wollen wir $c$ hinreichend groß, dass $T(a) \leq c a^2$ gilt. Unter der Annahme, dass für $n > a$ alle $k < n$ gilt, dass $T(k) \leq c k^2$ wünschen wir uns
+	\begin{align*}
+	c n^2 \stackrel{!}{\geq} T(n) = T(n - a) + T(a) + n \geq c(n - a)^2 + ca^2 + n = cn^2 - 2cna + 2ca^2 + n \\ 
+	\Leftrightarrow 2ca(n - a) \geq n \Leftrightarrow c \geq \frac{n}{2a(n - a)}
+	\end{align*}
+	Zusammengefasst wollen wir
+	\begin{enumerate}
+		\item $n_0 = 0$
+		\item $c \geq \frac{T(a)}{a^2}$
+		\item $\forall n > a \ (c \geq \frac{n}{2a(n - a)})$
+	\end{enumerate}
+\end{solution}
+
 % --------------------------------------------------------------------------------
