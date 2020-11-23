@@ -13,7 +13,43 @@ unerfüllbar sind.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
+\begin{enumerate}
+  \item Im ersten Schritt schreiben wir die Formel zur erfüllungsäquivalenten Formel
+  von letzter Woche um:
+  \begin{align*}
+    \forall z\,((P(c) \lor P(d)) \land \neg P(z))
+  \end{align*}
+  Also betrachten wir folgende Klauselmenge:
+  \begin{align*}
+    \{\{P(c), P(d)\};\{\neg P(z)\}\}
+  \end{align*}
+  Resolutionsableitung:
+  \begin{flalign*}
+    C_1 &= \{P(c), P(d)\} &\\
+    C_2 &= \{\neg P(z)\} &\\
+    C_3 &= \mathrm{Res}(C_1,C_2) = \{P(c)\} & (\sigma: z \mapsto d)\\
+    C_4 &= \mathrm{Res}(C_2,C_3) = \emptyset  & (\sigma: z \mapsto c)
+  \end{flalign*}
+  \item Im ersten Schritt schreiben wir die Formel zur erfüllungsäquivalenten Formel
+  von letzter Woche um:
+  \begin{align*}
+    \forall z\,((P(g(z)) \lor P(f(z))) \land \neg P(z))
+  \end{align*}
+  Also betrachten wir folgende variablendisjunkte Klauselmenge:
+  \begin{align*}
+    \{\{P(g(z)), P(f(z))\};\{\neg P(x)\}\}
+  \end{align*}
+  Resolutionsableitung:
+  \begin{flalign*}
+    C_1 &= \{P(g(z)), P(f(z))\} &\\
+    C_2 &= \{\neg P(x)\} &\\
+    C_3 &= \mathrm{Res}(C_1,C_2) = \{P(g(z))\} & (\sigma: x \mapsto f(z))\\
+    C_4 &= \mathrm{Res}(C_2,C_3) = \emptyset  & (\sigma: x \mapsto g(z))
+  \end{flalign*}
 
-  \phantom{}
+\end{enumerate}
+
+
 
 \end{solution}
