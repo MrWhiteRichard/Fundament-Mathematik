@@ -13,12 +13,11 @@ Schritte hat.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Resolutionsableitung:
-\begin{flalign*}
-  C_1 &= \{P(a)\} & \\
-  C_2 &= \{\neg P(x), P(f(x))\} & \\
-  C_3 &= \mathrm{Res}(C_1,C_2) = \{P(f(a))\} & (\sigma: x \mapsto a) \\
-  C_4 &= \mathrm{Res}(C_3,C_2) = \{P(f^2(a))\} & (\sigma: x \mapsto f(a)) \\
-\end{flalign*}
 
+	Wir zeigen mittels Induktion
+	\begin{align*}
+	\forall k \in \N: \text{mit } 2k \text{ Schritten erreichen wir } \Bbraces{\neg P(x), P\pbraces{f^{2^k}(x)}}
+	\end{align*}
+	Für $k = 0$ brauchen wir tatsächlich $0$ Schritte, da $\{\neg P(x),P(f(x))\} \in M_n$. Nehmen wir für $k \in \N$ nun an, dass in $2k$ Schritten die Menge $\Bbraces{\neg P(x), P\pbraces{f^{2^k}(x)}}$ erreicht werden kann, so können wir mit $x / f^{2^k}(x)$ die Menge $\Bbraces{\neg P\pbraces{f^{2^k}(x)}, P\pbraces{f^{2^{k + 1}}(x)}}$ erreichen und dann resolvieren um $\Bbraces{\neg P(x), P\pbraces{f^{2^{k + 1}}(x)}}$ zu erhalten. \\
+	Nun fehlt nur mehr der zweite, wohl schwierigere Teil.
 \end{solution}
