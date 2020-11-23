@@ -32,8 +32,65 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\phantom{}
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Wir beginnen mit einer Abschätzung auf dem Referenzdreieck $T_{\mathrm{ref}}$: \\
+  Definiere dafür $v_{T_{\mathrm{ref}}} := |T_{\mathrm{ref}}|^{-1}\int_{T_{\mathrm{ref}}} v dx$.
+  Mit der Poincaréschen Ungleichung für den $H_*^1$ erhalten wir für $v \in H^1(T_{\mathrm{ref}})$
+  \begin{align*}
+    \|v - v_{T_{\mathrm{ref}}}\|_{L^2(T_{\mathrm{ref}})} \leq
+    C_P\|\nabla(v- v_{T_{\mathrm{ref}}})\|_{L^2(T_{\mathrm{ref}})}
+    = C_P\|\nabla(v)\|_{L^2(T_{\mathrm{ref}})}.
+  \end{align*}
+  Nebenrechnung:
+  \begin{align*}
+    (v\circ\Phi_T)_{T_{\mathrm{ref}}} = |T_{\mathrm{ref}}|^{-1}\int_{T_{\mathrm{ref}}} v \circ \Phi_T dx
+    = |T_{\mathrm{ref}}|^{-1}|\det(B)|^{-1}\int_{\Phi_T(T_{\mathrm{ref}})} v dx
+    = 2 \frac{1}{2|T|}\int_{T} v dx = v_{\mathcal{T}}|_T\circ \Phi_T
+  \end{align*}
+  Definiere nun $u := v \circ \Phi_T$ und wende die Transformationsformel auf $m = 0$ und $\Phi_T^{-1}$ an:
+  \begin{align*}
+    \|v - v_{\mathcal{T}}|_T\|_{L^2(T)} &= \|(u - u_{T_{\mathrm{ref}}}) \circ \Phi_T^{-1}\|_{L^2(T)}
+    \leq |\det(B)^{-1}|^{\nicefrac{-1}{2}}\|u - u_{T_{\mathrm{ref}}}\|_{L^2(T_{\mathrm{ref}})} \\
+    &\leq |\det(B)|^{\nicefrac{1}{2}}C_P\|\nabla(u)\|_{L^2(T_{\mathrm{ref}})}
+  \end{align*}
+  Mit der Transformationsformel rückwärts für $m = 1$, sowie der geometrischen Interpretation
+  von $\|B\|_F$ erhalten wir
+  \begin{align*}
+    \|\nabla(u)\|_{L^2(T_{\mathrm{ref}})} = \|\nabla(v \circ \Phi_T)\|_{L^2(T_{\mathrm{ref}})}
+    \leq |\det(B)|^{\nicefrac{-1}{2}}\|B\|_F^1\|\nabla(v)\|_{L^2(T)}
+    \leq |\det(B)|^{\nicefrac{-1}{2}}\sqrt{2}h_T\|\nabla(v)\|_{L^2(T)}.
+  \end{align*}
+  Insgesamt ergibt das
+  \begin{align*}
+    \|v - v_{\mathcal{T}}|_T\|_{L^2(T)} \leq
+    |\det(B)|^{\nicefrac{1}{2}}C_P|\det(B)|^{\nicefrac{-1}{2}}\sqrt{2}h_T\|\nabla(v)\|_{L^2(T)}
+    = \sqrt{2}C_Ph_T\|\nabla(v)\|_{L^2(T)}.
+  \end{align*}
+  Nun müssen wir nur noch aufsummieren:
+  \begin{align*}
+    \|v - v_{\mathcal{T}}\|_{L^2(\Omega)}^2 = \sum_{T \in \mathcal{T}}\|v-v_{\mathcal{T}}|_T\|_{L^2(T)}^2
+    \leq \sum_{T \in \mathcal{T}}2C_P^2\|h_T \nabla(v)\|_{L^2(T)}^2 = 2C_P^2\|h\nabla(v)\|_{L^2(\Omega)}^2
+  \end{align*}
+  Die Konstante $C_P$ hängt hierbei nur vom Referenzdreieck $T_{\mathrm{ref}}$ ab.
+  \item Wir verwenden die Inversionabschätzung für $k = 2, r = 1$: Also gilt für alle
+ $v_h \in \mathcal{P}^p(\mathcal{T}) \supset \S_0^p(\mathcal{T})$:
+  \begin{align*}
+    \|D^2v_h\|_{L^2(T)} &\leq C\sigma(\mathcal{T})h_T^{1-2}\|\nabla(v_h)\|_{L^2(T)} \\
+    \iff \|h_TD^2v_h\|_{L^2(T)} &\leq C\sigma(\mathcal{T})\|\nabla(v_h)\|_{L^2(T)}
+    \leq C\sigma(\mathcal{T})\|v_h\|_{H^1(T)}
+  \end{align*}
+  Die Konstante $C$ hängt dabei nur vom Referenzdreieck ab. Jetzt müssen wir nur
+  noch aufsummieren:
+  \begin{align*}
+    \|hD^2v_h\|_{L^2(\Omega)}^2 = \sum_{T \in \mathcal{T}}\|h_TD^2v_h\|_{L^2(T)}^2
+    \leq \sum_{T \in \mathcal{T}}C^2\sigma(\mathcal{T})^2\|v_h\|_{H^1(T)}^2
+    = C^2\sigma(\mathcal{T})^2\|v_h\|_{H^1(\Omega)}^2
+  \end{align*}
 
-ToDo!
+\end{enumerate}
+
+
 
 \end{solution}
 
