@@ -14,15 +14,23 @@ für $n > t$ und $a_n = 1$ für $n \leq t$ mit $f,g,h: \N \rightarrow \N^+$ und 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Wir zeigen zuerst die obere Schranke $a_n \leq 2n - 1$:
+Wir bemerken zu Beginn, dass $t \geq 2$, sonst haben wir undefinierte Werte. Als Induktionsanfang erhalten wir
 \begin{align*}
-  a_n = a_{f(n)} + a_{g(n)} + a_{h(n)} + 1 \leq 2(f(n) + g(n) + h(n)) - 3 + 1 \leq 2n.
+\forall n \in \{1, \dots, \lfloor t \rfloor\} \ \pbraces{a_n = 1 \leq 2n - 1}
+\end{align*}
+Nun zeigen wir noch den Induktionsschritt um schließlich $a_n \leq 2n - 1$ zu erhalten:
+\begin{align*}
+  a_n = a_{f(n)} + a_{g(n)} + a_{h(n)} + 1 \leq 2(f(n) + g(n) + h(n)) - 3 + 1 \leq 2n - 1.
 \end{align*}
 Untere Schranke: $a_n \geq \frac{n}{t}$:
 \begin{align*}
   a_n = a_{f(n)} + a_{g(n)} + a_{h(n)} + 1 \geq \frac{f(n) + g(n) + h(n)}{t} + 1 = \frac{n}{t} + 1 \geq \frac{n}{t}.
 \end{align*}
-Damit haben wir insgesamt $a_n = \Theta(n)$ gezeigt.
+Bei der Abschätzung nach unten wollen wir für den Induktionsanfang noch
+\begin{align*}
+\forall m \in \{1, \dots, \lfloor t \rfloor \} \ \pbraces{a_m = 1 \geq \frac{m}{t}}
+\end{align*}
+was für $m \leq t$ natürlich erreicht ist. Damit haben wir insgesamt $a_n = \Theta(n)$ gezeigt.
 \end{solution}
 
 % --------------------------------------------------------------------------------
