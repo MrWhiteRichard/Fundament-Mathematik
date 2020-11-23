@@ -488,6 +488,287 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
 
   \end{enumerate}
 
+  \item Sei $u$ zweimal stetig differenzierbar und nicht die Nullfunktion.
+  Laut dem Satz von Schwarz, verschwindet der $\curl$ dessen Gradienten.
+
+  \begin{align*}
+    u \in C^2(\Omega) \setminus \Bbraces{0}
+    \implies
+    \curl \nabla u
+    =
+    \pderivative{y} (\nabla u)_1
+    -
+    \pderivative{x} (\nabla u)_2
+    =
+    \frac{\partial}{\partial y \partial x} u
+    -
+    \frac{\partial}{\partial x \partial y} u
+    \stackrel
+    {
+      \mathrm{S}
+    }{=}
+    0
+  \end{align*}
+
+  Wir wählen also $\xi := \nabla u$.
+  Sei $M > 0$ beliebig.
+
+  \begin{align*}
+    \implies
+    M
+    \norm[X]
+    {
+      \begin{pmatrix}
+        u \\ \xi
+      \end{pmatrix}
+    }
+    >
+    0
+    \stackrel{!}{=}
+    a
+    \pbraces
+    {
+      \begin{pmatrix}
+        u \\ \xi
+      \end{pmatrix},
+      \begin{pmatrix}
+        u \\ \xi
+      \end{pmatrix}
+    }
+    =
+    \norm[L^2(\Omega)]{\nabla u - \xi}^2
+    +
+    c \norm[L^2(\Omega)]{\xi}^2
+    +
+    \norm[\Omega]{\curl \xi}^2
+  \end{align*}
+
+  Daher kann $a$ nicht koerziv sein.
+
+  \item
+  
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Nebenrechnung (Linke Seite):
+    
+    Wir bemerken zunächst, dass $\curl \xi_\epsilon = 0$ für alle $\epsilon > 0$.
+
+    \begin{multline*}
+      a
+      \pbraces
+      {
+        \begin{pmatrix}
+          0 \\ \xi_\epsilon
+        \end{pmatrix},
+        \begin{pmatrix}
+          0 \\ \xi_\epsilon
+        \end{pmatrix}
+      }
+      =
+      \norm[L^2(\Omega)]{\xi_\varepsilon}^2
+      +
+      c \norm[L^2(\Omega)]{\xi_\varepsilon}^2
+      +
+      \underbrace
+      {
+        \norm[L^2(\Omega)]{\curl \xi_\epsilon}^2
+      }_0 \\
+      =
+      (1 + c)
+      \Int[\Omega]
+      {
+        \vbraces
+        {
+          \begin{pmatrix}
+            \sin \frac{x}{\epsilon} \\ 0
+          \end{pmatrix}
+        }^2
+      }{(x, y)}
+      =
+      (1 + c)
+      \Int[\Omega]{\sin^2 \frac{x}{\epsilon}}{(x, y)}
+    \end{multline*}
+    
+    \item Nebenrechnung (Rechte Seite):
+    
+    \begin{multline*}
+      \norm[\hat X]
+      {
+        \begin{pmatrix}
+          0 \\ \xi_\epsilon
+        \end{pmatrix}
+      }^2
+      =
+      \norm[H^1(\Omega)]{0}^2
+      +
+      \norm[H^1(\Omega)]{\xi_\epsilon}^2
+      =
+      \norm[L^2(\Omega)]{\xi_\epsilon}^2
+      +
+      \norm[L^2(\Omega)]{D \xi_\epsilon}^2 \\
+      =
+      \Int[\Omega]{\abs{\xi_\epsilon}^2}{(x, y)}
+      +
+      \Int[\Omega]{|D \xi_\epsilon|^2}{(x, y)}
+      =
+      \Int[\Omega]{\sin^2 \frac{x}{\epsilon}}(x, y)
+      +
+      \epsilon^{-2}
+      \Int[\Omega]{\cos^2 \frac{x}{\epsilon}}{(x, y)}
+    \end{multline*}
+    
+    \item Nebenrechnung (Eine Abschätzung für ein Integral):
+    
+    Weil $\Omega$ offen ist, finden wir darin eine Kugel.
+
+    \begin{align*}
+      \implies
+      \Exists a, b, c, d \in \R:
+      \emptyset
+      \neq
+      [a, b] \times [c, d]
+      \subseteq
+      \Omega
+    \end{align*}
+    
+    Wir dürfen also folgendes Integral nach unten abschätzen.
+
+    \begin{multline*}
+      \Int[\Omega]{\cos^2 \frac{x}{\epsilon}}{(x, y)}
+      \geq
+      \Int[a][b]
+      {
+        \Int[c][d]
+        {
+          \cos^2 \frac{x}{\epsilon}
+        }{y}
+      }{x}
+      =
+      \Int[a][b]
+      {
+        \cos^2 \frac{x}{\epsilon}
+      }{x}
+      \Int[c][d]{}{y} \\
+      =
+      \pbraces
+      {
+        \frac{1}{2}
+        (b - a)
+        +
+        \frac{\epsilon}{4}
+        \pbraces
+        {
+          \sin \frac{2 b}{\epsilon}
+          -
+          \sin \frac{2 a}{\epsilon}
+        }
+      }
+      (d - c)
+      \geq
+      \pbraces
+      {
+        \frac{1}{2}
+        (b - a)
+        +
+        \frac{-2 \epsilon}{4}
+      }
+      (d - c)
+  \end{multline*}
+
+  \end{enumerate}
+
+  Angenommen, $a$ wäre koerziv mit der Konstante $M > 0$.
+
+  \begin{align*}
+    \implies
+    a
+    \pbraces
+    {
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix},
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix}
+    }
+    \geq
+    M
+    \norm[\hat X]
+    {
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix}
+    }^2
+  \end{align*}
+
+  Wir dividieren die linke Seite nach rechts und $M$ nach links und erhalten folgende Ungleichung.
+
+  \begin{align*}
+    M^{-1}
+    & \geq
+    \norm[\hat X]
+    {
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix}
+    }^2
+    a
+    \pbraces
+    {
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix},
+      \begin{pmatrix}
+        0 \\ \xi_\epsilon
+      \end{pmatrix}
+    }^{-1}
+    =
+    \frac{1}{1 + c}
+    +
+    \frac{\epsilon^{-2}}{1 + c}
+    \frac
+    {
+      \Int[\Omega]{\cos^2 \frac{x}{\epsilon}}{(x, y)}
+    }{
+      \Int[\Omega]{\sin^2 \frac{x}{\epsilon}}{(x, y)}
+    } \\
+    & \geq
+    \frac{1}{1 + c}
+    +
+    \frac{\epsilon^{-2}}{(1 + c) |\Omega|}
+    \Int[\Omega]{\cos^2 \frac{x}{\epsilon}}{(x, y)}
+    \geq
+    \frac{1}{1 + c}
+    +
+    \frac{\epsilon^{-2}}{(1 + c) |\Omega|}
+    \pbraces
+    {
+      \frac{1}{2}
+      (b - a)
+      +
+      \frac{-2 \epsilon}{4}
+    }
+    (d - c) \\
+    & =
+    \frac{1}{1 + c}
+    +
+    \frac{1}{(1 + c) |\Omega|}
+    \pbraces
+    {
+      \frac{1}{2 \epsilon^2}
+      (b - a)
+      -
+      \frac{1}{2 \epsilon}
+    }
+    (d - c)
+    \xrightarrow{\epsilon \to 0}
+    \infty
+  \end{align*}
+
+  Koerzivität ist für $a$ also nicht möglich.
+  Insbesondere können wir nicht Exercise 7 (Lemma of Lax-Milgram) anwenden.
+  Wir wissen also nicht, ob es eine eindeutige Lösung für das Problem auf dem Produktraum $\hat X$ mit $c > 0$ gibt.
+
 \end{enumerate}
 
 \end{solution}
