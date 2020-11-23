@@ -33,10 +33,10 @@ Daher erhalten wir $T(na) = \Landau(n^2)$
 	\begin{align*}
 	\Tree [.n [.n-a [ n-3a T(a) ].n-2a T(a) ].n-a [.T(a) ].T(a) ]
 	\end{align*}
-	
+
 	Der Baum hat eine Tiefe von $\frac{n}{a}$ und auf jeder Höhe hat er zwei Blätter also insgesamt $2\frac{n}{a}$ Blätter. Außerdem ist der Aufwand in Tiefe $k$ gegeben durch $n - ka + T(a)$. Wir berechenen
 	\begin{align*}
-	\sum_{k=0}^{\frac{n}{a} - 1} (n - ka + T(a)) + 2 \frac{n}{a} = a \sum_{k = 1}^{\frac{n}{a} - 1} k + \frac{n}{a} (T(a) + 2) 
+	\sum_{k=0}^{\frac{n}{a} - 1} (n - ka + T(a)) + 2 \frac{n}{a} = a \sum_{k = 1}^{\frac{n}{a} - 1} k + \frac{n}{a} (T(a) + 2)
 	\end{align*}
 	Also ist die Vermutung $T(n) = \Landau(n^2)$. Wir wollen also zeigen
 	\begin{align*}
@@ -53,6 +53,48 @@ Daher erhalten wir $T(na) = \Landau(n^2)$
 		\item $c \geq \frac{T(a)}{a^2}$
 		\item $\forall n > a \ (c \geq \frac{n}{2a(n - a)})$
 	\end{enumerate}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+\begin{align*}
+\Tree [.n [.n-a [ n-3a T(a) ].n-2a T(a) ].n-a [.T(a) ].T(a) ]
+\end{align*}
+
+Der Baum hat eine Tiefe von $\frac{n}{a}$ und auf jeder Höhe hat er zwei Blätter also insgesamt $2\frac{n}{a}$ Blätter. Außerdem ist der Aufwand in Tiefe $k$ gegeben durch $n - ka + T(a)$. Wir berechenen
+
+\begin{align*}
+  \sum_{k=0}^{\frac{n}{a} - 1} (n - ka + T(a)) + 2 \frac{n}{a}
+  =
+  \frac{n^2}{a} - a\sum_{k = 0}^{\frac{n}{a} - 1} k + \frac{n}{a} (T(a) + 2)
+  \leq
+  \frac{n^2}{a} + \frac{n}{a}(T(a) + 2)
+\end{align*}
+
+Also ist die Vermutung $T(n) = \Landau(n^2)$. Wir wollen also zeigen
+
+\begin{align*}
+\exists c >0 \ \exists n_0 \in \N \ \forall n \geq n_0 :~ T(n) \leq c n^2 + c a^2 + T(a)
+\end{align*}
+
+Für unseren Induktionsanfang sei $n_0 = 0 \implies T(n_0) = 0 \leq c a^2 + T(a)$. Nehmen wir nun also an, dass die Ungleichung für alle $k < n$ gilt. Dann gilt auch
+
+\begin{align*}
+  T(n)
+  =
+  T(n-a) + T(a) + n
+  \leq
+  c (n - a)^2 + c a^2 + T(a) + n
+  =
+  cn^2 - 2cna + T(a) + n
+  \leq
+  c n^2 + c a^2 + T(a)
+\end{align*}
+
+Wobei wir hier $\forall n \geq n_0 :~ 2cna \geq n$ als Bedingung an unser $c$ stellen.
+
+Damit haben wir also gezeigt $T(n) = \Landau(c n^2 +c a^2 + T(a)) = \Landau(n^2)$.
 \end{solution}
 
 % --------------------------------------------------------------------------------

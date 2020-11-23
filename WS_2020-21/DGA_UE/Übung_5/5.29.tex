@@ -18,10 +18,10 @@ wobei $f(n)$ eine nichtnegative Funktion mit asymptotischen Wachstum $\Theta(n^{
 Wir gehen wie im Beweis des Master-Theorems vor:
 \begin{align*}
   T(n) &= \Theta\left(n^{\log_b(a)}\right) +
-  \underbrace{\sum_{w \in X_I(n)}a^{|w|}f\left(\frac{n}{b^{|w|}}\right)}_{=: g(n)} \\
-  g(n) &= \Theta\left(\sum_{w \in X_I(n)}a^{|w|}
-  \left(\frac{n}{b^{|w|}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{|w|}}\right))\right) \\
-  &\stackrel{?}{=} \Theta\left(\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}a^{j}
+  \underbrace{\sum_{w \in X_I(n)}f\left(\frac{n}{b^{|w|}}\right)}_{=: g(n)} \\
+  g(n) &= \Theta\left(\sum_{w \in X_I(n)}
+  \left(\frac{n}{b^{|w|}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{|w|}}\right)\right) \\
+  &= \Theta\left(\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}a^{j}
   \left(\frac{n}{b^{j}}\right)^{\log_b(a)}\log \left(\frac{n}{b^{j}}\right)\right) \\
   &= \Theta\left(n^{\log_b(a)}\sum_{j = 0}^{\lfloor \log_b(n) \rfloor -1}
   \left(\frac{a}{b^{\log_b(a)}}\right)^j \log \left(\frac{n}{b^{j}}\right)\right) \\
@@ -32,7 +32,6 @@ Wir gehen wie im Beweis des Master-Theorems vor:
   &= \Theta\left(n^{\log_b(a)}\lfloor \log_b(n) \rfloor^2\right)
   =  \Theta\left(n^{\log_b(a)}\log^2(n)\right)
 \end{align*}
-Das ? machen wir im Skript genauso, ich weiß aber nicht genau warum wir das dürfen.
 \end{solution}
 
 % --------------------------------------------------------------------------------
@@ -52,6 +51,6 @@ Das ? machen wir im Skript genauso, ich weiß aber nicht genau warum wir das dü
 	Für die andere Abschätzung wollen wir $c_2 > 0$ und $k_1 \in \N$, sodass für alle $k \geq k_0$ die Ungleichung $f(b^k) \geq c_2 a^k k \log(b)$ gilt. Diesmal handeln wir den Induktionsanfang gleich ab und wünschen uns $c_3 > 0$ mit $S(k_0) \geq c_3 a^{k_0} k_0^2 (\log(b))^2 $. Darüber hinaus wollen wir noch für alle $k > k_0$
 	\begin{align*}
 	c_3 a^k k^2 (\log(b))^2 \stackrel{!}{\leq} S(k) = a S(k-1) + f(b^k) \geq c_3 a^k (k - 1)^2 (\log(b))^2 + c_2 a^k k \log(b) \\
-	\Leftarrow c_3 \leq \frac{c_2 k}{(2k - 1) \log(b)}   
+	\Leftarrow c_3 \leq \frac{c_2 k}{(2k - 1) \log(b)}
 	\end{align*}
 \end{solution}
