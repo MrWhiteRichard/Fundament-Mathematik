@@ -135,9 +135,9 @@ verwenden.}
 			\forall x \in \N\, \forall z \in \N\, \forall y \in \N: \chi_{A_2}(x,y+1,z)
 			&= \chi_{\{0\}}(y-z)(x,y,z)
 		\end{align*}
-		Division (Gaußklammer): $\lfloor \frac{n}{k}\rfloor = \pi_1^2\circ \%(n,k)$ \\
+		\item Division (Gaußklammer): $\lfloor \frac{n}{k}\rfloor = \pi_1^2\circ \%(n,k)$ \\
 
-		Binomialkoeffizient: (Wir setzen $\binom{x}{y} = 0$ für $y > x$)
+		\item Binomialkoeffizient: (Wir setzen $\binom{x}{y} = 0$ für $y > x$)
 		\begin{align*}
 			\forall x \in \N: \binom{0}{x} &= \chi_{\{0\}}(x) \\
 			\forall x \in \N\,\forall y \in \N: \binom{y+1}{x} &= \begin{cases}
@@ -154,6 +154,37 @@ verwenden.}
 				2 + 3 & 2 + 6 & \cdots & & \\
 				3 + 6 & \cdots &&&
 			\end{pmatrix}
+			\end{align*}
+		\item Potenzieren einer Zahl $a \in \N$.
+			\begin{align*}
+			a^0 = 1, \quad a^{n + 1} = a^n a
+			\end{align*}
+		\item $d:(n,k) \to k$-te Dezimalstelle von $n$. Wir schreiben dafür 
+			\begin{align*}
+			n = \sum_{i = 0}^l c_i 10^i
+			\end{align*}
+		und erkennen
+			\begin{align*}
+			\left\lfloor \frac{n}{10^k} \right\rfloor - 10 \left\lfloor \frac{n}{10^{k + 1}} \right\rfloor &=  \left\lfloor \sum_{i = k}^l a_i 10^{i - k} + \underbrace{10^{-k} \sum_{i = 0}^{k - 1} c_i 10^i}_{< 1} \right\rfloor - 10 \left\lfloor \sum_{i = k + 1}^l a_i 10^{i - (k + 1)} + \underbrace{10^{-(k + 1)} \sum_{i = 0}^{k} c_i 10^i}_{< 1} \right\rfloor \\
+			&= \sum_{i = k}^l a_i 10^{i - k} - \sum_{i = k + 1}^l a_i 10^{i - k} = a_k
+			\end{align*} 
+		\item Wurzel $\left\lfloor \sqrt{n} \right \rfloor$
+			\begin{align*}
+			\left\lfloor \sqrt{0} \right\rfloor &= 0 \\
+			\forall n \in \N : \left\lfloor \sqrt{n + 1} \right\rfloor &= \pbraces{\left\lfloor \sqrt n \right\rfloor + 1} \tilde{\chi}(n) + \left\lfloor \sqrt n \right\rfloor \pbraces{1 - \tilde{\chi}(n)}
+			\end{align*}
+			wobei
+			\begin{align*}
+			\tilde{\chi}(n) := \chi_{\{0\}}\pbraces{\pbraces{\left\lfloor \sqrt n \right\rfloor + 1}^2 - (n + 1)} \chi_{\{0\}}\pbraces{(n + 1) - \pbraces{\left\lfloor \sqrt n \right\rfloor + 1}^2}
+			\end{align*}
+		\item $n \to \left\lfloor 10^n \sqrt{2}  \right\rfloor$
+			\begin{align*}
+			\left\lfloor 10^0 \sqrt{2}  \right\rfloor = 1 \\
+			\left\lfloor 10^{n + 1} \sqrt{2}  \right\rfloor = 10 \left\lfloor 10^n \sqrt{2}  \right\rfloor + d\pbraces{\left \lfloor \sqrt{2 \cdot 10^{2(n + 1)}} \right\rfloor, 0}
+			\end{align*}
+			oder aber
+			\begin{align*}
+			\left\lfloor 10^n \sqrt 2 \right\rfloor = \sum_{i = 0}^n d\pbraces{\left \lfloor \sqrt{2 \cdot 10^{2n}} \right\rfloor, i} 10^i
 			\end{align*}
 	\end{enumerate}
 
