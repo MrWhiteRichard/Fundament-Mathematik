@@ -30,7 +30,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
   \item Skizzieren Sie für $p = 1, \cdot, 4$ die Punkte $z_{jk}$ und beweisen Sie, dass $\hat I_p u|_{V_j}$ und $\hat I_p u|_{E_j}$ für $j = 1, 2, 3$ und beliebige $p \in \N$ nur von den Werten $u(V_j)$ bzw. $u|_{E_j}$ abhängt.
 
   \item Konstruieren Sie aus $\hat I_p$ einen stetigen Interpolationsoperator
-  
+
   \begin{align*}
     I_{h, p}:
     H^2(\Omega) \to \S_0^p(\mathcal{T})
@@ -69,14 +69,14 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
 \begin{enumerate}[label = \textbf{\alph*)}]
 
   \item
-  
+
   \begin{enumerate}[label = (\roman*)]
 
     \item Für die \Quote{Skizze} siehe 4.16.ipynb.
 
     \item Seien $u \in H^2(\hat T)$ und $j \in \Bbraces{1, 2, 3}$.
     Dann ist $V_j \in Z_p$.
-  
+
     \begin{align*}
       u \in H^2(\hat T),
       \quad
@@ -84,9 +84,9 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
       \implies
       V_j \in Z_p
     \end{align*}
-  
+
     $\hat I_p u|_{V_j}$ kann nur an dem Punkt $V_j$ ausgewertet werden.
-  
+
     \begin{align*}
       \implies
       \hat I_p u|_{V_j}(V_j)
@@ -98,7 +98,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
     \end{align*}
 
     \item Folgende (eindimensionale) Polynome sind vom Grad $\leq p$.
-    
+
     \begin{align*}
       \hat I_p(u)|_{E_j} \circ \gamma_j \in \Pi_p,
       \quad
@@ -116,7 +116,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
   \end{enumerate}
 
   \item Wir konstruieren den Operator durch Fallunterscheidung, d.h. auf jedem Element $T \in \mathcal{T}$ separat.
-  
+
   \begin{align*}
     I_{h, p} u|_T := \hat I_p(u \circ \Phi_T) \circ \Phi_T^{-1},
     \quad
@@ -127,121 +127,28 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
 
   \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.9.png}
 
-  $I_{p, h}: H^2(\Omega) \to \S_0^p(\mathcal{T})$ ist wegen \textbf{a)} wohldefiniert.
-  Für die Stetigkeit, versehen wir den endlich-dimensionalen $\S_0^p(\mathcal{T})$ mit $\norm[L^2(\Omega)]{\cdot}$.
+  $I_{h, p}: H^2(\Omega) \to \S_0^p(\mathcal{T})$ ist wegen \textbf{a)} wohldefiniert.
+  Für die Stetigkeit, versehen wir den endlich-dimensionalen $\S_0^p(\mathcal{T})$ mit $\norm[H^2(\Omega)]{\cdot}$.
 
   Laut Theorem 3.4 (Sobolev), gibt es eine stetige Einbettung $H^2(\Omega) \to C(\overline{\Omega})$.
   Wir bezeichnen die Stetigkeits-Konstante auf dem Element $T \in \mathcal{T}$ mit $C_\mathrm{Sobolev}(T)$ und $C_\mathrm{Sobolev} := \max_{T \in \mathcal{T}} C_\mathrm{Sobolev}(T)$.
+  Da im endlich-dimensionalen alle Normen äquivalent sind, erhalten wir somit
 
   \includegraphicsunboxed{NumPDEs/NumPDEs - Theorem 3.4 (Sobolev).png}
 
   \begin{align*}
     \implies
     \norm[L^2(\Omega)]{I_{h, p} u}^2
-    & =
-    \Int[\Omega]{\abs{I_{h, p} u(x)}^2}{x}
-    =
-    \sum_{T \in \mathcal{T}}
-    \Int[T]{\abs{I_{h, p} u(x)}^2}{x} \\
-    & =
-    \sum_{T \in \mathcal{T}}
-    \Int[\Phi_T(\hat T)]
-    {
-      \abs
-      {
-        \pbraces
-        {
-          \hat I_p(u \circ \Phi_T) \circ \Phi_T^{-1}
-        }(x)
-      }^2
-    }{x} \\
-    & \stackrel
-    {
-      \mathrm{TRAFO}
-    }{=}
-    \sum_{T \in \mathcal{T}}
-    \Int[\hat T]
-    {
-      \abs
-      {
-        \sum_{z \in Z_p}
-        (u \circ \Phi_T)(z)
-        (L_z \circ \Phi_T)(x)
-      }^2
-      \abs{\det B}
-    }{x} \\
-    & \stackrel
-    {
-      \mathrm{CSB}
-    }{\leq}
-    \sum_{T \in \mathcal{T}}
-    \Int[\hat T]
-    {
-      \pbraces
-      {
-        \sum_{z \in Z_p}
-        \abs
-        {
-          (u \circ \Phi_T)(z)
-        }^2
-      }
-      \pbraces
-      {
-        \sum_{z \in Z_p}
-        \abs
-        {
-          (L_z \circ \Phi_T)(x)
-        }^2
-      }
-      \abs{\det B}
-    }{x} \\
-    & \leq
-    \sum_{T \in \mathcal{T}}
-    \pbraces
-    {
-      \sum_{z \in Z_p}
-      \norm[C(T)]{u}^2
-    }
-    \pbraces
-    {
-      \sum_{z \in Z_p}
-      \Int[\hat T]
-      {
-        \abs
-        {
-          (L_z \circ \Phi_T)(x)
-        }^2
-        \abs{\det B}
-      }{x}
-    } \\
-    & \stackrel
-    {
-      \mathrm{TRAFO}
-    }{=}
-    \sum_{T \in \mathcal{T}}
-    \norm[C(T)]{u}^2
-    |Z_p|
-    \sum_{z \in Z_p}
-    \Int[\phi_T(\hat T)]
-    {
-      \abs{L_z(x)}^2
-    }{x} \\
-    & \stackrel
-    {
-      \mathrm{S}
-    }{\leq}
-    \sum_{T \in \mathcal{T}}
-    C_\mathrm{Sobolev}(T)^2
-    \norm[H^2(T)]{u}^2
-    |Z_p|
-    \sum_{z \in Z_p}
-    \Int[T]{\abs{L_z(x)}^2}{x} \\
-    & \leq
-    C_\mathrm{Sobolev}^2
-    \norm[H^2(\Omega)]{u}^2
-    |Z_p|
-    \sum_{z \in Z_p}
-    \norm[L^2(\Omega)]{L_z}
+    &= \sum_{T \in \mathcal{T}}\|I_{h,p}u|_T\|_{L^2(T)}^2
+    = \sum_{T \in \mathcal{T}}\int_T (\hat{I_p}(u \circ \Phi_T) \circ \Phi_T^{-1})^2 dx \\
+    &= \sum_{T \in \mathcal{T}}\int_{T_{\mathrm{ref}}}
+    (\hat{I_p}(u \circ \Phi_T))^2 |\det(B_T)|dx \\
+    &= \sum_{T \in \mathcal{T}}|\det(B_T)|\|\hat{I_p}(u \circ \Phi_T)\|_{L^2(T_{\mathrm{ref}})}^2 dx \\
+    &\leq \sum_{T \in \mathcal{T}}
+    |\det(B_T)|C_{\mathrm{norm}}^2\left(\max_{z \in Z_p}|\hat{I_p}(u \circ \Phi_T)(z)|\right)^2 \\
+    &\leq C_{\mathrm{norm}}^2\sum_{T \in \mathcal{T}}2|T|\|u\|_{C(T)}^2
+    \leq 2|\Omega|C_{\mathrm{norm}}^2C_{\mathrm{sobolev}}^2\sum_{T \in \mathcal{T}}\|u\|_{H^2(T)}^2 \\
+    &\leq 2|\Omega|C_{\mathrm{norm}}^2C_{\mathrm{sobolev}}^2\|u\|_{H^2(\Omega)}^2 \\
   \end{align*}
 
   \item \phantom{}
@@ -251,7 +158,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
   \begin{enumerate}[label = \arabic*.]
 
     \item Schritt (Abschätzung auf dem Referenz-Element $\hat T$):
-    
+
     Wir betrachten den Operator
 
     \begin{align*}
@@ -346,7 +253,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
     \end{align*}
 
     \item Schritt (Skalierungs-Argument für Abschätzung auf jedem Element $T \in \mathcal{T}$):
-    
+
     Sei $\Phi := \Phi_T$ der affine Diffeomorphismus aus Lemma 3.9.
     Setze $v := u \circ \Phi$ und observiere, dass
 
