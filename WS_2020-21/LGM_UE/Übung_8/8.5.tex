@@ -13,7 +13,7 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	
+
 	Wir zeigen zuerst mit Induktion nach dem Formelaufbau
 	\begin{align*}
 	\forall \varphi \pbraces{\varphi \text{ Formel } \Rightarrow \forall b \forall \pi: (b \text{ Belegung mit Werten in } M_2, \pi \text{ Automorphismus } \Rightarrow \widehat{\pi \circ b}(\varphi) = \widehat{b}(\varphi))}
@@ -28,8 +28,8 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 	&= \pi \pbraces{f^{\mathscr{M}_2}\pbraces{\overline{b}(t_1), \dots, \overline{b}(t_k)}} = \pi \pbraces{\overline{b} \pbraces{f(t_1, \dots, t_k)}}
 	\end{align*}
 	Also gilt für alle Terme $t$ die Gleichheit $\overline{\pi \circ b}(t) = \pi\pbraces{\overline{b}(t)}$.
-	
-	Nun schauen wir uns die Atomformeln an und betrachten dafür Terme $t_1, \dots, t_k$ und ein $k$-stelliges Relationssymbol $R$. Es gilt 
+
+	Nun schauen wir uns die Atomformeln an und betrachten dafür Terme $t_1, \dots, t_k$ und ein $k$-stelliges Relationssymbol $R$. Es gilt
 	\begin{align*}
 	\widehat{\pi \circ b}\pbraces{R(t_1, \dots, t_k)} = 1 \Leftrightarrow \pbraces{\overline{\pi \circ b}(t_1), \dots, \overline{\pi \circ b}(t_k)} \in R^{\mathscr{M}_2} \Leftrightarrow \pbraces{\pi\pbraces{\overline{b}(t_1)}, \dots, \pi \pbraces{\overline{b}(t_k)}} \in R^{\mathscr{M}_2} \\
 	\Leftrightarrow \pbraces{\overline{b}(t_1), \dots, \overline{b}(t_k)} \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}\pbraces{R(t_1, \dots, t_k)} = 1
@@ -43,14 +43,14 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 	\widehat{\pi \circ b}(\forall \varphi) &= \inf\Bbraces{\widehat{(\pi \circ b)_{x \to m}}(\varphi) \mid m \in M_2} = \inf\Bbraces{\widehat{\pi \circ b_{x \to \pi^{-1}(m)}}(\varphi) \mid m \in M_2} \\
 	&= \inf\Bbraces{\widehat{b_{x \to \pi^{-1}(m)}}(\varphi) \mid m \in M_2} = \inf\Bbraces{\widehat{b_{x \to m}}(\varphi) \mid m \in M_2} = \widehat{b}(\forall \varphi)
 	\end{align*}
-	Für den Existenzquantor geht es analog. 
-	
-	Nun wollen wir nocheinmal eine Induktion nach dem Formelaufbau durchführen und so für alle Belegungen $b$ mit Werten in $M_1$ zeigen, dass 
+	Für den Existenzquantor geht es analog.
+
+	Nun wollen wir nocheinmal eine Induktion nach dem Formelaufbau durchführen und so für alle Belegungen $b$ mit Werten in $M_1$ zeigen, dass
 	\begin{align*}
 	\mathscr{M}_1 \vDash \varphi[b] \iff \mathscr{M}_2 \vDash \varphi[b]
 	\end{align*}
 	gilt.
-	
+
 	Notation: Sei $b$ Belegung mit Werten in $M_1 \subseteq M_2$:
 	\begin{align*}
 	\overline{b}_i &:= \overline{b}_{\mathscr{M}_i}, \quad i = 1,2 \\
@@ -65,8 +65,8 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 	f^{\mathscr{M}_2}(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k))
 	= \overline{b}_2(f(t_1, \dots, t_k))
 	\end{align*}
-	Also wissen wir jetzt $\overline{b}_1 = \overline{b}_2$ und schreiben stets einfach $\overline{b}$. Insbesondere hat $\overline{b}$ nur Werte in $M_1$. 
-	
+	Also wissen wir jetzt $\overline{b}_1 = \overline{b}_2$ und schreiben stets einfach $\overline{b}$. Insbesondere hat $\overline{b}$ nur Werte in $M_1$.
+
 	Nun berechnen wir
 	\begin{align*}
 	\widehat{b}_1(R(t_1, \dots, t_k)) = 1 \Leftrightarrow (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_1} \Leftrightarrow  (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}_2(R(t_1, \dots, t_k)) = 1.
@@ -75,11 +75,32 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 	\begin{align*}
 	\widehat{b}_1(\psi_1 \land \psi_2) = \widehat{b}_1(\psi_1) \land_B \widehat{b}_1 (\psi_2) = \widehat{b}_2(\psi_1) \land_B \widehat{b}_2(\psi_2) = \widehat{b}_2(\psi_1 \land \psi_2).
 	\end{align*}
-	Zu guter letzt müssen wir uns um die Quantoren kümmern. Wir betrachten eine Formel $\varphi$ für welche alle Belegungen $a$ mit Werten in $M_1$ die Gleichheit $\hat{a}_1(\varphi) = \hat{a}_2(\varphi)$ gilt. Weiters sei $V$ die endliche Menge aller in $\varphi$ vorkommenden Variablen ohne $x$ und $E := b(V)$. Für jedes $m \in M_2$ sei nun $\pi_m$ ein Automorphismus wie in der Angabe. Es gilt
+	Zu guter Letzt müssen wir uns um die Quantoren kümmern. Wir betrachten eine Formel $\varphi$
+  für welche alle Belegungen $a$ mit Werten in $M_1$ die Gleichheit
+  $\hat{a}_1(\varphi) = \hat{a}_2(\varphi)$ gilt.
+  \begin{align*}
+    E := \{b(y): y \in \mathrm{Var}(\varphi)\backslash\{x\} \}
+  \end{align*}
+  Für jedes $m \in M_2$ sei nun $\pi_m$ ein Automorphismus, der $E$ festhält und $m$ nach $M_1$ schickt.
+  Es gilt
+  \begin{align*}
+  \widehat{b}_1(\forall x\, \varphi) &=
+  \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_1(\varphi) \mid m \in M_1} \\
+  &\geq \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_1(\varphi) \mid m \in M_2}
+  = \widehat{b}_2(\forall x\, \varphi)
+  \end{align*}
+  Aufgrund $\pi_m(m) \in M_1$,
+  $\widehat{\pi_m \circ (b_{x \to  m})} = \widehat{\pi_m \circ (b)}_{x \to \pi_m(m)}$
+  und $b_{x \to m}(y) = \pi_m \circ b_{x \to \pi_m(m)}(y)$ für alle $y \in \mathrm{Var}(\varphi)$
+  und $m \in M_2$ gilt sogar
 	\begin{align*}
-	\widehat{b}_1(\forall \varphi) &= \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_1(\varphi) \mid m \in M_1} = \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_2(\varphi) \mid m \in M_1} \\
-	&= \inf\Bbraces{\pbraces{\widehat{\pi_m \circ (b_{x \to  m})}}_2(\varphi) \mid m \in M_1} = \inf\Bbraces{\pbraces{\widehat{\pi_m \circ (b_{x \to  m})}}_2(\varphi) \mid m \in M_2} \\
-	&= \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_2(\varphi) \mid m \in M_2} = \widehat{b}_2(\forall \varphi)
+	\widehat{b}_1(\forall x\, \varphi) &=
+  \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_1(\varphi) \mid m \in M_1}
+  = \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_2(\varphi) \mid m \in M_1} \\
+	&\leq \inf\Bbraces{\pbraces{\widehat{\pi_m \circ (b)}_{x \to \pi_m(m)}}_2(\varphi) \mid m \in M_2}
+  = \inf\Bbraces{\pbraces{\widehat{\pi_m \circ (b_{x \to  m})}}_2(\varphi) \mid m \in M_2}\\
+	&= \inf\Bbraces{\pbraces{\widehat{b_{x \to  m}}}_2(\varphi) \mid m \in M_2}
+  = \widehat{b}_2(\forall x\, \varphi)
 	\end{align*}
 	und damit sind wir fertig!
 \end{solution}
