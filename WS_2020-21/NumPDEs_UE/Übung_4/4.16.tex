@@ -141,9 +141,9 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
     \norm[L^2(\Omega)]{I_{h, p} u}^2
     &= \sum_{T \in \mathcal{T}}\|I_{h,p}u|_T\|_{L^2(T)}^2
     = \sum_{T \in \mathcal{T}}\int_T (\hat{I_p}(u \circ \Phi_T) \circ \Phi_T^{-1})^2 dx \\
-    &= \sum_{T \in \mathcal{T}}\int_{T_{\mathrm{ref}}}
+    &= \sum_{T \in \mathcal{T}}\int_{ \hat T}
     (\hat{I_p}(u \circ \Phi_T))^2 |\det(B_T)|dx \\
-    &= \sum_{T \in \mathcal{T}}|\det(B_T)|\|\hat{I_p}(u \circ \Phi_T)\|_{L^2(T_{\mathrm{ref}})}^2 dx \\
+    &= \sum_{T \in \mathcal{T}}|\det(B_T)|\|\hat{I_p}(u \circ \Phi_T)\|_{L^2( \hat T)}^2 dx \\
     &\leq \sum_{T \in \mathcal{T}}
     |\det(B_T)|C_{\mathrm{norm}}^2\left(\max_{z \in Z_p}|\hat{I_p}(u \circ \Phi_T)(z)|\right)^2 \\
     &\leq C_{\mathrm{norm}}^2\sum_{T \in \mathcal{T}}2|T|\|u\|_{C(T)}^2
@@ -169,7 +169,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
     \end{align*}
 
     und bemerken, dass $P_1(\hat T) \subseteq \Ker A$.
-    Jedes $v \in P_1(\hat T)$ wird nämlich von $\hat I_p$ exakt intepoliert.
+    Jedes $v \in P_1(\hat T)$ wird nämlich von $\hat I_p$ exakt interpoliert.
 
     \begin{align*}
       \Forall v \in P_1(\hat T):
@@ -258,7 +258,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
     Setze $v := u \circ \Phi$ und observiere, dass
 
     \begin{align*}
-      & \implies
+      &
       \hat I_p v
       =
       \hat I_p (u \circ \Phi)
@@ -331,7 +331,7 @@ die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\p
       C^\mathrm{ref} 2^\frac{k+2}{2} h_T^2 \rho_T^{-k} \norm[L^2(T)]{D^2 u},
     \end{align*}
 
-    wobei wir die geometrische Interpretiation von $\norm[F]{B}$ und $\norm[F]{B^{-1}}$ verwendet haben.
+    wobei wir die geometrische Interpretation von $\norm[F]{B}$ und $\norm[F]{B^{-1}}$ verwendet haben.
     Das zeigt, dass
 
     \begin{align*}
