@@ -159,7 +159,7 @@ verwenden.}
 			\begin{align*}
 			a^0 = 1, \quad a^{n + 1} = a^n a
 			\end{align*}
-		\item $d:(n,k) \to k$-te Dezimalstelle von $n$. Wir schreiben dafür 
+		\item $d:(n,k) \to k$-te Dezimalstelle von $n$. Wir schreiben dafür
 			\begin{align*}
 			n = \sum_{i = 0}^l c_i 10^i
 			\end{align*}
@@ -167,7 +167,7 @@ verwenden.}
 			\begin{align*}
 			\left\lfloor \frac{n}{10^k} \right\rfloor - 10 \left\lfloor \frac{n}{10^{k + 1}} \right\rfloor &=  \left\lfloor \sum_{i = k}^l a_i 10^{i - k} + \underbrace{10^{-k} \sum_{i = 0}^{k - 1} c_i 10^i}_{< 1} \right\rfloor - 10 \left\lfloor \sum_{i = k + 1}^l a_i 10^{i - (k + 1)} + \underbrace{10^{-(k + 1)} \sum_{i = 0}^{k} c_i 10^i}_{< 1} \right\rfloor \\
 			&= \sum_{i = k}^l a_i 10^{i - k} - \sum_{i = k + 1}^l a_i 10^{i - k} = a_k
-			\end{align*} 
+			\end{align*}
 		\item Wurzel $\left\lfloor \sqrt{n} \right \rfloor$
 			\begin{align*}
 			\left\lfloor \sqrt{0} \right\rfloor &= 0 \\
@@ -186,6 +186,13 @@ verwenden.}
 			\begin{align*}
 			\left\lfloor 10^n \sqrt 2 \right\rfloor = \sum_{i = 0}^n d\pbraces{\left \lfloor \sqrt{2 \cdot 10^{2n}} \right\rfloor, i} 10^i
 			\end{align*}
+		\item Fibonacci-Folge: Betrachte zuerst die primitiv rekursive Funktion
+		\begin{align*}
+			g(0) &= (1,1) \\
+			g(n+1) &= (\pi_1^2\circ g(n) + \pi_2^2\circ g(n), \pi_1^1 \circ g(n)).
+		\end{align*}
+		Jetzt gilt $f(n) = \pi_1^2 \circ g (n)$ ist als Verknüpfung primitiv rekursiver
+		Funktionen wieder primitiv rekursiv.
 	\end{enumerate}
 
 \end{solution}
