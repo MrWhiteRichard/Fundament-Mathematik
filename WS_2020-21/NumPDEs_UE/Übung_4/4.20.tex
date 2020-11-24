@@ -61,7 +61,7 @@
         w \\ \beta
       \end{pmatrix},
       \begin{pmatrix}
-        v \\ \xi
+        v \\ \delta
       \end{pmatrix}
     }
     :=
@@ -80,7 +80,7 @@
   \begin{enumerate}[label = \arabic*.]
 
     \item Schritt (Stetigkeit von $a$):
-    
+
     Auf dem $\R^2$ sind die Normen $\norm[1]{\cdot}$ und $\norm[2]{\cdot}$ äquivalent.
     Wir erhalten also eine Konstante $C > 0$, sodass $\norm[1]{\cdot} \leq C \norm[2]{\cdot}$.
 
@@ -102,7 +102,7 @@
     \begin{align*}
       \beta_t
       :=
-      2 \max \Bbraces{1, \frac{1}{t^2}} C.
+      \max \Bbraces{1, \frac{1}{t^2}} C.
     \end{align*}
 
     \begin{align*}
@@ -113,7 +113,7 @@
           w \\ \beta
         \end{pmatrix},
         \begin{pmatrix}
-          v \\ \xi
+          v \\ \delta
         \end{pmatrix}
       }
       & =
@@ -137,37 +137,37 @@
       \frac{1}{t^2}
       \pbraces
       {
-        \norm[L^2(\Omega)]{w^\prime}
+        \norm[L^2(\Omega)]{w^\prime} +
         \norm[L^2(\Omega)]{\beta}
       }
       \pbraces
       {
-        \norm[L^2(\Omega)]{v^\prime}
+        \norm[L^2(\Omega)]{v^\prime} +
         \norm[L^2(\Omega)]{\delta}
       } \\
       & \leq
-      2 \max \Bbraces{1, \frac{1}{t^2}}
+      \max \Bbraces{1, \frac{1}{t^2}}
       \pbraces
       {
-        \norm[L^2(\Omega)]{w^\prime}
-        \norm[L^2(\Omega)]{\beta}
+        \norm[L^2(\Omega)]{w^\prime} +
+        \norm[H^1(\Omega)]{\beta}
       }
       \pbraces
       {
-        \norm[L^2(\Omega)]{v^\prime}
-        \norm[L^2(\Omega)]{\delta}
+        \norm[L^2(\Omega)]{v^\prime} +
+        \norm[H^1(\Omega)]{\delta}
       } \\
-      & = \cdots \leq
-      2 \max \Bbraces{1, \frac{1}{t^2}} C
+      & \leq \cdots \leq
+      \max \Bbraces{1, \frac{1}{t^2}} C
       \pbraces
       {
-        \norm[L^2(\Omega)]{w^\prime}^2
-        \norm[L^2(\Omega)]{\beta}^2
+        \norm[H^1(\Omega)]{w^\prime}^2 +
+        \norm[H^1(\Omega)]{\beta}^2
       }^{1/2}
       \pbraces
       {
-        \norm[L^2(\Omega)]{v^\prime}^2
-        \norm[L^2(\Omega)]{\delta}^2
+        \norm[H^1(\Omega)]{v^\prime}^2 +
+        \norm[H^1(\Omega)]{\delta}^2
       }^{1/2} \\
       & =
       \beta_t
@@ -186,7 +186,7 @@
     \end{align*}
 
     \item Schritt (Elliptizität von $a$):
-    
+
     \begin{enumerate}[label = \arabic*.]
 
       \item Hilfs-Ungleichung (Friedrich):
@@ -217,7 +217,7 @@
       \end{align*}
 
       \item Hilfs-Ungleichung (Young):
-      
+
       Dabei wollen wir $\varepsilon_t$ wie folgt wählen.
 
       \begin{align*}
@@ -334,9 +334,9 @@
         \mathrm{F}
       }{\geq}
       \frac{1}{(C_F + 1)^2}
-      \norm[H^2(\Omega)]{\beta}^2
+      \norm[H^1(\Omega)]{\beta}^2
       +
-      \frac{1}{t}
+      \frac{1}{t^2}
       \pbraces
       {
         \frac{1 - \varepsilon_t}{(C_F + 1)^2}
@@ -398,7 +398,7 @@
     \end{align*}
 
     \item Schritt (Stetigkeit von $F$):
-    
+
     \begin{align*}
       F
       \begin{pmatrix}
