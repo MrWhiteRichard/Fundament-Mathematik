@@ -108,28 +108,52 @@ verwenden.}
 					y+1 = s\circ\pi_2^3(x,y,\mathrm{mod}(x,y)), & \text{sonst}
 				\end{cases}
 			\end{align*}
-			Definiere $A := \{(x,x+1): x \in \N\}$
+			Definiere $A := \{(x,x+1,z): x,z \in \N\}$
 			\begin{align*}
-				\forall x \in \N: \chi_A(x,0) &= 0 \\
-				\forall x \in \N\,\forall y \in \N: \chi_A(x,y+1) &= \chi_{\{0\}}(x-y)\chi_{\{0\}}(y-x)
-				= \cdot(\chi_{\{0\}}(-(\pi_1^3,\pi_2^3)),\chi_{\{0\}}(-(\pi_2^3,\pi_1^3)))(x,y)
-			\end{align*}
-			Binomialkoeffizient: (Wir setzen $\binom{x}{y} = 0$ für $y > x$)
-			\begin{align*}
-				\forall x \in \N: \binom{0}{x} = \chi_{\{0\}}(x) \\
-				\forall x \in \N\,\forall y \in \N: \binom{y+1}{x} = \begin{cases}
-					\chi_{\{0\}}(x-y-1)\chi_{\{0\}}(y+1-x), & y+1 \leq x \\
-					\frac{(y+1)\binom{y}{x}}{y+1-x}, & \text{sonst}
-				\end{cases}
+				\forall x \in \N\, \forall z \in \N: \chi_A(x,0,z) &= 0 \\
+				\forall x \in \N\,\forall z \in \N:\, \forall y \in \N: \chi_A(x,y+1,z)
+				&= \chi_{\{0\}}(x-y)\chi_{\{0\}}(y-x) \\
+				&= \cdot(\chi_{\{0\}}(-(\pi_1^4,\pi_2^4)),\chi_{\{0\}}(-(\pi_2^4,\pi_1^4)))(x,y,z,\chi_A(x,y,z))
 			\end{align*}
 		\item konstante Funktion als Verknüpfung von konstanter Nullfunktion und Nachfolgerfunktion
 			\begin{align*}
 			k = 0 + \sum_{i = 1}^k 1
 			\end{align*}
-		\item Division
+		\item Division mit Rest:
+		\begin{align*}
+			\forall y \in \N: \%(0,y) &= (0,0) \\
+			\forall x \in \N\, \forall y \in \N: \%(x+1,y) &= \begin{cases}
+				(0,0), & y = 0 \\
+				(\pi_1^2(\%(x,y)),\pi_2^2(\%(x,y)) + 1), & (\pi_2^2(\%(x,y)) + 1 < y) \land y > 0 \\
+				(\pi_1^2(\%(x,y)) + 1,0), & \text{sonst} \\
+			\end{cases}
+		\end{align*}
+		Sowohl $A_1 := \{(x,0,z): x \in \N, z \in \N\}$, als auch
+		$A_2 := \{(x,y,z): z + 1 < y, x,y,z \in \N\}$ sind primitiv rekursiv.
+		\begin{align*}
+			\forall x \in \N\, \forall z \in \N: \chi_{A_2}(x,0,z) &= 0 \\
+			\forall x \in \N\, \forall z \in \N\, \forall y \in \N: \chi_{A_2}(x,y+1,z)
+			&= \chi_{\{0\}}(y-z)(x,y,z)
+		\end{align*}
+		Division (Gaußklammer): $\lfloor \frac{n}{k}\rfloor = \pi_1^2\circ \%(n,k)$ \\
+
+		Binomialkoeffizient: (Wir setzen $\binom{x}{y} = 0$ für $y > x$)
+		\begin{align*}
+			\forall x \in \N: \binom{0}{x} &= \chi_{\{0\}}(x) \\
+			\forall x \in \N\,\forall y \in \N: \binom{y+1}{x} &= \begin{cases}
+				\chi_{\{0\}}(x-y-1)\chi_{\{0\}}(y+1-x), & y+1 \leq x \\
+				\lfloor\frac{(y+1)\binom{y}{x}}{y+1-x}\rfloor, & \text{sonst}
+			\end{cases}
+		\end{align*}
 		\item bijektive Abbildung zwischen $\N \times \N \to \N$: gemäß dem Cantorschen Diagonalverfahren summieren wir die Diagonalen jeweils von links unten nach rechts oben auf
 			\begin{align*}
-			f(n,k) := k + \sum_{i = 1}^{n + k} i = k + \frac{(n + k) (n + k + 1)}{2}
+			f(k,n) := k + \sum_{i = 1}^{n + k} i = k + \frac{(n + k) (n + k + 1)}{2} \\
+			\begin{pmatrix}
+				0 + 0 & 0 + 1 & 0 + 3 & 0 + 6 & \cdots \\
+				1 + 1 & 1 + 3 & 1 + 6 & \cdots & \\
+				2 + 3 & 2 + 6 & \cdots & & \\
+				3 + 6 & \cdots &&&
+			\end{pmatrix}
 			\end{align*}
 	\end{enumerate}
 
