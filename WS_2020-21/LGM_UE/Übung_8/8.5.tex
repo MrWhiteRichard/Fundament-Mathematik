@@ -13,7 +13,62 @@ Zeigen Sie, dass dann $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ gilt. \\
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-  \phantom{}
+	
+	Wir zeigen zuerst mit Induktion nach dem Formelaufbau
+	\begin{align*}
+	\forall \varphi \pbraces{\varphi \text{ Formel } \Rightarrow \forall b \forall \pi: (b \text{ Belegung mit Werten in } M_2, \pi \text{ Automorphismus } \Rightarrow \widehat{\pi \circ b}(\varphi) = \widehat{b}(\varphi))}
+	\end{align*}
+	Für eine beliebige Variable $x$ und eine beliebige Konstante $c$ gilt
+	\begin{align*}
+	\overline{\pi \circ b}(x) = \pi(b(x)) = \pi\pbraces{\overline{b}(x)}, \quad \overline{\pi \circ b}(c) = c^{\mathscr{M}_2} = \pi\pbraces{c^{\mathscr{M}_2}}= \pi\pbraces{\overline{b}(c)}
+	\end{align*}
+	und für Terme $t_1, \dots, t_k$ mit $\forall i \in \{1, \dots, k\}: \overline{\pi \circ b}(t_i) = \pi\pbraces{\overline{b}(t_i)}$ und ein beliebiges $k$-stelliges Funktionssymbol $f$ gilt
+	\begin{align*}
+	\overline{\pi \circ b}\pbraces{f(t_1, \dots, t_k)} &= f^{\mathscr{M}_2}\pbraces{\overline{\pi \circ b}(t_1), \dots , \overline{\pi \circ b}(t_k)} = f^{\mathscr{M}_2}\pbraces{\pi\pbraces{\overline{b}(t_1)}, \dots, \pi\pbraces{\overline{b}(t_k)}} \\
+	&= \pi \pbraces{f^{\mathscr{M}_2}\pbraces{\overline{b}(t_1), \dots, \overline{b}(t_k)}} = \pi \pbraces{\overline{b} \pbraces{f(t_1, \dots, t_k)}}
+	\end{align*}
+	Also gilt für alle Terme $t$ die Gleichheit $\overline{\pi \circ b}(t) = \pi\pbraces{\overline{b}(t)}$.
+	
+	Nun schauen wir uns die Atomformeln an und betrachten dafür Terme $t_1, \dots, t_k$ und ein $k$-stelliges Relationssymbol $R$. Es gilt 
+	\begin{align*}
+	\widehat{\pi \circ b}\pbraces{R(t_1, \dots, t_k)} = 1 \Leftrightarrow \pbraces{\overline{\pi \circ b}(t_1), \dots, \overline{\pi \circ b}(t_k)} \in R^{\mathscr{M}_2} \Leftrightarrow \pbraces{\pi\pbraces{\overline{b}(t_1)}, \dots, \pi \pbraces{\overline{b}(t_k)}} \in R^{\mathscr{M}_2} \\
+	\Leftrightarrow \pbraces{\overline{b}(t_1), \dots, \overline{b}(t_k)} \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}\pbraces{R(t_1, \dots, t_k)} = 1
+	\end{align*}
+	Für zwei Formeln $\varphi, \psi$ mit $\widehat{\pi \circ b}(\varphi) = \widehat{b}(\varphi)$ und $\widehat{\pi \circ b}(\psi) = \widehat{b}(\psi)$ gilt exemplarisch für alle Junktoren
+	\begin{align*}
+	\widehat{\pi \circ b}(\varphi \land \psi) = \widehat{\pi \circ b}(\varphi) \land_B \widehat{\pi \circ b}(\psi) = \widehat{b}(\varphi) \land_B \widehat{b}(\psi) = \widehat{b}(\varphi \land \psi)
+	\end{align*}
+	Zuletzt zeigen wir noch für den Allquantor
+	\begin{align*}
+	\widehat{\pi \circ b}(\forall \varphi) &= \inf\Bbraces{\widehat{(\pi \circ b)_{x \to m}}(\varphi) \mid m \in M_2} = \inf\Bbraces{\widehat{\pi \circ b_{x \to \pi^{-1}(m)}}(\varphi) \mid m \in M_2} \\
+	&= \inf\Bbraces{\widehat{b_{x \to \pi^{-1}(m)}}(\varphi) \mid m \in M_2} = \inf\Bbraces{\widehat{b_{x \to (m)}}(\varphi) \mid m \in M_2} = \widehat{b}(\forall \varphi)
+	\end{align*}
+	Notation: Sei $b$ Belegung mit Werten in $M_1 \subseteq M_2$:
+	\begin{align*}
+	\overline{b}_i &:= \overline{b}_{\mathscr{M}_i}, \quad i = 1,2 \\
+	\hat{b}_i &:= \hat{b}_{\mathscr{M}_i}, \quad i = 1,2. \\
+	\end{align*}
+	In einem ersten Schritt wollen wir für eine beliebige Belegung $b$ mit Werten in $M_1$ zeigen, dass für alle Atomformeln $\varphi$ die Äquivalenz
+	\begin{align*}
+	\mathscr{M}_1 \vDash \varphi[b] \iff \mathscr{M}_2 \vDash \varphi[b]
+	\end{align*}
+	gilt. Zuerst kümmern wir uns um die Terme.
+	\begin{align*}
+	\overline{b}_1(c) &= c^{\mathscr{M}_1} = c^{\mathscr{M}_2} = \overline{b}_2(c), \\
+	\overline{b}_1(x) &= b(x) = \overline{b}_2(x), \\
+	\overline{b}_1(f(t_1, \dots, t_k)) &= f^{\mathscr{M}_1}(\overline{b}_1(t_1), \dots, \overline{b}_1(t_k))
+	= f^{\mathscr{M}_1}\underbrace{(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k))}_{\in M_1^k} =
+	f^{\mathscr{M}_2}(\overline{b}_2(t_1), \dots, \overline{b}_2(t_k))
+	= \overline{b}_2(f(t_1, \dots, t_k))
+	\end{align*}
+	Also wissen wir jetzt $\overline{b}_1 = \overline{b}_2$ und schreiben stets einfach $\overline{b}$. Insbesondere hat $\overline{b}$ nur Werte in $M_1$. Als nächstes kommen die Atomformeln. Wir berechnen
+	\begin{align*}
+	\widehat{b}_1(R(t_1, \dots, t_k)) = 1 \Leftrightarrow (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_1} \Leftrightarrow  (\overline{b}(t_1), \dots, \overline{b}(t_k)) \in R^{\mathscr{M}_2} \Leftrightarrow \widehat{b}_2(R(t_1, \dots, t_k)) = 1.
+	\end{align*}
+	Nun ist die gewünschte Aussage für Atomformeln also gezeigt.
+	\begin{align*}
+	\widehat{b}_1(\psi_1 \land \psi_2) = \widehat{b}_1(\psi_1) \land_B \widehat{b}_1 (\psi_2) = \widehat{b}_2(\psi_1) \land_B \widehat{b}_2(\psi_2) = \widehat{b}_2(\psi_1 \land \psi_2)
+	\end{align*}
+	und haben die Aussage für alle quantorenfreien Formeln also gezeigt.
 
 \end{solution}
