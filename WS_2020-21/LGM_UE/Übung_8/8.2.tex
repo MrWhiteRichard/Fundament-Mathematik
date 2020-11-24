@@ -30,12 +30,27 @@ Schritte hat.
 		G(M_n) = \{\{P(a)\};\{\neg P(f^{2^n}(a))\}\} \cup
 		\{\{\neg P(x/t), P(f(x/t))\}: t \text{ variablenfreier Term}\}
 	\end{align*}
-	Wieder wollen wir die Aussage induktiv zeigen: $k = 0$: \\
-	\begin{flalign*}
-		C_1 &= \{P(a)\} & \in G(M_n) \\
-		C_2 &= \{\neg P(f(a))\} & \in G(M_n) \\
-		C_3 &= \{\neg P(a), P(f(a))\} & \in G(M_n), t = a \\
-		C_4 &= \{P(f(a))\} & \mathrm{Res_{P(a)}}(C_1,C_3) \\
-		C_5 &= \emptyset & \mathrm{Res_{P(f(a))}}(C_2,C_4)
-	\end{flalign*}
+	Nun gibt es drei sinnvolle Typen von Resolutionen:
+	\begin{enumerate}
+		\item
+		\begin{align*}
+			C_{j_1} &= \{P(f^k(a))\} \\
+			C_{j_2} &= \{\neg P(f^k(a));P(f^{k+1}(a))\} \\
+			\mathrm{Res}(C_{j_1},C_{j_2}) &= \{P(f^{k+1}(a))\}
+		\end{align*}
+		\item
+		\begin{align*}
+		C_{j_1} &= \{\neg P(f^k(a))\} \\
+		C_{j_2} &= \{\neg P(f^{k-1}(a));P(f^{k}(a))\} \\
+		\mathrm{Res}(C_{j_1},C_{j_2}) &= \{\neg P(f^{k-1}(a))\}
+		\end{align*}
+		\item
+		\begin{align*}
+		C_{j_1} &= \{\neg P(f^{k-1}(a));P(f^{k}(a))\} \\
+		C_{j_2} &= \{\neg P(f^{k}(a));P(f^{k+1}(a))\} \\
+		\mathrm{Res}(C_{j_1},C_{j_2}) &= \{\neg P(\neg f^{k-1}(a));P(f^{k+1}(a))\}
+		\end{align*}
+	\end{enumerate}
+	Iterierte Anwendung einer beliebigen Kombination dieser Strategien führt mit $\geq 2^n$
+	Schritten zum Ziel, da in jedem Schritt nur eine $f$-Potenz \glqq gewonnen\grqq\ wird.
 \end{solution}
