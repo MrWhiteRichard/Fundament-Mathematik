@@ -7,11 +7,11 @@ Für ein beschränktes Lipschitz-Gebiet $\Omega \subset \R^2$ definieren wir den
 \begin{align*}
   H(\curl, \Omega)
   :=
-  \Bbraces{\xi \in [L^2(\Omega)]^2 | \curl \xi \in L^2(\Omega)}, 
+  \Bbraces{\xi \in [L^2(\Omega)]^2 | \curl \xi \in L^2(\Omega)},
   \quad
   (\xi, \zeta)_{H(\curl)}
   :=
-  (\xi, \zeta)_{L^2(\Omega)} + (\curl \xi, \curl \zeta)_{L^2(\Omega)}, 
+  (\xi, \zeta)_{L^2(\Omega)} + (\curl \xi, \curl \zeta)_{L^2(\Omega)},
 \end{align*}
 
 mit $\curl \xi := \frac{\partial \xi_2}{\partial x} - \frac{\partial \xi_1}{\partial y}$ für $\xi(x, y) = (\xi_1(x, y), \xi_2(x, y))^\top$.
@@ -154,7 +154,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
   \begin{enumerate}[label = \arabic*.]
 
     \item Stetigkeit von $a$:
-    
+
     Auf dem $\R^3$ sind die Normen $\norm[1]{\cdot}$ und $\norm[2]{\cdot}$ äquivalent.
     Wir erhalten also eine Konstante $C > 0$, sodass $\norm[1]{\cdot} \leq C \norm[2]{\cdot}$.
 
@@ -324,7 +324,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     \end{align*}
 
     \item Elliptizität von $a$:
-    
+
     \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-11_(Poincare-Ungleichung).png}
 
     Die Poincaré-Ungleichung von \cite{PDEs} liefert uns ein $C_p > 0:$
@@ -345,7 +345,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     \end{align*}
 
     In der folgenden Abschätzung verwenden wir die Young Ungleichung mit $\varepsilon \in \pbraces{\frac{1}{c + 1}, 1}$.
-    
+
     \begin{align*}
       a
       \pbraces
@@ -421,7 +421,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       \norm[L^2(\Omega)]{\curl \xi}^2 \\
       & \geq
       \frac{1 - \varepsilon}{(C_p + 1)^2}
-      \norm[H^1(\Omega)]{\nabla u}^2
+      \norm[H^1(\Omega)]{u}^2
       +
       \pbraces{1 + c - \frac{1}{\varepsilon}}
       \norm[L^2(\Omega)]{\xi}^2
@@ -437,7 +437,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       }
       \pbraces
       {
-        \norm[H^1(\Omega)]{\nabla u}^2
+        \norm[H^1(\Omega)]{u}^2
         +
         \norm[L^2(\Omega)]{\xi}^2
         +
@@ -462,7 +462,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     Wir sind fertig, weil $c > 0$.
 
     \item Stetigkeit von $F$:
-    
+
     \begin{align*}
       F
     \begin{pmatrix}
@@ -482,14 +482,14 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     {
       \begin{pmatrix}
         v \\ \xi
-      \end{pmatrix}  
+      \end{pmatrix}
     }
     \end{align*}
 
   \end{enumerate}
 
-  \item Sei $u$ zweimal stetig differenzierbar und nicht die Nullfunktion.
-  Laut dem Satz von Schwarz, verschwindet der $\curl$ dessen Gradienten.
+  \item Sei $u \in C^2(\Omega) \cap H_0^1(\Omega) \backslash \{0\}$.
+  Laut dem Satz von Schwarz, verschwindet der $\curl$ des Gradienten.
 
   \begin{align*}
     u \in C^2(\Omega) \setminus \Bbraces{0}
@@ -510,7 +510,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     0
   \end{align*}
 
-  Wir wählen also $\xi := \nabla u$.
+  Wir wählen also $\xi := \nabla u \in C^1(\Omega) \subset H(\mathrm{curl}, \Omega)$.
   Sei $M > 0$ beliebig.
 
   \begin{align*}
@@ -538,19 +538,17 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
     =
     \norm[L^2(\Omega)]{\nabla u - \xi}^2
     +
-    c \norm[L^2(\Omega)]{\xi}^2
-    +
     \norm[\Omega]{\curl \xi}^2
   \end{align*}
 
   Daher kann $a$ nicht koerziv sein.
 
   \item
-  
+
   \begin{enumerate}[label = \arabic*.]
 
     \item Nebenrechnung (Linke Seite):
-    
+
     Wir bemerken zunächst, dass $\curl \xi_\epsilon = 0$ für alle $\epsilon > 0$.
 
     \begin{multline*}
@@ -572,7 +570,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       \underbrace
       {
         \norm[L^2(\Omega)]{\curl \xi_\epsilon}^2
-      }_0 \\
+      }_{=0} \\
       =
       (1 + c)
       \Int[\Omega]
@@ -588,9 +586,9 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       (1 + c)
       \Int[\Omega]{\sin^2 \frac{x}{\epsilon}}{(x, y)}
     \end{multline*}
-    
+
     \item Nebenrechnung (Rechte Seite):
-    
+
     \begin{multline*}
       \norm[\hat X]
       {
@@ -616,10 +614,10 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       \epsilon^{-2}
       \Int[\Omega]{\cos^2 \frac{x}{\epsilon}}{(x, y)}
     \end{multline*}
-    
+
     \item Nebenrechnung (Eine Abschätzung für ein Integral):
-    
-    Weil $\Omega$ offen ist, finden wir darin eine Kugel.
+
+    Weil $\Omega$ offen ist, finden wir darin ein Rechteck.
 
     \begin{align*}
       \implies
@@ -630,7 +628,7 @@ Für ein $c \geq 0$ und $f \in L^2(\Omega)$ sei das folgende Variationsproblem g
       \subseteq
       \Omega
     \end{align*}
-    
+
     Wir dürfen also folgendes Integral nach unten abschätzen.
 
     \begin{multline*}
