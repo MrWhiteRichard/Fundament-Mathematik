@@ -18,6 +18,24 @@ Schritte hat.
 	\begin{align*}
 	\forall k \in \N: \text{mit } 2k \text{ Schritten erreichen wir } \Bbraces{\neg P(x), P\pbraces{f^{2^k}(x)}}
 	\end{align*}
-	Für $k = 0$ brauchen wir tatsächlich $0$ Schritte, da $\{\neg P(x),P(f(x))\} \in M_n$. Nehmen wir für $k \in \N$ nun an, dass in $2k$ Schritten die Menge $\Bbraces{\neg P(x), P\pbraces{f^{2^k}(x)}}$ erreicht werden kann, so können wir mit $x / f^{2^k}(x)$ die Menge $\Bbraces{\neg P\pbraces{f^{2^k}(x)}, P\pbraces{f^{2^{k + 1}}(x)}}$ erreichen und dann resolvieren um $\Bbraces{\neg P(x), P\pbraces{f^{2^{k + 1}}(x)}}$ zu erhalten. \\
-	Nun fehlt nur mehr der zweite, wohl schwierigere Teil.
+	Für $k = 0$ brauchen wir tatsächlich $0$ Schritte, da $\{\neg P(x),P(f(x))\} \in M_n$.
+	Nehmen wir für $k \in \N$ nun an, dass in $2k$ Schritten die Menge
+	$\Bbraces{\neg P(x), P\pbraces{f^{2^k}(x)}}$ erreicht werden kann,
+	so können wir mit $x / f^{2^k}(x)$ die Menge
+	$\Bbraces{\neg P\pbraces{f^{2^k}(x)}, P\pbraces{f^{2^{k + 1}}(x)}}$
+	erreichen und dann resolvieren um $\Bbraces{\neg P(x), P\pbraces{f^{2^{k + 1}}(x)}}$ zu erhalten.
+	Wenn wir das in $k$ Schritten erreicht haben, müssen wir nur noch zweimal resolvieren,
+	um zuerst $\{P(f^{2^k(a)})\}$ und anschließend $\emptyset$ zu erhalten. \\
+	\begin{align*}
+		G(M_n) = \{\{P(a)\};\{\neg P(f^{2^n}(a))\}\} \cup
+		\{\{\neg P(x/t), P(f(x/t))\}: t \text{ variablenfreier Term}\}
+	\end{align*}
+	Wieder wollen wir die Aussage induktiv zeigen: $k = 0$: \\
+	\begin{flalign*}
+		C_1 &= \{P(a)\} & \in G(M_n) \\
+		C_2 &= \{\neg P(f(a))\} & \in G(M_n) \\
+		C_3 &= \{\neg P(a), P(f(a))\} & \in G(M_n), t = a \\
+		C_4 &= \{P(f(a))\} & \mathrm{Res_{P(a)}}(C_1,C_3) \\
+		C_5 &= \emptyset & \mathrm{Res_{P(f(a))}}(C_2,C_4)
+	\end{flalign*}
 \end{solution}

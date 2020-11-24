@@ -14,6 +14,23 @@ um $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$ zu zeigen.
 
 \begin{solution}
 
-  \phantom{}
-
+Wir müssen hier nur noch für alle endliche Mengen $E \subseteq M_1$ und alle $b \in M_2$
+einen Automorphismus $\pi$ finden, der $\pi|_E = \id_E$ und $\pi(b) \in M_1$ erfüllt. \\
+Seien dazu $E \subseteq M_1, b \in M_2$ beliebig.
+\begin{itemize}
+  \item Fall 1: $b \in M_1$: \\
+  Wir können $\pi = \id_{M_2}$ wählen.
+  \item Fall 2: $b \notin M_1$: \\
+  Da $E \subset M_1$ eine endliche Menge ist, finden wir ein $m_0 \in M\backslash E$ und
+  wir definieren
+  \begin{align*}
+    \pi(m) = \begin{cases}
+      m_0, & m = b \\
+      b, & m = m_0 \\
+      m, & \text{sonst}
+    \end{cases}
+  \end{align*}
+  Klarerweise gilt $\pi|_E = id_E$ und $\pi$ ist auch bijektiv.
+  Mit Aufgabe 203 erhalten wir damit bereits schon $\mathscr{M}_1 \preccurlyeq \mathscr{M}_2$.
+\end{itemize}
 \end{solution}
