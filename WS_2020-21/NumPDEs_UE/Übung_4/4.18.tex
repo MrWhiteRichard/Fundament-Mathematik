@@ -107,13 +107,13 @@ Speziell, $h_T = \max \Bbraces{|z_2 - z_1|, |z_3 - z_1|, |z_3 - z_2|, |z_4 - z_1
 
 \includegraphicsboxed{Ana3/Ana3 - Satz 4.4.1 (Koflächenformel).png}
 
-Wir benützen die Koflächenformel und berechnen
+Wir wenden die Koflächenformel auf $f(x,y,z) = z,\ |\nabla f(x,y,z)| = 1$ und $g(x,y,z) = 1$ an und berechnen
 
 \begin{align*}
   |T_\mathrm{ref}|
   =
   \Int[T_\mathrm{ref}]{}{\lambda}
-  =
+  = \Int[0][1]{\mathcal{H}^2(f^{-1}(h))}{h}
   \Int[0][1]{(1 - h)^2 / 2}{h}
   =
   \frac{1}{2} \Int[0][1]{1 - 2 h + h^2}{h}
@@ -166,7 +166,7 @@ wobei ja
 und daher
 
 \begin{multline*}
-  \cof(B)^\top \\
+  \cof(B)^\top
   =
   \begin{pmatrix}
     +
@@ -267,20 +267,20 @@ Das basiert auf den folgenden beiden Resultaten aus \cite{Ana3} bzw. \cite{FAna1
 \includegraphicsboxed{Ana3/Ana3 - Proposition 4.1.2.png}
 \includegraphicsboxed{FAna1/FAna1 - orthogonale Projektion 4.png}
 
-Damit erhalten wir folgende Abschätzungen, wenn $\pi$ eine orthogonale Projektion ist.
+Damit erhalten wir folgende Abschätzungen, wenn $\pi$ eine orthogonale Projektion ist:
 
 \begin{align*}
-  |T_1| & \geq |\pi(T_1)| \geq \frac{1}{2} \det(\pi(z_3 - z_1), \pi (z_4 - z_1)) \\
-  |T_3| & \geq |\pi(T_3)| \geq \frac{1}{2} \det(\pi(z_2 - z_1), \pi (z_4 - z_1)) \\
-  |T_4| & \geq |\pi(T_4)| \geq \frac{1}{2} \det(\pi(z_2 - z_1), \pi (z_3 - z_1))
+  |T_1| & \geq |\pi(T_1)| = \frac{1}{2} \det(\pi(z_3 - z_1), \pi (z_4 - z_1)) \\
+  |T_3| & \geq |\pi(T_3)| = \frac{1}{2} \det(\pi(z_2 - z_1), \pi (z_4 - z_1)) \\
+  |T_4| & \geq |\pi(T_4)| = \frac{1}{2} \det(\pi(z_2 - z_1), \pi (z_3 - z_1))
 \end{align*}
 
-Wir erhalten also folgende Abschätzung.
+Wir erhalten also folgende Abschätzung:
 
 \begin{align*}
-  & \norm{\cof(B)^\top} \\
+  & \norm{\cof(B)^\top}
   =
-  & \vbraces
+  \vbraces
   {
     \det
     \pbraces
