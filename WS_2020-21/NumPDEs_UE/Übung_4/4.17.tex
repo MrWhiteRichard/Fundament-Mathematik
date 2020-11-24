@@ -3,11 +3,8 @@
 \begin{exercise}
 
 Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebietes $\Omega \subset \R^2$ und $h \in L^\infty(\Omega)$ definiert durch $h|_T = h_T$ für alle $T \in \mathcal{T}$.
-
 \begin{enumerate}[label = \textbf{\alph*)}]
-
   \item Zu einer Funktion $v \in H^1(\Omega)$ definieren wir die Funktion
-  
   \begin{align*}
     v_\mathcal{T} \in \S_{-1}^0(\mathcal{T})
     :=
@@ -19,21 +16,15 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       v_h|_T \in P_0
     }
   \end{align*}
-  
   durch $v_\mathcal{T}|_T := |T|^{-1} \Int[T]{v}{x}$ für alle $T \in \mathcal{T}$.
   Zeigen Sie, dass
-
   \begin{align*}
     \norm[L^2(\Omega)]{v - v_\mathcal{T}}
     \leq
     C \norm[L^2(\Omega)]{h \nabla v}
   \end{align*}
-
-  gilt.
-  Die Konstante $C > 0$ hängt dabei weder von $\Omega$ noch von $v$ oder $\mathcal{T}$ ab.
-
+  gilt. Die Konstante $C > 0$ hängt dabei weder von $\Omega$ noch von $v$ oder $\mathcal{T}$ ab.
   \item Zeigen Sie für $\norm[L^\infty(\Omega)]{h} < 1$ und $p \in \N$
-
   \begin{align}
     \norm[L^2(\Omega)]{h D^2 v_h}
     \leq
@@ -41,9 +32,7 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
     \quad
     v_h \in \S_0^p(\mathcal{T}).
   \end{align}
-
   Die Konstante $C > 0$ hängt dabei nur von $\sigma(\mathcal{T})$ ab.
-
 \end{enumerate}
 
 \end{exercise}
@@ -51,30 +40,20 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
 \phantom{}
-
 \begin{enumerate}[label = \textbf{\alph*)}]
-
   \item
-  
   \begin{enumerate}[label = \arabic*.]
- 
     \item Schritt (Abschätzung auf dem Referenz-Element $T_\mathrm{ref}$):
-    
     Definiere dafür das Integralmittel
-    
     \begin{align*}
       v_{T_\mathrm{ref}}
       :=
       |T_\mathrm{ref}|^{-1}
       \Int[T_\mathrm{ref}]{v}{x}.
     \end{align*}
-    
     \includegraphicsunboxed{NumPDEs/NumPDEs - Corollary 2.8 (Poincaré Inequality).png}
-
     Laut Corollary 2.8 (Poincaré Inequality) $\Exists C_P > 0: v \in H^1(T_\mathrm{ref}):$
-  
     \begin{align*}
       \norm[L^2(T_\mathrm{ref})]{v - v_{T_\mathrm{ref}}}
       \leq
@@ -82,27 +61,20 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       =
       C_P \norm[L^2(T_\mathrm{ref})]{\nabla v}.
     \end{align*}
-    
     \item Schritt (Skalierungs-Argument für Abschätzung auf jedem Element $T \in \mathcal{T}$):
- 
     Auch hier, definiere dafür das Integralmittel
-    
     \begin{align*}
       v_T
       :=
       |T|^{-1}
       \Int[T]{v}{x}.
     \end{align*}
-
     Sei $\Phi_T$ der affine Diffeomorphismus aus Lemma 3.9.
-
     \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.9.png}
-
     Das bilden des Integralmittels ist damit in gewisser Weise verträglich.
-
-    \begin{multline*}
+    \begin{align*}
       (v \circ \Phi_T)_{T_\mathrm{ref}}
-      =
+      &=
       |T_\mathrm{ref}|^{-1}
       \Int[T_\mathrm{ref}]{v \circ \Phi_T}{x} \\
       \stackrel
@@ -112,18 +84,15 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       |T_\mathrm{ref}|^{-1}
       |\det(B)|^{-1}
       \Int[\Phi_T(T_\mathrm{ref})]{v}{x}
-      =
+      &=
       2 \frac{1}{2 |T|}
       \Int[T]{v}{x}
       =
       v_\mathcal{T}|_T \circ \Phi_T
-    \end{multline*}
-  
+    \end{align*}
     \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.8 (Transformation Formula).png}
-
     Definiere nun $u := v \circ \Phi_T$.
     Wende Lemma 3.8 (Transformation Formula) für $m = 0$ auf $\Phi_T^{-1}$ an.
-  
     \begin{multline*}
       \norm[L^2(T)]{v - v_\mathcal{T}|_T}
       =
@@ -135,13 +104,12 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       |\det(B)^{-1}|^{-1/2}
       \norm[L^2(T_\mathrm{ref})]{u - u_{T_\mathrm{ref}}}
       \leq
-      |\det(B)^{-1}|^{-1/2}
+      |\det(B)|^{1/2}
       C_P
       \norm[L^2(T_\mathrm{ref})]{\nabla u}
     \end{multline*}
-  
-    Mit Lemma 3.8 (Transformation Formula) für $m = 1$ auf $\Phi_T$, sowie der geometrischen Interpretation von $\norm[F]{B}$ aus Lemma 3.9 erhalten wir
-  
+    Mit Lemma 3.8 (Transformation Formula) für $m = 1$ auf $\Phi_T$, sowie der
+    geometrischen Interpretation von $\norm[F]{B}$ aus Lemma 3.9 erhalten wir
     \begin{multline*}
       \norm[L^2(T_\mathrm{ref})]{\nabla u}
       =
@@ -156,9 +124,7 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       h_T
       \norm[L^2(T)]{\nabla v}.
     \end{multline*}
-  
-    Die Kombination der letzten beiden Abschätzungen zeigt, dass  
-
+    Die Kombination der letzten beiden Abschätzungen zeigt, dass
     \begin{align*}
       \norm[L^2(T)]{v - v_\mathcal{T}|_T}
       \leq
@@ -166,9 +132,7 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       =
       \sqrt{2} C_P h_T \norm[L^2(T)]{\nabla v}.
     \end{align*}
-
     \item Schritt (Aufsummieren zum gesamten Gebiet $\Omega$):
-
     \begin{align*}
       \norm[L^2(\Omega)]{v - v_\mathcal{T}}^2
       =
@@ -180,38 +144,27 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       =
       2 C_P^2 \norm[L^2(\Omega)]{h \nabla v}^2
     \end{align*}
-  
     Die Konstante $C_P$ hängt nur vom Referenzdreieck $T_\mathrm{ref}$ ab.
-
   \end{enumerate}
-
   \item
-  
   \begin{enumerate}[label = \arabic*.]
-
     \item Schritt (Abschätzung auf jedem Element $T \in \mathcal{T}$):
-    
     \includegraphicsunboxed{NumPDEs/NumPDEs - Theorem 4.12 (inverse estimate).png}
-
     Wir verwenden Theorem 4.12 (inverse estimate) mit $k = 2$, $r = 1$:
     Also gilt $\Forall v_h \in \mathcal{P}^p(\mathcal{T}) \supset \S_0^p(\mathcal{T})$:
-  
     \begin{align*}
       \norm[L^2(T)]{D^2 v_h}
       & \leq
-      C \sigma(\mathcal{T}) h_T^{1-2} \norm[L^2(T)]{\nabla v_h} \\
+      C \sigma(\mathcal{T})^2 h_T^{1-2} \norm[L^2(T)]{\nabla v_h} \\
       \implies
       \norm[L^2(T)]{h_T D^2 v_h}
       & \leq
-      C \sigma(\mathcal{T}) \norm[L^2(T)]{\nabla v_h}
+      C \sigma(\mathcal{T})^2 \norm[L^2(T)]{\nabla v_h}
       \leq
-      C \sigma(\mathcal{T}) \norm[H^1(T)]{v_h}
+      C \sigma(\mathcal{T})^2 \norm[H^1(T)]{v_h}
     \end{align*}
-  
     Die Konstante $C$ hängt nur vom Referenzdreieck $T_\mathrm{ref}$ ab.
-    
     \item Schritt (Aufsummieren zum gesamten Gebiet $\Omega$):
-
     \begin{align*}
       \norm[L^2(\Omega)]{h D^2 v_h}^2
       =
@@ -219,15 +172,12 @@ Sei $\mathcal{T}$ eine reguläre Triangulierung des beschränkten Lipschitz-Gebi
       \norm[L^2(T)]{h_T D^2 v_h}^2
       \leq
       \sum_{T \in \mathcal{T}}
-      C^2 \sigma(\mathcal{T})^2 \norm[H^1(T)]{v_h}^2
+      C^2 \sigma(\mathcal{T})^4 \norm[H^1(T)]{v_h}^2
       =
-      C^2 \sigma(\mathcal{T})^2 \norm[H^1(\Omega)]{v_h}^2
+      C^2 \sigma(\mathcal{T})^4 \norm[H^1(\Omega)]{v_h}^2
     \end{align*}
-
   \end{enumerate}
-
 \end{enumerate}
-
 \end{solution}
 
 % --------------------------------------------------------------------------------
