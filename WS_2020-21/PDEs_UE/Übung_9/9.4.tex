@@ -74,3 +74,108 @@ wobei $u_0 \in L^2(0,\pi)$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}
+\begin{enumerate}[label = (\roman*)]
+  \item Wir betrachten zunächst Lösungen der Differentialgleichung
+
+  \begin{align*}
+    \phi_n
+    =
+    c_1 e^{\sqrt{\lambda_n}x} + c_2 e^{-\sqrt{\lambda_n}x}
+  \end{align*}
+
+  Fall 1: $\lambda_n > 0$: \\
+  Dann hat die Lösung folgende Form:
+
+  \begin{align*}
+    \phi_n(x)
+    =
+    c_1 \cosh(\sqrt{\lambda_n}x) + c_2 \sinh(\sqrt{\lambda_n}x)
+  \end{align*}
+
+  Diese kann die Randbedingungen jedoch nur im trivialen Fall $c_1, c_2 = 0$ erfüllen, da
+
+  \begin{align*}
+    &\phi_n(0) = c_1 \stackrel{!}{=} 0\\
+    \implies
+    &\phi^\prime(\pi) = c_2 \sqrt{\lambda_n} \cosh({\sqrt{\lambda_n}x}) \stackrel{!}{=} 0
+  \end{align*}
+
+  Nun ist $\cosh$ jedoch eine strikt positive Funktion, also muss auch $c_2 = 0$.
+
+  Fall 2: $\lambda_n = 0$: \\
+  Hier ist unsere Differentialgleichung nur $\phi_n^\primeprime = 0$, hat also die Form $c_1 x + c_2$. Auch hier erhalten wir $\phi_n \equiv 0$.
+
+  Fall 3: $\lambda_n < 0$: \\
+  Lösungen sind gegeben durch
+
+  \begin{align*}
+    \phi_n(x) = c_1 \sin(\sqrt{|\lambda_n|}x) + c_2 \cos(\sqrt{|\lambda_n|}x)
+  \end{align*}
+
+  Für die RB setzen wir ein
+  \begin{align*}
+    &\phi_n(0) = c_2 \stackrel{!}{=}0 \\
+    \implies
+    &\phi_n^\prime(\pi) = c_2 \sqrt{|\lambda_n|} \cos({\sqrt{|\lambda_n|}\pi}) \stackrel{!}{=} 0
+    \iff
+    \sqrt{|\lambda_n|}\pi = \frac{\pi}{2} + k\pi, \quad k \in \Z
+  \end{align*}
+
+  Wir haben also zunächst mit der Wahl $k := n-1$ eine Darstellung von $\phi_n$, mit einer noch zu bestimmenden Konstante c, als
+
+  \begin{align*}
+    \phi_n(x) = c \sin(\frac{2n-1}{2}x)
+  \end{align*}
+
+  Zweimaligens differenzieren liefert
+
+  \begin{align*}
+    \phi_n^\primeprime(x) = c \underbrace{-(\frac{2n-1}{2})^2}_{\lambda_n} \sin(\frac{2n-1}{2}x)
+  \end{align*}
+
+  Da $\norm[L^2((0,\pi))]{\sin(\frac{2n-1}{2}x)} = \sqrt{\frac{\pi}{2}}$ wählen wir $c = \sqrt{\frac{2}{\pi}}$ um $\norm[L^2((0,\pi))]{\phi_n} = 1$ zu erhalten. \\
+  Noch offen $\rightarrow$ Vollständigkeit.
+  \item Da wir ein vollständiges Orthonormalsystem haben, konvergiert die Reihe
+
+  \begin{align*}
+    u(x,t)
+    :=
+    \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x)
+  \end{align*}
+
+  unbedingt. Diese Funktion löst die PDE, dazu setzen wir ein
+
+  \begin{align*}
+    u_t - u_{xx} &=\sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x) - \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x)= 0 \\
+    u(0,t) &= \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} 0) = 0 \\
+    u_x(\pi, t) &= \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \cos(\sqrt{-\lambda_k} \pi)= 0 \\
+    u(x, 0) &= \sum_{n=1}^\infty (u_0, \phi_n)_{L^2} \phi_n(x) = u_0(x)
+  \end{align*}
+
+  \item Unter der Annahme, dass mit der Abklingrate eine Ähnliche Ungleichung wie in $(6.15)$ im Skript gemeint ist, schätzen wir ab (wobei $\lambda_1$ der kleinste EW ist)
+
+  \begin{align*}
+    \norm[L^2]{u(\cdot,t)}
+    =
+    \Int[0][\pi]{u(x,t)^2}{x}
+    \stackrel{\text{Pythagoras}}{=}
+    \Int[0][\pi]{\sum_{n=1}^\infty e^{2\lambda_n t} (u_0, \phi_n)_{L^2}^2 \frac{2}{\pi} \sin(\sqrt{-\lambda_k} x)^2}{x}
+    \leq
+    e^{2\lambda_1 t} \norm[L^2]{u_0}^2
+  \end{align*}
+
+  Insgesamt erhalten wir eine Abschätzung
+
+  \begin{align*}
+    |E(t)|
+    \leq
+    \Int[0][\pi]{|u(x,t)|}{x}
+    \leq
+    \sqrt{\pi} \norm[L^2]{u(\cdot,t)}
+    \leq
+    \sqrt{\pi} e^{\lambda_1 t}\norm[L^2]{u_0}
+  \end{align*}
+  \end{enumerate}
+\end{solution}
