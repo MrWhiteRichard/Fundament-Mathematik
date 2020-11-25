@@ -20,7 +20,42 @@ mit $f \in L^2(\R^n)$ und $\Delta^2 u = \Delta(\Delta u)$.
 
 \begin{solution}
 
-\phantom{}
+\phantom{}\begin{itemize}
+    \item[(i)] Es gilt $\Delta^2 u = \sum_{i, j=0}^n \frac{\partial^4 u}{\partial x_i^2 \partial x_j^2}.$ Weiters stellen wir fest, dass
+    \begin{align*}
+     \sum_{i, j=0}^n k_i^2 k_j^2 =
+     \sum_{i = 0}^n k_i^2 \left(\sum_{j = 0}^n k_j^2\right) = \sum_{i = 0}^n k_i^2 ~|k|^2 = |k|^4.
+    \end{align*}
+    Wir wenden nun auf beide Seiten der Differentialgleichung die Fouriertransformation an und erhalten mit der gerade gemachten Hilfsrechnung
+    \begin{align*}
+     \mathcal{F}\left(\sum_{i, j=0}^n \frac{\partial^4 u}{\partial x_i^2 \partial x_j^2}\right)(k) + \hat u(k) &= \hat f(k) \\
+     \left(\sum_{i, j=0}^n k_i^2 k_j^2\right) \hat u(k) + \hat u(k) &= \hat f(k) \\
+     \left(|k|^4 + 1\right)\hat u(k) &= \hat f(k) \\
+     \hat u(k) &= \frac{\hat f(k)}{|k|^4 + 1}.
+    \end{align*}
+    \item[(ii)] Aus Teil (i) und der Ungleichung von Cauchy-Schwarz-Bunjakowski folgt
+    \begin{align*}
+        \int_{\R^n} \left| \hat u \right| \mathrm{d}k = \int_{\R^n} \left| \frac{\hat f(k)}{|k|^4 + 1} \right| \mathrm{d}k \leq \|f\|_{L^2(\R^n)} \left\|\frac{1}{|k|^4 + 1}\right\|_{L^2(\R^n)}.
+    \end{align*}
+    Für die Abschätzung des zweiten Faktors ist die Tatsache hilfreich, dass die Funktion $\frac{1}{|k|^4 + 1}$ radialsymmetrisch ist. Deshalb können wir die Koflächenformel anwenden und erhalten
+    \begin{align*}
+        \int_{\R^n} \left| \frac{1}{|k|^4 + 1} \right|^2 ~\mathrm{d}k &=
+        \int_{\R^n} \frac{1}{|k|^8 + 2|k|^4 + 1} ~\mathrm{d}k\\ &\leq \int_{\R^n} \frac{1}{|k|^8 + 1} ~\mathrm{d}k\\
+        &= \int_0^\infty \int_{\partial B_r(0)} \frac{1}{r^8 + 1} ~\mathrm{d}\mathcal{H}^{n-1} ~\mathrm{d}r\\
+        &= \int_0^\infty \mathcal{H}^{n-1}\left(\partial B_r(0)\right) \frac{1}{r^8 + 1} ~\mathrm{d}r\\
+        &= S_n \int_0^\infty \frac{r^{n-1}}{r^8 + 1}
+        ~\mathrm{d}r\\
+        &\leq S_n \left(\int_0^1 1~
+        \mathrm{d}r + \int_1^\infty \frac{1}{r^2}
+        ~\mathrm{d}r\right) < \infty;
+    \end{align*}
+    also gilt $\hat u \in L^1(\R^n)$.
+
+    $\hat u \in L^2(\R^n)$ erhalten wir durch eine wesentlich simplere Überlegung:
+    \begin{align*}
+        \int_{\R^n} \left| \hat u \right|^2 \mathrm{d}k = \int_{\R^n} \left| \frac{\hat f(k)}{|k|^4 + 1} \right|^2 \mathrm{d}k \leq \int_{\R^n} \left| f(k) \right|^2 \mathrm{d}k < \infty.
+    \end{align*}
+\end{itemize}
 
 \end{solution}
 
