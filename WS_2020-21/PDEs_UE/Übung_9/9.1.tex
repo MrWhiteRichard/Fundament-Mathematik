@@ -23,17 +23,17 @@ erfüllt. Berechnen Sie den Grenzwert von $u(x,t),\ x \in \R$ für $t \to \infty
 Sei $u$ eine Lösung der Wärmeleitungsgleichung mit $u(\cdot,t), u_t(\cdot,t) \in L^1(\R)$. \\
 Wir gehen analog zum Skript vor und erhalten
 \begin{align*}
-0 = \mathscr{F}(u_t - a^2u_{xx}) = \hat{u_t} - a^2|x|^2\hat{u}
+0 = \mathscr{F}(u_t - a^2u_{xx}) = \hat{u_t} + a^2|k|^2\hat{u}
 \end{align*}
-Die Lösung dieser homogenen Differentialgleichung mit Anfangsbedingung $\hat{u}(k,0) = \varphi(k)$ lautet
+Die Lösung dieser homogenen Differentialgleichung mit Anfangsbedingung $\hat{u}(k,0) = \hat{\varphi}(k)$ lautet
 \begin{align*}
-  \hat{u}(k,t) = \varphi(k)\exp(-(ak)^2t)
+  \hat{u}(k,t) = \hat{\varphi}(k)\exp(-(ak)^2t)
 \end{align*}
 Mit der Inversionsformel erhalten wir mit $w = \mathscr{F}^{-1}(\exp(-(ak)^2t))$
 \begin{align*}
   u(x,t) &= \mathscr{F}^{-1}(\hat{u})(x,t) = \frac{1}{2\pi}\int_\R \hat{u}(k,t)\exp(ikx)dk
-  = \frac{1}{2\pi}\int_\R \varphi(k)\exp(-(ak)^2t)\exp(ikx)dk \\
-  &= \frac{1}{2\pi}\int_\R \varphi(k)\hat{w}(k,t)\exp(ikx)dk
+  = \frac{1}{2\pi}\int_\R \hat{\varphi}(k)\exp(-(ak)^2t)\exp(ikx)dk \\
+  &= \frac{1}{2\pi}\int_\R \hat{\varphi}(k)\hat{w}(k,t)\exp(ikx)dk
   = \frac{1}{2\pi}\int_\R \widehat{\varphi \ast w}(k,t)\exp(ikx)dk
   = \widehat{\varphi \ast w}(x,t).
 \end{align*}
@@ -46,20 +46,22 @@ erhalten wir
   \exp\left(\frac{iyx}{\sqrt{2t}a}\right) dy \\
   &= \frac{1}{2\pi}\frac{1}{\sqrt{4\pi t}a}\int_\R \sqrt{2\pi}\exp\left(\frac{-y^2}{2}\right)
   \exp\left(\frac{iyx}{\sqrt{2t}a}\right) dy
-  = \frac{1}{\sqrt{4\pi t}a}\exp\left(\frac{-x^2}{4t}\right).
+  = \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a}\exp\left(\frac{-k^2}{2}\right)|_{k = x/(a \sqrt{2t})} \\
+  &= \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a}\exp\left(\frac{-x^2}{4a^2 t}\right)
 \end{align*}
-Also erhalten wir
-\begin{align}
-  u(x,t) = \widehat{\varphi \ast w}(x,t) =
-  \frac{1}{\sqrt{4\pi t}a}\int_\R \exp\left(\frac{-(x-y)^2}{4t}\right)\varphi(y) dy.
-\end{align}
-Nun können wir den Grenzwert ausrechnen:
+Also erhalten wir (mit der Substitution $z = \frac{y}{a \sqrt{2t}}$)
 \begin{align*}
-  \lim_{t \to \infty} u(x,t) = \lim_{t \to \infty}
-  \frac{1}{\sqrt{4\pi t}a}\int_\R \exp\left(\frac{-(x-y)^2}{4t}\right)\varphi(y) dy
-  = \frac{1}{\sqrt{4\pi}a}\lim_{t \to \infty}
-  \int_\R t^{-1/2}\exp\left(\frac{-(x-y)^2}{4t}\right)\varphi(y) dy
-  = \frac{1}{\sqrt{4\pi}a}\int_\R 0 dy = 0.
+  u(x,t) &= \varphi \ast w (x,t) =
+  \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a} \int_\R \exp\left(\frac{-y^2}{4a^2 t}\right)\varphi(x-y) dy \\
+  &= \frac{a \sqrt{2t}}{4 \pi^{\frac{3}{2}} \sqrt{t}a} \int_\R \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \\
+  &= \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right)
+\end{align*}
+Nun können wir den Grenzwert ausrechnen (mithilfe Majorisierter Konvergenz):
+\begin{align*}
+  \lim_{t \to \infty} u(x,t) &= \lim_{t \to \infty}
+  \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right) \\
+  &= \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)c dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)b dz \right) \\
+  &= \sqrt{\frac{\pi}{2}} \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} (b+c) = \frac{1}{2} (b+c) \text{Hoffentlich nach Flo seinem chirurgischen Eingriff}
 \end{align*}
 \end{solution}
 
