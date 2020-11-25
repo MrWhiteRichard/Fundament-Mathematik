@@ -60,11 +60,14 @@ Also erhalten wir (mit der Substitution $z = \frac{y}{a \sqrt{2t}}$)
   &= \frac{a \sqrt{2t}}{\sqrt{4\pi} \sqrt{t}a} \int_\R \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \\
   &= \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right)
 \end{align*}
-Nun können wir den Grenzwert ausrechnen (mithilfe Majorisierter Konvergenz):
+Nun können wir den Grenzwert ausrechnen (mithilfe Majorisierter Konvergenz): \\
+Da $\phi \in C(\R)$ und die Grenzwerte im Unendlichen endlich sind, ist auch
+$M := \sup_{x\in\R}|\phi(x)| < \infty$ und $g(z) := M\exp\left(\frac{-z^2}{2}\right)$
+eine integrierbare Majorante.
 \begin{align*}
   \lim_{t \to \infty} u(x,t) &= \lim_{t \to \infty}
   \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right) \\
-  &= \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)c dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)b dz \right) \\
+  &= \frac{\sqrt{2}}{\sqrt{4\pi}} \left(c\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right) dz + b\int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right) dz \right) \\
   &= \sqrt{\frac{\pi}{2}} \frac{\sqrt{2}}{\sqrt{4\pi}} (b+c) = \frac{1}{2} (b+c)
 \end{align*}
 \end{solution}
