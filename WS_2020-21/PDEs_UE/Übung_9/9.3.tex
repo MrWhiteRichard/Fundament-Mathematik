@@ -21,8 +21,24 @@ wobei $f \in L^1(\R^n) \cap L^2(\R^n)$ und $i$ die imaginäre Einheit ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
+	\phantom{}
+	\begin{enumerate}[label = (\roman*)]
+		\item Wir betrachten das Fouriertransformierte Anfangswertproblem
+			\begin{align*}
+			i \widehat{u}_t = \widehat{- \Delta u} = - \sum_{i = 1}^n \widehat{\pderivative[2][]{x_i}u} = \sum_{i = 1}^n x_i^2 \widehat{u} = |x|^2 \widehat{u} \\
+			\widehat{u}(k,0) = \widehat{f}(x).
+			\end{align*}
+			Eine Lösung davon ist gegeben durch
+			\begin{align*}
+			\widehat{u}(k,t) = \widehat{f}(k) \mathrm{e}^{-i|k|^2t}
+			\end{align*}
+			und mit der Definition $\widehat{w}(k,t) := \mathrm{e}^{-i|k|^2t}$ erhalten wir
+			\begin{align*}
+			u(x,t) = (2\pi)^{-n} \Int[\R][]{\widehat{f}(k) \widehat{w}(k,t) \mathrm{e}^{i x \cdot k}}{k} = (2\pi)^{-n} \Int[\R][]{\widehat{f \ast w}(k, t) \mathrm{e}^{i x \cdot k}}{k} = (f \ast w)(x,t)
+			\end{align*}
+			Nun ist die Frage, was ist $w$?
+		\item
+	\end{enumerate}
 
 \end{solution}
 
