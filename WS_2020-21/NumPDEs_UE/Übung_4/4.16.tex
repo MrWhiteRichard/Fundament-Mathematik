@@ -4,7 +4,7 @@
 
   Sei $\hat{T}$ das Referenzdreieck mit den Eckpunkten $V_1 := (0,0), V_2 := (1,0)$ und $V_3 := (0,1)$ und den Randkanten $E_1 :=\overline{V_1V_2}, E_2 :=\overline{V_2V_3}$ und $E_3 :=\overline{V_3V_1}$.
   Für $p \in \N$ definieren wir die Punkte
-  
+
   \begin{align}
     z_{jk}
     =
@@ -14,9 +14,9 @@
     \quad
     k = 0, \dots, p,
   \end{align}
-  
+
   die dazugehörigen Lagrange Basisfunktionen $L_{jk} \in P_p$ mit $L_{jk}(z_{j^\prime k^\prime}) = \delta_{jj^\prime}\delta_{kk^\prime}$ und für Funktionen $u \in C(\hat{T})$ den Interpolationsoperator $\hat I_p$ durch
-  
+
   \begin{align}
     \hat I_pu
     :=
@@ -24,13 +24,13 @@
     \sum_{j=0}^{p-k}
     u(z_{jk})L_{jk}.
   \end{align}
-  
+
   \begin{enumerate}[label = \textbf{\alph*)}]
-  
+
     \item Skizzieren Sie für $p = 1, \cdot, 4$ die Punkte $z_{jk}$ und beweisen Sie, dass $\hat I_p u|_{V_j}$ und $\hat I_p u|_{E_j}$ für $j = 1, 2, 3$ und beliebige $p \in \N$ nur von den Werten $u(V_j)$ bzw. $u|_{E_j}$ abhängt.
-  
+
     \item Konstruieren Sie aus $\hat I_p$ einen stetigen Interpolationsoperator
-  
+
     \begin{align*}
       I_{h, p}:
       H^2(\Omega) \to \S_0^p(\mathcal{T})
@@ -41,19 +41,19 @@
         \Forall T \in \mathcal(\T) v_h|_T \in P_p
       }.
     \end{align*}
-  
+
     Verwenden Sie dazu die Transformationen aus Lemma 3.9 des Vorlesungsskriptes.
-  
+
     \item Formulieren und beweisen Sie Theorem 3.5 des Vorlesungsskriptes für $I_{h,p}$.
-  
+
   \end{enumerate}
-  
+
   \end{exercise}
-  
+
   % --------------------------------------------------------------------------------
-  
+
   \begin{solution}
-  
+
   \begin{align*}
     Z_p
     :=
@@ -65,28 +65,28 @@
     \quad
     j = 0, \dots, p - k, k = 0, \dots, p
   \end{align*}
-  
+
   \begin{enumerate}[label = \textbf{\alph*)}]
-  
+
     \item
-  
+
     \begin{enumerate}[label = (\roman*)]
-  
+
       \item Für die \Quote{Skizze} siehe 4.16.ipynb.
-  
-      \item Seien $u \in H^2(\hat T)$ und $j \in \Bbraces{1, 2, 3}$.
+
+      \item Seien $u \in H^{p+1}(\hat T)$ und $j \in \Bbraces{1, 2, 3}$.
       Dann ist $V_j \in Z_p$.
-  
+
       \begin{align*}
-        u \in H^2(\hat T),
+        u \in H^{p+1}(\hat T),
         \quad
         j \in \Bbraces{1, 2, 3}
         \implies
         V_j \in Z_p
       \end{align*}
-  
+
       $\hat I_p u|_{V_j}$ kann nur an dem Punkt $V_j$ ausgewertet werden.
-  
+
       \begin{align*}
         \implies
         \hat I_p u|_{V_j}(V_j)
@@ -96,9 +96,9 @@
         =
         u(V_j)
       \end{align*}
-  
+
       \item Folgende (eindimensionale) Polynome sind vom Grad $\leq p$.
-  
+
       \begin{align*}
         \hat I_p(u)|_{E_j} \circ \gamma_j \in \Pi_p,
         \quad
@@ -110,33 +110,33 @@
         \quad
         \gamma_3: \xi \mapsto (0, \xi)
       \end{align*}
-  
+
       Sie sind durch die $p + 1$ Punkte aus $\gamma_j(Z_p \cap E_j)$, $j = 1, 2, 3$ eindeutig bestimmet.
-  
+
     \end{enumerate}
-  
+
     \item Wir konstruieren den Operator durch Fallunterscheidung, d.h. auf jedem Element $T \in \mathcal{T}$ separat.
-  
+
     \begin{align*}
       I_{h, p} u|_T := \hat I_p(u \circ \Phi_T) \circ \Phi_T^{-1},
       \quad
       T \in \mathcal{T}
     \end{align*}
-  
+
     Dabei bezeichne $\Phi_T: \hat T \to T$, $T \in \mathcal{T}$ die Transformation aus Lemma 3.9, und $B_T$ die zugehörige Matrix.
-  
+
     \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.9.png}
-  
-    $I_{h, p}: H^2(\Omega) \to \S_0^p(\mathcal{T})$ ist wegen \textbf{a)} wohldefiniert.
+
+    $I_{h, p}: H^{p+1}(\Omega) \to \S_0^p(\mathcal{T})$ ist wegen \textbf{a)} wohldefiniert.
     Für die Stetigkeit, versehen wir den endlich-dimensionalen $\S_0^p(\mathcal{T})$ mit $\norm[H^2(\Omega)]{\cdot}$.
-  
-    Laut Theorem 3.4 (Sobolev), gibt es eine stetige Einbettung $H^2(\Omega) \to C(\overline{\Omega})$.
-  
+
+    Laut Theorem 3.4 (Sobolev), gibt es eine stetige Einbettung $H^{p+1}(\Omega) \to C(\overline{\Omega})$.
+
     \includegraphicsunboxed{NumPDEs/NumPDEs - Theorem 3.4 (Sobolev).png}
-  
+
     Wir bezeichnen die Stetigkeits-Konstante auf dem Element $T \in \mathcal{T}$ mit $C_\mathrm{Sobolev}(T)$ und $C_\mathrm{Sobolev} := \max_{T \in \mathcal{T}} C_\mathrm{Sobolev}(T)$.
     Da im endlich-dimensionalen alle Normen äquivalent sind, erhalten wir somit
-  
+
     \begin{align*}
       \implies
       \norm[L^2(\Omega)]{I_{h, p} u}^2
@@ -176,38 +176,38 @@
       \leq
       2 |\Omega| C_\mathrm{norm}^2 C_\mathrm{sobolev}^2
       \sum_{T \in \mathcal{T}}
-      \norm[H^2(T)]{u}^2 \\
+      \norm[H^{p+1}(T)]{u}^2 \\
       & \leq
-      2 |\Omega| C_\mathrm{norm}^2 C_\mathrm{sobolev}^2 \norm[H^2(\Omega)]{u}^2.
+      2 |\Omega| C_\mathrm{norm}^2 C_\mathrm{sobolev}^2 \norm[H^{p+1}(\Omega)]{u}^2.
     \end{align*}
-  
+
     \item \phantom{}
-  
+
     \includegraphicsunboxed{NumPDEs/NumPDEs - Theorem 3.5 (Approximation Theorem).png}
-  
+
     \begin{enumerate}[label = \arabic*.]
-  
+
       \item Schritt (Abschätzung auf dem Referenz-Element $\hat T$):
-  
+
       Wir betrachten den Operator
-  
+
       \begin{align*}
         A := 1 - \hat I_p:
-        H^2(\hat T) \to H^k(\hat T),
+        H^{p+1}(\hat T) \to H^k(\hat T),
         \quad
-        k = 0, 1
+        k = 0, 1, \dots, p
       \end{align*}
-  
-      und bemerken, dass $P_1(\hat T) \subseteq \Ker A$.
-      Jedes $v \in P_1(\hat T)$ wird nämlich von $\hat I_p$ exakt interpoliert.
-  
+
+      und bemerken, dass $P_p(\hat T) \subseteq \Ker A$.
+      Jedes $v \in P_p(\hat T)$ wird nämlich von $\hat I_p$ exakt interpoliert.
+
       \begin{align*}
-        \Forall v \in P_1(\hat T):
+        \Forall v \in P_p(\hat T):
         A v = v - \hat I_p v = v - v = 0
       \end{align*}
-  
+
       Um zu sehen, dass $A$ stetig ist, schätzen wir ab.
-  
+
       \begin{align*}
         \norm[H^k(\hat T)]{A v}
         =
@@ -217,9 +217,9 @@
         +
         \norm[H^k(\hat T)]{\hat I_p v}
       \end{align*}
-  
+
       Wir nutzen Theorem 3.4 (Sobolev), mit $C_\mathrm{Sobolev} := C_\mathrm{Sobolev}(\hat T)$, um zu sehen, dass
-  
+
       \begin{multline*}
         \norm[H^k(\hat T)]{\hat I_p v}
         =
@@ -230,12 +230,12 @@
         }
         \leq
         \sum_{z \in Z_p}
-        \abs{v(z)} \norm[H^2(\hat T)]{L_z} \\
+        \abs{v(z)} \norm[H^k(\hat T)]{L_z} \\
         \leq
         \underbrace
         {
           \sum_{z \in Z_p}
-          \norm[H^2(\hat T)]{L_z}
+          \norm[H^k(\hat T)]{L_z}
         }_{
           =: C_\mathrm{Norm}
         }
@@ -246,47 +246,47 @@
         }{\leq}
         C_\mathrm{Norm}
         C_\mathrm{Sobolev}
-        \norm[H^2(\hat T)]{v}.
+        \norm[H^p(\hat T)]{v}.
       \end{multline*}
-  
+
       Zusammengefasst, bekommen wir
-  
+
       \begin{align*}
         \norm[H^k(\hat T)]{A v}
         \leq
-        \norm[H^2(\hat T)]{v}
+        \norm[H^p(\hat T)]{v}
         +
         C_\mathrm{Norm}
         C_\mathrm{Sobolev}
-        \norm[H^2(\hat T)]{v}
+        \norm[H^p(\hat T)]{v}
         =
         (1 + C_\mathrm{Norm} C_\mathrm{Sobolev})
-        \norm[H^2(\hat T)]{v},
+        \norm[H^p(\hat T)]{v},
       \end{align*}
-  
+
       also die Stetigkeit des Operators $A$.
-  
+
       \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.7 (Bramble-Hilbert).png}
-  
+
       Daher liefert Lemma 3.7 (Bramble-Hilbert) eine Konstante $C_\mathrm{ref} > 0$, die nur von $\hat T$ abhängt mit
-  
+
       \begin{align*}
-        \Forall v \in H^2(\hat T):
+        \Forall v \in H^{p+1}(\hat T):
         \norm[H^k(\hat T)]{v - \hat I_p v}
         =
         \norm[H^k(\hat T)]{A v}
         \leq
         C_\mathrm{ref}
-        \norm[L^2(\hat T)]{D^2 v},
+        \norm[L^2(\hat T)]{D^{p+1} v},
         \quad
-        k = 0, 1.
+        k = 0, 1, \dots, p.
       \end{align*}
-  
+
       \item Schritt (Skalierungs-Argument für Abschätzung auf jedem Element $T \in \mathcal{T}$):
-  
+
       Sei $\Phi := \Phi_T$ der affine Diffeomorphismus aus Lemma 3.9.
       Setze $v := u \circ \Phi$ und observiere, dass
-  
+
       \begin{align*}
         & \implies
         \hat I_p v
@@ -307,11 +307,11 @@
         =
         A v.
       \end{align*}
-  
+
       Zuerst, wenden wir Lemma 3.8 (Transformation Formula) auf $\Phi^{-1}$ an.
-  
+
       \includegraphicsunboxed{NumPDEs/NumPDEs - Lemma 3.8 (Transformation Formula).png}
-  
+
       \begin{align*}
         \implies
         \norm[L^2(T)]{D^k (u - I_{h, p} u)}
@@ -328,60 +328,59 @@
         {
           \mathrm{1.}
         }{\leq}
-        C_\mathrm{ref} \abs{\det B}^{1/2} \norm[F]{B^{-1}}^k \norm[L^2(\hat T)]{D^2 v},
+        C_\mathrm{ref} \abs{\det B}^{1/2} \norm[F]{B^{-1}}^k \norm[L^2(\hat T)]{D^{p+1} v},
         \quad
-        k = 0, 1
+        k = 0, 1, \cdots, p.
       \end{align*}
-  
+
       Also nächstes, setzen wir $v = u \circ \Phi$ ein und wenden Lemma 3.8 (Transformation Formula) auf $\Phi$ an.
-  
+
       \begin{align*}
         \implies
-        \norm[L^2(\hat T)]{D^2 v}
+        \norm[L^2(\hat T)]{D^{p+1} v}
         =
-        \norm[L^2(\hat T)]{D^2 (u \circ \Phi)}
+        \norm[L^2(\hat T)]{D^{p+1} (u \circ \Phi)}
         \stackrel
         {
           \mathrm{3.8}
         }{\leq}
-        \abs{\det B}^{-1/2} \norm[F]{B}^2 \norm[L^2(T)]{D^2 u}
+        \abs{\det B}^{-1/2} \norm[F]{B}^{p+1} \norm[L^2(T)]{D^{p+1} u}
       \end{align*}
-  
+
       Die Kombination der letzten beiden Abschätzungen zeigt, dass
-  
+
       \begin{align*}
         \implies
         \norm[L^2(T)]{D^k (u - I_{h, p} u)}
         \leq
-        C_\mathrm{ref} \norm[F]{B^{-1}}^k \norm[F]{B}^2 \norm[L^2(T)]{D^2 u}
+        C_\mathrm{ref} \norm[F]{B^{-1}}^k \norm[F]{B}^{p+1} \norm[L^2(T)]{D^{p+1} u}
         \stackrel
         {
           \mathrm{3.9}
         }{\leq}
-        C_\mathrm{ref} 2^\frac{k+2}{2} h_T^2 \rho_T^{-k} \norm[L^2(T)]{D^2 u},
+        C_\mathrm{ref} 2^\frac{k+p+1}{2} h_T^{p+1} \rho_T^{-k} \norm[L^2(T)]{D^{p+1} u},
       \end{align*}
-  
+
       wobei wir die geometrische Interpretation von $\norm[F]{B}$ und $\norm[F]{B^{-1}}$ verwendet haben.
       Das zeigt, dass
-  
+
       \begin{align*}
         \norm[L^2(T)]{u - I_{h, p} u}
         \leq
-        2 C_\mathrm{ref} \norm[L^2(T)]{h^2 D^2 u}
+        2^{\frac{p+1}{2}} C_\mathrm{ref} \norm[L^2(T)]{h^{p+1} D^{p+1} u}
         \quad
         \text{und}
         \quad
         \norm[L^2(T)]{\nabla (u - I_{h, p} v)}
-        \leq 2^{3/2} C_\mathrm{ref} \sigma(\mathcal{T}) \norm[L^2(T)]{h D^2 u}
+        \leq 2^{\frac{p+3}{2}} C_\mathrm{ref} \sigma(\mathcal{T}) \norm[L^2(T)]{h^p D^{p+1} u}
       \end{align*}
-  
+
       und schließt daher den Beweis.
-  
+
     \end{enumerate}
-  
+
   \end{enumerate}
-  
+
   \end{solution}
-  
+
   % --------------------------------------------------------------------------------
-  
