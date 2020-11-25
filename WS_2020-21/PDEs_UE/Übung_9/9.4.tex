@@ -28,54 +28,6 @@ wobei $u_0 \in L^2(0,\pi)$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
-\begin{enumerate}
-  \item Betrachte die allgemeine Lösung für $\phi_n$:
-  \begin{align*}
-    \phi_n(x) = C_1\exp(\sqrt{-\lambda_n}x) + C_2\exp(-\sqrt{-\lambda_n}x)
-  \end{align*}
-  Durch Einsetzen in die Randbedingung bei $x = 0$ erhalten wir:
-  \begin{align*}
-    0 \stackrel{!}{=} C_1 + C_2 \implies C_2 = -C_1.
-  \end{align*}
-  Für die zweite Randbedingung wählen wir zur Vereinfachung $\lambda_n = n^2, n \in \N$
-  und erhalten
-  \begin{align}
-    0 \stackrel{!}{=} \phi^{\prime}_n(\pi) = [C(\exp(inx) - \exp(-inx)]^{\prime}
-    = Cn(\underbrace{-\sin(nx) + \sin(-nx)}_{=0} + i\underbrace{(\cos(nx) - \cos(-nx))}_{=0}) = 0.
-  \end{align}
-  Damit lautet unser vollständiges Orthonormalsystem
-  \begin{align*}
-    \phi_n(x) = \frac{\exp(inx) - \exp(-inx)}{\|\exp(inx) - \exp(-inx)\|_{L^2(0,\pi)}}
-    = \frac{2i\sin(nx)}{\sqrt{2\pi}}
-  \end{align*}
-  \item Definiere
-  \begin{align*}
-    u(x,t) := \sum_{k=1}^{\infty}\exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(x)
-  \end{align*}
-  Damit gilt
-  \begin{align*}
-    u(0,t) &= \sum_{k=1}^{\infty}\exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(0) = 0. \\
-    u(x,0) &= \sum_{k=1}^{\infty}(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(x) = u_0(x). \\
-    u_x(\pi,t) &= \partial_x\left(\sum_{k=1}^{\infty}\exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(x)\right)\Bigg|_{x=\pi} \stackrel{!}{=} 0.
-  \end{align*}
-  Für die dritte Gleichung müssen wir also zeigen, dass
-  \begin{align*}
-    0 &= \lim_{h \to 0^+}\left\|\frac{1}{h}(u(\pi,t) - u(\pi - h,t))\right\|_{L^2(0,\pi)}^2
-    = \frac{1}{h^2}\int_0^{\pi}(u(\pi,t) -  u(\pi -h,t))^2 dt \\
-    &= \frac{1}{h^2}\int_0^{\pi}\left(\sum_{k=1}^{\infty}\exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(\pi) -  \sum_{k=1}^{\infty}\exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\phi_k(\pi - h)\right)^2 dt \\
-    &= \frac{i}{2\pi h^2}\int_0^{\pi}\left(\sum_{k=1}^{\infty}
-    \exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}(\sin(n\pi) - \sin(n(\pi-h)))\right)^2 dt \\
-    &= \frac{i}{2\pi h^2}\int_0^{\pi}\left(\sum_{k=1}^{\infty}
-    \exp(-k^2t)(u_0,\phi_k)_{L^2(0,\pi)}\sin(n(\pi-h))\right)^2 dt \\
-  \end{align*}
-\end{enumerate}
-\end{solution}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
 \begin{enumerate}[label = (\roman*)]
   \item Wir betrachten zunächst Lösungen der Differentialgleichung
 
@@ -136,7 +88,25 @@ wobei $u_0 \in L^2(0,\pi)$.
   \end{align*}
 
   Da $\norm[L^2((0,\pi))]{\sin(\frac{2n-1}{2}x)} = \sqrt{\frac{\pi}{2}}$ wählen wir $c = \sqrt{\frac{2}{\pi}}$ um $\norm[L^2((0,\pi))]{\phi_n} = 1$ zu erhalten. \\
-  Noch offen $\rightarrow$ Vollständigkeit.
+
+  Wir haben also ein Orthonormalsystem gefunden, von dem wir noch zeigen wollen, dass es auch vollständig ist.
+  Aus der Analysis wissen wir, dass $\{\cos(nx): n \in \N\} \cup \{\sin(nx): n \in \N^{+}\}$ eine vollständiges Orthonormalsystem vom $L^2(-\pi, \pi)$ ist.
+  Betrachten wir also eine beliebige Funktion $f \in L^2(0, \pi)$ und setzen wir diese ungerade fort auf $(- \pi, \pi)$, wissen wir, dass wir das neue $\tilde{f}$ darstellen können als
+
+  \begin{align*}
+    \tilde{f} = \sum_{n=0}^{\infty} (\tilde{f}, \cos(nx))_{L^2(- \pi,\pi)} \cos(nx) + \sum_{n=1}^{\infty} (\tilde{f}, \sin(nx))_{L^2(-\pi, \pi)} \sin(nx)
+  \end{align*}
+
+  Die cosinus-Teile fallen weg, da $\tilde{f}$ ungerade ist.
+
+  Aus der oberen Gleichheit folgt also, dass für unser $f \in L^2(0, \pi)$
+
+  \begin{align*}
+    f = \sum_{n=1}^{\infty} ({f}, \sqrt{2} \sin(nx))_{L^2(0, \pi)} \sqrt{2} \sin(nx)
+  \end{align*}
+
+  und somit $\{\sqrt{2} \sin(nx): n \in \N^{+}\}$ eine Orthonormalbasis ist. Daraus kann man vermutlich zeigen, dass auch unser Orthonormalsystem $\{\sqrt{\frac{2}{\pi}} \sin(\frac{2n-1}{2}x): n \in \N^{+}\}$ vollständig ist - darauf müssen wir an dieser Stelle leider verzichten.
+
   \item Da wir ein vollständiges Orthonormalsystem haben, konvergiert die Reihe
 
   \begin{align*}
@@ -157,7 +127,7 @@ wobei $u_0 \in L^2(0,\pi)$.
   \item Unter der Annahme, dass mit der Abklingrate eine Ähnliche Ungleichung wie in $(6.15)$ im Skript gemeint ist, schätzen wir ab (wobei $\lambda_1$ der kleinste EW ist)
 
   \begin{align*}
-    \norm[L^2]{u(\cdot,t)}
+    \norm[L^2]{u(\cdot,t)}^2
     =
     \Int[0][\pi]{u(x,t)^2}{x}
     \stackrel{\text{Pythagoras}}{=}
