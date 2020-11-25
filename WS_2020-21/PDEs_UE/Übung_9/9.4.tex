@@ -112,27 +112,41 @@ wobei $u_0 \in L^2(0,\pi)$.
   \begin{align*}
     u(x,t)
     :=
-    \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x)
+    \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n
   \end{align*}
 
   unbedingt. Diese Funktion löst die PDE, dazu setzen wir ein
 
   \begin{align*}
-    u_t - u_{xx} &=\sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x) - \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} x)= 0 \\
+    u_t - u_{xx} &=\sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n - \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n= 0 \\
     u(0,t) &= \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \sin(\sqrt{-\lambda_k} 0) = 0 \\
     u_x(\pi, t) &= \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \sqrt{\frac{2}{\pi}} \cos(\sqrt{-\lambda_k} \pi)= 0 \\
     u(x, 0) &= \sum_{n=1}^\infty (u_0, \phi_n)_{L^2} \phi_n(x) = u_0(x)
   \end{align*}
 
-  \item Unter der Annahme, dass mit der Abklingrate eine Ähnliche Ungleichung wie in $(6.15)$ im Skript gemeint ist, schätzen wir ab (wobei $\lambda_1$ der kleinste EW ist)
+  \item Unter der Annahme, dass mit der Abklingrate eine Ähnliche Ungleichung wie in $(6.15)$ im Skript gemeint ist, schätzen wir ab (wobei $\lambda_1$ der betragsmäßig kleinste (d.h. größte) EW ist)
 
   \begin{align*}
     \norm[L^2]{u(\cdot,t)}^2
-    =
-    \Int[0][\pi]{u(x,t)^2}{x}
-    \stackrel{\text{Pythagoras}}{=}
-    \Int[0][\pi]{\sum_{n=1}^\infty e^{2\lambda_n t} (u_0, \phi_n)_{L^2}^2 \frac{2}{\pi} \sin(\sqrt{-\lambda_k} x)^2}{x}
-    \leq
+    & =
+    \norm[L^2]
+    {
+      \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n
+    }^2 \\
+    & \stackrel{\text{Pythagoras}}{=}
+    \sum_{n=1}^\infty
+    \norm[L^2]
+    {
+      e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n
+    }^2 \\
+    & =
+    \Int[0][\pi]{\sum_{n=1}^\infty e^{2\lambda_n t} (u_0, \phi_n)_{L^2}^2 \phi_n^2}{x} \\
+    & \leq
+    e^{2\lambda_1 t} \sum_{n=1}^\infty (u_0, \phi_n)_{L^2}^2 \underbrace{\norm[L^2(0, \pi)]{\phi_n}^2}_1
+    \stackrel
+    {
+      \mathrm{Parceval}
+    }{=}
     e^{2\lambda_1 t} \norm[L^2]{u_0}^2
   \end{align*}
 
