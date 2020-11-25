@@ -38,7 +38,11 @@ Mit der Inversionsformel erhalten wir mit $w = \mathscr{F}^{-1}(\exp(-(ak)^2t))$
   = \widehat{\varphi \ast w}(x,t).
 \end{align*}
 Nun berechnen wir $w$: Mit
-$\exp(-\frac{x^2}{2}) = \mathscr{F}^{-1}\left(\sqrt{2\pi}\exp\left(-\frac{k^2}{2}\right)\right)$
+\begin{align*}
+  \exp\left(-\frac{x^2}{2}\right) = \mathscr{F}^{-1}\left(\sqrt{2\pi}\exp\left(-\frac{y^2}{2}\right)\right)
+  = \frac{1}{2\pi}\int_\R \left(\sqrt{2\pi}\exp\left(-\frac{y^2}{2}\right)\right)\exp(iyx) dy
+\end{align*}
+
 erhalten wir
 \begin{align*}
   w(x,t) &= \frac{1}{2\pi}\int_\R \exp(-(ak)^2t)\exp(ikx) dk
@@ -46,22 +50,22 @@ erhalten wir
   \exp\left(\frac{iyx}{\sqrt{2t}a}\right) dy \\
   &= \frac{1}{2\pi}\frac{1}{\sqrt{4\pi t}a}\int_\R \sqrt{2\pi}\exp\left(\frac{-y^2}{2}\right)
   \exp\left(\frac{iyx}{\sqrt{2t}a}\right) dy
-  = \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a}\exp\left(\frac{-k^2}{2}\right)|_{k = x/(a \sqrt{2t})} \\
-  &= \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a}\exp\left(\frac{-x^2}{4a^2 t}\right)
+  = \frac{1}{\sqrt{4\pi} \sqrt{t}a}\exp\left(\frac{-k^2}{2}\right)|_{k = x/(a \sqrt{2t})} \\
+  &= \frac{1}{\sqrt{4\pi} \sqrt{t}a}\exp\left(\frac{-x^2}{4a^2 t}\right)
 \end{align*}
 Also erhalten wir (mit der Substitution $z = \frac{y}{a \sqrt{2t}}$)
 \begin{align*}
   u(x,t) &= \varphi \ast w (x,t) =
-  \frac{1}{4 \pi^{\frac{3}{2}} \sqrt{t}a} \int_\R \exp\left(\frac{-y^2}{4a^2 t}\right)\varphi(x-y) dy \\
-  &= \frac{a \sqrt{2t}}{4 \pi^{\frac{3}{2}} \sqrt{t}a} \int_\R \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \\
-  &= \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right)
+  \frac{1}{\sqrt{4\pi} \sqrt{t}a} \int_\R \exp\left(\frac{-y^2}{4a^2 t}\right)\varphi(x-y) dy \\
+  &= \frac{a \sqrt{2t}}{\sqrt{4\pi} \sqrt{t}a} \int_\R \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \\
+  &= \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right)
 \end{align*}
 Nun können wir den Grenzwert ausrechnen (mithilfe Majorisierter Konvergenz):
 \begin{align*}
   \lim_{t \to \infty} u(x,t) &= \lim_{t \to \infty}
-  \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right) \\
-  &= \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)c dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)b dz \right) \\
-  &= \sqrt{\frac{\pi}{2}} \frac{\sqrt{2}}{4 \pi^{\frac{3}{2}}} (b+c) = \frac{1}{2} (b+c) \text{Hoffentlich nach Flo seinem chirurgischen Eingriff}
+  \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)\varphi(x-z(a \sqrt{2t})) dz \right) \\
+  &= \frac{\sqrt{2}}{\sqrt{4\pi}} \left(\int_{\R^{+}} \exp\left(\frac{-z^2}{2}\right)c dz + \int_{\R^{-}} \exp\left(\frac{-z^2}{2}\right)b dz \right) \\
+  &= \sqrt{\frac{\pi}{2}} \frac{\sqrt{2}}{\sqrt{4\pi}} (b+c) = \frac{1}{2} (b+c)
 \end{align*}
 \end{solution}
 
