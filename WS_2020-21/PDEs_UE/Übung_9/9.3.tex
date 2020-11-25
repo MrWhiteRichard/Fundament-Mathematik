@@ -36,16 +36,18 @@ wobei $f \in L^1(\R^n) \cap L^2(\R^n)$ und $i$ die imaginäre Einheit ist.
 			\begin{align*}
 			u(x,t) = (2\pi)^{-n} \Int[\R][]{\widehat{f}(k) \widehat{w}(k,t) \mathrm{e}^{i x \cdot k}}{k} = (2\pi)^{-n} \Int[\R][]{\widehat{f \ast w}(k, t) \mathrm{e}^{i x \cdot k}}{k} = (f \ast w)(x,t)
 			\end{align*}
+			Für alle $x \in \R^n$ und alle $t \in \R^+$ gilt 
 			\begin{align*}
 			w(x,t) &= (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i |k|^2 t} \mathrm{e}^{i k \cdot x}}{k} = (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i (|k|^2 t - k \cdot x)}}{k} = (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i \vbraces{k \sqrt{t} - \frac{x}{2 \sqrt{t}}}^2 + i\frac{|x|^2}{4t}}}{k} \\
-			&= (2 \pi)^{-n} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i \vbraces{k \sqrt{t} - \frac{x}{2 \sqrt{t}}}^2}}{k} = (2 \pi)^{-n} \frac{1}{\sqrt{t}} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i|u|^2}}{u} \\
-			&= (2 \pi)^{-n} \frac{1}{\sqrt{t}} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R][]{\Int[\partial B_r(0)]{\mathrm{e}^{- i|y|^2}}{\mathcal{H}^{n - 1}(y)}}{r} \\
-			&= (2 \pi)^{-n} \frac{1}{\sqrt{t}} \mathrm{e}^{i\frac{|x|^2}{4t}}  \Int[\R][]{\mathcal{H}^{n - 1}(\partial B_r(0))\mathrm{e}^{- ir^2}}{r}
+			&= (2 \pi)^{-n} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i \vbraces{k \sqrt{t} - \frac{x}{2 \sqrt{t}}}^2}}{k} = (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i|u|^2}}{u} \\
+			&= (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^+][]{\Int[\partial B_r(0)]{\mathrm{e}^{- i|y|^2}}{\mathcal{H}^{n - 1}(y)}}{r} \\
+			&= (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}}  \Int[\R^+][]{\mathcal{H}^{n - 1}(\partial B_r(0))\mathrm{e}^{- ir^2}}{r} \\
+			&= (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} S_n  \Int[\R^+][]{r^{n - 1}\mathrm{e}^{- ir^2}}{r}
 			\end{align*}
-		\item Wir erinnern uns an die Tatsache aus Analysis, dass die Isometrie (in der dortigen Definition) eine Isometrie ist und berechnen
+		\item Wir erinnern uns an die Tatsache aus Analysis, dass die Fouriertransformation (in der dortigen Definition) eine Isometrie ist und berechnen
 		\begin{align*}
 		\norm[L^2(\R^n)]{u(\cdot, t)} &= (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{u}(\cdot, t)} = (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{f} \mathrm{e}^{-i |\cdot|^2 t}} \\
-		&= (2 \pi)^{\frac{n}{2}} \Int[\R^n]{\vbraces{\widehat{f}(x)}^2 \underbrace{\vbraces{\mathrm{e}^{-i |x|^2 t}}^2}_{= 1}}{x} = (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{f}} = \norm[L^2(\R^n)]{f} 
+		&= (2 \pi)^{\frac{n}{2}} \Int[\R^n]{\vbraces{\widehat{f}(x)}^2 \underbrace{\vbraces{\mathrm{e}^{-i |x|^2 t}}^2}_{= 1}}{x} = (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{f}} = \norm[L^2(\R^n)]{f}
 		\end{align*}
 	\end{enumerate}
 
