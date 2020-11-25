@@ -36,7 +36,7 @@ wobei $f \in L^1(\R^n) \cap L^2(\R^n)$ und $i$ die imaginäre Einheit ist.
 			\begin{align*}
 			u(x,t) = (2\pi)^{-n} \Int[\R][]{\widehat{f}(k) \widehat{w}(k,t) \mathrm{e}^{i x \cdot k}}{k} = (2\pi)^{-n} \Int[\R][]{\widehat{f \ast w}(k, t) \mathrm{e}^{i x \cdot k}}{k} = (f \ast w)(x,t)
 			\end{align*}
-			Für alle $x \in \R^n$ und alle $t \in \R^+$ gilt mit der Koflächenformel 
+			Für alle $x \in \R^n$ und alle $t \in \R^+$ gilt mit der Koflächenformel
 			\begin{align*}
 			w(x,t) &= (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i |k|^2 t} \mathrm{e}^{i k \cdot x}}{k} = (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i (|k|^2 t - k \cdot x)}}{k} = (2 \pi)^{-n} \Int[\R^n][]{\mathrm{e}^{- i \vbraces{k \sqrt{t} - \frac{x}{2 \sqrt{t}}}^2 + i\frac{|x|^2}{4t}}}{k} \\
 			&= (2 \pi)^{-n} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i \vbraces{k \sqrt{t} - \frac{x}{2 \sqrt{t}}}^2}}{k} = (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} \Int[\R^n][]{\mathrm{e}^{- i|u|^2}}{u} \\
@@ -53,6 +53,10 @@ wobei $f \in L^1(\R^n) \cap L^2(\R^n)$ und $i$ die imaginäre Einheit ist.
 			&= (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} \prod_{j = 1}^n 2\frac{2\sqrt{\pi}}{4} \pbraces{ \frac{1}{\sqrt{2}} - i\frac{1}{\sqrt{2}} } \\
 			&= (2 \pi)^{-n} t^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}} \pi^{\frac{n}{2}} \mathrm{e}^{-i n \frac{\pi}{4}} = (4 i \pi t)^{-\frac{n}{2}} \mathrm{e}^{i\frac{|x|^2}{4t}}
 			\end{align*}
+      Damit erhalten wir schließlich unsere Darstellung
+      \begin{align*}
+        u(x,t) = (4 i \pi t)^{-\frac{n}{2}} \int_{\R^n} \mathrm{e}^{i\frac{|x-y|^2}{4t}}f(y) dy
+      \end{align*}
 		\item Wir erinnern uns an die Tatsache aus Analysis, dass die Fouriertransformation (in der dortigen Definition) eine Isometrie ist und berechnen
 		\begin{align*}
 		\norm[L^2(\R^n)]{u(\cdot, t)} &= (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{u}(\cdot, t)} = (2 \pi)^{\frac{n}{2}} \norm[L^2(\R^n)]{\widehat{f} \mathrm{e}^{-i |\cdot|^2 t}} \\
