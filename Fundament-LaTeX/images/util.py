@@ -20,12 +20,19 @@ def substitute(substitutions):
 
 # ---------------------------------------------------------------- #
 
-def rename(LVA):
+def rename(LVA, swap = False):
 
     os.chdir(LVA)
 
     with codecs.open(LVA + '.txt', 'r', 'utf-8') as file:
         content = file.read().split('\r\n')
+
+    if swap:
+        content = [
+            ' '.join(line.split()[1::-1] + line.split()[2:])
+            if line.find('.') != -1 else line
+            for line in content
+        ]
 
     for n, title in enumerate(content):
 
