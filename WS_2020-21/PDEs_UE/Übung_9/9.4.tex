@@ -107,15 +107,32 @@ wobei $u_0 \in L^2(0,\pi)$.
 
   und somit $\{\sqrt{2} \sin(nx): n \in \N^{+}\}$ eine Orthonormalbasis ist. Daraus kann man vermutlich zeigen, dass auch unser Orthonormalsystem $\{\sqrt{\frac{2}{\pi}} \sin(\frac{2n-1}{2}x): n \in \N^{+}\}$ vollständig ist - darauf müssen wir an dieser Stelle leider verzichten.
 
-  \item Da wir ein vollständiges Orthonormalsystem haben, konvergiert die Reihe
+  \item Da wir ein vollständiges Orthonormalsystem haben, konvergiert die folgende Reihe unbedingt und damit absolut.
 
+  \begin{align*}
+    \sum_{n=1}^\infty (u_0, \phi_n)_{L^2} \phi_n = u_0
+  \end{align*}
+
+  Folgende Funktion ist also wohldefiniert.
+  
   \begin{align*}
     u(x,t)
     :=
     \sum_{n=1}^\infty e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n
+    \leq
+    \sum_{n=1}^\infty
+    \underbrace
+    {
+      \abs{e^{\lambda_n t}}
+    }_{\leq 1}
+    \abs
+    {
+      (u_0, \phi_n)_{L^2} \phi_n
+    }
+    < \infty
   \end{align*}
-
-  unbedingt. Diese Funktion löst die PDE, dazu setzen wir ein
+  
+  Diese Funktion löst die PDE, dazu setzen wir ein
 
   \begin{align*}
     u_t - u_{xx} &=\sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n - \sum_{n=1}^\infty \lambda_n e^{\lambda_n t} (u_0, \phi_n)_{L^2} \phi_n= 0 \\
