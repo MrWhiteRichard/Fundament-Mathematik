@@ -15,7 +15,57 @@ die von $Q$ berechnete Funktion $f_Q$ total ist, aber mit keiner Funktion $f_n$
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+\begin{flalign*}
+  &\textsc{FindeKoeffizienten}(n): & \\
+  &\textbf{for } a = 0,\dots,5 \textbf{ do}& \\
+	&\quad \textbf{for } b = 0,\dots,n-1 \textbf{ do}& \\
+	&\quad \quad \textbf{for } c = 0,\dots,n-1 \textbf{ do}& \\
+  &\quad \quad \quad \textbf{if } p(a,b,c) = n \textbf{ then}:& \\
+	&\quad \quad \quad \quad \textbf{return} (a,b,c) & \\
+	&\quad \quad \quad \textbf{end if}& \\
+	&\quad \quad \textbf{end for }& \\
+	&\quad \textbf{end for }& \\
+	&\textbf{end for }& \\
+	&\textbf{return} (0,1,0) & \\
+\end{flalign*}
+Wir führen eine Hilfsvariable $m$ ein, die die Stelligkeit der Funktion bezeichnet,
+da bei der Entstehung durch primitive Rekursion auch Funktionen von höherer
+Stelligkeit auftreten werden.
+\begin{flalign*}
+	&\textsc{P}(n,k,m): & \\
+	&(a,b,c) = \textsc{FindeKoeffizienten}(n) & \\
+	&\textbf{if } a = 0 \textbf{ then}& \\
+	&\quad \textbf{return } 0 & \\
+	&\textbf{else if } a = 1 \land m > 0 \textbf{ then}& \\
+	&\quad \textbf{return } k[1] + 1 & \\
+	&\textbf{else if } a = 2 \textbf{ then}& \\
+	&\quad \textbf{if } m \geq b \geq c \geq 1 \textbf{ then}& \\
+	&\quad \quad \textbf{return } k[c] & \\
+	&\quad \textbf{else}& \\
+	&\quad \quad \textbf{return } 0 & \\
+	&\quad \textbf{end if}& \\
+	&\textbf{else if } a = 3 \textbf{ then}& \\
+	&\quad \textbf{return } (F(b,k),F(c,k)) & \\
+	&\textbf{else if } a = 4 \textbf{ then}& \\
+	&\quad \textbf{return } F(c,F(b,k)) & \\
+	&\textbf{else if } a = 5 \textbf{ then}& \\
+	&\quad \textbf{if } k[-1] = 0 \textbf{ then}& \\
+	&\quad \quad \textbf{return } F(c,k[:-1],m-1) & \\
+	&\quad \textbf{else }& \\
+	&\quad \quad \textbf{return } F(b,[k-1,F(b,k-1)],m+1) & \\
+	&\quad \textbf{end if}& \\
+	&\textbf{end if}&
+\end{flalign*}
 
-\phantom{}
-
+\begin{flalign*}
+	&\textsc{Q}(k): & \\
+	& x = 1 & \\
+	&\textbf{for } i = 0,\dots,k \textbf{ do} & \\
+	&\quad x = x + P(i,k) & \\
+	&\textbf{end for}& \\
+	&\textbf{return } x
+\end{flalign*}
+Damit gilt $\forall k \in \N\, \forall n \leq k: Q(k) > P(n,k) = f_n(k)$. \\
+Insbesondere existiert zu jedem $n \in \N$ ein $k > n$ mit $Q(k) > f_n(k)$.
+Daher kann $Q$ kein Element von $\{f_n: n \in \N\}$ sein.
 \end{solution}
