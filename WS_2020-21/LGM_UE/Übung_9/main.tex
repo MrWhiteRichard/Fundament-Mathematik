@@ -1,0 +1,76 @@
+\documentclass{article}
+
+\input{../../../Fundament-LaTeX/packages.tex}
+\input{../../../Fundament-LaTeX/macros.tex}
+\input{../../../Fundament-LaTeX/environments.tex}
+
+\parindent 0pt
+
+\title
+{
+  Logik und Grundlagen der Mathematik \\
+  \vspace{4pt}
+  \normalsize
+  \textit{8. Übung am 26.11.2020}
+}
+\author
+{
+  Richard Weiss
+  \and
+  Florian Schager
+  \and
+  Fabian Zehetgruber
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Primitiv rekursive Funktionen}
+Wir nennen eine Relation $R \subseteq \N^n$ primitiv rekursiv (genauer: \glqq
+primitiv rekursive Relation\grqq\, oder \glqq primitiv rekursiv als Relation\grqq), wenn
+ihre charakteristische Funktion $\chi_R$ primitiv rekursiv ist. \\
+ACHTUNG: Es gibt Funktionen, die zwar nicht primitiv rekursiv sind, die aber
+in diesem Sinn eine primitiv rekursive Relation sind. \\
+In jeder der folgenden Aufgaben dürfen Sie die jeweils vorigen Aufgaben verwenden.
+
+
+\input{9.1.tex}
+\input{9.2.tex}
+
+\section*{Programmierung}
+Sei $p: \N^4 \to \N$ eine injektive primitiv rekursive Funktion, die außerdem
+$p(a,b,c) > \max(a,b,c)$ für alle $a,b,c$ erfüllt.
+Wir definieren eine Folge $f_k$ von primitiv rekursiven Funktionen so: \\
+$f_0$ ist die $0$-stellige konstante Funktion $0$, $f_1$ ist die $1$-stellige
+konstante Funktion $0$. \\
+Für $n = p(a,b,c)$: Wenn $a = 0$, dann ist $f_n$ die konstante $b$-stellige Funktion $0$.
+Wenn $a = 1$, dann ist $f_n$ die Nachfolgerfunktion $S: \N \to \N$. Wenn $a = 2$
+und $b \geq c \geq 1$, dann
+ist $f_n = \pi_c^b$. Wenn $a = 3$, und $f_b: \N^k \to \N^l,\ f_c: \N^k \to N$, dann
+ist $f_n: \N^k \to \N^l \times \N = \N^{l+1}$ als
+$f_n(\overline{x}) = (f_b(\overline{x}),f_c(\overline{x}))$.
+Wenn $a = 4,\ f_b: \N^k \to \N^l,\ f_c: \N^l \to \N^m$, dann ist $f_n := f_c \circ f_b$.
+Wenn $a = 5$ und $f_b$ $(k+1)$-stellig, $f_c$ $(k+2)$-stellig,
+dann ist $f_n: \N^k \to \N$ durch $f_n = \mathrm{PR}(f_b,f_c)$ definiert.
+Sonst sei $f_n$ die konstante einstellige Nullfunktion.
+
+\input{9.3.tex}
+\input{9.4.tex}
+
+\section*{Die Ackermannfunktion}
+Eine totale Funktion $a: \N \times \N \to \N$ heißt Ackermannfunktion, wenn sie
+für alle $x,y \in \N$ die folgenden Bedingungen erfüllt:
+\begin{flalign*}
+  &A.1\ a(0,y) = y + 1 & \\
+  &A.2\ a(x+1,0) = a(x,1) & \\
+  &A.3\ a(x+1,y+1) = a(x,a(x+1,y)). &
+\end{flalign*}
+
+\input{9.5.tex}
+\input{9.6.tex}
+\input{9.7.tex}
+\input{9.8.tex}
+
+\end{document}
