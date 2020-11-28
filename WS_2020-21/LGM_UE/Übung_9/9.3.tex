@@ -13,7 +13,41 @@ die Definition.)
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Wir zeigen zuerst mittels vollständider Induktion, dass jedes $f_n$ primitiv rekursiv ist. \\
+$f_0$ und $f_1$ sind klarerweise primitv rekursiv. \\
+Gelte nun für alle $i \leq n: f_i$ ist primitiv rekursiv:
+\begin{itemize}
+	\item Fall $n + 1 = p(a,b,c),\ a \leq 2$: Klar.
+	\item Fall $n + 1 = p(a,b,c),\ a = 3,\ f_b: \N^k \to \N^l,\ f_c: \N^k \to \N$: \\
+	$a,b \leq \max(a,b,c) < p(a,b,c) = n+1$, also sind $f_b,f_c$ nach
+	Induktionsvoraussetzung primitiv rekursiv und somit sind alle $\pi_i^{l+1} \circ f_{n+1}$
+	primitiv rekursiv.
+	\item Fall $n + 1 = p(a,b,c),\ a = 4,\ f_b: \N^k \to \N^l,\ f_c: \N^l \to \N^m$: \\
+	Wieder sind nach Induktionsvoraussetzung $f_b,f_c$ primitiv rekursiv und daher
+	auch $f_c \circ f_b$.
+	\item Fall $n + 1 = p(a,b,c),\ a = 5$: \\
+	Wieder sind nach Induktionsvoraussetzung $f_b,f_c$ primitiv rekursiv und daher
+	auch $\mathrm{PR}(f_c,f_b)$.
+	\item Sonst: Klar.
+\end{itemize}
+Wir zeigen als nächstes mit Induktion nach der Definition von primitv rekursiven
+Funktionen, dass für jedes primitv rekursives $f$ unendliche viele $n$ mit $f_n = f$
+existieren:
+\begin{itemize}
+	\item $f = 0: \N^0 \to \N$: \\
+	Für alle $c \in \N$ gilt: $f_{p(0,0,c)} = f$.
+	\item $f = 0: \N^1 \to \N$: \\
+	Für alle $c \in \N$ gilt: $f_{p(0,1,c)} = f$.
+	\item $f = S: \N \to \N$: \\
+	Für alle $b,c \in \N$ gilt: $f_{p(1,b,c)} = f$.
+	\item $f = g \circ h,\ h: \N^k \to \N^l,\ g: \N^l \to \N^m$: \\
+	Laut Induktionsvoraussetzung exisitieren Folgen $(i_n)_{n\in \N},\ (j_n)_{n \in \N}$,
+	sodass $g = f_{i_n}, h = f_{j_n}, n \in \N$. Damit folgt
+	$f = f_{p(4,j_n,i_m)}, n,m \in \N$.
+	\item $f = \mathrm{PR(g,h)}$. \\
+	Wieder finden wir Folgen, sodass $g = f_{i_n}, h = f_{j_n}, n \in \N$ und es gilt
+	$f = f_{p(5,i_n,jm)}, n,m \in \N$
+\end{itemize}
 
-\phantom{}
 
 \end{solution}
