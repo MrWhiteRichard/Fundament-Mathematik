@@ -26,7 +26,116 @@ Eigenschaften $0 \in M$ und $x \in M \rightarrow x + 1 \in M$ zeigen.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
 \phantom{}
+\begin{enumerate}[label = (\alph*)]
+	\item Seien $a_1,a_2$ zwei beliebige Ackermannfunktionen. \\
+	Wir wenden vollständige Induktion zuerst auf die Menge
+	\begin{align*}
+		M = \{n \in \N: \forall y \in \N: a_1(n,y) = a_2(n,y)\}
+	\end{align*}
+	Es gilt $0 \in M$, da
+	\begin{align*}
+		\forall y \in \N: a_1(0,y) = y + 1 = a_2(0,y).
+	\end{align*}
+	Den Induktionsschritt $(n - 1 \rightarrow n)$ selbst zeigen mir mit einer weiteren Induktion:
+	\begin{align*}
+		M_n = \{y \in \N: a_1(n,y) = a_2(n,y)\}
+	\end{align*}
+	Es gilt $0 \in M_n$, da mit der Induktionsvoraussetzung der äußeren Induktion gilt:
+	\begin{align*}
+		a_1(n,0) = a_1(n-1,1) = a_2(n-1,1) = a_2(n,0).
+	\end{align*}
+	Gelte nun $y-1 \in M_n$:
+	\begin{align*}
+		a_1(n,y) = a_1(n-1,a_1(n,y-1)) = a_1(n-1,a_2(n,y-1)) = a_2(n-1,a_2(n,y-1)) = a_2(n,y).
+	\end{align*}
+	Damit gilt $y \in M_n$ und mit der inneren Induktion erhalten wir $M_n = \N$
+	was uns wiederum $n \in M$ liefert, was schließlich $M = \N$ beweist.
+	\item Für die Existenz definieren wir die Bedinungen
+	\begin{flalign*}
+	  &A_n.1\ a(0,y) = y + 1 & \\
+	  &A_n.2\ \forall k < n: a(k+1,0) = a(k,1) & \\
+	  &A_n.3\ \forall k < n: a(k+1,y+1) = a(k,a(k+1,y)). &
+	\end{flalign*}
+	und zeigen mit Induktion
+	\begin{align*}
+		M = \{n \in \N: \exists a_n: \{0,\dots,n\} \times \N \to \N \text{ sodass } A_n.1,A_n.2,A_n.3 \text{ gilt}\}
+		\stackrel{!}{=} \N.
+	\end{align*}
+	Es gilt $0 \in M$, da
+	\begin{align*}
+		a_0(0,y) := y + 1
+	\end{align*}
+	die Bedingungen $A_0.1,A_0.2,A_0.3$ erfüllt. \\
+	Für den Induktionsschritt $n \rightarrow n+1$ definieren wir
+	\begin{align*}
+		a_{n+1}(x,y) := \begin{cases}
+			a_n(x,y), & x < k \\
+			a_n(n,1), & x = n + 1, y = 0 \\
+			a_n(n,a_{n+1}(n+1, y - 1)), & x = n + 1, y \neq 0
+		\end{cases}
+	\end{align*}
+	Bedingung $A_{n+1}.1$ wird aufgrund der Induktionsvoraussetzung an das $a_n$ erfüllt.
+	Bedingugen $A_{n+1}.2, A_{n+1}.3$ werden aufgrund der Induktionsvoraussetzung
+	jedenfalls von $k < n$ erfüllt und aufgrund der Definition von $a_{n+1}$
+	auch von $k = n$. \\
+	(Formal bräuchte man noch wie im ersten Schritt eine innere Induktion, die
+	zeigt, dass durch die Vorschrift im dritten Fall wirklich eine Funktion
+	wohldefiniert ist, aber man siehts denk ich.) \\
+	Schließlich erfüllt die Funktion $A = \bigcup_{n \in \N}a_n$ die originalen
+	Bedingungen $A.1,A.2,A.3$.
+	\item Wir induzieren $A(1,n) = n + 2$:
+	\begin{align*}
+		A(1,0) &= A(0,1) = 1 + 1 = 0 + 2 \\
+		A(1,n) &= A(0,A(1,n-1)) = A(0,n+1) = n + 1 + 1 = n + 2.
+	\end{align*}
+	Wir induzieren $A(2,n) = 2n + 3$:
+	\begin{align*}
+		A(2,0) &= A(1,1) = 1 + 2 = 0 + 3 \\
+		A(2,n) &= A(1,A(2,n-1)) = A(1,2(n-1) + 3) = A(1, 2n + 1) = 2n + 1 + 2 = 2n + 3.
+	\end{align*}
+	Für $A(3,n)$ stellen wir eine Rekursiongleichung auf:
+	\begin{align*}
+		A(3,0) &= A(2,1) = 5 \\
+		A(3,n) &= A(2,A(3,n-1)) = 2A(3,n-1) + 3.
+	\end{align*}
+	Die Lösung davon ist gegeben durch
+	\begin{align*}
+		A(3,n) = 5\prod_{j=1}^n2 + \sum_{i=1}^n3\prod_{j=i+1}^n2 = 5\cdot2^n + 3\sum_{i=1}^n 2^{n-1}
+		= 5\cdot2^n + 3(2^n - 1).
+	\end{align*}
+	Schließlich erhalten wir für $A(4,n)$ die Rekursiongleichung
+	\begin{align*}
+		A(4,0) &= A(3,1) = 13 \\
+		A(4,n) &= A(3,A(4,n-1)) = 5\cdot2^{A(4,n-1)} + 3(2^{A(4,n-1)} - 1).
+	\end{align*}
+	Ja, und viel Spaß das jetzt noch explizit auszurechnen.
+	Wär da nicht die Summe in der Rekursionsgleichung könnte mans noch mit der
+	Pfeilnotation darstellen.
+	\begin{align*}
+		a_0 &= b \\
+		a_n &= c\cdot d \uparrow a_{n-1}
+	\end{align*}
+	hat als Lösungsdarstellung für $n \geq 2$
+	\begin{align*}
+		a_n = c\cdot (d^c\uparrow\uparrow (n-1))\uparrow d^b.
+	\end{align*}
+	mit $x\uparrow y := x^y$ und $x\uparrow\uparrow y := \underbrace{x^{x^{\cdots^{x}}}}_{y-\text{mal}}$
+	\item
+	\begin{flalign*}
+	  &\textsc{A}(x,y): & \\
+	  &\text{Sei } M \text{ $y$-dimensionales Array} & \\
+		&\textbf{for } i = 0,\dots,y \textbf{ do} & \\
+		&\quad \textbf{for } j = 0,\dots,\text{hinreichend groß} \textbf{ do} & \\
+		&\quad \quad \textbf{if } i = 0 \textbf{ then} & \\
+		&\quad \quad \quad A[i][j] = j + 1 & \\
+		&\quad \quad \textbf{else if } j = 0 \textbf{ then} & \\
+		&\quad \quad \quad A[i][j] = A[i-1][1] & \\
+		&\quad \quad \textbf{else} & \\
+		&\quad \quad \quad A[i][j] = A[i-1][A[i][j-1]] & \\
+		&\quad \quad \textbf{end if} & \\
+		&\quad \textbf{end for} &
+	\end{flalign*}
+\end{enumerate}
 
 \end{solution}
