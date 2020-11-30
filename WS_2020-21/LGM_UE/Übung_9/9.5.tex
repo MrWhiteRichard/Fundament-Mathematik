@@ -136,6 +136,42 @@ Eigenschaften $0 \in M$ und $x \in M \rightarrow x + 1 \in M$ zeigen.
 		&\quad \quad \textbf{end if} & \\
 		&\quad \textbf{end for} &
 	\end{flalign*}
+	\begin{flalign*}
+	&\textsc{A}(x,y): & \\
+	&\text{Wir benötigen ein zweidimensionales erweiterbares Array} A & \\
+	& \text{und einen Vektor } S \text{ der Länge } x + 1 \text{ mit Anfangswert überall } -1 & \\
+	& A(0,0) := 1, \quad S(0) := 0 & \\
+	& \textbf{while } S(x) < y & \\
+	& \quad i := 0, \quad j := S(0) & \\
+	& \quad \textbf{while } i = 0 \text{ oder } j = 0  \text{ oder } (j \neq 0 \land A(i, j - 1) < S(i - 1)) & \\
+	& \quad \quad \textbf{if } i = 0 & \\
+	& \quad \quad \quad A(i,j) := j + 1&\\
+	& \quad \quad \textbf{else if } j = 0 &\\
+	& \quad \quad \quad A(i,j) := A(i - 1, 1) &\\
+	& \quad \quad \textbf{else if } j \neq 0 &\\
+	& \quad \quad \quad A(i,j) := A(i - 1, A(i, j - 1)) &\\
+	& \quad \quad \textbf{end if} &\\
+	& \quad \quad S(i) := S(i) + 1, \quad i := i + 1, \quad j := j - 1 & \\
+	& \quad \textbf{end while} &\\
+	& \textbf{end while}
+	\end{flalign*}
+	Ein Beispiel, damit man sich das besser vorstellen kann.
+	\begin{align*}
+		A =
+		\begin{pmatrix}
+			(0,0) & (0,1) & (0,2) & (0,3) & \cdots \\
+			(1,0) & (1,1) & (1,2) & \cdots & \\
+			(2,0) & (2,1) & \cdots & & \\
+			(3,0) & \cdots &&&
+		\end{pmatrix}
+		S = 
+		\begin{pmatrix}
+			3 \\
+			0 \\
+			-1 \\
+			-1 \\
+		\end{pmatrix}
+	\end{align*}
 \end{enumerate}
 
 \end{solution}
