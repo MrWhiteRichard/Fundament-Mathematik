@@ -13,78 +13,82 @@ $A(x,y+1) \leq A(x+1,y)$ für alle $x,y$ gilt.
 \phantom{}
 \begin{itemize}
   \item Wir zeigen zuerst induktiv Monotonie in $y$:
-  \begin{align*}
+  \begin{align}\label{ind_1.1}
     M = \{n \in \N: \forall y_1 > y_2: a(n,y_1) > a(n,y_2) \land a(n,1) > 1\} \stackrel{!}{=} \N.
-  \end{align*}
+  \end{align}
   Es gilt $0 \in M$, da für $y_1 > y_2$
   \begin{align*}
     A(0,y_1) &= y_1 + 1 > y_2 + 1 = A(0,y_2) \\
     A(0,1) &= 2 > 1
   \end{align*}
   Im Induktionsschritt $(n-1) \rightarrow n$ führen wir eine weitere Induktion mit
-  \begin{align*}
+  \begin{align}\label{ind_1.2}
     M_n = \{m \in \N: a(n,m+1) > a(n,m)\} \stackrel{!}{=} \N.
-  \end{align*}
-  Es gilt $0 \in M_n$, da laut Induktionsvoraussetzung $a(n-1,1) > 1$
+  \end{align}
+  Es gilt $0 \in M_n$, da $n-1 \in M \stackrel{\eqref{ind_1.1}}{\implies}
+  a(n-1,1) > 1 \stackrel{\eqref{ind_1.1}}{\implies} a(n-1,a(n-1,1)) > a(n-1,1)$ und daher
   \begin{align*}
-    a(n,1) = a(n-1,a(n,0)) = a(n-1,a(n-1,1)) > a(n-1,1) = a(n,0).
+    a(n,1) = a(n-1,a(n,0)) = a(n-1,a(n-1,1)) \stackrel{\eqref{ind_1.1}}{>} a(n-1,1) = a(n,0).
   \end{align*}
-  Für den Induktionsschritt $(m-1) \rightarrow m $ rechnen wir
+  Für den Induktionsschritt $(m-1) \in M_n \rightarrow m \in M_n $ rechnen wir
   \begin{align*}
-    a(n,m) = a(n-1,a(n,m-1)) > a(n-1,a(n,m-2)) = a(n,m-1).
+    a(n,m+1) = a(n-1,a(n,m)) \stackrel{\eqref{ind_1.2},\eqref{ind_1.1}}{>} a(n-1,a(n,m-1)) = a(n,m).
   \end{align*}
-  Damit gilt $M_n = \N$ und zusammen mit $a(n,1) > a(n,0) = a(n-1,1) > 1$ folgt daraus
+  Damit gilt $M_n = \N$ und zusammen mit $a(n,1) > a(n,0) = a(n-1,1) \stackrel{\eqref{ind_1.1}}{>} 1$ folgt daraus
   $n \in M$ und damit $M = \N$.
   \item Monotonie in $x$: \\
   Wir zeigen zuerst induktiv
-  \begin{align}\label{hilf}
-    M = \{n \in \N: \forall x > 0: a(x,n) > n + 1\} = \N
+  \begin{align}\label{hilf1}
+    M = \{n \in \N: \forall x > 0: a(x,n) > n + 1\} \stackrel{!}{=} \N
   \end{align}
+  mit Hilfe von
   \begin{align*}
     M_0 =  \{m \in \N: m = 0 \lor a(m,0) > 1\}
   \end{align*}
   Es gilt klarerweise $0 \in M_0$ und
   \begin{align*}
-    a(1,0) &= a(0,1) = 2 \\
-    a(m,0) &= a(m-1,1) > a(m-1,0) > 1.
+    a(1,0) &= a(0,1) = 2 > 1, \\
+    a(m-1,0) > 1 &\implies a(m,0) = a(m-1,1) \stackrel{\eqref{ind_1.1}}{>} a(m-1,0) > 1.
   \end{align*}
   Damit erhalten wir $M_0 = \N$ und $0 \in M$. \\
-  Induktionsschritt $(n-1) \rightarrow n$:
-  \begin{align*}
-    M_n =  \{m \in \N: m = 0 \lor a(m,n) > n + 1\} = \N
-  \end{align*}
+  Induktionsschritt $(n-1) \in M \rightarrow n \in M$:
+  \begin{align}\label{hilf2}
+    M_n =  \{m \in \N: m = 0 \lor a(m,n) > n + 1\} \stackrel{!}{=} \N
+  \end{align}
   Es gilt $1 \in M_n$, da
   \begin{align*}
-    a(1,n) = a(0,a(1,n-1)) > a(0,n) = n + 1.
+    a(1,n) = a(0,a(1,n-1)) \stackrel{\eqref{hilf1},\eqref{ind_1.1}}{>} a(0,n) = n + 1.
   \end{align*}
-  Induktionsschritt: $(m-1) \rightarrow m$:
+  Induktionsschritt: $(m-1) \in M_n \rightarrow m \in M_n$:
   \begin{align*}
-    a(m,n) = a(m-1,a(m,n-1)) > a(m-1,n) > n + 1.
+    a(m,n) = a(m-1,a(m,n-1)) \stackrel{\eqref{hilf1},\eqref{ind_1.1}}{>}
+    a(m-1,n) \stackrel{\eqref{hilf2}}{>} n + 1.
   \end{align*}
   Also folgt $M_n = \N$, damit $n \in M$ und insgesamt $M = \N$. \\
   Jetzt können wir die Monotonie in $x$ zeigen:
-  \begin{align*}
-    M = \{n \in \N: \forall x_1 > x_2: a(x_1,n) > a(x_2,n)\}
-  \end{align*}
+  \begin{align}\label{ind2}
+    M = \{n \in \N: \forall x_1 > x_2: a(x_1,n) > a(x_2,n)\} \stackrel{!}{=} \N
+  \end{align}
   Es gilt $0 \in M$, da
   \begin{align*}
-    a(x,0) = a(x-1,1) > a(x-1,0).
+    a(x,0) = a(x-1,1) \stackrel{\eqref{ind_1.1}}{>} a(x-1,0).
   \end{align*}
-  Für den Induktionsschritt $(n-1) \rightarrow n$ verwenden wir \eqref{hilf}:
+  Für den Induktionsschritt $(n-1) \rightarrow n$ rechnen wir:
   \begin{align*}
-    a(x,n) = a(x-1,a(x,n-1)) \stackrel{\eqref{hilf}}{>} a(x-1,n)
+    a(x,n) = a(x-1,a(x,n-1)) \stackrel{\eqref{hilf1},\eqref{ind_1.1}}{>} a(x-1,n)
   \end{align*}
   \item $A(x+1,y) \geq A(x,y+1)$:
-  \begin{align*}
+  \begin{align}\label{ind3}
     M = \{n \in \N: \forall x \in \N: A(x+1,n) \geq A(x,n+1)\}
-  \end{align*}
+  \end{align}
   Es gilt $0 \in M$, da
   \begin{align*}
     \forall x \in \N: A(x+1,0) &= A(x,1).
   \end{align*}
   Induktionsschritt: $(n-1) \rightarrow n$:
   \begin{align*}
-    A(x+1,n) = A(x,A(x+1,n-1)) \geq A(x,A(x,n)) \geq A(x-1,A(x,n)) = A(x,n+1).
+    A(x+1,n) = A(x,A(x+1,n-1)) \stackrel{\eqref{ind3},\eqref{ind_1.1}}{\geq} A(x,A(x,n))
+    \stackrel{\eqref{ind2}}{\geq} A(x-1,A(x,n)) = A(x,n+1).
   \end{align*}
 \end{itemize}
 
