@@ -123,20 +123,6 @@ Eigenschaften $0 \in M$ und $x \in M \rightarrow x + 1 \in M$ zeigen.
 	mit $x\uparrow y := x^y$ und $x\uparrow\uparrow y := \underbrace{x^{x^{\cdots^{x}}}}_{y-\text{mal}}$
 	\item
 	\begin{flalign*}
-	  &\textsc{A}(x,y): & \\
-	  &\text{Sei } M \text{ $y$-dimensionales Array} & \\
-		&\textbf{for } i = 0,\dots,y \textbf{ do} & \\
-		&\quad \textbf{for } j = 0,\dots,\text{hinreichend groß} \textbf{ do} & \\
-		&\quad \quad \textbf{if } i = 0 \textbf{ then} & \\
-		&\quad \quad \quad A[i][j] = j + 1 & \\
-		&\quad \quad \textbf{else if } j = 0 \textbf{ then} & \\
-		&\quad \quad \quad A[i][j] = A[i-1][1] & \\
-		&\quad \quad \textbf{else} & \\
-		&\quad \quad \quad A[i][j] = A[i-1][A[i][j-1]] & \\
-		&\quad \quad \textbf{end if} & \\
-		&\quad \textbf{end for} &
-	\end{flalign*}
-	\begin{flalign*}
 	&\textsc{A}(x,y): & \\
 	&\text{Wir benötigen ein zweidimensionales erweiterbares Array} A & \\
 	& \text{und einen Vektor } S \text{ der Länge } x + 1 \text{ mit Anfangswert überall } -1 & \\
@@ -164,7 +150,7 @@ Eigenschaften $0 \in M$ und $x \in M \rightarrow x + 1 \in M$ zeigen.
 			(2,0) & (2,1) & \cdots & & \\
 			(3,0) & \cdots &&&
 		\end{pmatrix}
-		S = 
+		S =
 		\begin{pmatrix}
 			3 \\
 			0 \\
