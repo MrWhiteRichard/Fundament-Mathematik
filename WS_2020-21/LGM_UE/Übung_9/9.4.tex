@@ -32,11 +32,12 @@ Wir führen eine Hilfsvariable $m$ ein, die die Stelligkeit der Funktion bezeich
 da bei der Entstehung durch primitive Rekursion auch Funktionen von höherer
 Stelligkeit auftreten werden.
 \begin{flalign*}
-	&\textsc{P}(n,k,m): & \\
+	&\textsc{P}(n,k): & \\
+  &m = \dim(k)& \\
 	&(a,b,c) = \textsc{FindeKoeffizienten}(n) & \\
 	&\textbf{if } a = 0 \textbf{ then}& \\
 	&\quad \textbf{return } 0 & \\
-	&\textbf{else if } a = 1 \land m = 1 \textbf{ then}& \\
+	&\textbf{else if } a = 1 \land m = 1\textbf{ then}& \\
 	&\quad \textbf{return } k[1] + 1 & \\
 	&\textbf{else if } a = 2 \textbf{ then}& \\
 	&\quad \textbf{if } m = b \geq c \geq 1 \textbf{ then}& \\
@@ -45,14 +46,14 @@ Stelligkeit auftreten werden.
 	&\quad \quad \textbf{return } 0 & \\
 	&\quad \textbf{end if}& \\
 	&\textbf{else if } a = 3 \textbf{ then}& \\
-	&\quad \textbf{return } (F(b,k),F(c,k)) & \\
+	&\quad \textbf{return } (P(b,k),P(c,k)) & \\
 	&\textbf{else if } a = 4 \textbf{ then}& \\
-	&\quad \textbf{return } F(c,F(b,k)) & \\
+	&\quad \textbf{return } P(c,F(b,k)) & \\
 	&\textbf{else if } a = 5 \textbf{ then}& \\
 	&\quad \textbf{if } k[-1] = 0 \textbf{ then}& \\
-	&\quad \quad \textbf{return } F(c,k[:-1],m-1) & \\
+	&\quad \quad \textbf{return } P(c,k[:-1]) & \\
 	&\quad \textbf{else }& \\
-	&\quad \quad \textbf{return } F(b,[k-1,F(b,k-1)],m+1) & \\
+	&\quad \quad \textbf{return } P(b,[k-1,P(b,k-1)]) & \\
 	&\quad \textbf{end if}& \\
   &\textbf{else }& \\
   &\quad \textbf{return } 0& \\
