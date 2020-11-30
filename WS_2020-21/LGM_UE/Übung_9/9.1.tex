@@ -14,21 +14,21 @@ $\N \times \N$ auf.
 
 \begin{solution}
 
-	Wir setzten voraus, dass wir bereits eine nicht berechenbare Funktion $\beta: \N \to \N$ kennen. Nun betrachten wir 
+	Wir setzten voraus, dass wir bereits eine nicht berechenbare Funktion $\beta: \N \to \N$ kennen. Nun betrachten wir
 	\begin{align*}
 	\alpha: \N \to \N: n \mapsto \sum_{i = 0}^n (\beta(i) + 1)
 	\end{align*}
-	Diese Funktion ist strikt monoton wachsend, daher auch injektiv und nicht berechenbar, denn sonst wäre auch $\Delta\alpha(n) = \alpha(n + 1) - \alpha(n) = \beta(n+1)$ berechenbar und damit auch $\beta(n) = \beta(n + 1 - 1)$. Nun definieren wir 
+	Diese Funktion ist strikt monoton wachsend, daher auch injektiv und nicht berechenbar, denn sonst wäre auch $\Delta\alpha(n) = \alpha(n + 1) - \alpha(n) = \beta(n+1) + 1$ berechenbar. Nun definieren wir
 	\begin{align*}
-	g: \N \times \N \to \N : (n, k) \mapsto 
+	g: \N \times \N \to \N : (n, k) \mapsto
 	\begin{cases}
 	0 &, \text{falls }\alpha(n) = k \\
 	1 &, \text{sonst}
 	\end{cases}
 	\end{align*}
-	Nun erhalten wir für beliebiges $n \in \N$ 
+	Nun erhalten wir für beliebiges $n \in \N$
 	\begin{align*}
-	f_n: \N \to \N : k \mapsto g(n,k) =  
+	f_n: \N \to \N : k \mapsto g(n,k) =
 	\begin{cases}
 	0 &, \text{falls } \alpha(n) = k \\
 	1 &, \text{sonst}
@@ -36,7 +36,7 @@ $\N \times \N$ auf.
 	\end{align*}
 	Es gilt $f_n = 1 - \chi_{\{\alpha(n)\}}$ und ist damit berechenbar. Weiters definieren wir für beliebiges $k \in \N$ die Funktion
 	\begin{align*}
-	h_k: \N \to \N : k \mapsto g(n,k) =  
+	h_k: \N \to \N : n \mapsto g(n,k) =
 	\begin{cases}
 	0 &, \text{falls } \alpha(n) = k \\
 	1 &, \text{sonst}
