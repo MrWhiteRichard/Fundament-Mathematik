@@ -36,10 +36,10 @@ Stelligkeit auftreten werden.
 	&(a,b,c) = \textsc{FindeKoeffizienten}(n) & \\
 	&\textbf{if } a = 0 \textbf{ then}& \\
 	&\quad \textbf{return } 0 & \\
-	&\textbf{else if } a = 1 \land m > 0 \textbf{ then}& \\
+	&\textbf{else if } a = 1 \land m = 1 \textbf{ then}& \\
 	&\quad \textbf{return } k[1] + 1 & \\
 	&\textbf{else if } a = 2 \textbf{ then}& \\
-	&\quad \textbf{if } m \geq b \geq c \geq 1 \textbf{ then}& \\
+	&\quad \textbf{if } m = b \geq c \geq 1 \textbf{ then}& \\
 	&\quad \quad \textbf{return } k[c] & \\
 	&\quad \textbf{else}& \\
 	&\quad \quad \textbf{return } 0 & \\
@@ -54,6 +54,8 @@ Stelligkeit auftreten werden.
 	&\quad \textbf{else }& \\
 	&\quad \quad \textbf{return } F(b,[k-1,F(b,k-1)],m+1) & \\
 	&\quad \textbf{end if}& \\
+  &\textbf{else }& \\
+  &\quad \textbf{return } 0& \\
 	&\textbf{end if}&
 \end{flalign*}
 
