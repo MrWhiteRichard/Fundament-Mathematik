@@ -1,9 +1,31 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}
-
-\phantom{}
-
+\textit{(Smoothing properties of the heat operator)} \\
+Let $\Omega=(0,2 \pi)$ and consider the initial value problem (IVP)
+\begin{align*}
+  \left\{\begin{array}{ll}
+  u_{t}=u_{x x} & \text { for } (x, t) \in \Omega \times(0, \infty), \\
+  u(x, t=0)=u_{0} & \text { for } x \in \Omega, \\
+  u(x=0, t)=u(x=2 \pi, t) & \text { for } t>0,
+  \end{array}\right.
+\end{align*}
+with $u_{0} \in L^{2}(\Omega) .$ The set $\left\{\phi_{n}(x)=e^{\mathrm{in} x}: n \in \mathbb{Z}\right\}$ is a complete orthogonal system in the complex Hilbert space $L^{2}(\Omega),$ corresponding to the eigenfunctions of the operator $L u=-u_{x x}$ with periodic boundary conditions. We now consider the operator
+\begin{align*}
+  e^{-L t}: L^{2}(\Omega) \mapsto L^{2}(\Omega), \quad
+  v \mapsto \sum_{n \in \mathbb{Z}} e^{-n^{2} t}\left\langle v,
+  \frac{\phi_{n}}{\left\|\phi_{n}\right\|}\right\rangle_{L^{2}}
+  \frac{\phi_{n}}{\left\|\phi_{n}\right\|}.
+\end{align*}
+In what sense is $u(\cdot, t)=e^{-L t} u_{0}$ a solution of IVP? Furthermore, show that:
+\begin{enumerate}[label = (\roman*)]
+  \item For $t \geq 0$ it holds that $\left\|e^{-L t}\right\|_{L^{2} \rightarrow L^{2}}=1$.
+  \item For $t>0$ it holds that
+  $\left\|e^{-L t}\right\|_{L^{2} \rightarrow H_{p e r}^{1}} \leq C\left(1+t^{-1 / 2}\right)$
+  for some constant $C>0$.
+  \item For $t>0$ it holds that $\left\|e^{-L t}\right\|_{L^{2} \rightarrow H_{\text {per}}^{k}} \leq C_{k}\left(1+t^{-a_{k}}\right)$ for all $k \in \mathbb{N}$ and $a_{k}, C_{k}>0$.
+\end{enumerate}
+Notice that here $\left\|e^{-L t}\right\|_{X \rightarrow Y}$ denotes the operator-norm of $e^{-L t}$ as an operator from $X$ to $Y$.
 \end{exercise}
 
 % --------------------------------------------------------------------------------

@@ -2,7 +2,25 @@
 
 \begin{exercise}
 
-\phantom{}
+\textit{(Galerkin method for the Poisson equation)} \\
+Let $\Omega \subset \mathbb{R}^{n}$ be a bounded, open set with smooth boundary.
+For $f \in L^{2}(\Omega)$ construct a solution of the Poisson equation
+\begin{align}\label{poisson}
+  \begin{array}{llll}-\Delta u=f & \text { in } \Omega, & u=0 & \text { on } \partial \Omega\end{array}
+\end{align}
+using a Galerkin method. To do this, let $\left\{\phi_{k}\right\}$ for $k \in \mathbb{N}$ denote the eigenfunctions of the Laplacian with homogeneous Dirichlet boundary data on $\Omega .$ Then prove that for any $m \in \mathbb{N}$ there exists
+\begin{align*}
+  u_{m}=\sum_{k=1}^{m} \mathbf{d}_{m}^{k} \phi_{k}, \quad \text { for } \mathbf{d}_{m}^{k} \in \mathbb{R}
+\end{align*}
+
+that satisfies
+\begin{align*}
+  \int_{\Omega} \nabla u_{m} \cdot \nabla \phi_{k} \mathrm{~d}
+  x=\int_{\Omega} f \phi_{k}, \quad \text { for } k=1, \ldots, m.
+\end{align*}
+
+To finish, show that the sequence $\left\{u_{m}\right\}_{m \in \mathbb{N}}$
+converges weakly in $H_{0}^{1}(\Omega)$ to a weak solution of \eqref{poisson}.
 
 \end{exercise}
 

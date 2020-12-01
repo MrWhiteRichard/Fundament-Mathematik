@@ -4,19 +4,20 @@
 
 \phantom{}
 \textit{(Inhomogeneous boundary data)} Consider the initial value problem (IVP)
-$$
-\left\{\begin{array}{ll}
-u_{t}=u_{x x}-u+\sin (3 \pi x)+x & \text { for } x \in(0,1), \quad t>0, \\
-u(0, t)=0 & \text { for } t>0, \\
-u(1, t)=1 & \text { for } t>0, \\
-u(x, 0)=\sin (\pi x)+x & \text { for } x \in(0,1).
-\end{array}\right.
-$$
+\begin{align*}
+  \left\{\begin{array}{ll}
+  u_{t}=u_{x x}-u+\sin (3 \pi x)+x & \text { for } x \in(0,1), \quad t>0, \\
+  u(0, t)=0 & \text { for } t>0, \\
+  u(1, t)=1 & \text { for } t>0, \\
+  u(x, 0)=\sin (\pi x)+x & \text { for } x \in(0,1).
+  \end{array}\right.
+\end{align*}
+
 \begin{itemize}
-\item[(i)] Transform the IVP into a problem with homogeneous boundary data.
-\item[(ii)] Discuss the existence of a solution for the transformed problem.
-\item[(iii)] Find a complete orthonormal system consisting of eigenfunctions of the operator $L u=-u_{x x}+u$ with suitable boundary conditions.
-\item[(iv)] Find a solution of the IVP using the orthonormal system from (iii).
+  \item[(i)] Transform the IVP into a problem with homogeneous boundary data.
+  \item[(ii)] Discuss the existence of a solution for the transformed problem.
+  \item[(iii)] Find a complete orthonormal system consisting of eigenfunctions of the operator $L u=-u_{x x}+u$ with suitable boundary conditions.
+  \item[(iv)] Find a solution of the IVP using the orthonormal system from (iii).
 \end{itemize}
 
 \end{exercise}
@@ -27,21 +28,21 @@ $$
 
 \phantom{} \begin{itemize}
     \item[(i)] Mit der Transformation $v := u - x$ erhalten wir folgendes Randwertproblem mit homogenen Randbedingungen:
-    \begin{align}
+    \begin{align*}
         \begin{cases}
             v_t - v_{xx} + v = \sin(3\pi x) & \text{für~} x \in (0, 1),~ t > 0,\\
             v(0, t) = 0 & \text{für~} t > 0,\\
             v(1, t) = 0 & \text{für~} t > 0,\\
             v(x, 0) = \sin(\pi x) & \text{für~} x \in (0, 1).
         \end{cases}
-    \end{align}\label{rwp}
+    \end{align*}\label{rwp}
 
     \item[(ii)] Wir wollen Satz 6.19 (Existenz von Lösungen inhomogener Probleme) anwenden; dafür werden wir nun die Voraussetzungen überprüfen.
 
     Die allgemeine parabolische Differentialgleichung aus der Vorlesung hat die Form
-    \begin{align}
+    \begin{align*}
         u_t \underbrace{- \mathrm{div}(A \nabla u) + cu}_{=~ L(u)} = f(\cdot, t).
-    \end{align}
+    \end{align*}
     Um den Satz anwenden zu können, müssen $A$, $|\nabla A|$ und $c \geq 0$ in $\Omega$ beschränkt und $A$ symmetrisch und gleichmäßig positiv definit sein.
     Im betrachteten eindimensionalen Fall entartet die Matrix $A$ zu einer Konstanten, nämlich $A \equiv 1.$ Ebenso gilt $|\nabla A| \equiv 0$ sowie $c \equiv 1 \geq 0$, womit der Differentialoperator $L$ die richtige Form hat.
 
@@ -73,10 +74,10 @@ $$
         \end{cases}
     \end{align*}
     wählen wir noch $c_1 = \sqrt 2$ und erhalten unsere finale Lösung:
-    \begin{align}
+    \begin{align*}
         \varphi_k(x) &= \sqrt 2 \sin(k\pi x),\\
         \lambda_k &= 1 + (k\pi)^2, k \in \N.
-    \end{align}
+    \end{align*}
     Die Dichtheit in $L^2(\Omega)$ folgt mit demselben Argument wie letzte Woche.
     \item[(iv)] Mithilfe von Satz 6.19 können wir nun die konkrete Lösung von \eqref{rwp} bestimmen:
     \begin{align*}

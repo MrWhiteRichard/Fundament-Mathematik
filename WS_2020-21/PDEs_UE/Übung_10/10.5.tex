@@ -2,8 +2,72 @@
 
 \begin{exercise}
 
-\phantom{}
+\textit{(Exponential decay to equilibrium for the Fokker-Planck equation)} \\
+We consider smooth solutions of the Fokker-Planck equation
+\begin{align}\label{fokker-planck}
+  \partial_{t} u=\nabla \cdot(\nabla u+u \nabla V), \quad t>0,
+  \quad u(0)=u_{0} \quad \text { in } \mathbb{R}^{d},
+\end{align}
+where we assume that $V$ satisfies the Bakry-Emery condition
+$\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, assume that $\phi \in C^{4}((0, \infty))$ is convex with $\phi(1)=0,$ and $1 / \phi^{\prime \prime}$ is welldefined and concave. Examples of admissible functions $\phi$ are $\phi(s)=s(\log (s)-1)+1$ and $\phi(s)=s^{\alpha}-1$ for $1<\alpha \leq 2$.
+\begin{enumerate}[label = (\roman*)]
+  \item Compute $u_{\infty},$ a stationary solution of \eqref{fokker-planck} that is strictly positive
+  $\left(u_{\infty}>0\right)$ and has unit mass $\left(\int_{\R^d} u_{\infty}=1\right)$.
+  \item Define the relative entropy with respect to $\phi$ as
+  \begin{align*}
+    H_{\phi}[u]=\int_{\mathbb{R}^{d}} \phi\left(\frac{u}{u_{\infty}}\right) u_{\infty} \,\mathrm{d} x.
+  \end{align*}
+  Notice that, setting $\rho=\frac{u}{u_{\infty}},$ we have that
+  $\partial_{t} u=\nabla \cdot\left(u_{\infty} \nabla \rho\right) .$
+  Using this, show that the \textit{entropy production}, $-\frac{d}{d t} H_{\phi}[u],$ is non-negative.
+  \item Show that
+  \begin{align*}
+    \nabla \partial_{t} \rho &= \nabla \Delta \rho-\nabla^{2} \rho \nabla V-\nabla^{2} V \nabla \rho, \\
+    \nabla \rho \cdot \nabla \Delta \rho &= \nabla \cdot\left(\nabla^{2} \rho \nabla \rho\right)
+    -\left|\nabla^{2} \rho\right|^{2},
+  \end{align*}
+  where $\left|\nabla^{2} \rho\right|^{2}=
+  \sum_{i, j=1, \ldots, n}\left|\partial_{i} \partial_{j} \rho\right|^{2}$.
+  Using these identities and the expression for $\frac{d}{d t} H_{\phi}[u]$
+  that you have obtained in (i), show that
+  \begin{align*}
+    \frac{d^{2}}{d t^{2}} H_{\phi}[u] &\geq
+    \int_{\mathbb{R}^{d}}\left(\phi^{\primeprime \primeprime}(\rho)|\nabla \rho|^{4}+4
+    \phi^{\primeprimeprime}(\rho) \nabla \rho^{T} \nabla^{2} \rho \nabla \rho+2
+    \phi^{\prime \prime}(\rho)\left|\nabla^{2} \rho\right|^{2}\right) u_{\infty} \mathrm{d} x
+    -2 \lambda \frac{d}{d t} H_{\phi}[u] \\
+    &= 2 \int_{\mathbb{R}^{d}} \phi^{\prime \prime}(\rho)\left|\nabla^{2}
+    \rho+\frac{\phi^{\prime \prime \prime}(\rho)}{\phi^{\prime \prime}(\rho)}
+    \nabla \rho \otimes \nabla \rho\right|^{2} u_{\infty} \mathrm{d} x
+    +\int_{\mathbb{R}^{d}}\left(\phi^{\primeprime \primeprime}(\rho)-2
+    \frac{\phi^{\primeprimeprime}(\rho)^{2}}{\phi^{\prime \prime}(\rho)}\right)|\nabla \rho|^{4}
+    u_{\infty} \mathrm{d} x
+    -2 \lambda \frac{d}{d t} H_{\phi}[u].
+  \end{align*}
+  \item Using the concavity of $1 / \phi^{\prime \prime}$ and convexity of $\phi,$
+  argue that the result of (iii) yields that
+  \begin{align}\label{eq}
+    \frac{d^{2}}{d t^{2}} H_{\phi}[u] \geq-2 \lambda \frac{d}{d t} H_{\phi}[u], \quad t>0
+  \end{align}
+  \item Argue that integrating \eqref{eq} on the interval $(s, \infty)$ yields that
+  \begin{align*}
+    \frac{d}{d t} H_{\phi}[u(s)] \leq-2 \lambda H_{\phi}[u(s)], \quad s \geq 0
+  \end{align*}
+  \textit{Hint:} For this use Gronwall's lemma applied to \eqref{eq} and you may use
+  (without proof) that \\
+   $\lim _{t \rightarrow \infty} H_{\phi}[u(t)]=0$.
+  \item Using (without proof) that
+  \begin{align*}
+    \left\|u(t)-u_{\infty}\right\|_{L^{1}\left(R^{d}\right)}
+    \leq \frac{2}{\phi^{\prime \prime}(1)} H_{\phi}[u(t)],
+  \end{align*}
 
+  which follows from the Csiszár-Kullback-Pinsker inequality, show that
+  \begin{align*}
+    \left\|u(t)-u_{\infty}\right\|_{L^{1}\left(\mathrm{R}^{d}\right)}^{2}
+    \leq \frac{1}{\phi^{\prime \prime}(1)} H_{\phi}\left[u_{0}\right] e^{-2 \lambda t}.
+  \end{align*}
+\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------

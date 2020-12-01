@@ -1,9 +1,37 @@
 % --------------------------------------------------------------------------------
 
 \begin{exercise}
+\textit{(Periodic Sobolev Spaces)} Let $\Omega=(0,2 \pi)$ and consider the
+complete orthonormal system of $L^{2}(\Omega)$ given by
+\begin{align*}
+  \left\{C_{0}=\frac{1}{\sqrt{2 \pi}}, C_{n}(x)=\frac{1}{\sqrt{\pi}} \cos (n x), S_{n}(x)=\frac{1}{\sqrt{\pi}} \sin (n x) \,\Bigg|\, n \in \mathbb{N}\right\}.
+\end{align*}
+\begin{enumerate}[label = (\roman*)]
+  \item Show that for $k \in \mathbb{N}$ the space
+  \begin{align*}
+      H_{per}^{k}(\Omega):=\left\{f \in H^{k}(\Omega) \mid f^{(j)}(0)=f^{(j)}(2 \pi) \text { for } j=0, \ldots, k-1\right\}
+  \end{align*}
+  is a well-defined Hilbert space.
+  \item Show that $f \in H_{\text {per}}^{1}(\Omega)$ if and only if
+  \begin{align*}
+      f=\sum_{m=1}^{\infty} a_{m} S_{m}+\sum_{m=0}^{\infty} b_{m} C_{m} \quad \text { with } \quad
+      \sum_{m=1}^{\infty} m^{2}\left(\left|a_{m}\right|^{2}+\left|b_{m}\right|^{2}\right)<\infty.
+  \end{align*}
+  In this case, $f$ can be differentiated \glqq term-wise\grqq.
+  \item For $n \in \mathbb{N}$ consider the projection
 
-\phantom{}
+  \begin{align*}
+    P_{n}&: H_{p e r}^{k}(\Omega) \rightarrow H_{p e r}^{k}(\Omega) \\
+    f&=\sum_{m=1}^{\infty} a_{m} S_{m}+\sum_{m=0}^{\infty} b_{m} C_{m}
+    \mapsto P_{n} f=\sum_{m=1}^{n} a_{m} S_{m}+\sum_{m=0}^{n} b_{m} C_{m}.
+  \end{align*}
 
+  Show that for $f \in H_{\text {per}}^{k}(\Omega)$ it holds that
+  \begin{align*}
+  \left\|f-P_{n} f\right\|_{L^{2}(\Omega)} \leq \frac{1}{(n+1)^{k}}\left\|f^{(k)}\right\|_{L^{2}(\Omega)}.
+  \end{align*}
+
+\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
