@@ -94,26 +94,26 @@ $L(u) = -u_{xx}$
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
     &\leq \left(1 + \frac{1}{\sqrt{t}}\right)\|u\|_{L^2(\Omega)}
   \end{align*}
-  \item   Wir verwenden $\exp(-x) \leq x^{-k/2}$:
+  \item   Wir verwenden $\exp(-x) \leq x^{-k/2}$ für $x$ hinreichend groß $(x > (k+1)!)$:
   \begin{align*}
     \|(\exp(-Lt)u)^{(k)}\|_{L^2(\Omega)}^2 &=  \left\|\sum_{n\in\Z}\exp(-tn^2)
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{(in)^k\phi_n}{\|\phi_n\|}
     \right\|_{L^2(\Omega)}^2 \\
     &= \sum_{n\in\Z}|n^k|\exp(-tn^2)\left|
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
-    &\leq \sum_{n\in\Z}|t^{-k/2}|\left|
+    &\leq C_k\|u\|_{L^2(\Omega)} + \sum_{n\in\Z}|t^{-k/2}|\left|
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
-    &= t^{-k/2}\|u\|_{L^2(\Omega)}
+    &= (C_k + t^{-k/2})\|u\|_{L^2(\Omega)}
   \end{align*}
   Damit erhalten wir für $t < 1$
   \begin{align*}
     \|\exp(-Lt)u\|_{H_{per}^k}^2 &= \sum_{i=0}^k \|(\exp(-Lt)u)^{(i)}\|_{L^2(\Omega)}^2
-    \leq \sum_{i=0}^k t^{-i/2} \|u\|_{L^2(\Omega)} \\
-    &= \sum_{i=0}^k \left(\frac{1}{\sqrt{t}}\right)^i \|u\|_{L^2(\Omega)}
-    = \frac{t^{-(k+1)/2} - 1}{t^{-1/2} - 1}\|u\|_{L^2(\Omega)} \\
-    &= \frac{(1- t^{(k+1)/2})t^{1/2}}{(1-t^{1/2})t^{(k+1)/2}}\|u\|_{L^2(\Omega)}
-    = \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})t^{k/2}}\|u\|_{L^2(\Omega)} \\
-    &\leq C_kt^{-k/2}\|u\|_{L^2(\Omega)}
+    \leq \sum_{i=0}^k(C_i + t^{-i/2}) \|u\|_{L^2(\Omega)} \\
+    &=(k+1)C_k\|u\|_{L^2(\Omega)} + \sum_{i=0}^k \left(\frac{1}{\sqrt{t}}\right)^i \|u\|_{L^2(\Omega)}
+    = \left((k+1)C_k + \frac{t^{-(k+1)/2} - 1}{t^{-1/2} - 1}\right)\|u\|_{L^2(\Omega)} \\
+    &= \left((k+1)C_k + \frac{(1- t^{(k+1)/2})t^{1/2}}{(1-t^{1/2})t^{(k+1)/2}}\right)\|u\|_{L^2(\Omega)}
+    = \left( (k+1)C_k + \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})t^{k/2}}\right)\|u\|_{L^2(\Omega)} \\
+    &\leq \tilde{C}_k(1 + t^{-k/2})\|u\|_{L^2(\Omega)}
   \end{align*}
   Dabei gilt die letzte Abschätzung aufgrund
   \begin{align*}
@@ -130,7 +130,7 @@ $L(u) = -u_{xx}$
   \end{align*}
   Insgesamt erhalten wir also
   \begin{align*}
-    \|\exp(-Lt)u\|_{H_{per}^k}^2 \leq \max(C_k, k + 1)(1 + t^{-k/2})\|u\|_{L^2(\Omega)}.
+    \|\exp(-Lt)u\|_{H_{per}^k}^2 \leq \max(\tilde{C}_k, k + 1)(1 + t^{-k/2})\|u\|_{L^2(\Omega)}.
   \end{align*}
 \end{enumerate}
 
