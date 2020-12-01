@@ -31,8 +31,108 @@ Notice that here $\left\|e^{-L t}\right\|_{X \rightarrow Y}$ denotes the operato
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
+Betrachte die Funktion $v(x,t) = u(x,t) - u(0,t)$. Dann gilt
+\begin{align*}
+  \left\{\begin{array}{ll}
+  v_{t}(x,t) - v_{xx}(x,t) = u_t(x,t) - u_{xx}(x,t) - u_t(0,t) = - u_t(0,t) & \text { for } (x, t) \in \Omega \times(0, \infty), \\
+  v(x, 0) = u(x,0) - u(0,0) =: v_{0} & \text { for } x \in \Omega, \\
+  v(0, t) = v(2 \pi, t) = u(0,t) - u(0,t) = 0 & \text { for } t>0,
+  \end{array}\right.
+\end{align*}
+$L(u) = -u_{xx}$
+\begin{align*}
+  u(x,0) &= \sum_{n \in \Z}\exp(-0n^2)
+  \left\langle u_0, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
+  = \sum_{n \in \Z}\left\langle u_0, \frac{\phi_n}{\|\phi_n\|}\right\rangle
+  \frac{\phi_n}{\|\phi_n\|} = u_0(x). \\
+  u(0,t) &=
+\end{align*}
+\begin{enumerate}[label = (\roman*)]
+  \item Fall $t = 0$: Sei $u \in L^2(\Omega)$
+  \begin{align*}
+    \|\exp(-L0)u\|_{L^2(\Omega)}^2 &=
+    \left\|\sum_{n\in\Z}\exp(-0n^2)
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2
+    = \sum_{n\in\Z}
+    \left|\left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2
+    \frac{\|\phi_n\|^2}{\|\phi_n\|^2}\\
+    &= \|u\|_{L^2(\Omega)}^2
+  \end{align*}
+  Fall $t > 0$: Sei $u \in L^2(\Omega)$:
+  \begin{align*}
+    \|\exp(-Lt)u\|_{L^2(\Omega)}^2 &=
+    \left\|\sum_{n\in\Z}\exp(-tn^2)
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2
+    \leq \sum_{n\in\Z}\left\|
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2 = \|u\|_{L^2(\Omega)}.
+  \end{align*}
+  Damit erhalten wir $\left\|e^{-L t}\right\|_{L^{2}} \leq 1$. Für die andere
+  Richtung erhalten wir für $u(x) = \phi_0(x) \equiv 1$
+  \begin{align*}
+    \|\exp(-Lt)u\|_{L^2(\Omega)}^2 &=
+    \left\|\sum_{n\in\Z}\exp(-tn^2)
+    \left\langle \phi_0, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2
+    = \left\|\left\langle \phi_0,\frac{\phi_0}{\|\phi_0\|}\right\rangle \frac{\phi_0}{\|\phi_0\|}
+    \right\|_{L^2(\Omega)}^2 \\
+    &= \|u\|_{L^2(\Omega)}.
+  \end{align*}
+  \item
+  Wir verwenden $\exp(-x) \leq \frac{1}{\sqrt{x}}$:
+  \begin{align*}
+    \|\exp(-Lt)u\|_{H_{per}^1}^2 &= \|\exp(-Lt)u\|_{L^2(\Omega)}^2 + \|(\exp(-Lt)u)_x\|_{L^2(\Omega)}^2
+    \\
+    &= \|\exp(-Lt)u\|_{L^2(\Omega)}^2 + \left\|\sum_{n\in\Z}\exp(-tn^2)
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{in\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2 \\
+    &= \|\exp(-Lt)u\|_{L^2(\Omega)}^2 + \sum_{n\in\Z}|n|\exp(-tn^2)\left|
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
+    &\leq \|\exp(-Lt)u\|_{L^2(\Omega)}^2 + \sum_{n\in\Z}|n|\frac{1}{\sqrt{t}|n|}\left|
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
+    &\leq \left(1 + \frac{1}{\sqrt{t}}\right)\|u\|_{L^2(\Omega)}
+  \end{align*}
+  \item   Wir verwenden $\exp(-x) \leq x^{-k/2}$:
+  \begin{align*}
+    \|(\exp(-Lt)u)^{(k)}\|_{L^2(\Omega)}^2 &=  \left\|\sum_{n\in\Z}\exp(-tn^2)
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{(in)^k\phi_n}{\|\phi_n\|}
+    \right\|_{L^2(\Omega)}^2 \\
+    &= \sum_{n\in\Z}|n^k|\exp(-tn^2)\left|
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
+    &\leq \sum_{n\in\Z}|t^{-k/2}|\left|
+    \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
+    &= t^{-k/2}\|u\|_{L^2(\Omega)}
+  \end{align*}
+  Damit erhalten wir für $t < 1$
+  \begin{align*}
+    \|\exp(-Lt)u\|_{H_{per}^k}^2 &= \sum_{i=0}^k \|(\exp(-Lt)u)^{(i)}\|_{L^2(\Omega)}^2
+    \leq \sum_{i=0}^k t^{-i/2} \|u\|_{L^2(\Omega)} \\
+    &= \sum_{i=0}^k \left(\frac{1}{\sqrt{t}}\right)^i \|u\|_{L^2(\Omega)}
+    = \frac{t^{-(k+1)/2} - 1}{t^{-1/2} - 1}\|u\|_{L^2(\Omega)} \\
+    &= \frac{(1- t^{(k+1)/2})t^{1/2}}{(1-t^{1/2})t^{(k+1)/2}}\|u\|_{L^2(\Omega)}
+    = \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})t^{k/2}}\|u\|_{L^2(\Omega)} \\
+    &\leq C_kt^{-k/2}\|u\|_{L^2(\Omega)}
+  \end{align*}
+  Dabei gilt die letzte Abschätzung aufgrund
+  \begin{align*}
+    \lim_{t \to 1 } \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})} =
+    \lim_{t \to 1 }\frac{-(k+1)/2t^{(k-1)/2}}{-\frac{1}{2\sqrt{t}}} = \lim_{t\to 1}(k+1)t^{k/2} =
+    k + 1,
+  \end{align*}
+  also ist die Funktion $f: t \mapsto \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})}$
+  auf dem Kompaktum $[0,1]$ durch eine Konstante $C_k$ beschränkt. \\
+  Für $t \geq 1$ gilt
+  \begin{align*}
+    \|\exp(-Lt)u\|_{H_{per}^k}^2 &= \sum_{i=0}^k \left(\frac{1}{\sqrt{t}}\right)^i \|u\|_{L^2(\Omega)}
+    \leq \sum_{i=0}^k \|u\|_{L^2(\Omega)} = (k + 1)\|u\|_{L^2(\Omega)}.
+  \end{align*}
+  Insgesamt erhalten wir also
+  \begin{align*}
+    \|\exp(-Lt)u\|_{H_{per}^k}^2 \leq \max(C_k, k + 1)(1 + t^{-k/2})\|u\|_{L^2(\Omega)}.
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
