@@ -28,14 +28,14 @@
 
 \phantom{} \begin{itemize}
     \item[(i)] Mit der Transformation $v := u - x$ erhalten wir folgendes Randwertproblem mit homogenen Randbedingungen:
-    \begin{align*}
+    \begin{align}\label{rwp}
         \begin{cases}
             v_t - v_{xx} + v = \sin(3\pi x) & \text{für~} x \in (0, 1),~ t > 0,\\
             v(0, t) = 0 & \text{für~} t > 0,\\
             v(1, t) = 0 & \text{für~} t > 0,\\
             v(x, 0) = \sin(\pi x) & \text{für~} x \in (0, 1).
         \end{cases}
-    \end{align*}\label{rwp}
+    \end{align}
 
     \item[(ii)] Wir wollen Satz 6.19 (Existenz von Lösungen inhomogener Probleme) anwenden; dafür werden wir nun die Voraussetzungen überprüfen.
 
@@ -44,9 +44,10 @@
         u_t \underbrace{- \mathrm{div}(A \nabla u) + cu}_{=~ L(u)} = f(\cdot, t).
     \end{align*}
     Um den Satz anwenden zu können, müssen $A$, $|\nabla A|$ und $c \geq 0$ in $\Omega$ beschränkt und $A$ symmetrisch und gleichmäßig positiv definit sein.
-    Im betrachteten eindimensionalen Fall entartet die Matrix $A$ zu einer Konstanten, nämlich $A \equiv 1.$ Ebenso gilt $|\nabla A| \equiv 0$ sowie $c \equiv 1 \geq 0$, womit der Differentialoperator $L$ die richtige Form hat.
+    Im betrachteten eindimensionalen Fall entartet die Matrix $A$ zu einer Konstanten, nämlich $A \equiv 1.$ Ebenso gilt $|\nabla A| \equiv 0$ sowie $c \equiv 1 \geq 0$ und $\Omega = (0,1)$
+    ist offen und beschränkt mit $\partial\Omega \in C_1$, womit der Differentialoperator $L$ die richtige Form hat.
 
-    Wegen $v_0 = \sin(\pi x) \in L^2(\Omega)$ und $f = \sin(3\pi x) \in C^0([0, \infty); L^2(\Omega))$ ($f$ ist in unserem Beispiel konstant in $t$) sind alle Voraussetzungen erfüllt.
+    Wegen $v_0 = \sin(\pi x) \in L^2(\Omega)$ und $f(\cdot,t) = \sin(3\pi x) \in C^0([0, \infty); L^2(\Omega))$ ($f$ ist in unserem Beispiel konstant in $t$) sind alle Voraussetzungen erfüllt.
 
     Also können wir Satz 6.19 anwenden und erhalten eine Lösung $v$ in der dort postulierten Form.
 
@@ -83,12 +84,19 @@
     \begin{align*}
         v(t) &= \mathrm{e}^{-Lt}v_0 + \int_0^t \mathrm{e}^{-L(t-s)} f(s) \mathrm{~d} s\\
         &= \sum_{k = 1}^\infty \mathrm{e}^{-\lambda_k t}(v_0, \varphi_k) \varphi_k + \int_0^t \sum_{k = 1}^\infty \mathrm{e}^{-\lambda_k (t-s)}(f(s), \varphi_k) \varphi_k \mathrm{~d} s\\
-        &= \mathrm{e}^{-\lambda_1 t} \sin(\pi x) + \int_0^t \mathrm{e}^{-\lambda_3} \sin(3\pi x) \mathrm{~d} s \\
-        &= \mathrm{e}^{-\lambda_1 t} \sin(\pi x) + \frac{1}{\lambda_3} (1 - \mathrm{e}^{-\lambda_3 t}) \sin(3\pi x).
+        &= \frac{1}{\sqrt{2}}\sum_{k = 1}^\infty \mathrm{e}^{-\lambda_k t}(\varphi_1, \varphi_k) \varphi_k +
+        \frac{1}{\sqrt{2}}\int_0^t \sum_{k = 1}^\infty
+        \mathrm{e}^{-\lambda_k (t-s)}(\varphi_3, \varphi_k) \varphi_k \mathrm{~d} s\\
+        &= \mathrm{e}^{-\lambda_1 t} \sin(\pi x) + \int_0^t \mathrm{e}^{-\lambda_3(t-s)} \sin(3\pi x) \mathrm{~d} s \\
+        &= \mathrm{e}^{-\lambda_1 t} \sin(\pi x) + \frac{1}{\lambda_3}
+        (\mathrm{e}^{-\lambda_3 t} - 1) \sin(3\pi x) \\
+        &= \mathrm{e}^{-(1+\pi^2)t} \sin(\pi x) + \frac{1}{1+9\pi^2}
+        (\mathrm{e}^{-(1+9\pi^2) t} - 1) \sin(3\pi x). \\
     \end{align*}
     Das ursprüngliche Problem wird also gelöst von
     \begin{align*}
-        u = v + x = \mathrm{e}^{-\lambda_1 t} \sin(\pi x) + \frac{1}{\lambda_3} (1 - \mathrm{e}^{-\lambda_3 t}) \sin(3\pi x) + x.
+        u = v + x = \mathrm{e}^{-(1+\pi^2)t} \sin(\pi x) + \frac{1}{1+9\pi^2}
+        (\mathrm{e}^{-(1+9\pi^2) t} - 1) \sin(3\pi x) + x.
     \end{align*}
     \end{itemize}
 
