@@ -76,7 +76,30 @@ $\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, as
 
 \phantom{}
 \begin{enumerate}[label = (\roman*)]
-  \item
+  \item Schreiben wir die Differentialgleichung zuerst schöner darauf
+
+  \begin{align*}
+    \partial_t u
+    =
+    \Delta u + \nabla u \cdot \nabla V + u \Delta V
+  \end{align*}
+
+  Bilden wir die Fourier-Transformierte:
+
+  \begin{align*}
+    0
+    &=
+    F[\Div(\nabla u + u \nabla V)](k)
+    =
+    \sum_{j = 1}^d F[\partial_{x_j,x_j}u](k) +  F[\partial_{x_j}(u \partial_{x_j}V)](k)
+    =
+    -|k^2| \hat{u} + \sum_{j = 1}^d i k_j \widehat{u \partial_{x_j}V} \\
+    &=
+    -|k^2| \hat{u} + \sum_{j = 1}^d i k_j
+    \Int[\R^d]{
+      u \partial_{x_j}V e^{-ik \cdot x}
+    }{x}
+  \end{align*}
   \item
   \item Für die letzte Gleichheit zeigen wir:
   \begin{align*}

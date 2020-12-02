@@ -28,8 +28,42 @@ converges weakly in $H_{0}^{1}(\Omega)$ to a weak solution of \eqref{poisson}.
 
 \begin{solution}
 
-\phantom{}
+  Wir wählen $d_m^k := \frac{1}{\lambda_k \|\phi_k\|_{L^2(\Omega)}} \int_\Omega f \phi_k \mathrm{d}x$ und rechnen nach:
+  \begin{align*}
+  \int_\Omega \nabla u_m \cdot \nabla \phi_k \mathrm{~d}x
+  &= -\int_\Omega \Delta u_m~\phi_k \mathrm{~d}x + \int_{\partial\Omega} \underbrace{\phi_k}_{= 0} (\nabla u_m \cdot \nu) \mathrm{~d}s\\
+  &= \sum_{j = 1}^m d_m^j \int_\Omega -\Delta \phi_j \phi_k \mathrm{~d}x
+  = \sum_{j = 1}^m d_m^j \lambda_j \int_\Omega \phi_j \phi_k \mathrm{~d}x\\
+  &= d_m^k \lambda_k \|\phi_k\|_{L^2(\Omega)} = \int_\Omega f \phi_k \mathrm{~d}x.
+  \end{align*}
 
+  \begin{align*} %\left| \right|
+      \left| \left\langle Kf - u_m, w \right\rangle_{L^2} \right|
+      &= \left| \sum_{k = m+1}^\infty \mu_k \langle f, \phi_k\rangle_{L^2} \langle \phi_k, w \rangle \right|\\
+      &\leq \sum_{k = m+1}^\infty \left| \sqrt{\mu_k} \langle f, \phi_k \rangle \sqrt{\mu_k} \langle \phi_k, w \rangle \right|\\
+      &\leq \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle f, \phi_k \rangle|^2} \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle \phi_k, w \rangle|^2} \xrightarrow{m \rightarrow \infty} 0.
+  \end{align*}
+
+  \begin{align*}
+      \left| \left\langle \nabla\left(Kf - u_m, w\right), \nabla w \right\rangle_{L^2} \right|
+      &= \left|\left\langle \nabla Kf, \sum_{k = 1}^\infty \langle w, \phi_k\rangle \nabla \phi_k \right\rangle - \left\langle \nabla u_m, \sum_{k = 1}^\infty \langle w, \phi_k\rangle \nabla \phi_k \right\rangle \right|\\
+      &= \left|\sum_{k = 1}^\infty \langle w, \phi_k\rangle \langle \nabla Kf, \nabla \phi_k\rangle - \sum_{k = m+1}^\infty \langle w, \phi_k\rangle \langle \nabla u_m, \nabla \phi_k\rangle - \sum_{k = 1}^m \langle w, \phi_k \rangle \langle f, \phi_k \rangle \right|\\
+      %&\stackrel{(\ast)}{=}
+      &= \left| \sum_{k = 1}^\infty \langle w, \phi_k\rangle
+      \sum_{j = 1}^\infty \mu_j \langle f, \phi_j \rangle \left\langle \nabla \phi_j, \nabla \phi_k \right\rangle
+      - \hdots \right|\\
+      &\stackrel{(\ast)}{=} \left| \sum_{k = 1}^\infty \langle w, \phi_k \rangle \langle f, \phi_k \rangle - \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \langle \nabla u_m, \nabla \phi_k\rangle - \sum_{k = 1}^m \langle w, \phi_k \rangle \langle f, \phi_k \rangle \right|\\
+      &= \left| \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \left(\langle f, \phi_k \rangle - \langle \nabla u_m, \nabla \phi_k \rangle \right)\right|\\
+      &\stackrel{(\ast)}{=} \left| \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \langle f, \phi_k \rangle \right|
+      \leq \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle w, \phi_k \rangle|^2} \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle f, \phi_k \rangle|^2} \xrightarrow{m \rightarrow \infty} 0.
+  \end{align*}
+
+  \begin{align*}
+      (*): \left\langle \nabla u_m, \nabla \phi_k \right\rangle = \sum_{j = 1}^m d_m^j \left\langle \nabla \phi_j, \nabla \phi_k\right\rangle = \begin{cases}
+          0, & k > m, \\
+          - \lambda_k \langle \phi_j, \phi_k \rangle, & k \leq m.
+      \end{cases}
+  \end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
