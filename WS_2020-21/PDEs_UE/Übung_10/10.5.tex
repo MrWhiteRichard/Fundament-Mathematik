@@ -75,6 +75,84 @@ $\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, as
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = (\roman*)]
+  \item
+  \item
+  \item Für die letzte Gleichheit zeigen wir:
+  \begin{align*}
+  &4\phi^{\primeprimeprime}(\rho) \nabla \rho^{T} \nabla^{2} \rho \nabla \rho+2
+  \phi^{\prime \prime}(\rho)\left|\nabla^{2} \rho\right|^{2} \\
+  &= 4\phi^{\primeprimeprime}(\rho)\sum_{j,k=1}^n(\partial_j\partial_k\rho)(\partial_j\rho\partial_k\rho) +
+  2\phi^{\primeprime}\sum_{j,k=1}^n |\partial_j\partial_k\rho|^2 \\
+  &= 2\phi^{\primeprime}\sum_{j,k=1}^n 2\frac{\phi^{\primeprimeprime}(\rho)}{\phi^{\primeprime}(\rho)}
+  (\partial_j\partial_k\rho)(\partial_j\rho\partial_k\rho)+(\partial_j\partial_k\rho)^2 \\
+  &= 2\phi^{\primeprime}\sum_{j,k=1}^n \left(\frac{\phi^{\primeprimeprime}(\rho)}{\phi^{\primeprime}(\rho)}
+  (\partial_j\rho\partial_k\rho)+(\partial_j\partial_k\rho)\right)^2 - \frac{\phi^{\primeprimeprime}(\rho)^2}{\phi^{\primeprime}(\rho)^2}
+  (\partial_j\rho\partial_k\rho)^2\\
+  &= 2\phi^{\primeprime}\left|\nabla^2\rho +
+  \frac{\phi^{\primeprimeprime}(\rho)}{\phi^{\primeprime}(\rho)} \nabla\rho \otimes
+  \nabla \rho \right|^2 -
+   2\frac{\phi^{\primeprimeprime}(\rho)^2}{\phi^{\primeprime}(\rho)}
+  \sum_{j,k=1}^n(\partial_j\rho\partial_k\rho)^2\\
+  &= 2\phi^{\primeprime}\left|\nabla^2\rho +
+  \frac{\phi^{\primeprimeprime}(\rho)}{\phi^{\primeprime}(\rho)} \nabla\rho \otimes
+  \nabla \rho \right|^2 -
+   2\frac{\phi^{\primeprimeprime}(\rho)^2}{\phi^{\primeprime}(\rho)}
+  |\nabla\rho|^4\\
+  \end{align*}
+  \item $\phi$ ist konvex, daher ist $\phi^{\primeprime}(\rho) \geq 0$ und
+  somit das erste Integral positiv. Wir rechnen
+  \begin{align*}
+  \left(\frac{1}{\phi^{\primeprime}(\rho)}\right)^{\primeprime} &=
+  \left(\frac{-\phi^{\primeprimeprime}(\rho)}{\phi^{\primeprime}(\rho)^2}\right)^{\prime} =
+  \frac{-\phi^{\primeprime\primeprime}(\rho)(\phi^{\primeprime}(\rho))^2 +
+  2(\phi^{\primeprimeprime}(\rho))^2\phi^{\primeprime}(\rho)}{\phi^{\primeprime}(\rho)^4} \\
+  &= -\frac{1}{(\phi^{\primeprime}(\rho))^2}
+  \left(\phi^{\primeprime\primeprime}(\rho) -
+  2\frac{\phi^{\primeprimeprime}(\rho)^2}{\phi^{\primeprime}(\rho)}\right)
+  \end{align*}
+  Aus der Konkavität von $\frac{1}{\phi^{\primeprime}}$ folgt
+  \begin{align*}
+  \left(\phi^{\primeprime\primeprime}(\rho) -
+  2\frac{\phi^{\primeprimeprime}(\rho)^2}{\phi^{\primeprime}(\rho)}\right) =
+  -\underbrace{\left(\frac{1}{\phi^{\primeprime}(\rho)}\right)^{\primeprime}}
+  _{\geq 0}\underbrace{\phi^{\primeprime}(\rho)^2}_{\geq 0} \geq 0
+  \end{align*}
+  und damit die Positivität des zweiten Integrals.
+  \item Wir integrieren \eqref{eq} über $(s,\infty)$:
+  \begin{align*}
+    \int_s^{\infty}  \frac{d^{2}}{d t^{2}} H_{\phi}[u] dt &\geq
+    \int_s^{\infty} -2 \lambda \frac{d}{d t} H_{\phi}[u] ds \\
+    \iff \lim_{t \to \infty} \frac{d}{d t} H_{\phi}[u(t)] -\frac{d}{d t} H_{\phi}[u(s)]
+    &\geq -2\lambda(\underbrace{\lim_{t \to \infty} H_{\phi}[u(t)]}_{=0} - H_{\phi}[u(s)]) \\
+    \iff \lim_{t \to \infty} \frac{d}{d t} H_{\phi}[u(t)] -\frac{d}{d t} H_{\phi}[u(s)]
+    &\geq 2\lambda H_{\phi}[u(s)] \\
+  \end{align*}
+  Mit dem Gronwall-Lemma angewandt auf \eqref{eq}, sowie (ii) erhalten wir
+  \begin{align*}
+    0 < -\frac{d}{d t} H_{\phi}[u(t)] \leq -\frac{d}{d t} H_{\phi}[u(s)]\exp(-2\lambda (t-s))
+    \xrightarrow{t \to \infty} 0
+  \end{align*}
+  und somit
+  \begin{align*}
+  -\frac{d}{d t} H_{\phi}[u(s)]
+  &\geq 2\lambda H_{\phi}[u(s)] \iff \frac{d}{d t} H_{\phi}[u(s)] \leq -2\lambda H_{\phi}[u(s)].
+  \end{align*}
+  \item Wir verwenden die Ungleichung
+  \begin{align*}
+  \left\|u(t)-u_{\infty}\right\|_{L^{1}\left(R^{d}\right)}^2
+  \leq \frac{2}{\phi^{\prime \prime}(1)} H_{\phi}[u(t)]
+  \end{align*}
+  und erhalten mittels Gronwall
+  \begin{align*}
+    H_{\phi}[u(t)] \leq H_{\phi}[u(0)]\exp(-2\lambda t)
+  \end{align*}
+  und damit
+  \begin{align*}
+  \left\|u(t)-u_{\infty}\right\|_{L^{1}\left(R^{d}\right)}^2
+  \leq \frac{2}{\phi^{\prime \prime}(1)} H_{\phi}[u_0]\exp(-2\lambda t).
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 
