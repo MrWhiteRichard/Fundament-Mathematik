@@ -57,8 +57,8 @@ converges weakly in $H_{0}^{1}(\Omega)$ to a weak solution of \eqref{poisson}.
   \begin{align*} %\left| \right|
       \left| \left\langle Kf - u_m, w \right\rangle_{L^2} \right|
       &= \left| \sum_{k = m+1}^\infty \mu_k \langle f, \phi_k\rangle_{L^2} \langle \phi_k, w \rangle \right|\\
-      &\leq \sum_{k = m+1}^\infty \left| \sqrt{\mu_k} \langle f, \phi_k \rangle \sqrt{\mu_k} \langle \phi_k, w \rangle \right|\\
-      &\leq \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle f, \phi_k \rangle|^2} \sqrt{ \sum_{k = m+1}^\infty \mu_k |\langle \phi_k, w \rangle|^2} \xrightarrow{m \rightarrow \infty} 0.
+      &\leq \sum_{k = m+1}^\infty \left| \mu_k \langle f, \phi_k \rangle \langle \phi_k, w \rangle \right|\\
+      &\leq \sqrt{ \sum_{k = m+1}^\infty \mu_k^2 |\langle f, \phi_k \rangle|^2} \sqrt{ \sum_{k = m+1}^\infty  |\langle \phi_k, w \rangle|^2} \xrightarrow{m \rightarrow \infty} 0.
   \end{align*}
 
   \begin{align*}
@@ -81,6 +81,15 @@ converges weakly in $H_{0}^{1}(\Omega)$ to a weak solution of \eqref{poisson}.
           - \lambda_k \langle \phi_j, \phi_k \rangle, & k \leq m.
       \end{cases}
   \end{align*}
+  Wegen $w \in H_0^1$ verschwinden beim Satz vom Gauß die Randterme im Folgenden immer und es gilt.
+	\begin{align*}
+	  \left| \left\langle \nabla\left(Kf - u_m, w\right), \nabla w \right\rangle_{L^2} \right| &= \left| \left\langle \nabla Kf, \nabla w \right\rangle - \langle \nabla u_m, \nabla w \rangle \right| = \left| \left\langle -\Delta Kf, w \right\rangle - \langle - \Delta u_m,  w \rangle \right| \\
+	  &= \vbraces{\left\langle f, w \right\rangle - \sum_{k \in \N} \langle w, \phi_k \rangle \langle -\Delta u_m, \phi_k \rangle} = \vbraces{\left\langle f, w \right\rangle - \sum_{k \in \N} \langle w, \phi_k \rangle \langle \nabla u_m, \nabla \phi_k \rangle} \\
+	  &\stackrel{(\ast)}{=} \left| \sum_{k = 1}^\infty \langle w, \phi_k \rangle \langle f, \phi_k \rangle - \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \langle \nabla u_m, \nabla \phi_k\rangle - \sum_{k = 1}^m \langle w, \phi_k \rangle \langle f, \phi_k \rangle \right|\\
+	  &= \left| \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \left(\langle f, \phi_k \rangle - \langle \nabla u_m, \nabla \phi_k \rangle \right)\right|\\
+	  &\stackrel{(\ast)}{=} \left| \sum_{k = m+1}^\infty \langle w, \phi_k \rangle \langle f, \phi_k \rangle \right|
+	  \leq \sqrt{ \sum_{k = m+1}^\infty |\langle w, \phi_k \rangle|^2} \sqrt{ \sum_{k = m+1}^\infty |\langle f, \phi_k \rangle|^2} \xrightarrow{m \rightarrow \infty} 0.
+	\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
