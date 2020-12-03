@@ -31,6 +31,15 @@ Notice that here $\left\|e^{-L t}\right\|_{X \rightarrow Y}$ denotes the operato
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+\phantom{}
+
+\begin{tcolorbox}
+  Wir haben erst im Nachhinein bemerkt, dass immer ganz am Ender jeder Abschätzung das $^2$ bei dem $\norm{u}^2$ flöten gegangen ist.
+  Deswegen muss man über die Schraken noch eine $\sqrt{\cdot}$ drüber-stülpen.
+  Das tut nich weh, weil die immer $\geq 1$ sind und wir die dann noch immer nach oben wegschätzen können.
+\end{tcolorbox}
+
 Wir zeigen mit den folgenden Unterpunkten, dass der Operator
 \begin{align*}
   e^{-Lt}: L^2(\Omega) \to H_{per}^k(\Omega)
@@ -79,7 +88,7 @@ Grenzwert der Summe vertauschen dürfen:
     \right\|_{L^2(\Omega)}^2
     \leq \sum_{n\in\Z}\left\|
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle \frac{\phi_n}{\|\phi_n\|}
-    \right\|_{L^2(\Omega)}^2 = \|u\|_{L^2(\Omega)}.
+    \right\|_{L^2(\Omega)}^2 = \|u\|_{L^2(\Omega)}^2.
   \end{align*}
   Damit erhalten wir $\left\|e^{-L t}\right\|_{L^{2}} \leq 1$. Für die andere
   Richtung erhalten wir für $u(x) = \phi_0(x) \equiv 1$
@@ -90,7 +99,7 @@ Grenzwert der Summe vertauschen dürfen:
     \right\|_{L^2(\Omega)}^2
     = \left\|\left\langle \phi_0,\frac{\phi_0}{\|\phi_0\|}\right\rangle \frac{\phi_0}{\|\phi_0\|}
     \right\|_{L^2(\Omega)}^2 \\
-    &= \|u\|_{L^2(\Omega)}.
+    &= \|u\|_{L^2(\Omega)}^2.
   \end{align*}
   \item
   Wir verwenden $\exp(-x) \leq \frac{1}{\sqrt{x}}$:
@@ -104,7 +113,7 @@ Grenzwert der Summe vertauschen dürfen:
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
     &\leq \|\exp(-Lt)u\|_{L^2(\Omega)}^2 + \sum_{n\in\Z}|n|\frac{1}{\sqrt{t}|n|}\left|
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
-    &\leq \left(1 + \frac{1}{\sqrt{t}}\right)\|u\|_{L^2(\Omega)}
+    &\leq \left(1 + \frac{1}{\sqrt{t}}\right)\|u\|_{L^2(\Omega)}^2
   \end{align*}
   \item   Wir verwenden $\exp(-x) \leq C_k x^{-k/2}$:
   \begin{align*}
@@ -115,7 +124,7 @@ Grenzwert der Summe vertauschen dürfen:
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
     &\sum_{n\in\Z}C_k|t^{-k/2}|\left|
     \left\langle u, \frac{\phi_n}{\|\phi_n\|}\right\rangle\right|^2 \\
-    &= (C_kt^{-k/2})\|u\|_{L^2(\Omega)}
+    &= (C_kt^{-k/2})\|u\|_{L^2(\Omega)}^2
   \end{align*}
   Damit erhalten wir für $t < 1$
   \begin{align*}
@@ -125,7 +134,7 @@ Grenzwert der Summe vertauschen dürfen:
     = C_k\left(\frac{t^{-(k+1)/2} - 1}{t^{-1/2} - 1}\right)\|u\|_{L^2(\Omega)} \\
     &= C_k\left(\frac{(1- t^{(k+1)/2})t^{1/2}}{(1-t^{1/2})t^{(k+1)/2}}\right)\|u\|_{L^2(\Omega)}
     = C_k\left( \frac{(1- t^{(k+1)/2})}{(1-t^{1/2})}\right)t^{-k/2}\|u\|_{L^2(\Omega)} \\
-    &\leq \tilde{C}_kt^{-k/2}\|u\|_{L^2(\Omega)}
+    &\leq \tilde{C}_kt^{-k/2}\|u\|_{L^2(\Omega)}^2
   \end{align*}
   Dabei gilt die letzte Abschätzung aufgrund
   \begin{align*}
@@ -138,11 +147,11 @@ Grenzwert der Summe vertauschen dürfen:
   Für $t \geq 1$ gilt
   \begin{align*}
     \|\exp(-Lt)u\|_{H_{per}^k}^2 &= \sum_{i=0}^k \left(\frac{1}{\sqrt{t}}\right)^i \|u\|_{L^2(\Omega)}
-    \leq \sum_{i=0}^k \|u\|_{L^2(\Omega)} = (k + 1)\|u\|_{L^2(\Omega)}.
+    \leq \sum_{i=0}^k \|u\|_{L^2(\Omega)} = (k + 1)\|u\|_{L^2(\Omega)}^2.
   \end{align*}
   Insgesamt erhalten wir also
   \begin{align*}
-    \|\exp(-Lt)u\|_{H_{per}^k}^2 \leq \max(\tilde{C}_k, k + 1)(1 + t^{-k/2})\|u\|_{L^2(\Omega)}.
+    \|\exp(-Lt)u\|_{H_{per}^k}^2 \leq \max(\tilde{C}_k, k + 1)(1 + t^{-k/2})\|u\|_{L^2(\Omega)}^2.
   \end{align*}
 \end{enumerate}
 
