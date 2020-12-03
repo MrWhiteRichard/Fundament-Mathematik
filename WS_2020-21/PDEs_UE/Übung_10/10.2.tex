@@ -42,6 +42,245 @@ complete orthonormal system of $L^{2}(\Omega)$ given by
 \phantom{}
 
 \begin{enumerate}[label = (\roman*)]
+
+  \item Offensichtlich ist $H_\mathrm{per}^k(\Omega)$ ein linearer Unterraum von $H^k(\Omega)$.
+  Für die Abgeschlssenheit bzgl. $\norm[H^k(\Omega)]{\cdot}$ verwenden wir ...
+  
+  \includegraphicsunboxed{PDEs/PDEs_-_Satz_5-9_(Einbettungssatz_von_Sobolev).png}
+
+  \begin{align*}
+    \implies
+    H^k(\Omega) \hookrightarrow C^0(\Omega)
+  \end{align*}
+
+  Sei $(f_n)_{n \in \N}$ eine Folge aus $H_\mathrm{per}^k(\Omega)$, die bzgl. $\norm[H^k(\Omega)]{\cdot}$ gegen ein $f$ konvergiert.
+
+  \begin{align*}
+    (f_n)_{n \in \N} \in H_\mathrm{per}^k(\Omega)^\N:
+    \quad
+    f_n \xrightarrow[n \to \infty]{H^k(\Omega)} f
+  \end{align*}
+
+  \begin{multline*}
+    \implies
+    \abs{f(2 \pi) - f(0)}
+    \leq
+    \abs{f(2 \pi) - f_n(2 \pi)} + \underbrace{\abs{f_n(2 \pi) - f_n(0)}}_0 + \abs{f_n(0) - f(0)} \\
+    \leq
+    2 \norm[L^\infty(\Omega)]{f - f_n}
+    \leq
+    2 C_\mathrm{Sobolev} \underbrace{\norm[H^k(\Omega)]{f - f_n}}_{\xrightarrow[n \to \infty]{} 0}
+    \xrightarrow[]{n \to \infty}
+    0
+  \end{multline*}
+
+  \item 
+
+  \begin{enumerate}
+
+    \item Inklusion (\Quote{$\subseteq$}):
+    
+    Sei $f \in H_\mathrm{per}^1(\Omega) \subseteq L^2(\Omega)$, dann können wir $f$ bzgl. der oberen ONB darstellen.
+
+    \begin{align*}
+      \implies
+      f
+      =
+      \sum_{m=1}^\infty (f, S_m) S_m + \sum_{m=0}^\infty (f, C_m) C_m
+    \end{align*}
+
+    Die folgende Darstellung von $f^\prime$, so wie in der Angabe postuliert, wird weiter unten dann noch (rigoros) nachgerechnet.
+    Die Fourier-Koeffizienten sind eindeutig.
+
+    \begin{align*}
+      \implies
+      \sum_{m=0}^\infty (f^\prime, C_m) C_m + \sum_{m=1}^\infty (f^\prime, S_m) S_m
+      =
+      f^\prime
+      =
+      \sum_{m=1}^\infty (f, S_m) m C_m + \sum_{m=1}^\infty (f, C_m) (-m) S_m
+    \end{align*}
+
+    Mit der Parceval-Gleichung erhalten wir schließlich noch die $\ell^2$-Bedingung.
+
+    \begin{align*}
+      \sum_{m=1}^\infty m^2 \pbraces{\abs{(f, C_m)}^2 + \abs{(f, S_m)}^2}
+      \stackrel
+      {
+        \mathrm{P}
+      }{=}
+      \norm[L^2(\Omega)]{f^\prime}^2
+      <
+      \infty
+    \end{align*}
+
+    \item Inklusion (\Quote{$\supseteq$}):
+    
+    \begin{align*}
+      f
+      :=
+      \sum_{m=1}^\infty a_m S_m + \sum_{m=0}^\infty b_m C_m
+    \end{align*}
+
+    \begin{itemize}
+
+      \item \Quote{$_\mathrm{per}$}:
+      
+      \dots gilt Summanden-weise, also auch insgesamt.
+
+      \item \Quote{$^1$}:
+      
+      \begin{align*}
+        \norm[L^2(\Omega)]{f}
+        & =
+        \norm[L^2(\Omega)]
+        {
+          \sum_{m=1}^\infty a_m S_m + \sum_{m=0}^\infty b_m C_m
+        } \\
+        & \leq
+        \sum_{m=1}^\infty \frac{m}{m} \abs{a_m} \underbrace{\norm[L^2(\Omega)]{S_m}}_1
+        +
+        \sum_{m=1}^\infty \frac{m}{m} \abs{b_m} \underbrace{\norm[L^2(\Omega)]{C_m}}_1
+        +
+        \abs{b_0} \underbrace{\norm[L^2(\Omega)]{C_0}}_1 \\
+        & \stackrel
+        {
+          \mathrm{CSB}
+        }{\leq}
+        \underbrace
+        {
+          \sqrt
+          {
+            \sum_{m=1}^\infty \frac{1}{m^2}
+          }
+        }_{
+          \pi / \sqrt{6}
+        }
+        \underbrace
+        {
+          \sqrt
+          {
+            \sum_{m=1}^\infty m^2 \abs{a_m}^2
+          }
+        }_{
+          < \infty
+        }
+        +
+        \underbrace
+        {
+          \sqrt
+          {
+            \sum_{m=1}^\infty \frac{1}{m^2}
+          }
+        }_{
+          \pi / \sqrt{6}
+        }
+        \underbrace
+        {
+          \sqrt
+          {
+            \sum_{m=1}^\infty m^2 \abs{b_m}^2
+          }
+        }_{
+          < \infty
+        }
+        +
+        \abs{b_0}        <
+        \infty
+      \end{align*}
+
+      Wir werden im Folgenden den Satz 6.8 verwenden.
+
+      \includegraphicsboxed{PDEs/PDEs_-_Lemma_6-8.png}
+
+      \begin{align*}
+        \sum_{m=1}^\infty m^2 \pbraces{\abs{a_m}^2 + \abs{b_m}^2} < \infty
+        & \stackrel
+        {
+          \mathrm{6.8}
+        }{\iff}
+        \sum_{m=1}^N a_m S_m^\prime + \sum_{m=0}^N b_m C_m^\prime \\
+        & =
+        \sum_{m=1}^N a_m m C_m + \sum_{m=0}^N b_m (-m) S_m \\
+        & \xrightarrow[n \to \infty]{\norm[L^2(\Omega)]{\cdot}}
+        \sum_{m=1}^\infty a_m m C_m + \sum_{m=0}^\infty b_m (-m) S_m
+        =
+        f
+      \end{align*}
+
+      Diese Tatsache können wir verwenden, um eine $\lim$-$\int$-Vertauschung zu rechtfertigen.
+      Nachdem der $L^2(\Omega)$ abgeschlossen, müssen wir nur noch (heiß angekündigt) zeigen ... $\Forall \varphi \in \mathcal{D}(\Omega):$
+
+      \begin{align*}
+        \abraces{f^\prime, \varphi}
+        & =
+        - \abraces{f, \varphi^\prime}
+        =
+        - \Int[0][2 \pi]
+        {
+          \pbraces
+          {
+            \sum_{m=1}^\infty a_m S_m + \sum_{m=0}^\infty b_m C_m
+          }
+          \varphi^\prime
+        }{x} \\
+        & =
+        \sum_{m=1}^\infty - \Int[0][2 \pi]{a_m S_m \varphi^\prime}{x}
+        +
+        \sum_{m=0}^\infty \Int[0][2 \pi]{b_m C_m \varphi^\prime}{x} \\
+        & \stackrel
+        {
+          \mathrm{PI}
+        }{=}
+        \sum_{m=1}^\infty \Int[0][2 \pi]{a_m m C_m \varphi}{x}
+        +
+        \sum_{m=0}^\infty \Int[0][2 \pi]{b_m (-m S_m) \varphi}{x} \\
+        & =
+        \Int[0][2 \pi]
+        {
+          \Big (
+            \underbrace
+            {
+              \sum_{m=1}^\infty a_m m C_m
+              +
+              \sum_{m=0}^\infty b_m (-m S_m)
+            }_{
+              \in L^2(\Omega) \subseteq L^1_\mathrm{lok}
+            }
+          \Big )
+          \varphi
+        }{x} \\
+        & =
+        \abraces
+        {
+          \sum_{m=1}^\infty a_m m C_m
+          +
+          \sum_{m=0}^\infty b_m (-m S_m),
+          \varphi
+        }
+      \end{align*}
+
+      Dabei ist $f \in L^2(\Omega) \in L^1_\mathrm{lok}$, eine reguläre Distribution.
+      Die erste $\lim$-$\int$-Vertauschung folgt via unbedingter Konvergenz.
+      Bei der Partiellen Integration fallen die Randterme weg, weil $\varphi$ als Testfunktion am Rand verschwindet.
+
+    \end{itemize}
+
+  \end{enumerate}
+
+  \item ToDo
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
   \item Wir zeigen, dass die Funktionale
   \begin{align*}
     K_j: H^k(\Omega) \to \R;\quad f \mapsto f^{(j)}(0) - f^{(j)}(2\pi), \quad j = 0, \dots, k - 1
