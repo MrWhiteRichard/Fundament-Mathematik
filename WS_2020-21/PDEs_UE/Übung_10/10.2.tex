@@ -268,7 +268,54 @@ complete orthonormal system of $L^{2}(\Omega)$ given by
 
   \end{enumerate}
 
-  \item ToDo
+  \item Für $k = 0$ folgt das direkt aus der Parceval-Gleichung.
+
+  \begin{multline*}
+    (P_n f)^{(k)}
+    =
+    \pbraces
+    {
+      \sum_{m=1}^n a_m S_m
+      +
+      \sum_{m=0}^n b_m C_m
+    }^{(k)}
+    =
+    \sum_{m=1}^n (a_m C_m)^{(k)}
+    +
+    \sum_{m=0}^n (b_m S_m)^{(k)} \\
+    =
+    \sum_{m=1}^n m^k a_m C_m^{(k)}
+    +
+    \sum_{m=0}^n m^k b_m S_m^{(k)}
+    \in
+    P_n(L^2(\Omega))
+  \end{multline*}
+
+  Dabei bilden die $C_m^{(k)}$ und $S_m^{(k)}$ wieder eine (Teil-)ONB (die alte wird nur etwas umgerührt) \dots
+  Jedenfalls sind die Fourier-Koeffizienten von $f^{(k)}$ von der Form $\pm m^k a_m$, $\pm m^k b_m$.
+  Wir benutzen die Parceval-Gleichung.
+
+  \begin{multline*}
+    \implies
+    \norm[L^2(\Omega)]{f - P_n f}^2
+    \stackrel
+    {
+      \mathrm{P}
+    }{=}
+    \sum_{m=n+1}^\infty \abs{a_m}^2 + \abs{b_m}^2
+    \leq
+    \frac{1}{(n + 1)^{2k}}
+    \sum_{m=n+1}^\infty m^{2k} \pbraces{\abs{a_m}^2 + \abs{b_m}^2} \\
+    \leq
+    \frac{1}{(n + 1)^{2k}}
+    \sum_{m=1}^\infty \abs{m^k a_m}^2 + \abs{m^k b_m}^2
+    \stackrel
+    {
+      \mathrm{P}
+    }{=}
+    \frac{1}{(n + 1)^{2k}}
+    \norm[L^2(\Omega)]{f^{(k)}}^2
+  \end{multline*}
 
 \end{enumerate}
 
