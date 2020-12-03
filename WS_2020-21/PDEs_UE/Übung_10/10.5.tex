@@ -84,24 +84,267 @@ $\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, as
     \Delta u + \nabla u \cdot \nabla V + u \Delta V
   \end{align*}
 
-  Bilden wir die Fourier-Transformierte:
+  Die stationäre Gleichung wird sicher schon erfüllt, falls $\nabla u_\infty + u_\infty \nabla V = 0$. Aus dem eindimensionalen Fall motiviert, da $u^\prime + V^\prime u = 0$ von $u = ce^{-V}$ gelöst wird, definieren wir
 
   \begin{align*}
-    0
+    u_\infty(x)
+    &:=
+    c \exp(-V(x)) \\
+    \frac{\partial}{\partial x_i} u_\infty
     &=
-    F[\Div(\nabla u + u \nabla V)](k)
+    c \frac{\partial}{\partial x_i} (\exp \circ -V)
     =
-    \sum_{j = 1}^d F[\partial_{x_j,x_j}u](k) +  F[\partial_{x_j}(u \partial_{x_j}V)](k)
+    - c \exp(-V) \frac{\partial}{\partial x_i} V
+    \quad
+    \implies
+    \nabla u_\infty
     =
-    -|k^2| \hat{u} + \sum_{j = 1}^d i k_j \widehat{u \partial_{x_j}V} \\
-    &=
-    -|k^2| \hat{u} + \sum_{j = 1}^d i k_j
-    \Int[\R^d]{
-      u \partial_{x_j}V e^{-ik \cdot x}
-    }{x}
+    -u_\infty \nabla V
   \end{align*}
-  \item
-  \item Für die letzte Gleichheit zeigen wir:
+
+  Nun wollen wir $c := \frac{1}{\Int[\R^d]{ \exp(-V(s))}{x}}$, so bleibt noch zu zeigen, dass
+
+  \begin{align*}
+    \Int[\R^d] {e^{-V(s)}}{x} < \infty
+  \end{align*}
+
+  Das gilt, da man aus $\nabla^2V \geq \lambda id$ folgern kann, dass $V \geq C_1 + C_2|x| + \lambda |x|^2$ mit $C_1, C_2 \in \R$.
+  \item Unter der Annahme, dass $H_\phi: C^2_1((0,\infty) \times \R^d) \rightarrow \R$ rechenen wir ganz rigoros
+
+  \begin{align*}
+    -\frac{d}{dt} H_\phi[u]
+    &=
+    -\Int[\R^d]{ \frac{d}{dt}(\phi(\rho)u_\infty)}{x}
+    =
+    -\Int[\R^d]{u_\infty \phi^\prime(\rho)\frac{1}{u_\infty} \underbrace{\Div(u_\infty \nabla \rho)}_{\partial_t u}}{x} \\
+    &=
+    -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\phi^\prime(\rho) \Div(u_\infty \nabla \rho)}{x}
+    \stackrel{Gauss}{=}
+    -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\nabla(\phi^\prime(\rho)) u_\infty \nabla \rho}{x}
+    -
+    \Int[\partial B_r(0)]{\phi^\prime u_\infty (\nabla \rho \cdot \nu)}{s} \\
+    &=
+    -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\phi^\primeprime(\rho) u_\infty \nabla \rho \cdot \nabla \rho}{x}
+    =
+    \Int[\R^d]{\phi^\primeprime(\rho) |\nabla \rho|^2 u_\infty}{x}
+  \end{align*}
+  Das Randintegral verschwindet, da wir aus $u_\infty > 0$ und $\Int[\R^d]{u_\infty}{x} = 1$ schließen, dass für $\epsilon > 0$ ein $r > 0$ existiert, sodass $u_\infty(|x|) < \epsilon$ für $|x| \geq r$. Für die Vertauschung von Integral und Ableitung müsste man noch eine geeignete Majorante finden.
+
+  \item Die ersten beiden Identitäten rechnen wir nach, wobei wir bei der ersten $\nabla u_\infty = - u_\infty \nabla V$ verwenden
+
+  \begin{align}\label{first}
+    \nabla \partial_t \rho
+    =
+    \nabla \frac{\partial_t u}{u_\infty}
+    =
+    \nabla \frac{\Div(u_\infty \nabla \rho)}{u_\infty}
+    =
+    \nabla(\frac{u_\infty \Delta \rho + \nabla u_\infty \cdot \nabla \rho}{u_\infty})
+    =
+    \nabla \Delta \rho - \nabla (\nabla V \cdot \nabla \rho)
+    =
+    \nabla \Delta \rho - \nabla^2 \rho \nabla V - \nabla^2 V \nabla \rho
+    \end{align}
+
+    \begin{align}\label{second}
+    \nabla \cdot (\nabla^2 \rho \nabla \rho)
+    =
+    \Div(\nabla^2 \rho \nabla \rho)
+    =
+    \sum_{i=1}^d \partial_i \sum_{k=1}^d \partial_k \rho \partial_i \partial_k \rho
+    =
+    \sum_{i=1}^d \sum_{k=1}^d \partial_k \rho \partial_k \partial_i^2  \rho + (\partial_k \partial_i \rho)^2
+    =
+    \nabla \rho \cdot \nabla \Delta \rho + |\nabla^2 \rho|^2
+  \end{align}
+
+  Nun zu der Abschätzung, wobei wir erstmal wieder Integral und Ableitung einfach Vertauschen und die Darstellung aus (ii) verwenden. Die Abschätzung
+
+  \begin{align*}
+    \nabla \rho \cdot \nabla^2 V \nabla \rho
+    \geq
+    \lambda |\nabla \rho|^2
+  \end{align*}
+
+  erhalten wir aus der Bakry-Emery condition von V. Wir wollen
+
+  \begin{align*}
+    \frac{d^2}{d t^2} H_{\phi}[u] &\geq
+    \int_{\R^d}(
+    \underbrace{
+    \phi^{\primeprime \primeprime}(\rho)|\nabla \rho|^4
+    }_{1}
+    +
+    \underbrace{
+    4\phi^\primeprimeprime(\rho) \nabla \rho^{T} \nabla^2 \rho \nabla \rho
+    }_{2}
+    +
+    \underbrace{
+    2\phi^{\prime \prime}(\rho)|\nabla^{2} \rho|^2
+    }_{3}
+    ) u_{\infty} \mathrm{d} x
+    -\underbrace{
+    2 \lambda \frac{d}{d t} H_{\phi}[u]
+    }_{4}
+    \end{align*}
+
+  \begin{align*}
+    \frac{d^2}{dt^2}H_\phi[u]
+    &=
+    -\Int[\R^d]{\frac{d}{dt}(\phi^\primeprime(\rho) |\nabla \rho|^2) u_\infty}{x}
+    =
+    -\Int[\R^d]{(\phi^\primeprimeprime \partial_t\rho |\nabla \rho|^2 + 2\phi^\primeprime \nabla \rho \cdot \nabla \partial_t \rho) u_\infty}{x} \\
+    &\stackrel{\ref{first}}{=}
+    -\Int[\R^d]{
+    (\phi^\primeprimeprime \partial_t\rho |\nabla \rho|^2 +2 \phi^\primeprime \nabla \rho \cdot (\nabla \Delta \rho - \nabla^2 \rho \nabla V - \nabla^2V \nabla \rho)u_\infty
+    }{x} \\
+    &\stackrel{\ref{second}}{=}
+    -\Int[\R^d]{
+    \Big(\phi^\primeprimeprime
+    \partial_t\rho
+    |\nabla \rho|^2
+    +
+    2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho) - |\nabla^2 \rho|^2
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V
+    -
+    \nabla \rho \cdot\nabla^2V \nabla \rho)\Big)u_\infty
+    }{x}\\
+    &\geq
+    -\Int[\R^d]{
+    \Big(\phi^\primeprimeprime
+    \partial_t\rho
+    |\nabla \rho|^2
+    +
+    2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho) - \underbrace{|\nabla^2 \rho|^2}_{3}
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)\Big)u_\infty}{x}
+    \underbrace{-2 \lambda \frac{d}{dt} H_\phi[u]}_{4}
+    \rightsquigarrow
+  \end{align*}
+
+  An dieser Stelle lassen wir die Terme, die schon direkt mit jenen aus der Angabe übereinstimmen der Einfachheithalber weg. Eine kleine Nebenrechnung erlauben wir uns dabei noch
+
+  \begin{align}
+    \partial_i |\nabla \rho|^2
+    =
+    \partial_i \sum_{j=1}^d (\partial_j \rho)^2
+    =
+    \sum_{j=1}^d 2 \partial_j \rho \partial_i \partial_j \rho
+    \\ \label{third}
+    \nabla |\nabla \rho|^2 \cdot \nabla \rho
+    =
+    2\sum_{i,j=1}^d \partial_j \rho \partial_i \partial_j \rho \partial_i \rho
+    =
+    2 \nabla \rho \cdot \nabla^2\rho \nabla \rho
+  \end{align}
+
+  \begin{align*}
+    &\rightsquigarrow
+    -\Int[\R^d]{
+    \Big(\phi^\primeprimeprime(\rho)
+    \partial_t\rho
+    |\nabla \rho|^2
+    +
+    2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)\Big)u_\infty}{x} \\
+    &=
+    - \lim_{r \rightarrow \infty}
+    \Int[B_r(0)]{
+    \phi^\primeprimeprime(\rho) \Div(u_\infty \nabla \rho) |\nabla \rho|^2
+    }{x}
+    -
+    \Int[\R^d]{2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)u_\infty}{x} \\
+    &\stackrel{Gauss}{=}
+    \lim_{r \rightarrow \infty}
+    \Int[B_r(0)]{
+    \nabla (\phi^\primeprimeprime(\rho)|\nabla \rho|^2) u_\infty \nabla \rho
+    }{x}
+    -
+    \Int[\R^d]{2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)u_\infty}{x} \\
+    &=
+    \Int[\R^d]{
+    (\phi^{(4)}(\rho)\nabla \rho |\nabla \rho|^2+ \phi^{(3)}\nabla |\nabla \rho|^2) u_\infty \nabla \rho
+    }{x}
+    -
+    \Int[\R^d]{2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)u_\infty}{x} \\
+    &=
+    \Int[\R^d]{
+    (\underbrace{\phi^{(4)}(\rho)|\nabla \rho|^4}_{1} + \phi^{(3)}\nabla |\nabla \rho|^2 \cdot \nabla \rho) u_\infty
+    }{x}
+    -
+    \Int[\R^d]{2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)u_\infty}{x} \\
+    &\stackrel{\ref{third}}{\rightsquigarrow}
+    \Int[\R^d]{
+    \phi^{(3)}2\nabla \rho \cdot \nabla^2 \rho \nabla \rho~ u_\infty
+    }{x}
+    -
+    \Int[\R^d]{2 \phi^\primeprime(
+    \Div(\nabla^2 \rho \nabla \rho)
+    -
+    \nabla \rho \cdot \nabla^2 \rho \nabla V)u_\infty}{x} \\
+    &=
+    \Int[\R^d]{
+    2\phi^{(3)}\nabla \rho \cdot \nabla^2 \rho \nabla \rho~ u_\infty
+    }{x}
+    -
+    \lim_{r \rightarrow \infty}
+    \Int[B_r(0)]{2 \phi^\primeprime
+    \Div(\nabla^2 \rho \nabla \rho) u_\infty}{x}
+    +
+    \Int[\R^d]{2\phi^\primeprime \nabla \rho \cdot \nabla^2 \rho \nabla V~u_\infty}{x} \\
+    &\stackrel{Gauss}{=}
+    \Int[\R^d]{
+    2\phi^{(3)}\nabla \rho \cdot \nabla^2 \rho \nabla \rho~ u_\infty
+    }{x}
+    +
+    \lim_{r \rightarrow \infty}
+    \Int[B_r(0)]{2 \nabla (\phi^\primeprime u_\infty) \cdot
+    \nabla^2 \rho \nabla \rho }{x}
+    +
+    \Int[\R^d]{2\phi^\primeprime \nabla \rho \cdot \nabla^2 \rho \nabla V~u_\infty}{x} \\
+    &=
+    \Int[\R^d]{
+    2\phi^{(3)}\nabla \rho \cdot \nabla^2 \rho \nabla \rho~ u_\infty
+    }{x}
+    +
+    \Int[\R^d]{2 (\phi^{(3)} \nabla \rho  u_\infty + \phi^\primeprime \nabla u_\infty)
+    \nabla^2 \rho \nabla \rho}{x}
+    +
+    \Int[\R^d]{2\phi^\primeprime \nabla \rho \cdot \nabla^2 \rho \nabla V~u_\infty}{x}\\
+    &=
+    \Int[\R^d]{
+    2\phi^{(3)}\nabla \rho \cdot \nabla^2 \rho \nabla \rho~ u_\infty
+    }{x}
+    +
+    \Int[\R^d]{2 \phi^{(3)} \nabla \rho  \cdot \nabla^2 \rho \nabla \rho u_\infty}{x}
+    -
+    \Int[\R^d]{\phi^\primeprime u_\infty \nabla V \cdot \nabla^2 \rho \nabla \rho}{x}\\
+    &+
+    \Int[\R^d]{2\phi^\primeprime \nabla \rho \cdot \nabla^2 \rho \nabla V~u_\infty}{x}
+    =
+    \Int[\R^d]{\underbrace{4 \phi^\primeprimeprime(\rho) \nabla \rho^T \nabla^2 \rho \nabla \rho}_{2}}{x}
+  \end{align*}
+
+  Damit haben wir schließlich alle Teile gesammelt.
+
+  Für die letzte Gleichheit zeigen wir:
   \begin{align*}
   &4\phi^{\primeprimeprime}(\rho) \nabla \rho^{T} \nabla^{2} \rho \nabla \rho+2
   \phi^{\prime \prime}(\rho)\left|\nabla^{2} \rho\right|^{2} \\
