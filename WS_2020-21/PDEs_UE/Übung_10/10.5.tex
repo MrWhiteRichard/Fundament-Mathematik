@@ -108,8 +108,15 @@ $\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, as
     \Int[\R^d] {e^{-V(s)}}{x} < \infty
   \end{align*}
 
-  Das gilt, da man aus $\nabla^2V \geq \lambda id$ folgern kann, dass $V \geq C_1 + C_2|x| + \lambda |x|^2$ mit $C_1, C_2 \in \R$.
-  \item Unter der Annahme, dass $H_\phi: C^2_1((0,\infty) \times \R^d) \rightarrow \R$ rechenen wir ganz rigoros
+  Das gilt, da man aus $\nabla^2V \geq \lambda \id$ mit dem mehrdimensionalen Taylor folgern kann, dass $V \geq C_1 + C_2|x| + \lambda |x|^2$ mit $C_1, C_2 \in \R$.
+  \item
+  \begin{align*}
+    \nabla \cdot (u_{\infty} \nabla \rho) = \nabla \cdot (u_\infty \frac{\nabla u u_{\infty} -
+    u \nabla u_{\infty}}{u_{\infty}^2}) = \nabla \cdot (\nabla u - \frac{u \nabla u_{\infty}}{u_{\infty}})
+    = \nabla \cdot (\nabla u + \frac{u u_{\infty} \nabla V}{u_{\infty}})
+    = \nabla \cdot (\nabla u + u \nabla V) = \partial_t u
+  \end{align*}
+  Unter der Annahme, dass $H_\phi: C^2_1((0,\infty) \times \R^d) \rightarrow \R$ rechnen wir ganz rigoros
 
   \begin{align*}
     -\frac{d}{dt} H_\phi[u]
@@ -120,11 +127,11 @@ $\nabla^{2} V \geq \lambda \, \mathrm{Id}$ for some $\lambda>0$. Furthermore, as
     &=
     -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\phi^\prime(\rho) \Div(u_\infty \nabla \rho)}{x}
     \stackrel{Gauss}{=}
-    -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\nabla(\phi^\prime(\rho)) u_\infty \nabla \rho}{x}
+    \lim_{r \rightarrow \infty} \Int[B_r(0)]{\nabla(\phi^\prime(\rho)) u_\infty \nabla \rho}{x}
     -
     \Int[\partial B_r(0)]{\phi^\prime u_\infty (\nabla \rho \cdot \nu)}{s} \\
     &=
-    -\lim_{r \rightarrow \infty} \Int[B_r(0)]{\phi^\primeprime(\rho) u_\infty \nabla \rho \cdot \nabla \rho}{x}
+    \lim_{r \rightarrow \infty} \Int[B_r(0)]{\phi^\primeprime(\rho) u_\infty \nabla \rho \cdot \nabla \rho}{x}
     =
     \Int[\R^d]{\phi^\primeprime(\rho) |\nabla \rho|^2 u_\infty}{x}
   \end{align*}
