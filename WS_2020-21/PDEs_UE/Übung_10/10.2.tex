@@ -41,47 +41,47 @@ complete orthonormal system of $L^{2}(\Omega)$ given by
 
 \phantom{}
 
-\begin{enumerate}[label = (\roman*)]
-  \item Wir zeigen, dass die Funktionale
-  \begin{align*}
-    K_j: H^k(\Omega) \to \R;\quad f \mapsto f^{(j)}(0) - f^{(j)}(2\pi), \quad j = 0, \dots, k - 1
-  \end{align*}
-  stetig sind und
-  \begin{align*}
-    H_{per}^k(\Omega) = \bigcap_{j=0}^{k-1}\ker(K_j)
-  \end{align*}
-  somit ein abgeschlossener Unterraum von $H^k(\Omega)$ und daher wieder ein
-  Hilbertraum ist. \\
-  Zur Wohldefiniertheit von $K_j:$ Da $k - 1/2 > k -1$ wird mit dem Einbettungssatz
-  von Sobolev $H^k(\Omega) \hookrightarrow C^{k-1}(\Omega)$ stetig eingebettet und
-  die punktweisen Auswertungen sind somit sinnvoll definiert.
-  \begin{align*}
-    |K_j(f)| = |f^{(j)}(2\pi) - f^{(j)}(0)| = \left|\int_0^{2\pi}f^{j+1}(x) dx \right|
-    \stackrel{CSU}{\leq} \sqrt{2\pi}\|f^{j+1}\|_{L^2(0,2\pi)} \leq \sqrt{2\pi}\|f\|_{H^k(0,2\pi)},
-    \quad j = 0,\dots,k-1.
-  \end{align*}
-  \item Sei $f \in H_{per}^1(\Omega) \subset L^2(\Omega)$, dann gilt
-  \begin{align*}
-    f=\sum_{m=1}^{\infty} (f,S_m) S_{m}+\sum_{m=0}^{\infty} (f,C_m) C_{m}
-  \end{align*}
-  \begin{align*}
-    a_m := (f,S_m)_{L^2} &= \frac{1}{\sqrt{\pi}}\int_0^{2\pi} f(x)\sin(mx) dx
-    = \frac{1}{\sqrt{\pi}}\left(\underbrace{\left[-\frac{1}{m}f(x)\cos(mx)\right]_0^{2\pi}}_{=0}
-    + \frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\cos(mx) dx \right) \\
-    &= \frac{1}{\sqrt{\pi}}\left(\frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\cos(mx) dx \right)
-    \leq \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\|\cos(mx)\|_{L^2(0,2\pi)} \\
-    &= \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\frac{1}{m}\int_0^{2m\pi}\cos^2(u) du}
-    = \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\frac{1}{2m}(2m\pi + \sin(2m\pi)\cos(2m\pi))} \\
-    &= \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\pi} =
-    \frac{1}{m}\|f^{\prime}\|_{L^2(0,2\pi)}
-  \end{align*}
-  \begin{align*}
-    b_m := (f,C_m)_{L^2} &= \frac{1}{\sqrt{\pi}}\int_0^{2\pi} f(x)\cos(mx) dx
-    = \frac{1}{\sqrt{\pi}}\left(\underbrace{\left[\frac{1}{m}f(x)\sin(mx)\right]_0^{2\pi}}_{=0}
-    - \frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\sin(mx) dx \right) \\
-    &\leq \frac{1}{m}\|f^{\prime}\|_{L^2(0,\pi)}
-  \end{align*}
-\end{enumerate}
+%\begin{enumerate}[label = (\roman*)]
+%  \item Wir zeigen, dass die Funktionale
+%  \begin{align*}
+%    K_j: H^k(\Omega) \to \R;\quad f \mapsto f^{(j)}(0) - f^{(j)}(2\pi), \quad j = 0, \dots, k - 1
+%  \end{align*}
+%  stetig sind und
+%  \begin{align*}
+%    H_{per}^k(\Omega) = \bigcap_{j=0}^{k-1}\ker(K_j)
+%  \end{align*}
+%  somit ein abgeschlossener Unterraum von $H^k(\Omega)$ und daher wieder ein
+%  Hilbertraum ist. \\
+%  Zur Wohldefiniertheit von $K_j:$ Da $k - 1/2 > k -1$ wird mit dem Einbettungssatz
+%  von Sobolev $H^k(\Omega) \hookrightarrow C^{k-1}(\Omega)$ stetig eingebettet und
+%  die punktweisen Auswertungen sind somit sinnvoll definiert.
+%  \begin{align*}
+%    |K_j(f)| = |f^{(j)}(2\pi) - f^{(j)}(0)| = \left|\int_0^{2\pi}f^{j+1}(x) dx \right|
+%    \stackrel{CSU}{\leq} \sqrt{2\pi}\|f^{j+1}\|_{L^2(0,2\pi)} \leq \sqrt{2\pi}\|f\|_{H^k(0,2\pi)},
+%    \quad j = 0,\dots,k-1.
+%  \end{align*}
+%  \item Sei $f \in H_{per}^1(\Omega) \subset L^2(\Omega)$, dann gilt
+%  \begin{align*}
+%    f=\sum_{m=1}^{\infty} (f,S_m) S_{m}+\sum_{m=0}^{\infty} (f,C_m) C_{m}
+%  \end{align*}
+%  \begin{align*}
+%    a_m := (f,S_m)_{L^2} &= \frac{1}{\sqrt{\pi}}\int_0^{2\pi} f(x)\sin(mx) dx
+%    = \frac{1}{\sqrt{\pi}}\left(\underbrace{\left[-\frac{1}{m}f(x)\cos(mx)\right]_0^{2\pi}}_{=0}
+%    + \frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\cos(mx) dx \right) \\
+%    &= \frac{1}{\sqrt{\pi}}\left(\frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\cos(mx) dx \right)
+%    \leq \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\|\cos(mx)\|_{L^2(0,2\pi)} \\
+%    &= \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\frac{1}{m}\int_0^{2m\pi}\cos^2(u) du}
+%    = \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\frac{1}{2m}(2m\pi + \sin(2m\pi)\cos(2m\pi))} \\
+%    &= \frac{1}{m\sqrt{\pi}}\|f^{\prime}\|_{L^2(0,2\pi)}\sqrt{\pi} =
+%    \frac{1}{m}\|f^{\prime}\|_{L^2(0,2\pi)}
+%  \end{align*}
+%  \begin{align*}
+%    b_m := (f,C_m)_{L^2} &= \frac{1}{\sqrt{\pi}}\int_0^{2\pi} f(x)\cos(mx) dx
+%    = \frac{1}{\sqrt{\pi}}\left(\underbrace{\left[\frac{1}{m}f(x)\sin(mx)\right]_0^{2\pi}}_{=0}
+%    - \frac{1}{m}\int_0^{2\pi}f^{\prime}(x)\sin(mx) dx \right) \\
+%    &\leq \frac{1}{m}\|f^{\prime}\|_{L^2(0,\pi)}
+%  \end{align*}
+%\end{enumerate}
 
 \end{solution}
 
