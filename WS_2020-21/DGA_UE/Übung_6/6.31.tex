@@ -2,7 +2,24 @@
 
 \begin{exercise}
 
-\phantom{}
+Ein binärer Suchbaum mit Blättern ist ein binärer Baum, sodass jeder Knoten entweder genau $2$ oder keinen Nachfolger hat.
+Erstere Knoten werden \textit{innere Knoten} genannt, letztere \textit{Blätter} oder \textit{externe Knoten}.
+Die \textit{interne Pfadlänge} $I(T)$ eines Binärbaums $T$ ist die Summe der Abstände (gemessen in Anzahl von Kanten) von der Wurzel zu allen internen Knoten, die \textit{externe Pfadlänge} $E(T)$ ist die Summe der Abstände zu allen externen Knoten.
+Beweisen Sie:
+
+\begin{enumerate}[label = \alph*]
+
+    \item Ein Binärbaum mit $n$ internen Knoten hat $n + 1$ Blätter.
+
+    \item Zwischen interner und externer Pfadlänge besteht folgender Zusammenhang:
+    
+    \begin{align*}
+        E(T) = I(T) + 2 |T|,
+    \end{align*}
+
+    wobei $|T|$ die Anzahl interner Knoten von $T$ ist.
+
+\end{enumerate}
 
 \end{exercise}
 
@@ -11,6 +28,76 @@
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[label = \alph*]
+
+    \item IA($n = 0$):
+    
+    Es gibt nur den Wurzel-Knoten.
+    Dieser ist extern.
+
+    IS($n-1 \mapsto n$):
+
+    Sei $T$ ein BSB mit $n$ internen Knoten.
+    Lösche zwei Blätter, die ein \textit{Kirschen-Paar} $\Bbraces{v_1, v_2}$ bilden, d.h. sodass wieder ein BSB $T^\prime$ entsteht.
+    (Wenn es kein Kirschen-Paar gäbe, dann hätte ein Knoten von $T$ genau einen Nachfolger!)
+
+    Der zugehörige $T$-interne Knoten, der die Kirschen verbindet $v$, wurde somit $T^\prime$-extern.
+    $T^\prime$ hat also einen internen Knoten ($v$) weniger als $T$, d.h. $n - 1$.
+
+    Laut IV hat $T^\prime$ daher $(n - 1) + 1 = n$ Blätter.
+    Wenn wir das Kirschen-Paar $\Bbraces{v_1, v_2}$ wieder an $T^\prime$ drankleben (und die Kanten $\Bbraces{v, v_1}$ und $\Bbraces{v, v_2}$ ergänzen), kommt $T$ raus.
+    $v$ ist nicht mehr Blatt (wir ziehen $1$ ab) und die Kirschen kommen jeweils als Blatt dazu (wir addieren $2$).
+
+    \begin{align*}
+        n - 1 + 2 = n + 1
+    \end{align*}
+
+    \item Sei $T$ ein BSB.    
+
+    IA($|T| = 0$):
+    
+    Wieder trivial, alles $0$!
+
+    IS($n-1 \mapsto n$):
+
+    Lösche wieder ein Kirschen-Paar $\Bbraces{v_1, v_2}$, wobei die Kirschen jeweils Tiefe $m$ haben, und erhalte $T^\prime$.
+    Genauso wie vorher sieht man
+
+    \begin{align*}
+        |T^\prime| = |T| - 1.
+    \end{align*}
+
+    Der $T^\prime$-externe bzw. $T$-interne Knoten $v$, der die Kirschen $v_1$ und $v_2$ verbindet hat Tiefe $m - 1$.
+
+    \begin{align*}
+        \implies
+        I(T^\prime) = I(T) - (m - 1),
+        \quad
+        E(T^\prime) = E(T) - 2 m + (m - 1) = E(T) - (m + 1)
+    \end{align*}
+
+    Es ist Zeit, alles zusammenzustöpseln.
+
+    \begin{multline*}
+        \implies
+        E(T)
+        =
+        E(T^\prime) + (m + 1)
+        \stackrel
+        {
+            \mathrm{IV}
+        }{=}
+        I(T^\prime) + 2 |T^\prime| + m + 1 \\
+        =
+        I(T^\prime) + 2 (|T| - 1) + m + 1
+        =
+        I(T^\prime) + (m - 1) + 2 |T|
+        =
+        I(T) + 2 |T|
+    \end{multline*}
+
+\end{enumerate}
 
 \end{solution}
 
