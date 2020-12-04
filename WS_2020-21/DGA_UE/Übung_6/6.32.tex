@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-\phantom{}
+Geben Sie, für jedes gerade $n \in \N$ paarweise unterschiedliche Schlüssel $x_1, \dots, x_n$ an, so dass ein Suchbaum in Kammform (sh. Abbildung) entsteht wenn, beginnend mit dem leeren Suchbaum, die Schlüssel $x_1, \dots, x_n$ in dieser Reihenfolge eingefügt werden.
 
 \end{exercise}
 
@@ -11,6 +11,54 @@
 \begin{solution}
 
 \phantom{}
+
+\includegraphicsboxed{DGA/DGA - Definition 5.1.png}
+\includegraphicsboxed{DGA/DGA - Algorithmus 14 - Einfügen in einen Suchbaum.png}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \coordinate (x_1) at ( 0,  0);
+        \coordinate (x_2) at (-1, -1);
+        \coordinate (x_3) at ( 1, -1);
+        \coordinate (x_4) at ( 0, -2);
+        \coordinate (x_5) at ( 2, -2);
+        \coordinate (x_6) at ( 1, -3);
+
+        \coordinate (x_n_minus_1) at (4, -6);
+        \coordinate (x_n)         at (5, -5);
+
+        \draw (x_1) -- (x_2);
+        \draw (x_3) -- (x_4);
+        \draw (x_5) -- (x_6);
+
+        \draw (x_n_minus_1) -- (x_n);
+
+        \draw (x_1) -- (x_3) -- (x_5);
+        \draw [dotted] (x_5) -- (x_n);
+
+        \filldraw [color = black, fill = white] (x_1) circle (12 pt) node {$x_1$};
+        \filldraw [color = black, fill = white] (x_2) circle (12 pt) node {$x_2$};
+        \filldraw [color = black, fill = white] (x_3) circle (12 pt) node {$x_3$};
+        \filldraw [color = black, fill = white] (x_4) circle (12 pt) node {$x_4$};
+        \filldraw [color = black, fill = white] (x_5) circle (12 pt) node {$x_5$};
+        \filldraw [color = black, fill = white] (x_6) circle (12 pt) node {$x_6$};
+
+        \filldraw [color = black, fill = white] (x_n_minus_1) circle (12 pt) node {$x_{n-1}$};
+        \filldraw [color = black, fill = white] (x_n)         circle (12 pt) node {$x_n$};
+
+        \draw (x_1) node [right, xshift =  15 pt] {$:= 2$};
+        \draw (x_2) node [left,  xshift = -15 pt] {$1 =:$};
+        \draw (x_3) node [right, xshift =  15 pt] {$:= 4$};
+        \draw (x_4) node [left,  xshift = -15 pt] {$3 =:$};
+        \draw (x_5) node [right, xshift =  15 pt] {$:= 6$};
+        \draw (x_6) node [left,  xshift = -15 pt] {$5 =:$};
+
+        \draw (x_n_minus_1) node [right, xshift =  15 pt] {$:= n-1$};
+        \draw (x_n)         node [left,  xshift = -15 pt] {$n =:$};
+
+    \end{tikzpicture}
+\end{center}
 
 \end{solution}
 
