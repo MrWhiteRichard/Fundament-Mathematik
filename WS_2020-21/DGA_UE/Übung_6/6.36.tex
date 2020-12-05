@@ -4,6 +4,14 @@
 
 \phantom{}
 
+	Modifizieren Sie die Prozeduren für die Tiefensuche so, dass bei Eingabe eines ungerichteten Graphen $V = (V, E)$ für jeden Knoten $v$ ein weiteres Attribut $K(v)$ bestimmt wird, das die folgenden beiden Bedingungen erfüllt:
+	\begin{enumerate}[label = (\alph*)]
+		\item $K(v) \in \{1,2,\dots,k\}$, wobei $k$ die Anzahl der Zusammenhangskomponenten ist.
+		
+		\item $K(u) = K(v)$ genau dann, wenn $u$ und $v$ in der selben Zusammenhangskomponente liegen. 
+	\end{enumerate}
+	
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,6 +19,37 @@
 \begin{solution}
 
 \phantom{}
+Siehe Algroithmus
+
+	\begin{algorithm}
+		\caption{Einteilung in Zusammenhangskomponenten} 
+		\begin{algorithmic}[1]
+			\Procedure{Zusammenhangskomponenten}{V, E}
+			\State Sei \textit{bekannt} neues Datenfeld der Länge $|V|$, überall mit \textbf{falsch} initialisiert.
+			\State Sei $K$ neues Datenfeld der Länge $|V|$
+			\State Sei $S$ ein neuer Stapel, leer initialisiert
+			\State $l := 0$
+			\State $n := |V| - 1$
+			\While{$n > 0$}
+			\State $l := l + 1$
+			\State Wähle Knoten $u$ mit \textit{bekannt}$[u] =$ \textbf{falsch}
+			\State \textit{bekannt}$[u] :=$ \textbf{wahr}
+			\State \verb|HINZUFÜGEN|$(S,u)$ 
+			\While{$S$ nicht leer}
+			\State $v :=$ \verb|ENTFERNEN|$(S)$
+			\State $K[v] := l$
+			\State $n := n - 1$
+			\For{jede Kante $(v,w) \in E$}
+			\If{\textit{bekannt}$[w] =$ \textbf{falsch}}
+			\State  \textit{bekannt}$[w] :=$ \textbf{wahr}
+			\State \verb|HINZUFÜGEN|$(S,w)$
+			\EndIf
+			\EndFor
+			\EndWhile
+			\EndWhile
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
 
 \end{solution}
 
