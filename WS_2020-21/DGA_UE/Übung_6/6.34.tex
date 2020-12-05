@@ -2,16 +2,110 @@
 
 \begin{exercise}
 
-\phantom{}
-
+Gegeben ist der gerichtete Graph $G = (V,E)$ mit $V = \{a,d,\dots,m\}$ und
+\begin{align*}
+  E = \{ag,ba,be,cb,cd,dj,ec,ef,fd,fh,ge,hg,hi,hk,if,il,ji,jm,ka,lg,ml\}.
+\end{align*}
+Erstellen Sie die Liste der besuchten Knoten, die der Reihenfolge während einer
+Breitensuche bzw. während einer Tiefensuche entspricht.
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
 \phantom{}
+\begin{center}
+    \begin{tikzpicture}
 
+        \coordinate (a) at ( -1, 1);
+        \coordinate (b) at ( -1, -2);
+        \coordinate (c) at ( 0, -5);
+        \coordinate (d) at ( 2, -6);
+        \coordinate (e) at ( 1, -3);
+        \coordinate (f) at ( 2, -4);
+        \coordinate (g) at ( 2 , 1);
+        \coordinate (h) at ( 4, -1);
+        \coordinate (i) at ( 4, -4);
+        \coordinate (j) at ( 6, -5);
+        \coordinate (k) at ( 0.5, -0.5);
+        \coordinate (l) at ( 6, 0);
+        \coordinate (m) at ( 7,-2);
+
+        \draw[shorten >= 12pt, -triangle 90] (a) -- (g);
+        \draw[shorten >= 12pt, -triangle 90] (b) -- (a);
+        \draw[shorten >= 12pt, -triangle 90] (b) -- (e);
+        \draw[shorten >= 12pt, -triangle 90] (c) -- (b);
+        \draw[shorten >= 12pt, -triangle 90] (c) -- (d);
+        \draw[shorten >= 12pt, -triangle 90] (d) -- (j);
+        \draw[shorten >= 12pt, -triangle 90] (e) -- (c);
+        \draw[shorten >= 12pt, -triangle 90] (e) -- (f);
+        \draw[shorten >= 12pt, -triangle 90] (f) -- (d);
+        \draw[shorten >= 12pt, -triangle 90] (f) -- (h);
+        \draw[shorten >= 12pt, -triangle 90] (g) -- (e);
+        \draw[shorten >= 12pt, -triangle 90] (h) -- (g);
+        \draw[shorten >= 12pt, -triangle 90] (h) -- (i);
+        \draw[shorten >= 12pt, -triangle 90] (h) -- (k);
+        \draw[shorten >= 12pt, -triangle 90] (i) -- (f);
+        \draw[shorten >= 12pt, -triangle 90] (i) -- (l);
+        \draw[shorten >= 12pt, -triangle 90] (j) -- (i);
+        \draw[shorten >= 12pt, -triangle 90] (j) -- (m);
+        \draw[shorten >= 12pt, -triangle 90] (k) -- (a);
+        \draw[shorten >= 12pt, -triangle 90] (l) -- (g);
+        \draw[shorten >= 12pt, -triangle 90] (m) -- (l);
+
+
+        \filldraw [color = black, fill = white] (a) circle (12 pt) node {$a$};
+        \filldraw [color = black, fill = white] (b) circle (12 pt) node {$b$};
+        \filldraw [color = black, fill = white] (c) circle (12 pt) node {$c$};
+        \filldraw [color = black, fill = white] (d) circle (12 pt) node {$d$};
+        \filldraw [color = black, fill = white] (e) circle (12 pt) node {$e$};
+        \filldraw [color = black, fill = white] (f) circle (12 pt) node {$f$};
+        \filldraw [color = black, fill = white] (g) circle (12 pt) node {$g$};
+        \filldraw [color = black, fill = white] (h) circle (12 pt) node {$h$};
+        \filldraw [color = black, fill = white] (i) circle (12 pt) node {$i$};
+        \filldraw [color = black, fill = white] (j) circle (12 pt) node {$j$};
+        \filldraw [color = black, fill = white] (k) circle (12 pt) node {$k$};
+        \filldraw [color = black, fill = white] (l) circle (12 pt) node {$l$};
+        \filldraw [color = black, fill = white] (m) circle (12 pt) node {$m$};
+
+
+
+
+    \end{tikzpicture}
+\end{center}
+
+Wir starten die Breitensuche im Knoten $a$:
+\begin{flalign*}
+  1&: [a], \quad W = [g] & \\
+  2&: [a,g], \quad W = [e] & \\
+  3&: [a,g,e], \quad W = [c,f] & \\
+  4&: [a,g,e,c], \quad W = [f,b,d] & \\
+  5&: [a,g,e,c,f], \quad W = [b,d,h] & \\
+  6&: [a,g,e,c,f,b], \quad W = [d,h] & \\
+  7&: [a,g,e,c,f,b,d], \quad W = [h,j] & \\
+  8&: [a,g,e,c,f,b,d,h], \quad W = [j,i,k] & \\
+  9&: [a,g,e,c,f,b,d,h,j], \quad W = [i,k,m] & \\
+  10&: [a,g,e,c,f,b,d,h,j,i], \quad W = [k,m,l] & \\
+  11&: [a,g,e,c,f,b,d,h,j,i,k], \quad W = [m,l] & \\
+  12&: [a,g,e,c,f,b,d,h,j,i,k,m], \quad W = [l] & \\
+  12&: [a,g,e,c,f,b,d,h,j,i,k,m, l] & \\
+\end{flalign*}
+Tiefensuche:
+\begin{flalign*}
+  1&: [a], \quad S = [g] & \\
+  2&: [a,g], \quad S = [e] & \\
+  3&: [a,g,e], \quad S = [c,f] & \\
+  4&: [a,g,e,f], \quad S = [c,d,h] & \\
+  5&: [a,g,e,f,h], \quad S = [c,d,i,k] & \\
+  6&: [a,g,e,f,h,k], \quad S = [c,d,i] & \\
+  7&: [a,g,e,f,h,k,i], \quad S = [c,d,l] & \\
+  8&: [a,g,e,f,h,k,i,l], \quad S = [c,d] & \\
+  9&: [a,g,e,f,h,k,i,l,d], \quad S = [c,j] & \\
+  10&: [a,g,e,f,h,k,i,l,d,j], \quad S = [c,m] & \\
+  11&: [a,g,e,f,h,k,i,l,d,j,m], \quad S = [c] & \\
+  12&: [a,g,e,f,h,k,i,l,d,j,m,c], \quad S = [b] & \\
+  13&: [a,g,e,f,h,k,i,l,d,j,m,c,b] & \\
+\end{flalign*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
