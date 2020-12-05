@@ -2,32 +2,122 @@
 
 \begin{exercise}
 
-Bestimmen Sie die minimale Anzahl von Knoten in einem balancierten Baum der Höhe h.
+Bestimmen Sie die minimale Anzahl von Knoten in einem balancierten Baum der Höhe $h$.
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-Die Höhe $h(v)$ ist definiert als die maximale Anzahl von Knoten auf einem Pfad von $v$
-zur Wurzel. Die Höhe des Baums die dann die Höhe der Wurzel. \\
-Der balancierte Baum der Höhe $h = 1$ besteht nur aus der Wurzel, besitzt also nur einen Knoten.
-Die minimale Anzahl von Knoten im balanciertem Baum der Höhe $h = 2$ ist klarerweise $2$.
-Für höhere Bäume können wir den balancierten Baum mit minimaler Anzahl an Knoten bestimmen,
-indem wir rekursiv vorgehen: Von unserer Wurzel ausgehend bilden wir links den
-balancierten Baum mit minimaler Anzahl von Knoten mit Höhe $h-1$ und rechts den mit Höhe $h-2$.
-Dieser Baum ist somit wieder balanciert und hat minimale Anzahl an Knoten.
-Wir haben also für die minimale Anzahl an Knoten die Rekursionsgleichung
+
+\phantom{}
+
+\includegraphicsboxed{DGA/DGA - Definition (Höhe Knoten & Baum).png}
+\includegraphicsboxed{DGA/DGA - Definition 5.2.png}
+
+Der balancierte Baum $T_1$ der Höhe $h = 1$ besteht nur aus der Wurzel, besitzt also nur $|E(T_1)| = 1$ Knoten.
+Der balancierte Baum $T_2$ der Höhe $h = 2$ besteht nur aus maximal $3$ Knoten.
+Einen unteren Knote darf man entfernen und der Baum bleibt balanciert, d.h. $|E(T_2)| = 2$.
+
+Für höhere Bäume $T_h$ mit $h > 2$ können wir $|E(T_h)|$ bestimmen, indem wir rekursiv vorgehen:
+Der linke und rechte Teilbaum $(T_h)_\mathrm{l}$ bzw. $(T_h)_\mathrm{r}$ haben jeweils maximal Höhe $h-1$.
+Einer davon darf sogar Höhe $h-2$ haben, $T_h$ bleibt balanciert und hat minimale Anzahl an Knoten.
+
+Weil $T_h$ balanciert ist, müssen auch die Teilbäume$(T_h)_\mathrm{l}$ und $(T_h)_\mathrm{r}$ balanciert sein.
+Weil $T_h$ minimale Knoten-Zahl hat, müssen auch die Teilbäume$(T_h)_\mathrm{l}$ und $(T_h)_\mathrm{r}$ minimale Knoten-Zahl haben.
 
 \begin{align*}
-  m_h = m_{h-1} + m_{h-2} + 1, \quad m_1 = 1, m_2 = 2
+  \implies
+  (T_h)_\mathrm{l} = T_{h-1},
+  \quad
+  (T_h)_\mathrm{r} = T_{h-2},
+  \quad
+  \text{oder}
+  \quad  
+  (T_h)_\mathrm{l} = T_{h-2},
+  \quad
+  (T_h)_\mathrm{r} = T_{h-1}
 \end{align*}
-
-Wir haben es also mit einer inhomogenen Rekursionsgleichung zweiter Ordnung zu tun, wie wir diese Lösen wissen wir aus der Vorlesung. Zuerst lösen wir
 
 \begin{align*}
-  n_h = n_{h-1} + n_{h-2}, \quad n_1 = 2, n_2 = 3
+  \implies
+  |E(T_h)|
+  =
+  |E((T_h)_\mathrm{l})| + |E((T_h)_\mathrm{r})| + 1
+  =
+  |E(T_{h-1})| + |E(T_{h-2})| + 1
 \end{align*}
+
+Wir haben also für die minimale Anzahl an Knoten die folgende Rekursionsgleichung.
+
+\begin{align*}
+  m_h = m_{h-1} + m_{h-2} + 1,
+  \quad
+  m_1 = 1,
+  \quad
+  m_2 = 2
+\end{align*}
+
+Wir haben es also mit einer inhomogenen Rekursionsgleichung $2$-ter Ordnung zu tun.
+
+\includegraphicsboxed{DGA/DGA - Satz 4.3.png}
+
+Zuerst lösen wir die zugehörige homogene Rekursionsgleichung.
+
+\begin{align*}
+  n_h = n_{h-1} + n_{h-2},
+  \quad
+  n_1 = 2,
+  \quad
+  n_2 = 3
+\end{align*}
+
+Das ist genau die, um $1$ im Index verschobene, Fibonacci-Folge.
+
+\begin{align*}
+  \implies
+  n_h
+  =
+  F_{h+1}
+  =
+  \frac{1}{\sqrt{5}}
+  \pbraces
+  {
+    \frac{1 + \sqrt{5}}{2}
+  }^{h+1}
+  -
+  \frac{1}{\sqrt{5}}
+  \pbraces
+  {
+    \frac{1 - \sqrt{5}}{2}
+  }^{h+1}
+\end{align*}
+
+Nun wieder zur inhomogenen Rekursionsgleichung.
+Diese hat schließlich die folgende Lösung.
+
+\begin{align*}
+  \implies
+  m_h
+  =
+  n_h - 1
+  =
+  \frac{1}{\sqrt{5}}
+  \pbraces
+  {
+    \frac{1 + \sqrt{5}}{2}
+  }^{h+1}
+  -
+  \frac{1}{\sqrt{5}}
+  \pbraces
+  {
+    \frac{1 - \sqrt{5}}{2}
+  }^{h+1}
+  -
+  1
+\end{align*}
+
+\begin{comment}
 
 Das charakteristische Polynom und seine Nullstellen:
 
@@ -46,6 +136,9 @@ also
   \implies
   m_h = \Big(\frac{2\sqrt{5}}{5} + 1\Big)\Big(\frac{1}{2} + \frac{\sqrt{5}}{2}\Big)^h + \Big(\frac{-2\sqrt{5}}{5} + 1 \Big)\Big(\frac{1}{2} - \frac{\sqrt{5}}{2}\Big)^h - 1
 \end{align*}
+
+\end{comment}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
