@@ -1,0 +1,55 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $u \in H_0^1(\Omega)$ für ein beschränktes Lipschitz-Gebiet $\Omega \subset \R^2$
+die Lösung des Poisson-Problems
+\begin{align}
+  \forall v \in H_0^1(\Omega): (\nabla u;\nabla v)_{L^2(\Omega)} = (f;v)_{L^2(\Omega)}
+\end{align}
+und $u_h \in \mathcal{S}_0^1(\mathcal{T})$ die zugehörige diskrete Finite-Elemente Lösung.
+Weiter sei $\mathcal{K}$ die Knotenmenge der Triangulierung $\mathcal{T}$,
+$\zeta_z \in \mathcal{S}_0^1(\mathcal{T})$ für alle $z \in \mathcal{K}$ die Hutfunktionen,
+$\tilde{\Omega}_z := \{T \in \mathcal{T}: z \in T\}$ der Knotenpatch aus Abschnitt 4.2 und
+\begin{align}
+  \tilde{v}_h := \sum_{z \in \mathcal{K}}\left(\frac{1}{|\tilde{\Omega}_z|}
+  \sum_{T \in \tilde{\Omega}_z}\nabla u_h|_T\right)\zeta_z
+\end{align}
+der gemittelte Gradient von $u_h$.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Beweisen Sie, dass
+  \begin{align}
+    \eta_{ZZ} := \|\nabla u_h - \tilde{v}_h\|_{L^2(\Omega)}
+  \end{align}
+  ein zuverlässiger und effizienter Fehlerschätzer ist, wenn der gemittelte
+  Gradient eine bessere Approximation an den echten Gradienten ist, als der
+  Gradient der FE-Lösung, das heißt, wenn eine Konstante $\alpha < 1$ existiert,
+  sodass
+  \begin{align}
+    \|\nabla u - \tilde{v}_h\|_{L^2(\Omega)} \leq \alpha\|\nabla u - \nabla u_h\|_{L^2(\Omega)}.
+    \label{ineq_grad}
+  \end{align}
+  \item Implementieren Sie diesen Fehlerschätzer in NGSolve und testen Sie numerisch
+  sowohl die Güte des Fehlerschätzers als auch die Ungleichung \eqref{ineq_grad}.
+  Konstruieren Sie sich dazu analog zu Beispiel 10 geeignete Referenzlösungen. \\
+
+  \textit{Hinweis:} In NGSolve ist $\tilde{v}_h$ sehr elegant mit den Code-Zeilen
+  \begin{itemize}
+    \item $\mathrm{fe\_ag = VectorH1(mesh, order = 1)}$
+    \item $\mathrm{vtilde = GridFunction(fe\_ag)}$
+    \item $\mathrm{flux = grad(gfu)}$
+    \item $\mathrm{vtilde.Set(flux)}$
+  \end{itemize}
+  zu berechnen.
+\end{enumerate}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
