@@ -9,8 +9,15 @@ Bestimmen Sie die minimale Anzahl von Knoten in einem balancierten Baum der Höh
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-Der balancierte Baum der Höhe $h = 1$ besteht nur aus der Wurzel, besitzt also nur einen Knoten. Die minimale Anzahl von Knoten im balanciertem Baum der Höhe $h = 2$ ist klarerweise $2$. Für höhere Bäume können wir den balancierten Baum mit minimaler Anzahl an Knoten bestimmen, in dem wir rekursiv vorgehen: Von unserer Wurzel ausgehend bilden wir links den balancierten Baum mit minimaler Anzahl von Knoten mit Höhe $h-1$ und rechts den mit Höhe $h-2$. Dieser Baum ist somit wieder balanciert und hat minimale Anzahl an Knoten. Wir haben also für die minimale Anzahl an Knoten die Rekursionsgleichung
+Die Höhe $h(v)$ ist definiert als die maximale Anzahl von Knoten auf einem Pfad von $v$
+zur Wurzel. Die Höhe des Baums die dann die Höhe der Wurzel. \\
+Der balancierte Baum der Höhe $h = 1$ besteht nur aus der Wurzel, besitzt also nur einen Knoten.
+Die minimale Anzahl von Knoten im balanciertem Baum der Höhe $h = 2$ ist klarerweise $2$.
+Für höhere Bäume können wir den balancierten Baum mit minimaler Anzahl an Knoten bestimmen,
+indem wir rekursiv vorgehen: Von unserer Wurzel ausgehend bilden wir links den
+balancierten Baum mit minimaler Anzahl von Knoten mit Höhe $h-1$ und rechts den mit Höhe $h-2$.
+Dieser Baum ist somit wieder balanciert und hat minimale Anzahl an Knoten.
+Wir haben also für die minimale Anzahl an Knoten die Rekursionsgleichung
 
 \begin{align*}
   m_h = m_{h-1} + m_{h-2} + 1, \quad m_1 = 1, m_2 = 2
@@ -22,15 +29,15 @@ Wir haben es also mit einer inhomogenen Rekursionsgleichung zweiter Ordnung zu t
   n_h = n_{h-1} + n_{h-2}, \quad n_1 = 2, n_2 = 3
 \end{align*}
 
-Das charakteristische Polynom und seien Nullstellen:
+Das charakteristische Polynom und seine Nullstellen:
 
 \begin{align*}
-  \chi(x) = x^2 - x - 1 \stackrel{!}{=} 0
+  \chi(x) = x^2 - x - 1 &\stackrel{!}{=} 0
   \iff
   x_{1,2} = \frac{1}{2} \pm \frac{\sqrt{5}}{2} \\
-  c_1 + c_2 \stackrel{!}{=} 2 \\
-  c_1\Big(\frac{1}{2} + \frac{\sqrt{5}}{2}\Big) + c_2 \Big(\frac{1}{2} - \frac{\sqrt{5}}{2}\Big) \stackrel{!}{=} 3 \\
-  \implies c_1 = \frac{2\sqrt{5}}{5} + 1, c_2 = \frac{-2\sqrt{5}}{5} + 1
+  c_1 + c_2 &\stackrel{!}{=} 2 \\
+  c_1\Big(\frac{1}{2} + \frac{\sqrt{5}}{2}\Big) + c_2 \Big(\frac{1}{2} - \frac{\sqrt{5}}{2}\Big) &\stackrel{!}{=} 3 \\
+  \implies c_1 = \frac{2\sqrt{5}}{5} + 1, c_2 &= \frac{-2\sqrt{5}}{5} + 1
 \end{align*}
 
 also
