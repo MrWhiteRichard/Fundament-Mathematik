@@ -3,7 +3,21 @@
 \begin{exercise}[216]
 
 \phantom{}
-
+	Für alle $(n_1, \dots, n_k) \in \N^k$  definieren wir $\abraces{n_1, \dots, n_k} := p_1^{n_1 + 1} \cdot \cdots \cdot p_k^{n_k + 1}$, wobei $(p_1, p_2, p_3, \dots) = (2,3,5,7,\dots)$ die Folge der Primzahlen ist. (Runde Klammern für Folgen, spitze Klammern für einzelne Zahlen, die Folgen codieren.)
+	\newline
+	\newline
+	Für jede Funktion $f:\N^k \times \N \to \N$ definieren wir $\hat{f}:\N^k \times \N \to \N$ so:
+	\begin{align*}
+	\hat{f}(\vec{x}, y) = \abraces{f(\vec{x}, 0), \dots, f(\vec{x}, y - 1)},
+	\end{align*}
+	also insbesondere $\hat{f}(\vec{x}, 0) = \langle \rangle = 1$, und $\hat{f}(\vec{x}, 1) = \langle f(\vec{x}, 0) \rangle = 2^{f(\vec{x}, 0) + 1}$. 
+	\newline
+	\newline
+	Zeigen Sie: 
+	\begin{enumerate}[label = (\alph*)]
+		\item $f$ ist primitiv rekursiv genau dann, wenn $\hat{f}$ primitiv rekursiv ist.
+		\item Wenn $f$ total ist, dann ist $f$ genau dann berechenbar, wenn $\hat{f}$ berechenbar ist.
+	\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,5 +25,29 @@
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = (\alph*)]
+	\item 
+		\begin{enumerate}
+			\item[``$\Rightarrow$''] Es sei also vorausgesetzt, dass $f$ primitiv rekursiv ist. Dann gilt
+				\begin{align*}
+				\hat{f}(\vec{x},0) = 1, \quad \hat{f}(\vec{x}, y + 1) = \hat{f}(\vec{x},y)p_{y+1}^{f(\vec{x}, y) + 1}
+				\end{align*}
+				also haben wir eine Darstellung gefunden an welcher wir ekrennen, dass $\hat{f}$ primitiv rekursiv ist.
+			\item[``$\Leftarrow$''] Nun sei umgekehrt vorausgesetzt, dass $\hat{f}$ primitiv rekursiv ist. Für diese Richtung wollen wir die Funktion 
+				\begin{align*}
+				(\cdot)_\cdot : \N \times \N \to \N : (x,y) \mapsto
+				\begin{cases}
+				0 &, \text{falls } x = 0 \lor y = 0 \\
+				\max\{k \in \N : p_y^k \mid x \} &, \text{sonst}
+				\end{cases}
+				\end{align*}
+				betrachten. $(x)_y$ ist also der $y$-te Exponent der Primzahl in der Primfaktorzerlegung von $x$. Es gilt
+				\begin{align*}
+				f(\vec{x},y) = \pbraces{\hat{f}(\vec{x}, y + 1)}_{y + 1} - 1.
+				\end{align*}
+				Zu zeigen bleibt, dass obige Funktion primitiv rekursiv ist. Haben wir das in der VO gemacht, oder wurde das für die Übung ausgelassen?
+		\end{enumerate}
+	\item Kann man hier den Beweis aus (a) nicht direkt übernehmen?
+\end{enumerate}
 
 \end{solution}
