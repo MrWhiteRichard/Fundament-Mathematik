@@ -3,6 +3,7 @@
 \begin{exercise}[217]
 
 \phantom{}
+	Sei $F: \N \to \N$ die Fibonacci-Folge: $F(0) = 0$, $F(1) = 1$, $F(n + 2) = F(n + 1) + F(n)$ für alle $n \geq 0$. Zeigen Sie, dass $F$ primitiv rekursiv ist, indem Sie zunächst eine primitive Rekursion für $\hat{F}$ angeben.
 
 \end{exercise}
 
@@ -11,5 +12,8 @@
 \begin{solution}
 
 \phantom{}
-
+	\begin{align*}
+	\hat{F}(0) = 1, \quad \hat{F}(x + 1) = 2 \chi_{\{0\}}(x) + 18 \chi_{\{1\}}(x) + (1 - \chi_{\{0, 1\}}(x)) \hat{F}(x) p_{x + 1}^{\pbraces{\hat{F}(x)}_x + \pbraces{\hat{F}(x)}_{x - 1} - 1} 
+	\end{align*}
+	also ist $\hat{F}$ primitiv rekursiv, nach der vorherigen Aufgabe daher auch $F$. 
 \end{solution}
