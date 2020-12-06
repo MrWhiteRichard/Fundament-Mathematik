@@ -16,61 +16,20 @@ Geben Sie, für jedes gerade $n \in \N$ paarweise unterschiedliche Schlüssel $x
 \includegraphicsboxed{DGA/DGA - Algorithmus 14 - Einfügen in einen Suchbaum.png}
 
 \begin{center}
-    \begin{tikzpicture}
-
-        \coordinate (x_1) at ( 0,  0);
-        \coordinate (x_2) at (-1, -1);
-        \coordinate (x_3) at ( 1, -1);
-        \coordinate (x_4) at ( 0, -2);
-        \coordinate (x_5) at ( 2, -2);
-        \coordinate (x_6) at ( 1, -3);
-
-        \coordinate (x_n_minus_1) at (5, -5);
-        \coordinate (x_n)         at (4, -6);
-
-        \draw (x_1) -- (x_2);
-        \draw (x_3) -- (x_4);
-        \draw (x_5) -- (x_6);
-
-        \draw (x_n_minus_1) -- (x_n);
-
-        \draw (x_1) -- (x_3) -- (x_5);
-        \draw [dotted] (x_5) -- (x_n_minus_1);
-
-        \filldraw [color = black, fill = white] (x_1) circle (12 pt) node {$x_1$};
-        \filldraw [color = black, fill = white] (x_2) circle (12 pt) node {$x_2$};
-        \filldraw [color = black, fill = white] (x_3) circle (12 pt) node {$x_3$};
-        \filldraw [color = black, fill = white] (x_4) circle (12 pt) node {$x_4$};
-        \filldraw [color = black, fill = white] (x_5) circle (12 pt) node {$x_5$};
-        \filldraw [color = black, fill = white] (x_6) circle (12 pt) node {$x_6$};
-
-        \filldraw [color = black, fill = white] (x_n_minus_1) circle (12 pt) node {$x_{n-1}$};
-        \filldraw [color = black, fill = white] (x_n)         circle (12 pt) node {$x_n$};
-
-        \draw (x_1) node [right, xshift =  15 pt] {$:= 2$};
-        \draw (x_2) node [left,  xshift = -15 pt] {$1 =:$};
-        \draw (x_3) node [right, xshift =  15 pt] {$:= 4$};
-        \draw (x_4) node [left,  xshift = -15 pt] {$3 =:$};
-        \draw (x_5) node [right, xshift =  15 pt] {$:= 6$};
-        \draw (x_6) node [left,  xshift = -15 pt] {$5 =:$};
-
-        \draw (x_n_minus_1) node [right, xshift =  15 pt] {$:= n$};
-        \draw (x_n)         node [left,  xshift = -15 pt] {$n-1 =:$};
-
-    \end{tikzpicture}
-
-
+  \input{tikz_picture_1.tex}
 \end{center}
-Also lauten unsere Schlüssel für $i \leq n$:
 
 \begin{align*}
   x_i
   :=
   \begin{cases}
-  i - 1, & \text{falls}~ i \in 2\N \\
-  i + 1, & \text{falls}~ i \in 2\N +1
+  i - 1, & \text{falls}~ i \in 2\N, \\
+  i + 1, & \text{falls}~ i \in 2\N + 1,
   \end{cases}
+  \quad
+  i = 1, \dots, n
 \end{align*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
