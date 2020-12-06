@@ -1,0 +1,55 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[213]
+
+Es gibt eine berechenbare partielle\footnote{\glqq Es gibt eine partielle Funktion
+$f: \N \times \N \mapsto \N \dots$\grqq\ heißt:
+\glqq Es gibt eine Menge $A \subseteq \N \times \N$ und eine Funktion $f: A \to \N$
+(also mit Definitionsbereich $A$) \dots\grqq\ So eine Funktion darf also durchaus
+auch auf ganz $\N \times \N$ definiert sein.}
+Funktion $f: \N \times \N \to \N$, sodass die partielle Funktion
+$g(x) := \min\{y: f(x,y) = 0\}$ nicht berechenbar ist. \\
+\textit{Hinweis:} Verwenden Sie die vorige Aufgabe: Man kann eine Funktion
+$f$ mit $f(x,1) = 0$ für alle $x$ finden.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $A \subseteq \N$ die semi-entscheidbare Menge aus Aufgabe 212.
+Laut Definition ist dann
+\begin{align*}
+  \widetilde{\chi}_A(x) = \begin{cases}
+    1, & x \in A \\
+    \text{undefiniert} & x \notin A
+  \end{cases}
+\end{align*}
+berechenbar und
+\begin{align*}
+  \chi_A(x) = \begin{cases}
+    1, & x \in A \\
+    0 & x \notin A
+  \end{cases}
+\end{align*}
+nicht berechenbar. Definiere also $B := (A \times \{0\}) \cup (\N \times \{1\})$
+und
+\begin{align*}
+  f&: B \to \N, \quad (x,y) \mapsto \begin{cases}
+      0, & y = 1 \\
+      \widetilde{\chi}_A(x) - 1, & y = 0
+  \end{cases} \\
+  f &= \chi_{\{0\}}(y)(\widetilde{\chi}_A(x) - 1) \implies f \text{ berechenbar}.
+\end{align*}
+Dann ist
+\begin{align*}
+  g(x) = \min\{y \in \N: f(x,y) = 0\} =
+  \begin{cases}
+      0, & \widetilde{\chi}_A(x) = 1 \\
+      1, & \text{sonst}
+  \end{cases}
+  = 1 - \chi_A(x)
+\end{align*}
+nicht berechenbar und $f$ berechenbar.
+\end{solution}
