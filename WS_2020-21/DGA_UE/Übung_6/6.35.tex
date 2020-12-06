@@ -12,28 +12,34 @@ eines Baumes und analysieren Sie dessen Laufzeit.
 
 \begin{solution}
 
-Der Algorithmus ist so konstruiert, dass für jeden Knoten der längste Pfad durch diesen Knoten bestimmt wird. Diesen längsten Pfad bestimmen wir, indem wir den Knoten als Wurzel ansehen und die Höhen der zwei höchsten Unterbäume, die nach wegstreichen der Wurzel entstehen, addieren. Die Höhen werden dabei rekursiv genauso bestimmt, nur ohne die Addition. \pagebreak
+Der Algorithmus ist so konstruiert, dass für jeden Knoten $v \in V$ der längste Pfad durch diesen Knoten bestimmt wird und davon dann das $\max$ genommen wird.
+Diesen längsten Pfad bestimmen wir, indem wir den Knoten $v$ als Wurzel setzen und die Höhen der zwei höchsten Teilbäume, die nach wegstreichen der Wurzel entstehen, addieren.
+Die Höhen werden dabei rekursiv genauso bestimmt, nur ohne die Addition.
+
+Das funktioniert deswegen, weil die Höhe eines Teilbaums die Anzahl der Knoten im maximal langen Pfad von einem Blatt zur Teilbaum-Wurzel ist.
+Das ist aber genau die Anzahl der Kanten vom Blatt zur echten Wurzel.
+
+\pagebreak
 
 \begin{algorithm}
   \caption{Durchmesser eines Baumes}
   \begin{algorithmic}[1]
-    \Procedure{DurchmesserBaum}{B}
-    \State $V, E := B$
-    \State Sei $L$ neues Datenfeld der Länge $|V|$
-    \For{$v \in V$}
-    \State $Z :=$ ZusammenhangskomponentenBaum($B-v$)
-    \If{$Z.\textit{Länge} = 0$} $\implies B-v$ ist leer
-    \State $L[v] := 0$
-    \EndIf
-    \If{$Z.\textit{Länge} = 1$}
-    \State $L[v] :=$ \textsc{Höhe}($B-v$) + 1
-    \EndIf
-    \If{$Z.\textit{Länge} \geq 2$}
-    \State $H := \bbraces{\textsc{Höhe}(B^\prime, v^\prime) - 1: B^\prime \in Z,~ \Bbraces{v,v^\prime} \in E}$
-    \State $L[v] := \max \bbraces{h_1 + h_2:~ h_1,h_2 \in H, h_1 \neq h_2} + 2$
-    \EndIf
-    \EndFor
-    \State Antworte $\max L$
+    \Procedure{DurchmesserBaum}{$B$}
+      \State $V, E := B$
+      \State Sei $L$ neues Datenfeld der Länge $|V|$
+        \For{$v \in V$}
+          \State $Z :=$ \textsc{Zusammenhangskomponenten}($B - v$)
+          \If{$Z.\textit{Länge} = 0$} $\implies B-v$ ist leer
+            \State $L[v] := 0$
+          \ElsIf{$Z.\textit{Länge} = 1$}
+            \State $L[v] := \textsc{Höhe}(B - v) + 1$
+          \ElsIf{$Z.\textit{Länge} \geq 2$}
+            \State $H := \bbraces{\textsc{Höhe}(B^\prime, v^\prime): B^\prime \in Z, \Bbraces{v, v^\prime} \in E}$
+            \State Seien $h_1, h_2 \in H$ die beiden (verschiedenen) größten Einträge.
+            \State $L[v] := h_1 + h_2$
+          \EndIf
+        \EndFor
+      \State \Return $\max L$
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
@@ -41,22 +47,42 @@ Der Algorithmus ist so konstruiert, dass für jeden Knoten der längste Pfad dur
 \begin{algorithm}
   \caption{Höhe eines Baumes}
   \begin{algorithmic}[1]
-    \Procedure{Höhe}{B,v}
-    \State $V, E := B$
-    \If{$|V| = 1$}
-    \State Antworte 1
-    \EndIf
-    \If{$|V| \geq 2$}
-    \State Antworte $\max \bbraces{\textsc{Höhe}(B^\prime, v^\prime):~ B^\prime \in \text{ZusammenhangskomponentenBaum}(B-v), \Bbraces{v, v^\prime} \in E} + 1$
-    \EndIf
+    \Procedure{Höhe}{$B, v$}
+      \State $V, E := B$
+      \If{$|V| = 1$}
+        \State \Return 1
+      \ElsIf{$|V| \geq 2$}
+        \State $Z :=$ \textsc{Zusammenhangskomponenten}($B - v$)
+        \State \Return $\max \bbraces{\textsc{Höhe}(B^\prime, v^\prime): B^\prime \in Z, \Bbraces{v, v^\prime} \in E} + 1$
+      \EndIf
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
+Aufwand-Bestimmung:
 
-Nun zur Aufwandbestimmung: In Zeile $4$ sehen wir, dass der Aufwand wohl $\Landau(|V| \cdot A)$ sein wird, wenn $A$ den Aufwand innerhalb der Schleife bezeichnet. Die Bestimmung der Zusammenhangskomponenten in Zeile $5$ ist in unserem Fall einfach und trägt nicht groß zum Aufwand bei. Die Zahl der Zusammenhangskomponenten (bzw Teilbäume) sowie die Höhe dieser verhält sich invers zueinander, da $|Z| \cdot H_Z \leq |V|$. Bei der Bestimmung der Höhe einer Zusammenhangskomponente wird nun aber jeder Knoten innerhalb dieser Zusammenhangskomponente besucht. Insgesamt besuchen wir also alle Knoten (bis auf den Weggestrichenen) und haben somit Aufwand $\Landau(|V|)$ innerhalb der Schleife.
+In Zeile $4$ sehen wir, dass der Aufwand wohl $\Landau(|V| \cdot A)$ sein wird.
+$A$ bezeichnet den Aufwand innerhalb der Schleife.
+Die Bestimmung der Zusammenhangskomponenten in Zeile $5$ ist in unserem Fall einfach und trägt nicht groß zum Aufwand bei.
 
-Insgesamt hat der Algorithmus somit Aufwand $\Landau(|V|^2)$.
+Die Zahl  $Z.\textit{Länge}$ der Zusammenhangskomponenten (bzw. Teilbäume) und deren Höhen verhalten sich invers zueinander.
+Wenn es mehr Zusammenhangskomponenten gibt, dann sind diese jeweils nicht so hoch und umgekehrt.
+
+\begin{align*}
+  \sum_{B \in Z} \textsc{Höhe}(B, \cdot)
+  \leq
+  \sum_{(V^\prime, E^\prime) \in Z} |V^\prime| + 1
+  =
+  |V|
+\end{align*}
+
+Bei der Bestimmung der Höhe einer Zusammenhangskomponente wird nun aber jeder Knoten innerhalb dieser Zusammenhangskomponente besucht.
+Die Höhe von jeder Zusammenhangskomponente wird bestimmt.
+Insgesamt besuchen wir also alle Knoten (bis auf die weggestrichene Wurzel $v$).
+Wir haben somit Aufwand $A = \Landau(|V|)$ innerhalb der Schleife.
+
+Insgesamt Insgesamt hat der Algorithmus somit Aufwand $\Landau(|V|^2)$.
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
@@ -88,8 +114,10 @@ Insgesamt hat der Algorithmus somit Aufwand $\Landau(|V|^2)$.
 			\EndIf
 			\EndFor
 			\EndWhile
-			\Return Summe der zwei größten Werte von $d$
+			\State \Return Summe der zwei größten Werte von $d$
 			\EndProcedure
 		\end{algorithmic}
 	\end{algorithm}
 \end{solution}
+
+% --------------------------------------------------------------------------------
