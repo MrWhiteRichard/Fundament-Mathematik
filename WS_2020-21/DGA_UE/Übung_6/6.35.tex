@@ -60,36 +60,3 @@ Insgesamt hat der Algorithmus somit Aufwand $\Landau(|V|^2)$.
 \end{solution}
 
 % --------------------------------------------------------------------------------
-
-\begin{solution}
-	\phantom{}
-		\begin{algorithm}
-		\caption{Durchmesser eines Baumes 2} 
-		\begin{algorithmic}[1]
-			\Procedure{DurchmesserBaum2}{$B = (V,E)$}
-			\State Sei \textit{bekannt} neues Datenfeld der Länge $|V|$, überall mit \textbf{falsch} initialisiert.
-			\State Sei $S$ ein neuer Stapel, leer initialisiert
-			\State Wähle beliebigen Knoten $u \in \V$ 
-			\State \textit{bekannt}$[u] :=$ \textbf{wahr}
-			\State \verb|HINZUFÜGEN|$(S,u)$
-			\State Wir wollen ein Datenfeld $d$ der Länge ``Anzahl Nachbarn von $u$'', überall mit $1$ initialisiert 
-			\State $i := 0$
-			\While{$S$ nicht leer}
-			\State $v :=$ \verb|ENTFERNEN|$(S)$
-			\If{$v$ ist Nachbar von $u$}
-			\State $i := i + 1$
-			\Else
-			\State $d_i := d_i + 1$
-			\EndIf
-			\For{jede Kante $(v,w) \in E$}
-			\If{\textit{bekannt}$[w] =$ \textbf{falsch}}
-			\State  \textit{bekannt}$[w] :=$ \textbf{wahr}
-			\State \verb|HINZUFÜGEN|$(S,w)$
-			\EndIf
-			\EndFor
-			\EndWhile
-			\Return Summe der zwei größten Werte von $d$
-			\EndProcedure
-		\end{algorithmic}
-	\end{algorithm}
-\end{solution}
