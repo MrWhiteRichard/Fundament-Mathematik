@@ -4,6 +4,8 @@
 
 \phantom{}
 
+	Sei $f:\N \to \N$ eine berechenbare schwach monotone totale Funktion. ($x < y \Rightarrow f(x) < f(y)$.) Dann ist die Wertemenge von $f$ entscheidbar.
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,5 +13,22 @@
 \begin{solution}
 
 \phantom{}
+
+	\begin{enumerate}[label = Fall \arabic*:]
+		\item $\exists s \in \N: \forall x \in \N: f(x) < s.$ In diesem Fall ist $f(\N)$ eine endliche Menge und daher entscheidbar.
+		\item $\nexists s \in \N: \forall x \in \N: f(x) < s.$ In diesem Fall betrachten wir die Funktion
+			\begin{align*}
+			g(0,y) := \chi_{\{0\}}(f(y)), \quad g(x + 1, y) := g(x) + \chi_{\{0\}}(f(y) - (x + 1)) \chi_{\{0\}}((x + 1) - f(y)).
+			\end{align*}
+			Es gilt $g(x,y) = \chi_{\{0, \dots, x\}}(f(y))$ und aufgrund der Voraussetzung dieses Falles gibt es für jedes $x \in \N$ ein $y_x \in \N$ mit $f(y_x) > x$. Deshalb und wegen der Monotonie gilt
+			\begin{align*}
+			\mu g(x) = \min\{y \in \N \mid g(x,y) = 0\} = \max\{z \in \N \mid f(z) \leq x\} + 1.
+			\end{align*}
+			Nun können wir die streng monotone Funktion
+			\begin{align*}
+			h(0) := f(0), \quad h(x + 1) := f(\mu g(h(x)))
+			\end{align*}
+			definieren für welche $h(\N) = f(\N)$ gilt. Es reicht also die Aussage für die streng monotone Funktion $h$ zu zeigen. Das wäre eigentlich in der vorherigen Aufgabe gezeigt worden, dürfen wir das verwenden?
+	\end{enumerate}
 
 \end{solution}
