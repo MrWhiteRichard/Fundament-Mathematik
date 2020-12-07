@@ -28,7 +28,32 @@
 			\begin{align*}
 			h(0) := f(0), \quad h(x + 1) := f(\mu g(h(x)))
 			\end{align*}
-			definieren für welche $h(\N) = f(\N)$ gilt. Es reicht also die Aussage für die streng monotone Funktion $h$ zu zeigen. Das wäre eigentlich in der vorherigen Aufgabe gezeigt worden, dürfen wir das verwenden?
+			definieren für welche $h(\N) = f(\N)$ gilt. Es reicht also die Aussage für die streng monotone Funktion $h$ zu zeigen. \\
+			Sei $f: \N \to \N$ berechenbar, total und strikt monoton. Dann gilt $f(x) \geq x$
+			und somit
+			\begin{align*}
+				f(x) = z \implies z \leq x.
+			\end{align*}
+			Um zu zeigen, dass $f(\N)$ entscheidbar ist, zeigen wir, dass
+			$\chi_{f(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge ist.
+			Berechenbarkeit von $f$ ist äquivalent dazu, dass der Graph von $f$ eine
+			$\Sigma_1$-Menge ist, also gibt es eine $\Sigma_0$-Formel $\varphi$, sodass
+			\begin{align*}
+				(x,y) \in f \iff \exists u\, \varphi(x,y,u).
+			\end{align*}
+			Damit erhalten wir
+			\begin{align*}
+				(x,y) \in \chi_{f(\N)} &\iff [(y = 1 \land x \in f(\N))
+				\lor (y = 0 \land x \notin f(\N))] \\
+				&\iff [(y = 1 \land \exists z_1 \in \N: x = f(z_1))
+				\lor (y = 0 \land \forall z_2 \in \N: x \neq f(z_2))] \\
+				&\iff [(y = 1 \land \exists z_1 \leq x: x = f(z_1))
+				\lor (y = 0 \land \forall z_2 \leq x: x \neq f(z_2))] \\
+				&\iff [(y = 1 \land \exists z_1 \leq x: \underbrace{x = f(z_1)}_{\Sigma_1-\text{Formel}})
+				\lor (y = 0 \land \forall z_2 \leq x: \underbrace{f(z_2) = y \land y \neq x)}_{\Sigma_1-\text{Formel}}].
+			\end{align*}
+		Also ist $\chi_{f(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge, also
+		$\chi_{f(\N)}$ $\mu$-rekursiv, also $f(\N)$ entscheidbar.
 	\end{enumerate}
 
 \end{solution}
