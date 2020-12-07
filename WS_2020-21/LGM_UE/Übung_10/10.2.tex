@@ -16,7 +16,7 @@
 
 	\begin{enumerate}[label = Fall \arabic*:]
 		\item $\exists s \in \N: \forall x \in \N: f(x) < s.$ In diesem Fall ist $f(\N)$ eine endliche Menge und daher entscheidbar.
-		\item $\nexists s \in \N: \forall x \in \N: f(x) < s.$ In diesem Fall betrachten wir die Funktion
+		\item $\nexists s \in \N: \forall x \in \N: f(x) < s.$ In diesem Fall betrachten wir die berechenbare Funktion
 			\begin{align*}
 			g(0,y) := \chi_{\{0\}}(f(y)), \quad g(x + 1, y) := g(x) + \chi_{\{0\}}(f(y) - (x + 1)) \chi_{\{0\}}((x + 1) - f(y)).
 			\end{align*}
@@ -28,32 +28,40 @@
 			\begin{align*}
 			h(0) := f(0), \quad h(x + 1) := f(\mu g(h(x)))
 			\end{align*}
-			definieren für welche $h(\N) = f(\N)$ gilt. Es reicht also die Aussage für die streng monotone Funktion $h$ zu zeigen. \\
-			Sei $f: \N \to \N$ berechenbar, total und strikt monoton. Dann gilt $f(x) \geq x$
+			definieren für welche $h(\N) = f(\N)$ gilt. Die Inklusion \glqq$\subseteq$\grqq\ ist klar. \\
+			Für die umgekehrte Inklusion behaupten wir $h(x) = f_x$, wobei $(f_n)_{n \in \N}$
+			die aufsteigende, injektive Abzählung von Elementen aus $f(\N)$ sei. \\
+			Klarerweise gilt $h(0) = f(0) = f_0$ und im Induktionsschritt
+			\begin{align*}
+				h(x + 1) = f(\mu g(h(x))) = f(\mu g(f_x)) = f(\max\{z \in \N \mid f(z) \leq f_x\} + 1)
+				= f_{x+1}.
+			\end{align*}
+			Es reicht also die Aussage für die streng monotone Funktion $h$ zu zeigen. \\
+			Sei $h: \N \to \N$ berechenbar, total und strikt monoton. Dann gilt $h(x) \geq x$
 			und somit
 			\begin{align*}
-				f(x) = z \implies z \leq x.
+				h(x) = z \implies z \leq x.
 			\end{align*}
-			Um zu zeigen, dass $f(\N)$ entscheidbar ist, zeigen wir, dass
-			$\chi_{f(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge ist.
-			Berechenbarkeit von $f$ ist äquivalent dazu, dass der Graph von $f$ eine
+			Um zu zeigen, dass $h(\N)$ entscheidbar ist, zeigen wir, dass
+			$\chi_{h(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge ist.
+			Berechenbarkeit von $h$ ist äquivalent dazu, dass der Graph von $h$ eine
 			$\Sigma_1$-Menge ist, also gibt es eine $\Sigma_0$-Formel $\varphi$, sodass
 			\begin{align*}
-				(x,y) \in f \iff \exists u\, \varphi(x,y,u).
+				(x,y) \in h \iff \exists u\, \varphi(x,y,u).
 			\end{align*}
 			Damit erhalten wir
 			\begin{align*}
-				(x,y) \in \chi_{f(\N)} &\iff [(y = 1 \land x \in f(\N))
+				(x,y) \in \chi_{h(\N)} &\iff [(y = 1 \land x \in h(\N))
 				\lor (y = 0 \land x \notin f(\N))] \\
-				&\iff [(y = 1 \land \exists z_1 \in \N: x = f(z_1))
-				\lor (y = 0 \land \forall z_2 \in \N: x \neq f(z_2))] \\
-				&\iff [(y = 1 \land \exists z_1 \leq x: x = f(z_1))
-				\lor (y = 0 \land \forall z_2 \leq x: x \neq f(z_2))] \\
-				&\iff [(y = 1 \land \exists z_1 \leq x: \underbrace{x = f(z_1)}_{\Sigma_1-\text{Formel}})
-				\lor (y = 0 \land \forall z_2 \leq x: \underbrace{f(z_2) = y \land y \neq x)}_{\Sigma_1-\text{Formel}}].
+				&\iff [(y = 1 \land \exists z_1 \in \N: x = h(z_1))
+				\lor (y = 0 \land \forall z_2 \in \N: x \neq h(z_2))] \\
+				&\iff [(y = 1 \land \exists z_1 \leq x: x = h(z_1))
+				\lor (y = 0 \land \forall z_2 \leq x: x \neq h(z_2))] \\
+				&\iff [(y = 1 \land \exists z_1 \leq x: \underbrace{x = h(z_1)}_{\Sigma_1-\text{Formel}})
+				\lor (y = 0 \land \forall z_2 \leq x: \underbrace{h(z_2) = y \land y \neq x)}_{\Sigma_1-\text{Formel}}].
 			\end{align*}
-		Also ist $\chi_{f(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge, also
-		$\chi_{f(\N)}$ $\mu$-rekursiv, also $f(\N)$ entscheidbar.
+		Also ist $\chi_{h(\N)} \subset \N \times \N$ eine $\Sigma_1$-Menge, also
+		$\chi_{h(\N)}$ $\mu$-rekursiv, also $h(\N)$ entscheidbar.
 	\end{enumerate}
 
 \end{solution}
