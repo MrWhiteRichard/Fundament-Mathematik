@@ -1,8 +1,14 @@
+Für jede geschlossene Formel $\varphi$ (das heißt: $\varphi$ hat keine freien Varibale) definieren wir das \textit{Spektrum} $Sp(\varphi)$ als die Menge aller natürlichen Zahlen $n$, sodass es ein endliches Modell von $\varphi$ mit genau $n$ Elementen gibt. \newline
+(Wir sagen, dass $\mathcal{M}$ ein Modell von $\varphi$ ist, wenn für alle Belegungen $b$ die Gleichung $\hat{b}(\varphi) = 1$ gilt.) \newline
+\newline
+Wir schreiben $\mathscr{S}$ für die Menge aller Spektren (für beliebige prädikatenlogische Sprachen). $\mathscr{S}$ ist eine Untermenge der Potenzmenge von $\N \setminus \{0\}$. 
+
 % --------------------------------------------------------------------------------
 
 \begin{exercise}[71]
 
 \phantom{}
+	Zeigen Sie, dass jede endliche Teilmenge von  $\{1,2, \dots \}$ ein Spektrum ist. (Wie definieren Sie \Quote{endlich}?) Verwenden Sie vollständige Induktion? Wenn ja, geben Sie explizit die Behauptung $B(n)$ an, von der Sie $B(0)$ und $B(n) \Rightarrow B(n + 1)$ zeigen.)
 
 \end{exercise}
 
@@ -11,5 +17,21 @@
 \begin{solution}
 
 \phantom{}
-
+	Wir behaupten
+	\begin{align*}
+	M := \Bbraces{n \in \N \mid \forall A \subseteq \N \setminus \{0\}: \pbraces{\vbraces{A} = n \Rightarrow  A \in \mathscr{S}}} = \N
+	\end{align*}
+	Für $n = 0$ gilt $A = \emptyset$ und es gilt $Sp(\exists x \exists y(x = y \land x \neq y)) = A$. \newline
+	Nehmen wir nun an $n \in M$ und betrachten wir eine Menge $A \subseteq \N \setminus \{0\}$ mit $\vbraces{A} = n + 1$. Nun wählen wir ein Element $k \in A$ und definieren $C := A \setminus \{k\}$, damit gilt $\vbraces{C} = n$. Nach unserer Annahmen folgt, dass es eine geschlossene Formel $\varphi$ gibt mit $C = Sp(\varphi)$. Nun unterscheiden wir zwei Fälle:
+	\begin{enumerate}[label = Fall \arabic*:]
+		\item $k = 1$, dann ist 
+			\begin{align*}
+			A = Sp(\varphi \lor (\forall x \forall y: x = y))
+			\end{align*}
+		\item $k > 1$ Dann ist 
+			\begin{align*}
+			A = Sp(\varphi \lor (\exists^k \land \neg \exists^{k + 1})),
+			\end{align*}
+			wobei $\exists^k = \exists x_1 \dots \exists x_k (x_1 \neq x_2 \land x_1 \neq x_2 \land \dots \land x_{k - 1} \neq x_k)$
+	\end{enumerate} 
 \end{solution}

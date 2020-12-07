@@ -4,6 +4,7 @@
 \begin{exercise}[72]
 
 \phantom{}
+	Zeigen Sie, dass $\mathscr{S}$ unter Durchschnitt abgeschlossen ist. (Anleitung: Sei $A = Sp(\varphi_1)$, $B = Sp(\varphi_2)$. Erklären Sie, warum Sie ohne Beschränkung der Allgemeinheit annehmen dürfen, dass die Sprachen zu $\varphi_1$ und $\varphi_2$ disjunkt sind...)
 
 \end{exercise}
 
@@ -12,12 +13,19 @@
 \begin{solution}
 
 \phantom{}
-
+	Da $\varphi_1$ und $\varphi_2$ nur endlich viele Funktionssymbole, Relationssymbole, Konstantensymbole und Variable verwenden können wir ohne Beschränkung der Allgemeinheit annehmen, dass die Sprachen zu den beiden Formeln disjunkt sind.\newline
+	Sei nun $n \in A \cap B$. Wähle ein Modell $\mathfrak{M}_1$ mit $\vbraces{M_1} = n$ und $\mathfrak{M}_1 \vDash \varphi_1$ sowie ein Modell $\mathfrak{M}_2$ mit $\vbraces{M_2} = n$ und $\mathfrak{M}_2 \vDash \varphi_2$. Wir können ohne Beschränkung der Allgemeinheit sagen, dass $M_1 = M_2$ gilt, da es eine Bijektion zwischen den beiden Mengen gibt. Wegen der Disjunktheit der Sprachen können wir nun die Modelle \Quote{vereinigen}: 
+	\begin{align*}
+	\mathfrak{M} := \mathfrak{M}_1 \cup \mathfrak{M}_2
+	\end{align*}
+	Wobei es keine Probleme bei den Interpretationen gibt. Wir erhalten nun klarerweise $\mathfrak \vDash \varphi_1 \land \varphi_2$.  \newline
+	Betrachten wir umgekehrt $n \in Sp(\varphi_1 \land \varphi_2)$ dann gibt es ein Modell $\mathfrak{M}$ mit $\vbraces{M} = n$ und $\mathfrak{M} \vDash \varphi_1 \land \varphi_2$ und damit gilt klarerweise auch $\mathfrak{M} \vDash \varphi_1$ und $\mathfrak{M} \vDash \varphi_2$. 
 \end{solution}
 
 \begin{exercise}[73]
 
 \phantom{}
+	Zeigen Sie, dass $\mathscr{S}$ unter Vereinigung abgeschlossen ist.
 
 \end{exercise}
 
@@ -32,6 +40,7 @@
 \begin{exercise}[74]
 
 \phantom{}
+	Zeigen Sie, dass $\mathscr{S}$ unter Komplement abgeschlossen ist.
 
 \end{exercise}
 
