@@ -35,7 +35,7 @@ Zeigen Sie zuerst, dass die zugehörige Bilinearform elliptisch ist.
 
 \begin{solution}
 
-Wir stellen zuerst das Funktional und die Bilinearform für die schwache Formlierung der PDE (1) auf.
+Wir stellen zuerst das Funktional und die Bilinearform für die schwache Formulierung der PDE (1) auf.
 $\Forall v \in H_0^1(\Omega):$
 
 \begin{align*}
@@ -52,12 +52,12 @@ $\Forall v \in H_0^1(\Omega):$
   {
     \mathrm{PI}
   }{=}
-  \Int[\Omega]{A \nabla u \cdot \nabla v}
+  \Int[\Omega]{A \nabla u \cdot \nabla v}{x}
   -
   \underbrace
   {
     \Int[\partial \Omega]{(A \nabla u \cdot \nu) v}{s}
-  }_0
+  }_{=0}
   +
   \Int[\Omega]{(b \cdot \nabla u + c u) v}{x}
   =
@@ -76,12 +76,12 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
 
 \begin{enumerate}[label = \textbf{\alph*)}]
 
-  \item Wir wollen Exercise 7.2 (Lemma of Lax-Milgram) auf $F$ und $a$ anwenden.
-  
+  \item Wir wollen Exercise 7 (Lemma of Lax-Milgram) auf $F, a$ und $H_0^1(\Omega)$ anwenden.
+
   \begin{enumerate}[label = \arabic*.]
 
-    \item $a$ stetig:
-    
+    \item $a$ stetig: Wir nehmen zusätzlich $b \in L^{\infty}(\Omega)$ an.
+
     \begin{align*}
       a(u, v)
       & =
@@ -111,9 +111,9 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
     \end{align*}
 
     \item $a$ elliptisch:
-    
+
     Die Produktregel für $\Div$ liefert uns
-    
+
     \begin{align*}
       \Div(u^2 b) = \nabla(u^2) b + u^2 \Div b = 2 u b \nabla u + u^2 \Div b
       \implies
@@ -138,15 +138,15 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
       \implies
       a(u, u)
       & =
-      \Int[\Omega]{(\nabla u, \nabla u)_A + (b \cdot \nabla u + c u) v}{x}
+      \Int[\Omega]{(\nabla u, \nabla u)_A + (b \cdot \nabla u + c u) u}{x}
       =
-      \Int[\Omega]{\norm[A]{u}^2 + u b \cdot \nabla u + c u^2}{x} \\
+      \Int[\Omega]{\norm[A]{\nabla u}^2 + u b \cdot \nabla u + c u^2}{x} \\
       & \geq
       \Int[\Omega]{\alpha^2 |\nabla u|^2 + \frac{1}{2} (\Div(u^2 b) - u \Div b) + c u^2}{x} \\
       & =
       \alpha^2 \norm[L^2(\Omega)]{\nabla u}^2
       +
-      \frac{1}{2} \Int[\partial \Omega]{u^2 b \cdot \nu}{s}
+      \frac{1}{2} \underbrace{\Int[\partial \Omega]{u^2 b \cdot \nu}{s}}_{=0}
       +
       \underbrace
       {
@@ -157,15 +157,15 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
       & \geq
       \alpha^2 \norm[L^2(\Omega)]{\nabla u}^2
       \geq
-      \pbraces{\frac{\alpha}{C_P}}^2 \norm[H^1(\Omega)]{u}^2
+      \frac{\alpha^2}{C_P^2 + 1} \norm[H^1(\Omega)]{u}^2
     \end{align*}
 
   \end{enumerate}
 
   \item Siehe \textbf{c)} ...
-  
+
   \item Wir formulieren ein Analogon zu Theorem 4.11.
-  
+
   \includegraphicsboxed{NumPDEs/NumPDEs - Theorem 4.11.png}
 
   \begin{tcolorbox}[standard jigsaw, opacityback = 0]
@@ -213,7 +213,7 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
       \underbrace
       {
         \Div(A \nabla u_h)
-      }_0
+      }_{=0}
       w
     }{x}
     +
@@ -226,6 +226,7 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
 
   \includegraphicsboxed{NumPDEs/NumPDEs - (4.34).png}
 
+  Wir betrachten das Residuum $R_h \in H_0^1(\Omega)^*$:
   \begin{align*}
     \implies
     R_h(w)
@@ -243,8 +244,8 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
     (\partial_n (A u_h); w)_{L^2(\partial T)} \\
     & =
     \sum_{T \in \mathcal{T}}
-    (f - b \cdot \nabla u_h - c u_h; w)_{L^2(T)} \\
-    & -
+    (f - b \cdot \nabla u_h - c u_h; w)_{L^2(T)}
+    -
     \underbrace
     {
       \sum_{E \in \mathcal{E}_D}
@@ -266,7 +267,8 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
     \norm[L^2(E)]{w}
   \end{align*}
 
-  Für beliebiges $v \in H_D^1(\Omega)$, wählen wir nun $w = v - H_h v$ und bemerken, dass $R_h(v) = R_h(w)$, laut Galerkin Orthogonalität.
+  Für beliebiges $v \in H_D^1(\Omega)$, wählen wir nun $w = v - J_h v$ für
+  einen Clemént-Operator $J_h$ und bemerken, dass $R_h(v) = R_h(w)$, laut Galerkin Orthogonalität.
 
   \begin{align*}
     R_h(w)
@@ -275,7 +277,7 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
     =
     R_h(v) - R_h(J_h v)
     =
-    R_h(v) - \underbrace{a(u - u_h, J_h v)}_0
+    R_h(v) - \underbrace{a(u - u_h, J_h v)}_{=0}
   \end{align*}
 
   Dann, schätzen wir die zwei Summen separat ab.
@@ -437,11 +439,11 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
   \end{align*}
 
   Nun gilt es, die Vorbemerkungen des Beweises von dem originalem Theorem 4.11 nachzubauen.
-  Weil $v \in \in H_D^1(\Omega)$ beliebig war, folgt
+  Weil $v \in H_D^1(\Omega)$ beliebig war, folgt
 
   \begin{align*}
     \implies
-    \sup_{w \in H_D^1(\Omega)}
+    \sup_{w \in H_D^1(\Omega) \setminus \{0\}}
     \frac
     {
       R_h(w)
