@@ -41,11 +41,76 @@
 				\max\{k \in \N : p_y^k \mid x \} &, \text{sonst}
 				\end{cases}
 				\end{align*}
-				betrachten. $(x)_y$ ist also der $y$-te Exponent der Primzahl in der Primfaktorzerlegung von $x$. Es gilt
+				betrachten. $(x)_y$ ist also der Exponent der $y$-ten Primzahl in der Primfaktorzerlegung von $x$. Es gilt
 				\begin{align*}
 				f(\vec{x},y) = \pbraces{\hat{f}(\vec{x}, y + 1)}_{y + 1} - 1.
 				\end{align*}
-				Zu zeigen bleibt, dass obige Funktion primitiv rekursiv ist. Haben wir das in der VO gemacht, oder wurde das für die Übung ausgelassen?
+				Zu zeigen bleibt, dass obige Funktion primitiv rekursiv ist.
+				Dafür zeigen wir zunächst, dass die Menge aller Primzahlen primitiv rekursiv
+				ist. Wir wissen bereits, dass
+				\begin{align*}
+					\div: (n,k) \mapsto (q,r) \quad \text{sodass } qk + r = n, 0 \leq r < k
+				\end{align*}
+				primitiv rekursiv ist und somit auch
+				\begin{align*}
+					\mathrm{div}: (n,k) \mapsto \chi_{\{0\}}(\Pi_2^2(\div(n,k))).
+				\end{align*}
+				Es gilt also $\mathrm{div}(n,k) = 1$ genau dann, wenn $k | n$ und $0$ sonst.
+				Damit ist auch
+				\begin{align*}
+					g: (n,z) \mapsto \sum_{k=1}^z \div(n,k)
+				\end{align*}
+				primitiv rekursiv, und wir erhalten mit $\tau(x) = g(x,x)$
+				\begin{align*}
+					\chi_\P(x) = \chi_{=}(\tau(x), 2)
+				\end{align*}
+				ist primitiv rekursiv, also sind die Primzahlen als Menge primitiv rekursiv. \\
+				Definiere den beschränkten Minimierungs-Operator
+				\begin{itemize}
+					\item für Funktionen:
+						\begin{align*}
+							\mu y \leq z(f(n_1,\dots,n_k,y) = 0) :=
+							\begin{cases}
+								\min\{y \leq z: f(n_1,\dots,n_k,y) = 0\} & \exists y \leq z: f(n_1,\dots,n_k,y) = 0 \\
+								z + 1 & \text{sonst}
+							\end{cases}.
+						\end{align*}
+					\item für Relationen:
+					\begin{align*}
+						\mu y \leq z(R(n_1,\dots,n_k,y)) :=
+						\begin{cases}
+							\min\{y \leq z: R(n_1,\dots,n_k,y)\} & \exists y \leq z: R(n_1,\dots,n_k,y) \\
+							z + 1 & \text{sonst}
+						\end{cases}.
+					\end{align*}
+
+				\end{itemize}
+
+				Jetzt verwenden wir Theorem aus dem Internet: \\
+				Wenn $f$ primitiv rekursiv, bzw. $R$ primitiv rekursiv als Relation ist,
+				dann auch $g(n_1,\dots,n_k,z) := \mu y \leq z(f(n_1,\dots,n_k,y) = 0)$,
+				bzw $g(n_1,\dots,n_k,z) := \mu y \leq z(R(n_1,\dots,n_k,y))$. \\
+				Jetzt haben wir alles gesammelt, um zu zeigen, dass die Funktion
+				$\varphi_{prim}(k)$, welche $k$ auf die $k$-te Primzahl abbildet,
+				primitiv rekursiv ist. Die Relation
+				\begin{align*}
+					R(m,y):  \chi_\P(y) = 1 \land m < y
+				\end{align*}
+				ist als Schnitt zweier primitiv rekursiver Relationen wieder rekursiv.
+				Mit der oberen Schranke $\varphi_{prim}(n+1) \leq 2^{2^n}$ erhalten wir für
+				\begin{align*}
+					g(m,z) := \mu y \leq z(\chi_\P(y) = 1 \land m < y)
+				\end{align*}
+				$g(\varphi_{prim}(n),z) = \varphi_{prim}(n+1)$ mit $z \geq 2^{2^n}$. \\
+				Damit haben wir eine primitiv rekursive Darstellung für $\varphi_{prim}$:
+				\begin{align*}
+					\varphi_{prim}(0) &= 1 \\
+					\varphi_{prim}(n + 1) &= g(\varphi_{prim}(n),2^{2^n}).
+				\end{align*}
+				Jetzt können wir $(n,k) \mapsto (n)_k$ primitv rekursiv beschreiben durch
+				\begin{align*}
+					(n)_k = \mu y \leq n(\mathrm{div}(n,\varphi_{prim}(k)^y) - 1 = 0)
+				\end{align*}
 		\end{enumerate}
 	\item Kann man hier den Beweis aus (a) nicht direkt übernehmen?
 \end{enumerate}
