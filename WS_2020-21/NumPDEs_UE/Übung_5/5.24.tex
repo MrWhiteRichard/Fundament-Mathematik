@@ -48,7 +48,58 @@ der gemittelte Gradient von $u_h$.
 
 \begin{solution}
 
-\phantom{}
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Erinnern wir uns daran, was es heißt zuverlässig und effizient zu sein. Es gilt zu zeigen
+
+  \begin{align*}
+    \norm[H^1(\Omega)]{u - u_h} &\leq C_{\text{rel}}~ \eta_{ZZ} \\
+    C_{\text{eff}}~ \eta_{ZZ} &\leq \norm[H^1(\Omega)]{u - u_h}
+  \end{align*}
+
+  Um die Effizienz zu zeigen können wir \ref{ineq_grad} direkt verwenden:
+
+  \begin{align*}
+    \eta_{ZZ}
+    &=
+    \norm[L^2(\Omega)]{\nabla u_h - \tilde{v}_h}
+    \leq
+    \norm[L^2(\Omega)]{\nabla u - \nabla u_h} + \norm[L^2(\Omega)]{\nabla u - \tilde{v}_h}
+    \stackrel{\ref{ineq_grad}}{\leq}
+    (1 + \alpha) \norm[L^2(\Omega)]{\nabla u - \nabla u_h} \\
+    &\leq
+    (1 + \alpha) \norm[H^1(\Omega)]{u - u_h}
+  \end{align*}
+
+  Für die Zuverlässigkeit multiplizieren wir \ref{ineq_grad} mit $-1$ und sehen dadurch
+
+  \begin{align*}
+    \norm[L^2(\Omega)]{\nabla u - \nabla u_h} - \norm[L^2(\Omega)]{\nabla u - \tilde{v}_h}
+    \geq
+    (1 - \alpha) \norm[L^2(\Omega)]{\nabla u - \nabla u_h}
+  \end{align*}
+
+  Damit, sowie mit der Poincare-Ungleichung schätzen wir nun ab:
+  \includegraphicsboxed{PDEs/PDEs_-_Satz_5-11_(Poincare-Ungleichung)}
+  \begin{align*}
+    \norm[H^1{\Omega}]{u - u_h}
+    &=
+    \sqrt{\norm[L^2(\Omega)]{u - u_h}^2 + \norm[L^2(\Omega)]{\nabla u - \nabla u_h}^2}
+    \leq
+    \underbrace{\sqrt{(1+C_p^2)}}_{:=C} \norm[L^2(\Omega)]{\nabla u - \nabla u_h} \\
+    &\leq
+    \frac{C}{1-\alpha} \Big(
+      \norm[L^2(\Omega)]{\nabla u - \nabla u_h} - \norm[L^2(\Omega)]{\nabla u - \tilde{v}_h}
+    \Big) \\
+    &\leq
+    \frac{C}{1-\alpha} \Big(
+      \norm[L^2(\Omega)]{\nabla u - \tilde{v}_h} + \norm[L^2(\Omega)]{\nabla u_h - \tilde{v}_h} - \norm[L^2(\Omega)]{\nabla u - \tilde{v}_h}
+      \Big)
+    =
+    \frac{C}{1-\alpha} \eta_{ZZ}
+  \end{align*}
+
+  \item Siehe ipynb-File.
+\end{enumerate}
 
 \end{solution}
 
