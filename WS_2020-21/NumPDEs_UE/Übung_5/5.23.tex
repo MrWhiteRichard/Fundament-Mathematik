@@ -3,6 +3,8 @@
 \begin{exercise}
 
 Beweisen Sie die Aussagen aus Ex. 29 und Ex. 30 des Vorlesungsskriptes.
+\includegraphicsunboxed{NumPDEs/NumPDEs - Exercise 29}
+\includegraphicsunboxed{NumPDEs/NumPDEs - Exercise 30}
 
 \end{exercise}
 
@@ -10,8 +12,63 @@ Beweisen Sie die Aussagen aus Ex. 29 und Ex. 30 des Vorlesungsskriptes.
 
 \begin{solution}
 
-\phantom{}
+\textit{Aufgabe 29.}
 
+Dem Hinweis nach definieren wir
+
+\begin{align*}
+  \mathcal{X}_\infty
+  :=
+  \overline{\bigcup_{l=0}^\infty \mathcal{X}_l}
+  \subset H
+\end{align*}
+
+Um die Aussage zu zeigen werden wir nun Proposition $1.7$ benutzen.
+
+\includegraphicsunboxed{NumPDEs/NumPDEs - Proposition 1.7}
+
+Da $\bigcup_{l \in \N} \mathcal{X}_l$ nach Konstruktion dicht in $\mathcal{X}_\infty$ liegen gilt es also zu zeigen:
+
+\begin{align*}
+  \forall v \in \bigcup_{l \in \N} \mathcal{X}_l: ~
+  \lim_{l \to \infty} \min_{v_l \in \mathcal{X}_l}
+  \norm[H]{v - v_l} = 0
+\end{align*}
+
+Sei also $v \in \bigcup_{l \in \N} \mathcal{X}_l$, dann gilt sicher
+
+\begin{align*}
+  \exists k \in \N: v \in \mathcal{X}_k,
+\end{align*}
+
+Weil diese Unterräume bezüglich $\subset$ aufsteigend Angeordnet sind sogar
+
+\begin{align*}
+  \forall l \geq k: v \in \mathcal{X}_l
+\end{align*}
+
+Damit schließen wir, da das Minimum auf einem kleineren Raum stets größer ist
+
+\begin{align*}
+  \forall l \geq k: \quad
+  \min_{v_l \in \mathcal{X}_l} \norm[H]{v - v_l}
+  \leq
+  \min_{v_k \in \mathcal{X}_k} \norm[H]{v - v_k}
+  \leq
+  \norm[H]{v-v}
+  =
+  0
+\end{align*}
+
+Also gilt nach Proposition $1.7$:
+
+\begin{align*}
+  \lim_{l \to \infty} \norm[H]{U_\infty - \underbrace{\mathbb{G}_l U_\infty}_{U_l}}
+  =
+  0
+\end{align*}
+
+\textit{Aufgabe 30.}
 \end{solution}
 
 % --------------------------------------------------------------------------------
