@@ -91,16 +91,17 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
         \mathrm{CSB}
       }{\leq}
       \Int[\Omega]{\norm[A]{\nabla u} \norm[A]{\nabla v} + |b| |\nabla u| v + c u v}{x} \\
-      & \stackrel
-      {
-        \mathrm{CSB}
-      }{\leq}
+      & \leq
       \beta^2 \Int[\Omega]{|\nabla u| |\nabla v|}{x}
       +
       \norm[L^\infty]{b} \Int[\Omega]{|\nabla u| |v|}{x}
       +
       c \Int[\Omega]{u v}{x} \\
-      & \leq
+      &\stackrel
+      {
+        \mathrm{CSB}
+      }{
+      \leq}
       \beta^2 \norm[L^2(\Omega)]{\nabla u} \norm[L^2(\Omega)]{\nabla v}
       +
       \norm[L^\infty(\Omega)]{b} \norm[L^2(\Omega)]{\nabla u} \norm[L^2(\Omega)]{v}
@@ -117,7 +118,7 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
     \begin{align*}
       \Div(u^2 b) = \nabla(u^2) b + u^2 \Div b = 2 u b \nabla u + u^2 \Div b
       \implies
-      u b \cdot \nabla u = \frac{1}{2} (\Div(u^2 b) - u \Div b),
+      u b \cdot \nabla u = \frac{1}{2} (\Div(u^2 b) - u^2 \Div b),
     \end{align*}
 
     und der Integral-Satz von Gauß, dass ($u \in H_0^1(\Omega)$)
@@ -142,7 +143,7 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
       =
       \Int[\Omega]{\norm[A]{\nabla u}^2 + u b \cdot \nabla u + c u^2}{x} \\
       & \geq
-      \Int[\Omega]{\alpha^2 |\nabla u|^2 + \frac{1}{2} (\Div(u^2 b) - u \Div b) + c u^2}{x} \\
+      \Int[\Omega]{\alpha^2 |\nabla u|^2 + \frac{1}{2} (\Div(u^2 b) - u^2 \Div b) + c u^2}{x} \\
       & =
       \alpha^2 \norm[L^2(\Omega)]{\nabla u}^2
       +
