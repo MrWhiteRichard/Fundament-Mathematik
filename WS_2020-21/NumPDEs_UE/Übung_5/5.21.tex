@@ -2,31 +2,167 @@
 
 \begin{exercise}
 
-Sei $A \in \R^{2\times2}$ eine symmetrische, positiv definite Matrix, $b \in \R^2$
-und $c > 0$ mit $c - \frac{1}{2}\Div(b) \geq 0$. \\
+Sei $A \in \R^{2 \times 2}$ eine symmetrische, positiv definite Matrix, $b \in \R^2$ und $c > 0$ mit $c - \frac{1}{2}\Div(b) \geq 0$.
 Weiter seien $\Omega \subset \R^2$ ein beschränktes Lipschitz-Gebiet und $f \in L^2(\Omega)$.
+
 \begin{enumerate}[label = \textbf{\alph*)}]
+
   \item Beweisen Sie, dass eine eindeutige schwache Lösung $u \in H_0^1(\Omega)$ von
+
   \begin{subequations}
     \begin{align}
       -\Div(A\nabla u) + b \cdot \nabla u + cu &= f \qquad \text{auf } \Omega, \label{eq:1A} \\
       u &= 0 \qquad \text{auf } \partial\Omega, \label{eq:1B}
     \end{align}
   \end{subequations}
+
   existiert.
-  \item Sei $u_h \in \mathcal{S}_0^1(\mathcal{T})$ die eindeutige, schwache
-  Finite-Elemente Lösung. Konstruieren Sie einen residualen Fehlerschätzer für
-  $\|u-u_h\|_{H_0^1(\Omega)}$.
+
+  \item Sei $u_h \in \mathcal{S}_0^1(\mathcal{T})$ die eindeutige, schwache Finite-Elemente Lösung.
+  Konstruieren Sie einen residualen Fehlerschätzer für
+  $\norm[H_0^1(\Omega)]{u - u_h}$.
+
   \item Beweisen Sie, dass dieser Fehlerschätzer zuverlässig ist.
+
 \end{enumerate}
-\textit{Hinweis:} Zeigen Sie zuerst, dass die zugehörige Bilinearform elliptisch ist.
+
+\textit{Hinweis:}
+Zeigen Sie zuerst, dass die zugehörige Bilinearform elliptisch ist.
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-\phantom{}
+Wir stellen zuerst das Funktional und die Bilinearform für die schwache Formlierung der PDE (1) auf.
+$\Forall v \in H_0^1(\Omega):$
+
+\begin{align*}
+  F(v)
+  & :=
+  \Int[\Omega]{f v}{x}
+  \stackrel{!}{=}
+  \Int[\Omega]{(-\Div(A \nabla u) + b \cdot \nabla u + c u) v}{x}
+  =
+  -\Int[\Omega]{\Div(A \nabla u) v}{x}
+  +
+  \Int[\Omega]{(b \cdot \nabla u + c u) v}{x} \\
+  & \stackrel
+  {
+    \mathrm{PI}
+  }{=}
+  \Int[\Omega]{A \nabla u \cdot \nabla v}
+  -
+  \underbrace
+  {
+    \Int[\partial \Omega]{(A \nabla u \cdot \nu) v}{s}
+  }_0
+  +
+  \Int[\Omega]{(b \cdot \nabla u + c u) v}{x}
+  =
+  \Int[\Omega]{(\nabla u, \nabla v)_A + (b \cdot \nabla u + c u) v}{x} \\
+  & =:
+  a(u, v)
+\end{align*}
+
+Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven Definitheit von $A$ wohldefinierte, Energie-Norm $\norm[A]{\cdot}$ äquivalent zur Euklid-Norm $|\cdot|$.
+
+\begin{align*}
+  \implies
+  \Exists \alpha, \beta > 0:
+  \alpha |\cdot| \leq \norm[A]{\cdot} \leq \beta |\cdot|
+\end{align*}
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+
+  \item Wir wollen Exercise 7.2 (Lemma of Lax-Milgram) auf $F$ und $a$ anwenden.
+  
+  \begin{enumerate}[label = \arabic*.]
+
+    \item $a$ stetig:
+    
+    \begin{align*}
+      a(u, v)
+      & =
+      \Int[\Omega]{(\nabla u, \nabla v)_A + (b \cdot \nabla u + c u) v}{x}
+      \stackrel
+      {
+        \mathrm{CSB}
+      }{\leq}
+      \Int[\Omega]{\norm[A]{\nabla u} \norm[A]{\nabla v} + |b| |\nabla u| v + c u v}{x} \\
+      & \stackrel
+      {
+        \mathrm{CSB}
+      }{\leq}
+      \beta^2 \Int[\Omega]{|\nabla u| |\nabla v|}{x}
+      +
+      \norm[L^\infty]{b} \Int[\Omega]{|\nabla u| |v|}{x}
+      +
+      c \Int[\Omega]{u v}{x} \\
+      & \leq
+      \beta^2 \norm[L^2(\Omega)]{\nabla u} \norm[L^2(\Omega)]{\nabla v}
+      +
+      \norm[L^\infty(\Omega)]{b} \norm[L^2(\Omega)]{\nabla u} \norm[L^2(\Omega)]{v}
+      +
+      c \norm[L^2(\Omega)]{u} \norm[L^2(\Omega)]{v} \\
+      & \leq
+      \max \Bbraces{\beta^2, \norm[L^\infty(\Omega)]{b}, c} \norm[H^1(\Omega)]{u} \norm[H^1(\Omega)]{v}
+    \end{align*}
+
+    \item $a$ elliptisch:
+    
+    Die Produktregel für $\Div$ liefert uns
+    
+    \begin{align*}
+      \Div(u^2 b) = \nabla(u^2) b + u^2 \Div b = 2 u b \nabla u + u^2 \Div b
+      \implies
+      u b \cdot \nabla u = \frac{1}{2} (\Div(u^2 b) - u \Div b),
+    \end{align*}
+
+    und der Integral-Satz von Gauß, dass ($u \in H_0^1(\Omega)$)
+
+    \begin{align*}
+      \Int[\Omega]{\Div (u^2 b)}{x}
+      =
+      \Int[\partial \Omega]{u^2 b \cdot \nu}{s}
+      =
+      0.
+    \end{align*}
+
+    Wir verwenden die Poincaré-Ungleichung.
+
+    \includegraphicsboxed{PDEs/PDEs_-_Satz_5-11_(Poincare-Ungleichung).png}
+
+    \begin{align*}
+      \implies
+      a(u, u)
+      & =
+      \Int[\Omega]{(\nabla u, \nabla u)_A + (b \cdot \nabla u + c u) v}{x}
+      =
+      \Int[\Omega]{\norm[A]{u}^2 + u b \cdot \nabla u + c u^2}{x} \\
+      & \geq
+      \Int[\Omega]{\alpha^2 |\nabla u|^2 + \frac{1}{2} (\Div(u^2 b) - u \Div b) + c u^2}{x} \\
+      & =
+      \alpha^2 \norm[L^2(\Omega)]{\nabla u}^2
+      +
+      \frac{1}{2} \Int[\partial \Omega]{u^2 b \cdot \nu}{s}
+      +
+      \underbrace
+      {
+        \Int[\Omega]{\pbraces{c - \frac{1}{2} \Div b} u^2}{x}
+      }_{
+        \geq 0
+      } \\
+      & \geq
+      \alpha^2 \norm[L^2(\Omega)]{\nabla u}^2
+      \geq
+      \pbraces{\frac{\alpha}{C_P}}^2 \norm[H^1(\Omega)]{u}^2
+    \end{align*}
+
+  \end{enumerate}
+
+\end{enumerate}
 
 \end{solution}
 
