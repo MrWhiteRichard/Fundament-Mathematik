@@ -19,7 +19,7 @@ Dem Hinweis nach definieren wir
 \begin{align*}
   \mathcal{X}_\infty
   :=
-  \overline{\bigcup_{l=0}^\infty \mathcal{X}_l}
+  \overline{\bigcup_{\ell=0}^\infty \mathcal{X}_\ell}
   \subset H
 \end{align*}
 
@@ -27,15 +27,15 @@ Um die Aussage zu zeigen werden wir nun Proposition $1.7$ benutzen.
 
 \includegraphicsunboxed{NumPDEs/NumPDEs - Proposition 1.7}
 
-Da $\bigcup_{l \in \N} \mathcal{X}_l$ nach Konstruktion dicht in $\mathcal{X}_\infty$ liegen gilt es also zu zeigen:
+Da $\bigcup_{\ell \in \N} \mathcal{X}_\ell$ nach Konstruktion dicht in $\mathcal{X}_\infty$ liegen gilt es also zu zeigen:
 
 \begin{align*}
-  \forall v \in \bigcup_{l \in \N} \mathcal{X}_l: ~
-  \lim_{l \to \infty} \min_{v_l \in \mathcal{X}_l}
-  \norm[H]{v - v_l} = 0
+  \forall v \in \bigcup_{\ell \in \N} \mathcal{X}_\ell: ~
+  \lim_{\ell \to \infty} \min_{v_\ell \in \mathcal{X}_\ell}
+  \norm[H]{v - v_\ell} = 0
 \end{align*}
 
-Sei also $v \in \bigcup_{l \in \N} \mathcal{X}_l$, dann gilt sicher
+Sei also $v \in \bigcup_{\ell \in \N} \mathcal{X}_\ell$, dann gilt sicher
 
 \begin{align*}
   \exists k \in \N: v \in \mathcal{X}_k,
@@ -44,14 +44,14 @@ Sei also $v \in \bigcup_{l \in \N} \mathcal{X}_l$, dann gilt sicher
 Weil diese Unterräume bezüglich $\subset$ aufsteigend Angeordnet sind sogar
 
 \begin{align*}
-  \forall l \geq k: v \in \mathcal{X}_l
+  \forall \ell \geq k: v \in \mathcal{X}_\ell
 \end{align*}
 
 Damit schließen wir, da das Minimum auf einem kleineren Raum stets größer ist
 
 \begin{align*}
-  \forall l \geq k: \quad
-  \min_{v_l \in \mathcal{X}_l} \norm[H]{v - v_l}
+  \forall \ell \geq k: \quad
+  \min_{v_\ell \in \mathcal{X}_\ell} \norm[H]{v - v_\ell}
   \leq
   \min_{v_k \in \mathcal{X}_k} \norm[H]{v - v_k}
   \leq
@@ -63,12 +63,59 @@ Damit schließen wir, da das Minimum auf einem kleineren Raum stets größer ist
 Also gilt nach Proposition $1.7$:
 
 \begin{align*}
-  \lim_{l \to \infty} \norm[H]{U_\infty - \underbrace{\mathbb{G}_l U_\infty}_{U_l}}
+  \lim_{\ell \to \infty} ||U_\infty - \underbrace{\mathbb{G}_\ell U_\infty}_{U_\ell}||_H
   =
   0
 \end{align*}
 
 \textit{Aufgabe 30.}
+
+Definieren wir $\mathcal{X}_\infty$ so wie im Vorherigen Aufgabenteil. Dann gilt es zu zeigen
+
+\begin{align*}
+  \forall u \in H^1_D(\Omega):
+  \exists (u_k)_{k \in \N} \in \Big(\bigcup_{\ell \in \N} \mathcal{S}^1_D(\mathcal{T}_\ell)\Big)^\N:
+  \quad
+  \lim_{k \to \infty} \norm[H^1(\Omega)]{u - u_k} = 0
+\end{align*}
+
+Da unsere Triangulierung regulär ist, gilt, wenn wir mit $h_0 := \max_{T \in \mathcal{T}_0} \diam T$ bezeichnen
+
+\begin{align*}
+  \forall \ell \in \N:~
+  h_\ell
+  =
+  \frac{h_0}{2^\ell}
+\end{align*}
+
+Es gilt ebenfalls
+
+\begin{align*}
+  \forall \ell \in \N:~
+  \sigma(\mathcal{T}_\ell) = \sigma(\mathcal{T}_0)
+\end{align*}
+
+Für beliebiges $u \in H^1_D(\Omega) = \overline{C^\infty_D(\overline{\Omega})}^{||\cdot||_{H^1(\Omega)}}$ wollen wir nun wieder Proposition $1.7$ verwenden. Unseren dichten Teilraum für den wir die Approximationseigenschaft zeigen wollen haben wir nun schon bestimmt. Zusätzlich benötigen wir noch Korollar $3.6$ (wobei hier $C^\infty_D(\overline{\Omega}) \subset H^2(\Omega) \cap H^1_D(\Omega)$ mit eingeht).
+
+\includegraphicsunboxed{NumPDEs/NumPDEs - Corollary 3.6}
+
+Sei nun also $v \in C^\infty_D(\overline{\Omega})$, dann erhalten wir
+
+\begin{align*}
+  \min_{v_\ell \in \mathcal{S}^1_D(\mathcal{T}_\ell)} \norm[H^1(\Omega)]{v - v_\ell}
+  \stackrel{3.6}{\leq}
+  C \sigma(\mathcal{T}_\ell)\norm[L^2(\Omega)]{h_\ell D^2v}
+  =
+  C \sigma(\mathcal{T}_0) \frac{h_0}{2^\ell} \norm[L^2(\Omega)]{D^2v}
+  \stackrel{\ell \to \infty}{\longrightarrow}
+  0
+\end{align*}
+
+Damit gilt nach Proposition $1.7$ nun auch
+
+\begin{align*}
+  \lim_{k \to \infty} ||u - \underbrace{\mathbb{G}_ku}_{=:u_k}||_{H^1(\Omega)} = 0
+\end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
