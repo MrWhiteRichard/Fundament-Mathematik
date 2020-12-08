@@ -162,6 +162,380 @@ Weil $\R^2$ endlich-dimensional ist, ist die, wegen der Symmetrie und positiven 
 
   \end{enumerate}
 
+  \item Siehe \textbf{c)} ...
+  
+  \item Wir formulieren ein Analogon zu Theorem 4.11.
+  
+  \includegraphicsboxed{NumPDEs/NumPDEs - Theorem 4.11.png}
+
+  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \textbf{Theorem 4.11. (Hier könnte Ihre Werbung stehen!)}
+    Der Fehlerschätzer
+
+    \begin{align*}
+      \eta
+      :=
+      \pbraces
+      {
+        \norm[L^2(\Omega)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}^2
+        +
+        \norm[L^2(\mathcal{E}_\Omega)]{h_\mathcal{E}^{1/2} \dbbraces{\partial_n u_h}}^2
+      }^{1/2}
+    \end{align*}
+
+    genügt der Zuverlässigkeits-Abschätzung
+
+    \begin{align*}
+      \norm[H^1(\Omega)]{u - u_h}
+      \leq
+      C \eta,
+    \end{align*}
+
+    wobei die Konstante $C > 0$ von der $\gamma$-Form-Regularität von $\mathcal{T}$ abhängt.
+
+  \end{tcolorbox}
+
+  \textbf{Beweis.}
+  Für alle $w \in H_D^1(\Omega)$ und $T \in \mathcal{T}$, führt partielle Integration, und die Tatsache, dass $u_h \in \mathcal{S}^1(\Omega)$ und $A$ konstant ist, zu
+
+  \begin{multline*}
+    \Int[T]{(\nabla u_h, \nabla w)_A + (b \cdot \nabla u_h + c u_h) w}{x}
+    =
+    \Int[T]{A \nabla u_h \cdot \nabla w}{x}
+    +
+    \Int[T]{(b \cdot \nabla u_h + c u_h) w}{x} \\
+    \stackrel
+    {
+      \mathrm{PI}
+    }{=}
+    -\Int[T]
+    {
+      \underbrace
+      {
+        \Div(A \nabla u_h)
+      }_0
+      w
+    }{x}
+    +
+    \Int[\partial T]{\partial_n(A u_h) w}{s}
+    +
+    \Int[T]{(b \cdot \nabla u_h + c u_h) w}{x}.
+  \end{multline*}
+
+  Wir erinnern uns an die Definition vom \Quote{Sprung der Normalen-Ableitung}.
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - (4.34).png}
+
+  \begin{align*}
+    \implies
+    R_h(w)
+    & :=
+    F(w) - a(u_h, w)
+    =
+    (f; w)_{L^2(\Omega)}
+    -
+    \sum_{T \in \mathcal{T}}
+    \Int[T]{(\nabla u_h, \nabla w)_A + (b \cdot \nabla u_h + c u_h) w}{x} \\
+    & =
+    (f - b \cdot \nabla u_h - c u_h; w)_{L^2(\Omega)}
+    -
+    \sum_{T \in \mathcal{T}}
+    (\partial_n (A u_h); w)_{L^2(\partial T)} \\
+    & =
+    \sum_{T \in \mathcal{T}}
+    (f - b \cdot \nabla u_h - c u_h; w)_{L^2(T)} \\
+    & -
+    \underbrace
+    {
+      \sum_{E \in \mathcal{E}_D}
+      (\partial_{n_E^-} (A u_h); w)_{L^2(E)}
+    }_0
+    -
+    \sum_{E \in \mathcal{E}_\Omega}
+    (\dbbraces{\partial_n (A u_h)}_E; w)_{L^2(E)} \\
+    & \stackrel
+    {
+      \mathrm{CSB}
+    }{\leq}
+    \sum_{T \in \mathcal{T}}
+    \norm[L^2(T)]{f - b \cdot \nabla u_h - c u_h}
+    \norm[L^2(T)]{w}
+    +
+    \sum_{E \in \mathcal{E}_\Omega}
+    \norm[L^2(E)]{\dbbraces{\partial_n u_h}_E}
+    \norm[L^2(E)]{w}
+  \end{align*}
+
+  Für beliebiges $v \in H_D^1(\Omega)$, wählen wir nun $w = v - H_h v$ und bemerken, dass $R_h(v) = R_h(w)$, laut Galerkin Orthogonalität.
+
+  \begin{align*}
+    R_h(w)
+    =
+    R_h(v - J_h v)
+    =
+    R_h(v) - R_h(J_h v)
+    =
+    R_h(v) - \underbrace{a(u - u_h, J_h v)}_0
+  \end{align*}
+
+  Dann, schätzen wir die zwei Summen separat ab.
+
+  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \centering
+    \includegraphics[width = 0.75 \textwidth]{NumPDEs/NumPDEs - Theorem 4.9.1.png} \\
+    \includegraphics[width = 0.75 \textwidth]{NumPDEs/NumPDEs - Theorem 4.9.2.png}
+  \end{tcolorbox}
+
+  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \centering
+    \includegraphics[width = 0.75 \textwidth]{NumPDEs/NumPDEs - Lemma 4.3.1.png} \\
+    \includegraphics[width = 0.75 \textwidth]{NumPDEs/NumPDEs - Lemma 4.3.2.png}
+  \end{tcolorbox}
+
+  Die Approximations-Eigenschaft des Clément-Operators $J_h$, d.h. Lemma 4.9 (v) und der letzte Unterpunkt von Lemma 4.3 implizieren
+
+  \begin{align*}
+    & \sum_{T \in \mathcal{T}}
+    \norm[L^2(T)]{f - (b \cdot \nabla u_h + c u_h)}
+    \norm[L^2(T)]{v - J_h v} \\
+    & \stackrel
+    {
+      \mathrm{4.9 (v)}
+    }{\leq}
+    \sum_{T \in \mathcal{T}}
+    \norm[L^2(T)]{f - (b \cdot \nabla u_h + c u_h)}
+    C_1 h_T
+    \norm[L^2(\Omega_T)]{\nabla v} \\
+    & \stackrel
+    {
+      \mathrm{CSB}
+    }{\leq}
+    C_1
+    \pbraces
+    {
+      \sum_{T \in \mathcal{T}}
+      \norm[L^2(T)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}^2
+    }^{1/2}
+    \pbraces
+    {
+      \sum_{T \in \mathcal{T}}
+      \norm[L^2(\Omega_T)]{\nabla v}^2
+    }^{1/2} \\
+    & \stackrel
+    {
+      \mathrm{4.3}
+    }{\leq}
+    C_1 C_2
+    \pbraces
+    {
+      \sum_{T \in \mathcal{T}}
+      \norm[L^2(T)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}^2
+    }^{1/2}
+    \pbraces
+    {
+      \sum_{T \in \mathcal{T}}
+      \norm[L^2(T)]{\nabla v}^2
+    }^{1/2} \\
+    & =
+    C_1 C_2
+    \norm[L^2(\Omega)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}
+    \norm[L^2(\Omega)]{\nabla v}
+  \end{align*}
+
+  Für jede Kante $E \in \mathcal{E}$, wählen wir ein arbiträres Element $T_E \in \mathcal{T}$ mit $E \in \mathcal{E}_{T_E}$.
+  Sei $\mathcal{E}_\ast \subset \mathcal{E}$ und $\psi \in L^2(E)$ für alle $E \in \mathcal{E}_\ast$.
+  Man erinnere sich an Lemma 4.10.
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Lemma 4.10.png}
+
+  Daher, zeigen die selben Argumente wie zuvor, dass
+
+  \begin{align*}
+    \sum_{E \in \mathcal{E}_\ast}
+    \norm[L^2(E)]{\psi}
+    \norm[L^2(E)]{v - J_h v}
+    & \stackrel
+    {
+      \mathrm{4.10}
+    }{\leq}
+    \sum_{E \in \mathcal{E}_\ast}
+    \norm[L^2(E)]{\psi}
+    C_3 h_E^{1/2}
+    \norm[L^2(\Omega_{T_E})]{\nabla v} \\
+    & \stackrel
+    {
+      \mathrm{CSB}
+    }{\leq}
+    C_3
+    \pbraces
+    {
+      \sum_{E \in \mathcal{E}_\ast}
+      \norm[L^2(E)]{h_\mathcal{E}^{1/2} \psi}^2
+    }^{1/2}
+    \pbraces
+    {
+      \sum_{E \in \mathcal{E}_\ast}
+      \norm[L^2(\Omega_{T_E})]{\nabla v}^2
+    }^{1/2} \\
+    & \stackrel{!}{\leq}
+    C_3
+    \pbraces
+    {
+      \sum_{E \in \mathcal{E}_\ast}
+      \norm[L^2(E)]{h_\mathcal{E}^{1/2} \psi}^2
+    }^{1/2}
+    \pbraces
+    {
+      3
+      \sum_{T \in \mathcal{T}}
+      \norm[L^2(T)]{\nabla v}^2
+    }^{1/2} \\
+    & =
+    \sqrt{3} C_3
+    \norm[L^2(\mathcal{E}_\ast)]{h_\mathcal{E}^{1/2} \psi}
+    \norm[L^2(\Omega)]{\nabla v},
+  \end{align*}
+
+  wobei wir bemerken, dass ein Element $T \in \mathcal{T}$ nur $= T_E$ sein kann auf höchstens $3$ Kanten.
+  Die Euklid-Norm ist zur Manhattan-Norm auf dem $\R^2$ äquivalent, vermöge $1$ bzw. $\sqrt{2}$.
+  Insgesamt sehen wir nun ($\psi := \dbbraces{\partial_n u_h}$ und $\mathcal{E}_\ast := \mathcal{E}_\Omega)$)
+
+  \begin{align*}
+    R_h(v)
+    & \leq
+    C_1 C_2
+    \norm[L^2(\Omega)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}
+    \norm[L^2(\Omega)]{\nabla v}
+    +
+    \sqrt{3} C_3
+    \norm[L^2(\mathcal{E}_\Omega)]{h_\mathcal{E}^{1/2} \dbbraces{\partial_n u_h}}
+    \norm[L^2(\Omega)]{\nabla v} \\
+    & \leq
+    \max \Bbraces{C_1 C_2, \sqrt{3} C_3}
+    \norm[L^2(\Omega)]{\nabla v}
+    \pbraces
+    {
+      \norm[L^2(\Omega)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}
+      +
+      \norm[L^2(\mathcal{E}_\Omega)]{h_\mathcal{E}^{1/2} \dbbraces{\partial_n u_h}}
+    } \\
+    & \leq
+    \max \Bbraces{C_1 C_2, \sqrt{3} C_3}
+    \norm[L^2(\Omega)]{\nabla v}
+    \sqrt{2}
+    \pbraces
+    {
+      \norm[L^2(\Omega)]{h_\mathcal{T} (f - b \cdot \nabla u_h - c u_h)}^2
+      +
+      \norm[L^2(\mathcal{E}_\Omega)]{h_\mathcal{E}^{1/2} \dbbraces{\partial_n u_h}}^2
+    }^{1/2} \\
+    & \leq
+    \sqrt{2}
+    \max \Bbraces{C_1 C_2, \sqrt{3} C_3}
+    \norm[L^2(\Omega)]{\nabla v}
+    \eta.
+  \end{align*}
+
+  Nun gilt es, die Vorbemerkungen des Beweises von dem originalem Theorem 4.11 nachzubauen.
+  Weil $v \in \in H_D^1(\Omega)$ beliebig war, folgt
+
+  \begin{align*}
+    \implies
+    \sup_{w \in H_D^1(\Omega)}
+    \frac
+    {
+      R_h(w)
+    }{
+      \norm[L^2(\Omega)]{\nabla w}
+    }
+    \leq
+    \sqrt{2}
+    \max \Bbraces{C_1 C_2, \sqrt{3} C_3}
+    \eta.
+  \end{align*}
+
+  Nachdem $u \in H_D^1(\Omega)$ ja eine schwache Lösung ist,
+
+  \begin{align*}
+    \implies
+    R_h(v)
+    =
+    F(v) - a(u_h, v)
+    =
+    \underbrace
+    {
+      F(v) - a(u, v)
+    }_0
+    +
+    a(u, v)
+    -
+    a(u_h, v)
+    =
+    a(u - u_h, v).
+  \end{align*}
+
+  Es seien $L$ die Stetigkeits- und $M$ die Elliptizitäts-Konstante von $a$.
+
+  \begin{multline*}
+    M \norm[H^1(\Omega)]{u - u_h}
+    =
+    \frac
+    {
+      M \norm[H^1(\Omega)]{u - u_h}^2
+    }{
+      \norm[H^1(\Omega)]{u - u_h}
+    }
+    \leq
+    \frac
+    {
+      M \norm[H^1(\Omega)]{u - u_h}^2
+    }{
+      \norm[L^2(\Omega)]{\nabla (u - u_h)}
+    }
+    \leq
+    \frac
+    {
+      a(u - u_h, u - u_h)
+    }{
+      \norm[L^2(\Omega)]{\nabla (u - u_h)}
+    } \\
+    =
+    \frac
+    {
+      R_h(u - u_h)
+    }{
+      \norm[L^2(\Omega)]{\nabla (u - u_h)}
+    }
+    \leq
+    \sup_{w \in H_D^1(\Omega)}
+    \frac
+    {
+      R_h(w)
+    }{
+      \norm[L^2(\Omega)]{\nabla w}
+    }
+  \end{multline*}
+
+  Damit erhalten wir nun endlich unsere finale Abschätzung.
+
+  \begin{align*}
+    C
+    :=
+    \frac
+    {
+      \sqrt{2}
+      \max \Bbraces{C_1 C_2, \sqrt{3} C_3}
+    }{
+      M
+    }
+    \implies
+    \norm[H^1(\Omega)]{u - u_h}
+    \leq
+    C \eta
+  \end{align*}
+
+  Die (nicht versteckte) Konstante $C$ hängt nur ab (von dem Clemént-Operator $J_h$ und) von der $\gamma$-Form-Regularität von $\mathcal{T}$.
+
 \end{enumerate}
 
 \end{solution}
