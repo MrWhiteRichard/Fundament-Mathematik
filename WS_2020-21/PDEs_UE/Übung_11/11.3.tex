@@ -2,17 +2,24 @@
 
 \begin{exercise}
 
-Sei $\Omega \subset \mathbb{R}^{n}$ ein beschränktes Gebiet mit $\partial \Omega \in C^{1}$ und sei $u$ eine klassische Lösung des parabolischen Problems
-$$
-\left\{\begin{array}{ll}
-u_{t}-\Delta u+c u=0 & \text { in } \Omega \times(0, \infty), \\
-u=0 & \text { auf } \partial \Omega \times(0, \infty), \\
-u(\cdot, 0)=u_{0} & \text { in } \Omega,
-\end{array}\right.
-$$
-wobei $u_{0} \geq 0$ in $\Omega$ und $c \in L^{\infty}(\Omega) .$ Zeigen Sie: $u \geq 0$ in $\Omega \times(0, \infty) .$ Achtung: $c$ ist also nicht notwendig nichtnegativ!
+Sei $\Omega \subset \R^n$ ein beschränktes Gebiet mit $\partial \Omega \in C^1$ und sei $u$ eine klassische Lösung des parabolischen Problems
 
-\textit{Hinweis: Welche Differentialgleichung löst $v=\exp (\lambda t) u ?$}
+\begin{align*}
+  \begin{cases}
+    u_t - \Delta u + c u = 0 & \text{in}~ \Omega \times (0, \infty), \\
+    u = 0                    & \text{auf}~ \partial \Omega \times (0, \infty), \\
+    u(\cdot, 0) = u_0        & \text{in}~ \Omega,
+  \end{cases}
+\end{align*}
+
+wobei $u_0 \geq 0$ in $\Omega$ und $c \in L^\infty(\Omega)$.
+Zeigen Sie:
+$u \geq 0$ in $\Omega \times (0, \infty)$.
+Achtung:
+$c$ ist also nicht notwendig nichtnegativ!
+
+\textit{Hinweis:}
+Welche Differentialgleichung löst $v = \exp(\lambda t) u$?
 
 \end{exercise}
 
@@ -20,33 +27,74 @@ wobei $u_{0} \geq 0$ in $\Omega$ und $c \in L^{\infty}(\Omega) .$ Zeigen Sie: $u
 
 \begin{solution}
 
-Wir betrachten zunächst
+Seien $T > 0$, $G_T = \Omega \times (0, T)$ ein beschränkter Zylinder und $\Gamma_T$ dessen Mantel $\cup$ Grundfläche.
+
+Gemäß Hinweis wählen wir die Substitution $v := \exp(\lambda t)$.
+Weil $u$ eine klassische Lösung ist, gilt $\Delta u = u_t + c u$ in $\Omega \times (0, \infty)$.
 
 \begin{align*}
-  v_{t} = \exp (\lambda t) u_t + \lambda \exp(\lambda t) = \exp (\lambda t) u_t + \lambda v
+  \implies
+  v_t
+  & =
+  (\exp(\lambda t) u)_t
+  =
+  \exp (\lambda t) u_t
+  +
+  \lambda \exp(\lambda t) u
+  =
+  \exp (\lambda t) u_t + \lambda v, \\
+  \Delta v
+  & =
+  \Delta (\exp(\lambda t) u)
+  =
+  \exp(\lambda t) \Delta u
+  =
+  \exp(\lambda t) (u_t + c u)
+  =
+  \exp(\lambda t) u_t + \exp(\lambda t) c u
+  =
+  \exp(\lambda t) u_t + c v
 \end{align*}
 
-und (die folgende zweite Gleichheit folgt, da $u$ Lösung ist)
+Fügen wir beides zusammen erhalten wir folgende PDE.
+(Die RWBs und AWBs interessieren uns dabei nicht.)
 
 \begin{align*}
-  \Delta v = \exp (\lambda t) \Delta u = \exp (\lambda t) (u_{t} + cu) = \exp (\lambda t) u_{t} + cv
+  v_t - \Delta v + (c - \lambda) v
 \end{align*}
 
-Fügen wir beides zusammen erhalten Wir
+Darauf wollen wir Satz 6.31 (Schwaches Maximumprinzip für $c \geq 0$) anwenden.
+
+\begin{tcolorbox}[standard jigsaw, opacityback = 0]
+  \centering
+  \includegraphics
+  [width = 0.75 \textwidth]
+  {PDEs/PDEs_-_Satz_6-31-1_(Schwaches_Maximumprinzip_für_c_geq_0).png} \\
+  \includegraphics
+  [width = 0.75 \textwidth]
+  {PDEs/PDEs_-_Satz_6-31-2_(Schwaches_Maximumprinzip_für_c_geq_0).png}
+\end{tcolorbox}
+
+Wählen wir $\lambda := - \norm[L^\infty(\Omega)]{c}$, so ist $(c - \lambda) \geq 0$.
+Da $u$ klassische Lösung ist, muss $v \in C_{1}^{2}(G_T) \cap C^0(\overline{G_T})$.
+Wir können also tatsächlich das Schwache Minimumsprinzip auf $v$ anwenden.
 
 \begin{align*}
-  v_{t} - \Delta v + (c-\lambda)v = 0
+  \implies
+  & v = \exp(\lambda t) 0 = 0 ~\text{auf Mantel von}~ G_T, \\
+  & v = \exp(\lambda t) u_0 \geq 0 ~\text{auf Boden von}~ G_T \\
+  \implies
+  & v \geq 0 ~\text{auf}~ \Gamma_T \\
+  \stackrel{\mathrm{MP}}{\implies}
+  & v \geq \inf_{(x, t) \in G_T} v \geq \min \Bbraces{0, \inf_{(x, t) \in \Gamma_T}} = 0 ~\text{auf}~ G_T \\
+  \implies
+  & u = \exp(-\lambda t) v \geq 0 ~\text{auf}~ G_T
 \end{align*}
 
-Wählen wir nun $\lambda = - \|c\|_{\infty}$, so ist $(c-\lambda) \geq 0$ und wir können das Schwache Minimumsprinzip auf $v$ anwenden. ($v \in C_{1}^{2}(G_T) \cap C^0(\overline{G_T})$, da $u$ klassische Lösung ist)
-
-Sei $T>0$ beliebig, dann gilt, dass $v = \exp (\lambda t) u \geq 0$ auf dem Zylinderrand $\Gamma_{T}$ ($=0$ auf dem Mantel und $\geq 0$ auf dem Boden). Also auch $\inf_{(x,t)\in \Gamma_{T}} \geq 0$.
+$T$ kann nun beliebig groß sein.
 
 \begin{align*}
- & \stackrel{\text{MP}}{\implies} \inf_{(x,t) \in G_{T}} v \geq \min \{0, \inf_{(x,t)\in \Gamma_{t}} \} = 0 \\
- & \implies v \geq 0 \text{~auf~} G_{T} \\
- & \implies u \geq 0 \text{~auf~} G_{T} \\
- & \implies u \geq 0 \text{~auf~} \Omega \times (0, \infty)
+  \implies u \geq 0 ~\text{auf}~ \Omega \times (0, \infty)
 \end{align*}
 
 \end{solution}
