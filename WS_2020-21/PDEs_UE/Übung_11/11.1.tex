@@ -4,41 +4,61 @@
 
 \phantom{}
 
-Seien $T > 0$ und $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit glattem Rand
-$\partial\Omega$, wobei $G := \Omega \times (0,T]$ und
-$\Gamma := (\Omega \times \{0\}) \cup (\partial\Omega \times [0,T))$.
+Seien $T > 0$ und $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit glattem Rand $\partial \Omega$, wobei $G := \Omega \times (0, T]$ und $\Gamma := (\Omega \times \{0\}) \cup (\partial \Omega \times [0, T))$.
 Betrachten Sie die Differentialoperatoren
+
 \begin{align*}
-  L_1u = -\sum_{i,j=1}^n a_{ij}(x,t)\frac{\partial^2}{\partial x_i \partial x_j}
-  + \sum_{i=1}^n b_i(x,t)\frac{\partial u}{\partial x_i}
+  L_1 u
+  =
+  -\sum_{i, j=1}^n
+  a_{ij}(x, t)
+  \frac{\partial^2}{\partial x_i \partial x_j}
+  +
+  \sum_{i=1}^n
+  b_i(x, t)
+  \frac{\partial u}{\partial x_i}
 \end{align*}
-und $L_2u = L_1u + c(x,t)u$, für eine symmetrische und gleichmäßig elliptische Matrix
-$A = (a_{ij}(x,t)) \in \R^{n\times n}$ mit $a_{ij} \in C(\overline{G})$, einen
-Vektor $b = (b_i(x,t)) \in \R^n$ und $c \in C(\overline{G})$. Zeigen Sie:
+
+und $L_2 u = L_1 u + c(x, t) u$, für eine symmetrische und gleichmäßig elliptische Matrix $A = (a_{ij}(x, t)) \in \R^{n \times n}$ mit $a_{ij} \in C(\overline{G})$, einen Vektor $b = (b_i(x, t)) \in \R^n$ und $c \in C(\overline{G})$.
+Zeigen Sie:
+
 \begin{enumerate}[label = (\roman*)]
-  \item Für $u \in C_1^2(G) \cap C(\overline{G})$ mit $u_t + L_2u \leq 0$ in $G$
-  und $u \leq 0$ auf $\Gamma$ gilt $u \leq 0$ in $G$. \\
-  \textit{Hinweis:} Beachten Sie, dass $c$ negative Werte annehmen darf.
-  Welche Differentialgleichung erfüllt $v = \exp(\lambda t)u$?
+
+  \item Für $u \in C_1^2(G) \cap C(\overline{G})$ mit $u_t + L_2u \leq 0$ in $G$ und $u \leq 0$ auf $\Gamma$ gilt $u \leq 0$ in $G$.
+
+  \textbf{Hinweis:}
+  \textit
+  {
+    Beachten Sie, dass $c$ negative Werte annehmen darf.
+    Welche Differentialgleichung erfüllt $v = \exp(\lambda t) u$?
+  }
   
-  \item Für $u,v \in C_1^2(G) \cap C(\overline{G})$ und eine stetige differenzierbare
-  Funktion $f = f(x,t,u)$ mit
+  \item Für $u, v \in C_1^2(G) \cap C(\overline{G})$ und eine stetige differenzierbare Funktion $f = f(x, t, u)$ mit
+
   \begin{align*}
-    u_t + L_1u + f(x,t,u) \leq v_t + L_1v + f(x,t,v) \quad \text{in } G
-    \text{ und } u \leq v \text{ auf } \Gamma
+    u_t + L_1 u + f(x, t, u)
+    \leq
+    v_t + L_1 v + f(x, t, v)
+    \quad
+    \text{in}~ G ~\text{und}~ u \leq v ~\text{auf}~ \Gamma
   \end{align*}
+
   gilt $u \leq v$ in $G$.
   
-  \item Für eine stetige differenzierbare Funktion $f = f(x,t,u)$ gilt, dass das Anfangsrandwertproblem für die Differentialgleichung 
+  \item Für eine stetige differenzierbare Funktion $f = f(x, t, u)$ gilt, dass das Anfangsrandwertproblem für die Differentialgleichung 
+
   \begin{align*}
 	  \begin{cases}
-	  	u_t + L_1 u + f(x,t,u) = 0 & \text{ in } G \\
-	  	u(\cdot, 0) = u_0 & \text{ in } \Omega \\
-	  	u = g & \text{ auf } \partial \Omega \times (0, T),
+	  	u_t + L_1 u + f(x, t, u) = 0 & ~\text{in}~ G \\
+	  	u(\cdot, 0) = u_0            & ~\text{in}~ \Omega \\
+	  	u = g                        & ~\text{auf}~ \partial \Omega \times (0, T),
 	  \end{cases}
   \end{align*}
+
   höchstens eine klassische Lösung haben kann. 
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -46,21 +66,81 @@ Vektor $b = (b_i(x,t)) \in \R^n$ und $c \in C(\overline{G})$. Zeigen Sie:
 \begin{solution}
 
 \phantom{}
+
 \begin{enumerate}[label = (\roman*)]
-  \item
+
+  \item Wir wollen Satz 6.31 (Schwaches Maximumprinzip für $c \geq 0$) auf $v$ anwenden.
+
+  \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \centering
+    \includegraphics
+    [width = 0.75 \textwidth]
+    {PDEs/PDEs_-_Satz_6-31-1_(Schwaches_Maximumprinzip_für_c_geq_0).png} \\
+    \includegraphics
+    [width = 0.75 \textwidth]
+    {PDEs/PDEs_-_Satz_6-31-2_(Schwaches_Maximumprinzip_für_c_geq_0).png}
+  \end{tcolorbox}
+
+  \begin{multline*}
+    v_t + L_1 v
+    =
+    (\exp(\lambda t) u)_t + L_1 (\exp(\lambda t) u)
+    =
+    \lambda \exp(\lambda t) u + \exp(\lambda t) u_t
+    +
+    \exp(\lambda t) L_1 u \\
+    =
+    \lambda \exp(\lambda t) u + \exp(\lambda t) u_t
+    +
+    \exp(\lambda t) (L_2 u - c(x, t) u)
+    =
+    \exp(\lambda t) (u_t +  L_2 u)
+    -
+    \exp(\lambda t) (c(x, t) - \lambda) u
+  \end{multline*}
+
+  Wähle also $\lambda < -\norm[\infty]{c}$.
+
   \begin{align*}
-    v_t + L_1v = \lambda \exp(\lambda t) u +  \exp(\lambda t)u_t + \exp(\lambda t)L_2 u - c(x,t)\exp(\lambda t)u
-    = \exp(\lambda t)(\lambda u + u_t +  L_2 u - c(x,t)u)
+    \implies
+    \tilde{c}
+    :=
+    \exp(\lambda t)
+    \underbrace
+    {
+      (c(x, t) - \lambda)
+    }_{
+      > 0
+    }
+    >
+    0
+    \implies
+    v_t + L_1 v + \tilde{c} u
+    =
+    \exp(\lambda t)
+    \underbrace
+    {
+      (u_t +  L_2 u)
+    }_{
+      \leq 0
+    }
+    \leq
+    0
   \end{align*}
-  Wähle also $\lambda < -\|c\|_\infty$ und es folgt
+
+  Nun können wir Satz 6.31 (Schwaches Maximumprinzip für $c \geq 0$) auf $v$ und $\tilde{L} := L_1 + \tilde{c}$ anwenden.
+
   \begin{align*}
-    v_t + L_1 v + \underbrace{\exp(\lambda t)(c(x,t) - \lambda)}_{=:\tilde{c} > 0}u =
-    \exp(\lambda t)( u_t +  L_2 u ) \leq 0.
+    \implies
+    \sup_{(x, t) \in G} v(x, t)
+    \stackrel{\mathrm{MP}}{\leq}
+    \max \Bbraces{0, \sup_{(x, t) \in \Gamma} v(x,t)}
+    =
+    0
   \end{align*}
-  Mit dem schwachen Maximumprinzip für $c \geq 0$ schließen wir
-  \begin{align*}
-    \sup_{(x,t) \in G} u(x,t) \leq \max\{0, \sup_{(x,t) \in \Gamma} u(x,t)\} = 0.
-  \end{align*}
+
+  Nachdem $u$ und $v$ dasselbe Vorzeichen haben, folgt die Behauptung.
+
   \item Betrachte die Funktion $w := u - v \in C_1^2(G) \cap C(\overline{G})$ und erhalten mit dem Mittelwertsatz der Differentialrechnung für jedes $(x,t) \in G$
   \begin{align*}
     w_t = u_t - v_t \leq L_1 v - L_1 u + f(x, t, v) - f(x,t,u)  = -L_1w - \partial_u f(x,t,\xi_{x,t}) w,

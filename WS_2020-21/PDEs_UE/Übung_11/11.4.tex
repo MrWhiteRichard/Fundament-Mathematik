@@ -11,7 +11,60 @@
 \begin{solution}
 
 \phantom{}
+Seien nun $u$ und $v$ zwei Lösungen. Nach Satz 5.20 hat das Poisson-Problem
+\begin{align}\label{poisson}
+\begin{cases}
+\Delta w(t) = u(t) - v(t) &\text{in~} \Omega,\\
+w(t) = 0 &\text{auf~} \partial\Omega
+\end{cases}
+\end{align}
+eine eindeutige schwache Lösung $w(t) \in H_0^1(\Omega);$ insbesondere gilt
+\begin{align*}
+    \int_\Omega (u-v)(t) w \mathrm{~d}x = \int_\Omega \nabla w(t) \cdot \nabla w \mathrm{~d}x.
+\end{align*}
 
+Wir wollen das ARW-Problem nun auf eine schwache Formulierung bringen: Für eine Lösung $u$ desselben gilt
+\begin{align*}
+    \int_0^t \int_\Omega gw \mathrm{~d}x \mathrm{~d}s
+    &= \int_0^t \int_\Omega \left(u_t - \Delta(u^\alpha)\right) w \mathrm{~d}x \mathrm{~d}s \\
+    &= \int_0^t \left(\int_\Omega u_t w \mathrm{~d}x - \int_\Omega \mathrm{div}\nabla(u^\alpha) w \mathrm{~d}x\right) \mathrm{d}s\\
+    &= \int_0^t \left(\int_\Omega u_t w \mathrm{~d}x + \int_\Omega \nabla(u^\alpha) \cdot \nabla w \mathrm{~d}x - \int_{\partial\Omega} \underbrace{w}_{=~0}(\nabla(u^\alpha)\cdot\nu) \mathrm{~d}\mathcal{H}^{n-1}\right) \mathrm{d}s\\
+    &= \int_0^t \int_\Omega u_t w + \nabla(u^\alpha) \cdot \nabla w \mathrm{~d}x \mathrm{~d}s.
+\end{align*}
+
+Dieselbe Gleichheit gilt für $v.$ Wenn wir beide Gleichungen voneinander subtrahieren, erhalten wir
+\begin{align*}
+    0 &= \int_0^t \int_\Omega u_t w + \nabla(u^\alpha) \cdot \nabla w \mathrm{~d}x \mathrm{~d}s - \int_0^t \int_\Omega v_t w + \nabla(v^\alpha) \cdot \nabla w \mathrm{~d}x \mathrm{~d}s\\
+    &= \int_0^t \left(\int_\Omega (u-v)_t w \mathrm{~d}x - \int_\Omega \nabla(u^\alpha - v^\alpha) \cdot \nabla w \mathrm{~d}x\right) \mathrm{d}s\\
+    &= \int_0^t \left(- \int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x - \int_\Omega (u^\alpha - v^\alpha) \Delta w \mathrm{~d}x\right) \mathrm{d}s\\
+    &= - \int_0^t \left(\int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x + \int_\Omega (u^\alpha - v^\alpha) (u-v) \mathrm{~d}x\right)\mathrm{d}s.
+\end{align*}
+
+Die dabei auftretenden Randintegrale fallen weg, weil $w$ respektive $u^\alpha - v^\alpha$ auf $\partial\Omega$ verschwinden.
+
+Weil für $\alpha > 0$ die Abbildung $x \mapsto x^\alpha$ monoton steigend ist, gilt stets $(u^\alpha - v^\alpha) (u-v) \geq 0.$ Des Weiteren ist $w \equiv 0$ für $t = 0$ die eindeutig bestimmte schwache Lösung von \eqref{poisson}, womit $\nabla w(\cdot, 0) = 0$ ist. Nun gilt
+\begin{align*}
+    0 &\geq - \int_0^t \int_\Omega (u^\alpha - v^\alpha) (u-v) \mathrm{~d}x \mathrm{~d}s\\
+    &= \int_0^t \int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x \mathrm{~d}s\\
+    &\stackrel{(\ast)}{=} \int_0^t \frac{1}{2} ~\frac{\mathrm{d}}{\mathrm{d}s} \left\| \nabla w(\cdot, s)\right\|_{L^2} \mathrm{d}s\\
+    &= \frac{1}{2} \left\| \nabla w(\cdot, t)\right\|_{L^2} - \frac{1}{2} \| \underbrace{\nabla w(\cdot, 0)}_{=0}\|_{L^2}\\
+    &= \frac{1}{2} \left\| \nabla w(\cdot, t)\right\|_{L^2};
+\end{align*}
+
+$w(\cdot, t)$ ist also für alle $t > 0$ eine konstante Funktion. Damit gilt $0 = \Delta w(t) = u(t) - v(t),$ was zu beweisen war.
+
+Zeigen wir noch die Gleichheit ($\ast$): Für ein $u \in C^\infty(\Omega)$ ist
+\begin{align*}
+    \|u(t_0)\|^2_{L^2} + 2 \int_{t_0}^{t} (u_t(s), u(s))_{L^2} \mathrm{~d}s
+    &= \|u(t_0)\|^2_{L^2} + \int_\Omega 2 \int_{t_0}^{t} u_t u \mathrm{~d}s \mathrm{~d}x\\
+    &= \|u(t_1)\|^2_{L^2} + \int_\Omega u^2(x, t) - u^2(x, t_0) \mathrm{~d}x\\
+    &= \| u(t)\|_{L^2}.
+\end{align*}
+Wenn wir nun beide Seiten nach $t$ differenzieren, erhalten wir
+\begin{align*}
+    \frac{\mathrm{d}}{\mathrm{d}t} \|u(t)\|_{L^2} = 2 \left(u_t(t), u(t)\right)_{L^2}.
+\end{align*}
+Aus der Dichtheit von $C^\infty(\Omega)$ in $L^2(\Omega)$ folgt die gewünschte Gleichheit für alle $u \in L^2(\Omega),$ insbesondere also für $\nabla w(\cdot, s).$
 \end{solution}
 
 % --------------------------------------------------------------------------------
