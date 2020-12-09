@@ -3,7 +3,42 @@
 \begin{exercise}
 
 \phantom{}
-	Seien $T > 0$ und $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit glattem Rand $\partial \Omega$
+
+Seien $T > 0$ und $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit glattem Rand
+$\partial\Omega$, wobei $G := \Omega \times (0,T]$ und
+$\Gamma := (\Omega \times \{0\}) \cup (\partial\Omega \times [0,T))$.
+Betrachten Sie die Differentialoperatoren
+\begin{align*}
+  L_1u = -\sum_{i,j=1}^n a_{ij}(x,t)\frac{\partial^2}{\partial x_i \partial x_j}
+  + \sum_{i=1}^n b_i(x,t)\frac{\partial u}{\partial x_i}
+\end{align*}
+und $L_2u = L_1u + c(x,t)u$, für eine symmetrische und gleichmäßig elliptische Matrix
+$A = (a_{ij}(x,t)) \in \R^{n\times n}$ mit $a_{ij} \in C(\overline{G})$, einen
+Vektor $b = (b_i(x,t)) \in \R^n$ und $c \in C(\overline{G})$. Zeigen Sie:
+\begin{enumerate}[label = (\roman*)]
+  \item Für $u \in C_1^2(G) \cap C(\overline{G})$ mit $u_t + L_2u \leq 0$ in $G$
+  und $u \leq 0$ auf $\Gamma$ gilt $u \leq 0$ in $G$. \\
+  \textit{Hinweis:} Beachten Sie, dass $c$ negative Werte annehmen darf.
+  Welche Differentialgleichung erfüllt $v = \exp(\lambda t)u$?
+  
+  \item Für $u,v \in C_1^2(G) \cap C(\overline{G})$ und eine stetige differenzierbare
+  Funktion $f = f(x,t,u)$ mit
+  \begin{align*}
+    u_t + L_1u + f(x,t,u) \leq v_t + L_1v + f(x,t,v) \quad \text{in } G
+    \text{ und } u \leq v \text{ auf } \Gamma
+  \end{align*}
+  gilt $u \leq v$ in $G$.
+  
+  \item Für eine stetige differenzierbare Funktion $f = f(x,t,u)$ gilt, dass das Anfangsrandwertproblem für die Differentialgleichung 
+  \begin{align*}
+	  \begin{cases}
+	  	u_t + L_1 u + f(x,t,u) = 0 & \text{ in } G \\
+	  	u(\cdot, 0) = u_0 & \text{ in } \Omega \\
+	  	u = g & \text{ auf } \partial \Omega \times (0, T),
+	  \end{cases}
+  \end{align*}
+  höchstens eine klassische Lösung haben kann. 
+\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,7 +46,46 @@
 \begin{solution}
 
 \phantom{}
-
+\begin{enumerate}[label = (\roman*)]
+  \item
+  \begin{align*}
+    v_t + L_1v = \lambda \exp(\lambda t) u +  \exp(\lambda t)u_t + \exp(\lambda t)L_2 u - c(x,t)\exp(\lambda t)u
+    = \exp(\lambda t)(\lambda u + u_t +  L_2 u - c(x,t)u)
+  \end{align*}
+  Wähle also $\lambda < -\|c\|_\infty$ und es folgt
+  \begin{align*}
+    v_t + L_1 v + \underbrace{\exp(\lambda t)(c(x,t) - \lambda)}_{=:\tilde{c} > 0}u =
+    \exp(\lambda t)( u_t +  L_2 u ) \leq 0.
+  \end{align*}
+  Mit dem schwachen Maximumprinzip für $c \geq 0$ schließen wir
+  \begin{align*}
+    \sup_{(x,t) \in G} u(x,t) \leq \max\{0, \sup_{(x,t) \in \Gamma} u(x,t)\} = 0.
+  \end{align*}
+  \item Betrachte die Funktion $w := u - v \in C_1^2(G) \cap C(\overline{G})$ und erhalten mit dem Mittelwertsatz der Differentialrechnung für jedes $(x,t) \in G$
+  \begin{align*}
+    w_t = u_t - v_t \leq L_1 v - L_1 u + f(x, t, v) - f(x,t,u)  = -L_1w - \partial_u f(x,t,\xi_{x,t}) w,
+  \end{align*}
+  wobei $\xi_{x,t} \in [\min\{u(x,t), v(x,t)\}, \max\{u(x,t), v(x,t)\}]$. Mit den Definitionen
+  \begin{align*}
+	  c(x,t) := \partial_u f(x,t,\xi_{x,t}), \quad L_2 := L_1 + c
+  \end{align*}
+  gilt also 
+  \begin{align*}
+	  w_t + L_2w \leq 0 \text{ in } G
+  \end{align*}
+  Hier wurde noch das Problem erkannt, dass $c$ möglicherweise nicht stetig ist. Wenn wir das behoben haben, dann gilt nach Punkt (i), dass
+  $w \leq 0$ in $G$, also $u \leq v$ in $G$.
+  
+  \item Wenn wir zwei Lösungen $u,v$ des Problems betrachten, so gilt 
+  \begin{align*}
+	  u_t + L_1 u + f(x,t,u) = v_t + L_1 v + f(x,t,v) \text{ in } G
+  \end{align*}
+  und 
+  \begin{align*}
+	  u = u_0 = v \text{ in } \Omega, \quad u = g = v \text{ auf } \partial \Omega \times (0,T),
+  \end{align*}
+  damit auch $u = v$ auf $\Gamma$. Mit Punkt (ii) folgt $u \leq v$ und $v \leq u$ also $u = v$. 
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
