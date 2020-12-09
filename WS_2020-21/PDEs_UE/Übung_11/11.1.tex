@@ -49,8 +49,8 @@ Zeigen Sie:
 
   \begin{align*}
 	  \begin{cases}
-	  	u_t + L_1 u + f(x, t, u) = 0 & ~\text{in}~ G \\
-	  	u(\cdot, 0) = u_0            & ~\text{in}~ \Omega \\
+	  	u_t + L_1 u + f(x, t, u) = 0 & ~\text{in}~ G, \\
+	  	u(\cdot, 0) = u_0            & ~\text{in}~ \Omega, \\
 	  	u = g                        & ~\text{auf}~ \partial \Omega \times (0, T),
 	  \end{cases}
   \end{align*}
@@ -69,7 +69,21 @@ Zeigen Sie:
 
 \begin{enumerate}[label = (\roman*)]
 
-  \item Wir wollen Satz 6.31 (Schwaches Maximumprinzip für $c \geq 0$) auf $v$ anwenden.
+  \item Man erinnere sich an die Definition vom
+  
+  \begin{align*}
+    C_1^2(G)
+    :=
+    \Bbraces
+    {
+      u:
+      G \to \R:
+      u, u_t, u_{x_i}, u_{x_i x_j} \in C^0(G)
+      \Forall i, j
+    }.
+  \end{align*}
+
+  Wir wollen Satz 6.31 (Schwaches Maximumprinzip für $c \geq 0$) auf $v$ anwenden.
 
   \begin{tcolorbox}[standard jigsaw, opacityback = 0]
     \centering
@@ -141,31 +155,59 @@ Zeigen Sie:
 
   Nachdem $u$ und $v$ dasselbe Vorzeichen haben, folgt die Behauptung.
 
-  \item Betrachte die Funktion $w := u - v \in C_1^2(G) \cap C(\overline{G})$ und erhalten mit dem Mittelwertsatz der Differentialrechnung für jedes $(x,t) \in G$
+  \item Betrachte die Funktion $w := u - v \in C_1^2(G) \cap C(\overline{G})$ und erhalten mit dem Mittelwertsatz der Differentialrechnung, dass $\Forall (x, t) \in G: \Exists \xi_{x, t} \in [\min \Bbraces{u(x, t), v(x, t)}, \max \Bbraces{u(x, t), v(x, t)}]:$
+
   \begin{align*}
-    w_t = u_t - v_t \leq L_1 v - L_1 u + f(x, t, v) - f(x,t,u)  = -L_1w - \partial_u f(x,t,\xi_{x,t}) w,
+    w_t
+    =
+    u_t - v_t
+    \leq
+    L_1 v - L_1 u + f(x, t, v) - f(x, t, u)
+    \stackrel
+    {
+      \mathrm{MWS}
+    }{=}
+    L_1 \underbrace{(v - u)}_{-w} + \partial_u f(x, t, \xi_{x, t}) \underbrace{(v - u)}_{-w}.
   \end{align*}
-  wobei $\xi_{x,t} \in [\min\{u(x,t), v(x,t)\}, \max\{u(x,t), v(x,t)\}]$. Mit den Definitionen
+
   \begin{align*}
-	  c(x,t) := \partial_u f(x,t,\xi_{x,t}), \quad L_2 := L_1 + c
+    c(x, t) := \partial_u f(x, t,\xi_{x, t}),
+    \quad
+    L_2 := L_1 + c
+    & \implies
+    w_t + L_2 w \leq 0 ~\text{in}~ G, \\
+    u \leq v ~\text{auf}~ \Gamma
+    & \implies
+    w = u - v \leq 0 ~\text{auf}~ \Gamma
   \end{align*}
-  gilt also 
+
+  Hier wurde noch das Problem erkannt, dass $c$ möglicherweise nicht stetig ist.
+  Wenn wir das behoben haben, dann gilt nach Punkt (i), dass
+
   \begin{align*}
-	  w_t + L_2w \leq 0 \text{ in } G
+    \implies
+    u - v = w \leq 0 ~\text{in}~ G
+    \implies
+    u \leq v ~\text{in}~ G.
   \end{align*}
-  Hier wurde noch das Problem erkannt, dass $c$ möglicherweise nicht stetig ist. Wenn wir das behoben haben, dann gilt nach Punkt (i), dass
-  $w \leq 0$ in $G$, also $u \leq v$ in $G$.
-  
-  \item Wenn wir zwei Lösungen $u,v$ des Problems betrachten, so gilt 
+
+  \item Wenn wir zwei Lösungen $u, v$ des Problems betrachten, so gilt 
+
   \begin{align*}
-	  u_t + L_1 u + f(x,t,u) = v_t + L_1 v + f(x,t,v) \text{ in } G
+    \implies &
+    \begin{cases}
+      u_t + L_1 u + f(x, t, u) = v_t + L_1 v + f(x, t, v), & \text{in}~ G, \\
+      u = u_0 = v,                                         & \text{in}~ \Omega, \\
+      u = g = v,                                           & \text{auf}~ \partial \Omega \times (0, T),
+    \end{cases} \\
+    \implies &
+    u = v ~\text{auf}~ \Gamma.
   \end{align*}
-  und 
-  \begin{align*}
-	  u = u_0 = v \text{ in } \Omega, \quad u = g = v \text{ auf } \partial \Omega \times (0,T),
-  \end{align*}
-  damit auch $u = v$ auf $\Gamma$. Mit Punkt (ii) folgt $u \leq v$ und $v \leq u$ also $u = v$. 
+
+  Mit Punkt (ii) folgt $u \leq v$ und $v \leq u$ also $u = v$. 
+
 \end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
