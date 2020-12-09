@@ -97,32 +97,32 @@
 %				bzw $g(n_1,\dots,n_k,z) := \mu y \leq z(R(n_1,\dots,n_k,y))$. \\
 				\newline
 				Jetzt haben wir alles gesammelt, um zu zeigen, dass die Funktion
-				$\varphi_{prim}(k)$, welche $k$ auf die $k$-te Primzahl abbildet,
+				$p_k$, welche $k$ auf die $k$-te Primzahl abbildet,
 				primitiv rekursiv ist. Die Relation
 				\begin{align*}
 					R(m,y):  \chi_\P(y) = 1 \land m < y
 				\end{align*}
 				ist als Schnitt zweier primitiv rekursiver Relationen wieder primitiv rekursiv.
-				Mit der oberen Schranke $\varphi_{prim}(n+1) \leq 2^{2^n}$ (Induktion und die Tatsache $p_{n + 1} \leq p_1\cdots p_n + 1$) erhalten wir für
+				Mit der oberen Schranke $p_{n+1} \leq 2^{2^n}$ (Induktion und die Tatsache $p_{n + 1} \leq p_1\cdots p_n + 1$) erhalten wir für
 				\begin{align*}
 					g(m,z) := h_R(m,z)
 				\end{align*}
 				Die primitiv rekursive Funktion 
 				\begin{align*}
-				\varphi_{prim}(0) := 1, \quad \varphi_{prim}(n + 1) := 2\chi_{\{0\}}(n) + (1 - \chi_{\{0\}}(n)) g(\varphi_{prim}(n), 2^{2^n})
+				p_0 := 1, \quad p_{n + 1} := 2\chi_{\{0\}}(n) + (1 - \chi_{\{0\}}(n)) g(p_{n}, 2^{2^n})
 				\end{align*}		
-%				Damit haben wir eine primitiv rekursive Darstellung für $\varphi_{prim}$:
+%				Damit haben wir eine primitiv rekursive Darstellung für $p$:
 %				\begin{align*}
-%					\varphi_{prim}(0) &= 1 \\
+%					p_{0} &= 1 \\
 %					\varphi_{prim}(n + 1) &= g(\varphi_{prim}(n),2^{2^n}).
 %				\end{align*}
 				Nun betrachten wir eine weitere primitiv rekursive Relation, nämlich
 				\begin{align*}
-				S := \Bbraces{(n,k,y) \in \N^3 \mid \mathrm{div}(n, \varphi_{prim}(k)^y) = 0}
+				S := \Bbraces{(n,k,y) \in \N^3 \mid \mathrm{div}(n, p_k^y) = 0}
 				\end{align*}
 				Jetzt können wir $(n,k) \mapsto (n)_k$ primitv rekursiv beschreiben durch
 				\begin{align*}
-					(n)_k = h_S(n,k,n) - 1. %[\mu y \leq n(\mathrm{div}(n,\varphi_{prim}(k)^y) = 0)] - 1.
+					(n)_k = h_S(n,k,n) - 1. %[\mu y \leq n(\mathrm{div}(n,p_k^y) = 0)] - 1.
 				\end{align*}
 		\end{enumerate}
 	\item Kann man hier den Beweis aus (a) nicht direkt übernehmen?
