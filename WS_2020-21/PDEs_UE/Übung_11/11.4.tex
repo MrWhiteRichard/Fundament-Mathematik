@@ -71,6 +71,13 @@ $w(\cdot, t)$ ist also für alle $t > 0$ eine konstante Funktion. Damit gilt $0 
 
 Zeigen wir noch die Gleichheit ($\ast$): Für ein $u \in C^\infty(\Omega)$ ist
 \begin{align*}
+    \Int[t_0][t]{u_t u}{x}
+    & \stackrel
+    {
+      \mathrm{PI}
+    }{=}
+    u^2(x, t) - u^2(x, t_0) - \Int[t_0][t]{u_t u}{x} \\
+    \implies
     \|u(t_0)\|^2_{L^2} + 2 \int_{t_0}^{t} (u_t(s), u(s))_{L^2} \mathrm{~d}s
     &= \|u(t_0)\|^2_{L^2} + \int_\Omega 2 \int_{t_0}^{t} u_t u \mathrm{~d}s \mathrm{~d}x\\
     &= \|u(t_0)\|^2_{L^2} + \int_\Omega u^2(x, t) - u^2(x, t_0) \mathrm{~d}x\\
