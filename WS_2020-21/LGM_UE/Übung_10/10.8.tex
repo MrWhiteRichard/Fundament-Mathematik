@@ -26,9 +26,21 @@
 		\item Fünferpotenzen $F$: Sei $\psi$ eine Formel, die genau die Körper der
 		Charakteristik $5$ beschreibt.
 
-		\item Quadratzahlen $Q$: Wenn $M$ ein Modell dann gibt es eine Teilmenge $A \subseteq M$ und eine Bijektion $f: A \times A \to M$. \\
-		\textit{Ich glaub nicht, dass das so geht, in der Prädikatenlogik erster
-		Stufe können wir nur über Elemente, aber nicht über Teilmengen Aussagen treffen.}
+		\item Quadratzahlen $Q$: Wenn $M$ ein Modell dann gibt es eine Teilmenge $A \subseteq M$ und eine Bijektion $f: A \times A \to M$. Wir realisieren das so, dass wir zuerst eine Totalordnung auf unserer Menge verlangen, also
+		\begin{align*}
+		\forall x (x \leq x), \quad \forall x \forall y ((x \leq y \land y \leq x) \rightarrow x = y),\\
+		\forall x \forall y \forall z((x \leq y \land y \leq z) \rightarrow x \leq z), \quad \forall x \forall y (x \leq y \lor y \leq x)
+		\end{align*}
+		und dann wollen wir eine Relation auf einem Quadrat, also
+		\begin{align*}
+		\exists a \exists b \forall x \forall y(\exists zR(x,y,z) \leftrightarrow a \leq x \leq b \land a \leq y \leq b)
+		\end{align*}
+		Nun haben wir einmal den richtigen Definitionsbereich, wir brauchen noch, dass es sich tatsächlich um eine Funktion und eine Bijektion handelt, also
+		\begin{align*}
+		\forall x \forall y((\exists u R(x,y,u) \land \exists v R(x,y,v)) \rightarrow u = v) \\
+		\forall z ((\exists x \exists y R(x,y,z) \land \exists u \exists v R(u,v,z)) \rightarrow u = x \land y = v) \\
+		\forall z \exists x \exists y R(x,y,z)
+		\end{align*}
 	\end{enumerate}
 
 \end{solution}
