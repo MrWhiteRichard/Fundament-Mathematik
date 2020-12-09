@@ -18,10 +18,10 @@ Seien $u$ und $v$ zwei Lösungen. Nach Satz 5.20 hat das Poisson-Problem
 w(t) = 0 &\text{auf~} \partial\Omega
 \end{cases}
 \end{align}
-eine eindeutige schwache Lösung $w(t) \in H_0^1(\Omega);$ insbesondere gilt
-\begin{align*}
-    \int_\Omega (u-v)(t) w \mathrm{~d}x = \int_\Omega \nabla w(t) \cdot \nabla w \mathrm{~d}x.
-\end{align*}
+eine eindeutige schwache Lösung $w(t) \in H_0^1(\Omega),$ das heißt für alle $\varphi \in H_0^1(\Omega)$ gilt
+\begin{align}\label{schwach}
+    \int_\Omega (u-v)(t) \varphi \mathrm{~d}x = \int_\Omega \nabla w(t) \cdot \nabla \varphi \mathrm{~d}x.
+\end{align}
 
 Wir können $w$ nun als Testfunktion für die schwache Formulierung unseres ARW-Problems verwenden: Es gilt
 \begin{align*}
@@ -36,11 +36,11 @@ Dieselbe Gleichheit gilt natürlich auch für $v.$ Wenn wir beide Gleichungen vo
 \begin{align*}
     0 &= \int_0^t \int_\Omega u_t w + \nabla(u^\alpha) \cdot \nabla w \mathrm{~d}x \mathrm{~d}s - \int_0^t \int_\Omega v_t w + \nabla(v^\alpha) \cdot \nabla w \mathrm{~d}x \mathrm{~d}s\\
     &= \int_0^t \left(\int_\Omega (u-v)_t w \mathrm{~d}x - \int_\Omega \nabla(u^\alpha - v^\alpha) \cdot \nabla w \mathrm{~d}x\right) \mathrm{d}s\\
-    &= \int_0^t \left(- \int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x - \int_\Omega (u^\alpha - v^\alpha) \Delta w \mathrm{~d}x\right) \mathrm{d}s\\
+    %&= \int_0^t \left(- \int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x - \int_\Omega (u^\alpha - v^\alpha) \Delta w \mathrm{~d}x\right) \mathrm{d}s\\
     &= - \int_0^t \left(\int_\Omega \nabla w_t \cdot \nabla w \mathrm{~d}x + \int_\Omega (u^\alpha - v^\alpha) (u-v) \mathrm{~d}x\right)\mathrm{d}s.
 \end{align*}
 
-Die dabei auftretenden Randintegrale fallen weg, weil $w$ respektive $u^\alpha - v^\alpha$ auf $\partial\Omega$ verschwinden.
+Das dabei auftretende Randintegral fällt weg, weil $w$ auf $\partial\Omega$ verschwindet. Weiters haben wir \eqref{schwach} auf $\varphi = u^\alpha - v^\alpha$ angewandt.
 
 Weil für $\alpha > 0$ die Abbildung $x \mapsto x^\alpha$ monoton steigend ist, gilt stets $(u^\alpha - v^\alpha) (u-v) \geq 0.$ Des Weiteren ist $w \equiv 0$ für $t = 0$ die eindeutig bestimmte schwache Lösung von \eqref{poisson}, womit $\nabla w(\cdot, 0) = 0$ ist. Nun gilt
 \begin{align*}
@@ -57,7 +57,7 @@ Zeigen wir noch die Gleichheit ($\ast$): Für ein $u \in C^\infty(\Omega)$ ist
 \begin{align*}
     \|u(t_0)\|^2_{L^2} + 2 \int_{t_0}^{t} (u_t(s), u(s))_{L^2} \mathrm{~d}s
     &= \|u(t_0)\|^2_{L^2} + \int_\Omega 2 \int_{t_0}^{t} u_t u \mathrm{~d}s \mathrm{~d}x\\
-    &= \|u(t_1)\|^2_{L^2} + \int_\Omega u^2(x, t) - u^2(x, t_0) \mathrm{~d}x\\
+    &= \|u(t_0)\|^2_{L^2} + \int_\Omega u^2(x, t) - u^2(x, t_0) \mathrm{~d}x\\
     &= \| u(t)\|_{L^2}.
 \end{align*}
 Wenn wir nun beide Seiten nach $t$ differenzieren, erhalten wir
