@@ -3,7 +3,31 @@
 \begin{exercise}
 
 \phantom{}
+	Betrachten Sie die skalare Reaktions-Diffusionsgleichung
+	\begin{align*}
+		u_t = \Delta u + \lambda u - u^3 \quad \text{für } (x,t) \in \Omega \times (0, \infty)
+	\end{align*}
+	für $u(x,t) \in \R$ auf einem beschränkten Gebiet $\Omega \subseteq \R^n$ mit glattem Rand $\partial \Omega$ und einem negativen Parameter $\lambda$.
+	\begin{enumerate}[label = (\roman*)]
+		\item Bestimmen Sie die räumlich homogenen Lösungen $u = u(t)$ und untersuchen Sie deren asymptotisches Verhalten für $t \to \infty$. \newline
+		\textit{Hinweis:} Die räumlich homogenen Lösungen erfüllen eine gewöhnliche DGl. Bestimmen Sie die Stationärzustände dieser DGl und deren Stabilität.
 
+		\item Betrachten Sie das ARWP mit der Randbedingung
+		\begin{align*}
+			u(x,t) = 0 \quad \text{für } (x,t) \in \partial \Omega \times (0, \infty),
+		\end{align*}
+		und beschränkten Anfangsdaten
+		\begin{align*}
+			m \leq u(x,0) \leq M \quad \text{für }  x \in \Omega, t \geq 0,
+		\end{align*}
+		Zeigen Sie, dass klassische Lösungen $u(x,t)$ des ARWP und die räumlich homogenen Lösungen $\underline{u}(t)$ bzw. $\overline{u}(t)$ von dem ARWP mit Anfangsbedingungen $\underline{u}(0) = \min\{0, m\}$ bzw. $\overline{u}(0) = \max\{0, M\}$ die Ungleichung
+		\begin{align*}
+			\underline{u}(t) \leq u(x,t) \leq \overline{u}(t) \quad \text{für } x \in \Omega, t \geq 0,
+		\end{align*}
+		erfüllen.
+
+		\item Was können Sie aus diesen Ungleichungen für das zeitlich asymptotische Verhalten von klassischen Lösungen $u(x,t)$ des ARWP schließen?
+	\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,6 +35,63 @@
 \begin{solution}
 
 \phantom{}
+	\begin{enumerate}[label = (\roman*)]
+		\item Für eine räumlich homogene Lösung $u$ gilt $\Delta u = 0$ also
+		\begin{align*}
+			u_t = \lambda u - u^3.
+		\end{align*}
+		Diese ODE ist separabel, um eine Lösung zu erhalten berechnen wir also eine Stammfunktion
+		\begin{align*}
+			\Int{\frac{1}{u(\lambda - u^2)}}{u} &\stackrel{u^2 = v}{=} \Int{\frac{1}{2 v(\lambda - v)}}{v} = \frac{1}{2} \pbraces{\Int{\frac{1}{\lambda v}}{v} + \Int{\frac{1}{\lambda (\lambda - v)}}{v}} \\
+			 &= \frac{1}{2\lambda} \pbraces{\ln(v) - \ln(v - \lambda)} = \frac{1}{2 \lambda} \ln\pbraces{\frac{u^2}{u^2 - \lambda}}
+		\end{align*}
+		Nun lösen wir
+		\begin{align*}
+			\frac{1}{2 \lambda} \ln\pbraces{\frac{u^2}{u^2 - \lambda}} = t + \tilde{C}
+		\end{align*}
+		nach $u$ auf und erhalten
+		\begin{align*}
+			u(t) = \pm \frac{\sqrt{- \lambda} \exp(\lambda t)}{\sqrt{\exp(2\lambda t) - C^{-1}}}
+		\end{align*}
+		mit $C := \exp (2 \lambda \tilde{C}) > 0$. Sind das alle Lösungen? \newline
+		Wir fragen uns auch welche Ruhelagen das System hat und erkennen
+		\begin{align*}
+			\lambda u - u^3 = - u (u - \sqrt{\lambda}) (u + \sqrt{\lambda}).
+		\end{align*}
+		Da $\sqrt{\lambda} \in \C \setminus \R$ gibt es also nur die Ruhelage Null. Wegen
+    dem Prinzip der linearisierten Stabilität und
+    \begin{align*}
+			\partial_u (\lambda u - u^3)\mid_{u = 0} = (\lambda - 3 u^2)\mid_{u = 0} = \lambda < 0
+		\end{align*}
+		ist diese Ruhelage sogar asymptotisch stabil. Es gilt sogar
+    \begin{align*}
+      \lim_{t \to \infty} u(t) = \pm \frac{\sqrt{- \lambda} \exp(\lambda t)}{\sqrt{\exp(2\lambda t) - C^{-1}}} = 0.
+    \end{align*}
+    Somit konvergiert die homogene Lösung für alle Startwerte gegen die
+    asymptotische Ruhelage.
+		\item Für ein beliebiges $T > 0$ gilt
+		\begin{align*}
+			\underline{u}_t - \Delta \underline{u} - \lambda \underline{u} + \underline{u}^3 = 0 = u_t - \Delta u - \lambda u + u^3 = 0 = \overline{u}_t - \Delta \overline{u} - \lambda \overline{u} + \overline{u}^3 \quad \text{in } \Omega \times (0, T].
+		\end{align*}
+		Außerdem gilt
+		\begin{align*}
+			\underline{u}(0) = \min\{0, m\} \leq m \leq u(x, 0) \leq M \leq \max\{0, M\} \leq \overline{u}(0) \quad \text{für jedes } x \in \Omega
+		\end{align*}
+		Schließlich gilt
+		\begin{align*}
+			\underline{u}(0) = \min\{0, m\} \leq 0 \leq \max\{0, M\} = \overline{u}(0)
+		\end{align*}
+		 und da $0$ eine Ruhelage entsprechender ODE ist und sich Lösungen nicht schneiden dürfen gilt schon
+		\begin{align*}
+			\underline{u}(t) \leq 0 = u(x, t) = 0 \leq \overline{u}(t) \quad \text{für jedes } (x,t) \in \partial\Omega \times [0, T)
+		\end{align*}
+		Nach der vorherigen Aufgabe gilt
+		\begin{align*}
+			\underline{u}(t) \leq u(x,t) \leq \overline{u}(t) \quad \text{für jedes } (x,t) \in \Omega \times (0, T]
+		\end{align*}
+		und da $T > 0$ beliebig war folgt die Aussage.
+		\item Wir erkennen, dass eine klassische Lösung $u$ für $t \to \infty$ gegen $0$ konvergiert.
+	\end{enumerate}
 
 \end{solution}
 
