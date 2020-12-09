@@ -2,8 +2,30 @@
 
 \begin{exercise}
 
-\phantom{}
-
+Seien $T > 0$ und $\Omega \subseteq \R^n$ ein beschränktes Gebiet mit glattem Rand
+$\partial\Omega$, wobei $G := \Omega \times (0,T]$ und
+$\Gamma := (\Omega \times \{0\}) \cup (\partial\Omega \times [0,T))$.
+Betrachten Sie die Differentialoperatoren
+\begin{align*}
+  L_1u = -\sum_{i,j=1}^n a_{ij}(x,t)\frac{\partial^2}{\partial x_i \partial x_j}
+  + \sum_{i=1}^n b_i(x,t)\frac{\partial u}{\partial x_i}
+\end{align*}
+und $L_2u = L_1u + c(x,t)u$, für eine symmetrische und gleichmäßig elliptische Matrix
+$A = (a_{ij}(x,t)) \in \R^{n\times n}$ mit $a_{ij} \in C(\overline{G})$, einen
+Vektor $b = (b_i(x,t)) \in \R^n$ und $c \in C(\overline{G})$. Zeigen Sie:
+\begin{enumerate}[label = (\roman*)]
+  \item Für $u \in C_1^2(G) \cap C(\overline{G})$ mit $u_t + L_2u \leq 0$ in $G$
+  und $u \leq 0$ auf $\Gamma$ gilt $u \leq 0$ in $G$. \\
+  \textit{Hinweis:} Beachten Sie, dass $c$ negative Werte annehmen darf.
+  Welche Differentialgleichung erfüllt $v = \exp(\lambda t)u$?
+  \item Für $u,v \in C_1^2(G) \cap C(\overline{G})$ und eine stetige differenzierbare
+  Funktion $f = f(x,t,u)$ mit
+  \begin{align*}
+    u_t + L_1u + f(x,t,u) \leq v_t + L_1v + f(x,t,v) \quad \text{in } G
+    \text{ und } u \leq v \text{ auf } \Gamma
+  \end{align*}
+  gilt $u \leq v$ in $G$.
+\end{enumerate}
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -11,7 +33,27 @@
 \begin{solution}
 
 \phantom{}
-
+\begin{enumerate}[label = (\roman*)]
+  \item
+  \begin{align*}
+    v_t + L_1v = \lambda \exp(\lambda t) u +  \exp(\lambda t)u_t + \exp(\lambda t)L_2 u - c(x,t)\exp(\lambda t)u
+    = \exp(\lambda t)(\lambda u + u_t +  L_2 u - c(x,t)u)
+  \end{align*}
+  Wähle also $\lambda < -\|c\|_\infty$ und es folgt
+  \begin{align*}
+    v_t + L_1 v + \underbrace{\exp(\lambda t)(c(x,t) - \lambda)}_{=:\tilde{c} > 0}u =
+    \exp(\lambda t)( u_t +  L_2 u ) \leq 0.
+  \end{align*}
+  Mit dem schwachen Maximumprinzip für $c \geq 0$ schließen wir
+  \begin{align*}
+    \sup_{(x,t) \in G} u(x,t) \leq \max\{0, \sup_{(x,t) \in \Gamma} u(x,t)\} = 0.
+  \end{align*}
+  \item Betrachte die Funktion $u - v \in C_1^2(G) \cap C(\overline{G})$:
+  \begin{align*}
+    (u-v)_t + L_1(u-v) = u_t - v_t + L_1u - L_1v \leq f(x,t,v) - f(x,t,u)
+    = \int_0^1 f_3(x,t,u+\tau(v-u))(v-u)d\tau
+  \end{align*}
+\end{enumerate}
 \end{solution}
 
 % --------------------------------------------------------------------------------
