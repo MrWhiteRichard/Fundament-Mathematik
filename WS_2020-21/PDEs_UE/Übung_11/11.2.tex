@@ -58,14 +58,20 @@
 		\begin{align*}
 			\lambda u - u^3 = - u (u - \sqrt{\lambda}) (u + \sqrt{\lambda}).
 		\end{align*}
-		Da $\sqrt{\lambda} \in \C \setminus \R$ gibt es also nur die Ruhelage Null. Wegen
+		Da $\lambda < 0$, also $\sqrt{\lambda} \in \C \setminus \R$, gibt es also nur die Ruhelage Null.
+		
+		\includegraphicsboxed{ODEs/ODEs - Satz 5.8.png}
+
+		Wegen
     dem Prinzip der linearisierten Stabilität und
     \begin{align*}
 			\partial_u (\lambda u - u^3)\mid_{u = 0} = (\lambda - 3 u^2)\mid_{u = 0} = \lambda < 0
 		\end{align*}
-		ist diese Ruhelage sogar asymptotisch stabil. Es gilt sogar
+		ist diese Ruhelage sogar asymptotisch stabil. Es gilt sogar ($\lambda < 0$)
     \begin{align*}
-      \lim_{t \to \infty} u(t) = \pm \frac{\sqrt{- \lambda} \exp(\lambda t)}{\sqrt{\exp(2\lambda t) - C^{-1}}} = 0.
+	  \lim_{t \to \infty} u(t)
+	  =
+	  \pm \lim_{t \to \infty} \frac{\sqrt{- \lambda} \exp(\lambda t)}{\sqrt{\exp(2\lambda t) - C^{-1}}} = 0.
     \end{align*}
     Somit konvergiert die homogene Lösung für alle Startwerte gegen die
     asymptotische Ruhelage.
@@ -75,22 +81,23 @@
 		\end{align*}
 		Außerdem gilt
 		\begin{align*}
-			\underline{u}(0) = \min\{0, m\} \leq m \leq u(x, 0) \leq M \leq \max\{0, M\} \leq \overline{u}(0) \quad \text{für jedes } x \in \Omega
+			\underline{u}(0) = \min\{0, m\} \leq m \leq u(x, 0) \leq M \leq \max\{0, M\} \leq \overline{u}(0) \quad \text{für jedes } x \in \Omega.
 		\end{align*}
 		Schließlich gilt
 		\begin{align*}
 			\underline{u}(0) = \min\{0, m\} \leq 0 \leq \max\{0, M\} = \overline{u}(0)
 		\end{align*}
-		 und da $0$ eine Ruhelage entsprechender ODE ist und sich Lösungen nicht schneiden dürfen gilt schon
+		$0$ ist eine Ruhelage entsprechender ODE also auch eine Lösung.
+		Da sich die Lösungen ($\underline{u}$, $0$ und $\overline{u}$) nicht schneiden dürfen gilt schon
 		\begin{align*}
 			\underline{u}(t) \leq 0 = u(x, t) = 0 \leq \overline{u}(t) \quad \text{für jedes } (x,t) \in \partial\Omega \times [0, T)
 		\end{align*}
-		Nach der vorherigen Aufgabe gilt
+		Nach der vorherigen Aufgabe 1 (ii) gilt ($L_1 := -\Delta$ und $f(x, t, u) := u^3 - \lambda u$)
 		\begin{align*}
 			\underline{u}(t) \leq u(x,t) \leq \overline{u}(t) \quad \text{für jedes } (x,t) \in \Omega \times (0, T]
 		\end{align*}
 		und da $T > 0$ beliebig war folgt die Aussage.
-		\item Wir erkennen, dass eine klassische Lösung $u$ für $t \to \infty$ gegen $0$ konvergiert.
+		\item Wir erkennen, dass eine klassische Lösung $u$, wegen des Einschluss-Satzes und der letzten Ungleichung aus (ii), für $t \to \infty$ gegen $0$ konvergiert.
 	\end{enumerate}
 
 \end{solution}
