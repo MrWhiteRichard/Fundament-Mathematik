@@ -60,12 +60,13 @@
 				\begin{align*}
 					g: (n,z) \mapsto \sum_{k=1}^z \mathrm{div}(n,k)
 				\end{align*}
-				primitiv rekursiv, und wir erhalten mit $\tau(x) = g(x,x)$
+				primitiv rekursiv, und wir erhalten mit $\tau(x) = g(x,x)$ die Anzahl
+				aller Teiler von $x$ und damit sehen wir, dass
 				\begin{align*}
 					\chi_\P(x) = \chi_{\{2\}}(\tau(x))
 				\end{align*}
-				ist primitiv rekursiv, also sind die Primzahlen als Menge primitiv rekursiv. \newline 
-				Wir wissen aus Aufgabe 202 bereits, dass für ein beliebieges $P \subseteq \N^k \times \N$ das primitiv rekursiv ist die Funktion 
+				primitiv rekursiv ist; also sind die Primzahlen als Menge primitiv rekursiv. \newline
+				Wir wissen aus Aufgabe 202 bereits, dass für ein beliebieges $P \subseteq \N^k \times \N$ das primitiv rekursiv ist die Funktion
 				\begin{align*}
 				h_P: \N^k \times \N \to \N: (\vec{x}, z) \mapsto \min\pbraces{\Bbraces{y < z: (\vec{x}, y) \in P} \cup \{z\}}
 				\end{align*}
@@ -107,10 +108,11 @@
 				\begin{align*}
 					g(m,z) := h_R(m,z)
 				\end{align*}
-				Die primitiv rekursive Funktion 
+				Damit erhalten wir eine primitiv rekursive Darstellung, für die
+				Funktion, die $k$ auf die $k$-te Primzahl schickt:
 				\begin{align*}
 				p_0 := 1, \quad p_{n + 1} := 2\chi_{\{0\}}(n) + (1 - \chi_{\{0\}}(n)) g(p_{n}, 2^{2^n})
-				\end{align*}		
+				\end{align*}
 %				Damit haben wir eine primitiv rekursive Darstellung für $p$:
 %				\begin{align*}
 %					p_{0} &= 1 \\
@@ -118,14 +120,15 @@
 %				\end{align*}
 				Nun betrachten wir eine weitere primitiv rekursive Relation, nämlich
 				\begin{align*}
-				S := \Bbraces{(n,k,y) \in \N^3 \mid \mathrm{div}(n, p_k^y) = 0}
+				S &:= \Bbraces{(n,k,y) \in \N^3 \mid \mathrm{div}(n, p_k^y) = 0} \\
+				\chi_S(n,k,y) &= 1 - \mathrm{div}(n, p_k^y)
 				\end{align*}
 				Jetzt können wir $(n,k) \mapsto (n)_k$ primitv rekursiv beschreiben durch
 				\begin{align*}
 					(n)_k = h_S(n,k,n) - 1. %[\mu y \leq n(\mathrm{div}(n,p_k^y) = 0)] - 1.
 				\end{align*}
 		\end{enumerate}
-	\item Kann man hier den Beweis aus (a) nicht direkt übernehmen?
+	\item Beweis aus (a) funktioniert auch, wenn für berechenbare $f$ und $\hat{f}$.
 \end{enumerate}
 
 \end{solution}
