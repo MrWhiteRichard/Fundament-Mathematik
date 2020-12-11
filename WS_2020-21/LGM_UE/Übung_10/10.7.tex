@@ -25,10 +25,10 @@
 	$\mathfrak{M}_2 = (M_2,I_2)$
 	mit $\vbraces{M_2} = n$ und $\mathfrak{M}_2 \vDash \varphi_2$.
 	Wir können ohne Beschränkung der Allgemeinheit sagen, dass $M_1 = M_2$ gilt,
-	da es eine Bijektion zwischen den beiden Mengen gibt.
+	da es eine Bijektion $\varphi: M_1 \to M_2$ zwischen den beiden Mengen gibt.
 	Wegen der Disjunktheit der Sprachen können wir nun die Interpretationen \Quote{vereinigen}:
 	\begin{align*}
-	\mathfrak{M} := (M_1,I_1 \cup I_2)
+	\mathfrak{M} := (M_2, (\varphi\circ I_1) \cup I_2)
 	\end{align*}
 	wobei es keine Probleme bei den Interpretationen gibt. Wir erhalten nun klarerweise $\mathfrak{M} \vDash \varphi_1 \land \varphi_2$.  \newline
 	Betrachten wir umgekehrt $n \in Sp(\varphi_1 \land \varphi_2)$ dann gibt es ein Modell $\mathfrak{M}$ mit $\vbraces{M} = n$ und $\mathfrak{M} \vDash \varphi_1 \land \varphi_2$ und damit gilt klarerweise auch $\mathfrak{M} \vDash \varphi_1$ und $\mathfrak{M} \vDash \varphi_2$.
@@ -46,12 +46,26 @@
 \begin{solution}
 
 \phantom{}
-	Wir wählen zuerst ein $n \in Sp(\varphi_1) \cup Sp(\varphi_2)$. Es gelte ohne Beschränkung der Allgemeinheit $n \in Sp(\varphi_1)$. Nun wissen wir, es gibt ein Modell $\mathfrak{M}$ mit $|M| = n$ mit $\mathfrak{M} \vDash \varphi_1$. Dieses Modell adaptieren indem wir den in $\varphi_2$ vorkommenden Konstanten, Funktions- und Relationssymbolen, welche nicht schon eine Intepretation haben beliebig interpretieren. Das neue Modell nennen wir $\tilde{\mathfrak{M}}$. Klarerweise gilt 
+	Wir wählen zuerst ein $n \in Sp(\varphi_1) \cup Sp(\varphi_2)$. Es gelte ohne Beschränkung der Allgemeinheit $n \in Sp(\varphi_1)$. Nun wissen wir, es gibt ein Modell $\mathfrak{M}$ mit $|M| = n$ mit $\mathfrak{M} \vDash \varphi_1$. Dieses Modell adaptieren indem wir den in $\varphi_2$ vorkommenden Konstanten, Funktions- und Relationssymbolen, welche nicht schon eine Intepretation haben beliebig interpretieren. Das neue Modell nennen wir $\tilde{\mathfrak{M}}$. Klarerweise gilt
 	\begin{align*}
 		\tilde{\mathfrak{M}} \vDash \varphi_1 \lor \varphi_2
 	\end{align*}
 	also $n \in Sp(\varphi_1 \lor \varphi_2)$. \newline
-	Betrachten wir umgekehrt $n \in Sp(\varphi_1 \lor \varphi_2)$. Das bedeutet es gibt ein Modell $\mathfrak{M}$ von $\varphi_1 \lor \varphi_2$ mit $|M| = n$. Mit der Definition der Theorie $\Sigma := \{\exists^n, \neg \exists^{n + 1}, \varphi_1 \lor \varphi_2\}$ gilt also $\mathfrak{M} \vDash \Sigma$, also ist $\Sigma$ erfüllbar, nach dem Gödelschen Vollständigkeitssatz also auch konsistent. Wir können diese Theorie vervollständigen zu einer konsistenten Theorie $\bar{\Sigma}$. Benützen wir nun die andere Richtung des Vollständigkeitssatzes so ist $\bar{\Sigma}$ erfüllbar, es gibt also ein Modell $\bar{\mathfrak{M}}$ mit $\bar{\mathfrak{M}} \vDash \Sigma$. Wegen der Vollständigkeit von $\bar{\Sigma}$. Außerdem gilt $\bar{\Sigma} \vdash \varphi_1 \lor \varphi_2$. Mit Aufgabe 113 folgt daraus bereits $\bar{\Sigma} \vdash \varphi_1$ oder $\bar{\Sigma} \vdash \varphi_2$ und mit dem Vollständigkeitssatz sagen wir ohne Beschränkung der Allgeimeinheit $\bar{\Sigma} \vDash \varphi_1$, also $\bar{\mathfrak{M}} \vDash \varphi_1$ und $|\bar{M}| = n$, also $n \in Sp(\varphi_1)$.  
+	Betrachten wir umgekehrt $n \in Sp(\varphi_1 \lor \varphi_2)$. Das bedeutet es gibt ein Modell
+	 $\mathfrak{M}$ von $\varphi_1 \lor \varphi_2$ mit $|M| = n$.
+	 Mit der Definition der Theorie
+	 $\Sigma := \{\exists^n, \neg \exists^{n + 1}, \varphi_1 \lor \varphi_2\}$
+	 gilt also $\mathfrak{M} \vDash \Sigma$, also ist $\Sigma$ erfüllbar,
+	 nach dem Gödelschen Vollständigkeitssatz also auch konsistent.
+	 Wir können diese Theorie vervollständigen zu einer konsistenten Theorie $\bar{\Sigma}$.
+	 Benützen wir nun die andere Richtung des Vollständigkeitssatzes so ist $\bar{\Sigma}$ erfüllbar,
+	 es gibt also ein Modell $\bar{\mathfrak{M}}$ mit $\bar{\mathfrak{M}} \vDash \Sigma$.
+	 Außerdem gilt
+	 $\bar{\Sigma} \vdash \varphi_1 \lor \varphi_2$.
+	 Wegen der Vollständigkeit von $\bar{\Sigma}$ folgt mit Aufgabe 113 daraus bereits $\bar{\Sigma} \vdash \varphi_1$ oder 
+	 $\bar{\Sigma} \vdash \varphi_2$ und mit dem Vollständigkeitssatz sagen wir
+	 ohne Beschränkung der Allgeimeinheit $\bar{\Sigma} \vDash \varphi_1$,
+	 also $\bar{\mathfrak{M}} \vDash \varphi_1$ und $|\bar{M}| = n$, also $n \in Sp(\varphi_1)$.
 \end{solution}
 
 \begin{exercise}[74]
