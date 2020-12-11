@@ -1,0 +1,56 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Geben Sie einen Algorithmus mit Laufzeit $\Landau(|V| + |E|)$ an, dessen Eingabe ein gerichteter azyklischer Graph $G = (V, E)$ und zwei Knoten $s$ und $t$ sind, der die Anzahl der (gerichteten) Wege von $s$ nach $t$ berechnet.
+Beispielsweise enthält der Graph aus Aufgabe 50 drei Wege von $b$ nach $i$ nämlich $b - d - e - h - i$, $b - d - f - h - i$ und $b - g - i$.
+(Anmerkung: der Algorithmus soll die Pfade bloß zählen, nicht ausgeben) \\
+
+Hinweis:
+Topologisches Sortieren
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{DGA/DGA - Algorithmus 26 - Linearisieren (Topologisches Sortieren).png}
+
+\Quote
+{
+    Wieso wird bei der Aufgabe 37 auf die Aufgabe 50 verwiesen?
+    Letztere ist ja auf einem Übungszettel, der noch nicht einmal auf TUWEL steht?!
+} \\
+
+Folgender rekursiver Algorithmus verwendet nicht Topologisches Sortieren?!
+
+\begin{algorithm}
+    \caption{Anzahl der gerichteten Wege eines gerichteten azyklischen Graphen $G = (V, E)$ von $s$ nach $t$}
+    \begin{algorithmic}[1]
+        \Procedure{AnzahlGerichteteWege}{$V, E, s, t$}
+            \If{$t = s$}
+                \State \Return $1$
+            \Else
+                \State $n := 0$
+                \For{$(v, t) \in E$}
+                    \State $n := n + \textsc{AnzahlGerichteteWege}(V, E, s, v)$
+                \EndFor
+                \State \Return $n$
+            \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+So wie der Algorithmus dasteht, besucht die \textbf{for}-Schleife die Kanten $\in E$ höchstens einmal.
+Insofern, könnte man meinen, er hat Aufwand $\Landau(|E|) \leq \Landau(|V| + |E|)$.
+Ich bin da aber trotzdem skeptisch.
+Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologisches Sortieren) gemacht. \\
+
+\textbf{Bitte nicht weglöschen, sondern diskutieren bzw. wenn dann auskommentieren.}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
