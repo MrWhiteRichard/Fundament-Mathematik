@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-ToDo!
+Beweisen Sie, dass ein Unabhängigkeitssystem $(E, S)$ genau dann ein Matriod ist, wenn für alle $A \subseteq E$ gilt, dass alle maximalen unabhängigen Teilmengen von $A$ gleichmächtig sind.
 
 \end{exercise}
 
@@ -10,7 +10,69 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\includegraphicsboxed{DGA/DGA - Definition 7.2.png}
+
+\textbf{Definition (Unabhängigkeitssystem).}
+Ein \textit{Unabhängigkeitssystem} $(E, S)$ ist ein Matriod, ohne geforderter Austauscheigenschaft.
+Die Elemente von $S$ heißen \textit{unabhängig} und die von $\mathcal{P}(E) \setminus S$ heißen \textit{abhängig}.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Richtung (\Quote{$\Rightarrow$}):
+
+    \includegraphicsboxed{DGA/DGA - Definition 7.3.png}
+    \includegraphicsboxed{DGA/DGA - Satz 7.5.png}
+
+    Sei $(E, S)$ ein Matriod und $A \subseteq E$.
+
+    \begin{align*}
+        S_A := \Bbraces{B \in S: B \subseteq A}
+    \end{align*}
+
+    Offensichtlich ist $(A, S_A)$ ein Matriod.
+    Die Behauptung folgt daher aus Satz 7.5
+
+    \item Richtung (\Quote{$\Leftarrow$}):
+    
+    Seien $A, B \in S$ und $|A| > |B|$.
+    Sei weiters $C := A \cup B$.
+    Es gibt eine $S$-unabhängige $C$-maximale Obermenge von $A$.
+
+    \begin{align*}
+        \implies
+        \Exists A^\prime \in S:
+        A \subseteq A^\prime \subseteq C ~\text{maximal}
+    \end{align*}
+
+    $B \subseteq C = A \cup B$ ist nicht maximal, weil sonst wäre wegen der gegebenen Zusatzeigenschaft
+
+    \begin{align*}
+        |B| = |A^\prime| \geq |A| > |B|.
+    \end{align*}
+
+    Es gibt daher eine $S$-unabhängige $C$-maximale echte Obermenge von $B$.
+
+    \begin{align*}
+        \implies
+        \Exists B^\prime \in S:
+        B \subsetneq B^\prime \subseteq C ~\text{maximal}
+    \end{align*}
+
+    Wenn $B$ zu $B^\prime \subseteq C = A \cup B$ erweitert wird, müssen Elemente aus $A$ hinzugefügt werden, d.h.
+
+    \begin{align*}
+        & \implies
+        \emptyset \neq B^\prime \setminus B \subseteq A. \\
+        & \implies
+        \emptyset \neq B^\prime \setminus B \subseteq A \setminus B
+    \end{align*}
+
+    Sei $x \in B^\prime \setminus B \subseteq B^\prime$, dann ist $B \cup \Bbraces{x} \subseteq B^\prime \in S$.
+    Weil $S$ als Unabhängigkeitssystem nach unten $\subseteq$-abgeschlossen ist, folgt $B \cup \Bbraces{x} \in S$.
+
+\end{enumerate}
 
 \end{solution}
 
