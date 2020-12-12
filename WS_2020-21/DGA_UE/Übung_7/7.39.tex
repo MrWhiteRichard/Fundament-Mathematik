@@ -80,7 +80,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Angenommen, $B$ wäre nicht zyklenfrei, sei $e_{i_1}, \dots, e_{i_k} \in E_n$ ein Zyklus in $B$.
     $e_{i_1}, \dots, e_{i_k}$ wurden vom Algorithmus nicht entfernt, also waren $(V, E_{i_1 - 1} \setminus \Bbraces{e_{i_1}}), \dots, (V, E_{i_k - 1} \setminus \Bbraces{e_{i_k}})$ nicht zusammenhängend.
     Sei $\ell = 1, \dots, k$.
-    Weil nun $E_{i_\ell - 1} \setminus \Bbraces{e_{i_\ell}} \supset E_n$, wäre somit aber $(V, E_n \setminus \Bbraces{e_{i_\ell}})$ ebenso nicht zusammenhängend.
+    Weil nun $E_{i_\ell - 1} \setminus \Bbraces{e_{i_\ell}} \supset E_n \setminus \Bbraces{e_{i_\ell}}$, wäre somit aber $(V, E_n \setminus \Bbraces{e_{i_\ell}})$ ebenso nicht zusammenhängend.
     Aus dem Zyklus $e_{i_1}, \dots, e_{i_k} \in E_n$ darf man aber eine beliebige Kante löschen und der resultierende Graph $(V, E_n \setminus \Bbraces{e_{i_\ell}})$ wäre noch immer zusammenhängend.
     Widerspruch!
 
@@ -109,14 +109,14 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
             }_{
                 \subseteq E_{i+1}
             }
-            \dot \cup
-            \underbrace
-            {
-                \Bbraces{e_j}
-            }_{
-                \subseteq E_{i+1}
-            }
         )
+        \dot \cup
+        \underbrace
+        {
+            \Bbraces{e_j}
+        }_{
+            \subseteq E_{i+1}
+        }
         \subseteq
         E_{i+1}
     \end{align*}
@@ -126,7 +126,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Weiters ist $|M_{i+1}| = |M_i| = |V| - 1$ da ja $e_j \not \in$ und $e_{i+1} \in M_i$ ist und $(V, M_{i+1})$ mit Satz 2.3 also ein Spannbaum von $G$.
 
     Außerdem ist $c(e_j) \leq c(e_{i+1})$, denn $c(e_j) > c(e_{i+1})$ impliziert $j < i + 1$ und damit $j-1 < j \leq i < i+1$.
-    Weil die $E$-Kantenmengen monoton nicht-steigen, heißt das $E_{j-1} \supseteq E_j \subseteq E_i \subseteq E_{i+1}$.
+    Weil die $E$-Kantenmengen monoton nicht-steigen, heißt das $E_{j-1} \supseteq E_j \supseteq E_i \supseteq E_{i+1}$.
 
     \begin{align*}
         \implies
@@ -184,6 +184,50 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
         =
         c(B_\mathrm{r})
     \end{align*}
+
+    \item Sei $E = [e_1, \dots, e_n]$ eine beliebige Kanten-Reihenfolge.
+    Der gegebene Algorithmus operiert wie folgt.
+
+    \begin{align*}
+        E_0 := \emptyset,
+        \quad
+        E_{i+1}
+        :=
+        \begin{cases}
+            (E_i \cup \Bbraces{e_{i+1}}) \setminus \Bbraces{e_{i_1}},
+            &
+            \Exists (e_{i_1}, \dots, e_{i_k}) ~\text{Zyklus}~ \subset (V, E_i \cup \Bbraces{e_{i+1}}): \\
+            &
+            c(e_{i_1}) \geq c(e_{i_2}), \dots, c(e_{i_k}), \\
+            E_i \cup \Bbraces{e_{i+1}}, & \text{sonst}
+        \end{cases}
+    \end{align*}
+
+    Der Algorithmus antwortet mit $(V, E_n)$.
+
+    Um die Korrektheit des Algorithmus zu beweisen, brauchen wir zunächst ein Lemma.
+
+    \textbf{Lemma.}
+    Sei $G = (V, E)$ ein endlicher, zyklenfreier Graph.
+    Sei $e$ eine Kante, sodass $G^\prime = (V, E \cup \Bbraces{e})$ einen Zyklus enthält.
+    Dann enthält $G^\prime$ höchstens (d.h. genau) einen Zyklus.
+
+    \textit{Beweis.}
+    Angenommen, $G^\prime$ enthielte $2$ verschiedene Zyklen $a = (a_1, \dots, a_n)$ und $b = (b_1, \dots, b_m)$.
+    Offenbar muss $e \in a$, da sonst $a$ Zyklus von $G$ wäre.
+    Dasselbe gilt für $b \ni e$.
+    Nun können wir aber aus $a \setminus e$ und $b \setminus e$ einen Zyklus von $G$ erzeugen.
+    Widerspruch!
+
+    Q.E.D.
+
+    \textbf{Bemerkung.}
+    Wenn man aus einem Graphen (z.B. $G^\prime$ aus dem obigen Lemma), der genau einen Zyklus besitzt eine Zyklus-Kante löscht, dann ist der resultierende Graph zyklenfrei.
+
+    \textit{Beweis (Korrektheit von Maybe-MST-C).}
+    Laut dem obigen Lemma und der Bemerkung, ist klar, dass $B = (V, E_n)$ zyklenfrei ist.
+    $B$ ist aber auch zusammenhängend:
+    Angenommen $B$ wäre nicht zusammenhängend.
 
 \end{enumerate}
 
