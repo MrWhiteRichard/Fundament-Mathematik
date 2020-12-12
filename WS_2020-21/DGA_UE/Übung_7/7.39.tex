@@ -1,8 +1,49 @@
 % --------------------------------------------------------------------------------
 
+\newpage
+
 \begin{exercise}
 
-ToDo!
+Alternative Algorithmen zur Bestimmung minimaler Spannbäume.
+Nachfolgend sind die Pseudocodes von drei verschiedenen Algorithmen angegeben.
+Alle drei erhalten als Eingabe einen zusammenhängenden kantenbewerteten Graphen und geben eine Kantenmenge $T$ zurück.
+Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, dass $T$ in jedem Fall ein minimaler Spannbaum ist.
+
+\begin{algorithmic}
+    \State Maybe-MST-A($G, w$)
+    \State sortiere die Kanten in nichtsteigender Reihenfolge nach ihren Gewichten $w$
+    \State $T := E$
+    \For{$e \in E$ (in der soeben berechneten Reihenfolge)}
+        \If{$T \setminus \Bbraces{e}$ ist ein zusammenhängender Graph}
+            \State $T := T \setminus \Bbraces{e}$
+        \EndIf
+    \EndFor
+    \State \Return $T$
+\end{algorithmic}
+
+\begin{algorithmic}
+    \State Maybe-MST-B($G, w$)
+    \State $T := \emptyset$
+    \For{$e \in E$ (in einer beliebigen Reihenfolge)}
+        \If{$T \cup \Bbraces{e}$ kreisfrei}
+            \State $T := T \cup \Bbraces{e}$
+        \EndIf
+    \EndFor
+    \State \Return $T$
+\end{algorithmic}
+
+\begin{algorithmic}
+    \State Maybe-MST-C($G, w$)
+    \State $T := \emptyset$
+    \For{$e \in E$ (in einer beliebigen Reihenfolge)}
+        \State $T := T \cup \Bbraces{e}$
+        \If{$T$ enthält einen Zyklus $c$}
+            \State sei $e_0$ eine Kante von $c$ mit maximalem Gewicht
+            \State $T := T \setminus \Bbraces{e_0}$
+        \EndIf
+    \EndFor
+    \State \Return $T$
+\end{algorithmic}
 
 \end{exercise}
 
@@ -10,7 +51,112 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\Alph*)]
+
+    \item Der Algorithmus von Kruskal startet leer und bezieht nur die nötigsten Kanten (d.h. jene mit minimalen Kosten) in den potentiellen MST mit ein.
+    Unser Algorithmus startet jedoch voll und entfernt die \Quote{unnötigsten} Kanten (d.h. jene mit maximalen Kosten) von dem potentiellen MST.
+    
+    Die Vermutung, dass Letzterer korrekt ist, klingt daher durchaus plausibel.
+    Um dies zu beweisen, orientieren wir uns entsprechend am Beweis von Satz 7.2.
+
+    Sei $e_1, \dots, e_n$ eine Sortierung von $E$, so dass $c(e_1) \geq \cdots \geq c(e_n)$, sei $E_0 = \emptyset$ und
+
+    \begin{align*}
+        E_{i+1}
+        =
+        \begin{cases}
+            E_i \setminus \Bbraces{e_{i+1}} & \text{falls}~ (V, E_i \setminus \Bbraces{e_{i+1}}) ~\text{zusammenhängenden ist und} \\
+            E_i                             & \text{sonst.}
+        \end{cases}
+    \end{align*}
+
+    Der Algorithmus antwortet mit $(V, E_n)$.
+
+    \textit{Beweis.}
+    Zunächst ist klar, dass $B = (V, E_n)$ zusammenhängend ist.
+    $B$ ist aber auch zyklenfrei:
+    Angenommen, $B$ wäre nicht zyklenfrei, sei $e_{i_1}, \dots, e_{i_k} \in E_n$ ein Zyklus in $B$.
+    $e_{i_1}, \dots, e_{i_k}$ wurden vom Algorithmus nicht entfernt, also waren $(V, E_{i_1 - 1} \setminus \Bbraces{e_{i_1}}), \dots, (V, E_{i_k - 1} \setminus \Bbraces{e_{i_k}})$ nicht zusammenhängend.
+    Sei $\ell = 1, \dots, k$.
+    Weil nun $E_{i_\ell - 1} \setminus \Bbraces{e_{i_\ell}} \supset E_n$, wäre somit aber $(V, E_n \setminus \Bbraces{e_{i_\ell}})$ ebenso nicht zusammenhängend.
+    Aus dem Zyklus $e_{i_1}, \dots, e_{i_k} \in E_n$ darf man aber eine beliebige Kante löschen und der resultierende Graph $(V, E_n \setminus \Bbraces{e_{i_\ell}})$ wäre noch immer zusammenhängend.
+    Widerspruch!
+
+    Für die Minimalität von $B$ reicht es zu zeigen, dass für alle $i \in \Bbraces{0, \dots, n}$ ein minimaler Spannbaum von $G$ mit Kantenmenge $M_i$ existiert so dass $E_i \supseteq M_i$.
+    Dann ist nämlich $E_n = M_n$ und damit $B$ minimal.
+
+    Wir gehen mit Induktion nach $i$ vor.
+    Der Fall $i = 0$ ist trivial.
+    Für den Induktionsschritt definieren wir $M_{i+1} = M_i$ falls keine Kante weggenommen wird oder die weggenommene Kante $e_{i+1} \not \in M_i$.
+    Sei nun also $E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$, $(V, E_{i+1})$ zusammenhängend und $e_{i+1} \in M_i$.
+    Weil $(V, M_i)$ als Baum minimal zusammenhängend ist, ist $(V, M_i \setminus \Bbraces{e_{i+1}})$ nicht mehr zusammenhängend.
+    Weil $E_{i+1}$ zusammenhängend ist, können die beiden Zusammenhangskomponenten von $(V, E_i \setminus \Bbraces{e_{i+1}}) \supseteq (V, M_i \setminus \Bbraces{e_{i+1}}) = (V, E_{i+1})$ durch ein $e_j \in E_{i+1}$ verbunden werden.
+    Dabei ist $e_{i+1} \neq e_j \in E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$.
+    Ebenso ist $e_j \not \in M_i \setminus \Bbraces{e_{i+1}}$, weil die Zusammenhangskomponenten sonst bereits verunden gewesen wären.
+    Daher muss $e_j \not \in M_i$.
+
+    \begin{align*}
+        M_{i+1}
+        :=
+        (
+            \underbrace
+            {
+                \underbrace{M_i}_{\subseteq E_{i+1}}
+                \setminus
+                \Bbraces{e_{i+1}}
+            }_{
+                \subseteq E_{i+1}
+            }
+            \dot \cup
+            \underbrace
+            {
+                \Bbraces{e_j}
+            }_{
+                \subseteq E_{i+1}
+            }
+        )
+        \subseteq
+        E_{i+1}
+    \end{align*}
+
+    $(V, M_{i+1})$ ist also zusammenhängend.
+
+    Weiters ist $|M_{i+1}| = |M_i| = |V| - 1$ da ja $e_j \not \in$ und $e_{i+1} \in M_i$ ist und $(V, M_{i+1})$ mit Satz 2.3 also ein Spannbaum von $G$.
+
+    Außerdem ist $c(e_j) \leq c(e_{i+1})$, denn $c(e_j) > c(e_{i+1})$ impliziert $j < i + 1$ und damit $j-1 < j \leq i < i+1$.
+    Weil die $E$-Kantenmengen monoton nicht-steigen, heißt das $E_{j-1} \supseteq E_j \subseteq E_i \subseteq E_{i+1}$.
+
+    \begin{align*}
+        \implies
+        E_{j-1} \setminus \Bbraces{e_j}
+        \stackrel{!}{\neq}
+        E_j
+        \supseteq
+        E_{i+1}
+        \ni
+        e_j
+    \end{align*}
+
+    Laut Konsturktion, und weil $e_j \not \in M_i$, wäre dann aber
+
+    \begin{multline*}
+        (V, E_{j-1} \setminus \Bbraces{e_j}) ~\text{nicht zusammenhängend}~
+        \supseteq
+        (V, E_i     \setminus \Bbraces{e_j}) ~\text{nicht zusammenhängend} \\
+        \supseteq
+        (V, M_i     \setminus \Bbraces{e_j}) ~\text{nicht zusammenhängend}~
+        =
+        (V, M_i)                             ~\text{nicht zusammenhängend.}
+    \end{multline*}
+
+    Widerspruch!
+    Also ist $c(M_{i+1}) \leq c(M_i)$ und, da $M_i$ minimal ist, $c(M_{i+1}) = c(M_i)$ und $M_{i+1}$ also ebenfalls ein minimaler Spannbaum.
+
+    Q.E.D.
+
+\end{enumerate}
 
 \end{solution}
 
