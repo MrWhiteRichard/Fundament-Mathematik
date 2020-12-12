@@ -7,7 +7,7 @@ Jeder Kante $(u, v) \in E$ ist ein reeller Wert $r(u, v)$ mit $0 \leq r(u, v) \l
 Wir interpretieren $r(u, v)$ als die Wahrscheinlichkeit, dass der Kanal von $u$ nach $v$ nicht versagt.
 Weiters setzen wir voraus, dass diese Wahrscheinlichkeiten paarweise unabhängig sind.
 
-\begin{enumerate}
+\begin{enumerate}[label = \alph*]
     \item Geben Sie einen effizienten Algorithmus an, der den zuverlässigsten Kanal zwischen zwei gegebenen Knoten bestimmt.
     \item Wenden Sie diesen Algorithmus auf folgenden Graphen an, um einem möglichst zuverlässigen Kommunikationskanal zwischen dem Knoten $1$ und $5$ herzustellen, wobei die Wahrscheinlichkeiten $r(u, v)$ bei den entsprechenden Kanten angegeben sind.
 \end{enumerate}
@@ -22,7 +22,25 @@ Weiters setzen wir voraus, dass diese Wahrscheinlichkeiten paarweise unabhängig
 
 \begin{solution}
 
-ToDo!
+\begin{enumerate}[label = \alph*]
+
+    \item \phantom{}
+    
+    \includegraphicsboxed{DGA/DGA - Algorithmus 29 - Algorithmus von Dijkstra.png}
+    
+    Der Algorithmus von Djkstra \Quote{addiert} die Kanten-Kosten und sucht einen Pfad mit \Quote{minimalen} Pfad-Kosten.
+    Wir wollen aber \Quote{multiplizieren} und den Pfad mit \Quote{maximaler} Sicherheit finden.
+    Daher muss der Algorithmus von Djkstra mit der Kostenfunktion $c := \log \frac{1}{r} = -\log r$ angewendet werden.
+
+    \begin{align*}
+        \begin{matrix}
+            ((0, 1), \cdot)        & \stackrel{1 / \cdot}{\cong} & ((1, \infty), \cdot)   \\
+            \stackrel{\log}{\cong} &                             & \stackrel{\log}{\cong} \\
+            ((-\infty, 0), +)      & \stackrel{- \cdot}{\cong}   & ((0, \infty), +)
+        \end{matrix}
+    \end{align*}
+
+\end{enumerate}    
 
 \end{solution}
 
