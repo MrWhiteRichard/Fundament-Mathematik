@@ -61,22 +61,24 @@ Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologi
 		\begin{algorithmic}[1]
 			\Procedure{AnzahlGerichteteWege}{$V, E, s, t$}
 			\State Sei \textit{pfadeZu} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
-			\State Sei \textit{bekannt} ein neues Datenfeld der Länge $|V|$ überall mit \textbf{faslch} initialisiert
-			\State Sei $M$ neue Warteschlange leer initialisiert
+			\State Sei \textit{eingangsgrad} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
+			\For{alle $(v,w) \in E$}
+				\State $\textit{Eingangsgrad}[w] := \textit{Eingangsgrad}[w] + 1$
+			\EndFor
+			\State Sei $M$ neue Warteschlange oder Stapel leer initialisiert
 			\State $\textsc{Hinzufügen}(M,s)$
-			\State $\textit{bekannt}[s] := \textbf{wahr}$
 			\State $\textit{pfadeZu}[s] := 1$
 			\While{$M$ nicht leer}
 				\State $v := \textsc{Entfernen}(M)$
 				\For{alle $(v,w) \in E$}
 					\State $\textit{pfadeZu}[w] := \textit{pfadeZu}[w] + \textit{pfadeZu}[v]$
-					\If{$\textit{bekannt}[w] = \textbf{falsch}$}
+					\State $\textit{eingangsgrad}[w] := \textit{eingangsgrad}[w] - 1$
+					\If{$\textit{eingangsgrad}[w] = 0$}
 						\State $\textsc{Hinfufügen}(M,w)$
-						\State $\textit{bekannt}[w] := \textbf{wahr}$
 					\EndIf
 				\EndFor
 			\EndWhile
-			\Return $\textit{pfadeZu}[t]$
+			\Return $\textit{pfadeZu}[t]$´
 			\EndProcedure
 		\end{algorithmic}
 	\end{algorithm}
