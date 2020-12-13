@@ -247,10 +247,24 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Die im $i$-ten Schritt verwendete Kante $e_i$ wird daher im $(i+1)$-ten (bis $n$-ten) Schritt garnicht mehr gebraucht, um diese Bereiche im Graphen zu verbinden, weil sie ja bereits, vermöge $e_i$ zusammenhängen.
 
     Der Algorithmus arbeitet alle Kanten $\in E$ ab, also auch all jene, die Zusammenhangskomponenten verbinden.
-    Der resultierende Graph $B$ ist daher zusammenhängend.
+    Der resultierende Graph $B$ ist daher zusammenhängend.\\ 
+    
+    Wir behaupten also, dass $G_n:=(V,E_n)$ ein minimaler Spannbaum ist. Wir arbeiten alle Eigenschaften ab.
+    \begin{enumerate}
+    	\item $G_n$ ist zyklenfrei. Dies folgt aus obiger Bemerkung. 
+    	
+    	\item $G_n$ \Quote{spannt $V$ auf}. Denn angenommen es gibt ein $v \in V$ an das keine Kanten aus $E_n$ angrenzen. Das heißt alle an $v$ angrenzenden Kanten wurden im Algorithmus gelöscht. Es gibt daher einen Zeitpunkt im Algorithmus, zu dem bereits alle solchen Kanten bis auf eine gelöscht sind. Diese kann dann aber nicht in einem Zykel vorkommen und daher nicht mehr gelöscht werden, ein Widerspruch.
+    	
+    	\item Angenommen $G_n$ wäre nicht zusammenhängend. Betrachten wir also zwei Zusammenhangskomponeneten $Z_1$ und $Z_2$ dieses Graphen. Das heißt aus jedem Pfad der $Z_1$ und $Z_2$ verbindet wird eine Kante durch den Algorithmus gelöscht. Wir betrachten einen Zeitpunkt, zu dem nur mehr ein Pfad intakt ist. Jede Kante in diesem Pfad kann dann aber nicht mehr in einem Zykel vorkommen, also auch nicht gelöscht werden, ein Widerspruch!
+    	
+    	\item Wenn eine Kante $e_{i_j}$ aus dem Zykel $e_{i_1}, \dots, e_{i_k}$ gelöscht wird und diese in dem Zykel die größten (das heißt alle andern sind echt kleiner) Kosten hat, dann kann $e_{i_j}$ in keinem minimalen Spannbaum vorkommen. Denn wäre $e_{i_j} \in S$ und $(V, S)$ ein minimaler Spannbaum, dann könnte ich $e_{i_j}$ durch eine aus $S$ löschen und dafür eine entpsrechende andere Kante aus dem Zykel so hinzufügen, dass ich wieder einen Spannbaum erhlatem, dieser hat kleinere Kosten, ein Widerspruch. 
+    	
+    	Wenn eine Kante aus einem Zykel gelöscht wird, in dem es keine eindeutig maximalen kosten gibt, dann ??? 
+    \end{enumerate}
 
 \end{enumerate}
 
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
