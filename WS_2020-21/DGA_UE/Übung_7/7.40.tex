@@ -42,6 +42,32 @@ Dijkstra Algorithmus.
             ((-\infty, 0), +, \geq) & \stackrel{- \cdot}{\cong}   & ((0, \infty), +, \leq)
         \end{matrix}
     \end{align*}
+    
+    \begin{algorithm}
+    	\caption{Finde verlässlichsten Pfad in $G = (V, E)$ von $s$ nach $t$}
+    	\begin{algorithmic}[1]
+    		\Procedure{VerlaesslichsterPfad}{$V, E, s, t$}
+    		\State Sei $B$ ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
+    		\For{alle $v \in V$}
+	    		\State $v.x := 0$
+	    		\State $v.Vorgaenger := \textsc{NIL}$
+    		\EndFor
+    		\State $s.x := 1$
+    		\State $Q := \textsc{Max-Prioritätswarteschlange(V)}$
+    		\While{$Q$ nicht leer}
+	    		\State $v := \textsc{ExtrahiereMaximum}(Q)$
+	    		\State $B[v] := \textbf{wahr}$
+	    		\For{alle $(v,w) \in E$}
+		    		\If{$ v.x \ast r(v,w) > w.x$}
+			    		\State $w.Vorgaenger := v$
+			    		\State $\textsc{ErhöhePriorität}(Q,w,v.x \ast r(v,w))$
+		    		\EndIf
+	    		\EndFor
+    		\EndWhile
+    		\State \Return $(t, t.Vorgaenger, t.Vorgaenger.Vorgaenger, \dots, s)^{-1}$
+    		\EndProcedure
+    	\end{algorithmic}
+    \end{algorithm}
 
     \item Wir diskutieren die Schritte und Ergebnisse des Algorithmus von Dijkstra im $((0, 1), \cdot, \geq)$-Setting.
     Genau genommen operiert dieser in der isomorphen geordneten Halbgruppe $((0, \infty), +, \leq)$.
