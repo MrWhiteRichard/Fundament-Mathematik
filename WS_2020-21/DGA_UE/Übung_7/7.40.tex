@@ -12,6 +12,9 @@ Weiters setzen wir voraus, dass diese Wahrscheinlichkeiten paarweise unabhängig
     \item Wenden Sie diesen Algorithmus auf folgenden Graphen an, um einem möglichst zuverlässigen Kommunikationskanal zwischen dem Knoten $1$ und $5$ herzustellen, wobei die Wahrscheinlichkeiten $r(u, v)$ bei den entsprechenden Kanten angegeben sind.
 \end{enumerate}
 
+Hinweis:
+Dijkstra Algorithmus.
+
 \begin{center}
     \input{7.40_tikz_picture_0.tex}
 \end{center}
@@ -40,7 +43,520 @@ Weiters setzen wir voraus, dass diese Wahrscheinlichkeiten paarweise unabhängig
         \end{matrix}
     \end{align*}
 
+    \item Wir diskutieren die Schritte und Ergebnisse des Algorithmus von Dijkstra im $((0, 1), \cdot)$-Setting.
+    Genau genommen operiert dieser im isomorphen $((0, \infty), +)$-Setting.
+    Zwecks mangelnder arithmetischer Exaktheit der isomorphen Transformation (vermöge $c$) der Angabe-Daten, bleiben wir dabei, dies lediglich anzumerken.
+
 \end{enumerate}    
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = black] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = black] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = black] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = black] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = black] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = black] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = black] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = black] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = black] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2    & 3    & 4    & 5    & 6    & 7    & 8    & 9    \\
+        \hline
+        \text{Priorität} & 0    & 0    & 0    & 0    & 1    & 0    & 0    & 0    & 0    \\
+        \hline
+        \text{Vorgänger} & \NIL & \NIL & \NIL & \NIL & \NIL & \NIL & \NIL & \NIL & \NIL \\
+        \hline
+        \text{Kandidat}  &      &      &      &      & \top &      &      &      &      \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = black] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = black] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = blue]  (4) -- node [above]       {$0.8$} (5);
+        \draw [color = black] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = black] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = blue]  (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = red]   (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = black] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = black] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2    & 3    & 4                     & 5    & 6    & 7    & 8    & 9    \\
+        \hline
+        \text{Priorität} & 0    & 0    & 0    & 0 < 1 \cdot 0.8 = 0.8 & 1    & 0    & 0    & 0    & 0    \\
+        \hline
+        \text{Vorgänger} & \NIL & \NIL & \NIL & 5                     & \NIL & \NIL & \NIL & \NIL & \NIL \\
+        \hline
+        \text{Kandidat}  &      &      &      & \top                  &      &      &      &      &      \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = blue]  (3) -- node [above right] {$0.9$} (4);
+        \draw [color = black] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = blue]  (4) -- node [above right] {$0.8$} (6);
+        \draw [color = blue]  (4) -- node [below right] {$0.7$} (7);
+        \draw [color = blue]  (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = blue]  (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = red]   (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = blue]  (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = blue]  (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = blue]  (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2    & 3                        & 4   & 5    & 6                        & 7                        & 8    & 9                        \\
+        \hline
+        \text{Priorität} & 0    & 0    & 0 < 0.8 \cdot 0.9 = 0.72 & 0.8 & 1    & 0 < 0.8 \cdot 0.8 = 0.64 & 0 < 0.8 \cdot 0.7 = 0.56 & 0    & 0 < 0.8 \cdot 0.6 = 0.48 \\
+        \hline
+        \text{Vorgänger} & \NIL & \NIL & 4                        & 5   & \NIL & 4                        & 4                        & \NIL & 4                        \\
+        \hline
+        \text{Kandidat}  &      &      & \top                     &     &      & \bot                     & \bot                     &      & \bot                     \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = blue]  (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = blue]  (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = black] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+            
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = blue]  (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = red]   (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = black] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = blue]  (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2                          & 3    & 4   & 5    & 6    & 7    & 8    & 9                             \\
+        \hline
+        \text{Priorität} & 0    & 0 < 0.72 \cdot 0.6 = 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56 & 0    & 0.48 < 0.72 \cdot 0.9 = 0.648 \\
+        \hline
+        \text{Vorgänger} & \NIL & 3                          & 4    & 5   & \NIL & 4    & 4    & \NIL & 3                             \\
+        \hline
+        \text{Kandidat}  &      & \bot                       &      &     &      & \bot & \bot &      & \top                          \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+    
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = black] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = blue]  (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = blue]  (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = black] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = blue]  (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = blue]  (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = red]   (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2     & 3    & 4   & 5    & 6    & 7                                    & 8                            & 9     \\
+        \hline
+        \text{Priorität} & 0    & 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56 \not < 0.648 \cdot 0.6 = 0.3888 & 0 < 0.648 \cdot 0.7 = 0.4536 & 0.648 \\
+        \hline
+        \text{Vorgänger} & \NIL & 3     & 4    & 5   & \NIL & 4    & 4                                    & 9                            & 3     \\
+        \hline
+        \text{Kandidat}  &      & \bot  &      &     &      & \top & \bot                                 & \bot                         &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+    
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = green] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = red]   (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+    
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2     & 3    & 4   & 5    & 6    & 7     & 8      & 9     \\
+        \hline
+        \text{Priorität} & 0    & 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56  & 0.4536 & 0.648 \\
+        \hline
+        \text{Vorgänger} & \NIL & 3     & 4    & 5   & \NIL & 4    & 4     & 9      & 3     \\
+        \hline
+        \text{Kandidat}  &      & \bot  &      &     &      &      & \top  & \bot   &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = green] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = blue]  (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = green] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = red]   (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = blue]  (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+            
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1    & 2     & 3    & 4   & 5    & 6    & 7     & 8                                    & 9     \\
+        \hline
+        \text{Priorität} & 0    & 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56  & 0.4536 \not < 0.56 \cdot 0.8 = 0.448 & 0.648 \\
+        \hline
+        \text{Vorgänger} & \NIL & 3     & 4    & 5   & \NIL & 4    & 4     & 9                                    & 3     \\
+        \hline
+        \text{Kandidat}  &      & \bot  &      &     &      &      &       & \top                                 &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = blue]  (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = blue]  (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = green] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = green] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+
+        \filldraw [color = blue]  (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = blue]  (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = green] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = red]   (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+            
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1                              & 2                                       & 3    & 4   & 5    & 6    & 7     & 8      & 9     \\
+        \hline
+        \text{Priorität} & 0 < 0.4536 \cdot 0.9 = 0.40824 & 0.432 \not < 0.4536 \cdot 0.9 = 0.40824 & 0.72 & 0.8 & 1    & 0.64 & 0.56  & 0.4536 & 0.648 \\
+        \hline
+        \text{Vorgänger} & 8                              & 3                                       & 4    & 5   & \NIL & 4    & 4     & 9      & 3     \\
+        \hline
+        \text{Kandidat}  & \top                           & \bot                                    &      &     &      &      &       &        &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+    
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = green] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = green] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = green] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = red]   (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = green] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = green] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+    
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1       & 2     & 3    & 4   & 5    & 6    & 7     & 8      & 9     \\
+        \hline
+        \text{Priorität} & 0.40824 & 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56  & 0.4536 & 0.648 \\
+        \hline
+        \text{Vorgänger} & 8       & 3     & 4    & 5   & \NIL & 4    & 4     & 9      & 3     \\
+        \hline
+        \text{Kandidat}  &         & \top  &      &     &      &      &       &        &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+\begin{center}
+    
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = green] (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = green] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = green] (3) -- node [above right] {$0.9$} (4);
+        \draw [color = green] (3) -- node [left]        {$0.9$} (9);
+        \draw [color = green] (4) -- node [above]       {$0.8$} (5);
+        \draw [color = green] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = green] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = green] (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = red]   (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = green] (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = green] (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = green] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = green] (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+    
+\end{center}
+
+\begin{align*}
+    \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \text{Knoten}    & 1       & 2     & 3    & 4   & 5    & 6    & 7     & 8      & 9     \\
+        \hline
+        \text{Priorität} & 0.40824 & 0.432 & 0.72 & 0.8 & 1    & 0.64 & 0.56  & 0.4536 & 0.648 \\
+        \hline
+        \text{Vorgänger} & 8       & 3     & 4    & 5   & \NIL & 4    & 4     & 9      & 3     \\
+        \hline
+        \text{Kandidat}  &         &       &      &     &      &      &       &        &       \\
+        \hline
+    \end{array}
+\end{align*}
+
+Der resultierende (zuverlässigste) Kommunikationskanal (d.h. Pfad) zwischen $1$ und $5$ lautet daher
+
+\begin{align*}
+    (1, 8, 9, 3, 4, 5).
+\end{align*}
+
+\begin{center}
+    
+    \begin{tikzpicture}[scale = 5]
+
+        \input{7.40_tikz_coordinates.tex}
+    
+        \draw [color = red]   (1) -- node [above left]  {$0.9$} (8);
+        \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
+        \draw [color = black] (2) -- node [left]        {$0.9$} (8);
+        \draw [color = red]   (3) -- node [above right] {$0.9$} (4);
+        \draw [color = red]   (3) -- node [left]        {$0.9$} (9);
+        \draw [color = red]   (4) -- node [above]       {$0.8$} (5);
+        \draw [color = black] (4) -- node [above right] {$0.8$} (6);
+        \draw [color = black] (4) -- node [below right] {$0.7$} (7);
+        \draw [color = black] (4) -- node [above left]  {$0.6$} (9);
+        \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
+        \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
+        \draw [color = red]   (8) -- node [above left]  {$0.7$} (9);
+    
+        \filldraw [color = red]   (1) circle (0.25pt) node [below]      {$1$};
+        \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
+        \filldraw [color = red]   (3) circle (0.25pt) node [above]      {$3$};
+        \filldraw [color = red]   (4) circle (0.25pt) node [above]      {$4$};
+        \filldraw [color = red]   (5) circle (0.25pt) node [right]      {$5$};
+        \filldraw [color = black] (6) circle (0.25pt) node [right]      {$6$};
+        \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
+        \filldraw [color = red]   (8) circle (0.25pt) node [below]      {$8$};
+        \filldraw [color = red]   (9) circle (0.25pt) node [above left] {$9$};
+    
+    \end{tikzpicture}
+    
+\end{center}
 
 \end{solution}
 
