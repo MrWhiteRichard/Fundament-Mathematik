@@ -228,18 +228,21 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Laut dem obigen Lemma und der Bemerkung, ist klar, dass $B = (V, E_n)$ zyklenfrei ist.
     $B$ ist aber auch zusammenhängend:
 
-    Das ist äquivalent dazu, dass $B$ genau eine Zusammenhangskomponente hat.
-    Sei $i = 1, \dots, n$ und verbinde $e_{i+1}$ zwei Zusammenhangskomponenten $Z_1, Z_2$ von $(V, E_i)$.
-    Dann gilt auf jeden Fall $e_{i+1} \in E_{i+1}$.
-    Wenn es keinen Zyklus in $(V, E_i \cup \Bbraces{e_{i+1}})$ gibt, ist das klar, weil dann ja $E_{i+1} = E_i \cup \Bbraces{e_{i+1}}$.
-    Wenn es aber doch einen Zyklus gibt, dann muss dieser vollständig in einer Zusammenhangskomponente $Z_1$ oder $Z_2$ liegen.
-    Wenn $e_{i+1}$ zwei Zusammenhangskomponenten verbindet wird $e_{i+1}$ vom Algorithmus also nicht entfernt.
+    Sei $i = 1, \dots, n$ und verbinde $e_{i+1}$ zwei Zusammenhangskomponenten $Z_1, Z_2 \subseteq (V, E_i)$.
+    Wir behaupten, dass $(V, E_i \cup \Bbraces{e_{i+1}})$ zyklenfrei ist.
+    Laut dem obigen Lemma und der Bemerkung, ist nämlich klar, dass $(V, E_i)$ zyklenfrei ist.
+    Daher sind insbesondere die Zusammenhangskomponenten (Bäume) $Z_1$ und $Z_2$ zyklenfrei.
+    $Z := Z_1 \cup \Bbraces{e_i} \cup Z_2 \subseteq (V, E_i \cup \Bbraces{e_{i+1}})$ ist also auch zyklenfrei.
+    $(V, E_i \cup \Bbraces{e_{i+1}})$ ist also insgesamt Zyklenfrei.
+    Der Algorithmus entscheidet sich also für $E_{i+1} = E_i \cup \Bbraces{e_{i+1}}$.
+    Zusammenfassend:
+    Wenn $e_{i+1}$ zwei Zusammenhangskomponenten verbindet wird $e_{i+1}$ vom Algorithmus nicht entfernt.
 
     Wir zeigen mit Induktion, dass es immer, d.h. im $i$-ten Schritt, genug Kanten $\in \Bbraces{e_i, \dots, e_n}$ gibt, sodass alle Zusammenhangskomponenten von $(V, E_{i-1})$ verbunden werden können.
     Der Induktionsanfang ist klar, weil $G = (V, E)$ zusammenhängend ist und die Zusammenhangskomponenten von $(V, E_0)$ genau die Singleton-Graphen $(\Bbraces{v}, \emptyset)$, $v \in V$ sind.
     Für den Induktionsschritt gebe es solche Kanten im $i$-ten Schritt.
     Wenn keine der Kanten darin verwendet wurde, gibt es alle davon auch im $(i+1)$-ten Schritt wieder.
-    Wenn eine ($e_i$) verwendet wurde, dann wurde sie laut den oberen Überlegungen nicht entfernt.
+    Wenn eine ($e_i$) verwendet wurde, dann wurde sie laut den oberen Überlegungen nicht vom Algorithmus aus $E_i \cup \Bbraces{e_i}$ entfernt.
     Weil dann aber gerade zwei Zusammenhangskomponenten von $(V, E_{i-1})$ verbunden wurde, gibt es in $(V, E_i)$ dann aber genau eine Zusammenhangskomponente weniger.
     Die im $i$-ten Schritt verwendete Kante $e_i$ wird daher im $(i+1)$-ten (bis $n$-ten) Schritt garnicht mehr gebraucht, um diese Bereiche im Graphen zu verbinden, weil sie ja bereits, vermöge $e_i$ zusammenhängen.
 
