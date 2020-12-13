@@ -54,3 +54,32 @@ Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologi
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}
+	\begin{algorithm}
+		\caption{Anzahl der gerichteten Wege eines gerichteten azyklischen Graphen $G = (V, E)$ von $s$ nach $t$}
+		\begin{algorithmic}[1]
+			\Procedure{AnzahlGerichteteWege}{$V, E, s, t$}
+			\State Sei \textit{pfadeZu} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
+			\State Sei \textit{eingangsgrad} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
+			\For{alle $(v,w) \in E$}
+				\State $\textit{Eingangsgrad}[w] := \textit{Eingangsgrad}[w] + 1$
+			\EndFor
+			\State Sei $M$ neue Warteschlange oder Stapel leer initialisiert
+			\State $\textsc{Hinzufügen}(M,s)$
+			\State $\textit{pfadeZu}[s] := 1$
+			\While{$M$ nicht leer}
+				\State $v := \textsc{Entfernen}(M)$
+				\For{alle $(v,w) \in E$}
+					\State $\textit{pfadeZu}[w] := \textit{pfadeZu}[w] + \textit{pfadeZu}[v]$
+					\State $\textit{eingangsgrad}[w] := \textit{eingangsgrad}[w] - 1$
+					\If{$\textit{eingangsgrad}[w] = 0$}
+						\State $\textsc{Hinfufügen}(M,w)$
+					\EndIf
+				\EndFor
+			\EndWhile
+			\Return $\textit{pfadeZu}[t]$´
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+\end{solution}
