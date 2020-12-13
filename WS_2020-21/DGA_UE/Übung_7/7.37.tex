@@ -56,6 +56,38 @@ Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologi
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+\phantom{}
+
+\begin{algorithm}
+    \caption{Anzahl der gerichteten Wege eines gerichteten azyklischen Graphen $G = (V, E)$ von $s$ nach $t$}
+    \begin{algorithmic}[1]
+        \Procedure{AnzahlPfade}{$E, s, t$}
+        \State Setze $v.n := +\infty$ für alle $v \in V$
+        \State \Return \textsc{AnzahlPfadeRek}($E,s,t$)
+        \EndProcedure
+    \\
+        \Procedure{AnzahlPfadeRek}{$E,s,t$}
+            \If{$s.n = +\infty$}
+                \If{$s = t$}
+                    \State $s.n := 1$
+                \Else
+                    \State $s.n := 0$
+                    \For{$(s,w) \in E$}
+                        \State $s.n := s.n +$ \textsc{AnzahlPfadeRek}($E,w,t$)
+                    \EndFor
+                \EndIf
+            \EndIf
+            \State \Return $v.n$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\end{solution}
+
+\begin{solution}
+
+\phantom{}
 	\begin{algorithm}
 		\caption{Anzahl der gerichteten Wege eines gerichteten azyklischen Graphen $G = (V, E)$ von $s$ nach $t$}
 		\begin{algorithmic}[1]
@@ -83,3 +115,5 @@ Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologi
 		\end{algorithmic}
 	\end{algorithm}
 \end{solution}
+
+\FloatBarrier
