@@ -28,9 +28,9 @@ Dijkstra Algorithmus.
 \begin{enumerate}[label = \alph*]
 
     \item \phantom{}
-    
+
     \includegraphicsboxed{DGA/DGA - Algorithmus 29 - Algorithmus von Dijkstra.png}
-    
+
     Der Algorithmus von Djkstra \Quote{addiert} die Kanten-Kosten und sucht einen Pfad mit \Quote{minimalen} Pfad-Kosten.
     Wir wollen aber \Quote{multiplizieren} und den Pfad mit \Quote{maximaler} Sicherheit finden.
     Daher muss der Algorithmus von Djkstra mit der Kostenfunktion $c := \log \frac{1}{r} = -\log r$ angewendet werden.
@@ -42,12 +42,12 @@ Dijkstra Algorithmus.
             ((-\infty, 0), +, \geq) & \stackrel{- \cdot}{\cong}   & ((0, \infty), +, \leq)
         \end{matrix}
     \end{align*}
-    
+
     \begin{algorithm}
     	\caption{Finde verlässlichsten Pfad in $G = (V, E)$ von $s$ nach $t$}
     	\begin{algorithmic}[1]
     		\Procedure{VerlaesslichsterPfad}{$V, E, s, t$}
-    		\State Sei $B$ ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
+    		\State Sei $B$ ein neues Datenfeld der Länge $|V|$ überall mit \textbf{falsch} initialisiert
     		\For{alle $v \in V$}
 	    		\State $v.x := 0$
 	    		\State $v.Vorgaenger := \textsc{NIL}$
@@ -58,7 +58,7 @@ Dijkstra Algorithmus.
 	    		\State $v := \textsc{ExtrahiereMaximum}(Q)$
 	    		\State $B[v] := \textbf{wahr}$
 	    		\For{alle $(v,w) \in E$}
-		    		\If{$ v.x \ast r(v,w) > w.x$}
+		    		\If{$ v.x \ast r(v,w) > w.x$ \textbf{and} $B[w] =$ \textbf{falsch}}
 			    		\State $w.Vorgaenger := v$
 			    		\State $\textsc{ErhöhePriorität}(Q,w,v.x \ast r(v,w))$
 		    		\EndIf
@@ -73,14 +73,14 @@ Dijkstra Algorithmus.
     Genau genommen operiert dieser in der isomorphen geordneten Halbgruppe $((0, \infty), +, \leq)$.
     Zwecks mangelnder arithmetischer Exaktheit der isomorphen Transformation (vermöge $c$) der Angabe-Daten, bleiben wir dabei, dies lediglich anzumerken.
 
-\end{enumerate}    
+\end{enumerate}
 
 \begin{center}
 
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -93,7 +93,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = black] (3) circle (0.25pt) node [above]      {$3$};
@@ -103,7 +103,7 @@ Dijkstra Algorithmus.
         \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = black] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
 
 \end{center}
@@ -127,7 +127,7 @@ Dijkstra Algorithmus.
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -140,7 +140,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = black] (3) circle (0.25pt) node [above]      {$3$};
@@ -150,7 +150,7 @@ Dijkstra Algorithmus.
         \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = black] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
 
 \end{center}
@@ -174,7 +174,7 @@ Dijkstra Algorithmus.
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -187,7 +187,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = blue]  (3) circle (0.25pt) node [above]      {$3$};
@@ -197,7 +197,7 @@ Dijkstra Algorithmus.
         \filldraw [color = blue]  (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = blue]  (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
 
 \end{center}
@@ -221,7 +221,7 @@ Dijkstra Algorithmus.
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = blue]  (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -234,7 +234,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-            
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = blue]  (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = red]   (3) circle (0.25pt) node [above]      {$3$};
@@ -244,7 +244,7 @@ Dijkstra Algorithmus.
         \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = blue]  (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
 
 \end{center}
@@ -264,11 +264,11 @@ Dijkstra Algorithmus.
 \end{align*}
 
 \begin{center}
-    
+
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -281,7 +281,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = blue]  (7) -- node [above left]  {$0.6$} (9);
         \draw [color = blue]  (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
@@ -291,7 +291,7 @@ Dijkstra Algorithmus.
         \filldraw [color = blue]  (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = blue]  (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = red]   (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
 
 \end{center}
@@ -311,11 +311,11 @@ Dijkstra Algorithmus.
 \end{align*}
 
 \begin{center}
-    
+
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -328,7 +328,7 @@ Dijkstra Algorithmus.
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
@@ -338,9 +338,9 @@ Dijkstra Algorithmus.
         \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = black] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-    
+
 \end{center}
 
 \begin{align*}
@@ -362,7 +362,7 @@ Dijkstra Algorithmus.
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = black] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -375,7 +375,7 @@ Dijkstra Algorithmus.
         \draw [color = blue]  (7) -- node [below left]  {$0.8$} (8);
         \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = black] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
@@ -385,9 +385,9 @@ Dijkstra Algorithmus.
         \filldraw [color = red]   (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = blue]  (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-            
+
 \end{center}
 
 \begin{align*}
@@ -409,7 +409,7 @@ Dijkstra Algorithmus.
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = blue]  (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = blue]  (2) -- node [left]        {$0.9$} (8);
@@ -432,9 +432,9 @@ Dijkstra Algorithmus.
         \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = red]   (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-            
+
 \end{center}
 
 \begin{align*}
@@ -452,11 +452,11 @@ Dijkstra Algorithmus.
 \end{align*}
 
 \begin{center}
-    
+
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = green] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -469,7 +469,7 @@ Dijkstra Algorithmus.
         \draw [color = green] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = red]   (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
@@ -479,9 +479,9 @@ Dijkstra Algorithmus.
         \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = green] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-    
+
 \end{center}
 
 \begin{align*}
@@ -499,11 +499,11 @@ Dijkstra Algorithmus.
 \end{align*}
 
 \begin{center}
-    
+
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = green] (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = green] (2) -- node [left]        {$0.9$} (8);
@@ -516,7 +516,7 @@ Dijkstra Algorithmus.
         \draw [color = green] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = green] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = black] (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = green] (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = red]   (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = green] (3) circle (0.25pt) node [above]      {$3$};
@@ -526,9 +526,9 @@ Dijkstra Algorithmus.
         \filldraw [color = green] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = green] (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = green] (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-    
+
 \end{center}
 
 \begin{align*}
@@ -552,11 +552,11 @@ Der resultierende (zuverlässigste) Kommunikationskanal (d.h. Pfad) zwischen $1$
 \end{align*}
 
 \begin{center}
-    
+
     \begin{tikzpicture}[scale = 5]
 
         \input{7.40_tikz_coordinates.tex}
-    
+
         \draw [color = red]   (1) -- node [above left]  {$0.9$} (8);
         \draw [color = black] (2) -- node [above left]  {$0.6$} (3);
         \draw [color = black] (2) -- node [left]        {$0.9$} (8);
@@ -569,7 +569,7 @@ Der resultierende (zuverlässigste) Kommunikationskanal (d.h. Pfad) zwischen $1$
         \draw [color = black] (7) -- node [below left]  {$0.8$} (8);
         \draw [color = black] (7) -- node [above left]  {$0.6$} (9);
         \draw [color = red]   (8) -- node [above left]  {$0.7$} (9);
-    
+
         \filldraw [color = red]   (1) circle (0.25pt) node [below]      {$1$};
         \filldraw [color = black] (2) circle (0.25pt) node [above]      {$2$};
         \filldraw [color = red]   (3) circle (0.25pt) node [above]      {$3$};
@@ -579,9 +579,9 @@ Der resultierende (zuverlässigste) Kommunikationskanal (d.h. Pfad) zwischen $1$
         \filldraw [color = black] (7) circle (0.25pt) node [below]      {$7$};
         \filldraw [color = red]   (8) circle (0.25pt) node [below]      {$8$};
         \filldraw [color = red]   (9) circle (0.25pt) node [above left] {$9$};
-    
+
     \end{tikzpicture}
-    
+
 \end{center}
 
 \end{solution}
