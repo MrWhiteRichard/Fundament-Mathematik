@@ -76,13 +76,13 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
             c(\Bbraces{l, n}) = 3, & & & \\
             c(\Bbraces{m, n}) = 7  & & &
         \end{matrix}
-    \end{align*}    
+    \end{align*}
 
     $B$ wird die Kanten-Menge des gewünschten minimalen Spannbaums von $G$.
     Diese startet mit der leeren Menge $\emptyset$ und es werden sukzessive passende Kanten hinzugefügt.
 
     Zuerst wird allerdings der Graph in einen Wald $P$ aus $1$-punktigen Bäumen partitioniert.
-    
+
     \begin{multline*}
         P_0
         :=
@@ -104,7 +104,7 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
             (\Bbraces{s}, \emptyset)
         \}
     \end{multline*}
-    
+
     Diese Bäume werden mit passenden Kanten $\in E$ zu einem minimalen Spannbaum verknüpft.
     Dazu iteriert man über das aus $E$ bzgl. $c$ von oben nach unten sortierte Datenfeld.
 
@@ -117,7 +117,7 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
             c(\Bbraces{c, e}) = 4 & \geq & c(\Bbraces{i, l}) = 4 & \geq &                       &      &                       &      &                       &      \\
             c(\Bbraces{b, c}) = 3 & \geq & c(\Bbraces{b, d}) = 3 & \geq & c(\Bbraces{g, h}) = 3 & \geq & c(\Bbraces{j, k}) = 3 & \geq & c(\Bbraces{l, n}) = 3 & \geq \\
             c(\Bbraces{a, s}) = 2 & \geq & c(\Bbraces{c, s}) = 2 & \geq & c(\Bbraces{h, i}) = 2 & \geq & c(\Bbraces{h, k}) = 2 & \geq &                       &      \\
-            c(\Bbraces{h, j}) = 1 &      &                       &      &                       &      &                       &      &                       & 
+            c(\Bbraces{h, j}) = 1 &      &                       &      &                       &      &                       &      &                       &
         \end{matrix}
     \end{align*}
 
@@ -148,10 +148,14 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
             \Bbraces{h, k},
             \Bbraces{h, j}
         ]
-    \end{multline*}    
+    \end{multline*}
 
     Es werden also am ehesten jene Kanten als Verknüpfung verwendet, die maximale Kosten liefern.
     Wir führen exemplarisch ein paar Schritte durch, sodass alle ($2$) Fälle abgedeckt sind.
+
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_0.tex}
+    \end{center}
 
     \begin{multline*}
         P_0
@@ -180,6 +184,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_16.tex}
+    \end{center}
+
     \begin{multline*}
         P_1
         \stackrel
@@ -206,6 +214,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_17.tex}
+    \end{center}
+
     \begin{multline*}
         P_2
         \stackrel
@@ -231,6 +243,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_18.tex}
+    \end{center}
+
     \begin{multline*}
         P_3
         \stackrel
@@ -255,6 +271,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_19.tex}
+    \end{center}
+
     \begin{multline*}
         P_4
         \stackrel
@@ -278,6 +298,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_20.tex}
+    \end{center}
+
     \begin{multline*}
         P_5
         \stackrel
@@ -300,6 +324,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_21.tex}
+    \end{center}
+
     \begin{multline*}
         P_6
         \stackrel
@@ -321,6 +349,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_22.tex}
+    \end{center}
+
     \begin{multline*}
         P_7
         \stackrel
@@ -341,6 +373,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_23.tex}
+    \end{center}
+
     \begin{multline*}
         P_8
         \stackrel
@@ -360,6 +396,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_24.tex}
+    \end{center}
+
     \begin{multline*}
         P_9
         \stackrel
@@ -378,6 +418,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_25.tex}
+    \end{center}
+
     \begin{multline*}
         P_{10}
         \stackrel
@@ -395,6 +439,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_26.tex}
+    \end{center}
+
     \begin{multline*}
         P_{11}
         \stackrel
@@ -411,6 +459,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \}
     \end{multline*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_27.tex}
+    \end{center}
+
     \begin{multline*}
         P_{12}
         \stackrel
@@ -425,6 +477,10 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
             (\Bbraces{s}, \emptyset)
         \}
     \end{multline*}
+
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_28.tex}
+    \end{center}
 
     \begin{align*}
         P_{13}
@@ -441,10 +497,14 @@ Erklären Sie die Funktionsweise der Algorithmen von Kruskal und Prim anhand der
         \dots
     \end{align*}
 
+    \begin{center}
+        \input{7.38_tikz/7.38_tikz_picture_29.tex}
+    \end{center}
+
     Nachdem $G$ als zusammenhängend vorausgesetzt war, werden alle ursprünglichen Äquivalenzklassen (d.h. $1$-punktige Bäume) durch eine Kante getroffen.
 
     \item Algorithmus (von Prim):
-    
+
     \includegraphicsboxed{DGA/DGA - Definition 7.1.png}
     \includegraphicsboxed{DGA/DGA - Algorithmus von Prim.png}
 
