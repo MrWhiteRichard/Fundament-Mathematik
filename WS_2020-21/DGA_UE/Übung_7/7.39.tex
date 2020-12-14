@@ -92,9 +92,9 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Für den Induktionsschritt definieren wir $M_{i+1} = M_i$ falls keine Kante weggenommen wird oder die weggenommene Kante $e_{i+1} \not \in M_i$.
     Sei nun also $E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$, $(V, E_{i+1})$ zusammenhängend und $e_{i+1} \in M_i$.
     Weil $(V, M_i)$ als Baum minimal zusammenhängend ist, ist $(V, M_i \setminus \Bbraces{e_{i+1}})$ nicht mehr zusammenhängend.
-    Weil $E_{i+1}$ zusammenhängend ist, können die beiden Zusammenhangskomponenten von $(V, E_i \setminus \Bbraces{e_{i+1}}) \supseteq (V, M_i \setminus \Bbraces{e_{i+1}}) = (V, E_{i+1})$ durch ein $e_j \in E_{i+1}$ verbunden werden. 
+    Weil $E_{i+1}$ zusammenhängend ist, können die beiden ZHKs von $(V, E_i \setminus \Bbraces{e_{i+1}}) \supseteq (V, M_i \setminus \Bbraces{e_{i+1}}) = (V, E_{i+1})$ durch ein $e_j \in E_{i+1}$ verbunden werden. 
     Dabei ist $e_{i+1} \neq e_j \in E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$.
-    Ebenso ist $e_j \not \in M_i \setminus \Bbraces{e_{i+1}}$, weil die Zusammenhangskomponenten sonst bereits verunden gewesen wären.
+    Ebenso ist $e_j \not \in M_i \setminus \Bbraces{e_{i+1}}$, weil die ZHKs sonst bereits verunden gewesen wären.
     Daher muss $e_j \not \in M_i$. (Oder: Da $(V,E_{i + 1})$ zusammenhängend ist muss $e_{i + 1}$ aus einem Zykel $z$ von $(V,E_i)$ stammen. Außerdem ist $M_i$ zyklenfrei und da $e_{i + 1} \in M_i$ muss es schon ein $e_j$ aus $z$ geben mit $e_j \notin M_i$.)
 
     \begin{align*}
@@ -228,27 +228,165 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Laut dem obigen Lemma und der Bemerkung, ist klar, dass $B = (V, E_n)$ zyklenfrei ist.
     $B$ ist aber auch zusammenhängend:
 
-    Sei $i = 1, \dots, n$ und verbinde $e_{i+1}$ zwei Zusammenhangskomponenten $Z_1, Z_2 \subseteq (V, E_i)$.
+    Sei $i = 1, \dots, n$ und verbinde $e_{i+1}$ zwei ZHKs $Z_1, Z_2 \subseteq (V, E_i)$.
     Wir behaupten, dass $(V, E_i \cup \Bbraces{e_{i+1}})$ zyklenfrei ist.
     Laut dem obigen Lemma und der Bemerkung, ist nämlich klar, dass $(V, E_i)$ zyklenfrei ist.
-    Daher sind insbesondere die Zusammenhangskomponenten (Bäume) $Z_1$ und $Z_2$ zyklenfrei.
+    Daher sind insbesondere die ZHKs (Bäume) $Z_1$ und $Z_2$ zyklenfrei.
     $Z := Z_1 \cup \Bbraces{e_i} \cup Z_2 \subseteq (V, E_i \cup \Bbraces{e_{i+1}})$ ist also auch zyklenfrei.
     $(V, E_i \cup \Bbraces{e_{i+1}})$ ist also insgesamt Zyklenfrei.
     Der Algorithmus entscheidet sich also für $E_{i+1} = E_i \cup \Bbraces{e_{i+1}}$.
     Zusammenfassend:
-    Wenn $e_{i+1}$ zwei Zusammenhangskomponenten verbindet wird $e_{i+1}$ vom Algorithmus nicht entfernt.
+    Wenn $e_{i+1}$ zwei ZHKs verbindet wird $e_{i+1}$ vom Algorithmus nicht entfernt.
 
-    Wir zeigen mit Induktion, dass es immer, d.h. im $i$-ten Schritt, genug Kanten $\in \Bbraces{e_i, \dots, e_n}$ gibt, sodass alle Zusammenhangskomponenten von $(V, E_{i-1})$ verbunden werden können.
-    Der Induktionsanfang ist klar, weil $G = (V, E)$ zusammenhängend ist und die Zusammenhangskomponenten von $(V, E_0)$ genau die Singleton-Graphen $(\Bbraces{v}, \emptyset)$, $v \in V$ sind.
+    Wir zeigen mit Induktion, dass es immer, d.h. im $i$-ten Schritt, genug Kanten $\in \Bbraces{e_i, \dots, e_n}$ gibt, sodass alle ZHKs von $(V, E_{i-1})$ verbunden werden können.
+    Der Induktionsanfang ist klar, weil $G = (V, E)$ zusammenhängend ist und die ZHKs von $(V, E_0)$ genau die Singleton-Graphen $(\Bbraces{v}, \emptyset)$, $v \in V$ sind.
     Für den Induktionsschritt gebe es solche Kanten im $i$-ten Schritt.
     Wenn keine der Kanten darin verwendet wurde, gibt es alle davon auch im $(i+1)$-ten Schritt wieder.
     Wenn eine ($e_i$) verwendet wurde, dann wurde sie laut den oberen Überlegungen nicht vom Algorithmus aus $E_i \cup \Bbraces{e_i}$ entfernt.
-    Weil dann aber gerade zwei Zusammenhangskomponenten von $(V, E_{i-1})$ verbunden wurde, gibt es in $(V, E_i)$ dann aber genau eine Zusammenhangskomponente weniger.
+    Weil dann aber gerade zwei ZHKs von $(V, E_{i-1})$ verbunden wurde, gibt es in $(V, E_i)$ dann aber genau eine ZHK weniger.
     Die im $i$-ten Schritt verwendete Kante $e_i$ wird daher im $(i+1)$-ten (bis $n$-ten) Schritt garnicht mehr gebraucht, um diese Bereiche im Graphen zu verbinden, weil sie ja bereits, vermöge $e_i$ zusammenhängen.
 
-    Der Algorithmus arbeitet alle Kanten $\in E$ ab, also auch all jene, die Zusammenhangskomponenten verbinden.
-    Der resultierende Graph $B$ ist daher zusammenhängend.\\ 
-    
+    Der Algorithmus arbeitet alle Kanten $\in E$ ab, also auch all jene, die ZHKs verbinden.
+    Der resultierende Graph $B$ ist daher zusammenhängend.
+
+    Wir müssen also nur noch zeigen, dass $B$ minimal ist unter allen Spannbäumen.
+    Dazu, reicht es zu zeigen, dass
+
+    \begin{align*}
+        \Forall i = 1, \dots, n:
+        \Forall G_Z = (V_Z, E_Z) ~\text{ZHK von}~ (V, \bar E_i):
+        (V_Z, E_Z \cap E_i) \subset ~\text{MST von}~ G_Z.
+    \end{align*}
+
+    Dabei sei $\bar E_i := \Bbraces{e_1, \dots, e_n}$ die Menge der Kanten, die der Algorithmus bis zum $i$-ten Schritt \Quote{gesehen} hat.
+    Weil ja $G = (V, E)$ zusammenhängend ist, hat $G$ nur eine ZHK (sich selbst).
+    Weil $\bar E_n = E$, steht für $i = n$ die Behauptung oben praktisch schon da.
+    Wir führen Induktion nach dem $i$-ten Schritt.
+    Der Induktionsanfang $i = 0$ ist trivial.
+
+    Für den Induktionsschritt unterscheiden wir $2$ Fälle.
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Fall ($e_{i+1}$ verbindet $2$ ZHK von $(V, \bar E_i$)):
+        
+        Seien $Z_1 = (V_{Z_1}, E_{Z_1})$ und $Z_2 = (V_{Z_2}, E_{Z_2})$ jene ZHKs.
+
+        \begin{align*}
+            Z := (V_Z, E_Z) = (V_{Z_1} \cup V_{Z_2}, E_{Z_1} \cup E_{Z_2} \cup \Bbraces{e_{i+1}})
+        \end{align*}
+
+        $Z$ ist eine ZHK von $(V, \bar E_{i+1})$.
+
+        $e_{i+1}$ ist die einzige Verbindung zwischen $Z_1$ und $Z_2$.
+        Jeder ST $T$ von $Z$ muss durch $Z_1$ und $Z_2$.
+        Also muss $T$ auch durch $e_{i+1}$ gehen, weil sonst wäre $T$ nicht zusammenhängend.
+
+        \begin{align*}
+            \stackrel
+            {
+                \mathrm{IV}
+            }{\implies}
+            & \tilde M_1 := (V_{Z_1}, E_i \cap E_{Z_1}) \subseteq M_1 ~\text{MST von}~ Z_1, \\
+            & \tilde M_2 := (V_{Z_2}, E_i \cap E_{Z_2}) \subseteq M_2 ~\text{MST von}~ Z_2
+        \end{align*}
+
+        Sei $M$ MST von $Z$, dann sind $M_1, M_2 \subseteq M$.
+
+        \begin{align*}
+            \implies
+            \tilde M_1, \tilde M_2 \subseteq M,
+            \quad
+            e_{i+1} \in M
+        \end{align*}
+
+        \begin{align*}
+            \implies
+            (V_Z, E_{i+1} \cap E_Z)
+            & =
+            (V_{Z_1} \cup V_{Z_2}, (E_i \cap (E_{Z_1} \cup E_{Z_2})) \cup \Bbraces{e_{i+1}}) \\
+            & =
+            (V_{Z_1} \cup V_{Z_2}, (E_i \cap E_{Z_1}) \cup (E_i \cap E_{Z_2})) \cup \Bbraces{e_{i+1}}) \\
+            & =
+            \tilde M_1 \cup \tilde M_2 \cup_\mathrm{Kanten} \Bbraces{e_{i+1}} \\
+            & \subseteq
+            M
+        \end{align*}
+
+        Für die restlichen ZHKs (außer $Z$) kann man die IV anwenden.
+
+        \item Fall ($e_{i+1}$ verbindet $2$ Knoten $\in$ ZHK von $(V, \bar E_i$)):
+        
+        Sei $Z = (V_Z, E_Z)$ jene ZHK.
+        
+        \begin{enumerate}[label = 2.\arabic*.]
+
+            \item Fall ($(V, E_i \cup \Bbraces{e_{i+1}})$ hat einen Zyklus):
+            
+            Sei $z = (e_{i_1}, \dots, e_{i_k}) \subseteq (V_, E_i \cup \Bbraces{e_{i+1}}$ jener Zyklus und $c(e_{i_1}) \geq c(e_{i_2}), \dots, c(e_{i_k})$.
+            Der Zyklus entsteht dort, wo $e_{i+1}$ hinzugefügt wurde.
+            Weil $Z$ als ZHK zusammenhängend ist, ist $e_{i+1} \in z \subseteq (V_Z, E_Z \cap (E_i \cup \Bbraces{e_{i+1}}))$.
+            Der Algorithmus entscheidet sich also für $E_{i+1} = (E_i \cup \Bbraces{e_{i+1}}) \setminus \Bbraces{e_{i_1}}$.
+
+            \begin{enumerate}[label = 2.1.\arabic*.]
+
+                \item Fall ($i_1 = i+1$):
+                
+                \begin{align*}
+                    \implies
+                    E_{i+1}
+                    =
+                    (E_i \cup \Bbraces{e_{i+1}}) \setminus \Bbraces{e_{i+1}}
+                    =
+                    E_i
+                \end{align*}
+
+                $Z^\prime := Z \cup_\mathrm{Kanten} \Bbraces{e_{i+1}}$ ist eine ZHK von $(V, \bar E_{i+1})$
+                Der MST von $Z \subseteq (V, \bar E_i)$ ist derselbe wie der von $Z^\prime$.
+                Die IV ist also direkt anwendbar.
+
+                \item Fall ($i_1 \neq i+1$):
+                
+                \begin{align*}
+                    \implies
+                    c(i_1) \geq c(i+1)
+                \end{align*}
+
+                Der MST $M_i$ von $(V_Z, E_Z \cap \bar E_i)$ aus der IV verläuft entlang den Kanten $z \setminus \Bbraces{e_{i+1}} \subseteq (V, E_i)$.
+                Der MST $M_{i+1}$ von $(V_{Z^\prime}, E_{Z^\prime} \cap \bar E_{i+1})$ verläuft genau gleich, bloß durch die billigere Kante $e_{i+1}$ statt der teureren $e_{i_1}$.
+
+            \end{enumerate}
+
+            \item Fall ($(V, E_i \cup \Bbraces{e_{i+1}})$ ist zyklenfrei):
+            
+            Der Algorithmus entscheidet ist daher für $E_{i+1} = E_i \cup \Bbraces{e_{i+1}}$.
+
+            \begin{align*}
+                \implies
+                (V, E_{i+1}) ~\text{zyklenfrei}~
+                \implies
+                (V_Z, E_Z \cap E_{i+1}) ~\text{zyklenfrei}
+            \end{align*}
+
+            Weil $Z$ als ZHK zusammenhängend ist, gehört $e_{i+1}$ zu einem Zyklus $z_1 = (e_{i_1}, \dots, e_{i_k})$.
+            Sei $e_{i_\ell} \in E_Z \cap (\bar E_i \setminus E_i)$ eine, von dem Algorithmus weggeschnittene, Kante.
+            $e_{i_\ell}$ wurde weggeschnitten, weil sie maximale Kosten in einem, von $z$ verschiedenen Zyklus $z^\prime$ hatte.
+            $z^\prime$ grenzt an $1$ (sogar $2$) Knoten $\in V_Z$ an.
+            Weil $Z$ als ZHK zusammenhängend ist, ist $z^\prime \subseteq Z$ ganz in $Z$ enthalten.
+
+            $z_2 := (z_1 \cup z^\prime) \setminus \Bbraces{e_{i_\ell}}$ bildet nun wieder einen Zyklus.
+            Gegebenenfalls wenden wir auf $z_2$ dasselbe Argument wie auf $z_1$ an (und wieder, \dots, und wieder).
+            Weil $G$ endlich ist, gibt es nur endlich viele verschiedene Zyklen.
+            Irgendwann bekommen wir also einen Zyklus $z_\infty$, der nur nicht-weggeschnittene Kanten $\in E_Z \cap E_{i+1}$ hat.
+            Das ist ein Widerspruch dazu, dass $(V_Z, E_Z \cap E_{i+1})$ zyklenfrei ist!
+
+        \end{enumerate}
+
+    \end{enumerate}
+
+    Q.E.D.
+
+    \begin{comment}
     Wir behaupten also, dass $G_n:=(V,E_n)$ ein minimaler Spannbaum ist. Wir arbeiten alle Eigenschaften ab.
     \begin{enumerate}
     	\item $G_n$ ist zyklenfrei. Dies folgt aus obiger Bemerkung. 
@@ -259,6 +397,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     	
     	\item Die Frage ist: Ist dieser Spannbaum auch wirklich minimal?? 
     \end{enumerate}
+    \end{comment}
 
 \end{enumerate}
 
