@@ -2,7 +2,9 @@
 
 \begin{exercise}
 
-Sei $G = (V, E)$ ein ungerichteter Graph und $k$ eine beliebige nichtnegative ganze Zahl. Ferner sei $M_k(G) = (E, S)$. Die Menge $S$ sei definiert als die Menge aller Teilmengen von $E$, die sich in der Form $M \cup F$ darstellen lassen, wobei $M$ eine höchstens $k$-elementige Menge bezeichnet und $F$ eine Menge, für die $(V, F)$ ein Wald ist. Beweisen Sie, dass $M_k(G)$ ein Matroid ist.
+Sei $G = (V, E)$ ein ungerichteter Graph und $k$ eine beliebige nichtnegative ganze Zahl.
+Ferner sei $M_k(G) = (E, S)$.
+Die Menge $S$ sei definiert als die Menge aller Teilmengen von $E$, die sich in der Form $M \cup F$ darstellen lassen, wobei $M$ eine höchstens $k$-elementige Menge bezeichnet und $F$ eine Menge, für die $(V, F)$ ein Wald ist. Beweisen Sie, dass $M_k(G)$ ein Matroid ist.
 
 \end{exercise}
 
@@ -10,32 +12,141 @@ Sei $G = (V, E)$ ein ungerichteter Graph und $k$ eine beliebige nichtnegative ga
 
 \begin{solution}
 
-  Klarerweise ist $\emptyset \in S.$ Falls $B \in S$ und $A \subseteq B$ gilt, lässt sich $B$ schreiben als $M_B \cup F_B$, wobei $|M_B| \leq k$ und $(V, F_B)$ ein Wald ist. Wenn man $M_A := M_B \cap A$ und $F_A := F_B \cap A$ setzt, erhält man $A \in S$.
+\begin{align*}
+    M_k(G) = (E, S),
+    \quad
+    S = \Bbraces
+    {
+        M \cup F \subseteq E:
+        |M| \leq k,
+        (V, F) ~\text{Wald}
+    }
+\end{align*}
 
-  Interessanter ist die Austauscheigenschaft. Seien $A, B \in S$ mit $|A| > |B|$ und seien
-  \begin{align*}
-      A = M_A \cup F_A, B = M_B \cup F_B
-  \end{align*}
-  einschlägige Zerlegungen.
-  Wir machen eine Fallunterscheidung:
-  \begin{itemize}
-      \item Fall 1: $|M_B| < k:$ In diesem Fall wählen wir $x \in A\backslash B$ beliebig. Dann gilt
-      \begin{align*}
-      B \cup \{x\} = (M_B \cup \{x\}) \cup F_B \in S.
-      \end{align*}
-      \item Fall 2: $|M_B| = k:$ Nach Korollar 2.1 besteht der Wald $(V, F_A)$ aus $|V| - |F_A|$ und der Wald $(V, F_B)$ aus $|V| - |F_B|$ Bäumen.
+\begin{enumerate}[label = \arabic*.]
 
-      Aus $|A| > |B|$ und $|M_B| = k$ folgt $|F_A| > |F_B|$ und daher $|V| - |F_A| < |V| - |F_B|.$
+    \item Eigenschaft ($\emptyset \in S$):
+    
+    Dafür müssen $M, F = \emptyset$.
+    Für $M$ ist das sowieso möglich.
+    Für $F$ geht das auch, weil jeder Graph der Form $(V, \emptyset)$ ja keine Kanten, also keine Zyklen haben kann.
+    Insofern ist $(V, \emptyset)$ zyklenfrei, also ein Wald.
 
-      Nach dem Schubfachprinzip existiert ein Baum $T$ im Wald $(V, F_A),$ dessen Knoten zu mindestens zwei verschiedenen Bäumen in $(V, F_B)$ gehören.
+    \item Eigenschaft ($\subseteq$-Abgeschlossenheit):
 
-      Wie wird das Schubfachprinzip hier genau angewendet? Die \Quote{Gegenstände}, welche wir auf die Schubfächer aufteilen wollen sind die Bäume im Wald $(V,F_B)$. Ein solcher Baum $R$ ist nicht leer, er enthält also mindestens einen Knoten $v$. Da der Wald $(V,F_A)$ alle Knoten aus $V$ enthält gibt es schon einen Baum $R^\prime$ aus diesem Wald, der $v$ als Knoten enthält. Beschriften wir nun jedes Schubfach mit einem Baum aus dem Wald $(V,F_A)$ so können wir jeden Baum $R$ aus dem Wald $(V,F_B)$ in ein Schubfach legen, das mit einem Baum $R^\prime$ aus dem Wald $(V,F_A)$ beschriftet ist, wobei sich $R$ und $R^\prime$ mindestens einen Knoten Teilen. Da der Wald $(V,F_A)$ aber weniger Bäume hat als der Wald $(V,F_B)$ müssen in mindestens einem Schubfach dann schon mindestens zwei Bäume aus dem Wald $(V,F_B)$ liegen.
+    Sei $A \subseteq B \in S$, dann lässt sich $B = M_B \cup F_B$ schreiben, wobei $|M_B| \leq k$ und $(V, F_B)$ ein Wald (d.h. zyklenfrei) ist.
+    Wenn man $M_A := M_B \cap A$ und $F_A := F_B \cap A$ setzt, erhält man $A \in S$.
 
-      $T$ ist zusammenhängend, daher gibt es eine Kante $\{v, w\},$ sodass $v$ und $w$ in verschiedenen Bäumen von $(V, F_B)$ liegen. Daher ist $(V, F_B \cup \{\{v, w\}\})$ azyklisch und somit
-      \begin{align*}
-          B \cup \{\{v, w\}\} \in S.
-      \end{align*}
-  \end{itemize}
+    \begin{align*}
+        \implies
+        & |M_A| = |M_B \cap A| \leq |M_B| \leq k, \\
+        & F_A = F_B \cap A \subseteq F_B
+        \implies
+        (V, F_B) ~\text{zyklenfrei}~
+        \supseteq
+        (V, F_A) ~\text{zyklenfrei}, \\
+        & M_A \cup F_A
+        =
+        (M_B \cap A) \cup (F_B \cap A)
+        =
+        \underbrace
+        {
+            (M_B \cup F_B)
+        }_B
+        \cap A
+        =
+        A \\
+        \implies
+        & A \in S
+    \end{align*}
+
+    \item Eigenschaft (Austauscheigenschaft):
+
+    Seien $A, B \in S$ mit $|A| > |B|$, dann lassen sich $A$ und $B$ darstellen als
+
+    \begin{gather*}
+        A = M_A \dot \cup F_A,
+        \quad
+        B = M_B \dot \cup F_B \\
+        |M_A|, |M_B| \leq k,
+        \quad
+        (V, F_A), (V, F_B) ~\text{zyklenfrei}.
+    \end{gather*}
+
+    Weil $M_A$ und $M_B$ auch kleiner sein dürfen, haben wir $M \cap F = \emptyset$ gewählt.
+
+    \begin{enumerate}[label = \arabic*.]
+        
+        \item Fall ($|M_B| < k$):
+        
+        In diesem Fall wählen wir $x \in A \setminus B \neq \emptyset$ beliebig.
+
+        \begin{align*}
+            \implies &
+            |M_B \cup \Bbraces{x}| \leq |M_B| + 1 \leq k \\
+            \implies &
+            B \cup \Bbraces{x}
+            =
+            M_B \cup F_B \cup \Bbraces{x}
+            =
+            (M_B \cup \Bbraces{x}) \cup F_B
+            \in
+            S
+        \end{align*}
+        
+        \item Fall ($|M_B| = k$):
+        
+        Nach Korollar 2.1 besteht der Wald $(V, F_A)$ aus $|V| - |F_A|$ und der Wald $(V, F_B)$ aus $|V| - |F_B|$ Bäumen.
+
+        \begin{align*}
+            \implies &
+            |F_A| + |M_A|  = |A| > |B| = |M_B| + |F_B| = k + |F_B| \geq |M_A| + |F_B| \\
+            \implies &
+            |F_A| > |F_B| \\
+            \implies &
+            |V| - |F_A| < |V| - |F_B|
+        \end{align*}
+
+        Nach dem Schubfachprinzip existiert $1$ Baum $T$ im Wald $(V, F_A),$ dessen Knoten zu mindestens $2$ verschiedenen Bäumen $T_1$ und $T_2$ im Wald $(V, F_B)$ gehören.
+
+        Wie wird das Schubfachprinzip hier genau angewendet?
+        Die \Quote{Gegenstände}, welche wir auf die Schubfächer aufteilen wollen sind die Bäume im Wald $(V, F_B)$.
+        Ein solcher Baum $R$ ist nicht leer, er enthält also mindestens einen Knoten $v$.
+        Da der Wald $(V, F_A)$ alle Knoten aus $V$ enthält gibt es schon einen Baum $R^\prime$ aus diesem Wald, der $v$ als Knoten enthält.
+        Beschriften wir nun jedes Schubfach mit einem Baum aus dem Wald $(V, F_A)$ so können wir jeden Baum $R$ aus dem Wald $(V, F_B)$ in ein Schubfach legen, das mit einem Baum $R^\prime$ aus dem Wald $(V, F_A)$ beschriftet ist, wobei sich $R$ und $R^\prime$ mindestens einen Knoten Teilen.
+        Da der Wald $(V, F_A)$ aber weniger Bäume hat als der Wald $(V, F_B)$ müssen in mindestens einem Schubfach dann schon mindestens zwei Bäume aus dem Wald $(V, F_B)$ liegen.
+
+        $T$ ist als Baum zusammenhängend.
+        Daher gibt es eine Kante $e = \Bbraces{v, w} \in_\mathrm{Kanten} T$, sodass $v \in T_1$ und $w \in T_2$ in verschiedenen Bäumen vom Wald $(V, F_B)$ liegen.
+
+        \begin{align*}
+            \implies
+            & e \in_\mathrm{Kanten} T \subseteq (V, F_A) \subseteq_\mathrm{Kanten} = M_A \cup F_A = A, \\
+            & e \not \in_\mathrm{Kanten} T_1, T_2 \subseteq (V, F_B) \subseteq_\mathrm{Kanten} = M_B \cup F_B = B \\
+            \implies
+            & e \in A \setminus B
+        \end{align*}
+
+        $T^\prime = T_1 \cup T_2 \cup_\mathrm{Kanten} \Bbraces{e}$ ist weiterhin zusammenhängend, weil $T_1$ und $T_2$ es sind und vermöge $e$ verbunden.
+        $T^\prime$ ist auch zyklenfrei, weil $T_1$ und $T_2$ es sind und es keinen Zyklus gibt, der durch $e$ geht.
+        $T^\prime$ ist also ein Baum aus $(V, F_B \cup \Bbraces{e})$.
+
+        Die restlichen Bäume daraus sind jene $\neq T_1, T_2$ vom Wald $(V, F_B)$.
+        Daher ist $(V, F_B \cup \Bbraces{e})$ zyklenfrei, d.h. ein Wald.
+        Die Kante $e \in A \setminus B$ kann als Austausch-Element verwendet werden.
+
+        \begin{align*}
+            \implies
+            B \cup \Bbraces{e}
+            =
+            M_B \cup (F_B \cup \Bbraces{e})
+            \in S
+        \end{align*}
+
+    \end{enumerate}
+
+\end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
