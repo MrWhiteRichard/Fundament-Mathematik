@@ -46,7 +46,7 @@ Dijkstra Algorithmus.
     \begin{algorithm}
     	\caption{Finde verlässlichsten Pfad in $G = (V, E)$ von $s$ nach $t$}
     	\begin{algorithmic}[1]
-    		\Procedure{VerlaesslichsterPfad}{$V, E, s, t$}
+    		\Procedure{VerlaesslichsterPfad}{$V, E, r, s, t$}
     		\State Sei $B$ ein neues Datenfeld der Länge $|V|$ überall mit \textbf{falsch} initialisiert
     		\For{alle $v \in V$}
 	    		\State $v.x := 0$
@@ -207,7 +207,7 @@ Dijkstra Algorithmus.
         \hline
         \text{Knoten}    & 1    & 2    & 3                        & 4   & 5    & 6                        & 7                        & 8    & 9                        \\
         \hline
-        \text{Priorität} & 0    & 0    & 0 < 0.8 \cdot 0.9 = 0.72 & 0.8 & 1    & 0 < 0.8 \cdot 0.8 = 0.64 & 0 < 0.8 \cdot 0.7 = 0.56 & 0    & 0 < 0.8 \cdot 0.6 = 0.48 \\
+        \text{Priorität} & 0    & 0    & 0 < 0.72 & 0.8 & 1    & 0 < 0.64 & 0 < 0.56 & 0    & 0 < 0.48 \\
         \hline
         \text{Vorgänger} & \NIL & \NIL & 4                        & 5   & \NIL & 4                        & 4                        & \NIL & 4                        \\
         \hline

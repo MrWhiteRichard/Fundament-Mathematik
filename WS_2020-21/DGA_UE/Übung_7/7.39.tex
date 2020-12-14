@@ -57,7 +57,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
 
     \item Der Algorithmus von Kruskal startet leer und bezieht nur die nötigsten Kanten (d.h. jene mit minimalen Kosten) in den potentiellen MST mit ein.
     Unser Algorithmus startet jedoch voll und entfernt die \Quote{unnötigsten} Kanten (d.h. jene mit maximalen Kosten) von dem potentiellen MST.
-    
+
     Die Vermutung, dass Letzterer korrekt ist, klingt daher durchaus plausibel.
     Um dies zu beweisen, orientieren wir uns entsprechend am Beweis von Satz 7.2.
 
@@ -92,9 +92,16 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     Für den Induktionsschritt definieren wir $M_{i+1} = M_i$ falls keine Kante weggenommen wird oder die weggenommene Kante $e_{i+1} \not \in M_i$.
     Sei nun also $E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$, $(V, E_{i+1})$ zusammenhängend und $e_{i+1} \in M_i$.
     Weil $(V, M_i)$ als Baum minimal zusammenhängend ist, ist $(V, M_i \setminus \Bbraces{e_{i+1}})$ nicht mehr zusammenhängend.
+<<<<<<< HEAD
     Weil $E_{i+1}$ zusammenhängend ist, können die beiden ZHKs von $(V, E_i \setminus \Bbraces{e_{i+1}}) \supseteq (V, M_i \setminus \Bbraces{e_{i+1}}) = (V, E_{i+1})$ durch ein $e_j \in E_{i+1}$ verbunden werden. 
     Dabei ist $e_{i+1} \neq e_j \in E_{i+1} = E_i \setminus \Bbraces{e_{i+1}}$.
     Ebenso ist $e_j \not \in M_i \setminus \Bbraces{e_{i+1}}$, weil die ZHKs sonst bereits verunden gewesen wären.
+=======
+    Weil $E_{i+1}$ zusammenhängend ist, können die beiden Zusammenhangskomponenten von
+    $(V, M_i \setminus \Bbraces{e_{i+1}}) \subseteq (V, E_i \setminus \Bbraces{e_{i+1}}) = (V, E_{i+1})$
+    durch ein $e_j \in E_{i+1}$ verbunden werden mit $e_j \neq e_{i+1}$.
+    Ebenso ist $e_j \not \in M_i \setminus \Bbraces{e_{i+1}}$, weil die Zusammenhangskomponenten sonst bereits verbunden gewesen wären.
+>>>>>>> b97c5c8db51b80b26a521fa55f79d1dc32d83e29
     Daher muss $e_j \not \in M_i$. (Oder: Da $(V,E_{i + 1})$ zusammenhängend ist muss $e_{i + 1}$ aus einem Zykel $z$ von $(V,E_i)$ stammen. Außerdem ist $M_i$ zyklenfrei und da $e_{i + 1} \in M_i$ muss es schon ein $e_j$ aus $z$ geben mit $e_j \notin M_i$.)
 
     \begin{align*}
@@ -123,7 +130,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
 
     $(V, M_{i+1})$ ist also zusammenhängend.
 
-    Weiters ist $|M_{i+1}| = |M_i| = |V| - 1$ da ja $e_j \not \in$ und $e_{i+1} \in M_i$ ist und $(V, M_{i+1})$ mit Satz 2.3 also ein Spannbaum von $G$.
+    Weiters ist $|M_{i+1}| = |M_i| = |V| - 1$ da ja $e_j \notin M_i$ und $e_{i+1} \in M_i$ ist und $(V, M_{i+1})$ mit Satz 2.3 also ein Spannbaum von $G$.
 
     Außerdem ist $c(e_j) \leq c(e_{i+1})$, denn $c(e_j) > c(e_{i+1})$ impliziert $j < i + 1$ und damit $j-1 < j \leq i < i+1$.
     Weil die $E$-Kantenmengen monoton nicht-steigen, heißt das $E_{j-1} \supseteq E_j \supseteq E_i \supseteq E_{i+1}$.
@@ -139,7 +146,7 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
         e_j
     \end{align*}
 
-    Laut Konsturktion, und weil $e_j \not \in M_i$, wäre dann aber
+    Laut Konstruktion, und weil $e_j \not \in M_i$, wäre dann aber
 
     \begin{multline*}
         (V, E_{j-1} \setminus \Bbraces{e_j}) ~\text{nicht zusammenhängend}~
@@ -389,13 +396,11 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     \begin{comment}
     Wir behaupten also, dass $G_n:=(V,E_n)$ ein minimaler Spannbaum ist. Wir arbeiten alle Eigenschaften ab.
     \begin{enumerate}
-    	\item $G_n$ ist zyklenfrei. Dies folgt aus obiger Bemerkung. 
-    	
-    	\item $G_n$ \Quote{spannt $V$ auf}. Denn angenommen es gibt ein $v \in V$ an das keine Kanten aus $E_n$ angrenzen. Das heißt alle an $v$ angrenzenden Kanten wurden im Algorithmus gelöscht. Es gibt daher einen Zeitpunkt im Algorithmus, zu dem bereits alle solchen Kanten bis auf eine gelöscht sind. Diese kann dann aber nicht in einem Zykel vorkommen und daher nicht mehr gelöscht werden, ein Widerspruch.
-    	
+    	\item $G_n$ ist zyklenfrei. Dies folgt aus obiger Bemerkung.
+
     	\item Angenommen $G_n$ wäre nicht zusammenhängend. Betrachten wir also zwei Zusammenhangskomponeneten $Z_1$ und $Z_2$ dieses Graphen. Das heißt aus jedem Pfad der $Z_1$ und $Z_2$ verbindet wird eine Kante durch den Algorithmus gelöscht. Wir betrachten einen Zeitpunkt, zu dem nur mehr ein Pfad intakt ist. Jede Kante in diesem Pfad kann dann aber nicht mehr in einem Zykel vorkommen, also auch nicht gelöscht werden, ein Widerspruch!
-    	
-    	\item Die Frage ist: Ist dieser Spannbaum auch wirklich minimal?? 
+
+    	\item Die Frage ist: Ist dieser Spannbaum auch wirklich minimal??
     \end{enumerate}
     \end{comment}
 
@@ -404,4 +409,3 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
 \end{solution}
 
 % --------------------------------------------------------------------------------
-
