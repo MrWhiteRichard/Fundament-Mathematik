@@ -89,11 +89,21 @@ Auf der anderen Seite, wird dasselbe in Algorithmus 26 - Linearisieren (Topologi
 
 \end{solution}
 
+% --------------------------------------------------------------------------------
+
 \begin{solution}
-Bestimme zuerst mittels Tiefen-/Breitensuche den Teilgraphen $G = (V^{\prime},E^{\prime})$,
-welcher aus all jenen Knoten besteht, welche von $s$ ausgehend erreicht werden können
-mit $E^{\prime} = E\cap V^{\prime}\times V^{\prime}$. Dann können wir folgenden,
-ans topologische Sortieren angelehnten Algorithmus anwenden:
+
+Bestimme zuerst mittels Breiten- oder Tiefensuche den Teilgraphen $G^\prime = (V^\prime, E^\prime) \subseteq G = (V, E)$, welcher aus all jenen Knoten besteht, welche von $s$ ausgehend erreicht werden können und $E^\prime$ die Kanten, die übrig bleiben.
+
+\begin{gather*}
+    G^\prime = (V^\prime, E^\prime), \\
+    V^\prime = \Bbraces{v \in V: \Exists p ~\text{Pfad mit Kanten} \in E: p ~\text{verbindet}~ s ~\text{und}~ v},
+    \quad
+    E^\prime = E\cap (V^\prime \times V^\prime)
+\end{gather*}
+
+Dann können wir folgenden, an das topologische Sortieren angelehnten Algorithmus anwenden.
+
 \phantom{}
 	\begin{algorithm}
 		\caption{Anzahl der gerichteten Wege eines gerichteten azyklischen Graphen $G = (V, E)$ von $s$ nach $t$}
@@ -101,19 +111,19 @@ ans topologische Sortieren angelehnten Algorithmus anwenden:
 			\Procedure{AnzahlGerichteteWege}{$V, E, s, t$}
 			\State Sei \textit{pfadeZu} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
 			\State Sei \textit{eingangsgrad} ein neues Datenfeld der Länge $|V|$ überall mit $0$ initialisiert
-			\For{alle $(v,w) \in E$}
-				\State $\textit{Eingangsgrad}[w] := \textit{Eingangsgrad}[w] + 1$
+			\For{alle $(v, w) \in E$}
+				\State $\textit{eingangsgrad}[w] := \textit{eingangsgrad}[w] + 1$
 			\EndFor
 			\State Sei $M$ neue Warteschlange oder Stapel leer initialisiert
 			\State $\textsc{Hinzufügen}(M,s)$
-			\State $\textit{pfadeZu}[s] := 1$
+			\State $\textit{pfadeZu}[s] := 1$ weil der leere Pfad von $s$ nach $s$ führt
 			\While{$M$ nicht leer}
 				\State $v := \textsc{Entfernen}(M)$
-				\For{alle $(v,w) \in E$}
-					\State $\textit{pfadeZu}[w] := \textit{pfadeZu}[w] + \textit{pfadeZu}[v]$
-					\State $\textit{eingangsgrad}[w] := \textit{eingangsgrad}[w] - 1$
-					\If{$\textit{eingangsgrad}[w] = 0$}
-						\State $\textsc{Hinfufügen}(M,w)$
+				\For{alle $(v, w) \in E$}
+					\State $\textit{pfadeZu}[w] := \textit{pfadeZu}[w] + \textit{pfadeZu}[v]$ weil wir auch von $s$ nach $v$ und dann, vermöge $(v, w)$, nach $w$ gehen können
+					\State $\textit{eingangsgrad}[w] := \textit{eingangsgrad}[w] - 1$, weil wir wollen keinen Pfad doppelt zählen
+					\If{$\textit{eingangsgrad}[w] = 0$ d.h. alle Pfade von $s$ nach $w$ wurden gefunden}
+						\State $\textsc{Hinfufügen}(M, w)$
 					\EndIf
 				\EndFor
 			\EndWhile
@@ -122,5 +132,17 @@ ans topologische Sortieren angelehnten Algorithmus anwenden:
 		\end{algorithmic}
 	\end{algorithm}
 \end{solution}
+
+Die Vorarbeit wird gebraucht, um folgende Situation zu vermeiden.
+
+\includegraphicsunboxed{7.37.png}
+
+Der Algorithmus 2 alleine würde sofort terminieren, weil die Nachbarknoten von $s$ Eingangsgrad $2$ haben und somit keiner mit Eingangsgrad $0 < 1 = 2 - 1$ entsteht.
+
+Breiten- und Tiefensuche haben Aufwand $\Landau(|V| + |E|)$.
+Der obere Algorithmus hat ebenfalls Aufwand $\Landau(|V| + |E|)$.
+Wenn man diese hintereinander ausführt, hat die Komposition noch immer Aufwand $\Landau(|V| + |E|)$.
+
+% --------------------------------------------------------------------------------
 
 \FloatBarrier
