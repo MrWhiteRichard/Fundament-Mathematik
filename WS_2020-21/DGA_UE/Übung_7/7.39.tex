@@ -377,14 +377,36 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
 
             Weil $Z$ als ZHK zusammenhängend ist, gehört $e_{i+1}$ zu einem Zyklus $z_1 = (e_{i_1}, \dots, e_{i_k})$.
             Sei $e_{i_\ell} \in E_Z \cap (\bar E_i \setminus E_i)$ eine, von dem Algorithmus weggeschnittene, Kante.
-            $e_{i_\ell}$ wurde weggeschnitten, weil sie maximale Kosten in einem, von $z$ verschiedenen Zyklus $z^\prime$ hatte.
+            $e_{i_\ell}$ wurde weggeschnitten, weil sie maximale Kosten in einem, von $z$ verschiedenen Zyklus $z^\prime \subseteq (V, E_{i_\ell - 1} \cup \Bbraces{e_{i_\ell}})$ hatte.
             $z^\prime$ grenzt an $1$ (sogar $2$) Knoten $\in V_Z$ an.
             Weil $Z$ als ZHK zusammenhängend ist, ist $z^\prime \subseteq Z$ ganz in $Z$ enthalten.
+            $z_2$ bildet nun wieder einen Zyklus.
 
-            $z_2 := (z_1 \cup z^\prime) \setminus \Bbraces{e_{i_\ell}}$ bildet nun wieder einen Zyklus.
-            Gegebenenfalls wenden wir auf $z_2$ dasselbe Argument wie auf $z_1$ an (und wieder, \dots, und wieder).
+            \begin{align*}
+                z_2
+                :=
+                (z_1      \setminus \Bbraces{e_{i_\ell}})
+                \cup
+                \underbrace
+                {
+                    (z^\prime \setminus \Bbraces{e_{i_\ell}})
+                }_{
+                    \subseteq (V_Z, E_Z \cap E_{i_\ell - 1})
+                }
+                =
+                (z_1 \cup z^\prime) \setminus \Bbraces{e_{i_\ell}}
+            \end{align*}
+
+            Es kann nun sein, dass der Austausch von $e_{i_\ell}$ mit dem Umweg $z^\prime \setminus \Bbraces{e_{i_\ell}}$ weitere Kanten liefert, die wiederum ausgetauscht werden müssen (und wieder, \dots, und wieder).
+            Die Umwege für den Austausch liegen aber in Graphen, mit immer weniger Kanten.
+            Insofern sind die $z_1, z_2, \dots$ strikt halbgeordnet (durch $(H, \subsetneq)$).
+            (Fun Fact: Das Hasse-Diagrmm dieser HO ist sogar ein Baum mit Wurzel $z_1$.)
+
+            Gegebenenfalls wenden wir auf $z_2$ also dasselbe Argument wie auf $z_1$ an (und wieder, \dots, und wieder).
             Weil $G$ endlich ist, gibt es nur endlich viele verschiedene Zyklen.
-            Irgendwann bekommen wir also einen Zyklus $z_\infty$, der nur nicht-weggeschnittene Kanten $\in E_Z \cap E_{i+1}$ hat.
+            Daher ist insbesondere die Halbordnung $H$ endlich.
+
+            Irgendwann bekommen wir also einen Zyklus $z_\infty$, der nur nicht-weggeschnittene Kanten, d.h. $\in E_Z \cap E_{i+1}$ hat, d.h. minimales Element von $H$ ist.
             Das ist ein Widerspruch dazu, dass $(V_Z, E_Z \cap E_{i+1})$ zyklenfrei ist!
 
         \end{enumerate}
@@ -396,11 +418,19 @@ Beweisen oder widerlegen Sie für jeden der drei Algorithmen die Behauptung, das
     \begin{comment}
     Wir behaupten also, dass $G_n:=(V,E_n)$ ein minimaler Spannbaum ist. Wir arbeiten alle Eigenschaften ab.
     \begin{enumerate}
-    	\item $G_n$ ist zyklenfrei. Dies folgt aus obiger Bemerkung.
 
-    	\item Angenommen $G_n$ wäre nicht zusammenhängend. Betrachten wir also zwei Zusammenhangskomponeneten $Z_1$ und $Z_2$ dieses Graphen. Das heißt aus jedem Pfad der $Z_1$ und $Z_2$ verbindet wird eine Kante durch den Algorithmus gelöscht. Wir betrachten einen Zeitpunkt, zu dem nur mehr ein Pfad intakt ist. Jede Kante in diesem Pfad kann dann aber nicht mehr in einem Zykel vorkommen, also auch nicht gelöscht werden, ein Widerspruch!
+        \item $G_n$ ist zyklenfrei.
+        Dies folgt aus obiger Bemerkung.
 
-    	\item Die Frage ist: Ist dieser Spannbaum auch wirklich minimal??
+        \item Angenommen $G_n$ wäre nicht zusammenhängend.
+        Betrachten wir also zwei Zusammenhangskomponeneten $Z_1$ und $Z_2$ dieses Graphen.
+        Das heißt aus jedem Pfad der $Z_1$ und $Z_2$ verbindet wird eine Kante durch den Algorithmus gelöscht.
+        Wir betrachten einen Zeitpunkt, zu dem nur mehr ein Pfad intakt ist.
+        Jede Kante in diesem Pfad kann dann aber nicht mehr in einem Zykel vorkommen, also auch nicht gelöscht werden, ein Widerspruch!
+
+        \item Die Frage ist:
+        Ist dieser Spannbaum auch wirklich minimal??
+
     \end{enumerate}
     \end{comment}
 
