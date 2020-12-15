@@ -1,8 +1,11 @@
+Eine strikte lineare Ordnung $(A, <)$ (mit der zugehörigen reflexiven Ordnung $\leq$) heißt Wohlordnung, wenn jede nichtleere Teilmenge von $A$ ein kleinstes Element hat: $\forall B \subseteq A: (B \neq \emptyset \Rightarrow \Exists b \in B \Forall x \in B: b \leq x)$
+
 % --------------------------------------------------------------------------------
 
 \begin{exercise}[237]
 
 \phantom{}
+	Wenn $(A, <)$ eine Wohlordnung ist, in der jede nichtleere Teilmenge ein größtes Element hat, dann ist $A$ endlich.
 
 \end{exercise}
 
@@ -11,5 +14,14 @@
 \begin{solution}
 
 \phantom{}
+	Wir definieren $A_0 := A$ und für jedes $n \in \N$ die Menge $A_{n + 1} := A_n \setminus \{\min A_n\}$. Nun definieren wir die Funktion
+	\begin{align*}
+		f:\N \to A: n \mapsto \min A_n
+	\end{align*}
+	Nun bezeichnen wir mit $c \in A$ das größte Element von $f[\N] \subseteq A$. Sei $k \in \N$ ein Element mit $f(k) = c$. Es gilt 
+	\begin{align*}
+		c = f(k) = \min A_k < \min A_{k + 1} = f(k + 1).
+	\end{align*}
+	Ein Widerspruch dazu, dass $c$ das größte Element in $f[\N]$ ist. 
 
 \end{solution}

@@ -3,6 +3,7 @@
 \begin{exercise}[224]
 
 \phantom{}
+	Für $i = 0,1$ sei $P_i$ die Menge aller Programme $p$, die bei Eingabe $p$ halten und $i$ ausgeben. Es gilt offenbar $P_0 \cap P_1 = \emptyset$. Zeigen Sie, dass die Mengen $P_0$ und $P_1$ semi-entscheidbar sind. (indem Sie Programme skizzieren, die die jeweileigen partiellen charakteristischen $\tilde{\chi}_{P_i}$ berechnen), es aber keine entscheidbare Menge $E$ mit $P_0 \subseteq E$, $P_1 \subseteq \N \setminus E$ gibt.  
 
 \end{exercise}
 
@@ -12,4 +13,38 @@
 
 \phantom{}
 
+	\begin{algorithm}
+		\caption{charakteristische Funktion von $P_i$ für $i \in \{0,1\}$}
+		\begin{algorithmic}[1]
+			\Procedure{$\tilde{\chi}_{P_i}$}{$p$}
+				\If{$p(p) = i$} 
+					\State \Return 1
+				\EndIf
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+
+	Um den zweiten Teil zu beweisen nehmen wir an es gibt eine entscheidbare Menge $E$ mit $P_0 \subseteq E$ und $P_1 \subseteq \N \setminus E$. Dann können wir ein Programm $q$ schreiben. 
+	
+	\begin{algorithm}
+		\caption{Programm $q$}
+		\begin{algorithmic}[1]
+			\Procedure{$q$}{$p$}
+				\If{$\chi_E(p) = 1$} 
+					\State \Return $1$
+				\Else
+					\State \Return$0$
+				\EndIf
+			\EndProcedure
+		\end{algorithmic}
+	\end{algorithm}
+
+	Nun betrachten wir $q(q)$. 
+	\begin{enumerate}[label = Fall \arabic*:]
+		\item $q(q) = 1$. Dann folgt $q \in E$ also $q \notin P_1$ und daher $q(q) \neq 1$. Ein Widerspruch.
+		
+		\item $q(q) = 0$. Dann folgt $q \notin E$ also $q \notin P_0$ und damit $q(q) \neq 0$. Ein Widerspruch.
+	\end{enumerate}
+
+	Was heißt $P_1 \subseteq \N \setminus E$? Die Menge $P_1$ enthält Programme, sind das natürliche Zahlen???
 \end{solution}
