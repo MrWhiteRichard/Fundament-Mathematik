@@ -3,6 +3,11 @@
 \begin{exercise}[236]
 
 \phantom{}
+	\begin{enumerate}[label = (\alph*)]
+		\item Sei $A \subseteq \N^2$ eine $\Sigma_1$-Menge. Dann sind die Mengen $\{y \in \N: (5,y) \in A\}$ und $\{x \in \N: (x,x) \in A\}$ auch $\Sigma_1$-Mengen.
+		
+		\item Es gibt eine $\Sigma_1$-Menge $U \subseteq \N$, die keine $\Pi_1$-Menge ist. (Das heißt: $\N \setminus U$ ist keine $\Sigma_1$-Menge.)    Hinweis: Verwenden Sie (a) sowie die beiden vorigen Aufgaben. 
+	\end{enumerate}
 
 \end{exercise}
 
@@ -11,5 +16,24 @@
 \begin{solution}
 
 \phantom{}
+	\begin{enumerate}[label = (\alph*)]
+		\item 
+		\item Aus der vorvorigen Aufgabe holen wir uns ein $A \subseteq \N \times \N$ mit der Eigenschaft, dass es für jede $\Sigma_1$-Menge $B \subseteq \N$ ein $k \in \N$ mit $B = \{y \in \N \mid (k,y) \in A\}$ gibt. Wegen der vorigen Aufgabe können wir weiters eine Bijektion $p_2: \N^2 \to \N$ finden, sodass für alle $C \subseteq \N^2$ gilt, dass $C$ genau dann eine $\Sigma_1$-Menge ist, wenn $p_2[C]$ eine $\Sigma_1$-Menge ist. 
+		
+		Wir definieren $U := p_2[A]$, damit ist $U$ eine $\Sigma_1$-Menge. Nun nehmen wir an $\N \setminus U$ ist ebenfalls eine $\Sigma_1$-Menge. Damit ist auch 
+		\begin{align*}
+			p_2^{-1}[\N \setminus U] = p_2^{-1}[\N] \setminus p_2^{-1}[U] = \N^2 \setminus A
+		\end{align*}
+		eine $\Sigma_1$-Menge. Mit Punkt (a) folgt, dass auch $B := \{x \in \N \mid (x,x) \in \N^2 \setminus A\}$ eine $\Sigma_1$-Menge ist. Wir unterscheiden für beliebiges $k \in \N$ nun zwei Fälle.
+		\begin{enumerate}[label = Fall \arabic*:]
+			\item $k \in B$. Dann ist $(k,k) \in \N^2 \setminus A$ und daher $k \notin \{x \in \N \mid (k,x) \in A\}$. Und damit $B \neq \{x \in \N \mid (k,x) \in A\}$.
+			\item $k \notin B$. Dann ist $(k,k) \notin \N^2 \setminus A$ und daher $(k,k) \in A$. Damit ist  $k \in \{x \in \N \mid (k,x) \in A\}$ und damit $B \neq \{x \in \N \mid (k,x) \in A\}$
+		\end{enumerate}
+	In jedem Fall gilt also
+	\begin{align*}
+		B \neq \{x \in \N \mid (k,x) \in A\}
+	\end{align*}
+	und da das für alle $k \in \N$ gilt ist das ein Widerspruch zur Eigenschaft von $A$. 
+	\end{enumerate}
 
 \end{solution}
