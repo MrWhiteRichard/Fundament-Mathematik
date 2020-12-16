@@ -193,15 +193,45 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
 		&= \sum_{j=1}^\infty \pbraces{\frac{\mu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}} v_j
 	\end{align*}
 	
-	\item Nun sezen wir $u_1 := 0$. Damit gilt 
+	\item Nun setzen wir $u_1 := 0$. Damit gilt 
 	\begin{align*}
 		u(t) = \sum_{j=1}^\infty \pbraces{\frac{\mu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}} v_j
 	\end{align*}
 	und mit einer formalen Grenzwertvertauschung und dem Satz von Parzeval weiters
 	\begin{align*}
 		\norm[L^2(\Omega)]{u_t(t)}^2 &= \sum_{j=1}^\infty \vbraces{\frac{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}}^2 \\
-		&= \sum_{j=1}^\infty \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{e^{\nu_j t} - e^{\mu_j t}}^2
+		&= \sum_{j=1}^\infty \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{e^{\nu_j t} - e^{\mu_j t}}^2 \\
+		&= \sum_{j=1}^\infty \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} e^{-d t}\vbraces{\exp\pbraces{-t\sqrt{\frac{d^2}{4} - \lambda_j} } - \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_j} }}^2
 	\end{align*}
+	Wir wissen, dass für jedes $j \in \N$ der Eigenwert $\lambda_j$ positiv ist und dass die Eigenwerte aufsteigend geordnet sind. Sei also $l \in \N$ der kleinste Index mit $\frac{d^2}{4} < \lambda_l$. Für alle $k \geq l$ gilt nun
+	\begin{align*}
+		\mu_k \nu_k = \pbraces{-\frac{d}{2} + i \sqrt{\lambda_k - \frac{d^2}{4}}}\pbraces{-\frac{d}{2} - i \sqrt{\lambda_k - \frac{d^2}{4}}} = \frac{d^2}{4} + \pbraces{\lambda_k - \frac{d^2}{4}} = \lambda_k.
+	\end{align*}
+	Außerdem gilt
+	\begin{align*}
+		\vbraces{\mu_k - \nu_k}^2 = \vbraces{2 i \sqrt{\lambda_k - \frac{d^2}{4}}}^2 = 4 \pbraces{\lambda_k - \frac{d^2}{4}} \geq 4 \pbraces{\lambda_l - \frac{d^2}{4}}
+	\end{align*}
+	sowie
+	\begin{align*}
+		\vbraces{\exp\pbraces{-i t \sqrt{\lambda_k - \frac{d^2}{4}} } - \exp\pbraces{i t \sqrt{\lambda_k - \frac{d^2}{4}} }}^2 &= 4 \vbraces{\frac{\exp\pbraces{i t \sqrt{\lambda_k - \frac{d^2}{4}}} - \exp\pbraces{-i t \sqrt{\lambda_k - \frac{d^2}{4}} }}{2i}}^2  \\
+		&= 4 \vbraces{\sin\pbraces{t \sqrt{\lambda_k - \frac{d^2}{2}}}}^2 \leq 4
+	\end{align*}
+	also gilt mit der Besselschen Ungleichung (wirklich?) ganz am Ende
+	\begin{align*}
+		\sum_{j=l}^\infty \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} e^{-d t}\vbraces{\exp\pbraces{-t\sqrt{\frac{d^2}{4} - \lambda_j} } - \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_j} }}^2 \\
+		\leq \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} e^{-d t} \sum_{j=l}^\infty \vbraces{\lambda_j (u_0, v_j)_{L^2(\Omega)}}^2 \\
+		= \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} e^{-d t} \sum_{j=l}^\infty \vbraces{ (u_0, \lambda_j v_j)_{L^2(\Omega)}}^2 \\
+		= \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} e^{-d t} \sum_{j=l}^\infty \vbraces{ (u_0, \Delta v_j)_{L^2(\Omega)}}^2 \\
+		= \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} e^{-d t} \sum_{j=l}^\infty \vbraces{ (\nabla u_0, \nabla v_j)_{L^2(\Omega)}}^2 \\
+		\stackrel{?}{\leq} \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} e^{-d t} \norm[L^2(\Omega)]{\nabla u_0}^2
+	\end{align*}
+	
+	Also erhalten wir insgesamt
+	\begin{align*}
+		\norm[L^2(\Omega)]{u_t(t)}^2 \\
+		 \leq e^{- d t} \pbraces{ \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} \norm[L^2(\Omega)]{\nabla u_0}^2 + \sum_{j=1}^{l-1} \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{\exp\pbraces{-t\sqrt{\frac{d^2}{4} - \lambda_j} } - \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_j} }}^2}
+	\end{align*}
+	Das zweite \Quote{?} ist noch: was geschieht für $d = 0$?
 \end{enumerate}
     
 \end{solution}
