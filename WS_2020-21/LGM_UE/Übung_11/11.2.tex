@@ -22,35 +22,61 @@ als auch $\Pi_1$-Menge ist. \\
 % ------------------------------------------------------------------------------
 
 \begin{solution}
-Da $S_0,S_1 \ \Sigma_1$-Mengen sind, gibt es $\Sigma_0$-Formeln $\psi_0,\psi_1$, sodass
-\begin{align*}
-	x \in S_0 &\iff \exists y\, \psi_0(x,y) \\
-	x \in S_1 &\iff \exists y\, \psi_1(x,y) \\
-\end{align*}
-Wir kreieren nun eine neue $\Sigma_1$-Formel $\varphi$:
-\begin{align*}
-	\exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
-\end{align*}
-und definieren $E := \{x \in \N: \N \vDash \varphi(x)\}$.
-Es gilt
-\begin{align*}
-	x \in S_0 \setminus S_1 &\iff \exists y_0\, \psi_0(x,y_0) \land
-	\neg \exists y_1\, \psi_1(x,y_1) \iff
-	\exists y_0\, \psi_0(x,y_0) \land
-	 \forall y_1\, \neg \psi_1(x,y_1) \\
-	 &\implies (\exists y_0\, \psi_0(x,y_0) \land
- 	 \forall y_1 < y_0\, \neg \psi_1(x,y_1)) \iff x \in E \\
-	 &\iff \exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
-	 \implies \exists y_0\, \psi_0(x,y_0) \iff x \in S_0.
-\end{align*}
-Es bleibt also noch zu zeigen, dass $\N \setminus E$ ebenso eine $\Sigma_1$-Menge ist:
-Aus $S_0 \cup S_1 = \N$ folgt
-\begin{align*}
-	\N \vDash \exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
-	\lor \exists y_1\, (\psi_1(x,y_1) \land \forall y_0 \leq y_1\, \neg \psi_0(x,y_0))
-\end{align*}
-und damit
-\begin{align*}
-	x \in \N \setminus E &\iff \exists y_1\, (\psi_1(x,y_1) \land \forall y_0 \leq y_1\, \neg \psi_0(x,y_0)).
-\end{align*}
+	\phantom{}
+	
+	\begin{enumerate}[label = \alph*.]
+		\item Da $S_0,S_1 \ \Sigma_1$-Mengen sind, gibt es $\Sigma_0$-Formeln $\psi_0,\psi_1$, sodass
+		\begin{align*}
+		x \in S_0 &\iff \exists y\, \psi_0(x,y) \\
+		x \in S_1 &\iff \exists y\, \psi_1(x,y) \\
+		\end{align*}
+		Wir kreieren nun eine neue $\Sigma_1$-Formel $\varphi$:
+		\begin{align*}
+		\exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
+		\end{align*}
+		und definieren $E := \{x \in \N: \N \vDash \varphi(x)\}$.
+		Es gilt
+		\begin{align*}
+		x \in S_0 \setminus S_1 &\iff \exists y_0\, \psi_0(x,y_0) \land
+		\neg \exists y_1\, \psi_1(x,y_1) \iff
+		\exists y_0\, \psi_0(x,y_0) \land
+		\forall y_1\, \neg \psi_1(x,y_1) \\
+		&\implies (\exists y_0\, \psi_0(x,y_0) \land
+		\forall y_1 < y_0\, \neg \psi_1(x,y_1)) \iff x \in E \\
+		&\iff \exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
+		\implies \exists y_0\, \psi_0(x,y_0) \iff x \in S_0.
+		\end{align*}
+		Es bleibt also noch zu zeigen, dass $\N \setminus E$ ebenso eine $\Sigma_1$-Menge ist:
+		Aus $S_0 \cup S_1 = \N$ folgt
+		\begin{align*}
+		\N \vDash \exists y_0\, (\psi_0(x,y_0) \land \forall y_1 < y_0\, \neg \psi_1(x,y_1))
+		\lor \exists y_1\, (\psi_1(x,y_1) \land \forall y_0 \leq y_1\, \neg \psi_0(x,y_0))
+		\end{align*}
+		und damit
+		\begin{align*}
+		x \in \N \setminus E &\iff \exists y_1\, (\psi_1(x,y_1) \land \forall y_0 \leq y_1\, \neg \psi_0(x,y_0)).
+		\end{align*}
+		
+		\item Wir führen diesen Teil auf den Teil (a) zurück und betrachten
+		\begin{align*}
+			S_0 := \N \setminus Q_0, \quad S_1 := \N \setminus Q_1.
+		\end{align*}
+		Es gilt 
+		\begin{align*}
+			S_0 \cup S_1 = (\N \setminus Q_0) \cup (\N \setminus Q_1) = \N \setminus (Q_0 \cap Q_1) = \N
+		\end{align*}
+		und $S_0$ und $S_1$ sind $\Sigma_1$-Mengen. Nach Punkt (a) gibt es nun eine $\Delta_1$-Menge $\tilde{E}$ mit
+		\begin{align*}
+			Q_1 = (\N \setminus Q_0) \setminus (\N \setminus Q_1) = S_0 \setminus S_1 \subseteq \tilde{E} \subseteq S_0 = \N \setminus Q_0.
+		\end{align*} 
+		Wir definieren eine neue Menge $E := \N \setminus \tilde{E}$. Für diese gilt nun
+		\begin{align*}
+			Q_0 = \N \setminus (\N \setminus Q_0) \subseteq \N \setminus \tilde{E} = E 
+		\end{align*}
+		und 
+		\begin{align*}
+			Q_1 \subseteq \tilde{E} = \N \setminus (\N \setminus \tilde{E}) = \N \setminus E
+		\end{align*}
+	\end{enumerate}
+
 \end{solution}
