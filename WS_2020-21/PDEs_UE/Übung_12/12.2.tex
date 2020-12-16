@@ -2,15 +2,19 @@
 
 \begin{exercise}
 
-Seien das elektrische Feld $E=\left(E_{1}, E_{2}, E_{3}\right)^{T}$ und das magnetische Feld $B=\left(B_{1}, B_{2}, B_{3}\right)^{T}$ glatte Lösungen der Maxwell-Gleichungen
-$$
-E_{t}=\operatorname{rot} B, \quad B_{t}=-\operatorname{rot} E, \quad \operatorname{div} E=\operatorname{div} B=0
-$$
-ohne Ladungen und Ströme, wobei $x \in \mathbb{R}^{3}$ und $t>0$.
+Seien das elektrische Feld $E = (E_1, E_2, E_3)^\top$ und das magnetische Feld $B = (B_1, B_2, B_3)^\top$ glatte Lösungen der Maxwell-Gleichungen
+
+\begin{align*}
+    E_t = \rot B, \quad B_t = -\rot E,
+    \quad
+    \Div E = \Div B = 0
+\end{align*}
+
+ohne Ladungen und Ströme, wobei $x \in \R^3$ und $t > 0$.
 
 \begin{enumerate}[label = (\roman*)]
-\item Zeigen Sie, dass $u=E_{i}$ bzw. $u=B_{i}, i=1,2,3,$ die Wellengleichung $u_{t t}-\Delta u=0$ löst.
-\item Zeigen Sie, dass die Energiedichte $\frac{1}{2} \int_{\R^3}\left(|E|^{2}+|B|^{2}\right) d x$ zeitlich konstant ist.
+    \item Zeigen Sie, dass $u = E_i$ bzw. $u = B_i, i = 1, 2, 3$, die Wellengleichung $u_{tt} - \Delta u = 0$ löst.
+    \item Zeigen Sie, dass die Energiedichte $\frac{1}{2} \Int[\R^3]{(|E|^2+|B|^2)}{x}$ zeitlich konstant ist.
 \end{enumerate}
 
 \end{exercise}
@@ -19,8 +23,88 @@ ohne Ladungen und Ströme, wobei $x \in \mathbb{R}^{3}$ und $t>0$.
 
 \begin{solution}
 
-ToDo!
+\phantom{}
 
+\begin{enumerate}[label = (\roman*)]
+
+    \item Wir erinnern uns an folgende Definitionen.
+    
+    \begin{align*}
+        \rot f
+        =
+        \begin{pmatrix}
+            \partial_{x_2} f_3 - \partial_{x_3} f_2 \\
+            \partial_{x_3} f_1 - \partial_{x_1} f_3 \\
+            \partial_{x_1} f_2 - \partial_{x_2} f_1
+        \end{pmatrix},
+        \quad
+        \Div f
+        =
+        \sum_{i=1}^3
+        \partial_{x_i} f_i
+    \end{align*}
+
+    \begin{align*}
+        \rot \rot f
+        & =
+        \rot
+        \begin{pmatrix}
+            \partial_{x_2} f_3 - \partial_{x_3} f_2 \\
+            \partial_{x_3} f_1 - \partial_{x_1} f_3 \\
+            \partial_{x_1} f_2 - \partial_{x_2} f_1
+        \end{pmatrix} \\
+        & =
+        \begin{pmatrix}
+            \partial_{x_2} (\partial_{x_1} f_2 - \partial_{x_2} f_1) - \partial_{x_3} (\partial_{x_3} f_1 - \partial_{x_1} f_3) \\
+            \partial_{x_3} (\partial_{x_2} f_3 - \partial_{x_3} f_2) - \partial_{x_1} (\partial_{x_1} f_2 - \partial_{x_2} f_1) \\
+            \partial_{x_1} (\partial_{x_3} f_1 - \partial_{x_1} f_3) - \partial_{x_2} (\partial_{x_2} f_3 - \partial_{x_3} f_2)
+        \end{pmatrix} \\
+        & =
+        \begin{pmatrix}
+            \partial_{x_1 x_2} f_2 - \partial_{x_2 x_2} f_1 - \partial_{x_3 x_3} f_1 + \partial_{x_1 x_3} f_3 \\
+            \partial_{x_2 x_3} f_3 - \partial_{x_3 x_3} f_2 - \partial_{x_1 x_1} f_2 + \partial_{x_1 x_2} f_1 \\
+            \partial_{x_1 x_3} f_1 - \partial_{x_1 x_1} f_3 - \partial_{x_2 x_2} f_3 + \partial_{x_2 x_3} f_2
+        \end{pmatrix} \\
+        & =
+        \begin{pmatrix}
+            \partial_{x_1} \partial_{x_1} f_1 + \partial_{x_2} \partial_{x_1} f_2 + \partial_{x_3} \partial_{x_1} f_3 \\
+            \partial_{x_1} \partial_{x_2} f_1 + \partial_{x_2} \partial_{x_2} f_2 + \partial_{x_3} \partial_{x_2} f_3 \\
+            \partial_{x_1} \partial_{x_3} f_1 + \partial_{x_2} \partial_{x_3} f_2 + \partial_{x_3} \partial_{x_3} f_3
+        \end{pmatrix}
+        -
+        \begin{pmatrix}
+            \partial_{x_1 x_1} f_1 + \partial_{x_2 x_2} f_1 + \partial_{x_3 x_3} f_1 \\
+            \partial_{x_1 x_1} f_2 + \partial_{x_2 x_2} f_2 + \partial_{x_3 x_3} f_2 \\
+            \partial_{x_1 x_1} f_3 + \partial_{x_2 x_2} f_3 + \partial_{x_3 x_3} f_3 \\
+        \end{pmatrix} \\
+        & =
+        \begin{pmatrix}
+            \partial_{x_1} \Div f \\
+            \partial_{x_2} \Div f \\
+            \partial_{x_3} \Div f
+        \end{pmatrix}
+        -
+        \begin{pmatrix}
+            \Delta f_1 \\
+            \Delta f_2 \\
+            \Delta f_3
+        \end{pmatrix} \\
+        & =
+        \nabla \Div f
+        -
+        \Delta f
+    \end{align*}
+
+    Wir erinnern uns an die Bedingungen an das elektrische und magnetische Feld $E$ bzw. $B$.
+
+    \begin{align*}
+        \implies
+        B_{tt} & = -\rot E_t = -\rot \rot B = \Delta B \\
+        E_{tt} & = \rot B_t = \rot(-\rot E) = \Delta E
+    \end{align*}
+
+\end{enumerate}
+    
 \end{solution}
 
 % --------------------------------------------------------------------------------
