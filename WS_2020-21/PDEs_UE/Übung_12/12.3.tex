@@ -14,7 +14,7 @@ Betrachten Sie die lineare Wellengleichung in $\R^3 \times [0, \infty)$
 
 Leiten Sie die Kirchhoffsche Formel
 
-\begin{align*}    
+\begin{align*}
     u(x, t)
     =
     \frac{1}{4 \pi t}
@@ -56,7 +56,7 @@ erfüllt und $\tilde U := r U$ die Differentialgleichung
         \tilde U_{tt} - \tilde U_{rr} = 0 & \text{für}~ (r, t) \in (0, \infty) \times (0, \infty), \\
         \tilde U(r, 0) = r G              & \text{für}~ r \in (0, \infty), \\
         \tilde U_t(r, 0) = r H            & \text{für}~ r \in (0, \infty), \\
-        \tilde U(0, t) = 0                & \text{für}~ t \in (0, \infty).            
+        \tilde U(0, t) = 0                & \text{für}~ t \in (0, \infty).
     \end{cases}
 \end{align*}
 
@@ -71,7 +71,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
 \begin{enumerate}[label = \arabic*.]
 
     \item Schritt (Euler-Poisson-Darboux-Gleichung):
-    
+
     \begin{enumerate}[label = 1.\arabic*.]
 
         \item Schritt ($\Forall (r, t) \in (0, \infty) \times (0, \infty): U_{tt} - U_{rr} - \frac{2}{r} U_r = 0$):
@@ -81,15 +81,15 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
             U(x, t, r)
             =
             \frac{1}{4 \pi r^2}
-            \Int[\partial B(x, r)]{u(y)}{s(y)}
+            \Int[\partial B(x, r)]{u(y, t)}{s(y)}
             \stackrel
             {
                 \mathrm{TRAFO}
             }{=}
             \frac{1}{4 \pi}
-            \Int[\partial B(0, 1)]{u(x + r z)}{s(z)}
+            \Int[\partial B(0, 1)]{u(x + r z, t)}{s(z)}
         \end{align*}
-    
+
         \begin{align*}
             \implies
             U_r(x, t, r)
@@ -127,7 +127,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
                 \Int[\partial B(x, R)]{u_{tt}(y, t)}{y}
             }{R}
         \end{align*}
-    
+
         \begin{align*}
             \implies
             r^2 U_r(x, f, t)
@@ -138,7 +138,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
                 \Int[\partial B(x, R)]{u_{tt}(y, t)}{y}
             }{R}
         \end{align*}
-    
+
         \begin{multline*}
             \implies
             2 r U_r(x, r, t) + r^2 U_{rr}(x, r, t)
@@ -152,7 +152,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
             \frac{1}{4 \pi}
             \Int[\partial B(x, r)]{u(y, t)}{s(y)}
         \end{multline*}
-    
+
         \begin{align*}
             \implies
             \frac{2}{r}
@@ -166,7 +166,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
         \item Schritt ($\Forall r \in (0, \infty): U(r, 0) = G$):
-        
+
         \begin{align*}
             \implies
             U(x, r, 0)
@@ -181,7 +181,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
         \item Schritt ($\Forall r \in (0, \infty): U_t(r, 0) = H$):
-        
+
         \begin{multline*}
             \implies
             U_t(x, r, 0)
@@ -223,7 +223,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
     \begin{enumerate}[label = 2.\arabic*.]
 
         \item Schritt ($\Forall (r, t) \in (0, \infty) \times (0, \infty): \tilde U_{tt} - \tilde U_{rr} = 0$):
-        
+
         \begin{align*}
             \implies
             \tilde U_{tt}
@@ -243,7 +243,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
         \item Schritt ($\Forall r \in (0, \infty): \tilde U(r, 0) = \tilde G$):
-        
+
         \begin{align*}
             \implies
             \tilde U(r, 0)
@@ -259,7 +259,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
         \item Schritt ($\Forall r \in (0, \infty): \tilde U_t(r, 0) = \tilde H$):
-        
+
         \begin{align*}
             \implies
             \tilde U_t(r, 0)
@@ -275,7 +275,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
         \item Schritt ($\Forall t \in (0, \infty): \tilde U(0, t) = 0$):
-        
+
         \begin{align*}
             \implies
             \tilde U(0, t)
@@ -286,9 +286,9 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \end{align*}
 
     \end{enumerate}
-    
+
     \item Schritt:
-    
+
     \includegraphicsboxed{PDEs/PDEs_-_(7-1).png}
     \includegraphicsboxed{PDEs/PDEs_-_(7-2).png}
 
@@ -337,7 +337,7 @@ Eine $1000$ Formeln sagen mehr als $1000$ Worte!
         \Int[\partial B(0, 1)]{u(x + r z, t)}{s(z)} \\
         & =
         \lim_{r \to 0}
-        U(x, t, r) \\
+        U(x, r, t) \\
         & =
         \lim_{r \to 0}
         \frac{\tilde U(x, r, t)}{r} \\
