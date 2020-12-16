@@ -3,6 +3,7 @@
 \begin{exercise}[239]
 
 \phantom{}
+	Seien $(A,<)$ und $(B,<)$ Wohlordnungen. Finden Sie eine Wohlordnung auf $A \times B$. (Hinweis: lexikographische Ordnung: $(x,y) < (x^\prime, y^\prime) \Leftrightarrow (x < x^\prime \lor (x = x^\prime \land y < y^\prime))$.)
 
 \end{exercise}
 
@@ -11,5 +12,45 @@
 \begin{solution}
 
 \phantom{}
+	Wir rechnen nach.
+	\begin{enumerate}
+		\item Irreflexivität: $\forall z \in A \times B: z \nless z$. Sei also $(x,y) \in A \times B$ beliebig. Es gilt $x = x$ und $y = y$ also folgt $(x,y) \nless (x,y)$. 
+		
+		\item Transitivität: $\forall u,v,w \in A \times B: ((u < v \land v < w) \Rightarrow u < w)$. Seien also $(x_1, y_1), (x_2, y_2), (x_3, y_3) \in A \times B$ mit $(x_1, y_1) < (x_2, y_2)$ und $(x_2, y_2) < (x_3, y_3)$. 
+		\begin{enumerate}[label = Fall \arabic*:]
+			\item $(x_1 < x_2 \land x_2 \leq x_3) \lor (x_1 \leq x_2 \land x_2 < x_3)$. Dann gilt auch $x_1 < x_3$ und daher $(x_1, y_1) < (x_3, y_3)$.
+			
+			\item $x_1 = x_2 \land x_2 = x_3$. Dann folgt $x_1 = x_3$ und $y_1 < y_2 < y_3$. und damit $(x_1, y_1) < (x_3,y_3)$.  
+		\end{enumerate} 
+	
+		\item Trichotomie: $\forall u,v \in A \times B: (u < v \lor u = v \lor u > v)$. Seien $(x_1, y_1), (x_2,y_2) \in A \times B$ mit $(x_1, y_1) \neq (x_2, y_2)$ und $(x_1, y_1) \ngtr (x_2, y_2)$. Wir unterscheiden zwei Fälle.
+		\begin{enumerate}[label = Fall \arabic*:]
+			\item $x_1 = x_2$. Dann folgt bereits $y_1 < y_2$ und daher $(x_1, y_1) < (x_2, y_2)$. 
+			\item $x_1 < x_2$. Dann folgt unmittelbar $(x_1, y_1) < (x_2, y_2)$.  
+		\end{enumerate}
+	
+		\item Wohlordnung: $\forall C \subseteq A \times B: (C \neq 0 \Rightarrow \exists z \in C \Forall x \in C: x = c \lor c < x)$. Sei also $C \subseteq A \times B$ mit $C \neq \emptyset$. Wir betrachten zuerst die Menge
+			\begin{align*}
+				C_1 := \{a \in A \mid \exists b \in B: (a,b) \in C\}
+			\end{align*}
+		Da $C_1 \neq \emptyset$ gibt es ein $u \in C_1$, sodass für alle $x \in C_1: u = x \lor u < x$. Als nächstes betrachten wir noch die Menge
+			\begin{align*}
+				C_2 := \{b \in B \mid (u, b) \in C\}
+			\end{align*}
+		Auch $C_2 \neq \emptyset$ und daher finden wir ein $v \in C_2$, sodass für alle $y \in C_2: v = y \lor v < y$. 
+		
+		Nun betrachten wir $(x,y) \in C$ beliebig. Es gilt $x \in C_1$ und daher können wir zwei Fälle unterscheiden.
+		\begin{enumerate}[label = Fall \arabic*:]
+			\item $x = u$. Dann folgt $y \in C_2$ und es gibt zwei Fälle.
+				\begin{enumerate}[label = Fall 1.\arabic*]
+					\item $y = v$. Dann ist also $(x,y) = (u,v)$.
+					\item $v < y$. Dann ist $(u,v) < (x,y)$.
+				\end{enumerate} 
+			
+			\item $u < x$. Dann folgt sofort $(u,v) < (x,y)$. 
+		\end{enumerate}
+	\end{enumerate}
+
+	Wir sehen, dass wir mit $(u,v)$ das kleinste Element von $C$ gefunden haben, also ist $(A \times B, <)$ eine Wohlordnung.´
 
 \end{solution}
