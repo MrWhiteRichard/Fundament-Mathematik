@@ -10,19 +10,45 @@ Zeigen Sie, dass diese Ordnung eine lineare Ordnung aber keine Wohlordnung ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+	
+	Wir definieren die lexikographische Ordnung
 
 \begin{align*}
   (x_n)_{n\in\N} <_{\mathrm{lex}} (y_n)_{n\in\N}
   :\iff \exists n_0 \in \N: x_{n_0} < y_{n_0} \land \forall n < n_0: x_n = y_n
 \end{align*}
-Das kleinste Element ist $x^* :=(0,0,\dots)$.
-Die Teilmenge $\{0,1\}^{\N} \setminus \{x^*\}$ hat aber kein kleinstes Element.
-Angenommen sie hätte ein kleinstes Element $x^{\prime}$, dann folgt aus
-$x^{\prime} \neq x^*$
-\begin{align*}
-  \exists n_0 \in \N: x^{\prime}_{n_0} = 1
-\end{align*}
-und wir finden mit $(x^{\primeprime}_n)_{n \in \N} = (\delta_{n_0+1,n})_{n \in \N}$ ein echt kleineres
-Element.
+
+	und rechnen nachk, dass es sich um eine lineare Ordnung, aber keine Wohlordnung handelt.
+	
+	\begin{enumerate}
+		\item Irreflexivität: $\forall z \in \{0,1\}^\N: z \nless_{\mathrm{lex}} z$. Für $(x_n)_{n \in \N} \in \{0,1\}^\N$ gilt klarerweise für alle $k \in \N$, dass $x_k = x_k$ und daher ist $(x_n)_{n \in \N} \nless_{\mathrm{lex}} (x_n)_{n \in \N}$. 
+		
+		\item Transitivität: $\forall u,v,w \in \{0,1\}^\N: ((u < v \land v < w) \Rightarrow u < w)$. Seien $(x_n)_{n \in \N}, (y_n)_{n \in \N}, (z_n)_{n \in \N} \in \{0,1\}^\N$ mit $(x_n)_{n \in \N} <_{\mathrm{lex}} (y_n)_{n \in \N}$ und dem Zeugen $k \in \N$ sowie  $(y_n)_{n \in \N} <_{\mathrm{lex}} (z_n)_{n \in \N}$ mit dem Zeugen $l$. Wir definieren $m := \min\{k,l\}$. Es gilt
+			\begin{align*}
+				\forall i < m: x_i = y_i = z_i  \quad \text{und} \quad x_m < z_m
+			\end{align*}
+		und damit $(x_n)_{n \in \N} <_{\mathrm{lex}} (z_n)_{n \in \N}$.
+		
+		\item Trichotomie: $\forall u,v \in \{0,1\}^\N: (u < v \lor u = v \lor u > v)$. Seien also $(x_n)_{n \in \N}, (y_n)_{n \in \N} \in \{0,1\}^\N$ mit $(x_n)_{n \in \N} \nless_{\mathrm{lex}} (y_n)_{n \in \N}$ und $(x_n)_{n \in \N} \neq (y_n)_{n \in \N}$. Weil die beiden Folgen nicht gleich sind können wir 
+		\begin{align*}
+			k := \min\{i \in \N \mid x_i \neq y_i\}
+		\end{align*}
+		definieren. Es gilt also
+			\begin{align*}
+				\forall i < k: x_i = y_i \quad \text{und} \quad x_k \neq y_k
+			\end{align*}
+			und wegen $x_k \nless y_k$ gilt $x_k > y_k$ und daher $(x_n)_{n \in \N} >_{\mathrm{lex}} (y_n)_{n \in \N}$.
+			
+		\item keine Wohlordnung: $\exists C \subseteq \{0,1\}^\N: (C \neq \emptyset \land \forall z \in C \Exists x \in C: x <_{\mathrm{lex}} z)$. Das kleinste Element der Menge $\{0,1\}^\N$ ist $x^* :=(0,0,\dots)$. Das heißt wir müssen uns eine andere Menge suchen.
+		Die Teilmenge $C := \{0,1\}^{\N} \setminus \{x^*\}$ hat kein kleinstes Element.
+		Angenommen sie hätte ein kleinstes Element $x^{\prime}$, dann folgt aus
+		$x^{\prime} \neq x^*$
+		\begin{align*}
+		\exists n_0 \in \N: x^{\prime}_{n_0} = 1
+		\end{align*}
+		und wir finden mit $(x^{\primeprime}_n)_{n \in \N} = (\delta_{n_0+1,n})_{n \in \N}$ ein echt kleineres
+		Element. Ein Widerspruch.
+	\end{enumerate}
+
 
 \end{solution}
