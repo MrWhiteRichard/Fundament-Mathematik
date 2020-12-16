@@ -105,7 +105,7 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
         \derivative{t}
         \Int[\Omega]{u_t^2 + |\nabla u|^2}{x}
         +
-        d \norm[L^2(\Omega)]{u_t(\cdot, t)}.
+        d \norm[L^2(\Omega)]{u_t(\cdot, t)}^2.
     \end{align*}
 
     Die Energie bezeichnen wir mit $E(t)$.
@@ -114,7 +114,7 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
         \implies
         E^\prime(t)
         =
-        -2 d \norm[L^2(\Omega)]{u_t(\cdot, t)}
+        -2 d \norm[L^2(\Omega)]{u_t(\cdot, t)}^2
         \leq
         0
     \end{align*}
@@ -167,7 +167,7 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
         \infty
     \end{align*}
     
-    \item Sei $(v_k)_{k \in \N}$ ein ONS von $L^2(\Omega)$ bestehend aus Eigenvektoren von $- \Delta $ zu den positiven und aufsteigend sortierten Eigenwerten $(\lambda_k)_{k \in \N}$. Wir berechnen für $j \in \N$ und $u_j := (u,v_j)_{L^2(\Omega)}$ formal 
+    \item Sei $(v_k)_{k \in \N}$ ein ONS von $L^2(\Omega)$ bestehend aus Eigenvektoren von $- \Delta $ zu den positiven und aufsteigend sortierten Eigenwerten $(\lambda_k)_{k \in \N}$. Wir berechnen für $j \in \N$ und $\tilde{u}_j := (u,v_j)_{L^2(\Omega)}$ formal 
     \begin{align*}
     	(\partial_{tt} + d \partial_t)u_j = (u_{tt} + du_t, v_j)_{L^2(\Omega)} = (\Delta u, v_j)_{L^2(\Omega)} = -\lambda_j u_j.
     \end{align*}
@@ -177,23 +177,31 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
 	\end{align*}
 	Also ist eine Allgemeine Lösung gegeben durch
 	\begin{align*}
-		u_j(t) = c_1 e^{\mu_j t} + c_2 e^{\nu_j t}
+		\tilde{u}_j(t) = c_1 e^{\mu_j t} + c_2 e^{\nu_j t}
 	\end{align*}
 	Nun sollen auch noch die Anfangsbedingungen
 	\begin{align*}
-		(u_0, v_j)_{L^2(\Omega)} = u_j(0) = c_1 + c_2, \quad (u_1, v_j)_{L^2(\Omega)} = \partial_t u_j(0) = \mu_j c_1 + \nu_j c_2
+		(u_0, v_j)_{L^2(\Omega)} = \tilde{u}_j(0) = c_1 + c_2, \quad (u_1, v_j)_{L^2(\Omega)} = \partial_t \tilde{u}_j(0) = \mu_j c_1 + \nu_j c_2
 	\end{align*}
 	Wenn wir das nun lösen erhalten wir
 	\begin{align*}
-		u_j(t) = \frac{\mu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t}
+		\tilde{u}_j(t) = \frac{\mu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}
 	\end{align*}
 	und somit die formale Lösung
 	\begin{align*}
-		u(t) &= \sum_{j=1}^\infty u_j(t) v_j \\
-		&= \sum_{j=1}^\infty \pbraces{\frac{\mu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t}} v_j
+		u(t) &= \sum_{j=1}^\infty \tilde{u}_j(t) v_j \\
+		&= \sum_{j=1}^\infty \pbraces{\frac{\mu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)} - (u_1, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}} v_j
 	\end{align*}
 	
-	\item ToDo!
+	\item Nun sezen wir $u_1 := 0$. Damit gilt 
+	\begin{align*}
+		u(t) = \sum_{j=1}^\infty \pbraces{\frac{\mu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}} v_j
+	\end{align*}
+	und mit einer formalen Grenzwertvertauschung und dem Satz von Parzeval weiters
+	\begin{align*}
+		\norm[L^2(\Omega)]{u_t(t)}^2 &= \sum_{j=1}^\infty \vbraces{\frac{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\nu_j t} - \frac{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}{\mu_j - \nu_j} e^{\mu_j t}}^2 \\
+		&= \sum_{j=1}^\infty \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{e^{\nu_j t} - e^{\mu_j t}}^2
+	\end{align*}
 \end{enumerate}
     
 \end{solution}
