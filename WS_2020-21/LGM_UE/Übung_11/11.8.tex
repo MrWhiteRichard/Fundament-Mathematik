@@ -2,7 +2,23 @@
 
 \begin{exercise}[243]
 
-\phantom{}
+Seien $f: A \to B$ und $g: B \to A$ injektiv. Der Einfachheit halber seien
+$A$ und $B$ disjunkt. Zeigen Sie, dass es eine Bijektion $h: A \to B$ gibt,
+indem Sie den folgenden Beweis vervollständigen: \\
+Wir definieren $A_0 := A, B_0 := B, A_{n+1} := g[B_n], B_{n+1} := f[A_n]$. \\
+Sei $X_1 := \bigcup_{k\in\N}A_{2k}\setminus A_{2k+1},
+X_2 := \bigcup_{k\in\N}A_{2k+1}\setminus A_{2k+2}, X_3 := \bigcap_{k \in \N} A_k$ \\
+und $Y_1 := \bigcup_{k\in\N}B_{2k}\setminus B_{2k+1},
+Y_2 := \bigcup_{k\in\N}B_{2k+1}\setminus B_{2k+2}, Y_3 := \bigcap_{k \in \N} B_k$.
+
+\begin{enumerate}[label = \alph*.]
+  \item Zeigen Sie, dass $\{X_1,X_2,X_3\}$ eine Partition von $A$ ist.
+  \item Definieren Sie $h: A \to B$ mit einer Fallunterscheidung:
+  Für $x \in X_1$ verwenden Sie $f$, um $h(x)$ zu definieren, für $x \in X_2$
+  hingegen $g$. Und für $x \in X_3?$
+  \item Zeigen Sie, dass die so definierte Funktion wohldefiniert ist,
+  und überdies eine Bijektion.
+\end{enumerate}
 
 \end{exercise}
 
@@ -11,5 +27,58 @@
 \begin{solution}
 
 \phantom{}
+\begin{enumerate}[label = \alph*.]
+  \item Wir zeigen zuerst mit Induktion $\forall k \in \N: A_{k+2} \subseteq A_{k}$.
+  \begin{align*}
+    k = 0&: \quad A_2 = g[B_1] = g[f[A_0]] = g[f[A]] \subseteq g[B] \subseteq A = A_0 \\
+    (k-1) \rightsquigarrow k&: \quad
+    A_{k+2} = g[f[A_{k}]] \subseteq g[f[A_{k-2}]] = A_{k}.
+  \end{align*}
+
+  Als nächstes zeigen wir, dass $X_1,X_2,X_3$ paarweise disjunkt sind:
+  Sei $x \in X_1 \cap X_2$: \\
+  Dann existieren $k_1, k_2$, sodass $x \in A_{2k_1}\setminus A_{2k_1+1}$, sowie
+  $x \in A_{2k_2 + 1}\setminus A_{2k_2+2}$. \\
+  Fall 1: $k_1 \leq k_2$: Dann ist $x \in A_{2k_2 + 1} \subseteq A_{2k_1 + 1}$. Widerspruch! \\
+  Fall 2: $k_1 > k_2$: Dann ist $x \in A_{2k_1} \subseteq A_{2k_2 + 2}$. Widerspruch! \\
+  Die Disjunktheit von $X_3$ mit $X_1$ und $X_2$ ist offensichtlich. \\
+  Ganz analog sieht man auch, dass $\{Y_1,Y_2,Y_3\}$ eine Partition von $B$ sein muss.
+
+  \item
+  Für Fall $x \in X_3$ können wir uns aussuchen, ob wir $f$ oder $g^{-1}$
+  zur Definition hernehmen, wir entscheiden uns mal für $f$.
+  \begin{align*}
+    h(x) = \begin{cases}
+      f(x) & x \in X_1 \\
+      g^{-1}(x) & x \in X_2 \\
+      f(x) & x \in X_3
+    \end{cases}
+  \end{align*}
+
+  \item Die Wohldefiniertheit ist nur für $x \in X_2$ auf den ersten Blick fraglich,
+  da aber $X_2 \subset A_1 = g[B]$ gilt, folgt sie sofort aus der Injektivität von $g$. \\
+  Weiters gilt aufgrund der Injektivität von $f$
+  \begin{align*}
+    f(X_1) &= f\left[\bigcup_{k\in\N}A_{2k}\setminus A_{2k+1}\right]
+    = \bigcup_{k\in\N}f\left[A_{2k}\setminus A_{2k+1}\right]
+    = \bigcup_{k\in\N}f\left[A_{2k}\right]\setminus f[A_{2k+1}]
+    = \bigcup_{k\in\N}B_{2k+1}\setminus B_{2k+2} = Y_2, \\
+    g(Y_1) &= g\left[\bigcup_{k\in\N}B_{2k}\setminus B_{2k+1}\right]
+    = \bigcup_{k\in\N}g\left[B_{2k}\setminus B_{2k+1}\right]
+    = \bigcup_{k\in\N}g\left[B_{2k}] \setminus g[B_{2k+1}\right]
+    = \bigcup_{k\in\N}A_{2k+1}\setminus A_{2k+2} = X_2, \\
+    f(X_3) &= f\left[\bigcap_{k \in \N} A_k\right]
+    = \bigcap_{k \in \N}f\left[A_k\right]
+    = \bigcap_{k \in \N}B_{k+1} = Y_3, \\
+    g(Y_3) &= g\left[\bigcap_{k \in \N} B_k\right]
+    = \bigcap_{k \in \N}g\left[A_k\right]
+    = \bigcap_{k \in \N}A_{k+1} = X_3.
+  \end{align*}
+  Also sehen wir, dass $f: X_1 \to Y_2$ und $g: X_2 \to Y_1$ Bijektionen sind,
+  sowie $f: X_3 \to Y_3$ und $g: Y_3 \to X_3$, also können wir $h$ für $x \in X_3$
+  tatsächlich auf beide Arten definieren und erhalten in jedem Fall eine Bijektion
+  von $A$ nach $B$.
+\end{enumerate}
+
 
 \end{solution}
