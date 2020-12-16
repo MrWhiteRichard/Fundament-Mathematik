@@ -2,52 +2,380 @@
 
 \begin{exercise}
 
-Betrachten Sie die lineare Wellengleichung in $\mathbb{R}^{3} \times[0, \infty)$
-$$
-\left\{\begin{array}{ll}
-u_{t t}-\Delta u=0 & \text { für }(x, t) \in \mathbb{R}^{3} \times[0, \infty) \\
-u(x, 0)=u_{0}(x) & \text { für } x \in \mathbb{R}^{3} \\
-u_{t}(x, 0)=u_{1}(x) & \text { für } x \in \mathbb{R}^{3}
-\end{array}\right.
-$$
+Betrachten Sie die lineare Wellengleichung in $\R^3 \times [0, \infty)$
+
+\begin{align*}
+    \begin{cases}
+        u_{tt} - \Delta u = 0 & \text{für}~ (x, t) \in \R^3 \times [0, \infty), \\
+        u(x, 0) = u_0(x)    & \text{für}~ x \in \R^3, \\
+        u_t(x, 0) = u_1(x)  & \text{für}~ x \in \R^3.
+    \end{cases}
+\end{align*}
+
 Leiten Sie die Kirchhoffsche Formel
-$$
-u(x, t)=\frac{1}{4 \pi t} \int_{\partial B(x, t)} u_{1}(y) d s(y)+\frac{\partial}{\partial t}\left(\frac{1}{4 \pi t} \int_{\partial B(x, t)} u_{0}(y) d s(y)\right)
-$$
+
+\begin{align*}    
+    u(x, t)
+    =
+    \frac{1}{4 \pi t}
+    \Int[\partial B(x, t)]{u_1(y)}{s(y)}
+    +
+    \pderivative{t}
+    \pbraces
+    {
+        \frac{1}{4 \pi t}
+        \Int[\partial B(x, t)]{u_0(y)}{s(y)}
+    }
+\end{align*}
+
 für die Lösung der Wellengleichung her, wobei $B(x, t)$ die Kugel mit Mittelpunkt $x$ und Radius $t$ ist.
 
-\textit{Hinweis:} Betrachten Sie für eine Lösung $u \in C^{2}\left(\mathbb{R}^{3} \times[0, \infty)\right)$ die Mittelwerte
-$$
-\begin{aligned}
-U(x, r, t) &:=\frac{1}{4 \pi r^{2}} \int_{\partial B(x, r)} u(y, t) d s(y) \\
-G(x, r) &:=\frac{1}{4 \pi r^{2}} \int_{\partial B(x, r)} u_{0}(y) d s(y) \\
-H(x, r) &:=\frac{1}{4 \pi r^{2}} \int_{\partial B(x, r)} u_{1}(y) d s(y)
-\end{aligned}
-$$
-Zeigen Sie, dass für $x \in \mathbb{R}^{3}$ der Mittelwert $U \in C^{2}([0, \infty) \times[0, \infty))$  die \textit{Euler-Poisson-Darboux-Gleichung}
-$$
-\left\{\begin{array}{ll}
-U_{t t}-U_{r r}-\frac{2}{r} U_{r}=0 & \text { für }(r, t) \in(0, \infty) \times(0, \infty) \\
-U(r, 0)=G & \text { für } r \in(0, \infty) \\
-U_{t}(r, 0)=H & \text { für } r \in(0, \infty)
-\end{array}\right.
-$$
-erfüllt und $\tilde{U}:=r U$ die Differentialgleichung
-$$
-\left\{\begin{array}{ll}
-\tilde{U}_{t t}-\tilde{U}_{r r}=0 & \text { für }(r, t) \in(0, \infty) \times(0, \infty) \\
-\tilde{U}(r, 0)=r G & \text { für } r \in(0, \infty) \\
-\tilde{U}_{t}(r, 0)=r H & \text { für } r \in(0, \infty) \\
-\tilde{U}(0, t)=0 & \text { für } t \in(0, \infty)
-\end{array}\right.
-$$
+\textit{Hinweis:}
+Betrachten Sie für eine Lösung $u \in C^2 \pbraces{\R^3 \times [0, \infty)}$ die Mittelwerte
+
+\begin{align*}
+    U(x, r, t) & := \frac{1}{4 \pi r^2} \Int[\partial B(x, r)]{u(y, t)}{s(y)}, \\
+    G(x, r)    & := \frac{1}{4 \pi r^2} \Int[\partial B(x, r)]{u_0(y)}{s(y)}, \\
+    H(x, r)    & := \frac{1}{4 \pi r^2} \Int[\partial B(x, r)]{u_1(y)}{s(y)}.
+\end{align*}
+
+Zeigen Sie, dass für $x \in \R^3$ der Mittelwert $U \in C^2([0, \infty) \times [0, \infty))$  die \textit{Euler-Poisson-Darboux-Gleichung}
+
+\begin{align*}
+    \begin{cases}
+        U_{tt} - U_{rr} - \frac{2}{r} U_r = 0 & \text{für}~(r, t) \in (0, \infty) \times (0, \infty), \\
+        U(r, 0) = G                             & \text{für}~ r \in (0, \infty), \\
+        U_t(r, 0)                           = H & \text{für}~ r \in (0, \infty),
+    \end{cases}
+\end{align*}
+
+erfüllt und $\tilde U := r U$ die Differentialgleichung
+
+\begin{align*}
+    \begin{cases}
+        \tilde U_{tt} - \tilde U_{rr} = 0 & \text{für}~ (r, t) \in (0, \infty) \times (0, \infty), \\
+        \tilde U(r, 0) = r G              & \text{für}~ r \in (0, \infty), \\
+        \tilde U_t(r, 0) = r H            & \text{für}~ r \in (0, \infty), \\
+        \tilde U(0, t) = 0                & \text{für}~ t \in (0, \infty).            
+    \end{cases}
+\end{align*}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-ToDo!
+Eine $1000$ Formeln sagen mehr als $1000$ Worte!
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Schritt (Euler-Poisson-Darboux-Gleichung):
+    
+    \begin{enumerate}[label = 1.\arabic*.]
+
+        \item Schritt ($\Forall (r, t) \in (0, \infty) \times (0, \infty): U_{tt} - U_{rr} - \frac{2}{r} U_r = 0$):
+
+        \begin{align*}
+            \implies
+            U(x, t, r)
+            =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u(y)}{s(y)}
+            \stackrel
+            {
+                \mathrm{TRAFO}
+            }{=}
+            \frac{1}{4 \pi}
+            \Int[\partial B(0, 1)]{u(x + r z)}{s(z)}
+        \end{align*}
+    
+        \begin{align*}
+            \implies
+            U_r(x, t, r)
+            & =
+            \frac{1}{4 \pi}
+            \Int[\partial B(0, 1)]{\nabla u(x + r z, t) \cdot z}{s(z)} \\
+            & \stackrel
+            {
+                \mathrm{TRAFO}
+            }{=}
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{\nabla u(y, t) \cdot \frac{y - x}{r}}{s(y)} \\
+            & =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{\nabla u(y, t) \cdot \nu}{s(y)} \\
+            & \stackrel
+            {
+                \mathrm{Gauß}
+            }{=}
+            \frac{1}{4 \pi r^2}
+            \Int[B(x, r)]{\Div \nabla u(y, t)}{y} \\
+            & =
+            \frac{1}{4 \pi r^2}
+            \Int[B(x, r)]{\Delta u(y, t)}{y} \\
+            & =
+            \frac{1}{4 \pi r^2}
+            \Int[B(x, r)]{u_{tt}(y, t)}{y} \\
+            & \stackrel
+            {
+                \mathrm{KOFLFO}
+            }{=}
+            \frac{1}{4 \pi r^2}
+            \Int[0][r]
+            {
+                \Int[\partial B(x, R)]{u_{tt}(y, t)}{y}
+            }{R}
+        \end{align*}
+    
+        \begin{align*}
+            \implies
+            r^2 U_r(x, f, t)
+            =
+            \frac{1}{4 \pi}
+            \Int[0][r]
+            {
+                \Int[\partial B(x, R)]{u_{tt}(y, t)}{y}
+            }{R}
+        \end{align*}
+    
+        \begin{multline*}
+            \implies
+            2 r U_r(x, r, t) + r^2 U_{rr}(x, r, t)
+            =
+            (r^2 U_r(x, r, t))_r \\
+            =
+            \frac{1}{4 \pi}
+            \Int[\partial B(x, r)]{u_{tt}(y, t)}{s(y)}
+            =
+            \partial_{tt}
+            \frac{1}{4 \pi}
+            \Int[\partial B(x, r)]{u(y, t)}{s(y)}
+        \end{multline*}
+    
+        \begin{align*}
+            \implies
+            \frac{2}{r}
+            U_r(x, r, t) + U_{rr}(x, r, t)
+            =
+            \partial_{tt}
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u(y, t)}{s(y)}
+            =
+            U_{tt}(x, r, t)
+        \end{align*}
+
+        \item Schritt ($\Forall r \in (0, \infty): U(r, 0) = G$):
+        
+        \begin{align*}
+            \implies
+            U(x, r, 0)
+            =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u(y, 0)}{s(y)}
+            =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u_0(y)}{s(y)}
+            =
+            G(x, r)
+        \end{align*}
+
+        \item Schritt ($\Forall r \in (0, \infty): U_t(r, 0) = H$):
+        
+        \begin{multline*}
+            \implies
+            U_t(x, r, 0)
+            =
+            \bbraces
+            {
+                \partial_t
+                \frac{1}{4 \pi r^2}
+                \Int[\partial B(x, r)]{u(y, t)}{s(y)}
+            }_{t = 0}
+            =
+            \bbraces
+            {
+                \frac{1}{4 \pi r^2}
+                \Int[\partial B(x, r)]{u_t(y, t)}{s(y)}
+            }_{t = 0} \\
+            =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u_t(y, 0)}{s(y)}
+            =
+            \frac{1}{4 \pi r^2}
+            \Int[\partial B(x, r)]{u_1(y)}{s(y)}
+            =
+            H(x, r)
+        \end{multline*}
+
+    \end{enumerate}
+
+    \item Schritt:
+
+    \begin{align*}
+        \tilde U := r U,
+        \quad
+        \tilde G := r G,
+        \quad
+        \tilde H := r H
+    \end{align*}
+
+    \begin{enumerate}[label = 2.\arabic*.]
+
+        \item Schritt ($\Forall (r, t) \in (0, \infty) \times (0, \infty): \tilde U_{tt} - \tilde U_{rr} = 0$):
+        
+        \begin{align*}
+            \implies
+            \tilde U_{tt}
+            =
+            r U_{tt}
+            \stackrel
+            {
+                \mathrm{1.1}
+            }{=}
+            r \pbraces{U_{rr} + \frac{2}{r} U_r}
+            =
+            r U_{rr} + 2 U_r
+            =
+            (U + r U_r)_r
+            =
+            \tilde U_{rr}
+        \end{align*}
+
+        \item Schritt ($\Forall r \in (0, \infty): \tilde U(r, 0) = \tilde G$):
+        
+        \begin{align*}
+            \implies
+            \tilde U(r, 0)
+            =
+            r U(r, 0)
+            \stackrel
+            {
+                \mathrm{1.2}
+            }{=}
+            r G(r, 0)
+            =
+            \tilde G(r, 0)
+        \end{align*}
+
+        \item Schritt ($\Forall r \in (0, \infty): \tilde U_t(r, 0) = \tilde H$):
+        
+        \begin{align*}
+            \implies
+            \tilde U_t(r, 0)
+            =
+            r U_t(r, 0)
+            \stackrel
+            {
+                \mathrm{1.3}
+            }{=}
+            r H(r, 0)
+            =
+            \tilde H(r, 0)
+        \end{align*}
+
+        \item Schritt ($\Forall t \in (0, \infty): \tilde U(0, t) = 0$):
+        
+        \begin{align*}
+            \implies
+            \tilde U(0, t)
+            =
+            0 \cdot U(0, t)
+            =
+            0
+        \end{align*}
+
+    \end{enumerate}
+    
+    \item Schritt:
+    
+    \includegraphicsboxed{PDEs/PDEs_-_(7-1).png}
+    \includegraphicsboxed{PDEs/PDEs_-_(7-2).png}
+
+    \begin{multline*}
+        \implies
+        \tilde U(x, r, t)
+        =
+        \frac{1}{2}
+        \pbraces
+        {
+            \tilde G(x, t + r)
+            -
+            \tilde G(x, t - r)
+        }
+        +
+        \frac{1}{2}
+        \Int[t-r][t+r]{\tilde H(x, y)}{y} \\
+        =
+        \frac{1}{2}
+        \pbraces
+        {
+            \tilde G(x, t + r)
+            -
+            \tilde G(x, t - r)
+        }
+        +
+        \frac{1}{2}
+        \pbraces
+        {
+            \Int[0][t+r]{\tilde H(x, y)}{y}
+            -
+            \Int[0][t-r]{\tilde H(x, y)}{y}
+        }
+    \end{multline*}
+
+    \begin{align*}
+        \implies
+        u(x, t)
+        & =
+        \frac{1}{4 \pi}
+        u(x, t)
+        \Int[\partial B(0, 1)]{}{s(z)} \\
+        & =
+        \lim_{r \to 0}
+        \frac{1}{4 \pi}
+        \Int[\partial B(0, 1)]{u(x + r z, t)}{s(z)} \\
+        & =
+        \lim_{r \to 0}
+        U(x, t, r) \\
+        & =
+        \lim_{r \to 0}
+        \frac{\tilde U(x, r, t)}{r} \\
+        & =
+        \lim_{r \to 0}
+        \pbraces
+        {
+            \frac{1}{2 r}
+            \pbraces
+            {
+                \tilde G(x, t + r)
+                -
+                \tilde G(x, t - r)
+            }
+            +
+            \frac{1}{2 r}
+            \pbraces
+            {
+                \Int[0][t+r]{\tilde H(x, y)}{y}
+                -
+                \Int[0][t-r]{\tilde H(x, y)}{y}
+            }
+        } \\
+        & =
+        \partial_t \tilde G(x, t) + \tilde H(x, t) \\
+        & =
+        \frac{1}{4 \pi t}
+        \Int[\partial B(x, t)]{u_1(y)}{s(y)}
+        +
+        \pderivative{t}
+        \pbraces
+        {
+            \frac{1}{4 \pi t}
+            \Int[\partial B(x, t)]{u_0(y)}{s(y)}
+        }
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
