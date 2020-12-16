@@ -1,15 +1,38 @@
 % --------------------------------------------------------------------------------
+\subsection*{230/231}
 
-\begin{exercise}[230/231]
+Für jede Menge $\Sigma$ von geschlossenen Formeln sei $cl(\Sigma)$
+die Menge aller aus $\Sigma$ ableitbaren geschlossenen Formeln.
+\begin{exercise}[230]
 
-\phantom{}
+Wenn $\Sigma$ semi-entscheidbar ist, dann auch $cl(\Sigma)$.
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Unter Verwendung von Aufgabe 229: Sei $P$ ein Programm, welches die
+charakteristische Funktion die Menge der logischen Axiome berechnet,
+und $Q$ ein Programm, das $\tilde{\chi}_\Sigma$ berechnet.
 
-\phantom{}
+\begin{algorithm}
+    \caption{Programm, welches $\tilde{\chi}_{cl(\Sigma)}$ berechnet}
+    \begin{algorithmic}[1]
+    \Procedure{$\tilde{\chi}_{cl(\Sigma)}$ }{$\sigma$}
+        \If{$P(\sigma) = 1$}
+        \State \Return 1
+        \EndIf
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 \end{solution}
+
+\begin{exercise}[231]
+
+Sei $\Sigma$ semi-entscheidbar. Dann gibt es eine entscheidbare Menge $\Sigma^{\prime}$
+mit $cl(\Sigma^{\prime}) = cl(\Sigma)$. \\
+\textit{Hinweis:} $\varphi \land \varphi$
+
+\end{exercise}
