@@ -2,7 +2,8 @@
 
 \begin{exercise}[240]
 
-\phantom{}
+Definieren Sie die lexikographische Ordnung auf $\{0,1\}^{\N}$. Gibt es ein kleinstes Element?
+Zeigen Sie, dass diese Ordnung eine lineare Ordnung aber keine Wohlordnung ist.
 
 \end{exercise}
 
@@ -10,6 +11,18 @@
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+  (x_n)_{n\in\N} <_{\mathrm{lex}} (y_n)_{n\in\N}
+  :\iff \exists n_0 \in \N: x_{n_0} < y_{n_0} \land \forall n < n_0: x_n = y_n
+\end{align*}
+Das kleinste Element ist $x^* :=(0,0,\dots)$.
+Die Teilmenge $\{0,1\}^{\N} \setminus \{x^*\}$ hat aber kein kleinstes Element.
+Angenommen sie hätte ein kleinstes Element $x^{\prime}$, dann folgt aus
+$x^{\prime} \neq x^*$
+\begin{align*}
+  \exists n_0 \in \N: x^{\prime}_{n_0} = 1
+\end{align*}
+und wir finden mit $(x^{\primeprime}_n)_{n \in \N} = (\delta_{n_0+1,n})_{n \in \N}$ ein echt kleineres
+Element.
 
 \end{solution}
