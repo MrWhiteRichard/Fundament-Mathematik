@@ -5,28 +5,170 @@
 Sei $u$ eine klassische Lösung der Telegraphengleichung
 
 \begin{align*}
-\begin{cases}
-u_{t t}+d u_{t}-\Delta u=0 & \text { in } \Omega, t>0, \\
-u=0 & \text { auf } \partial \Omega, t>0, \\
-u(\cdot, 0)=u_{0} & \text { in } \Omega, \\
-u_{t}(\cdot, 0)=u_{1} & \text { in } \Omega,
-\end{cases}
+    \begin{cases}
+        u_{tt} + d u_t - \Delta u = 0 & \text{in}~ \Omega, t > 0, \\
+        u = 0                         & \text{auf}~ \partial \Omega, t > 0, \\
+        u(\cdot, 0) = u_0             & \text{in}~ \Omega, \\
+        u_t(\cdot, 0) = u_1           & \text{in}~ \Omega,
+    \end{cases}
 \end{align*}
 
-wobei $d>0$ konstant, $u_{0} \in H_{0}^{1}(\Omega), u_{1} \in L^{2}(\Omega)$ und $\Omega \subset \R^n$ ein beschränktes Gebiet mit glattem Rand ist.
+wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \subset \R^n$ ein beschränktes Gebiet mit glattem Rand ist.
+
 \begin{enumerate}[label = (\roman*)]
-\item Zeigen Sie durch eine formale Rechnung, dass die Energie $\int_{\Omega}\left(u_{t}^{2}+|\nabla u|^{2}\right) d x$ uniform beschränkt in $t \in(0, \infty)$ ist.
-\item Bestimmen Sie formal eine Lösung bzgl. eines geeigneten ONS.
-\item Zeigen Sie, dass $\left\|u_{t}\right\|_{L^{2}(\Omega)}$ exponentiell schnell für $t \rightarrow \infty$ gegen 0 konvergiert, falls $u_{1}=0 .$ Gilt diese Aussage auch für $d=0$?
+
+    \item Zeigen Sie durch eine formale Rechnung, dass die Energie $\Int[\Omega]{(u_t^2 + |\nabla u|^2)}{x}$ uniform beschränkt in $t \in (0, \infty)$ ist.
+
+    \item Bestimmen Sie formal eine Lösung bzgl. eines geeigneten ONS.
+
+    \item Zeigen Sie, dass $\norm[L^2(\Omega)]{u_t}$ exponentiell schnell für $t \rightarrow \infty$ gegen $0$ konvergiert, falls $u_1 = 0$.
+    Gilt diese Aussage auch für $d = 0$?
+
 \end{enumerate}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-ToDo!
+\phantom{}
 
+\begin{enumerate}[label = (\roman*)]
+
+    \item Wir gehen analog zu Seite 121 im Skriptum vor.
+    
+    Dann können wir die Differentialgleichung mit $u_t$ multiplizieren und integrieren und erhalten
+
+    \begin{align*}
+        \implies
+        0
+        =
+        \Int[\Omega]{u_{tt} u_t + d u_t^2 - (\Delta u) u_t}{x}
+        =
+        \Int[\Omega]{u_{tt} u_t}{x}
+        +
+        d \Int[\Omega]{u_t^2}{x}
+        -
+        \Int[\Omega]{(\Delta u) u_t}{x}.
+    \end{align*}
+
+    \begin{align*}
+        \derivative{t} u_t^2 = 2 u_{tt} u_t,
+        \quad
+        \derivative{t} |\nabla u|^2 = 2 \nabla u \cdot \nabla u_t
+    \end{align*}
+
+    Für das linke Integral erhalten wir daher
+
+    \begin{align*}
+        \implies
+        \Int[\Omega]{u_{tt} u_t}{x}
+        =
+        \frac{1}{2}
+        \derivative{t}
+        \Int[\Omega]{u_t^2}{x}.        
+    \end{align*}
+
+    Für das rechte Integral erhalten wir (daher)
+
+    \begin{align*}
+        \implies
+        -\Int[\Omega]{(\Delta u) u_t}{x}
+        \stackrel
+        {
+            \mathrm{PI}
+        }{=}
+        \Int[\Omega]{\nabla u \cdot \nabla u_t}{x}
+        -
+        \underbrace
+        {
+            \Int[\Omega]{u_t (\nabla u \cdot \nu)}{s}
+        }_0
+        =
+        \frac{1}{2}
+        \derivative{t}
+        \Int[\Omega]{|\nabla u|^2}{x}.
+    \end{align*}
+
+    Insgesamt erhalten wir (daher)
+
+    \begin{align*}
+        \implies
+        \Int[\Omega]{u_{tt} u_t}{x}
+        +
+        d \Int[\Omega]{u_t^2}{x}
+        -
+        \Int[\Omega]{(\Delta u) u_t}{x}
+        =
+        \frac{1}{2}
+        \derivative{t}
+        \Int[\Omega]{u_t^2 + |\nabla u|^2}{x}
+        +
+        d \norm[L^2(\Omega)]{u_t(\cdot, t)}.
+    \end{align*}
+
+    Die Energie bezeichnen wir mit $E(t)$.
+
+    \begin{align*}
+        \implies
+        E^\prime(t)
+        =
+        -2 d \norm[L^2(\Omega)]{u_t(\cdot, t)}
+        \leq
+        0
+    \end{align*}
+
+    Das heißt, dass die Energie höchstens abnimmt.
+    Wir berechnen die Anfangs-Energie $E(0)$.
+
+    \begin{align*}
+        \implies
+        E(0)
+        =
+        \Int[\Omega]{u_t(x, 0)^2 + |\nabla u(x, 0)|^2}{x}
+        =
+        \norm[L^2(\Omega)]{u_1}^2 + \norm[L^2(\Omega)]{\nabla u_0}^2
+        \leq
+        \underbrace
+        {
+            \norm[L^2(\Omega)]{u_1}^2
+        }_{
+            < \infty
+        }
+        +
+        \underbrace
+        {
+            \norm[H^1(\Omega)]{u_0}^2
+        }_{
+            < \infty
+        }
+        <
+        \infty
+    \end{align*}
+
+    Wir benutzen den Hauptsatz der Differential- und Integralrechnung, um zu zeigen, dass die Anfangs-Energie $E(0)$ tatsächlich eine uniforme Schranke für $E(t)$, $t > 0$ ist.
+
+    \begin{align*}
+        \implies
+        E(t)
+        =
+        E(0)
+        +
+        \underbrace
+        {
+            \Int[0][t]{E^\prime(s)}{s}
+        }_{
+            \leq 0
+        }
+        \leq
+        E(0)
+        <
+        \infty
+    \end{align*}
+
+\end{enumerate}
+    
 \end{solution}
 
 % --------------------------------------------------------------------------------
