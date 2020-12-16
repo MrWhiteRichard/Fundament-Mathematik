@@ -4,9 +4,11 @@
 
 \phantom{}
 	\begin{enumerate}[label = (\alph*)]
-		\item Sei $A \subseteq \N^2$ eine $\Sigma_1$-Menge. Dann sind die Mengen $\{y \in \N: (5,y) \in A\}$ und $\{x \in \N: (x,x) \in A\}$ auch $\Sigma_1$-Mengen.
-		
-		\item Es gibt eine $\Sigma_1$-Menge $U \subseteq \N$, die keine $\Pi_1$-Menge ist. (Das heißt: $\N \setminus U$ ist keine $\Sigma_1$-Menge.)    Hinweis: Verwenden Sie (a) sowie die beiden vorigen Aufgaben. 
+		\item Sei $A \subseteq \N^2$ eine $\Sigma_1$-Menge. Dann sind die Mengen
+		$B := \{y \in \N: (5,y) \in A\}$ und \\
+		$C := \{x \in \N: (x,x) \in A\}$ auch $\Sigma_1$-Mengen.
+
+		\item Es gibt eine $\Sigma_1$-Menge $U \subseteq \N$, die keine $\Pi_1$-Menge ist. (Das heißt: $\N \setminus U$ ist keine $\Sigma_1$-Menge.)    Hinweis: Verwenden Sie (a) sowie die beiden vorigen Aufgaben.
 	\end{enumerate}
 
 \end{exercise}
@@ -17,10 +19,17 @@
 
 \phantom{}
 	\begin{enumerate}[label = (\alph*)]
-		\item 
-		\item Aus der vorvorigen Aufgabe holen wir uns ein $A \subseteq \N \times \N$ mit der Eigenschaft, dass es für jede $\Sigma_1$-Menge $B \subseteq \N$ ein $k \in \N$ mit $B = \{y \in \N \mid (k,y) \in A\}$ gibt. Wegen der vorigen Aufgabe können wir weiters eine Bijektion $p_2: \N^2 \to \N$ finden, sodass für alle $C \subseteq \N^2$ gilt, dass $C$ genau dann eine $\Sigma_1$-Menge ist, wenn $p_2[C]$ eine $\Sigma_1$-Menge ist. 
-		
-		Wir definieren $U := p_2[A]$, damit ist $U$ eine $\Sigma_1$-Menge. Nun nehmen wir an $\N \setminus U$ ist ebenfalls eine $\Sigma_1$-Menge. Damit ist auch 
+		\item
+		Wir können $B$ und $C$ als Schnitt von $\Sigma_1$-Mengen darstellen:
+		\begin{align*}
+			B^{\prime} &:= \{(x,y) \in \N^2: x = 5\} \\
+			B &= A \cap B^{\prime} \\
+			C^{\prime} &:= \{(x,y) \in \N^2: x = y\} \\
+			C &= A \cap C^{\prime}
+		\end{align*}
+		\item Aus der vorvorigen Aufgabe holen wir uns ein $A \subseteq \N \times \N$ mit der Eigenschaft, dass es für jede $\Sigma_1$-Menge $B \subseteq \N$ ein $k \in \N$ mit $B = \{y \in \N \mid (k,y) \in A\}$ gibt. Wegen der vorigen Aufgabe können wir weiters eine Bijektion $p_2: \N^2 \to \N$ finden, sodass für alle $C \subseteq \N^2$ gilt, dass $C$ genau dann eine $\Sigma_1$-Menge ist, wenn $p_2[C]$ eine $\Sigma_1$-Menge ist.
+
+		Wir definieren $U := p_2[A]$, damit ist $U$ eine $\Sigma_1$-Menge. Nun nehmen wir an $\N \setminus U$ ist ebenfalls eine $\Sigma_1$-Menge. Damit ist auch
 		\begin{align*}
 			p_2^{-1}[\N \setminus U] = p_2^{-1}[\N] \setminus p_2^{-1}[U] = \N^2 \setminus A
 		\end{align*}
@@ -33,7 +42,7 @@
 	\begin{align*}
 		B \neq \{x \in \N \mid (k,x) \in A\}
 	\end{align*}
-	und da das für alle $k \in \N$ gilt ist das ein Widerspruch zur Eigenschaft von $A$. 
+	und da das für alle $k \in \N$ gilt ist das ein Widerspruch zur Eigenschaft von $A$.
 	\end{enumerate}
 
 \end{solution}
