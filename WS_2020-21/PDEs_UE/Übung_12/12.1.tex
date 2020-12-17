@@ -229,8 +229,17 @@ wobei $d>0$ konstant, $u_0 \in H_0^1(\Omega), u_1 \in L^2(\Omega)$ und $\Omega \
 	Also erhalten wir insgesamt
 	\begin{align*}
 		\norm[L^2(\Omega)]{u_t(t)}^2 \\
-		 \leq e^{- d t} \pbraces{ \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} \norm[L^2(\Omega)]{\nabla u_0}^2 + \sum_{j=1}^{l-1} \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{\exp\pbraces{-t\sqrt{\frac{d^2}{4} - \lambda_j} } - \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_j} }}^2}
+		 \leq e^{- d t} \pbraces{ \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} \norm[L^2(\Omega)]{\nabla u_0}^2 + \sum_{j=1}^{l-1} \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{\exp\pbraces{-t\sqrt{\frac{d^2}{4} - \lambda_j} } - \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_j} }}^2} \\
+		 \leq  e^{- d t} \pbraces{ \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} \norm[L^2(\Omega)]{\nabla u_0}^2 + \sum_{j=1}^{l-1} \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} \vbraces{2 \exp\pbraces{t\sqrt{\frac{d^2}{4} - \lambda_1} }}^2} \\
+		 \leq e^{- d t} \pbraces{ \pbraces{\lambda_l - \frac{d^2}{4}}^{-1} \norm[L^2(\Omega)]{\nabla u_0}^2 + 4 \exp\pbraces{2t\sqrt{\frac{d^2}{4} - \lambda_1} } \sum_{j=1}^{l-1} \frac{\vbraces{\mu_j\nu_j(u_0, v_j)_{L^2(\Omega)}}^2}{\vbraces{\mu_j - \nu_j}^2} }
 	\end{align*}
+	
+	und
+	
+	\begin{align*}
+		-d + 2 \sqrt{\frac{d^2}{4} - \lambda_1} < 0 \Leftrightarrow 4 \pbraces{\frac{d^2}{4} - \lambda_1} < d^2 \Leftrightarrow -4 \lambda_1 < 0
+	\end{align*}
+	
 	Für $d = 0$ haben wir es einfach mit der homogenen Wellengleichung zu tun. Nach den überlegungen auf Seite $118$ im Skript bekommen wir die Lösungsformel
 
   \begin{align*}
