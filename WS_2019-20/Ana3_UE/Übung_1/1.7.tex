@@ -1,0 +1,217 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie für die Betafunktion $B(x, y)$
+
+\begin{align*}
+    \pderivative[n]{x}
+    B(x, y)
+    =
+    \Int[0][1]
+    {
+        t^{x-1}
+        (1 - t)^{y-1}
+        (\ln t)^n
+    }{t}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir wollen wieder Satz 2.1.7 (siehe oben) anwenden; diesmal auf die folgende Funktionen-Familie.
+
+\begin{align*}
+    f_x(t) := t^{x-1} (1 - t)^{y-1},
+    \quad
+    x \in (0, 1],
+    \quad
+    t \in (0, \infty)
+\end{align*}
+
+Diese besteht aus stetigen, also insbesondere messbaren, Funktionen.
+Seien nun $x_0 \in (0, \infty)$ und $\delta > 0$, sodass $B(x_0, \delta) \subset (0, \infty)$.
+Wir nehmen o.B.d.A. an, dass $0 < x, y \leq 1$, weil sonst schätzen wir ab mit $t^{x-1} \leq 1$ bzw. $(1 - t)^{y-1} \leq 1$.
+
+\begin{align*}
+    \implies
+    \abs
+    {
+        \pderivative[n][f_x(t)]{x}
+    }
+    & =
+    t^{x-1} (1 - t)^{y-1} |\ln t|^n \\
+    & \leq
+    (
+        \1_{(0, 1/2]}(t)
+        t^{x-1} (1/2)^{y-1}
+        +
+        \1_{[1/2, 1)}(t)
+        (1/2)^{x-1} (1 - t)^{y-1}
+    )
+    |\ln t|^n \\
+    & \leq
+    \1_{(0, 1/2]}(t)
+    t^{x-1} (1/2)^{y-1}
+    |\ln t|^n
+    +
+    \1_{(1/2, 1)}(t)
+    (1/2)^{x-1} (1 - t)^{y-1}
+    |\ln(1 - t)|^n \\
+    & =:
+    g_n(t)
+\end{align*}
+
+Dabei haben wir verwendet, dass
+
+\begin{align*}
+    \Forall t \in (1/2, 1):
+    1 \leq 2 t
+    \implies
+    1 - t \leq t
+    \implies
+    \ln(1 - t) \leq \ln t
+\end{align*}
+
+Die Majorante $g_n$ ist auch integrierbar.
+
+\begin{align*}
+    \Int[0][1]{g_n(t)}{t}
+    =
+    \underbrace
+    {
+        \Int[0][1/2]
+        {
+            t^{x-1} (1/2)^{y-1} |\ln t|^n
+        }{t}    
+    }_{
+        =: I_1
+    }
+    +
+    \underbrace
+    {
+        \Int[1/2][1]
+        {
+            (1/2)^{x-1} (1 - t)^{y-1} |\ln(1 - t)|^n
+        }{t}
+    }_{
+        =: I_2
+    }
+    \stackrel{!}{<}
+    \infty
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Integral:
+
+    \begin{align*}
+        2^{y-1} I_1
+        =
+        (-1)^n
+        \Int[0][1/2]{t^{x-1} (\ln t)^n}{t}
+        =
+        (-1)^n
+        \Bigg (
+            \frac{1}{x}
+            t^x (\ln t)^n
+            -
+            \frac{n}{x}
+            \Int[0][1/2]{t^{x-1} (\ln t)^{n-1}}
+        \Bigg )
+        \stackrel{!}{<}
+        \infty
+    \end{align*}
+    
+    Dabei haben wir verwendet, dass
+    
+    \begin{align*}
+        \lim_{t \to 0}
+        t^x (\ln t)^n
+        =
+        \lim_{t \to 0}
+        \frac
+        {
+            (\ln t)^n
+        }{
+            t^{-x}
+        }
+        \stackrel
+        {
+            \mathrm{L'Hospital}
+        }{=}
+        \lim_{t \to 0}
+        \frac
+        {
+            \frac{n}{t (\ln t)^{n-1}}
+        }{-x t^{-x - 1}}
+        =
+        -\frac{n}{x}
+        \lim_{t \to 0}
+        \frac
+        {
+            (\ln t)^{n-1}
+        }{
+            t^{-x}
+        }
+        =
+        \cdots
+        =
+        0
+    \end{align*}
+    
+    Damit ist der Integrand auf $0$ stetig fortsetzbar und auf dem kompakten $[0, 1/2]$ integrierbar.
+
+    \item Integral:
+
+    \begin{align*}
+        2^{x-1} I_2
+        =
+        (-1)^n
+        \Int[1/2][1]
+        {
+            (1 - t)^{y-1} (\ln(1 - t))^n
+        }{t}
+        =
+        (-1)^n
+        \Int[0][1/2]
+        {
+            u^{y-1} (\ln u)^n
+        }{u}
+        <
+        \infty
+    \end{align*}
+    
+    Dabei haben wir die folgende Substitution verwendet.
+    
+    \begin{align*}
+        u = 1 - t
+        \implies
+        \derivative[][u]{t} = -1
+        \implies
+        \mathrm{d}t = -\mathrm{d}u
+    \end{align*}
+
+\end{enumerate}
+
+Laut Satz 2.1.7, dürfen wir die Ableitungen ins Integral ziehen.
+
+\begin{align*}
+    \implies
+    \mathrm{lhs}
+    =
+    \pderivative[n]{x}
+    \Int[0][1]
+    {
+        t^{x-1} (1 - t)^{y-1}
+    }{t}
+    =
+    \mathrm{rhs}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

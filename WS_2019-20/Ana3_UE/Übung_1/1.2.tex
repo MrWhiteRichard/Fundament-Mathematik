@@ -1,0 +1,92 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Gilt für den Operator $T$ aus dem vorherigen Beispiel $K \in C^\infty([0, 1] \times [0, 1])$, so ist $T$ eine Abbildung von $L^1[0, 1]$ nach $C^\infty[0, 1]$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir erinnnern uns an die folgenden Definitionen.
+
+\begin{align*}
+    \mathcal{L}_1[0, 1]
+    & :=
+    \Bbraces
+    {
+        f:
+        ([0, 1], \mathfrak{B} \cap [0, 1]) \to (\R, \mathfrak{B}):
+        \norm[{L^1[0, 1]}]{f} := \Int[0][1]{|f|}{\lambda} < \infty
+    }, \\
+    L^1[0, 1]
+    & :=
+    \faktor
+    {
+        \mathcal{L}_1[0, 1]
+    }{
+        =_{\lambda \text{-f.ü.}}
+    }
+\end{align*}
+
+Sei nun $g \in L^1[0, 1]$, so wollen wir zeigen, dass $g \in C^\infty[0, 1]$.
+Wir definieren dazu das Funktionen-Netz $(f_x)_{x \in [0, 1]}$ durch
+
+\begin{align*}
+    f(x, y) := K(x, y) g(y),
+    \quad
+    x, y \in [0, 1].
+\end{align*}
+
+$g$ ist laut Definition messbar und
+
+\begin{align*}
+    K ~\text{differenzierbar}~
+    \implies
+    K ~\text{stetig}~
+    \implies
+    K ~\text{messbar}.
+\end{align*}
+
+Daher ist $(f_x)_{x \in [0, 1]}$ eine Familie messbarer Funktionen.
+
+\begin{align*}
+    \implies
+    Tg
+    =
+    \Int[0][1]{K(\cdot, y) g(y)}{y}
+    =
+    \Int[0][1]{f_x(y)}{y}
+    ~\text{wohldefiniert}
+\end{align*}
+
+Sei $x_0 \in (0, 1)$ und $\delta > 0$ mit $B(x_0, \delta) \subset (0, 1)$.
+Wir zeigen nun, dass $g$ in $x_0$ differenzierbar ist.
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 2.1.7.png}
+
+Laut Satz 2.1.7 genügt es zu zeigen, dass
+
+\begin{align*}
+    \Forall n \in \N_0:
+    \Exists h_n \in L^1[0, 1]:
+    \Forall x \in B(x_0, \delta):
+    \Forall y \in [0, 1]:
+    \Exists \pderivative[n][f_x]{x}(y):
+    \abs{\pderivative[n][f_x]{x}(y)} \leq h_n(y).
+\end{align*}
+
+Weil $K \in C^\infty([0, 1]^2)$, ist $\pderivative[n][K]{x}$ stetig und auf $[0, 1]$ beschränkt.
+Wir können also $h_n := \norm[\infty]{\pderivative[n][K]{x}} |g|$ definieren.
+
+\begin{align*}
+    \implies
+    & \Forall y \in [0, 1]: \abs{\pderivative[n][f_x]{x}(y)} = \abs{\pderivative[n][K]{x}(x, y) |g(y)|} \leq h_n(y), \\
+    & \norm[{L^1[0, 1]}]{h_n} = \Int[0][1]{|h_n|}{y} = \Int[0][1]{\norm[\infty]{\pderivative[n][K]{x}} |g|}{y} = \norm[\infty]{\pderivative[n][K]{x}} \norm[{L^1[0, 1]}]{g} < \infty
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

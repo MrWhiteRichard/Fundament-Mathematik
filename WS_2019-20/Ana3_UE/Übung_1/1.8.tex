@@ -1,0 +1,149 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Für $f \in L^1(0, \infty)$ wird durch $\mathcal{L} f(x) := \Int[0][\infty]{f(t) e^{-s t}}{t}$ eine Funktion $\mathcal{L} f$ auf $[0, \infty)$ definiert, die auf $[0, \infty]$ stetig und in $(0, \infty)$ unendlich oft differenzierbar ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir wollen wieder Satz 2.1.5 bzw. 2.1.7 (siehe oben) anwenden; diesmal auf die folgende Funktionen-Familie.
+
+\begin{align*}
+    g_s(t)
+    :=
+    f(t) e^{-s t},
+    \quad
+    s, t \in [0, \infty)
+\end{align*}
+
+Diese Funktionen sind also Zusammensetzung von stetigen Funktionen ebenfalls stetig, also messbar.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil (auf $[0, \infty]$ stetig):
+    
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Fall:
+        
+        Sei $s_0 \in (0, \infty)$ und $\delta > 0$, sodass $B(s_0, \delta) \subset (0, \infty)$.
+        Sei $s \in B(x_0, \delta)$.
+    
+        \begin{align*}
+            \implies
+            |g_s(t)|
+            =
+            \abs
+            {
+                f(t) e^{-s t}
+            }
+            \leq
+            \norm[{L^\infty[0, \infty)}]{f}
+            e^{-(s_0 - \delta) t}
+            =:
+            h(t)
+        \end{align*}
+
+        Die Majorante $h$ ist auch integrierbar.
+
+        \begin{multline*}
+            \Int[0][\infty]{h(t)}{t}
+            =
+            \norm[{L^\infty[0, \infty)}]{f}
+            \Bigg (
+                \underbrace
+                {
+                    \lim_{t \to \infty}
+                    \frac{1}{-(s_0 - \delta)}
+                    e^{-(s_0 - \delta) t}    
+                }_0
+                -
+                \frac{1}{-(s_0 - \delta)}
+                \underbrace
+                {
+                    e^{-(s_0 - \delta) 0}
+                }_1
+            \Bigg ) \\
+            =
+            \frac
+            {
+                \norm[{L^\infty[0, \infty)}]{f}
+            }{
+                s_0 - \delta
+            }
+            <
+            \infty
+        \end{multline*}
+
+        \item Fall:
+        
+        Sei $s_0 = 0$, so führen wir den 1. Fall mit $B(s_0, \delta) \cap [0, \infty]$ aus.
+
+    \end{enumerate}    
+
+    \item Teil (auf $(0, \infty)$ unendlich oft differenzierbar):
+    
+    \begin{align*}
+        \abs
+        {
+            \pderivative[n][g_s(t)]{s}
+        }
+        =
+        \abs
+        {
+            (-t)^n f(t) e^{-s t}
+        }
+        \leq
+        \norm[{L^\infty[0, \infty)}]{f}
+        \pbraces
+        {
+            t^n e^{-(s_0 - \delta) t}
+        }
+        =:
+        h_n(t)
+    \end{align*}
+
+    Die Majorante $h_n$ ist auch integrierbar (o.B.d.A. $f \neq 0$).
+
+    \begin{multline*}
+        \frac{1}
+        {
+            \norm[{L^\infty[0, \infty)}]{f}
+        }
+        \Int[0][\infty]{h_n(t)}{t}
+        =
+        \Int[0][\infty]{t^n e^{-(s_0 - \delta) t}}{t} \\
+        \stackrel{!}{=}
+        \frac{1}{(s_0 - \delta)^{n+1}}
+        \Int[0][\infty]{x^n e^{-x}}{x}
+        =
+        \frac
+        {
+            \Gamma(n+1)
+        }{
+            (s_0 - \delta)^{n+1}
+        }
+        =
+        \frac{n!}{(s_0 - \delta)^{n+1}}
+        <
+        \infty
+    \end{multline*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        x = (s_0 - \delta) t
+        \implies
+        & t = \frac{x}{s_0 - \delta} ,\\
+        & \derivative[][x]{t} = s_0 - \delta \implies \mathrm{d}t = \frac{1}{s_0 - \delta} \mathrm{d}x
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

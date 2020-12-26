@@ -1,0 +1,61 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{align*}
+    B(u, v)
+    =
+    \Int[0][\infty]
+    {
+        \frac{s^{u-1}}{(1 + s)^{u+v}}
+    }{s}
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Ana3/Ana3 - Gammafunktion & Betafunktion.png}
+
+\begin{align*}
+    \implies
+    \mathrm{rhs}
+    =
+    \Int[0][\infty]
+    {
+        \pbraces
+        {
+            \frac{s}{s + 1}
+        }^{u-1}
+        \pbraces
+        {
+            \frac{1}{s + 1}
+        }^{v+1}
+    }{s}
+    \stackrel{!}{=}
+    \Int[0][1]{t^{u-1} (1 - t)^{v-1}}{t}
+    =
+    \mathrm{lhs}
+\end{align*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    t = \frac{s}{s + 1} = \frac{1}{1 + 1/s}
+    \implies
+    & 1 - t = 1 - \frac{s}{s + 1} = \frac{s + 1 - s}{s + 1} = \frac{1}{s + 1}, \\
+    \implies
+    & \derivative[][t]{s} = \frac{-1}{(1 + 1/s)^2} \frac{-1}{s^2} = \frac{1}{(s + 1)^2} \implies \mathrm{d}s = \mathrm{d}t (s + 1)^2, \\
+    \implies
+    & \frac{s}{s + 1} \xrightarrow{s \to \infty} 1
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

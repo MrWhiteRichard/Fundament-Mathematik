@@ -1,0 +1,240 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Für $a, t > 0$ sei
+
+\begin{align*}
+    u(t, a)
+    =
+    \Int[0][+\infty]
+    {
+        \frac{t}{t^2 + x^2}
+        \cos{a x}
+    }{x}.
+\end{align*}
+
+Zeigen Sie, dass $u: (0, +\infty) \times (0, +\infty) \to \R$ stetig ist und dass für jedes feste $a > 0$ die Funktion $t \mapsto u(t, a)$ differenzierbar ist.
+
+Weiters berechne man $\lim_{a \to 0} u(t, a)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil ($u$ stetig):
+    
+    \begin{multline*}
+        \text{d.h.}~
+        \Forall a, t \in (0, +\infty):
+        \Forall (t_n)_{n \in \N}, (a_n)_{n \in \N} \in (0, +\infty)^\N: \\
+        \pbraces
+        {
+            t_n \xrightarrow{n \to \infty} t,
+            a_n \xrightarrow{n \to \infty} a
+        }
+        \implies
+        \lim_{n \to \infty} u(t_n, a_n) = u(t, a)
+    \end{multline*}
+
+    Weil $(a_n)_{n \in \N}$ konvergiert, finden wir ein Intervall $(\alpha, \beta) \subset (0, +\infty)$, sodass für fast alle (o.B.d.A. alle) $n \in \N$, $t_n \in (\alpha, \beta)$.
+
+    \includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 5.7.png}
+
+    Wir wollen Satz 5.7 (Satz von der dominierten Konvergenz) auf die folgende Folge von stetigen, also messbaren, Funktionen anwenden.
+
+    \begin{align*}
+        f_n(x)
+        :=
+        \frac{t_n}{t_n^2 + x^2}
+        \cos(a_n x),
+        \quad
+        x \in (0, +\infty),
+        \quad
+        n \in \N
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        |f_n(x)|
+        =
+        \abs
+        {
+            \frac{t_n}{t_n^2 + x^2}
+        }
+        \underbrace
+        {
+            |\cos(a_n x)|
+        }_{
+            \leq 1
+        }
+        \leq
+        \frac{\beta}{\alpha^2 + x^2}
+        =:
+        g(x)
+    \end{align*}
+
+    Die Majorante $g$ ist auch integrierbar.
+
+    \begin{multline*}
+        \Int[0][\infty]{g(x)}{x}
+        =
+        \Int[0][\infty]
+        {
+            \frac{\beta}{\alpha^2 + x^2}
+        }{x}
+        =
+        \frac{\beta}{\alpha^2}
+        \Int[0][\infty]
+        {
+            \frac{1}{1 + (x / \alpha)^2}
+        }{x} \\
+        \stackrel{!}{=}
+        \frac{\beta}{\alpha}
+        \Int[0][\infty]{\frac{1}{1 + u^2}}{u}
+        =
+        \frac{\beta}{\alpha}
+        \arctan u \Big |_{u=0}^\infty
+        =
+        \frac{\beta}{\alpha}
+        \frac{\pi}{2}
+        <
+        \infty
+    \end{multline*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = \frac{x}{\alpha}
+        \implies
+        \derivative[][u]{x} = \frac{1}{\alpha}
+        \implies
+        \mathrm{d}x = \alpha \mathrm{d}u
+    \end{align*}
+
+    \item Teil ($\Forall a > 0: u(\cdot, a)$ differenzierbar):
+    
+    Seien $t_0 \in (0, +\infty)$ und $\delta > 0$, sodass $B(t_0, \delta) \subset (0, +\infty)$.
+    Wir wollen wieder Satz 2.1.7 (siehe oben) anwenden; diesmal auf die folgende Funktionen-Familie.
+
+    \begin{align*}
+        f_t(x)
+        :=
+        \frac{t}{t^2 + x^2}
+        \cos(a x)
+        =
+        \frac{1}{t + x^2 / t}
+        \cos(a x),
+        \quad
+        x, t \in (0, +\infty)
+    \end{align*}
+
+    Wir finden eine, von $t$ unabhängige, Majorante.
+
+    \begin{align*}
+        \abs
+        {
+            \pderivative[][f_t]{t}(x)
+        }
+        \leq
+        \abs
+        {
+            \frac{-1}{(t + x^2 / t)^2}
+            (1 - x^2 / t^2)
+            \cos(a x)
+        }
+        =
+        \abs
+        {
+            \frac{x^2 - t^2}{(x^2 + t^2)^2}
+        }
+        \underbrace{|\cos(a x)|}_{\leq 1}
+        \leq
+        \frac
+        {
+            (t_0 + \delta)^2 + x^2
+        }{
+            ((t_0 - \delta)^2 + x^2)^2
+        }
+        =:
+        g(x)
+    \end{align*}
+
+    Die Majorante $g$ ist auch integrierbar.
+
+    \begin{multline*}
+        \Int[0][\infty]{g(x)}{x}
+        \stackrel
+        {
+            \mathrm{WolframAlpha}
+        }{=}
+        \frac{1}{4 (t_0 - \delta)^3}
+        \pi
+        (
+            (t_0 + \delta)^2
+            +
+            (t_0 - \delta)^2
+        ) \\
+        =
+        \frac{1}{4 (t_0 - \delta)^3}
+        \pi
+        (
+            t_0^2 + 2 t_0 \delta + \delta^2
+            +
+            t_0^2 - 2 t_0 \delta + \delta^2
+        )
+        =
+        \frac{\pi}{2}
+        \frac{t_0^2 + \delta^2}{(t_0 - \delta)^3}
+        <
+        \infty
+    \end{multline*}
+
+    \item Teil ($\lim_{a \to 0} u(t, a)$):
+    
+    Wir wissen ja bereits, dass $u$ stetig ist.
+    Daher dürfen dir den $\lim$ in $u$ hineinziehen.
+
+    \begin{align*}
+        \implies
+        \lim_{a \to 0} u(t, a)
+        =
+        u(t, 0)
+        =
+        \Int[0][\infty]
+        {
+            \frac{t}{t^2 + x^2}
+        }{x}
+        =
+        \frac{1}{t}
+        \Int[0][\infty]
+        {
+            \frac{1}{1 + (x / t)^2}
+        }{x}
+        \stackrel{!}{=}
+        \arctan u \Big |_{u=0}^\infty
+        =
+        \frac{\pi}{2}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = \frac{x}{t}
+        \implies
+        \derivative[][u]{x} = \frac{1}{t}
+        \implies
+        \mathrm{d}x = t \mathrm{d}x
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

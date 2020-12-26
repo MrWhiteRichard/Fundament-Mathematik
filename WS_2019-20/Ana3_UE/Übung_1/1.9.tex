@@ -1,0 +1,113 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass für $f \in L^1(\R^n)$ die Abbildung
+
+\begin{align*}
+    T_f:
+    \quad
+    L^1(\R^n) \to L^1(\R^n),
+    \quad
+    T_f(g) = f \ast g,
+    \quad
+    f \ast g(x) = \Int[\R]{f(x - y) g(y)}{y}
+\end{align*}
+
+stetig ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Seien $g, h \in L^1(\R^n)$.
+$L^1(\R^n)$ ist offenbar mit der Norm $\norm[L^1(\R^n)]{\cdot}$ versehen.
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 2.1.1 (Fubini).png}
+
+\begin{align*}
+    \implies
+    \norm[L^1(\R^n)]{T_f(g) - T_f(h)}
+    & =
+    \norm[L^1(\R^n)]{f \ast g - f \ast h} \\
+    & =
+    \Int[\R^n]{|f \ast g - f \ast h|}{\lambda^n} \\
+    & =
+    \Int[\R^n]
+    {
+        \abs
+        {
+            \Int[\R^n]
+            {
+                f(x - y) g(y)
+            }{
+                \lambda^n(y)
+            }
+            -
+            \Int[\R^n]
+            {
+                f(x - y) h(y)
+            }{
+                \lambda^n(y)
+            }
+        }
+    }{
+        \lambda^n(x)
+    } \\
+    & \leq
+    \Int[\R^n]
+    {
+        \Int[\R^n]
+        {
+            |f(x - y) (g - h)(y)|
+        }{
+            \lambda^n(y)
+        }
+    }{
+        \lambda^n(x)
+    } \\
+    & \stackrel
+    {
+        \mathrm{Fubini}
+    }{=}
+    \Int[\R^n]
+    {
+        \Int[\R^n]
+        {
+            |f(x - y) (g - h)(y)|
+        }{
+            \lambda^n(x)
+        }
+    }{
+        \lambda^n(y)
+    } \\
+    & =
+    \Int[\R^n]
+    {
+        |(g - h)(y)|
+        \underbrace
+        {
+            \Int[\R^n]
+            {
+                |f(x - y)|
+            }{
+                \lambda^n(x)
+            }
+        }_{
+            = \norm[L^1(\R^n)]{f} < \infty
+        }
+    }{
+        \lambda^n(y)
+    } \\
+    & =
+    \norm[L^1(\R^n)]{f}
+    \norm[L^1(\R^n)]{g - h}
+\end{align*}
+
+$T_f$ ist also sogar Lipschitz-Stetig mit Lipschitz-Konstante $\norm[L^1(\R^n)]{f}$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

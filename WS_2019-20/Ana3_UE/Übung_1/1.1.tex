@@ -1,0 +1,190 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Für eine stetige Funktion $K: [0, 1] \times [0, 1] \to \R$ sei $T: C[0, 1] \to C[0, 1]$ durch $Tf(x) = \Int[0][1]{K(x, y) f(y)}{y}$ definiert.
+Zeigen Sie, dass $T$ tatsächlich $C[0, 1]$ in sich abbildet und das Bild der Einheitskugel von $(C[0, 1], \norm[\infty]{\cdot})$ unter $T$ relativ kompakt ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}
+
+    \item Laut Korollar 8.7.9 ist, für alle $f \in C[0, 1]$, $Tf$ als Parameter-Integral stetig.
+    
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 8.7.9 Korollar.png}
+
+    \begin{align*}
+        \implies
+        \Forall f \in C[0, 1]:
+        Tf
+        =
+        \underbrace
+        {
+            \Int[0][1]{K(\cdot, y) f(y)}{y}
+        }_\text{Parameter-Integral}
+        \in
+        C[0, 1]
+    \end{align*}
+
+    \item Das Bild der Einheitskugel ist $T(B(0, 1))$.
+    Für die Präkompaktheit zeigen wir also, dass $\overline{T(B(0, 1))}$ komkpakt ist.
+
+    Wir weichen vermöge Satz 1.4.10 auf Abgeschlossenheit (welche bereits laut Definition erfüllt ist) und Totalbeschränktheit aus.
+
+    \includegraphicsboxed{Ana3/Ana3 - Satz 1.4.10.png}
+
+    \begin{enumerate}
+
+        \item Dazu müssen wir zunächst einsehen, dass $(C[0, 1], \metric_\infty)$ ein vollständiger Metrischer Raum ist.
+
+        \includegraphicsboxed{Ana1&2/Ana1&2 - 6.6.11 Satz.png}
+
+        $(\R, \metric)$ ist bekannterweise ein vollständiger Metrischer Raum und $[0, 1] \neq \emptyset$.
+        Laut Satz 6.6.11, ist $(\mathcal{B}([0, 1], \R), \metric_\infty)$ daher auch ein vollständiger Metrischer Raum.
+        
+        \includegraphicsboxed{Ana1&2/Ana1&2 - 9.1.6 Lemma.png}
+
+        Weil $C[0, 1] \subset \mathcal{B}([0, 1], \R)$ und jeder $\metric_\infty$-Grenzwert einer Folge aus $C[0, 1]$-Funktionen wieder eine ist, ist $C[0, 1]$ abgeschlossen.
+        Laut Satz 9.1.6, ist also tatsächlich $(C[0, 1], \metric_\infty)$ ein vollständiger Metrischer Raum.
+
+        \item Die Totalbeschränktheit zeigen wir nun mit Satz 1.5.1 (Arzelà-Ascoli).
+
+        \includegraphicsboxed{Ana3/Ana3 - Satz 1.5.1 (Arzelà-Ascoli).png}
+
+        \begin{enumerate}[label = \arabic*.]
+
+            \item Schritt ($T(B(0, 1))$ punktweise beschränkt):
+            
+            \begin{align*}
+                \text{d.h.}~
+                \Forall x \in [0, 1]:
+                \Bbraces{|g(x)|: g \in T(B(0, 1))} ~\text{beschränkt}
+            \end{align*}
+
+            $K$ ist stetig, also auf dem kompakten Quader $[0, 1]^2$ beschränkt, d.h. $\norm[\infty]{K} < \infty$.
+            Seien nun $x \in [0, 1]$ und $g \in T(B(0, 1))$, dann gibt es ein $f \in B(0, 1)$, d.h. $\norm[\infty]{f} < 1$, sodass $Tf = g$.
+
+            \begin{multline*}
+                \implies
+                |g(x)|
+                =
+                |Tf(x)|
+                =
+                \abs
+                {
+                    \Int[0][1]{K(\cdot, y) f(y)}{y}
+                }
+                \leq
+                \Int[0][1]{|K(x, y)| |f(y)|}{y} \\
+                \leq
+                \norm[\infty]{K}
+                \underbrace
+                {
+                    \norm[\infty]{f}
+                }_{
+                    \leq 1
+                }
+                \Int[0][1]{}{y}
+                \leq
+                \norm[\infty]{K}
+                <
+                \infty
+            \end{multline*}
+
+            \item Schritt ($T(B(0, 1))$ gleichgradig stetig):
+            
+            \begin{align*}
+                \text{d.h.}~
+                \Forall x \in [0, 1],
+                \Forall \varepsilon > 0:
+                \Exists \delta > 0:
+                \Forall z \in B(0, \delta),
+                \Forall g \in T(B(0, 1)):
+                |g(x) - g(z)| < \varepsilon
+            \end{align*}
+
+            $K$ ist stetig, also auf dem kompakten Quader $[0, 1]^2$ sogar gleichmäßig stetig,
+            
+            \begin{gather*}
+                \text{d.h.}~
+                \Forall x \in [0, 1]^2:
+                \Forall \varepsilon > 0:
+                \Exists \delta > 0:
+                \Forall y \in [0, 1]^2:
+                \pbraces
+                {
+                    \metric_{\max}(x, y) < \delta
+                    \implies
+                    |K(x) - K(y)| < \varepsilon   
+                }, \\
+                \metric_{\max}(x, y)
+                :=
+                \max \Bbraces{|x_1 - y_1|, |x_2 - y_2|}.
+            \end{gather*}
+
+            Seien also $x \in [0, 1]$ und $\varepsilon > 0$.
+            Seien zusätzlich $z \in B(x, \delta)$ und wieder $g \in T(B(0, 1))$ mit $Tf = g$, wobei $f \in B(0, 1)$ und o.B.d.A. $f \neq 0$.
+
+            \begin{align*}
+                \Forall y \in [0, 1]:
+                \metric_{\max}((x, y), (z, y))
+                =
+                \max \Bbraces{|x - z|, |y - y|}
+                =
+                |x - z|
+                <
+                \delta
+            \end{align*}
+
+            Weil $K$ ja gleichmäßig stetig ist, gilt daher $|K(x) - K(y)| < \varepsilon$.
+
+            \begin{multline*}
+                \implies
+                |g(x) - g(z)|
+                =
+                |Tf(x) - Tf(z)|
+                =
+                \abs
+                {
+                    \Int[0][1]{K(x, y) f(y)}{y}
+                    -
+                    \Int[0][1]{K(z, y) f(y)}{y}
+                } \\
+                \leq
+                \underbrace
+                {
+                    \norm[\infty]{f}
+                }_{
+                    \leq 1
+                }
+                \Int[0][1]{|K(x, y) - K(z, y)|}{y}
+                <
+                \varepsilon
+            \end{multline*}
+
+        \end{enumerate}
+
+        Der Satz 1.5.1 (Arzelà-Ascoli) liefert uns nun
+
+        \begin{align*}
+            \implies
+            T(B(0, 1))
+            ~\text{totalbeschränkt}~
+            \implies
+            \overline{T(B(0, 1))}
+            ~\text{totalbeschränkt}.
+        \end{align*}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

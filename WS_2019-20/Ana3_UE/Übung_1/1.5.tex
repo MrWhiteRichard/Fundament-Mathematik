@@ -1,0 +1,332 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $\mu$ ein endliches Maß auf $\R$, $a, b \in \R$, $a < b$, und sei für $y \in (0, 1)$
+
+\begin{align*}
+    g(y)
+    =
+    \Int[\R]
+    {
+        (1 + t^2)
+        \bbraces
+        {
+            \frac{1}{\pi}
+            \arctan \frac{b - t}{y}
+            -
+            \frac{1}{\pi}
+            \arctan \frac{a - t}{y}
+        }
+    }{
+        \mu(t)
+    }.
+\end{align*}
+
+Zeigen Sie
+
+\begin{align*}
+    \lim_{y \searrow 0} g(y)
+    =
+    \Int[(a, b)]{(1 + t^2)}{\mu(t)}
+    +
+    \frac{1}{2}
+    \Int[\Bbraces{a, b}]{(1 + t^2)}{\mu(t)}
+\end{align*}
+
+Hinweis:
+Berechnen Sie $\lim_{y \searrow 0}$ des Integranden.
+
+Zeigen Sie mit Hilfe des Mittelwertsatzes def Differentialrechnung, dass der Integrand durch eine von $y$ unabhängige Konstante beschränkt ist.
+Unterscheiden Sie dazu die Fälle, $t \in [a - 1, b + 1]$, $t \in (-\infty, a - 1)$ und $t \in (b + 1, +\infty)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{align*}
+    f_y(t)
+    :=
+    (1 + t^2)
+    \pbraces
+    {
+        \frac{1}{\pi}
+        \arctan \frac{b - t}{y}
+        -
+        \frac{1}{\pi}
+        \arctan \frac{a - t}{y}
+    },
+    \quad
+    y \in (0, 1),
+    \quad
+    t \in \R
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($t \in (-\infty, a - 1)$):
+    
+    Laut dem Mittelwertsatze der Differentialrechnung, $\Exists \zeta_t \in (a, b):$
+
+    \begin{align*}
+        \frac
+        {
+            \arctan \frac{b - t}{y}
+            -
+            \arctan \frac{a - t}{y}
+        }{
+            b - a
+        }
+        =
+        \pderivative{x}
+        \arctan \frac{x - t}{y}
+        \Big |_{x = \zeta_t}
+        =
+        \frac{1}
+        {
+            1
+            +
+            \pbraces
+            {
+                \frac{\zeta_t - t}{y}
+            }^2
+        }
+        \frac{1}{y}
+        =
+        \frac{y}{y^2 + (\zeta_t - t)^2}.
+    \end{align*}
+
+    Nun ist $y \in (0, 1)$.
+
+    \begin{align*}
+        \implies
+        |f_y(t)|
+        =
+        \abs
+        {
+            \frac{1}{\pi}
+            (1 + t^2)
+            (b - a)
+            \frac{y}{y^2 + (\zeta_t - t)^2}
+        }
+        \leq
+        \frac{1}{\pi}
+        (1 + t^2)
+        (b - a)
+        \frac{1}{(\zeta_t - t)^2}
+        =:
+        h(t)
+    \end{align*}
+
+    Die Majorante $h$ ist auch integrierbar.
+
+    \begin{align*}
+        \Int[(-\infty, a-1)]{h}{\mu}
+        \leq
+        \frac{1}{\pi}
+        (b - a)
+        \underbrace
+        {
+            \sup_{t \in (-\infty, a-1)}
+            \frac{1 + t^2}{(\zeta_t - t)^2}
+        }_{
+            < \infty
+        }
+        \underbrace
+        {
+            \mu((-\infty, a-1))
+        }_{
+            < \infty
+        }
+        <
+        \infty
+    \end{align*}
+
+    Dabei beachte man, dass das Maß $\mu$ endlich ist und das $\sup$ ebenfalls, weil
+
+    \begin{align*}
+        \lim_{t \to -\infty}
+        \frac{1 + t^2}{(\zeta_t - t)^2}
+        =
+        \lim_{t \to \infty}
+        \frac{1 + t^2}{\zeta_t^2 + 2 \zeta_t t + t^2}
+        \stackrel
+        {
+            \mathrm{L'Hospital}
+        }{=}
+        \lim_{t \to \infty}
+        \frac{2 t}{2 t + 2 \zeta_t}
+        =
+        \lim_{t \to \infty}
+        \frac{2}{2}
+        =
+        1.
+    \end{align*}
+
+    \item Fall ($t \in [a-1, b+1]$):
+    
+    \begin{align*}
+        |f_y(t)|
+        \leq
+        (1 + t)^2
+        \frac{1}{\pi}
+        \Bigg (
+            \underbrace
+            {
+                \abs{\arctan \frac{b - t}{y}}
+            }_{
+                \leq \pi / 2
+            }
+            +
+            \underbrace
+            {
+                \abs{\arctan \frac{a - t}{y}}
+            }_{
+                \leq \pi / 2
+            }
+        \Big )
+        \leq
+        (1 + t)^2
+        =:
+        h(t)
+    \end{align*}
+
+    Die Majorante $h$ ist auch integrierbar.
+
+    \begin{align*}
+        \Int[{[a-1, b+1]}]{h}{\mu}
+        \leq
+        \sup_{t \in [a-1, b+1]} h(t)
+        \mu([a-1, b+1])
+        <
+        \infty
+    \end{align*}
+
+    Dabei beachte man, dass das Maß $\mu$ endlich ist und das $\sup$ ebenfalls, weil $h$ stetig auf dem kompakten $[a-1, b+1]$ ist.
+
+    \item Fall ($t \in (b+1, \infty)$):
+    
+    Dieser Fall ist analog zu Fall 1.
+
+\end{enumerate}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 2.1.5.png}
+
+Wir können nun Satz 2.1.5 auf die Familie stetiger, also messbarer, Funktionen $(f_y)_{y \in (0, 1)}$ anwenden.
+
+\begin{align*}
+    \mathrm{lhs}
+    =
+    \Int[(-\infty, a)]
+    {
+        \lim_{y \searrow 0}
+        f_y(t)
+    }{\mu(t)}
+    +
+    \Int[(a, b)]
+    {
+        \lim_{y \searrow 0}
+        f_y(t)
+    }{\mu(t)}
+    +
+    \Int[(b, +\infty)]
+    {
+        \lim_{y \searrow 0}
+        f_y(t)
+    }{\mu(t)}
+    +
+    \Int[\Bbraces{a, b}]
+    {
+        \lim_{y \searrow 0}
+        f_y(t)
+    }{\mu(t)}
+    \stackrel{!}{=}
+    \mathrm{rhs}
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Integral:
+    
+    \begin{align*}
+        \Forall t \in (-\infty, a):
+        b - t, a - t > 0
+        \implies
+        \Int[(-\infty, a)]
+        {
+            \lim_{y \searrow 0}
+            f_y(t)
+        }{\mu(t)}
+        =
+        0            
+    \end{align*}
+
+    \item Integral:
+    
+    \begin{align*}
+        \Forall t \in (a, b):
+        b - t > 0,
+        a - t < 0
+        \implies
+        \Int[(a, b)]
+        {
+            \lim_{y \searrow 0}
+            f_y(t)
+        }{\mu(t)}
+        =
+        \Int[(a, b)]
+        {
+            (1 + t)^2
+        }{\mu(t)}        
+    \end{align*}
+
+    \item Integral:
+    
+    \begin{align*}
+        \Forall t \in (b, +\infty):
+        b - t, a - t < 0
+        \implies
+        \Int[(b, +\infty)]
+        {
+            \lim_{y \searrow 0}
+            f_y(t)
+        }{\mu(t)}
+        =
+        0            
+    \end{align*}
+
+    \item Integral:
+
+    \begin{multline*}
+        \Forall t \in \Bbraces{a, b}:
+        b - t
+        \begin{cases}
+            = 0, & t = b \\
+            > 0, & t = a
+        \end{cases},
+        \quad
+        a - t
+        \begin{cases}
+            = 0, t = a \\
+            < 0, t = b
+        \end{cases} \\
+        \implies
+        \Int[\Bbraces{a, b}]
+        {
+            \lim_{y \searrow 0}
+            f_y(t)
+        }{\mu(t)}
+        =
+        \frac{1}{2}
+        \Int[\Bbraces{a, b}]{(1 + t)^2}{\mu(t)}
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
