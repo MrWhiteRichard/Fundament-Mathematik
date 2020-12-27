@@ -1,0 +1,81 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Durch $\sup |f(x)| + \sup |f^\prime(x)|$ wird auf $C^1[0, 1]$ (in $[0, 1]$ stetig differenzierbar, mit einseitigen Ableitungen bei $0, 1$) eine Norm definiert.
+Ist $C^1[0, 1]$ mit dieser Norm vollständig?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $\norm{\cdot}$ jene vermeintliche \Quote{Norm}.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil (Norm):
+
+    Trivial!
+
+    \item Teil (Vollständigkeit):
+    
+    Sei $(f_n)_{n \in \N}$ eine Cauchy-Folge in $(C^1[0, 1], \norm{\cdot})$, d.h.
+
+    \begin{align*}
+        \Forall \varepsilon > 0:
+        \Exists N \in \N:
+        \Forall n, m \geq N:
+        \varepsilon > \norm{f_n - f_m} = \norm[\infty]{f_n - f_m} + \norm[\infty]{f_n^\prime - f_m^\prime}.
+    \end{align*}
+
+    Daher sind auch $(f_n)_{n \in \N}$ und $(f_n^\prime)_{n \in \N}$ Cauchy-Folgen, aber jetzt im vollständigen metrischen Raum $(C[0, 1], \norm[\infty]{\cdot})$.
+    Aufgrund der Vollständigkeit, haben diese Cauchy-Folgen darin einen Grenzwert, d.h. $\Exists f, g \in C[0, 1]:$
+
+    \begin{align*}
+        f_n \xrightarrow[n \to \infty]{\norm[\infty]{\cdot}} f,
+        \quad
+        f_n^\prime \xrightarrow[n \to \infty]{\norm[\infty]{\cdot}} g.
+    \end{align*}
+
+    Wegen der gleichmäßigen Konvergenz, dürfen wir die folgenden Grenzwerte Vertauschen.
+    $\Forall x \in (0, 1):$
+
+    \begin{multline*}
+        \lim_{h \to 0}
+        \frac{f(x + h) - f(x)}{h}
+        =
+        \lim_{h \to 0}
+        \lim_{n \to \infty}
+        \frac{f_n(x + h) - f_n(x)}{h} \\
+        \stackrel{!}{=}
+        \lim_{n \to \infty}
+        \lim_{h \to 0}
+        \frac{f_n(x + h) - f_n(x)}{h}
+        =
+        \lim_{n \to \infty}
+        f_n^\prime(x)
+        =
+        g(x)
+    \end{multline*}
+
+    Für $x = 0, 1$ gilt das Gleiche, wir müssen dabei nur den rechts- bzw. links-seitigen Differentialquotienten verwenden.
+    Insgesamt erhalten wir also $f \in C^1[0, 1]$ mit $f^\prime = g \in C[0, 1]$.
+
+    \begin{align*}
+        \implies
+        \norm{f - f_n}
+        =
+        \norm[\infty]{f - f_n} + \norm[\infty]{f^\prime - f_n^\prime}
+        =
+        \norm[\infty]{f - f_n} + \norm[\infty]{g - f_n^\prime}
+        \xrightarrow{n \to \infty}
+        0        
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

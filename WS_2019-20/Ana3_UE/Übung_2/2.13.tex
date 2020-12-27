@@ -1,0 +1,385 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie
+
+\begin{align*}
+    \Int[0][\infty]
+    {
+        \frac
+        {
+            \arctan(x)
+        }{
+            (1 + x^2) x
+        }
+    }{x}
+\end{align*}
+
+indem Sie für $\lambda > -1$ die Funktion
+
+\begin{align*}
+    F(\lambda)
+    :=
+    \Int[0][\infty]
+    {
+        \frac
+        {
+            \arctan(\lambda x)
+        }{
+            (1 + x^2) x
+        }
+    }{x}
+\end{align*}
+
+differenzieren.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Versuch (naiv):
+    
+    Wir betrachten die Folgende Familie von Funktionen.
+
+    \begin{align*}
+        f_\lambda(x)
+        :=
+        \frac
+        {
+            \arctan(\lambda x)
+        }{
+            (1 + x^2) x
+        },
+        \quad
+        x \in (0, 1),
+        \quad
+        \lambda > -1
+    \end{align*}
+
+    Dafür finden wir eine, von $\lambda$, unabhängige Majorante.
+
+    \begin{align*}
+        \abs
+        {
+            \pderivative[][f_\lambda(x)]{\lambda}
+        }
+        =
+        \abs
+        {
+            \pderivative{\lambda}
+            \frac
+            {
+                \arctan(\lambda x)
+            }{
+                (1 + x^2) x
+            }    
+        }
+        =
+        \abs
+        {
+            \frac{x}
+            {
+                1 + (\lambda x)^2
+            }    
+            \frac{1}
+            {
+                (1 + x^2) x
+            }    
+        }
+        =
+        \underbrace
+        {
+            \frac{1}
+            {
+                1 + (\lambda x)^2
+            }        
+        }_{
+            \leq 1
+        }
+        \frac{1}
+        {
+            1 + x^2
+        }    
+        \leq
+        \frac{1}
+        {
+            1 + x^2
+        }
+        =:
+        g(x)
+    \end{align*}
+
+    Die Majorante $g$ ist auf $(0, \infty)$ auch integrierbar.
+
+    \begin{align*}
+        \Int[0][\infty]{g(x)}{x}
+        =
+        \Int[0][\infty]
+        {
+            \frac{1}
+            {
+                1 + x^2
+            }    
+        }{x}
+        =
+        \arctan x \Big |_{x=0}^\infty
+        =
+        \frac{\pi}{2}
+        <
+        \infty
+    \end{align*}
+
+    Wir können daher die folgende Vertauschung des Differenzialoperators mit dem Integral durchführen.
+
+    \begin{align*}
+        \derivative{\lambda}
+        F(\lambda)
+        =
+        \derivative{\lambda}
+        \Int[0][\infty]{f_\lambda(x)}{x}
+        =
+        \Int[0][\infty]
+        {
+            \pderivative{\lambda}
+            f_\lambda(x)
+        }{x}
+        =
+        \Int[0][\infty]
+        {
+            \frac{1}
+            {
+                1 + (\lambda x)^2
+            }    
+            \frac{1}
+            {
+                1 + x^2
+            }    
+        }{x}
+        \stackrel
+        {
+            \mathrm{Integralrechner}
+        }{=}
+        \frac{\pi}{2 (\lambda + 1)}
+    \end{align*}
+
+    Wir benutzen nun den Hauptsatz der Differezial- und Integral-Rechnung.
+
+    \begin{align*}
+        \Int[0][\infty]
+        {
+            \frac
+            {
+                \arctan(x)
+            }{
+                (1 + x^2) x
+            }
+        }{x}
+        =
+        F(1) - \underbrace{F(0)}_0
+        \stackrel
+        {
+            \mathrm{HS}
+        }{=}
+        \Int[0][1]
+        {
+            \derivative{\lambda}
+            F(\lambda)
+        }{\lambda}
+        =
+        \frac{\pi}{2}
+        \Int[0][1]
+        {
+            \frac{1}{\lambda + 1}
+        }{\lambda}
+        =
+        \frac{\pi}{2}
+        \ln(\lambda + 1) \Big |_{\lambda = 0}^1
+        =
+        \frac{\pi}{2}
+        \ln 2
+    \end{align*}
+
+    \item Versuch (rigoros):
+    
+    Wir wollen nun noch zeigen, dass $F$ wohldefiniert, d.h. endlich, ist.
+    Weil der $\arctan$ eine ungerade Funktion ist, d.h. das $-$ rutscht durch, betrachten wir o.B.d.A. bloß $\lambda \geq 0$.
+    Wir setzen den Integranden $f_\lambda$ von $F$ stetig auf $0$ fort.
+
+    \begin{align*}
+        f_\lambda(0)
+        :=
+        \lim_{x \to 0}
+        f_\lambda(x)
+        \stackrel
+        {
+            \mathrm{L'Hospital}
+        }{=}
+        \lim_{x \to 0}
+        \frac
+        {
+            \frac{1}{1 + x^2}
+            \lambda
+        }{
+            1 + 3 x^2
+        }
+        =
+        \lambda
+    \end{align*}
+
+    Wir wollen nun zeigen, dass $f_\lambda(x)$ monoton fallend in $x$ ist.
+
+    \begin{align*}
+        & \iff
+        \pderivative{x}
+        f_\lambda(x)
+        \stackrel
+        {
+            \mathrm{Ableitungsrechner}
+        }{=}
+        \frac{\lambda}
+        {
+            (\lambda^2 x^2 + 1)
+            (x^3 + x)
+        }
+        -
+        \frac
+        {
+            (3 x^2 + 1)
+            \arctan(\lambda x)
+        }{
+            (x^3 + x)^2
+        }
+        \leq 0 \\
+        & \iff
+        \frac{\lambda}
+        {
+            (\lambda^2 x^2 + 1)
+            (x^3 + x)
+        }
+        \leq
+        \frac
+        {
+            (3 x^2 + 1)
+            \arctan(\lambda x)
+        }{
+            (x^3 + x)^2
+        } \\
+        & \impliedby
+        \lambda (x^3 + x)
+        \stackrel{!}{\leq}
+        (\lambda^2 x^2 + 1) (3 x^2 + 1)
+        \stackrel{!}{\leq}
+        (\lambda^2 x^2 + 1) (3 x^2 + 1) \arctan(\lambda x) \\
+    \end{align*}
+
+    Die linke Seite ist ein Polynom $3$-ten und die Mitte ein Polynom $4$-ten Grades in $x$.
+    Daher glit die $1$-te Ungleichung ab einem gewissen $x_{\lambda, 1} \in \N$.
+    Weil $\lambda > 0$, ist $\arctan(\lambda x)$ in $x$ monoton steigend gegen $\frac{\pi}{2}$.
+
+    \begin{align*}
+        \implies
+        \Exists x_{\lambda, 1} \in \N:
+        \Forall x \geq x_{\lambda, 1}:
+        \arctan(\lambda x) \geq 1
+    \end{align*}
+
+    Die $1$-te und $2$-te Ungleichung gelten also beide ab $x_\lambda := \max(x_{\lambda, 1}, x_{\lambda, 2})$.
+    $f_\lambda$ ist also in $[x_\lambda, \infty)$ monoton fallend.
+
+    \begin{align*}
+        F(\lambda)
+        :=
+        \Int[0][\infty]
+        {
+            f_\lambda(x)
+        }{x}
+        =
+        \Int[0][x_\lambda]
+        {
+            f_\lambda(x)
+        }{x}
+        +
+        \Int[x_\lambda][\infty]
+        {
+            f_\lambda(x)
+        }{x}
+        \stackrel{!}{<}
+        \infty
+    \end{align*}
+
+    Das $1$-te $\int$ ist, als $\int$ einer stetigen Funktion auf dem Kompaktum $[0, x_\lambda]$, endlich;
+    das $2$-te untersuchen wir jetzt-dann.
+
+    Zuerst beweisen wir noch, dass
+
+    \begin{align*}
+        \Forall x \in [0, \infty): \arctan x \leq x.
+    \end{align*}
+
+    Für $x = 0$ gilt sogar Gleichheit.
+    Die Ungleichung geht für $x > 0$ nicht verlohren, weil wenn sie für $x = 0$ stimmt, dann ist
+
+    \begin{align*}
+        x - \arctan x \geq 0
+        & \iff
+        x - \arctan x ~\text{monoton steigend}~ \\
+        & \iff
+        \derivative{x}
+        (x - \arctan x)
+        =
+        1 - \frac{1}{1 + x^2}
+        \geq
+        0 \\
+        & \iff
+        1 + x^2 \geq 1.
+    \end{align*}
+
+    Wir kommen nun aber endlich zu unseren finalen Abschätzung.
+
+    \begin{align*}
+        \Int[x_\lambda][\infty]
+        {
+            \frac
+            {
+                \arctan(\lambda x)
+            }{
+                (1 + x^2) x
+            }
+        }{x}
+        \leq
+        \sum_{n = x_\lambda}^\infty
+        f_\lambda(n)
+        =
+        \sum_{n = x_\lambda}^\infty
+        \frac
+        {
+            \arctan(\lambda n)
+        }{
+            (1 + n^2) n
+        }
+        \leq
+        \sum_{n = x_\lambda}^\infty
+        \frac{n}
+        {
+            (1 + n^2) n
+        }
+        \leq
+        2
+        \sum_{n = x_\lambda}^\infty
+        \frac{1}{n^2}
+        <
+        \infty
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

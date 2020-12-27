@@ -1,0 +1,159 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{align*}
+    \Int[0][\infty]{e^{-x} \cos \sqrt x}{x}
+    =
+    \sum_{n=0}^\infty
+    (-1)^n
+    \frac{n!}{(2 n)!}
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir verwenden die Potenzreihenentwicklung vom $\cos$ (vgl. Lemma 6.9.2).
+
+\includegraphicsboxed{Ana1&2/Ana1&2 - 6.9.2 Lemma.png}
+
+Um die Vertauschung von Integration mit Summation zu rechtfertigen definieren wir zuerst folgende Funktionen.
+
+\begin{gather*}
+    f_N(x)
+    :=
+    \sum_{n=0}^N
+    \frac{(-x)^n}{(2 n)!}
+    e^{-x},
+    \quad
+    g_N(x)
+    :=
+    f_N(-x)
+    =
+    \sum_{n=0}^N
+    \frac{x^n}{(2 n)!}
+    e^{-x},
+    \quad
+    x \in (0, \infty),
+    \quad
+    N \in \N, \\
+    f := \lim_{N \to \infty} f_N,
+    \quad
+    g := \lim_{N \to \infty} g_N
+\end{gather*}
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 5.3.png}
+
+Offenbar ist $(g_N)_{N \in \N}$ eine monoton steigende Folge nicht-negativer Funktionen.
+Mit Satz 5.3 (monotone Konvergenz, Beppo Levi-Theorem) können wir also den folgenden $\lim$ mit dem $\int$ vertauschen.
+
+\begin{multline*}
+    \implies
+    \Int[0][\infty]{g}{x}
+    =
+    \Int[0][\infty]
+    {
+        \lim_{N \to \infty}
+        g_N
+    }{x}
+    \stackrel
+    {
+        \mathrm{MK}
+    }{=}
+    \lim_{N \to \infty}
+    \Int[0][\infty]
+    {
+        g_N
+    }{x} \\
+    =
+    \sum_{n=0}^\infty
+    \frac{1}{(2 n)!}
+    \Int[0][\infty]{x^n e^{-x}}{x}
+    =
+    \sum_{n=0}^\infty
+    \frac{1}{(2 n)!}
+    \Gamma(n+1)
+    =
+    \sum_{n=0}^\infty
+    \frac{n!}{(2 n)!}
+\end{multline*}
+
+\includegraphicsboxed{Ana1&2/Ana1&2 - 3.10.3 Satz (Quotientenkriterium).png}
+
+Laut Satz 3.10.3 (Quotientenkriterium) konvergiert die letztere Reihe.
+
+\begin{align*}
+    \frac
+    {
+        \abs
+        {
+            \frac{(n + 1)!}{(2 (n + 1))!}
+        }
+    }{
+        \abs
+        {
+            \frac{n!}{(2 n)!}
+        }
+    }
+    =
+    \frac{(n + 1)!}{n!}
+    \frac{(2 n)!}{(2 n + 2)!}
+    =
+    \frac{n + 1}{(2 n + 2) (2 n + 1)}
+    \xrightarrow{n \to \infty}
+    0
+\end{align*}
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 5.7.png}
+
+Laut der Dreiecksungleichung, bildet $g$ eine gleichmäßige Majorante von $(f_N)_{N \in \N}$.
+Mit Satz 5.7 (Satz von der dominierten Konvergenz) können wir also den folgenden $\lim$ mit dem $\int$ vertauschen.
+
+\begin{multline*}
+    \implies
+    \mathrm{lhs}
+    =
+    \Int[0][\infty]
+    {
+        f(x)
+    }{x}
+    =
+    \Int[0][\infty]
+    {
+        \lim_{N \to \infty}
+        f_N(x)
+    }{x}
+    \stackrel
+    {
+        \mathrm{DK}
+    }{=}
+    \lim_{N \to \infty}
+    \Int[0][\infty]
+    {
+        f_N(x)
+    }{x} \\
+    =
+    \lim_{N \to \infty}
+    \sum_{n=0}^N
+    \frac{(-1)^n}{(2 n)!}
+    \Int[0][\infty]
+    {
+        x^n
+        e^{-x}
+    }{x}
+    =
+    \sum_{n=0}^\infty
+    \frac{(-1)^n}{(2 n)!}
+    \Gamma(n+1)
+    =
+    \mathrm{rhs}
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

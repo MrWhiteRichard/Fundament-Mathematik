@@ -1,0 +1,215 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $(M, \metric)$ ein metrischer Raum.
+Dann ist $M \times M$ mit der Maximumsmetrik $\metric_m((x_1, x_2), (y_1, y_2)) := \max(\metric(x_1, y_1), \metric(x_2, y_2))$ ein metrischer Raum und für eine Vervollständigung $(\tilde M, \tilde \metric)$ von $M$ ist $\tilde M \times \tilde M$ mit der Maximumsmetrik eine Vervollständigung von $M \times M$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    Wir zeigen, dass $\metric_{\max} := \metric_m$ eine Metrik ist.
+    Dazu überprüfen (bzw. behaupten) wir $\Forall x, y, z \in M^2$ die folgenden 4 Eigenschaften.
+    
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Eigenschaft (Nicht-Negativität):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \metric_{\max}(x, y) \geq 0
+        \end{align*}
+
+        \item Eigenschaft (Definitheit):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \metric_{\max}(x, y) = 0 \iff x = y
+        \end{align*}
+
+        \item Eigenschaft (Symmetrie):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \metric_{\max}(x, y) = \metric_{\max}(y, x)
+        \end{align*}
+
+        \item Eigenschaft (Dreiecksungleichung):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \metric_{\max}(x, y)
+            +
+            \metric_{\max}(y, z)
+            \leq
+            \metric_{\max}(x, z)
+        \end{align*}
+
+    \end{enumerate}
+
+    \item Teil:
+    
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 6.7.1 Definition.png}
+
+    Wir zeigen also, dass folgender metrischer Raum vollständig ist und es eine passende Isometrie gibt.
+    Laut dem 1. Teil ist er ja bereits ein metrischer Raum, weil $(\tilde M, \tilde \metric)$ einer ist.
+
+    \begin{align*}
+        (\tilde M^2, \tilde \metric_{\max}),
+        \quad
+        \metric_{\max}(x, y)
+        :=
+        \max
+        (
+            \tilde \metric(x_1, y_1),
+            \tilde \metric(x_2, y_2)
+        )
+    \end{align*}
+
+    \begin{enumerate}[label = 2.\arabic*.]
+
+        \item Teil (Vollständigkeit):
+        
+        Sei dazu $(x_n)_{n \in \N} \in (\tilde M^2)^\N$ eine Cauchy-Folge bzgl. $\tilde \metric_{\max}$, d.h.
+
+        \begin{align*}
+            \Forall \varepsilon > 0:
+            \Exists N \in \N:
+            \Forall n, m \geq N:
+            \varepsilon
+            >
+            \tilde \metric_{\max}(x_n, x_m)
+            =
+            \max
+            (
+                \tilde \metric(x_{n, 1}, x_{m, 1}),
+                \tilde \metric(x_{n, 2}, x_{m, 2})
+            ).
+        \end{align*}
+
+        Offenbar sind dann $(x_{n, 1})_{n \in \N}, (x_{n, 2})_{n \in \N} \in (\tilde M^2)^\N$ Cauchy-Folgen bzgl. $\tilde \metric$.
+        Weil $(\tilde M, \tilde \metric)$ ja vollständig ist, konvergieren die gegen Grenzwerte $x_1 \in \tilde M$ bzw. $x_2 \in \tilde M$.
+
+        Unseren Grenzwert-Kandidat für $(x_n)_{n \in \N} \in (\tilde M^2)^\N$ setzen wir also gleich $x := (x_1, x_2)$.
+        Dieser ist nicht nur ein Kandidat, weil
+
+        \begin{align*}
+            \tilde \metric_{\max}(x_n, x)
+            =
+            \max
+            (
+                \tilde \metric(x_{n, 1}, x_1),
+                \tilde \metric(x_{n, 2}, x_2)
+            )
+            \xrightarrow{n \to \infty}
+            0.
+        \end{align*}
+
+        \item Teil (Isometrie):
+        
+        Weil $(\tilde M, \tilde \metric)$ eine Vervollständigung von $(M, \metric)$ ist,
+
+        \begin{align*}
+            \Exists \iota:
+            (M, \metric) \to (\tilde M, \tilde \metric) ~\text{Isometrie}:
+            \overline{\iota(M)} = \tilde M.
+        \end{align*}
+
+        Daraus können wir einen Kandidaten für $(\tilde M^2, \tilde \metric_{\max})$ basteln.
+
+        \begin{align*}
+            \iota^2:
+            (M^2, \metric_{\max})
+            \to
+            (\tilde M^2, \tilde \metric_{\max}):
+            (x_1, x_2)
+            \mapsto
+            (
+                \iota(x_1),
+                \iota(x_2)
+            )
+        \end{align*}
+
+        $\iota^2$ ist tatsächlich isometrisch, weil $\iota$ eine ist, also $\Forall x, y \in M^2:$
+
+        \begin{align*}
+            \metric_{\max}(x, y)
+            =
+            \max
+            (
+                \metric(x_1, y_1),
+                \metric(x_2, y_2)
+            )
+            =
+            \max
+            (
+                \tilde \metric(\iota(x_1), \iota(y_1)),
+                \tilde \metric(\iota(x_2), \iota(y_2))
+            )
+            =
+            \tilde \metric_{\max}(\iota^2(x), \iota^2(y)).
+        \end{align*}
+
+        Für die Dichtheit des Bildes von $\iota^2$, d.h. $\overline{\iota^2(M^2)} = \tilde M^2$, sind 2 Inklusionen zu zeigen.
+
+        \begin{enumerate}[label = \arabic*.]
+
+            \item Inklusion (\Quote{$\subseteq$}):
+
+            \item Inklusion (\Quote{$\supseteq$}):
+            
+            Sei $y \in \tilde M^2$, also dessen Komponenten $y_1, y_2 \in \tilde M$.
+            Weil ja $\overline{\iota(M)} = \tilde M$, finden wir $2$ Folgen aus $\iota(M)$, die gegen $y_1$ bzw. $y_2$ konvergieren, d.h. $\Exists (y_{1, n})_{n \in \N}, (y_{2, n})_{n \in \N} \in \iota(M):$
+
+            \begin{align*}
+                y_{1, n} \xrightarrow[n \to \infty]{\tilde \metric} y_1,
+                \quad
+                y_{2, n} \xrightarrow[n \to \infty]{\tilde \metric} y_2.
+            \end{align*}
+
+            Daraus können wir den Kandidaten $(y_{1, n}, y_{2, n})_{n \in \N}$ basteln.
+            Diese Folge muss nun aus $\iota^2(M^2)$ sein und gegen $y$ konvergieren.
+            
+            Laut Definition des Bildes $\iota(M)$, $\Exists (x_{1, n})_{n \in \N}, (x_{2, n})_{n \in \N} \in M^\N: \Forall n \in \N:$
+
+            \begin{align*}
+                & \iota(x_{1, n}) = y_{1, n},
+                \quad
+                \iota(x_{2, n}) = y_{2, n} \\
+                \implies
+                & (x_{1, n}, x_{2, n}) \in M^2 \\
+                \implies
+                & \iota^2(M^2)
+                \ni
+                \iota^2((x_{1, n}, x_{2, n}))
+                =
+                (
+                    \iota(x_{1, n}),
+                    \iota(x_{2, n})
+                )
+                =
+                (y_{1, n}, y_{2, n})
+                \xrightarrow[n \to \infty]{\tilde \metric_{\max}}
+                (y_1, y_2)
+                =
+                y.
+            \end{align*}
+
+        \end{enumerate}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

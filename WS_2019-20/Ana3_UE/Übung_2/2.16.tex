@@ -1,0 +1,218 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass für $f, g \in L^1(\R^n)$ $\supp(f \ast g)$ keine Teilmenge von $\supp(f) + \supp(g)$ sein muss.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir erinnern uns zunächst an folgende Definitionen.
+
+\begin{align*}
+    \supp f
+    :=
+    \overline
+    {
+        \Bbraces
+        {
+            x \in \R^n:
+            f(x) \neq 0
+        }
+    },
+    \quad
+    A + B
+    :=
+    \Bbraces
+    {
+        a + b:
+        a \in A,
+        b \in B
+    },
+    \quad
+    A, B \subseteq \R^n
+\end{align*}
+
+Die folgenden Mengen $X, Y$ sind zwar abgeschlossen, ihre Summe $X + Y$ aber nicht.
+
+\begin{gather*}
+    X := \Bbraces{x \in \R^2: x_1 > 0, x_1 x_2 \geq 1} \subset \R^+ \times \R^+,
+    \quad
+    Y := \Bbraces{x \in \R^2: y_1 > 0, y_1 y_2 \leq -1} \subset \R^+ \times \R^- \\
+    \implies
+    X + Y = \R^+ \times \R
+\end{gather*}
+
+Damit konstruieren wir unsere Kandidaten.
+
+\begin{align*}
+    f(x)
+    :=
+    e^{-(x_1 + x_2)} \1_X(x),
+    \quad
+    x \in \R^2,
+    \quad
+    g(y)
+    :=
+    e^{-(y_1 - y_2)} \1_Y(y),
+    \quad
+    y \in \R^2
+\end{align*}
+
+Diese sind in der Tat integrierbar, d.h. $f, g \in L^1(\R^2)$.
+
+\begin{align*}
+    \norm[L^1(\R^2)]{f}
+    & =
+    \Int[\R^2]{|f|}{\lambda^2}
+    \leq
+    \underbrace
+    {
+        \pbraces
+        {
+            \Int[0][\infty]{e^{-x_1}}{x_1}
+        }
+    }_1
+    \underbrace
+    {
+        \pbraces
+        {
+            \Int[0][\infty]{e^{-x_2}}{x_2}
+        }
+    }_1
+    <
+    \infty, \\
+    \norm[L^1(\R^2)]{g}
+    & =
+    \Int[\R^2]{|g|}{\lambda^2}
+    \leq
+    \underbrace
+    {
+        \pbraces
+        {
+            \Int[0][\infty]{e^{y_1}}{y_1}
+        }
+    }_1
+    \underbrace
+    {
+        \pbraces
+        {
+            \Int[-\infty][0]{e^{-y_2}}{y_2}
+        }    
+    }_1
+    <
+    \infty
+\end{align*}
+
+Wir berechnen deren Faltung an der Stelle $\pbraces{\frac{1}{n}, 0}$ für $n \in \N$.
+
+\begin{multline*}
+    (f \ast g) \pbraces{\frac{1}{n}, 0}
+    =
+    \Int[\R^2]{f \pbraces{\frac{1}{n} - y_1} g(y)}{\lambda^2(y)} \\
+    =
+    \Int[\R^2]
+    {
+        e^{y_1 + y_2 - \frac{1}{n}}
+        \1_X \pbraces{\frac{1}{n} - y_1, -y_2}
+        e^{-(y_1 - y_2)}
+        \1_Y(y)
+    }{\lambda^2(y)}
+    =
+    \cdots
+\end{multline*}
+
+\begin{align*}
+    y \in Y
+    \iff
+    \begin{cases}
+        y_1 > 0, \\
+        y_1 y_2 \leq -1 \iff y_2 \leq -\frac{1}{y_1}
+    \end{cases}
+\end{align*}
+
+\begin{multline*}
+    \implies
+    \cdots
+    =
+    \Int[0][\infty]
+    {
+        \Int[-\infty][-\frac{1}{y_1}]
+        {
+            e^{2 y_2 - \frac{1}{n}}
+            \1_X \pbraces{\frac{1}{n} - y_1, y_2}
+        }{y_2}
+    }{y_1} \\
+    =
+    \Int[0][\infty]
+    {
+        \Int[\frac{1}{y_1}][\infty]
+        {
+            e^{-(2 y_2 + \frac{1}{n})}
+            \1_X \pbraces{\frac{1}{n} - y_1, y_2}
+        }{y_2}
+    }{y_1}
+    =
+    \cdots
+\end{multline*}
+
+\begin{align*}
+    \pbraces{\frac{1}{n} - y_1, y_2} \in X
+    \iff
+    \begin{cases}
+        \frac{1}{n} - y_1 > 0 \iff \frac{1}{n} > y_1 \\
+        \pbraces{\frac{1}{n} - y_1} y_2 \geq 1 \iff y_2 \geq \frac{n}{1 - n y_1}
+    \end{cases}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \cdots
+    =
+    \Int[0][\frac{1}{n}]
+    {
+        \Int[\frac{n}{1 - n y_1}][\infty]
+        {
+            e^{-(2 y_2 + \frac{1}{n})}
+        }{y_2}
+    }{y_1}
+    >
+    0
+\end{align*}
+
+Damit ist also die ganze Folge $\pbraces{\frac{1}{n}, 0}_{n \in \N} \subset \supp(f \ast g)$.
+Weil der $\supp$ abgeschlossen ist, liegt auch $0 \in \supp(f \ast g)$.
+
+$X$ und $Y$ sind, wie gesagt, abgeschlossen.
+
+\begin{align*}
+    \implies
+    \supp f \subset X,
+    \quad
+    \supp g \subset Y
+    \implies
+    \supp f + \supp g \subset X + Y = \R^+ \times \R
+\end{align*}
+
+$0$ liegt allerdings in keiner Mengen-Summe.
+
+\begin{align*}
+    0 \not \in \R^+ \times \R = X + Y
+    \implies
+    0
+    \begin{cases}
+        \not \in \supp f + \supp g, \\
+        \in \supp(f \ast g)
+    \end{cases}
+    \implies
+    \supp f + \supp g
+    \not \subset
+    \supp(f \ast g)
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

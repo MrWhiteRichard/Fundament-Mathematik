@@ -1,0 +1,350 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{align*}
+    \Int[0][1]
+    {
+        \frac{1 - t}{1 - a t^3}
+    }{t}
+    =
+    \sum_{n=0}^\infty
+    \frac
+    {
+        a^n
+    }{
+        (3 n + 1)
+        (3 n + 2)
+    }
+\end{align*}
+
+für $|a| < 1$ und zeigen Sie damit
+
+\begin{align*}
+    \frac{\pi}{3 \sqrt 3}
+    =
+    \sum_{n=0}^\infty
+    \frac{1}
+    {
+        (3 n + 1)
+        (3 n + 2)
+    }
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    Um die spätere Vertauschung von Integration mit Summation zu rechtfertigen definieren wir zuerst folgende Funktionen.
+
+    \begin{gather*}
+        f_{0, N}(t)
+        :=
+        \sum_{n=0}^N
+        (a t^3)^n,
+        \quad
+        f_{1, N}(t)
+        :=
+        t
+        \sum_{n=0}^N
+        (a t^3)^n,
+        \quad
+        N \in \N,
+        \quad
+        t \in (0, 1), \\
+        f_0
+        :=
+        \lim_{N \to \infty}
+        f_{0, N},
+        \quad
+        f_1
+        :=
+        \lim_{N \to \infty}
+        f_{1, N}
+    \end{gather*}
+
+    Wir wollen eine, von $N$ unabhängige, Majorange für $(f_{0, N})_{N \in \N}$ bzw. $(f_{1, N})_{N \in \N}$ finden.
+    $\Forall N \in \N: \Forall t \in (0, 1):$
+
+    \begin{multline*}
+        |f_{1, N}(t)|
+        =
+        \abs
+        {
+            t
+            \sum_{n=0}^N
+            (a t^3)^n
+        }
+        =
+        t
+        \abs
+        {
+            \sum_{n=0}^N
+            (a t^3)^n
+        }
+        \leq
+        |f_{0, N}(t)|
+        =
+        \abs
+        {
+            \sum_{n=0}^N
+            (a t^3)^n
+        } \\
+        \leq
+        \sum_{n=0}^N
+        |a|^n |t^3|^n
+        \leq
+        \sum_{n=0}^N
+        |a|^n
+        \leq
+        \sum_{n=0}^\infty
+        |a|^n
+        \stackrel
+        {
+            \mathrm{GR}
+        }{=}
+        \frac{1}{1 - |a|}
+        =:
+        g
+    \end{multline*}
+
+    $g$ ist als Konstante auf dem Kompaktum $[0, 1]$ eine integrierbare Majorante.
+
+    \begin{align*}
+        \implies
+        \mathrm{lhs}
+        & =
+        \Int[0][1]
+        {
+            \frac{1}{1 - a t^3}
+        }{t}
+        -
+        \Int[0][1]
+        {
+            t
+            \frac{1}{1 - a t^3}
+        }{t} \\
+        & \stackrel
+        {
+            \mathrm{GR}
+        }{=}
+        \Int[0][1]
+        {
+            \sum_{n=0}^\infty
+            (a t^3)^n
+        }{t}
+        -
+        \Int[0][1]
+        {
+            t
+            \sum_{n=0}^\infty
+            (a t^3)^n
+        }{t} \\
+        & =
+        \Int[0][1]
+        {
+            f_0(t)
+        }{t}
+        -
+        \Int[0][1]
+        {
+            f_1(t)
+        }{t} \\
+        & \stackrel
+        {
+            \mathrm{DK}
+        }{=}
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            f_{0, N}(t)
+        }{t}
+        -
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            f_{1, N}(t)
+        }{t} \\
+        & =
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            \sum_{n=0}^N
+            (a t^3)^n
+        }{t}
+        -
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            t
+            \sum_{n=0}^N
+            (a t^3)^n
+        }{t} \\
+        & =
+        \lim_{N \to \infty}
+        \sum_{n=0}^N
+        a^n
+        \Int[0][1]
+        {
+            t^{3 n}
+        }{t}
+        -
+        \lim_{N \to \infty}
+        \sum_{n=0}^N
+        a^n
+        \Int[0][1]
+        {
+            t^{3 n + 1}
+        }{t} \\
+        & =
+        \sum_{n=0}^\infty
+        a^n
+        \pbraces
+        {
+            \Int[0][1]
+            {
+                t^{3 n}
+            }{t}
+            -
+            \Int[0][1]
+            {
+                t^{3 n + 1}
+            }{t}
+        } \\
+        & =
+        \sum_{n=0}^\infty
+        a^n
+        \pbraces
+        {
+            \frac{1}{3 n + 1}
+            -
+            \frac{1}{3 n + 2}
+        } \\
+        & =
+        \sum_{n=0}^\infty
+        a^n
+        \frac
+        {
+            (3 n + 2)
+            -
+            (3 n + 1)
+        }{
+            (3 n + 1)
+            (3 n + 2)
+        } \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+    \item Teil:
+    
+    Wir können nicht direkt für $a := 1$ einsetzen.
+    Stattdessen betrachten wir den Grenzwert $a \to 1$.
+    Um diesen in die $\text{lhs}$ hineinzuziehen, müssen wir zeigen, dass diese in $a$ stetig ist.
+
+    \begin{align*}
+        g_n(a)
+        :=
+        \frac
+        {
+            a^n
+        }{
+            (3 n + 1)
+            (3 n + 2)
+        },
+        \quad
+        |a| < 1
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \sum_{n=0}^\infty
+        \norm[\infty]{g_n}
+        =
+        \sum_{n=0}^\infty
+        \frac{1}
+        {
+            (3 n + 1)
+            (3 n + 2)
+        }
+        \sum_{n=0}^\infty
+        \frac{1}
+        {
+            9 n^2 + 7 n + 3
+        }
+        \leq
+        \frac{1}{9}
+        \sum_{n=0}^\infty
+        \frac{1}{n^2}
+        <
+        \infty
+    \end{align*}
+
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 6.8.4 Korollar (Weierstraß-Kriterium).png}
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 6.6.14 Korollar.png}
+
+    Laut 6.8.4 Korollar (Weierstraß-Kriterium) und (anschließend) 6.6.14 Korollar, ist $\text{rhs}$ stetig in $a$.
+
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 8.7.9 Korollar.png}
+
+    $\text{lhs}$ ist ein Parameterintegral in $a$.
+    Laut Korollar 8.7.9, dürfen wir also $\lim_{a \to 1}$ dort hineinziehen.
+
+    \begin{multline*}
+        \sum_{n=0}^\infty
+        \frac{1}
+        {
+            (3 n + 1)
+            (3 n + 2)
+        }
+        =
+        \lim_{a \to 1}
+        \sum_{n=0}^\infty
+        \frac
+        {
+            a^n
+        }{
+            (3 n + 1)
+            (3 n + 2)
+        }
+        \stackrel
+        {
+            \mathrm{1. Teil}
+        }{=} \\
+        \lim_{a \to 1}
+        \underbrace
+        {
+            \Int[0][1]
+            {
+                \frac{1 - t}{1 - a t^3}
+            }{t}    
+        }_\text{
+            Parameterintegral
+        }
+        =
+        \Int[0][1]
+        {
+            \frac{1 - t}{1 - t^3}
+        }{t}
+        \stackrel
+        {
+            \mathrm{Integralrechner}
+        }{=}
+        \mathrm{rhs}
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

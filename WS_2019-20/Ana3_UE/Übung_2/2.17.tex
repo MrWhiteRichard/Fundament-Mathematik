@@ -1,0 +1,92 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen SIe die Faltung $f \ast g$ der Funktion
+
+\begin{align*}
+    f(x)
+    & =
+    \begin{cases}
+        e^{-\alpha x} & x > 0 \\
+        0             & \text{sonst}
+    \end{cases} \\
+    g(x)
+    & =
+    \begin{cases}
+        e^{-\beta x} & x > 0 \\
+        0            & \text{sonst}
+    \end{cases}
+\end{align*}
+
+für $\alpha, \beta > 0$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{align*}
+    (f \ast g)(x)
+    =
+    \Int[\R]{f(x - y) g(y)}{\lambda(y)}
+    =
+    \cdots
+\end{align*}
+
+\begin{align*}
+    f(x - y) \neq 0
+    & \iff
+    x - y > 0
+    \iff
+    x > y \\
+    g(y) \neq 0
+    & \iff
+    y > 0 \\
+    & \implies
+    \Bbraces{y \in \R: f(x - y) g(y) \neq 0}
+    =
+    \Bbraces{y \in \R: x > y > 0}
+    =
+    (0, x)
+\end{align*}
+
+\begin{multline*}
+    \implies
+    \cdots
+    =
+    \1_{\R^+}(x)
+    \Int[0][x]
+    {
+        e^{-\alpha (x - y)}
+        e^{-\beta y}
+    }{y}
+    =
+    \1_{\R^+}(x)
+    e^{-\alpha x}
+    \Int[0][x]
+    {
+        e^{(\alpha - \beta) y}
+    }{y} \\
+    =
+    \1_{\R^+}(x)
+    e^{-\alpha x}
+    \begin{cases}
+        x,
+        & \alpha = \beta, \\
+        \frac
+        {
+            e^{(\alpha - \beta) x - 1}
+        }{
+            \alpha - \beta
+        },
+        & \text{sonst}
+    \end{cases}
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

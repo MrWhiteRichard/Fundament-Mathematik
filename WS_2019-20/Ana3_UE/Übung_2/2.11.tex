@@ -1,0 +1,253 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{align*}
+    \Int[0][1]
+    {
+        \frac{x^{p-1}}{1 + x^q}
+    }{x}
+    =
+    \sum_{n=0}^\infty
+    \frac{(-1)^n}{p + n q},
+    \quad
+    p, q > 0
+\end{align*}
+
+und zeigen Sie damit
+
+\begin{align*}
+    \frac{\pi}{4}
+    =
+    \sum_{n=0}^\infty
+    \frac{(-1)^n}{2 n + 1}
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    Um die spätere Vertauschung von Integration mit Summation zu rechtfertigen definieren wir zuerst folgende Funktionen.
+
+    \begin{align*}
+        f_N(x)
+        :=
+        x^{p-1}
+        \sum_{n=0}^N
+        (-x^q)^n,
+        \quad
+        N \in \N,
+        \quad
+        x \in (0, 1),
+        \quad
+        f
+        :=
+        \lim_{N \to \infty}
+        f_N
+    \end{align*}
+
+    Wir finden eine Majorante für
+
+    \begin{multline*}
+        |f_N(x)|
+        =
+        \abs
+        {
+            x^{p-1}
+            \sum_{n=0}^N
+            (-x^q)^n    
+        }
+        \stackrel
+        {
+            \mathrm{GS}
+        }{=}
+        x^{p-1}
+        \abs
+        {
+            \frac
+            {
+                1 - (-x^q)^{N+1}
+            }{
+                1 - (-x^q)
+            }    
+        } \\
+        =
+        x^{p-1}
+        \abs
+        {
+            \frac
+            {
+                1 + (-1)^n (x^q)^{N+1}
+            }{
+                1 - (-x^q)
+            }
+        }
+        =
+        x^{p-1}
+        \underbrace
+        {
+            \frac
+            {
+                1 + (x^q)^{N+1}
+            }{
+                1 + x^q
+            }    
+        }_{
+            \in (0, 1)
+        }
+        \leq
+        x^{p-1}
+        =:
+        g(x).
+    \end{multline*}
+    
+    Dabei haben wir die Formel für die geometrische Summe verwendet.
+    Man beachte auch, dass
+
+    \begin{align*}
+        \frac
+        {
+            1 + (x^q)^{N+1}
+        }{
+            1 + x^q
+        }    
+        \leq
+        1
+        \iff
+        1 + (x^q)^{N+1}
+        \leq
+        1 + x^q
+        \iff
+        (x^q)^{N+1}
+        \leq
+        x^q
+        \iff
+        (x^q)^N
+        \leq
+        1.
+    \end{align*}
+
+    Die Majorante $g$ ist auch integrierbar.
+
+    \begin{align*}
+        \Int[0][1]{g(x)}{x}
+        =
+        \Int[0][1]{x^{p-1}}{x}
+        =
+        \frac{1}{p}
+        x^p \Big |_{x=0}^n
+        =
+        \frac{1}{p}
+        <
+        \infty
+    \end{align*}
+
+    Mit Satz 5.7 (Satz von der dominierten Konvergenz) folgt nun die Behauptung.
+
+    \begin{align*}
+        \implies
+        \mathrm{lhs}
+        & =
+        \Int[0][1]
+        {
+            \sum_{n=0}^\infty
+            \frac{x^{p-1}}{1 + x^q}
+        }{x} \\
+        & \stackrel
+        {
+            \mathrm{GR}
+        }{=}
+        \Int[0][1]
+        {
+            x^{p-1}
+            \sum_{n=0}^\infty
+            (-x^q)^n
+        }{x} \\
+        & =
+        \Int[0][1]
+        {
+            f(x)
+        }{x} \\
+        & \stackrel
+        {
+            \mathrm{DK}
+        }{=}
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            f_N(x)
+        }{x} \\
+        & =
+        \lim_{N \to \infty}
+        \Int[0][1]
+        {
+            x^{p-1}
+            \sum_{n=0}^N
+            (-x^q)^n
+        }{x} \\
+        & =
+        \lim_{N \to \infty}
+        \sum_{n=0}^N
+        (-1)^n
+        \Int[0][1]
+        {
+            x^{p-1}
+            x^{n q}
+        }{x} \\
+        & =
+        \sum_{n=0}^\infty
+        (-1)^n
+        \Int[0][1]
+        {
+            x^{p + n q - 1}
+        }{x} \\
+        & =
+        \sum_{n=0}^\infty
+        (-1)^n
+        \frac{1}{p + n q}
+        x^{p + n q} \Big |_{x=0}^1 \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+    Dabei dürfen wir die Formel für die geometrische Reihe verwenden, weil
+
+    \begin{align*}
+        0 < x < 1
+        \implies
+        0 < -x^q < 1.
+    \end{align*}
+
+    \item Teil:
+    
+    Wir setzen $p := 1 > 0$ und $q := 2$.
+
+    \begin{align*}
+        \implies
+        \mathrm{rhs}
+        =
+        \Int[0][1]
+        {
+            \frac{1}{1 + x^2}
+        }{x}
+        =
+        \arctan x \Big |_{x=0}^1
+        =
+        \frac{\pi}{4}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
