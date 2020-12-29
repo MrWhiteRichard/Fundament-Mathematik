@@ -1,0 +1,132 @@
+\section{Hilbert spaces}
+
+\begin{definition}
+	Let $H$ be a Vector space over $\C$. A function $(\cdot, \cdot): H \times H \to \C$ is called \textit{scalar product} if 
+	\begin{enumerate}
+		\item $(x,x) > 0$ for all $x \in H \setminus \{0\}$.
+		\item $(x,y) = \overline{(y,x)}$ for all $x,y \in H$.
+		\item $(x + y, z) = (x,z) + (y,z)$ for all $x,y,z \in H$, and $(\lambda x, y) = \lambda (x,y)$ for all $\lambda \in \C$, $x,y \in H$. 
+	\end{enumerate}
+\end{definition}
+
+Throughout this paper a vector space $H$ with a scalar product will carry the norm that is induced by this scalar product.
+
+\begin{definition}
+	A vector space $H$ over $\C$ with a scalar product that is complete with regard to the norm induced by the scalar prorduct is called a \textit{Hilbert space}.
+\end{definition}
+
+Note that we only consider Hilbert spaces over the field $\C$ and not over $\R$. 
+
+\begin{lemma}\label{lemma:onb}
+	Let $H$ be a Hilbert space and $M$ an orthonormal system. Then there exists an orthonormal basis $\tilde{M} \supseteq M$. Particularly there exists an orthonormal basis of $H$. 
+\end{lemma}
+
+\begin{lemma}
+	Let $H$ be a Hilbert space and $M \subseteq H$ a closed subspace. Then there exists an orthogonal Projection $P$ with $\ran P = M$. 
+\end{lemma}
+
+\begin{lemma}
+	Let $H$ be a Hilbert space and $\{e_\alpha \mid \alpha \in A\}$ an orthonromal basis. Then the following statements are true for every $x \in H$.
+	\begin{enumerate}
+		\item \textit{Parzeval's equality} holds.
+		\begin{align}\label{eq:parzeval}
+		\sum_{\alpha \in A} \vbraces{(x, e_\alpha)_H}^2 = \norm[H]{x}^2.
+		\end{align}
+		
+		\item 
+		\begin{align} \label{eq:fourierseries}
+		x = \sum_{\alpha \in A} (x, e_\alpha)_H e_\alpha
+		\end{align}
+	\end{enumerate} 
+\end{lemma}
+
+\begin{lemma}
+	Let $H$ be a Hilbert space and $M := \{e_\alpha \mid \alpha \in A\}$ be a non empty orthonormal system where $\alpha \neq \beta \Rightarrow e_\alpha \neq e_\beta$. Then for every $x \in H$ the implication
+	\begin{align}
+		\norm[H]{x}^2 = \sum_{\alpha \in A} \vbraces{(x, e_\alpha)_H}^2 \Rightarrow x = \sum_{\alpha \in A} (x,e_\alpha) e_\alpha \label{eq:parceval_to_fourier}
+	\end{align}
+	is true.
+\end{lemma}
+
+\begin{proof}
+	According to lemma \ref{lemma:onb} there exists an orhtonormal basis $K = \{f_\beta \mid \beta \in B\} \supseteq M$. Using Parzeval's equality \eqref{eq:parzeval} we obtain
+	\begin{align*}
+		\sum_{\alpha \in A} |(x, e_\alpha)_H|^2 = \norm[H]{x}^2 = \sum_{\beta \in B} |(x,f_\beta)_H|^2
+	\end{align*}
+	and hence for all $\beta \in B$ where there exists no $\alpha \in A$ with $e_\alpha = f_\beta$ the equality $(x, f_\beta)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
+	\begin{align*}
+		x = \sum_{\beta \in B} (x,f_\beta)_H f_\beta = \sum_{\alpha \in A} (x,e_\alpha)_H e_\alpha.
+	\end{align*}
+\end{proof}
+
+
+
+\begin{definition}
+	Let $V$ and $W$ be two vector spaces over the same field $K$ and $\zeta$ an automorphism of $K$. A function $f: V \to W$ is called \textit{semilinear} with regard to $\zeta$, if all $x,y \in V$ and all $\lambda \in K$ fulfill
+	\begin{enumerate}
+		\item $f(x + y) = f(x) + f(y)$
+		\item $f(\lambda x) = \zeta(\lambda) f(x)$.
+	\end{enumerate}
+	We also call $f$ a $\zeta$\textit{-linear function}. If $\zeta = id_K$ then $f$ is simply a \textit{linear function} and if $K = \C$ and $\zeta: \C \to \C: z \mapsto \overline{z}$ then $f$ is called an \textit{antilinear function}. 
+\end{definition}
+
+With these definitions we can say that scalar products in this paper are linear in the first and antilinear in the second argument. 
+
+\begin{lemma}
+	Let $H_1$ and $H_2$ be Hilbert spaces and $\zeta$ an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Let furthermore $T: H_1 \to H_2$ be a continuous and $\zeta$-linear function. Then there exists a unique function $T_\zeta^\ast: H_2 \to H_1$ such that for all $x \in H_1$ and $y \in H_2$ the equation 
+	\begin{align*}
+		(Tx, y)_{H_2} = \zeta\pbraces{(x, T_\zeta^\ast y)_{H_1}}
+	\end{align*}
+	holds. For $\zeta = id_\C$ we denote $T^\ast = T_\zeta^\ast$ and call it the \textit{adjoint operator} of $T$. If $T_\zeta^\ast T = I_{H_1}$ we may call $T$ a $\zeta$\textit{-unitary operator}. Especially if $\zeta = id_\C$ then $T$ is called \textit{unitary} and if $\zeta: \C \to \C: z \mapsto \overline{z}$ then $T$ is called \textit{antiunitary}
+\end{lemma}
+
+\begin{proof}
+	For an arbitrary $y \in H_2$ we define $f_y: H_1 \to \C: x \mapsto \zeta^{-1}\pbraces{(Tx,y)_{H_2}}$. For arbitrary $u,v \in H_1$ and arbitrary $\lambda \in \C$ we obtain
+	\begin{align*}
+		f_y(u + \lambda v) &= \zeta^{-1}\pbraces{(T(u + \lambda v), y)_{H_2}} = \zeta^{-1}\pbraces{(Tu, y)_{H_2} + \zeta(\lambda) (Tv, y)_{H_2}} \\
+		&= \zeta^{-1}\pbraces{(Tu,y)_{H_2}} + \lambda \zeta^{-1}\pbraces{(Tv,y)_{H_2}} = f_y(u) + \lambda f_y(v),
+	\end{align*}
+	hence $f_y$ is a linear function. Furthermore, from Fana corollary 3.1.4 we know that $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous and we have $\zeta^{-1}$ continuous hence $f_y$ is continuous. Now, using Riesz representation theorem, we know that there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
+	\begin{align*}
+		T_\zeta^\ast: H_2 \to H_1: y \mapsto z_y
+	\end{align*}
+	that fulfills for all $x \in H_1$ and all $y \in H_2$ the equalities
+	\begin{align*}
+		(Tx,y)_{H_2} = \zeta\pbraces{\zeta^{-1}\pbraces{(Tx,y)_{H_2}}} = \zeta\pbraces{f_y(x)} = \zeta \pbraces{(x, T_\zeta^\ast y)_{H_1}}.
+	\end{align*}
+\end{proof}
+
+note: How many continuous automorphisms of $\C$ do even exist? In functional analysis we also required $T T_\zeta^\ast = I_{H_2}$ for $T$ to be a unitary operator, we drop this requirement here.
+
+\begin{proposition}
+	Let $H_1$ and $H_2$ be Hilbert spaces, $U: H_1 \to H_2$ a $\zeta$-linear and continuous function, where $\zeta$ is an automorphism of $\C$ and its inverse $\zeta^{-1}$ is continuous. Then the following statements are equivalent.
+	\begin{enumerate}[label = (\roman*)]
+		\item $U$ is $\zeta$-unitary. 
+		\item $(Ux , Uy)_{H_2} = \zeta\pbraces{(x,y)_{H_1}}$ for all $x,y \in H_1$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	We will split the proof in two implications.
+	\begin{enumerate}
+		\item[\Quote{$(\mathrm{i}) \Rightarrow \ (\mathrm{ii})$}] Using that $U$ is $\zeta$-unitary we obtain for every $x,y \in H_1$ 
+		\begin{align*}
+			(Ux, Uy)_{H_2} = \zeta\pbraces{(x, U_\zeta^\ast U y)_{H_1}} = \zeta \pbraces{(x,y)_{H_1}}
+		\end{align*}
+		which is exactly what we wanted to show.
+		
+		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{i})$}] Now we have for every $x,y \in H_1$ that 
+		\begin{align*}
+			(x, U_\zeta^\ast U y)_{H_1} = \zeta^{-1}\pbraces{(Ux, Uy)_{H_2}} = \zeta^{-1}\pbraces{\zeta\pbraces{(x,y)_{H_1}}} = (x,y)_{H_1}.
+		\end{align*}
+		Using lemma 6.6.6 from Fana we now know that $U_\zeta^\ast U = I_{H_2}$ which shows that $U$ is $\zeta$-unitary.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Let $H$ be a Hilbert space and $N \in L_b(H)$. Then $N$ is called \textit{normal}, if $N N^\ast = N^\ast N$.
+\end{definition}
+
+\begin{proposition} \label{prop:spectral_radius}
+	Let $H$ be a Hilbert space and $N \in L_b(H)$ normal. Then $r(N) = \norm{N}$ where $r$ is the spectral radius.
+\end{proposition}

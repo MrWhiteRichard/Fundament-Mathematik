@@ -1,0 +1,91 @@
+% -------------------------------- %
+% amsthm-stuff:
+
+\theoremstyle{definition}
+
+% numbered theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+% unnumbered theorems
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{corollary}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{example*}{Example}
+
+% Please define this stuff in project ("main.tex"):
+
+% \def \lastexercisenumber {...}
+% This will be 0 by default
+
+% \setcounter{section}{...}
+% This will be 0 by default
+% and hence, completely ignored
+
+\ifnum \thesection = 0
+{
+  \newtheorem{exercise}{exercise}
+}
+\else
+{
+  \newtheorem{exercise}{exercise}[section]
+}
+\fi
+
+\ifdef
+{\lastexercisenumber}
+{\setcounter{exercise}{\lastexercisenumber}}
+
+\newenvironment{solution}
+{
+  \begin{proof}[solution]
+}{
+  \end{proof}
+}
+
+\renewcommand{\proofname}{Proof}
+
+% -------------------------------- %
+% environment zum einkasteln:
+
+% dickere vertical lines
+\newcolumntype
+{x}
+[1]
+{
+  !{
+    \centering
+    \arraybackslash
+    \vrule
+    width #1}
+}
+
+% environment selbst (the big cheese)
+\newenvironment
+{boxedin}
+{
+  \begin{tabular}
+  {
+    x{1 pt}
+    p{\textwidth}
+    x{1 pt}
+  }
+  \Xhline
+  {2 \arrayrulewidth}
+}
+{
+  \\
+  \Xhline{2 \arrayrulewidth}
+  \end{tabular}
+}
+
+% -------------------------------- %
+

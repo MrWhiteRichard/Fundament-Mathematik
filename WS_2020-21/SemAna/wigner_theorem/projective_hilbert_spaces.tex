@@ -1,0 +1,150 @@
+\section{Projective Hilbert spaces}
+
+\begin{definition}
+	Let $V$ be a vector space over the field $K$. The set $\mathcal{P}(V) = \{Kx \mid x \in V \setminus \{0\}\}$ consisting of all onedimensional subspaces of $V$ is called the \textit{projective space} of $V$. If $V$ is a Hilbert space then $\mathcal{P}(V)$ is called \textit{projective Hilbert space}. We call the elements of a projective Hilbert space \textit{rays}.
+\end{definition}
+
+What structure can we give a projective Hilbert space? First we will define a function.
+
+\begin{lemma} \label{lemma:ray_prod}
+	Let $R_1$ and $R_2$ be rays of the projective Hilbert space $\mathcal{P}(H)$. Then there exists a unique $\rho \in \R$ such that for all $x_1 \in R_1 \setminus \{0\}$ and $x_2 \in R_2 \setminus \{0\}$ the equation
+	\begin{align*}
+		\frac{\vbraces{(x_1, x_2)_H}}{\norm[H]{x_1} \norm[H]{x_2}} = \rho
+	\end{align*}
+	holds.
+\end{lemma}
+
+\begin{proof}
+	Let $x_1, y_1 \in R_1 \setminus \{0\}$ and $x_2, y_2 \in R_2 \setminus \{0\}$. From this we have $y_1 = \lambda_1 x_1$ and $y_2 = \lambda_2 x_2$ for some $\lambda_1, \lambda_2 \in \C \setminus \{0\}$. Now we just start calculating and obtain
+	\begin{align*}
+		\rho := \frac{\vbraces{(y_1, y_2)_H}}{\norm[H]{y_1} \norm[H]{y_2}} = \frac{\vbraces{(\lambda_1 x_1, \lambda_2 x_2)_H}}{\norm[H]{\lambda_1 x_1} \norm[H]{\lambda_2 x_2}} = \frac{\vbraces{\lambda_1 \lambda_2}\vbraces{(x_1, x_2)_H}}{\vbraces{\lambda_1 \lambda_2}\norm[H]{x_1} \norm[H]{x_2}} = \frac{\vbraces{(x_1, x_2)_H}}{\norm[H]{x_1} \norm[H]{x_2}}
+	\end{align*}
+	which finishes the proof.
+\end{proof}
+
+\begin{definition}
+	The previous lemma \ref{lemma:ray_prod} allows us to define a \textit{ray-product} on a projective Hilbert space $\mathcal{P}(H)$.
+	\begin{align*}
+		(\cdot, \cdot)_{\mathcal{P}(H)}: \mathcal{P}(H) \times \mathcal{P}(H) \to [0,1] : (\C x, \C y) \mapsto \frac{\vbraces{(x, y)_H}}{\norm[H]{x} \norm[H]{y}}
+	\end{align*}
+\end{definition}
+
+Can we make the projective Hilbert space a metric space? Yes, we can. For two rays $R$ and $S$ in the projective Hilbert space $\mathcal{P}(H)$ there exist unique orthogonal projections $P$ and $Q$ with $\ran P = R$ and $\ran Q = S$. So we can define a metric $d(R,S) := \norm{P - Q}$.
+
+
+
+\begin{lemma} \label{lemma:metric_representation}
+	In a projective Hilbert space $\mathcal{P}(H)$ for all rays $R$ and $S$ the equality 
+	\begin{align*}
+		d(R,S) = \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}
+	\end{align*}
+	holds.
+\end{lemma}
+
+\begin{proof}
+	Let $R,S \in\mathcal{P}(H)$ be arbitrary rays and $P: H \to R$ as well as $Q: H \to S$ be the orthogonal projections with $\ran P = R$ and $\ran Q = S$. If $R = S$ then we easily observe that the equation holds, thus from now on we assume $R \neq S$. Now we are going to have a look at the spectrum of $N: H \to H: x  \mapsto Px - Qx$. First we observe that due to the fact that $P$ and $Q$ are selfadjoint because they are orthogonal projections
+	\begin{align*}
+		N^\ast = P^\ast - Q^\ast = P - Q = N
+	\end{align*}
+	hence $N$ is selfadjoint as well. This particularly implies that $N$ is normal. Taking normalized vectors $u \in R$ and $v \in S$ we also observe that $\ran T \subseteq \mathrm{span}\{u, v\} =: W$ thus $\dim \ran T < \infty$ and according to Fana Prop. 6.5.4. this implies that $T$ is compact.
+	
+	Let us now assume $\lambda \in \C \setminus \{0\}$ is in the spectrum of $T$. Due to the fact that $T$ is compact we know from Fana Theorem 6.5.12 that $\lambda$ is eigenvalue of $T$ which gives us $T x = \lambda x$ for some $x \in H \setminus \{0\}$. This equation lets us conclude that $x \in \mathrm{span 
+	}\ T$ which means there exist $\mu, \nu \in \C$ with $x = \mu u + \nu v$. As we know that $x \neq 0$ we can also conclude that $\mu \neq 0$ or $\nu \neq 0$ and without loss of generality we assume $\mu \neq 0$. Now we start calculating.
+	\begin{align*}
+		\lambda \mu u + \lambda \nu v = \lambda x = Tx = Px - Qx = \mu Pu + \nu Pv - \mu Qu - \nu Qv = \mu u + \nu Pv - \mu Qu - \nu v .
+	\end{align*}
+	As $R \neq S$ we know that $u$ and $v$ are linearly independent and $Qu = (u,v)_H v$ as well as $Pv = (v,u)_H u$ hence the two equations
+	\begin{align}
+		\lambda \mu  = \mu  + \nu (v,u)_H \label{eq:metric1}\\
+		 \lambda \nu  = - \nu  - \mu (u,v)_H \label{eq:metric2}
+	\end{align}
+	must be fulfilled. 
+	
+	If $(v,u)_H = 0$ then from \eqref{eq:metric1} we conclude that $\lambda \mu = \mu$ and hence $\lambda = 1$. In this case we also observe that $(R,S)_{\mathcal{P}(H)} = |(u,v)_H| = 0$ and hence according to \ref{prop:spectral_radius}
+	\begin{align*}
+		d(R,S) = \norm{P - Q} = r(P - Q) = 1 = \sqrt{1 - (R,S)_{\mathcal{P}(H)}}
+	\end{align*}
+	which is what we had to show.
+	
+	Now assuming $(v,u)_H \neq 0$ we can do further calculations. First we use \eqref{eq:metric1} and obtain
+	\begin{align*}
+		\lambda = \frac{\mu + \nu (v,u)_H}{\mu} = 1 + \frac{\nu}{\mu} (v,u)_H 
+	\end{align*}
+	which lets us conclude that 
+	\begin{align}
+		\frac{\nu}{\mu} = \frac{\lambda - 1}{(v,u)_H}. \label{eq:metric3}
+	\end{align}
+	Now, using \eqref{eq:metric2},we obtain
+	\begin{align*}
+		 (\lambda + 1) \frac{\nu}{\mu} =  -(u,v)_H 
+	\end{align*}
+	and plugging in \eqref{eq:metric3} we conclude that
+	\begin{align*}
+			\frac{\lambda^2 - 1}{(v,u)_H} = (\lambda + 1) \frac{\lambda - 1}{(v,u)_H} =  - (u,v)_H.
+	\end{align*}
+	With a simple transformation we get
+	\begin{align*}
+		\lambda = \pm \sqrt{1 - |(u,v)|^2} = \pm \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}.
+	\end{align*}
+	Although we do not know for sure whether $0$ is in the spectrum of $T$ we now know the spectral radius of $T$ which finishes the proof because using \ref{prop:spectral_radius} we obtain
+	\begin{align*}
+		d(R,S) = \norm{P - Q} = r(P - Q) = \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}.
+	\end{align*}
+\end{proof}
+
+
+note: It would be possible to define the metric through the equation in the lemma above, which would make things a bit easier, but more boring, because then I would have to do the tedious work of checking whether this really is a metric.
+
+Next we will have a look at isometries between projective Hilbert spaces.
+
+\begin{lemma}[not necessary]
+	The surjective isometries $\mathcal{P}(H) \to \mathcal{P}(H)$ form a group.
+\end{lemma}
+
+\begin{lemma}
+	Let $\mathcal{P}(H_1)$ and $\mathcal{P}(H_2)$ be two projective Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let furthermore $M := \{e_\alpha \mid \alpha \in A\}$ be an orthonormal basis of $H_1$ and $x \in H_1$ and $y \in g(\C x)$ be normalized vectors. For each $\alpha \in A$ we have a normalized vector $f_\alpha \in g(\C e_\alpha)$.  Then the  following statements are true.
+	
+	\begin{enumerate}
+		\item For another pair $u \in H_1$ and $v \in g(\C u)$ of normalized vectors the equality
+		\begin{align} 
+			\vbraces{(x, u)_{H_1}} = \vbraces{(y, v)_{H_2}} \label{eq:vector_isometry}
+		\end{align}
+		holds.		
+		
+		\item The set $L:=\{f_\alpha \mid \alpha \in A\}$ is an orthonormal system in $H_2$. \label{bullet:ran_ons}
+		
+		\item 
+		\begin{align}
+		y = \sum_{\alpha \in A} (y, f_\alpha)_{H_2} f_\alpha. \label{eq:ran_fourier}
+		\end{align}
+		
+	\end{enumerate} 
+\end{lemma}
+
+\begin{proof}
+	We will proof the statements separately.
+	\begin{enumerate}
+		\item Using \ref{lemma:metric_representation} we obtain
+		\begin{align*}
+			\sqrt{1 - |(x,u)_{H_1}|^2} &= \sqrt{1 - (\C x,\C u)_{\mathcal{P}(H_1)}^2} = d(\C x,\C u) \\
+			&= d\pbraces{g(\C x), g(\C u)} = \sqrt{1 - (g(\C x), g(\C u))_{\mathcal{P}(H_2)}^2} = \sqrt{1 - |(y, v)_{H_2}|^2}
+		\end{align*}
+		and we immediately observe that $|(x,u)_{H_1}| = |(y,v)_{H_2}|$. 
+		
+		\item Using what we just proofed \eqref{eq:vector_isometry} and the fact that $M$ is an orthonormal basis of $H_1$ we get fot any $\alpha, \beta \in A$ the equality
+		\begin{align*}
+			|(f_\alpha, f_\beta)_{H_2}| = |(e_\alpha, e_\beta)_{H_1}| = 
+			\begin{cases}
+				0 &, \text{if } \alpha \neq \beta \\
+				1 &, \text{if } \alpha = \beta
+			\end{cases}.
+		\end{align*}
+		Hence $L$ is an orthonormal system.
+		
+		\item Using \eqref{eq:vector_isometry} and Parzeval's equality \eqref{eq:parzeval} we obtain
+		\begin{align*}
+			\norm[H_2]{y} = |(y,y)_{H_2}| = |(x,x)_{H_1}| = \norm[H_1]{x} = \sum_{\alpha \in A} |(x, e_\alpha)_{H_1}|^2 = \sum_{\alpha \in A} |(y, f_\alpha)_{H_2}|^2.
+		\end{align*}
+		Because of \ref{bullet:ran_ons} we can now use \eqref{eq:parceval_to_fourier} and immediately get \eqref{eq:ran_fourier}, which is just what we wanted to show.
+	\end{enumerate}
+\end{proof}

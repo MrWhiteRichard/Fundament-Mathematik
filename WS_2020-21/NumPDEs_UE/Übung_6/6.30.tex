@@ -1,0 +1,42 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Implementieren Sie einen \textit{Goal Driven} Fehlerschätzer für lineare
+Funktionale. Verwenden Sie dazu den ZZ-Fehlerschätzer von Bsp. 24/25 und die
+Zusatzmaterialien \textit{goal\_driven\_error\_estimator.pdf} und
+\textit{GoalDriven\_estimator.ipynb}. \\
+Sei $\Omega := [0,1]^2$. Gesucht ist ein $u \in H_0^1(\Omega)$, sodass für alle
+$v \in H_0^1(\Omega)$
+\begin{align}
+  \int_\Omega \nabla u \nabla v\, \mathrm{d}x = \int_{[0.2,0.3]\times [0.45,0.55]}100\, v\, \mathrm{d}x.
+\end{align}
+Testen Sie die Funktionale
+\begin{itemize}
+  \item $b_1(u) = 100\int_{[0.7,0.8]\times[0.45,0.55]}u\, \mathrm{d}x$ \quad
+  (Referenzwert $= 0.042556207995730$),
+  \item $b_2(u) = 10\int_{\{0.75\}\times[0.45,0.55]}u\, \mathrm{d}s$ \quad
+  (Referenzwert $= 0.042349426604237$),
+  \item $b_3(u) = u(0.75,0.5)$ \quad
+  (Referenzwert $= 0.042557119266960$).
+\end{itemize}
+Erstellen Sie Konvergenzplots für den Fehler im Zielfunktional mit verschiedenen
+Polynomordnungen und vergleichen Sie mit der Verfeinerungsstrategie aus Bsp. 24/25.
+Wie unterscheiden sich die generierten Meshes? \\
+\textit{Bemerkung:} Falls Probleme beim Meshen der Geometrie auftreten, können Sie
+das mesh direkt mit \texttt{mesh = Mesh("{}mesh\_bsp30.vol"{})} laden. \\
+\textit{Hinweis:} Mit \texttt{..*ds("{}bcname"{})} kann über einen spezifischen Rand
+integriert werden und mit \texttt{b += v(0.75,0.5)} eine Punktkraft als rechte
+Seite angegeben werden. Auswertung eines linearen Funktionals via
+\texttt{InnerProduct(b.vec, u.vec)}.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

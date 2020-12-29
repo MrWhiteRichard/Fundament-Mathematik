@@ -1,0 +1,58 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $\Omega \subset \R^2$ ein konvexes Gebiet mit stückweise glattem Rand
+$\partial \Omega$. Wir betrachten in dieser Aufgabe a-priori Abschätzungen der
+Fehler einer FEM-Lösung die dadurch entstehen, dass $\Omega$ approximiert wird
+durch ein Gebiet $\Omega_h := \bigcup_{T \in \mathcal{T}_h} T \subset \R^2$ mit
+einer regulären Triangulierung $\mathcal{T}_h$ aus Dreiecken $T$ mit maximaler
+Gitterweite $h$. Dabei nehmen wir an, dass die Ecken der Triangulierung
+$\mathcal{T}_h$ auf dem Rand $\partial \Omega$ liegen und dass die jeweiligen
+Randteile von $\partial \Omega$ zwischen zwei benachbarten Randecken $V_j$ und
+$V_k$ als hinreichend glatte Funktion über der Randkante $\overline{V_jV_k}$
+darstellbar ist.
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Sei $T \in \mathcal{T}_h$. Falls $T$ ein Randdreieck ist, so bezeichne
+  $B_T$ das Gebiet zwischen den Randkanten von $T$ und $\partial \Omega$.
+  Anderenfalls sei $B_T = \emptyset$. Beweisen Sie, dass für Funktionen
+  $u \in L^{\infty}(\Omega)$ gilt
+  \begin{align}
+    \forall T \in \mathcal{T}: \ \int_{B_T} u(x) \mathrm{d} x = \|u\|_{L^\infty(\Omega)}
+    \Landau(h^3).
+  \end{align}
+  \item Sei $V_h$ definiert durch
+  \begin{align}
+    V_h := \{f \in C(\Omega) \mid \forall T \in \mathcal{T}_h:
+    f|_T \in P_1 \land f|_{B_T} \equiv 0\}.
+  \end{align}
+  Zeigen Sie, dass für eine hinrechend glatte Funktion $u \in H_0^1(\Omega)$ gilt
+  \begin{align}
+    \inf_{v_h \in V_h} \|u - v_h\|_{H^1(\Omega)} \leq Ch,
+  \end{align}
+  wobei $C > 0$ nicht von $h$ abhängen darf.
+  \item Begründen Sie, warum lineare Finite Elemente zur Lösung eines
+  Poisson-Problems mit homogenen Dirichlet-Randbedingungen auch dann linear
+  konvergieren, wenn $\Omega$ durch $\Omega_h$ ersetzt wird.
+  An welcher Stelle wird die Voraussetzung konvex benötigt?
+  Worauf könnte man eine Konvergenztheorie bei nicht konvexen Gebieten aufbauen?
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item Im Falle $B_T = \emptyset$ ist nichts zu zeigen. Sei also $B_T \neq \emptyset$.
+  \begin{align*}
+    \int_{B_T} u(x) \mathrm{d} x \leq |B_T|\|u\|_{L^\infty(\Omega)}
+  \end{align*}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
