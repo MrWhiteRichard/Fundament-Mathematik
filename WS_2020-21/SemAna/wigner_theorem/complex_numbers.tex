@@ -1,0 +1,91 @@
+\section{Complex numbers $\C$}
+
+As we will have to work a lot with the complex numbers $\C$ we want to start with some properties of them. 
+
+\begin{definition}
+	Let $K$ be a field and $\zeta: K \to K$ a bijective function. We call $\zeta$ an \textit{automorphism} of $K$ if for all $\lambda, \mu \in K$ the equalities
+	\begin{enumerate}
+		\item $\zeta(\lambda + \mu) = \zeta(\lambda) + \zeta(\mu)$
+		\item $\zeta(\lambda \mu) = \zeta(\lambda) \zeta(\mu)$
+	\end{enumerate}
+	are true.
+	
+\end{definition}
+
+\begin{definition}
+	Throughout this paper $\overline{\cdot}: \C \to \C: \lambda_1 + i \lambda_2 \mapsto \lambda_1 - i \lambda_2$ will be the \textit{complex conjugate}.
+\end{definition}
+
+It are well known facts that the complex conjugate is a continuous automorphism of $\C$ and is it's own inverse. Apart from the continuity which is very easy to show these facts can be found in \cite[p.40]{LinAG1&2} 	
+
+\begin{lemma} \label{lemma:complex_geom}
+	Let $\lambda \in \C$ and $|\lambda| = 1$. Then the following statements are true.
+	\begin{enumerate}
+		\item $|1 + \lambda| = 2 \Rightarrow \lambda = 1$
+		\item $|1 + \lambda| = \sqrt{2} \Rightarrow \lambda = i \lor \lambda = -i$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	We will proof the two statements separately. We always have $\lambda = \mu + i \nu$ with $\mu, \nu \in \R$. We start calculating and obtain
+	\begin{align*}
+		|1 + \lambda|^2 = |(1 + \mu) + i \nu|^2 = (1 + \mu)^2 + \nu^2 = 1 + 2\mu + \mu^2 + \nu^2 = 1 + 2\mu + |\lambda|^2 = 2 + 2 \mu.
+	\end{align*}
+	\begin{enumerate}
+		\item We know that $4 = |1 + \lambda|^2 = 2 + 2\mu$ and this implies $\mu = 1$ and using this knowledge we obtain
+		\begin{align*}
+			1 + \nu^2 = \mu^2 + \nu^2 = |\lambda|^2 = 1
+		\end{align*}
+		which lets us conclude $\nu^2 = 0$ and hence $\nu = 0$ thus $\lambda = \mu + i \nu = 1$. 
+		
+		\item Here we know that $2 = |1 + \lambda|^2 = 2 + 2\mu$ and hence $\mu = 0$. Using this knowledge we observe
+		\begin{align*}
+			\nu^2 = \mu^2 + \nu^2 = |\lambda|^2 = 1
+		\end{align*}
+		and thus $\nu = 1 \lor \nu = -1$. This implies $\lambda = \mu + i \nu = i \lor \lambda = -i$.  
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma} \label{lemma:phase_adjustment_complex}
+	For any complex number $\mu \in \C \setminus \{0\}$ there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. 
+\end{lemma}
+
+\begin{proof}
+	Let $\mu \in \C \setminus \{0\}$ be an arbitrary number. We define $\lambda := \frac{|\mu|}{\mu}$ which implies $|\lambda| = \frac{|\mu|}{|\mu|} = 1$ and obtain
+	\begin{align*}
+		|\lambda \mu| = |\lambda| |\mu| = |\mu| = \frac{|\mu|}{\mu} \mu = \lambda \mu.
+	\end{align*}
+	For another $\nu \in \C$ with $|\nu| = 1$ and $|\nu \mu| = \nu \mu$ we obtain
+	\begin{align*}
+		\nu = \frac{|\nu \mu|}{\mu} = \frac{|\nu| |\mu|}{\mu} = \frac{|\mu|}{\mu} = \lambda,
+	\end{align*}
+	hence $\lambda$ is unique. 
+\end{proof}
+
+\begin{lemma} \label{lemma:complex_alg}
+	Let $\lambda, \mu, \nu \in \C$ where $\lambda \neq 0$ and $|\mu| = |\nu|$. Then the following implication is  true. 
+	\begin{align*}
+		|\lambda + \nu| = |\lambda + \mu| \land |\lambda - i\nu| = |\lambda - i\mu| \Rightarrow \nu = \mu.
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	We write $\lambda = \lambda_1 + i \lambda_2$, $\mu = \mu_1 + i \mu_2$ and $\nu = \nu_1 + i \nu_2$ with $\lambda_1, \lambda_2, \mu_1, \mu_2, \nu_1, \nu_2 \in \R$ and start calculating.
+	\begin{align*}
+		|\lambda|^2 + |\nu|^2 + 2 \lambda_1 \nu_1 + 2 \lambda_2 \nu_2  &= (\lambda_1 + \nu_1)^2 + (\lambda_2 + \nu_2)^2 = |\lambda + \nu|^2 \\
+		&= |\lambda + \mu|^2 = |\lambda|^2 + |\mu|^2 + 2 \lambda_1 \mu_1 + 2 \lambda_2 \mu_2
+	\end{align*}
+	thus $\lambda_1 \nu_1 + \lambda_2 \nu_2 - \lambda_1 \mu_1 - \lambda_2 \nu_2 = 0$ and
+	\begin{align*}
+		|\lambda|^2 + |\nu|^2 + 2 \lambda_1 \nu_2 - 2 \lambda_2 \nu_1  &= (\lambda_1 + \nu_2)^2 + (\lambda_2 - \nu_1)^2 = |\lambda - i\nu|^2 \\
+		&= |\lambda - i\mu|^2 = |\lambda|^2 + |\mu|^2 + 2 \lambda_1 \mu_2 - 2 \lambda_2 \mu_1
+	\end{align*}
+	thus $\lambda_1 \nu_2 - \lambda_2 \nu_1 - \lambda_1 \mu_2 + \lambda_2 \mu_1 = 0$.
+	Now we find that
+	\begin{align*}
+		\overline{\lambda}(\nu - \mu) &= (\lambda_1 - i\lambda_2)(\nu_1 + i \nu_2 - \mu_1 - i\mu_2) \\
+		&= \lambda_1\nu_1 + i\lambda_1 \nu_2 - \lambda_1\mu_1 - i\lambda_1\mu_2 -i\lambda_2\nu_1 + \lambda_2\nu_2 + i\lambda_2\mu_1 - \lambda_2\mu_2 \\
+		&= (\lambda_1 \nu_1 + \lambda_2\nu_2 - \lambda_1\mu_1 - \lambda_2\mu_2) + i(\lambda_1 \nu_2 - \lambda_2\nu_1 -\lambda_1\mu_2 + \lambda_2\mu_1) = 0
+	\end{align*}
+	and because $\overline{\lambda} \neq 0$ we know that $\nu = \mu$.
+\end{proof}
