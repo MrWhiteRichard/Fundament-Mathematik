@@ -1,7 +1,7 @@
 \section{Hilbert spaces}
 
 \begin{definition}
-	Let $H$ be a Vector space over $\C$. A function $(\cdot, \cdot): H \times H \to \C$ is called \textit{scalar product} if 
+	Let $H$ be a Vector space over $\C$. A function $(\cdot, \cdot): H \times H \to \C$ is called \textit{inner product} if 
 	\begin{enumerate}
 		\item $(x,x) > 0$ for all $x \in H \setminus \{0\}$.
 		\item $(x,y) = \overline{(y,x)}$ for all $x,y \in H$.
@@ -9,21 +9,39 @@
 	\end{enumerate}
 \end{definition}
 
-Throughout this paper a vector space $H$ with a scalar product will carry the norm that is induced by this scalar product.
+\begin{remark}
+	We know from \cite[p.41]{FAna1} that an inner product induces a norm. Throughout this paper a vector space $H$ with an inner product will always be a normed spaces with this norm.
+\end{remark}
+
+\begin{remark}
+	For a vector space with inner product $(\cdot, \cdot): V \times V \to \C$ the inner product is continuous when $V \times V$ gets the product topology. Furthermore for every $y \in V$ we know that $f_y:V \to \C: x \mapsto (x,y)$ is continuous. The proof of these facts can be found in \cite[p.43]{FAna1} 
+\end{remark}
 
 \begin{definition}
 	A vector space $H$ over $\C$ with a scalar product that is complete with regard to the norm induced by the scalar prorduct is called a \textit{Hilbert space}.
 \end{definition}
 
-Note that we only consider Hilbert spaces over the field $\C$ and not over $\R$. 
+In this paper we are only going to consider Hilbert spaces over the field $\C$ and not over $\R$. 
+
+\begin{definition}
+	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call two subsets $M,N \subseteq V$ \textit{orthogonal}, denoted $M \perp N$, if for all $x \in M$ and all $y \in N$ we have $(x,y) = 0$.  
+\end{definition}
+
+\begin{definition}
+	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call a function $P: V \to V$ \textit{orthogonal projection}, if
+	\begin{enumerate}
+		\item $P = P^2$
+		\item $\ran P \perp \ker P$
+	\end{enumerate}
+\end{definition}
 
 \begin{lemma}\label{lemma:onb}
 	Let $H$ be a Hilbert space and $M$ an orthonormal system. Then there exists an orthonormal basis $\tilde{M} \supseteq M$. Particularly there exists an orthonormal basis of $H$. 
 \end{lemma}
 
-\begin{lemma}
-	Let $H$ be a Hilbert space and $M \subseteq H$ a closed subspace. Then there exists an orthogonal Projection $P$ with $\ran P = M$. 
-\end{lemma}
+\begin{proof}
+	The proof can be found in \cite[p.52]{FAna1}.
+\end{proof}
 
 \begin{lemma}
 	Let $H$ be a Hilbert space and $\{e_\alpha \mid \alpha \in A\}$ an orthonromal basis. Then the following statements are true for every $x \in H$.
