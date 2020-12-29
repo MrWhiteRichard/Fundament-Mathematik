@@ -1,0 +1,109 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+Die Einheitskugel in einem Hilbertraum $H$ ist strikt konvex, d.h. für $x \neq y \in H$, $\norm{x} = \norm{y} = 1$ gilt für $\lambda \in (0, 1): \norm{\lambda x + (1 - \lambda) y} < 1$.
+
+Sind die Räume $\ell^1(\N)$ respektive $\ell^\infty(\N)$ ebenfalls strikt konvex?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 2.6.1 (Cauchy-Schwarz-Ungleichung).png}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($x, y$ linear abhängig):
+    
+    \begin{align*}
+        \text{d.h.}~
+        \Exists c \in \C \setminus \Bbraces{0}:
+        x = c y
+        \implies
+        1 = \norm{x} = \norm{c y} = |c| \norm{y} = |c| = \sqrt{(\Re c)^2 + (\Im c)^2}
+    \end{align*}
+
+    $c \neq 1$, weil sonst wäre ja $x = y$.
+    Daher muss $\Re c < 1$.
+
+    \begin{align*}
+        \implies
+        |(x, y) + (y, x)|
+        =
+        |(c y, y) + (y, c y)|
+        =
+        |(c + \overline c) (y, y)|
+        =
+        2 \Re c \norm{y}^2
+        <
+        2
+    \end{align*}
+
+    \item Fall ($x, y$ linear unabhängig):
+
+    \begin{align*}
+        \implies
+        |(x, y) + (y, x)|
+        \leq
+        |(x, y)| + |(y, x)|
+        \stackrel
+        {
+            \mathrm{CS}
+        }{<}
+        \norm{x} \norm{y} + \norm{y} \norm{x}
+        =
+        2
+    \end{align*}
+
+\end{enumerate}
+
+\begin{align*}
+    \implies
+    \norm{\lambda x + (1 - \lambda) y}^2
+    & =
+    \norm{\lambda x}
+    +
+    (\lambda x, (1 - \lambda) y)
+    +
+    ((1 - \lambda) y, \lambda x)
+    +
+    \norm{(1 - \lambda) y}^2 \\
+    & =
+    \lambda^2 \norm{x}^2
+    +
+    \lambda \overline{(1 - \lambda)} (x, y)
+    +
+    (1 - \lambda) \overline \lambda (y, x)
+    +
+    (1 - \lambda)^2 \norm{y}^2 \\
+    & \leq
+    \lambda^2
+    +
+    \lambda (1 - \lambda)
+    \underbrace
+    {
+        |(x, y) + (y, x)|
+    }_{
+        < 2
+    }
+    +
+    (1 - \lambda)^2 \\
+    & <
+    (
+        \lambda
+        +
+        (1 - \lambda)
+    )^2 \\
+    & =
+    1
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

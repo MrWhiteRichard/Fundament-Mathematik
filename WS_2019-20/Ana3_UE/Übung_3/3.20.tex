@@ -1,0 +1,278 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Seien $y_j \neq 0$, $1 \leq j \leq n$ Elemente eines Hilbertraumes, dann gilt die folgende Verallgemeinerung der Bessel'schen Ungleichung:
+
+\begin{align*}
+    \norm{x}^2
+    \geq
+    \sum_{i=1}^n
+    \frac
+    {
+        |(x, y_i)|^2
+    }{
+        \sum_{j=0}^n
+        |(y_i, y_j)|
+    }.
+\end{align*}
+
+Hinw.:
+Zeigen Sie:
+
+\begin{align*}
+    0
+    \leq
+    \norm
+    {
+        x
+        -
+        \sum_{i=1}^n
+        \alpha_i y_i
+    }^2
+    =
+    \norm{x}^2
+    -
+    \sum_{i=1}^n
+    \overline \alpha_i (x, y_i)
+    +
+    \sum_{i,j=1}^n
+    \alpha_i \overline \alpha_j (y_i, y_j).
+\end{align*}
+
+$2 |\alpha_i \overline \alpha_j| \leq |\alpha_i|^2 + |\alpha_j|^2$ und setzen Sie
+
+\begin{align*}
+    \alpha_j
+    =
+    \frac
+    {
+        (x, y_j)
+    }{
+        \sum_{j=1}^n
+        |(y_i, y_j)|
+    }.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir zeigen natürlich zuerst den Hinweis.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    \begin{align*}
+        0
+        & \leq
+        \norm
+        {
+            x - \sum_{i=1}^n \alpha_i y_i
+        }^2 \\
+        & =
+        \pbraces
+        {
+            x - \sum_{i=1}^n \alpha_i y_i,
+            x - \sum_{i=1}^n \alpha_i y_i
+        } \\
+        & =
+        (x, x)
+        -
+        \pbraces
+        {
+            \pbraces
+            {
+                x,
+                \sum_{i=1}^n \alpha_i y_i
+            }
+            +
+            \pbraces
+            {
+                \sum_{i=1}^n \alpha_i y_i,
+                x
+            }
+        }
+        +
+        \pbraces
+        {
+            \sum_{i=1}^n \alpha_i y_i,
+            \sum_{i=1}^n \alpha_i y_i
+        } \\
+        & =
+        \norm{x}^2
+        -
+        \sum_{i=1}^n \overline \alpha_i (x, y_i)
+        -
+        \sum_{i=1}^n \alpha_i (y_i, x_i)
+        +
+        \sum_{i,j=1}^n \alpha_i \overline \alpha_j (y_i, y_j)
+    \end{align*}
+
+    \item Teil:
+    
+    \begin{align*}
+        2 |\alpha_i \overline \alpha_j|
+        \leq
+        |\alpha_j|^2 + |\alpha_j|^2
+        \iff
+        0
+        \leq
+        |\alpha_i|^2 - 2 |\alpha_i| |\overline \alpha_j| + |\alpha_j|^2
+        =
+        |\alpha_i|^2 - 2 |\alpha_i| |\alpha_j| + |\alpha_j|^2
+        =
+        (|\alpha_i| - |\alpha_j|)^2
+    \end{align*}
+
+\end{enumerate}
+
+Das werden wir auch noch brachen.
+
+\begin{align*}
+    0
+    \leq
+    \norm
+    {
+        \sum_{i=1}^n \alpha_i y_i
+    }^2
+    =
+    \pbraces
+    {
+        \sum_{i=1}^n \alpha_i y_i,
+        \sum_{i=1}^n \alpha_i y_i
+    }
+    =
+    \sum_{i,j=1}^n \alpha_i \overline \alpha_j (y_i y_j)
+    =
+    \abs
+    {
+        \sum_{i,j=1}^n \alpha_i \overline \alpha_j (y_i y_j)
+    }
+    \leq
+    \sum_{i,j=1}^n |\alpha_i \overline \alpha_j| |(y_i y_j)|
+\end{align*}
+
+Jetzt zur finalen Abschätzung.
+
+\begin{align*}
+    \stackrel
+    {
+        \mathrm{1. Teil}
+    }{\implies}
+    \norm{x}^2
+    & \geq
+    \sum_{i=1}^n \overline \alpha_i (x, y_i)
+    +
+    \sum_{i=1}^n \alpha_i (y_i, x)
+    -
+    \sum_{i,j=1}^n \alpha_i \overline \alpha_j (y_i y_j) \\
+    & \geq
+    \sum_{i=1}^n
+    \overline
+    {
+        \frac
+        {
+            (x, y_i)
+        }{
+            \sum_{j=1}^n |(y_i, y_j)|
+        }
+    }
+    (x, y_i)    
+    +
+    \sum_{i=1}^n
+    \frac
+    {
+        (x, y_i)
+    }{
+        \sum_{j=1}^n |(y_i, y_j)|
+    }
+    (y_i, x)
+    -
+    \sum_{i,j=1}^n |\alpha_i \overline \alpha_j| |(y_i y_j)| \\
+    & \stackrel
+    {
+        \mathrm{2. Teil}
+    }{\geq}
+    2 \sum_{i=1}^n
+    \frac
+    {
+        (x, y_i)
+        \overline{(x, y_i)}
+    }{
+        \sum_{j=1}^n |(y_i, y_j)|
+    }
+    -
+    \sum_{i,j=1}^n
+    \frac
+    {
+        |\alpha_i|^2 + |\alpha_j|^2
+    }{2}
+    |(y_i, y_j)| \\
+    & =
+    2 \sum_{i=1}^n
+    \frac
+    {
+        |(x, y_i)|^2
+    }{
+        \sum_{j=1}^n |(y_i, y_j)|
+    }
+    -
+    \frac{1}{2}
+    \pbraces
+    {
+        \sum_{i,j=1}^n |\alpha_i|^2 |(y_i, y_j)|
+        +
+        \sum_{i,j=1}^n |\alpha_j|^2 |(y_i, y_j)|    
+    } \\
+    & =
+    2 \sum_{i=1}^n
+    \frac
+    {
+        |(x, y_i)|^2
+    }{
+        \sum_{j=1}^n |(y_i, y_j)|
+    } \\
+    & -
+    \frac{1}{2}
+    \pbraces
+    {
+        \sum_{i=1}^n
+        \frac
+        {
+            |(x, y_i)|^2
+        }{
+            \pbraces
+            {
+                \sum_{j=1}^n |(y_i, y_j)|
+            }^2
+        }
+        \sum_{j=1}^n |(y_i, y_j)|
+        +
+        \sum_{j=1}^n
+        \frac
+        {
+            |(x, y_j)|^2
+        }{
+            \pbraces
+            {
+                \sum_{i=1}^n |(y_j, y_i)|
+            }^2
+        }
+        \sum_{i=1}^n |(y_i, y_j)|
+    } \\
+    & =
+    \frac
+    {
+        |(x, y_i)|^2
+    }{
+        \sum_{j=1}^n |(y_i, y_j)|
+    }
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

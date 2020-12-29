@@ -1,0 +1,99 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+In einem unendlichdimensionalen Hilbertraum ist die abgeschlossene Einheitskugel nicht kompakt.
+
+Hinw.:
+Betrachten Sie *berdeckungen mit $\rho$-Kugeln und $e_i \in B(\rho, x_i)$ für geeignetes $\rho$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $(e_i)_{i \in I}$ eine ONB des unendlichdimensionalen Hilbertraums $H$.
+Dieses Vektoren sind normiert, also liegen sie im Rand der Einheitskugel $\partial B(1, 0)$.
+
+\begin{align*}
+    \Forall i \in I:
+    \norm[H]{e_i} = 1
+    \implies
+    \Bbraces{e_i}_{i \in I} \subset \partial B(1, 0)
+\end{align*}
+
+Wir berechnen deren Abstand für $i, j \in I$.
+
+\begin{multline*}
+    \implies
+    \norm[H]{e_i - e_j}^2
+    =
+    (e_i - e_j, e_i - e_j)_H
+    =
+    (e_i - e_j, e_i)_H - (e_i - e_j, e_j)_H \\
+    =
+    (e_i, e_i)_H - (e_j, e_i)_H - (e_i, e_j)_H + (e_j, e_j)_H
+    =
+    \delta_{ij} - \delta_{ji} - \delta_{ij} + \delta_{jj}
+    =
+    \begin{cases}
+        0, & i = j \\
+        2, & \text{sonst}
+    \end{cases}
+\end{multline*}
+
+Seien $\rho := \frac{1}{\sqrt 2} = \frac{\sqrt 2}{2}$ und $(x_j)_{j \in J} \in H^J$ eine Überdeckung der Einheitskugel, d.h.
+
+\begin{align*}
+    \bigcup_{j \in J} B(\rho, x_j) \supseteq B(1, 0).
+\end{align*}
+
+Jeder ONB-Vektor liegt in einer dieser $\rho$-Kugeln, d.h.
+
+\begin{align*}
+    \Forall i \in I:
+    \Exists j \in J:
+    e_i \in B(\rho, x_j).
+\end{align*}
+
+Die Elemente der $\rho$-Kugel haben maximalen Abstand $\sqrt 2$.
+
+\begin{align*}
+    \Forall j \in J:
+    \Forall a, b \in B(\rho, x_j):
+    \norm[H]{a - b}
+    \leq
+    \norm[H]{a - x_j} + \norm[H]{x_j - b}
+    <
+    \rho + \rho
+    =
+    \sqrt 2
+\end{align*}
+
+Daher liegen keine zwei verschiedene ONB-Vektoren in einer $\rho$-Kugel.
+
+\begin{align*}
+    \Forall i_1, i_2 \in I:
+    i_1 \neq i_2:
+    \nExists j \in J:
+    e_{i_1}, e_{i_2} \in B(\rho, x_j)
+\end{align*}
+
+In jeder $\rho$-Kugel liegt also genau ein ONB-Vektor.
+Wir wenden das Schubfach-Prinzip an.
+Weil $H$ unendlichdimensional ist, kann es keine endliche Teilüberdeckung geben, weil darin einer der ONB-Vektoren nicht enthalten wäre.
+
+\begin{align*}
+    |I| = \dim H = \infty
+    \implies
+    & \Forall J^\prime \in \mathcal{E}(J):
+    \Exists i \in I:
+    e_i \not \in \bigcup_{j \in J^\prime} B(\rho, x_j) \\
+    \implies
+    & e_i \in B(1, 0) \not \subseteq \bigcup_{j \in J^\prime} B(\rho, x_j)
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

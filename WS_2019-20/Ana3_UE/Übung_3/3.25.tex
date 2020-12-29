@@ -1,0 +1,293 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie die Koeffizienten der Reihendarstellung
+
+\begin{align*}
+    f(x)
+    =
+    \sum_{n=1}^\infty
+    b_n
+    \sin \pbraces{n \frac{\pi}{T} x},
+    \quad
+    x \in [-T, T]
+\end{align*}
+
+für die Funktion $f: [-T, T] \to \R$, $f(x) = x$ und damit
+
+\begin{align*}
+    \sum_{n=1}^\infty
+    \frac{1}{n^2}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir gehen davon aus, dass $T \neq 0$ bzw. $T > 0$, weil sonst die erste Reihe nicht wohldefiniert ist.
+
+\includegraphicsboxed{Ana3/Ana3 - Fourier-Series Cheat-Sheet - 1.png}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    Vorerst betrachten wir die folgende Funktion.
+
+    \begin{align*}
+        g:
+        [-\pi, \pi] \to \R:
+        g(x) = x
+    \end{align*}
+
+    Weil $\cos$ gerade und $g$ ungerade ist, fallen die $\cos$-Terme weg.
+    Wir berechnen also nur die $\sin$-Terme.
+
+    \includegraphicsboxed{Ana1&2/Ana1&2 - Abbildung 6.11 - Funktionsgraphen des reellen Sinus und Cosinus.png}
+
+    Der Abbildung 6.11 ist zu entnehmen, dass
+
+    \begin{align*}
+        \cos(n \pi) = (-1)^n,
+        \quad
+        \sin(n \pi) = 0,
+        \quad
+        \cos \pbraces{n \pi + \frac{\pi}{2}} = 0,
+        \quad
+        \sin \pbraces{n \pi + \frac{\pi}{2}} = (-1)^n,
+        \quad
+        n \in \Z.
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \tilde b_n
+        & =
+        \frac{1}{\pi}
+        \Int[-\pi][\pi]{g(x) \sin (n x)}{x} \\
+        & =
+        \frac{1}{\pi}
+        \Int[-\pi][\pi]{x \sin (n x)}{x} \\
+        & \stackrel
+        {
+            \mathrm{PI}
+        }{=}
+        \frac{1}{\pi}
+        \pbraces
+        {
+            x \frac{-\cos(n x)}{n} \Big |_{x=-\pi}^\pi
+            -
+            \Int[-\pi][\pi]
+            {
+                \frac{-\cos(n x)}{n}
+            }{x}
+        } \\
+        & =
+        \frac{1}{\pi}
+        \pbraces
+        {
+            \pi \frac{-\cos(n \pi)}{n}
+            -
+            (-\pi) \frac{-\cos(n \pi)}{n}
+            +
+            \frac{1}{n}
+            \Int[-\pi][\pi]
+            {
+                \cos(n x)
+            }{x}
+        } \\
+        & =
+        \frac{-2 \cos(n \pi)}{n}
+        +
+        \frac{1}{n^2 \pi}
+        \Int[-n \pi][n \pi]{\cos u}{u} \\
+        & =
+        \frac{1}{n^2 \pi}
+        \underbrace
+        {
+            \sin u \Big |_{u = -n \pi}^{n \pi}
+        }_0
+        +
+        \frac{2 (-1)^{n+1}}{n} \\
+        & =
+        \frac{2 (-1)^{n+1}}{n}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = n x
+        \implies
+        \derivative[][u]{x} = n
+        \implies
+        \mathrm{d} x = \frac{1}{n} \mathrm{d}u
+    \end{align*}
+
+    Wir erhalten also die Folgende Reihendarstellung.
+
+    \begin{align*}
+        x
+        =
+        g(x)
+        =
+        \sum_{n=1}^\infty
+        \tilde b_n
+        \sin(n x)
+        =
+        \sum_{n=1}^\infty
+        \frac{2 (-1)^{n+1}}{n}
+        \sin(n x),
+        \quad
+        x \in [-\pi, \pi]
+    \end{align*}
+
+    \begin{align*}
+        \Forall y \in [-T, T]:
+        x = \frac{\pi}{T} y \in [-\pi, \pi]
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \frac{\pi}{T} y
+        =
+        x
+        =
+        \sum_{n=1}^\infty
+        \frac{2 (-1)^{n+1}}{n}
+        \sin(n x)
+        =
+        \sum_{n=1}^\infty
+        \frac{2 (-1)^{n+1}}{n}
+        \sin \pbraces{n \frac{\pi}{T} y},
+        \quad
+        y \in [-T, T]
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        f(y)
+        =
+        y
+        =
+        \sum_{n=1}^\infty
+        b_n
+        \sin \pbraces{n \frac{\pi}{T} y},
+        \quad
+        y \in [-T, T],
+        \quad
+        b_n
+        :=
+        \frac{T}{\pi}
+        \frac{2 (-1)^{n+1}}{n},
+        \quad
+        n \in \N
+    \end{align*}
+
+    \item Teil:
+    
+    \includegraphicsboxed{Ana3/Ana3 - (3.1).png}
+    \includegraphicsboxed{Ana3/Ana3 - Fourier-Series Cheat-Sheet - 2.png}
+
+    Wir wählen $T := \pi$.
+
+    \begin{align*}
+        \hat f(0)
+        =
+        0,
+        \quad
+        \hat f(\pm n)
+        =
+        \sqrt \frac{\pi}{2}
+        (a_n \mp i b_n)
+        =
+        \sqrt \frac{\pi}{2}
+        \pbraces
+        {
+            \mp i
+            \frac{T}{\pi}
+            \frac{2 (-1)^{n+1}}{n}
+        }
+        =
+        \sqrt \frac{\pi}{2}
+        \pbraces
+        {
+            \mp i
+            \frac{2 (-1)^{n+1}}{n}
+        },
+        \quad
+        n \in \N
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \sum_{n \in \Z}
+        \abs{\hat f(n)}^2
+        =
+        \sum_{n \in \Z \setminus \Bbraces{0}}
+        \abs
+        {
+            \sqrt \frac{\pi}{2}
+            \pbraces
+            {
+                \mp i
+                \frac{2 (-1)^{n+1}}{n}
+            }            
+        }^2
+        =
+        \sum_{n \in \Z \setminus \Bbraces{0}}
+        \frac{\pi}{2}
+        \frac{4}{n^2}
+        =
+        2 \pi
+        \sum_{n \in \Z \setminus \Bbraces{0}}
+        \frac{1}{n^2}
+        =
+        4 \pi
+        \sum_{n=1}^\infty
+        \frac{1}{n^2}
+    \end{align*}
+
+    \begin{align*}
+        \norm[{L^2[-\pi, \pi]}]{f}^2
+        =
+        \Int[-\pi][\pi]{|f(x)|^2}{x}
+        =
+        \Int[-\pi][\pi]{x^2}{x}
+        =
+        \frac{x^3}{3} \Big |_{x = -\pi}^\pi
+        =
+        \frac{\pi^3}{3} - \frac{(-\pi)^3}{3}
+        =
+        \frac{2 \pi^3}{3}
+    \end{align*}
+
+    \begin{align*}
+        & \implies
+        4 \pi
+        \sum_{n=1}^\infty
+        \frac{1}{n^2}
+        =
+        \sum_{n \in \Z}
+        \abs{\hat f(n)}^2
+        =
+        \norm[{L^2[-\pi, \pi]}]{f}^2
+        =
+        \frac{2 \pi^3}{3} \\
+        & \implies
+        \sum_{n=1}^\infty
+        \frac{1}{n^2}
+        =
+        \frac{1}{4 \pi}
+        \frac{2 \pi^3}{3}
+        =
+        \frac{\pi^2}{6}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

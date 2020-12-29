@@ -1,0 +1,134 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $H$ Hilbertraum und $M$ ein abgeschlossener Unterraum.
+Für $x \in H$ gibt es ein eindeutiges $m \in M$ das minimalen Abstand zu $x$ hat.
+
+Hinw.:
+Betrachten Sie eine ON-Basis für $M$ und ergänzen Sie diese zu einer ON-Basis von $H$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $(e_i)_{i \in J}$ eine ONB von $M$.
+Ergänze dieses zu einer ONB $(e_i)_{i \in I}$ von $H$, also mit $J \subset I$.
+Wir definieren unseren Kandidaten als die Projektion von $x$ auf $M$.
+
+\begin{align*}
+    m
+    :=
+    P_M x
+    =
+    \sum_{i \in J} (x, e_i) e_i
+    \in
+    M
+\end{align*}
+
+Sei $\tilde m \in M$.
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 2.6.4.png}
+
+Laut Satz 2.6.4 (iii) (unbedingte Konvergenz) finden wir folgende Darstellungen.
+
+\begin{align*}
+    \tilde m = \sum_{i \in J} (\tilde m, e_i) e_i,
+    \quad
+    x = \sum_{i \in I} (x, e_i) e_i
+\end{align*}
+
+\includegraphicsboxed{Ana1&2/Ana1&2 - 5.4.9 Lemma.png}
+
+Laut Lemma 5.4.9 dürfen wir in unbedingt konvergenten Reihen beliebig vertauschen.
+
+\begin{align*}
+    \implies
+    x - m
+    =
+    \sum_{i \in J} (x, e_i) e_i
+    +
+    \sum_{i \in I \setminus J} (x, e_i) e_i
+    -
+    \sum_{i \in J} (x, e_i) e_i
+    =
+    \sum_{i \in I \setminus J} (x, e_i) e_i
+\end{align*}
+
+\begin{multline*}
+    \implies
+    x - \tilde m
+    =
+    \sum_{i \in J} (x, e_i) e_i
+    +
+    \sum_{i \in I \setminus J} (x, e_i) e_i
+    -
+    \sum_{i \in J} (\tilde m, e_i) e_i
+    =
+    (x - m)
+    +
+    \sum_{i \in J}
+    (
+        (x, e_i)
+        -
+        (\tilde m, e_i)
+    )
+    e_i \\
+    =
+    (x - m)
+    +
+    \sum_{i \in J} (x - \tilde m, e_i) e_i
+    =
+    (x - m)
+    +
+    P_M(x - \tilde m)
+\end{multline*}
+
+Weil das Hilbertraum-Skalarprodukt $(\cdot, \cdot)$ stetig ist, rutscht $\lim$, also auch unbedingt konvergente Summen durch.
+
+\begin{align*}
+    \implies
+    (x - m, P_M(x - \tilde m))
+    =
+    \pbraces
+    {
+        \sum_{i \in I \setminus J} (x, e_i) e_i,
+        \sum_{i \in J} (x - \tilde m, e_i) e_i
+    }
+    =
+    \sum_{\substack{i \in J \\ j \in I \setminus J}}
+    (x, e_i)
+    \overline{(x - \tilde m, e_j)}
+    \underbrace{(e_i, e_j)}_0
+    =
+    0
+\end{align*}
+
+$x - m$ und $P_M(x - \tilde m)$ sind daher orthogonal.
+
+\begin{align*}
+    \implies
+    \norm{x - \tilde m}^2
+    =
+    \norm
+    {
+        (x - m)
+        +
+        P_M(x - \tilde m)
+    }^2
+    \stackrel
+    {
+        \mathrm{Pythagoras}
+    }{=}
+    \norm{x - m}^2
+    +
+    \norm{x}^2
+    \geq
+    \norm{x - m}^2
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,310 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Betrachten Sie die Funktion
+
+\begin{align*}
+    f(x)
+    =
+    \begin{cases}
+        1 & 0 \leq |x| \leq d \\
+        0 & d \leq |x| \leq \pi
+    \end{cases}
+\end{align*}
+
+und berechnen Sie damit und Bsp. 25
+
+\begin{align*}
+    \sum_{n=1}^\infty
+    \frac{\sin^2(n d)}{n^2}
+    \quad
+    \text{und}
+    \quad
+    \sum_{n=1}^\infty
+    \frac{\cos^2(n d)}{n^2}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil (Fourier-Reihe):
+
+    $f = \1_\bbraces{-d, d}$, $d \in [0, \pi]$ ist eine gerade Funktion $\in L^2[-\pi, \pi]$.
+    Weil $\sin$ ungerade und $f$ gerade ist, fallen die $\sin$-Terme weg.
+    Wir berechnen also nur die $\cos$-Terme.
+    
+    \begin{align*}
+        a_0
+        =
+        \frac{1}{\pi}
+        \Int[-\pi][\pi]{f(x)}{x}
+        =
+        \frac{1}{\pi}
+        \Int[-d][d]{}{x}
+        =
+        \frac{2 d}{\pi}
+    \end{align*}
+    
+    \begin{multline*}
+        a_n
+        =
+        \frac{1}{\pi}
+        \Int[-\pi][\pi]{f(x) \cos(n x)}{x}
+        =
+        \frac{1}{\pi}
+        \Int[-d][d]{\cos(n x)}{x} \\
+        =
+        \frac{2}{\pi}
+        \Int[0][d]{\cos(n x)}{x}
+        =
+        \frac{2}{\pi}
+        \frac{1}{n}
+        \Int[0][n d]{\cos u}{u}
+        =
+        \frac{2}{n \pi}
+        \sin u \Big |_{u=0}^{n d}
+        =
+        \frac{2}{n \pi}
+        \sin(n d)
+    \end{multline*}
+    
+    Dabei haben wir folgende Substitution verwendet.
+    
+    \begin{align*}
+        u = n x
+        \implies
+        \derivative[][u]{x} = n
+        \implies
+        \mathrm{d} x = \frac{1}{n} \mathrm{d} u
+    \end{align*}
+    
+    \begin{align*}
+        \implies
+        f(x)
+        =
+        \frac{a_0}{2}
+        +
+        \sum_{n=1}^\infty
+        a_n \cos(n x)
+        =
+        \frac
+        {
+            \frac{2 d}{\pi}
+        }{2}
+        +
+        \sum_{n=1}^\infty
+        \frac{2}{n \pi}
+        \sin(n d)
+        \cos(n x)
+        =
+        \frac{d}{\pi}
+        +
+        \frac{2}{\pi}
+        \sum_{n=1}^\infty
+        \frac{1}{n}
+        \sin(n d)
+        \cos(n x)    
+    \end{align*}
+    
+    \item Teil (Beiwerk):
+
+    \begin{align*}
+        R_1
+        :=
+        \sum_{n=1}^\infty
+        \frac{\sin^2(n d)}{n^2},
+        \quad
+        R_2
+        :=
+        \sum_{n=1}^\infty
+        \frac{\cos^2(n d)}{n^2}
+    \end{align*}
+    
+    \begin{align*}
+        \implies
+        R_1 + R_2
+        =
+        \sum_{n=1}^\infty
+        \frac
+        {
+            \sin^2(n d)
+            +
+            \cos^2(n d)
+        }{n^2}    
+        =
+        \sum_{n=1}^\infty
+        \frac{1}{n^2}
+        =
+        \frac{\pi^2}{6}
+    \end{align*}
+    
+    Wir haben also ein \Quote{$(1 + 1)$-gratis}.
+
+    \begin{gather*}
+        \hat f(\pm n)
+        =
+        \sqrt \frac{\pi}{2}
+        (a_n \mp i b_n)
+        =
+        \sqrt \frac{\pi}{2}
+        \frac{2}{n \pi}
+        \sin(n d)
+        =
+        \sqrt \frac{2}{n^2 \pi}
+        \sin(n d),
+        \quad
+        n \in \N, \\
+        \quad
+        \hat f(0)
+        =
+        \sqrt \frac{\pi}{2}
+        (a_0 \mp i b_0)
+        =
+        \sqrt \frac{\pi}{2}
+        \frac{2 d}{\pi}
+        =
+        \sqrt \frac{2 d^2}{\pi}
+    \end{gather*}
+
+    \begin{align*}
+        \implies
+        \sum_{n \in \Z}
+        \abs{\hat f(n)}^2
+        & =
+        \sum_{n=1}^\infty
+        \abs{\hat f(-n)}^2
+        +
+        \abs{\hat f(0)}^2
+        +
+        \sum_{n=1}^\infty
+        \abs{\hat f(+n)}^2 \\
+        & =
+        \sum_{n=1}^\infty
+        \abs
+        {
+            \sqrt \frac{2}{(-n)^2 \pi}
+            \sin(-n d)  
+        }^2
+        +
+        \abs
+        {
+            \sqrt \frac{2 d^2}{\pi}
+        }^2
+        +
+        \sum_{n=1}^\infty
+        \abs
+        {
+            \sqrt \frac{2}{n^2 \pi}
+            \sin(n d)   
+        }^2 \\
+        & =
+        \frac{2 d^2}{\pi}
+        +
+        2 \sum_{n=1}^\infty
+        \frac{2}{n^2 \pi}
+        \sin^2(n d) \\
+        & =
+        \frac{2 d^2}{\pi}
+        +
+        \frac{4}{\pi}
+        \sum_{n=1}^\infty
+        \frac
+        {
+            \sin^2(n d)
+        }{n^2}
+    \end{align*}
+
+    \begin{align*}
+        \norm[{L^2[-\pi, \pi]}]{f}^2
+        =
+        \Int[-\pi][\pi]{|f(x)|^2}{x}
+        =
+        \Int[-d][d]{}{x}
+        =
+        2 d
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        2 d
+        =
+        \norm[{L^2[-\pi, \pi]}]{f}^2
+        =
+        \sum_{n \in \Z}
+        \abs{\hat f(n)}^2
+        =
+        \frac{2 d^2}{\pi}
+        +
+        \frac{4}{\pi}
+        \sum_{n=1}^\infty
+        \frac
+        {
+            \sin^2(n d)
+        }{n^2}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        R_1
+        =
+        \sum_{n=1}^\infty
+        \frac{\sin^2(n d)}{n^2}
+        =
+        \pbraces
+        {
+            2 d
+            -
+            \frac{2 d^2}{\pi}
+        }
+        \frac{\pi}{4}
+        =
+        \frac
+        {
+            d (\pi - d)
+        }{2}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \sum_{n=1}^\infty
+        \frac{\cos^2(n d)}{n^2}
+        =
+        R_2
+        =
+        \frac{\pi^2}{6}
+        -
+        R_1
+        =
+        \frac{\pi^2}{6}
+        -
+        \frac
+        {
+            d (\pi - d)
+        }{2}
+        =
+        \frac{\pi^2}{6}
+        -
+        \frac
+        {
+            3 d (\pi - d)
+        }{6}
+        =
+        \frac
+        {
+            \pi^2 - 3 d \pi + 3 d^2
+        }{6}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
