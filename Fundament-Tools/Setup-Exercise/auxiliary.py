@@ -141,7 +141,11 @@ def setup_exercise_main(
         ),
         (
             '  ' + r'\textit{' + 'Untertitel' + r'}' + '\r' + '\n',
-            '  ' + r'\textit{' + f'{exercise_session_number}.' + ' ' + u'Übung' + ' ' + f'am {exercise_date}' + r'}' + '\r' + '\n'
+            '  ' + r'\textit{' + f'{exercise_session_number}.' + ' ' + u'Übung' + r'}' + '\r' + '\n'
+        ),
+        (
+            r'\date{}' + '\r' + '\n',
+            r'\date{' + f'{exercise_date}' + r'}' + '\r' + '\n'
         )
     ]
 
