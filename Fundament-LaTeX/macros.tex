@@ -31,21 +31,21 @@
 
 % graphics:
 
-\newcommand{\includegraphicsboxed}[1]
+\newcommand{\includegraphicsboxed}[2][0.75]
 {
   \begin{center}
     \begin{tcolorbox}[standard jigsaw, opacityback = 0]
       \begin{center}
-        \includegraphics[width = 0.75 \textwidth]{#1}
+        \includegraphics[width = #1 \textwidth]{#2}
       \end{center}
     \end{tcolorbox}
   \end{center}
 }
 
-\newcommand{\includegraphicsunboxed}[1]
+\newcommand{\includegraphicsunboxed}[2][0.75]
 {
   \begin{center}
-    \includegraphics[width = 0.75 \textwidth]{#1}
+    \includegraphics[width = #1 \textwidth]{#2}
   \end{center}
 }
 
@@ -147,6 +147,9 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\Aut}{Aut}
+
+% lipschitz-functions
+\DeclareMathOperator{\Lip}{Lip}
 
 % constants
 \DeclareMathOperator{\NIL}{NIL}
