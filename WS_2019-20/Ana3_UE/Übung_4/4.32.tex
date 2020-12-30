@@ -1,0 +1,137 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass für $f \in L^1(\T)$ die Operatornorm von $T_f L^1 \to L^1$, $T_f g = f \ast g$ gleich $\norm[1]{f}$ ist.
+
+Hinw.
+Betrachten Sie $T_f F_n$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{align*}
+    \norm{T_f}
+    \stackrel{!}{=}
+    \sup M,
+    \quad
+    M
+    :=
+    \Bbraces
+    {
+        \norm[1]{T_f g}:
+        g \in L^1(\T),
+        \norm[1]{g} = 1
+    }
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Ungleichung (\Quote{$\leq$}):
+
+    \includegraphicsboxed{Ana3/Ana3 - (2.9).png}
+
+    \item Ungleichung (\Quote{$\geq$}):
+    
+    \includegraphicsboxed{Ana3/Ana3 - (3.10).png}
+    \includegraphicsboxed{Ana3/Ana3 - Proposition 2.4.1.png}
+
+    \begin{align*}
+        \sigma_n:
+        L^1(\T) \to P_{n-1}(\T),
+        \sigma_n f
+        =
+        \frac{1}{2 \pi}
+        F_n \ast f
+        \stackrel
+        {
+            \mathrm{2.4.1}
+        }{=}
+        \frac{1}{2 \pi}
+        f \ast F_n
+        =
+        \frac{1}{2 \pi}
+        T_f F_n
+        =
+        T_f
+        \pbraces
+        {
+            \frac{1}{2 \pi}
+            F_n
+        }
+    \end{align*}
+
+    $P_{n-1}$ ist der Raum der trigonometrischen Polynome vom Grad $< n$.
+
+    \includegraphicsboxed{Ana3/Ana3 - Lemma 3.1.13.png}
+
+    \begin{align*}
+        & \implies
+        \norm[1]{F_n}
+        =
+        \Int[\T]{|F_n|}{x}
+        \stackrel
+        {
+            \mathrm{3.1.13}
+        }{=}
+        \Int[\T]{F_n}{x}        
+        \stackrel
+        {
+            \mathrm{3.1.13}
+        }{=}
+        2 \pi \\
+        & \implies
+        \norm[1]
+        {
+            \frac{1}{2 \pi}
+            F_n
+        }
+        =
+        1
+    \end{align*}
+    
+    \includegraphicsboxed{Ana3/Ana3 - Satz 3.1.14.png}
+
+    \begin{align*}
+        & \implies
+        \norm[1]
+        {
+            f
+            -
+            T_f
+            \pbraces
+            {
+                \frac{1}{2 \pi}
+                F_n
+            }
+        }
+        =
+        \norm[1]{f - \sigma_n f}
+        \xrightarrow[]{n \to \infty}
+        0 \\
+        & \implies
+        M
+        \ni
+        \norm[1]
+        {
+            T_f
+            \pbraces
+            {
+                \frac{1}{2 \pi}
+                F_n
+            }
+        }
+        \xrightarrow[]{n \to \infty}
+        \norm[1]{f}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

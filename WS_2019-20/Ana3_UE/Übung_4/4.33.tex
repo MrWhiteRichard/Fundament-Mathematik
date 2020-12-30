@@ -1,0 +1,150 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{enumerate}[label = (\roman*)]
+
+    \item Für $f \in L^1(\T)$ mit Stammfunktion $F$ mit $\Int[\T]{F(t)}{t} = 0$ gilt $\hat F(n) = \frac{-i}{n} \hat f(n)$ $n \neq 0$, $F(0) = 0$.
+    
+    \item Sei $\norm[A(\T)]{f} = \sum_{n \in \Z} \abs{\hat f(n)}$ auf dem Raum $A(\T)$ aller Funktionen mit absolut konvergenter Fourierreihe.
+    Dann gilt $\norm[A(\T)]{f g} \leq \norm[A(\T)]{f} \norm[A(\T)]{g}$
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\roman*)]
+
+    \item \phantom{}
+    
+    \begin{align*}
+        \hat F(n)
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            F(x)
+            e^{-i n x}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Bigg (
+            F(x) \frac{-1}{i n} e^{-i n x} \Big |_{x = -\pi}^\pi
+            -
+            \frac{-1}{i n}
+            \Int[-\pi][\pi]
+            {
+                f(x)
+                e^{-i n x}
+            }{x}    
+        \Bigg ) \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        F(\pi) \frac{-1}{i n} \underbrace{e^{-i n \pi}}_1
+        -
+        \frac{1}{\sqrt{2 \pi}}
+        F(-\pi) \frac{-1}{i n} \underbrace{e^{i n \pi}}_1
+        +
+        \frac{-i}{n}
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            f(x)
+            e^{-i n x}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \frac{-1}{i n}
+        \underbrace
+        {
+            (
+                F(\pi)
+                -
+                F(-\pi)
+            )
+        }_0
+        +
+        \frac{-i}{n}
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            f(x)
+            e^{-i n x}
+        }{x} \\
+        & =
+        \frac{-i}{n}
+        \hat f(n)
+    \end{align*}
+
+    \begin{align*}
+        \hat F(0)
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\T]
+        {
+            F(x)
+            \underbrace{e^{-i 0 x}}_1
+        }{x}
+        =
+        0
+    \end{align*}
+
+    \item \phantom{}
+    
+    \includegraphicsboxed{Ana3/Ana3 - Satz 3.1.5.png}
+
+    \begin{multline*}
+        \implies
+        \norm[A(\T)]{f g}
+        =
+        \sum_{n \in \Z}
+        \abs{\widehat{f g}(n)}
+        \stackrel
+        {
+            \mathrm{3.1.5}
+        }{=}
+        \sum_{n \in \Z}
+        \abs
+        {
+            \frac{1}{\sqrt{2 \pi}}
+            \sum_{l \in \Z}
+            \hat f(n - l)
+            \hat g(l)
+        }
+        \leq
+        \frac{1}{\sqrt{2 \pi}}
+        \sum_{n \in \Z}
+        \sum_{l \in \Z}
+        \abs
+        {
+            \hat f(n - l)
+            \hat g(l)
+        } \\
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \sum_{l \in \Z}
+        \abs{\hat g(l)}
+        \sum_{n \in \Z}
+        \abs{\hat f(n - l)}
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \norm[A(\T)]{g}
+        \norm[A(\T)]{f}
+        \leq
+        \norm[A(\T)]{g}
+        \norm[A(\T)]{f}
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

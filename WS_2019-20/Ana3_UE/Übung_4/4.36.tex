@@ -1,0 +1,153 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie dass für $f$ absolut stetig auf $\T$ mit $f^\prime \in L^2(\T)$ gilt:
+
+\begin{align*}
+    \sum_{n \in \Z}
+    \abs{\hat f(n)}
+    \leq
+    \abs{\hat f(0)} + \frac{\pi}{\sqrt 3} \norm[2]{f^\prime}.
+\end{align*}
+
+Hinw.:
+Zeigen Sie $\hat f^\prime(n) = i n \hat f(n)$ für absolut stetige Funktionen und verwenden Sie Bsp. 25 (dort wurde gezeigt $\sum_{n=1}^\infty n^{-2} = \pi^2 / 6)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Schritt ($\hat f^\prime(n) = i n \hat f(n)$):
+    
+    Wir hoffen einfach einmal, dass man mit absolut stetigen Funktionen partiell integrieren darf.
+
+    \begin{align*}
+        \hat f^\prime(n)
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            f^\prime(x)
+            e^{-i n x}
+        }{x} \\
+        & \stackrel
+        {
+            \mathrm{PI!}
+        }{=}
+        \frac{1}{\sqrt{2 \pi}}
+        \pbraces
+        {
+            f(x) e^{-i n x} \Big |_{x = -\pi}^\pi
+        }
+        -
+        (-i n)
+        \Int[-\pi][\pi]
+        {
+            f(x)
+            e^{-i n x}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        (
+            f(\pi)
+            \underbrace{e^{-i n \pi}}_1
+            -
+            f(-\pi)
+            \underbrace{e^{i n \pi}}_1
+        )
+        +
+        i n
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            f(x)
+            e^{-i n x}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \underbrace
+        {
+            (
+                f(\pi)
+                -
+                f(-\pi)
+            )
+        }_0
+        +
+        i n \hat f(n) \\
+        & =
+        i n \hat f(n)
+    \end{align*}
+
+    \item Schritt (Bsp. 35 verwenden):
+    
+    \begin{align*}
+        \mathrm{lhs}
+        & =
+        \abs{\hat f(0)}
+        +
+        \sum_{n \in \Z \setminus \Bbraces{0}}
+        \abs{\hat f(n)} \\
+        & =
+        \abs{\hat f(0)}
+        +
+        \sum_{n \in \Z \setminus \Bbraces{0}}
+        \frac{1}{|n|}
+        \abs{\hat f^\prime(n)} \\
+        & \stackrel
+        {
+            \mathrm{CS}
+        }{\leq}
+        \abs{\hat f(0)}
+        +
+        \sqrt
+        {
+            \sum_{n \in \Z \setminus \Bbraces{0}}
+            \frac{1}{n^2}
+        }
+        \sqrt
+        {
+            \sum_{n \in \Z \setminus \Bbraces{0}}
+            \abs{\hat f^\prime(n)}^2
+        } \\
+        & \leq
+        \abs{\hat f(0)}
+        +
+        \sqrt
+        {
+            2 \sum_{n=1}^\infty
+            \frac{1}{n^2}
+        }
+        \sqrt
+        {
+            \sum_{n \in \Z}
+            \abs{\hat f^\prime(n)}^2
+        } \\
+        & =
+        \abs{\hat f(0)}
+        +
+        \sqrt
+        {
+            2
+            \frac{\pi^2}{6}
+        }
+        \sqrt
+        {
+            \norm[2]{f^\prime}^2
+        } \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

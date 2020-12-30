@@ -1,0 +1,101 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie alle Lösungen der Gleichung $f \ast f = c f$ für $f \in L^1(\T)$, $c \in \C$.
+Für $c \neq 0$ können dann wegen dem Riemann Lebesguelemma nur endlich viele Koeffizienten ungl. 0 sein.
+$f$ ist also ein trigonometrisches Polynom mit allen nichtverschwindenden Koeffizienten gleich $\frac{c}{\sqrt{2 \pi}}$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($c = 0$):
+    
+    \includegraphicsboxed{Ana3/Ana3 - (3.1).png}
+    \includegraphicsboxed{Ana3/Ana3 - Fourier-Series Cheat-Sheet - 1.png}
+    \includegraphicsboxed{Ana3/Ana3 - Satz 3.1.2 (Riemann-Lebesgue Lemma).png}
+    \includegraphicsboxed{Ana3/Ana3 - Satz 3.1.5.png}
+
+    \begin{align*}
+        f \ast f = c f = 0
+        \iff
+        \pbraces
+        {
+            \Forall n \in \Z:
+            \sqrt{2 \pi} \hat f(n) \hat f(n) \stackrel{\mathrm{3.1.5}}{=} \widehat{f \ast f}(n) = 0
+            \iff
+            \hat f(n) = 0    
+        }
+        \iff
+        f = 0
+    \end{align*}
+
+    \item Fall ($c \neq 0$):
+    
+    \begin{align*}
+        \Forall n \in \Z:
+        \sqrt{2 \pi} \hat f(n) \hat f(n)
+        \stackrel{
+            \mathrm{3.1.5}
+        }{=}
+        \widehat{f \ast f}(n)
+        =
+        \widehat{c f}(n)
+        =
+        c \hat f(n)
+    \end{align*}
+
+    \begin{align*}
+        Z
+        :=
+        \supp \hat f
+        =
+        \Bbraces{n \in \Z: \hat f(n) \neq 0}
+    \end{align*}
+
+    \begin{align*}
+        \Forall n \in Z:
+        \hat f(n) = \frac{c}{\sqrt{2 \pi}}
+    \end{align*}
+
+    \begin{align*}
+        \begin{rcases}
+            \stackrel
+            {
+                \mathrm{3.1.2}
+            }{\implies}
+            & \lim_{|n| \to \infty} \hat f(n) = 0 \\
+            & \hat f = \frac{c}{\sqrt{2 \pi}} \1_Z
+        \end{rcases}
+        \implies
+        Z \in \mathcal{E}(\Z)
+    \end{align*}
+
+    \begin{align*}
+        f(x)
+        =
+        \sum_{n \in \Z}
+        \hat f(n)
+        e^{-i n x}
+        =
+        \sum_{n \in Z}
+        \hat f(n)
+        e^{-i n x}
+        =
+        \sum_{n \in Z}
+        \frac{c}{\sqrt{2 \pi}}
+        e^{-i n x}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

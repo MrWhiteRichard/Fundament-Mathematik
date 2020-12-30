@@ -1,0 +1,165 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass für eine $2 \pi / n$-periodische Funktion $f \in L^1(\T)$ gilt $\hat f(l) = 0$ für $l \not \in n \Z$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Dass $f$ eine $2 \pi / n$-periodische Funktion ist heißt, $\Forall x \in \R:$
+
+\begin{align*}
+    f(x)
+    =
+    f(x \pm 2 \pi / n)
+    =
+    f(x \pm 2 (2 \pi / n))
+    =
+    \cdots
+    =
+    f(x \pm 2 \pi)
+    =
+    \cdots.
+\end{align*}
+
+\begin{align*}
+    \implies
+    \Int[-\pi + 2 \pi / n][\pi + 2 \pi / n]
+    {
+        f(u) e^{-i l u}
+    }{u}
+    & =
+    \Int[-\pi + 2 \pi / n][\pi]
+    {
+        f(u) e^{-i l u}
+    }{u}
+    +
+    \Int[\pi][\pi + 2 \pi / n]
+    {
+        f(u) e^{-i l u}
+    }{u} \\
+    & =
+    \Int[-\pi + 2 \pi / n][\pi]
+    {
+        f(u) e^{-i l u}
+    }{u}
+    +
+    \Int[-\pi][-\pi + 2 \pi / n]
+    {
+        f(s + 2 \pi) e^{-i l (s + 2 \pi)}
+    }{s} \\
+    & =
+    \Int[-\pi + 2 \pi / n][\pi]
+    {
+        f(u) e^{-i l u}
+    }{u}
+    +
+    \Int[-\pi][-\pi + 2 \pi / n]
+    {
+        f(s) e^{-i l s}
+    }{s}
+    \underbrace{(e^{2 \pi i})^{-l}}_1 \\
+    & =
+    \Int[-\pi][\pi]
+    {
+        f(t) e^{-i l t}
+    }{t}
+\end{align*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    s = u - 2 \pi
+    \implies
+    \begin{cases}
+        \derivative[][s]{u} = 1 \implies \mathrm{d} s = \mathrm{d} u \\
+        u = s + 2 \pi
+    \end{cases}
+\end{align*}
+
+\begin{multline*}
+    \implies
+    \hat f(l)
+    =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[-\pi][\pi]
+    {
+        f(x)
+        e^{-i l x}
+    }{x}
+    =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[-\pi][\pi]
+    {
+        f(x + 2 \pi / n)
+        e^{-i l x}
+    }{x}
+    =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[-\pi + 2 \pi / n][\pi + 2 \pi / n]
+    {
+        f(u)
+        e^{-i l (u - 2 \pi / n)}
+    }{u} \\
+    =
+    \frac{1}{\sqrt{2 \pi}}
+    e^{i l 2 \pi / n}
+    \Int[-\pi + 2 \pi / n][\pi + 2 \pi / n]
+    {
+        f(u)
+        e^{-i l u}
+    }{u}
+    =
+    e^{i l 2 \pi / n}
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[-\pi][\pi]
+    {
+        f(t)
+        e^{-i l t}
+    }{t}
+    =
+    e^{i l 2 \pi / n}
+    \hat f(l)
+\end{multline*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    u = x + 2 \pi / n
+    \implies
+    \begin{cases}
+        \derivative[][u]{x} = 1 \implies \mathrm{d} x = \mathrm{d} u \\
+        x = u - 2 \pi / n
+    \end{cases}
+\end{align*}
+
+Insgesamt, erhalten wir nun folgende Beziehung.
+
+\begin{align*}
+    \implies
+    \pbraces{1 - e^{2 \pi i \frac{l}{n}}} \hat f(l) = 0
+\end{align*}
+
+Wir argumentieren mit Kontraposition weiter.
+Angenommen, $\hat f(l) \neq 0$.
+
+\begin{align*}
+    \implies
+    1 - e^{2 \pi i \frac{l}{n}} = 0
+    \implies
+    1 = e^{2 \pi i \frac{l}{n}}
+    \implies
+    \frac{l}{n} \in \Z
+    \implies
+    l \in n \Z
+\end{align*}
+
+Damit ist die Kontraposition gezeigt.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
