@@ -1,0 +1,281 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $(a_n)_{n \in \Z}$ eine Folge mit $a_n = a_{-n}$ und $a_n - 2 a_{n+1} + a_{n+2} \geq 0$ für $n \geq 1$, $a_n \to 0$ für $n \to \infty$.
+Zeigen Sie $(a_n - a_{n+1})$ ist auf $\N$ monoton fallend mit $\lim_{n \to \infty} n (a_n - a_{n+1}) = 0$ und
+
+\begin{align} \label{eq:1}
+    \sum_{n=1}^N
+    n (a_{n-1} - 2 a_n + a_{n+1})
+    =
+    a_0 - a_N - N (a_n - a_{N+1})
+    \to_{N \to \infty}
+    a_0.
+\end{align}
+
+Zeigen Sie, dass für den Féjerkern $(F_n)$ die Konvergenz von
+
+\begin{align} \label{eq:2}
+    \sum_{n=1}^N
+    n (a_n - 2 a_{n+1} + a_{n+2}) F_n(t)
+\end{align}
+
+in der $L^1$-Norm gegen eine Funktion $f$ folgt.
+Zeigen Sie $\hat f(l) = a_{|l|}$ und begründen Sie damit, dass das Riemann-Lebesgue-Lemma in dem Sinn nicht verschärft werden kann, dass die Folge der Fourierkoeffizienten \Quote{beliebig langsam} gegen $0$ konvergieren kann (d.h. für jedes $\alpha > 0$ gibt es $f \in L^1$ mit $\limsup \hat f(n) h^\alpha > 0$).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil ($(a_n - a_{n+1})$ ist auf $\N$ monoton fallend):
+
+    \begin{align*}
+        a_{n+1} - a_{n+1} \leq a_n - a_{n+1}
+        \iff
+        0 \leq a_n - 2 a_{n+1} + a_{n+1}
+    \end{align*}
+
+    \item Teil ($\lim_{n \to \infty} n (a_n - a_{n+1}) = 0$):
+
+    \begin{align*}
+        \Forall n \in \N:
+        a_n - \sum_{n=k}^{N-1} a_k - a_{k+1}
+        =
+        a_N
+        \xrightarrow{N \to \infty}
+        0
+        \implies
+        \sum_{k=n}^\infty a_k - a_{k+1} = a_n
+    \end{align*}
+
+    Angenommen, $\Exists \varepsilon > 0: \Forall N \in \N: \Exists n \geq N:$
+
+    \begin{align*}
+        n (a_n - a_{n+1}) > \varepsilon
+        \implies
+        a_1
+        =
+        \sum_{n=1}^\infty
+        a_n - a_{n+1}
+        >
+        \sum_{n=1}^\infty
+        \frac{\varepsilon}{n}
+        =
+        \infty
+    \end{align*}
+
+    Widerspruch!
+
+    \item Teil (Gleichung \eqref{eq:1}):
+
+    \begin{align*}
+        &
+        \sum_{n=1}^N n (a_{n-1} - 2 a_n + a_{n+1}) \\
+        & =
+        \sum_{n=1}^N a_{n-1} + (n-1) a_{n-1} - n a_n - a_n - (n-1) a_n + n a_n \\
+        & =
+        \sum_{n=1}^N a_{n-1}
+        +
+        \sum_{n=1}^N (n-1) a_{n-1}
+        -
+        \sum_{n=1}^N n a_n
+        -
+        \sum_{n=1}^N a_n
+        -
+        \sum_{n=1}^N (n-1) a_n
+        +
+        \sum_{n=1}^N n a_n \\
+        & =
+        \sum_{n=0}^{N-1} a_n
+        +
+        \sum_{n=0}^{N-1} n a_n
+        -
+        \sum_{n=1}^N n a_n
+        -
+        \sum_{n=1}^N a_n
+        -
+        \sum_{n=0}^{N-1} n a_{n+1}
+        +
+        \sum_{n=1}^N n a_{n+1} \\
+        & =
+        \pbraces
+        {
+            \sum_{n=0}^{N-1} a_n
+            -
+            \sum_{n=1}^N a_n
+        }
+        +
+        \pbraces
+        {
+            \sum_{n=0}^{N-1} n a_n
+            -
+            \sum_{n=1}^N n a_n
+        }
+        +
+        \pbraces
+        {
+            \sum_{n=1}^N n a_{n+1}
+            -
+            \sum_{n=0}^{N-1} n a_{n+1}
+        } \\
+        & =
+        a_0 - a_N - N a_N + N a_{N+1} \\
+        & =
+        a_0
+        -
+        \underbrace{a_N}_{\xrightarrow{N \to \infty} 0}
+        -
+        \underbrace{N (a_N - a_{N+1})}_{\xrightarrow{N \to \infty} 0}
+        \xrightarrow{N \to \infty}
+        a_0
+    \end{align*}
+
+    \item Teil (Gleichung \eqref{eq:2}):
+    
+    Offenbar sind die Partialsummen von \eqref{eq:2} $\in L^1$.
+    Dieser ist vollständig, also können wir das Cauchy'sche Konvergenz-Kriterium für Reihen verwenden.
+    Der folgende Grenzübergang glit wegen dem $3$-ten Teil.
+
+    \includegraphicsboxed{Ana3/Ana3 - Lemma 3.1.13.png}
+
+    \begin{multline*}
+        \implies
+        \norm[1]
+        {
+            \sum_{k=m}^n
+            k (a_k - 2 a_{k+1} + a_{k+2})
+            F_k
+        }
+        =
+        \sum_{k=m}^n
+        \underbrace{k (a_k - 2 a_{k+1} + a_{k+2})}_{\geq 0}
+        \underbrace
+        {
+            \norm[1]{F_k}
+        }_{2 \pi} \\
+        =
+        2 \pi
+        \sum_{k=m}^n
+        k (a_k - 2 a_{k+1} + a_{k+2})
+        \xrightarrow{n, m \to \infty}
+        0
+    \end{multline*}
+
+    \item Teil ($\hat f(l) = a_{|l|}$):
+    
+    \includegraphicsboxed{Ana3/Ana3 - (3.1).png}
+
+    \begin{align*}
+        \implies
+        f(x)
+        & =
+        \sum_{n=1}^\infty
+        n (a_n - 2 a_{n+1} + a_{n+2})
+        F_n(x) \\
+        & =
+        \sum_{n=1}^\infty
+        n (a_n - 2 a_{n+1} + a_{n+2})
+        \sum_{k = -n-1}^{n-1}
+        \frac{n - |k|}{n}
+        e^{i k x} \\
+        & =
+        \sum_{n=1}^\infty
+        \sum_{k = -n-1}^{n-1}
+        (a_n - 2 a_{n+1} + a_{n+2})
+        (n - |k|)
+        e^{i k x} \\
+        & \stackrel{!}{=}
+        \sum_{k \in \Z}
+        \sum_{n = |k|}^\infty
+        (a_n - 2 a_{n+1} + a_{n+2})
+        (n - |k|)
+        e^{i k x} \\
+        & \stackrel{!}{=}
+        \sum_{k \in \Z}
+        a_{|k|}
+        e^{i k x}
+    \end{align*}
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item \Quote{!}:
+
+        Die Vertauschung dürfen wir durchführen, weil ...
+
+        \begin{enumerate}[label = \arabic*.]
+    
+            \item $f(x)$ für alle $x$ absolut, also insbesondere unbedingt, konvergiert.
+            Dazu muss man bloß feststellen, dass
+    
+            \begin{align*}
+                \sup_{x \in \R} |e^{i k x}|
+                =
+                1
+                =
+                e^{i k \pi},
+            \end{align*}
+    
+            und alle anderen Beiträge der Summanden nicht-negativ sind.
+            Daher ist die vermeintliche punktweise absolute Konvergenz äquivalent zur (bekannten) Wohldefiniertheit von $f(\pi)$.
+    
+            \item \phantom{}
+    
+            \rotatebox{90}
+            {
+                $
+                \begin{array}{ccccccccccccccc}
+                    \sum_{n=0}^\infty \sum_{k = -n-1}^{n-1} (n, k) &        &         &   &                           &   &                           &   &                           &   &                          &   &                          &   &        \\
+                    =                                              &        &         &   &                           &   &                           &   &                           &   &                          &   &                          &   &        \\
+                    \sum_{k= - 1}^{-1} (0, k)                      & =      &         &   &                           &   &                           &   & (0, -1)                   &   &                          &   &                          &   &        \\
+                    +                                              &        &         &   &                           &   &                           &   & +                         &   &                          &   &                          &   &        \\
+                    \sum_{k = -2}^0 (1, k)                         & =      &         &   &                           &   & (1, -2)                   & + & (1, -1)                   & + & (1, 0)                   &   &                          &   &        \\
+                    +                                              &        &         &   &                           &   & +                         &   & +                         &   & +                        &   &                          &   &        \\
+                    \sum_{k = -3}^1 (2, k)                         & =      &         &   & (2, -3)                   & + & (2, -2)                   & + & (2, -1)                   & + & (2, 0)                   & + & (2, 1)                   &   &        \\
+                    +                                              &        &         &   & +                         &   & +                         &   & +                         &   & +                        &   & +                        &   &        \\
+                    \vdots                                         & \vdots & \iddots &   & \vdots                    &   & \vdots                    &   & \vdots                    &   & \vdots                   &   & \vdots                   &   & \ddots \\
+                    \stackrel{!}{=}                                &        &         &   & =                         &   & =                         &   & =                         &   & =                        &   & =                        &   &        \\
+                    \sum_{k \in \Z} \sum_{n = |k|}^\infty (n, k)   & =      & \cdots  & + & \sum_{n=2}^\infty (n, -3) & + & \sum_{n=1}^\infty (n, -2) & + & \sum_{n=0}^\infty (n, -1) & + & \sum_{n=1}^\infty (n, 0) & + & \sum_{n=2}^\infty (n, 1) & + & \cdots
+                \end{array}
+                $
+            }
+        
+        \end{enumerate}
+
+        \item \Quote{!}:
+        
+        Die $(a_n)_{n \in \N_0}$ um $|k|$ verschobene Folge $(b_n)_{n \in \N_0}$ hat hinreichende Eigenschaften, um den $3$-ten Teil darauf anzuwenden.
+
+        \begin{align*}
+            b_n := a_{n + |k|},
+            \quad
+            n \in \N_0
+        \end{align*}
+
+        \begin{align*}
+            \implies
+            \sum_{n = |k|}^\infty
+            (a_n - 2 a_{n+1} + a_{n+2})
+            (n - |k|)
+            =
+            \sum_{n=0}^\infty
+            n (b_n - 2 b_{n+1} + b_{n+2})
+            =
+            b_0
+            =
+            a_{|k|}
+        \end{align*}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

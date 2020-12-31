@@ -1,0 +1,272 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Für die Ooperatoren $L^1(\R^n) \to L^1(\R^n)$ und die Translationen $\tau_s$, Modulationen $\Mod_s$ resp. Dilatationen $\Dil_\lambda$
+
+\begin{align*}
+    \tau_s f(x) = f(x - s),
+    \quad
+    \Mod_s f(x) = \exp(i s x) f(x),
+    \quad
+    \Dil_\lambda f(x) = \frac{1}{\sqrt \lambda} f(x / \lambda)
+\end{align*}
+
+gilt
+
+\begin{align*}
+    \widehat{\tau_s f}(x) = (\Mod_{-s} \hat f)(x),
+    \quad
+    \widehat{\Mod_s f}(x) = (\tau_s \hat f)(x)
+    \quad
+    \text{und}
+    \quad
+    \widehat{\Dil_\lambda f}(x) = \Dil_{1 / \lambda} \hat f(x)
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    \begin{align*}
+        \mathrm{lhs}
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            \tau_{-s} f(y)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            f(y - s)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R]
+        {
+            \cdots
+            \Int[\R]
+            {
+                \exp
+                \pbraces
+                {
+                    -i
+                    \sum_{k=1}^n
+                    x_k y_k
+                }
+                f(y - s)
+            }{y_1}
+            \cdots
+        }{y_n} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R]
+        {
+            \cdots
+            \Int[\R]
+            {
+                \exp
+                \pbraces
+                {
+                    -i
+                    \sum_{k=1}^n
+                    x_k (u_k + s_k)
+                }
+                f(u)
+            }{u_1}
+            \cdots
+        }{u_n} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \exp
+        \pbraces
+        {
+            -i
+            \sum_{k=1}^n
+            x_k s_k
+        }
+        \Int[\R]
+        {
+            \cdots
+            \Int[\R]
+            {
+                \exp
+                \pbraces
+                {
+                    -i
+                    \sum_{k=1}^n
+                    x_k u_k
+                }
+                f(u)
+            }{u_1}
+            \cdots
+        }{u_n} \\
+        & =
+        e^{-i x \cdot s}
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot u}
+            f(u)
+        }{u} \\
+        & =
+        e^{i (-s) \cdot x}
+        f^\wedge(x) \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwenden.
+
+    \begin{align*}
+        u = y - s
+        \implies
+        \Forall k = 1, \dots, n:
+        u_k = y_k - s_k
+        \implies
+        \begin{cases}
+            \derivative[][u_k]{y_k} = 1 \implies \mathrm{d} u_k = \mathrm{d} y_k \\
+            y_k = u_k + s_k
+        \end{cases}
+    \end{align*}
+
+    \item Teil:
+    
+    \begin{align*}
+        \mathrm{lhs}
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            \Mod_s f(y)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            \exp(i s \cdot x)
+            f(y)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{i y \cdot (x - s)}
+            f(y)
+        }{y} \\
+        & =
+        \hat f(x - s) \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+    \item Teil:
+    
+    \begin{align*}
+        \mathrm{lhs}
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            \Dil_\lambda f(y)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i x \cdot y}
+            \frac{1}{\sqrt \lambda}
+            f(y / \lambda)
+        }{y} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \frac{1}{\sqrt \lambda}
+        \Int[\R]
+        {
+            \cdots
+            \Int[\R]
+            {
+                \exp
+                \pbraces
+                {
+                    -i
+                    \sum_{k=1}^n
+                    x_k y_k
+                }
+                f(y / \lambda)
+            }{y_1}
+            \cdots
+        }{y_n} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \frac{\lambda}{\sqrt \lambda}
+        \Int[\R]
+        {
+            \cdots
+            \Int[\R]
+            {
+                \exp
+                \pbraces
+                {
+                    -i
+                    \sum_{k=1}^n
+                    x_k \lambda u_k
+                }
+                f(u)
+            }{u_1}
+            \cdots
+        }{u_n} \\
+        & =
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \sqrt \lambda
+        \Int[\R^n]
+        {
+            e^{-i x \lambda \cdot u}
+            f(u)
+        }{u} \\
+        & =
+        \frac{1}{\sqrt \frac{1}{\lambda}}
+        \frac{1}{(2 \pi)^\frac{n}{2}}
+        \Int[\R^n]
+        {
+            e^{-i \pbraces{x / \frac{1}{\lambda}} \cdot u }
+            f(u)
+        }{u} \\
+        & =
+        \mathrm{rhs}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwenden.
+
+    \begin{align*}
+        u = y / \lambda
+        \implies
+        \Forall k = 1, \dots, n:
+        u_k = y_k / \lambda
+        \implies
+        \begin{cases}
+            \derivative[][u_k]{y_k} = 1 / \lambda \implies \lambda \mathrm{d} u_k = \mathrm{d} y_k \\
+            y_k = \lambda u_k
+        \end{cases}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,157 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass es keine nichttriviale Funktion in $L^1$ mit kompaktem Träger gibt, deren Fouriertransformiert ebenfalls kompakten Träger hat.
+
+Hinw.:
+Verwenden Sie das voriger Beispiel und $\sin(\pi (x - n)) = (-1)^n \sin (\pi x)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $f \in L^1$ mit $\supp f$ und $\supp f^\wedge$ kompakt.
+Weil diese laut Definition abgeschlossen sind, heißt das im $\R^n$, dass sie beschränkt sind.
+
+Wir können also einerseits o.B.d.A. $\supp f^\wedge \in [-\pi, \pi]$ annehmen.
+Wir können also tatsächlich das vorige Beispiel verwenden.
+Wir wissen aber andererseits auch, dass $Z$ endlich ist.
+
+\begin{align*}
+    Z := \Z \cap \supp f \in \mathcal{E}(\Z)
+\end{align*}
+
+\begin{align*}
+    \implies
+    \Forall x \in \R:
+    0
+    \stackrel{!}{=}
+    f(x)
+    =
+    \sum_{n \in \Z}
+    f(n)
+    \frac
+    {
+        \sin(\pi (x - n))
+    }{
+        \pi (x - n)
+    }
+    =
+    \sum_{n \in Z}
+    f(n)
+    \frac
+    {
+        (-1)^n
+        \sin(\pi x)
+    }{
+        \pi (x - n)
+    }
+\end{align*}
+
+Wir müssen zeigen, dass auf der $\text{rhs}$ die leere $\sum$ steht, d.h. $Z \neq \emptyset$.
+Angenommen, $\Exists k \in Z$.
+
+\begin{align*}
+    \implies
+    f(k)
+    & =
+    \lim_{x \to k}
+    f(x) \\
+    & =
+    \lim_{x \to k}
+    \frac{\sin(\pi x)}{\pi}
+    \pbraces
+    {
+        \sum_{n \in Z \setminus \Bbraces{k}}
+        \frac
+        {
+            (-1)^n
+            f(n)
+        }{
+            \pi (x - n)
+        }    
+        +
+        \frac
+        {
+            (-1)^k
+            f(k)
+        }{
+            \pi (x - k)
+        }
+    } \\
+    & =
+    \underbrace
+    {
+        \frac{\sin(\pi k)}{\pi}
+    }_0
+    \sum_{n \in Z \setminus \Bbraces{k}}
+    \frac
+    {
+        (-1)^n
+        f(n)
+    }{
+        \pi (x - n)
+    }
+    +
+    \frac{1}{\pi}
+    (-1)^k
+    f(k)
+    \underbrace
+    {
+        \lim_{x \to k}
+        \frac{\sin(\pi x) - \sin(\pi k)}{x - k}
+    }_1 \\
+    & =
+    \frac{1}{\pi}
+    (-1)^k
+    f(k)
+\end{align*}
+
+Dabei haben wir verwendet, dass
+
+\begin{align*}
+    \lim_{x \to k}
+    \frac{\sin(\pi x) - \sin(\pi k)}{x - k}
+    =
+    \derivative{x}
+    (
+        \sin(\pi x)
+    )
+    \Big |_{x=k}
+    =
+    \pi \cos(\pi k)
+    =
+    1.
+\end{align*}
+
+\begin{align*}
+    & \implies
+    \underbrace
+    {
+        \pbraces
+        {
+            1
+            -
+            \frac{1}{\pi}
+            (-1)^k
+        }
+    }_{\neq 0}
+    f(k)
+    =
+    0 \\
+    & \implies
+    f(k) = 0 \\
+    & \implies
+    k \not \in \supp f \supseteq Z \\
+    & \implies
+    k \not \in Z
+\end{align*}
+
+Widerspruch!
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

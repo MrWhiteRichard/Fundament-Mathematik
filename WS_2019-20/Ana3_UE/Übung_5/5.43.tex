@@ -1,0 +1,209 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+Hat $f \in L^1(\R)$ eine Fouriertransformierte mit Träger in $[-\pi, \pi]$, deren $2 \pi$-periodische Fortsetzung auf $\R$ eine absolut konvergente Fouriereihe, so gilt:
+
+\begin{align*}
+    f(x)
+    =
+    \sum_{n \in \N}
+    f(n)
+    \frac
+    {
+        \sin(\pi (x - n))
+    }{
+        \pi (x - n)
+    }
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir gehen davon aus, dass $\Z$ statt $\N$ gemeint ist.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($x \in \Z$):
+    
+    \begin{align*}
+        \Forall n \in \Z \setminus \Bbraces{x}:
+        x - n \in \Z \setminus \Bbraces{0}
+        \implies
+        \sin(\pi (x - n)) = 0
+    \end{align*}
+    
+    \begin{multline*}
+        \mathrm{rhs}
+        =
+        \lim_{t \to x}
+        f(t)
+        \frac
+        {
+            \sin(\pi (t - x))
+        }{
+            \pi (t - x)
+        }
+        +
+        \underbrace
+        {
+            \sum_{n \in \Z \setminus \Bbraces{x}}
+            f(n)
+            \frac
+            {
+                \sin(\pi (x - n))
+            }{
+                \pi (x - n)
+            }
+        }_0 \\
+        =
+        f(x)
+        \lim_{y \to 0}
+        \frac{\sin y - \sin 0}{y - 0}
+        =
+        f(x)
+        \sin^\prime 0
+        =
+        f(x)
+        \cos 0
+        =
+        \mathrm{lhs}
+    \end{multline*}
+
+    \item Fall ($x \not \in \Z$):
+    
+    Dass die Fouriertransformierte von $f$ Träger in $[-\pi, \pi]$ hat führt zu
+
+    \begin{align*}
+        \Forall x \in \R \setminus [-\pi, \pi]:
+        f^\wedge(x) = 0.
+    \end{align*}
+
+    Sei $g$ deren $2 \pi$-periodische Fortsetzung, d.h.
+
+    \begin{align*}
+        f^\wedge(x \modulo 2 \pi)
+        =:
+        g(x)
+        =
+        \sum_{n \in \Z}
+        \hat g(n)
+        e^{i n x}
+        ~\text{absolut konvergent},
+        \quad
+        x \in \R.
+    \end{align*}
+
+    \begin{align*}
+        \mathrm{rhs}
+        & =
+        (f^\wedge)^\vee(x) \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{i x y}
+            f^\wedge(y)
+        }{y} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            e^{i x y}
+            f^\wedge(y)
+        }{y} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\pi][\pi]
+        {
+            e^{i x y}
+            \frac{1}{\sqrt{2 \pi}}
+            \sum_{n \in \Z}
+            \hat g(n)
+            e^{i n y}
+        }{y} \\
+        & \stackrel{!}{=}
+        \frac{1}{2 \pi}
+        \sum_{n \in \Z}
+        \hat g(n)
+        \Int[-\pi][\pi]
+        {
+            e^{i (x + n) y}
+        }{y} \\
+        & \stackrel{!}{=}
+        \frac{1}{2 \pi}
+        \sum_{n \in \Z}
+        f(-n)
+        2 \frac{\sin(\pi (x + n))}{x + n} \\
+        & =
+        \mathrm{lhs}
+    \end{align*}
+
+    Die Vertauschung beim $1$-ten \Quote{!} dürfen wir durchführen, weil wir es mit einem Parameterintegal in $x$ auf dem Kompaktum $[-\pi, \pi]$ zu tun haben.
+    Für das $2$-te brauchen wir $2$ Nebenrechnungen.
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Nebenrechnung:
+        
+        \begin{align*}
+            \hat g(n)
+            =
+            \frac{1}{\sqrt{2 \pi}}
+            \Int[-\pi][\pi]
+            {
+                g(y)
+                e^{-i n y}
+            }{y}
+            =
+            \frac{1}{\sqrt{2 \pi}}
+            \Int[-\pi][\pi]
+            {
+                e^{i (-n) y}
+                f^\wedge(y)
+            }{y}
+            =
+            (f^\wedge)^\vee(-n)
+            =
+            f(-n)
+        \end{align*}
+
+        \item Nebenrechnung:
+
+        \begin{multline*}
+            \Int[-\pi][\pi]
+            {
+                e^{i (x + n) y}
+            }{y}
+            =
+            \Int[-\pi][\pi]
+            {
+                \cos((x + n) y)
+            }{y}
+            +
+            i
+            \underbrace
+            {
+                \Int[-\pi][\pi]
+                {
+                    \sin((x + n) y)
+                }{y}
+            }_0 \\
+            =
+            \frac{1}{x + n}
+            \sin((x + n) y) \Big |_{y = -\pi}^\pi
+            =
+            2 \frac{\sin(\pi (x + n))}{x + n}
+        \end{multline*}
+    
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

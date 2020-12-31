@@ -1,0 +1,103 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie $\hat f$ für $f(x) = \1_{[-a, a]}$, $x \in \R$ und $\mathcal{F} f$ für $f(x) = \frac{\sin(a x)}{x}$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil ($\hat f$ für $f(x) = \1_{[-a, a]}$, $x \in \R$):
+    
+    \begin{align*}
+        \begin{rcases}
+            f^\wedge(\xi) \\
+            f^\vee(\xi)
+        \end{rcases}
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{\mp i \xi x}
+            f(x)
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{\mp i \xi x}
+            \1_{[-a, a]}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-a][a]
+        {
+            e^{\mp i \xi x}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Bigg (
+            \Int[-a][a]
+            {
+                \cos(\mp \xi x)
+            }{x}
+            +
+            i
+            \underbrace
+            {
+                \Int[-a][a]
+                {
+                    \sin(\xi x)
+                }{x}
+            }_0
+        \Bigg ) \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-a][a]
+        {
+            \cos(\xi x)
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \frac{1}{\xi}
+        \sin(x \xi) \Big |_{x = -a}^a \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \frac{2 \sin(a \xi)}{\xi} \\
+        & =
+        \sqrt \frac{2}{\pi}
+        \frac{\sin(a \xi)}{\xi} \\
+        & =
+        \sqrt \frac{2}{\pi}
+        g(\xi)
+    \end{align*}
+
+    \item Teil ($\mathcal{F} g$ für $g(x) = \frac{\sin(a x)}{x}$):
+
+    \includegraphicsboxed{Ana3/Ana3 - Proposition 3.3.3.png}
+
+    Offenbar gilt $f = \1_{[-a, a]} \in L^1 \cap L^2$.
+    Laut Proposition 3.3.3, ist daher
+
+    \begin{align*}
+        \mathcal{F} g
+        =
+        \mathcal{F} \sqrt \frac{\pi}{2} f^\vee
+        =
+        \sqrt \frac{\pi}{2} \mathcal{F} \mathcal{F}^{-1} f
+        =
+        \sqrt \frac{\pi}{2} \1_{[-a, a]}.
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

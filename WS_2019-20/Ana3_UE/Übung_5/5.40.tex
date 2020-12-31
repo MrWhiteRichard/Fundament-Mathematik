@@ -1,0 +1,113 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie die Fouriertransformierte der Funktion
+
+\begin{align*}
+    f(x)
+    =
+    x \exp(-x^2)
+\end{align*}
+
+Hinw.:
+Bsp. 2.1.10
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    f^\wedge(\xi)
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{-i \xi x}
+        x \exp(-x^2)
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Bigg (
+        \underbrace
+        {
+            \Int[\R]
+            {
+                x e^{-x^2}
+                \cos(\xi x)
+            }{x}    
+        }_0
+        -
+        i
+        \Int[\R]
+        {
+            x e^{-x^2}
+            \sin(\xi x)
+        }{x}
+    \Bigg ) \\
+    & \stackrel
+    {
+        \mathrm{PI}
+    }{=}
+    \frac{-i}{\sqrt{2 \pi}}
+    \Bigg (
+        \underbrace
+        {
+            \frac{-e^{-x^2}}{2}
+            \sin(\xi) x
+            \Big |_{x \in \R}    
+        }_0
+        -
+        \Int[\R]
+        {
+            \frac{-e^{-x^2}}{2}
+            \xi \sin(\xi x)
+        }{x}
+    \Bigg ) \\
+    & =
+    \frac{-i}{\sqrt{2 \pi}}
+    \frac{\xi}{2}
+    \frac{1}{\sqrt 2}
+    \Int[\R]
+    {
+        e^{-\frac{u^2}{2}}
+        \cos \pbraces{\frac{\xi}{\sqrt 2} u}
+    }{u} \\
+    & =
+    \frac{-i}{\sqrt{2 \pi}}
+    \frac{t}{2}
+    \Int[\R]
+    {
+        e^{-\frac{u^2}{2}}
+        \cos(t u)
+    }{u} \\
+    & \stackrel
+    {
+        \text{Beispiel 2.1.10}
+    }{=}
+    \frac{-i}{\sqrt{2 \pi}}
+    \frac{t}{2}
+    \sqrt{2 \pi}
+    e^{-\frac{t^2}{2}} \\
+    & =
+    \frac{-i \xi}{2 \sqrt 2}
+    e^{-\frac{\xi^2}{4}}
+\end{align*}
+
+Dabei haben wir die folgenden Substitutionen verwendet.
+
+\begin{align*}
+    u & = \sqrt 2 x
+    \implies
+    \begin{cases}
+        \derivative[][u]{x} = \sqrt 2 \implies \mathrm{d} x = \frac{1}{\sqrt 2} \mathrm{d} u \\
+        x = \frac{1}{\sqrt 2} u \implies x^2 = \frac{u^2}{2}
+    \end{cases} \\
+    t & = \frac{\xi}{\sqrt 2}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

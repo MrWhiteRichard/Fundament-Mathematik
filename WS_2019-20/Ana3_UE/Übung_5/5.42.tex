@@ -1,0 +1,68 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie für den Dirichletkern $D_N: D_N \ast D_N = 2 \pi D_N$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Ana3/Ana3 - (3.5).png}
+
+\begin{multline*}
+    \mathrm{lhs}
+    =
+    \Int[-\pi][\pi]
+    {
+        D_N(x - y)
+        D_N(y)
+    }{y}
+    =
+    \Int[-\pi][\pi]
+    {
+        \sum_{n=-N}^N
+        e^{i n (x - y)}
+        \sum_{m=-N}^N
+        e^{i m y}
+    }{y}
+    =
+    \sum_{n=-N}^N
+    \sum_{m=-N}^N
+    \Int[-\pi][\pi]
+    {
+        e^{i n (x - y)}
+        e^{i m y}
+    }{y} \\
+    =
+    \sum_{n=-N}^N
+    \sum_{m=-N}^N
+    \Int[-\pi][\pi]
+    {
+        e^{i n x}
+        e^{i (m - n) y}
+    }{y}
+    =
+    \sum_{n=-N}^N
+    e^{i n x}
+    \sum_{m=-N}^N
+    \underbrace
+    {
+        \Int[-\pi][\pi]
+        {
+            e^{i (m - n) y}
+        }{y}    
+    }_{
+        2 \pi \delta_{m n}
+    }
+    =
+    \mathrm{rhs}
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,212 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie die Fouriertransformierte der Funktion
+
+\begin{align*}
+    f(x)
+    =
+    \frac{1}{1 + x + x^2}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    g(t) := e^{-\lambda |t|},
+    \quad
+    t \in \R,
+    \quad
+    \lambda > 0
+\end{align*}
+
+\begin{align*}
+    g^\wedge(t)
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{-i t x}
+        e^{-\lambda |x|}
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \Int[-\infty][0]
+        {
+            e^{-i t x}
+            e^{\lambda x}
+        }{x}
+        +
+        \Int[0][\infty]
+        {
+            e^{-i t x}
+            e^{-\lambda x}
+        }{x}    
+    } \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \Int[-\infty][0]
+        {
+            e^{(\lambda - i t) x}
+        }{x}
+        +
+        \Int[0][\infty]
+        {
+            e^{(\lambda + i t) x}
+        }{x}
+    } \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Bigg (
+        \frac{1}{\lambda - i t}
+        \underbrace
+        {
+            e^{(\lambda - i t) x} \Big |_{x = -\infty}^0
+        }_1
+        +
+        \frac{1}{\lambda + i t}
+        \underbrace
+        {
+            e^{(\lambda + i t) x} \Big |_{x=0}^\infty
+        }_1
+    \Bigg ) \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \frac{1}{\lambda - i t}
+        +
+        \frac{1}{\lambda + i t}
+    } \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \frac
+    {
+        (\lambda + i t)
+        +
+        (\lambda - i t)
+    }{
+        (\lambda - i t)
+        (\lambda + i t)
+    } \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \frac{2 \lambda}{t^2 + \lambda^2} \\
+    & =
+    \sqrt \frac{2}{\pi}
+    \frac{1}{t^2 + \lambda^2}
+\end{align*}
+
+\begin{align*}
+    & \implies
+    h_\lambda(t)
+    :=
+    \frac{1}{t^2 + \lambda^2}
+    =
+    \sqrt \frac{\pi}{2}
+    g^\wedge(t) \\
+    & \implies
+    h_\lambda^\wedge(t)
+    =
+    \sqrt \frac{\pi}{2}
+    g(t)
+    =
+    \sqrt \frac{\pi}{2}
+    e^{-\lambda |t|}
+\end{align*}
+
+\begin{align*}
+    \lambda := \sqrt{\frac{3}{4}}
+    \implies
+    f^\wedge(t)
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{-i t x}
+        f(x)
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{-i t x}
+        \frac{1}{1 + x + x^2}
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{-i t \pbraces{x + \frac{1}{2}}}
+        e^{i t \frac{1}{2}}
+        \frac{1}
+        {
+            \pbraces{\frac{1}{2}}^2
+            +
+            2 x \frac{1}{2}
+            +
+            x^2
+            +
+            \frac{3}{4}
+        }
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    e^{i t \frac{1}{2}}
+    \Int[\R]
+    {
+        e^{-i t \pbraces{x + \frac{1}{2}}}
+        \frac{1}
+        {
+            \pbraces
+            {
+                \frac{1}{2}
+                +
+                x
+            }^2
+            +
+            \frac{3}{4}
+        }
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    e^{i t \frac{1}{2}}
+    \Int[\R]
+    {
+        e^{-i t u}
+        \frac{1}
+        {
+            u^2
+            +
+            \lambda^2
+        }
+    }{u} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    e^{i t \frac{1}{2}}
+    h_\lambda^\wedge(t) \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    e^{i t \frac{1}{2}}
+    \sqrt \frac{\pi}{2}
+    e^{-\lambda |t|} \\
+    & =
+    \frac{1}{2}
+    e^{
+        i t \frac{1}{2}
+        -
+        \sqrt{\frac{3}{4}} |t|
+    }
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

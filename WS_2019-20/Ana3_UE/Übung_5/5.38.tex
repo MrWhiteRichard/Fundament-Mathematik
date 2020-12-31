@@ -1,0 +1,413 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Finden Sie eine Llösung der Differentialgleichung
+
+\begin{align}
+    \label{eq:3}
+    y - y^\primeprime = \exp(-|t|),
+    \quad
+    t \in \R
+\end{align}
+
+indem Sie zuerst von beiden Seiten die Fouriertransformierte bilden.
+Daraus können Sie (am kürzesten ohne Verwendung der Umkehrformel!) $y$ bestimmen.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{Ana3/Ana3 - Proposition 3.2.2.png}
+
+\begin{align*}
+    (y - y^\primeprime)^\wedge(t)
+    =
+    y^\wedge(t) - (y^\primeprime)^\wedge(t)
+    =
+    y^\wedge(t) - i^2 t^2 y^\wedge(t)
+    =
+    (1 + t^2) y^\wedge(t)
+\end{align*}
+
+\begin{align*}
+    & \stackrel{!}{=}
+    \exp^\wedge(-|t|) \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Int[\R]
+    {
+        e^{- i t x}
+        \exp(-|x|)
+    }{x} \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \Int[-\infty][0]
+        {
+            e^{x (1 - i t)}
+        }{x}
+        \Int[0][\infty]
+        {
+            e^{x (1 - i t)}
+        }{x}
+    } \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \Bigg (
+        \frac{1}{1 - i t}
+        \underbrace
+        {
+            e^{x (1 - it)} \Big |_{x = -\infty}^0    
+        }_1
+        +
+        \frac{1}{1 + i t}
+        \underbrace
+        {
+            e^{x (1 + it)} \Big |_{x=0}^\infty
+        }_1
+    \Bigg ) \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \frac{2}{1 + t^2} \\
+    & =
+    \sqrt \frac{2}{\pi}
+    \frac{1}{1 + t^2}
+\end{align*}
+
+\begin{align*}
+    \implies
+    y^\wedge(t)
+    =
+    \sqrt \frac{2}{\pi}
+    \frac{1}{(1 + t^2)^2}
+    =
+    \frac
+    {
+        \sqrt \frac{2}{\pi}
+    }{
+        1 + t^2
+    }
+    \frac{1}{1 + t^2}
+\end{align*}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 3.2.3.png}
+\includegraphicsboxed{Ana3/Ana3 - Satz 3.2.5.png}
+
+\begin{align*}
+    \implies
+    \Forall f, g \in L^1(\R^n):
+    f g
+    \stackrel
+    {
+        \text{Satz 3.2.3}
+    }{=}
+    \frac{1}
+    {
+        (2 \pi)^\frac{n}{2}
+    }
+    (2 \pi)^\frac{n}{2}
+    (f^\vee)^\wedge (g^\vee)^\wedge
+    \stackrel
+    {
+        \text{Satz 3.2.5}
+    }{=}
+    \frac{1}
+    {
+        (2 \pi)^\frac{n}{2}
+    }
+    (f^\vee \ast g^\vee)^\wedge
+\end{align*}
+
+\begin{align*}
+    y(t)
+    & =
+    (y^\wedge)^\vee(t) \\
+    & =
+    \pbraces
+    {
+        \frac
+        {
+            \sqrt \frac{2}{\pi}
+        }{
+            1 + t^2
+        }
+        \frac{1}{1 + t^2}
+    }^\vee \\
+    & =
+    \pbraces
+    {
+        \frac{1}{\sqrt{2 \pi}}
+        \pbraces
+        {
+            \pbraces
+            {
+                \frac
+                {
+                    \sqrt \frac{2}{\pi}
+                }{
+                    1 + t^2
+                }
+            }^\vee
+            \ast
+            \pbraces
+            {
+                \frac{1}{1 + t^2}
+            }^\vee
+        }^\wedge    
+    }^\vee \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \frac
+        {
+            \sqrt \frac{2}{\pi}
+        }{
+            1 + t^2
+        }
+    }^\vee
+    \ast
+    \pbraces
+    {
+        \frac{1}{1 + t^2}
+    }^\vee \\
+    & =
+    \frac{1}{\sqrt{2 \pi}}
+    \pbraces
+    {
+        \exp^\wedge(-|t|)
+    }^\vee
+    \ast
+    \pbraces
+    {
+        \sqrt \frac{\pi}{2}
+        \exp^\wedge(-|t|)
+    }^\vee \\
+    & =
+    \frac{1}{2}
+    \exp(-|t|)
+    \ast
+    \exp(-|t|)
+    \frac{1}{2}
+    \Int[\R]
+    {
+        e^{-|t-x|}
+        e^{-|x|}
+    }{x} \\
+    & =
+    \frac{1}{2}
+    \Bigg (
+        \underbrace
+        {
+            \Int[-\infty][0]
+            {
+                e^{-|t-x|}
+                e^x
+            }{x}
+            +
+            \Int[0][\infty]
+            {
+                e^{-|t-x|}
+                e^{-x}
+            }{x}
+        }_{\cdots}
+    \Bigg )
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($t \geq 0$):
+    
+    \begin{align*}
+        \Forall x \in (-\infty, 0) \cup (0, t):
+        t - y \geq 0
+        \iff
+        t \geq x,
+        \quad
+        \Forall x \in (t, \infty):
+        t - x \leq 0
+        \iff
+        t \leq x
+    \end{align*}
+
+    \begin{align*}
+        \cdots
+        & =
+        \Int[-\infty][0]
+        {
+            e^{x - t}
+            e^x
+        }{x}
+        +
+        \Int[0][t]
+        {
+            e^{x - t}
+            e^{-x}
+        }{x}
+        +
+        \Int[t][\infty]
+        {
+            e^{t - x}
+            e^{-x}
+        }{x} \\
+        & =
+        e^{t}
+        \Int[-\infty][0]
+        {
+            e^{2x}
+        }{x}
+        +
+        e^{-t}
+        \Int[0][t]{}{x}
+        +
+        e^{-t}
+        \Int[t][\infty]
+        {
+            e^{-2 x}
+        }{x} \\
+        & =
+        e^{-t}
+        \pbraces
+        {
+            \frac{1}{2}
+            e^{2 x} \Big |_{x = -\infty}^0
+            +
+            t
+        }
+        +
+        e^t
+        \frac{1}{-2}
+        e^{-2 x} \Big |_{x=t}^\infty \\
+        & =
+        e^{-t}
+        \pbraces
+        {
+            \frac{1}{2}
+            +
+            t
+        }
+        +
+        e^t
+        \frac{1}{-2}
+        e^{-2 t} \\
+        & =
+        e^{-t}
+        \pbraces
+        {
+            \frac{1}{2}
+            +
+            t
+            +
+            \frac{1}{-2}
+        } \\
+        & =
+        t e^{-t}
+    \end{align*}
+
+    \item Fall ($t \leq 0$):
+    
+    \begin{align*}
+        \Forall x \in (-\infty, t):
+        t - x \geq 0
+        \iff
+        t \geq x,
+        \quad
+        \Forall x \in (t, 0) \cup (0, \infty):
+        t - x \leq 0
+        \iff
+        t \leq x
+    \end{align*}
+
+    \begin{align*}
+        \cdots
+        & =
+        \Int[-\infty][]
+        {
+            e^{x - t}
+            e^x
+        }{x}
+        +
+        \Int[t][0]
+        {
+            e^{t - x}
+            e^x
+        }
+        +
+        \Int[0][\infty]
+        {
+            e^{t - x}
+            e^{-x}
+        }{x} \\
+        & =
+        -
+        \Int[\infty][-t]
+        {
+            e^{t + u}
+            e{-u}
+        }{u}
+        -
+        \Int[-t][0]
+        {
+            e^{t + u}
+            e^{-u}                
+        }{u}
+        -
+        \Int[0][-\infty]
+        {
+            e^{t + u}
+            e^u
+        }{u} \\
+        & =
+        \Int[(-t)][\infty]
+        {
+            e^{(-t) - u}
+            e^{-u}
+        }{u}
+        +
+        \Int[0][(-t)]
+        {
+            e^{u - (-t)}
+            e^{-u}
+        }{u}
+        +
+        \Int[-\infty][0]
+        {
+            e^{u - (-t)}
+            e^u
+        }{u} \\
+        & \stackrel
+        {
+            \text{1. Fall}
+        }{=}
+        (-t) e^{-(-t)}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = -x
+        \implies
+        \begin{cases}
+            \derivative[][u]{x} = -1 \implies \mathrm{d} u = - \mathrm{d} x \\
+            x = -u
+        \end{cases}
+    \end{align*}
+
+\end{enumerate}
+
+\begin{align*}
+    \implies
+    \cdots = |t| e^{-|t|}
+    \implies
+    y(t) = \frac{|t| e^{-|t|}}{2}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
