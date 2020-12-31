@@ -1,7 +1,7 @@
 \section{Statement and proof of Wigner's Theorem}
 
 \begin{example} \label{example:zerodim}
-	Let $H_1$ and $H_2$ be Hilbert spaces where $\dim H_1 = 0$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. As $H_1 = \{0\}$ we obtain $\mathcal{P}(H_1) = \emptyset$ and hence $g = \emptyset$. Now by defining $U: H_1 \to H_2: 0 \mapsto 0$ we observe that $U$ is linear as well as antilinear and also both unitary and antiunitary. Furthermore for every $R \in \mathcal{P}(H_1)$ and every normalized $x \in H_1$ the implication 
+	Let $H_1$ and $H_2$ be Hilbert spaces where $\dim H_1 = 0$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. As $H_1 = \{0\}$ we obtain $\mathcal{P}(H_1) = \emptyset$. Now by defining $U: H_1 \to H_2: 0 \mapsto 0$ we observe that $U$ is linear as well as antilinear and also both unitary and antiunitary. Furthermore for every $R \in \mathcal{P}(H_1)$ and every $x \in H_1$ the implication 
 	\begin{align*}
 		x \in R \Rightarrow Ux \in g(R)
 	\end{align*} 
@@ -21,138 +21,212 @@
 \end{example}
 
 \begin{lemma} \label{lemma:phase_adjustment_ray}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. For two normalized vectors $x,y \in H_1$ where $(x,y)_{H_1} \neq 0$ and a normalized vector $u \in g(\C x)$ there exists a unique $v \in g(\C y)$ that fulfills $(v,u)_{H_2} = |(v,u)_{H_2}| $.
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. For two vectors $x,y \in H_1$ where $(x,y)_{H_1} \neq 0$ and a normalized vector $\tilde{x} \in g(\C x)$ with $\norm[H_2]{\tilde{x}} = \norm[H_1]{x}$ there exists a unique $\tilde{y} \in g(\C y)$ that fulfills $\norm[H_2]{\tilde{y}} = \norm[H_1]{y}$ and $(v,u)_{H_2} = |(v,u)_{H_2}| $.
 \end{lemma}
 
 \begin{proof}
-	We take some arbitrary normalized vector $w \in g(\C y)$ and define $\mu := (w, u)_{H_2}$. From \eqref{eq:vector_isometry} we know that $|\mu| = |(w,u)_{H_2}| = |(x,y)_{H_1}| \neq 0$ and hence we know that $\mu \in \C \setminus \{0\}$. Now we know from \ref{lemma:phase_adjustment_complex} that there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. Now we define $v := \lambda w$ and obtain
+	We take some arbitrary vector $\tilde{w} \in g(\C y)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{\tilde{w}}$ and define $\mu := (\tilde{w}, \tilde{x})_{H_2}$. From \eqref{eq:vector_isometry} we know that $|\mu| = |(\tilde{w},\tilde{x})_{H_2}| = |(y,x)_{H_1}| \neq 0$ and hence we know that $\mu \in \C \setminus \{0\}$. Now we know from \ref{lemma:phase_adjustment_complex} that there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. Now we define $\tilde{y} := \lambda \tilde{w}$ and obtain
 	\begin{align*}
-		(v,u)_{H_2} = \lambda (w,u)_{H_2} = \lambda \mu = |\lambda \mu| = |\lambda (w, u)_{H_2}| = |(v,u)_{H_2}|.
+		(\tilde{y}, \tilde{x})_{H_2} = \lambda (\tilde{w}, \tilde{x})_{H_2} = \lambda \mu = |\lambda \mu| = |\lambda (\tilde{w}, \tilde{x})_{H_2}| = |(y,x)_{H_2}|
 	\end{align*}
+	and $\norm[H_2]{\tilde{y}} = |\lambda| \norm[H_2]{\tilde{w}} = \norm[H_1]{y}$. 
 \end{proof}
 
+
 \begin{lemma} \label{lemma:aux_main}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let $M := \{e_\alpha \mid \alpha \in A\}$ be an orthonormal basis and $x \in H_1$ a normalized vector with
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let $M := \{e_i \mid i \in I\}$ be an orthonormal basis and $x \in H_1 \setminus \{0\}$ with
 	\begin{align*}
-		x :=\sum_{\alpha \in A} \lambda_\alpha e_\alpha
+		x = \sum_{i \in I} \lambda_i e_i
 	\end{align*} 
-	and $\beta \in A$ with $\lambda_\beta \in \C \setminus \{0\}$. Furthermore, let $W: M \to H_2$ be a function where $\norm[H_2]{We_\alpha} = 1$ and $We_\alpha \in g(\C e_\alpha)$ for all $\alpha \in A$. Then there exists a unique normalized $z \in g(\C x)$ with 
+	and $l \in I$ with $\lambda_l \in \C \setminus \{0\}$. For every $i \in I$ let $\tilde{e}_i \in g(\C e_i)$ be a normalized vector. Then there exists a unique $\tilde{x} \in g(\C x)$ with 
 	\begin{align*}
-		z = \lambda_\beta We_\beta + \sum_{\alpha \in A \setminus \{\beta\}} \mu_\alpha We_\alpha
+		\tilde{x} = \lambda_l \tilde{e}_l + \sum_{i \in I \setminus \{l\}} \mu_i \tilde{e}_i
 	\end{align*}
-	where for every $\gamma \in A \setminus \{\beta\}$
+	where for every $i \in I \setminus \{l\}$
 	\begin{align*}
-		\mu_\gamma = (z, We_\gamma)_{H_2} \quad \text{and} \quad |\mu_\gamma| = |\lambda_\gamma|.
+		\mu_i = (\tilde{x}, \tilde{e}_i)_{H_2} \quad \text{and} \quad |\mu_i| = |\lambda_i|.
 	\end{align*}
 \end{lemma}
 
 \begin{proof}
-	We first observe that for any $\gamma \in A$ we have
+	We first observe that for every $j \in I$ 
 	\begin{align}
-		\pbraces{x, e_\gamma}_{H_1} &= \pbraces{\sum_{\alpha \in A} \lambda_\alpha e_\alpha, e_\gamma}_{H_1} = \sum_{\alpha \in A} \lambda_\alpha \pbraces{e_\alpha, e_\gamma}_{H_1} = \lambda_\gamma \label{eq:aux_fouriercoef}
+		\pbraces{x, e_j}_{H_1} &= \pbraces{\sum_{i \in I} \lambda_i e_i, e_j}_{H_1} = \sum_{i \in I} \lambda_i \pbraces{e_i, e_j}_{H_1} = \lambda_j \label{eq:aux_fouriercoef}
 	\end{align}
-	Since $\lambda_\beta \neq 0$ we can use \ref{lemma:phase_adjustment_ray} and we obtain a unique normalized $y \in g(\C x)$ with 
+	Since $\lambda_l \neq 0$ we can use \ref{lemma:phase_adjustment_ray} and we obtain a unique $\tilde{y} \in g(\C x)$ with $\norm[H_2]{\tilde{y}} = \norm[H_1]{x}$ and 
 	\begin{align*}
-		(y, W e_\beta)_{H_2} = |(y, W e_\beta)_{H_2}| = |(x, e_\beta)_{H_1}| = \vbraces{\lambda_\beta}
+		(\tilde{y}, \tilde{e}_l)_{H_2} = |(\tilde{y}, \tilde{e}_l)_{H_2}| = |(x, e_l)_{H_1}| = \vbraces{\lambda_l}
 	\end{align*}
-	where we used \eqref{eq:vector_isometry}. From \ref{lemma:phase_adjustment_complex} we know there exists a normalized $\nu \in \C$ with $|\lambda_\beta| = |\nu \lambda_\beta| = \nu \lambda_\beta$. We define $z := \frac{1}{\nu} y$ and find
+	whereby we also used \eqref{eq:vector_isometry}. From \ref{lemma:phase_adjustment_complex} we know there exists a normalized $\nu \in \C$ with $|\lambda_l| = |\nu \lambda_l| = \nu \lambda_l$. We define $\tilde{x} := \frac{1}{\nu} \tilde{y}$ and find
 	\begin{align*}
-		(z, We_\beta)_{H_2} = \frac{1}{\nu} (y, W e_\beta)_{H_2} = \frac{1}{\nu} |(y, W e_\beta)_{H_2}| = \frac{1}{\nu} |(x, e_\beta)_{H_1}| = \frac{1}{\nu} \vbraces{\lambda_\beta} = \frac{1}{\nu} \nu \lambda_\beta = \lambda_\beta.
+		(\tilde{x}, \tilde{e}_l)_{H_2} = \frac{1}{\nu} (\tilde{y}, \tilde{e}_l)_{H_2} = \frac{1}{\nu} |\lambda_l| = \frac{1}{\nu} \nu \lambda_l = \lambda_l.
 	\end{align*} 
 	Finally, using \eqref{eq:ran_fourier}, we obtain
 	\begin{align*}
-		z = \sum_{\alpha \in A} (z, We_\alpha)_{H_2} We_\alpha = \lambda_\beta W e_\beta + \sum_{\alpha \in A \setminus \{\beta\}} (z, We_\alpha)_{H_2} We_\alpha 
+		\tilde{x} = \sum_{i \in I} (\tilde{x}, \tilde{e}_i)_{H_2} \tilde{e}_i = \lambda_l \tilde{e}_l + \sum_{i \in I \setminus \{l\}} (\tilde{x}, \tilde{e}_i)_{H_2} \tilde{e}_i 
 	\end{align*}
-	and for every $\gamma \in A \setminus \{\beta\}$ we conclude, using \eqref{eq:vector_isometry} and \eqref{eq:aux_fouriercoef}, that
+	and for every $i \in A \setminus \{l\}$ we conclude, using \eqref{eq:vector_isometry} and \eqref{eq:aux_fouriercoef}, that
 	\begin{align*}
-		\vbraces{(z, We_\gamma)_{H_2}} = |(x, e_\gamma)_{H_1}| = |\lambda_\gamma|.
+		\vbraces{(\tilde{x}, \tilde{e}_i)_{H_2}} = |(x, e_i)_{H_1}| = |\lambda_i´|.
 	\end{align*}
 \end{proof}
 
+
+\begin{lemma} \label{lemma:function_on_onb}
+	Let $H_1$ and $H_2$ be Hilbert spaces with $\dim H_1 > 1$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let furthermore $M := \{e_j \mid j \in J\}$ be a non-empty orthonormal basis of $H_1$ with $q \in J$ and some normalized $\tilde{e}_q \in g(\C e_q)$  and for all $j \in J \setminus \{q\}$ the vectors $v_{qj} := \frac{1}{\sqrt{2}} (e_q + e_j)$ and $w_{qj} := \frac{1}{\sqrt{2}}(e_q + ie_j)$ and $w_{jq} := \frac{1}{\sqrt{2}}(e_j + ie_q)$. Then for every $k \in J \setminus \{q\}$ there exists a normalized $\tilde{e}_k \in g(\C e_k)$ and a normalized $\tilde{v}_{qk} \in g(\C x_{qk})$ and a normalized $\tilde{w}_{qk} \in g(\C w_{qk})$ and a normalized $\tilde{w}_{kq} \in g(\C w_{kq})$ and $\lambda_k \in \{i, -i\}$ with
+	\begin{align*}
+		\tilde{v}_{qk} = \frac{1}{\sqrt{2}}(\tilde{e}_{q} + \tilde{e}_k) \quad \text{and} \quad \tilde{w}_{qk} = \frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_k \tilde{e}_k) \quad \text{and} \quad \tilde{w}_{kq} = \frac{1}{\sqrt{2}} (\tilde{e}_k + \lambda_k \tilde{e}_q).
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	We observe that for every $i \in J$ and every $j \in J \setminus q$ we have
+	\begin{align*}
+		\pbraces{v_{qj}, e_i}_{H_1} = \pbraces{\frac{1}{\sqrt{2}}(e_q + e_j), e_i}_{H_1} =
+		\begin{cases}
+			\frac{1}{\sqrt{2}} &, \text{if } i \in \{q,j\} \\
+			0 &, \text{else}
+		\end{cases}
+	\end{align*}
+	Hence we can use \ref{lemma:phase_adjustment_ray} and obtain $\tilde{v}_{qj} \in g(\C v_{qj})$ with
+	\begin{align*}
+		(\tilde{v}_{qj}, \tilde{e}_q)_{H_2} = \vbraces{(\tilde{v}_{qj}, \tilde{e}_q)_{H_2}} = \vbraces{(v_{qj}, e_q)_{H_1}} = \frac{1}{\sqrt{2}}.
+	\end{align*}
+	Using \ref{lemma:phase_adjustment_ray} again, we find $\tilde{e}_{j} \in g(\C e_j)$ with
+	\begin{align*}
+		\pbraces{\tilde{v}_{qj}, \tilde{e}_j}_{H_2} = \vbraces{\pbraces{\tilde{v}_{qj}, \tilde{e}_j}_{H_2}} = \vbraces{\pbraces{v_{qj}, e_j}_{H_1}} = \frac{1}{\sqrt{2}}.
+	\end{align*}
+	For all $i \in J \setminus \{q, j\}$ we obtain
+	\begin{align*}
+		\vbraces{\pbraces{\tilde{v}_{q,j}, \tilde{e}_i}_{H_2}} = \vbraces{\pbraces{v_{qj}, e_i}_{H_1}} = 0
+	\end{align*}
+	and thus when using \eqref{eq:ran_fourier} we obtain
+	\begin{align*}
+		\tilde{v}_{qj} = \sum_{i \in I} (\tilde{v}_{qj}, \tilde{e}_i)_{H_2} \tilde{e}_i = \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_j).
+	\end{align*}
+	We choose some arbitrary $k \in J$. Using \ref{lemma:aux_main} we obtain $\tilde{w}_{qj} \in g(\C w_{qj})$ and $\tilde{w}_{jq} \in g(\C w_{jq})$ with
+	\begin{align*}
+		\tilde{w}_{qj} = \frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j) \quad \text{and} \quad \tilde{w}_{jq} = \frac{1}{\sqrt{2}}(\tilde{e}_j + \lambda_{q} \tilde{e}_q)
+	\end{align*}
+	and $\vbraces{\lambda_q} = \vbraces{\lambda_j} = 1$. Next we find
+	\begin{align*}
+		\frac{1}{\sqrt{2}}\vbraces{1 + \lambda_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j), \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_j)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{qj}, \tilde{v}_{qj}}_{H_2}} \\
+		&= \vbraces{\pbraces{w_{qj}, v_{qj}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_q + ie_j), \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{1 + i} = 1
+	\end{align*}
+	and similarly $\vbraces{1 + \lambda_q} = \sqrt{2}$ thus with \ref{lemma:complex_geom} we obtain $\lambda_j, \lambda_q \in \{i, -i\}$. Now we have a look at
+	\begin{align*}
+		\frac{1}{2}\vbraces{\lambda_j + \overline{\lambda_q}} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j), \frac{1}{\sqrt{2}}(\tilde{e}_j + \lambda_{q} \tilde{e}_q)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{qj}, \tilde{w}_{jq}}_{H_2}} \\
+		&= \vbraces{\pbraces{w_{qj}, w_{jq}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_q + i e_j), \frac{1}{\sqrt{2}}(e_j + i e_q)}_{H_1}} = \frac{1}{2}\vbraces{i - i} = 0
+	\end{align*}
+	and conclude that $\lambda_j = \lambda_q$ because else we would have the contradiction $1 = 0$. 
+\end{proof}
+
+
+\begin{example} \label{example:twodim}
+	Let $H_1$ and $H_2$ be Hilbert spaces with $\dim H_1 = 2$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. We consider a orthonormal basis $M = {e_1, e_2}$ of $H_1$ and define
+	\begin{align*}
+		v := \frac{1}{\sqrt{2}}(e_1 + e_2), \qquad w_{12} := \frac{1}{\sqrt{2}}(e_1 + i e_2), \qquad  w_{21} := \frac{1}{\sqrt{2}}(e_2 + i e_1).
+	\end{align*} 
+	From \ref{lemma:function_on_onb} we know that there exist $\tilde{e}_1 \in g(\C e_1)$, $\tilde{e}_2 \in g(\C e_2)$, $\tilde{v} \in g(\C v)$, $\tilde{w}_{12} \in g(\C w_{12})$, $\tilde{w}_{21} \in g(\C w_{21})$ and $\lambda \in \{i, -i\}$ with
+	\begin{align*}
+		\tilde{v} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \tilde{e}_2), \qquad \tilde{w}_{12} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \lambda \tilde{e}_2), \qquad \tilde{w}_{21} = \frac{1}{\sqrt{2}}(\tilde{e}_2 + \lambda \tilde{e}_1)
+	\end{align*} 
+	If $\lambda = i$ the we define $\zeta = \id_C$ and if $\lambda = -i$ we define $\zeta$ as the complex conjugation. Either way we hae $\lambda = \zeta(i)$.
+	
+	Now we are ready to define $U$. First of all $U0 := 0$. For an arbitrary $z \in H_1 \setminus \{0\}$ we know there exist $\lambda_1, \lambda_2 \in \C$ with $z = \lambda_1 e_1 + \lambda_2 e_2$ and there exists $r \in \{1,2\}$ with $\lambda_r \neq 0$. We then find $s \in \{1, 2\} \setminus \{r\}$. From \ref{lemma:aux_main} we know there exists $\tilde{z} \in g(\C z)$ with 
+	\begin{align*}
+		\tilde{z} = \lambda_r e_r + \nu_s e_s \quad \text{where} \quad \vbraces{\nu_s} = \vbraces{\lambda_s}.
+	\end{align*}
+	and we define
+	\begin{align*}
+		Uz := \zeta(\lambda_r) \tilde{e}_r + \zeta(\nu_s) \tilde{e}_s
+	\end{align*}
+	We find 
+	\begin{align*}
+		\frac{1}{\sqrt{2}} \vbraces{\lambda_r + \nu_s} = \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_r + \nu_s)}= \vbraces{\pbraces{\tilde{z}, \tilde{v}}_{H_2}} = \vbraces{\pbraces{z, v}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_r + \lambda_s}
+	\end{align*}
+	and for $y := \frac{1}{\sqrt{2}}(e_r + ie_s)$ and $\tilde{y} := \frac{1}{\sqrt{2}} (e_r + \zeta(i) e_s)$ we find
+	\begin{align*}
+		\frac{1}{\sqrt{2}}\vbraces{\lambda_r - i\nu_s} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_r) + \overline{\zeta(i)} \zeta(\nu_s)}= \vbraces{\pbraces{\tilde{z}, \tilde{y}}_{H_2}} \\
+		&= \vbraces{\pbraces{z, y}_{H_1}} = \vbraces{\pbraces{\lambda_r e_r + \lambda_s e_2, \frac{1}{\sqrt{2}}(e_r + ie_s)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_r - i\lambda_s}
+	\end{align*}
+	and with \ref{lemma:complex_alg} we obtain $\lambda_s = \nu_s$. Hence we know
+	\begin{align*}
+		Uz = \zeta(\lambda_1) \tilde{e}_1 + \zeta(\lambda_2) \tilde{e}_2.
+	\end{align*}
+	
+	For arbitrary $a,b \in H_2$ with $a = \lambda_1 e_1 + \lambda_2 e_2$ and $b = \mu_1 e_1 + \mu_2 e_2$ we obtain
+	\begin{align*}
+		\pbraces{Ua, Ub}_{H_2} = \pbraces{\zeta(\lambda_1) \tilde{e}_1 + \zeta(\lambda_2) \tilde{e}_2, \zeta(\mu_1) \tilde{e}_1 + \zeta(\mu_2) \tilde{e}_2}_{H_2} = \zeta(\lambda_1 \overline{\mu_1} + \lambda_2 \overline{\mu_2}) = \zeta\pbraces{\pbraces{a, b}_{H_1}}.
+	\end{align*}
+\end{example}
+
+
 \begin{theorem}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and unitary or antilinear and antiunitary and that fulfills for any ray $R \in \mathcal{P}(H_1)$
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and fulfills $(Ux, Uy)_{H_2} = (x,y)_{H_1}$ for all $x,y \in H_1$ or antilinear and fulfills $(Ux, Uy)_{H_2} = \overline{(x,y)_{H_1}}$ for all $x,y \in H_1$. Furthermore for every ray $R \in \mathcal{P}(H_1)$ the implication
 	\begin{align*}
 		x \in R \Rightarrow Ux \in g(R).
 	\end{align*}
+	holds.
 \end{theorem}
 
 \begin{proof}
-	We already showed the theorem for $\dim H_1 = 0$ in \ref{example:zerodim} and for $\dim H_1 = 1$ in \ref{example:onedim}, hence from now on we assume $\dim H_1 > 1$. As we know from \cite{FAna1} there exists an orthonormal basis $M := \{e_\xi \mid \xi \in A\}$ of $H_1$. First we choose some $\rho \in A$ and a normalized vector $\tilde{e}_\rho \in g(\C e_\rho)$. We start defining the function $U$ by
+	We already showed the theorem for $\dim H_1 = 0$ in \ref{example:zerodim}, for $\dim H_1 = 1$ in \ref{example:onedim} and for $\dim H_1 = 2$ in \ref{example:twodim}, hence from now on we assume $\dim H_1 > 2$. We know from \ref{lemma:onb} that there exists an orthonormal basis $M := \{e_j \mid j \in J\}$ of $H_1$. First we choose some $q \in J$ and a normalized vector $\tilde{e}_q \in g(\C e_q)$. For all distinct $r,s \in J$ we define
 	\begin{align*}
-		U0 := 0 \quad \text{and} \quad Ue_\rho := \tilde{e}_\rho.
+		v_{rs} := \frac{1}{\sqrt{2}}(e_r + e_s) \quad \text{and} \quad w_{rs} := \frac{1}{\sqrt{2}}(e_r + ie_s).
 	\end{align*}
-	Now for distinct $\alpha, \beta \in A$ we define
+	We know from \ref{lemma:function_on_onb} that for every $j \in J \setminus \{q\}$ there exist $\tilde{e}_j \in g(\C e_j)$, $\tilde{v}_{qj} \in g(\C v_{qj})$, $\tilde{w}_{qj} \in g(\C w_{qj})$, $\tilde{w}_{jq} \in g(\C w_{jq})$ and $\lambda_j \in \{i, -i\}$ with
 	\begin{align*}
-		x_{\alpha \beta} := \frac{1}{\sqrt{2}} (e_\alpha + e_\beta).
+		\tilde{v}_{qj} = \frac{1}{\sqrt{2}}(e_q + e_j), \qquad \tilde{w}_{qj} = \frac{1}{\sqrt{2}}(e_q + ie_j), \qquad \tilde{w}_{jq} = \frac{1}{\sqrt{2}}(e_j + ie_q).
+	\end{align*} 
+	We define $\tilde{v}_{jq} := \tilde{v}_{qj}$ and arbitrarily choose distinct $k,l \in J \setminus \{q\}$ and define
+	\begin{align*}
+		x_{kl} := \frac{1}{\sqrt{3}}(e_q + e_k + e_l) \quad \text{and} \quad y_{kl}:= \frac{1}{\sqrt{3}}(e_q + e_k + ie_l)
+	\end{align*} 
+	We can now use \ref{lemma:aux_main} and know that there exists a unique $\tilde{x}_{kl} \in g(\C x_{kl})$ and a unique $\tilde{y}_{kl} \in g(\C y_{kl})$ with 
+	\begin{align*}
+		\tilde{w}_{kl} = \frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \lambda_{k} \tilde{e}_k + \lambda_{l} \tilde{e}_l} \quad \text{and} \quad \tilde{y}_{kl} = \frac{1}{\sqrt{3}}(\tilde{e}_q + \mu_k \tilde{e}_k + \mu_l \tilde{e}_l)
 	\end{align*}
-	We observe using Parseval's equality that $x_{\alpha \beta}$ is a normalized vector and for every $\xi \in A$
-	\begin{align}
-		(x_{\alpha \beta}, e_\xi)_{H_1} = \pbraces{\frac{1}{\sqrt{2}} (e_\alpha + e_\beta), e_\xi}_{H_1} = \frac{1}{\sqrt{2}} \pbraces{(e_\alpha, e_\xi)_{H_1} + (e_\beta, e_\xi)_{H_1}} = 
-		\begin{cases}
-			\frac{1}{\sqrt{2}} &, \text{if } \xi \in \{\alpha, \beta\} \\
-			0 &, \text{else}
-		\end{cases}. \label{eq:lc_two}
-	\end{align}
-	Particularly, for every $\eta \in A \setminus \{\rho\}$, we have $(e_\rho, x_{\rho \eta})_{H_1} = \frac{1}{\sqrt{2}}$ and this allows us to use \ref{lemma:phase_adjustment_ray} and we know that there exists a unique $\tilde{x}_{\rho \eta} \in g(\C x_{\rho \eta})$ with
+	and $|\lambda_k| = |\lambda_l| = \vbraces{\mu_k} = \vbraces{\mu_l} = 1$. Next, we can use \ref{bullet:ran_ons} and observe that for $j \in \{k,l\}$
 	\begin{align*}
-		(\tilde{x}_{\rho \eta}, Ue_\rho)_{H_1} = \vbraces{(\tilde{x}_{\rho \eta}, Ue_\rho)_{H_1}} = \vbraces{(x_{\rho \eta}, e_\rho)_{H_1}} = \frac{1}{\sqrt{2}}.
+		\frac{1}{\sqrt{6}} \vbraces{1 + \lambda_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \lambda_k \tilde{e}_k + \lambda_l \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_q + \tilde{e}_j}}_{H_2}} = |(\tilde{x}_{kl}, \tilde{v}_{qj})_{H_2}| \\
+		&= |(x_{kl}, v_{qj})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + e_l}, \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} = \frac{2}{\sqrt{6}}.
 	\end{align*}
-	We define
+	and 
 	\begin{align*}
-		U x_{\rho \eta} := \tilde{x}_{\rho \eta}.
+	\frac{1}{\sqrt{6}} \vbraces{1 + \mu_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \mu_k \tilde{e}_k + \mu_l \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_q + \tilde{e}_j}}_{H_2}} = |(\tilde{y}_{kl}, \tilde{v}_{qj})_{H_2}| \\
+	&= |(y_{kl}, v_{qj})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + ie_l}, \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} =
+	\begin{cases}
+		\frac{2}{\sqrt{6}} &, \text{if } j = k \\
+		\frac{\sqrt{2}}{\sqrt{6}} &, \text{if } j = l
+	\end{cases} .
 	\end{align*}
-	Now we have a look at \eqref{eq:lc_two} again and find $(e_\eta, x_{\rho \eta})_{H_1} = \overline{(x_{\rho \eta}, e_\eta)_{H_1}} = \frac{1}{\sqrt{2}}$. We can use \ref{lemma:phase_adjustment_ray} again and receive a unique $\tilde{e}_\eta \in g(\C e_\eta)$ with
+	Using \ref{lemma:complex_geom} we obtain $\lambda_k = \lambda_l = \mu_k = 1$ and $\mu_l \in \{i, -i\}$, thus
 	\begin{align*}
-		(\tilde{e}_\eta, Ux_{\rho \eta})_{H_1} = \vbraces{(\tilde{e}_\eta, Ux_{\rho \eta})_{H_1}} = \vbraces{(e_\eta, x_{\rho \eta})_{H_1}} = \frac{1}{\sqrt{2}}.
-	\end{align*}
-	We define 
-	\begin{align*}
-		Ue_\eta := \tilde{e}_\eta.
-	\end{align*}
-	Now $U$ is already defined on the whole orthonormal basis $M$. Using \eqref{eq:vector_isometry} and \eqref{eq:lc_two} we observe that for every $\xi \in A \setminus \{\rho, \eta\}$ we obtain $\vbraces{(Ux_{\rho \eta}, Ue_\xi)_{H_2}} = |(x_{\rho \eta}, e_\xi)| = 0$. With \eqref{eq:ran_fourier} we can conclude
-	\begin{align*}
-		Ux_{\rho \eta} = \sum_{\xi \in A} (Ux_{\rho \eta}, Ue_\xi)_{H_2}Ue_\xi = (Ux_{\rho \eta}, Ue_\rho)_{H_2} Ue_\rho + (Ux_{\rho \eta}, Ue_\eta)_{H_2} Ue_\eta =  \frac{1}{\sqrt{2}} \pbraces{Ue_\rho + Ue_\eta}
+		\tilde{x}_{kl} = \frac{1}{\sqrt{3}}(e_q + e_k + e_l) \quad \text{and} \quad \tilde{y}_{kl} = \frac{1}{\sqrt{3}}(e_q + e_k + \mu_l e_l)
 	\end{align*}
 	
-	We continue by defining for all distinct $\alpha, \beta \in A \setminus \{\rho\}$ the vector
+	Using \ref{lemma:aux_main} again we find $\tilde{v}_{kl} \in g(\C v_{kl})$ with
 	\begin{align*}
-		y_{\alpha \beta} := \frac{1}{\sqrt{3}} \pbraces{e_\rho + e_\alpha + e_\beta}.
+		\tilde{v}_{kl} = \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_k + \lambda_l Ue_l}.
 	\end{align*}
-	We remark that if $\dim H_1 = 2$ no such vector exists, but this does not cause any problems. Using Parseval's equality we find that $\norm[H_1]{y_{\alpha \beta}} = 1$. We can now use \ref{lemma:aux_main} and know that there exists a unique $\tilde{y}_{\alpha \beta} \in g(\C y_{\alpha \beta})$ with 
+	where $|\lambda_l|= \frac{\sqrt{2}}{\sqrt{2}} = 1$. We find
 	\begin{align*}
-		\tilde{y}_{\alpha \beta} = \frac{1}{\sqrt{3}} \pbraces{Ue_\rho + \mu_\alpha Ue_\alpha + \mu_\beta Ue_\beta}
+		\frac{1}{\sqrt{6}} \vbraces{1 + \overline{\lambda_l}} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \tilde{e}_k + \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_k + \lambda_l \tilde{e}_l}}_{H_2}} = |(\tilde{w}_{kl}, \tilde{v}_{kl})_{H_2}| \\
+		&= |(w_{kl}, v_{kl})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + e_l}, \frac{1}{\sqrt{2}} (e_k + e_l)}_{H_1}} = \frac{2}{\sqrt{6}}
 	\end{align*}
-	and $|\mu_\alpha| = \frac{\sqrt{3}}{\sqrt{3}} = 1 = \frac{\sqrt{3}}{\sqrt{3}} = |\mu_\beta|$. Now we can use \ref{bullet:ran_ons} and observe that for $\xi \in \{\alpha, \beta\}$
+	and with \ref{lemma:complex_geom} we obtain $\lambda_l = 1$ and hence
 	\begin{align*}
-		\frac{1}{\sqrt{6}} \vbraces{1 + \mu_\xi} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{Ue_\rho + \mu_\alpha Ue_\alpha + \mu_\beta Ue_\beta}, \frac{1}{\sqrt{2}} \pbraces{Ue_\rho + Ue_\xi}}_{H_2}} = |(\tilde{y}_{\alpha \beta}, Ux_{\rho \xi})_{H_2}| \\
-		&= |(y_{\alpha \beta}, x_{\rho \xi})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_\rho + e_\alpha + e_\beta}, \frac{1}{\sqrt{2}} (e_\rho + e_\xi)}_{H_1}} = \frac{2}{\sqrt{6}}.
-	\end{align*}
-	Hence we know that $|1 + \mu_\alpha| = |1 + \mu_\beta| = 2$ and using \ref{lemma:complex_geom} we obtain $\mu_\alpha = \mu_\beta = 1$. This shows $\tilde{y}_{\alpha \beta} = \tilde{y}_{\beta \alpha}$ and justifies the definition
-	\begin{align*}
-		Uy_{\alpha \beta} := \tilde{y}_{\alpha \beta} = \frac{1}{\sqrt{3}} \pbraces{Ue_\rho + Ue_\alpha + Ue_\beta}.
+		\tilde{v}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \tilde{e}_l).
 	\end{align*}
 	
-	Let $\alpha, \beta \in A \setminus \{\rho\}$ be two distinct values. Then we know from \ref{lemma:aux_main} that there exists a unique $\tilde{x}_{\alpha \beta} \in g(\C x_{\alpha \beta})$ with
+	For distinct $r,s \in J$ we define yet another vector
 	\begin{align*}
-		\tilde{x}_{\alpha \beta} = \frac{1}{\sqrt{2}} \pbraces{Ue_\alpha + \mu_\beta Ue_\beta}.
+		x_{rs} := \frac{1}{\sqrt{2}}(e_r + ie_s).
 	\end{align*}
-	and $|\mu_\beta|= \frac{\sqrt{2}}{\sqrt{2}} = 1$. We find
+	We can use \ref{lemma:aux_main} and find a unique normalized vector $\tilde{x}_{rs} \in g(\C v_{rs})$ with
 	\begin{align*}
-		\frac{1}{\sqrt{6}} \vbraces{1 + \overline{\mu_\beta}} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{Ue_\rho + Ue_\alpha + Ue_\beta}, \frac{1}{\sqrt{2}} \pbraces{Ue_\alpha + \mu_\beta Ue_\beta}}_{H_2}} = |(Uy_{\alpha \beta}, \tilde{x}_{\alpha \beta})_{H_2}| \\
-		&= |(y_{\alpha \beta}, x_{\alpha \beta})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_\rho + e_\alpha + e_\beta}, \frac{1}{\sqrt{2}} (e_\alpha + e_\beta)}_{H_1}} = \frac{2}{\sqrt{6}}
-	\end{align*}
-	and with \ref{lemma:complex_geom} we obtain $\mu_\beta = 1$ and hence we can define
-	\begin{align*}
-		Ux_{\alpha \beta} := \tilde{x}_{\alpha \beta} = \frac{1}{\sqrt{2}}(Ue_\alpha + Ue_\beta).
-	\end{align*}
-	
-	For distinct $\alpha, \beta \in A$ we define yet another vector
-	\begin{align*}
-		v_{\alpha \beta} := \frac{1}{\sqrt{2}}(e_\alpha + ie_\beta).
-	\end{align*}
-	Again we can use \ref{lemma:aux_main} and find a unique normalized vector $\tilde{v}_{\alpha \beta} \in g(\C v_{\alpha \beta})$ whith
-	\begin{align*}
-		\tilde{v}_{\alpha \beta} = \frac{1}{\sqrt{2}}(Ue_\alpha + \mu_{\alpha \beta} Ue_\beta)
+		\tilde{x}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \lambda_{rs} \tilde{e}_s)
 	\end{align*}
 	and $|\mu_{\alpha \beta}| = \frac{\sqrt{3}}{\sqrt{3}} = 1$ only this time
 	\begin{align*}
