@@ -25,7 +25,7 @@
 \end{lemma}
 
 \begin{proof}
-	We take some arbitrary vector $\tilde{w} \in g(\C y)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{\tilde{w}}$ and define $\mu := (\tilde{w}, \tilde{x})_{H_2}$. From \eqref{eq:vector_isometry} we know that $|\mu| = |(\tilde{w},\tilde{x})_{H_2}| = |(y,x)_{H_1}| \neq 0$ and hence we know that $\mu \in \C \setminus \{0\}$. Now we know from \ref{lemma:phase_adjustment_complex} that there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. Now we define $\tilde{y} := \lambda \tilde{w}$ and obtain
+	We take some arbitrary vector $\tilde{w} \in g(\C y)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{\tilde{w}}$ and define $\mu := (\tilde{w}, \tilde{x})_{H_2}$. From \eqref{eq:vector_isometry} we know that $|\mu| = |(\tilde{w},\tilde{x})_{H_2}| = |(y,x)_{H_1}| \neq 0$ and hence we know that $\mu \in \C \setminus \{0\}$. Now we know from lemma \ref{lemma:phase_adjustment_complex} that there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. Now we define $\tilde{y} := \lambda \tilde{w}$ and obtain
 	\begin{align*}
 		(\tilde{y}, \tilde{x})_{H_2} = \lambda (\tilde{w}, \tilde{x})_{H_2} = \lambda \mu = |\lambda \mu| = |\lambda (\tilde{w}, \tilde{x})_{H_2}| = |(y,x)_{H_2}|
 	\end{align*}
@@ -53,11 +53,11 @@
 	\begin{align}
 		\pbraces{x, e_j}_{H_1} &= \pbraces{\sum_{i \in I} \lambda_i e_i, e_j}_{H_1} = \sum_{i \in I} \lambda_i \pbraces{e_i, e_j}_{H_1} = \lambda_j \label{eq:aux_fouriercoef}
 	\end{align}
-	Since $\lambda_l \neq 0$ we can use \ref{lemma:phase_adjustment_ray} and we obtain a unique $\tilde{y} \in g(\C x)$ with $\norm[H_2]{\tilde{y}} = \norm[H_1]{x}$ and 
+	Since $\lambda_l \neq 0$ we can use lemma \ref{lemma:phase_adjustment_ray} and we obtain a unique $\tilde{y} \in g(\C x)$ with $\norm[H_2]{\tilde{y}} = \norm[H_1]{x}$ and 
 	\begin{align*}
 		(\tilde{y}, \tilde{e}_l)_{H_2} = |(\tilde{y}, \tilde{e}_l)_{H_2}| = |(x, e_l)_{H_1}| = \vbraces{\lambda_l}
 	\end{align*}
-	whereby we also used \eqref{eq:vector_isometry}. From \ref{lemma:phase_adjustment_complex} we know there exists a normalized $\nu \in \C$ with $|\lambda_l| = |\nu \lambda_l| = \nu \lambda_l$. We define $\tilde{x} := \frac{1}{\nu} \tilde{y}$ and find
+	whereby we also used \eqref{eq:vector_isometry}. From lemma \ref{lemma:phase_adjustment_complex} we know there exists a normalized $\nu \in \C$ with $|\lambda_l| = |\nu \lambda_l| = \nu \lambda_l$. We define $\tilde{x} := \frac{1}{\nu} \tilde{y}$ and find
 	\begin{align*}
 		(\tilde{x}, \tilde{e}_l)_{H_2} = \frac{1}{\nu} (\tilde{y}, \tilde{e}_l)_{H_2} = \frac{1}{\nu} |\lambda_l| = \frac{1}{\nu} \nu \lambda_l = \lambda_l.
 	\end{align*} 
@@ -65,7 +65,7 @@
 	\begin{align*}
 		\tilde{x} = \sum_{i \in I} (\tilde{x}, \tilde{e}_i)_{H_2} \tilde{e}_i = \lambda_l \tilde{e}_l + \sum_{i \in I \setminus \{l\}} (\tilde{x}, \tilde{e}_i)_{H_2} \tilde{e}_i 
 	\end{align*}
-	and for every $i \in A \setminus \{l\}$ we conclude, using \eqref{eq:vector_isometry} and \eqref{eq:aux_fouriercoef}, that
+	and for every $i \in I \setminus \{l\}$ we conclude, using \eqref{eq:vector_isometry} and \eqref{eq:aux_fouriercoef}, that
 	\begin{align*}
 		\vbraces{(\tilde{x}, \tilde{e}_i)_{H_2}} = |(x, e_i)_{H_1}| = |\lambda_i´|.
 	\end{align*}
@@ -88,11 +88,11 @@
 			0 &, \text{else}
 		\end{cases}
 	\end{align*}
-	Hence we can use \ref{lemma:phase_adjustment_ray} and obtain $\tilde{v}_{qj} \in g(\C v_{qj})$ with
+	Hence we can use lemma \ref{lemma:phase_adjustment_ray} and obtain $\tilde{v}_{qj} \in g(\C v_{qj})$ with
 	\begin{align*}
 		(\tilde{v}_{qj}, \tilde{e}_q)_{H_2} = \vbraces{(\tilde{v}_{qj}, \tilde{e}_q)_{H_2}} = \vbraces{(v_{qj}, e_q)_{H_1}} = \frac{1}{\sqrt{2}}.
 	\end{align*}
-	Using \ref{lemma:phase_adjustment_ray} again, we find $\tilde{e}_{j} \in g(\C e_j)$ with
+	Using lemma \ref{lemma:phase_adjustment_ray} again, we find $\tilde{e}_{j} \in g(\C e_j)$ with
 	\begin{align*}
 		\pbraces{\tilde{v}_{qj}, \tilde{e}_j}_{H_2} = \vbraces{\pbraces{\tilde{v}_{qj}, \tilde{e}_j}_{H_2}} = \vbraces{\pbraces{v_{qj}, e_j}_{H_1}} = \frac{1}{\sqrt{2}}.
 	\end{align*}
@@ -104,7 +104,7 @@
 	\begin{align*}
 		\tilde{v}_{qj} = \sum_{i \in I} (\tilde{v}_{qj}, \tilde{e}_i)_{H_2} \tilde{e}_i = \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_j).
 	\end{align*}
-	We choose some arbitrary $k \in J$. Using \ref{lemma:aux_main} we obtain $\tilde{w}_{qj} \in g(\C w_{qj})$ and $\tilde{w}_{jq} \in g(\C w_{jq})$ with
+	We choose some arbitrary $k \in J$. Using lemma \ref{lemma:aux_main} we obtain $\tilde{w}_{qj} \in g(\C w_{qj})$ and $\tilde{w}_{jq} \in g(\C w_{jq})$ with
 	\begin{align*}
 		\tilde{w}_{qj} = \frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j) \quad \text{and} \quad \tilde{w}_{jq} = \frac{1}{\sqrt{2}}(\tilde{e}_j + \lambda_{q} \tilde{e}_q)
 	\end{align*}
@@ -113,7 +113,7 @@
 		\frac{1}{\sqrt{2}}\vbraces{1 + \lambda_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j), \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_j)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{qj}, \tilde{v}_{qj}}_{H_2}} \\
 		&= \vbraces{\pbraces{w_{qj}, v_{qj}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_q + ie_j), \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{1 + i} = 1
 	\end{align*}
-	and similarly $\vbraces{1 + \lambda_q} = \sqrt{2}$ thus with \ref{lemma:complex_geom} we obtain $\lambda_j, \lambda_q \in \{i, -i\}$. Now we have a look at
+	and similarly $\vbraces{1 + \lambda_q} = \sqrt{2}$ thus with lemma \ref{lemma:complex_geom} we obtain $\lambda_j, \lambda_q \in \{i, -i\}$. Now we have a look at
 	\begin{align*}
 		\frac{1}{2}\vbraces{\lambda_j + \overline{\lambda_q}} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_j \tilde{e}_j), \frac{1}{\sqrt{2}}(\tilde{e}_j + \lambda_{q} \tilde{e}_q)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{qj}, \tilde{w}_{jq}}_{H_2}} \\
 		&= \vbraces{\pbraces{w_{qj}, w_{jq}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_q + i e_j), \frac{1}{\sqrt{2}}(e_j + i e_q)}_{H_1}} = \frac{1}{2}\vbraces{i - i} = 0
@@ -127,13 +127,13 @@
 	\begin{align*}
 		v := \frac{1}{\sqrt{2}}(e_1 + e_2), \qquad w_{12} := \frac{1}{\sqrt{2}}(e_1 + i e_2), \qquad  w_{21} := \frac{1}{\sqrt{2}}(e_2 + i e_1).
 	\end{align*} 
-	From \ref{lemma:function_on_onb} we know that there exist $\tilde{e}_1 \in g(\C e_1)$, $\tilde{e}_2 \in g(\C e_2)$, $\tilde{v} \in g(\C v)$, $\tilde{w}_{12} \in g(\C w_{12})$, $\tilde{w}_{21} \in g(\C w_{21})$ and $\lambda \in \{i, -i\}$ with
+	From lemma \ref{lemma:function_on_onb} we know that there exist $\tilde{e}_1 \in g(\C e_1)$, $\tilde{e}_2 \in g(\C e_2)$, $\tilde{v} \in g(\C v)$, $\tilde{w}_{12} \in g(\C w_{12})$, $\tilde{w}_{21} \in g(\C w_{21})$ and $\lambda \in \{i, -i\}$ with
 	\begin{align*}
 		\tilde{v} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \tilde{e}_2), \qquad \tilde{w}_{12} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \lambda \tilde{e}_2), \qquad \tilde{w}_{21} = \frac{1}{\sqrt{2}}(\tilde{e}_2 + \lambda \tilde{e}_1)
 	\end{align*} 
 	If $\lambda = i$ the we define $\zeta = \id_C$ and if $\lambda = -i$ we define $\zeta$ as the complex conjugation. Either way we hae $\lambda = \zeta(i)$.
 	
-	Now we are ready to define $U$. First of all $U0 := 0$. For an arbitrary $z \in H_1 \setminus \{0\}$ we know there exist $\lambda_1, \lambda_2 \in \C$ with $z = \lambda_1 e_1 + \lambda_2 e_2$ and there exists $r \in \{1,2\}$ with $\lambda_r \neq 0$. We then find $s \in \{1, 2\} \setminus \{r\}$. From \ref{lemma:aux_main} we know there exists $\tilde{z} \in g(\C z)$ with 
+	Now we are ready to define $U$. First of all $U0 := 0$. For an arbitrary $z \in H_1 \setminus \{0\}$ we know there exist $\lambda_1, \lambda_2 \in \C$ with $z = \lambda_1 e_1 + \lambda_2 e_2$ and there exists $r \in \{1,2\}$ with $\lambda_r \neq 0$. We then find $s \in \{1, 2\} \setminus \{r\}$. From lemma \ref{lemma:aux_main} we know there exists $\tilde{z} \in g(\C z)$ with 
 	\begin{align*}
 		\tilde{z} = \lambda_r e_r + \nu_s e_s \quad \text{where} \quad \vbraces{\nu_s} = \vbraces{\lambda_s}.
 	\end{align*}
@@ -150,20 +150,80 @@
 		\frac{1}{\sqrt{2}}\vbraces{\lambda_r - i\nu_s} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_r) + \overline{\zeta(i)} \zeta(\nu_s)}= \vbraces{\pbraces{\tilde{z}, \tilde{y}}_{H_2}} \\
 		&= \vbraces{\pbraces{z, y}_{H_1}} = \vbraces{\pbraces{\lambda_r e_r + \lambda_s e_2, \frac{1}{\sqrt{2}}(e_r + ie_s)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_r - i\lambda_s}
 	\end{align*}
-	and with \ref{lemma:complex_alg} we obtain $\lambda_s = \nu_s$. Hence we know
+	and with lemma \ref{lemma:complex_alg} we obtain $\lambda_s = \nu_s$. Hence we know
 	\begin{align*}
 		Uz = \zeta(\lambda_1) \tilde{e}_1 + \zeta(\lambda_2) \tilde{e}_2.
 	\end{align*}
-	
-	For arbitrary $a,b \in H_2$ with $a = \lambda_1 e_1 + \lambda_2 e_2$ and $b = \mu_1 e_1 + \mu_2 e_2$ we obtain
+	Furthermore we have
 	\begin{align*}
-		\pbraces{Ua, Ub}_{H_2} = \pbraces{\zeta(\lambda_1) \tilde{e}_1 + \zeta(\lambda_2) \tilde{e}_2, \zeta(\mu_1) \tilde{e}_1 + \zeta(\mu_2) \tilde{e}_2}_{H_2} = \zeta(\lambda_1 \overline{\mu_1} + \lambda_2 \overline{\mu_2}) = \zeta\pbraces{\pbraces{a, b}_{H_1}}.
+		\norm[H_2]{Uz}^2 = \norm[H_2]{\zeta\pbraces{\lambda_1} e_1 + \zeta\pbraces{\lambda_2} e_2}^2 = \vbraces{\zeta\pbraces{\lambda_1}}^2 + \vbraces{\zeta\pbraces{\lambda_2}}^2 = \vbraces{\lambda_1}^2 + \vbraces{\lambda_2}^2 = \norm[H_1]{\lambda_1 e_1 + \lambda_2 e_2} = \norm[H_1]{z}
 	\end{align*}
 \end{example}
 
 
-\begin{theorem}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and fulfills $(Ux, Uy)_{H_2} = (x,y)_{H_1}$ for all $x,y \in H_1$ or antilinear and fulfills $(Ux, Uy)_{H_2} = \overline{(x,y)_{H_1}}$ for all $x,y \in H_1$. Furthermore for every ray $R \in \mathcal{P}(H_1)$ the implication
+\begin{lemma} \label{lemma:aux_last}
+	Let $H_1$ and $H_2$ be Hilbert spaces with $\dim H_1 >2$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let furthermore $\{e_j \mid j \in J\}$ be an orthonormal basis of $H_1$ and for all distinct $k,l \in J$ 
+	\begin{align*}
+		v_{kl} := \frac{1}{\sqrt{2}}(e_k + e_l) \quad \text{and} \quad w_{kl} := \frac{1}{\sqrt{2}}(e_k + ie_l)
+	\end{align*}
+	Then for all $j \in J$ there exists $\tilde{e}_j \in g(\C e_j)$ and for all distinct $r,s \in J$ there exists a normalized $\tilde{v}_{rs} \in g(\C v_{rs})$, a normalized $\tilde{w}_{rs} \in g(\C w_{rs})$ and a $\lambda_{rs} \in \{-i, i\}$ with 
+	\begin{align*}
+		\tilde{v}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \tilde{e}_s) \quad \text{and} \quad \tilde{w}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \lambda_{rs} \tilde{e}_s)
+	\end{align*}
+	and $\lambda_{rs} = \lambda_{sr}$.
+\end{lemma}
+
+\begin{proof}
+	We know from lemma \ref{lemma:function_on_onb} that for every $j \in J \setminus \{q\}$ there exist $\tilde{e}_j \in g(\C e_j)$, $\tilde{v}_{qj} \in g(\C v_{qj})$, $\tilde{w}_{qj} \in g(\C w_{qj})$, $\tilde{w}_{jq} \in g(\C w_{jq})$ and $\lambda_{jq} = \lambda_{qj} \in \{i, -i\}$ with
+	\begin{align*}
+	\tilde{v}_{qj} = \frac{1}{\sqrt{2}}(\tilde{e}_q + \tilde{e}_j), \qquad \tilde{w}_{qj} = \frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_{qj}\tilde{e}_j), \qquad \tilde{w}_{jq} = \frac{1}{\sqrt{2}}(\tilde{e}_j + \lambda_{jq} \tilde{e}_q).
+	\end{align*} 
+	We define $\tilde{v}_{jq} := \tilde{v}_{qj}$ and arbitrarily choose distinct $k,l \in J \setminus \{q\}$ and define
+	\begin{align*}
+	x_{kl} := \frac{1}{\sqrt{3}}(e_q + e_k + e_l) 
+	\end{align*} 
+	We can now use lemma \ref{lemma:aux_main} and know that there exists a unique $\tilde{x}_{kl} \in g(\C x_{kl})$ with 
+	\begin{align*}
+	\tilde{x}_{kl} = \frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \mu_{k} \tilde{e}_k + \mu_{l} \tilde{e}_l} 
+	\end{align*}
+	and $\vbraces{\mu_k} = \vbraces{\mu_l} = 1$. Next, we can use \ref{bullet:ran_ons} and observe that for $j \in \{k,l\}$
+	\begin{align*}
+	\frac{1}{\sqrt{6}} \vbraces{1 + \mu_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \mu_k \tilde{e}_k + \mu_l \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_q + \tilde{e}_j}}_{H_2}} = |(\tilde{x}_{kl}, \tilde{v}_{qj})_{H_2}| \\
+	&= |(x_{kl}, v_{qj})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + e_l}, \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} = \frac{2}{\sqrt{6}}.
+	\end{align*}
+	Using lemma \ref{lemma:complex_geom} we obtain $\mu_k = \mu_l = 1$, thus
+	\begin{align*}
+	\tilde{x}_{kl} = \frac{1}{\sqrt{3}}(\tilde{e}_q + \tilde{e}_k + \tilde{e}_l).
+	\end{align*}
+	Next we make use of lemma \ref{lemma:aux_main} and obtain $\tilde{v}_{kl} \in g(\C v_{kl})$ and $\tilde{w}_{kl} \in g(\C w_{kl})$ with
+	\begin{align*}
+	\tilde{v}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \nu_l \tilde{e}_l) \quad \text{and} \quad \tilde{w}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \lambda_{kl} \tilde{e}_l)
+	\end{align*}
+	and $\vbraces{\nu_l} = \vbraces{\lambda_{kl}}$. We have a look at 
+	\begin{align*}
+		\frac{1}{\sqrt{6}}(1 + \nu_l) &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_k + \nu_l \tilde{e}_l), \frac{1}{\sqrt{3}}(\tilde{e}_q + \tilde{e}_k + \tilde{e}_l)}_{H_2}} = \vbraces{\pbraces{\tilde{v}_{kl}, \tilde{x}_{kl}}_{H_2}} \\
+		&= \vbraces{\pbraces{v_{kl}, x_{kl}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_k + e_l), \frac{1}{\sqrt{3}}(e_q + e_k + e_l)}_{H_1}} = \frac{2}{\sqrt{6}}
+	\end{align*}
+	and 
+	\begin{align*}
+		\frac{1}{\sqrt{6}}(1 + \lambda_{kl}) &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_k + \lambda_{kl} \tilde{e}_l), \frac{1}{\sqrt{3}}(\tilde{e}_q + \tilde{e}_k + \tilde{e}_l)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{kl}, \tilde{x}_{kl}}_{H_2}} \\
+		&= \vbraces{\pbraces{w_{kl}, x_{kl}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_k + i e_l), \frac{1}{\sqrt{3}}(e_q + e_k + e_l)}_{H_1}} = \frac{\sqrt{2}}{\sqrt{6}}
+	\end{align*}
+	and obtain with lemma \ref{lemma:complex_geom} that $\nu_l = 1$ and $\lambda_{kl} \in \{i, -i\}$. Finally we find
+	\begin{align*}
+		\frac{1}{2}\vbraces{\lambda_{kl} - \lambda_{lk}} &= \frac{1}{2}\vbraces{\lambda_{kl} + \overline{\lambda_{lk}}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_k + \lambda_{kl} \tilde{e}_l), \frac{1}{\sqrt{2}}(\tilde{e}_l + \lambda_{lk} \tilde{e}_k)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{kl}, \tilde{w}_{lk}}_{H_2}} \\
+		&= \vbraces{\pbraces{w_{kl}, w_{lk}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_k + i e_l), \frac{1}{\sqrt{2}}(e_l + i e_k)}_{H_1}} = \frac{1}{2} \vbraces{i + \overline{i}} = 0
+	\end{align*}
+	and from this we conclude $\lambda_{kl} = \lambda_{lk}$ because else we would have the contradiction $1 = 0$. To sum up, we showed for arbitrary $r,s \in J$ the equalities
+	\begin{align*}
+		\tilde{v}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \tilde{e}_s) \quad \text{and} \quad \tilde{w}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \lambda_{rs} \tilde{e}_s)
+	\end{align*}
+	where $\lambda_{rs} \in \{i, -i\}$ hold and that $\lambda_{rs} = \lambda_{sr}$. 
+\end{proof}
+
+
+\begin{theorem} \label{theorem:wigner}
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists an isometry $U: H_1 \to H_2$ that is either linear or antilinear. Furthermore for every ray $R \in \mathcal{P}(H_1)$ the implication
 	\begin{align*}
 		x \in R \Rightarrow Ux \in g(R).
 	\end{align*}
@@ -171,151 +231,96 @@
 \end{theorem}
 
 \begin{proof}
-	We already showed the theorem for $\dim H_1 = 0$ in \ref{example:zerodim}, for $\dim H_1 = 1$ in \ref{example:onedim} and for $\dim H_1 = 2$ in \ref{example:twodim}, hence from now on we assume $\dim H_1 > 2$. We know from \ref{lemma:onb} that there exists an orthonormal basis $M := \{e_j \mid j \in J\}$ of $H_1$. First we choose some $q \in J$ and a normalized vector $\tilde{e}_q \in g(\C e_q)$. For all distinct $r,s \in J$ we define
+	We already showed the theorem for $\dim H_1 = 0$ in \ref{example:zerodim}, for $\dim H_1 = 1$ in \ref{example:onedim} and for $\dim H_1 = 2$ in \ref{example:twodim}, hence from now on we assume $\dim H_1 > 2$. We know from lemma \ref{lemma:onb} that there exists an orthonormal basis $M := \{e_j \mid j \in J\}$ of $H_1$. For all distinct $r,s \in J$ we define
 	\begin{align*}
 		v_{rs} := \frac{1}{\sqrt{2}}(e_r + e_s) \quad \text{and} \quad w_{rs} := \frac{1}{\sqrt{2}}(e_r + ie_s).
 	\end{align*}
-	We know from \ref{lemma:function_on_onb} that for every $j \in J \setminus \{q\}$ there exist $\tilde{e}_j \in g(\C e_j)$, $\tilde{v}_{qj} \in g(\C v_{qj})$, $\tilde{w}_{qj} \in g(\C w_{qj})$, $\tilde{w}_{jq} \in g(\C w_{jq})$ and $\lambda_j \in \{i, -i\}$ with
-	\begin{align*}
-		\tilde{v}_{qj} = \frac{1}{\sqrt{2}}(e_q + e_j), \qquad \tilde{w}_{qj} = \frac{1}{\sqrt{2}}(e_q + ie_j), \qquad \tilde{w}_{jq} = \frac{1}{\sqrt{2}}(e_j + ie_q).
-	\end{align*} 
-	We define $\tilde{v}_{jq} := \tilde{v}_{qj}$ and arbitrarily choose distinct $k,l \in J \setminus \{q\}$ and define
-	\begin{align*}
-		x_{kl} := \frac{1}{\sqrt{3}}(e_q + e_k + e_l) \quad \text{and} \quad y_{kl}:= \frac{1}{\sqrt{3}}(e_q + e_k + ie_l)
-	\end{align*} 
-	We can now use \ref{lemma:aux_main} and know that there exists a unique $\tilde{x}_{kl} \in g(\C x_{kl})$ and a unique $\tilde{y}_{kl} \in g(\C y_{kl})$ with 
-	\begin{align*}
-		\tilde{w}_{kl} = \frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \lambda_{k} \tilde{e}_k + \lambda_{l} \tilde{e}_l} \quad \text{and} \quad \tilde{y}_{kl} = \frac{1}{\sqrt{3}}(\tilde{e}_q + \mu_k \tilde{e}_k + \mu_l \tilde{e}_l)
+	 We know from lemma \ref{lemma:aux_last} that for all $j \in J$ there exists $\tilde{e}_j \in g(\C e_j)$ and for all distinct $r,s \in J$ there exists a normalized $\tilde{v}_{rs} \in g(\C v_{rs})$, a normalized $\tilde{w}_{rs} \in g(\C w_{rs})$ and a $\lambda_{rs} \in \{-i, i\}$ with 
+	 \begin{align*}
+	 \tilde{v}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \tilde{e}_s) \quad \text{and} \quad \tilde{w}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \lambda_{rs} \tilde{e}_s)
+	 \end{align*}
+	 and $\lambda_{rs} = \lambda_{sr}$. Now we take distinct $k,l,m \in J$ and define
+	 \begin{align*}
+	 	y_{klm} := \frac{1}{\sqrt{3}}(e_k + e_l + ie_m).
+	 \end{align*}
+	 We know from lemma \ref{lemma:aux_main} that there exists a normalized $\tilde{y}_{klm} \in g(\C y_{klm})$ with 
+	 \begin{align*}
+	 	\tilde{y}_{klm} = \frac{1}{\sqrt{3}}(\tilde{e}_k + \mu_l \tilde{e}_l + \mu_m \tilde{e}_m)
+	 \end{align*}
+	 with $\vbraces{\mu_l} = \vbraces{\mu_m} = 1$. For $j \in \{l,m\}$ we find
+	 \begin{align*}
+	 	\frac{1}{\sqrt{6}} \vbraces{1 + \mu_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}}(\tilde{e}_k + \mu_l \tilde{e}_l + \mu_m \tilde{e}_m), \frac{1}{\sqrt{2}}(\tilde{e}_k + \tilde{e}_j)}} = \vbraces{\pbraces{\tilde{y}_{klm}, \tilde{v}_{kj}}_{H_2}} \\
+	 	&= \vbraces{\pbraces{y_{klm}, v_{kj}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{3}}(e_k + e_l + ie_m), \frac{1}{\sqrt{2}}(e_k + e_j)}_{H_1}} = 
+	 	\begin{cases}
+	 		\frac{2}{\sqrt{6}} &, \text{if } j = l \\
+	 		\frac{\sqrt{2}}{\sqrt{6}} &, \text{if } j = m
+	 	\end{cases}
 	\end{align*}
-	and $|\lambda_k| = |\lambda_l| = \vbraces{\mu_k} = \vbraces{\mu_l} = 1$. Next, we can use \ref{bullet:ran_ons} and observe that for $j \in \{k,l\}$
+	and using lemma \ref{lemma:complex_geom} we obtain $\mu_l = 1$ and $\mu_m \in \{-i, i\}$. Next, we find for $j \in \{k,l\}$ that
 	\begin{align*}
-		\frac{1}{\sqrt{6}} \vbraces{1 + \lambda_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \lambda_k \tilde{e}_k + \lambda_l \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_q + \tilde{e}_j}}_{H_2}} = |(\tilde{x}_{kl}, \tilde{v}_{qj})_{H_2}| \\
-		&= |(x_{kl}, v_{qj})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + e_l}, \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} = \frac{2}{\sqrt{6}}.
+		\frac{1}{\sqrt{6}} \vbraces{\mu_m - \lambda_{mj}} &= \frac{1}{\sqrt{6}} \vbraces{\mu_m + \overline{\lambda_{mj}}} = \vbraces{\pbraces{\frac{1}{\sqrt{3}}(\tilde{e}_k + \tilde{e}_l + \mu_m \tilde{e}_m), \frac{1}{\sqrt{2}}(\tilde{e}_m + \lambda_{mj} \tilde{e}_j)}_{H_2}} = \vbraces{\pbraces{\tilde{y}_{klm}, \tilde{w}_{mj}}_{H_2}} \\
+		&= \vbraces{\pbraces{y_{klm}, w_{mj}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{3}}(e_k + e_l + ie_m), \frac{1}{\sqrt{2}}(e_m + ie_j)}_{H_1}} = \frac{1}{\sqrt{6}}\vbraces{i + \overline{i}} = 0
 	\end{align*}
-	and 
+	and conclude that $\lambda_{mk} = \mu_m = \lambda_{ml}$. This is where we wanted to end up, because now we obtain for distinct $k,l,m,n \in J$
 	\begin{align*}
-	\frac{1}{\sqrt{6}} \vbraces{1 + \mu_j} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \mu_k \tilde{e}_k + \mu_l \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_q + \tilde{e}_j}}_{H_2}} = |(\tilde{y}_{kl}, \tilde{v}_{qj})_{H_2}| \\
-	&= |(y_{kl}, v_{qj})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + ie_l}, \frac{1}{\sqrt{2}} (e_q + e_j)}_{H_1}} =
-	\begin{cases}
-		\frac{2}{\sqrt{6}} &, \text{if } j = k \\
-		\frac{\sqrt{2}}{\sqrt{6}} &, \text{if } j = l
-	\end{cases} .
+		\lambda_{kl} = \lambda_{kn} = \lambda_{nk} = \lambda_{nm} = \lambda_{mn}
 	\end{align*}
-	Using \ref{lemma:complex_geom} we obtain $\lambda_k = \lambda_l = \mu_k = 1$ and $\mu_l \in \{i, -i\}$, thus
+	and hence for all $k,l,m,n \in J$ with $k \neq l$ and $m \neq n$ that $\lambda_{kl} = \lambda_{mn}$. This allows us to define $\zeta: \C \to \C$ as the identitiy function if $\lambda_{kl} = i$ or the complex conjugation if $\lambda_{kl} = -i$ and write for all distinct $r,s \in J$ 
 	\begin{align*}
-		\tilde{x}_{kl} = \frac{1}{\sqrt{3}}(e_q + e_k + e_l) \quad \text{and} \quad \tilde{y}_{kl} = \frac{1}{\sqrt{3}}(e_q + e_k + \mu_l e_l)
-	\end{align*}
-	
-	Using \ref{lemma:aux_main} again we find $\tilde{v}_{kl} \in g(\C v_{kl})$ with
-	\begin{align*}
-		\tilde{v}_{kl} = \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_k + \lambda_l Ue_l}.
-	\end{align*}
-	where $|\lambda_l|= \frac{\sqrt{2}}{\sqrt{2}} = 1$. We find
-	\begin{align*}
-		\frac{1}{\sqrt{6}} \vbraces{1 + \overline{\lambda_l}} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{\tilde{e}_q + \tilde{e}_k + \tilde{e}_l}, \frac{1}{\sqrt{2}} \pbraces{\tilde{e}_k + \lambda_l \tilde{e}_l}}_{H_2}} = |(\tilde{w}_{kl}, \tilde{v}_{kl})_{H_2}| \\
-		&= |(w_{kl}, v_{kl})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_q + e_k + e_l}, \frac{1}{\sqrt{2}} (e_k + e_l)}_{H_1}} = \frac{2}{\sqrt{6}}
-	\end{align*}
-	and with \ref{lemma:complex_geom} we obtain $\lambda_l = 1$ and hence
-	\begin{align*}
-		\tilde{v}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \tilde{e}_l).
+		\tilde{w}_{rs} = \frac{1}{\sqrt{2}}(e_r + \zeta(i) e_s).
 	\end{align*}
 	
-	For distinct $r,s \in J$ we define yet another vector
+	We are ready to define $U$ on an arbitrary $z \in H_1 \setminus \{0\}$. Of course we define $U0 := 0$.  We know that with the definition $\lambda_j := (z,e_j)_{H_1}$ for all $j \in J$ the equality
 	\begin{align*}
-		x_{rs} := \frac{1}{\sqrt{2}}(e_r + ie_s).
+		z = \sum_{j \in J} \lambda_j e_j
 	\end{align*}
-	We can use \ref{lemma:aux_main} and find a unique normalized vector $\tilde{x}_{rs} \in g(\C v_{rs})$ with
+	holds. As $x \neq 0$ there exists some $k \in J$ with $\lambda_k \neq 0$ and we know from lemma \ref{lemma:aux_main} that there exists a unique normalized $\tilde{z} \in g(\C z)$ with
 	\begin{align*}
-		\tilde{x}_{rs} = \frac{1}{\sqrt{2}}(\tilde{e}_r + \lambda_{rs} \tilde{e}_s)
-	\end{align*}
-	and $|\mu_{\alpha \beta}| = \frac{\sqrt{3}}{\sqrt{3}} = 1$ only this time
-	\begin{align*}
-		\frac{1}{\sqrt{6}} \vbraces{1 + \overline{\mu_{\alpha \beta}}} &= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{Ue_\rho + Ue_\alpha + Ue_\beta}, \frac{1}{\sqrt{2}} \pbraces{Ue_\alpha + \mu_{\alpha \beta}Ue_\beta}}_{H_2}} = |(Uy_{\alpha \beta}, \tilde{v}_{\alpha \beta})_{H_2}| \\
-		&= |(y_{\alpha \beta}, v_{\alpha \beta})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_\rho + e_\alpha + e_\beta}, \frac{1}{\sqrt{2}} (e_\alpha + ie_\beta)}_{H_1}} = \frac{1}{\sqrt{6}}\vbraces{1 + i} = \frac{\sqrt{2}}{\sqrt{6}}
-	\end{align*}
-	and with \ref{lemma:complex_geom} we find $\mu_{\alpha \beta} = i$ or $\mu_{\alpha \beta} = -i$. Having a look at
-	\begin{align*}
-		\frac{1}{2}\vbraces{\mu_{\alpha \beta} + \overline{\mu_{\beta \alpha}}} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(Ue_\alpha + \mu_{\alpha \beta} Ue_\beta), \frac{1}{\sqrt{2}}(Ue_\beta + \mu_{\beta \alpha} Ue_\alpha)}} = |(\tilde{v}_{\alpha \beta}, \tilde{v}_{\beta \alpha})_{H_2}| \\
-		&= |(v_{\alpha \beta}, v_{\beta \alpha})_{H_1}| = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_\alpha + ie_\beta), \frac{1}{\sqrt{2}}(e_\beta + ie_\alpha)}_{H_1}} \\
-		&= \frac{1}{2} \vbraces{ (ie_\alpha, e_\alpha)_{H_1} + (e_\beta, ie_\beta)_{H_1}} = \frac{1}{2} \vbraces{i - i} = 0
-	\end{align*}
-	we find $\mu_{\alpha \beta} = \mu_{\beta \alpha}$, because else we would have the contradiction $1 = 0$. We define
-	\begin{align*}
-		Uv_{\alpha \beta} := \tilde{v}_{\alpha \beta} = \frac{1}{\sqrt{2}}(Ue_\alpha + \mu_{\alpha \beta} Ue_\beta).
-	\end{align*}
-	Now we take $\gamma \in A \setminus{\alpha \beta}$ and define yet another vector
-	\begin{align*}
-		w_{\alpha \beta \gamma} := \frac{1}{\sqrt{3}} \pbraces{e_\alpha + ie_\beta + e_\gamma}
-	\end{align*}
-	and we find a unique $\tilde{w}_{\alpha \beta \gamma} \in g(\C w_{\alpha \beta \gamma})$ with
-	\begin{align*}
-		\tilde{w}_{\alpha \beta \gamma} = \frac{1}{\sqrt{3}} \pbraces{Ue_\alpha + \lambda_{\alpha \beta \gamma} Ue_\beta + \mu_{\alpha \beta \gamma} Ue_\gamma}.
-	\end{align*}
-	and $|\lambda_{\alpha \beta \gamma}| = |\mu_{\alpha \beta \gamma}| = \frac{\sqrt{3}}{\sqrt{3}} = 1$. For $\xi \in \{\beta, \gamma\}$ we have
-	\begin{align*}
-		\begin{rcases}
-			\frac{1}{\sqrt{6}} |1 + \lambda_{\alpha \beta \gamma}| &, \text{if } \xi = \beta \\
-			\frac{1}{\sqrt{6}} |1 + \mu_{\alpha \beta \gamma}| &, \text{if } \xi = \gamma
-		\end{rcases}
-		&= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{Ue_\alpha + \lambda_{\alpha \beta \gamma} Ue_\beta + \mu_{\alpha \beta \gamma} Ue_\gamma}, \frac{1}{\sqrt{2}} (Ue_\alpha + Ue_\xi)}_{H_2}} \\
-		&= \vbraces{(\tilde{w}_{\alpha \beta \gamma}, Ux_{\alpha \xi})_{H_2}} = \vbraces{(w_{\alpha \beta \gamma}, x_{\alpha \xi})_{H_1}} \\
-		&= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_\alpha + ie_\beta + e_\gamma}, \frac{1}{\sqrt{2}} (e_\alpha + e_\xi)}_{H_1}} = 
-		\begin{cases}
-			\frac{\sqrt{2}}{\sqrt{6}} &, \text{if } \xi = \beta \\
-			\frac{2}{\sqrt{6}} &, \text{if } \xi = \gamma
-		\end{cases}
-	\end{align*}
-	and thus $\mu_{\alpha \beta \gamma} = 1$ and $\lambda_{\alpha \beta \gamma} = i$ or $\lambda_{\alpha \beta \gamma} = -i$. We define
-	\begin{align*}
-		Uw_{\alpha \beta \gamma} := \tilde{w}_{\alpha \beta \gamma} = \frac{1}{\sqrt{3}} \pbraces{Ue_\alpha + \lambda_{\alpha \beta \gamma} Ue_\beta + Ue_\gamma}
-	\end{align*}
-	For $\xi \in \{\alpha, \gamma\}$ we do some further calculations and obtain
-	\begin{align}
-		\frac{1}{\sqrt{6}}\vbraces{\lambda_{\alpha \beta \gamma} + \overline{\mu_{\xi \beta}}}&= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{Ue_\alpha + \lambda_{\alpha \beta \gamma} Ue_\beta + Ue_\gamma}, \frac{1}{\sqrt{2}}(Ue_\xi + \mu_{\xi \beta} Ue_\beta)}} \\
-		&= \vbraces{\pbraces{Uw_{\alpha \beta \gamma}, Uv_{\xi \beta}}_{H_2}} = \vbraces{\pbraces{w_{\alpha \beta \gamma}, v_{\xi \beta}}_{H_1}} \label{eq:aux_chain} \\
-		&= \vbraces{\pbraces{\frac{1}{\sqrt{3}} \pbraces{e_\alpha + ie_\beta + e_\gamma}, \frac{1}{\sqrt{2}}(e_\xi + ie_\beta)}_{H_1}} = \frac{1}{\sqrt{6}} \vbraces{1 + (ie_{\beta}, ie_\beta)_{H_1}} = \frac{2}{\sqrt{6}}.
-	\end{align}
-	We can conclude that $\mu_{\alpha \beta} = \mu_{\gamma \beta}$ because if they were different than we would have one option to plug into \eqref{eq:aux_chain} for the contradiction $0 = \frac{2}{\sqrt{6}}$. Now, considering $\delta \in A \setminus \{\alpha, \beta, \gamma\}$ we can conclude that
-	\begin{align*}
-		\mu_{\alpha \beta} = \mu_{\gamma \beta} = \mu_{\beta \gamma} = \mu_{\delta \gamma} = \mu_{\gamma \delta}.
-	\end{align*}
-	At this point we distinguish between two cases.
-	\begin{enumerate}
-		\item $\mu_{\alpha \beta} = i$. Then we define $\zeta:\C \to \C: \lambda \mapsto \lambda$.
-		\item $\mu_{\alpha \beta} = -i$. Then we define $\zeta:\C \to \C: \lambda \mapsto \overline{\lambda}$.
-	\end{enumerate}
-	
-	We are ready to define $U$ on an arbitrary $x \in H_1 \setminus \{0\}$. We know that with the definition $\lambda_\xi := (x,e_\xi)_{H_1}$ for each $\xi \in A$ the equality
-	\begin{align*}
-		x = \sum_{\xi \in A} \lambda_\xi e_\xi
-	\end{align*}
-	holds. As $x \neq 0$ there exists some $\eta \in A$ with $\lambda_\eta \neq 0$ and we know from \ref{lemma:aux_main} that there exists a unique normalized $\tilde{x} \in g(\C x)$ with
-	\begin{align*}
-		\tilde{x} = \lambda_\eta Ue_\eta + \sum_{\xi \in A \setminus \{\eta\}} \nu_\xi Ue_\xi
+		\tilde{z} = \lambda_k \tilde{e}_k + \sum_{j \in J \setminus \{k\}} \nu_j \tilde{e}_j
 	\end{align*} 
-	with $|\lambda_\xi| = |\nu_\xi|$ for all $\xi \in A \setminus \{\eta\}$. We define
+	with $|\lambda_j| = |\nu_j|$ for all $j \in J \setminus \{k\}$. We define
 	\begin{align*}
-		Ux := \zeta(\lambda_\eta) Ue_\eta + \sum_{\xi \in A} \zeta(\nu_\xi) Ue_\xi
+		Uz := \zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus{k}} \zeta(\nu_j) \tilde{e}_j.
 	\end{align*}
-	and remark that this definition is compatible with the previous definitions we made. Now we consider some $\delta \in A \setminus \{\eta\}$ and calculate
+	Now we consider some $l \in J \setminus \{k\}$ and calculate
 	\begin{align*}
-		\frac{1}{\sqrt{2}}\vbraces{\lambda_\eta + \nu_\delta} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_\eta) + \zeta(\nu_\delta)} \\
-		&= \vbraces{\pbraces{\zeta(\lambda_\eta) Ue_\eta + \sum_{\xi \in A} \zeta(\nu_\xi) Ue_\xi, \frac{1}{\sqrt{2}}(Ue_\eta + Ue_\delta)}_{H_2}} = |(Ux, Ux_{\eta \delta})_{H_2}| \\
-		&= \vbraces{\pbraces{x, x_{\eta \delta}}_{H_1}} = \vbraces{\pbraces{\sum_{\xi \in A} \lambda_\xi e_\xi, \frac{1}{\sqrt{2}}(e_\eta + e_\delta)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_\eta + \lambda_\delta} 
+		\frac{1}{\sqrt{2}}\vbraces{\lambda_k + \nu_l} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_k) + \zeta(\nu_l)} = \vbraces{\pbraces{\zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus{k}} \zeta(\nu_j) \tilde{e}_j, \frac{1}{\sqrt{2}}(\tilde{e}_k + \tilde{e}_l)}_{H_2}} = |(Uz, \tilde{v}_{kl})_{H_2}| \\
+		&= \vbraces{\pbraces{z, v_{kl}}_{H_1}} = \vbraces{\pbraces{\sum_{j \in J} \lambda_j e_j, \frac{1}{\sqrt{2}}(e_k + e_l)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_k + \lambda_l} 
 	\end{align*}
 	and furthermore
 	\begin{align*}
-		\frac{1}{\sqrt{2}}\vbraces{\lambda_\eta -i \nu_\delta} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_\eta) + \overline{\zeta(i)} \zeta(\nu_\delta)} \\
-		&= \vbraces{\pbraces{\zeta(\lambda_\eta) Ue_\eta + \sum_{\xi \in A} \zeta(\nu_\xi) Ue_\xi, \frac{1}{\sqrt{2}}(Ue_\eta + \zeta(i) Ue_\delta)}_{H_2}} = |(Ux, Uv_{\eta \delta})_{H_2}| \\
-		&= \vbraces{\pbraces{x, v_{\eta \delta}}_{H_1}} = \vbraces{\pbraces{\sum_{\xi \in A} \lambda_\xi e_\xi, \frac{1}{\sqrt{2}}(e_\eta + ie_\delta)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_\eta -i \lambda_\delta}.
+		\frac{1}{\sqrt{2}}\vbraces{\lambda_k - i \nu_l} &= \frac{1}{\sqrt{2}} \vbraces{\zeta(\lambda_k) + \overline{\zeta(i)} \zeta(\nu_l)} = \vbraces{\pbraces{\zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus{k}} \zeta(\nu_j) \tilde{e}_j, \frac{1}{\sqrt{2}}(e_k + \zeta(i) e_l)}_{H_2}} = |(Uz, \tilde{w}_{kl})_{H_2}| \\
+		&= \vbraces{\pbraces{z, w_{kl}}_{H_1}} = \vbraces{\pbraces{\sum_{j \in J} \lambda_j e_j, \frac{1}{\sqrt{2}}(e_k + ie_l)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{\lambda_k - i \lambda_l}.
 	\end{align*}
-	Now we can use \ref{lemma:complex_alg} and obtain $\nu_\delta = \lambda_\delta$. Now we observe that 
+	Now we can use lemma \ref{lemma:complex_alg} and obtain $\nu_l = \lambda_l$. Now we observe that 
 	\begin{align*}
-		U(x) = \sum_{\xi \in A} \zeta(\lambda_\xi) Ue_\xi = \sum_{\xi \in A} \zeta\pbraces{(x, e_\xi)_{H_1}} Ue_\xi.
+		Uz = \sum_{j \in J} \zeta(\lambda_j) \tilde{e}_j = \sum_{j \in J} \zeta\pbraces{\pbraces{z, e_j}_{H_1}}\tilde{e}_j
 	\end{align*}
-	Hence for arbitrary $v,w \in H_1$ we obtain
+	By definition $Uz \in g(\C z)$ and for arbitrary $x,y \in H_1$ and arbitrary $\lambda \in \C$ we obtain
 	\begin{align*}
-		\pbraces{Uv, Uw}_{H_2} &= \pbraces{\sum_{\xi \in A} \zeta((v, e_\xi)_{H_2}) Ue_\xi, \sum_{\eta \in A} \zeta((w, e_\eta)_{H_1}) Ue_\eta}_{H_2} = \sum_{\xi \in A} \zeta\pbraces{(v, e_\xi)_{H_1} \overline{(w,e_\xi)}_{H_1}} \\
-		&= \zeta \pbraces{\sum_{\xi \in A} (v, e_\xi)_{H_1} \overline{(w, e_\xi)_{H_1}}} = \zeta\pbraces{\pbraces{\sum_{\xi \in A} (v, e_\xi)_{H_1} e_\xi, \sum_{\eta \in A} (w, e_\eta)_{H_1} e_\eta}_{H_1}} = \zeta\pbraces{\pbraces{v, w}_{H_1}}.
+		U(x + \lambda y) &= U \pbraces{\sum_{j \in J} \pbraces{\pbraces{x, e_j}_{H_1} + \lambda \pbraces{y, e_j}_{H_1}} e_j} \\
+		&= \sum_{j \in J} \zeta\pbraces{\pbraces{x, e_j}_{H_1}} \tilde{e}_j + \zeta(\lambda) \sum_{j \in J} \zeta\pbraces{\pbraces{y, e_j}_{H_1}} \tilde{e}_j = Ux + \zeta\pbraces{\lambda} Uy
 	\end{align*}
+	thus $U$ is $\zeta$-linear and 
+	\begin{align*}
+		\norm[H_2]{Ux}^2 &= \norm[H_2]{\sum_{j \in J} \zeta\pbraces{\pbraces{x, e_j}_{H_1}} \tilde{e}_j}^2 = \sum_{j \in J} \vbraces{\zeta\pbraces{\pbraces{x, e_j}_{H_1}}}^2  \\
+		&= \sum_{j \in J} \vbraces{\pbraces{x, e_j}_{H_1}}^2 = \norm[H_1]{\sum_{j \in J} \zeta\pbraces{\pbraces{x, e_j}_{H_1}} e_j}^2 = \norm[H_1]{x}^2
+	\end{align*}
+\end{proof}
+
+
+\begin{corollary}
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be a surjective isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and unitary or antilinear and antiunitary. Furthermore for every ray $R \in \mathcal{P}(H_1)$ the implication
+	\begin{align*}
+	x \in R \Rightarrow Ux \in g(R).
+	\end{align*}
+	holds.
+\end{corollary}
+
+\begin{proof}
+	We know theorem \ref{theorem:wigner} that there exists $\zeta: \C \to \C$ that is either the identity function or the complex conjugation and a $\zeta$-linear isometry $U: H_1 \to H_2$. Furthermore for all $R \in \mathcal{P}(H_1)$ the implication
+	\begin{align*}
+		x \in R \Rightarrow Ux \in g(R)
+	\end{align*}
+	holds. Let us consider some arbitrary $y \in H_2$. If $y = 0$ then we know $U0 = 0 = y$ hence from now on we assume $y \neq 0$. Due to the fact that $g$ is surjective we know there exists $R \in \mathcal{P}(H_1)$ with $g(R) = \C y$. From this we conclude that $U(R) = \C y$ and hence there exists $x \in R$ with $Ux = y$, thus $\ran U = H_2$. From proposition \ref{prop:unitary} we obtain that $U$ is $\zeta$-unitary.
 \end{proof}
