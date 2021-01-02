@@ -1,0 +1,248 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie
+
+\begin{align*}
+    \frac{\sin x}{x}
+    =
+    \frac{a_0}{2}
+    +
+    \sum_{n=1}^\infty
+    a_n
+    \cos{n x}
+\end{align*}
+
+mit $a_n = \frac{1}{\pi} \Int[(n - 1) \pi][(n + 1) \pi]{\frac{\sin x}{x}}{x}$ und berechnen Sie damit
+
+\begin{align*}
+    \Int[0][\infty]{\frac{\sin x}{x}}{x}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    Wir werden folgendes Additionstheorem verwenden.
+
+    \begin{align*}
+        \sin x \cos(n x)
+        =
+        \frac{1}{2}
+        (
+            \sin(x + n x)
+            +
+            \sin(x - n x)
+        )
+        =
+        \frac{1}{2}
+        (
+            \sin(x (1 + n))
+            +
+            \sin(x (1 - n))
+        )
+    \end{align*}
+
+    Die $a_n$, $n \in \N_0$ werden genau die $\cos$-Fourierkoeffizienten sein.
+    Die $\sin$-Fourierkoeffizienten fallen weg, weil $x \mapsto \frac{\sin x}{x}$, also Quotient $2$-er ungerader Funktionen, gerade ist.
+
+    \begin{align*}
+        a_n
+        & =
+        \frac{1}{\pi}
+        \Int[-\pi][\pi]
+        {
+            \frac{\sin x}{x}
+            \cos(n x)
+        }{x} \\
+        & =
+        \frac{1}{2 \pi}
+        \pbraces
+        {
+            \Int[-\pi][\pi]
+            {
+                \frac{\sin((n + 1) x)}{x}
+            }{x}
+            -
+            \Int[-\pi][\pi]
+            {
+                \frac{\sin((n - 1) x)}{x}
+            }{x}
+        } \\
+        & =
+        \frac{1}{2 \pi}
+        \pbraces
+        {
+            (n + 1)
+            \Int[-(n + 1) \pi][(n + 1) \pi]
+            {
+                \frac{\sin u}
+                {
+                    \frac{u}{n + 1}
+                }
+            }{u}
+            -
+            (n - 1)
+            \Int[-(n - 1) \pi][(n - 1) \pi]
+            {
+                \frac{\sin u}
+                {
+                    \frac{u}{n - 1}
+                }
+            }{u}
+        } \\
+        & =
+        \frac{1}{2 \pi}
+        \pbraces
+        {
+            \Int[-(n + 1) \pi][-(n - 1) \pi]
+            {
+                \frac{\sin u}{u}
+            }{u}
+            +
+            \Int[(n - 1) \pi][(n + 1) \pi]
+            {
+                \frac{\sin u}{u}
+            }{u}
+        } \\
+        & =
+        \frac{1}{2 \pi}
+        \pbraces
+        {
+            -\Int[(n + 1) \pi][(n - 1) \pi]
+            {
+                \frac{\sin(-t)}{-t}
+            }{t}
+            +
+            \Int[(n - 1) \pi][(n + 1) \pi]
+            {
+                \frac{\sin u}{u}
+            }{u}
+        } \\
+        & =
+        \frac{1}{\pi}
+        \Int[(n - 1) \pi][(n + 1) \pi]
+        {
+            \frac{\sin x}{x}
+        }{x}
+    \end{align*}
+
+    Dabei haben wir folgende Substitutionen verwendet.
+
+    \begin{align*}
+        u = (n \pm 1) x
+        & \implies
+        \begin{cases}
+            \derivative[][u]{x} = n \pm 1 \implies \mathrm{d} x = \frac{1}{n \pm 1} \mathrm{d} u \\
+            x = \frac{u}{n \pm 1}
+        \end{cases} \\
+        t = -u
+        & \implies
+        \begin{cases}
+            \derivative[][t]{u} = -1 \implies \mathrm{d} t = -\mathrm{d} u \\
+            u = -t
+        \end{cases}
+    \end{align*}
+
+    \item Teil:
+    
+    Es bezeichne $f(x) := \frac{\sin x}{x}$, $x \in \R$ die linke Seite.
+    Wir setzen diese stetig auf $0$ durch $f(0) := 1$ fort.
+    Die im $1$-ten Teil gezeigte Darstellung von $f$ gilt nach wie vor.
+
+    \begin{align*}
+        1
+        & =
+        f(0) \\
+        & =
+        \frac{a_0}{2}
+        +
+        \sum_{n=1}^\infty
+        a_n
+        \underbrace{\cos(n 0)}_1 \\
+        & =
+        \frac{1}{2 \pi}
+        \Int[-\pi][\pi]
+        {
+            \frac{\sin x}{x}
+        }{x}
+        +
+        \sum_{n=1}^\infty
+        \frac{1}{\pi}
+        \Int[(n - 1) \pi][(n + 1) \pi]
+        {
+            \frac{\sin x}{x}
+        }{x} \\
+        & =
+        \frac{1}{\pi}
+        \pbraces
+        {
+            \frac{2}{2}
+            \Int[0][\pi]
+            {
+                \frac{\sin x}{x}
+            }{x}
+            +
+            \sum_{n \in 2 \N - 1}
+            \Int[(n - 1) \pi][(n + 1) \pi]
+            {
+                \frac{\sin x}{x}
+            }{x}
+            +
+            \sum_{n \in 2 \N}
+            \Int[(n - 1) \pi][(n + 1) \pi]
+            {
+                \frac{\sin x}{x}
+            }{x}
+        } \\
+        & =
+        \frac{1}{\pi}
+        \pbraces
+        {
+            \Int[0][\pi]
+            {
+                \frac{\sin x}{x}
+            }{x}
+            +
+            \Int[0][\infty]
+            {
+                \frac{\sin x }{x}
+            }{x}
+            +
+            \Int[\pi][\infty]
+            {
+                \frac{\sin x}{x}
+            }{x}
+        } \\
+        & =
+        \frac{2}{\pi}
+        \Int[0][\infty]
+        {
+            \frac{\sin x}{x}
+        }{x}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \Int[0][\infty]
+        {
+            \frac{\sin x}{x}
+        }{x}
+        =
+        \frac{\pi}{2}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,96 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie dass das Bild einer kompakten Menge $K$ in einem metr. Raum $(M_1, \metric_1)$ unter einer injektiven stetigen Abbildung $f$ in einen metr. Raum $(M_2, \metric_2)$ nicht notwendigerweise die gleiche Hausdorffdimension hat.
+
+Hinw.:
+Betrachten sie $[0, 1]$ mit $\metric_1(x, y) = |x - y|$ und $\metric_2(x, y) = \sqrt{|x - y|}$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed[0.3]{Ana3/Ana3 - Satz 4.2.3.png}
+
+\begin{align*}
+    \mathcal{H}_1([0, 1]) = \lambda^1([0, 1]) = 1
+    ~\text{endlicher Wert $> 0$}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \dim_{\mathcal{H}_1}([0, 1]) = 1
+\end{align*}
+
+\begin{align*}
+    \mathcal{H}_\delta^2([0, 1])
+    & =
+    \omega_2
+    \inf
+    \Bbraces
+    {
+        \sum_{i \in \N}
+            \pbraces
+            {
+                \frac{\diam_2 C_i}{2}
+            }^2:
+        \Forall i \in \N:
+            \diam_2 C_i < \delta,
+        \bigcup_{i \in \N}
+            C_i
+        \supseteq
+        [0, 1]
+    } \\
+    & =
+    \omega_2
+    \inf
+    \Bbraces
+    {
+        \sum_{i \in \N}
+            \pbraces
+            {
+                \frac{\sqrt{\diam_2 C_i}}{2}
+            }^2:
+        \Forall i \in \N:
+            \sqrt{\diam_2 C_i} < \delta,
+        \bigcup_{i \in \N}
+            C_i
+        \supseteq
+        [0, 1]
+    } \\
+    & =
+    \frac{\omega_2}{2 \omega_1}
+    \omega_1
+    \inf
+    \Bbraces
+    {
+        \sum_{i \in \N}
+            \frac{\diam_1 C_i}{2}:
+        \Forall i \in \N:
+            \diam_1 C_i < \delta^2,
+        \bigcup_{i \in \N}
+            C_i
+        \supseteq
+        [0, 1]
+    } \\
+    & \xrightarrow{\delta \to 0}
+    \frac{\omega_2}{2 \omega_1}
+    \mathcal{H}^1([0, 1]) \\
+    & =
+    \frac{\omega_2}{2 \omega_1}
+    ~\text{endlicher Wert $> 0$}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \dim_{\mathcal{H}_2}([0, 1]) = 2
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,138 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $\mu$ ein Maß auf dem metrischen Raum $M$ mit $\mu(M) > 0$.
+Zeigen Sie dass
+
+\begin{align*}
+    \frac{2^s}{\omega_s} H_\delta^s(M)
+    \geq
+    \mu(M)^2
+    \pbraces
+    {
+        \Iint[\Bbraces{(x, y): \metric(x, y) < \delta}]
+        {
+            \metric(x, y)^{-s}
+        }{\mu(x)}{\mu(y)}
+    }^{-1}
+\end{align*}
+
+gilt.
+
+Hinw.:
+Für eine $\delta$-Überdeckung $(C_i)$ gilt $\Bbraces{(x, y) : \metric(x, y) < \delta} \supseteq \cup C_i$.
+Betr. sie eine paarweise disjunkte Überdeckung und verwenden Sie Cauchy-Schwarz.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \mathrm{lhs}
+    =
+    \inf
+    \Bbraces
+    {
+        \sum_{i \in \N}
+            (\diam C_i)^s:
+        \Forall i \in \N:
+            \diam C_i < \delta,
+        \bigcup_{i \in \N}
+            C_i
+        \supseteq
+        M
+    }
+\end{align*}
+
+Sei $(C_i)_{i \in \N} \in M^\N$ eine solche $\delta$-Überdeckung von $M$.
+
+\begin{align*}
+    C
+    :=
+    \bigcup_{i \in \N}
+        C_i^2
+    & \implies
+    \Forall (x, y) \in C:
+        \Exists i \in \N:
+            (x, y) \in C_i
+            \implies
+            \metric(x, y)
+            \leq
+            \diam C_i
+            <
+            \delta \\
+    & \implies
+    C
+    \subseteq
+    \Bbraces{(x, y): \metric(x, y) < \delta}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \mathrm{rhs}
+    & \leq
+    \mu(M)^2
+    \pbraces
+    {
+        \sum_{i \in \N}
+            \Iint[C_i^2]
+            {
+                \metric(x, y)^{-s}
+            }{\mu(x)}{\mu(y)}
+    }^{-1} \\
+    & \leq
+    \mu(M)^2
+    \pbraces
+    {
+        \sum_{i \in \N}
+            \Iint[C_i^2]
+            {
+                (\diam C_i)^{-s}
+            }{\mu(x)}{\mu(y)}
+    }^{-1} \\
+    & \leq
+    \mu(M)^2
+    \pbraces
+    {
+        \sum_{i \in \N}
+            (\diam C_i)^{-s}
+            \mu(C_i)^2
+    }^{-1} \\
+    & \stackrel{!}{\leq}
+    \sum_{i \in \N}
+        (\diam C_i)^s
+\end{align*}
+
+\begin{align*}
+    \mu(M)
+    \leq
+    \sum_{i \in \N}
+        \mu(C_i)
+    \leq
+    \sqrt
+    {
+        \sum_{i \in \N}
+        \pbraces
+        {
+            (\diam C_i)^\frac{s}{2}
+        }^2
+    }
+    \sqrt
+    {
+        \sum_{i \in \N}
+        \pbraces
+        {
+            (\diam C_i)^\frac{-s}{2}
+            \mu(C_i)
+        }^2
+    }
+\end{align*}
+
+Weil $(C_i)_{i \in \N} \in M^\N$ eine beliebige $\delta$-Überdeckung von $M$ war, ist die Aussage gezeigt.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

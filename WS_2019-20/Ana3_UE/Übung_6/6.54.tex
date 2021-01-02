@@ -1,0 +1,81 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie den folgenden Überdeckungssatz:
+Sei $K$ ein kompakter metrischer Raum und $\bigcup_{i \in I} (B(x_i, r_i)) = K$ eine Überdeckung.
+Dann gibt es eine endliche Teilmenge $I_0 \subset I$ mit $\bigcup_{n \in I_0} B(x_j, 3 r_j) = K$ und die Kugeln $\Bbraces{B(x_i, r_i): i \in I_0}$ sind paarweise disjunkt.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Weil $K$ kompakt ist, gibt es eine endliche Teil-Überdeckung, d.h.
+
+\begin{align*}
+    \Exists J \in \mathcal{E}(I):
+    \bigcup_{i \in J}
+        B(x_i, r_i)
+    \supseteq
+    K
+    ~\text{bzw. sogar}~
+    =
+    K.
+\end{align*}
+
+\begin{align*}
+    \text{o.B.d.A.}
+    \quad
+    J = \Bbraces{1, \dots, n},
+    \quad
+    r_1 \geq \cdots \geq r_n
+\end{align*}
+
+Wir wählen die kleinsten Kugeln ($i_1$-te, $i_2$-te, \dots), sodass diese paarweise disjunkt sind.
+
+\begin{gather*}
+    i_1 := 1,
+    \quad
+    C_{i_1} := B(x_{i_1}, r_{i_1}), \\
+    i_k
+    :=
+    \min
+    \Bbraces
+    {
+        j \in J:
+        C_{k-1} \cap B(x_j, r_j) = \emptyset
+    },
+    \quad
+    C_k
+    :=
+    C_{k-1} \dot \cup B(x_{i_k}, r_{i_k})
+    =
+    \dot \bigcup_{\ell = 1}^k
+        B(x_{i_\ell}, r_{i_\ell})
+\end{gather*}
+
+Wir wählen $I_0$ als die größte obige Auswahl, sodass die Vereinigung der, auf das $3$-fache aufgeblasenen, Kugeln nicht ganz $K$ ist.
+
+\begin{align*}
+    m
+    :=
+    \max
+    \Bbraces
+    {
+        k = 1, \dots, n:
+        \bigcup_{\ell = 1}^k
+            B(x_{i_\ell}, 3 r_{i_\ell})
+        \subsetneq
+        K
+    }
+    +
+    1,
+    \quad
+    I_0 := \Bbraces{i_1, \dots, i_m}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

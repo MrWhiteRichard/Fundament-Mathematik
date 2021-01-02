@@ -1,0 +1,294 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Seien $(M_1, \metric_1),(M_2, \metric_2)$ metrische Räume und $f: M_1 \to M_2$ eine Hölder-stetige Abbildung, d.h. es gibt $C, \gamma$ mit $\metric_2(f(x), f(y)) \leq C \metric_1(x, y)^\gamma \Forall x, y \in M_1$.
+Zeigen Sie, dass die Hausdorffdimension von $M_2$ durch $\frac{1}{\gamma}$ mal der Hausdorffdimension von $M_1$ beschränkt ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{gather*}
+    \dim_\mathcal{H} M_i
+    =
+    \inf A_i,
+    \quad
+    \mathcal{H}^s(M_i)
+    =
+    \lim_{\delta \to 0}
+        \mathcal{H}_\delta^s(M_i),
+    \quad
+    \mathcal{H}_\delta^s(M_i)
+    =
+    \omega_s
+    \inf B_{\delta, i}, \\
+    \quad
+    A_i
+    =
+    \Bbraces
+    {
+        s \geq 0:
+        \mathcal{H}^s(M_i) = 0
+    },
+    \quad
+    B_{\delta, i}
+    =
+    \Bbraces
+    {
+        \sum_{n \in \N}
+            \pbraces
+            {
+                \frac{\diam_i C_n^\delta}{2}}^s:
+                \Forall n \in \N:
+                    \diam_i C_n^\delta < \delta,
+                \bigcup_{n \in \N} C_n^\delta \supseteq M_i
+    }, \\
+    \quad
+    \diam_i C_n^\delta
+    =
+    \sup
+    \Bbraces
+    {
+        \metric_i(x, y):
+        x, y \in C_n^\delta
+    }, \\
+    \quad i = 1, 2,
+    \quad
+    \omega_s
+    =
+    \frac
+    {
+        \Gamma(1/2)^s
+    }{
+        \Gamma(1 + s/2)
+    }
+    ~\text
+    {
+        \Quote{Volumen der $s$-dimensionalen Einheitskugel}
+    }
+\end{gather*}
+
+Wir gehen zusätzlich an, dass $f$ surjektiv ist.
+Wir machen uns das Leben noch leichter, indem wir $\omega_s$ weglassen.
+($2$ hätten wir auch weglassen können.)
+Das dürfen wir, weil ...
+
+\begin{center}
+    \Quote{Die in dieser Definition auftretenden Faktoren $2$ und $\omega_s$ wirken willkürlich und werden in der Literatur nicht einheitlich bei der Definition des Hausdorffmaßes herangezogen.}
+\end{center}
+
+\begin{align*}
+    \dim_\mathcal{H} M_2
+    \stackrel{!}{\leq}
+    \frac{1}{\gamma}
+    \dim_\mathcal{H} M_1
+    & \iff
+    \Forall s \in A_1:
+        \frac{s}{\gamma} \in A_2 \\
+    & \iff
+    \Forall s \geq 0:
+        \pbraces
+        {
+            \mathcal{H}^s(M_1) = 0
+            \implies
+            \mathcal{H}^\frac{s}{\gamma}(M_2) = 0
+        }
+\end{align*}
+
+Sei also $s \geq 0$.
+Wir nehmen nun an, dass $\mathcal{H}^s(M_1) = 0$.
+Wir wollen nun zeigen, dass $\mathcal{H}^\frac{s}{\gamma}(M_2) = 0$.
+
+\begin{align*}
+    \iff
+    \Forall \varepsilon_2 > 0:
+    \Exists \delta_2 > 0:
+    \Forall \delta^\prime \in (0, \delta_2):
+        \mathcal{H}_{\delta^\prime}^\frac{s}{\gamma}(M_2) < \varepsilon_2
+\end{align*}
+
+Sei also $\varepsilon_2 > 0$.
+Wir können immer beliebig nahe an $\inf$-s herran und jedes $<$ (bzw. $>$) \Quote{durchstoßen}; $\inf$ ist schließlich der kleinste Häufungspunkt.
+Letzteres bedeutet, dass, für fixes $\delta^\prime \in (0, \delta_2)$, $\Exists (D_n^{\delta^\prime})_{n \in \N} \in M_2^\N:$
+
+\begin{align*}
+    \Forall n \in \N:
+        \diam_2 D_n^{\delta^\prime} < \delta^\prime,
+    \quad
+    \bigcup_{n \in \N}
+        D_n^{\delta^\prime} \supseteq M_2,
+    \quad
+    \sum_{n \in \N}
+        \pbraces
+        {
+            \frac{\diam_2 D_n^{\delta^\prime}}{2}
+        }^\frac{s}{\gamma}
+        <
+        \varepsilon_2.
+\end{align*}
+
+Wir haben ja angenommen, dass $\mathcal{H}^s(M_1) = 0$.
+
+\begin{align*}    
+    \iff
+    \Forall \varepsilon_1 > 0:
+    \Exists \delta_1 > 0:
+    \Forall \delta \in (0, \delta_1):
+    \mathcal{H}_\delta^s(M_1) < \varepsilon_1
+\end{align*}
+
+Letzteres bedeutet, dass, für fixes $\delta \in (0, \delta_1)$, $\Exists (C_n^\delta)_{n \in \N} \in M_1^\N:$
+
+\begin{align*}
+    \Forall n \in \N:
+        \diam_1 C_n^\delta < \delta,
+    \quad
+    \bigcup_{n \in \N} C_n^\delta \supseteq M_1,
+    \quad
+    \sum_{n \in \N} \pbraces{\frac{\diam_i C_n^\delta}{2}}^s < \varepsilon_1.
+\end{align*}
+
+Daraus konstruieren wir unseren Kandidaten für die $M_2$-Überdeckung.
+
+\begin{align*}
+    D_n^{\delta^\prime} := f(C_n^\delta),
+    \quad
+    n \in \N,
+    \quad
+    \delta^\prime
+    \stackrel{!}{\mapsto}
+    \delta
+\end{align*}
+
+$(D_n^{\delta^\prime})_{n \in \N} \in f(M_1)^\N = M_2^\N$ muss nun folgende $3$ Eigenschaften erfüllen.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Eigenschaft (Feinheit):
+    
+    Weil $f$ Hölder-stetig ist, gilt $\Forall n \in \N: \Forall \delta \in (0, \delta_1):$
+
+    \begin{align*}
+        \diam_2 D_n^{\delta^\prime}
+        & =
+        \diam_2 f(C_n^\delta) \\
+        & =
+        \sup \Bbraces{\metric_2(y_1, y_2): y_1, y_2 \in f(C_n^\delta)} \\
+        & =
+        \sup \Bbraces{\metric_2(f(x_1), f(x_2)): x_1, x_2 \in C_n^\delta} \\
+        & \leq
+        \sup \Bbraces{C \metric_1(x_1, x_2)^\gamma: x_1, x_2 \in C_n^\delta} \\
+        & =
+        C (\diam_1 C_n^\delta)^\gamma \\
+        & \leq
+        C \delta^\gamma \\
+        & \stackrel{!}{\leq}
+        \delta^\prime
+        \in (0, \delta_2)
+    \end{align*}
+
+    \item Eigenschaft (Überdeckung):
+    
+    \begin{align*}
+        \bigcup_{n \in \N}
+            D_n^{\delta^\prime}
+        =
+        \bigcup_{n \in \N}
+            f(C_n^\delta)
+        \supseteq
+        f
+        \pbraces
+        {
+            \bigcup_{n \in \N}
+                C_n^\delta
+        }
+        \supseteq
+        f(M_1)
+        =
+        M_2
+    \end{align*}
+
+    \item Eigenschaft ($\to 0$):
+    
+    \begin{multline*}
+        \sum_{n \in \N}
+            \pbraces
+            {
+                \frac{\diam_2 D_n^{\delta^\prime}}{2}
+            }^\frac{s}{\gamma}
+        \leq
+        \sum_{n \in \N}
+            \pbraces
+            {
+                \frac{C (\diam_1 C_n^\delta)^\gamma}{2}
+            }^\frac{s}{\gamma} \\
+        =
+        \sum_{n \in \N}
+            \pbraces
+            {
+                \frac
+                {
+                    C^\frac{1}{\gamma}
+                    \diam_1 C_n^\delta
+                }{
+                    2^{\frac{1}{\gamma} - 1}
+                    2
+                }
+            }^s
+        =
+        \pbraces
+        {
+            \frac{C}
+            {
+                2^{1 - \gamma}
+            }    
+        }^\frac{s}{\gamma}
+        \underbrace
+        {
+            \sum_{n \in \N}
+            \pbraces
+            {
+                \frac{\diam_1 C_n^\delta}{2}
+            }^s
+        }_{< \varepsilon_1}
+        \stackrel{!}{<}
+        \varepsilon_2
+    \end{multline*}
+
+\end{enumerate}
+
+Nun zum großen Finale!
+
+Wir wählen zuerst $\varepsilon_1$, sodass die $3$-te Eigenschaft erfüllt ist.
+Dadurch bekommen wir auch ein $\delta_1$.
+
+\begin{align*}
+    \text{d.h.}~
+    \varepsilon_1
+    <
+    \pbraces
+    {
+        \frac{C}
+        {
+            2^{1 - \gamma}
+        }
+    }^\frac{\gamma}{s}
+    \varepsilon_2
+\end{align*}
+
+Sei nun $\delta^\prime \in (0, \delta_1)$.
+Wir wählen $\delta$ hinreichend klein, sodass die $1$-te (und $2$-te) Eigenschaft erfüllt ist.
+
+\begin{align*}
+    \text{d.h.}~
+    C \delta^\gamma
+    \leq
+    \delta^\prime
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

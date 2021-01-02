@@ -1,0 +1,301 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Definieren Sie auf einem metrischen Raum $(X, \metric)$ Mengenfunktionen $\mathcal{B}_\delta^s$ analog zum Hausdorffmaß aber mit der zusätzlichen Forderung dass die Mengen der Überdeckung Kugeln $B(x_i, r_i)$ um Punkte $x_i \in X$ und $2 r_i \leq \delta$ sind.
+Zeigen Sie, dass diese Mengenfunktionen $\mathcal{B}_\delta^s$ äußere Maße sind, dass der Grenzwert
+$\mathcal{B}^s(A) = \lim_{\delta \to 0} \mathcal{B}_\delta^s(A)$ für jede Teilmenge $A$ von $X$ existiert und $\mathcal{B}$ ein Borelmaß ist.
+
+Geben sie pos. Schranken $a, b$ für die $a \mathcal{B}^s(A) \leq \mathcal{H}^s(A) \leq b \mathcal{B}^s(A)$ gilt.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    \begin{align*}
+        \mathcal{B}_\delta^s(A)
+        :=
+        \omega_s
+        \inf
+        \Bbraces
+        {
+            \sum_{i \in \N}
+                r_i^s:
+            \Forall i \in \N:
+                2 r_i < \delta,
+            \bigcup_{i \in \N}
+                B(x_i, r_i)
+            \supseteq
+            A
+        }
+    \end{align*}
+
+    \item Teil:
+    
+    Wir zeigen also die folgenden $4$ Eigenschaften.
+    
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Eigenschaft:
+        
+        \begin{align*}
+            \mathcal{B}_\delta^s(\emptyset) = 0
+        \end{align*}
+
+        \item Eigenschaft (Nicht-Negativität):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \mathcal{B}_\delta^s \geq 0
+        \end{align*}
+
+        \item Eigenschaft (Monotonie):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \Forall A, B \subseteq X:
+                A \subseteq B
+                \implies
+                \mathcal{B}_\delta^s(A) \leq \mathcal{B}_\delta^s(B)
+        \end{align*}
+
+        \item Eigenschaft ($\sigma$-Subadditivität):
+        
+        \begin{align*}
+            \text{d.h.}~
+            \Forall (A_i)_{i \in \N} \in X^\N, ~\text{disjunkt}:
+                \mathcal{B}_\delta^s
+                \pbraces
+                {
+                    \bigcup_{i \in \N}
+                        A_i
+                }
+                \leq
+                \sum_{i \in \N}
+                    \mathcal{B}_\delta^s(A_i)
+        \end{align*}
+
+        Sei $(B(x_{i, j}, r_{i, j}))_{j \in \N}$ eine Überdeckung von $A_i$, für $i \in \N$, d.h.
+
+        \begin{align*}
+            \Forall i \in \N:
+                \bigcup_{j \in \N}
+                    B(x_{i, j}, r_{i, j})
+                \supseteq
+                A_i.
+        \end{align*}
+
+        \begin{align*}
+            \implies
+            \mathrm{lhs}
+            \leq
+            \mathcal{B}_\delta^s
+            \pbraces
+            {
+                \bigcup_{i, j \in \N}
+                    B(x_{i, j}, r_{i, j})
+            }
+            \leq
+            \omega_s
+            \sum_{i, j \in \N}
+                r_{i, j}^2
+        \end{align*}
+
+        Weil die Überdeckung beliebig war, gilt auch die Behauptung, wobei sie für das $\inf$ verwendet werden.
+
+    \end{enumerate}
+
+    \item Teil:
+    
+    Der Grenzwert existsiert, weil das Netz monoton und beschränkt ist.
+
+    \item Teil:
+    
+    \includegraphicsboxed{Ana3/Ana3 - Satz 4.1.7.png}
+
+    Seien also $A, B \subseteq X$ mit $\dist(A, B) > 0$.
+
+    \begin{enumerate}
+
+        \item Ungleichung (\Quote{$\leq$}):
+        
+        Trivial!
+
+        \item Ungleichung (\Quote{$\geq$}):
+
+        Sei $(B(x_i, r_i))_{i \in \N}$ eine $\dist(A, B)$-Überdeckung von $A \cup B$, d.h.
+
+        \begin{align*}
+            \bigcup_{i \in \N}
+                B(x_i, r_i)
+            \supseteq
+            A \cup B,
+            \quad
+            \Forall i \in \N:
+                2 r_i < \dist(A, B).
+        \end{align*}
+
+        Betrachte jene Kugeln, die mit $A$ bzw. $B$ disjunkt sind.
+
+        \begin{align*}
+            I_M
+            :=
+            \Bbraces
+            {
+                i \in \N:
+                B(x_i, r_i) \cap M = \emptyset
+            },
+            \quad
+            M = A, B
+        \end{align*}
+
+        Der Durchmesser aller Kuglen ist kleiner als dem Abstand von $A$ zu $B$.
+        Keine Kugel kann also mit $A$ und $B$ gleichzeitig nicht-leeren Schnitt haben.
+
+        \begin{align*}
+            \iff
+            &
+            I_A \cap I_B = \emptyset \\
+            \implies
+            &
+            \bigcup_{i \in I_A}
+                B(x_i, r_i)
+            \supseteq
+            B,
+            \quad
+            \bigcup_{i \in I_B}
+                B(x_i, r_i)
+            \supseteq
+            A, \\
+            &
+            I_A \setminus I_B = I_A,
+            \quad
+            I_B \setminus I_A = I_B, \\
+            &
+            \sum_{i \in \N}
+                r_i^s
+            =
+            \underbrace
+            {
+                \sum_{i \in \N \setminus (I_A \cup I_B)}
+                r_i^s
+            }_{\geq 0}
+            +
+            \sum_{i \in I_A \setminus I_B}
+                r_i^s
+            +
+            \sum_{i \in I_B \setminus I_A}
+                r_i^s
+            +
+            \underbrace
+            {
+                \sum_{i \in I_A \cap I_B}
+                r_i^s                
+            }_0
+            \geq
+            \sum_{i \in I_A}
+                r_i^s
+            +
+            \sum_{i \in I_B}
+                r_i^s            
+        \end{align*}
+
+
+
+    \end{enumerate}
+
+    \item Teil:
+    
+    Seien $A \subseteq X$ und $\delta, \varepsilon > 0$.
+
+    \begin{multline*}
+        \mathcal{U}_\text{Kugeln}
+        :=
+        \Bbraces
+        {
+            (B(x_i, r_i))_{i \in \N}:
+            \Forall i \in \N:
+                x_i \in X,
+                2 r_i < \delta,
+            \bigcup_{i \in \N}
+                B(x_i, r_i)
+            \supseteq
+            A
+        } \\
+        \subseteq
+        \Bbraces
+        {
+            (C_i)_{i \in \N}:
+            \Forall i \in \N:
+                \diam C_i < \delta,
+            \bigcup_{i \in \N}:
+                C_i
+            \supseteq
+            A
+        }
+        =:
+        \mathcal{U}_\text{allgemein}
+    \end{multline*}
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Ungleichung ($a \mathcal{B}^s(A) \leq \mathcal{H}^s(A)$):
+        
+        Sei $(C_i)_{i \in \N} \in \mathcal{U}_\text{allgemein}$, sodass die letzte Ungleichung (die mit dem \Quote{!}) gilt.
+
+        \begin{align*}
+            x_i \in C_i,
+            \quad
+            r_i := \diam C_i,
+            \quad
+            i \in \N
+        \end{align*}
+
+        \begin{align*}
+            \implies
+            \frac{1}{\omega_s}
+            \mathcal{B}_{2 \delta}^s(A)
+            \leq
+            \sum_{i \in \N}
+                (\diam C_i)^s
+            =
+            2^s
+            \sum_{i \in \N}
+                \pbraces
+                {
+                    \frac{\diam C_i}{2}
+                }^s
+            \stackrel{!}{\leq}
+            \frac{2^s}{\omega_s}
+            \mathcal{H}_\delta^s(A) + \varepsilon
+        \end{align*}
+
+        \begin{align*}
+            \rightsquigarrow
+            a := \frac{1}{2^s}
+        \end{align*}
+
+        \item Ungleichung ($\mathcal{H}^s(A) \leq b \mathcal{B}^s(A)$):
+        
+        Auf der linken Seite wird das Infimum von einer größeren Menge gebildet als bei der rechten.
+    
+        \begin{align*}
+            \rightsquigarrow
+            b := 1
+        \end{align*}
+
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

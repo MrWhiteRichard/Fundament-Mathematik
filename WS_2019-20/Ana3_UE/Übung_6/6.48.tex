@@ -1,0 +1,392 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+Ist $f \in L^1(\R)$ ungerade, so existiert $\Int[0][t]{\frac{\hat f(\xi)}{\xi}}{\xi}$ für $t > 0$ und es gilt
+
+\begin{align*}
+    \Forall t > 0:
+    \abs
+    {
+        \Int[0][t]
+        {
+            \frac{\hat f(\xi)}{\xi}
+        }{\xi}
+    }
+    \leq
+    \sqrt \frac{2}{\pi}
+    C
+    \norm[1]{f},
+    \quad
+    C
+    =
+    \sup
+    \Bbraces
+    {
+        \abs
+        {
+            \Int[0][t]
+            {
+                \frac{\sin \xi}{\xi}
+            }{\xi}:
+            t > 0
+        }
+    }
+    <
+    \infty.
+\end{align*}
+
+Zeigen Sie damit, dass die Fouriertransformation nicht surjektiv von $L^1(\R)$ nach $C_0(\R)$ abbildet.
+
+Hinw.:
+Zeigen Sie, dass $g$ nicht auf $\R_+$ integrierbar ist für $g(x) = \frac{1}{x \ln x}$, $x > 2$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    \begin{align*}
+        \mathrm{lhs}
+        & =
+        \abs
+        {
+            \Int[0][t]
+            {
+                \frac{1}{\xi}
+                \frac{1}{\sqrt{2 \pi}}
+                \Int[\R]
+                {
+                    e^{-i \xi x}
+                    f(x)
+                }{x}
+            }{\xi}
+        } \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \Bigg |
+            \Int[0][t]
+            {
+                \frac{1}{\xi}
+                \Bigg (
+                    \underbrace
+                    {
+                        \Int[\R]
+                        {
+                            \cos(\xi x)
+                            f(x)
+                        }{x}    
+                    }_0
+                    -
+                    i
+                    \Int[\R]
+                    {
+                        \sin(\xi x)
+                        f(x)
+                    }{x}
+                \Bigg )
+            }{\xi}
+        \Bigg | \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \abs
+        {
+            \Int[0][t]
+            {
+                2
+                \Int[0][\infty]
+                {
+                    \frac{\sin(\xi x)}{\xi}
+                    f(x)
+                }{x}
+            }{\xi}
+        } \\
+        & \stackrel
+        {
+            \text{Fubini}
+        }{=}
+        \frac{2}{\sqrt{2 \pi}}
+        \abs
+        {
+            \Int[0][\infty]
+            {
+                \Int[0][t]
+                {
+                    \frac{\sin(\xi x)}{\xi}
+                }{x}
+                f(x)
+            }{\xi}
+        } \\
+        & =
+        \sqrt \frac{2}{\pi}
+        \abs
+        {
+            \Int[0][\infty]
+            {
+                \Int[0][t]
+                {
+                    \frac{\sin(\xi x)}{\xi}
+                }{\xi}
+                f(x)
+            }{x}    
+        } \\
+        & \leq
+        \sqrt \frac{2}{\pi}
+        \Int[0][\infty]
+        {
+            \abs
+            {
+                \Int[0][t x]
+                {
+                    \frac{\sin \eta}{\eta}
+                }{\eta}
+            }
+            |f(x)|
+        }{x} \\
+        & \leq
+        \mathrm{rhs}
+    \end{align*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        \eta = \xi x
+        & \implies
+        \begin{cases}
+            \derivative[][\eta]{\xi} = x \implies \mathrm{d} \xi = \frac{1}{x} \mathrm{d} \eta \\
+            \xi = \frac{\eta}{x}
+        \end{cases} \\
+        & \implies
+        \Int[0][t]
+        {
+            \frac{\sin(\xi x)}{\xi}
+        }{\xi}
+        =
+        \Int[0][t x]
+        {
+            \frac{\sin \eta}{\frac{\eta}{x}}
+            \frac{1}{x}
+        }{\eta}
+        =
+        \Int[0][t x]
+        {
+            \frac{\sin \eta}{\eta}
+        }{\eta}
+    \end{align*}
+
+    Den Satz von Fubini dürfen wir anwenden, weil der Integrand messbar und integrierbar ist.
+
+    \begin{multline*}
+        \abs
+        {
+            \Int[0][t]
+            {
+                \Int[0][\infty]
+                {
+                    \frac{\sin(\xi x)}{\xi}
+                    f(x)
+                }{x}
+            }{\xi}
+        }
+        =
+        \abs
+        {
+            \Int[0][t]
+            {
+                \Int[0][\infty]
+                {
+                    \sin(\xi^2 u)
+                    f(\xi u)
+                }{u}
+            }{\xi}
+        } \\
+        \leq
+        \Int[0][t]
+        {
+            \Int[0][\infty]
+            {
+                \underbrace
+                {
+                    |\sin(\xi^2 u)|
+                }_{\leq 1}
+                |f(\xi u)|
+            }{u}
+        }{\xi}
+        \leq
+        \norm[1]{f} t
+        <
+        \infty
+    \end{multline*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = \frac{x}{\xi}
+        \implies
+        \begin{cases}
+            \derivative[][u]{x} = \frac{1}{\xi} \implies \mathrm{d} x = \xi \mathrm{d} u \\
+            x = \xi u
+        \end{cases}
+    \end{align*}
+
+    \item Teil:
+
+    \includegraphicsboxed{Ana3/Ana3 - Satz 3.2.1 (Riemann-Lebesgue Lemma).png}
+
+    \begin{align*}
+        C_0(\R)
+        =
+        \Bbraces
+        {
+            f \in C(\R):
+            \Forall x \in \R:
+            f(x) \xrightarrow{x \to \infty} 0
+        }
+    \end{align*}
+
+    \includegraphicsboxed{Ana3/Ana3 - Korollar 3.2.4.png}
+
+    \begin{align*}
+        h(x)
+        :=
+        -
+        \frac{1}{\ln{|x|}} \1_{(-\infty, -2)}(x)
+        +
+        \frac{1}{\ln 2}    \1_{[-2, 2]}(x)
+        +
+        \frac{1}{\ln x}    \1_{(2, \infty)}(x),
+        \quad
+        x \in \R
+    \end{align*}
+
+    Angenommen, die Fouriertransformation $^\wedge$ wäre surjektiv auf $L^1$ (also sogra bijektiv).
+    Dann hätte auch $h$ ein Urbild $f \in L^1$, d.h. $f^\wedge = h$.
+    Nun ist $h$ ungerade, laut Konstruktion.
+
+    \begin{align*}
+        h(\xi)
+        =
+        f^\wedge(\xi)
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{-i \xi x}
+            f(\xi)
+        }{x}
+    \end{align*}
+
+    \begin{multline*}
+        -h(-\xi)
+        =
+        f^\wedge(-\xi)
+        =
+        f^\vee(\xi)
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{i \xi x}
+            f(\xi)
+        }{x} \\
+        =
+        -\frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{i \xi (-u)}
+            f(\xi)
+        }{u}
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[\R]
+        {
+            e^{-i \xi u}
+            f(-\xi)
+        }{u}
+    \end{multline*}
+
+    Wir haben dabei folgende Substitution verwendet.
+
+    \begin{align*}
+        u = -x
+        \implies
+        \begin{cases}
+            \derivative[][u]{x} = -1 \implies \mathrm{d} x = -\mathrm{d} u \\
+            x = -u
+        \end{cases}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        0
+        =
+        h(\xi) + h(-\xi)
+        =
+        \Int[\R]
+        {
+            e^{-i \xi x}
+            (
+                f(\xi)
+                +
+                f(-\xi)
+            )
+        }
+        =
+        \widehat{f(\xi) + f(-\xi)}
+        \stackrel
+        {
+            \mathrm{3.2.4}
+        }{\implies}
+        f(\xi) + f(-\xi) = 0
+        \implies
+        f(\xi) = -f(-\xi)
+    \end{align*}
+
+    $f$ ist also auch ungerade.
+    Wir können somit den $1$-ten Teil darauf anwenden.
+
+    \begin{align*}
+        \sqrt \frac{2}{\pi}
+        C
+        \norm[1]{f}
+        \geq
+        \Int[0][\infty]
+        {
+            \frac{f^\wedge(\xi)}{\xi}
+        }{\xi}
+        =
+        \Int[0][\infty]
+        {
+            \frac{h(\xi)}{\xi}
+        }{\xi}
+        =
+        \Int[0][2]
+        {
+            \frac{1}{\xi}
+            \frac{1}{\ln 2}
+        }{\xi}
+        +
+        \Int[2][\infty]
+        {
+            \frac{1}{\xi}
+            \frac{1}{\ln \xi}
+        }{\xi}
+        =
+        \infty
+    \end{align*}
+
+    Also ist $f \not \in L^1$; Widerspruch!
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
