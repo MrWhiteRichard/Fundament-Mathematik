@@ -100,22 +100,35 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 \end{definition}
 
 \begin{lemma}
-	Let $H$ be a Hilbert space and $M := \{e_i \mid i \in I\}$ be a non-empty orthonormal system. Then for every $x \in H$ the implication
+	Let $H$ be a Hilbert space and $M := \{e_i \mid i \in I\}$ be a non-empty orthonormal system. Then for every $x \in H$ the equivalence
 	\begin{align}
-		\norm[H]{x}^2 = \sum_{i \in I} \vbraces{(x, e_i)_H}^2 \Rightarrow x = \sum_{i \in I} (x,e_i) e_i \label{eq:parceval_to_fourier}
+		\norm[H]{x}^2 = \sum_{i \in I} \vbraces{(x, e_i)_H}^2 \Leftrightarrow x = \sum_{i \in I} (x,e_i) e_i \label{eq:parceval_to_fourier}
 	\end{align}
 	holds.
 \end{lemma}
 
 \begin{proof}
-	According to lemma \ref{lemma:onb} there exists an orhtonormal basis $\{f_j \mid j \in J\} \supseteq M$. Using Parzeval's equality \eqref{eq:parzeval} we obtain
-	\begin{align*}
+	We proof the two implications separately. For both directions we consider an orhtonormal basis $\{f_j \mid j \in J\} \supseteq M$ that exists according to lemma \ref{lemma:onb}. 
+	\begin{enumerate}
+		\item[\Quote{$\Rightarrow$}]  Using Parzeval's equality \eqref{eq:parzeval} we obtain
+		\begin{align*}
 		\sum_{i \in I} |(x, e_i)_H|^2 = \norm[H]{x}^2 = \sum_{j \in J} |(x,f_j)_H|^2
-	\end{align*}
-	and hence for all $j \in J$ where there exists no $i \in I$ with $e_i = f_j$ the equality $(x, f_j)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
-	\begin{align*}
+		\end{align*}
+		and hence for all $j \in J$ where there exists no $i \in I$ with $e_i = f_j$ the equality $(x, f_j)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
+		\begin{align*}
 		x = \sum_{j \in J} (x,f_j)_H f_j = \sum_{i \in I} (x,e_i)_H e_i.
-	\end{align*}
+		\end{align*}
+		
+		\item[\Quote{$\Leftarrow$}] This time we immediately observe that for all $j \in J$ with $f_j \notin M$ we have 
+		\begin{align*}
+			\pbraces{x, f_j}_H = \pbraces{\sum_{i \in I} \pbraces{x, e_i}_H e_i, f_j}_H = \sum_{i \in I} \pbraces{x, e_i}_H \pbraces{e_i, f_j}_H = 0
+		\end{align*}
+		and hence with Parseval's equality
+		\begin{align*}
+			\sum_{i \in I} \vbraces{\pbraces{x,e_i}_H}^2 = \sum_{j \in J} \vbraces{\pbraces{x,f_j}_H}^2 = \norm[H]{x}^2.
+		\end{align*}
+	\end{enumerate}
+	
 \end{proof}
 
 
@@ -225,7 +238,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 		f_y(u + \lambda v) &= \zeta^{-1}\pbraces{(T(u + \lambda v), y)_{H_2}} = \zeta^{-1}\pbraces{(Tu, y)_{H_2} + \zeta(\lambda) (Tv, y)_{H_2}} \\
 		&= \zeta^{-1}\pbraces{(Tu,y)_{H_2}} + \lambda \zeta^{-1}\pbraces{(Tv,y)_{H_2}} = f_y(u) + \lambda f_y(v),
 	\end{align*}
-	hence $f_y$ is a linear function. Furthermore, from Fana corollary 3.1.4 we know that $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous and we have $\zeta^{-1}$ continuous hence $f_y$ is continuous. Now, using \ref{prop:riesz}, we know that there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
+	hence $f_y$ is a linear function. Furthermore, from Fana corollary 3.1.4 we know that $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous and we have $\zeta^{-1}$ continuous hence $f_y$ is continuous. Now, using proposition \ref{prop:riesz}, we know that there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
 	\begin{align*}
 		T_\zeta^\ast: H_2 \to H_1: y \mapsto z_y
 	\end{align*}
@@ -256,11 +269,12 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 \end{remark}
 
 
-\begin{proposition}
-	Let $H_1$ and $H_2$ be Hilbert spaces $U: H_1 \to H_2$ a $\zeta$-linear and continuous function, where $\zeta$ is an automorphism of $\C$ and its inverse $\zeta^{-1}$ is continuous. Then the following statements are equivalent.
+\begin{proposition} \label{prop:unitary}
+	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Then the following statements are equivalent.
 	\begin{enumerate}[label = (\roman*)]
 		\item $U$ is $\zeta$-unitary. 
 		\item $\ran U = H_2$ and $(Ux , Uy)_{H_2} = \zeta\pbraces{(x,y)_{H_1}}$ for all $x,y \in H_1$.
+		\item $\ran U = H_2$ and $\norm[H_2]{Ux} = \norm[H_1]{x}$ for all $x \in H_1$. 
 	\end{enumerate}
 \end{proposition}
 
@@ -273,15 +287,17 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 		\end{align*}
 		which is exactly what we wanted to show.
 		
-		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{i})$}] Now we have for every $x,y \in H_1$ that 
+		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}] This implication is trivially true.
+		
+		\item[\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}] Now we have for every $x \in H_1$ that 
 		\begin{align*}
-			(x, U_\zeta^\ast U y)_{H_1} = \zeta^{-1}\pbraces{(Ux, Uy)_{H_2}} = \zeta^{-1}\pbraces{\zeta\pbraces{(x,y)_{H_1}}} = (x,y)_{H_1}.
+			(x, U_\zeta^\ast U x)_{H_1} = \zeta^{-1}\pbraces{(Ux, Ux)_{H_2}} = \zeta^{-1}\pbraces{\zeta\pbraces{(x,x)_{H_1}}} = (x,x)_{H_1}.
 		\end{align*}
-		Using \ref{remark:operator_equivalence_hilbert} we now know that $U_\zeta^\ast U = I_{H_1}$. For $x \in H_1$ and $Ux = 0$ we know that
+		Using remark \ref{remark:operator_equivalence_hilbert} we now know that $U_\zeta^\ast U = I_{H_1}$. For $x \in H_1$ and $Ux = 0$ we know that 
 		\begin{align*}
 			0 = (Ux, Ux)_{H_2} = \zeta((x,x)_{H_1})
 		\end{align*}
-		and hence $x = 0$. We now know that $U$ is bijective and from $U_\zeta^\ast U = I_{H_1}$ we conclude that
+		and hence $x = 0$. We conclude that $U$ is bijective and from $U_\zeta^\ast U = I_{H_1}$ we obtain
 		\begin{align*}
 			U U_\zeta^\ast = U U_\zeta^\ast UU^{-1} = UI_{H_1}U^{-1} = UU^{-1} = I_{H_2}.
 		\end{align*}
@@ -304,7 +320,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 
 
 \begin{remark}
-	In a vector space $V$ with an inner product $(\cdot, \cdot)$ a linear function $P: V \to V$ is an orthogonal projection if and only if for all $x,y \in V$ the equality
+	In a vector space $V$ with an inner product $(\cdot, \cdot)$ a linear function $P: V \to V$ with $P^2 = P$ is an orthogonal projection if and only if for all $x,y \in V$ the equality
 	\begin{align*}
 		(Px, y) = (x,Py)
 	\end{align*}
