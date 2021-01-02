@@ -33,12 +33,11 @@ Weil $K$ kompakt ist, gibt es eine endliche Teil-Überdeckung, d.h.
     r_1 \geq \cdots \geq r_n
 \end{align*}
 
-Wir wählen die kleinsten Kugeln ($i_1$-te, $i_2$-te, \dots), sodass diese paarweise disjunkt sind.
+Wir wählen die größten Kugeln ($1$-te als $i_1$-te, $i_2$-te, \dots), sodass diese paarweise disjunkt sind.
 
 \begin{gather*}
     i_1 := 1,
     \quad
-    C_{i_1} := B(x_{i_1}, r_{i_1}), \\
     i_k
     :=
     \min
@@ -46,16 +45,66 @@ Wir wählen die kleinsten Kugeln ($i_1$-te, $i_2$-te, \dots), sodass diese paarw
     {
         j \in J:
         C_{k-1} \cap B(x_j, r_j) = \emptyset
-    },
+    }, \\
+    C_{i_1} := B(x_{i_1}, r_{i_1}),
     \quad
     C_k
     :=
     C_{k-1} \dot \cup B(x_{i_k}, r_{i_k})
     =
     \dot \bigcup_{\ell = 1}^k
-        B(x_{i_\ell}, r_{i_\ell})
+        B(x_{i_\ell}, r_{i_\ell}), \\
+    I_k := \Bbraces{i_\ell: \ell = 1, \dots, k},
+    \quad
+    J_k := \Bbraces{1, \dots, i_k}
 \end{gather*}
 
+Sei $k_{\max}$ das größte $k = 1, \dots, n$, sodass die Menge, über die das $\min$ gebildet wird nicht-leer ist.
+Sei $k = 1, \dots, k_{\max}$; wir betrachten also die Objekte, die im $k$-ten Auswahl-Schritt erzeugt werden.
+
+Dann ist $J_k \setminus I_k$ die Menge der Indizes der Kugeln, die nicht verwendet wurden.
+Sei $B_1$ eine Solche.
+Sie wurde nicht aufgenommen, weil sie zur Vereinigung der vorigen (größeren) ausgewählten Kugeln, also zu einer bestimmten $B_2$, nicht disjunkt war.
+Weil eben $B_2$ größer als $B_1$ ist, und $B_2 \cap B_1 \neq \emptyset$, muss $B_1$ im $3$-fachen von $B_2$ liegen.
+Insgesamt gilt daher Folgendes.
+
+\begin{align*}
+    \bigcup_{j \in J_k \setminus I_k}
+        B(x_j, 3 r_j)
+    \subseteq
+    \bigcup_{j \in I_k}
+        B(x_j, 3 r_j)
+    =
+    \bigcup_{j \in J_k}
+        B(x_j, 3 r_j)
+\end{align*}
+
+Dasselbe gilt für die Menge $J \setminus I_{k_{\max}}$ der Indizes der Kugeln, die insgesamt nicht verwendet wurden.
+
+\begin{align*}
+    \bigcup_{j \in J \setminus I_{k_{\max}}}
+        B(x_j, 3 r_j)
+    \subseteq
+    \bigcup_{j \in I_{k_{\max}}}
+        B(x_j, 3 r_j)
+    =
+    \bigcup_{j \in J}
+        B(x_j, 3 r_j)
+    \supseteq
+    \bigcup_{j \in J}
+        B(x_j, r_j)
+    =
+    K
+\end{align*}
+
+\begin{align*}
+    \rightsquigarrow
+    I_0 := I_{k_{\max}}
+\end{align*}
+
+\begin{comment}
+
+Wir können also Folgendes machen.
 Wir wählen $I_0$ als die größte obige Auswahl, sodass die Vereinigung der, auf das $3$-fache aufgeblasenen, Kugeln nicht ganz $K$ ist.
 
 \begin{align*}
@@ -65,8 +114,8 @@ Wir wählen $I_0$ als die größte obige Auswahl, sodass die Vereinigung der, au
     \Bbraces
     {
         k = 1, \dots, n:
-        \bigcup_{\ell = 1}^k
-            B(x_{i_\ell}, 3 r_{i_\ell})
+        \bigcup_{j \in I_k}
+            B(x_j, 3 r_j)
         \subsetneq
         K
     }
@@ -75,6 +124,8 @@ Wir wählen $I_0$ als die größte obige Auswahl, sodass die Vereinigung der, au
     \quad
     I_0 := \Bbraces{i_1, \dots, i_m}
 \end{align*}
+
+\end{comment}
 
 \end{solution}
 
