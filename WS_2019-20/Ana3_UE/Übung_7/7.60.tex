@@ -1,0 +1,384 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie
+
+\begin{align*}
+    \Int[A]{\exp \pbraces{\frac{x_1 + x_2}{x_1 - x_2}}}{\lambda^2(x_1, x_2)},
+    \quad
+    A = \Bbraces{(x_1, x_2): x_1 \geq 0, x_2 \leq 0, x_2 + 1 \leq x_1 \leq x_2 + 2}
+\end{align*}
+
+und
+
+\begin{align*}
+    \Int[B]{\sin x_1}{\lambda^2(x_1, x_2)},
+    \quad
+    B = \Bbraces{(x_1, x_2): x_1 x_2 \geq 0, x_1^2 + x_2^2 \leq \pi}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    Die ersten beiden Ungleichungen von $A$ schränken auf den $4$-ten Quadranten ein.
+    Wenn man bei den letzten Beiden $\leq$ durch $=$ ersetzt, stehen die (linearen) Funktionen da, die untere bzw. obere Schranken für $x_2$ an der Stelle $x_1$ vorgeben.
+
+    \begin{center}
+        
+        \begin{tikzpicture}
+    
+            \begin{scope}[xshift = -5 cm]
+                
+                \draw [->] (-1, 0) -- (3, 0) node [right] {$x_1$};
+                \draw [->] (0, -3) -- (0, 1) node [right] {$x_2$};
+    
+                \foreach \x in {1, 2}
+                    \filldraw (\x, 0) circle (1 pt) node [above] {$\x$};
+    
+                \foreach \y in {-1, -2}
+                    \filldraw (0, \y) circle (1 pt) node [left]  {$\y$};
+                
+                \filldraw [pattern = dots]
+                    (0, -2) --
+                    (2,  0) --
+                    (1,  0) --
+                    (0, -1) --
+                    cycle;
+    
+            \end{scope}
+    
+            \draw (0, 0) node {$\stackrel{!}{\mapsto}$};
+    
+            \begin{scope}[xshift = 3 cm]
+                
+                \draw [->] (-2, -2) -- (2,  2) node [above right] {$x_1$};
+                \draw [->] (-1,  1) -- (2, -2) node [below right] {$x_2$};
+
+                \filldraw (-1, -1) circle (1 pt) node [above left] {$-1$};
+                \filldraw ( 1,  1) circle (1 pt) node [above left] {$ 1$};
+                \filldraw ( 1, -1) circle (1 pt) node [below] {$1$};
+        
+                \filldraw [pattern = dots]
+                    (0, -2) --
+                    (2,  0) --
+                    (1,  0) --
+                    (0, -1) --
+                    cycle;
+    
+            \end{scope}    
+    
+        \end{tikzpicture}
+
+    \end{center}
+
+    Wir wollen mit einer linearen Transformation das Koordinaten-System um $45^\circ$ drehen, um die $x_2$-Achse flippen und mit $\sqrt 2$ strecken.
+    Dazu stellen wir folgende Bedingungen an die kanonischen Basisvektoren.
+
+    \begin{align*}
+        \begin{pmatrix}
+            1 \\ 0
+        \end{pmatrix}
+        \stackrel{!}{=}
+        \begin{pmatrix}
+            1 \\ 1
+        \end{pmatrix},
+        \quad
+        \begin{pmatrix}
+            0 \\ 1
+        \end{pmatrix}
+        \stackrel{!}{=}
+        \begin{pmatrix}
+            1 \\ -1
+        \end{pmatrix}
+    \end{align*}
+
+    Um die zugehörige Transformation zu erhalten, müssen wir nur die Zielvektoren in die Spalten der Transformations-Matrix schreiben.
+
+    \begin{align*}
+        T
+        :=
+        \begin{pmatrix}
+            1 &  1 \\
+            1 & -1
+        \end{pmatrix}
+        \in
+        \GL_2(\R)
+    \end{align*}
+
+    Unsere Transformation $\varphi$ definieren wir also wie folgt.
+
+    \begin{align*}
+        \varphi:
+        (x_1, x_2)
+        \mapsto
+        T
+        \begin{pmatrix}
+            x_1 \\ x_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            x_1 + x_2 \\ x_1 - x_2
+        \end{pmatrix}
+        ~\text{Diffeomorphismus},
+        \quad
+        |\det \mathrm{d} \varphi| = |\det T| = |-1 - 1| = 2
+    \end{align*}
+
+    Wir wollen nun das Bild von $A$ unter der Transformation $\varphi$ schöner darstellen, damit wir leichter integrieren können.
+
+    \begin{align*}
+        \varphi(A)
+        & =
+        \Bbraces
+        {
+            \varphi(x_1, x_2):
+            x_1 \geq 0,
+            x_2 \leq 0,
+            x_2 + 1 \leq x_1 \leq x_2 + 2} \\
+        & =
+        \Bbraces
+        {
+            \begin{pmatrix}
+                x_1 + x_2 \\ x_1 - x_2
+            \end{pmatrix}:
+            x_1 \geq 0,
+            x_2 \leq 0,
+            1 \leq x_1 - x_2 \leq 2
+        } \\
+        & =
+        \Bbraces
+        {
+            (y_1, y_2):
+            \frac{y_1 + y_2}{2} \geq 0,
+            \frac{y_1 - y_2}{2} \leq 0,
+            1 \leq y_2 \leq 2
+        } \\
+        & \stackrel{!}{=}
+        \Bbraces
+        {
+            (y_1, y_2):
+            y_2 \in [1, 2],
+            y_1 \in [-y_2, y_2]
+        } \\
+    \end{align*}
+
+    Wir haben dabei die Substitution $y_1 := x_1 + x_2$ und $y_2 := x_1 - x_2$ verwendet.
+
+    \begin{align*}
+        \implies
+        x_1 = \frac{y_1 + y_2}{2},
+        \quad
+        x_2 = \frac{y_1 - y_2}{2},
+        \quad
+        x_1 - x_2 = y_2
+    \end{align*}
+
+    Die letzte $=$ lässt sich damit wie folgt erklären.
+
+    \begin{align*}
+        \frac{y_1 + y_2}{2} \geq 0,
+        \quad
+        \frac{y_1 - y_2}{2} \leq 0
+        \iff
+        y_1 \geq -y_2,
+        \quad
+        y_1 \leq y_2
+        \iff
+        -y_2 \leq y_1 \leq y_2
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \Int[A]
+        {
+            \exp \frac{x_1 + x_2}{x_1 - x_2}
+        }{(x_1, x_2)}
+        & =
+        \frac{1}{2}
+        \Int[A]
+        {
+            \exp \varphi(x_1, x_2)
+            |\det \mathrm{d} \varphi(x_1, x_2)|
+            }{(x_1, x_2)} \\
+        & \stackrel
+        {
+            \text{TRAFO}
+        }{=}
+        \frac{1}{2}
+        \Int[\varphi(A)]
+        {
+            \exp \frac{y_1}{y_2}
+        }{(y_1, y_2)} \\
+        & =
+        \frac{1}{2}
+        \Int[1][2]
+        {
+            \Int[-y_2][y_2]
+            {
+                \exp \frac{y_1}{y_2}
+            }{y_1}
+        }{y_2} \\
+        & =
+        \frac{1}{2}
+        \Int[1][2]
+        {
+            y_2 \exp \frac{y_1}{y_2} \Big |_{y_1 = -y_2}^{y_2}
+        }{y_2} \\
+        & =
+        \frac{1}{2}
+        \Int[1][2]
+        {
+            y_2 \pbraces{e - \frac{1}{e}}
+        }{y_2} \\
+        & =
+        \frac{1}{2}
+        \frac{1}{2}
+        y_2^2 \Big |_{y_1 = 1}^2
+        \pbraces{e - \frac{1}{e}} \\
+        & =
+        \frac{1}{4}
+        (4 - 1)
+        \pbraces{e - \frac{1}{e}} \\
+        & =
+        \frac{3}{4}
+        \pbraces{e - \frac{1}{e}}
+    \end{align*}
+
+    \item Teil:
+    
+    Die erste Ungleichung von $B$ sagt, dass $x_1$ und $x_2$ dasselbe Vorzeichen haben sollen, schränkt also auf den $1$-ten und $3$-ten Quadranten ein.
+    Die zweite Ungleichung schränkt auf die $\sqrt \pi$-Kugel um $0$ bzgl. $\norm[2]{\cdot}$ ein.
+
+    \begin{center}
+        \begin{tikzpicture}[scale = 2]
+            
+            \draw [->] (-2,  0) -- (2, 0) node [right] {$x_1$};
+            \draw [->] ( 0, -2) -- (0, 2) node [above] {$x_2$};
+
+            \draw (0, 0) circle (1);
+
+            \filldraw [pattern = dots] (0, 0) -- ( 1, 0) arc (0  :90 :1) -- cycle;
+            \filldraw [pattern = dots] (0, 0) -- (-1, 0) arc (180:270:1) -- cycle;
+
+            \draw (1, 0) circle (1 pt) node [above right] {$(\sqrt \pi, 0)$};
+            \draw (0, 1) circle (1 pt) node [above right] {$(0, \sqrt \pi)$};
+
+        \end{tikzpicture}
+    \end{center}
+
+    Nachdem $\sin$ ungerade ist, und die Fläche ebenfalls, werden sich der obere rechte und untere linke Teil gegenseitig auslöschen.
+    Das wollen wir noch im Detail durch-exerzieren.
+
+    \includegraphicsboxed{Ana3/Ana3 - Beispiel 4.3.2.png}
+
+    Wir wollen $B$ mit Polarkoordinaten parametrisieren.
+    Das wurde netterweise in Beispiel 4.3.2 bereits gemacht.
+
+    \begin{align*}
+        \varphi:
+        D
+        :=
+        (0, \sqrt \pi)
+        \times
+        \pbraces
+        {
+            \pbraces
+            {
+                0,
+                \frac{\pi}{2}
+            }
+            \cup
+            \pbraces
+            {
+                \pi,
+                \frac{3 \pi}{2}
+            }
+        }
+        \to
+        B
+        :
+        (r, \theta)
+        \mapsto
+        r
+        \begin{pmatrix}
+            \cos \theta \\ \sin \theta
+        \end{pmatrix}
+        ~\text{Diffeomorphismus}
+    \end{align*}
+
+    \begin{align*}
+        \Int[B]
+        {
+            \sin x_1
+        }{(x_1, x_2)}
+        & =
+        \Int[D]
+        {
+            \sin \varphi_1(r, \theta)
+            |\det \mathrm{d} \varphi(r, \theta)|
+        }{(r, \theta)} \\
+        & =
+        \Int[0][\pi]
+        {
+            r
+            \Int[0][\frac{\pi}{2}]
+            {
+                \sin(r \cos \theta)
+            }{\theta}
+        }{r}
+        +
+        \Int[0][\pi]
+        {
+            r
+            \Int[\pi][\frac{3 \pi}{2}]
+            {
+                \sin(r \cos \theta)
+            }{\theta}
+        }{r} \\
+        & =
+        \Int[0][\pi]
+        {
+            r
+            \Int[0][\frac{\pi}{2}]
+            {
+                \sin(r \cos \theta)
+            }{\theta}
+        }{r}
+        +
+        \Int[0][\pi]
+        {
+            r
+            \Int[0][\frac{\pi}{2}]
+            {
+                \sin
+                (
+                    r
+                    \underbrace
+                    {
+                        \cos(u + \pi))
+                    }_{
+                        -\cos u
+                    }
+            }{u}
+        }{r} \\
+        & =
+        0
+    \end{align*}
+
+    Weil der $\sin$ (wie bereits erwähnt) ungerade ist, rutschte das $-$ durch und die Integrale löschen sich gegenseitig aus.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

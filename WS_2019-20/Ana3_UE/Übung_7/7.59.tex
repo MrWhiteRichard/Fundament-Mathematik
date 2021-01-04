@@ -1,0 +1,71 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Seien $r, z$ $C^1$-Funktionen, $r > 0$ dann wird durch
+
+\begin{align*}
+    \phi:
+    (a, b) \times [0, 2 \pi) \to \R,
+    \phi(t, \varphi) = (r(t) \cos \varphi, r(t) \sin \varphi, z(t))
+\end{align*}
+
+falls diese Funktion injektiv ist eine um die $z$-Achse rotationssymmetrische $2$-dimensionale Fläche $F$ im $\R^3$ definiert.
+Zeigen Sie
+
+\begin{align*}
+    \mathcal{H}^2(F)
+    =
+    2 \pi
+    \Int[(a, b)]{r(t) \sqrt{\dot r(t)^2 + \dot z(t)^2}}{t}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    &
+    \mathrm{d} \phi(t, \varphi)^\top
+    \mathrm{d} \phi(t, \varphi) \\
+    & =
+    \begin{pmatrix}
+        \dot r(t) \cos \varphi & \dot r(t) \sin \varphi & \dot z(t) \\
+            -r(t) \sin \varphi &      r(t) \cos \varphi & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        \dot r(t) \cos \varphi & -r(t) \sin \varphi \\
+        \dot r(t) \sin \varphi &  r(t) \cos \varphi \\
+        \dot z(t)              &  0
+    \end{pmatrix} \\
+    & =
+    \begin{pmatrix}
+        \dot r(t)^2 \cos^2 \varphi + \dot r(t)^2 \sin^2 \varphi + \dot z(t)^2
+        &
+        (\dot r(t) \cos \varphi) (-r(t) \sin \varphi) + (\dot r(t) \sin \varphi) (r(t) \cos \varphi)
+        \\
+        (-r(t) \sin \varphi) (\dot r(t) \cos \varphi) + (r(t) \cos \varphi) (\dot r(t) \sin \varphi)
+        &
+        r(t)^2 \sin^2 \varphi + r(t)^2 \cos^2 \varphi
+    \end{pmatrix} \\
+    & =
+    \begin{pmatrix}
+        \dot r(t)^2 + \dot z(t)^2 & 0 \\
+        0                         & r(t)^2
+    \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \sqrt{\det(\mathrm{d} \phi(t, \varphi)^\top \mathrm{d} \phi(r, \varphi))}
+    =
+    r(t) \sqrt{\dot r(t)^2 + \dot z(t)^2}
+\end{align*}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.2.10 (Flächenformel für C^1-Abbildungen).png}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

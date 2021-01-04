@@ -1,0 +1,129 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass auf $Q := \Bbraces{(x, y) \in \R^2: x > 0, y > 0}$ durch $\phi(x, y) = (x^2 - y^2, x y)$ ein Diffeomorphismus von $Q$ auf $\phi(Q) = \Bbraces{(a, b) \in \R^2: b > 0}$ gegeben ist.
+Berechnen Sie mithilfe dieser Koordinatentransformation das Integral
+
+\begin{align*}
+    \int_\Omega
+    x^2 + y^2
+    ~\mathrm{d} x ~\mathrm{d} y
+\end{align*}
+
+für $\Omega = \Bbraces{(x, y) \in Q: 1 < x y < 3, 5 < x^2 - y^2 < 9}$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+    
+    \begin{align*}
+        \begin{pmatrix}
+            x^2 - y^2 \\ x y
+        \end{pmatrix}
+        \stackrel{!}{=}
+        \begin{pmatrix}
+            a \\ b
+        \end{pmatrix}
+        & \implies
+        x = \frac{b}{y} \\
+        & \implies
+        a = \pbraces{\frac{b}{y}}^2 - y^2 \\
+        & \implies
+        a y^2 = b^2 - y^4 \\
+        & \implies
+        y^4 + y <^2 - b^2 = 0 \\
+        & \implies
+        y^2 = -\frac{a}{2} \pm \sqrt{\frac{a^2}{4} + b^2} \\
+        & \stackrel{!}{\implies}
+        y = \sqrt{\sqrt{\frac{a^2}{4} + b^2} - \frac{a}{2}} \\
+        & \implies
+        x = \frac{b}{\sqrt{\sqrt{\frac{a^2}{4} + b^2} - \frac{a}{2}}} \\
+        & \implies
+        \begin{pmatrix}
+            x^2 - y^2 \\ x y
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a \\ b
+        \end{pmatrix}
+    \end{align*}
+
+    Man beachte, dass dabei
+    
+    \begin{enumerate}[label = \arabic*.]
+
+        \item wegen $y^2 > 0$, das $\pm$ zu einem $+$ wurde und
+
+        \item weil 
+        
+        \begin{align*}
+            b > 0
+            \implies
+            \sqrt{\frac{a^2}{4} + b^2} - \frac{a}{2} > 0,
+        \end{align*}
+
+        alle $\sqrt{}$ reell sein müssen.
+
+    \end{enumerate}
+    
+    \item Teil:
+    
+    \includegraphicsboxed{Ana3/Ana3 - Satz 4.3.1 (Transformationsformel).png}
+
+    \begin{align*}
+        \phi(\Omega) = (5, 9) \times (1, 3)
+    \end{align*}
+
+    \begin{align*}
+        \det \mathrm{d} \phi(x, y)
+        =
+        \det
+        \begin{pmatrix}
+            2 x & -2 y \\
+            y   &  x
+        \end{pmatrix}
+        =
+        2 x^2 - (-2 y^2)
+        =
+        2 (x^2 + y^2)
+    \end{align*}
+
+    \begin{multline*}        
+        \implies
+        \Int[\Omega]{x^2 + y^2}{(x, y)}
+        =
+        \frac{1}{2}
+        \Int[\Omega]{|\det \mathrm{d} \phi(x, y)|}{(x, y)}
+        =
+        \frac{1}{2}
+        \Int[\phi(\Omega)]{}{(x, y)} \\
+        \stackrel
+        {
+            \text{TRAFO}
+        }{=}
+        \frac{1}{2}
+        \Int[1][3]
+        {
+            \Int[9][5]{}{x}
+        }{y}
+        =
+        \frac{1}{2}
+        (3 - 1)
+        (9 - 5)
+        = 4
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

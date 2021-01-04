@@ -1,0 +1,121 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie das Flächenmaß der durch
+
+\begin{align*}
+    z(x, y) = (1 - x^2 - y^2),
+    \quad
+    x^2 + y^2 \leq 1
+\end{align*}
+
+definierten Fläche.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    z(x, y) = 1 - \norm[2]{(x, y)^\top}^2
+\end{align*}
+
+Die Fläche $A$ ist also $x$-$y$-rotationssymmetrisch.
+Wir wollen Satz 4.2.15 anwenden.
+Dazu, müssen wir eine Formel für den Radius $f(z)$ der Höhe $z$ aufstellen.
+Setzen wir $y = 0$ und stellen den oberen Zusammenhang zwischen $x$ und $z$ so her, dass $(x, y, z)$ auf der Fläche liegt, so ist $x$ genau jener Radius.
+
+\begin{align*}
+    \implies
+    z(x, 0) = 1 - x^2
+    \implies
+    x = \sqrt{1 - z} =: f(z)
+    \implies
+    f^\prime(z) = \frac{1}{2} \frac{1}{\sqrt{1 - z} (-1)} = -\frac{1}{2 \sqrt{1 - z}}
+\end{align*}
+
+Für $x^2 + y^2 \leq 1$, muss $z \in [0, 1]$ sein.
+
+\begin{align*}
+    \implies
+    \mathcal{H}^2(A)
+    & =
+    2 \pi
+    \Int[0][1]
+    {
+        |f(z)|
+        \sqrt{1 + f^\prime(z)^2}
+    } \\
+    & =
+    2 \pi
+    \Int[0][1]
+    {
+        \sqrt{1 - z}
+        \sqrt
+        {
+            1
+            +
+            \pbraces
+            {
+                -\frac{1}{2 \sqrt{1 - z}}
+            }^2
+        }
+    }{z} \\
+    & =
+    2 \pi
+    \Int[0][1]
+    {
+        \sqrt{1 - z}
+        \sqrt
+        {
+            1
+            +
+            \frac{1}{4}
+            (1 - z)
+        }
+    }{z} \\
+    & =
+    2 \pi
+    \Int[0][1]
+    {
+        \sqrt{1 - z}
+        \sqrt
+        {
+            1 - z + \frac{1}{4}
+        }
+    }{z} \\
+    & =
+    2 \pi
+    \Int[\frac{1}{4}][\frac{5}{4}]{\sqrt u}{u} \\
+    & =
+    2 \pi
+    \frac{2}{3}
+    u^\frac{3}{2} \Big |_{u = \frac{1}{4}}^\frac{5}{4} \\
+    & =
+    \frac{4 \pi}{3}
+    \pbraces
+    {
+        \sqrt{\frac{5}{4}}^3
+        -
+        \sqrt{\frac{1}{4}}^3
+    } \\
+    & =
+    \frac{4 \pi}{3}
+    \pbraces
+    {
+        \frac{\sqrt{5}}{2^3}
+        -
+        \frac{1}{2^3}
+    } \\
+    & =
+    \frac{4 \pi}{3 \cdot 8}
+    (5 \sqrt 5 - 1) \\
+    & =
+    \frac{(5 \sqrt 5 - 1) \pi}{6}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,266 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie das Flächenmaß des Ellipsoides
+
+\begin{align*}
+    a^2 x^2 + a^2 y^2 + c^2 z^2 = 1,
+    \quad
+    c > a > 0.
+\end{align*}
+
+(Bemerkung: Die Flächenformel für das allgemeine Ellipsoid $a^2 x^2 + b^2 y^2 + c^2 z^2 = 1$, führt auf \Quote{elliptische Integrale} die nicht elementar dargestellt werden können.)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{center}
+    \begin{tikzpicture}[scale = 2]
+
+        \draw[->] (-3,  0) -- ( 3,  0) node [right]      {$x$};
+        \draw[->] ( 2,  3) -- (-2, -3) node [below left] {$y$};
+        \draw[->] ( 0, -4) -- ( 0,  4) node [above]      {$z$};
+
+        \draw (0, 0) ellipse (2 and 3);
+
+        \draw [dotted] (0, -1.5) ellipse (1.75 and 0.25);
+        \draw [dotted] (0,  0)   ellipse (2    and 0.5 );
+        \draw [dotted] (0,  1.5) ellipse (1.75 and 0.25);
+
+        \filldraw ( 0,     3)   circle (1 pt) node [above left]  {$(0, 0, 1/c)$};
+        \filldraw ( 2,     0)   circle (1 pt) node [below right] {$(1/a, 0, 0)$};
+        \filldraw (-0.33, -0.5) circle (1 pt) node [below left]  {$(0, 1/a, 0)$};
+
+        \draw (1.75, 1.5) node {$\times$} node [above right] {$(x, 0, z)$};
+
+    \end{tikzpicture}
+\end{center}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.2.15.png}
+
+Wir wollen Satz 4.2.15 auf die ($x$-$y$-rotationssymmetrische) Oberfläche unseres Ellipsoides anwenden.
+Dazu, müssen wir eine Formel für den Radius $f(z)$ der punktierten Kreise der Höhe $z$ aufstellen.
+
+Wir betrachten dazu zunächst den mit \Quote{$\times$} markierten Punkt $(x, 0, z)$.
+Dieser liegt auf der Oberfläche des Ellipsoides und hat $y$-Komponente gleich $0$.
+
+\begin{align*}
+    & \implies
+    \sqrt{a^2 x^2 + a^2 y^2 + c^2 z^2} = 1 \\
+    & \implies
+    a^2 x^2 + c^2 z^2 = 1 \\
+    & \implies
+    x = \frac{1}{a} \sqrt{1 - c^2 z^2} =: f(z) \\
+    & \implies
+    f^\prime(z) = \frac{1}{a} \frac{-c^2 z}{\sqrt{1 - c^2 z^2}}
+\end{align*}
+
+Weil das Ellipsoid ja $x$-$y$-rotationssymmetrisch ist, hätten wir dafür auch einen beliebigen anderen Punkt am punktierten Kreis wählen können.
+
+\begin{align*}
+    \implies
+    \mathcal{H}^2(E)
+    & \stackrel
+    {
+        \mathrm{4.2.15}
+    }{=}
+    2 \pi
+    \Int[-1/c][1/c]
+    {
+        |f(z)|
+        \sqrt{1 + f^\prime(z)^2}
+    }{z} \\
+    & =
+    2 \pi
+    \Int[-1/c][1/c]
+    {
+        \frac{\sqrt{1 - c^2 z^2}}{a}
+        \sqrt
+        {
+            1
+            +
+            \pbraces
+            {
+                \frac{1}{a}
+                \frac{-c^2 z}{\sqrt{1 - c^2 z^2}}
+            }^2
+        }
+    }{z} \\
+    & =
+    \frac{2 \pi}{a}
+    \Int[-1/c][1/c]
+    {
+        \sqrt{1 - c^2 z^2}
+        \sqrt
+        {
+            1
+            +
+            \frac{c^4 z^2}{a^2 (1 - c^2 z^2)}
+        }
+    }{z} \\
+    & =
+    \frac{4 \pi}{a}
+    \Int[0][1/c]
+    {
+        \sqrt
+        {
+            (1 - c^2 z^2)
+            +
+            \frac{c^4 z^2}{a^2}
+        }
+    }{z} \\
+    & =
+    \frac{4 \pi}{a}
+    \Int[0][1/c]
+    {
+        \sqrt
+        {
+            1
+            +
+            c^2 z^2
+            \pbraces
+            {
+                \pbraces{\frac{c}{a}}^2
+                -
+                1
+            }
+        }
+    }{z} \\
+    & =
+    \frac{4 \pi}
+    {
+        a c
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    }
+    \Int[0]
+    [
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    ]
+    {
+        \sqrt{1 + u^2}
+    }{u} \\
+    & =
+    \frac{4 \pi}
+    {
+        a c
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    }
+    \Int[0]
+    [
+        \areasinh
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    ]
+    {
+        \cosh^2 t
+    }{t} \\
+    & \stackrel{!}{=}
+    \frac{4 \pi}
+    {
+        a c
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    }
+    \frac{1}{2}
+    \pbraces
+    {
+        \frac{1}{2}
+        \sinh(2 t)
+        +
+        t
+    } \Big|_{t = 0}^{
+        \areasinh
+        \sqrt
+        {
+            \pbraces{\frac{c}{a}}^2 - 1
+        }
+    }
+\end{align*}
+
+Laut
+\href{https://de.wikipedia.org/wiki/Sinus_hyperbolicus_und_Kosinus_hyperbolicus}{Wikipedia}
+gelten folgende Formeln.
+
+\begin{align*}
+    \cosh \areasinh u & = \sqrt{1 + u^2}
+    \implies
+    \cosh t = \sqrt{1 + \sinh^2 t} \\
+    \cosh^2 t & = \frac{1}{2} (\cosh(2 t) + 1)
+\end{align*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    u = \sinh t
+    \implies
+    \begin{cases}
+        \derivative[][u]{t} = \cosh t \implies \mathrm{d} u = \cosh t \mathrm{d} t \\
+        t = \areasinh u
+    \end{cases}
+\end{align*}
+
+Und dann haben wir folgende Stammfunktion verwendet.
+
+\begin{multline*}
+    \Int{\cosh^2 t}{t}
+    =
+    \frac{1}{2}
+    \Int{\cosh(2 t) + \frac{1}{2}}{t}
+    =
+    \frac{1}{4}
+    \Int{\cosh s}{s}
+    +
+    \frac{1}{2}
+    \Int{}{t} \\
+    =
+    \frac{1}{2}
+    \pbraces
+    {
+        \frac{1}{2}
+        \sinh s
+        +
+        t
+    }
+    =
+    \frac{1}{2}
+    \pbraces
+    {
+        \frac{1}{2}
+        \sinh(2 t)
+        +
+        t
+    }
+\end{multline*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    s = 2 t
+    \implies
+    \derivative[][s]{t} = 2
+    \implies
+    \mathrm{d} t = \frac{1}{2} \mathrm{d} s
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

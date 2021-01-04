@@ -1,0 +1,273 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie den Schwerpunkt der inhomogenen Halbkugel \\
+($\rho(x) = |x|^2$, $A = \Bbraces{x: x_1^2 + x_2^2 + x_3^2 \leq R^2, x_2 \geq 0}$) mit Radius $R$ mithilfe von Kugelkoordinaten.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsgraphicsboxed
+{Ana3/Ana3 - Beispiel 4.3.4.1.png}
+{Ana3/Ana3 - Beispiel 4.3.4.2.png}
+
+Wir wollen $A$ mit Kugelkoordinaten parametrisieren.
+Das wurde netterweise in Beispiel 4.3.4 bereits gemacht.
+
+\begin{align*}
+    \psi:
+    D := (0, R) \times (0, 2 \pi) \times \pbraces{0, \frac{\pi}{2}}
+    \to
+    A:
+    (r, \varphi, \theta)
+    \mapsto
+    r
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        \sin \theta
+    \end{pmatrix}
+\end{align*}
+
+\begin{multline*}
+    \rho(\psi(r, \varphi, \theta))
+    =
+    \abs
+    {
+        r
+        \begin{pmatrix}
+            \cos \theta \cos \varphi \\
+            \cos \theta \sin \varphi \\
+            \sin \theta
+        \end{pmatrix}
+    }^2
+    =
+    r^2
+    (
+        \cos^2 \theta \cos^2 \varphi
+        +
+        \cos^2 \theta \sin^2 \varphi
+        +
+        \sin^2 \theta
+    ) \\
+    =
+    r^2
+    (
+        \cos^2 \theta
+        \underbrace
+        {
+            (
+                \cos^2 \varphi
+                +
+                \sin^2 \varphi
+            )
+        }_1
+        +
+        \sin^2 \theta
+    )
+    =
+    r^2
+    \underbrace
+    {
+        (
+            \cos^2 \theta
+            +
+            \sin^2 \theta
+        )
+    }_1
+    =
+    r^2
+\end{multline*}
+
+\begin{align*}
+    \Int[A]{\rho(x)}{\lambda^3(x)}
+    & \stackrel
+    {
+        \mathrm{TRAFO}
+    }{=}
+    \Int[D]
+    {
+        \rho(\psi(r, \varphi, \theta))
+        r^2 \cos \theta
+    }{(r, \varphi, \theta)} \\
+    & =
+    \Int[0][\frac{\pi}{2}]
+    {
+        \Int[0][2 \pi]
+        {
+            \Int[0][R]
+            {
+                r^4
+                \cos \theta
+            }{r}
+        }{\varphi}
+    }{\theta} \\
+    & =
+    \Int[0][\frac{\pi}{2}]
+    {
+        \cos \theta
+    }{\theta}
+    \Int[0][2 \pi]{}{\varphi}
+    \Int[0][R]
+    {
+        r^4
+    }{r} \\
+    & =
+    \sin \theta \Big |_{\theta = 0}^\frac{\pi}{2}
+    2 \pi
+    \frac{1}{5}
+    r^5 \Big |_{r=0}^R \\
+    & =
+    \frac{2 \pi R^5}{5}
+\end{align*}
+
+\begin{multline*}
+    \Int[A]
+    {
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3
+        \end{pmatrix}
+        \rho(x)
+    }{\lambda^3(x)}
+    \stackrel
+    {
+        \mathrm{TRAFO}
+    }{=}
+    \Int[D]
+    {
+        (\rho \cdot \id)(\psi(r, \varphi, \theta))
+        r^2 \cos \theta
+    }{(r, \varphi, \theta)} \\
+    =
+    \Int[0][\frac{\pi}{2}]
+    {
+        \Int[0][2 \pi]
+        {
+            \Int[0][R]
+            {
+                r^5 \cos \theta
+                \begin{pmatrix}
+                    \cos \theta \cos \varphi \\
+                    \cos \theta \sin \varphi \\
+                    \sin \theta
+                \end{pmatrix}    
+            }{r}
+        }{\varphi}
+    }{\theta}
+\end{multline*}
+
+\begin{enumerate}
+
+    \item [1.] und 2. Komponente:
+
+    \begin{align*}
+        \Int[0][\frac{\pi}{2}]
+        {
+            \Int[0][2 \pi]
+            {
+                \Int[0][R]
+                {
+                    r^5
+                    \cos \theta
+                    \begin{pmatrix}
+                        \cos \theta \cos \varphi \\
+                        \cos \theta \sin \varphi
+                    \end{pmatrix}
+                }{r}
+            }{\varphi}
+        }{\theta}
+        =
+        \Int[0][\frac{\pi}{2}]
+        {
+            \cos^2 \theta
+        }{\theta}
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \begin{pmatrix}
+                    \cos \varphi \\
+                    \sin \varphi
+                \end{pmatrix}
+            }{\varphi}
+        }_0
+        \Int[0][R]
+        {
+            r^5
+        }{r}
+        =
+        0
+    \end{align*}
+
+    \item [3.] Komponente:
+    
+    \begin{align*}
+        \Int[0][\frac{\pi}{2}]
+        {
+            \Int[0][2 \pi]
+            {
+                \Int[0][R]
+                {
+                    r^5
+                    \cos \theta
+                    \sin \theta
+                }{r}
+            }{\varphi}
+        }{\theta}
+        =
+        \Int[0][\frac{\pi}{2}]
+        {
+            \cos \theta
+            \sin \theta
+        }{\theta}
+        \Int[0][2 \pi]{}{\varphi}
+        \Int[0][R]
+        {
+            r^5
+        }{r}
+        =
+        \frac{1}{2}
+        2 \pi
+        \frac{1}{6}
+        r^6 \Big |_{r=0}^R
+        =
+        \frac{\pi R^6}{6}
+    \end{align*}
+
+\end{enumerate}    
+
+\begin{align*}
+    \implies
+    \pbraces
+    {
+        \Int[A]{\rho(x)}{\lambda^3(x)}
+    }^{-1}
+    \Int[A]
+    {
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3
+        \end{pmatrix}
+        \rho(x)
+    }{\lambda^3(x)}
+    =
+    \frac{5}{2 \pi R^5}
+    \frac{\pi R^6}{6}
+    \begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix}
+    =
+    \frac{5 R}{12}
+    \begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

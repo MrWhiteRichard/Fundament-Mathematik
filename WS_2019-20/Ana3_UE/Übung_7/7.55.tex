@@ -1,0 +1,61 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+Die Hausdorffdimension der Vereinigung von abzählbar vielen Mengen ist gleich dem Supremum der Hausdorffdimensionen dieser Mengen.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $(A_n)_{n \in \N}$ eine Folge von (abzählbar vielen) Mengen und $A = \bigcup_{n \in \N} A_n$ deren Vereinigung.
+
+\begin{align*}
+    \dim_\mathcal{H} A
+    \stackrel{!}{=}
+    \sup_{n \in \N} \dim_\mathcal{H} A_n
+\end{align*}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.1.4.png}
+
+Sei $t \in (0, \infty)$.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($t < \sup_{n \in \N} \dim_\mathcal{H} A_n$):
+
+    \begin{align*}
+        & \implies
+        \Exists n \in \N:
+            t < \dim_\mathcal{H} A_n = \sup \Bbraces{s \geq 0: \mathcal{H}^s(A_n) = \infty} \\
+        & \implies
+        \infty = \mathcal{H}^t(A_n) \leq \mathcal{H}^t(A) \\
+        & \implies
+        t \leq \sup \Bbraces{s \geq 0: \mathcal{H}^s(A) = \infty} = \dim_\mathcal{H} A
+    \end{align*}
+
+    \item Fall ($t > \sup_{n \in \N} \dim_\mathcal{H} A_n$):
+    
+    \begin{align*}
+        & \implies
+        \Forall n \in \N:
+            t > \dim_\mathcal{H} A_n = \inf \Bbraces{s \geq 0: \mathcal{H}^s(A_n) = 0} \\
+        & \implies
+        \mathcal{H}^t(A) \leq \sum_{n \in \N} \underbrace{\mathcal{H}^t(A_n)}_0 = 0 \\
+        & \implies
+        t \geq  \inf \Bbraces{s \geq 0: \mathcal{H}^s(A) = 0} = \dim_\mathcal{H} A
+    \end{align*}
+
+\end{enumerate}
+
+Sei nun $(t_n)_{n \in \N} \in (-\infty, \sup_{n \in \N} \dim_\mathcal{H} A_n)^\N$ eine Folge, die gegen $\sup_{n \in \N} \dim_\mathcal{H} A_n$ konvergiert.
+Die Folgenglieder erfüllen den $1$-ten Fall, d.h. $(t_n)_{n \in \N} \leq \dim_\mathcal{H} A$.
+Folglich, gilt dies auch für den Grenzwert.
+Analog geht man vor für die andere Ungleichung.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

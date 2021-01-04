@@ -1,0 +1,292 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie den Schwerpunkt einer homogenen Halbkugel \\
+($\rho(x) = 1$, $A = \Bbraces{x: x_1^2 + x_2^2 + x_3^2 \leq R^2, x_3 \geq 0}$) mit Radius $R$ mithilfe von Zylinderkoordinaten.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsgraphicsboxed
+{Ana3/Ana3 - Beispiel 4.3.3.1.png}
+{Ana3/Ana3 - Beispiel 4.3.3.2.png}
+
+Wir wollen $A$ mit Zylinderkoordinaten parametrisieren.
+Das wurde netterweise in Beispiel 4.3.3 bereits gemacht.
+
+\begin{align*}
+    \psi:
+    D \to A:
+    (r, \varphi, z)
+    \mapsto
+    \begin{pmatrix}
+        r \cos \varphi \\ r \sin \varphi \\ z
+    \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+    D
+    & :=
+    \Bbraces
+    {
+        (r, \varphi, z):
+        \varphi \in (0, 2 \pi),
+        z \geq 0,
+        r^2 + z^2 \leq R^2
+    } \\
+    & =
+    \Bbraces
+    {
+        (r, \varphi, z):
+        r \in \bbraces{0, \sqrt{R^2 - z^2}},
+        \varphi \in (0, 2 \pi),
+        z \in [0, R]
+    } \\
+    & =
+    \Bbraces
+    {
+        (r, \varphi, z):
+        r \in [0, R],
+        \varphi \in (0, 2 \pi),
+        z \in \bbraces{0, \sqrt{R^2 - r^2}}
+    }
+\end{align*}
+
+\begin{align*}
+    \Int[A]{\rho(x)}{\lambda^3(x)}
+    & \stackrel
+    {
+        \mathrm{TRAFO}
+    }{=}
+    \Int[D]{r}{(r, \varphi, z)} \\
+    & =
+    \Int[0][R]
+    {
+        \Int[0][2 \pi]
+        {
+            \Int[0][\sqrt{R^2 - z^2}]
+            {
+                r
+            }{r}
+        }{\varphi}
+    }{z} \\
+    & =
+    \Int[0][2 \pi]{}{\varphi}
+    \Int[0][R]
+    {
+        \frac{1}{2}
+        r^2 \Big |_{r=0}^{\sqrt{R^2 - z^2}}
+    }{z} \\
+    & =
+    2 \pi
+    \frac{1}{2}
+    \Int[0][R]
+    {
+        R^2 - z^2
+    }{z} \\
+    & =
+    \pi
+    \pbraces
+    {
+        R^2
+        \Int[0][R]{}{z}
+        -
+        \Int[0][R]{z^2}{z}
+    } \\
+    & =
+    \pi
+    \pbraces
+    {
+        R^3
+        -
+        \frac{1}{3}
+        z^3 \Big |_{z=0}^R
+    } \\
+    & =
+    \pi
+    \pbraces
+    {
+        R^3
+        -
+        \frac{1}{3}
+        R^3
+    } \\
+    & =
+    \frac{2 \pi R^3}{3}
+\end{align*}
+
+\begin{align*}
+    \Int[A]
+    {
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3
+        \end{pmatrix}
+        \rho(x)
+    }{\lambda^3(x)}
+    \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    \Int[D]
+    {
+        \begin{pmatrix}
+            r \cos \varphi \\ r \sin \varphi \\ z
+        \end{pmatrix}
+        r
+    }{(r, \varphi, z)}
+    =
+    \Int[0][R]
+    {
+        \Int[0][2 \pi]
+        {
+            \Int[0][\sqrt{R^2 - z^2}]
+            {
+                \begin{pmatrix}
+                    r^2 \cos \varphi \\ r^2 \sin \varphi \\ r z
+                \end{pmatrix}
+            }{r}
+        }{\varphi}
+    }{z}
+\end{align*}
+
+\begin{enumerate}
+
+    \item [1.] und 2. Komponente:
+    
+    \begin{align*}
+        \Int[0][R]
+        {
+            \Int[0][2 \pi]
+            {
+                \Int[0][\sqrt{R^2 - z^2}]
+                {
+                    \begin{pmatrix}
+                        r^2 \cos \varphi \\ r^2 \sin \varphi
+                    \end{pmatrix}
+                }{r}
+            }{\varphi}
+        }{z}
+        =
+        \Int[0][R]
+        {
+            \Int[0][\sqrt{R^2 - z^2}]
+            {
+                r^2
+            }{r}
+        }{z}
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \begin{pmatrix}
+                    \cos \varphi \\ \sin \varphi
+                \end{pmatrix}
+            }{\varphi}
+        }_0
+        =
+        0
+    \end{align*}
+
+    \item [3.] Komponente:
+    
+    \begin{align*}
+        \Int[0][R]
+        {
+            \Int[0][2 \pi]
+            {
+                \Int[0][\sqrt{R^2 - z^2}]
+                {
+                    r z
+                }{r}
+            }{\varphi}
+        }{z}
+        & =
+        \Int[0][2 \pi]{}{\varphi}
+        \Int[0][R]
+        {
+            z
+            \Int[0][\sqrt{R^2 - z^2}]
+            {
+                r
+            }{r}
+        }{z} \\
+        & =
+        2 \pi
+        \Int[0][R]
+        {
+            z
+            \frac{1}{2}
+            r^2 \Big |_{r=0}^{\sqrt{R^2 - z^2}}
+        }{z} \\
+        & =
+        \pi
+        \Int[0][R]{z (R^2 - z^2)}{z} \\
+        & =
+        \pi
+        \pbraces
+        {
+            R^2
+            \Int[0][R]{z}{z}
+            -
+            \Int[0][R]{z^3}{z}
+        } \\
+        & =
+        \pi
+        \pbraces
+        {
+            R^2
+            \frac{1}{2}
+            z^2 \Big |_{z=0}^R
+            -
+            \frac{1}{4}
+            z^4 \Big |_{z=0}^R
+        } \\
+        & =
+        \pi
+        \pbraces
+        {
+            \frac{R^4}{2}
+            -
+            \frac{R^4}{4}
+        } \\
+        & =
+        \frac{R^4 \pi}{4}
+    \end{align*}
+
+\end{enumerate}
+
+\begin{align*}
+    \implies
+    \pbraces
+    {
+        \Int[A]{\rho(x)}{\lambda^3(x)}
+    }^{-1}
+    \Int[A]
+    {
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3
+        \end{pmatrix}
+        \rho(x)
+    }{\lambda^3(x)}
+    =
+    \frac{3}{2 \pi R^3}
+    \frac{R^4 \pi}{4}
+    \begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix}
+    =
+    \frac{3 R}{8}
+    \begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
