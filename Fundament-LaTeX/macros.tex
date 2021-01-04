@@ -31,21 +31,56 @@
 
 % graphics:
 
-\newcommand{\includegraphicsboxed}[2][0.75]
+\newcommand
+{\includegraphicsboxed}
+[2][0.75]
 {
   \begin{center}
     \begin{tcolorbox}[standard jigsaw, opacityback = 0]
-      \begin{center}
-        \includegraphics[width = #1 \textwidth]{#2}
-      \end{center}
+
+      \centering
+      \includegraphics[width = #1 \textwidth]{#2}
+
     \end{tcolorbox}
   \end{center}
 }
 
-\newcommand{\includegraphicsunboxed}[2][0.75]
+\newcommand
+{\includegraphicsunboxed}
+[2][0.75]
 {
   \begin{center}
     \includegraphics[width = #1 \textwidth]{#2}
+  \end{center}
+}
+
+\newcommandtwoopt
+{\includegraphicsgraphicsboxed}
+[4][0.75][0.25]
+{
+  \begin{center}
+    \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+
+      \centering
+      \includegraphics[width = #1 \textwidth]{#3} \\
+      \vspace{#2 cm}
+      \includegraphics[width = #1 \textwidth]{#4}
+
+    \end{tcolorbox}
+  \end{center}
+}
+
+\newcommandtwoopt
+{\includegraphicsgraphicsunboxed}
+[4][0.75][0.25]
+{
+  \begin{center}
+
+    \centering
+    \includegraphics[width = #1 \textwidth]{#3} \\
+    \vspace{#2 cm}
+    \includegraphics[width = #1 \textwidth]{#4}
+
   \end{center}
 }
 
