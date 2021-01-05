@@ -1,0 +1,126 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie aus obiger Volumsformel und der Koflächenformel das Flächenmaß des Spindeltorus.
+
+Hinw.:
+Für festes $R$ sei $\T_r$ der Spindeltorus wie zuvor für $R, r$ definiert und $V_t$ das Volumen der von $\T_r$ berandeten Teilmenge des $\R^3$.
+
+Für $R = r$ gilt $V = 2 \pi^2 R^3$.
+Für $f(x, y, z) = (\sqrt{x^2 + y^2} - R)^2 + z^2$ gilt $|\nabla f| = 2 \sqrt f$.
+Wenden Sie die Koflächenformel auf die Funkton $\1_\bbraces{R^2, r^2}(f(x))$ an.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \Omega_{R, r}
+    :=
+    \Bbraces
+    {
+        (x, y, z) \in R^3:
+        (R - \sqrt{x^2 - y^2})^2 + z^2 \leq r^2
+    }
+\end{align*}
+
+Formal gilt $\lambda^3(\Omega_{R, t}) = V_t$.
+Die obige Volumsformel gibt ja das Volumen des Spindeltorus an; also genau $V_R$.
+
+\begin{align*}
+    g := \frac{1}{|\nabla f|} (\1_\bbraces{R^2, r^2} \circ f)
+    \implies
+    \supp g = \Omega_{R, r} \setminus \Omega_{R, R} =: \Omega
+\end{align*}
+
+\begin{align*}
+    V_R - V
+    & =
+    \lambda^3(\Omega) \\
+    & =
+    \Int[\Omega]
+    {
+        g |\nabla f|
+    }{\lambda^3} \\
+    & \stackrel
+    {
+        \text{KOFLFO}
+    }{=}
+    \Int[\R]
+    {
+        \Int[f^{-1}(t)]
+        {
+            g(y)
+        }{\mathcal{H}^2(y)}
+    }{t} \\
+    & =
+    \Int[R^2][r^2]
+    {
+        \Int[f^{-1}(t)]
+        {
+            \frac{1}{|\nabla f(y)|}
+        }{\mathcal{H}^2(y)}
+    }{t} \\
+    & =
+    \Int[R^2][r^2]
+    {
+        \Int[f^{-1}(t)]
+        {
+            \frac{1}{2 \sqrt{f(f^{-1}(t))}}
+        }{\mathcal{H}^2(y)}
+    }{t} \\
+    & =
+    \Int[R^2][r^2]
+    {
+        \frac{1}{2 \sqrt t}
+        \Int[f^{-1}(t)]{}{\mathcal{H}^2}
+    }{t} \\
+    & \stackrel{!}{=}
+    \Int[R^2][r^2]
+    {
+        \frac{1}{2 \sqrt t}
+        \mathcal{H}^2(\T_{\sqrt{t}})
+    }{t} \\
+    & =
+    \Int[R][r]
+    {
+        \mathcal{H}^2(\T_u)
+    }{u}
+\end{align*}
+
+Dabei haben wir folgende Substitution verwendet.
+
+\begin{align*}
+    u = \sqrt t
+    \implies
+    \derivative[][u]{t} = \frac{1}{2 \sqrt t} \implies \mathrm{d} t = 2 \sqrt t \mathrm{d} u
+\end{align*}
+
+Für das \Quote{!}, also die räumliche Interpretation von $f$ konsultiere man die Lösung der vorigen Aufgabe 63.
+Nun müssen wir nur noch links und rechts nach $r$ ableiten.
+
+\begin{align*}
+    \stackrel
+    {
+        \derivative{r}
+    }{\mapsto}
+    \mathcal{H}^2(\T_r)
+    =
+    4 \pi r
+    \pbraces
+    {
+        R
+        \arccos \pbraces{-\frac{R}{r}}
+        +
+        \sqrt{r^2 - R^2}
+    }
+\end{align*}
+
+Das stimmt, weil wir das Maß der Oberfläche, in der Lösung der vorigen Aufgabe 63, bereits ausgerechnet haben.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

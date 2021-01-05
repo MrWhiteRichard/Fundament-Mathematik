@@ -1,0 +1,143 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie $\int_D \exp(x / (x + y)) ~\mathrm{d} x ~\mathrm{d} y$, wobei $D$ durch
+
+\begin{align*}
+    D = \Bbraces{(x, y) \in \R^2: x, y > 0, x + y < 1}
+\end{align*}
+
+definiert ist durch Transformation auf die Variablen $u = x + y$, $\nu = x / (x + y)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{center}
+    \begin{tikzpicture}
+
+        \draw [->] (-1,  0) -- (3, 0) node [right] {$x$};
+        \draw [->] ( 0, -1) -- (0, 3) node [above] {$y$};
+
+        \filldraw [pattern = dots] (0, 0) -- (0, 2) -- node [above right] {$x = 1 - y$} (2, 0) -- cycle;
+
+        \draw (0, 0) node {$\times$} node [below left] {$0$};
+        \filldraw (2 cm, 2 pt) -- (2 cm, -2 pt) node [below] {$1$};
+        \filldraw (2 pt, 2 cm) -- (-2 pt, 2 cm) node [left]  {$1$};
+
+    \end{tikzpicture}
+\end{center}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.3.1 (Transformationsformel).png}
+
+\begin{align*}
+    \varphi:
+    D \to (0, 1)^2:
+    (x, y)
+    \mapsto
+    \begin{pmatrix}
+        x + y \\ \frac{x}{x + y}
+    \end{pmatrix},
+    \quad
+    f: (0, 1)^2 \to \R: (u, \nu) \mapsto u e^\nu
+\end{align*}
+
+$\varphi$ ist tatsächlich ein Diffeomorphismus.
+
+\begin{align*}
+    \begin{pmatrix}
+        u \\ \nu
+    \end{pmatrix}
+    \stackrel{!}{=}
+    \begin{pmatrix}
+        x + y \\ \frac{x}{x + y}
+    \end{pmatrix}
+    & \implies
+    y = u - x \\
+    & \implies
+    \nu = \frac{x}{	x + (u - x)} = \frac{x}{u} \\
+    & \implies
+    x = \nu u \\
+    & \implies
+    y = u - \nu u = (1 - \nu) u
+\end{align*}
+
+\begin{align*}
+    |\det \mathrm{d} \varphi(x, y)|
+    =
+    \abs
+    {
+        \det
+        \begin{pmatrix}
+            1                             & 1 \\
+            \frac{(x + y) - x}{(x + y)^2} & \frac{-1}{x (x + y)^2}
+        \end{pmatrix}
+    }
+    =
+    \abs
+    {
+        -
+        \frac{x}{(x + y)^2}
+        -
+        \frac{y}{(x + y)^2}
+    }
+    =
+    \frac{x + y}{(x + y)^2}
+    =
+    \frac{1}{x + y}
+\end{align*}
+
+\begin{multline*}
+    \Int[D]
+    {
+        \exp \frac{x}{x + y}
+    }{(x, y)}
+    =
+    \Int[D]
+    {
+        (x + y)
+        \exp \frac{x}{x + y}
+        \frac{1}{x + y}
+    }{(x, y)}
+    =
+    \Int[D]
+    {
+        f(\varphi(x, y))
+        |\det \mathrm{d} \varphi(x, y)|
+    }{(x, y)} \\
+    \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    \Int[\varphi(D)]
+    {
+        f(u, \nu)
+    }{(u, \nu)}
+    =
+    \Int[0][1]
+    {
+        \Int[0][1]
+        {
+            u e^\nu
+        }{u}
+    }{\nu}
+    =
+    \Int[0][1]{u}{u}
+    \Int[0][1]{e^\nu}{\nu}
+    =
+    \frac{1}{2}
+    u^2 \Big |_{u=0}^1
+    e^\nu \Big |_{\nu = 0}^1
+    =
+    \frac{1}{2}
+    (e - 1)
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

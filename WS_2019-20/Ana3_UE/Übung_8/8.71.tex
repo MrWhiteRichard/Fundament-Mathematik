@@ -1,0 +1,99 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie für $0 < a < b$ und $0 < c < d$ die durch $a x < y^2 < b x$ und $c y < x^2 < d y$ definierte Fläche in $\R^2$ durch eine Koordinatentransformation unter der die Fläche in ein Rechteck übergeht.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \varphi:
+    A \to B:
+    (x, y)
+    \mapsto
+    \begin{pmatrix}
+        \frac{y^2}{x} \\ \frac{x^2}{y}
+    \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+    A
+    & :=
+    \Bbraces
+    {
+        (x, y) \in \R^2:
+        a < \frac{y^2}{x} < b,
+        c < \frac{x^2}{y} < d
+    } \\
+    B
+    & :=
+    \Bbraces
+    {
+        \pbraces
+        {
+            \frac{y^2}{x},
+            \frac{x^2}{y}
+        }:
+        a < \frac{y^2}{x} < b,
+        c < \frac{x^2}{y} < d
+    }
+    =
+    (a, b) \times (c, d)
+\end{align*}
+
+\begin{align*}
+    |\det \mathrm{d} \varphi(x, y)|
+    =
+    \abs
+    {
+        \det
+        \begin{pmatrix}
+            -\frac{y^2}{x^2} &  \frac{2 y}{x} \\
+            \frac{2 x}{y}    & -\frac{x^2}{y^2}
+        \end{pmatrix}
+    }
+    =
+    \abs
+    {
+        \pbraces{-\frac{y^2}{x^2}}
+        \pbraces{-\frac{x^2}{y^2}}
+        -
+        \frac{2 x}{y}
+        \frac{2 y}{x}
+    }
+    =
+    |1 - 4|
+    =
+    3
+\end{align*}
+
+\begin{align*}
+    \lambda^2(A)
+    =
+    \frac{1}{3}
+    \Int[A]
+    {
+        |\det \mathrm{d} \varphi|
+    }{\lambda^2}
+    \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    \frac{1}{3}
+    \Int[\varphi(A)]{}{\lambda^2}
+    =
+    \frac{1}{3}
+    \lambda^2(B)
+    =
+    \frac{1}{3}
+    (b - a)
+    (d - c)
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

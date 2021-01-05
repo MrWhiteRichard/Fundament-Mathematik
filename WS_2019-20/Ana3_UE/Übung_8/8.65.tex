@@ -1,0 +1,121 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei $G \subseteq \R^3$ der Graph der Funktion $f: [0, 1] \times [-1, 1] \to \R$ mit $f(x, y) = x^2 + y$.
+Berechnen Sie
+
+\begin{align*}
+    \Int[G]{x}{\mathcal{H}^2}.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    g := \id_{\R^3},
+    \quad
+    \Omega := (0, 1) \times (-1, 1)
+\end{align*}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.2.13.png}
+
+Wir übernehmen sämtliche Bezeichnungen aus Satz 4.2.13.
+
+\begin{align*}
+    \implies
+    \Int[G]{x}{\mathcal{H}^2(x)}
+    & =
+    \Int[\varphi(\Omega)]{g}{\mathcal{H}^2} \\
+    & \stackrel
+    {
+        \mathrm{4.2.13}
+    }{=}
+    \Int[\Omega]
+    {
+        g(x, f(x))
+        \sqrt{1 + |\nabla f(x)|^2}
+    }{\lambda^2(x)} \\
+    & =
+    \Int[-1][1]
+    {
+        \Int[0][1]
+        {
+            \begin{pmatrix}
+                x \\ y \\ f(x, y)
+            \end{pmatrix}
+            \sqrt{1 + (2 x)^2 + 1^2}
+        }{x}
+    }{y} \\
+    & =
+    \sqrt 2
+    \Int[-1][1]
+    {
+        \Int[0][1]
+        {
+            \begin{pmatrix}
+                x \\ y \\ x^2 + y
+            \end{pmatrix}
+            \sqrt{1 + 2 x^2}
+        }{x}
+    }{y}
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Komponente:
+    
+    \begin{multline*}
+        \sqrt 2
+        \Int[-1][1]
+        {
+            \Int[0][1]
+            {
+                x \sqrt{1 + 2 x^2}
+            }{x}
+        }{y}
+        =
+        \sqrt 2
+        \Int[-1][1]{}{y}
+        \Int[0][1]
+        {
+            x \sqrt{1 + 2 x^2}
+        }{x} \\
+        =
+        2 \sqrt 2
+        \Int[1][3]
+        {
+            x \sqrt u \frac{1}{4 x}
+        }{u}
+        =
+        2 \sqrt 2
+        \frac{1}{4}
+        \frac{2}{3}
+        u^\frac{3}{2} \Big |_{u=1}^3
+        =
+        \frac{\sqrt 2}{3}
+        \pbraces{\sqrt 3^3 - 1}
+    \end{multline*}
+
+    Dabei haben wir folgende Substitution verwendet.
+
+    \begin{align*}
+        u = 1 + 2 x^2
+        \implies
+        \derivative[][u]{x} = 4 x
+        \implies
+        \mathrm{d} x = \frac{1}{4 x} \mathrm{d} u
+    \end{align*}
+
+    \item Komponente:
+
+    \item Komponente:
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
