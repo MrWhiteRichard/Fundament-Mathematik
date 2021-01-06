@@ -6,23 +6,318 @@
 
 \parindent 0pt
 
+\begin{document}
 \title
 {
-  Eigenwertberechnung mithilfe des Lanczos-Verfahren
+	Eigenwertberechnung mithilfe des Lanczos-Verfahren
 }
 \author
 {
-  Christian Göth
-  \and
-  Christian Sallinger
-  \and
-  Moik Matthias
+	Göth Christian
+	\and
+	Moik Matthias
+	\and
+	Sallinger Christian
 }
-\date{}
-
-\begin{document}
-
+\date{\today}
 \maketitle
 
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Einleitung}
+
+\subsection{Problemstellung}
+\subsection{Analytische Lösung für ein Rechteck}
+\subsection{Numerischer Lösungsansatz}
+
+\section{Das QR-Verfahren}
+
+\subsection{Idee und Algorithmus}
+
+Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit paarweise betragsmäßig verschiedenen Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$, die durch $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ definiert, wobei die Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$, erhalten werden. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\begin{algorithm}
+	\label{QR-Verfahren}
+	\caption{QR-Verfahren}
+	\algorithmicrequire{$A \in \K^{n\times n}$}
+	\begin{algorithmic}[1]
+		\State $A^{(0)} = A$
+		\While{Abbruchbedingung nicht erfüllt}
+		\State Berechne $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$
+		\State $A^{(t)} = R^{(t-1)}Q^{(t-1)}$
+		\EndWhile
+	\end{algorithmic}
+	\algorithmicensure{$A^{(t)}$ als approximation einer oberen Dreiecksmatrix, mit gleichen Eigenwerten wie $A$}
+\end{algorithm}
+
+
+Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz des Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
+
+\begin{theorem}[Konvergenz des QR-Verfahrens]
+	Sei $A \in \K^{n\times n}$ eine Matrix mit Eigenwerten $\lambda_1,\dots,\lambda_n \in \K$ und $|\lambda_1| > |\lambda_2| > \dots > |\lambda_n| > 0$. Dann konvergieren die Hauptdiagonaleinträge der Matrizen $A^{(t)}$, die in Algorithmus (..) definiert sind, gegen die Eigenwerte von $A$.
+\end{theorem}
+
+
+\subsection{Beschleunigung der Konvergenz}
+
+Betrachtet man die Matrizen $\Lambda^t L \Lambda^{-t}$, die im Beweis dargestellt wird und schlussendlich gegen die Einheitsmatrix konvergiert und damit $A^{(t)}$ gegen eine obere Dreieckmatrix, erkennt man, dass durch einen geeigneten Shift die Konvergenzgeschwindigkeit erheblich verbessert werden kann. Da die Matrix die Form
+
+\begin{equation*}
+ 	M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t} = 
+ 	\left( \begin{array}{rrrr}
+ 		1 & 0 & \dots & 0 \\ 
+ 		l_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
+ 		\vdots & \ddots & \ddots & 0 \\
+ 		l_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & l_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\ 
+ 	\end{array}\right)
+\end{equation*}
+
+hat und für einen Eigenwert $\lambda$ einer Matrix $A$
+
+\begin{equation*}
+	(A - \lambda \id) = 0 \Leftrightarrow ((A - \rho \id) - (\lambda -\rho) \id) = 0 \Leftrightarrow (\lambda-\rho) \text{ ist Eigenwert von }  (A - \rho \id)
+\end{equation*}
+
+gilt, konvergieren durch einen Shift in der Größenordnung des betragsmäßig kleinsten Eigenwerts die Matrixeinträge der letzten Spalte schneller gegen Null, da die Zähler von $m^{(t)}_{ni}, \, i = 1,\dots, n-1$ klein werden. Die Wahl des Shifts als $a^{(t)}_{nn}$ macht also sinn, da dieser Eintrag für $t \rightarrow \infty$ gegen $\lambda_n$ konvergiert. Nach der QR-Zerlegung von $A^{(t)}$ setzt man $A^{(t+1)} \coloneqq R^{(t)}Q^{(t)} + \rho \id$ um wieder eine Matrix zu erhalten, die die gleichen Eigenwerte wie $A^{(t)}$ hat.
+Wenn die Einträge $a^{(t)}_{ni}, \, i = 1,\dots, n-1$ dann kleiner als eine angegebene Toleranz sind, ist der betragsmäßig kleinste Eigenwert gut genug approximiert und man geht analog mit dem zweitkleinsten Eigenwert vor, dessen Näherung in $a^{(t)}_{(n-1)(n-1)}$ steht.\\
+
+Es kann unter einigen Vorraussetzungen gezeigt werden, dass der Matrixeintrag $a^{(t)}_{n(n-1)}$ quadratisch gegen 0 konvergiert.
+
+\begin{theorem}
+	Sei $A(t) \in \K^{n\times n}$ eine Hessenbergmatrix, sodass der kleinste Eigenwert bereits konvergiert, also dass $a^{(t-1)}_{nn} - a^{(t)}_{nn} \approx 0$ und $a^{(t)}_{n(n-1)} = \epsilon < 1$. Wenn der Shift für die berechnung für $A^{(t+1)}$ als $a^{(t)}_{nn}$ gewählt wird, hat $a^{(t+1)}_{n(n-1)}$ die Größenordnung $\epsilon^2$.
+\end{theorem}
+\begin{proof}
+	Sei 
+	\begin{equation*}
+		B \coloneqq A^{(t)} - a^{(t)}_{nn} \id = \left( \begin{array}{rrrrr}
+			* & * &* &\dots & * \\ 
+			* & \ddots & \ddots &\ddots & \vdots \\
+			0 & \ddots &\ddots & \ddots &\vdots \\
+			\vdots & \ddots & * & * & * \\
+			0 & \dots & 0 & \epsilon & 0\\
+		\end{array}\right)
+	\end{equation*}
+und 
+	\begin{equation*}
+		G^{(k)} \coloneqq \left(\begin{array}{rrrrrr}
+			1 & 0 & &\dots & & 0\\
+			0 & \ddots & & & &\\
+			 & & \overline{c_k} & s_k & &\vdots\\
+			 \vdots & & -s_k & c_k & &\\
+			 & & & & \ddots & 0\\
+			 0 & & \dots & & 0 & 1
+		\end{array}\right)
+	\end{equation*}
+	die Givens-Rotation mit $\overline{c}$ an der Position $g^{(k)}_{kk}$. \\
+	Die Werte $c$ und $s$ sind definiert als
+	\begin{equation}
+		c_k \coloneqq \frac{m_{kk}}{\sqrt{|m_{kk}|^2 + |m_{(k+1)k}|^2}} , \quad s_k \coloneqq \frac{m_{(k+1)k}}{\sqrt{|m_{kk}|^2 + |m_{(k+1)k}|^2}},
+	\end{equation}
+ 	wobei $m_{kk}$ und $m_{k(k+1)}$ einträge der Matrix $M$ sind, auf die die Rotation angewendet werden soll.
+	
+	Weiters definiere 
+	
+	\begin{equation*}
+		\tilde{R}^{(t)} \coloneqq G^{(n-2)} \dots G^{(1)} B^{(t)}\\
+	\end{equation*}
+	
+	
+	Damit ergibt sich dann $B^{(t+1)} = G^{(n-1)} \tilde{R}^{(t)} G^{(1)} \dots G^{(n-1)}$. 
+	
+	Wir bemerken, dass $G^{(n-1)} \dots G^{(1)} B^{(t)}$ eine obere Dreiecksmatrix R ergibt und da die ersten $n-2$ Rotationen die letzte Zeile nicht verändern, hat $\tilde{R}^{(t)}$ die Form
+	\begin{equation}
+		\tilde{R}^{(t)} = \left(\begin{array}{rrrrr}
+			* & &\dots & & *\\
+			\vdots & \ddots & & & \vdots\\
+			* & &\dots & & *\\
+			* & \dots&  *& p& q\\
+			0 & \dots & 0 & \epsilon & 0
+		\end{array}\right),
+	\end{equation}
+
+	wobei $p$ und $q$ unbekanne Werte sind, die wir in nachfolgender Rechung benötigen.\\
+	Die Werte $c_{n-1}$ und $s_{n-1}$ sind gegeben als
+	
+	\begin{equation*}
+		\begin{aligned}
+			c_{n-1} &= \frac{\tilde{B}_{(n-1)(n-1)}}{\sqrt{|m_{(n-1)(n-1)}|^2 + |m_{n(n-1)}|^2}} = \frac{p}{\sqrt{|p|^2 +|\epsilon|^2}} \\ s_{n-1} &= \frac{\tilde{B}_{n(n-1)}}{\sqrt{|m_{(n-1)(n-1)}| + |m_{n(n-1)}|^2}} =  \frac{\epsilon}{\sqrt{|p|^2 +|\epsilon|^2}}.
+		\end{aligned}\\
+	\end{equation*}
+	
+	Bezeichne nun $c_{n-1}$ und $s_{n-1}$ für die Leserlichkeit nur noch als $c$ und $s$.\\
+
+	Als erstes berechnen wir den Eintrag $b^{(t+1)}_{nn}$. Man erkennt, dass die Multiplikation von rechts mit den Givens-Rotationen $G^{(i)}, \, i = 1\dots n-2$ nichts an der letzten Zeile der Dreiecksmatrix $R$ ändert. Damit gilt nun
+	\begin{equation*}
+		b^{(t+1)}_{nn} = r_{nn} g^{(n-1)}_{nn} = g^{(n-1)}_{n(n-1)} \tilde{b}_{(n-1)n} g^{(n-1)}_{nn}  = -sqc = - \frac{\epsilon qp }{p^2+\epsilon^2}.
+	\end{equation*}
+
+Da $a^{(t)}_{nn}$ schon konvergiert, muss dieser Wert klein sein, da sich nach dem Shift zurück der Eintrag wieder ungefähr $a^{(t)}_{nn}$ sein sollte. Wenn $p$ im Vergleich zu $\epsilon$ groß ist, darf damit $q$ nicht viel Größer als $p$ sein, damit der Wert klein bleibt. Falls $p$ die eine kleinere oder gleiche Größenordnung wie $\epsilon$ hat, muss dafür $q$ klein sein.\\
+
+Wir berechnen nun noch $b^{(t+1)}_{n(n-1)}$. Wir erhalten mit analogen Überlegungen wie oben 
+\begin{equation*}
+	b^{(t+1)}_{n(n-1)} = r_{nn} g^{(n-1)}_{n(n-1)} = g^{(n-1)}_{n(n-1)} \tilde{b}_{(n-1)n} g^{(n-1)}_{n(n-1)} = s^2q = \frac{\epsilon^2 q}{p^2+\epsilon^2}.
+\end{equation*}
+
+Mit den Bedinungen die erforderlich sind, sodass $a^{(t+1)}_{nn}$ klein ist, sehen wir, dass $\frac{b}{a^2+\epsilon^2}$ nicht groß genug sein kann, um die Größenordnung von $\epsilon^2$ zu ändern. Somit hat $a^{(t+1)}_{n(n-1)}$ die Größenordnung $\epsilon^2$.
+\end{proof}
+
+Für diesen Beweis wurde bereits die Konvergenz des kleinsten Eigenwerts vorrausgesetzt. In der Praxis ist es aber auch möglich, schon ab der ersten Iteration diesen Shift zu verwenden um eine erheblich schnellere konvergenz zu erhalten als ohne Shifts. Vergleiche dazu \cite{The Algebraic Eigenvalue Problem} Seite 510, Practical experience of convergence.\\
+
+Eine weitere Möglichkeit den Shift zu wählen ist, sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. (...)
+
+
+\subsection{Die QR-Zerlegung für Hessenbergmatrizen}
+
+\subsection{Implementierung und Vergleich der Verschiedenen Methoden}
+
+
+\section{Das Lanczos-Verfahren}
+
+\subsection{Idee}
+
+\subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
+
+In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \K^{n \times n}$ konvergieren.
+
+%vorbereitungs lemmata
+
+
+\begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
+	Sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+	
+	\begin{equation}
+		\label{konvergenz Eigenwerte}
+		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
+	\end{equation}
+
+	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$ ist,
+	
+	\begin{equation*}
+		\gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
+	\end{equation*}
+und 
+	\begin{equation*}
+		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
+	\end{equation*}
+	
+	\begin{proof}
+		
+	Seien $v_1, \dots, v_m$ Orthonormalbasisvektoren von $\mathcal{K}_m$ und $V^{(m)} \in \K^{n\times m}$ die Matrix, die diese Vektoren als Spalten besitzt. Dann ist 
+	
+	\begin{equation*}
+		A^{(m)} \coloneqq V^* A V \in \K^{m\times m}
+	\end{equation*}
+
+	die Matrixdarstellung der Abbildung $\mathcal{A}_m$ bezüglich der Orthonormalbasis $(v_1,\dots,v_m)$.
+	
+	Diese Matrix ist offensichtlich hermitesch. Somit können die Eigenwerte $\lambda_1^{(m)}, \dots, \lambda_m^{(m)}$ mithilfe von (...) berechnet werden.
+	
+	Es gilt also
+	
+	\begin{equation}
+		\label{Eigenwert_Ungl}
+		\begin{aligned}
+			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(A^{(m)}v,v)}{(v,v)} \\
+			&= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			&= \max_{\substack{S \subseteq \mathcal{K}_m\\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)}\\
+			 &\le \max_{\substack{S \subseteq \C^n\\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k
+		\end{aligned}
+	\end{equation}
+	
+	Somit ist die erste Ungleichung erfüllt.\\
+	
+	Wir beweisen nun die zweite Ungleichung zuerst für den Fall $i = 1$.
+	Sei $v_0 = \sum_{j=1}^{n}\alpha_j u_j$. Wir bemerken, dass $\alpha_1, \dots, \alpha_{m-1}$ nicht verschwinden, da $v_0$ nicht orthogonal zu diesen Eigenvektoren gewählt wurde.\\
+	
+	Mit analogen Umformungen wie in \ref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma (...) gilt somit
+	\begin{equation}
+		\label{Ungl i=1}
+		\begin{aligned}
+			\lambda_1 - \lambda_1^{(m)} &= \lambda_1 - \max_{v \in \mathcal{K}_m \setminus\{0\}} \frac{(Av,v)}{(v,v)} = \min_{v \in \mathcal{K}_m\setminus\{0\}} \lambda_1 - \frac{(Av,v)}{(v,v)} = \min_{v \in \mathcal{K}_m\setminus\{0\}} \frac{\lambda_1(v,v) - (Av,v)}{(v,v)} \\ &= \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\lambda_1 \norm{\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j}^2 - (\sum_{j=1}^{n}p(\lambda_j)\alpha_j A u_j,\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j)}{\norm{\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j}^2} \\
+			&= \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\lambda_1 \sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2 - \sum_{j=1}^{n} \lambda_j |p(\lambda_j)\alpha_j|^2 }{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
+			&=  \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\sum_{j=2}^{n} (\lambda_1 - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
+			&\le (\lambda_1 - \lambda_n) \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2} \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2.
+		\end{aligned}
+	\end{equation}
+		
+	Wir bezeichnen mit $\mathcal{P}_{u_i}, \, i = 1,\dots, m-1$ die Projektion auf den Vektor $u_i$. Damit gilt
+		\begin{equation*}
+			(\tan\theta_1)^2 = \frac{\norm{(\id - \mathcal{P}_{u_1})v_0}^2}{\norm{ \mathcal{P}_{u_1}v_0}^2} = \frac{\norm{v_0 - \alpha_1 u_1}^2}{\norm{\alpha_1 u_1}^2} = \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2}
+		\end{equation*}
+	und mithilfe von Lemma (...) mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$
+	
+		\begin{equation*}
+			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
+		\end{equation*}
+	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.
+	
+	Betrachten wir nun den Fall $i>1$.
+	Bezeichne mit $u_j^{(m)}, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$. Mit (...) erhalten wir dann
+	
+	\begin{equation*}
+		\lambda_i^{(m)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)} = \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0, j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
+	\end{equation*}
+	
+	
+	Definiere  $\tilde{u}_j^{(m)}$ als den normierten Vektor $Vu_j$. Da $A^{(m)}$ hermitesch ist, gilt für alle $i,j = 1,\dots, m$
+	 
+	\begin{equation*}
+		\lambda^{(m)}_i (u_i^{(m)}, u_j^{(m)}) = (A^{(m)}u_i^{(m)}, u_j^{(m)}) = (u_i^{(m)}, A^{(m)}u_j^{(m)}) = \lambda^{(m)}_j (u_i^{(m)}, u_j^{(m)}).
+	\end{equation*}
+	
+	Also sind Eigenvektoren zu verschiedenen Eigenwerten orthogonal. Wegen $ 0 = (u_i, u_j) = (Vu_i, Vu_j)$ sind auch die $\tilde{u}_j^{(m)}$ orthogonal und somit eine Basis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	\begin{equation*}
+		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
+	\end{equation*}
+
+	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
+	
+	Da dann die $\lambda_j^{(m)}, \, j = 1,\dots,i-1$ Nullstellen von $p$ sind, können wir
+	
+	\begin{equation*}
+		p(\lambda) = \prod_{j = 1}^{i-1} \frac{\lambda_j^{(m)} -\lambda}{\lambda_j^{(m)} - \lambda_i} q(x)
+	\end{equation*}
+	schreiben, wobei $q \in \Pi_{m-i}$.\\
+	
+	Nach analogen Umformungen wie in \ref{Ungl i=1} gilt
+
+	\begin{equation*}
+		\begin{aligned}
+			\lambda_i - \lambda_i^{(m)} &= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{j=1}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
+			&= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{\substack{j=1, j\neq i}}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
+			& \le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \max_{j=i+1,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_i)|}\right)^2 \\
+			&= (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_j}{\lambda_k^{(m)} - \lambda_i}\right| \left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
+			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_n}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
+		\end{aligned}
+	\end{equation*}
+	
+	Wiederum ist
+	\begin{equation*}
+		(\tan\theta_i)^2 = \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}^2}{\norm{ \mathcal{P}_{u_i}v_0}^2} = \frac{\norm{v_0 - \alpha_i u_i}^2}{\norm{\alpha_i u_i}^2} = \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2}
+	\end{equation*}
+	
+	und  mit $a = \lambda_n, b= \lambda_{i+1}$, $c = \lambda_i$ folg Lemma (...) an, erhalten wir die Behauptung.\\
+	
+	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bediungung $p(\lambda_j^{(m)}) = 0$ weglassen und das damit berechnete Minimum wird dadurch nicht größer, also kann die gleiche Abschätzung verwendet werden.
+	Also gilt \ref{konvergenz Eigenwerte} für alle $i = 1, \dots, m-1$.
+	\end{proof}
+\end{theorem}
+
+Die konvergenz der Eigenwerte ist nun ersichtlich, da $\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2$ mit $m$ exponentiell wächst. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte ab. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, $\kappa^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird.
+
+
+\subsection{Implementierung}
+
+\subsection{Ergebnisse}
+
+\newpage
+
+%Literaturverzeichnis
 
 \end{document}
