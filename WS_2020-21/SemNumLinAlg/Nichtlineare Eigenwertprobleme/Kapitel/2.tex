@@ -2,41 +2,46 @@
 
 \begin{theorem}[Keldysh, nicht-linear] \label{keldysh_nicht_linear}
 
-    Sei $\C\supset \Lambda \ni \lambda \mapsto A(\lambda) \in \C^{N \times N}$ holomorph und es existiere mindestens ein $\lambda \in \Lambda$, sodass $A(\lambda)$ invertierbar ist.
-    Weiter sei $\lambda_1 \in \Lambda$ ein halb-einfacher Eigenwert, d.h. es existiere eine $L$-dimensionale Orthonormalbasis aus (Rechts-)Eigenvektoren $v_{1, 1}, \dots, v_{1, L} \in \ker A(\lambda_1)$ und es gelte $A^\prime(\lambda_1) v_{1, l} \not \in A(\lambda_1)(\C^N)$ für alle $l = 1, \dots, L$.
+    Sei $\Lambda \subset \C$ ein beschränktes Gebiet und $A \in H(\Lambda, \C^{N \times N})$ holomorph.
+    Es existiere ein $\lambda \in \Lambda$, sodass $A(\lambda) \in \GL_N(\C)$, d.h. invertierbar ist.
 
-    Dann ist auch $\dim \ker(A^\ast(\lambda_1)) = L$, d.h. es existiert eine Basis $w_{1, 1}, \dots, w_{1, L}$ von $\ker(A^\ast(\lambda_1))$, und diese Basis kann so gewählt werden, dass
+    Weiter sei $\lambda_1 \in \Lambda$ ein halb-einfacher Eigenwert, d.h. es existiere eine $L_1$-dimensionale Orthonormalbasis aus (Rechts-)Eigenvektoren $v_{1, 1}, \dots, v_{1, L_1} \in \ker A(\lambda_1)$.
+    Für diese gelte $\Forall l = 1, \dots, L_1:$
+    
+    \begin{align*}
+        A^\prime(\lambda_1) v_{1, l}
+        \not \in
+        \ran A(\lambda_1).
+    \end{align*}
+
+    Dann existiert eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker(A^\ast(\lambda_1))$, sodass $\Forall l, k = 1, \dots, L_1:$
 
     \begin{align}
-        w_{1, l}^\ast A^\prime(\lambda_1) v_{1, k} = \delta_{l k},
-        \quad
-        l, k = 1, \dots, L
+        w_{1, l}^\ast A^\prime(\lambda_1) v_{1, k} = \delta_{l, k}.
     \end{align}
 
-    gilt.
-    Weiterhin existiert eine Umgebung $U$ um $\lambda_1$ sodass
+    Weiterhin existiert eine Umgebung $U_1$ von $\lambda_1$ und $R_1 \in H(U_1)$ holomorph, sodass $\Forall \lambda \in U_1 \setminus \Bbraces{\lambda_1}:$
 
     \begin{align}
         A(\lambda)^{-1}
         =
-        (\lambda - \lambda_1)^{-1}
-        \sum_{l=1}^L
-            v_{1, l} w_{1, l}^\ast
+        \frac{1}{\lambda - \lambda_1} P_1^+
         +
-        R(\lambda),
+        R_1(\lambda),
         \quad
-        \lambda \in U \setminus \Bbraces{\lambda_1},
+        P_1^+
+        :=
+        \sum_{l=1}^{L_1}
+            v_{1, l} w_{1, l}^\ast.
     \end{align}
-
-    wobei $\lambda \mapsto R(\lambda) \in \C^{N \times N}$ holomorph ist.
 
 \end{theorem}
 
 \begin{remark}
     
-    Sei $(\lambda, v)$ ein EP der Matrix $A \in \C^{N \times N}$.
-    Wir nennen $v$ einen \textit{REV} von $A$ zum EW $\lambda$.
-    Dieser besitzt den bekannten \textit{RER} $\Ker(A - I_N \lambda)$.
+    Sei $(\lambda, v)$ ein Eigenpaar der Matrix $A \in \C^{N \times N}$.
+    Wir nennen $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$.
+    Dieser besitzt den bekannten \textit{Rechts-Eigenraum} $\Ker(A - I_N \lambda)$.
 
     $A^\ast$ ist tatsächlich die Adjungierte von $A$ im Sinne der Funktionalanalysis, weil $\Forall x, y \in \C^N:$
 
@@ -50,19 +55,19 @@
         (x, A^\ast y)_2.
     \end{align*}
 
-    Nun ist $\overline \lambda$ EW von $A^\ast$ mit derselben algebraischen Vielfachheit wie $\lambda$, weil
+    Nun ist $\overline \lambda$ Eigenwert von $A^\ast$ mit derselben algebraischen Vielfachheit wie $\lambda$, weil
 
     \begin{align*}
         \chi_{A^\ast}(\lambda)
         =
         \det(A^\ast - I_N \lambda)
         =
-        \overline{\det(A - I_N \lambda)}^\top
+        \overline{\det(A - I_N \lambda)^\top}
         =
         \overline{\chi_A(\lambda)}.
     \end{align*}
 
-    $v$ ist dann auch ein sogenannter \textit{LEV} von $A^\ast$ zum EW $\overline \lambda$, weil
+    $v$ ist dann auch ein sogenannter \textit{Links-Eigenvektor} von $A^\ast$ zum Eigenwert $\overline \lambda$, weil
 
     \begin{align*}
         v^\ast A^\ast
@@ -74,7 +79,7 @@
         \overline \lambda v^\ast.
     \end{align*}
 
-    Sämtliche LEVs bilden (gemeinsam mit der $0$) den \textit{LER} von $\lambda$ bzgl. $A$.
+    Sämtliche Links-Eigenvektoren bilden (gemeinsam mit der $0$) den \textit{Links-Eigenraum} von $\lambda$ bzgl. $A$.
     Dieser ist in der Tat ein Unterraum.
 
 \end{remark}
@@ -91,28 +96,32 @@
         L_1 := L_1^\mathrm{geo} + L_1^\mathrm{alg}
     \end{align*}
 
+    Dann gelten folgende $3$ Analoga zu Satz \ref{keldysh_nicht_linear}.
+
     \begin{enumerate}[label = (\roman*)]
 
-        \item Es gibt eine ONB $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\Ker(A - I_N \lambda_1)$.
+        \item Es gibt eine Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\Ker(A - I_N \lambda_1)$.
 
         \item Es gibt eine Basis $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ von $\Ker(A^\ast - I_N \overline \lambda_1)$, sodass
         
         \begin{align*}
             \Forall l, k = 1, \dots, L_1:
-            (v_{1, k}, w_{1, l}) = -\delta_{l k}.
+            (v_{1, k}, w_{1, l})_2 = -\delta_{l, k}.
         \end{align*}
 
-        \item Es existiert eine Umgebung $U_1$ von $\lambda_1$ und $R \in H(U_1)$ holomorph, sodass
-        
+        \item Es existiert eine Umgebung $U_1$ von $\lambda_1$ und $R_1 \in H(U_1)$ holomorph, sodass $\Forall \lambda \in U_1 \setminus \Bbraces{\lambda_1}:$
+
         \begin{align*}
-            \Forall \lambda \in U_1 \setminus \Bbraces{\lambda_1}:
             (A - I_N \lambda)^{-1}
             =
-            (\lambda - \lambda_1)^{-1}
-            \sum_{l=1}^{L_1}
-                v_{1, l} w_{1, l}^\ast
+            \frac{1}{\lambda - \lambda_1} P_1^+
             +
-            R(\lambda).
+            R_1(\lambda),
+            \quad
+            P_1^+
+            :=
+            \sum_{l=1}^{L_1}
+                v_{1, l} w_{1, l}^\ast.
         \end{align*}
 
     \end{enumerate}
@@ -121,154 +130,193 @@
 
 \begin{remark}
     
-    $P_1$ nennt man die \textit{Spektrale Projektion} auf den ER von $\lambda_1$.
+    $P_1^- := -P_1^+$ nennt man die \textit{Spektrale Projektion} auf den Eigenraum von $\lambda_1$.
+    Offensichtlich bildet $P_1^-$ ganz $\C^N$ auf den Rechts-Eigenraum von $\lambda_1$ ab, sie ist aber auch idempotent, weil $\Forall x \in \Ker(A - I_N \lambda_1):$
 
     \begin{align*}
-        P_1
-        :=
-        -\sum_{l=1}^{L_1}
-            v_{1, l} w_{1, l}^\ast
-    \end{align*}
-
-    Offensichtlich bildet $P_1$ ganz $\C^N$ auf den RER von $\lambda_1$ ab, sie ist aber auch idempotent, weil $\Forall x \in \Ker(A - I_N \lambda_1):$
-
-    \begin{align*}
-        P_1 x
+        P_1^- x
         =
-        \sum_{l=1}^{L_1}
+        -\sum_{l=1}^{L_1}
             v_{1, l}
-            (-w_{1, l})^\ast
+            w_{1, l}^\ast
             \sum_{k=1}^{L_1}
                 (x, v_{1, k})_2
                 v_{1, k}
         =
-        \sum_{l=1}^{L_1}
+        -\sum_{l=1}^{L_1}
             v_{1, l}
             \sum_{k=1}^{L_1}
-                \underbrace{-(v_{1, k}, w_{1, l})_2}_{\delta_{l k}}
-                (x, v_{1, k})_1
+                \underbrace{(v_{1, k}, w_{1, l})_2}_{-\delta_{l, k}}
+                (x, v_{1, k})_2
         =
         \sum_{l=1}^{L_1}
             (x, v_{1, l})_2
             v_{1, l}
         =
-        x
+        x.
     \end{align*}
 
-    Also ist $P_1$ tatsächlich eine Projektion.
+    Also ist $P_1^-$ tatsächlich eine Projektion.
 
 \end{remark}
 
 \begin{proof}[Beweis (als Korollar)]
 
-    Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich holomorph.
-    Wenn $\lambda$ kein EW von $A$ ist, dann ist $\Ker(A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
+    Wir überprüfen also die Voraussetzungen von Satz \ref{keldysh_nicht_linear}.
 
-    Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) EW von $A$.
-    Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
-    Betrachte die JNF von $A$.
+    \begin{enumerate}[label = \arabic*.]
 
-    \begin{gather*}
-        T J T^{-1} = A, \\
-        J = \diag (J_1, \dots, J_k), \\
-        J_n
-        =
-        \diag
-        \underbrace
-        {
-            \pbraces
+        \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich holomorph.
+        
+        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\Ker(A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
+        
+        \item Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwert von $A$.
+        Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
+        Betrachte die JNF von $A$.
+    
+        \begin{align*}
+            T J T^{-1} & = A, \\
+            J & = \diag (J_1, \dots, J_k),
+            \quad
+            T \in \GL_N(\C) \\
+            J_n
+            & =
+            \diag
+            \underbrace
+            {
+                \pbraces
+                {
+                    \begin{pmatrix}
+                        \lambda_n & 1      &        &           \\
+                                  & \ddots & \ddots &           \\
+                                  &        & \ddots & 1         \\
+                                  &        &        & \lambda_n \\
+                    \end{pmatrix},
+                    \dots,
+                    \begin{pmatrix}
+                        \lambda_n & 1      &        &           \\
+                                  & \ddots & \ddots &           \\
+                                  &        & \ddots & 1         \\
+                                  &        &        & \lambda_n \\
+                    \end{pmatrix}
+                }
+            }_{
+                \displaystyle
+                L_n^\mathrm{geo} \text{-viele}
+            }
+            \in
+            \C^{
+                L_n^\mathrm{geo}
+                \times
+                L_n^\mathrm{alg}
+            },
+            \quad
+            n = 1, \dots, k
+        \end{align*}
+    
+        Weil $\lambda_1$ halb-einfach ist, muss $J_1 = I_{L_1} \lambda_1$.
+        Seien $\hat v_1, \dots, \hat v_N$ die linear unabhängig Spalten der \\ Transformations-Matrix $T$.
+    
+        \begin{align*}
+            \implies
+            (A \hat v_1, \dots, A \hat v_{L_1}, \ast)
+            =
+            A T
+            \stackrel
+            {
+                \text{JNF}
+            }{=}
+            T J
+            =
+            (\hat v_1, \dots, \hat v_{L_1}, \ast)
+            \underbrace
             {
                 \begin{pmatrix}
-                    \lambda_n & 1      &        &           \\
-                              & \ddots & \ddots &           \\
-                              &        & \ddots & 1         \\
-                              &        &        & \lambda_n \\
-                \end{pmatrix},
-                \dots,
-                \begin{pmatrix}
-                    \lambda_n & 1      &        &           \\
-                              & \ddots & \ddots &           \\
-                              &        & \ddots & 1         \\
-                              &        &        & \lambda_n \\
+                    J_1 & 0 \\
+                    0   & \ast
                 \end{pmatrix}
-            }
-        }_{
-            L_n^\mathrm{geo} \text{-viele}
-        }
-        \in
-        \C^{
-            L_n^\mathrm{geo}
-            \times
-            L_n^\mathrm{alg}
-        }, \\
-        n = 1, \dots, k
-    \end{gather*}
+            }_J
+            =
+            (\lambda_1 \hat v_1, \dots, \lambda_1 \hat v_{L_1}, \ast)
+        \end{align*}
+    
+        Wir können die linear unabhängig $\hat v_1, \dots, v_{L_1}$ also orthonormalisieren (Gram-Schmidt) und erhalten die Orthonormalbasis $V_1 := (v_{1, 1}, \dots, v_{1, L_1})$.
 
-    Weil $\lambda_1$ halb-einfach ist, muss $J_1 = I_{L_1} \lambda_1$.
-    Seien $\hat v_1, \dots, \hat v_N$ die l.u. Spalten der Transformations-Matrix $T \in \GL_N(\C)$.
+        \item Die Größe der Jordan-Kästchen entspricht der Länge der Jordan-Ketten (Hauptvektor-Ketten).
+        Alle Jordan-Ketten sind also $1$-gliedrig, bestehen also nur aus \Quote{echten} Eigenwerten.
+        Es gibt also keine Hauptvektoren $2$-ter Stufe.
+    
+        Sei $y \in \Ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
+        Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe, weil
 
-    \begin{align*}
-        \implies
-        (A \hat v_1, \dots, A \hat v_{L_1}, \ast)
-        =
-        A T
-        \stackrel
-        {
-            \text{JNF}
-        }{=}
-        T J
-        =
-        (\hat v_1, \dots, \hat v_{L_1}, \ast)
-        \underbrace
-        {
-            \begin{pmatrix}
-                J_1 & 0 \\
-                0   & \ast
-            \end{pmatrix}
-        }_J
-        =
-        (\lambda_1 \hat v_1, \dots, \lambda_1 \hat v_{L_1}, \ast)
-    \end{align*}
+        \begin{align*}
+            & \implies
+            (A - I_N \lambda_1) x = y \neq 0,
+            \quad
+            (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0 \\
+            & \implies
+            x \in \Ker(A - I_N \lambda_1)^2 \setminus \Ker(A - I_N \lambda_1) = \emptyset.
+        \end{align*}
 
-    Wir können die l.u. $\hat v_1, \dots, v_{L_1}$ also orthonormalisieren (Gram-Schmidt) und erhalten die ONB $V_1 := (v_{1, 1}, \dots, v_{1, L_1})$.
+        Widerspruch!
+    
+        \begin{align*}
+            \implies
+            \Ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1) = \Bbraces{0}
+        \end{align*}
+    
+        Die Ableitung unserer Matrixfunktion berechnet man komponentenweise.
+        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \Ker(A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
+        $\Forall l = 1, \dots, L_1:$
 
-    Die Größe der Jordan-Kästchen entspricht der Länge der Jordan-Ketten (HV-Ketten).
-    Alle Jordan-Ketten sind also $1$-gliedrig, bestehen also nur aus \Quote{echten} EVs.
-    Es gibt also keine Hauptvektoren $2$-ter Stufe, d.h.
+        \begin{align*}
+            \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, l}
+            =
+            -I_N v_{1, l}
+            =
+            -v_{1, l}
+            \not \in
+            \ran(A - I_N \lambda_1)
+        \end{align*}
 
-    \begin{align*}
-        \Ker(A - I_N \lambda)^2 = 0
-        \implies
-        \Ker(A - I_N \lambda_1) \cup \ran(A - I_N \lambda_1) = \Bbraces{0}.
-    \end{align*}
+    \end{enumerate}
 
-    Die Ableitung unserer Matrixfunktion berechnet man komponentenweise.
-    Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \Ker(A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
+    Wir können also Satz \ref{keldysh_nicht_linear} anwenden.
+    
+    \begin{enumerate}[label = (\roman*)]
 
-    \begin{align*}
-        \implies
-        \Forall l = 1, \dots, L_1:
-        \derivative{\lambda} (A - I_N \lambda_1)
-        =
-        -I_n v_{1, l}
-        =
-        -v_{1, l}
-        \not \in
-        \ran(A - I_N \lambda_1)
-    \end{align*}
+        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\Ker(A - I_N \lambda_1)$ haben wir bereits konstruiert.
+        
+        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\Ker(A - I_N \lambda_1)^\ast = \Ker(A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
+        
+        \begin{align*}
+            (v_{1, k}, w_{1, l})_2
+            =
+            w_{1, l}^\ast v_{1, k}
+            =
+            -w_{1, l}^\ast (-I_N) v_{1, k}
+            =
+            -w_{1, l}^\ast \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, k}
+            =
+            -\delta_{l, k}.
+        \end{align*}
 
-    \ref{keldysh_nicht_linear} und die Tatsache, dass $A^\ast - I_N \overline \lambda_1 = (A - I_N \lambda_1)^\ast$ erledigen den Rest.
+        \item Diese Tatsache kann $1 : 1$ aus Satz \ref{keldysh_nicht_linear} übernommen werden.
 
+    \end{enumerate}
+    
 \end{proof}
 
 \begin{proof}[Beweis (zu Fuß)]
+
+    \phantom{}
 
     \begin{enumerate}[label = (\roman*)]
 
         \item Siehe vorheriger Beweis.
 
         \item Betrachte abermals die JNF.
-        Es gibt $\hat W_1 = (\hat w_{1, 1}, \dots, \hat w_{1, L_1})$ l.u., sodass
+        Es gibt $\hat W_1 = (\hat w_{1, 1}, \dots, \hat w_{1, L_1})$ linear unabhängig, sodass
         
         \begin{align*}
             \begin{pmatrix}
@@ -308,14 +356,14 @@
             A
             =
             \begin{pmatrix}
-                A \hat w_{1,   1}^\ast \\
+                \hat w_{1,   1}^\ast A \\
                 \vdots                 \\
-                A \hat w_{1, L_1}^\ast \\
+                \hat w_{1, L_1}^\ast A \\
                 \ast
             \end{pmatrix}.
         \end{align*}
 
-        $\hat W_1$ sind also LEVs zum EW $\lambda_1$, d.h. REVs von $A^\ast$ zum EW $\overline \lambda_1$.
+        $\hat W_1$ sind also Links-Eigenvektoren zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
         Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\Ker(A^\ast - I_N \overline \lambda_1)$.
         Wir setzen an mit
 
@@ -328,14 +376,14 @@
             l = 1, \dots, L_1.
         \end{align*}
 
-        Dieser Wunsch lässt sich umformlieren.
+        Wir formulieren unseren Wunsch an $W_1$ etwas um.
 
         \begin{align*}
             \iff
             \Forall l, k = 1, \dots, L_1:
                 -\delta_{l, k}
                 \stackrel{!}{=}
-                (v_{1, l}, w_{1, k})_2
+                (v_{1, k}, w_{1, l})_2
                 =
                 \pbraces
                 {
@@ -355,10 +403,11 @@
                 \stackrel{!}{=}
                 \overline{M \alpha_{1, l}}
             \iff
-            \Forall l = 1, \dots, L_1:
-                -e_l
+                e_l
+                =
+                \overline e_l
                 \stackrel{!}{=}
-                M \alpha_{1, l}    
+                -M \alpha_{1, l}
         \end{align*}
 
         \begin{align*}
@@ -377,7 +426,7 @@
 
         \begin{multline*}
             M
-            =
+            :=
             \overline
             {
                 \begin{pmatrix}
@@ -395,7 +444,7 @@
             =
             \begin{pmatrix}
                 v_{1,   1}^\ast \hat w_{1, 1} & \cdots & v_{1,   1}^\ast \hat w_{1, L_1} \\
-                \vdots                        & \ddots & \vdots                        \\
+                \vdots                        & \ddots & \vdots                          \\
                 v_{1, L_1}^\ast \hat w_{1, 1} & \cdots & v_{1, L_1}^\ast \hat w_{1, L_1} \\
             \end{pmatrix}
             =
@@ -414,72 +463,97 @@
         \begin{align*}
             V_1 \in \GL_{L_1}(\C)
             \implies
-            0 \neq \det V_1 = \overline{\det V_1}
+            \det V_1 \neq 0
+            \implies
+            0 \neq \overline{\det V_1^\top} = \det V_1^\ast
             \implies
             V_1^\ast \in \GL_{L_1}(\C).
         \end{align*}
 
-        $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ ist l.u., also eine Basis, weil
+        $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ ist linear unabhängig, also eine Basis, weil
 
         \begin{align*}
             & \implies
-            -M^{-1} = -M^{-1} I_{L_1} = -M^{-1} (e_1, \dots, e_{L_1}) = \alpha_1 \in \GL_{L_1}(\C),
-            \quad
-            \alpha_1 := (\alpha_{1, 1}, \dots, \alpha_{1, L_1}) \\
+            \alpha_1
+            :=
+            (\alpha_{1, 1}, \dots, \alpha_{1, L_1})
+            =
+            -M^{-1} (e_1, \dots, e_{L_1})
+            =
+            -M^{-1} I_{L_1}
+            =
+            -M^{-1}
+            \in
+            \GL_{L_1}(\C) \\
             & \implies
-            W_1 = \hat W_1 \alpha_1 \in \GL_{L_1}(\C).
+            W_1
+            =
+            \hat W_1 \alpha_1
+            \in
+            \GL_{L_1}(\C).
         \end{align*}
 
         \item Weil ja $\dim \C^\N < \infty$, genügt es, nachzurechnen, dass die rechte Seite eine Linksinverse ist.
         
         \begin{align*}
-            \stackrel{!}{\iff}
+            (A - I_N \lambda)^{-1}
+            & \stackrel{!}{=}
+            \frac{1}{\lambda - \lambda_1} P_1^+
+            +
+            R_1(\lambda) \\
+            \iff
             I_N
             & =
             (A - I_N \lambda)
             \pbraces
             {
-                (\lambda_1 - \lambda)^{-1}
-                \sum_{l=1}^{L_1}
-                    v_{1, l} w_{1, l}^\ast
+                \frac{1}{\lambda - \lambda_1} P_1^+
                 +
-                R(\lambda)
+                R_1(\lambda)
             } \\
             & =
-            (\lambda - \lambda_1)^{-1}
-            \Bigg (
-                \sum_{l=1}^{L_1}
-                    (
-                        \underbrace{A v_{1, l}}_{\lambda_1 v_{1, l}}
-                        -
-                        \lambda v_{1, l}
-                    )
-                    w_{1, l}^\ast
-                +
-                (A - I_N \lambda) R(\lambda)
-            \Bigg ) \\
-            & =
-            -(\lambda - \lambda_1)^{-1}
-            \sum_{l=1}^{L_1}
-                (\lambda - \lambda_1) v_{1, l} w_{1, l}^\ast
-            +
-            (\lambda - \lambda_1)^{-1}
             (A - I_N \lambda)
-            R(\lambda) \\
-            & =
-            \underbrace
+            \pbraces
             {
-                -\sum_{l=1}^{L_1}
+                \frac{1}{\lambda - \lambda_1}
+                \sum_{l=1}^{L_1}
                     v_{1, l} w_{1, l}^\ast
-            }_{P_1}
-            +
-            (\lambda - \lambda_1)^{-1}
-            (A - I_N \lambda)
-            R(\lambda) \\
-            \stackrel{!}{\iff}
-            (A - I_N \lambda) R(\lambda)
+                +
+                R_1(\lambda)
+            } \\
             & =
-            (\lambda - \lambda_1) (I_N - P_1)
+            -\frac{1}{\lambda_1 - \lambda}
+            \sum_{l=1}^{L_1}
+                (
+                    A v_{1, l}
+                    -
+                    \lambda v_{1, l}
+                )
+                w_{1, l}^\ast
+            +
+            (A - I_N \lambda) R_1(\lambda) \\
+            & =
+            -\frac{1}{\lambda_1 - \lambda}
+            \sum_{l=1}^{L_1}
+                (\lambda_1 - \lambda) v_{1, l} w_{1, l}^\ast
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            & =
+            -\sum_{l=1}^{L_1}
+                v_{1, l} w_{1, l}^\ast
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            & =
+            P_1^-
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            \stackrel{!}{\iff}
+            I_N - P_1^-
+            & =
+            (A - I_N \lambda) R(\lambda)
         \end{align*}
 
         Das motiviert folgende Definition des Residuums.
@@ -487,22 +561,13 @@
         \begin{align*}
             R(\lambda)
             :=
-            \begin{cases}
-                (A - I_N \lambda)^{-1} (\lambda - \lambda_1) (I_N - P_1), & \lambda \neq \lambda_1, \\
-                0,                                                        & \text{sonst}
-            \end{cases}
+            (A - I_N \lambda) |_{E_\mathrm{C}}^{-1} (I_N - P_1^-)
         \end{align*}
 
-        $(A - I_N \lambda)^{-1}$ ist wohldefiniert, wenn $\lambda$ kein EW von $A$ ist, weil dann $\Ker(A - I_N \lambda) = \Bbraces{0}$.
-        Das ist in einer hinreichend kleinen Umgebung von $\lambda_1$ der Fall.
+        Sei dabei $E := \Ker(A - I_N \lambda)$, d.h. der Eigenraum von $\lambda_1$ und $E_\mathrm{C}$ dessen Komplementärraum, d.h. $E \oplus E_\mathrm{C} = \C^N$.
+        $P_1^-$ ist eine Projektion auf $E$ und $I_N - P_1^-$ eine auf $E_\mathrm{C}$.
 
-        $\lambda \mapsto (A - I_N \lambda)^{-1}$ ist auch holomorph wegen der Kofaktordarstellung der Inversen, mit rationalen Polynomen in $\lambda$ als Komponenten.
-        Die Holomorphie von $R$ in $\lambda_1$ ist nicht ganz so billig.
-
-        Sei $E := \Ker(A - I_N \lambda)$, also der Eigenraum von $\lambda_1$ und $E_\mathrm{C}$ dessen Komplementärraum, d.h. $E \oplus E_\mathrm{C} = \C^N$.
-        $P_1$ ist eine Projektion auf $E$ und $I_N - P_1$ eine auf $E_\mathrm{C}$.
-
-        Nur EV $x$ von $\lambda_1$ bzgl. $A$, und $0$ erfüllen
+        Nur Eigenvektoren $x$ von $\lambda_1$ bzgl. $A$, und $0$ erfüllen
 
         \begin{align*}
             A x = \lambda_1 x
@@ -510,92 +575,14 @@
             (A - I_N \lambda_1) x = 0.
         \end{align*}
 
+        Die lineare Abbildung $(A - I_N \lambda_1) |_{E_\mathrm{C}}$ hat jedoch keine Eigenvektoren.
+
         \begin{align*}
             \implies
             \Ker(A - I_N \lambda_1) |_{E_\mathrm{C}} = \Bbraces{0}
         \end{align*}
 
-        Folgende lineare Abbildung ist auf einer (fortgesetzten) Basis $v_{1, 1}, \dots, v_{1, N}$ also wohldefiniert.
 
-        \begin{align*}
-            R^\prime(\lambda_1) v_{1, l}
-            :=
-            \begin{cases}
-                0,                                                  & l = 1,       \dots, L_1, \\
-                (A - I_N \lambda_1) |_{E_\mathrm{C}}^{-1} v_{1, l}, & l = L_1 + 1, \dots, N
-            \end{cases}
-        \end{align*}
-
-        Offenbar gilt damit $R^\prime(\lambda_1) P_1 = 0$.
-        Für die Holomorphie zeigen wir Konvergenz in der (bzw. jeder) Operatornorm.
-        Sei dazu $x \in \C^N$.
-
-        \begin{align*}
-            \implies
-            \abs
-            {
-                \pbraces
-                {
-                    \frac
-                    {
-                        R(\lambda) - R(\lambda_1)
-                    }{
-                        \lambda - \lambda_1
-                    }
-                    -
-                    R^\prime(\lambda_1)
-                }
-                x
-            }
-            & =
-            \abs
-            {
-                \pbraces
-                {
-                    (A - I_N \lambda)^{-1} (I_N - P_1)
-                    -
-                    R^\prime(\lambda_1)
-                }
-                x
-                -
-                R^\prime(\lambda_1) P_1 x
-            } \\
-            & =
-            \abs
-            {
-                \pbraces
-                {
-                    (A - I_N \lambda) \mid_{E_\mathrm{C}}^{-1}
-                    -
-                    R^\prime(\lambda_1) \mid_{E_\mathrm{C}}
-                }
-                (I_N - P_1)
-                x
-            } \\
-            & \leq
-            \underbrace
-            {
-                \norm
-                {
-                    (A - I_N \lambda)   \mid_{E_\mathrm{C}}^{-1}
-                    -
-                    (A - I_N \lambda_1) \mid_{E_\mathrm{C}}^{-1}
-                }
-            }_{
-                \xrightarrow{\lambda \to \lambda_1} 0
-            }
-            \underbrace
-            {
-                \norm{I_N - P_1}
-            }_{
-                \leq 1
-            }
-            |x|
-        \end{align*}
-
-        Um rigoros zu zeigen, dass der Term auf der rechten Seite für $\lambda \to \lambda_1$ verschwindet, kann man für diesen o.B.d.A. die (äquivalente Frobeniusnorm verwenden), sowie die Kofaktordarstellung der Inversen also komponentenweise rationale Polynome.
-        Die Frobeniusnorm einer Matrix mit komponentenweise rationalen Polynomen ist die $\sqrt{}$ eines solchen.
-        Aus der Stetigkeit folgt die Behauptung.
 
     \end{enumerate}
 
@@ -605,6 +592,61 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
 
 \begin{corollary}
 
-    Mögen $\lambda_1, \dots, \lambda_k$ die Voraussetzungen von \ref{keldysh_nicht_linear} erfüllen.
+    Sei $\Lambda \subset \C$ ein beschränktes Gebiet und $A \in H(\Lambda, \C^{N \times N})$ holomorph.
+    Es existiere ein $\lambda \in \Lambda$, sodass $A(\lambda) \in \GL_N(\C)$, d.h. invertierbar ist.
+    Mögen $\lambda_1, \dots, \lambda_k$ die Voraussetzungen von Satz \ref{keldysh_nicht_linear} erfüllen.
+
+    Dann existiert ein $R \in H(\Lambda, \C^{N \times N})$, sodass $\Forall \lambda \in \Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}:$
+
+    \begin{align*}
+        A^{-1}(\lambda)
+        =
+        \sum_{n=1}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+        +
+        R(\lambda).
+    \end{align*}
 
 \end{corollary}
+
+\begin{proof}
+
+    Wir definieren das Residuum zunächst auf $\Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}$ durch umstellen.
+
+    Sei $m = 1, \dots, n$.
+    Laut \ref{keldysh_nicht_linear}, existiert eine Umgebung $U_m$ von $\lambda_m$ und $R_m \in H(U_m)$ holomorph, sodass $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
+
+    \begin{align*}
+        A(\lambda)^{-1}
+        =
+        \frac{1}{\lambda - \lambda_m} P_m^+
+        +
+        R_m(\lambda).
+    \end{align*}
+
+    $R$ können wir nun auf $\lambda_m$ holomorph fortsetzen.
+
+    \begin{align*}
+        R(\lambda)
+        :=
+        A^{-1}(\lambda)
+        -
+        \sum_{n=1}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+        =
+        \frac{1}{\lambda - \lambda_m} P_m^+
+        +
+        R_m(\lambda)
+        -
+        \sum_{n=1}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+        =
+        R_m(\lambda)
+        -
+        \sum_{\substack{n = 1 \\ n \neq m}}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+    \end{align*}
+
+    Wenn wir das für alle $m = 1, \dots, n$ machen, haben wir $R$ auf ganz $\Lambda$ holomorph erweitert.
+
+\end{proof}
