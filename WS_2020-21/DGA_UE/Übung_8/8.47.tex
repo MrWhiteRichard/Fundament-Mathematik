@@ -2,7 +2,12 @@
 
 \begin{exercise}
 
-\phantom{}Nehmen Sie an, Sie wollen die Ausgaben 0 und 1 mit Wahrscheinlichkeit je $\frac{1}{2}$ erhalten. Dazu steht Ihnen die Prozedur Biased-Random zur Verfügung, die den Wert 1 mit Wahrscheinlichkeit $p$ und den Wert 0 mit Wahrscheinlichkeit $1-p$ ausgibt $(0 < p < 1)$. Sie wissen aber nicht, wie groß $p$ ist. Geben Sie einen Algorithmus (in Pseudocode) an, der Biased-Random als Unterroutine verwendet und den Wert 0 mit Wahrscheinlichkeit $\frac{1}{2}$ und den Wert 1 ebenfalls mit Wahrscheinlichkeit $\frac{1}{2}$ zurückgibt. Wie groß ist die erwartete Laufzeit ihres Algorithmus als Funktion von $p$?
+\phantom{}
+Nehmen Sie an, Sie wollen die Ausgaben $0$ und $1$ mit Wahrscheinlichkeit je $\frac{1}{2}$ erhalten.
+Dazu steht Ihnen die Prozedur Biased-Random zur Verfügung, die den Wert $1$ mit Wahrscheinlichkeit $p$ und den Wert $0$ mit Wahrscheinlichkeit $1 - p$ ausgibt ($0 < p < 1$).
+Sie wissen aber nicht, wie groß $p$ ist.
+Geben Sie einen Algorithmus (in Pseudocode) an, der Biased-Random als Unterroutine verwendet und den Wert $0$ mit Wahrscheinlichkeit $\frac{1}{2}$ und den Wert $1$ ebenfalls mit Wahrscheinlichkeit $\frac{1}{2}$ zurückgibt.
+Wie groß ist die erwartete Laufzeit ihres Algorithmus als Funktion von $p$?
 
 \end{exercise}
 
@@ -10,43 +15,105 @@
 
 
 \begin{solution}
-\phantom{}
 
-  \begin{algorithm}
-      \begin{algorithmic}[1]
-          \Procedure{Random}{ }
-          \State $x = y = 0$
-          \While{$x = y$}
-              \State $x$ = \textsc{Biased-Random()}
-              \State $y$ = \textsc{Biased-Random()}
-          \EndWhile
-          \State \Return $x$
-          \EndProcedure
-      \end{algorithmic}
-  \end{algorithm}
-%\phantom{}\begin{algorithm}[H]
-%\SetAlgoLined
-%x, y = 0\;
-%\While{$x = y$}{
-%              $x$ = \textsc{Biased-Random()}\;
-%            $y$ = \textsc{Biased-Random()}\;
-%}
-%\Return $x$;
-%    \caption{Random aus Biased-Random erzeugen}
-%\end{algorithm}
+Seien $X, Y$ unabhängige Instanzen von \textsc{Biased-Random}().
 
-Der Algorithmus ist \glqq korrekt\grqq{}, da das Auftreten von $(x, y) = (1, 0)$ und $(x, y) = (0, 1)$ gleich wahrscheinlich ist.
-
-Es gilt $\mathbb P(x \neq y) = 2p(1-p) =\colon q$. Die Wahrscheinlichkeit, genau beim $n$-ten Durchlauf $x \neq y$ zu erhalten, ist $q (1-q)^{n-1}$. Daher gilt
 \begin{align*}
-    \mathbb E(\text{notwendige Durchläufe}) = q \sum_{i = 1}^\infty n (1-q)^{n-1} \stackrel{(\ast)}{=} \frac{q}{(1-(1-q))^2} = \frac{q}{q^2} = \frac{1}{q}.
+    \implies
+    \P(X = 0, Y = 0) & = \P(X = 0) \P(Y = 0) = p^2, \\
+    \P(X = 0, Y = 1) & = \P(X = 0) \P(Y = 1) = p (1 - p) = \\
+    \P(X = 1, Y = 0) & = \P(X = 1) \P(Y = 0) = (1 - p) p, \\
+    \P(X = 1, Y = 1) & = \P(X = 1) \P(Y = 1) = (1 - p)^2
 \end{align*}
 
-Dabei haben wir verwendet, dass
-\begin{align}\tag{$\ast$}
-    \sum_{i = 1}^\infty nx^{n-1} = \sum_{i = 1}^\infty \frac{\mathrm d}{\mathrm dx} x^n =
-    \frac{\mathrm d}{\mathrm dx} \sum_{i = 1}^\infty x^n =
-    \frac{\mathrm d}{\mathrm dx} \frac{1}{1-x} = \frac{1}{(1-x)^2}.
+Die folgende Prozedur liefert also, mit $X$ bzw. $Y$, in einer Hälfte der Fälle $0$ und in der anderen $1$.
+
+\phantom{}
+
+\begin{algorithmic}
+    \Procedure{Random}{}
+    \State $X := Y := 0$
+    \While{$X = Y$}
+        \State $X$ = \textsc{Biased-Random}()
+        \State $Y$ = \textsc{Biased-Random}()
+    \EndWhile
+    \State \Return $X$ (oder $Y$)
+    \EndProcedure
+\end{algorithmic}
+
+\phantom{}
+
+\begin{align*}
+    \P(\text{continue})
+    & :=
+    \P(X = Y) \\
+    & =
+    \P((X = 0 \land Y = 0) \lor (X = 1 \land Y = 1)) \\
+    & =
+    \P(X = 0) \P(Y = 0) + \P(X = 1) \P(Y = 1) \\
+    & =
+    p^2 + (1 - p)^2 \\
+    & =
+    p^2 + 1 - 2 p + p^2 \\
+    & =
+    1 - 2 p + 2 p^2 \\
+    & =
+    1 - 2 p (1 - p)
+\end{align*}
+
+\begin{align*}
+    \P(\text{break})
+    :=
+    1 - \P(\text{continue})
+    =
+    2 p (1 - p)
+    =:
+    q \in (0, 1)
+\end{align*}
+
+\begin{align*}
+    \P(\text{Durchläufe} = n)
+    :=
+    (1 - q)^{n-1} q
+\end{align*}
+
+\begin{align} \tag{$\ast$}
+    \Forall x \in (-1, 1):
+    \sum_{n \in \N}
+    n x^{n-1}
+    =
+    \sum_{n \in \N}
+        \derivative{x}
+            x^n
+    =
+    \derivative{x}
+        \sum_{n \in \N}
+            x^n
+    =
+    \derivative{x}
+        \frac{1}{1 - x}
+    =
+    \frac{1}{(1 - x)^2}
 \end{align}
+
+\begin{align*}
+        \E(\text{Durchläufe})
+        :=
+        \sum_{n \in \N}
+            n \P(\text{Durchläufe} = n)
+        =
+        q
+        \sum_{n \in \N}
+            n (1 - q)^{n-1}
+        \stackrel
+        {
+            (\ast)
+        }{=}
+        \frac{q}{(1 - (1 - q))^2}
+        =
+        \frac{q}{q^2}
+        =
+        \frac{1}{2 p (1 - p)}
+\end{align*}
 
 \end{solution}
