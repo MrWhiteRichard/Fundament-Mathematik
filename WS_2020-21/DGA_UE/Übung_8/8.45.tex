@@ -53,7 +53,7 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
   Sei $c$ eine optimale Lösung für den Wert $n$, d.h. $n = c d$ und $\sum c$ ist minimal.
   Sei weiters $0 \leq c^\prime \leq c$ und $c^\prime d = b$.
   Angenommen, es gäbe $\bar c$ mit $\bar c d = b$ und $\sum \bar c < \sum c^\prime$.
-  
+
   \begin{align*}
     \implies
     (\bar c + c - c^\prime) d
@@ -70,7 +70,7 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
     <
     \sum c
   \end{align*}
-  
+
   $c + \bar c - c^\prime$ wäre also echt besser als $c$.
   Widerspruch!
 
@@ -89,11 +89,11 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
   \end{align*}
 
   \item \phantom{}
-  
+
   \begin{enumerate}[label = \arabic*.]
 
     \item Lösung:
-    
+
     Wir bemerken zunächst, dass innerhalb der äußeren \textbf{for}-Schleife die Struktur der oberen Formel für $A(n)$ realisiert wird.
     Um zu minimieren, wird anfangs das größt-mögliche Element $\infty$ betrachtet und dann, falls letztere Bedingung in der $\min$-Menge gilt, sukzessive verringert.
     Wir gehen den Algorithmus nun zum Teil durch. \\
@@ -120,7 +120,7 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
 
     \underline{$i = 1$} \\
     Nun ist $1 = d_1 \leq 1$ und $1 + 0 = 1 + C[1 - d_1] < C[1] = \infty$, also …
-    
+
     \begin{align*}
       \begin{array}{c|c|c|c|c|c|c|c|c|c}
           & 0 & 1                  & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
@@ -128,15 +128,15 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
         S &   & d_1 = 1            &   &   &   &   &   &   &   \\
       \end{array}
     \end{align*}
-    
+
     \underline{$i = 2$} \\
     Nun ist $2 = d_2 \not \leq 1$. \\
-    
+
     \underline{$i = 3$} \\
     Nun ist $5 = d_3 \not \leq 1$. \\
 
     \underline{$j = 2$} \\
-    
+
     \begin{align*}
       \begin{array}{c|c|c|c|c|c|c|c|c|c}
           & 0 & 1 & 2      & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
@@ -144,10 +144,10 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
         S &   & 1 &        &   &   &   &   &   &   \\
       \end{array}
     \end{align*}
-    
+
     \underline{$i = 1$} \\
     Nun ist $1 = d_1 \leq 2$ und $1 + 1 = 1 + C[2 - d_1] < C[2] = \infty$.
-    
+
     \begin{align*}
       \begin{array}{c|c|c|c|c|c|c|c|c|c}
           & 0 & 1 & 2                  & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
@@ -155,7 +155,7 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
         S &   & 1 & d_1 = 1            &   &   &   &   &   &   \\
       \end{array}
     \end{align*}
-    
+
     \underline{$i = 2$} \\
     Nun ist $2 = d_2 \leq 2$ und $1 + 0 = 1 + C[2 - d_2] < C[2] = \infty$.
 
@@ -163,29 +163,37 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
       \vdots
     \end{align*}
 
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & 1 &  1 & 2  &  2 & 1  & 2  & 2  & 3  \\ \hline
+        S &   & 1 & 1  & 2  & 2  & 5  & 5  & 5  & 5  \\
+      \end{array}
+    \end{align*}
+
     \item Lösung:
-    
-    Zuerst betrachten wir die optimale Lösung für den Wechsel $j = 1$er Münze und erhalten 
+
+    Zuerst betrachten wir die optimale Lösung für den Wechsel $j = 1$er Münze und erhalten
 
     \begin{align*}
       C = [0, 1] \\
       S = [\ast, d_1 = 1],
     \end{align*}
-  
+
     wobei $\ast$ für einen beliebigen Wert steht. Danach basierend auf dieser Lösung die optimale Lösung für $j = 2$ Münzen. Wir erhalten
-  
+
     \begin{align*}
       C = [0,1,1]\\
       S = [\ast, 1, d_2 = 2].
     \end{align*}
-  
-    Beim nächsten Schritt für $j = 3$ Münzen wird es interessanter. Hier haben wir prinipiell zwei mögliche vorgangsweisen. Wir könnten $S[3] = d_1$ setzen und als Fortsetzung zu $j = 2$ betrachten oder aber wir setzen $S[3] = d_2$ und betrachten es als Fortsetzung von $j = 1$. In beiden Fällen erreichen wir die gleiche Aufteilung $d_1 + d_2 = 1 + 2 = 3$. Für welchen Wert $S[3]$ entscheidet sich unser Algorithmus? Er nimmt jenen mit kleinerem Index, also 
-  
+
+    Beim nächsten Schritt für $j = 3$ Münzen wird es interessanter. Hier haben wir prinipiell zwei mögliche vorgangsweisen. Wir könnten $S[3] = d_1$ setzen und als Fortsetzung zu $j = 2$ betrachten oder aber wir setzen $S[3] = d_2$ und betrachten es als Fortsetzung von $j = 1$. In beiden Fällen erreichen wir die gleiche Aufteilung $d_1 + d_2 = 1 + 2 = 3$. Für welchen Wert $S[3]$ entscheidet sich unser Algorithmus? Er nimmt jenen mit kleinerem Index, also
+
     \begin{align*}
       C = [0, 1, 1, 2]\\
       S = [\ast, 1, 2, d_1 = 1]
     \end{align*}
-  
+
     So geht das weiter.
     Wie können wir die Münzen welche wir brauchen, herausfinden wenn wir die Ausgaben $C$ und $S$ vom Algorithmus bekommen?
 
