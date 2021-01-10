@@ -6,11 +6,25 @@
 
 \end{exercise}
 
-% --------------------------------------------------------------------------------
+Betrachten wir das Problem, in einem Array $A$ der Größe $2n$ bestehend aus $n$ Einträgen mit Wert $a$ und $n$ Einträgen mit Wert $b$ ein $a$ zu finden, sowie einen Las-Vegas- und einen Monte-Carlo-Algorithmus, der dieses Problem löst.
 
+\begin{itemize}
+  \item Las Vegas: Solange zufällige Elemente probieren, bis man auf ein $a$ stößt.
+  Dieser Algorithmus liefert immer ein richtiges Ergebnis. Bestimmen Sie seine erwartete Laufzeit.
+  \item Monte Carlo: $k$-mal ein zufälliges Element wählen. Dieser Algorithmus braucht höchstens $k$ Schritte, hat also konstante Laufzeit. Bestimmen Sie die Wahrscheinlichkeit, dass nach $k$ Durchläufen ein $a$ gefunden wurde.
+\end{itemize}
 
 \begin{solution}
 
-\phantom{}
+\phantom{}\begin{itemize}
+    \item[(a)]
+    \begin{align*}
+        \mathbb E(\text{notwendige Durchläufe}) = \sum_{i = 1}^\infty n \biggr(\frac{1}{2}\biggl)^{n-1} \frac{1}{2} \stackrel{(\ast)}{=} \frac{1}{2} \frac{1}{(\frac{1}{2})^2} = 2.
+    \end{align*}
+    \item[(b)]
+    \begin{align*}
+        \mathbb P(\text{ein $a$ unter den ersten $k$}) = 1 - \mathbb P(\text{kein $a$ unter den ersten $k$}) = 1 - \biggl(\frac{1}{2}\biggr)^k.
+    \end{align*}
+\end{itemize}
 
 \end{solution}
