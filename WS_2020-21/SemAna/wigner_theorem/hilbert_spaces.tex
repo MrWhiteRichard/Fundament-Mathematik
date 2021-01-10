@@ -1,11 +1,11 @@
 \section{Hilbert spaces}
 
 \begin{definition}
-	Let $H$ be a Vector space over $\C$. A function $(\cdot, \cdot): H \times H \to \C$ is called \textit{inner product} if 
+	Let $H$ be a vector space over $\C$. A function $(\cdot, \cdot): H \times H \to \C$ is called \textit{inner product} if 
 	\begin{enumerate}
 		\item $(x,x) > 0$ for all $x \in H \setminus \{0\}$.
 		\item $(x,y) = \overline{(y,x)}$ for all $x,y \in H$.
-		\item $(x + y, z) = (x,z) + (y,z)$ for all $x,y,z \in H$, and $(\lambda x, y) = \lambda (x,y)$ for all $\lambda \in \C$, $x,y \in H$. 
+		\item $(x + y, z) = (x,z) + (y,z)$ for all $x,y,z \in H$, and $(\lambda x, y) = \lambda (x,y)$ for all $\lambda \in \C$ and $x,y \in H$. 
 	\end{enumerate}
 \end{definition}
 
@@ -28,7 +28,7 @@
 	A vector space $H$ over $\C$ with a scalar product that is complete as a normed space endowed with the norm induced by the scalar product is called \textit{Hilbert space}.
 \end{definition}
 
-In this paper we are only going to consider Hilbert spaces over the field $\C$ and not over $\R$. 
+In this paper a Hilbert spaces is by definition a vector space over the field $\C$ and not over $\R$. 
 
 \begin{definition}
 	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call two subsets $M,N \subseteq V$ \textit{orthogonal}, denoted $M \perp N$, if for all $x \in M$ and all $y \in N$ we have $(x,y) = 0$. Two vectors $v,w \in V$ are called \textit{orthogonal} if $(v,w) = 0$. 
@@ -51,7 +51,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 \end{definition}
 
 \begin{remark}
-	Whenever we denote an orthonormal system $M = \{e_i \mid i \in I\}$ in this paper we require that for all $j,k \in M$ the implication
+	Whenever we denote an orthonormal system $M = \{e_j \mid j \in J\}$ in this paper we require that for all $j,k \in M$ the implication
 	\begin{align*}
 		j \neq k \Rightarrow e_j \neq e_k
 	\end{align*}
@@ -67,24 +67,24 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 \end{proof}
 
 \begin{theorem}
-	Let $H$ be a Hilbert space and $M = \{e_i \mid i \in I\}$ an orthonromal system. Then the following statements are equivalent.
+	Let $H$ be a Hilbert space and $M = \{e_j \mid j \in J\}$ an orthonromal system. Then the following statements are equivalent.
 	\begin{enumerate}
 		\item $M$ is an orthonormal basis.
 		
 		\item For every $x \in H$
 		\begin{align}\label{eq:parzeval}
-		\sum_{i \in I} \vbraces{(x, e_i)_H}^2 = \norm[H]{x}^2.
+		\sum_{j \in J} \vbraces{(x, e_j)_H}^2 = \norm[H]{x}^2.
 		\end{align}
 		
 		\item For all $x,y \in H$ the equality
 		\begin{align*}
-			\sum_{i \in I} (x, e_i)_H \overline{(y,e_i)_H} = (x,y)_H
+			\sum_{j \in J} (x, e_j)_H \overline{(y,e_j)_H} = (x,y)_H
 		\end{align*}
 		holds.
 		
 		\item For every $x \in H$  
 		\begin{align} \label{eq:fourierseries}
-		x = \sum_{i \in I} (x, e_i)_H e_i
+		x = \sum_{j \in J} (x, e_j)_H e_j
 		\end{align}
 	\end{enumerate} 
 \end{theorem}
@@ -96,36 +96,37 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 
 
 \begin{definition}
-	For a Hilbert space $H$ and an orthonormal basis $M = \{e_i \mid i \in I\}$ and an $x \in H$ the equality \eqref{eq:parzeval} is called \textit{Parseval's equality}. The series in \eqref{eq:fourierseries} is called \textit{fourierseries} of $x$ with regard to the orthonormal basis $M$. 
+	For a Hilbert space $H$ and an orthonormal basis $M = \{e_j \mid j \in J\}$ and an $x \in H$ the equality \eqref{eq:parzeval} is called \textit{Parseval's equality}. The series in \eqref{eq:fourierseries} is called \textit{fourierseries} of $x$ with regard to the orthonormal basis $M$. 
 \end{definition}
 
 \begin{lemma}
-	Let $H$ be a Hilbert space and $M := \{e_i \mid i \in I\}$ be a non-empty orthonormal system. Then for every $x \in H$ the equivalence
+	Let $H$ be a Hilbert space and $M := \{e_j \mid j \in J\}$ be a non-empty orthonormal system. Then for every $x \in H$ the equivalence
 	\begin{align}
-		\norm[H]{x}^2 = \sum_{i \in I} \vbraces{(x, e_i)_H}^2 \Leftrightarrow x = \sum_{i \in I} (x,e_i) e_i \label{eq:parceval_to_fourier}
+		\norm[H]{x}^2 = \sum_{j \in J} \vbraces{(x, e_j)_H}^2 \Leftrightarrow x = \sum_{j \in J} (x,e_j) e_j \label{eq:parceval_to_fourier}
 	\end{align}
 	holds.
 \end{lemma}
 
 \begin{proof}
-	We proof the two implications separately. For both directions we consider an orhtonormal basis $\{f_j \mid j \in J\} \supseteq M$ that exists according to lemma \ref{lemma:onb}. 
+	We proof the two implications separately. For both directions we consider an orthonormal basis $\{f_k \mid k \in K\} \supseteq M$ that exists according to lemma \ref{lemma:onb}. 
 	\begin{enumerate}
 		\item[\Quote{$\Rightarrow$}]  Using Parzeval's equality \eqref{eq:parzeval} we obtain
 		\begin{align*}
-		\sum_{i \in I} |(x, e_i)_H|^2 = \norm[H]{x}^2 = \sum_{j \in J} |(x,f_j)_H|^2
+		\sum_{j \in J} |(x, e_j)_H|^2 = \norm[H]{x}^2 = \sum_{k \in K} |(x,f_k)_H|^2
 		\end{align*}
-		and hence for all $j \in J$ where there exists no $i \in I$ with $e_i = f_j$ the equality $(x, f_j)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
+		and hence for all $k \in K$ with $f_k \notin M$
+		 the equality $(x, f_k)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
 		\begin{align*}
-		x = \sum_{j \in J} (x,f_j)_H f_j = \sum_{i \in I} (x,e_i)_H e_i.
+		x = \sum_{k \in K} (x,f_k)_H f_k = \sum_{j \in J} (x,e_j)_H e_j.
 		\end{align*}
 		
-		\item[\Quote{$\Leftarrow$}] This time we immediately observe that for all $j \in J$ with $f_j \notin M$ we have 
+		\item[\Quote{$\Leftarrow$}] This time we immediately observe that for all $k \in K$ with $f_k \notin M$ we have 
 		\begin{align*}
-			\pbraces{x, f_j}_H = \pbraces{\sum_{i \in I} \pbraces{x, e_i}_H e_i, f_j}_H = \sum_{i \in I} \pbraces{x, e_i}_H \pbraces{e_i, f_j}_H = 0
+			\pbraces{x, f_k}_H = \pbraces{\sum_{j \in J} \pbraces{x, e_j}_H e_j, f_k}_H = \sum_{j \in J} \pbraces{x, e_j}_H \pbraces{e_j, f_k}_H = 0
 		\end{align*}
 		and hence with Parseval's equality
 		\begin{align*}
-			\sum_{i \in I} \vbraces{\pbraces{x,e_i}_H}^2 = \sum_{j \in J} \vbraces{\pbraces{x,f_j}_H}^2 = \norm[H]{x}^2.
+			\sum_{j \in J} \vbraces{\pbraces{x,e_j}_H}^2 = \sum_{k \in K} \vbraces{\pbraces{x,f_k+}_H}^2 = \norm[H]{x}^2.
 		\end{align*}
 	\end{enumerate}
 	
@@ -197,7 +198,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 \end{definition}
 
 \begin{remark}
-	A precise definition of an Algebra is not required in this paper. It can be found in \cite[p. 122]{FAna1}. We only need to know that for a Banach space $X$ the space $L_b(X)$ is a Banach algebra with identity element, thus for every $T \in L_b(X)$ the spectrum $\sigma(T)$ is defined. See \cite[p.121-122]{FAna1} for this result. 
+	A precise definition of an algebra is not required in this paper. It can be found in \cite[p. 122]{FAna1}. We only need to know that for a Banach space $X$ the space $L_b(X)$ is a Banach algebra with identity element, thus for every $T \in L_b(X)$ the spectrum $\sigma(T)$ is defined. See \cite[p.121-122]{FAna1} for this result. 
 \end{remark}
 
 \begin{definition}
@@ -250,7 +251,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 
 
 \begin{remark}
-	We certainly know that the identity function and the complex conjugation are automorphisms of $\C$ with continuous inverse. The question how many other function of this kind exist is not answered here.
+	We certainly know that the identity function and the complex conjugation are automorphisms of $\C$ with continuous inverse. The question how many other function of this kind exist is not answered here. Furthermore, the identity function and the complex conjugation are the only two automorphisms of $\C$ that act as the identity function on $\R$. A proof of this result can be found in \cite[p. 41]{LinAG1&2}. 
 \end{remark}
 
 
@@ -270,7 +271,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 
 
 \begin{proposition} \label{prop:unitary}
-	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Then the following statements are equivalent.
+	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ that fulfills $\zeta(x) = x$ for all $x \in \R$. Then the following statements are equivalent.
 	\begin{enumerate}[label = (\roman*)]
 		\item $U$ is $\zeta$-unitary. 
 		\item $\ran U = H_2$ and $(Ux , Uy)_{H_2} = \zeta\pbraces{(x,y)_{H_1}}$ for all $x,y \in H_1$.
@@ -287,7 +288,10 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 		\end{align*}
 		which is exactly what we wanted to show.
 		
-		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}] This implication is trivially true.
+		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}] For this implication we make use of the fact that $\zeta$ acts as the identity function on $\R$. We obtain for all $x \in H_1$ the equalities
+		\begin{align*}
+			\norm[H_2]{Ux}^2 = \zeta\pbraces{\norm[H_1]{x}^2} = \norm[H_1]{x}^2.
+		\end{align*} 
 		
 		\item[\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}] Now we have for every $x \in H_1$ that 
 		\begin{align*}
@@ -306,7 +310,7 @@ In this paper we are only going to consider Hilbert spaces over the field $\C$ a
 
 
 \begin{remark} \label{remark:spectral_radius}
-	Let $H$ be a Hilbert space and $N: H \to H$ normal. Then $r(N) = \norm{N}$ where $r$ is the spectral radius. The proof of this statement can be found in \cite[p.142]{FAna1}.
+	Let $H$ be a Hilbert space and $N: H \to H$ normal. Then $r(N) = \norm{N}$ where $r(N)$ is the spectral radius of $N$. The proof of this statement can be found in \cite[p.142]{FAna1}.
 \end{remark}
 
 
