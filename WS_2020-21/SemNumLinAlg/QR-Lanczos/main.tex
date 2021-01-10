@@ -29,9 +29,111 @@
 
 \section{Einleitung}
 
+Das folgende Projekt beschäftigt sich mit der numerischen Berechnung von Eigenwerten mithilfe des Lanczos-Verfahrens. Zur Motivation dieser Berechnung betrachten wir das Eigenwertproblem des negativen Laplace-Operators mit homogenene Neumann-Randbedingungen auf einem zweidimensionalen Gebiet $\Omega$.
+
 \subsection{Problemstellung}
+
+Wir wiederholen zunächst die Definition eines Eigenwertproblems.
+
+\begin{definition}
+	Das Paar $(\lambda, u) \in \C \times H^2(\Omega) \setminus \{0\}$ heisst ein Eigenpaar, wenn es eine Lösung des Eigenwertproblems
+	\begin{align}
+	    \begin{cases}
+	    -\Delta u = \lambda u & \text{in } \Omega, \\
+	    \frac{\partial u}{\partial \nu} = 0 & \text{auf}~ \partial\Omega,
+	    \end{cases}
+	    \label{neumann}
+	\end{align}
+	ist, wobei $\nu$ der äußere Normalenvektor an $\partial\Omega$ sei.
+\end{definition}
+
+Um die aus dem numerischen Verfahren gewonnen Eigenwerte mit den tatsächlichen Eigenwerten vergleichen zu können, wählen wir als Gebiet das Rechteck $\Omega := (0,a) \times (0,b)$, auf dem sich diese analytisch berechnen lassen.
+
 \subsection{Analytische Lösung für ein Rechteck}
+
+Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst mit einem Separationsansatz berechnet.
+
+\begin{theorem}
+	Die Eigenfunktionen für das Eigenwertproblem \ref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
+	\begin{align*}
+		u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y), \quad n,m \in \N
+	\end{align*}
+	und die zugehörigen Eigenwerte durch
+	\begin{align*}
+		\lambda_{n,m} = \pi^2(\frac{n^2}{a^2} + \frac{m^2}{b^2}), \quad n,m \in \N.
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Wir machen einen Separationsansatz. Sei $u(x,y) = v(x)w(y)$, die Differentialgleichung ergibt dann
+	\begin{align*}
+		- \Delta u(x,y) = -v''(x) w(y) - v(x) w''(y) = \lambda v(x)w(y)
+	\end{align*}
+	Multiplizieren mit $\frac{1}{v(x)w(y)}$ liefert
+	\begin{align*}
+		-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} &= \lambda \\
+		\Leftrightarrow \quad -\frac{v''(x)}{v(x)} &= \lambda + \frac{w''(y)}{w(y)}
+	\end{align*}
+	Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
+	\begin{align*}
+		-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
+		\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
+		\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x)
+	\end{align*}
+
+	Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
+
+	Nun lassen wir noch die Neumann-Randbedingungen einfließen. Mit $\nabla u(x,y) = (v'(x)w(y), v(x)w'(y))$ erhalten wir für den linken Rand
+	\begin{align*}
+		\frac{\partial u}{\partial \nu}(0,y) = - v'(0)w(y) = \kappa_{x}(- c_1 \cos(\kappa_{x} \cdot 0) + c_2 \underbrace{\sin(\kappa_{x} \cdot 0)}_{=0})w(y) \stackrel{!}{=} 0
+	\end{align*}
+	Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
+
+	Für den rechten Rand gilt nun
+	\begin{align*}
+		\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
+		\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N
+	\end{align*}
+
+	Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Durch die Wahl $c_2 = c_4 := 1$ erhalten wir also die Eigenfunktionen $u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y)$ mit Eigenwerten $\lambda_{n,m} = \frac{n^2 \pi^2}{a^2} + \frac{m^2 \pi^2}{b^2}$.
+\end{proof}
+
 \subsection{Numerischer Lösungsansatz}
+
+Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$ von
+
+\begin{align*}
+	\Int[\Omega]{\nabla u \nabla v}{x} = \lambda \Int[\Omega]{uv}{x}, \quad \Forall v \in H^1(\Omega)
+\end{align*}
+
+Dieses Problem kann mittels Finite-Elemente-Methoden auf ein endlichdimensionales verallgemeinertes Eigenwertproblem der Form
+
+\begin{align} \label{discretization}
+	A x_h = \lambda_h B x_h
+\end{align}
+
+gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
+
+\begin{lemma}
+	Mit $\rho_h \in \R$, welches kein Eigenwert ist, und $\lambda_h = \frac{1}{\mu_h} + \rho_h$ ist das verallgemeinerte Problem \ref{discretization} äquivalent  zu
+	\begin{align} \label{equivdiscret}
+		(A - \rho_h B)^{-1} B x_h = \mu_h x_h
+	\end{align}
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		A x = \lambda B x =& A x = (\frac{1}{\mu} + \rho) B x \\
+		\Leftrightarrow (A - \rho B)x =& \frac{1}{\mu} B x \\
+		\Leftrightarrow \mu x =& (A - \rho B)^{-1}B x
+	\end{align*}
+\end{proof}
+
+\begin{remark}
+	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
+\end{remark}
+
+Da uns die Diskretisierung durch Finite-Elemente-Methoden Matrizen $A$ und $B$ mit sehr großer Dimension $N$ liefert, ist es also nun sinnvoll, ein Verfahren zu entwickeln, dass uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
 
 \section{Das QR-Verfahren}
 
