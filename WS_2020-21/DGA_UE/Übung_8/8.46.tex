@@ -34,4 +34,39 @@ für $m \in \{1,2,\dots,n\}$ und $W^{\prime} \in \{0,\dots,W\}$.
 
 \phantom{}
 
+\begin{enumerate}[label = \alph*)]
+  \item Die optimale Teilstruktur-Eigenschaft lautet hier, dass für eine optimale Lösung $\sum_{i=1}^n x_iv_i$ zum Gewicht $W$ auch (für beliebiges $m \in \{1,\dots,n\}$) die Lösung $\sum_{i=1}^m x_iv_i$  eine optimale Lösung zum Gewicht $W^{\prime} := W - \sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den ersten $m$ Gegenständen ist - also der Wert von $f(m, W^{\prime})$. (Zum Gewicht $\sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den Gegenständen $m+1, \dots, n$ ist dann auch $\sum_{i=m+1}^n x_iv_i$ die optimale Lösung.) Beweis wieder recht leicht durch Widerspruch.
+  \item Wir verwenden die oben gezeigt Teilstruktur-Eigenschaft für $m = n-1$.
+  Dann folgt $f(\cdot,0) = 0$ und
+
+  \begin{align*}
+    f(n,W) = \begin{cases}
+      f(n-1,W) & w_n > W \\
+      \max\{f(n-1,W), v_n + f(n-1, W-w_n)\} & w_n \leq W.
+    \end{cases}
+  \end{align*}
+
+  (Natürlich gilt nach Definition $f(0,\cdot) = 0$.)
+
+  \item
+  \begin{algorithm}
+      \caption{Lösung des Rucksack-Problems}
+      \begin{algorithmic}[1]
+          \Procedure{$f$}{$n,W$}
+              Sei $f[0,\dots,n][1,\dots,W]$ ein neues Datenfeld mit $0$-Einträgen
+              \For{$i = 1,\dots, n$}
+                  \For{$j = 1,\dots,W$}
+                      \If{$w_i \leq j$}
+                          \State $f[i,j] = \max\{v_i + f[i-1,j-w_i], f[i-1,j]\}$
+                      \Else
+                          \State $f[i,j] = f[i-1,j]$
+                      \EndIf
+                  \EndFor
+              \EndFor
+              \State \Return $f[n,W]$
+          \EndProcedure
+      \end{algorithmic}
+  \end{algorithm}
+\end{enumerate}
+
 \end{solution}
