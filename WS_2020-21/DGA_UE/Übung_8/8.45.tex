@@ -65,9 +65,24 @@ mit $\sum_{i=1}^k c_i + (\overline{c}_i - c^{\prime}_i) < \sum_{i=1}^k c_i$. Wid
   A(n) &= \min\{ 1 + A(n - d_i): i = 1,\dots,k \land d_i \leq n\}
 \end{align*}
 
-\item Hier Erklärung einfügen.
+\item Zuerst betrachten wir die optimale Lösung für den Wechsel $j = 1$er Münze und erhalten 
+\begin{align*}
+	C = [0, 1] \\
+	S = [\ast, d_1 = 1],
+\end{align*}
+wobei $\ast$ für einen beliebigen Wert steht. Danach basierend auf dieser Lösung die optimale Lösung für $j = 2$ Münzen. Wir erhalten
+\begin{align*}
+	C = [0,1,1]\\
+	S = [\ast, 1, d_2 = 2].
+\end{align*}
+Beim nächsten Schritt für $j = 3$ Münzen wird es interessanter. Hier haben wir prinipiell zwei mögliche vorgangsweisen. Wir könnten $S[3] = d_1$ setzen und als Fortsetzung zu $j = 2$ betrachten oder aber wir setzen $S[3] = d_2$ und betrachten es als Fortsetzung von $j = 1$. In beiden Fällen erreichen wir die gleiche Aufteilung $d_1 + d_2 = 1 + 2 = 3$. Für welchen Wert $S[3]$ entscheidet sich unser Algorithmus? Er nimmt jenen mit kleinerem Index, also 
+\begin{align*}
+	C = [0, 1, 1, 2]\\
+	S = [\ast, 1, 2, d_1 = 1]
+\end{align*}
+So geht das weiter. Wie können wir die Münzen welche wir brauchen, herausfinden wenn wir die Ausgaben $C$ und $S$ vom Algorithmus bekommen?
 
-\item
+\item Offensichtlich ist der asymptotische Aufwand $\Landau(nk)$. 
 \end{enumerate}
 
 \end{solution}
