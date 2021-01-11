@@ -1,11 +1,10 @@
 \documentclass{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage{fullpage}
-\usepackage{amsmath, amssymb, amsfonts, amsthm}
-\usepackage{graphicx, subfig, float}
-\usepackage{hyperref}
-\usepackage{babel}
+\input{../../Fundament-LaTeX/packages.tex}
+\input{../../Fundament-LaTeX/macros.tex}
+\input{../../Fundament-LaTeX/environments.tex}
+
+\newtheorem{gag}{Scherz}[section]
 
 \parindent 0pt
 
@@ -23,63 +22,95 @@
 
 \maketitle
 
-\section{Fundamentals}
+\section{Apples}
 
-\href{https://knowyourphrase.com/how-do-you-like-them-apples}{Zitat} von \glqq Good Will Hunting\grqq: \\
+\begin{gag}
 
-Hunting: \glqq Do you like apples?\grqq
+  \href{https://knowyourphrase.com/how-do-you-like-them-apples}{Zitat} aus \Quote{Good Will Hunting}: \\
+  
+  Hunting:
+  \Quote{Do you like apples?}
+  
+  Rival:
+  \Quote{Yeah.}
+  
+  Hunting:
+  \Quote{Well, I got her number. How do you like them apples?}
 
-Rival: \glqq Yeah.\grqq
+\end{gag}
 
-Hunting: \glqq Well, I got her number. How do you like them apples?\grqq
+\begin{gag}
+
+  Ein \textit{Spindeltorus} entsteht durch Rotation des Kreissegmentes
+
+  \begin{align*}
+    x & = (R + r \cos{\theta}) \cos{\varphi} \\
+    y & = (R + r \cos{\theta}) \sin{\varphi} \\
+    z & = r \sin{\theta}
+  \end{align*}
+
+  um die $z$-Achse für $0 < R < r$, $R + r \cos{\theta} \geq 0$.
+
+  \begin{figure}[H]
+    \centering
+    \subfloat[Paul Winkler]{
+      \includegraphics[width = 0.25 \textwidth]{images/apfel}
+    }
+    \subfloat[Michael Kaltenbäck]{
+      \includegraphics[width = 0.25 \textwidth]{images/apple}
+    }
+    \hspace{0mm}
+    \caption{Der Spindeltorus als Apfel}
+    \label{fig:apfel_apple}
+  \end{figure}
+
+\end{gag}
+
+\section{xkcd's}
 
 \begin{figure}[H]
-\centering
-\subfloat[Paul Winkler]{
-  \includegraphics[width = 0.5 \textwidth]{images/apfel}
-}
-\subfloat[Michael Kaltenbäck]{
-  \includegraphics[width = 0.5 \textwidth]{images/apple}
-}
-\hspace{0mm}
-\caption{Der (Bio-) Spindeltorus \textbf{Nicht Weglöschen!!!}}
-\label{fig:apfel_apple}
-\end{figure}
-
-Ein \textit{Spindeltorus} entsteht durch Rotation des Kreissegmentes
-
-\begin{align*}
-  x = (R + r \cos{\theta}) \cos{\varphi} \\
-  y = (R + r \cos{\theta}) \sin{\varphi} \\
-  z = r \sin{\theta}
-\end{align*}
-
-um die $z$-Achse für $0 < R < r$, $R + r \cos{\theta} \geq 0$.
-
-\section{Oberspaß}
-\glqq Einheiz-Greis\grqq
-
-\section{GIT}
-
-\subsection{xkcd's}
-
-\begin{figure}[h!]
   \centering
-  \includegraphics[width = 0.5 \linewidth]{images/git_2x.png}
+  \subfloat[GIT]
+  {
+    \includegraphics[width = 0.45 \textwidth]{images/git_2x.png}
+  }
+  \subfloat[Depth-, Breadth-, \dots]
+  {
+    \includegraphics[width = 0.45 \textwidth]{images/depth_and_breadth2.png}
+  }
+  \hspace{0mm}
+  \caption{xkcd's}
+  \label{fig:xkcd}
 \end{figure}
 
-\subsection{Harry Potter}
+\section{MISC}
 
-\href{https://www.hp-lexicon.org/quote/professor-snape-ugly-git/}{Zitat} von \glqq Harry Potter and the Prisoner of Azkaban\grqq:\\
+\begin{theorem}
+  
+  \begin{align*}
+    B(0, 1)
+    =
+    \text{Einheits-Kreis}
+    \approx
+    \text{Einheits-Greis}
+    \approx
+    \text{Einheiz-Greis}
+  \end{align*}
 
-\glqq Mr. Prongs agrees with Mr. Moony, and would like to add that Professor Snape is an ugly git.\grqq
+\end{theorem}
 
-\section{Formulas}
+\begin{theorem}
+  
+  \Quote{A Kuh is a Vieh vom Mü-Viertl}, d.h.
 
-\glqq A Kuh is a Vieh vom Mü-Viertl\grqq, d.h.
+  \begin{align}
+    aq = a \phi \left( \frac{\mu}{4} \right)
+  \end{align}
 
-\begin{align}
-  aq = a \phi \left( \frac{\mu}{4} \right)
-\end{align}
+\end{theorem}
+
+\begin{proof}
+  Triviale Übungsaufgabe!
+\end{proof}
 
 \end{document}
