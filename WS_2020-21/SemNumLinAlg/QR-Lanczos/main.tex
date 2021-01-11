@@ -284,7 +284,7 @@ Betrachten wir die Abbildung
 so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}_m$
 
 \begin{align*}
-	(\mathcal{A}_mx, y) = (\mathcal{A}_m\mathcal{P}_m x, y) = x*\mathcal{P}_m A \mathcal{P}_m y = (x, \mathcal{A}_m y),
+	(\mathcal{A}_mx, y) = (\mathcal{A}_m\mathcal{P}_m x, y) = x^*\mathcal{P}_m A \mathcal{P}_m y = (x, \mathcal{A}_m y),
 \end{align*}
 
 da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
@@ -296,6 +296,46 @@ da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur re
 Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren Überlegungen in ref*** eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq t$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
 
 \subsection{Herleitung des Verfahrens}
+
+Wie wir eben gesehen haben, ist es also Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_m-1\}$ des Krylov-Raums. Für die Einträge von $T_m$ gilt
+\begin{align*}
+	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
+	\Rightarrow T_m &= V_m^*AV_m.
+\end{align*}
+
+Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel 2 bekannten QR-Verfahren mit wenig Aufwand berechnen.
+
+Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $T_m$ als eine Tridiagonalmatrix (also auch Hessenbergmatrix) der Form
+
+\begin{align*}
+\begin{pmatrix}
+	\gamma_0 & \delta_0 & 0 & \hdots & 0 \\
+	\delta_0 & \gamma_1 & \delta_1 &  & \vdots \\
+	0 & \delta_1 & \ddots & \ddots & 0 \\
+	\vdots &  & \ddots & \ddots & \delta_{m-2} \\
+	0 & \hdots & 0 & \delta_{m-2} & \gamma_{m-1}
+\end{pmatrix}
+\end{align*}
+
+aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
+\begin{align*}
+	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
+	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}
+\end{align*}
+
+Da es sich bei $\{v_0, \dots, v_{m-1}\}$ um ein Orthogonalsystem handelt, liefert Multiplizieren der $j$-ten Gleichung von links mit $v_j^*$, dass $\gamma_j = v_j^*Av_j$ für $j = 0, \dots, m-2$. Somit können wir die $j$-te Gleichung rekursiv nach $v_{j+1}$ auflösen:
+
+\begin{align*}
+	v_{j+1} = \begin{cases}
+		\frac{\overbrace{(A-\gamma_0)v_0}^{=:w_0}}{\delta_0} &,j = 0 \\
+		\frac{\overbrace{(A-\gamma_j)v_j - \delta_{j-1} v_{j-1}}^{=:w_j}}{\delta_j} &,j \geq 1
+	\end{cases}
+\end{align*}
+
+Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bricht die Iteration ab. Daraus ergibt sich nun der Algorithmus für das Lanczos-Verfahren.
+
+**Hier Algorithmus einfügen...***
+
 
 \subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
 
