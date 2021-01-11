@@ -48,28 +48,32 @@ Ein bi-parental Heap (oder Beap) ist eine Datenstruktur, wo ein Knoten zwei Elte
     = \frac{\sqrt{1 + 8n} - 1}{2}
   \end{align*}
 
-Falls unser Beap mit $n$ Knoten nicht Vollständig ist, können wir den Beap mit $n^+ > n$ Knoten betrachten der Vollständig ist (in dem Sinn, dass das letzte Level voll aufgefüllt wurde). Dieser hat klarerweise die selbe Höhe. Wenn wir auch noch den Vollständigen Beap mit $n^- < n$ Knoten betrachten, wobei hier genau das letze Level geleert wurde, erhalten wir für die Höhe:
+	Falls unser Beap mit $n$ Knoten nicht Vollständig ist, können wir den Beap mit $n^+ > n$ Knoten betrachten der Vollständig ist (in dem Sinn, dass das letzte Level voll aufgefüllt wurde). Dieser hat klarerweise die selbe Höhe. Wenn wir auch noch den Vollständigen Beap mit $n^- < n$ Knoten betrachten, wobei hier genau das letze Level geleert wurde, erhalten wir für die Höhe:
+	
+	\begin{align*}
+	 \frac{\sqrt{1 + 8n^-} - 1}{2}
+	 \leq
+	 \frac{\sqrt{1 + 8n} - 1}{2}
+	 \leq
+	 \frac{\sqrt{1 + 8n^+} - 1}{2} \\
+	  h(n^-) = \frac{\sqrt{1 + 8n^-} - 1}{2} + 1
+	  =
+	  h(n)
+	  =
+	  h(n^+) = \frac{\sqrt{1 + 8n^+} - 1}{2}
+	\end{align*}
+	
+	Somit ist die Höhe des Beaps mit $n$ Knoten
+	
+	\begin{align*}
+	  h(n)
+	  =
+	  \Big\lceil \frac{\sqrt{1 + 8n} - 1}{2}\Big\rceil
+	\end{align*}
+	
+	Wenn das letze Level vollständig aufgefüllt ist, dann ist die Anzahl der Knoten im letzten Level genau der Höhe $h(n)$. 
 
-\begin{align*}
- \frac{\sqrt{1 + 8n^-} - 1}{2}
- \leq
- \frac{\sqrt{1 + 8n} - 1}{2}
- \leq
- \frac{\sqrt{1 + 8n^+} - 1}{2} \\
-  h(n^-) = \frac{\sqrt{1 + 8n^-} - 1}{2} + 1
-  =
-  h(n)
-  =
-  h(n^+) = \frac{\sqrt{1 + 8n^+} - 1}{2}
-\end{align*}
 
-Somit ist die Höhe des Beaps mit $n$ Knoten
-
-\begin{align*}
-  h(n)
-  =
-  \Big\lceil \frac{\sqrt{1 + 8n} - 1}{2}\Big\rceil
-\end{align*}
   \item Wir orientieren uns an der Prozedur $\textsc{ErzeugeHalde}$ aus dem Skript. Wir nehmen also an, dass der Beap als Datenfeld realisiert ist und wir Identifizieren die Elemente mit ihrer Position in dem Datenfeld. Dabei gehen wir wie bei den Halden vor. Zunächst definieren wir uns eine Funktion sowie einige Prozeduren.
 
   \begin{align*}
