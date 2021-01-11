@@ -363,7 +363,7 @@
             \end{pmatrix}.
         \end{align*}
 
-        $\hat W_1$ sind also Links-Eigenvektoren zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
+        $\hat W_1$ sind also Links-Eigenvektoren von $A$ zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
         Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\Ker(A^\ast - I_N \overline \lambda_1)$.
         Wir setzen an mit
 
@@ -493,7 +493,7 @@
             \GL_{L_1}(\C).
         \end{align*}
 
-        \item Weil ja $\dim \C^\N < \infty$, genügt es, nachzurechnen, dass die rechte Seite eine Linksinverse ist.
+        \item Weil ja $\dim \C^\N < \infty$, genügt es, nachzurechnen, dass die rechte Seite eine Rechtsinverse ist.
         
         \begin{align*}
             (A - I_N \lambda)^{-1}
@@ -599,7 +599,7 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
     Dann existiert ein $R \in H(\Lambda, \C^{N \times N})$, sodass $\Forall \lambda \in \Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}:$
 
     \begin{align*}
-        A^{-1}(\lambda)
+        A(\lambda)^{-1}
         =
         \sum_{n=1}^k
             \frac{1}{\lambda - \lambda_n} P_n^+
@@ -613,7 +613,7 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
 
     Wir definieren das Residuum zunächst auf $\Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}$ durch umstellen.
 
-    Sei $m = 1, \dots, n$.
+    Sei $m = 1, \dots, k$.
     Laut \ref{keldysh_nicht_linear}, existiert eine Umgebung $U_m$ von $\lambda_m$ und $R_m \in H(U_m)$ holomorph, sodass $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
 
     \begin{align*}
@@ -629,7 +629,7 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
     \begin{align*}
         R(\lambda)
         :=
-        A^{-1}(\lambda)
+        A(\lambda)^{-1}
         -
         \sum_{n=1}^k
             \frac{1}{\lambda - \lambda_n} P_n^+
@@ -647,6 +647,6 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
             \frac{1}{\lambda - \lambda_n} P_n^+
     \end{align*}
 
-    Wenn wir das für alle $m = 1, \dots, n$ machen, haben wir $R$ auf ganz $\Lambda$ holomorph erweitert.
+    Wenn wir das für alle $m = 1, \dots, k$ machen, haben wir $R$ auf ganz $\Lambda$ holomorph erweitert.
 
 \end{proof}
