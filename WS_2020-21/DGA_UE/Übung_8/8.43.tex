@@ -15,12 +15,16 @@ Ein bi-parental Heap (oder Beap) ist eine Datenstruktur, wo ein Knoten zwei Elte
 
 
 \begin{solution}
+\phantom{}
+\begin{center}
+  \input{tikz_picture_1.tex} \\
+  Ein vollständiger Beap mit Indizierung, die Datenfeldposition des Elements angibt.
+\end{center}
 
-\input{tikz_picture_1.tex}
 
-Ein vollständiger Beap mit Indizierung, die Datenfeldposition des Elements angibt.
+
 \begin{enumerate}[label = \alph*)]
-  \item Bezeichne also $n$ die Anzahl der Knoten und $k_i$ die Anzahl der Knoten auf dem $i-$ten Level. Unter der Annahme, dass das letzte Level voll ist, was bei der gegebenen Definition immer der Fall ist, sehen wir, dass $k_i = i$. Bezeichne nun $h$ die Höhe des (vollen) Beaps, dann erhalten wir zunächst
+  \item Bezeichne also $n$ die Anzahl der Knoten und $k_i$ die Anzahl der Knoten auf dem $i-$ten Level. Unter der Annahme, dass das letzte Level voll ist, was bei der gegebenen Definition immer der Fall ist, sehen wir, dass $k_i = i$. Bezeichne nun $h$ die Höhe eines Beaps, dann erhalten wir zunächst für diesen Spezialfall
 
   \begin{align*}
     n
@@ -43,6 +47,28 @@ Ein vollständiger Beap mit Indizierung, die Datenfeldposition des Elements angi
     = \frac{\sqrt{1 + 8n} - 1}{2}
   \end{align*}
 
+Falls unser Beap mit $n$ Knoten nicht Vollständig ist, können wir den Beap mit $n^+ > n$ Knoten betrachten der Vollständig ist (in dem Sinn, dass das letzte Level voll aufgefüllt wurde). Dieser hat klarerweise die selbe Höhe. Wenn wir auch noch den Vollständigen Beap mit $n^- < n$ Knoten betrachten, wobei hier genau das letze Level geleert wurde, erhalten wir für die Höhe:
+
+\begin{align*}
+ \frac{\sqrt{1 + 8n^-} - 1}{2}
+ \leq
+ \frac{\sqrt{1 + 8n} - 1}{2}
+ \leq
+ \frac{\sqrt{1 + 8n^+} - 1}{2} \\
+  h(n^-) = \frac{\sqrt{1 + 8n^-} - 1}{2} + 1
+  =
+  h(n)
+  =
+  h(n^+) = \frac{\sqrt{1 + 8n^+} - 1}{2}
+\end{align*}
+
+Somit ist die Höhe des Beaps mit $n$ Knoten
+
+\begin{align*}
+  h(n)
+  =
+  \Big\lceil \frac{\sqrt{1 + 8n} - 1}{2}\Big\rceil
+\end{align*}
   \item Wir orientieren uns an der Prozedur $\textsc{ErzeugeHalde}$ aus dem Skript. Wir nehmen also an, dass der Beap als Datenfeld realisiert ist und wir Identifizieren die Elemente mit ihrer Position in dem Datenfeld. Dabei gehen wir wie bei den Halden vor. Zunächst definieren wir uns eine Funktion sowie einige Prozeduren.
 
   \begin{align*}

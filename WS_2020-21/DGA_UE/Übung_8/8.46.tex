@@ -12,7 +12,7 @@ Sie mitnehmen sollen, sodass der Gesamtwert der eingepackten Gegenstände mögli
 Etwas genauer: Gesucht ist $f(n,W)$, wenn
 \begin{align*}
   f(m, W^{\prime}) = \max\left\{\sum_{i=1}^m x_iv_i \mid \sum_{i=1}^m x_iw_i \leq
-  W^{\prime} \text{und} x_i \in \{0,1\}\right\},
+  W^{\prime}~ \text{und}~ x_i \in \{0,1\}\right\},
 \end{align*}
 für $m \in \{1,2,\dots,n\}$ und $W^{\prime} \in \{0,\dots,W\}$.
 \begin{enumerate}[label = \alph*)]
@@ -35,7 +35,24 @@ für $m \in \{1,2,\dots,n\}$ und $W^{\prime} \in \{0,\dots,W\}$.
 \phantom{}
 
 \begin{enumerate}[label = \alph*)]
-  \item Die optimale Teilstruktur-Eigenschaft lautet hier, dass für eine optimale Lösung $\sum_{i=1}^n x_iv_i$ zum Gewicht $W$ auch (für beliebiges $m \in \{1,\dots,n\}$) die Lösung $\sum_{i=1}^m x_iv_i$  eine optimale Lösung zum Gewicht $W^{\prime} := W - \sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den ersten $m$ Gegenständen ist - also der Wert von $f(m, W^{\prime})$. (Zum Gewicht $\sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den Gegenständen $m+1, \dots, n$ ist dann auch $\sum_{i=m+1}^n x_iv_i$ die optimale Lösung.) Beweis wieder recht leicht durch Widerspruch.
+  \item Die optimale Teilstruktur-Eigenschaft lautet hier, dass für eine optimale Lösung $\sum_{i=1}^n x_iv_i$ zum Gewicht $W$ auch (für beliebiges $m \in \{1,\dots,n\}$) die Lösung $\sum_{i=1}^m x_iv_i$  eine optimale Lösung zum Gewicht $W^{\prime} := W - \sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den ersten $m$ Gegenständen ist - also der Wert von $f(m, W^{\prime})$. (Zum Gewicht $\sum_{i=m+1}^n x_iw_i$ und zum Auswählen aus den Gegenständen $m+1, \dots, n$ ist dann auch $\sum_{i=m+1}^n x_iv_i$
+  die optimale Lösung.) Seien zum Beweis unsere $x_i$ so gewählt, dass $\sum_{i = 1}^n x_i v_i$ maximal unter der Bedingung $\sum_{i = 1}^n x_i w_i \leq W$. Angenommen
+
+  \begin{align*}
+    \exists \tilde{x_i}, i \in \{1,...,m\}: \sum_{i = 1}^m \tilde{x_i} v_i > \sum_{i = 1}^m x_i v_i
+    \land
+    \sum_{i = 1}^m \tilde{x_i} w_i \leq W^\prime
+  \end{align*}
+
+  Dann ist aber
+
+  \begin{align*}
+    \sum_{i = 1}^m \tilde{x_i} w_i + \sum_{i = m+1}^n x_i w_i \leq W
+    \land
+    \sum_{i = 1}^m \tilde{x_i} v_i + \sum_{i = m+1}^n x_i v_i > \sum_{i = 1}^n x_i v_i
+    \implies \text{Widerspruch!}
+  \end{align*}
+
   \item Wir verwenden die oben gezeigt Teilstruktur-Eigenschaft für $m = n-1$.
   Dann folgt $f(\cdot,0) = 0$ und
 
@@ -53,7 +70,7 @@ für $m \in \{1,2,\dots,n\}$ und $W^{\prime} \in \{0,\dots,W\}$.
       \caption{Lösung des Rucksack-Problems}
       \begin{algorithmic}[1]
           \Procedure{$f$}{$n,W$}
-              Sei $f[0,\dots,n][1,\dots,W]$ ein neues Datenfeld mit $0$-Einträgen
+              \State Sei $f[0,\dots,n][1,\dots,W]$ ein neues Datenfeld mit $0$-Einträgen
               \For{$i = 1,\dots, n$}
                   \For{$j = 1,\dots,W$}
                       \If{$w_i \leq j$}
