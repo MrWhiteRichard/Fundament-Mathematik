@@ -50,53 +50,61 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
 
 \begin{enumerate}[label = \alph*]
 
-  \item Wir werden die Indizes aus unserer Notation entfernen.
-  Sei $c$ eine optimale Lösung für den Wert $n$, d.h. $n = c d$ und $\sum c$ ist minimal.
-  Sei weiters $0 \leq c^\prime \leq c$ und $c^\prime d = b$.
-  Angenommen, es gäbe $\bar c$ mit $\bar c d = b$ und $\sum \bar c < \sum c^\prime$.
-
-  \begin{align*}
-    \implies
-    (\bar c + c - c^\prime) d
-    =
-    \bar c d + c d - c^\prime d
-    =
-    b + n - b
-    =
-    n,
-    \quad
-    \sum (c + \bar c - c^\prime)
-    =
-    \sum c + \underbrace{\sum \bar c - \sum c^\prime}_{< 0}
-    <
-    \sum c
-  \end{align*}
-
-  $c + \bar c - c^\prime$ wäre also echt besser als $c$.
-  Widerspruch! \\
+  \item
   
-  Alternative: 
-  
-  Sei $n \in \N$ und für alle $i \in \{1, \dots, k\}$ sei $c_i \in \N$ mit
-  \begin{align*}
-  	n = \sum_{i = 1}^k c_i d_i \quad \text{mit} \quad \sum_{i = 1}^k c_i \quad \text{minimal.}
-  \end{align*}
-  Nun betracthen wir für jedes $i \in \{1, \dots, k\}$ ein $c_i^\prime \in \{0, \dots, c_i\}$ und ein $e_i \in \N$ mit
-  \begin{align*}
-  	b = \sum_{i = 1}^k c_i^\prime d_i = \sum_{i = 1}^k e_i d_i.
-  \end{align*}
-	Wir erkennen 
-	\begin{align*}
-		n = b + n - b = \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime} d_i
-	\end{align*}
-	und daher
-	\begin{align*}
-		\sum_{i = 1}^k c_i d_i \leq \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime}  \Leftrightarrow \sum_{i = 1}^k c_i^\prime \leq \sum_{i = 1}^k e_i.
-	\end{align*}
-	Also ist 
-	\begin{align*}
-		 \sum_{i = 1}^k c_i^\prime \quad \text{minimal.}
-	\end{align*}
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Lösung:
+    
+    Wir werden die Indizes aus unserer Notation entfernen.
+    Sei $c$ eine optimale Lösung für den Wert $n$, d.h. $n = c d$ und $\sum c$ ist minimal.
+    Sei weiters $0 \leq c^\prime \leq c$ und $c^\prime d = b$.
+    Angenommen, es gäbe $\bar c$ mit $\bar c d = b$ und $\sum \bar c < \sum c^\prime$.
+
+    \begin{align*}
+      \implies
+      (\bar c + c - c^\prime) d
+      =
+      \bar c d + c d - c^\prime d
+      =
+      b + n - b
+      =
+      n,
+      \quad
+      \sum (c + \bar c - c^\prime)
+      =
+      \sum c + \underbrace{\sum \bar c - \sum c^\prime}_{< 0}
+      <
+      \sum c
+    \end{align*}
+
+    $c + \bar c - c^\prime$ wäre also echt besser als $c$.
+    Widerspruch!
+
+    \item Lösung:
+    
+    Sei $n \in \N$ und für alle $i \in \{1, \dots, k\}$ sei $c_i \in \N$ mit
+    \begin{align*}
+      n = \sum_{i = 1}^k c_i d_i \quad \text{mit} \quad \sum_{i = 1}^k c_i \quad \text{minimal.}
+    \end{align*}
+    Nun betracthen wir für jedes $i \in \{1, \dots, k\}$ ein $c_i^\prime \in \{0, \dots, c_i\}$ und ein $e_i \in \N$ mit
+    \begin{align*}
+      b = \sum_{i = 1}^k c_i^\prime d_i = \sum_{i = 1}^k e_i d_i.
+    \end{align*}
+    Wir erkennen 
+    \begin{align*}
+      n = b + n - b = \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime} d_i
+    \end{align*}
+    und daher
+    \begin{align*}
+      \sum_{i = 1}^k c_i d_i \leq \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime}  \Leftrightarrow \sum_{i = 1}^k c_i^\prime \leq \sum_{i = 1}^k e_i.
+    \end{align*}
+    Also ist 
+    \begin{align*}
+       \sum_{i = 1}^k c_i^\prime \quad \text{minimal.}
+    \end{align*}
+
+  \end{enumerate}
 
   \item Der Rekursions-Anfang ist klar.
   Für den Rekursions-Schritt betrachten wir ein $i = 1, \dots, k$ mit $d_i \leq n$.
