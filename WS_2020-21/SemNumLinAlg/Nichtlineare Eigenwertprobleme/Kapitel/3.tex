@@ -358,6 +358,16 @@ $f$ repräsentiert eine Komponente der Integranden von $A_0$ und $A_1$.
 Diese müssen vorhin passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert werden kann.
 Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird in ... diskutiert.
 
+Um $A(\lambda)^{-1} \hat V$ in den Integranden von \eqref{eq:integral_matrizen} zu bestimmen, werden wir nicht $A(\lambda)^{-1}$ direkt berechnen.
+Stattdessen, bestimmen wir eine LU-Zerlegung von $A(\lambda)$ und führen $j$-mal eine Vorwärts-Rückwärts-Substitution durch.
+$\Forall i = 1, \dots, j:$
+
+\begin{align*}
+    A(\lambda)^{-1} \hat V_i = x
+    \iff
+    \hat V_i = A(\lambda) x
+\end{align*}
+
 \subsection*{2. Schritt: Singulärwert-Zerlegung}
 
 Wir führen zunächst eine Singulärwert-Zerlegung von $A_0$ durch.
@@ -604,4 +614,17 @@ Somit ist die Diagonalmatrix $D$, welche ja die gesuchten Eigenwerte enthält, �
 
 \subsection*{Zusammenfassung}
 
-Wir haben insgesamt den Folgenden Algorithmus gefunden.
+Wir haben insgesamt den folgenden Algorithmus \ref{alg:integral_methode_zusammenfassung} gefunden.
+
+\begin{algorithm}[H]
+	\label{alg:integral_methode_zusammenfassung}
+	\caption{Integral-Methode}
+    \begin{algorithmic}[1]
+        \Procedure{Integral-Methode Zusammanfassung}{}
+            \State Berechne $A_0, A_1 \in \C^{N \times j}$ (z.B. mit LU-Zerlegung);
+            \State Berechne und reduziere eine Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
+            \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1}$ (z.B. mit QR-Verfahren);
+            \State \Return $\lambda_1, \dots, \lambda_k$
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
