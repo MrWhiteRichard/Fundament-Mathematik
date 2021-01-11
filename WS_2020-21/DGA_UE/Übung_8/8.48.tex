@@ -1,0 +1,116 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es gibt zwei Arten von randomisierten Algorithmen:
+Las-Vegas-Algorithmen nutzen randomisierten Input, um die erwartete Laufzeit zu verringern, produzieren aber immer ein korrektes Ergebnis (man gambelt mit der Laufzeit).
+Monte-Carlo-Algorithmen hingegen haben deterministische Laufzeit, produzieren aber mit einer gewissen Wahrscheinlichkeit ein falsches oder gar kein Ergebnis (insofern ist die Bezeichung \Quote{Algorithmus} auch etwas fragwürdig).
+
+Betrachten wir nun das Problem, in einem Array $A$ der Größe $2 n$ bestehend aus $n$ Einträgen mit Wert $a$ und $n$ Einträgen mit Wert $b$ ein $a$ zu finden, sowie einen Las-Vegas- und einen Monte-Carlo-Algorithmus, der dieses Problem löst:
+
+\phantom{}
+
+Las-Vegas-Algorithmus:
+
+\begin{algorithmic}
+    \State LV-FIND-a($A$)
+    \While{true}
+        \State $i = \text{RANDOM}(1, 2 n)$
+        \If{$A[i] = a$}
+            \State \Return $i$
+        \EndIf
+    \EndWhile
+\end{algorithmic}
+
+\phantom{}
+
+Dieser Algorithmus liefert immer ein richtiges Ergebnis.
+Bestimmen Sie seine erwartete Laufzeit.
+
+\phantom{}
+
+Monte-Carlo-Algorithmus:
+
+\begin{algorithmic}
+    \State MC-FIND-a($A, k$)
+    \State $i = 0$
+    \While{$i < k$}
+        \State $i = \text{RANDOM}(1, 2 n)$
+        \If{$A[i] = a$}
+            \State \Return $i$
+        \EndIf
+    \EndWhile
+\end{algorithmic}
+
+\phantom{}
+
+Dieser Algorithmus braucht höchstens $k$ Schritte ($k$ fest), hat also konstante Laufzeit.
+Bestimmen Sie die Wahrscheinlichkeit, dass nach $k$ Durchläufen ein $a$ gefunden wurde.
+
+\end{exercise}
+
+\begin{solution}
+
+\begin{align*}
+    & \Forall i = 1, \dots, 2 n:
+    \P(A[i] = a) = \P(A[i] = b) = \frac{1}{2} \\
+    \implies
+    & \P(A[\text{RANDOM}(1, 2 n)] = a) = \P(A[\text{RANDOM}(1, 2 n)] = b) = \frac{1}{2}
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Algorithmus (Las-Vegas):
+    
+    \begin{multline*}
+        \Forall k \in \N:
+        \P(\text{Durchläufe} = k)
+        =
+        \P(A[\text{RANDOM}(1, 2 n)] = b)^{k-1}
+        \P(A[\text{RANDOM}(1, 2 n)] = a) \\
+        =
+        \pbraces{\frac{1}{2}}^{k-1}
+        \frac{1}{2}
+    \end{multline*}
+    
+    \begin{align*}
+        \E(\text{Durchläufe})
+        =
+        \sum_{k \in \N}
+            k
+            \P(\text{Durchläufe} = k)
+        =
+        \sum_{k \in \N}
+            n
+            \pbraces{\frac{1}{2}}^{k-1}
+            \frac{1}{2}
+        =
+        \frac{1}{2}
+        \sum_{k \in \N}
+            n
+            \pbraces{\frac{1}{2}}^{k-1}
+        \stackrel
+        {
+            (\ast)
+        }{=}
+        \frac{1}{2}
+        \frac{1}{\pbraces{1 - \frac{1}{2}}^2}
+        =
+        2
+    \end{align*}
+
+    \item Algorithmus (Monte-Carlo):
+
+    \begin{align*}
+        \P(a \in A[1:k])
+        =
+        1 - \P(a \not \in A[1:k])
+        =
+        1 - \P(A[1] = b, \dots, A[k] = b)
+        =
+        1 - \pbraces{\frac{1}{2}}^k
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}

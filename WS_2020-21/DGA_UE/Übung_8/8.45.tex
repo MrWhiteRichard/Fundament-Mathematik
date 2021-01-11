@@ -1,0 +1,239 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Wir betrachten \Quote{Wechsel-Geld-Problem} (WGK).
+In einer Währung existieren (unlimitiert viele) Münzen im Wert von $1 = d_1 < d_2 < \cdots  d_k$ Cent.
+Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $n$ Cent zu wechseln.
+
+\begin{enumerate}[label = \alph*]
+
+  \item Bestätigen Sie, dass das WGK die optimale Teilstruktur-Eigenschaft erfüllt, also zeigen Sie, dass eine optimale Lösung für $n$ Cent, also $n = \sum_{i} c_i d_i$ und $\sum_i c_i$ ist minimal, auch eine optimale Lösung für $b$ und $n - b$ darstellt, wenn $b$ ein Anteil von $n$ ist, welcher durch die in der Darstellung von $n$ verwendeten Münzen zustande kommt, also $b = \sum_i c_i^\prime d_i$ mit $0 \leq c_i^\prime \leq c_i$.
+
+  \item Sei $A(n)$ die Anzahl der Münzen, die zum Wechseln des Betrags $n$ mindestens notwendig sind.
+  Überlegen Sie sich eine Rekursion für $A(n)$.
+
+  \item Erklären Sie die Funktionsweise des folgenden Algorithmus \textsc{Wechsel}($d, k, n$), welcher für den Wert $n$ und für ein gegebenes Münzen-Array $d = (d_1, \dots, d_k)$ die optimale Wechsellösung liefert am Beispiel $(d_1, d_2, d_3) = (1, 2, 5)$ und $n = 8$.
+  
+  \phantom{}
+
+  \begin{algorithmic}
+    \Procedure{Wechsel}{$d, k, n$}
+      \State Seien $C[0, \dots, n]$ und $S[0, \dots, n]$ neue Felder
+      \State $C[0] := 0$
+      \For{$j = 1$ to $n$}
+        \State $C[j] := \infty$
+        \For{$i = 1$ to $k$}
+          \If{ $d_i \leq j$ and $1 + C[j - d_i] < C[j]$}
+            \State $C[j] := 1 + C[j - d_i]$
+            \State $S[j] := d_i$
+          \EndIf
+        \EndFor
+      \EndFor
+    \EndProcedure
+  \end{algorithmic}
+
+  \phantom{}
+
+  \item Wie groß ist asymptotisch die Komplexität von \textsc{Wechsel}($d, k, n$)?
+
+\end{enumerate}
+
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \alph*]
+
+  \item
+  
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Lösung:
+    
+    Wir werden die Indizes aus unserer Notation entfernen.
+    Sei $c$ eine optimale Lösung für den Wert $n$, d.h. $n = c d$ und $\sum c$ ist minimal.
+    Sei weiters $0 \leq c^\prime \leq c$ und $c^\prime d = b$.
+    Angenommen, es gäbe $\bar c$ mit $\bar c d = b$ und $\sum \bar c < \sum c^\prime$.
+
+    \begin{align*}
+      \implies
+      (\bar c + c - c^\prime) d
+      =
+      \bar c d + c d - c^\prime d
+      =
+      b + n - b
+      =
+      n,
+      \quad
+      \sum (c + \bar c - c^\prime)
+      =
+      \sum c + \underbrace{\sum \bar c - \sum c^\prime}_{< 0}
+      <
+      \sum c
+    \end{align*}
+
+    $c + \bar c - c^\prime$ wäre also echt besser als $c$.
+    Widerspruch!
+
+    \item Lösung:
+    
+    Sei $n \in \N$ und für alle $i \in \{1, \dots, k\}$ sei $c_i \in \N$ mit
+    \begin{align*}
+      n = \sum_{i = 1}^k c_i d_i \quad \text{mit} \quad \sum_{i = 1}^k c_i \quad \text{minimal.}
+    \end{align*}
+    Nun betracthen wir für jedes $i \in \{1, \dots, k\}$ ein $c_i^\prime \in \{0, \dots, c_i\}$ und ein $e_i \in \N$ mit
+    \begin{align*}
+      b = \sum_{i = 1}^k c_i^\prime d_i = \sum_{i = 1}^k e_i d_i.
+    \end{align*}
+    Wir erkennen 
+    \begin{align*}
+      n = b + n - b = \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime} d_i
+    \end{align*}
+    und daher
+    \begin{align*}
+      \sum_{i = 1}^k c_i d_i \leq \sum_{i = 1}^k \pbraces{e_i + c_i - c_i^\prime}  \Leftrightarrow \sum_{i = 1}^k c_i^\prime \leq \sum_{i = 1}^k e_i.
+    \end{align*}
+    Also ist 
+    \begin{align*}
+       \sum_{i = 1}^k c_i^\prime \quad \text{minimal.}
+    \end{align*}
+
+  \end{enumerate}
+
+  \item Der Rekursions-Anfang ist klar.
+  Für den Rekursions-Schritt betrachten wir ein $i = 1, \dots, k$ mit $d_i \leq n$.
+  $A(n - d_i)$, die minimale Anzahl der Münzen, um den Wert $n - d_i$ darzustellen, ist bereits bekannt.
+
+  Laut a) ist die WGK-Lösung von $n - d_i$ eine Teil-Lösung derer von $n$.
+  Dieser Fehlt genau $1$ Münze im Wert von $d_i$.
+  Es genügt also, über alle $A(n - d_i) + 1$, für $i = 1, \dots, k$ mit $d_i \leq n$ zu minimieren, um $A(n)$ zu bekommen.
+
+  \begin{align*}
+    A(0) = 0,
+    \quad
+    A(n) = \min \Bbraces{A(n - d_i) + 1: i = 1, \dots, k \land d_i \leq n}
+  \end{align*}
+
+  \item \phantom{}
+
+  \begin{enumerate}[label = \arabic*.]
+
+    \item Lösung:
+
+    Wir bemerken zunächst, dass innerhalb der äußeren \textbf{for}-Schleife die Struktur der oberen Formel für $A(n)$ realisiert wird.
+    Um zu minimieren, wird anfangs das größt-mögliche Element $\infty$ betrachtet und dann, falls letztere Bedingung in der $\min$-Menge gilt, sukzessive verringert.
+    Wir gehen den Algorithmus nun zum Teil durch. \\
+
+    \underline{Außerhalb der Schleifen}
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 &   &   &   &   &   &   &   &   \\ \hline
+        S &   &   &   &   &   &   &   &   &   \\
+      \end{array}
+    \end{align*}
+
+    \underline{$j = 1$}
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1      & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & \infty &   &   &   &   &   &   &   \\ \hline
+        S &   &        &   &   &   &   &   &   &   \\
+      \end{array}
+    \end{align*}
+
+    \underline{$i = 1$} \\
+    Nun ist $1 = d_1 \leq 1$ und $1 + 0 = 1 + C[1 - d_1] < C[1] = \infty$, also …
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1                  & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & 1 + C[1 - d_1] = 1 &   &   &   &   &   &   &   \\ \hline
+        S &   & d_1 = 1            &   &   &   &   &   &   &   \\
+      \end{array}
+    \end{align*}
+
+    \underline{$i = 2$} \\
+    Nun ist $2 = d_2 \not \leq 1$. \\
+
+    \underline{$i = 3$} \\
+    Nun ist $5 = d_3 \not \leq 1$. \\
+
+    \underline{$j = 2$} \\
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1 & 2      & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & 1 & \infty &   &   &   &   &   &   \\ \hline
+        S &   & 1 &        &   &   &   &   &   &   \\
+      \end{array}
+    \end{align*}
+
+    \underline{$i = 1$} \\
+    Nun ist $1 = d_1 \leq 2$ und $1 + 1 = 1 + C[2 - d_1] < C[2] = \infty$.
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1 & 2                  & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & 1 & 1 + C[2 - d_1] = 2 &   &   &   &   &   &   \\ \hline
+        S &   & 1 & d_1 = 1            &   &   &   &   &   &   \\
+      \end{array}
+    \end{align*}
+
+    \underline{$i = 2$} \\
+    Nun ist $2 = d_2 \leq 2$ und $1 + 0 = 1 + C[2 - d_2] < C[2] = 2$.
+
+    \begin{align*}
+      \vdots
+    \end{align*}
+
+    \begin{align*}
+      \begin{array}{c|c|c|c|c|c|c|c|c|c}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+        C & 0 & 1 & 1 & 2 & 2 & 1 & 2 & 2 & 3 \\ \hline
+        S &   & 1 & 2 & 1 & 2 & 5 & 1 & 2 & 1 \\
+      \end{array}
+    \end{align*}
+
+    \item Lösung:
+
+    Zuerst betrachten wir die optimale Lösung für den Wechsel $j = 1$er Münze und erhalten
+
+    \begin{align*}
+      C = [0, 1] \\
+      S = [\ast, d_1 = 1],
+    \end{align*}
+
+    wobei $\ast$ für einen beliebigen Wert steht. Danach basierend auf dieser Lösung die optimale Lösung für $j = 2$ Münzen. Wir erhalten
+
+    \begin{align*}
+      C = [0,1,1]\\
+      S = [\ast, 1, d_2 = 2].
+    \end{align*}
+
+    Beim nächsten Schritt für $j = 3$ Münzen wird es interessanter. Hier haben wir prinipiell zwei mögliche vorgangsweisen. Wir könnten $S[3] = d_1$ setzen und als Fortsetzung zu $j = 2$ betrachten oder aber wir setzen $S[3] = d_2$ und betrachten es als Fortsetzung von $j = 1$. In beiden Fällen erreichen wir die gleiche Aufteilung $d_1 + d_2 = 1 + 2 = 3$. Für welchen Wert $S[3]$ entscheidet sich unser Algorithmus? Er nimmt jenen mit kleinerem Index, also
+
+    \begin{align*}
+      C = [0, 1, 1, 2]\\
+      S = [\ast, 1, 2, d_1 = 1]
+    \end{align*}
+
+    So geht das weiter.
+    Wie können wir die Münzen welche wir brauchen, herausfinden wenn wir die Ausgaben $C$ und $S$ vom Algorithmus bekommen? Wir nehmen zuerst $S[n]$, danach $S[n - S[n]]$, danach $S[n - S[n] - S[n - S[n]]]$ und so weiter, so lange bis das Argument Null wird. 
+
+  \end{enumerate}
+
+  \item Die $1$-te \textbf{for}-Schleife hat maximal $n$ Durchläufe, die $2$-te $k$.
+  Der asymptotische Aufwand ist daher $\Landau(nk)$.
+
+\end{enumerate}
+
+\end{solution}

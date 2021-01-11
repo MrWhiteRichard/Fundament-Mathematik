@@ -121,7 +121,7 @@
 
 
 \begin{lemma}
-	Let $\mathcal{P}(H_1)$ and $\mathcal{P}(H_2)$ be two projective Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let furthermore $M := \{e_i \mid i \in I\}$ be an orthonormal basis of $H_1$ and $x,y \in H_1 $. Let $\tilde{x} \in g(\C x)$ and $\tilde{y} \in g(\C y)$  be vectors with $\norm[H_1]{x} = \norm[H_2]{\tilde{x}}$ and $\norm[H_1]{y} = \norm[H_2]{\tilde{y}}$. Lastly, for every $i \in I$ let $\tilde{e}_i \in g(\C e_i)$ be a normalized vector. Then the  following statements are true.
+	Let $\mathcal{P}(H_1)$ and $\mathcal{P}(H_2)$ be two projective Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Let furthermore $M := \{e_j \mid j \in J\}$ be an orthonormal basis of $H_1$ and $x,y \in H_1 \setminus \{0\} $. Let $\tilde{x} \in g(\C x)$ and $\tilde{y} \in g(\C y)$  be vectors with $\norm[H_1]{x} = \norm[H_2]{\tilde{x}}$ and $\norm[H_1]{y} = \norm[H_2]{\tilde{y}}$. Lastly, for every $j \in J$ let $\tilde{e}_j \in g(\C e_j)$ be a normalized vector. Then the  following statements are true.
 	
 	\begin{enumerate}
 		\item The equality
@@ -130,11 +130,11 @@
 		\end{align}
 		holds.		
 		
-		\item The set $L:=\{e_i \mid i \in I\}$ is an orthonormal system of $H_2$. \label{bullet:ran_ons}
+		\item The set $L:=\{e_j \mid j \in J\}$ is an orthonormal system of $H_2$.
 		
 		\item The equality
 		\begin{align}
-			\tilde{x} = \sum_{i \in I} (\tilde{x}, \tilde{e}_i)_{H_2} \tilde{e}_i. \label{eq:ran_fourier}
+			\tilde{x} = \sum_{j \in J} (\tilde{x}, \tilde{e}_j)_{H_2} \tilde{e}_j. \label{eq:ran_fourier}
 		\end{align}
 		holds.
 		
@@ -144,14 +144,14 @@
 \begin{proof}
 	We will proof the statements separately.
 	\begin{enumerate}
-		\item In case $x = 0$ or $y = 0$ the statement is clearly true. From now on we assume $x,y \in H_1 \setminus \{0\}$. Using lemma \ref{lemma:metric_representation} we obtain
+		\item Using lemma \ref{lemma:metric_representation} we obtain
 		\begin{align*}
 			\sqrt{1 - \dfrac{|(x,y)_{H_1}|^2}{\norm[H_1]{x}^2 \norm[H_1]{y}^2}} &= \sqrt{1 - (\C x,\C y)_{\mathcal{P}(H_1)}^2} = d(\C x,\C y) \\
 			&= d\pbraces{g(\C x), g(\C y)} = \sqrt{1 - (g(\C x), g(\C y))_{\mathcal{P}(H_2)}^2} = \sqrt{1 - \dfrac{|(\tilde{x}, \tilde{y})_{H_2}|^2}{\norm[H_2]{\tilde{x}}^2 \norm[H_2]{\tilde{y}}^2}}
 		\end{align*}
 		and we immediately observe that $|(x,y)_{H_1}| = |(\tilde{x},\tilde{y})_{H_2}|$. 
 		
-		\item Using what we just proofed \eqref{eq:vector_isometry} and the fact that $M$ is an orthonormal basis of $H_1$ we pbtain for every $i,j \in I$ the equality
+		\item Using what we just proofed \eqref{eq:vector_isometry} and the fact that $M$ is an orthonormal basis of $H_1$ we obtain for every $i,j \in $ the equality
 		\begin{align*}
 			|(\tilde{e}_i, \tilde{e}_j)_{H_2}| = |(e_i, e_j)_{H_1}| = 
 			\begin{cases}
@@ -165,6 +165,6 @@
 		\begin{align*}
 			\norm[H_2]{\tilde{x}}^2 = \norm[H_1]{x}^2 = \sum_{i \in I} |(x, e_i)_{H_1}|^2 = \sum_{i \in I} |(\tilde{x}, \tilde{e}_i)_{H_2}|^2.
 		\end{align*}
-		Because of \ref{bullet:ran_ons} we can now use \eqref{eq:parceval_to_fourier} and immediately obtain \eqref{eq:ran_fourier}, which is just what we wanted to show.
+		Because $L$ is an orthonormal system we can now use \eqref{eq:parceval_to_fourier} and immediately obtain \eqref{eq:ran_fourier}, which is just what we wanted to show.
 	\end{enumerate}
 \end{proof}
