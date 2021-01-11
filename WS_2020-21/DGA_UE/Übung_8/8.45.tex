@@ -6,7 +6,7 @@ Wir betrachten \Quote{Wechsel-Geld-Problem} (WGK).
 In einer Währung existieren (unlimitiert viele) Münzen im Wert von $1 = d_1 < d_2 < \cdots  d_k$ Cent.
 Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $n$ Cent zu wechseln.
 
-\begin{enumerate}[label = \alph*)]
+\begin{enumerate}[label = \alph*]
 
   \item Bestätigen Sie, dass das WGK die optimale Teilstruktur-Eigenschaft erfüllt, also zeigen Sie, dass eine optimale Lösung für $n$ Cent, also $n = \sum_{i} c_i d_i$ und $\sum_i c_i$ ist minimal, auch eine optimale Lösung für $b$ und $n - b$ darstellt, wenn $b$ ein Anteil von $n$ ist, welcher durch die in der Darstellung von $n$ verwendeten Münzen zustande kommt, also $b = \sum_i c_i^\prime d_i$ mit $0 \leq c_i^\prime \leq c_i$.
 
@@ -14,24 +14,26 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
   Überlegen Sie sich eine Rekursion für $A(n)$.
 
   \item Erklären Sie die Funktionsweise des folgenden Algorithmus \textsc{Wechsel}($d, k, n$), welcher für den Wert $n$ und für ein gegebenes Münzen-Array $d = (d_1, \dots, d_k)$ die optimale Wechsellösung liefert am Beispiel $(d_1, d_2, d_3) = (1, 2, 5)$ und $n = 8$.
+  
+  \phantom{}
 
-  \begin{algorithm}
-      \begin{algorithmic}[1]
-          \Procedure{Wechsel}{$d, k, n$}
-          \State Seien $C[0, \dots, n]$ und $S[0, \dots, n]$ neue Felder
-          \State $C[0] := 0$
-          \For{$j = 1$ to $n$}
-              \State $C[j] := \infty$
-              \For{$i = 1$ to $k$}
-                  \If{ $d_i \leq j$ and $1 + C[j - d_i] < C[j]$}
-                      \State $C[j] := 1 + C[j - d_i]$
-                      \State $S[j] := d_i$
-                  \EndIf
-              \EndFor
-          \EndFor
-          \EndProcedure
-      \end{algorithmic}
-  \end{algorithm}
+  \begin{algorithmic}
+    \Procedure{Wechsel}{$d, k, n$}
+      \State Seien $C[0, \dots, n]$ und $S[0, \dots, n]$ neue Felder
+      \State $C[0] := 0$
+      \For{$j = 1$ to $n$}
+        \State $C[j] := \infty$
+        \For{$i = 1$ to $k$}
+          \If{ $d_i \leq j$ and $1 + C[j - d_i] < C[j]$}
+            \State $C[j] := 1 + C[j - d_i]$
+            \State $S[j] := d_i$
+          \EndIf
+        \EndFor
+      \EndFor
+    \EndProcedure
+  \end{algorithmic}
+
+  \phantom{}
 
   \item Wie groß ist asymptotisch die Komplexität von \textsc{Wechsel}($d, k, n$)?
 
@@ -41,7 +43,6 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
 \end{exercise}
 
 % --------------------------------------------------------------------------------
-
 
 \begin{solution}
 
@@ -166,8 +167,8 @@ Ziel des WGK ist es, mit möglichst wenigen Münzen einen gegebenen Betrag von $
     \begin{align*}
       \begin{array}{c|c|c|c|c|c|c|c|c|c}
           & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
-        C & 0 & 1 &  1 & 2  &  2 & 1  & 2  & 2  & 3  \\ \hline
-        S &   & 1 & 2  & 1  & 2  & 5  & 1  & 2  & 1  \\
+        C & 0 & 1 & 1 & 2 & 2 & 1 & 2 & 2 & 3 \\ \hline
+        S &   & 1 & 2 & 1 & 2 & 5 & 1 & 2 & 1 \\
       \end{array}
     \end{align*}
 
