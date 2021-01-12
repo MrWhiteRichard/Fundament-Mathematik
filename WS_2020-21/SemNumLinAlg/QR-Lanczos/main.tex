@@ -133,7 +133,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
-Da uns die Diskretisierung durch Finite-Elemente-Methoden Matrizen $A$ und $B$ mit sehr großer Dimension $N$ liefert, ist es also nun sinnvoll, ein Verfahren zu entwickeln, dass uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
+Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es nun sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
 
 \section{Das QR-Verfahren}
 
@@ -190,7 +190,7 @@ Die Einträge konvergieren schneller gegen $0$, wenn der Bruch kleiner ist. Wir 
 Die Wahl des Shifts als $a^{(t)}_{nn}$ macht also sinn, da dieser Eintrag für $t \rightarrow \infty$ gegen $\lambda_n$ konvergiert. Dieser Shift wird auch Rayleigh-Quotienten-Shift genannt. Nach der QR-Zerlegung von $A^{(t)}$ setzt man $A^{(t+1)} \coloneqq R^{(t)}Q^{(t)} + \rho \id$, um wieder eine Matrix zu erhalten, die die gleichen Eigenwerte wie $A^{(t)}$ und somit auch wie $A$ besitzt.
 Je nach dem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Toleranz, die von den Einträgen $a^{(t)}_{ni}, \, i = 1,\dots, n-1$ unterschritten werden muss, bevor analoge Schritte für den zweitkleinsten Eigenwert durchgefürht werden. Dessen Näherung steht in $a^{(t)}_{(n-1)(n-1)}$.
 
-Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Nannen-Skript}. Dieser Shift wird Wilkinson-Shift genannt. 
+Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Nannen-Skript}. Dieser Shift wird Wilkinson-Shift genannt.
 
 In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführte Methode.
 
@@ -227,11 +227,120 @@ Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix 
 
 \section{Das Lanczos-Verfahren}
 
+Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertproblem Matrizen mit sehr großer Dimension. Außerdem ist man in der Praxis häufig nur an wenigen extremalen Eigenwerten interessiert. Das QR-Verfahren ist für solche Probleme also nicht geeignet. Im Folgenden werden wir deshalb das Lanczos-Verfahren kennenlernen.
+
 \subsection{Idee}
+
+Im folgenden sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$.
+
+Wir wiederholen zunächst das Konzept der Vektoriteration als Verfahren zur Approximation des größten Eigenwertes. Dafür benötigen wir den Satz von Rayleigh, der eine Darstellung des kleinsten bzw. größten Eigenwertes hermitescher Matrizen liefert.
+
+\begin{theorem}
+	Sei $A \in \C^n$ hermitesch und $\lambda_n$ (bzw. $\lambda_1$) der kleinste (bzw. größte) Eigenwert von $A$. Dann gilt
+	\begin{align*}
+		\lambda_n = \min_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_1 = \max_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
+	\end{align*}
+	Für $v \neq 0$ nennt man $\frac{(Av,v)}{(v,v)}$ den Rayleigh-Quotienten von $v$.
+\end{theorem}
+
+Den Beweis lassen wir an dieser Stelle aus, da sich der Satz von Rayleigh als Spezialfall des Lemmas (??) herausstellen wird.
+
+Die Vektoriteration erzeugt ausgehend von einem Startvektor $x^{(0)} \in \K^{n}$ eine Folge von Iterierten $x^{(t)} := \frac{Ax^{(t-1)}}{\|Ax^{(t-1)}\|}$ für $t \in \N$. Definiert man die Approximationen $\lambda^{(t)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(t)}$, so konvergiert $\lambda^{(t)}$ quadratisch gegen $\lambda_1$.
+
+Wegen des Satzes von Rayleigh gilt $\lambda^{(t)} \leq \lambda_1$ für alle $t \in \N$.
+
+\begin{definition}
+	Sei $v_0 \in \K^{N}$ und $A \in \K^{N \times N}$. Dann bezeichnet
+	\begin{align*}
+		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
+	\end{align*}
+	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \K^N \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
+\end{definition}
+
+Beim Lanczos-Verfahren wird nun als Näherung an den größten Eigenwert das Maximum des Rayleigh-Quotienten über dem Krylov-Raum
+\begin{align*}
+	\mathcal{K}_m(A,x^{(0)}) = \textbf{span}\{x^{(0)}, x^{(1)}, \dots , x^{(m-1)} \}
+\end{align*}
+verwendet, also
+
+\begin{align*}
+	\lambda_1^{(t)} := \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(Ax,x)}{(x,x)}.
+\end{align*}
+
+Da \textbf{span}$\{x^{(t-1)}\} \subset \mathcal{K}_m$, gilt
+\begin{align*}
+	\mu^{(t)} \leq \mu_1^{(t)} \leq \lambda_1
+\end{align*}
+
+und $\mu_1^{(t)}$ ist somit eine mindestens so gute Approximation von $\lambda_1$ wie $\mu^{(t)}$.
+
+Betrachten wir die Abbildung
+
+\begin{align*}
+	\mathcal{A}_m: \mathcal{K}_m &\to \mathcal{K}_m \\
+	x &\mapsto \mathcal{P}_m Ax,
+\end{align*}
+
+so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}_m$
+
+\begin{align*}
+	(\mathcal{A}_mx, y) = (\mathcal{A}_m\mathcal{P}_m x, y) = x^*\mathcal{P}_m A \mathcal{P}_m y = (x, \mathcal{A}_m y),
+\end{align*}
+
+da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
+
+\begin{align*}
+	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \mu_1^{(t)}.
+\end{align*}
+
+Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren Überlegungen in ref*** eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq t$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
+
+\subsection{Herleitung des Verfahrens}
+
+Wie wir eben gesehen haben, ist es also Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_m-1\}$ des Krylov-Raums. Für die Einträge von $T_m$ gilt
+\begin{align*}
+	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
+	\Rightarrow T_m &= V_m^*AV_m.
+\end{align*}
+
+Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel 2 bekannten QR-Verfahren mit wenig Aufwand berechnen.
+
+Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $T_m$ als eine Tridiagonalmatrix (also auch Hessenbergmatrix) der Form
+
+\begin{align*}
+\begin{pmatrix}
+	\gamma_0 & \delta_0 & 0 & \hdots & 0 \\
+	\delta_0 & \gamma_1 & \delta_1 &  & \vdots \\
+	0 & \delta_1 & \ddots & \ddots & 0 \\
+	\vdots &  & \ddots & \ddots & \delta_{m-2} \\
+	0 & \hdots & 0 & \delta_{m-2} & \gamma_{m-1}
+\end{pmatrix}
+\end{align*}
+
+aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
+\begin{align*}
+	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
+	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}
+\end{align*}
+
+Da es sich bei $\{v_0, \dots, v_{m-1}\}$ um ein Orthogonalsystem handelt, liefert Multiplizieren der $j$-ten Gleichung von links mit $v_j^*$, dass $\gamma_j = v_j^*Av_j$ für $j = 0, \dots, m-2$. Somit können wir die $j$-te Gleichung rekursiv nach $v_{j+1}$ auflösen:
+
+\begin{align*}
+	v_{j+1} = \begin{cases}
+		\frac{\overbrace{(A-\gamma_0)v_0}^{=:w_0}}{\delta_0} &,j = 0 \\
+		\frac{\overbrace{(A-\gamma_j)v_j - \delta_{j-1} v_{j-1}}^{=:w_j}}{\delta_j} &,j \geq 1
+	\end{cases}
+\end{align*}
+
+Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bricht die Iteration ab. Daraus ergibt sich nun der Algorithmus für das Lanczos-Verfahren.
+
+**Hier Algorithmus einfügen...***
+
 
 \subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
 
 In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \K^{n \times n}$ konvergieren.
+
 
 %vorbereitungs lemmata
 
