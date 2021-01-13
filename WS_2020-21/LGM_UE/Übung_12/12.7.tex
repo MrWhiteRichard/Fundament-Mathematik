@@ -13,6 +13,34 @@ an, mit $I \neq \emptyset$.)
 
 \begin{solution}
 
-$M \setminus g(M) \neq \emptyset$.
+$M \setminus g[M] \neq \emptyset$. Wir finden also auch ohne Auswahlaxiom ein $m \in M \setminus g[M]$. Nun definieren wir die Funktion
+\begin{align*}
+	f: \N \to M: n \mapsto
+	\begin{cases}
+		m & \text{falls } n = 0 \\
+		g(f(n - 1)) & \text{falls } n > 0 
+	\end{cases}.
+\end{align*}
+Wir Behaupten nun
+\begin{align*}
+	\forall n \forall m (f(m) = f(n) \Rightarrow m = n)
+\end{align*}
+Wir beweisen das induktiv.
+
+Sei $n = 0$. Dann gilt für alle $m > 0$
+\begin{align*}
+	m = f(0) = f(m) = g(f(m - 1))
+\end{align*}
+und daraus folgt der Widerspruch $m \in g[M]$. Also gilt $m = 0$. 
+
+Nehmen wir nun an es gilt für $n \in \N$ bereits 
+\begin{align*}
+	\forall m \in \N: (f(n) = f(m) \Rightarrow m = n)
+\end{align*}
+und es gilt $f(n + 1) = f(m)$ für ein $m \in \N$. Wie im Induktionsanfang schließen wir $m \neq 0$. Daher gilt
+\begin{align*}
+	g(f(n)) = f(n + 1) = g(m) = g(f(m - 1))
+\end{align*}
+und wegen der Injektivität von $g$ daher $f(n) = f(m - 1)$. Nach Induktionsvoraussetzung gilt $n = m - 1$ und daher $n + 1 = m$. 
 
 \end{solution}
