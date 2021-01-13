@@ -2,14 +2,35 @@
 
 \begin{exercise}[268]
 
-\phantom{}
+Zeigen Sie halbwegs formal, dass es in jeder endlichen nichtleeren partiellen
+Ordnung ein maximales Element gibt. \\
+\textit{Hinweis:} Definieren Sie eine geeignete Menge $M \subseteq \omega$, von
+der Sie dann zeigen, dass sie induktiv ist.
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-
-\phantom{}
-
+\begin{align*}
+  M := \{n \varepsilon \omega \mid \forall A[ (\exists f: A \to n \text{ bijektiv})
+  \implies (\exists x \varepsilon A: \forall y \in A: y \geq x \implies  y = x)]\}
+  \cup \{\emptyset\}
+\end{align*}
+Laut dem Aussonderungsaxiom existiert eine solche Menge.
+Wir wollen nun zeigen, dass die Menge sogar induktiv ist:
+Per Definition ist $\emptyset \varepsilon M$.
+\begin{align*}
+  \forall x (x \varepsilon M \rightarrow (x + 1) \varepsilon M):
+\end{align*}
+Sei $A$ eine Menge mit $f: A \to x + 1$ bijektiv. Betrachte die Menge
+\begin{align*}
+  x + 1 &= \{0,\dots,x\} \\
+  A' &= \{z \varepsilon A: f(z) \neq x\} = A \setminus \{f^{-1}(x)\} \\
+  f' &:= f \cap (A' \times x) = f|_{A'}
+\end{align*}
+$f'$ ist eine Bijektion von $A'$ nach $x$, also existiert ein maximales Element $x_0$ von $A'$.
+Jetzt vergleiche $x_0$ mit $f^{-1}(x)$: \\
+Fall 1: $x_0 \leq f^{-1}(x)$: Dann ist $f^{-1}(x)$ ein maximales Element von $A$ (Transitivität). \\
+Fall 2: Sonst: $x_0$ ist ein maximales Element von $A$.
 \end{solution}
