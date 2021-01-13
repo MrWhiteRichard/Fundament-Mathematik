@@ -41,7 +41,7 @@
     
     Sei $(\lambda, v)$ ein Eigenpaar der Matrix $A \in \C^{N \times N}$.
     Wir nennen $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$.
-    Dieser besitzt den bekannten \textit{Rechts-Eigenraum} $\Ker(A - I_N \lambda)$.
+    Dieser besitzt den bekannten \textit{Rechts-Eigenraum} $\ker(A - I_N \lambda)$.
 
     $A^\ast$ ist tatsächlich die Adjungierte von $A$ im Sinne der Funktionalanalysis, weil $\Forall x, y \in \C^N:$
 
@@ -100,9 +100,9 @@
 
     \begin{enumerate}[label = (\roman*)]
 
-        \item Es gibt eine Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\Ker(A - I_N \lambda_1)$.
+        \item Es gibt eine Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\ker(A - I_N \lambda_1)$.
 
-        \item Es gibt eine Basis $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ von $\Ker(A^\ast - I_N \overline \lambda_1)$, sodass
+        \item Es gibt eine Basis $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ von $\ker(A^\ast - I_N \overline \lambda_1)$, sodass
         
         \begin{align*}
             \Forall l, k = 1, \dots, L_1:
@@ -131,7 +131,7 @@
 \begin{remark}
     
     $P_1^- := -P_1^+$ nennt man die \textit{Spektrale Projektion} auf den Eigenraum von $\lambda_1$.
-    Offensichtlich bildet $P_1^-$ ganz $\C^N$ auf den Rechts-Eigenraum von $\lambda_1$ ab, sie ist aber auch idempotent, weil $\Forall x \in \Ker(A - I_N \lambda_1):$
+    Offensichtlich bildet $P_1^-$ ganz $\C^N$ auf den Rechts-Eigenraum von $\lambda_1$ ab, sie ist aber auch idempotent, weil $\Forall x \in \ker(A - I_N \lambda_1):$
 
     \begin{align*}
         P_1^- x
@@ -168,7 +168,7 @@
 
         \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich holomorph.
         
-        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\Ker(A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
+        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\ker(A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
         
         \item Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwert von $A$.
         Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
@@ -246,7 +246,7 @@
         Alle Jordan-Ketten sind also $1$-gliedrig, bestehen also nur aus \Quote{echten} Eigenwerten.
         Es gibt also keine Hauptvektoren $2$-ter Stufe.
     
-        Sei $y \in \Ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
+        Sei $y \in \ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
         Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe, weil
 
         \begin{align*}
@@ -255,18 +255,18 @@
             \quad
             (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0 \\
             & \implies
-            x \in \Ker(A - I_N \lambda_1)^2 \setminus \Ker(A - I_N \lambda_1) = \emptyset.
+            x \in \ker(A - I_N \lambda_1)^2 \setminus \ker(A - I_N \lambda_1) = \emptyset.
         \end{align*}
 
         Widerspruch!
     
         \begin{align*}
             \implies
-            \Ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1) = \Bbraces{0}
+            \ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1) = \Bbraces{0}
         \end{align*}
     
         Die Ableitung unserer Matrixfunktion berechnet man komponentenweise.
-        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \Ker(A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
+        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \ker(A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
         $\Forall l = 1, \dots, L_1:$
 
         \begin{align*}
@@ -285,9 +285,9 @@
     
     \begin{enumerate}[label = (\roman*)]
 
-        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\Ker(A - I_N \lambda_1)$ haben wir bereits konstruiert.
+        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\ker(A - I_N \lambda_1)$ haben wir bereits konstruiert.
         
-        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\Ker(A - I_N \lambda_1)^\ast = \Ker(A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
+        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker(A - I_N \lambda_1)^\ast = \ker(A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
         
         \begin{align*}
             (v_{1, k}, w_{1, l})_2
@@ -364,7 +364,7 @@
         \end{align*}
 
         $\hat W_1$ sind also Links-Eigenvektoren von $A$ zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
-        Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\Ker(A^\ast - I_N \overline \lambda_1)$.
+        Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\ker(A^\ast - I_N \overline \lambda_1)$.
         Wir setzen an mit
 
         \begin{align*}
@@ -564,7 +564,7 @@
             (A - I_N \lambda) |_{E_\mathrm{C}}^{-1} (I_N - P_1^-)
         \end{align*}
 
-        Sei dabei $E := \Ker(A - I_N \lambda)$, d.h. der Eigenraum von $\lambda_1$ und $E_\mathrm{C}$ dessen Komplementärraum, d.h. $E \oplus E_\mathrm{C} = \C^N$.
+        Sei dabei $E := \ker(A - I_N \lambda)$, d.h. der Eigenraum von $\lambda_1$ und $E_\mathrm{C}$ dessen Komplementärraum, d.h. $E \oplus E_\mathrm{C} = \C^N$.
         $P_1^-$ ist eine Projektion auf $E$ und $I_N - P_1^-$ eine auf $E_\mathrm{C}$.
 
         Nur Eigenvektoren $x$ von $\lambda_1$ bzgl. $A$, und $0$ erfüllen
@@ -579,7 +579,7 @@
 
         \begin{align*}
             \implies
-            \Ker(A - I_N \lambda_1) |_{E_\mathrm{C}} = \Bbraces{0}
+            \ker(A - I_N \lambda_1) |_{E_\mathrm{C}} = \Bbraces{0}
         \end{align*}
 
 
