@@ -139,19 +139,18 @@ Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und 
 
 \subsection{Idee und Algorithmus}
 
-Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert, wobei $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ mit den Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$ berechnet wird. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit paarweise betragsmäßig verschiedenen Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert, wobei $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ mit den Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$ berechnet wird. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
 
-\floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \begin{algorithm}
-	\caption{QR-Verfahren}
 	\label{QR-Verfahren}
+	\caption{QR-Verfahren}
 	\algorithmicrequire{ $A \in \K^{n\times n}$}
-	\begin{algorithmic}[1]			
+	\begin{algorithmic}[1]
 		\While{Abbruchbedingung nicht erfüllt}
-		\State Berechne QR-Zerlegung von $A$
+		\State Berechne $A = QR$
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
@@ -159,7 +158,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K
 \end{algorithm}
 
 
-Wir führen einen Satz an, der unter gewissen Vorraussetzungen die Konvergenz dieses Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
+Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz dieses Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
 
 \begin{theorem}[Konvergenz des QR-Verfahrens]
 	\label{Konv_QR}
@@ -169,19 +168,19 @@ Wir führen einen Satz an, der unter gewissen Vorraussetzungen die Konvergenz di
 
 \subsection{Beschleunigung der Konvergenz}
 
-Wir betrachten die Matrizenfolge $\left(M^{(t)}\right)_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese Matrizen haben die Form
+Wir betrachten die Matrizenfolge $(\Lambda^t L \Lambda^{-t})_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese haben die Form
 
 \begin{equation*}
-	M^{(t)} \coloneqq
+	M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t} =
 	\left( \begin{array}{rrrr}
 		1 & 0 & \dots & 0 \\
-		m_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
+		l_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
 		\vdots & \ddots & \ddots & 0 \\
-		m_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & m_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
+		l_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & l_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
 	\end{array}\right).
 \end{equation*}
 
-Da die Eigenwerte der Größe nach sortiert sind, erkennt man, dass diese Matrix gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
+Da die Eigenwerte der größe nach sortiert sind, erkennt man, dass diese Matrix gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
 Die Einträge konvergieren schneller gegen $0$, wenn der Bruch kleiner ist. Wir versuchen das zu erreichen, in dem wir einen Shift durchführen. Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
 
 \begin{equation*}
@@ -211,7 +210,7 @@ In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführt
 		\Else
 		\State $\rho = \rho_2$
 		\EndIf
-		\State Berechne QR-Zerlegung von $A - \rho \id$
+		\State Berechne $A - \rho \id = QR$
 		\State $A = RQ + \rho \id$
 		\EndWhile
 		\EndFor
@@ -308,7 +307,7 @@ Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\ma
 
 Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $T_m$ als eine Tridiagonalmatrix (also auch Hessenbergmatrix) der Form
 
-\begin{align*}
+\begin{align}\label{trimatrix}
 \begin{pmatrix}
 	\gamma_0 & \delta_0 & 0 & \hdots & 0 \\
 	\delta_0 & \gamma_1 & \delta_1 &  & \vdots \\
@@ -316,7 +315,7 @@ Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren
 	\vdots &  & \ddots & \ddots & \delta_{m-2} \\
 	0 & \hdots & 0 & \delta_{m-2} & \gamma_{m-1}
 \end{pmatrix}
-\end{align*}
+\end{align}
 
 aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
 \begin{align*}
@@ -335,12 +334,78 @@ Da es sich bei $\{v_0, \dots, v_{m-1}\}$ um ein Orthogonalsystem handelt, liefer
 
 Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bricht die Iteration ab. Daraus ergibt sich nun der Algorithmus für das Lanczos-Verfahren.
 
-**Hier Algorithmus einfügen...***
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\begin{algorithm}
+	\label{Lanczos-Verfahren}
+	\caption{Lanczos-Verfahren}
+	\algorithmicrequire{ $A \in \K^{n\times n}$ hermitesche Matrix, zufälliger normierter Startvektor $v_0 \in \K^n$}
+	\begin{algorithmic}[1]
+		\State $\gamma_0 = v_0^*Av_0$
+		\State $w_0 = (A-\gamma_0 I)v_0$
+	  \State $\delta_0 = \|w_0\|_2$
+		\While{$\delta_j \neq 0$}
+		\State $v_{j+1} = w_j/\delta_j$
+		\State $j = j+1$
+		\State $\gamma_j = v_j^*Av_j$
+		\State $w_j = (A-\gamma_j I)v_j - \delta_{j-1}v_{j-1}$
+		\State $\delta_j = \|w_j\|_2$
+		\EndWhile
+		\State Berechne mittels QR-Verfahren Eigenwerte von $T_j \in \K^{(j+1) \times (j+1)}$ aus \ref{trimatrix}
+	\end{algorithmic}
+	\algorithmicensure{Approximation an die Eigenwerte von $\mathcal{A}_j$}
+\end{algorithm}
 
 
 \subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
 
 In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \K^{n \times n}$ konvergieren.
+
+Der Argumentation ist dabei in großen Teilen angelehnt an \cite{Eigenwertprobleme}, Abschnitt 4.1.
+
+Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenhang mit Polynomen charakterisiert.
+
+\begin{lemma}
+	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \K^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
+	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_N$ und zugehörigen Eigenvektoren $u_1, \dots, u_N$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{N} \alpha_j u_j$ und es gilt
+	\begin{align*}
+		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{N} p(\lambda_j)\alpha_j u_j.
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Wir zeigen zunächst die erste Aussage. Nach Definition des Krylov-Raums gilt
+	\begin{align}
+		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \K: v = \sum_{i=0}^{m-1} a_i C^i v_0 = (\sum_{i=0}^{m-1} a_i C^i)v_0\\
+		\Leftrightarrow& \Exists p(x) = a_0 + a_1 x + \dots + a_{m-1} x^{m-1} \in \Pi_{m-1}: v = p(C)v_0.
+		\label{eq:Krylov}
+	\end{align}
+
+	Da die Eigenvektoren eine Basis des $\K^N$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, N $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
+\end{proof}
+
+\begin{definition}
+	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
+	\begin{align}\label{chebyshev}
+		T_m(x) := \frac{1}{2}((x+ \sqrt{x^2 - 1})^m + (x- \sqrt{x^2 - 1})^m), \quad x \in \R.
+	\end{align}
+\end{definition}
+
+Es gibt weitere Definitionen der Chebyshev-Polynome. Die Bekannteste ist
+\begin{align}
+	T_(x) := \cos(m \arccos x), \quad x \in [-1,1],
+\end{align}
+
+welche aus der Identität $T_m(\cos \varphi) = \cos (m \varphi)$ für $\varphi \in \R$ folgt.
+
+Aus dieser Darstellung folgt auch mittels Additionstheorem die 2-Term-Rekursion
+
+\begin{align*}
+	T_0(x) = 1, \quad T_1(x) = x, \quad T_{n}(x) = 2x T_{n-1}(x) - T_{n-2}(x), \quad n \geq 2,
+\end{align*}
+
+welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ handelt.
 
 
 %vorbereitungs lemmata
@@ -354,12 +419,8 @@ In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczo
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
 	\end{equation}
 
-	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$, also
-	
-	\begin{equation*}
-		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}},
-	\end{equation*}
-	wobei $\mathcal{P}_{u_i}$ die Projektion auf $u_i$ ist,
+	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$ ist,
+
 	\begin{equation*}
 		\gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
