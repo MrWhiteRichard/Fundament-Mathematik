@@ -611,10 +611,7 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
 
 \begin{proof}
 
-    Wir definieren das Residuum zunächst auf $\Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}$ durch umstellen.
-
-    Sei $m = 1, \dots, k$.
-    Laut \ref{keldysh_nicht_linear}, existiert eine Umgebung $U_m$ von $\lambda_m$ und $R_m \in H(U_m)$ holomorph, sodass $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
+    Laut \ref{keldysh_nicht_linear}, existiert für $m = 1, \dots, k$ eine Umgebung $U_m$ von $\lambda_m$ und $R_m \in H(U_m)$ holomorph, sodass $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
 
     \begin{align*}
         A(\lambda)^{-1}
@@ -624,10 +621,10 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
         R_m(\lambda).
     \end{align*}
 
-    $R$ können wir nun auf $\lambda_m$ holomorph fortsetzen.
+    Die beiden Funktionen $R_\Lambda \in H(\Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k})$ und $R_{U_m} \in H(U_m)$ stimmen überein $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
 
-    \begin{align*}
-        R(\lambda)
+    \begin{multline*}
+        R_\Lambda(\lambda)
         :=
         A(\lambda)^{-1}
         -
@@ -639,14 +636,27 @@ Das folgende Korollar werden wir als Ausgangspunkt für die Konstruktion des zen
         R_m(\lambda)
         -
         \sum_{n=1}^k
-            \frac{1}{\lambda - \lambda_n} P_n^+
+            \frac{1}{\lambda - \lambda_n} P_n^+ \\
         =
         R_m(\lambda)
         -
         \sum_{\substack{n = 1 \\ n \neq m}}^k
             \frac{1}{\lambda - \lambda_n} P_n^+
-    \end{align*}
+        =:
+        R_{U_m}(\lambda).
+    \end{multline*}
 
-    Wenn wir das für alle $m = 1, \dots, k$ machen, haben wir $R$ auf ganz $\Lambda$ holomorph erweitert.
+    Die folgende Funktion $R$ ist also wohldefiniert, $\in H(\Lambda)$ und leistet das Gewünscht.
+
+    \begin{align*}
+        R:
+        \Lambda \to C^{N \times N}:
+        \lambda
+        \mapsto
+        \begin{cases}
+            R_\Lambda(\lambda), & \lambda \in \dom R_\Lambda, \\
+            R_{U_m}(\lambda),   & \Exists m = 1, \dots, k: \lambda \in \dom R_{U_m}
+        \end{cases}
+    \end{align*}
 
 \end{proof}

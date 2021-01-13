@@ -2,23 +2,135 @@
 
 \begin{exercise}
 
-Sei $\Omega \subset \R^2$ ein Lipschitz-Gebiet. Formulieren und beweisen Sie die
-wesentlichen Aussagen aus der a priori Analysis in Chapter 3, wenn $\mathcal{T}$
-keine Triangulierung aus Dreiecken, sondern aus Rechtecken ist. Der diskrete
-Raum $\mathcal{Q}^{1,1}(\mathcal{T})$ sei dabei definiert durch
+Sei $\Omega \subset \R^2$ ein Lipschitz-Gebiet.
+Formulieren und beweisen Sie die wesentlichen Aussagen aus der a priori Analysis in Chapter 3, wenn $\mathcal{T}$ keine Triangulierung aus Dreiecken, sondern aus Rechtecken ist.
+Der diskrete Raum $\mathcal{Q}^{1, 1}(\mathcal{T})$ sei dabei definiert durch
+
 \begin{align}
-  \mathcal{Q}^{1,1}(\mathcal{T}) := \{c \in C(\Omega) \mid
-  \forall Q \in \mathcal{T}: c|_Q = \mathcal{P}^1 \otimes \mathcal{P}^1\},
+  \mathcal{Q}^{1, 1}(\mathcal{T})
+  :=
+  \Bbraces
+  {
+    v \in C(\Omega)
+    \mid
+    \Forall Q \in \mathcal{T}:
+    v|_Q \in \mathcal{P}^1 \otimes \mathcal{P}^1
+  },
 \end{align}
+
 wobei $\mathcal{P}^1$ der Raum der eindimensionalen, affin linearen Polynome ist.
 Welche Vor- bzw. Nachteile haben Rechteckselemente im Vergleich zu Dreieckselementen?
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
 
-\phantom{}
+Wir erinnern kurz an die Definition einer Triangulierung, und bemerken, dass sich bloß der $1$-te Punkt, gemäß Angabe auf nicht-degenerierte Quader, d.h. $Q$ mit $|Q| \neq 0$, ändern muss.
+
+\includegraphicsboxed{NumPDEs/NumPDEs - Definition (triangulation, ...).png}
+
+Wir fordern zudem, dass $\mathcal{T}$ regulär ist, so ähnlichen wie bei Triangulierungen aus Dreiecken;
+d.h., dass der Schnitt zweier verschiedener Quader entweder leer, ein Knoten, oder eine Kante ist.
+
+In Chapter 3 gibt es folgende wesentlichen Aussagen.
+
+\begin{enumerate}[label = \arabic*]
+  \item Theorem 3.5 (Approximation Theorem)
+  \includegraphicsboxed{NumPDEs/NumPDEs - Theorem 3.5 (Approximation Theorem).png}
+  \item Corollary 3.6 \dots \Quote{Approximation Theorem für $\mathcal{S}_D^1$ und $\mathcal{S}_\ast^1$}
+  \item Lemma 3.7 (Bramble-Hilbert)
+  \item Lemma 3.8 (Transformation Formula)
+  \item Lemma 3.9 \dots \Quote{Referenz-Dreieck-Transformation und deren geometrische Interpretation}
+\end{enumerate}
+
+Die $1$-te Aussage für Rechtecke (in einer geeigneten Formulierung), folgt aus dem selben Beweis wie für Dreiecke.
+Die $2$-te Aussage für Rechtecke, folgt dann aus dem selben Beweis wie für Dreiecke, aus der $1$-ten für Rechtecke.
+Die $3$-te und $4$-te gelten sogar für allgemeinere Lipschitz-Gebiete, also auch für Rechtecke.
+Die $5$-te Aussage werden wir nun zeigen.
+
+\begin{tcolorbox}[standard jigsaw, opacityback = 0]
+
+  \textbf{Lemma 3.9 (für Rechtecke).}
+  Für $\hat Q = Q_\mathrm{ref} = [0, 1]^2$ das Referenz-Element und $T = [a, b] \times [c, d] \subset \R^2$ ein nicht-degeneriertes Rechteck, definieren wir
+
+  \begin{align*}
+    \Phi_Q:
+    Q_\mathrm{ref} \to Q,
+    \begin{pmatrix}
+      x \\ y
+    \end{pmatrix}
+    \mapsto
+    B
+    \begin{pmatrix}
+      x \\ y
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+      a \\ c
+    \end{pmatrix},
+    \quad
+    ~\text{wobei}~
+    B := \diag(b - a, d - c) \in \R^{2 \times 2}.
+  \end{align*}
+
+  Dann gilt, dass $\abs{\det B} = |Q|$ und
+
+  \begin{align*}
+    \norm[F]{B} \leq \sqrt 2 h_Q
+    \quad
+    \text{als auch}
+    \quad
+    \norm[F]{B^{-1}} \leq \sqrt 2 \rho_Q^{-1},
+  \end{align*}
+
+  wobei
+
+  \begin{align*}
+    h_Q = \max \Bbraces{b - a, d - c},
+    \quad
+    \rho_Q = \min \Bbraces{b - a, d - c}.
+  \end{align*}
+
+\end{tcolorbox}
+
+\textit{Beweis.}
+
+\begin{align*}
+  |Q| & = (b - a) (d - c) = |\det B| \\
+  \norm[F]{B} & = \sqrt{(b - a)^2 + (d - c)^2} \leq \sqrt{h_Q^2 + h_Q^2} = \sqrt 2 h_Q \\
+  \norm[F]{B^{-1}} & = \sqrt{\pbraces{\frac{1}{b - a}}^2 + \pbraces{\frac{1}{d - c}}^2} \leq \sqrt{\frac{1}{\rho_Q^2} + \frac{1}{\rho_Q^2}} = \sqrt 2 \rho_Q^{-1}
+\end{align*}
+
+\hfill
+$\square$
+
+Offensichtlich ist $\phi_Q$, als $(b - a)$-Skalierung entlang der $x$-Achse und $(d - c)$-Skalierung entlang der $y$-Achse, gefolgt von einer Translation um $(a, c)^\top$, ein Diffeomorphismus.
+Für das Theorem 3.5 (Approximation Theorem) wollen wir nun $\zeta_z \in \mathcal{Q}^{1, 1}(\mathcal{T})$ verwenden, die $\zeta_z(z^\prime) = \delta_{z z^\prime}$ erfüllen.
+Diese kann man durch Verkettung folgender Polynome mit geeigneten Transformationen $\phi$ aus unserem neuen Lemma 3.9 stückweise konstruieren.
+
+\begin{align*}
+  p_{(0, 0)}(x, y) := (1 - x) (1 - y),
+  \quad
+  p_{(1, 0)}(x, y) := x (1 - y),
+  \quad
+  p_{(0, 1)}(x, y) := (1 - x) y,
+  \quad
+  p_{(1, 1)}(x, y) := x y
+\end{align*}
+
+\begin{center}
+
+  \small
+  
+  \begin{tabular}{l|l|l|l|l}
+              & Gebiete                        & reguläre Verfeinerung & Adaptivität  & nicht konforme FE \\ \hline
+    Dreiecke  & Polygonzug-Rand                & lokal                 & oft möglich  & geht so           \\
+    Rechtecke & Polygonzug-Rand achsenparallel & nur global            & kaum möglich & ur schwierig      \\
+  \end{tabular}
+
+\end{center}
 
 \end{solution}
 
