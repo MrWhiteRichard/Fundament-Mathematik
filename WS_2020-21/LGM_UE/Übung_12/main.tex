@@ -27,10 +27,43 @@
 
 \maketitle
 
+\section*{ZFC-Axiome}
+
+Paarmengenaxiom: $\forall x\, \forall y\, \exists P \, \forall z
+(z \varepsilon P \leftrightarrow z = x \lor z = y)$. \\
+Schwaches Paarmengenaxiom: $\forall x\, \forall y\, \exists P\, (x \varepsilon P \land y \in P)$. \\
+Singletonaxiom: $\forall x \, \exists P \, \forall z (z \varepsilon P \leftrightarrow z = x)$. \\
+Mit \glqq halbwegs formalen Beweisen\grqq\ ist gemeint, dass Sie einen Beweis so
+angeben, dass klar ist, wie man daraus einen (halb)formalten Beweis machen kann:
+\begin{itemize}
+  \item Geben Sie Behauptungen oder Zwischenresultate an. (Etwa \glqq Zuerst beweisen
+  wir $A(x) \vdash B$, daher $\vdash A(x) \rightarrow B$, also $\vdash (\exists x A(x)) \rightarrow B$,
+  und schließlich $ZFC \vdash \exists x \, A(x)$, also $ZFC \vdash B$.\grqq) \\
+  Machen Sie klar, was die wesentlichen Schritte in Ihrem Beweis sind, und zu
+  welchen Schritten diese in einem formalen Beweis entsprechen --- meistens
+  geht es hier um Substitutionsaxiome, wo man einen geeigneten Term einsetzen muss,
+  sowie um Einführung von Quantoren. Geben Sie auch an, wo und wie Sie die folgenden
+  Axiome verwenden: Paarmengenaxiom, Aussonderungsaxiom, Vereinigungsmengenaxiom,
+  Potenzmengenaxiom.
+  \item Schreiben Sie Behauptungen oder Zwischenresultate so an, dass klar ist,
+  wie man sie in die offizielle Sprache der Mengenlehre übersetzen kann. \\
+  Achten Sie insbesondere auf Formulierungen wie \glqq\dots\grqq: Wenn $n$ eine
+  Zahl ist, dann ist klar, was mit $x = 0\, \lor \dots \lor\, x = n$ gemeint ist;
+  wenn aber $n$ eine Variable in Ihrer Sprache ist, dann ist $x = 0\, \lor \dots \lor\, x = n$
+  keine Formel. (Außer wenn Sie damit $x \in \omega \land x \leq n$ meinen.)
+\end{itemize}
+
 \input{12.1.tex}
 \input{12.2.tex}
 \input{12.3.tex}
 \input{12.4.tex}
+
+\section*{Auswahlaxiom, Endlichkeit}
+
+In diesem Abschnitt arbeiten wir mit der Theorie ZF (ohne AC). Die Existenz von
+Auswahlfunktionen oder Wohlordnungen dürfen Sie also nur dann verwenden, wenn sie
+explizit in der Angabe garantiert wird.
+
 \input{12.5.tex}
 \input{12.6.tex}
 \input{12.7.tex}

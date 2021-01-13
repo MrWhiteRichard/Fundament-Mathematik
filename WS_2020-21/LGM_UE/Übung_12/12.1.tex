@@ -1,8 +1,78 @@
+\subsection*{253/254}
+
 % --------------------------------------------------------------------------------
 
-\begin{exercise}[253/254]
+\begin{exercise}[253]
 
-\phantom{}
+Zeigen Sie halbwegs formal, dass das schwache Singletonaxiom $\forall x\, \exists S(x \varepsilon S)$
+zur Formel $\forall x\, \exists S \, \forall z (z = x \rightarrow z \varepsilon S)$
+äquivalent ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+Hinrichtung:
+\begin{algorithmic}[1]
+    \State $x \varepsilon S, z = x \vdash z = x \rightarrow
+    (x \varepsilon S \rightarrow z \varepsilon S)$
+    \Comment Leibniz-Axiom
+    \State $x \varepsilon S, z = x \vdash z = x$
+    \State $x \varepsilon S, z = x \vdash x \varepsilon S \rightarrow z \varepsilon S$
+    \Comment Modus Ponens
+    \State $x \varepsilon S, z = x \vdash x \varepsilon S$
+    \State $x \varepsilon S, z = x \vdash z \varepsilon S$
+    \Comment Modus Ponens
+    \State $x \varepsilon S \vdash z = x \rightarrow z \varepsilon S$
+    \Comment Deduktionstheorem
+    \State $x \varepsilon S \vdash \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Generalisierungstheorem
+    \State $\vdash x \varepsilon S \rightarrow \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Deduktionstheorem
+    \State $\vdash x \varepsilon S \rightarrow \exists S\, \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Schwache $\exists$-Einführung
+    \State $\vdash \exists S (x \varepsilon S) \rightarrow \exists S\, \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Starke $\exists$-Einführung
+    \State $\vdash \forall x \exists S (x \varepsilon S) \rightarrow \exists S\, \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Schwache $\forall$-Einführung
+    \State $\vdash \forall x\, \exists S (x \varepsilon S) \rightarrow \forall x\, \exists S\, \forall z (z = x \rightarrow z \varepsilon S)$
+    \Comment Starke $\forall$-Einführung
+\end{algorithmic}
+\pagebreak
+Rückrichtung:
+\begin{algorithmic}[1]
+    \State $\forall z (z = x \rightarrow z \varepsilon S) \vdash
+    \forall z (z = x \rightarrow z \varepsilon S)
+    \rightarrow (x = x \rightarrow x \varepsilon S)$
+    \Comment Substitutionsaxiom
+    \State $\forall z(z = x \rightarrow z \varepsilon S) \vdash \forall z (z = x \rightarrow z \varepsilon S)$
+    \State $\forall z(z = x \rightarrow z \varepsilon S) \vdash (x = x \rightarrow x \varepsilon S)$
+    \Comment Modus Ponens
+    \State $\forall z(z = x \rightarrow z \varepsilon S) \vdash x = x$
+    \Comment Leibniz-Axiom
+    \State $\forall z(z = x \rightarrow z \varepsilon S) \vdash x \varepsilon S$
+    \Comment Modus Ponens
+    \State $\vdash \forall z (z = x \rightarrow z \varepsilon S) \rightarrow x \varepsilon S$
+    \Comment Deduktionstheorem
+    \State $\vdash \forall z (z = x \rightarrow z \varepsilon S) \rightarrow \exists S (x \varepsilon S)$
+    \Comment Schwache $\exists$-Einführung
+    \State $\vdash \exists S\, \forall z (z = x \rightarrow z \varepsilon S) \rightarrow \exists S (x \varepsilon S)$
+    \Comment Starke $\exists$-Einführung
+    \State $\vdash \forall x\, \exists S\, \forall z (z = x \rightarrow z \varepsilon S) \rightarrow \exists S (x \varepsilon S)$
+    \Comment Schwache $\forall$-Einführung
+    \State $\vdash \forall x\, \exists S\, \forall z (z = x \rightarrow z \varepsilon S)
+    \rightarrow \forall x\, \exists S (x \varepsilon S)$
+    \Comment Starke $\forall$-Einführung
+\end{algorithmic}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[254]
+
+Zeigen Sie (mit einem halbwegs formalen Beweis), dass das Singletonaxiom
+aus dem Paarmengenaxiom folgt.
 
 \end{exercise}
 
