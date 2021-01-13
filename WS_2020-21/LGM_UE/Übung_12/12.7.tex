@@ -23,24 +23,24 @@ $M \setminus g[M] \neq \emptyset$. Wir finden also auch ohne Auswahlaxiom ein $m
 \end{align*}
 Wir Behaupten nun
 \begin{align*}
-	\forall n \forall m (f(m) = f(n) \Rightarrow m = n)
+	\forall n \forall k (f(k) = f(n) \Rightarrow k = n)
 \end{align*}
 Wir beweisen das induktiv.
 
-Sei $n = 0$. Dann gilt für alle $m > 0$
+Sei $n = 0$. Dann gilt für alle $k > 0$
 \begin{align*}
-	m = f(0) = f(m) = g(f(m - 1))
+	m = f(0) = f(k) = g(f(k - 1))
 \end{align*}
-und daraus folgt der Widerspruch $m \in g[M]$. Also gilt $m = 0$. 
+und daraus folgt der Widerspruch $m \in g[M]$. Also gilt $k = 0$. 
 
 Nehmen wir nun an es gilt für $n \in \N$ bereits 
 \begin{align*}
-	\forall m \in \N: (f(n) = f(m) \Rightarrow m = n)
+	\forall k \in \N: (f(n) = f(k) \Rightarrow k = n)
 \end{align*}
-und es gilt $f(n + 1) = f(m)$ für ein $m \in \N$. Wie im Induktionsanfang schließen wir $m \neq 0$. Daher gilt
+und es gilt $f(n + 1) = f(k)$ für ein $k \in \N$. Wie im Induktionsanfang schließen wir $k \neq 0$. Daher gilt
 \begin{align*}
-	g(f(n)) = f(n + 1) = g(m) = g(f(m - 1))
+	g(f(n)) = f(n + 1) = g(k) = g(f(k - 1))
 \end{align*}
-und wegen der Injektivität von $g$ daher $f(n) = f(m - 1)$. Nach Induktionsvoraussetzung gilt $n = m - 1$ und daher $n + 1 = m$. 
+und wegen der Injektivität von $g$ daher $f(n) = f(k - 1)$. Nach Induktionsvoraussetzung gilt $n = k - 1$ und daher $n + 1 = k$. 
 
 \end{solution}
