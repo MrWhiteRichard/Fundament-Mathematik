@@ -12,7 +12,41 @@ verletzt ist.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+$\Gamma := \{$Paarmengenaxiom, Vereinigungsmengenaxiom$\}$. \\
+Paarmengenaxiom: $\forall x\, \forall y\, \exists P \, \forall z
+(z \varepsilon P \leftrightarrow z = x \lor z = y)$. \\
+Vereinigungsmengenaxiom:
+$\forall \mathcal{A}\, \exists S\, \forall z (z \varepsilon S \leftrightarrow
+\exists B (z \varepsilon B \land B \varepsilon \mathcal{A}))$. \\
+Kleines Vereinigungsmengenaxiom:
+$\forall A\, \forall B\, \exists S\, \forall z (z \varepsilon S \leftrightarrow
+z \varepsilon A \lor z \varepsilon B)$. \\
 
-\phantom{}
+Seien $A, B$ beliebige Mengen.
+Das Paarmengenaxiom liefert uns eine Menge $C = \{A, B\}$ und das
+Vereinigungsmengenaxiom liefert dann $S = \bigcup C = A \cup B$.
+
+\begin{algorithmic}[1]
+\State $\Gamma \vdash \forall x\, \forall y\, \exists P \, \forall z
+(z \varepsilon P \leftrightarrow z = x \lor z = y)$
+\State $\Gamma \vdash \exists P \, \forall z
+(z \varepsilon P \leftrightarrow z = A \lor z = B)$
+\Comment Substitutionsaxiom + 2x MP
+\State $\Gamma \vdash \forall \mathcal{A}\, \exists S\, \forall z (z \varepsilon S \leftrightarrow
+\exists C (z \varepsilon C \land C \varepsilon \mathcal{A}))$
+\State $\Gamma \vdash \exists S\, \forall z (z \varepsilon S \leftrightarrow
+\exists C (z \varepsilon C \land C \varepsilon P))$
+\State ?
+\State $\Gamma \vdash \exists S \forall z (z \varepsilon S \leftrightarrow z \varepsilon A \lor z \varepsilon B)$
+\State $\Gamma \vdash \forall A\, \forall B\, \exists S \forall z (z \varepsilon S \leftrightarrow z \varepsilon A \lor z \varepsilon B)$
+
+\end{algorithmic}
+
+\begin{algorithmic}[1]
+  \State $(B \varepsilon \mathcal{A} \leftrightarrow B = x \lor B = y),
+  (z \varepsilon S \leftrightarrow (z \varepsilon B \land B \varepsilon \mathcal{A})),
+  (B = x)
+  \vdash z \varepsilon x \lor z \varepsilon y$
+\end{algorithmic}
 
 \end{solution}
