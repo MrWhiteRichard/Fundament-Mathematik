@@ -139,18 +139,19 @@ Da uns die Diskretisierung durch Finite-Elemente-Methoden Matrizen $A$ und $B$ m
 
 \subsection{Idee und Algorithmus}
 
-Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit paarweise betragsmäßig verschiedenen Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert, wobei $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ mit den Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$ berechnet wird. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert, wobei $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ mit den Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$ berechnet wird. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
 
+\floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \begin{algorithm}
-	\label{QR-Verfahren}
 	\caption{QR-Verfahren}
+	\label{QR-Verfahren}
 	\algorithmicrequire{ $A \in \K^{n\times n}$}
-	\begin{algorithmic}[1]
+	\begin{algorithmic}[1]			
 		\While{Abbruchbedingung nicht erfüllt}
-		\State Berechne $A = QR$
+		\State Berechne QR-Zerlegung von $A$
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
@@ -158,7 +159,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K
 \end{algorithm}
 
 
-Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz dieses Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
+Wir führen einen Satz an, der unter gewissen Vorraussetzungen die Konvergenz dieses Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
 
 \begin{theorem}[Konvergenz des QR-Verfahrens]
 	\label{Konv_QR}
@@ -168,19 +169,19 @@ Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz d
 
 \subsection{Beschleunigung der Konvergenz}
 
-Wir betrachten die Matrizenfolge $(\Lambda^t L \Lambda^{-t})_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese haben die Form
+Wir betrachten die Matrizenfolge $\left(M^{(t)}\right)_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese Matrizen haben die Form
 
 \begin{equation*}
-	M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t} =
+	M^{(t)} \coloneqq
 	\left( \begin{array}{rrrr}
 		1 & 0 & \dots & 0 \\
-		l_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
+		m_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
 		\vdots & \ddots & \ddots & 0 \\
-		l_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & l_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
+		m_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & m_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
 	\end{array}\right).
 \end{equation*}
 
-Da die Eigenwerte der größe nach sortiert sind, erkennt man, dass diese Matrix gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
+Da die Eigenwerte der Größe nach sortiert sind, erkennt man, dass diese Matrix gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
 Die Einträge konvergieren schneller gegen $0$, wenn der Bruch kleiner ist. Wir versuchen das zu erreichen, in dem wir einen Shift durchführen. Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
 
 \begin{equation*}
@@ -210,7 +211,7 @@ In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführt
 		\Else
 		\State $\rho = \rho_2$
 		\EndIf
-		\State Berechne $A - \rho \id = QR$
+		\State Berechne QR-Zerlegung von $A - \rho \id$
 		\State $A = RQ + \rho \id$
 		\EndWhile
 		\EndFor
@@ -244,8 +245,12 @@ In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczo
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
 	\end{equation}
 
-	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$ ist,
-
+	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$, also
+	
+	\begin{equation*}
+		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}},
+	\end{equation*}
+	wobei $\mathcal{P}_{u_i}$ die Projektion auf $u_i$ ist,
 	\begin{equation*}
 		\gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
