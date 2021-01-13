@@ -13,34 +13,57 @@ an, mit $I \neq \emptyset$.)
 
 \begin{solution}
 
-$M \setminus g[M] \neq \emptyset$. Wir finden also auch ohne Auswahlaxiom ein $m \in M \setminus g[M]$. Nun definieren wir die Funktion
+Weil $g$ nicht surjektiv ist, ist $I := M \setminus g[M] \neq \emptyset$.
+Sei also $a \in I$.
+
 \begin{align*}
-	f: \N \to M: n \mapsto
+    f_a:
+    \N \to M:
+    n
+    \mapsto
 	\begin{cases}
-		m & \text{falls } n = 0 \\
-		g(f(n - 1)) & \text{falls } n > 0 
-	\end{cases}.
+		a,             & \text{falls}~ n = 0, \\
+		g(f_a(n - 1)), & \text{falls}~ n > 0 
+	\end{cases}
 \end{align*}
-Wir Behaupten nun
-\begin{align*}
-	\forall n \forall k (f(k) = f(n) \Rightarrow k = n)
-\end{align*}
-Wir beweisen das induktiv.
 
-Sei $n = 0$. Dann gilt für alle $k > 0$
-\begin{align*}
-	m = f(0) = f(k) = g(f(k - 1))
-\end{align*}
-und daraus folgt der Widerspruch $m \in g[M]$. Also gilt $k = 0$. 
+Wir wollen nun folgende Aussage, d.h. die Injektivität von $f_a$, mit Induktion nach $n$ beweisen.
 
-Nehmen wir nun an es gilt für $n \in \N$ bereits 
 \begin{align*}
-	\forall k \in \N: (f(n) = f(k) \Rightarrow k = n)
+    \Forall n, k \in \N:
+    (f_a(k) = f_a(n) \implies k = n)
 \end{align*}
-und es gilt $f(n + 1) = f(k)$ für ein $k \in \N$. Wie im Induktionsanfang schließen wir $k \neq 0$. Daher gilt
+
+IA ($n = 0$):
+Sei $k \in \N$ mit $f_a(0) = f_a(n) = f_a(k)$.
+Angenommen, $k \neq 0$, d.h. $k > 0$.
+
 \begin{align*}
-	g(f(n)) = f(n + 1) = g(k) = g(f(k - 1))
+    \implies
+    m = f_a(0) = f_a(k) = g(f_a(k - 1))
+    \implies
+    m \in g[M]
 \end{align*}
-und wegen der Injektivität von $g$ daher $f(n) = f(k - 1)$. Nach Induktionsvoraussetzung gilt $n = k - 1$ und daher $n + 1 = k$. 
+
+Widerspruch!
+
+IS ($n \mapsto n + 1$):
+Für $n \in \N$ gelte bereits
+
+\begin{align*}
+    \Forall k \in \N:
+    (f_a(n) = f_a(k) \implies n = k).
+\end{align*}
+
+Sei $k \in \N$ mit $f_a(n + 1) = f_a(k)$.
+Wäre $k = 0$, dann würde wegen $n + 1 > 0 = k$, mit dem IA ($k = 0$) ein Widerspruch folgen.
+
+\begin{align*}
+    \implies
+	g(f_a(n)) = f_a(n + 1) = f_a(k) = g(f_a(k - 1))
+\end{align*}
+
+Wegen der Injektivität von $g$, folgt $f_a(n) = f_a(k - 1)$.
+Wegen der Induktionsvoraussetzung, folgt außerdem $n = k - 1$ und daher $n + 1 = k$. 
 
 \end{solution}
