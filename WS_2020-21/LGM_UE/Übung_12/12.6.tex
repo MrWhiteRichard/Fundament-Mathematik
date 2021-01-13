@@ -2,7 +2,9 @@
 
 \begin{exercise}[269]
 
-\phantom{}
+Sei $f: \N \to M$ injektiv.
+Geben Sie (in Abhängigkeit von $f$) explizit eine injektie aber nicht surjektive Funktion $g: M \to M$ an.
+(Welche Instanz(en) des Aussonderungsaxioms oder Ersetzungsaxioms verwenden Sie in einem formalen Beweis dieser Aussage?)
 
 \end{exercise}
 
@@ -10,6 +12,29 @@
 
 \begin{solution}
 
-\phantom{}
+Weil $f$ injektiv ist, hat es eine (injektive) Links-Inverse $f^{-1}$.
+Sei $h: \N \to \N$ injektiv, aber nicht surjektiv (z.B. die Nachfolger-Funktion).
+
+\begin{align*}
+    g(m)
+    :=
+    \begin{cases}
+        m,                           & m \in M \setminus f[\N], \\
+        (f \circ h \circ f^{-1})(m), & m \in f[\N],
+    \end{cases}
+    \quad
+    m \in M
+\end{align*}
+
+Das Aussonderungsaxiom verwenden wir für die Wohldefiniertheit von
+
+\begin{multline*}
+    f[\N] := \Bbraces{m \in M: \Exists n \in \N: f(n) = m}, \\
+    \text{d.h.}
+    \quad
+    \Exists f[\N] (m \in f[\N] \leftrightarrow (m \in M \land \varphi(m))),
+    \quad
+    \varphi(m): \Exists n (n \in \N \land f(n) = m)
+\end{multline*}
 
 \end{solution}
