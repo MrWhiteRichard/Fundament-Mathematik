@@ -1,0 +1,17 @@
+\subsection*{Zusammenfassung}
+
+Wir haben insgesamt den folgenden Algorithmus \ref{alg:integral_methode_zusammenfassung} gefunden.
+
+\begin{algorithm}[H]
+	\caption{Integral-Methode}
+    \begin{algorithmic}[1]
+        \Procedure{Integral-Methode Zusammanfassung}{}
+            \State Berechne $A_0, A_1 \in \C^{N \times j}$ (z.B. mit LU-Zerlegung);
+            \State Berechne und reduziere eine Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
+            \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1}$ (z.B. mit QR-Verfahren);
+            \State \Return $\lambda_1, \dots, \lambda_k$
+		\EndProcedure
+    \end{algorithmic}
+    \caption{}
+    \label{alg:integral_methode_zusammenfassung}
+\end{algorithm}

@@ -1,0 +1,80 @@
+\begin{remark} \label{spektrale_projektion}
+    
+    $P_1^- := -P_1^+$ nennt man die \textit{Spektrale Projektion} auf den Eigenraum von $\lambda_1$.
+    Offensichtlich bildet $P_1^-$ ganz $\C^N$ auf den Rechts-Eigenraum von $\lambda_1$ ab, sie ist aber auch idempotent, weil $\Forall x \in \ker(A - I_N \lambda_1):$
+
+    \begin{align*}
+        P_1^- x
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l}
+            w_{1, l}^\ast
+            \sum_{k=1}^{L_1}
+                (x, v_{1, k})_2
+                v_{1, k}
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l}
+            \sum_{k=1}^{L_1}
+                \underbrace{(v_{1, k}, w_{1, l})_2}_{-\delta_{l, k}}
+                (x, v_{1, k})_2
+        =
+        \sum_{l=1}^{L_1}
+            (x, v_{1, l})_2
+            v_{1, l}
+        =
+        x.
+    \end{align*}
+
+    Also ist $P_1^-$ tatsächlich eine Projektion.
+    Damit gilt also $ \C^N = X \oplus Y$.
+
+    \begin{align*}
+        Y & := \ker (I_n - P_1^-) = \ran P_1^- \stackrel{!}{=} \Span V_1 = \ker(A - I_N \lambda_1) & \xrightarrow{A - I_N \lambda_1} \quad & \Bbraces{0} \subseteq Y \\
+        X & := \ker P_1^- = \ran(I_N - P_1^-) \stackrel{!}{=} \ran(A - I_N \lambda_1)              & \xrightarrow{A - I_N \lambda_1} \quad & \ran(A - I_N \lambda_1) = X
+    \end{align*}
+
+    Das erste \Quote{!} gilt, weil als Spektrale Projektion
+
+    \begin{align*}
+        P_1^-: \C^N \to \Span V_1,
+        \quad
+        \Forall l = 1, \dots, L_1:
+            v_{1, l} = P_1^- v_{1, l} \in \ran P_1^-;
+    \end{align*}
+
+    das zweite \Quote{!} gilt, weil $A - I_N \lambda_1$ und $I_N - P_1^-$ kommutieren.
+
+    \begin{align*}
+        P_1^- (A - I_N \lambda_1)
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l} w_{1, l}^\ast
+        (A - I_N \lambda_1)
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l}
+            \underbrace
+            {
+                (w_{1, l}^\ast A
+                -
+                w_{1, l}^\ast \lambda_1)
+            }_0
+        =
+        0
+    \end{align*}
+
+    \begin{multline*}
+        (A - I_N \lambda_1) (I_N - P_1^-)
+        =
+        (A - I_N \lambda_1) - \underbrace{(A - I_N \lambda_1) P_1^-}_0 \\
+        =
+        (A - I_N \lambda_1) - \underbrace{P_1^- (A - I_N \lambda_1)}_0
+        =
+        (I_N - P_1^-) (A - I_N \lambda_1)
+    \end{multline*}
+
+    $X$ und $Y$ sind also $(A - I_N \lambda_1)$-invariant.
+    Wir sagen, dass $A - I_N \lambda_1$ auch $X$- und $Y$-invariant ist.
+
+\end{remark}

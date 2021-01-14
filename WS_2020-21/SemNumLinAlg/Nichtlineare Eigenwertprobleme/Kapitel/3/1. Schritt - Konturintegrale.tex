@@ -1,0 +1,103 @@
+\subsection*{1. Schritt: Konturintegrale}
+
+Nachdem es gilt, $D$ zu bestimmen, bieten $A_0$ und $A_1$ einen Vielversprechenden Anfang.
+
+\begin{align} \label{eq:integral_matrizen_resultat}
+    \stackrel
+    {
+        \eqref{eq:integral_matrizen_resultat_compact}
+    }{\implies}
+    A_0 = V W^\ast \hat V,
+    \quad
+    A_1 = V D W^\ast \hat V
+\end{align}
+
+Diese werden wir im Wesentlichen durch eine komplexe Variante der Summierten Trapezregel approximieren.
+Betrachte dazu folgendes Ringgebiet.
+
+\begin{align*}
+    U := \Bbraces{z \in \C: \frac{R}{a_-} < |z| < R a_+},
+    \quad
+    R > 0,
+    \quad
+    1 < a_- < a_+
+\end{align*}
+
+Wir parametrisieren den Kreis $\partial B(0, R) \subset U$.
+
+\begin{align*}
+    \gamma: [0, 1) \to \partial B(0, R): t \mapsto R \exp*{2 \pi i t},
+    \quad
+    \gamma^\prime: t \mapsto 2 \pi i R \exp*{2 \pi i t}
+\end{align*}
+
+Wir approximieren ihn durch die $m$-ten Einheitswurzeln.
+Diese wählen wir dann auch als Quadraturknoten, gemeinsam mit gleichmäßigen Gewichten.
+
+\begin{align*}
+    \omega_m := \exp \frac{2 \pi i}{m},
+    \quad
+    m \in \N
+\end{align*}
+
+Sei $f \in H(U, \C)$ holomorph.
+
+\begin{multline*}
+    Q(f)
+    :=
+    \frac{1}{2 \pi i}
+    \Int[|\lambda| = R]
+    {
+        f(\lambda)
+    }{\lambda}
+    =
+    \frac{1}{2 \pi i}
+    \Int[\gamma]
+    {
+        f(\lambda)
+    }{\lambda}
+    =
+    \frac{1}{2 \pi i}
+    \Int[0][1]
+    {
+        \gamma^\prime(t)
+        f(\gamma(t))
+    }{t} \\
+    =
+    \Int[0][1]
+    {
+        R
+        \exp*{2 \pi i t}
+        f(R \exp*{2 \pi i t})
+    }{t}
+    \approx
+    \sum_{\nu = 0}^{m-1}
+        \frac{1}{m}
+        R \exp \frac{2 \pi i \nu}{m}
+        f
+        \pbraces
+        {
+            R \exp \frac{2 \pi i \nu}{m}
+        }
+    =
+    \frac{R}{m}
+    \sum_{\nu = 0}^{m-1}
+        \omega_m^\nu
+        f(R \omega_m^\nu)
+    =:
+    Q_m(f)
+\end{multline*}
+
+$f$ repräsentiert eine Komponente der Integranden von $A_0$ und $A_1$.
+Diese müssen vorhin passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert werden kann.
+Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird in ... diskutiert.
+
+Um $A(\lambda)^{-1} \hat V$ in den Integranden von \eqref{eq:integral_matrizen} zu bestimmen, werden wir nicht $A(\lambda)^{-1}$ direkt berechnen.
+Stattdessen, bestimmen wir eine LU-Zerlegung von $A(\lambda)$ und führen $j$-mal eine Vorwärts-Rückwärts-Substitution durch.
+$\Forall i = 1, \dots, j:$
+
+\begin{align*}
+    A(\lambda)^{-1} \hat V_i = x
+    \iff
+    \hat V_i = A(\lambda) x
+\end{align*}

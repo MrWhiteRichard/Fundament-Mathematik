@@ -1,0 +1,46 @@
+\begin{remark} \label{links_rechts_eigen_}
+    
+    Sei $(\lambda, v)$ ein Eigenpaar der Matrix $A \in \C^{N \times N}$.
+    Wir nennen $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$.
+    Dieser besitzt den bekannten \textit{Rechts-Eigenraum} $\ker(A - I_N \lambda)$.
+
+    $A^\ast$ ist tatsächlich die Adjungierte von $A$ im Sinne der Funktionalanalysis, weil $\Forall x, y \in \C^N:$
+
+    \begin{align*}
+        (A x, y)_2
+        =
+        y^\ast A x
+        =
+        (A^\ast y)^\ast x
+        =
+        (x, A^\ast y)_2.
+    \end{align*}
+
+    Nun ist $\overline \lambda$ Eigenwert von $A^\ast$ mit derselben algebraischen Vielfachheit wie $\lambda$, weil
+
+    \begin{align*}
+        \chi_{A^\ast}(\lambda)
+        =
+        \det(A^\ast - I_N \lambda)
+        =
+        \overline{\det(A - I_N \lambda)^\top}
+        =
+        \overline{\chi_A(\lambda)}.
+    \end{align*}
+
+    $v$ ist dann auch ein sogenannter \textit{Links-Eigenvektor} von $A^\ast$ zum Eigenwert $\overline \lambda$, weil
+
+    \begin{align*}
+        v^\ast A^\ast
+        =
+        (A v)^\ast
+        =
+        (\lambda v)^\ast
+        =
+        \overline \lambda v^\ast.
+    \end{align*}
+
+    Sämtliche Links-Eigenvektoren bilden (gemeinsam mit der $0$) den \textit{Links-Eigenraum} von $\lambda$ bzgl. $A$.
+    Dieser ist in der Tat ein Unterraum.
+
+\end{remark}

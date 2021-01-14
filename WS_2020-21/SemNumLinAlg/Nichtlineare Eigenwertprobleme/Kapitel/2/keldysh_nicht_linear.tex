@@ -1,0 +1,36 @@
+\begin{theorem}[Keldysh, nicht-linear] \label{keldysh_nicht_linear}
+
+    Sei $\Lambda \subset \C$ ein beschränktes Gebiet und $A \in H(\Lambda, \C^{N \times N})$ holomorph.
+    Es existiere ein $\lambda \in \Lambda$, sodass $A(\lambda) \in \GL_N(\C)$, d.h. invertierbar ist.
+
+    Weiter sei $\lambda_1 \in \Lambda$ ein halb-einfacher Eigenwert, d.h. es existiere eine $L_1$-dimensionale Orthonormalbasis aus (Rechts-)Eigenvektoren $v_{1, 1}, \dots, v_{1, L_1} \in \ker A(\lambda_1)$.
+    Für diese gelte $\Forall l = 1, \dots, L_1:$
+    
+    \begin{align*}
+        A^\prime(\lambda_1) v_{1, l}
+        \not \in
+        \ran A(\lambda_1).
+    \end{align*}
+
+    Dann existiert eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker(A^\ast(\lambda_1))$, sodass $\Forall l, k = 1, \dots, L_1:$
+
+    \begin{align}
+        w_{1, l}^\ast A^\prime(\lambda_1) v_{1, k} = \delta_{l, k}.
+    \end{align}
+
+    Weiterhin existiert eine Umgebung $U_1$ von $\lambda_1$ und $R_1 \in H(U_1)$ holomorph, sodass $\Forall \lambda \in U_1 \setminus \Bbraces{\lambda_1}:$
+
+    \begin{align}
+        A(\lambda)^{-1}
+        =
+        \frac{1}{\lambda - \lambda_1} P_1^+
+        +
+        R_1(\lambda),
+        \quad
+        P_1^+
+        :=
+        \sum_{l=1}^{L_1}
+            v_{1, l} w_{1, l}^\ast.
+    \end{align}
+
+\end{theorem}
