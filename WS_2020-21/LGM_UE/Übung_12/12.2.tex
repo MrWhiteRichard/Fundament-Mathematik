@@ -49,4 +49,29 @@ Vereinigungsmengenaxiom liefert dann $S = \bigcup C = A \cup B$.
   \vdash z \varepsilon x \lor z \varepsilon y$
 \end{algorithmic}
 
+Fast die richtige Aussage:
+
+\begin{algorithmic}[1]
+	\State $\vdash \pbraces{B = C\rightarrow \pbraces{x \in B \leftrightarrow x \in C}} \rightarrow \pbraces{B = D\rightarrow \pbraces{x \in B  \leftrightarrow x \in D}} \rightarrow$
+	\State $\pbraces{\pbraces{x \in S \rightarrow \pbraces{x \in B \land B \in \mathcal{A}}} \land \pbraces{\pbraces{\pbraces{x \in C \land C \in \mathcal{A}} \lor \pbraces{x \in D \land D \in \mathcal{A}}}\rightarrow x \in S}} \rightarrow$
+	\State $\pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{Tautologie}
+	\State $\pbraces{\pbraces{x \in S \rightarrow \pbraces{x \in B \land B \in \mathcal{A}}} \land \pbraces{\pbraces{\pbraces{x \in C \land C \in \mathcal{A}} \lor \pbraces{x \in D \land D \in \mathcal{A}}}\rightarrow x \in S}} \rightarrow$
+	\State $\pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{Leibniz Axiome und Modus Ponens}
+	\State $\pbraces{\pbraces{x \in S \rightarrow \pbraces{x \in B \land B \in \mathcal{A}}} \land \pbraces{\pbraces{\pbraces{x \in C \land C \in \mathcal{A}} \lor \pbraces{x \in D \land D \in \mathcal{A}}}\rightarrow x \in S}} \rightarrow$
+	\State $\forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{schwache $\forall$-Einführung}
+	\State $\pbraces{\pbraces{x \in S \rightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}} \land \pbraces{\pbraces{\pbraces{x \in C \land C \in \mathcal{A}} \lor \pbraces{x \in D \land D \in \mathcal{A}}}\rightarrow x \in S}} \rightarrow$
+	\State $\forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{schwache $\exists$-Einführung}
+	\State $\pbraces{\pbraces{x \in S \rightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}} \land \pbraces{\exists C\pbraces{x \in C \land C \in \mathcal{A}} \rightarrow x \in S}} \rightarrow$
+	\State $\forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{schwache $\forall$-Einführung und zwei Mal Pränex Rückwärts und Redundanz weglassen}
+	\State $\pbraces{x \in S \leftrightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}}  \rightarrow \forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow$
+	\State$ \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{kompakter aufschreiben}
+	\State $\forall x \pbraces{x \in S \leftrightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}}  \rightarrow \forall C \forall D \exists \mathcal{A} \forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow$
+	\State$ \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{schwache $\exists$- und $\forall$-Einführungen}
+	\State$ \pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{kompakter aufschreiben}
+	\State $\forall x \pbraces{x \in S \leftrightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}}  \rightarrow \forall C \forall D \exists \mathcal{A} \forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow$
+	\State$ \exists S \forall x\pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{starke $\forall$-Einführung und schwache $\exists$-Einführung}
+	\State $\forall \mathcal{A} \exists \forall x \pbraces{x \in S \leftrightarrow \exists B \pbraces{x \in B \land B \in \mathcal{A}}}  \rightarrow \forall C \forall D \exists \mathcal{A} \forall B \pbraces{\pbraces{B \in \mathcal{A} \rightarrow \pbraces{B = C \lor B = D}} \land C \in \mathcal{A} \land D \in \mathcal{A}} \rightarrow$
+	\State$ \forall C \forall D\exists S \forall x\pbraces{x \in S \leftrightarrow \pbraces{x \in C \lor x \in D}}$ \Comment{restliche $\forall$- und $\exists$-Einführungen}
+\end{algorithmic}
+
 \end{solution}

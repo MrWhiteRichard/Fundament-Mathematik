@@ -385,6 +385,41 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 	Da die Eigenvektoren eine Basis des $\K^N$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, N $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
 \end{proof}
 
+Wir zeigen nun ein Lemma, welches eine Darstellung der Eigenwerte für hermitesche Matrizen liefert. Man sieht leicht, dass es sich hierbei um eine Verallgemeinerung des Satzes von Rayleigh handelt.
+
+\begin{lemma}
+	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
+	\begin{align}\label{lambdamax}
+		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
+    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
+	\end{align}
+	und
+	\begin{align}\label{lambdamaxmin}
+		\lambda_k = \max_{\substack{S \subset \C^N\\
+    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
+	\end{align}
+\end{lemma}
+
+\begin{proof}
+	Sei $v \in \C^N \setminus \{0\}$ beliebig. Da $u_1, \dots, u_N$ eine Orthonormalbasis des $\C^N$ bilden, gilt $ v = \sum_{j=1}^{N} (u_j,v) u_j$ und damit
+	\begin{align*}
+		(Av,v) = \sum_{j=1}^{N} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{N} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{N} |(u_j,v)|^2 = \lambda_1 (v,v).
+	\end{align*}
+	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^N \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
+
+	Für ein anderes $k = 2,\dots,N$ können wir analog ein beliebiges $v \in \C^N \setminus \{0\}$, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{N} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
+
+	Für die Gleichheit in \ref{lambdamaxmin} gilt ähnlich zu oben für $v \in \tilde{S} := \textbf{span}\{v_1, \dots, v_k\}$, dass
+	\begin{align*}
+		(Av,v) = \sum_{j=1}^{k} \lambda_j |(v,u_j)|^2 \geq \lambda_k (v,v)
+	\end{align*}
+
+	und daraus $\lambda_k \leq \min_{v \in \tilde{S}} \frac{(Av,v)}{(v,v)}$. Für $v = u_k$ gilt wiederum Gleichheit.
+
+	Betrachten wir nun einen anderen Unterraum $S \neq \tilde{S}$ mit $\dim S = k$. Dann gibt es ein $v_0 \in S \setminus \{0\}$ mit $(v_0,u_j) = 0$ für $j=1,\dots,k$. Für dieses $v_0$ gilt $(Av_0,v_0) \leq \lambda_k (v_0,v_0)$. Das heißt, für beliebige solche $S$ ist $\min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)} \leq \lambda_k$, womit die Gleichheit gezeigt ist.
+
+\end{proof}
+
 \begin{definition}
 	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
 	\begin{align}\label{chebyshev}
@@ -393,7 +428,7 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 \end{definition}
 
 Es gibt weitere Definitionen der Chebyshev-Polynome. Die Bekannteste ist
-\begin{align}
+\begin{align}\label{chebyalt}
 	T_(x) := \cos(m \arccos x), \quad x \in [-1,1],
 \end{align}
 
@@ -407,9 +442,33 @@ Aus dieser Darstellung folgt auch mittels Additionstheorem die 2-Term-Rekursion
 
 welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ handelt.
 
+\begin{lemma}
+	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
+	\begin{align}\label{polminmax}
+		\min_{\substack{p \in \Pi_m \\
+		p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
+	\end{align}
+\end{lemma}
 
-%vorbereitungs lemmata
+\begin{proof}
+	Wir verwenden die affin lineare Abbildung $\Phi: [a,b] \to [-1,1]$ mit
+	\begin{align*}
+		\Phi(x) = 1 + 2 \frac{x-b}{b-a}, \quad x \in [a,b].
+	\end{align*}
+	Wir definieren
+	\begin{align*}
+		\hat{p} := \frac{T_m \circ \Phi}{|T_m(\Phi(c))}
+	\end{align*}
+	und können die Darstellung von $T_m$ aus \ref{chebyalt} verwenden (da $\Phi$ nach $[-1,1]$ abbildet), aus der
+	\begin{align*}
+		\max_{x \in [a,b]}|\hat{p}(x)| \leq \frac{1}{|T_m(\gamma)|}
+	\end{align*}
+	folgt und daraus auch die erste Ungleichung.
 
+	Die zweite Ungleichung folgt aus der Definition der Chebyshev-Polynome \ref{chebyshev} und der Tatsache, dass $\gamma \geq 1$ und deshalb $|T_m(\gamma)| = T_m(\gamma) \geq \frac{1}{2} (\gamma+ \sqrt{\gamma^2-1})^m$ gilt.
+\end{proof}
+
+Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des Projektionsverfahrens nachweisen.
 
 \begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
 	Sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
