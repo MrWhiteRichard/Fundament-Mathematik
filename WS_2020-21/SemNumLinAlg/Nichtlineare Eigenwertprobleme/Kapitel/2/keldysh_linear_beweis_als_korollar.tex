@@ -4,13 +4,13 @@
 
     \begin{enumerate}[label = \arabic*.]
 
-        \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich holomorph.
+        \item Unsere (lineare) Matrix-Funktion $A - I_N \id$ ist offensichtlich holomorph.
         
-        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\ker(A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
+        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\ker (A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
         
-        \item Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwert von $A$.
+        \item Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwerte von $A$.
         Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
-        Betrachte die JNF von $A$.
+        Betrachte die Jordan Normalform von $A$.
     
         \begin{align*}
             T J T^{-1} & = A, \\
@@ -44,7 +44,7 @@
             }
             \in
             \C^{
-                L_n^\mathrm{geo}
+                L_n^\mathrm{alg}
                 \times
                 L_n^\mathrm{alg}
             },
@@ -84,7 +84,7 @@
         Alle Jordan-Ketten sind also $1$-gliedrig, bestehen also nur aus \Quote{echten} Eigenwerten.
         Es gibt also keine Hauptvektoren $2$-ter Stufe.
     
-        Sei $y \in \ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
+        Sei $y \in \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
         Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe, weil
 
         \begin{align*}
@@ -93,28 +93,28 @@
             \quad
             (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0 \\
             & \implies
-            x \in \ker(A - I_N \lambda_1)^2 \setminus \ker(A - I_N \lambda_1) = \emptyset.
+            x \in \ker (A - I_N \lambda_1)^2 \setminus \ker (A - I_N \lambda_1) = \emptyset.
         \end{align*}
 
         Widerspruch!
     
         \begin{align*}
             \implies
-            \ker(A - I_N \lambda_1) \cap \ran(A - I_N \lambda_1) = \Bbraces{0}
+            \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1) = \Bbraces{0}
         \end{align*}
     
         Die Ableitung unserer Matrixfunktion berechnet man komponentenweise.
-        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \ker(A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
+        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \ker (A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
         $\Forall l = 1, \dots, L_1:$
 
         \begin{align*}
-            \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, l}
+            (A - I_N \id)^\prime(\lambda_1) v_{1, l}
             =
             -I_N v_{1, l}
             =
             -v_{1, l}
             \not \in
-            \ran(A - I_N \lambda_1)
+            \ran (A - I_N \lambda_1)
         \end{align*}
 
     \end{enumerate}
@@ -123,9 +123,9 @@
     
     \begin{enumerate}[label = (\roman*)]
 
-        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\ker(A - I_N \lambda_1)$ haben wir bereits konstruiert.
+        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\ker (A - I_N \lambda_1)$ haben wir bereits konstruiert.
         
-        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker(A - I_N \lambda_1)^\ast = \ker(A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
+        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - I_N \lambda_1)^\ast = \ker (A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
         
         \begin{align*}
             (v_{1, k}, w_{1, l})_2
@@ -134,7 +134,7 @@
             =
             -w_{1, l}^\ast (-I_N) v_{1, k}
             =
-            -w_{1, l}^\ast \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, k}
+            -w_{1, l}^\ast (A - I_N \id)^\prime(\lambda_1) v_{1, k}
             =
             -\delta_{l, k}.
         \end{align*}
