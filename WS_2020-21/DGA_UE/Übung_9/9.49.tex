@@ -9,10 +9,10 @@
   eine zufällige Permutation von $A$? Weshalb oder weshalb nicht?
 
   \begin{algorithmic}
-      \State PERMUTE-WITH-ALL($A[1,\dots,n]$)
+      \State \textsc{Permute-With-All}($A[1,\dots,n]$)
       \State $n = A.$length
       \For{$i = 1 ~\text{to}~ n$}
-          \State Vertausche $A[i]$ mit $A[RANDOM(1,n)]$
+          \State Vertausche $A[i]$ mit $A[\textsc{Random}(1,n)]$
       \EndFor
   \end{algorithmic}
 
@@ -21,10 +21,10 @@
   $A[i+1,\dots,n]$ vertauscht, also
 
   \begin{algorithmic}
-    \State PERMUTE-WITHOUT-IDENTITY($A[1,\dots,n]$)
+    \State \textsc{Permute-Without-Identity}($A[1,\dots,n]$)
     \State $n = A.$length
     \For{$i = 1 \text{ to } n$}
-      \State Vertausche $A[i]$ mit $A[RANDOM(i+1,n)]$
+      \State Vertausche $A[i]$ mit $A[\textsc{Random}(i+1,n)]$
     \EndFor
   \end{algorithmic}
 
@@ -44,9 +44,33 @@
 \phantom{}
 
 \begin{enumerate}[label = \alph*)]
-  \item Ja, warum denn nicht? Im zweiten Beispiel kommt der falsche Algorithmus,
-  also ist das hier der Richtige.
-  \item
+  \item Der Algorithmus kann im Allgemeinen keine zufällige Permutation von $A$ liefern.
+  Das sieht man daran, dass in jedem Schleifendurchlauf $n$ gleich wahrscheinliche
+  Resultate auftreten. Nach dem $n$-ten Schleifendurchlauf erhalten wir somit
+  genau $n^n$ gleich wahrscheinliche (nicht notwendigerweise verschiedene) Permutationen von $A$. Bereits für $n = 3$
+  kann dabei nicht jede Permutation gleich häufig auftreten da $\frac{3^3}{3!} = \frac{27}{6}$
+  keine ganze Zahl ist.
+  \item Der Algorithmus \textsc{Permute-Without-Identity} kann nur Permutationen
+  erzeugen, in denen kein Element von $A$ an der selben Stelle wie am Anfang stehen bleibt. \\
+  Bezeichne mit $A_i$ das Datenfeld nach dem $i$-ten Durchlauf der Schleife und
+  gelte weiters für das Anfangsdatenfeld $A_0$ o.B.d.A. $A_0[i] = i$ für $i = 1,\dots,n$. \\
+  Wir zeigen also mit Induktion nach $i = 1,\dots,n: \forall j \leq i: A_i[j] \neq j$. \\
+  Der Induktionsanfang $i = 1$ ist klar: $A_1[1] = A[\textsc{Random}(2,n)] \neq 1$. \\
+  Im $(i+1)$-ten Schleifendurchlauf werden die ersten $i$ Elemente des Datenfelds $A_i$
+  nicht mehr angerührt, also gilt laut Induktionsvoraussetzung $A_{i+1}[j] \neq j$
+  für $j = 1,\dots,n$. Weiters gilt $A_{i+1}[i+1] = A[\textsc{Random}(i+2,n)] \neq i +1$. \\
+  Jetzt könnte man sich noch überlegen, ob alle Permutationen, die obige
+  Bedingung erfüllen, tatsächlich durch den Algorithmus erreicht werden können. \\
+  Sei dazu $v = [j_1,\dots,j_n]$ eine Permutation von $[1,\dots,n]$ die obiger
+  Bedingung genügt. Wir zeigen nun mit Induktion nach $i = 1,\dots,n$ dass
+  $A_i[1,\dots,i] = [A[j_1],\dots,A[j_i]]$ ein mögliches Resultat des Algorithmus ist. \\
+  Der Induktionsanfang ist wieder klar, für $j_1 \neq 1$ können wir im ersten Schleifendurchlauf
+  $A[i]$ sicher mit $A[j_1]$ vertauschen. \\
+  Gelte nun $A_i[1,\dots,i] = [A[j_1],\dots,A[j_i]]$. Da $j_{i+1} \neq i + 1$, kann
+  $A[j_{i+1}]$ nicht an der $(i+1)$-ten Stelle im Datenfeld stehen. Daher ist es
+  möglich, dass der Algortihmus $A[i+1]$ und $A[j_{i+1}]$ vertauscht. \\
+  Insgesamt erhalten wir also, dass \textsc{Permute-Without-Identity}
+  genau jene Permutationen erzeugt, welche kein Element an seinem Startplatz belassen.
 \end{enumerate}
 
 \end{solution}
