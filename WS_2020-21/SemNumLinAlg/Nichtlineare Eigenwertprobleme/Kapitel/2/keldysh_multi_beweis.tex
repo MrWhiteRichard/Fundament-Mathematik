@@ -1,0 +1,51 @@
+\begin{proof}
+
+    Laut \ref{keldysh_nicht_linear}, existiert für $m = 1, \dots, k$ eine Umgebung $U_m$ von $\lambda_m$ und $R_m \in H(U_m, \C^{N \times N})$ holomorph, sodass $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
+
+    \begin{align*}
+        A(\lambda)^{-1}
+        =
+        \frac{1}{\lambda - \lambda_m} P_m^+
+        +
+        R_m(\lambda).
+    \end{align*}
+
+    Die beiden Funktionen $R_\Lambda \in H(\Lambda \setminus \Bbraces{\lambda_1, \dots, \lambda_k}, \C^{N \times N})$ und $R_{U_m} \in H(U_m, \C^{N \times N})$ stimmen überein $\Forall \lambda \in U_m \setminus \Bbraces{\lambda_m}:$
+
+    \begin{multline*}
+        R_\Lambda(\lambda)
+        :=
+        A(\lambda)^{-1}
+        -
+        \sum_{n=1}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+        =
+        \frac{1}{\lambda - \lambda_m} P_m^+
+        +
+        R_m(\lambda)
+        -
+        \sum_{n=1}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+ \\
+        =
+        R_m(\lambda)
+        -
+        \sum_{\substack{n = 1 \\ n \neq m}}^k
+            \frac{1}{\lambda - \lambda_n} P_n^+
+        =:
+        R_{U_m}(\lambda).
+    \end{multline*}
+
+    Die folgende Funktion $R$ ist also wohldefiniert, $\in H(\Lambda, \C^{N \times N})$ und leistet das Gewünscht.
+
+    \begin{align*}
+        R:
+        \Lambda \to C^{N \times N}:
+        \lambda
+        \mapsto
+        \begin{cases}
+            R_\Lambda(\lambda), & \lambda \in \dom R_\Lambda, \\
+            R_{U_m}(\lambda),   & \Exists m = 1, \dots, k: \lambda \in \dom R_{U_m}
+        \end{cases}
+    \end{align*}
+
+\end{proof}

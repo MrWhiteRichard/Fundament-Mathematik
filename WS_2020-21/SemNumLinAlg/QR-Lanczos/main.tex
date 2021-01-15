@@ -69,7 +69,7 @@ Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst 
 	\begin{align*}
 		- \Delta u(x,y) = -v''(x) w(y) - v(x) w''(y) = \lambda v(x)w(y)
 	\end{align*}
-	Multiplizieren mit $\frac{1}{v(x)w(y)}$ liefert
+	Multiplizieren mit $1/\left(v(x)w(y)\right)$ liefert
 	\begin{align*}
 		-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} &= \lambda \\
 		\Leftrightarrow \quad -\frac{v''(x)}{v(x)} &= \lambda + \frac{w''(y)}{w(y)}
@@ -100,7 +100,7 @@ Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst 
 
 \subsection{Numerischer Lösungsansatz}
 
-Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$ von
+Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $(\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$ von
 
 \begin{align*}
 	\Int[\Omega]{\nabla u \nabla v}{x} = \lambda \Int[\Omega]{uv}{x}, \quad \Forall v \in H^1(\Omega)
@@ -133,7 +133,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
-Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es nun sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
+Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
 
 \section{Das QR-Verfahren}
 
@@ -196,8 +196,8 @@ Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
 	(A - \lambda \id) = 0 \Leftrightarrow ((A - \rho \id) - (\lambda -\rho) \id) = 0 \Leftrightarrow (\lambda-\rho) \text{ ist Eigenwert von }  (A - \rho \id).
 \end{equation*}
 
-Die Wahl des Shifts als $a^{(t)}_{nn}$ macht also sinn, da dieser Eintrag für $t \rightarrow \infty$ gegen $\lambda_n$ konvergiert. Dieser Shift wird auch Rayleigh-Quotienten-Shift genannt. Nach der QR-Zerlegung von $A^{(t)}$ setzt man $A^{(t+1)} \coloneqq R^{(t)}Q^{(t)} + \rho \id$, um wieder eine Matrix zu erhalten, die die gleichen Eigenwerte wie $A^{(t)}$ und somit auch wie $A$ besitzt.
-Je nach dem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Toleranz, die von den Einträgen $a^{(t)}_{ni}, \, i = 1,\dots, n-1$ unterschritten werden muss, bevor analoge Schritte für den zweitkleinsten Eigenwert durchgefürht werden. Dessen Näherung steht in $a^{(t)}_{(n-1)(n-1)}$.
+Die Wahl des Shifts als $a^{(t)}_{nn}$ macht also Sinn, da dieser Eintrag für $t \rightarrow \infty$ gegen $\lambda_n$ konvergiert. Dieser Shift wird auch Rayleigh-Quotienten-Shift genannt. Nach der QR-Zerlegung von $A^{(t)}$ setzt man $A^{(t+1)} \coloneqq R^{(t)}Q^{(t)} + \rho \id$, um wieder eine Matrix zu erhalten, die die gleichen Eigenwerte wie $A^{(t)}$ und somit auch wie $A$ besitzt.
+Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Toleranz, die von den Einträgen $a^{(t)}_{ni}, \, i = 1,\dots, n-1$ unterschritten werden muss, bevor analoge Schritte für den zweitkleinsten Eigenwert durchgeführt werden. Dessen Näherung steht in $a^{(t)}_{(n-1)(n-1)}$.
 
 Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Nannen-Skript}. Dieser Shift wird Wilkinson-Shift genannt.
 
@@ -231,7 +231,7 @@ Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix 
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
 
-\subsection{Implementierung und Vergleich der Verschiedenen Methoden}
+\subsection{Implementierung und Vergleich der verschiedenen Methoden}
 
 
 \section{Das Lanczos-Verfahren}
@@ -240,23 +240,43 @@ Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertprobl
 
 \subsection{Idee}
 
-Im folgenden sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$.
+Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Eigenwerte für hermitesche Matrizen liefert. Man sieht leicht, dass es sich hierbei um eine Verallgemeinerung des Satzes von Rayleigh handelt.
 
-Wir wiederholen zunächst das Konzept der Vektoriteration als Verfahren zur Approximation des größten Eigenwertes. Dafür benötigen wir den Satz von Rayleigh, der eine Darstellung des kleinsten bzw. größten Eigenwertes hermitescher Matrizen liefert.
+\begin{lemma}
+	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
+	\begin{align}\label{lambdamax}
+		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
+    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
+	\end{align}
+	und
+	\begin{align}\label{lambdamaxmin}
+		\lambda_k = \max_{\substack{S \subset \C^N\\
+    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
+	\end{align}
 
-\begin{theorem}
-	Sei $A \in \C^n$ hermitesch und $\lambda_n$ (bzw. $\lambda_1$) der kleinste (bzw. größte) Eigenwert von $A$. Dann gilt
-	\begin{align*}
-		\lambda_n = \min_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_1 = \max_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
-	\end{align*}
 	Für $v \neq 0$ nennt man $\frac{(Av,v)}{(v,v)}$ den Rayleigh-Quotienten von $v$.
-\end{theorem}
+\end{lemma}
 
-Den Beweis lassen wir an dieser Stelle aus, da sich der Satz von Rayleigh als Spezialfall des Lemmas (??) herausstellen wird.
+\begin{proof}
+	Sei $v \in \C^N \setminus \{0\}$ beliebig. Da $u_1, \dots, u_N$ eine Orthonormalbasis des $\C^N$ bilden, gilt $ v = \sum_{j=1}^{N} (u_j,v) u_j$ und damit
+	\begin{align*}
+		(Av,v) = \sum_{j=1}^{N} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{N} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{N} |(u_j,v)|^2 = \lambda_1 (v,v).
+	\end{align*}
+	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^N \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
 
-Die Vektoriteration erzeugt ausgehend von einem Startvektor $x^{(0)} \in \K^{n}$ eine Folge von Iterierten $x^{(t)} := \frac{Ax^{(t-1)}}{\|Ax^{(t-1)}\|}$ für $t \in \N$. Definiert man die Approximationen $\lambda^{(t)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(t)}$, so konvergiert $\lambda^{(t)}$ quadratisch gegen $\lambda_1$.
+	Für ein anderes $k = 2,\dots,N$ können wir analog ein beliebiges $v \in \C^N \setminus \{0\}$ wählen, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{N} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
 
-Wegen des Satzes von Rayleigh gilt $\lambda^{(t)} \leq \lambda_1$ für alle $t \in \N$.
+	Für die Gleichheit in \ref{lambdamaxmin} gilt ähnlich zu oben für $v \in \tilde{S} := \textbf{span}\{v_1, \dots, v_k\}$, dass
+	\begin{align*}
+		(Av,v) = \sum_{j=1}^{k} \lambda_j |(v,u_j)|^2 \geq \lambda_k (v,v)
+	\end{align*}
+
+	und daraus $\lambda_k \leq \min_{v \in \tilde{S}} \frac{(Av,v)}{(v,v)}$. Für $v = u_k$ gilt wiederum Gleichheit.
+
+	Betrachten wir nun einen anderen Unterraum $S \neq \tilde{S}$ mit $\dim S = k$. Dann gibt es ein $v_0 \in S \setminus \{0\}$ mit $(v_0,u_j) = 0$ für $j=1,\dots,k$. Für dieses $v_0$ gilt $(Av_0,v_0) \leq \lambda_k (v_0,v_0)$. Das heißt, für beliebige solche $S$ ist $\min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)} \leq \lambda_k$, womit die Gleichheit gezeigt ist.
+\end{proof}
+
+Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \K^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$. (vgl. Nannen-Skript)
 
 \begin{definition}
 	Sei $v_0 \in \K^{N}$ und $A \in \K^{N \times N}$. Dann bezeichnet
@@ -273,15 +293,15 @@ Beim Lanczos-Verfahren wird nun als Näherung an den größten Eigenwert das Max
 verwendet, also
 
 \begin{align*}
-	\lambda_1^{(t)} := \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(Ax,x)}{(x,x)}.
+	\lambda_1^{(m)} := \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(Ax,x)}{(x,x)}.
 \end{align*}
 
-Da \textbf{span}$\{x^{(t-1)}\} \subset \mathcal{K}_m$, gilt
+Da $x^{(t-1)} \in \mathcal{K}_m$, gilt
 \begin{align*}
-	\mu^{(t)} \leq \mu_1^{(t)} \leq \lambda_1
+	\lambda^{(m)} \leq \lambda_1^{(m)} \leq \lambda_1
 \end{align*}
 
-und $\mu_1^{(t)}$ ist somit eine mindestens so gute Approximation von $\lambda_1$ wie $\mu^{(t)}$.
+und $\lambda_1^{(m)}$ ist somit eine mindestens so gute Approximation von $\lambda_1$ wie $\lambda^{(m)}$.
 
 Betrachten wir die Abbildung
 
@@ -299,14 +319,14 @@ so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}
 da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
 
 \begin{align*}
-	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \mu_1^{(t)}.
+	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \lambda_1^{(m)}.
 \end{align*}
 
-Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren Überlegungen in ref*** eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq t$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
+Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren Überlegungen in ref*** eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
 
 \subsection{Herleitung des Verfahrens}
 
-Wie wir eben gesehen haben, ist es also Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_m-1\}$ des Krylov-Raums. Für die Einträge von $T_m$ gilt
+Wie wir eben gesehen haben, ist es also Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums. Für die Einträge von $T_m$ gilt
 \begin{align*}
 	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
 	\Rightarrow T_m &= V_m^*AV_m.
@@ -361,7 +381,7 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 		\State $w_j = (A-\gamma_j I)v_j - \delta_{j-1}v_{j-1}$
 		\State $\delta_j = \|w_j\|_2$
 		\EndWhile
-		\State Berechne mittels QR-Verfahren Eigenwerte von $T_j \in \K^{(j+1) \times (j+1)}$ aus \ref{trimatrix}
+		\State Berechne mittels QR-Verfahren Eigenwerte von $T_j \in \K^{(j+1) \times (j+1)}$ aus \ref{trimatrix} (Hessenbergmatrix)
 	\end{algorithmic}
 	\algorithmicensure{Approximation an die Eigenwerte von $\mathcal{A}_j$}
 \end{algorithm}
@@ -388,47 +408,13 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 	Wir zeigen zunächst die erste Aussage. Nach Definition des Krylov-Raums gilt
 	\begin{align}
 		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \K: v = \sum_{i=0}^{m-1} a_i C^i v_0 = (\sum_{i=0}^{m-1} a_i C^i)v_0\\
-		\Leftrightarrow& \Exists p(x) = a_0 + a_1 x + \dots + a_{m-1} x^{m-1} \in \Pi_{m-1}: v = p(C)v_0.
+		\Leftrightarrow& \Exists p(x) = \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(C)v_0.
 		\label{eq:Krylov}
 	\end{align}
 
 	Da die Eigenvektoren eine Basis des $\K^N$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, N $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
 \end{proof}
 
-Wir zeigen nun ein Lemma, welches eine Darstellung der Eigenwerte für hermitesche Matrizen liefert. Man sieht leicht, dass es sich hierbei um eine Verallgemeinerung des Satzes von Rayleigh handelt.
-
-\begin{lemma}
-	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
-	\begin{align}\label{lambdamax}
-		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
-    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
-	\end{align}
-	und
-	\begin{align}\label{lambdamaxmin}
-		\lambda_k = \max_{\substack{S \subset \C^N\\
-    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
-	\end{align}
-\end{lemma}
-
-\begin{proof}
-	Sei $v \in \C^N \setminus \{0\}$ beliebig. Da $u_1, \dots, u_N$ eine Orthonormalbasis des $\C^N$ bilden, gilt $ v = \sum_{j=1}^{N} (u_j,v) u_j$ und damit
-	\begin{align*}
-		(Av,v) = \sum_{j=1}^{N} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{N} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{N} |(u_j,v)|^2 = \lambda_1 (v,v).
-	\end{align*}
-	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^N \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
-
-	Für ein anderes $k = 2,\dots,N$ können wir analog ein beliebiges $v \in \C^N \setminus \{0\}$, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{N} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
-
-	Für die Gleichheit in \ref{lambdamaxmin} gilt ähnlich zu oben für $v \in \tilde{S} := \textbf{span}\{v_1, \dots, v_k\}$, dass
-	\begin{align*}
-		(Av,v) = \sum_{j=1}^{k} \lambda_j |(v,u_j)|^2 \geq \lambda_k (v,v)
-	\end{align*}
-
-	und daraus $\lambda_k \leq \min_{v \in \tilde{S}} \frac{(Av,v)}{(v,v)}$. Für $v = u_k$ gilt wiederum Gleichheit.
-
-	Betrachten wir nun einen anderen Unterraum $S \neq \tilde{S}$ mit $\dim S = k$. Dann gibt es ein $v_0 \in S \setminus \{0\}$ mit $(v_0,u_j) = 0$ für $j=1,\dots,k$. Für dieses $v_0$ gilt $(Av_0,v_0) \leq \lambda_k (v_0,v_0)$. Das heißt, für beliebige solche $S$ ist $\min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)} \leq \lambda_k$, womit die Gleichheit gezeigt ist.
-
-\end{proof}
 
 \begin{definition}
 	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
@@ -439,7 +425,7 @@ Wir zeigen nun ein Lemma, welches eine Darstellung der Eigenwerte für hermitesc
 
 Es gibt weitere Definitionen der Chebyshev-Polynome. Die Bekannteste ist
 \begin{align}\label{chebyalt}
-	T_(x) := \cos(m \arccos x), \quad x \in [-1,1],
+	T_m(x) := \cos(m \arccos x), \quad x \in [-1,1],
 \end{align}
 
 welche aus der Identität $T_m(\cos \varphi) = \cos (m \varphi)$ für $\varphi \in \R$ folgt.
@@ -468,7 +454,7 @@ welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ ha
 	\end{align*}
 	Wir definieren
 	\begin{align*}
-		\hat{p} := \frac{T_m \circ \Phi}{|T_m(\Phi(c))}
+		\hat{p} := \frac{T_m \circ \Phi}{|T_m(\Phi(c))|}
 	\end{align*}
 	und können die Darstellung von $T_m$ aus \ref{chebyalt} verwenden (da $\Phi$ nach $[-1,1]$ abbildet), aus der
 	\begin{align*}
@@ -606,7 +592,7 @@ Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit 
 \begin{equation*}
 	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le 4 \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
 \end{equation*}
-gilt. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte ab. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur folge.
+gilt. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte ab. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge.
 
 
 \subsection{Implementierung}

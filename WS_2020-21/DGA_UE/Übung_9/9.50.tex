@@ -1,0 +1,35 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Bestimmen Sie eine Rekursion für die mittlere Anzahl der Schlüsselvergleiche beim
+(nichtrandomisierten) Quicksort, wenn anstelle des letzten Elements $A[n]$ da
+der Größe nach mittlere der drei Elemente $A[1],A[\floorbraces{\frac{n}{2}}]$
+und $A[n]$ als Pivot-Element verwendet wird. Das Lösen dieser Rekursion ist nicht
+verlangt.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+
+\begin{solution}
+
+Wir berechnen zuerst die Wahrscheinlichkeit, dass das mittlere von drei zufällig
+gewählten Elementen aus $[1,\dots,n]$ gleich $j$ ist. \\
+Die Anzahl aller Kombinationen von $3$ aus $n$ Elementen ohne Wiederholung ist genau $\binom{n}{k}$.
+Die Wahrscheinlichkeit dass das mittlere Element der Kombination gleich $j$ ist,
+lässt sich umformulieren als die Wahrscheinlichkeit, dass $j$ in der Kombination liegt
+und zusätzlich genau ein Element aus $[1,\dots,j-1]$ ebenfalls in der Kombination liegt.
+Seien $(k_1,k_2,k_3)$ die aufsteigend sortierten Elemente der Kombination $k$.
+Für $2 \leq j \leq n - 1$ gilt dann
+\begin{align*}
+  \P(k_2 = j) = \P(j \in k \text{ und } |[1,\dots,j-1]\cap k| = 1)
+  = \frac{3j}{n}\left[\left(1- \frac{3j}{n}\right)^{j-2}\frac{3j}{n}(j-1)\right]
+  =(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}
+\end{align*}
+Damit erhalten wir unsere Rekursion
+\begin{align*}
+  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}[T(n-j) + T(j)] = 2\sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2} T(j).
+\end{align*}
+\end{solution}

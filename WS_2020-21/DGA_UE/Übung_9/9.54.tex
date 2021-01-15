@@ -1,0 +1,58 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Wiederholen Sie an Hand des folgenden linearen Programms, wie allgemeine lineare
+Programme in Standardform gebracht werden können.
+
+
+
+\begin{adjustwidth}{4cm}{}
+Minimiere $2x_1 + 7x_2 + x_3$ unter den Nebenbedingungen \\
+  $x_1 - x_3 = 7, \\
+  3x_1 + x_2 \geq 24, \\
+  x_2 \geq 0, \\
+  x_3 \leq 0.$
+\end{adjustwidth}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+
+\begin{solution}
+
+Maximiere $-2(x_1^+ - x_1^-) - 7x_2 + x_3'$ unter den Nebenbedingungen
+
+\begin{align*}
+  -x_1^+ + x_1^- - x_3' &\leq -7 \\
+  x_1^+ - x_1^- + x_3' &\leq 7 \\
+  -3(x_1^+ - x_1^-) - x_2 &\leq -24 \\
+  x_1^+,x_1^-,x_2,x_3' &\geq 0.
+\end{align*}
+Oder in Matrixschreibweise
+
+\begin{align*}
+  A := \begin{pmatrix}
+    -1 & 1 & 0 & -1 \\
+    1 & -1 & 0 & 1 \\
+    -3 & 3 & -1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1^+ \\ x_1^- \\ x_2 \\ x_3'
+  \end{pmatrix}
+  &\leq
+  \begin{pmatrix}
+    -7 \\ 7 \\ -24
+  \end{pmatrix} =: b \\
+  \overline{x} &\geq 0 \\
+  f(x) &= \begin{pmatrix}
+    -2 & 2 & -7 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1^+ \\ x_1^- \\ x_2 \\ x_3'
+  \end{pmatrix}
+  \quad \text{max!}
+\end{align*}
+
+\end{solution}

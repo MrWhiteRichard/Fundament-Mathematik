@@ -1,0 +1,28 @@
+\section{Einführung}
+
+Die herkömmliche (lineare) Formulierung des Eigenwert-Problems dürfte bekannt sein:
+Sei $A \in \C^{N \times N}$ eine Matrix.
+Suche $\lambda \in \C$ und $v \in \C^N \setminus \Bbraces{0}$, sodass $A v = \lambda v$.
+
+\begin{align} \label{eq:lineares_ewp}
+    \iff
+    B(\lambda) v := 0,
+    \quad
+    B(\lambda) := A - I_N \lambda
+\end{align}
+
+Dabei bezeichnet $\ker B(\lambda)$ den Eigenraum von $\lambda$.
+In manchen Anwendungen ist die Funktion $B$ jedoch nicht mehr linear oder gar polynomiell.
+Herkömmliche Algorithmen zur Suche von Eigenwerten sind jedoch bloß für lineare $B$, so wie in \eqref{eq:lineares_ewp}, konzipiert.
+
+Die wohl naheliegendste Variante, einer nicht-linearen Eigenwert-Suche ist eine Nullstellen-Suche des nicht-linearen charakteristischen Polynoms $\lambda \mapsto \det B(\lambda)$.
+Bereits bei linearen Eigenwertproblemen kann man folgende Nachteile erkennen.
+
+\begin{enumerate}[label = \arabic*.]
+    \item Die Berechnung der Determinante ist (insbesondere für große Matrizen) überaus kostspielig.
+    \item Wir bekommen bloß einen Eigenwert (Nullstelle).
+    \item Selbst wenn ein Algorithmus wie das Newton-Verfahren zur Nullstellen-Suche verwendet wird, wird noch immer ein geeigneter Start benötigt.
+\end{enumerate}
+
+Die, von \textbf{Beyn} vorgeschlagene, Konturintegral-Methode wird all diese Probleme auf eine sehr elegante Art und Weise umgehen.
+Deren Grundbaustein ist folgendes Resultat aus der Komplexen Analysis.

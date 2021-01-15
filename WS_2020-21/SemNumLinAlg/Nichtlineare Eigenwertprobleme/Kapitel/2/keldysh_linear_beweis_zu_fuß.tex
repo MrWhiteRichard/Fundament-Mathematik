@@ -1,0 +1,408 @@
+\begin{proof}[Beweis (zu Fuß)]
+
+    \phantom{}
+
+    \begin{enumerate}[label = (\roman*)]
+
+        \item Siehe vorheriger Beweis.
+
+        \item Betrachte abermals die JNF.
+        Es gibt $\hat W_1 = (\hat w_{1, 1}, \dots, \hat w_{1, L_1})$ linear unabhängig, sodass
+        
+        \begin{align*}
+            \begin{pmatrix}
+                \lambda_1 \hat w_{1,   1}^\ast \\
+                \vdots                         \\
+                \lambda_1 \hat w_{1, L_1}^\ast \\
+                \ast
+            \end{pmatrix}
+            =
+            \underbrace
+            {
+                \begin{pmatrix}
+                    J_1 & 0 \\
+                    0   & \ast
+                \end{pmatrix}
+            }_J
+            \begin{pmatrix}
+                \hat w_{1,   1}^\ast \\
+                \vdots               \\
+                \hat w_{1, L_1}^\ast \\
+                \ast
+            \end{pmatrix}
+            =
+            J T^{-1}
+            \stackrel
+            {
+                \text{JNF}
+            }{=}
+            T^{-1} A
+            =
+            \begin{pmatrix}
+                \hat w_{1,   1}^\ast \\
+                \vdots               \\
+                \hat w_{1, L_1}^\ast \\
+                \ast
+            \end{pmatrix}
+            A
+            =
+            \begin{pmatrix}
+                \hat w_{1,   1}^\ast A \\
+                \vdots                 \\
+                \hat w_{1, L_1}^\ast A \\
+                \ast
+            \end{pmatrix}.
+        \end{align*}
+
+        $\hat W_1$ sind also Links-Eigenvektoren von $A$ zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
+        Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\ker (A^\ast - I_N \overline \lambda_1)$.
+        Wir setzen an mit
+
+        \begin{align*}
+            w_{1, l}
+            \stackrel{!}{=}
+            \sum_{i=1}^{L_1}
+                \alpha_{1, l, i} \hat w_{1, i},
+            \quad
+            l = 1, \dots, L_1.
+        \end{align*}
+
+        Wir formulieren unseren Wunsch an $W_1$ etwas um.
+
+        \begin{align*}
+            \iff
+            \Forall l, k = 1, \dots, L_1:
+                -\delta_{l, k}
+                \stackrel{!}{=}
+                (v_{1, k}, w_{1, l})_2
+                =
+                \pbraces
+                {
+                    v_{1, k},
+                    \sum_{i=1}^{L_1}
+                        \alpha_{1, l, i} \hat w_{1, i}
+                }_2
+                =
+                \sum_{i=1}^{L_1}
+                    \overline \alpha_{1, l, i} (v_{1, k}, \hat w_{1, i})_2
+        \end{align*}
+
+        \begin{align*}
+            \iff
+            \Forall l = 1, \dots, L_1:
+                -e_l
+                \stackrel{!}{=}
+                \overline{M \alpha_{1, l}}
+            \iff
+                e_l
+                =
+                \overline e_l
+                \stackrel{!}{=}
+                -M \alpha_{1, l}
+        \end{align*}
+
+        \begin{align*}
+            e_l
+            :=
+            \begin{pmatrix}
+                \delta_{l 1} \\ \vdots \\ \delta_{l L_1}
+            \end{pmatrix},
+            \quad
+            \alpha_{1, l}
+            :=
+            \begin{pmatrix}
+                \alpha_{1, l, 1} \\ \vdots \\ \alpha_{1, l, L_1}
+            \end{pmatrix}
+        \end{align*}
+
+        \begin{multline*}
+            M
+            :=
+            \overline
+            {
+                \begin{pmatrix}
+                    (v_{1,   1}, \hat w_{1, 1})_2 & \cdots & (v_{1,   1}, \hat w_{1, L_1})_2 \\
+                    \vdots                        & \ddots & \vdots                          \\
+                    (v_{1, L_1}, \hat w_{1, 1})_2 & \cdots & (v_{1, L_1}, \hat w_{1, L_1})_2 \\
+                \end{pmatrix}
+            }
+            =
+            \begin{pmatrix}
+                (\hat w_{1, 1}, v_{1,   1})_2 & \cdots & (\hat w_{1, L_1}, v_{1,   1})_2 \\
+                \vdots                        & \ddots & \vdots                          \\
+                (\hat w_{1, 1}, v_{1, L_1})_2 & \cdots & (\hat w_{1, L_1}, v_{1, L_1})_2 \\
+            \end{pmatrix} \\
+            =
+            \begin{pmatrix}
+                v_{1,   1}^\ast \hat w_{1, 1} & \cdots & v_{1,   1}^\ast \hat w_{1, L_1} \\
+                \vdots                        & \ddots & \vdots                          \\
+                v_{1, L_1}^\ast \hat w_{1, 1} & \cdots & v_{1, L_1}^\ast \hat w_{1, L_1} \\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                v_{1, 1}^\ast \\ \vdots \\ v_{1, L_1}^\ast
+            \end{pmatrix}
+            \hat W_1
+            =
+            V_1^\ast \hat W_1
+            \in
+            \GL_{L_1}(\C),
+        \end{multline*}
+
+        Man beachte dabei, dass $M \in \GL_{L_1}(\C)$, weil $\hat W_1 \in \GL_{L_1}(\C)$ und
+
+        \begin{align*}
+            V_1 \in \GL_{L_1}(\C)
+            \implies
+            \det V_1 \neq 0
+            \implies
+            0 \neq \overline{\det V_1^\top} = \det V_1^\ast
+            \implies
+            V_1^\ast \in \GL_{L_1}(\C).
+        \end{align*}
+
+        $W_1 = (w_{1, 1}, \dots, w_{1, L_1})$ ist linear unabhängig, also eine Basis, weil
+
+        \begin{align*}
+            & \implies
+            \alpha_1
+            :=
+            (\alpha_{1, 1}, \dots, \alpha_{1, L_1})
+            =
+            -M^{-1} (e_1, \dots, e_{L_1})
+            =
+            -M^{-1} I_{L_1}
+            =
+            -M^{-1}
+            \in
+            \GL_{L_1}(\C) \\
+            & \implies
+            W_1
+            =
+            \hat W_1 \alpha_1
+            \in
+            \GL_{L_1}(\C).
+        \end{align*}
+
+        \item Weil ja $\dim \C^\N < \infty$, genügt es, nachzurechnen, dass die rechte Seite eine Rechtsinverse ist.
+        
+        \begin{align*}
+            (A - I_N \lambda)^{-1}
+            & \stackrel{!}{=}
+            \frac{1}{\lambda - \lambda_1} P_1^+
+            +
+            R_1(\lambda) \\
+            \iff
+            I_N
+            & =
+            (A - I_N \lambda)
+            \pbraces
+            {
+                \frac{1}{\lambda - \lambda_1} P_1^+
+                +
+                R_1(\lambda)
+            } \\
+            & =
+            (A - I_N \lambda)
+            \pbraces
+            {
+                -\frac{1}{\lambda_1 - \lambda}
+                \sum_{l=1}^{L_1}
+                    v_{1, l} w_{1, l}^\ast
+                +
+                R_1(\lambda)
+            } \\
+            & =
+            -\frac{1}{\lambda_1 - \lambda}
+            \sum_{l=1}^{L_1}
+                (
+                    A v_{1, l}
+                    -
+                    \lambda v_{1, l}
+                )
+                w_{1, l}^\ast
+            +
+            (A - I_N \lambda) R_1(\lambda) \\
+            & =
+            -\frac{1}{\lambda_1 - \lambda}
+            \sum_{l=1}^{L_1}
+                (\lambda_1 - \lambda) v_{1, l} w_{1, l}^\ast
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            & =
+            -\sum_{l=1}^{L_1}
+                v_{1, l} w_{1, l}^\ast
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            & =
+            P_1^-
+            +
+            (A - I_N \lambda)
+            R_1(\lambda) \\
+            \stackrel{!}{\iff}
+            I_N - P_1^-
+            & =
+            (A - I_N \lambda) R_1(\lambda)
+        \end{align*}
+
+        Das motiviert folgende Definition des Residuums.
+        Dabei ist $X := \ran (I_N - P_1^-)$ so wie in \ref{spektrale_projektion}.
+
+        \begin{multline*}
+            R_1(\lambda)
+            :=
+            \begin{cases}
+                (A - I_N \lambda)    ^{-1} (I_N - P_1^-), & \lambda \neq \lambda_1, \\
+                (A - I_N \lambda) |_X^{-1} (I_N - P_1^-), & \lambda =    \lambda_1, \\
+            \end{cases} \\
+            \lambda
+            \in
+            U_1
+            :=
+            B
+            (
+                \lambda_1,
+                \min
+                \Bbraces
+                {
+                    \abs{\lambda - \lambda^\prime}:
+                    \lambda, \lambda^\prime \in \sigma(A),
+                    \lambda \neq \lambda^\prime
+                }
+            )
+        \end{multline*}
+
+        Für $\lambda \in U_1 \setminus \Bbraces{\lambda_1}$ ist $R(\lambda)$ wohldefiniert, weil $\lambda$ kein Eigenwert und somit $\ker (A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda$ invertierbar ist.
+        $A - I_N \id$ ist holomorph.
+        Wegen der Kofaktor-Darstellung der Inversen, als Matrix mit komponentenweise rationalen Polynomen, ist $(A - I_N \id)^{-1}$, und somit $R_1$, in $\lambda$ holomorph.
+
+        Dies soll nun auch für $\lambda_1$ gelten.
+        Laut Bemerkung \ref{semi_inverse}, ist $(A - I_N \lambda) |_X^{-1}$, also auch $R_1(\lambda_1)$, wohldefiniert.
+        Wir versuchen jetzt, $R^\prime(\lambda_1)$ auszurechnen.
+        Sei dazu $x \in \C^N$.
+        Wir machen zuerst folgende Nebenrechnung.
+
+        \begin{gather*}
+            \pbraces
+            {
+                (A - I_N \lambda)^{-1}
+                -
+                (A - I_N \lambda_1) |_X^{-1}
+            }
+            (I_N - P_1^-)
+            x
+            =
+            (A - I_N \lambda)^{-1}
+            \underbrace
+            {
+                \pbraces
+                {
+                    (A - I_N \lambda_1) |_X
+                    -
+                    (A - I_N \lambda)
+                }
+            }_{
+                I_N (\lambda - \lambda_1)
+            }
+            f(x), \\
+            f
+            :=
+            (A - I_N \lambda_1) |_X^{-1}
+            (I_N - P_1^-)
+        \end{gather*}
+
+        $(I_N - P_1^-) x \in X$ und $(A - I_N \lambda_1) |_X^{-1}$ ist $X$-invariant, also $f \in \Lin(\C^N, X)$.
+        Das $|_X$ darf also tatsächlich weggelassen werden.
+
+        \begin{multline*}
+            \frac{1}{\lambda - \lambda_1}
+            (R(\lambda) - R(\lambda_1)) x
+            =
+            \frac{1}{\lambda - \lambda_1}
+            \pbraces
+            {
+                (A - I_N \lambda)^{-1}
+                -
+                (A - I_N \lambda_1) |_X^{-1}
+            }
+            (I_N - P_1^-)
+            x \\
+            =
+            (A - I_N \lambda)^{-1} f(x)
+            \xrightarrow[\lambda \to \lambda_1]{!}
+            (A - I_N \lambda_1) |_X^{-1} f(x)
+        \end{multline*}
+
+        Letzterer Grenzwert muss noch gerechtfertigt werden.
+
+        \begin{multline*}
+            \norm
+            {
+                (A - I_N \lambda)^{-1} f
+                -
+                (A - I_N \lambda_1) |_X^{-1} f
+            }
+            =
+            \norm
+            {
+                (A - I_N \lambda)^{-1}
+                (\lambda - \lambda_1)
+                (A - I_N \lambda_1) |_X^{-1}
+                f
+            } \\
+            \leq
+            \underbrace
+            {
+                \abs{\lambda - \lambda_1}
+            }_{
+                \xrightarrow[\lambda \to \lambda_1]{} 0
+            }
+            \underbrace
+            {
+                \norm{(A - I_N \lambda)^{-1}}
+            }_{
+                \displaystyle
+                \text{beschränkt}
+            }
+            \norm{(A - I_N \lambda_1) |_X^{-1}}
+            \norm{f}
+        \end{multline*}
+
+        Die Beschränktheit sieht man für $\abs{\lambda - \lambda_1}$ hinreichend klein.
+
+        \begin{align*}
+            \norm{(A - I_N \lambda)^{-1}}
+            & \leq
+            \norm{(A - I_N \lambda_1) |_X^{-1}}
+            +
+            \norm
+            {
+                (A - I_N \lambda)^{-1}
+                -
+                (A - I_N \lambda_1) |_X^{-1}
+            } \\
+            & \leq
+            \norm{(A - I_N \lambda_1) |_X^{-1}}
+            +
+            \abs{\lambda - \lambda_1}
+            \norm{(A - I_N \lambda)^{-1}}
+            \norm{(A - I_N \lambda_1) |_X^{-1}} \\
+            \implies
+            \norm{(A - I_N \lambda)^{-1}}
+            & \leq
+            \frac
+            {
+                \norm{(A - I_N \lambda_1) |_X^{-1}}
+            }{
+                1
+                -
+                \abs{\lambda - \lambda_1}
+                \norm{(A - I_N \lambda_1) |_X^{-1}}
+            }
+        \end{align*}
+
+    \end{enumerate}
+
+\end{proof}

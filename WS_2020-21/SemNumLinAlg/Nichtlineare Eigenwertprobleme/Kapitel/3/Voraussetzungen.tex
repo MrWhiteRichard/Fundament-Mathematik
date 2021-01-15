@@ -1,0 +1,57 @@
+\subsection*{Voraussetzungen}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item $\lambda_1, \dots, \lambda_k \in \Lambda$ sind alle Eigenwerte.
+    Diese sind zudem jeweils halb-einfach und liegen im Inneren von $\Gamma$, d.h. insbesondere nicht darauf.
+
+    \item $V, W \in \C^{N \times J}$ haben vollen Rang $J$, d.h. deren Spalten linear unabhängig sind.
+    Diese Annahme ist sinnvoll.
+
+    $V, W$ bestehen ja schließlich aus Rechts- bzw. Links-Eigenvektoren.
+    Die Voraussetzung gilt also zumindest im linearen Fall.
+    
+    \item $\hat V$ sei eine hinreichend große, gleichverteilt gewählte Zufallsmatrix, mit vollem Rang $j$.
+    Diese Annahme ist sinnvoll.
+
+    Anstelle von $\C$, sei dazu $K$ ein endlicher Körper und $\hat V \in K^{j \times j}$.
+    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit.
+
+    \begin{multline*}
+        \mathbf{P}(\hat V \in \GL_j(K))
+        =
+        \frac
+        {
+            |\GL_j(K)|
+        }{
+            |K^{j \times j}|
+        }
+        =
+        \frac{1}
+        {
+            |K|^{j \cdot j}
+        }
+        \prod_{i=1}^j
+            \pbraces
+            {
+                |K|^j - |K|^{i-1}
+            } \\
+        =
+        \prod_{i=1}^j
+            \frac
+            {
+                |K|^j - |K|^{i-1}
+            }{
+                |K|^j
+            }
+        =
+        \prod_{i=1}^j
+            \pbraces
+            {
+                1 - \frac{1}{|K|^{j + 1 - i}}
+            }
+        \xrightarrow{|K| \to |\C|}
+        1
+    \end{multline*}
+
+\end{enumerate}
