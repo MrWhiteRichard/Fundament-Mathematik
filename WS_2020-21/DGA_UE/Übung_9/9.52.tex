@@ -1,0 +1,35 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zur Analyse der erwarteten Laufzeit von Quickselect: Bezeichne $T(n)$ die Laufzeit
+von Quickselect bei einem Feld der Größe $n$ und sei $X_k$ das Ereignis, dass das
+Pivotelement an $k$-ter Stelle steht.
+\begin{enumerate}[label = \alph*)]
+  \item Weisen Sie nach, dass $\E(X_k) = \frac{1}{n}$ für $k = 1,\dots,n$ und dass
+  für $T(n)$ gilt, dass
+  \begin{align*}
+    T(n) \leq \sum_{k=1}^n X_k \cdot T(\max(k-1,n-k)) + \Landau(n).
+  \end{align*}
+  \item Da $X_k$ und $T(\max(k-1,n-k))$ unabhängig sind, lässt sich also folgern, dass
+  \begin{align*}
+    \E(T(n)) \leq \sum_{k=1}^n \frac{1}{n} \cdot \E(T(\max(k-1,n-k))) + \Landau(n).
+  \end{align*}
+  Zeigen Sie (mittels Betrachtung von $\max(k-1,n-k)$), dass
+  \begin{align*}
+    \E(T(n)) \leq \frac{2}{n}\sum_{k=\ceilbraces{n/2}}^n \E(T(k)) + \Landau(n).
+  \end{align*}
+  \item Folgern Sie daraus nun mittels Substitutionsmethode, dass $\E(T(n)) = \Landau(n)$
+  (also $\E(T(n)) \leq cn$ für passendes $c > 0$).
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+
+\begin{solution}
+
+\phantom{}
+
+\end{solution}

@@ -1,0 +1,40 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Quick-Hull ist ein auf einer ähnlichen Idee wie Quicksort basierender
+Divide-And-Conquer-Algorithmus zum Auffinden einer endlichen Punktemenge im $\R^2$.
+Er arbeitet wie folgt: Zunächst werden die beiden Punkte mit der größten und der
+kleinsten $x$-Koordinate gesucht (sollte es mehrere Punkte mit kleinster/größter
+$x$-Koordinate geben, so wähle denjenigen mit kleinster $y$-Koordinate).
+Da diese Punkte Extremalpunkte sind, sind sie Bestandteil der konvexen Hülle. \\
+Die beiden gefundenen Punkte bilden eine Gerade, die die Punktemenge in zwei
+Teilmengen unterteilt: Die Punkte rechts von der Gerade und die Punkte links davon
+(links und rechts ergeben sich aus dem Winkel zwischen dem Richtungsvektor der Geraden
+und dem Vektor zwischen Anfangspunkt der Gerade und dem betrachtetem Punkt).
+Diese beiden durch die Gerade getrennten Punktmengen werden nun von Quick-Hull
+rekursiv betrachtet. Innerhalb der zu betrachtenden Punktmenge wird der Punkt $P$
+gesucht, der die maximale Distanz zur Geraden hat. Dieser ist ebenfalls Teil der
+konvexen Hülle. Das Dreieck bestehend aus den Endpunkten der Gerade und dem Punkt $P$
+besteht aus drei Punkten, die alle zur konvexen Hülle gehören. Also können wir
+alle Punkte im Inneren des Dreiecks bei weiteren Aufrufen des Algorithmus ignorieren. \\
+Die Seiten des Dreiecks fungieren nun als neue Trenngeraden. Der Algorithmus
+wird so lange wiederholt, bis nur noch die Endpunkte der Trenngerade Teil der
+zu untersuchenden Punktemengen sind.
+
+\begin{enumerate}[label = \alph*)]
+  \item Illustrieren Sie die Arbeitsweise des Algorithmus anhand einer selbst
+  gewählten Punktemenge mit mindestens 10 Punkten.
+  \item Begründen Sie, warum $\Landau(n^2)$ die Worst-Case-Laufzeit von Quick-Hull ist.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+
+\begin{solution}
+
+\phantom{}
+
+\end{solution}

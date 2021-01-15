@@ -1,0 +1,52 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = \alph*)]
+  \item Erzeugt die folgende Modifikation des Fisher-Yates-Algorithmus ebenfalls
+  eine zufällige Permutation von $A$? Weshalb oder weshalb nicht?
+
+  \begin{algorithmic}
+      \State PERMUTE-WITH-ALL($A[1,\dots,n]$)
+      \State $n = A.$length
+      \For{$i = 1 ~\text{to}~ n$}
+          \State Vertausche $A[i]$ mit $A[RANDOM(1,n)]$
+      \EndFor
+  \end{algorithmic}
+
+  \item Eine weitere Abwandlung des Fisher-Yates-Algorithmus: Diesmal wird das
+  Element $A[i]$ in jedem Schritt mit einem zufälligen Element aus dem Teilfeld
+  $A[i+1,\dots,n]$ vertauscht, also
+
+  \begin{algorithmic}
+    \State PERMUTE-WITHOUT-IDENTITY($A[1,\dots,n]$)
+    \State $n = A.$length
+    \For{$i = 1 \text{ to } n$}
+      \State Vertausche $A[i]$ mit $A[RANDOM(i+1,n)]$
+    \EndFor
+  \end{algorithmic}
+
+  Man könnte zunächst meinen, dass dieser Algorithmus alle von der Identität
+  verschiedenen Permutationen zufällig erzeugt. Weisen Sie nach, dass dies aber
+  nicht der Fall ist. Überlegen Sie sich, welche Klasse von Permutationen von
+  diesem Algorithmus tatsächlich zufällig erzeugt werden.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \alph*)]
+  \item Ja, warum denn nicht? Im zweiten Beispiel kommt der falsche Algorithmus,
+  also ist das hier der Richtige.
+  \item
+\end{enumerate}
+
+\end{solution}
