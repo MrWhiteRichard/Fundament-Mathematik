@@ -9,7 +9,7 @@
 \begin{document}
 \title
 {
-	Eigenwertberechnung mithilfe des Lanczos-Verfahren
+	Eigenwertberechnung mithilfe des Lanczos-Verfahrens
 }
 \author
 {
@@ -139,14 +139,22 @@ Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und 
 
 \subsection{Idee und Algorithmus}
 
-Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit paarweise betragsmäßig verschiedenen Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert, wobei $A^{(t)} = R^{(t-1)}Q^{(t-1)}$ mit den Matrizen $Q^{(t-1)}$ und $R1{(t-1)}$ aus der QR-Zerlegung $A^{(t-1)} = Q^{(t-1)}R^{(t-1)}$ berechnet wird. Diese Folge von Matrizen konvergiert gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K^{n \times n}$ mit verschiedenen Eigenwerten $\lambda_1, ..., \lambda_n$. Dabei wird mithilfe der QR-Zerlegung iterativ eine Folge $(A^{(t)})_{t \in \N}$ definiert. Diese ist durch
 
+\begin{equation}
+	A^{(0)} \coloneqq A, \quad A^{(t+1)} \coloneqq R^{(t)}Q^{(t)}
+\end{equation}
+
+gegeben. Die Folge $(A^{(t)})_{t \in \N}$ konvergiert dann gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+
+\floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \begin{algorithm}
-	\label{QR-Verfahren}
+	
 	\caption{QR-Verfahren}
+	\label{QR-Verfahren}
 	\algorithmicrequire{ $A \in \K^{n\times n}$}
 	\begin{algorithmic}[1]
 		\While{Abbruchbedingung nicht erfüllt}
@@ -158,7 +166,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \K
 \end{algorithm}
 
 
-Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz dieses Algorithmus beweist. Für den Beweis verweisen wir auf \cite{Nannen-Skript}, Satz 9.15.
+Die Konvergenz des Algoritmus kann gilt unter gewissen Voraussetzungen. Wir Zitieren hier nur einen Satz und verweisen für den Beweis auf \cite{Nannen-Skript}, Satz 9.15.
 
 \begin{theorem}[Konvergenz des QR-Verfahrens]
 	\label{Konv_QR}
@@ -168,20 +176,21 @@ Wir führen einen Satz auf, der unter gewissen Vorraussetzungen die Konvergenz d
 
 \subsection{Beschleunigung der Konvergenz}
 
-Wir betrachten die Matrizenfolge $(\Lambda^t L \Lambda^{-t})_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese haben die Form
+Wir betrachten die Matrizenfolge $(M^{(t)})_{t \in \N}$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese haben die Form
 
 \begin{equation*}
-	M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t} =
+	M^{(t)} =
 	\left( \begin{array}{rrrr}
 		1 & 0 & \dots & 0 \\
-		l_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
+		m_{21} \left(\frac{\lambda_2}{\lambda_1}\right)^t & 1 & \ddots \vdots \\
 		\vdots & \ddots & \ddots & 0 \\
-		l_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & l_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
+		m_{n1} \left(\frac{\lambda_n}{\lambda_1}\right)^t & \dots & m_{n(n-1)} \left(\frac{\lambda_n}{\lambda_{n-1}}\right)^t & 1 \\
 	\end{array}\right).
 \end{equation*}
 
 Da die Eigenwerte der größe nach sortiert sind, erkennt man, dass diese Matrix gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
-Die Einträge konvergieren schneller gegen $0$, wenn der Bruch kleiner ist. Wir versuchen das zu erreichen, in dem wir einen Shift durchführen. Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
+Die Einträge konvergieren schneller gegen $0$, wenn die Brüche kleiner sind. Das versuchen wir zu erreichen, in dem wir einen Shift durchführen.\\
+Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
 
 \begin{equation*}
 	(A - \lambda \id) = 0 \Leftrightarrow ((A - \rho \id) - (\lambda -\rho) \id) = 0 \Leftrightarrow (\lambda-\rho) \text{ ist Eigenwert von }  (A - \rho \id).
@@ -360,13 +369,14 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 
 \subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
 
-In diesem Abschnitt beweisen wir die zentrale Aussage, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \K^{n \times n}$ konvergieren.
+In diesem Abschnitt beweisen wir, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \K^{n \times n}$ konvergieren.
 
 Der Argumentation ist dabei in großen Teilen angelehnt an \cite{Eigenwertprobleme}, Abschnitt 4.1.
 
 Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenhang mit Polynomen charakterisiert.
 
 \begin{lemma}
+	\label{v0_Polynom_Darstellung}
 	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \K^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
 	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_N$ und zugehörigen Eigenvektoren $u_1, \dots, u_N$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{N} \alpha_j u_j$ und es gilt
 	\begin{align*}
@@ -443,6 +453,7 @@ Aus dieser Darstellung folgt auch mittels Additionstheorem die 2-Term-Rekursion
 welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ handelt.
 
 \begin{lemma}
+	\label{lem:polminmax}
 	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
 	\begin{align}\label{polminmax}
 		\min_{\substack{p \in \Pi_m \\
@@ -478,34 +489,34 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
 	\end{equation}
 
-	wobei $\theta_i$ der Winkel zwischen $u_i$ und $v_0$ ist,
-
+	wobei
 	\begin{equation*}
-		\gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
+		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}}, \quad \gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
-und
+		
+	und
 	\begin{equation*}
 		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
 	\end{equation*}
 
 	\begin{proof}
 
-	Seien $v_1, \dots, v_m$ Orthonormalbasisvektoren von $\mathcal{K}_m$ und $V^{(m)} \in \K^{n\times m}$ die Matrix, die diese Vektoren als Spalten besitzt. Dann ist
+	Seien $v_1, \dots, v_m$ Orthonormalbasisvektoren von $\mathcal{K}_m$ und $V \in \K^{n\times m}$ die Matrix, die diese Vektoren als Spalten besitzt. Dann ist
 
 	\begin{equation*}
-		A^{(m)} \coloneqq V^* A V \in \K^{m\times m}
+		T_m \coloneqq V^* A V \in \K^{m\times m}
 	\end{equation*}
 
 	die Matrixdarstellung der Abbildung $\mathcal{A}_m$ bezüglich der Orthonormalbasis $\{v_1,\dots,v_m\}$.
 
-	Diese Matrix ist offensichtlich hermitesch. Somit können die Eigenwerte $\lambda_1^{(m)}, \dots, \lambda_m^{(m)}$ mithilfe von (...) berechnet werden.
+	Diese Matrix ist offensichtlich hermitesch. Somit können die Eigenwerte $\lambda_1^{(m)}, \dots, \lambda_m^{(m)}$ mithilfe von \ref{lambdamaxmin} berechnet werden.
 
 	Es gilt also
 
 	\begin{equation}
 		\label{Eigenwert_Ungl}
 		\begin{aligned}
-			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(A^{(m)}v,v)}{(v,v)} \\
+			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(T_m v,v)}{(v,v)} \\
 			&= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{S \subseteq \mathcal{K}_m\\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)}\\
 			 &\le \max_{\substack{S \subseteq \C^n\\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k
@@ -517,7 +528,7 @@ und
 	Wir beweisen nun die zweite Ungleichung zuerst für den Fall $i = 1$.
 	Sei $v_0 = \sum_{j=1}^{n}\alpha_j u_j$. Wir bemerken, dass $\alpha_1, \dots, \alpha_{m-1}$ nicht verschwinden, da $v_0$ nicht orthogonal zu diesen Eigenvektoren gewählt wurde.\\
 
-	Mit analogen Umformungen wie in \ref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma (...) gilt somit
+	Mit analogen Umformungen wie in \ref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma \ref{v0_Polynom_Darstellung} gilt somit
 	\begin{equation}
 		\label{Ungl i=1}
 		\begin{aligned}
@@ -532,7 +543,7 @@ und
 		\begin{equation*}
 			(\tan\theta_1)^2 = \frac{\norm{(\id - \mathcal{P}_{u_1})v_0}^2}{\norm{ \mathcal{P}_{u_1}v_0}^2} = \frac{\norm{v_0 - \alpha_1 u_1}^2}{\norm{\alpha_1 u_1}^2} = \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2}
 		\end{equation*}
-	und mithilfe von Lemma (...) mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$
+	und mithilfe der Ungleichung \ref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$
 
 		\begin{equation*}
 			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
@@ -540,7 +551,7 @@ und
 	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.
 
 	Betrachten wir nun den Fall $i>1$.
-	Bezeichne mit $u_j^{(m)}, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$. Mit (...) erhalten wir dann
+	Bezeichne mit $u_j^{(m)}, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$. Mit \ref{lambdamax} erhalten wir dann
 
 	\begin{equation*}
 		\lambda_i^{(m)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)} = \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0, j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
@@ -584,16 +595,16 @@ und
 		(\tan\theta_i)^2 = \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}^2}{\norm{ \mathcal{P}_{u_i}v_0}^2} = \frac{\norm{v_0 - \alpha_i u_i}^2}{\norm{\alpha_i u_i}^2} = \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2}
 	\end{equation*}
 
-	und  mit $a = \lambda_n, b= \lambda_{i+1}$, $c = \lambda_i$ folg Lemma (...) an, erhalten wir die Behauptung.\\
+	und  mit $a = \lambda_n, b= \lambda_{i+1}$, $c = \lambda_i$ in Lemma \ref{lem:polminmax}, erhalten wir die Behauptung.\\
 
 	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bediungung $p(\lambda_j^{(m)}) = 0$ weglassen und das damit berechnete Minimum wird dadurch nicht größer, also kann die gleiche Abschätzung verwendet werden.
 	Also gilt \ref{konvergenz Eigenwerte} für alle $i = 1, \dots, m-1$.
 	\end{proof}
 \end{theorem}
 
-Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit (...)
+Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit \ref{polminmax}
 \begin{equation*}
-	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le \frac{1}{4} \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
+	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le 4 \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
 \end{equation*}
 gilt. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte ab. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur folge.
 
