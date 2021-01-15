@@ -1,12 +1,23 @@
 \subsection*{Zusammenfassung}
 
-Wir haben insgesamt den folgenden Algorithmus \ref{alg:integral_methode_zusammenfassung} gefunden.
+Wir werden in diesem Kapitel die folgende Heuristik \ref{zusammenfassung} und Algorithmus \ref{alg:integral_methode_zusammenfassung} herleiten.
+
+\begin{heuristics} \label{zusammenfassung}
+
+    Es gelten die Voraussetzungen von Korollar \ref{keldysh_multi}.
+    Seien $\hat V \in \C^{N \times j}$ mit $\sum_{n=1}^k L_n =: J \leq j \ll N$, $A_0, A_1$ wie in \eqref{eq:integral_matrizen} und $D$ wie in \eqref{eq:diagonal_matrix}.
+    Sei $\tilde V \Sigma \tilde W$ eine reduzierte Singulärwertzerlegung von $A_0$.
+
+    Dann sind $\tilde V A_1 \tilde W \Sigma^{-1} \approx D$ ähnlich.
+    Sie besitzen also dieselben Eigenwerte $\lambda_1, \dots, \lambda_k$ von $A$.
+
+\end{heuristics}
 
 \begin{algorithm}[H]
 	\caption{Integral-Methode}
     \begin{algorithmic}[1]
         \Procedure{Integral-Methode Zusammanfassung}{}
-            \State Berechne $A_0, A_1 \in \C^{N \times j}$ (z.B. mit LU-Zerlegung);
+            \State Berechne $A_0, A_1 \in \C^{N \times j}$;
             \State Berechne und reduziere eine Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
             \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1}$ (z.B. mit QR-Verfahren);
             \State \Return $\lambda_1, \dots, \lambda_k$

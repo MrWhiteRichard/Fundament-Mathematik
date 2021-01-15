@@ -1,4 +1,4 @@
-\subsection*{Definitionen und Motivation}
+\subsection*{Definitionen}
 
 Es gelten die Bezeichnungen des vorherigen Kapitels.
 Sei $\Gamma \subset \Lambda$ zudem eine positiv orientierten Jordan-Kurve (d.h. ein geschlossener Weg).
@@ -10,14 +10,17 @@ Sei nun $f \in H(\C, \C)$ holomorph.
 Wir wenden die Cauchyche Integralformel und den Cauchychen Integralsatz an.
 Für $n = 1, \dots, k$, sei dazu $r_n$ hinreichend klein, sodass $B(\lambda_n, r_n) \subset U_n$.
 
-\begin{multline*}
+\begin{multline} \label{eq:cauchysche_integral_formel_satz}
     \implies
     \frac{1}{2 \pi i}
     \Int[\Gamma]
     {
         f(\lambda) A(\lambda)^{-1}
     }{\lambda}
-    =
+    \stackrel
+    {
+        \ref{keldysh_multi}
+    }{=}
     \frac{1}{2 \pi i}
     \Int[\Gamma]
     {
@@ -55,11 +58,11 @@ Für $n = 1, \dots, k$, sei dazu $r_n$ hinreichend klein, sodass $B(\lambda_n, r
         f(\lambda_n)
         \sum_{l=n}^{L_n}
             v_{n, l} w_{n, l}^\ast
-\end{multline*}
+\end{multline}
 
 Diese Formel bildet die Grundlage zur Berechnung der Eigenwerte.
 Sei $J$ die Summe aller Eigenraum-Dimensionen.
-Folgendes würde für lineare Eigenwertprobleme gelten.
+\Quote{!} würde für lineare Eigenwertprobleme gelten.
 
 \begin{align*}
     J
@@ -125,7 +128,7 @@ Sei $\hat V \in \C^{N \times j}$ mit $J \leq j \ll N$.
 
 Sei $D$ die Diagonal-Matrix der Eigenwerte, ihrer Vielfachheit nach aufgeführt.
 
-\begin{align*}
+\begin{align} \label{eq:diagonal_matrix}
     D
     :=
     \diag
@@ -150,14 +153,17 @@ Sei $D$ die Diagonal-Matrix der Eigenwerte, ihrer Vielfachheit nach aufgeführt.
     \diag(I_{L_1} \lambda_1, \dots, I_{L_k} \lambda_k)
     \in
     \C^{N \times N}
-\end{align*}
+\end{align}
 
 Das erstere Ergebnis lässt uns nun die Matrix-Integrale $A_0$ und $A_1$ wir folgt umformulieren.
 Letztere Gleichheit ist dabei eine elementare, sperrige Rechnung.
 
 \begin{align} \label{eq:integral_matrizen_resultat_compact}
     A_i
-    \stackrel{\eqref{eq:integral_matrizen}}{=}
+    \stackrel
+    {
+        \eqref{eq:integral_matrizen}
+    }{=}
     \frac{1}{2 \pi i}
     \Int[\Gamma]
     {
@@ -165,7 +171,10 @@ Letztere Gleichheit ist dabei eine elementare, sperrige Rechnung.
         A(\lambda)^{-1}
         \hat V
     }{\lambda}
-    =
+    \stackrel
+    {
+        \eqref{eq:integral_matrizen_resultat}
+    }{}
     \sum_{n=1}^k
         \lambda_n^i
         \sum_{l=1}^{L_n}
