@@ -20,66 +20,7 @@ Nun haben wir angenommen, dass $V, W \in \C^{N \times J}$ vollen Rang $J$ haben 
 Es ist also plausibel, dass $A_0 = V W^\ast \hat V \in \C^{N \times j}$ Rang $J$ hat.
 Das wird durch Abbildung \ref{fig:rang_1} illustriert.
 
-\begin{figure}[!ht]
-    \centering
-    \begin{tikzpicture}[scale = 0.5]
-
-        \begin{scope}
-            
-            \draw (0,  0) rectangle (2,  6);
-            \draw (6,  0) rectangle (8,  6);
-            \draw (12, 0) rectangle (14, 6);
-            \draw (18, 0) rectangle (20, 6);
-    
-            \draw (0, 1) -- (2, 1);
-            \draw (0, 5) -- (2, 5);
-    
-            \draw (2, 1) -- (6, 0);
-            \draw (2, 5) -- (6, 6);
-    
-            \draw [dotted] (2, 1) -- (6, 1);
-            \draw [dotted] (2, 5) -- (6, 5);
-    
-            \draw [dotted] (6, 1) -- (8, 1);
-            \draw [dotted] (6, 5) -- (8, 5);
-    
-            \draw (8, 0) -- (12, 2);
-            \draw (8, 6) -- (12, 4);
-    
-            \draw [dotted] (8, 1) -- (12, 2);
-            \draw [dotted] (8, 5) -- (12, 4);
-    
-            \draw (12, 2) -- (14, 2);
-            \draw (12, 4) -- (14, 4);
-    
-            \draw (14, 2) -- (18, 0);
-            \draw (14, 4) -- (18, 6);
-    
-            \draw [dotted] (14, 2) -- (18, 2);
-            \draw [dotted] (14, 4) -- (18, 4);
-    
-            \draw [dotted] (18, 2) -- (20, 2);
-            \draw [dotted] (18, 4) -- (20, 4);
-
-        \end{scope}    
-
-        \begin{scope}[yshift = 7 cm]
-            
-            \draw (1,  0) node {$\C^j$};
-            \draw (7,  0) node {$\C^N$};
-            \draw (13, 0) node {$\C^J$};
-            \draw (19, 0) node {$\C^N$};
-    
-            \draw (4,  0) node {$\xrightarrow[\text{injektiv}] {\hat V}$};
-            \draw (10, 0) node {$\xrightarrow[\text{surjektiv}]{W^\ast}$};
-            \draw (16, 0) node {$\xrightarrow[\text{injektiv}] {V}     $};
-
-        \end{scope}
-
-    \end{tikzpicture}
-    \caption{}
-    \label{fig:rang_1}
-\end{figure}
+\input{Kapitel/3/rang_1.tex}
 
 Matrizen haben genau dann denselben Rang, wenn sie äquivalent sind.
 
@@ -182,54 +123,7 @@ $\tilde V \in \C^{N \times J}$ hat, als Teil-Matrix einer unitären, vollen Rang
 Es ist also plausibel, dass $S := \tilde V^\ast V \in \C^{J \times J}$ Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
 Das wird durch Abbildung \ref{fig:rang_2} illustriert.
 
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[scale = 0.5]
-
-        \begin{scope}
-            
-            \draw (0,  0) rectangle (2,  6);
-            \draw (6,  0) rectangle (8,  6);
-            \draw (12, 0) rectangle (14, 6);
-    
-            \draw (0, 2) -- (2, 2);
-            \draw (0, 4) -- (2, 4);
-    
-            \draw (2, 2) -- (6, 0);
-            \draw (2, 4) -- (6, 6);
-    
-            \draw [dotted] (2, 2) -- (6, 2);
-            \draw [dotted] (2, 4) -- (6, 4);
-
-            \draw [dotted] (6, 2) -- (8, 2);
-            \draw [dotted] (6, 4) -- (8, 4);
-
-            \draw (8, 0) -- (12, 2);
-            \draw (8, 6) -- (12, 4);
-
-            \draw [dotted] (8, 2) -- (12, 2);
-            \draw [dotted] (8, 4) -- (12, 4);
-
-            \draw (12, 2) -- (14, 2);
-            \draw (12, 4) -- (14, 4);
-
-        \end{scope}    
-
-        \begin{scope}[yshift = 7 cm]
-
-            \draw (1,  0) node {$\C^J$};
-            \draw (7,  0) node {$\C^N$};
-            \draw (13, 0) node {$\C^J$};
-
-            \draw (4,  0) node {$\xrightarrow[\text{injektiv}]{V}$};
-            \draw (10, 0) node {$\xrightarrow[\text{surjektiv}]{\tilde V^\ast}$};
-
-        \end{scope}    
-
-    \end{tikzpicture}
-    \caption{}
-    \label{fig:rang_2}
-\end{figure}
+\input{Kapitel/3/rang_2.tex}
 
 In den folgenden Gleichungsketten wird bei \Quote{!} die jeweils vorgerige eingesetzt.
 
