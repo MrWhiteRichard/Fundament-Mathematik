@@ -1,0 +1,53 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[272]
+
+Betrachten Sie die folgenden Eigenschaften, die eine Menge $A$ haben kann:
+
+\begin{enumerate}[label = \alph*.]
+  \item Es gibt eine injektive Abbildung von $\omega$ nach $A$. (\glqq $\omega \leq A$\grqq)
+  \item Es gibt eine fast injektive Abbildung von $\omega$ nach $A$.
+  (\glqq fast injektiv\grqq\ bedeutet, dass das Urbild jedes Bildpunktes endlich ist.)
+  \item Es gibt eine injektive, aber nicht surjektive Abbildung von $A$ nach $A$.
+  \item Es gibt eine fast injektive, aber nicht surjektive Abbildung von $A$ nach $A$.
+  \item Für ein (alle) $x \notin A$ gibt es eine Bijektion von $A$ nach $A \cup \{x\}$.
+  (\glqq $A = A + 1$\grqq)
+  \item Es gibt eine surjektive, aber nicht injektive Abbildung von $A$ nach $A$.
+  \item Es gibt eine surjektive Abbildung von $A$ auf $\omega$. (\glqq $\omega \leq^* A$\grqq)
+  \item Es gibt eine surjektive, fast injektive Abbildung von $A$ auf $\omega$.
+  \item Es gibt eine injektive Abbildung von $\omega$ nach $P(A)$. (\glqq $\omega \leq P(A)$\grqq)
+  \item Es gibt eine injektive Abbildung von $\omega$ in die endlichen Teilmengen
+  von $A$. (\glqq $\omega \leq P_{fin}(A)$\grqq)
+  \item Es gibt eine surjektive Abbildung von den endlichen Teilmengen von $A$ auf $\omega$.
+  \item $A$ ist unendlich: \glqq $|A| = \infty$\grqq
+  \item Es gibt eine nichtleere Teilmenge von $\mathfrak{P}(A)$ ohne (bez. $\subseteq$)
+  maximales Element.
+\end{enumerate}
+
+Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen an, die
+sich in ZF (also ohne Auswahlaxiom) beweisen lassen.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
+\begin{itemize}
+  \item[a. $\implies$ b.] Klar.
+  \item[b. $\implies$ c.] Sei $f: \omega \to A$ fast injektiv.
+  Wir definieren zuerst die Hilfsfunktion $k: \omega \to \omega$ durch
+  \begin{align*}
+    k(n) = \min\{m \in \omega: \forall z < m: f(z) \neq f(m)\}
+  \end{align*}
+
+  Dann definiere die Funktion $g$ durch
+  \begin{align*}
+    g = \{(x,x): x \in A \setminus f(\omega)\} \cup \{(f(n),f(n+1)): n \in \omega\}
+  \end{align*}
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
