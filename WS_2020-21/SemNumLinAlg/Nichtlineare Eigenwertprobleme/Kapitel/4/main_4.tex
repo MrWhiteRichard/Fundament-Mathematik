@@ -1,1 +1,96 @@
 \section{Analyse des Algorithmus'}
+
+\begin{lemma}
+
+    Sei $R > 0$, $1 < a_- < a_+$ und $U$ ein Ringgebiet.
+
+    \begin{align*}
+        U := \Bbraces{z \in \C: R / a_- < \abs{z} < R a_+}
+    \end{align*}
+
+    Weiter sei $f \in H(U, \C^N)$ eine holomorphe Funktion und
+
+    \begin{align*}
+        Q(f)
+        :=
+        \frac{1}{2 \pi i}
+        \Int[\abs{\lambda} = R]{f(\lambda)}{\lambda}.
+    \end{align*}
+
+    Dann gilt für die summierte Rechtecksregel (hier gleichbedeutend mit einer summierten Trapezregel)
+
+    \begin{align*}
+        Q_m(f)
+        :=
+        \frac{R}{m}
+        \sum_{\nu = 0}^{m - 1}
+            \omega_m^\nu
+            f(R \omega_m^\nu),
+        \quad
+        \omega_m
+        :=
+        \exp \frac{2 \pi i}{m},
+    \end{align*}
+
+    mit $m \in \N$ Quadraturknoten für alle $\rho_\pm \in (1, a_\pm)$ die Fehlerabschätzung
+
+    \begin{align*}
+        \abs{Q_m(f) - Q(f)}
+        \leq
+        \max_{\abs{\lambda} = R \rho_+}
+            \norm{f(\lambda)}
+        \frac{\rho_+^{-m}}{1 - \rho_+^{-m}}
+        +
+        \max_{\abs{\lambda} = R \rho_-}
+            \norm{f(\lambda)}
+        \frac{\rho_-^{-m}}{1 - \rho_-^{-m}}.
+    \end{align*}
+
+\end{lemma}
+
+\begin{proof}
+    ToDo!
+\end{proof}
+
+\begin{theorem}
+
+    Werden die Kurven in der Definition \eqref{eq:integral_matrizen} von $A_0$ und $A_1$ als Kreise der Form $z_0 + R \exp*{i t}$ mit $t \in [0, 2 \pi)$ gewählt und durch eine Rechtecksregel mit $m$ äquidistant verteilten Punkten diskretisiert, so erhalten wir für die angenäherten Matrizen $A_{0, 1}^{(m)} \in \C^{N \times j}$ die Fehlerabschätzung
+
+    \begin{align*}
+        \norm{A_{0, 1}^{(m)} - A_{0, 1}}
+        \leq
+        C (\rho_-^{m - r + 1} + \rho_+^{m - r + 1}),
+    \end{align*}
+
+    wobei $r$ die maximale Ordnung der Pole von $A(\lambda)^{-1}$ und
+
+    \begin{align*}
+        \rho_-
+        :=
+        \max_{\substack{\lambda \in \sigma(A) \\ \abs{\lambda - z_0} < R}}
+            \frac{\abs{\lambda - z_0}}{R},
+        \quad
+        \rho_+
+        :=
+        \max_{\substack{\lambda \in \sigma(A) \\ \abs{\lambda - z_0} > R}}
+            \frac{R}{\abs{\lambda - z_0}}
+    \end{align*}
+
+    ist.
+
+\end{theorem}
+
+Die Matrizen $A_0$ und $A_1$ können wir somit exponentiell schnell mit Hilfe der Rechtecksregel annähern, sofern wir nur glatte Kurve und passende Quadraturpunkte wählen.
+Dennoch ist auch die Berechnung der angenäherten Matrizen $A_{0, 1}^{(m)}$ sehr aufwändig.
+Für jeden Quadraturpunkt und jede Spalte von $\hat V$ muss ein lineares Gleichungssystem gelöst werden.
+Dies entspricht somit $m j$ linearen Gleichungssystemen der Größe $N \times N$.
+Verwendet man eine LU-Zerlegung von $A(\lambda)$ und nehmen wir fur diese den Aufwand $\Landau(N^3)$ an, so erhalten wir in etwa einen Gesamtaufwand zur Berechnung von $A_0^{(m)}$ und $A_1^{(m)}$ von $\Landau(m (N^3 + 2 N^2 j))$.
+
+Die Integralmethode zur Berechnung der Eigenwerte nichtlinearer Eigenwertprobleme ist vergleichsweise neu und Gegenstand aktueller Forschung.
+Ein wesentliches Problem der Methode (neben dem Aufwand) ist, dass sich durch die Verwendung von $A_{0, 1}^{(m)}$ die Anzahl der nicht-verschwindenden Singulärwerte deutlich erhöht.
+Solange die \Quote{korrekten} Singulärwerte um Größenordnungen über den zusätzlichen liegen, können letztere einfach aussortiert werden.
+Gerade bei großen Fehlern, wie sie z.B. durch Verwendung von Matrix-Kompressionstechniken (z.B. $H$-Matrizen) oder durch iterative Gleichungslöser entstehen, sind die zusätzlichen Singulärwerte aber häufig nicht mehr von den \Quote{korrekten} zu unterscheiden und führen dann zu zusätzlichen falschen Eigenwerten und zu großen Fehlern bei den eigentlich gesuchten Eigenwerten.
+
+Dennoch hat die Integralmethode die Lösung von nichtlinearen Eigenwertproblemen massiv vereinfacht.
+Sie ermöglicht bei entsprechender Genauigkeit die zuverlässige Berechnung aller Eigenwerte innerhalb einer gewählten Kurve.
+Dies ist ein sehr großer Vorteil zu iterativen Verfahren, bei denen typischerweise die Lage der gefundenen Eigenwerte nicht zuverlässig kontrolliert werden kann.
