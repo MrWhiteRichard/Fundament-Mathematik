@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\input{../../../Fundament-LaTeX/packages.tex}
+\input{../../../Fundament-LaTeX/macros.tex}
+\input{../../../Fundament-LaTeX/environments.tex}
+
+
+\parindent 0pt
+
+
+\begin{document}
+
+\begin{algorithm}
+  \caption{QR-Verfahren mit shifts um Diagonalelemente}
+  \begin{algorithmic}[1]
+        \For{$j = n, n-1, ..., 2$}
+          \While{$|A(j, j-1)| >$ tol}
+            \State $\rho = A(j,j)$
+            \State Berechne $QR$-Zerlegung von $A-\rho \id = QR$
+            \State $A = RQ + \rho \id$
+          \EndWhile
+        \EndFor
+        \State \Return A
+        \State \Comment A wird mit der Approximation an obere Dreiecksmatrix mit Approximationen an die Eigenwerte von A in der Hauptdiagonalen überschrieben
+  \end{algorithmic}
+\end{algorithm}
+
+\end{document}
