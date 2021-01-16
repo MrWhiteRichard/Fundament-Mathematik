@@ -32,4 +32,23 @@ Pivotelement an $k$-ter Stelle steht.
 
 \phantom{}
 
+\begin{enumerate}[label = \alph*)]
+  \item Klar.
+  \item
+  \begin{align*}
+    \E(T(n)) &\leq \sum_{k=1}^n \frac{1}{n} \cdot \E(T(\max(k-1,n-k))) + \Landau(n) \\
+    &= \sum_{k=1}^{\ceilbraces{n/2}} \frac{1}{n} \cdot \E(T(n-k)) + \Landau(n)
+    + \sum_{k=\ceilbraces{n/2} + 1}^{n} \frac{1}{n} \cdot \E(T(k-1)) + \Landau(n) \\
+    &= \sum_{k=n - \ceilbraces{n/2}}^{n - 1} \frac{1}{n} \cdot \E(T(k)) + \Landau(n)
+    + \sum_{k=\ceilbraces{n/2} }^{n - 1} \frac{1}{n} \cdot \E(T(k)) + \Landau(n) \\
+    &\leq \frac{2}{n}\sum_{k=\floorbraces{n/2} }^{n - 1} \E(T(k)) + \Landau(n).
+  \end{align*}
+  \item Vermutung: $\E(T(n)) \leq n$. Zur Vereinfachung der Rechnung vernachlässigen wir
+  das $+ \Landau(n)$.
+  \begin{align*}
+    \E(T(n)) \leq \frac{2}{n}\sum_{k=\floorbraces{n/2} }^{n - 1} k \leq \frac{2}{n}\frac{(n-1)n}{2}
+    = n - 1 < n.
+  \end{align*}
+\end{enumerate}
+
 \end{solution}
