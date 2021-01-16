@@ -152,7 +152,7 @@ gegeben. Die Folge $(A^{(t)})_{t \in \N}$ konvergiert dann gegen eine obere Drei
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \begin{algorithm}
-	
+
 	\caption{QR-Verfahren}
 	\label{QR-Verfahren}
 	\algorithmicrequire{ $A \in \K^{n\times n}$}
@@ -199,6 +199,27 @@ Für einen Eigenwert $\lambda$ einer Matrix $A$ gilt
 Die Wahl des Shifts als $a^{(t)}_{nn}$ macht also Sinn, da dieser Eintrag für $t \rightarrow \infty$ gegen $\lambda_n$ konvergiert. Dieser Shift wird auch Rayleigh-Quotienten-Shift genannt. Nach der QR-Zerlegung von $A^{(t)}$ setzt man $A^{(t+1)} \coloneqq R^{(t)}Q^{(t)} + \rho \id$, um wieder eine Matrix zu erhalten, die die gleichen Eigenwerte wie $A^{(t)}$ und somit auch wie $A$ besitzt.
 Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Toleranz, die von den Einträgen $a^{(t)}_{ni}, \, i = 1,\dots, n-1$ unterschritten werden muss, bevor analoge Schritte für den zweitkleinsten Eigenwert durchgeführt werden. Dessen Näherung steht in $a^{(t)}_{(n-1)(n-1)}$.
 
+\floatname{algorithm}{Algorithmus}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\begin{algorithm}
+
+	\caption{QR-Verfahren mit Rayleigh-Quotienten-Shift}
+	\label{QR-Verfahren_shifts_rayleigh}
+	\algorithmicrequire{ $A \in \K^{n\times n}$}
+	\begin{algorithmic}[1]
+		\For{$i = n,\dots, 2$}
+			\While{$|a_{i,i-1}| > tol$}
+				\State $\rho = a_{i,i}$
+				\State Berechne $A - \rho \id = QR$
+				\State $A = RQ + \rho \id$
+			\EndWhile
+		\EndFor
+	\end{algorithmic}
+	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit gleichen Eigenwerten wie $A$ anfangs hatte}
+\end{algorithm}
+
 Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Nannen-Skript}. Dieser Shift wird Wilkinson-Shift genannt.
 
 In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführte Methode.
@@ -230,7 +251,59 @@ In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführt
 Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat.
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
-
+\begin{algorithm}
+	\label{QR-Zerlegung_Hessenberg}
+	\caption{QR-Zerlegung für Hessenbergmatrizen}
+	\algorithmicrequire{ $A \in \K^{n\times n}$}
+	\begin{algorithmic}[1]
+		\State $Q = \id \in \K^{n\times n}$
+		\For{$i = 1,\dots,n-1$}
+		\State $\left(\begin{array}{c}
+    c_i \\
+    s_i \\
+\end{array}\right)
+=
+\frac{1}{\sqrt{|a_{i,i}|^2 + |a_{i+1,i}|^2}}
+\left(\begin{array}{c}
+a_{i,i} \\
+a_{i+1,i} \\
+\end{array}\right)$
+		\For{$j = i,\dots,n$}
+		\State $\left(\begin{array}{c}
+		a_{i,j} \\
+		a_{i+1,j}\\
+		\end{array}\right)
+		=
+		\left(\begin{array}{cc}
+		\overline{c_i} & \overline{s_i} \\
+		-s_i & c_i \\
+		\end{array}
+		\right)
+		\left(\begin{array}{c}
+		a_{i,j} \\
+		a_{i+1,j}\\
+		\end{array}\right)$
+		\EndFor
+		\For{$i= 1,\dots,n$}
+		\State $\left(\begin{array}{c}
+		q_{i,j} \\
+		q_{i+1,j}\\
+		\end{array}\right)
+		=
+		\left(\begin{array}{cc}
+		\overline{c_i} & \overline{s_i} \\
+		-s_i & c_i \\
+		\end{array}
+		\right)
+		\left(\begin{array}{c}
+		q_{i,j} \\
+		q_{i+1,j}\\
+		\end{array}\right)$
+		\EndFor
+		\EndFor
+	\end{algorithmic}
+	\algorithmicensure{ $A$ wird mit oberer Dreiecksmatrix (=R) überschrieben, Q ist das Produkt der Givens-Rotationen und $\overline{Q}^\top$ ist die gewünschte unitäre Matrix}
+\end{algorithm}
 \subsection{Implementierung und Vergleich der verschiedenen Methoden}
 
 
@@ -479,7 +552,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation*}
 		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}}, \quad \gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
-		
+
 	und
 	\begin{equation*}
 		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
