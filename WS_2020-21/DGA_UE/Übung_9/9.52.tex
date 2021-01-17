@@ -33,7 +33,10 @@ Pivotelement an $k$-ter Stelle steht.
 \phantom{}
 
 \begin{enumerate}[label = \alph*)]
-  \item Klar.
+  \item Wir verwenden das Permutationsmodell und erhalten $\mathbb{E}\pbraces{X_k} = \mathbb{P}\pbraces{X_k} = \frac{1}{n}$. Wir erhalten weiters
+  \begin{align*}
+  	T(n) = \sum_{k = 1}^{j - 1} X_k T(n - k) + \sum_{k = j + 1}^{n} X_k T(k - 1) + \Landau(n) \leq \sum_{k=1}^n X_k \cdot T(\max(k-1,n-k)) + \Landau(n)
+  \end{align*}
   \item
   \begin{align*}
     \E(T(n)) &\leq \sum_{k=1}^n \frac{1}{n} \cdot \E(T(\max(k-1,n-k))) + \Landau(n) \\
