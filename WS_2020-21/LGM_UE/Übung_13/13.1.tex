@@ -16,7 +16,7 @@ Betrachten Sie die folgenden Eigenschaften, die eine Menge $A$ haben kann:
   \item Es gibt eine surjektive Abbildung von $A$ auf $\omega$. (\Quote{$\omega \leq^* A$})
   \item Es gibt eine surjektive, fast injektive Abbildung von $A$ auf $\omega$.
   \item Es gibt eine injektive Abbildung von $\omega$ nach $P(A)$. (\Quote{$\omega \leq P(A)$})
-  \item Es gibt eine injektive Abbildung von $\omega$ in die endlichen Teilmengen von $A$. (\Quote{$\omega \leq P_{fin}(A)$})
+  \item Es gibt eine injektive Abbildung von $\omega$ in die endlichen Teilmengen von $A$. (\Quote{$\omega \leq P_\mathrm{fin}(A)$})
   \item Es gibt eine surjektive Abbildung von den endlichen Teilmengen von $A$ auf $\omega$.
   \item $A$ ist unendlich: \Quote{$|A| = \infty$}
   \item Es gibt eine nichtleere Teilmenge von $\mathfrak{P}(A)$ ohne (bez. $\subseteq$) maximales Element.
@@ -36,7 +36,7 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
 
   \item Implikation (a. $\implies$ b.):
   
-  Klar.
+  Klar!
 
   \item Implikation (b. $\implies$ c.):
   
@@ -62,7 +62,7 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
     Sei $f: \omega \to A$ fast injektiv, d.h.
 
     \begin{align*}
-      \Forall x \in \ran f:
+      \Forall x \in f[\omega]:
       |f^{-1}[\Bbraces{x}]| < \infty.
     \end{align*}
 
@@ -107,7 +107,7 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
 
   \item Implikation (c. $\implies$ d.):
   
-  Klar.
+  Klar!
 
   \item Implikation (e. $\implies$ c.):
   
@@ -130,6 +130,56 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
       y,    & f(z) = x
     \end{cases}
   \end{align*}
+
+  \item Implikation (a. $\implies$ g.):
+  
+  Sei $f: \omega \to A$ injektiv.
+  Es gibt folglich also eine (surjektive) Linksinverse $f^{-1}: f[\omega] \to \omega$.
+  Wir setzen diese zu einer (surjektiven) Funktion $g: A \to \omega$ beliebig fort.
+
+  \item Implikation (h. $\implies$ g.):
+  
+  Klar!
+
+  \item Implikation (a. $\implies$ j.):
+
+  Sei $f: \omega \to A$ injektiv, so auch $g: \omega \to P_\mathrm{fin}(A): n \to \Bbraces{n}$.
+
+  \item Implikation (j. $\implies$ i.):
+
+  Klar!
+
+  \item Implikation (g. $\implies$ k.):
+
+  Verwende \Quote{a. $\implies$ g.} für $P_\mathrm{fin}(A)$ anstelle von $A$.
+
+  \item Implikation (g. $\implies$ k.):
+
+  Sei $f: A \to \omega$ surjektiv.
+
+  \begin{gather*}
+    g:
+    P(A) \to \omega:
+    M \mapsto \min f[M],
+    \quad
+    g_\mathrm{fin} := g |_{P_\mathrm{fin}(A)},
+    \quad
+    g_\mathrm{sing} := g_\mathrm{fin} |_{P_\mathrm{sing}(A)} \cong f \\
+    \implies
+    \omega
+    \supseteq
+    g(P(A))
+    \supseteq
+    g_\mathrm{fin}(P_\mathrm{fin}(A))
+    \supseteq
+    g_\mathrm{sing}(P_\mathrm{sing}(A))
+    =
+    f(A)
+    =
+    \omega
+  \end{gather*}
+
+  $g$, $g_\mathrm{fin}$, und $g_\mathrm{sing}$ sind also auch allersamt surjektiv.
 
 \end{enumerate}
 
