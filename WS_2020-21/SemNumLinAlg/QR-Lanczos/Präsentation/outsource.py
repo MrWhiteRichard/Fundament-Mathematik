@@ -52,7 +52,10 @@ def runtime_error(f, A, eigv, k = 0, l = 0):
     if k == 0:
         l, S, count = f(A)
         S = error(S, eigv)
+    elif l == 0:
+        l, S, count = f(A, k)
+        S = error(S, eigv)
     else:
-        l, S, count = f(lambda x: A@x, k, l)
+        l, S, count = f(lambda x: A@x, l, k)
         S = error(S, eigv)
     return count, S
