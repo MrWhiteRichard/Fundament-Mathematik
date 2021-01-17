@@ -1,73 +1,48 @@
 \begin{remark} \label{semi_inverse}
 
-    Sei $X := \ker P_1^-$ und $Y := \ker (I_N - P_1^-)$ so wie in Bemerkung \ref{spektrale_projektion}.
-    Wir erweitern die Basis $V_1$ von $Y$ zu einer von ganz $\C^N = X \oplus Y$, vermöge einer Basis von $X$.
+    Sei $f_1$ die lineare Abbildung, die von $A - I_N \lambda_1$ dargestellt wird.
+    Seien $X$ und $Y$ so wie in Bemerkung \ref{spektrale_projektion}.
+    Wir wählen eine Basis von $X$ und erweitern diese, vermöge der Basis $V_1$ von $Y$, zu einer von ganz $\C^N = X \oplus Y$.
     Wenn wir bzgl. dieser koordinatisieren, dann bekommen folgende Darstellungen.
 
-    \begin{align*}
-        A - I_N \lambda_1
+    \begin{gather*}
+        f_1
         \cong
         \begin{pmatrix}
             B_1 & 0 \\
-            0   & B_2
+            0   & 0
         \end{pmatrix},
         \quad
-        \Forall x \in X:
-            x
-            \cong
-            (
-                \underbrace
-                {
-                    x_1, \dots, x_{N - (L_1 + 1)}
-                }_{
-                    \in \C
-                },
-                \underbrace
-                {
-                    0, \dots, 0
-                }_{
-                    \displaystyle
-                    \text{$L_1$-mal}
-                }
-            )^\top
-    \end{align*}
-
-    Die $0$-er in der Block-Matrix treten auf, weil $A - I_N \lambda_1$ ja $X$- und $Y$-invariant ist, und $X \oplus Y = \C^N$.
-    Nur (d.h. genau) Eigenvektoren $x$ von $A$ bzgl. $\lambda_1$, und $0$ erfüllen
-
-    \begin{align*}
-        A x = \lambda_1 x
+        B_1 \in \C^{(N - L_1) \times (N - L_1)}, \\
+        \Forall v \in \C^N:
+            \ExistsOnlyOne x \in X:
+            \ExistsOnlyOne y \in Y:
+                v = x + y, \\
+        x
+        \cong
+        (
+            v_1, \dots, v_{N - L_1},
+            0, \dots, 0
+        )^\top,
         \quad
-        \text{d.h.}
-        \quad
-        (A - I_N \lambda_1) x = 0.
-    \end{align*}
+        y
+        \cong
+        (
+            0, \dots, 0,
+            v_{N - L_1 + 1}, \dots, v_N
+        )^\top
+    \end{gather*}
 
-    Weil $P_1^-$ ja die Spektrale Projektion gilt aber $P_1^- x = x \neq 0$, also $x \not \in \ker P_1^- = X$.
-
-    \begin{align*}
-        & \implies
-        \ker (A - I_N \lambda_1) |_X = \Bbraces{0} \\
-        & \implies
-        \GL(X) \ni (A - I_N \lambda_1) |_X \cong B_1 \in \GL_{N - (L_1 + 1)}(\C)
-    \end{align*}
-
-    Wir verwenden die kanonische Einbettung $\iota: X \hookrightarrow \C^N$ und interpretieren daher
+    Nur (d.h. genau) Eigenvektoren $y \in Y$, und $y = 0$ erfüllen $(A - I_N \lambda_1) y = 0$.
+    Weil $P_1^-$ ja die Spektrale Projektion ist, gilt aber $P_1^- y = y \neq 0$, also $y \not \in \ker P_1^- = X$.
 
     \begin{align*}
-        (A - I_N \lambda_1) |_X
-        ~\text{als}~
-        \begin{pmatrix}
-            B_1 & 0 \\ 0 & 0
-        \end{pmatrix}
-        ~\text{und}~
-        (A - I_N \lambda_1) |_X^{-1}
-        ~\text{als}~
-        \begin{pmatrix}
-            B_1^{-1} & 0 \\ 0 & 0
-        \end{pmatrix},
+        \implies
+        \ker f_1 |_X = \Bbraces{0}
+        \implies
+        \GL(X) \ni f |_X \cong B \in \GL_{N - L_1}(\C)
     \end{align*}
 
-    ohne die Verkettung mit $\iota$ jedes Mal dazuzuschreiben.
+    Wir interpretieren daher $(A - I_N \lambda_1) |_X$ als $\begin{pmatrix} B_1 & 0 \\ 0 & 0 \end{pmatrix}$ und $(A - I_N \lambda_1) |_X^{-1}$ als $\begin{pmatrix} B_1^{-1} & 0 \\ 0 & 0 \end{pmatrix}$.
 
 \end{remark}
