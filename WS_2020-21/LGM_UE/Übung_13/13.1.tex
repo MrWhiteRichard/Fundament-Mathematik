@@ -30,27 +30,20 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
 
 \begin{solution}
 
-Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
+\phantom{}
 
 \begin{enumerate}[label = \texttt{ad}]
 
-  \item \Quote{b. $\implies$ a.}: Sei $f: \omega \to A$ fast injektiv. \\
-  Definiere die injektive Funktion $f': \omega \to A$ durch
-  \begin{align*}
-    f'(0) &:= f(0) \\
-    f'(n) &:= f(\min\{k \in  \N:  f(k) \notin f[\{0,\dots,k-1\}]\}), \quad n \geq 1.
-  \end{align*}
-  Da das Urbild jedes Bildpunktes endlich ist, exisitiert dieses Minimum immer.
+  \item \Quote{a. $\implies$ b.}:
 
-  \item \Quote{a. $\implies$ c.}: Sei $f: \omega \to A$ injektiv.
-  Definiere
-  \begin{align*}
-    g := \{(f(n),f(n+1)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
-  \end{align*}
-  $g$ ist sicher auf ganz $A$ definiert, injektiv und es gilt $f(0) \notin g(A)$.
+  Klar!
 
-  \item \Quote{b. $\implies$ c.}:
+  \item \Quote{b. $\implies$ a.}:
+  
+  \begin{enumerate}[label = \arabic*.]
 
+    \item Lösung:
+    
     Sei $f: \omega \to A$ fast injektiv, d.h.
 
     \begin{align*}
@@ -95,10 +88,30 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
 
     $g \circ h: \omega \to A$ ist, als Verkettung injektiver Funktionen, injektiv.
 
-    \item \Quote{a. $\implies$ f.}: Sei $f: \omega \to A$ injektiv. Definiere
+    \item Lösung:
+
+    Sei $f: \omega \to A$ fast injektiv. \\
+    Definiere die injektive Funktion $f': \omega \to A$ durch
+    \begin{align*}
+      f'(0) &:= f(0) \\
+      f'(n) &:= f(\min\{k \in  \N:  f(k) \notin f[\{0,\dots,k-1\}]\}), \quad n \geq 1.
+    \end{align*}
+    Da das Urbild jedes Bildpunktes endlich ist, exisitiert dieses Minimum immer.
+
+  \end{enumerate}
+
+  \item \Quote{a. $\implies$ c.}: Sei $f: \omega \to A$ injektiv.
+  Definiere
+  \begin{align*}
+    g := \{(f(n),f(n+1)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
+  \end{align*}
+  $g$ ist sicher auf ganz $A$ definiert, injektiv und es gilt $f(0) \notin g(A)$.
+
+  \item \Quote{a. $\implies$ f.}: Sei $f: \omega \to A$ injektiv. Definiere
+
   \begin{align*}
     g := \{(f(n+1),f(n)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
-    \cup \{f(0),f(0)\}
+    \cup \{(f(0),f(0))\}
   \end{align*}
   $g$ ist surjektiv, aber nicht injektiv.
 
