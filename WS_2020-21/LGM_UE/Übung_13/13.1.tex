@@ -7,7 +7,7 @@ Betrachten Sie die folgenden Eigenschaften, die eine Menge $A$ haben kann:
 \begin{enumerate}[label = \alph*.]
   \item Es gibt eine injektive Abbildung von $\omega$ nach $A$. (\Quote{$\omega \leq A$})
   \item Es gibt eine fast injektive Abbildung von $\omega$ nach $A$.
-  (\Quote{fast injektiv}\ bedeutet, dass das Urbild jedes Bildpunktes endlich ist.)
+  (\Quote{fast injektiv} bedeutet, dass das Urbild jedes Bildpunktes endlich ist.)
   \item Es gibt eine injektive, aber nicht surjektive Abbildung von $A$ nach $A$.
   \item Es gibt eine fast injektive, aber nicht surjektive Abbildung von $A$ nach $A$.
   \item Für ein (alle) $x \notin A$ gibt es eine Bijektion von $A$ nach $A \cup \Bbraces{x}$.
@@ -32,21 +32,24 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
 
 Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
 
-\begin{itemize}
-  \item[b. $\implies$ a.] Sei $f: \omega \to A$ fast injektiv. \\
+\begin{enumerate}[label = \texttt{ad}]
+
+  \item \Quote{b. $\implies$ a.}: Sei $f: \omega \to A$ fast injektiv. \\
   Definiere die injektive Funktion $f': \omega \to A$ durch
   \begin{align*}
     f'(0) &:= f(0) \\
     f'(n) &:= f(\min\{k \in  \N:  f(k) \notin f[\{0,\dots,k-1\}]\}), \quad n \geq 1.
   \end{align*}
   Da das Urbild jedes Bildpunktes endlich ist, exisitiert dieses Minimum immer.
-  \item[a. $\implies$ c.] Sei $f: \omega \to A$ injektiv.
+
+  \item \Quote{a. $\implies$ c.}: Sei $f: \omega \to A$ injektiv.
   Definiere
   \begin{align*}
     g := \{(f(n),f(n+1)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
   \end{align*}
   $g$ ist sicher auf ganz $A$ definiert, injektiv und es gilt $f(0) \notin g(A)$.
-  \item[b. $\implies$ c.]
+
+  \item \Quote{b. $\implies$ c.}:
 
     Sei $f: \omega \to A$ fast injektiv, d.h.
 
@@ -91,28 +94,31 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
     \end{align*}
 
     $g \circ h: \omega \to A$ ist, als Verkettung injektiver Funktionen, injektiv.
-  \item[a. $\implies$ f.] Sei $f: \omega \to A$ injektiv. Definiere
+
+    \item \Quote{a. $\implies$ f.}: Sei $f: \omega \to A$ injektiv. Definiere
   \begin{align*}
     g := \{(f(n+1),f(n)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
     \cup \{f(0),f(0)\}
   \end{align*}
   $g$ ist surjektiv, aber nicht injektiv.
-  \item [c. $\implies$ a.] Siehe letzte Übung.
-  \item [a. $\implies$ h.] Sei $f: \omega \to A$ injektiv. Definiere
+
+  \item \Quote{c. $\implies$ a.}: Siehe letzte Übung.
+
+  \item \Quote{a. $\implies$ h.}: Sei $f: \omega \to A$ injektiv. Definiere
   \begin{align*}
     g = \{(f(n), n): n \in \omega\} \cup \{(a,0): a \in A \setminus f(\omega)\}.
   \end{align*}
 
-  \item[c. $\implies$ d.]
+  \item \Quote{c. $\implies$ d.}:
 
   Klar.
 
-  \item[e. $\implies$ c.]
+  \item \Quote{e. $\implies$ c.}:
 
   Sei $x \not \in A$ und $f: A \to A \cup \Bbraces{x}$ bijektiv.
   $f^{-1} |_A: A \to A$ ist injektiv, trifft aber nicht $f^{-1}(x)$, ist also nicht surjektiv.
 
-  \item[e. $\implies$ f.]
+  \item \Quote{e. $\implies$ f.}:
 
   Sei $x \not \in A$ und $f: A \to A \cup \Bbraces{x}$ bijektiv.
   Sei weiters $y \in A$.
@@ -129,7 +135,57 @@ Es gilt die Implikationskette: a. $\implies$ b. $\implies$ c. $\implies$ d.
     \end{cases}
   \end{align*}
 
-\end{itemize}
+  \item \Quote{a. $\implies$ g.}:
+  
+  Sei $f: \omega \to A$ injektiv.
+  Es gibt folglich also eine (surjektive) Linksinverse $f^{-1}: f[\omega] \to \omega$.
+  Wir setzen diese zu einer (surjektiven) Funktion $g: A \to \omega$ beliebig fort.
+
+  \item \Quote{h. $\implies$ g.}:
+  
+  Klar!
+
+  \item \Quote{a. $\implies$ j.}:
+
+  Sei $f: \omega \to A$ injektiv, so auch $g: \omega \to P_\mathrm{fin}(A): n \to \Bbraces{n}$.
+
+  \item \Quote{j. $\implies$ i.}:
+
+  Klar!
+
+  \item \Quote{j. $\implies$ k.}:
+
+  Verwende \Quote{a. $\implies$ g.} für $P_\mathrm{fin}(A)$ anstelle von $A$.
+
+  \item \Quote{g. $\implies$ k.}:
+
+  Sei $f: A \to \omega$ surjektiv.
+
+  \begin{gather*}
+    g:
+    P(A) \to \omega:
+    M \mapsto \min f[M],
+    \quad
+    g_\mathrm{fin} := g |_{P_\mathrm{fin}(A)},
+    \quad
+    g_\mathrm{sing} := g_\mathrm{fin} |_{P_\mathrm{sing}(A)} \cong f \\
+    \implies
+    \omega
+    \supseteq
+    g(P(A))
+    \supseteq
+    g_\mathrm{fin}(P_\mathrm{fin}(A))
+    \supseteq
+    g_\mathrm{sing}(P_\mathrm{sing}(A))
+    =
+    f(A)
+    =
+    \omega
+  \end{gather*}
+
+  $g$, $g_\mathrm{fin}$, und $g_\mathrm{sing}$ sind also auch allersamt surjektiv.
+
+\end{enumerate}
 
 \end{solution}
 
