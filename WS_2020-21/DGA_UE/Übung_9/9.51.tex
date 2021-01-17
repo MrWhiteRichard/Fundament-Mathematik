@@ -24,7 +24,7 @@ Schreiben Sie einen Pseudocode für den Algorithmus Quickselect.
 \begin{algorithmic}[1]
   \State \textsc{Quickselect}($A,j,l,r$)
   \If{$l < r$}
-    \State $m := \textsc{Teilen}(A,j,l,r)$
+    \State $m := \textsc{Teilen}(A,l,r)$
     \If{$m > j$}
       \State \textsc{Quickselect}($A,j,l,m-1$)
     \ElsIf{$m < j$}
@@ -36,7 +36,7 @@ Schreiben Sie einen Pseudocode für den Algorithmus Quickselect.
 \end{algorithmic}
 
 \begin{algorithmic}[1]
-  \State \textsc{Teilen}($A,j,l,r$)
+  \State \textsc{Teilen}($A,l,r$)
   \State $x := A[r]$
   \State $i := l$
   \For{$j = l,\dots,r-1$}

@@ -17,7 +17,7 @@ verlangt.
 
 Wir berechnen zuerst die Wahrscheinlichkeit, dass das mittlere von drei zufällig
 gewählten Elementen aus $[1,\dots,n]$ gleich $j$ ist. \\
-Die Anzahl aller Kombinationen von $3$ aus $n$ Elementen ohne Wiederholung ist genau $\binom{n}{k}$.
+Die Anzahl aller Kombinationen von $3$ aus $n$ Elementen ohne Wiederholung ist genau $\binom{n}{3}$.
 Die Wahrscheinlichkeit dass das mittlere Element der Kombination gleich $j$ ist,
 lässt sich umformulieren als die Wahrscheinlichkeit, dass $j$ in der Kombination liegt
 und zusätzlich genau ein Element aus $[1,\dots,j-1]$ ebenfalls in der Kombination liegt.
@@ -32,4 +32,15 @@ Damit erhalten wir unsere Rekursion
 \begin{align*}
   T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}[T(n-j) + T(j)] = 2\sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2} T(j).
 \end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+	Was ist bei folgender Überlegung der Fehler? Sei $X_n: S_n \to \{1, \dots, n\}$ eine Zufallsvariable, welche jede Permutation $A$ der Elemente $1, \dots, n$ abbildet auf das mittlere der drei $A[1], A\bbraces{\floorbraces{\frac{n}{2}}}$ und $A[n]$. Für jedes $1 < j < n$ gilt
+	\begin{align*}
+		\mathbb{P}\pbraces{X_n = j} &= 6 \mathbb{P}\pbraces{A[1] < A\bbraces{\floorbraces{\frac{n}{2}}} \land A\bbraces{\floorbraces{\frac{n}{2}}} < A[n] \land A\bbraces{\floorbraces{\frac{n}{2}}} = j} \\
+		&= 6 \mathbb{P}\pbraces{A\bbraces{\floorbraces{\frac{n}{2}}} = j} \mathbb{P}\pbraces{A[1] < j} \mathbb{P}\pbraces{j < A[n]} \\
+		&= \frac{1}{n}\frac{j - 1}{n}\frac{n - j}{n} 
+	\end{align*}
 \end{solution}
