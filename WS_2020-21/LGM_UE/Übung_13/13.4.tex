@@ -4,7 +4,7 @@
 
 Seien $A$ und $B$ Mengen, eventuell mit einer zusätzlichen Struktur
 (Vektorraum bzw. partielle Ordnung). Welche der folgenden Familien haben endlichen
-Charakter? (Achtung: Bei manchen der folgenden Punkte hängt die Antwotz davon ab,
+Charakter? (Achtung: Bei manchen der folgenden Punkte hängt die Antwort davon ab,
 ob $A$ und/oder $B$ endlich oder gar leer sind.)
 
 \begin{itemize}
@@ -28,7 +28,42 @@ ob $A$ und/oder $B$ endlich oder gar leer sind.)
 
 \begin{solution}
 
-\phantom{}
+$\mathfrak{F}$ hat endlichen Charakter:
+
+\begin{align*}
+  \forall A: A \in \mathfrak{F} \iff (\forall B \subseteq A: B \text{ endlich } \implies B \in \mathfrak{F})
+\end{align*}
+\begin{itemize}
+  \item Alle Teilmengen von $A$: Ja, immer.
+  \item Alle unendlichen Teilmengen von $A$: Nur wenn $A$ endlich ist, da
+  sonst zu jeder unendlichen Teilmenge von $A$ eine endliche Teilmenge existiert.
+  \item Alle endlichen Teilmengen von $A$: Nur wenn $A$ endlich ist, ansonsten
+  liefert $A$ selbst das Gegenbeispiel.
+  \item Alle partiellen Funktionen von $A$ nach $B$: Ja, immer.
+  \item Alle partiellen injektiven Funktionen von $A$ nach $B$: Ist unter Teilmengen abgeschlossen
+  und wenn $f$ nicht injektiv ist, exisitieren $a,b \in A$ mit $f(a) = f(b)$ und
+  damit ist $\{(a,f(a)),(b,f(b))\} \subseteq f$ eine nicht-injektive Teilmenge.
+  Ähnliche Argumente sollte $f$ keine partielle Funktion sein. \\
+  Fazit: Immer von endlichen Charakter.
+  \item Alle partiellen surjektiven Funktionen von $A$ nach $B$: Nur wenn $B$ leer ist,
+  ansonsten kann beim Teilmengenübergang die Surjektivität verloren gehen.
+  \item Alle partiellen nichtsurjektiven Funktionen von $A$ nach $B$: Nur wenn $B$ endlich ist oder keine surjektiven Funktionen von $A$ nach $B$ exisitieren,
+  da bei unendlichem $B$ jede endliche Teilmenge einer surjektiven Funktion eine
+  nichtsurjektive Funktion ist. \\
+  Im endlichen Fall gibt es (auch bei unendlichem $A$) zu jeder surjektiven Funktion
+  eine endliche Teilfunktion, die ebenfalls surjektiv ist, also ist die Menge
+  in dem Fall von endlichem Charakter.
+  \item Die linear unabhängigen Teilmengen von $A$: Ja, immer. (Vorlesung)
+  \item Die linear abhängigen Teilmengen von $A$: Nur im trivialen Fall ($A$ leer),
+  da anderenfalls zu einer linear abhängigen Teilmenge immer eine endliche linear
+  unabhängige Teilteilmenge gefunden werden kann.
+  \item Alle partiellen ordnungserhaltenden Abbildungen von $A$ nach $B$.
+  (Das heißt, wenn $f(a), f(a')$ definiert sind, und $a \leq a'$ gilt, dann
+  auch $f(a) \leq f(a')$.): Ja, immer; da unter Teilmengen abgeschlossen und für
+  nicht ordnungserhaltende Funktionen $f$; also $a \leq b$ und $f(a) > f(b)$
+  ist die Teilmenge $\{(a,f(a)),(b,f(b))\}$ ebenfalls eine nicht-ordnungserhaltende
+  Funktion.
+\end{itemize}
 
 \end{solution}
 
