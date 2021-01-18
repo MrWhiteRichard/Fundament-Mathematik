@@ -1,26 +1,34 @@
 \subsection*{Zusammenfassung}
 
-Wir werden in diesem Kapitel die folgende Heuristik \ref{zusammenfassung} und Algorithmus \ref{alg:integral_methode_zusammenfassung} herleiten.
-Bei Algorithmus \ref{alg:integral_methode_zusammenfassung} behandeln wir aber nur um den $1$-ten und $2$-ten Schritt.
+Wenn wir in \eqref{eq:integral_matrizen_resultat_compact} explizit für $i = 0, 1$ einsetzen, erhalten wir
 
-\begin{heuristics} \label{zusammenfassung}
+\begin{align} \label{eq:integral_matrizen_resultat}
+    A_0 = V W^\ast \hat V,
+    \quad
+    A_1 = V D W^\ast \hat V.
+\end{align}
 
-    Es gelten die Voraussetzungen von Korollar \ref{keldysh_multi}.
-    Seien $\hat V \in \C^{N \times j}$ mit $\sum_{n=1}^k L_n =: J \leq j \ll N$, $A_0, A_1$ wie in \eqref{eq:integral_matrizen} und $D$ wie in \eqref{eq:diagonal_matrix}.
-    Sei $\tilde V \Sigma \tilde W$ eine reduzierte Singulärwertzerlegung von $A_0$.
+Nun gilt es, $D$, die Diagonal-Matrix aller Eigenwerte, zu bestimmen.
+$A_0$ und $A_1$ bieten dazu einen vielversprechenden Anfang.
+Unsere Hoffnung besteht nämlich darin, $D$ aus $A_1$ mittels $A_0$ irgendwie zu \Quote{isolieren}.
 
-    Dann sind $\tilde V A_1 \tilde W \Sigma^{-1} \approx D$ ähnlich.
-    Sie besitzen also dieselben Eigenwerte $\lambda_1, \dots, \lambda_k$ von $A$.
+Dazu müssen $A_0$ und $A_1$ zunächst \Quote{berechnet}, bzw. mit einer Quadraturformel approximiert, werden.
+Das motivieren wir im $1$-ten Schritt mit einer komplexen Variante der summierten Trapezregel;
+eine genaue Konvergenz-Analyse folgt aber erst in $4$-ten Kapitel.
+Wie diese \Quote{Isolation} von $D$ vonstattengehen soll, erklären wir vollständig im 2. Schritt.
 
-\end{heuristics}
+Die Konturintegral-Methode ist zunächst oberflächlich im Algorithmus \ref{alg:integral_methode_zusammenfassung} zusammengefasst worden.
+Genauere Erklärungen zur $1$-ten und $2$-ten Zeile folgen im $1$-ten und $2$-ten Schritt.
+Die genauere Auseinandersetzung mit der $3$-ten Zeile (bzw. dem $3$-ten Schritt) ist nicht Teil dieser Arbeit.
+Wir verwenden lediglich den Befehl \texttt{linalg.eigvals}, aus der \texttt{scipy}-Bibliothek.
 
 \begin{algorithm}[H]
 	\caption{Integral-Methode}
-    \begin{algorithmic}[1]
+    \begin{algorithmic}[0]
         \Procedure{Integral-Methode Zusammanfassung}{}
-            \State Berechne $A_0, A_1 \in \C^{N \times j}$;
+            \State Berechne (bzw. approximiere) $A_0, A_1 \in \C^{N \times j}$;
             \State Berechne und reduziere eine Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
-            \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1}$ (z.B. mit QR-Verfahren);
+            \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1} \approx D$;
             \State \Return $\lambda_1, \dots, \lambda_k$
 		\EndProcedure
     \end{algorithmic}

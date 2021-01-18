@@ -1,11 +1,22 @@
 \subsection*{Voraussetzungen}
 
+Man sei sich dabei bewusst, dass die einzigen Objekte, mit denen der Algorithmus \ref{alg:integral_methode_zusammenfassung} letztenendes operiert, $\hat V$, $A_0$, $A_1$, sowie $\tilde V$, $\Sigma$, $\tilde W$, voll bzw. reduziert, sind.
+Bei der Herleitung des Algorithmus' haben wir jedoch auch auf $V$, $W$, $D$, und $S$ zurückgegriffen.
+Ohne Kenntnis der gesuchten Eigenpaare sind diese aber sowieso nicht berechenbar.
+
+Die Tatsache, dass sie nicht im Algorithmus \ref{alg:integral_methode_zusammenfassung} vorkommen, heißt aber nicht, dass ihre Eigenschaften (z.B. $S \in \GL_J(\C)$) unwichtig sind.
+Wählt man z.B. eine zu kleine Matrix $\hat V$, so kann $S \not \in \GL_J(\C)$.
+Die numerischen Resultate können dann in der Tat inkorrekt sein.
+
+Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassung} braucht, um korrekte Ergebnisse zu liefern.
+
 \begin{enumerate}[label = \arabic*.]
 
-    \item $\lambda_1, \dots, \lambda_k \in \Lambda$ sind alle Eigenwerte.
-    Diese sind zudem jeweils halb-einfach und liegen im Inneren von $\Gamma$, d.h. insbesondere nicht darauf.
+    \item $\lambda_1, \dots, \lambda_k \in \Lambda$ seien allersamt halb-einfach und liegen im Inneren von $\Gamma$, d.h. insbesondere nicht darauf.
+    Sonst könnten theoretisch Probleme bei der Approximationen von $A_0$ und $A_1$, vermöge einer der Quadraturformeln $Q_m$, $m \in \N$, entstehen.
+    Sollte dies passieren, müsste man die Kurve $\Gamma$ anpassen.
 
-    \item $V, W \in \C^{N \times J}$ haben vollen Rang $J$, d.h. deren Spalten linear unabhängig sind.
+    \item $V, W \in \C^{N \times J}$ haben vollen Rang $J$, d.h. deren Spalten seien linear unabhängig.
     Diese Annahme ist sinnvoll.
 
     $V, W$ bestehen ja schließlich aus Rechts- bzw. Links-Eigenvektoren.
@@ -14,8 +25,8 @@
     \item $\hat V$ sei eine hinreichend große, gleichverteilt gewählte Zufallsmatrix, mit vollem Rang $j$.
     Diese Annahme ist sinnvoll.
 
-    Anstelle von $\C$, sei dazu $K$ ein endlicher Körper und $\hat V \in K^{j \times j}$.
-    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit.
+    Zur Illustration, sei dazu $K$, anstelle von $\C$, ein endlicher Körper und $\hat V \in K^{j \times j}$.
+    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit
 
     \begin{multline*}
         \mathbf{P}(\hat V \in \GL_j(K))
@@ -51,7 +62,56 @@
                 1 - \frac{1}{|K|^{j + 1 - i}}
             }
         \xrightarrow{|K| \to |\C|}
-        1
+        1.
     \end{multline*}
+
+    \item $W^\ast \hat V \in C^{J \times j}$ habe vollen Rang $J \leq j$.
+    Nun gilt aber
+
+    \begin{multline*}
+        W^\ast \hat V
+        =
+        (w_{1, 1}, \dots, w_{k, L_k})^\ast (\hat v_1, \dots, \hat v_j) \\
+        =
+        \begin{pmatrix}
+            w_{1, 1}^\ast   \hat v_1 & \cdots & w_{1, 1}^\ast   \hat v_j \\
+            \vdots                   & \ddots & \vdots                   \\
+            w_{k, L_k}^\ast \hat v_1 & \cdots & w_{k, L_k}^\ast \hat v_j \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            (\hat v_1, w_{1, 1})_2   & \cdots & (\hat v_j, w_{1, 1})_2   \\
+            \vdots                        & \ddots & \vdots                   \\
+            (\hat v_1, w_{k, L_k})_2 & \cdots & (\hat v_j, w_{k, L_k})_2 \\
+        \end{pmatrix}.
+    \end{multline*}
+
+    Wir haben bereits vorausgesetzt, dass $\hat V \in \C^{N \times j}$ vollen Rang $j$ hat, d.h. $\hat v_1, \dots, \hat v_j$ linear unabhängig sind.
+    Die Spalten von $W^\ast \hat V$ wären also genau dann linear abhängig, wenn eine davon $0$ ist, d.h.
+
+    \begin{align*}
+        \Exists i = 1, \dots, j:
+            (\hat v_i, w_{1, 1})_2 = \cdots = (\hat v_i, w_{k, L_k})_2 = 0,
+            \quad
+            \text{d.h.}
+            \quad
+            \hat v_i \in (\Span W)^{\bot_2}.
+    \end{align*}
+
+    Das ist aber vernachlässigbar.
+
+    \item Wir gehen davon aus, dass $S := \tilde V^\ast V \in \C^{J \times J}$ vollen Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
+    Diese Annahme ist sinnvoll.
+
+    $\tilde W \in C^{j \times J}$ hat, als Teilmatrix einer unitären $\in \U_j(\C)$, vollen Rang $J$.
+    $\tilde W$ hat also $J$ linear unabhängige Spalten, o.B.d.A $\tilde w_1, \dots, \tilde w_J$.
+    Analog zum vorigen Punkt, wären die $J$ Spalten von $S = \tilde V^\ast V$ genau dann linear abhängig, wenn eine davon $0$ ist, d.h.
+
+    \begin{align*}
+        \Exists i = 1, \dots, J:
+            \hat w_i \in (\Span V)^{\bot_2}.
+    \end{align*}
+
+    Das ist aber vernachlässigbar.
 
 \end{enumerate}
