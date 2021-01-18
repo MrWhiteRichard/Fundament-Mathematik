@@ -25,12 +25,13 @@ Seien $(k_1,k_2,k_3)$ die aufsteigend sortierten Elemente der Kombination $k$.
 Für $2 \leq j \leq n - 1$ gilt dann
 \begin{align*}
   \P(k_2 = j) = \P(j \in k \text{ und } |[1,\dots,j-1]\cap k| = 1)
-  = \frac{3j}{n}\left[\left(1- \frac{3j}{n}\right)^{j-2}\frac{3j}{n}(j-1)\right]
-  =(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}
+  = \frac{3}{n}\left[\left(1- \frac{3}{n}\right)^{j-2}\frac{3}{n}(j-1)\right]
+  =(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
 \end{align*}
 Damit erhalten wir unsere Rekursion
 \begin{align*}
-  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}[T(n-j) + T(j)] = 2\sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2} T(j).
+  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
+  [T(n-j) + T(j - 1)]
 \end{align*}
 \end{solution}
 
@@ -41,6 +42,6 @@ Damit erhalten wir unsere Rekursion
 	\begin{align*}
 		\mathbb{P}\pbraces{X_n = j} &= 6 \mathbb{P}\pbraces{A[1] < A\bbraces{\floorbraces{\frac{n}{2}}} \land A\bbraces{\floorbraces{\frac{n}{2}}} < A[n] \land A\bbraces{\floorbraces{\frac{n}{2}}} = j} \\
 		&= 6 \mathbb{P}\pbraces{A\bbraces{\floorbraces{\frac{n}{2}}} = j} \mathbb{P}\pbraces{A[1] < j} \mathbb{P}\pbraces{j < A[n]} \\
-		&= \frac{1}{n}\frac{j - 1}{n}\frac{n - j}{n} 
+		&= \frac{1}{n}\frac{j - 1}{n}\frac{n - j}{n}
 	\end{align*}
 \end{solution}
