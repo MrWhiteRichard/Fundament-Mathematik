@@ -9,8 +9,33 @@ lineare Ordnung auf der Potenzmenge von $A$.
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+Für alle $B \subseteq A$: Definiere die partielle Funktion $f_B: \omega \to B$ durch
+\begin{align*}
+  f_B(n) = \begin{cases}
+    \min(B \setminus f[\{0,\dots,n-1\}]) & \text{falls }
+    B \setminus f[\{0,\dots,n-1\}] \neq \emptyset \\
+    \min(A) & \text{sonst}
+  \end{cases}
+\end{align*}
 
-\phantom{}
+Wir definieren auf $\mathfrak{P}(A)$
+\begin{align*}
+  B <_\mathfrak{P} C \iff [\exists n \in \omega: (f_B(n) < f_C(n)) \land \forall k < n: f_B(k) = f_C(k)] \lor (B = \emptyset \land C \neq \emptyset)
+\end{align*}
+
+\begin{itemize}
+  \item[Irreflexivität:] Klar.
+  \item[Transitivität:] Gelte $B <_\mathfrak{P} C$ und $C <_\mathfrak{P} D$. \\
+  Dann existieren $n$ und $m$, sodass
+  $f_B(n) < f_C(n)$ und $f_C(m) < f_D(m)$. Für $l := \min(n,m)$
+  folgt $f_B(l) \leq f_C(l) \leq f_D(l)$, wobei bei mindestens einer Ungleichung
+  echt ungleich gelten muss, also $f_B(l) < f_D(l)$ und für alle $k < l: f_B(k) = f_D(k)$.
+
+  \item[Trichotomie:] Gelte $B \nless_\mathfrak{P} C$ und $C \nless_\mathfrak{P} B$
+  und $B, C \neq \emptyset$. Also gilt für alle $k \in \N: f_B(k) = f_C(k)$.
+  Für endliche Mengen folgt daraus sicher bereits Gleichheit, bei
+  unendlichen Mengen könnten vielleicht noch Tricks versteckt sein.
+\end{itemize}
 
 \end{solution}
 
