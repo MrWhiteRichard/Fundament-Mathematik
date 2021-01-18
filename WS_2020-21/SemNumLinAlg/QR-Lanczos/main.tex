@@ -323,28 +323,28 @@ Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertprobl
 Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Eigenwerte für hermitesche Matrizen liefert. Man sieht leicht, dass es sich hierbei um eine Verallgemeinerung des Satzes von Rayleigh handelt.
 
 \begin{lemma}
-	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
+	Sei $A \in \C^{n \times n}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_n$ die zugehörigen normierten Eigenvektoren. Dann gilt
 	\begin{align}\label{lambdamax}
-		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
-    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
+		\lambda_1 = \max_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^n \setminus \{0\}\\
+    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, n
 	\end{align}
 	und
 	\begin{align}\label{lambdamaxmin}
-		\lambda_k = \max_{\substack{S \subset \C^N\\
-    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
+		\lambda_k = \max_{\substack{S \subset \C^n\\
+    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad k=1, \dots n.
 	\end{align}
 
 	Für $v \neq 0$ nennt man $\frac{(Av,v)}{(v,v)}$ den Rayleigh-Quotienten von $v$.
 \end{lemma}
 
 \begin{proof}
-	Sei $v \in \C^N \setminus \{0\}$ beliebig. Da $u_1, \dots, u_N$ eine Orthonormalbasis des $\C^N$ bilden, gilt $ v = \sum_{j=1}^{N} (u_j,v) u_j$ und damit
+	Sei $v \in \C^n \setminus \{0\}$ beliebig. Da $u_1, \dots, u_n$ eine Orthonormalbasis des $\C^n$ bilden, gilt $ v = \sum_{j=1}^{n} (v,u_j) u_j$ und damit
 	\begin{align*}
-		(Av,v) = \sum_{j=1}^{N} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{N} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{N} |(u_j,v)|^2 = \lambda_1 (v,v).
+		(Av,v) = \sum_{j=1}^{n} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{n} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{n} |(u_j,v)|^2 = \lambda_1 (v,v).
 	\end{align*}
-	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^N \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
+	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^n \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
 
-	Für ein anderes $k = 2,\dots,N$ können wir analog ein beliebiges $v \in \C^N \setminus \{0\}$ wählen, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{N} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
+	Für ein anderes $k = 2,\dots,n$ können wir analog ein beliebiges $v \in \C^n \setminus \{0\}$ wählen, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{n} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
 
 	Für die Gleichheit in \ref{lambdamaxmin} gilt ähnlich zu oben für $v \in \tilde{S} := \textbf{span}\{v_1, \dots, v_k\}$, dass
 	\begin{align*}
@@ -358,12 +358,12 @@ Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Ei
 
 Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \C^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$. (vgl. Nannen-Skript)
 
-\begin{definition}
-	Sei $v_0 \in \C^{N}$ und $A \in \C^{N \times N}$. Dann bezeichnet
+\begin{definition}[Krylov-Raum]
+	Sei $v_0 \in \C^{n}$ und $A \in \C^{n \times n}$. Dann bezeichnet
 	\begin{align*}
 		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
 	\end{align*}
-	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \C^N \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
+	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \C^n \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
 \end{definition}
 
 Beim Lanczos-Verfahren wird nun als Näherung an den größten Eigenwert das Maximum des Rayleigh-Quotienten über dem Krylov-Raum
@@ -449,12 +449,12 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 \begin{algorithm}
 	\label{Lanczos-Verfahren}
 	\caption{Lanczos-Verfahren}
-	\algorithmicrequire{ $A \in \C^{n\times n}$ hermitesche Matrix, zufälliger normierter Startvektor $v_0 \in \C^n$}
+	\algorithmicrequire{ $A \in \C^{n\times n}$ hermitesche Matrix, zufälliger normierter Startvektor $v_0 \in \C^n$, maximale Krylov-Raum-Dimension $m$}
 	\begin{algorithmic}[1]
 		\State $\gamma_0 = v_0^*Av_0$
 		\State $w_0 = (A-\gamma_0 I)v_0$
 	  \State $\delta_0 = \|w_0\|_2$
-		\While{$\delta_j \neq 0$}
+		\While{$\delta_j \neq 0$ und $j \leq m$}
 		\State $v_{j+1} = w_j/\delta_j$
 		\State $j = j+1$
 		\State $\gamma_j = v_j^*Av_j$
@@ -477,10 +477,10 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 
 \begin{lemma}
 	\label{v0_Polynom_Darstellung}
-	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \C^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
-	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_N$ und zugehörigen Eigenvektoren $u_1, \dots, u_N$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{N} \alpha_j u_j$ und es gilt
+	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \C^n$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
+	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_n$ und zugehörigen Eigenvektoren $u_1, \dots, u_n$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{n} \alpha_j u_j$ und es gilt
 	\begin{align*}
-		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{N} p(\lambda_j)\alpha_j u_j.
+		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{n} p(\lambda_j)\alpha_j u_j.
 	\end{align*}
 \end{lemma}
 
@@ -492,7 +492,7 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 		\label{eq:Krylov}
 	\end{align}
 
-	Da die Eigenvektoren eine Basis des $\C^N$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, N $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
+	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
 \end{proof}
 
 
@@ -513,14 +513,14 @@ welche aus der Identität $T_m(\cos \varphi) = \cos (m \varphi)$ für $\varphi \
 Aus dieser Darstellung folgt auch mittels Additionstheorem die 2-Term-Rekursion
 
 \begin{align*}
-	T_0(x) = 1, \quad T_1(x) = x, \quad T_{n}(x) = 2x T_{n-1}(x) - T_{n-2}(x), \quad n \geq 2,
+	T_0(x) = 1, \quad T_1(x) = x, \quad T_{m}(x) = 2x T_{m-1}(x) - T_{m-2}(x), \quad m \geq 2,
 \end{align*}
 
 welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ handelt.
 
 \begin{lemma}
 	\label{lem:polminmax}
-	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
+	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 1$
 	\begin{align}\label{polminmax}
 		\min_{\substack{p \in \Pi_m \\
 		p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
