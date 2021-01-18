@@ -25,12 +25,12 @@ Seien $(k_1,k_2,k_3)$ die aufsteigend sortierten Elemente der Kombination $k$.
 Für $2 \leq j \leq n - 1$ gilt dann
 \begin{align*}
   \P(k_2 = j) = \P(j \in k \text{ und } |[1,\dots,j-1]\cap k| = 1)
-  = \frac{3}{n}\left[\left(1- \frac{3}{n}\right)^{j-2}\frac{3}{n}(j-1)\right]
-  =(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
+  = \frac{3}{n}\left[\left(1- \frac{2}{n-1}\right)^{j-2}\frac{2}{n-1}(j-1)\right]
+  =(j-1)\left(\frac{2}{n-1}\right)^{2}\left(1- \frac{2}{n-1}\right)^{j-2}
 \end{align*}
 Damit erhalten wir unsere Rekursion
 \begin{align*}
-  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
+  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{2}{n-1}\right)^{2}\left(1- \frac{2}{n-1}\right)^{j-2}
   [T(n-j) + T(j - 1)]
 \end{align*}
 \end{solution}
