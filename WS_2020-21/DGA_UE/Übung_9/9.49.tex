@@ -61,8 +61,13 @@
   für $j = 1,\dots,n$. Weiters gilt $A_{i+1}[i+1] = A[\textsc{Random}(i+2,n)] \neq i +1$. \\
   Jetzt könnte man sich noch überlegen, ob alle Permutationen, die obige
   Bedingung erfüllen, tatsächlich durch den Algorithmus erreicht werden können. \\
-  Insgesamt erhalten wir also, dass \textsc{Permute-Without-Identity}
-  genau jene Permutationen erzeugt, welche kein Element an seinem Startplatz belassen.
+  Dem ist aber nicht so, wie man an folgendem Beispiel sieht:
+  \begin{align*}
+    (1,2,3,4) \rightsquigarrow (4,2,3,1) \rightsquigarrow (4,3,2,1)
+    \rightsquigarrow (4,3,1,2)
+  \end{align*}
+  Also kann die fixpunktfreie Permutation $(4,3,2,1)$ mittels diesem Algorithmus
+  nicht erreicht werden.
 \end{enumerate}
 
 \end{solution}
