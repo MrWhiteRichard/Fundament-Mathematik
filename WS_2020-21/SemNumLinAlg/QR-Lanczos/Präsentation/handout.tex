@@ -26,19 +26,38 @@
 \section{Definitionen, Lemmata und Sätze}
 
 \begin{enumerate}
-	\item Sei $v_0 \in \C^{N}$ und $A \in \C^{N \times N}$. Dann bezeichnet
+  \item\textbf{Satz}: Die Eigenwerte für das Eigenwertproblem
+
+	\begin{align*}
+		\begin{cases}
+		-\Delta u = \lambda u \quad &\text{in}~ \Omega, \\
+		\frac{\partial u}{\partial \nu} = 0 \quad &\text{auf}~ \partial \Omega,
+		\end{cases}
+	\end{align*}
+
+	auf dem Rechteck $\Omega := (0,a) \times (0,b)$ sind gegeben durch
+
+	\begin{align}
+		\lambda_{n,m}
+		=
+		\pi^2 \Big(
+			\frac{n^2}{a^2} + \frac{m^2}{b^2}
+		\Big), \quad n,m \in \N
+	\end{align}
+
+	\item\textbf{Definition}: Sei $v_0 \in \C^{N}$ und $A \in \C^{N \times N}$. Dann bezeichnet
 	\begin{align*}
 		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
 	\end{align*}
 	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \C^N \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
-	
-	\item 	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \C^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
+
+	\item\textbf{Lemma}:	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \C^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
 	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_N$ und zugehörigen Eigenvektoren $u_1, \dots, u_N$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{N} \alpha_j u_j$ und es gilt
 	\begin{align*}
 		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{N} p(\lambda_j)\alpha_j u_j.
 	\end{align*}
 
-	\item 	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
+	\item\textbf{Lemma}: 	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
 	\begin{align}\label{lambdamax}
 		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
 				(u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
@@ -49,34 +68,34 @@
 				\dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
 	\end{align}
 
-	\item Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
+	\item\textbf{Definition}: Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
 	\begin{align}\label{chebyshev}
 		T_m(x) := \frac{1}{2}((x+ \sqrt{x^2 - 1})^m + (x- \sqrt{x^2 - 1})^m), \quad x \in \R.
 	\end{align}
 
-	\item Alternative Definitionen der Chebyshev-Polynome:
+	\item\textbf{Definition}: Alternative Definitionen der Chebyshev-Polynome:
 	\begin{align}\label{chebyalt}
 		T_(x) := \cos(m \arccos x), \quad x \in [-1,1].
 	\end{align}
-	
-	\item Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
+
+	\item\textbf{Lemma}: Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
 		\begin{align}\label{polminmax}
 			\min_{\substack{p \in \Pi_m \\
 					p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
 		\end{align}
-	
-	\item Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
-	
+
+	\item\textbf{Satz}: Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+
 	\begin{equation}
 		\label{konvergenz Eigenwerte}
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
 	\end{equation}
-	
+
 	wobei
 	\begin{equation*}
 		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}}, \quad \gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
-	
+
 	und
 	\begin{equation*}
 		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
