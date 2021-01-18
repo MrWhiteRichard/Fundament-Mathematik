@@ -43,7 +43,7 @@ Wir wiederholen zunächst die Definition eines Eigenwertproblems.
 	\begin{align}
 	    \begin{cases}
 	    -\Delta u = \lambda u & \text{in } \Omega, \\
-	    \frac{\partial u}{\partial \nu} = 0 & \text{auf}~ \partial\Omega,
+	    \nabla u \cdot \nu = 0 & \text{auf}~ \partial\Omega,
 	    \end{cases}
 	    \label{neumann}
 	\end{align}
@@ -363,7 +363,7 @@ Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenw
 	\begin{align*}
 		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
 	\end{align*}
-	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \C^n \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
+	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m \in \C^{n \times n}$ die orthogonale Projektion auf $\mathcal{K}_m$, also die eindeutige hermitesche Matrix mit $\mathcal{P}_m^2 = \mathcal{P}_m$ und $\mathcal{R}(\mathcal{P}_m) = \mathcal{K}_m$.
 \end{definition}
 
 Beim Lanczos-Verfahren wird nun als Näherung an den größten Eigenwert das Maximum des Rayleigh-Quotienten über dem Krylov-Raum

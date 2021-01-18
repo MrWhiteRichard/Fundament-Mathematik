@@ -26,32 +26,53 @@
 \section{Definitionen, Lemmata und Sätze}
 
 \begin{definition}
-	Sei $v_0 \in \K^{N}$ und $A \in \K^{N \times N}$. Dann bezeichnet
-	\begin{align*}
-		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
-	\end{align*}
-	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m: \K^N \to \mathcal{K}_m$ die orthogonale Projektion auf $\mathcal{K}_m$.
+	Das Paar $(\lambda, u) \in \C \times H^2(\Omega) \setminus \{0\}$ heisst ein Eigenpaar, wenn es eine Lösung des Eigenwertproblems
+	\begin{align}
+	    \begin{cases}
+	    -\Delta u = \lambda u & \text{in } \Omega, \\
+	    \nabla u \cdot \nu = 0 & \text{auf}~ \partial\Omega,
+	    \end{cases}
+	    \label{neumann}
+	\end{align}
+	ist, wobei $\nu$ der äußere Normalenvektor an $\partial\Omega$ sei.
 \end{definition}
 
-\begin{lemma}
-	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \K^N$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
-	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_N$ und zugehörigen Eigenvektoren $u_1, \dots, u_N$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{N} \alpha_j u_j$ und es gilt
-	\begin{align*}
-		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{N} p(\lambda_j)\alpha_j u_j.
-	\end{align*}
-\end{lemma}
+Eigenwerte für das Gebiet $\Omega = (0,a) \times (0,b) \subset \R^{2}$:
+
+\begin{align*}
+	\lambda_{n,m} = \pi^2(\frac{n^2}{a^2} + \frac{m^2}{b^2}), \quad n,m \in \N.
+\end{align*}
 
 \begin{lemma}
-	Sei $A \in \C^{N \times N}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_N$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_N$ die zugehörigen normierten Eigenvektoren. Dann gilt
+	Sei $A \in \C^{n \times n}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_n$ die zugehörigen normierten Eigenvektoren. Dann gilt
 	\begin{align}\label{lambdamax}
-		\lambda_1 = \max_{v \in \C^N \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^N \setminus \{0\}\\
-    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, N
+		\lambda_1 = \max_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^n \setminus \{0\}\\
+    (u_j,v) = 0, j= 1,\dots, k-1}} \frac{(Av,v)}{(v,v)}, \quad k= 2, \dots, n
 	\end{align}
 	und
 	\begin{align}\label{lambdamaxmin}
-		\lambda_k = \max_{\substack{S \subset \C^N\\
-    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}.
+		\lambda_k = \max_{\substack{S \subset \C^n\\
+    \dim S = k}} \min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad k=1, \dots n.
 	\end{align}
+
+	Für $v \neq 0$ nennt man $\frac{(Av,v)}{(v,v)}$ den Rayleigh-Quotienten von $v$.
+\end{lemma}
+
+\begin{definition}[Krylov-Raum]
+	Sei $v_0 \in \C^{n}$ und $A \in \C^{n \times n}$. Dann bezeichnet
+	\begin{align*}
+		\mathcal{K}_m(A,v_0) := \textbf{span}\{v_0, Av_0, \dots, A^{m-1}v_0\}, \quad m \in \N
+	\end{align*}
+	den Krylov-Raum von $A$ und $v_0$. Es bezeichne $\mathcal{P}_m \in \C^{n \times n}$ die orthogonale Projektion auf $\mathcal{K}_m$, also die eindeutige hermitesche Matrix mit $\mathcal{P}_m^2 = \mathcal{P}_m$ und $\mathcal{R}(\mathcal{P}_m) = \mathcal{K}_m$.
+\end{definition}
+
+\begin{lemma}
+	\label{v0_Polynom_Darstellung}
+	Sei $\Pi_m$ der Raum der Polynome in einer Veränderlichen mit maximalem Grad $m$. Dann ist $v \in \mathcal{K}_m(A,v_0) \subset \C^n$ genau dann, wenn ein Polynom $p \in \Pi_{m-1}$ existiert mit $v = p(A)v_0$. \newline
+	Ist $A$ diagonalisierbar mit Eigenwerten $\lambda_1, \dots, \lambda_n$ und zugehörigen Eigenvektoren $u_1, \dots, u_n$, dann existiert eine eindeutige Darstellung $v_0 = \sum_{j=1}^{n} \alpha_j u_j$ und es gilt
+	\begin{align*}
+		v \in \mathcal{K}_m \Leftrightarrow \Exists p \in \Pi_{m-1}: v = \sum_{j=1}^{n} p(\lambda_j)\alpha_j u_j.
+	\end{align*}
 \end{lemma}
 
 \begin{definition}
@@ -61,13 +82,9 @@
 	\end{align}
 \end{definition}
 
-Alternative Definitionen der Chebyshev-Polynome:
-\begin{align}\label{chebyalt}
-	T_(x) := \cos(m \arccos x), \quad x \in [-1,1].
-\end{align}
-
 \begin{lemma}
-	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 0$
+	\label{lem:polminmax}
+	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} \geq 1$
 	\begin{align}\label{polminmax}
 		\min_{\substack{p \in \Pi_m \\
 		p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
@@ -75,7 +92,7 @@ Alternative Definitionen der Chebyshev-Polynome:
 \end{lemma}
 
 \begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
-	Sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \mapsto \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
 
 	\begin{equation}
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
@@ -85,7 +102,7 @@ Alternative Definitionen der Chebyshev-Polynome:
 	\begin{equation*}
 		\tan \theta_i \coloneqq \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}}{\norm{ \mathcal{P}_{u_i}v_0}}, \quad \gamma_i \coloneqq 1+2 \frac{\lambda_i-\lambda_{i+1}}{\lambda_{i+1} -\lambda_n}
 	\end{equation*}
-	
+
 	und
 	\begin{equation*}
 		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
