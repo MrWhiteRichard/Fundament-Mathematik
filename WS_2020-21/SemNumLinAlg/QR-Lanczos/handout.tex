@@ -30,7 +30,7 @@
 	\begin{align}
 	    \begin{cases}
 	    -\Delta u = \lambda u & \text{in } \Omega, \\
-	    \frac{\partial u}{\partial \nu} = 0 & \text{auf}~ \partial\Omega,
+	    \nabla u \cdot \nu = 0 & \text{auf}~ \partial\Omega,
 	    \end{cases}
 	    \label{neumann}
 	\end{align}
@@ -84,7 +84,7 @@ Eigenwerte für das Gebiet $\Omega = (0,a) \times (0,b) \subset \R^{2}$:
 
 \begin{lemma}
 	\label{lem:polminmax}
-	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 1$
+	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} \geq 1$
 	\begin{align}\label{polminmax}
 		\min_{\substack{p \in \Pi_m \\
 		p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
@@ -92,7 +92,7 @@ Eigenwerte für das Gebiet $\Omega = (0,a) \times (0,b) \subset \R^{2}$:
 \end{lemma}
 
 \begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
-	Sei $A \in \K^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \mapsto \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
 
 	\begin{equation}
 		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
