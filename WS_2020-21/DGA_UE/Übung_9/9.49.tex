@@ -61,14 +61,6 @@
   für $j = 1,\dots,n$. Weiters gilt $A_{i+1}[i+1] = A[\textsc{Random}(i+2,n)] \neq i +1$. \\
   Jetzt könnte man sich noch überlegen, ob alle Permutationen, die obige
   Bedingung erfüllen, tatsächlich durch den Algorithmus erreicht werden können. \\
-  Sei dazu $v = [j_1,\dots,j_n]$ eine Permutation von $[1,\dots,n]$ die obiger
-  Bedingung genügt. Wir zeigen nun mit Induktion nach $i = 1,\dots,n$ dass
-  $A_i[1,\dots,i] = [A[j_1],\dots,A[j_i]]$ ein mögliches Resultat des Algorithmus ist. \\
-  Der Induktionsanfang ist wieder klar, für $j_1 \neq 1$ können wir im ersten Schleifendurchlauf
-  $A[i]$ sicher mit $A[j_1]$ vertauschen. \\
-  Gelte nun $A_i[1,\dots,i] = [A[j_1],\dots,A[j_i]]$. Da $j_{i+1} \neq i + 1$, kann
-  $A[j_{i+1}]$ nicht an der $(i+1)$-ten Stelle im Datenfeld stehen. Daher ist es
-  möglich, dass der Algortihmus $A[i+1]$ und $A[j_{i+1}]$ vertauscht. \\
   Insgesamt erhalten wir also, dass \textsc{Permute-Without-Identity}
   genau jene Permutationen erzeugt, welche kein Element an seinem Startplatz belassen.
 \end{enumerate}
