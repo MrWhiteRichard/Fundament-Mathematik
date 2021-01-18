@@ -25,22 +25,27 @@ Seien $(k_1,k_2,k_3)$ die aufsteigend sortierten Elemente der Kombination $k$.
 Für $2 \leq j \leq n - 1$ gilt dann
 \begin{align*}
   \P(k_2 = j) = \P(j \in k \text{ und } |[1,\dots,j-1]\cap k| = 1)
-  = \frac{3j}{n}\left[\left(1- \frac{3j}{n}\right)^{j-2}\frac{3j}{n}(j-1)\right]
-  =(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}
+  = \frac{3}{n}\left[\left(1- \frac{3}{n}\right)^{j-2}\frac{3}{n}(j-1)\right]
+  =(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
 \end{align*}
 Damit erhalten wir unsere Rekursion
 \begin{align*}
-  T(n) = \sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2}[T(n-j) + T(j)] = 2\sum_{j=2}^{n-1}(j-1)\left(\frac{3j}{n}\right)^{2}\left(1- \frac{3j}{n}\right)^{j-2} T(j).
+  T(n) = n + \sum_{j=2}^{n-1}(j-1)\left(\frac{3}{n}\right)^{2}\left(1- \frac{3}{n}\right)^{j-2}
+  [T(n-j) + T(j - 1)]
 \end{align*}
 \end{solution}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
-	Was ist bei folgender Überlegung der Fehler? Sei $X_n: S_n \to \{1, \dots, n\}$ eine Zufallsvariable, welche jede Permutation $A$ der Elemente $1, \dots, n$ abbildet auf das mittlere der drei $A[1], A\bbraces{\floorbraces{\frac{n}{2}}}$ und $A[n]$. Für jedes $1 < j < n$ gilt
+	Das Ergebins hier schaut anders aus, ist es womöglich äquivalent? Sei $X_n: S_n \to \{1, \dots, n\}$ eine Zufallsvariable, welche jede Permutation $A$ der Elemente $1, \dots, n$ abbildet auf das mittlere der drei $A[1], A\bbraces{\floorbraces{\frac{n}{2}}}$ und $A[n]$. Für jedes $1 < j < n$ gilt
 	\begin{align*}
 		\mathbb{P}\pbraces{X_n = j} &= 6 \mathbb{P}\pbraces{A[1] < A\bbraces{\floorbraces{\frac{n}{2}}} \land A\bbraces{\floorbraces{\frac{n}{2}}} < A[n] \land A\bbraces{\floorbraces{\frac{n}{2}}} = j} \\
-		&= 6 \mathbb{P}\pbraces{A\bbraces{\floorbraces{\frac{n}{2}}} = j} \mathbb{P}\pbraces{A[1] < j} \mathbb{P}\pbraces{j < A[n]} \\
-		&= \frac{6}{n}\frac{j - 1}{n}\frac{n - j}{n} 
+		&= 6 \mathbb{P}\pbraces{A\bbraces{\floorbraces{\frac{n}{2}}} = j} \mathbb{P}\pbraces{A[1] < j} \mathbb{P}\pbraces{j < A[n]} = \frac{6}{n}\frac{j - 1}{n - 1}\frac{n - j}{n - 1}. 
+	\end{align*}
+	Wir erhalten für die Anzahl der Schlüsselvergleiche also die Rekursion
+	\begin{align*}
+		T(n) = n + \sum_{j=2}^{n-1} \frac{6}{n}\frac{j - 1}{n - 1}\frac{n - j}{n - 1} 
+		[T(n-j) + T(j - 1)].
 	\end{align*}
 \end{solution}
