@@ -66,7 +66,8 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
     \end{multline*}
 
     \item $W^\ast \hat V \in C^{J \times j}$ habe vollen Rang $J \leq j$.
-    Nun gilt aber
+    Diese Annahme ist sinnvoll.
+    Es gilt nämlich
 
     \begin{multline*}
         W^\ast \hat V
@@ -81,7 +82,7 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
         =
         \begin{pmatrix}
             (\hat v_1, w_{1, 1})_2   & \cdots & (\hat v_j, w_{1, 1})_2   \\
-            \vdots                        & \ddots & \vdots                   \\
+            \vdots                   & \ddots & \vdots                   \\
             (\hat v_1, w_{k, L_k})_2 & \cdots & (\hat v_j, w_{k, L_k})_2 \\
         \end{pmatrix}.
     \end{multline*}
@@ -99,19 +100,61 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
     \end{align*}
 
     Das ist aber vernachlässigbar.
+    Bei der Vektoriteration (Potenzmethode) geht man schließlich auch davon aus, dass der Startvektor (Zufallsvektor) nicht orthogonal auf den Eigenraum, des betrags-größten Eigenwerts, steht.
+    Hier haben wir es zu tun, mit einer Zufallsmatrix $\hat V \in \C^{N \times j}$ aus $j$ Zufallsvektoren $\hat v_1, \dots, \hat v_j$, und der Summe aller Links-Eigenräume, d.h.
 
-    \item Wir gehen davon aus, dass $S := \tilde V^\ast V \in \C^{J \times J}$ vollen Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
-    Diese Annahme ist sinnvoll.
+    \begin{align*}
+        \Span W
+        =
+        \sum_{n=1}^k
+            \ker A^\ast(\lambda_n).
+    \end{align*}
 
-    $\tilde W \in C^{j \times J}$ hat, als Teilmatrix einer unitären $\in \U_j(\C)$, vollen Rang $J$.
-    $\tilde W$ hat also $J$ linear unabhängige Spalten, o.B.d.A $\tilde w_1, \dots, \tilde w_J$.
-    Analog zum vorigen Punkt, wären die $J$ Spalten von $S = \tilde V^\ast V$ genau dann linear abhängig, wenn eine davon $0$ ist, d.h.
+    \item $S := \tilde V^\ast V \in \C^{J \times J}$ habe vollen Rang $J$, also sogar $S \in \GL_J(\C)$.
+    Diese Annahme ist, analog zum vorigen Punkt, sinnvoll.
+    Es gilt nämlich
+
+    \begin{align*}
+        S^\ast
+        =
+        V^\ast \tilde V
+        =
+        (v_1, \dots, v_J)^\ast (\tilde v_1, \dots, \tilde v_J)
+        =
+        \begin{pmatrix}
+            v_1^\ast \tilde v_1 & \cdots & v_1^\ast \tilde v_J \\
+            \vdots              & \ddots & \vdots              \\
+            v_J^\ast \tilde v_1 & \cdots & v_J^\ast \tilde v_J \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            (\tilde v_1, v_1)_2 & \cdots & (\tilde v_J, v_1)_2 \\
+            \vdots              & \ddots & \vdots              \\
+            (\tilde v_1, v_J)_2 & \cdots & (\tilde v_J, v_J)_2 \\
+        \end{pmatrix}.
+    \end{align*}
+
+    $\tilde V \in C^{N \times J}$ hat, als Teilmatrix einer unitären $\in \U_N(\C)$, vollen Rang $J$, d.h. $\tilde v_1, \dots, \tilde v_J$ sind linear unabhängig.
+    Die Spalten von $S^\ast$ wären also genau dann linear abhängig, wenn eine davon $0$ ist, d.h.
 
     \begin{align*}
         \Exists i = 1, \dots, J:
-            \hat w_i \in (\Span V)^{\bot_2}.
+            (\tilde v_i, v_1)_2 = \cdots = (\tilde v_i, v_J)_2 = 0,
+            \quad
+            \text{d.h.}
+            \quad
+            \tilde v_i \in (\Span V)^{\bot_2}.
     \end{align*}
 
     Das ist aber vernachlässigbar.
+    $\tilde V$ hängt schließlich von $\hat V$ ab, ist also in gewisser Weise zufällig.
+    Hier haben wir es zu tun, mit einer (Quasi-)Zufallsmatrix $\tilde V \in \C^{N \times J}$ aus $J$ (Quasi-)Zufallsvektoren $\tilde v_1, \dots, \tilde v_J$, und der Summe aller Rechts-Eigenräume, d.h.
+
+    \begin{align*}
+        \Span V
+        =
+        \sum_{n=1}^k
+            \ker A(\lambda_n).
+    \end{align*}
 
 \end{enumerate}

@@ -1,142 +1,153 @@
 \begin{proof}[Beweis (als Korollar)]
 
-    Wir überprüfen also die Voraussetzungen von Satz \ref{keldysh_nicht_linear}.
+    Wir wollen Satz \ref{keldysh_nicht_linear} auf $\lambda \mapsto A - I_N \lambda$ anwenden.
+    Wir überprüfen also die Voraussetzungen.
 
     \begin{enumerate}[label = \arabic*.]
 
-        \item Unsere (lineare) Matrix-Funktion $A - I_N \id$ ist offensichtlich holomorph.
+        \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich (komponentenweise) holomorph.
+
+        \item Für alle $\lambda \in \rho(A)$, ist $A - I_N \lambda \in \GL_N(\C)$.
+
+        \item Die Existenz einer Orthonormalbasis $V_1$ von $\ker (A - I_N \lambda_1)$, wenn $\lambda_1 \in \sigma(A)$ halb-einfach ist, ist ein Resultat der Linearen Algebra.
         
-        \item Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $\ker (A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda \in \GL_N(\C)$ d.h. invertierbar.
+        \begin{comment}
+
+            Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwerte von $A$.
+            Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
+            Betrachte die Jordan Normalform von $A$.
         
-        \item Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwerte von $A$.
-        Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
-        Betrachte die Jordan Normalform von $A$.
-    
-        \begin{align*}
-            T J T^{-1} & = A, \\
-            J & = \diag (J_1, \dots, J_k),
-            \quad
-            T \in \GL_N(\C) \\
-            J_n
-            & =
-            \diag
-            \underbrace
-            {
-                \pbraces
+            \begin{align*}
+                T J T^{-1} & = A, \\
+                J & = \diag (J_1, \dots, J_k),
+                \quad
+                T \in \GL_N(\C) \\
+                J_n
+                & =
+                \diag
+                \underbrace
+                {
+                    \pbraces
+                    {
+                        \begin{pmatrix}
+                            \lambda_n & 1      &        &           \\
+                                    & \ddots & \ddots &           \\
+                                    &        & \ddots & 1         \\
+                                    &        &        & \lambda_n \\
+                        \end{pmatrix},
+                        \dots,
+                        \begin{pmatrix}
+                            \lambda_n & 1      &        &           \\
+                                    & \ddots & \ddots &           \\
+                                    &        & \ddots & 1         \\
+                                    &        &        & \lambda_n \\
+                        \end{pmatrix}
+                    }
+                }_{
+                    \displaystyle
+                    L_n^\mathrm{geo} \text{-viele}
+                }
+                \in
+                \C^{
+                    L_n^\mathrm{alg}
+                    \times
+                    L_n^\mathrm{alg}
+                },
+                \quad
+                n = 1, \dots, k
+            \end{align*}
+        
+            Weil $\lambda_1$ halb-einfach ist, muss $J_1 = I_{L_1} \lambda_1$.
+            Seien $\hat v_1, \dots, \hat v_N$ die linear unabhängig Spalten der \\ Transformations-Matrix $T$.
+        
+            \begin{align*}
+                \implies
+                (A \hat v_1, \dots, A \hat v_{L_1}, \ast)
+                =
+                A T
+                \stackrel
+                {
+                    \text{JNF}
+                }{=}
+                T J
+                =
+                (\hat v_1, \dots, \hat v_{L_1}, \ast)
+                \underbrace
                 {
                     \begin{pmatrix}
-                        \lambda_n & 1      &        &           \\
-                                  & \ddots & \ddots &           \\
-                                  &        & \ddots & 1         \\
-                                  &        &        & \lambda_n \\
-                    \end{pmatrix},
-                    \dots,
-                    \begin{pmatrix}
-                        \lambda_n & 1      &        &           \\
-                                  & \ddots & \ddots &           \\
-                                  &        & \ddots & 1         \\
-                                  &        &        & \lambda_n \\
+                        J_1 & 0 \\
+                        0   & \ast
                     \end{pmatrix}
-                }
-            }_{
-                \displaystyle
-                L_n^\mathrm{geo} \text{-viele}
-            }
-            \in
-            \C^{
-                L_n^\mathrm{alg}
-                \times
-                L_n^\mathrm{alg}
-            },
-            \quad
-            n = 1, \dots, k
-        \end{align*}
-    
-        Weil $\lambda_1$ halb-einfach ist, muss $J_1 = I_{L_1} \lambda_1$.
-        Seien $\hat v_1, \dots, \hat v_N$ die linear unabhängig Spalten der \\ Transformations-Matrix $T$.
-    
-        \begin{align*}
-            \implies
-            (A \hat v_1, \dots, A \hat v_{L_1}, \ast)
-            =
-            A T
-            \stackrel
-            {
-                \text{JNF}
-            }{=}
-            T J
-            =
-            (\hat v_1, \dots, \hat v_{L_1}, \ast)
-            \underbrace
-            {
-                \begin{pmatrix}
-                    J_1 & 0 \\
-                    0   & \ast
-                \end{pmatrix}
-            }_J
-            =
-            (\lambda_1 \hat v_1, \dots, \lambda_1 \hat v_{L_1}, \ast)
-        \end{align*}
-    
-        Wir können die linear unabhängig $\hat v_1, \dots, v_{L_1}$ also orthonormalisieren (Gram-Schmidt) und erhalten die Orthonormalbasis $V_1 := (v_{1, 1}, \dots, v_{1, L_1})$.
+                }_J
+                =
+                (\lambda_1 \hat v_1, \dots, \lambda_1 \hat v_{L_1}, \ast)
+            \end{align*}
+        
+            Wir können die linear unabhängig $\hat v_1, \dots, v_{L_1}$ also orthonormalisieren (Gram-Schmidt) und erhalten die Orthonormalbasis $V_1 := (v_{1, 1}, \dots, v_{1, L_1})$.
 
-        \item Die Größe der Jordan-Kästchen entspricht der Länge der Jordan-Ketten (Hauptvektor-Ketten).
-        Alle Jordan-Ketten sind also $1$-gliedrig, bestehen also nur aus \Quote{echten} Eigenwerten.
-        Es gibt also keine Hauptvektoren $2$-ter Stufe.
-    
-        Sei $y \in \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)$, dann gibt es ein $x \in \C^N$ mit $y = (A - I_N \lambda_1) x$ und $(A - I_N \lambda_1) y = 0$.
-        Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe, weil
+        \end{comment}
+
+        \item Wir müssen uns also eigentlich bloß überlegen, dass
 
         \begin{align*}
-            & \implies
-            (A - I_N \lambda_1) x = y \neq 0,
-            \quad
-            (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0 \\
-            & \implies
-            x \in \ker (A - I_N \lambda_1)^2 \setminus \ker (A - I_N \lambda_1) = \emptyset.
+            \Forall l = 1, \dots, L_1:
+                \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, l}
+                =
+                -I_N v_{1, l}
+                =
+                -v_{1, l}
+                \not \in
+                \ran (A - I_N \lambda_1).
         \end{align*}
 
+        Weil $\lambda_1$ halb-einfach ist, sein Jordan-Block genau $I_{L_1} \lambda_1$.
+        Alle zugehörigen Jordan-Kästchen haben also die Größe $1 \times 1$.
+        Es gibt somit bloß Hauptvektoren $1$-ter Stufe (Eigenwerte), und keine $2$-ter oder höherer.
+
+        Sei $y \in \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)$, dann
+
+        \begin{align*}
+            \Exists x \in \C^N:
+                (A - I_N \lambda_1) x = y,
+                \quad
+                (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0.
+        \end{align*}
+
+        Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe.
         Widerspruch!
-    
-        \begin{align*}
-            \implies
-            \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1) = \Bbraces{0}
-        \end{align*}
-    
-        Die Ableitung unserer Matrixfunktion berechnet man komponentenweise.
-        Weil $0 \neq v_{1, 1}, \dots, v_{1, L_1} \in \ker (A - I_N \lambda)$, folgt damit die letzte Voraussetzung.
-        $\Forall l = 1, \dots, L_1:$
+        Damit gilt also
 
         \begin{align*}
-            (A - I_N \id)^\prime(\lambda_1) v_{1, l}
+            \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)
             =
-            -I_N v_{1, l}
-            =
-            -v_{1, l}
-            \not \in
-            \ran (A - I_N \lambda_1)
+            \Bbraces{0}
+            \not \ni
+            v_{1, 1}, \dots, v_{1, L_1}
+            \begin{cases}
+                     \in \ker (A - I_N \lambda), \\
+                \not \in \ran (A - I_N \lambda).
+            \end{cases}
         \end{align*}
-
+    
     \end{enumerate}
 
     Wir können also Satz \ref{keldysh_nicht_linear} anwenden.
     
-    \begin{enumerate}[label = (\roman*)]
+    \begin{enumerate}[label = (\roman*), start = 2]
 
-        \item Die Orthonormalbasis $V_1 = (v_{1, 1}, \dots, v_{1, L_1})$ von $\ker (A - I_N \lambda_1)$ haben wir bereits konstruiert.
-        
-        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - I_N \lambda_1)^\ast = \ker (A^\ast - I_N \overline \lambda_1)$, sodass $\Forall l, k = 1, \dots, L_1:$
+        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - I_N \lambda_1)^\ast = \ker (A^\ast - I_N \overline \lambda_1)$, sodass
         
         \begin{align*}
-            (v_{1, k}, w_{1, l})_2
-            =
-            w_{1, l}^\ast v_{1, k}
-            =
-            -w_{1, l}^\ast (-I_N) v_{1, k}
-            =
-            -w_{1, l}^\ast (A - I_N \id)^\prime(\lambda_1) v_{1, k}
-            =
-            -\delta_{l, k}.
+            \Forall l, k = 1, \dots, L_1:
+                (v_{1, k}, w_{1, l})_2
+                =
+                w_{1, l}^\ast v_{1, k}
+                =
+                -w_{1, l}^\ast (-I_N) v_{1, k}
+                =
+                -w_{1, l}^\ast \derivative{\lambda}(A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, k}
+                =
+                -\delta_{l, k}.
         \end{align*}
 
         \item Diese Tatsache kann $1 : 1$ aus Satz \ref{keldysh_nicht_linear} übernommen werden.

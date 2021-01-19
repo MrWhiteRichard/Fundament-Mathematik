@@ -1,8 +1,39 @@
-\begin{remark} \label{links_rechts_eigen_}
+\begin{definition} \label{links_rechts_eigen_}
+
+    Seien $A \in \C^{N \times N}$, $\lambda \in \C$, und $v \in \C^N$, mit $A v = \lambda v$.
+    Wir nennen $(\lambda, v)$ ein \textit{Rechts-Eigenpaar} von $A$, $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$, und $\ker (A - I_N \lambda)$ den \textit{Rechts-Eigenraum} von $\lambda$.
+
+    Seien $B \in \C^{N \times N}$, $\mu \in \C$ und $w \in \C$, mit $w^\ast B = \mu w^\ast$.
+    Wir nennen $(\mu, w)$ ein \textit{Links-Eigenpaar} von $B$, $w$ einen \textit{Links-Eigenvektor} von $B$ zum Eigenwert $\mu$, $\ker (B^\ast - I_N \overline \mu)$ den \textit{Links-Eigenraum} von $\mu$.
+
+\end{definition}
+
+\begin{remark}
     
-    Sei $(\lambda, v)$ ein Eigenpaar der Matrix $A \in \C^{N \times N}$.
-    Wir nennen $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$.
-    Dieser besitzt den bekannten \textit{Rechts-Eigenraum} $\ker (A - I_N \lambda)$.
+    Wir schließen direkt and die Definition \ref{links_rechts_eigen_} an.
+    Der Rechts-Eigenvektor $v$ von $A$ zum Eigenwert $\lambda$ ist auch Links-Eigenvektor von $A^\ast$ zum Eigenwert $\overline \lambda$, weil
+
+    \begin{align*}
+        v^\ast A^\ast
+        =
+        (A v)^\ast
+        =
+        (\lambda v)^\ast
+        =
+        \overline \lambda v^\ast.
+    \end{align*}
+
+    Der Links-Eigenvektor $w$ von $B$ zum Eigenwert $\mu$ ist auch Rechts-Eigenvektor von $B^\ast$ zum Eigenwert $\overline \mu$.
+    $\ker (B^\ast - I_N \overline \mu)$ den Links-Eigenraum von $\mu$ zu nennen, macht also durchaus Sinn.
+
+    Sollte $A$ hermitesch (selbstadjungiert) sein, so sind alle Eigenwerte reell, und damit alle Rechts-Eigenvektore auch Links-Eigenvektoren und umgekehrt.
+
+\end{remark}
+
+\begin{comment}
+
+
+    % ------------------------------------------------
 
     $A^\ast$ ist tatsächlich die Adjungierte von $A$ im Sinne der Funktionalanalysis, weil $\Forall x, y \in \C^N:$
 
@@ -28,19 +59,4 @@
         \overline{\chi_A(\lambda)}.
     \end{align*}
 
-    $v$ ist dann auch ein sogenannter \textit{Links-Eigenvektor} von $A^\ast$ zum Eigenwert $\overline \lambda$, weil
-
-    \begin{align*}
-        v^\ast A^\ast
-        =
-        (A v)^\ast
-        =
-        (\lambda v)^\ast
-        =
-        \overline \lambda v^\ast.
-    \end{align*}
-
-    Sämtliche Links-Eigenvektoren bilden (gemeinsam mit der $0$) den \textit{Links-Eigenraum} von $\lambda$ bzgl. $A$.
-    Dieser ist in der Tat ein Unterraum.
-
-\end{remark}
+\end{comment}
