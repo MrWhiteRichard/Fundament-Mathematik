@@ -12,24 +12,64 @@ Sie eine Familie an, die zwar abzählbaren Charakter hat, nicht aber endlichen C
 
 \begin{solution}
 
-Sei $\mathfrak{F} = (A_i: i \in I)$ eine Familie von Mengen. Wir sagen, $\mathfrak{F}$
-hat abzählbaren Charakter, falls
+Sei $\mathfrak{F} = (A_i: i \in I)$ eine Familie (oder Menge) von Mengen.
+Wir sagen, $\mathfrak{F}$ hat \textit{abzählbaren Charakter}, falls
 
 \begin{align*}
-  \forall A: A \in \mathfrak{F} \iff (\forall B \subseteq A: B \text{ abzählbar } \implies B \in \mathfrak{F})
+  \Forall A:
+  \pbraces
+  {
+    A \in \mathfrak{F}
+    \leftrightarrow
+    \pbraces
+    {
+      \Forall B \subseteq A:
+      B ~\text{abzählbar}~
+      \to
+      B \in \mathfrak{F}
+    }
+  }.
 \end{align*}
 
-Als Beispiel einer Mengenfamilie mit abzählbaren, aber nicht endlichen Charakter
-betrachte die Menge $\mathcal{E}$ aller endlichen Teilmengen von $\omega$. \\
-Aus $A \in \mathcal{E}$ folgt, dass $A$ endlich ist, und somit alle Teilmengen
-von $A$ bereits in $\mathcal{E}$ liegen müssen. \\
-Sei nun $B$ eine Menge, deren abzählbare Teilmengen allesamt in $\mathcal{E}$
-liegen. Daraus folgt bereits $B \subseteq \omega$ und da $B$ damit selbst abzählbar ist,
-muss bereits $B \in \mathcal{E}$ gelten. Also hat die Menge $\mathcal{E}$ abzählbaren
-Charakter. \\
-$\mathcal{E}$ hat aber sicher nicht endlichen Charakter, wie man am Beispiel $\omega$
-sieht: Alle endlichen Teilmengen von $\omega$ sind nach Definition in $\mathcal{E}$,
-$\omega$ selbst allerdings nicht.
+\begin{enumerate}[label = \arabic*.]
+
+  \item Beispiel:
+
+  Als Beispiel einer Mengenfamilie mit abzählbaren, aber nicht endlichen Charakter
+  betrachte die Menge $\mathcal{E}$ aller endlichen Teilmengen von $\omega$. \\
+  Aus $A \in \mathcal{E}$ folgt, dass $A$ endlich ist, und somit alle Teilmengen
+  von $A$ bereits in $\mathcal{E}$ liegen müssen. \\
+  Sei nun $B$ eine Menge, deren abzählbare Teilmengen allesamt in $\mathcal{E}$
+  liegen. Daraus folgt bereits $B \subseteq \omega$ und da $B$ damit selbst abzählbar ist,
+  muss bereits $B \in \mathcal{E}$ gelten. Also hat die Menge $\mathcal{E}$ abzählbaren
+  Charakter. \\
+  $\mathcal{E}$ hat aber sicher nicht endlichen Charakter, wie man am Beispiel $\omega$
+  sieht: Alle endlichen Teilmengen von $\omega$ sind nach Definition in $\mathcal{E}$,
+  $\omega$ selbst allerdings nicht.
+
+  \item Beispiel:
+  
+  Sei $X$ abzählbar und $\mathfrak{F} := \Bbraces{A \subset X: A ~\text{abzählbar}}$.
+  Dann hat $\mathfrak{F}$ abzählbaren Charakter.
+
+  \begin{enumerate}[label = \texttt{ad}]
+
+    \item \Quote{$\to$}:
+
+    Sei $A \in \mathfrak{F}$, also $A \subseteq X$ und abzählbar.
+    Sei weiters $B \subseteq A \subseteq X$ und abzählbar.
+    Dann ist $B \in \mathfrak{F}$.
+
+    \item \Quote{$\leftarrow$}:
+
+    Natürlich ist $X \subseteq X$ abzählbar, also $X \in \mathfrak{F}$.
+
+  \end{enumerate}
+
+  Ein Gegenbeispiel für (gegen) endlichen Charakter (\Quote{$\not \leftarrow$}) wäre die Menge $X$ selbst.
+
+\end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
