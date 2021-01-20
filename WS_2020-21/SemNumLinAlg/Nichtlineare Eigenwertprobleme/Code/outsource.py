@@ -61,7 +61,7 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
 
     # get full i.e. unreduced singular value decomposition
     V_tilde_full, Sigma_full, W_tilde_full = linalg.svd(A_0, full_matrices = False)
-    
+
     # mask for SVD reduction (kill zero values)
     mask = np.abs(Sigma_full) > tol
 
@@ -99,14 +99,17 @@ def plot_complex(
 
     fig = plt.figure(figsize = size_figure)
 
-    for number_array in number_matrix:
+    marker_array = ["o","x"]
+
+    for number_array, i in zip(number_matrix,range(len(number_matrix))):
 
         plt.scatter(
             *np.array([
                 [number.real, number.imag]
                 for number in number_array
             ]).T,
-            s = size_dots
+            s = size_dots,
+            marker = marker_array[i%2]
         )
 
     plt.grid(linestyle = ':')
