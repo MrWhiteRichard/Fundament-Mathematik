@@ -78,6 +78,7 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
 	\path[->] (a) edge node {} (k);
 	\path[->] (j) edge node {} (k);
 	\path[->] (g) edge node {} (k);
+	\path[->] (l) edge node {} (m);
 \end{tikzpicture}
 
 \begin{enumerate}[label = \texttt{ad}]
@@ -247,7 +248,22 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
   \end{gather*}
 
   $g$, $g_\mathrm{fin}$, und $g_\mathrm{sing}$ sind also auch allersamt surjektiv.
-
+  
+  \item \Quote{l. $\implies$ m.}:
+  
+  Sei also $A$ eine undenliche Menge. Definiere
+  \begin{align*}
+  	\mathfrak{M}:=\Bbraces{X \subseteq A \mid X \text{ endlich }}
+  \end{align*}
+  und sei $X \in \mathfrak{M}$ beliebig. Die Menge $X$ ist endlich, also gibt es ein $n \in \omega$ und eine Bijektion $f:n \to X$. Da $A$ unendlich ist, kann $f:n \to A$ nicht surjektiv sein also gibt es $y \in A \setminus f[n]$. Nun definiere $Z := X \cup \{y\}$ und
+  \begin{align*}
+  	g:n + 1 \to Z: m \mapsto
+  	\begin{cases}
+  		y & ,\text{falls } m = n \\
+  		f(m) & ,\text{sonst }
+  	\end{cases}.
+  \end{align*}
+  Wir sehen, dass $g$ bijektiv ist also $Z$ endlich aber $Z \supsetneq X$, also ist $X$ nicht maximal.
 \end{enumerate}
 
 \end{solution}
