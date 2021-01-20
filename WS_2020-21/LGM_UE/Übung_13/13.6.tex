@@ -12,19 +12,6 @@ An welchen Stellen Ihres Beweises (wenn überhaupt) verwenden Sie das Auswahlaxi
 
 \begin{solution}
 
-Beginnen wir mit der Rückrichtung: $f(\omega) \subseteq L$ hat kein kleinstes
-Element, also kann $L$ keine Wohlordnung sein. \\
-Hinrichtung: Sei $\emptyset \neq K \subseteq L$ eine Teilmenge ohne kleinstes Element.
-Also existiert für jedes $x \in K$ ein $x' \in K$ mit $x > x'$.
-Mit dem Auswahlaxiom finden wir dann ein $f$ aus der Angabe. Wie genau wenden
-wir hier das Auswahlaxiom an?
-
-\end{solution}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
-
 Sei $(L, <)$ eine lineare Ordnung.
 Zu zeigen ist, dass
 
@@ -39,13 +26,13 @@ Zu zeigen ist, dass
 \begin{enumerate}[label = \texttt{ad}]
 
     \item \Quote{$\implies$}:
-    
+
     Sei $(L, <)$ keine Wohlordnung, dann
 
     \begin{align} \label{eq:keine_Wohlordnung}
         \begin{split}
             \Exists E \in \mathcal{P}(L) \setminus \Bbraces{\emptyset}:
-                & \nExists l \in E: 
+                & \nExists l \in E:
                     \Forall l^\prime \in E:
                         l^\prime \leq l \to l = l^\prime \\
                 \iff
@@ -55,24 +42,27 @@ Zu zeigen ist, dass
                 \stackrel{!}{\iff}
                 & \Forall l \in E:
                     \Exists l^\prime \in E:
-                        l^\prime < l.            
+                        l^\prime < l.
         \end{split}
     \end{align}
+    Wir finden jetzt mit dem Auswahlaxiom eine Funktion
 
-    Sei nun $f(0) \in E_0 := E$ beliebig.
-    Weil $f(0) \in E$, gibt es, laut \eqref{eq:keine_Wohlordnung}, ein $f(1) = f(0)^\prime \in E$, sodass $f(1) < f(0)$.
+    \begin{align*}
+      g: \mathfrak{P}(L) \setminus \emptyset \to L \\
+      \forall A \subseteq L: g(A) \in A.
+    \end{align*}
 
-    Sei nun $f(n) \in E_{n-1} := E_{< f(n-1)} \subseteq E$ bereits definiert.
-    Weil $f(n) \in E$, gibt es, laut \eqref{eq:keine_Wohlordnung}, ein $f(n + 1) = f(n)^\prime \in E$, sodass $f(n + 1) < f(n)$.
+    Nun definieren wir $E_0 := E$ und $f(0) := g(E_0)$.
 
-    So kann die Funktion $f: \omega \to L$ rekursiv definiert werden.
-    Dazu brauchen wir das Auswahlaxiom.
+    Sei nun $f(n) \in E_{n} := E_{< f(n-1)} \subseteq E$ bereits definiert.
+    Weil $f(n) \in E$, gibt es, laut \eqref{eq:keine_Wohlordnung}, ein $f(n + 1) = f(n)^\prime \in E$, sodass $f(n + 1) < f(n)$. Also ist $E_{n+1} := E_{<f(n)} \neq \emptyset$ und wir definieren
+    $f(n+1) := g(E_{n+1})$.
 
     \item \Quote{$\impliedby$}:
 
     Es gebe eine streng monoton fallende Funktion $f: \omega \to L$.
     Sei $l \in E := f[\omega] \in \mathcal{P}(L) \setminus \Bbraces{\emptyset}$.
-    
+
     \begin{align*}
         \implies &
         \Exists n \in \omega:
@@ -90,4 +80,3 @@ Letzteres \Quote{!} gilt, weil $(L, <)$ ja eine lineare Ordnung ist.
 \end{solution}
 
 % --------------------------------------------------------------------------------
-    
