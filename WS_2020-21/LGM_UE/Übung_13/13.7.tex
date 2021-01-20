@@ -58,39 +58,39 @@ Auf der Potenzmenge definieren wir
 \def\r{1}
 \def\R{1.3}
 \begin{tikzpicture}[scale=1.5]
-  \foreach\ang/\name in {-150/a,-30/b,90/c} \draw (\ang:\r) circle (\R) coordinate (\name) node {\name};
-  \path (a) -- (b) node [midway] (ab) {ab} ;
+  \foreach\ang/\name in {-150/b,-30/c,90/d} \draw (\ang:\r) circle (\R) coordinate (\name) node {\name};
   \path (b) -- (c) node [midway] (bc) {bc} ;
-  \path (c) -- (a) node [midway] (ca) {ca} ;
-  \path (c) -- (ab) node [pos=.667] (abc) {abc};
+  \path (c) -- (d) node [midway] (cd) {cd} ;
+  \path (d) -- (b) node [midway] (db) {db} ;
+  \path (d) -- (bc) node [pos=.667] (bcd) {bcd};
 \end{tikzpicture}
 \end{center}
 
 \begin{itemize}
   \item[Irreflexivität:] Klar.
-  \item[Transitivität:] Gelte $A <_\mathfrak{P} B$ und $B <_\mathfrak{P} C$. \\
+  \item[Transitivität:] Gelte $B <_\mathfrak{P} C$ und $C <_\mathfrak{P} D$. \\
   Wir verwenden ab nun die Kurznotationen aus der Skizze: \\
   (Man beachte, dass die Abkürzungen auch für die leere Menge stehen können)\\
-  Laut Voraussetzung gilt also $\min(a \cup ca) < \min(b \cup bc)$ und
-  $\min(b \cup ab) < \min(c \cup ca)$. Damit folgt
+  Laut Voraussetzung gilt also $\min(b \cup db) < \min(c \cup cd)$ und
+  $\min(c \cup bc) < \min(d \cup db)$. Damit folgt
   \begin{align*}
-    \min(a \cup ab \cup ca) = \min(a \cup ab \cup ca \cup b \cup bc)
-    = \min(a \cup ab \cup ca \cup b \cup bc \cup c) \leq \min(c \cup bc)
+    \min(b \cup bc \cup db) = \min(b \cup bc \cup db \cup c \cup cd)
+    = \min(b \cup bc \cup db \cup c \cup cd \cup d) \leq \min(d \cup cd)
   \end{align*}
-  Angenommen, es gelte $\min(ca) < \min(a \cup ab)$, dann erhalten wir mit
+  Angenommen, es gelte $\min(db) < \min(b \cup bc)$, dann erhalten wir mit
   \begin{align*}
-  \min(ca \cup c) &> \min(b \cup ab) \geq \min(b \cup ab \cup bc) \geq \min(a \cup ab \cup ca)
-  = \min(ca)
+  \min(db \cup d) &> \min(c \cup bc) \geq \min(c \cup bc \cup cd) \geq \min(b \cup bc \cup db)
+  = \min(db)
   \end{align*}
   einen Widerspruch! Also gilt
   \begin{align*}
-    \min(a \cup ab) = \min(a \cup ab \cup ca) \leq \min(c \cup bc)
+    \min(b \cup bc) = \min(b \cup bc \cup db) \leq \min(d \cup cd)
   \end{align*}
-  und aufgrund der Disjunktheit gilt sogar die strikte Ungleichung und somit $A <_\mathfrak{P} C$.
+  und aufgrund der Disjunktheit gilt sogar die strikte Ungleichung und somit $B <_\mathfrak{P} D$.
 
-  \item[Trichotomie:] Gelte $A \nless_\mathfrak{P} B$ und $B \nless_\mathfrak{P} A$, also
-  $\min(A \setminus B) = \min(B \setminus A)$. Dies ist aufgrund der Disjunktheit nur
-  möglich, wenn $A \setminus B = B \setminus A = \emptyset$, also $A = B$.
+  \item[Trichotomie:] Gelte $B \nless_\mathfrak{P} C$ und $C \nless_\mathfrak{P} B$, also
+  $\min(B \setminus C) = \min(C \setminus B)$. Dies ist aufgrund der Disjunktheit nur
+  möglich, wenn $B \setminus C = C \setminus B = \emptyset$, also $B = C$.
 \end{itemize}
 
 \end{solution}
