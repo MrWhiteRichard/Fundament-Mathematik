@@ -2,10 +2,9 @@
 
 \begin{exercise}[286]
 
-Beweisen Sie (in ZFC, informell): Eine lineare Ordnung $(L,<)$ ist genau dann
-KEINE Wohlordnung, wenn es eine Funktion $f: \omega \to L$ gibt mit
-$\forall n \in \omega: f(n+1) < f(n)$. An welchen Stellen Ihres Beweises
-(wenn überhaupt) verwenden Sie das Auswahlaxiom?
+Beweisen Sie (in ZFC, informell):
+Eine lineare Ordnung $(L, <)$ ist genau dann KEINE Wohlordnung, wenn es eine Funktion $f: \omega \to L$ gibt mit $\Forall n \in \omega: f(n + 1) < f(n)$.
+An welchen Stellen Ihres Beweises (wenn überhaupt) verwenden Sie das Auswahlaxiom?
 
 \end{exercise}
 
@@ -23,3 +22,72 @@ wir hier das Auswahlaxiom an?
 \end{solution}
 
 % --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $(L, <)$ eine lineare Ordnung.
+Zu zeigen ist, dass
+
+\begin{align*}
+    (L, <) ~\text{keine Wohlordnung}~
+    \iff
+    \Exists f: \omega \to L:
+        \Forall n \in \omega:
+            f(n + 1) < f(n)
+\end{align*}
+
+\begin{enumerate}[label = \texttt{ad}]
+
+    \item \Quote{$\implies$}:
+    
+    Sei $(L, <)$ keine Wohlordnung, dann
+
+    \begin{align} \label{eq:keine_Wohlordnung}
+        \begin{split}
+            \Exists E \in \mathcal{P}(L) \setminus \Bbraces{\emptyset}:
+                & \nExists l \in E: 
+                    \Forall l^\prime \in E:
+                        l^\prime \leq l \to l = l^\prime \\
+                \iff
+                & \Forall l \in E:
+                    \Exists l^\prime \in E:
+                        l^\prime \leq l \land l \neq l^\prime \\
+                \stackrel{!}{\iff}
+                & \Forall l \in E:
+                    \Exists l^\prime \in E:
+                        l^\prime < l.            
+        \end{split}
+    \end{align}
+
+    Sei nun $f(0) \in E_0 := E$ beliebig.
+    Weil $f(0) \in E$, gibt es, laut \eqref{eq:keine_Wohlordnung}, ein $f(1) = f(0)^\prime \in E$, sodass $f(1) < f(0)$.
+
+    Sei nun $f(n) \in E_{n-1} := E_{< f(n-1)} \subseteq E$ bereits definiert.
+    Weil $f(n) \in E$, gibt es, laut \eqref{eq:keine_Wohlordnung}, ein $f(n + 1) = f(n)^\prime \in E$, sodass $f(n + 1) < f(n)$.
+
+    So kann die Funktion $f: \omega \to L$ rekursiv definiert werden.
+    Dazu brauchen wir das Auswahlaxiom.
+
+    \item \Quote{$\impliedby$}:
+
+    Es gebe eine streng monoton fallende Funktion $f: \omega \to L$.
+    Sei $l \in E := f[\omega] \in \mathcal{P}(L) \setminus \Bbraces{\emptyset}$.
+    
+    \begin{align*}
+        \implies &
+        \Exists n \in \omega:
+            l = f(n) > f(n + 1) =: l^\prime \\
+        \implies &
+        l^\prime \leq l \land l^\prime \neq l
+    \end{align*}
+
+    Dafür wird das Auswahlaxiom allerdings nicht gebraucht.
+
+\end{enumerate}
+
+Letzteres \Quote{!} gilt, weil $(L, <)$ ja eine lineare Ordnung ist.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    
