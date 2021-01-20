@@ -32,6 +32,54 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
 
 \phantom{}
 
+\begin{tikzpicture}[
+	> = stealth, % arrow head style
+	shorten > = 1pt, % don't touch arrow head to node
+	auto,
+	node distance = 3cm, % distance between nodes
+	semithick % line style
+	]
+	
+	\tikzstyle{every state}=[
+	draw = black,
+	thick,
+	fill = white,
+	minimum size = 4mm
+	]
+	
+	\node[state] (a) {$a$};
+	\node[state] (b) [above right of=a] {$b$};
+	\node[state] (c) [right of=a] {$c$};
+	\node[state] (f) [below right of=a] {$f$};
+	\node[state] (h) [below of=a] {$h$};
+	\node[state] (d) [right of=c] {$d$};
+	\node[state] (e) [below right of=c] {$e$};
+	\node[state] (g) [below left of=a] {$g$};
+	\node[state] (j) [above left of=a] {$j$};
+	\node[state] (i) [left of=j] {$i$};
+	\node[state] (k) [left of=a] {$k$};
+	\node[state] (l) [left of=k] {$l$};
+	\node[state] (m) [below of=l] {$m$};
+
+	
+	\path[->] (a) edge [bend left] node {} (b);
+	\path[->] (b) edge [bend left] node {} (a);
+	\path[->] (c) edge [bend left] node {} (a);
+	\path[->] (a) edge node {} (c);
+	\path[->] (a) edge node {} (f);
+	\path[->] (a) edge node {} (h);
+	\path[->] (c) edge node {} (d);
+	\path[->] (e) edge node {} (c);
+	\path[->] (e) edge node {} (f);
+	\path[->] (a) edge node {} (g);
+	\path[->] (a) edge node {} (j);
+	\path[->] (j) edge node {} (i);
+	\path[->] (h) edge node {} (g);
+	\path[->] (a) edge node {} (k);
+	\path[->] (j) edge node {} (k);
+	\path[->] (g) edge node {} (k);
+\end{tikzpicture}
+
 \begin{enumerate}[label = \texttt{ad}]
 
   \item \Quote{a. $\implies$ b.}:
@@ -106,6 +154,8 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
     g := \{(f(n),f(n+1)): n \in \omega\} \cup \{(a,a): a \in A \setminus f(\omega)\}
   \end{align*}
   $g$ ist sicher auf ganz $A$ definiert, injektiv und es gilt $f(0) \notin g(A)$.
+  
+  Diese Implikation wurde auch in Aufgabe 269 gezeigt.
 
   \item \Quote{a. $\implies$ f.}: Sei $f: \omega \to A$ injektiv. Definiere
 
@@ -115,7 +165,7 @@ Geben Sie möglichst viele nichttriviale Implikationen zwischen diesen Aussagen 
   \end{align*}
   $g$ ist surjektiv, aber nicht injektiv.
 
-  \item \Quote{c. $\implies$ a.}: Siehe letzte Übung.
+  \item \Quote{c. $\implies$ a.}: Siehe letzte Übung Aufgabe 270.
 
   \item \Quote{a. $\implies$ h.}: Sei $f: \omega \to A$ injektiv. Definiere
   \begin{align*}
