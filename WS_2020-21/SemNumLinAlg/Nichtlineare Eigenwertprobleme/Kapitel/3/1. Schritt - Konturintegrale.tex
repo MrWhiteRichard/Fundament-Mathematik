@@ -31,7 +31,7 @@ In Formeln geschrieben, lauten diese
     \quad
     \text{mit}
     \quad
-    \omega_m := \exp\left(\frac{2 \pi i}{m}\right),
+    \omega_m := \exp \pbraces{\frac{2 \pi i}{m}},
     \quad
     m \in \N.
 \end{align*}
@@ -39,9 +39,9 @@ In Formeln geschrieben, lauten diese
 Sei $f \in H(U, \C)$ holomorph.
 Wir verwenden nun tatsächlich eine klassische summierte Trapezregel und erhalten
 
-\begin{multline*}
+\begin{align*}
     Q(f)
-    :=
+    & :=
     \frac{1}{2 \pi i}
     \Int[|\lambda| = R]
     {
@@ -60,7 +60,7 @@ Wir verwenden nun tatsächlich eine klassische summierte Trapezregel und erhalte
         \gamma^\prime(t)
         f(\gamma(t))
     }{t} \\
-    =
+    & =
     \Int[0][1]
     {
         R
@@ -70,20 +70,20 @@ Wir verwenden nun tatsächlich eine klassische summierte Trapezregel und erhalte
     \stackrel{!}{\approx}
     \sum_{\nu = 0}^{m-1}
         \frac{1}{m}
-        R \exp\left(\frac{2 \pi i \nu}{m}\right)
+        R \exp \pbraces{\frac{2 \pi i \nu}{m}}
         f
         \pbraces
         {
-            R \exp\left(\frac{2 \pi i \nu}{m}\right)
-        }
-    =
+            R \exp \pbraces{\frac{2 \pi i \nu}{m}}
+        } \\
+    & =
     \frac{R}{m}
     \sum_{\nu = 0}^{m-1}
         \omega_m^\nu
         f(R \omega_m^\nu)
     =:
     Q_m(f).
-\end{multline*}
+\end{align*}
 
 Für $f$ werden wir später dann die Integranden von $A_0$ und $A_1$ einsetzen.
 Diese müssen vorhin aber noch passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert (bzw. quadriert) werden kann.
