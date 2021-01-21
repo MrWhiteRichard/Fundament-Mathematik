@@ -15,11 +15,11 @@ Betrachte folgendes Ringgebiet
 Wir parametrisieren den Kreis $\partial B(0, R) \subset U$ vermöge dem komplexen Weg
 
 \begin{align*}
-    \gamma: [0, 1) \to \partial B(0, R): t \mapsto R \exp*{2 \pi i t},
+    \gamma: [0, 1) \to \partial B(0, R): t \mapsto R \exp(2 \pi i t),
     \quad
     \text{mit}
     \quad
-    \gamma^\prime: t \mapsto 2 \pi i R \exp*{2 \pi i t}.
+    \gamma^\prime: t \mapsto 2 \pi i R \exp(2 \pi i t).
 \end{align*}
 
 Wir approximieren ihn durch die $m$-ten Einheitswurzeln.
@@ -31,7 +31,7 @@ In Formeln geschrieben, lauten diese
     \quad
     \text{mit}
     \quad
-    \omega_m := \exp \frac{2 \pi i}{m},
+    \omega_m := \exp\left(\frac{2 \pi i}{m}\right),
     \quad
     m \in \N.
 \end{align*}
@@ -64,17 +64,17 @@ Wir verwenden nun tatsächlich eine klassische summierte Trapezregel und erhalte
     \Int[0][1]
     {
         R
-        \exp*{2 \pi i t}
-        f(R \exp*{2 \pi i t})
+        \exp(2 \pi i t)
+        f(R \exp(2 \pi i t))
     }{t}
     \stackrel{!}{\approx}
     \sum_{\nu = 0}^{m-1}
         \frac{1}{m}
-        R \exp \frac{2 \pi i \nu}{m}
+        R \exp\left(\frac{2 \pi i \nu}{m}\right)
         f
         \pbraces
         {
-            R \exp \frac{2 \pi i \nu}{m}
+            R \exp\left(\frac{2 \pi i \nu}{m}\right)
         }
     =
     \frac{R}{m}
@@ -86,7 +86,7 @@ Wir verwenden nun tatsächlich eine klassische summierte Trapezregel und erhalte
 \end{multline*}
 
 Für $f$ werden wir später dann die Integranden von $A_0$ und $A_1$ einsetzen.
-Diese müssen vorhin aber nocht passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert (bzw. quadriert) werden kann.
+Diese müssen vorhin aber noch passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert (bzw. quadriert) werden kann.
 Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird im $4$-ten Kapitel diskutiert.
 
 Um $A(\lambda)^{-1} \hat V$ in den Integranden von $A_0$ und $A_1$ zu bestimmen, werden wir nicht $A(\lambda)^{-1}$ direkt berechnen.
