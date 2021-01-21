@@ -10,11 +10,10 @@ Diese sei gegeben in der Form
     \quad
     \tilde W \in \U_j(\C),
     \quad
-    \Sigma_{l, k} = \sigma_l \delta_{l, k},
-    \quad
-    l = 1, \dots, N,
-    \quad
-    k = 1, \dots, j.
+    \Sigma = \begin{pmatrix}
+        \diag(\sigma_1, \dots, \sigma_J, \dots, \sigma_j) \\
+        0_{(N - j) \times j}
+    \end{pmatrix} \in \C^{N \times j}
 \end{align*}
 
 Dabei gehen wir nicht auf die technischen Details zur Bestimmung der Singulärwert-Zerlegung ein.
@@ -23,7 +22,7 @@ Wir verwenden lediglich den Befehl \texttt{linalg.svd}, aus der \texttt{scipy}-B
 Nehmen wir zunächst an, dass die Rechts- bzw. Links-Eigenraum-Basen $V, W \in \C^{N \times J}$ vollen Rang $J$ haben, und die Zufallsmatrix $\hat V \in \C^{N \times j}$ vollen Rang $j$ hat.
 Weiters gehen wir davon aus, dass $W^\ast \hat V \in C^{J \times j}$ vollen Rang $J \leq j$ hat.
 Das heißt, $V$ und $W^\ast \hat V$ sind injektiv, also auch deren Komposition $A_0 = V W^\ast \hat V$.
-$A_0$ hat damit ebenfalls Rang $J$.
+Daher ist auch die Annahme, dass $A_0$ Rang $J$ hat, sinnvoll.
 
 Matrizen haben genau dann denselben Rang, wenn sie bzgl. $\equiv$ äquivalent sind (d.h. modulo Multiplikation mit zwei regulären Matrix von jeweils links bzw. rechts).
 $\tilde V$ und $\tilde W^\ast$ sind als unitäre Matrizen regulär.
@@ -126,7 +125,7 @@ Insgesamt erhalten wir also folgende Tatsachen über unsere reduzierte Singulär
     I_J
 \end{align}
 
-Wir gehen davon aus, dass $S := \tilde V^\ast V \in \C^{J \times J}$ vollen Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
+Da wir an $V$ vollen Rang vorausgesetzt haben, können wir auch annehmen, dass $S := \tilde V^\ast V \in \C^{J \times J}$ vollen Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
 In den folgenden Gleichungsketten wird bei \Quote{!} die jeweils vorgerige eingesetzt.
 
 \begin{align*}
