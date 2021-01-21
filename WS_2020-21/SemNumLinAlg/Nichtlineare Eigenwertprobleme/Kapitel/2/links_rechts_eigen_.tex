@@ -1,10 +1,10 @@
 \begin{definition} \label{links_rechts_eigen_}
 
     Seien $A \in \C^{N \times N}$, $\lambda \in \C$, und $v \in \C^N$, mit $A v = \lambda v$.
-    Wir nennen $(\lambda, v)$ ein \textit{Rechts-Eigenpaar} von $A$, $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$, und $\ker (A - I_N \lambda)$ den \textit{Rechts-Eigenraum} von $\lambda$.
+    Wir nennen $(\lambda, v)$ ein \textit{Rechts-Eigenpaar} von $A$, $v$ einen \textit{Rechts-Eigenvektor} von $A$ zum Eigenwert $\lambda$, und $\ker (A - \lambda I_N)$ den \textit{Rechts-Eigenraum} von $\lambda$.
 
     Seien $B \in \C^{N \times N}$, $\mu \in \C$ und $w \in \C$, mit $w^\ast B = \mu w^\ast$.
-    Wir nennen $(\mu, w)$ ein \textit{Links-Eigenpaar} von $B$, $w$ einen \textit{Links-Eigenvektor} von $B$ zum Eigenwert $\mu$, $\ker (B^\ast - I_N \overline \mu)$ den \textit{Links-Eigenraum} von $\mu$.
+    Wir nennen $(\mu, w)$ ein \textit{Links-Eigenpaar} von $B$, $w$ einen \textit{Links-Eigenvektor} von $B$ zum Eigenwert $\mu$, $\ker (B^\ast - \overline \mu I_N)$ den \textit{Links-Eigenraum} von $\mu$.
 
 \end{definition}
 
@@ -23,10 +23,21 @@
         \overline \lambda v^\ast.
     \end{align*}
 
-    Der Links-Eigenvektor $w$ von $B$ zum Eigenwert $\mu$ ist auch Rechts-Eigenvektor von $B^\ast$ zum Eigenwert $\overline \mu$.
-    $\ker (B^\ast - I_N \overline \mu)$ den Links-Eigenraum von $\mu$ zu nennen, macht also durchaus Sinn.
+    Der Links-Eigenvektor $w$ von $B$ zum Eigenwert $\mu$ ist auch Rechts-Eigenvektor von $B^\ast$ zum Eigenwert $\overline \mu$, weil
 
-    Sollte $A$ hermitesch (selbstadjungiert) sein, so sind alle Eigenwerte reell, und damit alle Rechts-Eigenvektoren auch Links-Eigenvektoren und umgekehrt.
+    \begin{align*}
+        B^\ast w
+        =
+        (w^\ast B)^\ast
+        =
+        (\mu w^\ast)^\ast
+        =
+        \overline \mu w.
+    \end{align*}
+
+    $\ker (B^\ast - \overline \mu I_N)$ den Links-Eigenraum von $\mu$ zu nennen, macht also durchaus Sinn.
+
+    Sollte $A$ hermitesch (selbstadjungiert) sein, so sind alle Eigenwerte reell, und damit alle Rechts-Eigenvektoren auch Links-Eigenvektoren, zum selben Eigenwert, und umgekehrt.
 
 \end{remark}
 
@@ -52,9 +63,9 @@
     \begin{align*}
         \chi_{A^\ast}(\lambda)
         =
-        \det(A^\ast - I_N \lambda)
+        \det(A^\ast - \lambda I_N)
         =
-        \overline{\det(A - I_N \lambda)^\top}
+        \overline{\det(A - \lambda I_N)^\top}
         =
         \overline{\chi_A(\lambda)}.
     \end{align*}

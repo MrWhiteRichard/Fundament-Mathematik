@@ -1,7 +1,7 @@
-\begin{remark}[Keldysh, hermitesch] \label{keldysh_hermitesch}
+\begin{remark}[Keldysh, linear, hermitesch] \label{keldysh_linear_hermitesch}
 
     Sei $A \in \C^{N \times N}$ hermitesch (selbstadjungiert).
-    Seien $\lambda_1 < \cdots < \lambda_k$ deren Eigenwerte, jeweils zu den Vielfachheiten $L_1, \dots, L_k$, und für alle $n = 1, \dots, k$ sei $V_n = (v_{n, 1}, \dots, v_{n, L_n})$ eine Orthonormalbasis von $\ker (A - I_N \lambda_n)$, sodass $A$ unitär diagonalisierbar ist, d.h.
+    Seien $\lambda_1 < \cdots < \lambda_k$ deren Eigenwerte, jeweils zu den Vielfachheiten $L_1, \dots, L_k$, und für alle $n = 1, \dots, k$ sei $V_n = (v_{n, 1}, \dots, v_{n, L_n})$ eine Orthonormalbasis von $\ker (A - \lambda_n I_N)$, sodass $A$ unitär diagonalisierbar ist, d.h.
 
     \begin{align*}
         A = V^\ast D V,
@@ -10,10 +10,10 @@
         \quad
         V := (V_1, \dots, V_k) \in \U_N(\C),
         \quad
-        D := \diag (I_{L_1} \lambda_1, \dots, I_{L_k} \lambda_k).
+        D := \diag (\lambda_1 I_{L_1}, \dots, \lambda_k I_{L_k}).
     \end{align*}
 
-    In Analogie zu Satz \ref{keldysh_nicht_linear}, bilden nun $-v_{1, 1}, \dots, -v_{1, L_1}$ eine Basis von $\ker (A^\ast - I_N \overline \lambda_1)$, sodass
+    In Analogie zu Satz \ref{keldysh_nicht_linear}, bilden nun $-v_{1, 1}, \dots, -v_{1, L_1}$ eine Basis von $\ker (A^\ast - \overline \lambda_1 I_N)$, sodass
 
     \begin{align*}
         \Forall l, k = 1, \dots, L_1:
@@ -24,7 +24,7 @@
 
     \begin{align*}
         \Forall \lambda \in U_1 \setminus \Bbraces{\lambda_1}:
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             & =
             (V^\ast D V - V^\ast \lambda V)^{-1} \\
             & =

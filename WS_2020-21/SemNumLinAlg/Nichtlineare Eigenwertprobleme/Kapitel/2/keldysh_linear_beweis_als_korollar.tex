@@ -1,15 +1,15 @@
 \begin{proof}[Beweis (als Korollar)]
 
-    Wir wollen Satz \ref{keldysh_nicht_linear} auf $\lambda \mapsto A - I_N \lambda$ anwenden.
+    Wir wollen Satz \ref{keldysh_nicht_linear} auf $\lambda \mapsto A - \lambda I_N$ anwenden.
     Wir überprüfen also die Voraussetzungen.
 
     \begin{enumerate}[label = \arabic*.]
 
-        \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - I_N \lambda$ ist offensichtlich (komponentenweise) holomorph.
+        \item Unsere (lineare) Matrix-Funktion $\lambda \mapsto A - \lambda I_N$ ist offensichtlich (komponentenweise) holomorph.
 
-        \item Für alle $\lambda \in \rho(A)$, ist $A - I_N \lambda \in \GL_N(\C)$.
+        \item Für alle $\lambda \in \rho(A)$, ist $A - \lambda I_N \in \GL_N(\C)$.
 
-        \item Die Existenz einer Orthonormalbasis $V_1$ von $\ker (A - I_N \lambda_1)$, wenn $\lambda_1 \in \sigma(A)$ halb-einfach ist, ist ein Resultat der Linearen Algebra.
+        \item Die Existenz einer Orthonormalbasis $V_1$ von $\ker (A - \lambda_1 I_N)$, wenn $\lambda_1 \in \sigma(A)$ halb-einfach ist, ist ein Resultat der Linearen Algebra.
         
         \begin{comment}
 
@@ -57,7 +57,7 @@
                 n = 1, \dots, k
             \end{align*}
         
-            Weil $\lambda_1$ halb-einfach ist, muss $J_1 = I_{L_1} \lambda_1$.
+            Weil $\lambda_1$ halb-einfach ist, muss $J_1 = \lambda_1 I_{L_1}$.
             Seien $\hat v_1, \dots, \hat v_N$ die linear unabhängig Spalten der \\ Transformations-Matrix $T$.
         
             \begin{align*}
@@ -91,26 +91,26 @@
 
         \begin{align*}
             \Forall l = 1, \dots, L_1:
-                \derivative{\lambda} (A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, l}
+                \derivative{\lambda} (A - \lambda I_N) \Big |_{\lambda = \lambda_1} v_{1, l}
                 =
                 -I_N v_{1, l}
                 =
                 -v_{1, l}
                 \not \in
-                \ran (A - I_N \lambda_1).
+                \ran (A - \lambda_1 I_N).
         \end{align*}
 
-        Weil $\lambda_1$ halb-einfach ist, sein Jordan-Block genau $I_{L_1} \lambda_1$.
+        Weil $\lambda_1$ halb-einfach ist, sein Jordan-Block genau $\lambda_1 I_{L_1}$.
         Alle zugehörigen Jordan-Kästchen haben also die Größe $1 \times 1$.
         Es gibt somit bloß Hauptvektoren $1$-ter Stufe (Eigenwerte), und keine $2$-ter oder höherer.
 
-        Sei $y \in \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)$, dann
+        Sei $y \in \ker (A - \lambda_1 I_N) \cap \ran (A - \lambda_1 I_N)$, dann
 
         \begin{align*}
             \Exists x \in \C^N:
-                (A - I_N \lambda_1) x = y,
+                (A - \lambda_1 I_N) x = y,
                 \quad
-                (A - I_N \lambda_1)^2 x = (A - I_N \lambda_1) y = 0.
+                (A - \lambda_1 I_N)^2 x = (A - \lambda_1 I_N) y = 0.
         \end{align*}
 
         Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe.
@@ -118,14 +118,14 @@
         Damit gilt also
 
         \begin{align*}
-            \ker (A - I_N \lambda_1) \cap \ran (A - I_N \lambda_1)
+            \ker (A - \lambda_1 I_N) \cap \ran (A - \lambda_1 I_N)
             =
             \Bbraces{0}
             \not \ni
             v_{1, 1}, \dots, v_{1, L_1}
             \begin{cases}
-                     \in \ker (A - I_N \lambda), \\
-                \not \in \ran (A - I_N \lambda).
+                     \in \ker (A - \lambda I_N), \\
+                \not \in \ran (A - \lambda I_N).
             \end{cases}
         \end{align*}
     
@@ -135,7 +135,7 @@
     
     \begin{enumerate}[label = (\roman*), start = 2]
 
-        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - I_N \lambda_1)^\ast = \ker (A^\ast - I_N \overline \lambda_1)$, sodass
+        \item Der Satz \ref{keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - \lambda_1 I_N)^\ast = \ker (A^\ast - \overline \lambda_1 I_N)$, sodass
         
         \begin{align*}
             \Forall l, k = 1, \dots, L_1:
@@ -145,7 +145,7 @@
                 =
                 -w_{1, l}^\ast (-I_N) v_{1, k}
                 =
-                -w_{1, l}^\ast \derivative{\lambda}(A - I_N \lambda) \Big |_{\lambda = \lambda_1} v_{1, k}
+                -w_{1, l}^\ast \derivative{\lambda}(A - \lambda I_N) \Big |_{\lambda = \lambda_1} v_{1, k}
                 =
                 -\delta_{l, k}.
         \end{align*}

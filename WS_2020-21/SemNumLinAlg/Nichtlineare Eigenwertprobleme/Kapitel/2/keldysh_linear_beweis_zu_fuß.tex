@@ -55,7 +55,7 @@
         \end{align*}
 
         $\hat W_1$ sind also Links-Eigenvektoren von $A$ zum Eigenwert $\lambda_1$, d.h. Rechts-Eigenvektoren von $A^\ast$ zum Eigenwert $\overline \lambda_1$.
-        Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\ker (A^\ast - I_N \overline \lambda_1)$.
+        Weil die algebraische Vielfachheit von $\overline \lambda_1$ bzgl. $A^\ast$ ja $L_1$ ist, bilden diese eine Basis von $\ker (A^\ast - \overline \lambda_1 I_N)$.
         Wir setzen an mit
 
         \begin{align*}
@@ -187,7 +187,7 @@
         \item Weil ja $\dim \C^\N < \infty$, genügt es, nachzurechnen, dass die rechte Seite eine Rechtsinverse ist.
         
         \begin{align*}
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             & \stackrel{!}{=}
             \frac{1}{\lambda - \lambda_1} P_1^+
             +
@@ -195,7 +195,7 @@
             \iff
             I_N
             & =
-            (A - I_N \lambda)
+            (A - \lambda I_N)
             \pbraces
             {
                 \frac{1}{\lambda - \lambda_1} P_1^+
@@ -203,7 +203,7 @@
                 R_1(\lambda)
             } \\
             & =
-            (A - I_N \lambda)
+            (A - \lambda I_N)
             \pbraces
             {
                 -\frac{1}{\lambda_1 - \lambda}
@@ -222,29 +222,29 @@
                 )
                 w_{1, l}^\ast
             +
-            (A - I_N \lambda) R_1(\lambda) \\
+            (A - \lambda I_N) R_1(\lambda) \\
             & =
             -\frac{1}{\lambda_1 - \lambda}
             \sum_{l=1}^{L_1}
                 (\lambda_1 - \lambda) v_{1, l} w_{1, l}^\ast
             +
-            (A - I_N \lambda)
+            (A - \lambda I_N)
             R_1(\lambda) \\
             & =
             -\sum_{l=1}^{L_1}
                 v_{1, l} w_{1, l}^\ast
             +
-            (A - I_N \lambda)
+            (A - \lambda I_N)
             R_1(\lambda) \\
             & =
             P_1^-
             +
-            (A - I_N \lambda)
+            (A - \lambda I_N)
             R_1(\lambda) \\
             \stackrel{!}{\iff}
             I_N - P_1^-
             & =
-            (A - I_N \lambda) R_1(\lambda)
+            (A - \lambda I_N) R_1(\lambda)
         \end{align*}
 
         Das motiviert folgende Definition des Residuums.
@@ -254,8 +254,8 @@
             R_1(\lambda)
             :=
             \begin{cases}
-                (A - I_N \lambda)    ^{-1} (I_N - P_1^-), & \lambda \neq \lambda_1, \\
-                (A - I_N \lambda) |_X^{-1} (I_N - P_1^-), & \lambda =    \lambda_1, \\
+                (A - \lambda I_N)    ^{-1} (I_N - P_1^-), & \lambda \neq \lambda_1, \\
+                (A - \lambda I_N) |_X^{-1} (I_N - P_1^-), & \lambda =    \lambda_1, \\
             \end{cases} \\
             \lambda
             \in
@@ -274,29 +274,29 @@
             )
         \end{multline*}
 
-        Für $\lambda \in U_1 \setminus \Bbraces{\lambda_1}$ ist $R(\lambda)$ wohldefiniert, weil $\lambda$ kein Eigenwert und somit $\ker (A - I_N \lambda) = \Bbraces{0}$, also $A - I_N \lambda$ invertierbar ist.
-        $\lambda \mapsto A - I_N \lambda$ ist holomorph.
-        Wegen der Kofaktor-Darstellung der Inversen, als Matrix mit komponentenweise rationalen Polynomen, ist $\lambda \mapsto (A - I_N \lambda)^{-1}$, und auch somit $R_1$, in $\lambda$ holomorph.
+        Für $\lambda \in U_1 \setminus \Bbraces{\lambda_1}$ ist $R(\lambda)$ wohldefiniert, weil $\lambda$ kein Eigenwert und somit $\ker (A - \lambda I_N) = \Bbraces{0}$, also $A - \lambda I_N$ invertierbar ist.
+        $\lambda \mapsto A - \lambda I_N$ ist holomorph.
+        Wegen der Kofaktor-Darstellung der Inversen, als Matrix mit komponentenweise rationalen Polynomen, ist $\lambda \mapsto (A - \lambda I_N)^{-1}$, und auch somit $R_1$, in $\lambda$ holomorph.
 
         \begin{align*}
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             =
             \frac{1}{\chi_A(\lambda)}
-            \cof (A - I_N \lambda)
+            \cof (A - \lambda I_N)
         \end{align*}
 
         Dies soll nun auch für $\lambda_1$ gelten.
-        Laut Bemerkung \ref{semi_inverse}, ist $(A - I_N \lambda_1) |_X^{-1}$, also auch $R_1(\lambda_1)$, wohldefiniert.
+        Laut Bemerkung \ref{semi_inverse}, ist $(A - \lambda_1 I_N) |_X^{-1}$, also auch $R_1(\lambda_1)$, wohldefiniert.
 
-        Weil $(A - I_N \lambda_1) |_X^{-1} (I_N - P_1^-) \in \Lin(\C^N, X)$, gilt
+        Weil $(A - \lambda_1 I_N) |_X^{-1} (I_N - P_1^-) \in \Lin(\C^N, X)$, gilt
 
         \begin{align*}
-            (A - I_N \lambda_1)
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N)
+            (A - \lambda_1 I_N) |_X^{-1}
             (I_N - P_1^-)
             =
-            (A - I_N \lambda_1) |_X
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N) |_X
+            (A - \lambda_1 I_N) |_X^{-1}
             (I_N - P_1^-)
             =
             (I_N - P_1^-)
@@ -306,31 +306,31 @@
         Dabei sollte man eigentlich immer $I_N - P_1^-$ links dazuschreiben.
 
         \begin{align*}
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             -
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
             & =
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             \pbraces
             {
-                (A - I_N \lambda_1) |_X
+                (A - \lambda_1 I_N) |_X
                 -
-                (A - I_N \lambda)
+                (A - \lambda I_N)
             }
-            (A - I_N \lambda_1) |_X^{-1} \\
+            (A - \lambda_1 I_N) |_X^{-1} \\
             & =
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             \pbraces
             {
-                (A - I_N \lambda_1)
+                (A - \lambda_1 I_N)
                 -
-                (A - I_N \lambda)
+                (A - \lambda I_N)
             }
-            (A - I_N \lambda_1) |_X^{-1} \\
+            (A - \lambda_1 I_N) |_X^{-1} \\
             & =
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             (\lambda - \lambda_1)
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
         \end{align*}
 
         Wir versuchen jetzt, $R^\prime(\lambda_1)$ auszurechnen.
@@ -342,24 +342,24 @@
             \frac{1}{\lambda - \lambda_1}
             \pbraces
             {
-                (A - I_N \lambda)^{-1}
+                (A - \lambda I_N)^{-1}
                 -
-                (A - I_N \lambda_1) |_X^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
             }
             (I_N - P_1^-) \\
             & =
             \frac{1}{\lambda - \lambda_1}
-            (A - I_N \lambda)^{-1}
+            (A - \lambda I_N)^{-1}
             (\lambda - \lambda_1)
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
             (I_N - P_1^-) \\
             & =
-            (A - I_N \lambda)^{-1}
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda I_N)^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
             (I_N - P_1^-) \\
             & \xrightarrow[\lambda \to \lambda_1]{!}
-            (A - I_N \lambda_1) |_X^{-1}
-            (A - I_N \lambda_1) |_X^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
+            (A - \lambda_1 I_N) |_X^{-1}
             (I_N - P_1^-)
         \end{align*}
 
@@ -369,22 +369,22 @@
             &
             \norm[\C^N \to X]
             {
-                (A - I_N \lambda)^{-1}
-                (A - I_N \lambda_1) |_X^{-1}
+                (A - \lambda I_N)^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
                 (I_N - P_1^-)
                 -
-                (A - I_N \lambda_1) |_X^{-1}
-                (A - I_N \lambda_1) |_X^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
                 (I_N - P_1^-)
             } \\
             & \leq
             \norm[X \to X]
             {
-                (A - I_N \lambda)^{-1}
+                (A - \lambda I_N)^{-1}
                 -
-                (A - I_N \lambda_1) |_X^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
             }
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             \norm[\C^N \to X]{I_N - P_1^-} \\
             & \leq
             \underbrace
@@ -395,68 +395,68 @@
             }
             \underbrace
             {
-                \norm[X \to X]{(A - I_N \lambda)^{-1}}
+                \norm[X \to X]{(A - \lambda I_N)^{-1}}
             }_{
                 \stackrel{!}{\leq} C
             }
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             \norm[\C^N \to X]{I_N - P_1^-}
         \end{align*}
 
         Die Beschränktheit durch $C > 0$, eine Schranke, die von $\lambda$ unabhängig ist, sieht man für $\abs{\lambda - \lambda_1}$ hinreichend klein.
 
         \begin{multline*}
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
             \leq
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             +
             \norm[X \to X]
             {
-                (A - I_N \lambda)^{-1}
+                (A - \lambda I_N)^{-1}
                 -
-                (A - I_N \lambda_1) |_X^{-1}
+                (A - \lambda_1 I_N) |_X^{-1}
             } \\
             \leq
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             +
             \abs{\lambda - \lambda_1}
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}           
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}           
         \end{multline*}
 
         \begin{align*}
             \implies
             &
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
             (
                 1
                 -
                 \abs{\lambda - \lambda_1}
-                \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+                \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             ) \\
             & =
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
             -
             \abs{\lambda - \lambda_1}
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}} \\
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}} \\
             & \leq
-            \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+            \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
         \end{align*}
 
         \begin{align*}
             \implies
-            \norm[X \to X]{(A - I_N \lambda)^{-1}}
+            \norm[X \to X]{(A - \lambda I_N)^{-1}}
             \leq
             \frac
             {
-                \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+                \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             }{
                 1
                 -
                 \abs{\lambda - \lambda_1}
-                \norm[X \to X]{(A - I_N \lambda_1) |_X^{-1}}
+                \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             }
             \leq
             C
