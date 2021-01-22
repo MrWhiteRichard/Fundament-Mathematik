@@ -94,7 +94,7 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
 def plot_complex(
     number_matrix,
     title = None, legend = None,
-    size_figure = (15, 15), size_dots = plt.rcParams['lines.markersize'] ** 2
+    size_figure = (15, 10), size_dots = plt.rcParams['lines.markersize'] ** 2
 ):
 
     fig = plt.figure(figsize = size_figure)
