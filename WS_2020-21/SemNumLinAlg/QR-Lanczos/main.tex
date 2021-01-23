@@ -6,6 +6,7 @@
 
 \parindent 0pt
 
+\addbibresource{references.bib}
 
 
 \begin{document}
@@ -169,19 +170,19 @@ gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist. D
 \end{algorithm}
 
 
-Die Konvergenz dieses Algoritmus kann unter gewissen Voraussetzungen gezeigt werden. Wir Zitieren hier nur den Satz und verweisen für den Beweis auf [1], Satz 9.15.
+Die Konvergenz dieses Algoritmus kann unter gewissen Voraussetzungen gezeigt werden. Wir Zitieren hier nur den Satz und verweisen für den Beweis auf \cite{Num}, Satz 9.15.
 %\cite{Nannen-Skript}, Satz 9.15.
 
 \begin{theorem}[Konvergenz des QR-Verfahrens]
 	\label{Konv_QR}
-	Sei $A \in \C^{n\times n}$ eine diagonalisierbare Matrix mit Eigenwerten $\lambda_1,\dots,\lambda_n \in \C$ und $|\lambda_1| > |\lambda_2| > \dots > |\lambda_n| > 0$. Weiters sei $V \in \C^{n \times n}$ die Matrix, die die Eigenvektoren $v_1,\dots v_n$ zu den jeweiligen Eignwerten als Spalten enthält. Zudem existiert eine untere normierte Dreiecksmatrix $L$ und eine obere Dreiecksmatrix $U$, sodass $V^{-1} = LU$.\\
+	Sei $A \in \C^{n\times n}$ eine diagonalisierbare Matrix mit Eigenwerten $\lambda_1,\dots,\lambda_n \in \C$ und $|\lambda_1| > |\lambda_2| > \dots > |\lambda_n| > 0$. Weiters sei $V \in \C^{n \times n}$ die Matrix, die die Eigenvektoren $v_1,\dots v_n$ zu den jeweiligen Eigenwerten als Spalten enthält. Zudem existiert eine untere normierte Dreiecksmatrix $L$ und eine obere Dreiecksmatrix $U$, sodass $V^{-1} = LU$.\\
 	Dann konvergieren die Hauptdiagonaleinträge der Matrizen $A^{(t)}$, die in Algorithmus \ref{QR-Verfahren} definiert sind, gegen die Eigenwerte von $A$.
 \end{theorem}
 
 
 \subsection{Beschleunigung der Konvergenz}
 
-Wir betrachten die Matrizen $M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t},\, t \in \N$, die im Beweis von Satz \ref{Konv_QR} vorkommt. Diese haben die Form
+Wir betrachten die Matrizen $M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t},\, t \in \N$, die im Beweis von Satz \ref{Konv_QR} vorkommen. Diese haben die Form
 
 \begin{equation*}
 	M^{(t)} =
@@ -225,8 +226,7 @@ Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Tole
 	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit gleichen Eigenwerten wie $A$ anfangs hatte}
 \end{algorithm}
 
-Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu [1], S. 114. Dieser Shift wird auch Wilkinson-Shift genannt.
-% \cite{Nannen-Skript}.
+Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Num}, S. 114. Dieser Shift wird auch Wilkinson-Shift genannt.
 
 
 \begin{algorithm}
@@ -255,7 +255,7 @@ Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1
 
 
 In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführte Methode.\\
-Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat. Auf diesen Fall werden wir jetzt im nächsten Anschhnitt eingehen.
+Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat. Auf diesen Fall werden wir jetzt im nächsten Abschnitt eingehen.
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
 \begin{algorithm}
@@ -469,9 +469,7 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 
 \subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
 
-In diesem Abschnitt beweisen wir, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \C^{n \times n}$ konvergieren.
-
-Der Argumentation ist dabei in großen Teilen angelehnt an \cite{Eigenwertprobleme}, Abschnitt 4.1.
+In diesem Abschnitt beweisen wir, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \C^{n \times n}$ konvergieren. Die Argumentation ist dabei in großen Teilen angelehnt an \cite{EWPs}, Abschnitt 4.1.
 
 Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenhang mit Polynomen charakterisiert.
 
@@ -548,7 +546,7 @@ welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ ha
 Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des Projektionsverfahrens nachweisen.
 
 \begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
-	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \rightarrowtail \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \mapsto \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
 
 	\begin{equation}
 		\label{konvergenz Eigenwerte}
@@ -565,6 +563,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
 	\end{equation*}
 
+	Dabei wird mit $\mathcal{P}_{u_i}$ die Projektion auf den eindimensionalen Unterraum, der von $u_i$ aufgespannt wird, bezeichnet. Das $\theta_i$ kann somit als Winkel zwischen $v_0$ und $u_i$  verstanden werden.
 	\begin{proof}
 
 	Seien $v_1, \dots, v_m$ Orthonormalbasisvektoren von $\mathcal{K}_m$ und $V \in \C^{n\times m}$ die Matrix, die diese Vektoren als Spalten besitzt. Dann ist
@@ -584,15 +583,16 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\begin{aligned}
 			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(T_m v,v)}{(v,v)} \\
 			&= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
-			&\le \max_{\substack{T \subseteq \mathcal{K}_m\\ \exists S:\, V(S)=T \\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)}\\
-			 &\le \max_{\substack{S \subseteq \C^n\\ \dim S = k}} \min_{w\in S\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k
+			&= \max_{\substack{T \subseteq \mathcal{K}_m \\ \dim T = k}} \min_{w\in T\setminus\{0\}} \frac{(Aw,w)}{(w,w)}\\
+			 &\le \max_{\substack{T \subseteq \C^n\\ \dim T = k}} \min_{w\in T\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k.
 		\end{aligned}
 	\end{equation}
-
-	Somit ist die erste Ungleichung erfüllt.\\
+	
+	Bei der dritten Gleichheit gilt die Abschätzung nach oben, da für einen Unterraum $S \subseteq \C^m$ sicher $V(S) \subseteq \mathcal{K}_m$ mit Dimenstion $k$ ist, weil $V$ vollen Rang hat. Die Abschätzung nach unten erhalten wir, da die Abbildung $V$ nach $\mathcal{K}_m$ surjektiv ist und somit jede Basis eines $k$-dimensionalen Unterraums von $\mathcal{K}_m$ als Bild von einer Basis eines $k$-dimensionalen Unterraums des $\C^m$ dargestellt werden kann.
+	Somit ist die erste Ungleichung von \ref{konvergenz Eigenwerte} erfüllt.\\
 
 	Wir beweisen nun die zweite Ungleichung zuerst für den Fall $i = 1$.
-	Sei $v_0 = \sum_{j=1}^{n}\alpha_j u_j$. Wir bemerken, dass $\alpha_1, \dots, \alpha_{m-1}$ nicht verschwinden, da $v_0$ nicht orthogonal zu diesen Eigenvektoren gewählt wurde.\\
+	Sei $v_0 = \sum_{j=1}^{n}\alpha_j u_j$. Wir bemerken, dass $\alpha_1, \dots, \alpha_{m-1}$ nicht verschwinden, da $v_0$ nicht orthogonal zu diesen Eigenvektoren gewählt wurde. Dies Rechtfertigt im folgenden Abschätzungen, bei denen ohne diese Bedingung durch Null geteilt werden würde.\\
 
 	Mit analogen Umformungen wie in \ref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma \ref{v0_Polynom_Darstellung} gilt somit
 	\begin{equation}
@@ -605,11 +605,12 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}
 	\end{equation}
 
-	Wir bezeichnen mit $\mathcal{P}_{u_i}, \, i = 1,\dots, m-1$ die Projektion auf den eindimensionalen Unterraum, der vom Vektor $u_i$ aufgespannt wird. Damit gilt
+	Wir betrachten nun den Ausdruck $\tan \theta_i$. Dieser entspricht wegen
 		\begin{equation*}
 			(\tan\theta_1)^2 = \frac{\norm{(\id - \mathcal{P}_{u_1})v_0}^2}{\norm{ \mathcal{P}_{u_1}v_0}^2} = \frac{\norm{v_0 - \alpha_1 u_1}^2}{\norm{\alpha_1 u_1}^2} = \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2}
 		\end{equation*}
-	und mithilfe der Ungleichung \ref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$
+	genau einem Term, der in obiger Abschätzung vorkommt. 
+	Mithilfe der Ungleichung \ref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$ erhalten wir außerdem
 
 		\begin{equation*}
 			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
@@ -617,17 +618,10 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.
 
 	Betrachten wir nun den Fall $i>1$.
-	Bezeichne mit $u_j^{(m)}, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$. Mit \ref{lambdamax} erhalten wir dann
+	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $T_m$. Mit \ref{lambdamax} erhalten wir dann
 
 	\begin{equation*}
 		\lambda_i^{(m)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)} = \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0, j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
-	\end{equation*}
-
-
-	Definiere  $\tilde{u}_j^{(m)}$ als den normierten Vektor $Vu_j$. Da $A^{(m)}$ hermitesch ist, gilt für alle $i,j = 1,\dots, m$
-
-	\begin{equation*}
-		\lambda^{(m)}_i (u_i^{(m)}, u_j^{(m)}) = (A^{(m)}u_i^{(m)}, u_j^{(m)}) = (u_i^{(m)}, A^{(m)}u_j^{(m)}) = \lambda^{(m)}_j (u_i^{(m)}, u_j^{(m)}).
 	\end{equation*}
 
 	Also sind Eigenvektoren zu verschiedenen Eigenwerten orthogonal. Wegen $ 0 = (u_i, u_j) = (Vu_i, Vu_j)$ sind auch die $\tilde{u}_j^{(m)}$ orthogonal und somit eine Basis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
@@ -708,5 +702,6 @@ gilt. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte a
 
 \newpage
 
+\printbibliography
 
 \end{document}
