@@ -6,7 +6,9 @@
 
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Beweisen Sie die Aussage aus Ex. 43 des Vorlesungsskriptes.
+    \includegraphicsboxed{ex43.png}
   \item Beweisen Sie die Aussage aus Ex. 45 des Vorlesungsskriptes.
+    \includegraphicsboxed{ex45.png}
 \end{enumerate}
 
 \end{exercise}
@@ -18,8 +20,77 @@
 \phantom{}
 
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item
-  \item
+  \item According to Proposition 6.4 the discrete inf-sup condition is equivalent to
+  the discrete non-degeneracy condition provided that $\dim(X_h) = \dim(Y_h)$, and
+  with Corollary 6.3 we obtain the unique solvability of the discrete problem
+  \begin{align*}
+    a(x_h,\cdot) = y^* \in Y_h^*
+  \end{align*}
+  Now let $x \in X$ be a solution to the weak form
+  \begin{align*}
+    a(x,\cdot) = y^* \in Y^*.
+  \end{align*}
+  We note the Galerkin orthogonality
+  \begin{align*}
+    a(x-x_h,\cdot) = 0 \in Y_h^*
+  \end{align*}
+  and according to the definition of $\alpha_h$ we obtain with $v_h \in X_h$ arbitrary
+  \begin{align*}
+    \|x-x_h\|_X \leq \|x- v_h\|_X + \|v_h-x_h\|_X
+    \leq \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{a(v_h-x_h,y_h)}{\|y_h\|_Y}.
+  \end{align*}
+  The Galerkin orthogonality yields
+  \begin{align*}
+    a(v_h-x_h,y_h) = a(v_h-x_h,y_h) + a(x_h - x,y_h) = a(v_h - x,y_h)
+  \end{align*}
+  and therefore
+  \begin{align*}
+    \|x-x_h\|_X \leq \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{a(v_h-x,y_h)}{\|y_h\|_Y}
+    \leq  \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{\|a\|
+    \|v_h-x\|_X\|y_h\|_Y}{\|y_h\|_Y} \\
+    = \left(1 + \frac{\|a\|}{\alpha_h}\right)\|x- v_h\|_X.
+  \end{align*}
+  Since $v_h \in X_h$ was chosen arbitrarily we finally obtain
+  \begin{align*}
+    \|x-x_h\|_X \leq \left(1 + \frac{\|a\|}{\alpha_h}\right)\inf_{v_h \in X_h}\|x - v_h\|_X.
+  \end{align*}
+  All that's left to show now is that the infimum is in fact attained.
+  To that end, choose an infimizing sequence $(v_k)$, such that
+  \begin{align*}
+    \lim_{k \to \infty}\|x - v_k\|_X = \inf_{v_h \in X_h}\|x- v_h\|_X.
+  \end{align*}
+  According to the triangle inequality, there holds $\|v_k\|_X \leq \|x\|_X + \|x - v_k\|_X$.
+  Therefore the sequence $(v_k)$ is a bounded sequence in the finite dimensional space $X_h$
+  and the Bolzano-Weierstrass theorem yields the existenxe of a convergent subsequence $(v_{k_l})$
+  with limit $v_0 \in X_h$. By continuity, we conclude
+  \begin{align*}
+    \inf_{v_h \in X_h} \|x - v_h\|_X = \lim_{l \to \infty} \|x - v_{k_l}\|_X = \|x - v_0\|_X.
+  \end{align*}
+  \item The first LBB condition reads
+  \begin{align*}
+    \alpha_1 := \inf_{x \in X\setminus \{0\}} \sup_{y \in Y \setminus \{0\}}
+    \frac{a(x,y)}{\|x\|_X\|y\|_Y} > 0, \\
+    \forall y \in Y \setminus \{0\}\, \exists x \in X: a(x,y) \neq 0.
+  \end{align*}
+  which is according to Theorem 6.2 equivalent to the existence of an isomorphism
+  $T \in L(X,Y^*)$ which satisfies
+
+  \begin{align*}
+    T(x)(y) := a(x,y) \in Y^*
+  \end{align*}
+  Consider the adjoint operator $T \in L(Y^{**}, X^*)$ defined by
+
+  \begin{align*}
+    T^*(y^{**})(x) := y^{**}(Tx)
+  \end{align*}
+  Then $T' := T^* \circ I_Y \in L(Y,X^*)$ fulfills
+  \begin{align*}
+    T'(y)(x) := T^*(I_Y(y))(x) = I_Y(y)(Tx) = Tx(y) = a(x,y)
+  \end{align*}
+  As a composition of isomorphisms $T'$ is a isomorphism as well, which is again by Theorem 6.2.
+  equivalent to the second LBB condition.
+  The converse follows analogously.
+
 \end{enumerate}
 
 \end{solution}
