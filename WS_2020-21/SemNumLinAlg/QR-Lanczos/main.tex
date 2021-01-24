@@ -194,6 +194,7 @@ Wir betrachten die Matrizen $M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t},\, t \in
 	\end{array}\right).
 \end{equation*}
 
+\vspace{4pt}
 Da die Eigenwerte der größe nach sortiert sind, erkennt man, dass diese Matrixfolge gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
 Die Einträge konvergieren schneller gegen $0$, wenn die Brüche kleiner sind. Das versuchen wir zu erreichen, in dem wir einen Shift durchführen.\\
 Für einen Eigenwert $\lambda$ einer Matrix $A \in \C^{n\times n}$ gilt
@@ -615,16 +616,21 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\begin{equation*}
 			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
 		\end{equation*}
-	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.
+	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.\\
 
 	Betrachten wir nun den Fall $i>1$.
-	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ die Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $T_m$. Mit \ref{lambdamax} erhalten wir dann
+	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ eine Orthonormalbasis aus Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $T_m$. Mit \ref{lambdamax} erhalten wir dann
 
-	\begin{equation*}
-		\lambda_i^{(m)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} = \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)} = \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0, j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
-	\end{equation*}
+	\begin{equation}
+		\begin{aligned}
+			\label{Darstellung EW}
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
+		\end{aligned}	
+	\end{equation}
 
-	Also sind Eigenvektoren zu verschiedenen Eigenwerten orthogonal. Wegen $ 0 = (u_i, u_j) = (Vu_i, Vu_j)$ sind auch die $\tilde{u}_j^{(m)}$ orthogonal und somit eine Basis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Wegen $ 0 = (u_i, u_j) = (Vu_i, Vu_j)$ sind auch die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_i}{\norm{Vu_i}}$ orthogonal und somit auch eine Basis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
@@ -638,7 +644,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\end{equation*}
 	schreiben, wobei $q \in \Pi_{m-i}$.\\
 
-	Nach analogen Umformungen wie in \ref{Ungl i=1} gilt
+	Mit der Darstellung \ref{Darstellung EW} von $\lambda_i^{(m)}$ gilt nach analogen Umformungen wie in \ref{Ungl i=1}
 
 	\begin{equation*}
 		\begin{aligned}
@@ -646,18 +652,18 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 			&= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{\substack{j=1, j\neq i}}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
 			& \le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \max_{j=i+1,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_i)|}\right)^2 \\
 			&= (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_j}{\lambda_k^{(m)} - \lambda_i}\right| \left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
-			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_n}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
+			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_n}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2. \\
 		\end{aligned}
 	\end{equation*}
 
-	Wiederum ist
+	Wieder ist
 	\begin{equation*}
 		(\tan\theta_i)^2 = \frac{\norm{(\id - \mathcal{P}_{u_i})v_0}^2}{\norm{ \mathcal{P}_{u_i}v_0}^2} = \frac{\norm{v_0 - \alpha_i u_i}^2}{\norm{\alpha_i u_i}^2} = \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2}
 	\end{equation*}
 
 	und  mit $a = \lambda_n, b= \lambda_{i+1}$, $c = \lambda_i$ in Lemma \ref{lem:polminmax}, erhalten wir die Behauptung.\\
 
-	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bediungung $p(\lambda_j^{(m)}) = 0$ weglassen und das damit berechnete Minimum wird dadurch nicht größer, also kann die gleiche Abschätzung verwendet werden.
+	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bediungung $p(\lambda_j^{(m)}) = 0$ weglassen und das mit den neuen Nebenbedingungen berechnete Minimum wird dadurch nicht größer, also kann die gleiche Abschätzung verwendet werden.
 	Also gilt \ref{konvergenz Eigenwerte} für alle $i = 1, \dots, m-1$.
 	\end{proof}
 \end{theorem}
@@ -666,7 +672,7 @@ Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit 
 \begin{equation*}
 	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le 4 \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
 \end{equation*}
-gilt. Die Konvergenzgeschwindigkeit nimmt in Richtung der kleineren Eigenwerte ab. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge.
+gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleineren Eigenwerte ab, da der Grad des Tschebyschow-Polynoms mit wachsendem $i$ kleiner wird. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa_i^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge. Wie sich die Konvergenz in der Praxis verhält, wird in den nachfolgenden Abschnitt beschrieben.
 
 
 \subsection{Implementierung}
