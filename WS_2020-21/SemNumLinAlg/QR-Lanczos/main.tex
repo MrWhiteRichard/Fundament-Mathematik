@@ -561,7 +561,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 
 	und
 	\begin{equation*}
-		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{j=1}^{i-1} \frac{\lambda_j^{(m)} - \lambda_n}{\lambda_j^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
+		\kappa_1^{(m)} \coloneqq 1, \quad \kappa_i^{(m)} \coloneqq \left(\prod_{k=1}^{i-1} \frac{\max_{j=i+1,\dots,n} (\lambda_k^{(m)} - \lambda_j)}{\lambda_k^{(m)} - \lambda_i}\right)^2, \quad i = 2,\dots,m.
 	\end{equation*}
 
 	Dabei wird mit $\mathcal{P}_{u_i}$ die Projektion auf den eindimensionalen Unterraum, der von $u_i$ aufgespannt wird, bezeichnet. Das $\theta_i$ kann somit als Winkel zwischen $v_0$ und $u_i$  verstanden werden.
@@ -652,7 +652,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 			&= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{\substack{j=1, j\neq i}}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
 			& \le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \max_{j=i+1,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_i)|}\right)^2 \\
 			&= (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_j}{\lambda_k^{(m)} - \lambda_i}\right| \left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
-			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_n}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2. \\
+			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\max_{j=i+1,\dots,n} (\lambda_k^{(m)} -\lambda_j)}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2. \\
 		\end{aligned}
 	\end{equation*}
 
@@ -672,7 +672,7 @@ Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit 
 \begin{equation*}
 	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le 4 \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
 \end{equation*}
-gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleineren Eigenwerte ab, da der Grad des Tschebyschow-Polynoms mit wachsendem $i$ kleiner wird. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa_i^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge. Wie sich die Konvergenz in der Praxis verhält, wird in den nachfolgenden Abschnitt beschrieben.
+gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleineren Eigenwerte ab, da der Grad des Tschebyschow-Polynoms mit wachsendem $i$ kleiner wird. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa_i^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge. Die anderen vorkommenden Terme wie $\tan \theta_i$ oder auch der Zähler vom Produkt in $\kappa_i^{(m)}$ haben für die Größenordnung der Abschätzung eher wenig Bedeutung. Wie sich die Konvergenz in der Praxis verhält, wird in den nachfolgenden Abschnitten beschrieben.
 
 
 \subsection{Implementierung}
