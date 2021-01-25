@@ -3,6 +3,7 @@
 \begin{exercise}
 
 Beweisen Sie die Aussage aus Ex. 46 des Vorlesungsskriptes.
+\includegraphicsboxed{ex46.png}
 
 \end{exercise}
 
@@ -10,7 +11,37 @@ Beweisen Sie die Aussage aus Ex. 46 des Vorlesungsskriptes.
 
 \begin{solution}
 
-\phantom{}
+We first show (ii) $\implies$ (i): \\
+In the proof of Theorem 6.6 the ellipticity of $a(\cdot,\cdot)$ on $X_0$ is only used
+to provide a unique $x_1 \in X_0$ with $a(x_1,\cdot) = x^* - a(x_2,\cdot) \in X_0^*$ in Step 5.
+Replacing the assumption for $a$ in Theorem 6.6 with our assumptions, we first
+obtain that $A_1: X_0 \to X_0^*$ is an isomorphism.
+With that we can conclude again, that there is an unique $x_1 \in X_0$ with $a(x_1,\cdot) = x^* - a(x_2,\cdot) \in X_0^*$. \\
+Now for the converse (i) $\implies$ (ii): \\
+The operator $C \in L(X^* \times Y^*, X \times Y)$ which maps each $(x^*,y^*)$
+to the respective unique solution $(x,y) \in X \times Y$ is bijective.
+With the orthogonal decomposition $X = X_0 \oplus X_0^{\bot}$ and $x = x_1 + x_2$
+with $x_1 \in X_0$ and $x_2 \in X_0^{\bot}$ we can equivalently reformulate the
+saddle point problem to
+
+\begin{align}
+  b(x_2,\cdot) &= y^* \in Y^*, \label{eq1}\\
+  a(x_1,\cdot) &= x^* - a(x_2,\cdot) \in X_0^*, \label{eq2}\\
+  b(\cdot,y) &= x^* - a(x_1 + x_2,\cdot) \in X^*. \label{eq3}
+\end{align}
+From equation \eqref{eq2} we see, if we choose $y^* = 0$ that the operator $A \in L(X_0,X_0^*)$ defined by
+\begin{align*}
+  Ax := a(x,\cdot) \in A_0^*
+\end{align*}
+is bijective (since with Hahn-Banach every $x^* \in X_0^*$ can be extended to a functional in $X^*$), therefore with the open mapping theorem an isomorphism,
+which implies the LBB-condition for $a$. \\
+It remains to show, that the operator $B_1 \in L(Y,X^*)$ defined by
+\begin{align*}
+  B_1y := b(\cdot,y)
+\end{align*}
+is injective. Suppose $0 \neq \tilde{y} \in \ker(B_1)$. Then for all solutions
+$(x,y)$ to the saddle point problem $(x,y+\tilde{y})$ is also a solution, which
+contradicts the unique solvability. Therefore Lemma 6.1 yields $\beta > 0$.
 
 
 \end{solution}

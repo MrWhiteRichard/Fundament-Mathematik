@@ -6,9 +6,11 @@
 
 \begin{enumerate}[label = \textbf{\alph*)}]
   \item Beweisen Sie die Aussage aus Ex. 49 des Vorlesungsskriptes.
+  \includegraphicsboxed{ex49.png}
   \item Beweisen Sie die Aussage aus Ex. 50 des Vorlesungsskriptes
   durch direktes Arbeiten mit der Matrix ohne Verwendung von Brezzi
   (oder darauf aufbauenden Resultaten).
+  \includegraphicsboxed{ex50.png}
 \end{enumerate}
 
 \end{exercise}
@@ -20,8 +22,38 @@
 \phantom{}
 
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item
-  \item
+  \item Let $\{\phi_1,\dots,\phi_n\}$ be a basis of $X_h$ and
+  $\{\psi_1,\dots,\psi_m\}$ be a basis of $Y_h$. Define
+  \begin{align*}
+    A_{jk} &:= a(\phi_k,\phi_j) \\
+    B_{jk} &:= b(\phi_k,\psi_j) \\
+    b_j &:= x^*(\phi_j) \\
+    c_j &:= y^*(\psi_j)
+  \end{align*}
+  Since the computation of the discrete solution boils down to
+  \begin{align*}
+    x^*(\phi_j) &= \sum_{i=1}^n x_ia(\phi_i,\phi_j) + \sum_{i=1}^m y_i b(\phi_j,\psi_i), \quad j = 1,\dots,n \\
+    y^*(\psi_j) &= \sum_{i=1}^m y_i b(\phi_i,\psi_j), \quad j = 1,\dots,m
+  \end{align*}
+  we can reformulate the problem to: Find $x_h = \sum_{i=1}^n x_i \phi_i$
+  and $y_h = \sum_{i=1}^m y_i \psi_i$ such that
+  \begin{align*}
+    \begin{pmatrix}
+      A & B^{\top} \\
+      B & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+      x \\ y
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      c \\ d
+    \end{pmatrix}.
+  \end{align*}
+  \item Let $B$ be regular, then the $m$ lower rows of $M$ must be linearly independent,
+  which implies $\ran(B) = \R^m$. \\
+  Conversely, suppose $M\cdot x = 0$ for $x \neq 0$. This implies $(x_1,\dots,x_n) \in \ker(B)$.
+  Since $A$ is positive definite on $\ker$
 \end{enumerate}
 
 \end{solution}
