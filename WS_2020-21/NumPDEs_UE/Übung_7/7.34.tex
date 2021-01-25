@@ -33,7 +33,7 @@
 
     \textit{Hinweis:} Abbildung auf das Referenzelement.
 
-    \item Zeigen Sie für alle $(u,q_h) \in [V_h^{CR}]^2 \times P^0(\mathcal{T})$
+    \item Zeigen Sie für alle $(u,q_h) \in [H^1(\Omega)]^2 \times P^0(\mathcal{T})$
 
     \begin{align}
       b(\tilde{\Pi}(u),q_h) = b(u,q_h),
@@ -53,6 +53,64 @@
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[label = \textbf{\alph*)}]
+  \item
+  \begin{align*}
+    X_h &= [V_h^{CR}]^2, \quad Y_h = P^0(\mathcal{T}) \cap L^2_*(\Omega)\\
+    V_h^{CR} &:= \{v \in L^2(\Omega) \mid \forall T \in \mathcal{T}: v|_T \in P^1(\mathcal{T}),
+    v \text{ stetig auf Kantenmitten }\} \\
+  \end{align*}
+  With Theorem 6.14 we obtain
+  \begin{align*}
+  \dim(Y_h) = \# T - 1 \stackrel{6.14}{=} 2\#(K\cap \Omega) + \#(K \cap \partial\Omega) - 3.
+  \end{align*}
+
+  With $3\#(\mathcal{K} \cap \partial\Omega) > 3$ we obtain
+  \begin{align*}
+    \dim(X_h) &= 2\dim(V_h^{CR}) = 2\# E = 2(3\#\mathcal{K} - \#(\mathcal{K}\cap \partial\Omega) - 3)
+    = 2(2\#\mathcal{K} + \#(\mathcal{K} \cap \Omega) - 3) \\
+    &\geq 2(2\#(\mathcal{K} \cap \partial\Omega) + \#(\mathcal{K} \cap \Omega) - 3)
+    \geq 2\#(\mathcal{K} \cap \Omega) + \#(\mathcal{K} \cap \partial\Omega) - 3 = \dim(Y_h).
+  \end{align*}
+
+  \item
+
+  \begin{align*}
+    \|\Pi(u)\|_{V_h^{CR}}^2 &= \sum_{T \in \mathcal{T}}\|\Pi(u)\|_{H^1(T)}^2
+    = \sum_{T \in \mathcal{T}} \left\|\sum_{E \in \mathcal{E}_T}\frac{1}{|E|}\int_E u ds
+     \lambda_E\right\|_{H^1(T)}^2
+  \end{align*}
+
+  \begin{align*}
+  &\sum_{T \in \mathcal{T}} \left\| D^m\left(\sum_{E \in \mathcal{E}_T}\frac{1}{|E|}\int_E u ds
+   \lambda_E\right)\right\|_{L^2(T)}^2 \leq
+   \sum_{T \in \mathcal{T}}|\det(B_T^{-1})|^{-1}\|B_T^{-1}\|_F^{2m}
+   \left\|D^m\left(\sum_{E \in \mathcal{E}_T}\frac{1}{|E|}\int_E u ds
+    \lambda_{i_E}\right)\right\|_{L^2(T_{ref})}^2 \\
+    &\leq \sum_{T \in \mathcal{T}}|\det(B_T)|\|B_T^{-1}\|_F^{2m}
+    \sum_{E \in \mathcal{E}_T}
+    \frac{1}{|E|^2}\|u\|_{L^2(E)}^2|E|
+    \left\|D^m\left(\sum_{E \in \mathcal{E}_T}
+     \lambda_{i_E}\right)\right\|_{L^2(T_{ref})}^2 \\
+     &\leq \sum_{T \in \mathcal{T}}|\det(B_T)|\|B_T^{-1}\|_F^{2m}
+     \sum_{E \in \mathcal{E}_T}
+     \frac{1}{|E|}\|u\|_{L^2(E)}^2|T_{ref}|^2 \\
+     &\leq \frac{1}{4}\sum_{T \in \mathcal{T}}2|T|\left(\frac{2}{\rho_T^2}\right)^m
+     \sum_{E \in \mathcal{E}_T}
+     \frac{1}{|E|}\frac{|E|}{|T|}\left(1 + 2\frac{h_T}{d}\right)\|u\|_{H^1(T)}^2\\
+     &= 3\cdot2^{m - 1}\sum_{T \in \mathcal{T}}\rho_T^{-2m}
+     \left(1 + 2\frac{h_T}{d}\right)\|u\|_{H^1(T)}^2\\
+  \end{align*}
+
+  \item
+
+  \begin{align*}
+    b(\tilde{\Pi}(u) - u, q_h) = \int_\Omega \Div(\tilde{\Pi}(u) - u)q_h dx
+    = \sum_{T \in \mathcal{T}}\int_T \Div(\tilde{\Pi}(u) - u)q_h dx
+    = \sum_{T \in \mathcal{T}}\int_{\partial T} (\tilde{\Pi}(u) - u)q_h dx = 0.
+  \end{align*}
+\end{enumerate}
 
 
 \end{solution}
