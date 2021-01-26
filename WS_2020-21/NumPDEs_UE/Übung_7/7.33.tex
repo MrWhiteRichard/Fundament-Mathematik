@@ -27,22 +27,30 @@
 \begin{enumerate}[label = \textbf{\alph*)}]
 
   \item Let $\Bbraces{\phi_1, \dots, \phi_n}$ be a basis of $X_h$ and $\Bbraces{\psi_1, \dots, \psi_m}$ be a basis of $Y_h$.
+  Consider the respective basis representations of
+
+  \begin{align*}
+    x_h = \sum_{i=1}^n x_i \phi_i \in X_h,
+    \quad
+    y_h = \sum_{i=1}^m y_i \psi_i \in Y_h.
+  \end{align*}
+
+  We can strap back to testing the discrete (6.19) merely with our basis functions.
+  Hence, the computation of the discrete solution boils down to
+
+  \begin{align*}
+    x^\ast(\phi_j) & \stackrel{!}{=} a(x_h, \phi_j) + b(\phi_j, y_h) = \sum_{i=1}^n x_i a(\phi_i, \phi_j) + \sum_{i=1}^m y_i b(\phi_j,\psi_i), & j & = 1, \dots, n, \\
+    y^\ast(\psi_j) & \stackrel{!}{=} b(x_h, \psi_j)                  = \sum_{i=1}^n x_i b(\phi_i, \psi_j),                                     & j & = 1, \dots, m.
+  \end{align*}
+
   Consider the following definitions of $A \in \R^{n \times n}$, $B \in \R^{m \times n}$, $c \in \R^n$, and $d \in \R^m$.
 
   \begin{align*}
-    A_{j k} & := a(\phi_k, \phi_j), & c_j & := x^\ast(\phi_j), & j, k = 1, \dots, n, \\
-    B_{j k} & := b(\phi_k, \psi_j), & d_j & := y^\ast(\psi_j), & j    = 1, \dots, n, \quad k = 1, \dots, m
+    A_{j k} & := a(\phi_k, \phi_j), & c_j & := x^\ast(\phi_j), & k, j = 1, \dots, n, \\
+    B_{j k} & := b(\phi_k, \psi_j), & d_j & := y^\ast(\psi_j), & k    = 1, \dots, n, \quad j = 1, \dots, m
   \end{align*}
 
-  Since the computation of the discrete solution boils down to
-
-  \begin{align*}
-    x^\ast(\phi_j) & = \sum_{i=1}^n x_i a(\phi_i, \phi_j) + \sum_{i=1}^m y_i b(\phi_j,\psi_i), & j & = 1, \dots, n \\
-    y^\ast(\psi_j) & = \sum_{i=1}^m y_i b(\phi_i, \psi_j),                                     & j & = 1, \dots, m,
-  \end{align*}
-
-  we can reformulate the problem to the following:
-  Find $x_h = \sum_{i=1}^n x_i \phi_i$ and $y_h = \sum_{i=1}^m y_i \psi_i$ such that
+  Now, we can reformulate the discrete problem (6.19) to finding $x_h \in X_h$ and $y_h \in Y_h$, such that
 
   \begin{align*}
     \begin{pmatrix}
