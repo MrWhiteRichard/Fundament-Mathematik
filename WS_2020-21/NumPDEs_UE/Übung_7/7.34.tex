@@ -21,7 +21,7 @@
   Damit hat der Operator die eindeutige Form
 
   \begin{align}
-    \Pi(u) = \sum_{i=1}^{N_E} \frac{1}{|E_i|}\int_{E_i} u\, ds\, \tilde{\lambda}_{E_i},
+    \Pi(u) = \sum_{i=1}^{N_E} \frac{1}{|E_i|}\int_{E_i} u\, ds\, \lambda_{E_i},
   \end{align}
 
   wobei $N_E$ die Anzahl der Kanten und $\lambda_i$ die baryzentrischen Koordinaten
@@ -76,48 +76,50 @@
 
   \item
 
-  \begin{align*}
-    \lambda_1(x,y) &:= 1 - x - y \\
-    \lambda_2(x,y) &:= x \\
-    \lambda_3(x,y) &:= y \\
-  \end{align*}
-
-  Betrachte den Operator $\Pi_{ref}$ auf dem Referenzelement definiert durch
-  \begin{align*}
-    \Pi_{ref}(u) = \frac{\int_0^1 u(x,0) ds}{\int_0^1 \lambda_1 \lambda_2(x,0) ds} \cdot \lambda_1 \lambda_2
-    + \frac{\int_0^1 u(0,y) ds}{\int_0^1 \lambda_1 \lambda_3(0,y) ds} \cdot \lambda_1 \lambda_3
-    + \frac{\int_0^1 u(x,1-x)}{\int_0^1 \lambda_2 \lambda_3(x,1-x) ds} \cdot \lambda_2 \lambda_3
-  \end{align*}
-
-  Ziel: $\Pi_{ref}(u \circ \Phi_T) \stackrel{!}{=} \Pi(u) \circ \Phi_T$
+  Definiere den Operator $\Pi_{ref}$ auf dem Referenzelement durch
 
   \begin{align*}
-    \Pi_{ref}(u \circ \Phi_T) &= \frac{\int_0^1 u \circ \Phi_T (x,0) ds}{\int_0^1 \lambda_1 \lambda_2(x,0) ds} \cdot \lambda_1 \lambda_2
-    + \frac{\int_0^1 u \circ \Phi_T (0,y) ds}{\int_0^1 \lambda_1 \lambda_3(0,y) ds} \cdot \lambda_1 \lambda_3
-    + \frac{\int_0^1 u \circ \Phi_T(x,1-x)}{\int_0^1 \lambda_2 \lambda_3(x,1-x) ds} \cdot \lambda_2 \lambda_3 \\
-    &= \frac{\int_{E_{T,1}} u  ds}{|E_{T,1}|\int_0^1 \lambda_1 \lambda_2(x,0) ds} \cdot \lambda_1 \lambda_2
-    + \frac{\int_{E_{T,2}} u  ds}{|E_{T,2}|\int_0^1 \lambda_1 \lambda_3(0,y) ds} \cdot \lambda_1 \lambda_3
-    + \frac{\int_{E_{T,3}} u  ds}{|E_{T,3}|\int_0^1 \lambda_2 \lambda_3(x,1-x) ds} \cdot \lambda_2 \lambda_3 \\
-    &= \sum_{i=1}^{3} \frac{1}{|E_{T,i}|}\int_{E_{T,i}} u\, ds\, \tilde{\lambda}_{E_{T,i}} \circ \Phi_T
-    = \Pi(u) \circ \Phi_T
+    \Pi_{ref}(u \circ \Phi_T) \stackrel{!}{=} \Pi(u) \circ \Phi_T.
   \end{align*}
 
-  Abschätzung auf einzelnen Elementen: Definiere $v := u \circ \Phi_T$
+  Transformation auf Referenzelement: Definiere $v := u \circ \Phi_T$
 
   \begin{align*}
     \|D^m(\Pi(u))\|_{L^2(T)}^2 &= \|D^m(\Pi_{ref}(v) \circ \Phi_T^{-1})\|_{L^2(T)}^2
     \leq |\det(B)^{-1}|^{-1}\|B^{-1}\|_F^{2m} \|D^m(\Pi_{ref}(v))\|_{L^2(T_{ref})}^2
   \end{align*}
 
-Abschätzung auf dem Referenzelement:
+  Abschätzung auf dem Referenzelement:
 
-\begin{align*}
-  \|D^m(\Pi_{ref}(v))\|_{L^2(T_{ref})}^2 &=
-  \left\| D^m\left(\frac{\int_0^1 v(x,0) ds}{\int_0^1 \lambda_1 \lambda_2(x,0) ds} \cdot \lambda_1 \lambda_2
-  + \frac{\int_0^1 v(0,y) ds}{\int_0^1 \lambda_1 \lambda_3(0,y) ds} \cdot \lambda_1 \lambda_3
-  + \frac{\int_0^1 v(x,1-x)}{\int_0^1 \lambda_2 \lambda_3(x,1-x) ds} \cdot \lambda_2 \lambda_3\right)\right\|_{L^2(T_{ref})}^2 \\
-  &\leq C \sum_{i=1}^{3}\|v\|_{L^2(E_{T_{ref},i})}^2
-\end{align*}
+  \begin{align*}
+    \|\Pi_{ref}(v)\|_{L^2(T_{ref})}^2 &=
+    \left\|\sum_{i=1}^{3} \frac{1}{|E_{T_{ref},i}|}\int_{E_{T_{ref},i}} v\, ds\,
+    \tilde{\lambda}_{E_{T_{ref},i}} \right\|_{L^2(T_{ref})}^2 \\
+    &\leq C \sum_{i=1}^{3}\|v\|_{L^2(E_{T_{ref},i})}^2
+  \end{align*}
+
+  Nachbesserung:
+
+  \begin{align*}
+    \partial_j (\Pi_{ref}(v)) &= \frac{1}{|T_{ref}|}\int_{T_{ref}} \partial_j (\Pi_{ref}(v)) dx
+    = \frac{1}{|T_{ref}|}\int_{\partial T_{ref}} (\Pi_{ref}(v)) \nu_j ds
+    = \frac{1}{|T_{ref}|}\sum_{i=1}^3\int_{E_{T_{ref},i}} (\Pi_{ref}(v)) \nu_j ds \\
+    &= \frac{1}{|T_{ref}|}\sum_{i=1}^3\int_{E_{T_{ref},i}} v\, ds\, \nu_j
+    = \frac{1}{|T_{ref}|}\int_{T_{ref}} \partial_j v\, dx
+  \end{align*}
+
+  Damit erhalten wir
+
+  \begin{align*}
+    \|\partial_j (\Pi_{ref}(v))\|_{L^2(T_{ref})}^2 &= |T_{ref}| (\partial_j (\Pi_{ref}(v)))^2
+    \leq \frac{1}{|T_{ref}|^2} \|\partial_j u\|_{L^2(T_{ref})}^2
+  \end{align*}
+
+  und
+
+  \begin{align*}
+    \|\nabla(\Pi_{ref}(u))\|_{L^2(T_{ref})}^2 \leq \frac{1}{4} \|\nabla u\|_{L^2(T_{ref})}^2
+  \end{align*}
 
 Trace inequality:
 
@@ -135,23 +137,28 @@ Rücktransformation:
 Zusammengesetzt:
 
 \begin{align*}
-  \|D^m(\Pi(u))\|_{L^2(T)}^2 &\leq C|\det(B)^{-1}|^{-1}\|B^{-1}\|_F^{2m} \sum_{i=1}^{3}\|v\|_{L^2(E_{T_{ref},i})}^2  \\
-  &\leq C|\det(B)^{-1}|^{-1}\|B^{-1}\|_F^{2m} \sum_{i=1}^{3}\frac{|E_{T_{ref},i}|}{|T_{ref}|}
+  \|\Pi(u)\|_{L^2(T)}^2 &\leq C|\det(B)^{-1}|^{-1}\|B^{-1}\|_F^{2m} \sum_{i=1}^{3}\|v\|_{L^2(E_{T_{ref},i})}^2  \\
+  &\leq C|\det(B)^{-1}|^{-1} \sum_{i=1}^{3}\frac{|E_{T_{ref},i}|}{|T_{ref}|}
   \left(1 + \sqrt{2}\right)\|v\|_{H^1(T_{ref})}^2 \\
   &\leq \tilde{C}|\det(B)|
-  \sum_{k=0}^1 |\det(B)|^{-1}\|B^{-1}\|_F^{2m}\|B\|_F^{2k}\|D^k(u)\|_{L^2(T)}^2 \\
-  &\leq \begin{cases}
-  \tilde{C}(1  + 2h_T^2)\|u\|_{H^1(T)}^2, & m = 0 \\
-  \tilde{C}\frac{2(1 + 2h_T^2)}{\rho_T^2}\|u\|_{H^1(T)}^2, & m = 1 \\
-  \end{cases}
+  \sum_{k=0}^1 |\det(B)|^{-1}\|B\|_F^{2k}\|D^k(u)\|_{L^2(T)}^2 \\
+  &\leq \tilde{C}(1  + 2h_T^2)\|u\|_{H^1(T)}^2
+\end{align*}
+Und nochmal:
+\begin{align*}
+  \|\nabla(\Pi(u))\|_{L^2(T_{ref})}^2 &\leq \frac{1}{4} |\det(B)^{-1}|^{-1}
+  \|B^{-1}\|_F^{2}\|\nabla u\|_{L^2(T_{ref})}^2 \\
+  &\leq \frac{1}{4}4\frac{h_T^2}{\rho_T^2} \|\nabla(u)\|_{L^2(T)}^2
+  = \sigma(\mathcal{T})^2 \|\nabla(u)\|_{L^2(T)}^2 \leq
+  \sigma(\mathcal{T})^2 \|u\|_{H^1(T)}^2
 \end{align*}
 
 Aufsummiert:
 
 \begin{align*}
   \|\Pi(u)\|_{V_h^{CR}}^2 = \sum_{T \in \mathcal{T}}\|\Pi(u)\|_{H_1(T)}^2
-  \leq \sum_{T \in \mathcal{T}}\tilde{C}\sigma(\mathcal{T})^2\|u\|_{H_1(T)}^2
-  \leq C'\sigma(\mathcal{T})^2\|u\|_{H^1(\Omega)}^2
+  \leq \sum_{T \in \mathcal{T}}C'\|u\|_{H_1(T)}^2
+  \leq C'\|u\|_{H^1(\Omega)}^2
 \end{align*}
 
   \item
