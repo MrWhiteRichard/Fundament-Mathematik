@@ -3,7 +3,8 @@
 \begin{exercise}
 
 Beweisen Sie die Aussage aus Ex. 46 des Vorlesungsskriptes.
-\includegraphicsboxed{ex46.png}
+
+\includegraphicsboxed{NumPDEs/NumPDEs - Exercise 46.png}
 
 \end{exercise}
 
@@ -11,38 +12,77 @@ Beweisen Sie die Aussage aus Ex. 46 des Vorlesungsskriptes.
 
 \begin{solution}
 
-We first show (ii) $\implies$ (i): \\
-In the proof of Theorem 6.6 the ellipticity of $a(\cdot,\cdot)$ on $X_0$ is only used
-to provide a unique $x_1 \in X_0$ with $a(x_1,\cdot) = x^* - a(x_2,\cdot) \in X_0^*$ in Step 5.
-Replacing the assumption for $a$ in Theorem 6.6 with our assumptions, we first
-obtain that $A_1: X_0 \to X_0^*$ is an isomorphism.
-With that we can conclude again, that there is an unique $x_1 \in X_0$ with $a(x_1,\cdot) = x^* - a(x_2,\cdot) \in X_0^*$. \\
-Now for the converse (i) $\implies$ (ii): \\
-The operator $C \in L(X^* \times Y^*, X \times Y)$ which maps each $(x^*,y^*)$
-to the respective unique solution $(x,y) \in X \times Y$ is bijective.
-With the orthogonal decomposition $X = X_0 \oplus X_0^{\bot}$ and $x = x_1 + x_2$
-with $x_1 \in X_0$ and $x_2 \in X_0^{\bot}$ we can equivalently reformulate the
-saddle point problem to
+\phantom{}
 
-\begin{align}
-  b(x_2,\cdot) &= y^* \in Y^*, \label{eq1}\\
-  a(x_1,\cdot) &= x^* - a(x_2,\cdot) \in X_0^*, \label{eq2}\\
-  b(\cdot,y) &= x^* - a(x_1 + x_2,\cdot) \in X^*. \label{eq3}
-\end{align}
-From equation \eqref{eq2} we see, if we choose $y^* = 0$ that the operator $A \in L(X_0,X_0^*)$ defined by
-\begin{align*}
-  Ax := a(x,\cdot) \in A_0^*
-\end{align*}
-is bijective (since with Hahn-Banach every $x^* \in X_0^*$ can be extended to a functional in $X^*$), therefore with the open mapping theorem an isomorphism,
-which implies the LBB-condition for $a$. \\
-It remains to show, that the operator $B_1 \in L(Y,X^*)$ defined by
-\begin{align*}
-  B_1y := b(\cdot,y)
-\end{align*}
-is injective. Suppose $0 \neq \tilde{y} \in \ker(B_1)$. Then for all solutions
-$(x,y)$ to the saddle point problem $(x,y+\tilde{y})$ is also a solution, which
-contradicts the unique solvability. Therefore Lemma 6.1 yields $\beta > 0$.
+\begin{itemize}
+  
+  \item \Quote{$\impliedby$}:
+  
+  Going through the proof of Theorem 6.6, one realizes that ellipticity of $a(\cdot, \cdot)$ on $X_0$ is only used to provide a unique $x_1 \in X_0$ with $a(x_1, \cdot) = x_0^\ast \in X_0^\ast$ in step 5.
+  To prove unique existence of $x_1$ it is, however sufficient to assume that the operator $A_1: X_0 \to X_0^\ast$ defined by $A_1 x := a(x, \cdot)$ is an isomorphism.
 
+  \includegraphicsgraphicsboxed[0.75][0]
+  {NumPDEs/NumPDEs - Theorem 6.6.1 (Brezzi).png}
+  {NumPDEs/NumPDEs - Theorem 6.6.2 (Brezzi).png}
+
+  \begin{comment}
+
+    In the proof of Theorem 6.6 the ellipticity of $a(\cdot, \cdot)$ on $X_0$ is only used to provide a unique $x_1 \in X_0$ with $a(x_1, \cdot) = x^\ast - a(x_2, \cdot) \in X_0^\ast$ in Step 5.
+    Replacing the assumption for $a$ in Theorem 6.6 with our assumptions, we first obtain that $A_1: X_0 \to X_0^\ast$ is an isomorphism.
+    With that we can conclude again, that there is an unique $x_1 \in X_0$ with $a(x_1, \cdot) = x^\ast - a(x_2, \cdot) \in X_0^\ast$.
+
+  \end{comment}
+
+  \item \Quote{$\implies$}:
+
+  The operator $C \in L(X^\ast \times Y^\ast, X \times Y)$ which maps each $(x^\ast, y^\ast)$ to the respective unique solution $(x, y) \in X \times Y$ is bijective.
+
+  Let $(x, y) \in X \times Y$.
+  With the orthogonal decomposition $X = X_0 \oplus X_0^\bot$, we write $x = x_1 + x_2$ with $x_1 \in X_0$ and $x_2 \in X_0^\bot$.
+  Note that (6.11) is equivalent to the following three identities:
+
+  \begin{itemize}
+    \item $b(x_2, \cdot) = y^\ast \in Y^\ast$,
+    \item $a(x_1, \cdot) = x^\ast - a(x_2, \cdot) \in X_0^\ast$,
+    \item $b(\cdot, y)   = x^\ast - a(x_1 + x_2, \cdot) \in X^\ast$.
+  \end{itemize}
+
+  Consider the operator $B_1$, where
+
+  \begin{align*}
+    A_1 \in L(X_0, X_0^\ast),
+    \quad
+    A_1 x := a(x, \cdot) \in X_0^\ast,
+    \quad
+    x \in X_0.
+  \end{align*}
+
+  Because of the second identity, $A_1$ is bijective.
+  With Hahn-Banach, every $x^\ast \in X_0^\ast$ can be extended to a functional in $X^\ast$.
+  According the open mapping theorem, $A_1$ is an isomorphism.
+  Due to Theorem 6.2, this implies the $X_0$-LBB-condition, i.e. first two bullet points.
+
+  It remains to show, that $\beta > 0$.
+  Consider the operator $B_1$, where
+
+  \begin{align*}
+    B_1 \in L(Y, X^\ast),
+    \quad
+    B_1 y := b(\cdot, y),
+    \quad
+    y \in Y.
+  \end{align*}
+
+  Suppose $0 \neq \tilde y \in \ker(B_1)$.
+  Then for all solutions $(x, y)$ to the saddle point problem $(x, y + \tilde y)$ is also a solution.
+  That would contradict the unique solvability.
+
+  Therefore, $B_1$ is injective.
+  According to Lemma 6.1, this is equivalent to $\beta > 0$.
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Lemma 6.1.png}
+
+\end{itemize}
 
 \end{solution}
 
