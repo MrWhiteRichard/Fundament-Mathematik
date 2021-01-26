@@ -5,10 +5,15 @@
 \phantom{}
 
 \begin{enumerate}[label = \textbf{\alph*)}]
+
   \item Beweisen Sie die Aussage aus Ex. 43 des Vorlesungsskriptes.
-    \includegraphicsboxed{ex43.png}
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Exercise 43 (Céa's Lemma for Petrov-Galerkin Schemes).png}
+
   \item Beweisen Sie die Aussage aus Ex. 45 des Vorlesungsskriptes.
-    \includegraphicsboxed{ex45.png}
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Exercise 45.png}
+
 \end{enumerate}
 
 \end{exercise}
@@ -20,75 +25,147 @@
 \phantom{}
 
 \begin{enumerate}[label = \textbf{\alph*)}]
-  \item According to Proposition 6.4 the discrete inf-sup condition is equivalent to
-  the discrete non-degeneracy condition provided that $\dim(X_h) = \dim(Y_h)$, and
-  with Corollary 6.3 we obtain the unique solvability of the discrete problem
+
+  \item According to Proposition 6.4 (iii) the discrete inf-sup condition is equivalent to the discrete non-degeneracy condition provided that $\dim(X_h) = \dim(Y_h)$.
+  
+  \includegraphicsboxed{NumPDEs/NumPDEs - Proposition 6.4.png}
+  
+  With Corollary 6.3 we obtain the unique solvability of the discrete problem
+
   \begin{align*}
-    a(x_h,\cdot) = y^* \in Y_h^*
+    a(x_h, \cdot) = y^\ast \in Y_h^\ast.
   \end{align*}
-  Now let $x \in X$ be a solution to the weak form
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Corollary 6.3.png}
+
+  Now let $x \in X$ be a solution to (6.5), the weak form
+
   \begin{align*}
-    a(x,\cdot) = y^* \in Y^*.
+    a(x, \cdot) = y^\ast \in Y^\ast.
   \end{align*}
+
   We note the Galerkin orthogonality
+
   \begin{align*}
-    a(x-x_h,\cdot) = 0 \in Y_h^*
+    a(x - x_h, \cdot) = 0 \in Y_h^\ast.
   \end{align*}
-  and according to the definition of $\alpha_h$ we obtain with $v_h \in X_h$ arbitrary
+
+  According to the definition of $\alpha_h$ we obtain, with arbitrary $v_h \in X_h$, that
+
   \begin{align*}
-    \|x-x_h\|_X \leq \|x- v_h\|_X + \|v_h-x_h\|_X
-    \leq \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{a(v_h-x_h,y_h)}{\|y_h\|_Y}.
+    \norm[X]{x - x_h} \leq \norm[X]{x- v_h} + \norm[X]{v_h - x_h}
+    \leq
+    \norm[X]{x - v_h} + \frac{1}{\alpha_h} \sup_{y_h \in Y_h \setminus \Bbraces{0}} \frac{a(v_h - x_h, y_h)}{\norm[Y]{y_h}}.
   \end{align*}
+
   The Galerkin orthogonality yields
+
   \begin{align*}
-    a(v_h-x_h,y_h) = a(v_h-x_h,y_h) + a(x_h - x,y_h) = a(v_h - x,y_h)
+    a(v_h - x_h, y_h) = a(v_h - x_h, y_h) + \underbrace{a(x_h - x, y_h)}_0 = a(v_h - x, y_h).
   \end{align*}
-  and therefore
-  \begin{align*}
-    \|x-x_h\|_X \leq \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{a(v_h-x,y_h)}{\|y_h\|_Y}
-    \leq  \|x- v_h\|_X + \frac{1}{\alpha_h}\sup_{y_h \in Y_h\setminus \{0\}}\frac{\|a\|
-    \|v_h-x\|_X\|y_h\|_Y}{\|y_h\|_Y} \\
-    = \left(1 + \frac{\|a\|}{\alpha_h}\right)\|x- v_h\|_X.
-  \end{align*}
+
+  Therefore,
+
+  \begin{multline*}
+    \norm[X]{x - x_h} \leq \norm[X]{x - v_h} + \frac{1}{\alpha_h} \sup_{y_h \in Y_h\setminus \Bbraces{0}} \frac{a(v_h-x, y_h)}{\norm[Y]{y_h}} \\
+    \leq
+    \norm[X]{x- v_h} + \frac{1}{\alpha_h} \sup_{y_h \in Y_h\setminus \Bbraces{0}} \frac{\norm{a}
+    \norm[X]{v_h - x} \norm[Y]{y_h}}{\norm[Y]{y_h}}
+    =
+    \pbraces{1 + \frac{\norm{a}}{\alpha_h}} \norm[X]{x- v_h}.
+  \end{multline*}
+
   Since $v_h \in X_h$ was chosen arbitrarily we finally obtain
-  \begin{align*}
-    \|x-x_h\|_X \leq \left(1 + \frac{\|a\|}{\alpha_h}\right)\inf_{v_h \in X_h}\|x - v_h\|_X.
-  \end{align*}
-  All that's left to show now is that the infimum is in fact attained.
-  To that end, choose an infimizing sequence $(v_k)$, such that
-  \begin{align*}
-    \lim_{k \to \infty}\|x - v_k\|_X = \inf_{v_h \in X_h}\|x- v_h\|_X.
-  \end{align*}
-  According to the triangle inequality, there holds $\|v_k\|_X \leq \|x\|_X + \|x - v_k\|_X$.
-  Therefore the sequence $(v_k)$ is a bounded sequence in the finite dimensional space $X_h$
-  and the Bolzano-Weierstrass theorem yields the existenxe of a convergent subsequence $(v_{k_l})$
-  with limit $v_0 \in X_h$. By continuity, we conclude
-  \begin{align*}
-    \inf_{v_h \in X_h} \|x - v_h\|_X = \lim_{l \to \infty} \|x - v_{k_l}\|_X = \|x - v_0\|_X.
-  \end{align*}
-  \item The first LBB condition reads
-  \begin{align*}
-    \alpha_1 := \inf_{x \in X\setminus \{0\}} \sup_{y \in Y \setminus \{0\}}
-    \frac{a(x,y)}{\|x\|_X\|y\|_Y} > 0, \\
-    \forall y \in Y \setminus \{0\}\, \exists x \in X: a(x,y) \neq 0.
-  \end{align*}
-  which is according to Theorem 6.2 equivalent to the existence of an isomorphism
-  $T \in L(X,Y^*)$ which satisfies
 
   \begin{align*}
-    T(x)(y) := a(x,y) \in Y^*
+    \norm[X]{x - x_h}
+    \leq
+    \pbraces{1 + \frac{\norm{a}}{\alpha_h}} \inf_{v_h \in X_h} \norm[X]{x - v_h}.
   \end{align*}
-  Consider the adjoint operator $T \in L(Y^{**}, X^*)$ defined by
+
+  All that is left to show now is that the infimum is in fact attained.
+  To that end, choose an infimizing sequence $(v_k)_{k \in \N}$, such that
 
   \begin{align*}
-    T^*(y^{**})(x) := y^{**}(Tx)
+    \lim_{k \to \infty} \norm[X]{x - v_k}
+    =
+    \inf_{v_h \in X_h} \norm[X]{x - v_h}.
   \end{align*}
-  Then $T' := T^* \circ I_Y \in L(Y,X^*)$ fulfills
+
+  According to the triangle inequality, there holds
+  
   \begin{align*}
-    T'(y)(x) := T^*(I_Y(y))(x) = I_Y(y)(Tx) = Tx(y) = a(x,y)
+    \norm[X]{v_k}
+    \leq
+    \norm[X]{x} + \norm[X]{x - v_k}.
   \end{align*}
-  As a composition of isomorphisms $T'$ is a isomorphism as well, which is again by Theorem 6.2.
-  equivalent to the second LBB condition.
+
+  Therefore the sequence $(v_k)_{k \in \N}$ is a bounded sequence in the finite dimensional space $X_h$.
+  The Bolzano-Weierstrass theorem yields the existence of a convergent subsequence $(v_{k_l})_{l \in \N}$ with limit $v_0 \in X_h$.
+  By $\norm[X]{\cdot}$-continuity of $\norm[X]{\cdot}$, we conclude
+
+  \begin{align*}
+    \inf_{v_h \in X_h} \norm[X]{x - v_h}
+    =
+    \lim_{l \to \infty} \norm[X]{x - v_{k_l}}
+    =
+    \norm[X]{x - v_0}.
+  \end{align*}
+
+  \item According to Theorem 6.2 the \textbf{LBB condition for the first argument} is equivalent to the existence of an isomorphism
+
+  \begin{align*}
+    T \in L(X, Y^\ast),
+    \quad
+    T(x)(y) := a(x, y),
+    \quad
+    x \in X,
+    \quad
+    y \in Y.
+  \end{align*}
+
+  \includegraphicsboxed{NumPDEs/NumPDEs - Theorem 6.2.png}
+
+  Consider the, also isomorphic, adjoint operator
+
+  \begin{align*}
+    T^\ast \in L(Y^\astast, X^\ast),
+    \quad
+    T^\ast(y^\astast)(x^\ast) := y^\astast(T x^\ast),
+    \quad
+    x^\ast \in X,
+    \quad
+    y^\astast \in Y.
+  \end{align*}
+
+  Due to the reflexivity of $Y$, $I_Y \in L(X, X^\astast)$ is an isometric isomorphism.
+  Then $T^\prime := T^\ast \circ I_Y \in L(Y, X^\ast)$ fulfills
+
+  \begin{align*}
+    T^\prime(y)(x) := T^\ast(I_Y(y))(x) = I_Y(y)(T x) = T(x)(y) = a(x, y).
+  \end{align*}
+
+  As a composition of isomorphisms $T^\prime$ is an isomorphism as well.
+  According to Theorem 6.2, this is equivalent to the \textbf{LBB condition for the second argument}.
+  The converse follows analogously.
+
+  It remains to show, that $\alpha_1 = \alpha_2$.
+  $\alpha_1 \leq \alpha_2$ is easily shown, by introducing $\sup$ and then $\inf$ to the inequality
+
+  \begin{align*}
+    \alpha_1
+    =
+    \inf_{x_1 \in X \setminus \Bbraces{0}}
+      \sup_{y_1 \in Y \setminus \Bbraces{0}}
+        \frac{a(x_1, y_1)}{\norm[X]{x_1} \norm[Y]{y_1}}
+    \leq
+    \frac{a(x_2, y_2)}{\norm[X]{x_2} \norm[Y]{y_2}},
+    \quad
+    x_2 \in X \setminus \Bbraces{0},
+    \quad
+    y_2 \in Y \setminus \Bbraces{0}.
+  \end{align*}
+
   The converse follows analogously.
 
 \end{enumerate}
