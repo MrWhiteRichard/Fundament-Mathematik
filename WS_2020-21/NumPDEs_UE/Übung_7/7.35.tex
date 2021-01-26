@@ -37,14 +37,16 @@
 
 \begin{align*}
   \int_\Omega (p + c)\Div(v) = \int_\Omega p\Div(v) + c\int_\Omega \Div(v) =
-  \int_\Omega p\Div(v) + c\int_{\partial\Omega} v \eta ds = \int_\Omega p\Div(v).
+  \int_\Omega p\Div(v) + c\int_{\partial\Omega} v \nu ds = \int_\Omega p\Div(v).
 \end{align*}
 
-\item $\Omega = [0,1]\times[0,1], \Gamma_D = \{(0,y): y \in [0,1]\} \cup \{(x,0): x \in [0,1]\}$.
-
+\item 
+Wir vermuten die Randbedingung $\frac{\partial u}{\partial \nu} = g$ und stellen
+unsere angepasste schwache Formulierung auf:
 \begin{align*}
-  \int_\Omega \nabla u : \nabla v dx - \int_\Omega p \nabla v dx + \int_{\partial \Omega \setminus \Gamma_D} (\nabla u - p)v\nu ds
-  = \int_\Omega fv dx
+  \forall v \in [H_D^1(\Omega)]^2&: \int_\Omega \nabla u : \nabla v dx - \int_\Omega p \Div(v) dx + \int_{\Gamma_N} (g - p\nu)v ds
+  = \int_\Omega fv dx \\
+  \forall q \in L^2(\Omega)&:  - \int_\Omega q\Div(u) = 0
 \end{align*}
 
 \end{enumerate}
