@@ -40,15 +40,18 @@
   \int_\Omega p\Div(v) + c\int_{\partial\Omega} v \nu ds = \int_\Omega p\Div(v).
 \end{align*}
 
-\item 
-Wir vermuten die Randbedingung $\frac{\partial u}{\partial \nu} = g$ und stellen
+\item
+Mit der Rechnung aus \textbf{a)} sieht man, dass jetzt $(u, p + c)$ für $c \neq 0$ im Allgemeinen keine weitere Lösung ist, da das Randintegral nicht verschwinden muss.
+
+Wir vermuten die Randbedingung $(\frac{\partial u_1}{\partial \nu}, \frac{\partial u_2}{\partial \nu}) = (g_1, g_2)$ und stellen
 unsere angepasste schwache Formulierung auf:
 \begin{align*}
-  \forall v \in [H_D^1(\Omega)]^2&: \int_\Omega \nabla u : \nabla v dx - \int_\Omega p \Div(v) dx + \int_{\Gamma_N} (g - p\nu)v ds
-  = \int_\Omega fv dx \\
-  \forall q \in L^2(\Omega)&:  - \int_\Omega q\Div(u) = 0
+  \forall v \in [H_D^1(\Omega)]^2&: \int_\Omega \nabla u : \nabla v dx - \int_\Omega p \Div(v) dx + \int_{\Gamma_N} p (v \cdot \nu) ds
+  = \int_\Omega fv dx + \int_{\Gamma_N} v\cdot g~ ds\\
+  \forall q \in L^2(\Omega)&:  - \int_\Omega q\Div(u) + \int_{\Gamma_N} q (u \cdot \nu) ds  = 0
 \end{align*}
 
+Nun können wir für unseren Druck den Raum $H^1_{\Gamma_N}(\Omega)$ wählen. Damit würden zumindest unsere Bilinearformen gleich bleiben.
 \end{enumerate}
 
 
