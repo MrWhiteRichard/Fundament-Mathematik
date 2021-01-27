@@ -67,11 +67,11 @@
 %\usecolortheme{rose}
 %\usecolortheme{seagull}
 %\usecolortheme{seahorse}
-%\usecolortheme{whale}
+\usecolortheme{whale}
 %\usecolortheme{wolverine}
 
 %\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
-%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
 
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
@@ -83,7 +83,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Short title]{Full Title of the Talk} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[SIR - Mass Tests]{SIR Model - Mass Tests} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author
 {
@@ -94,7 +94,7 @@
   Florian Schager
   \and
   Paul Winkler
-} 
+}
 \date{\today} % Date, can be changed to a custom date
 
 \begin{document}
@@ -113,144 +113,179 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Motivation and Model Description} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
-\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+
+
+
 
 \begin{frame}
-\frametitle{Paragraphs of Text}
-Sed iaculis dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum. Donec vestibulum ligula non lorem vulputate fermentum accumsan neque mollis.\\~\\
-
-Sed diam enim, sagittis nec condimentum sit amet, ullamcorper sit amet libero. Aliquam vel dui orci, a porta odio. Nullam id suscipit ipsum. Aenean lobortis commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Bullet Points}
+\frametitle{Motivation}
 \begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+  \item Covid-19 plaguing the world
+  \item Nationwide mass tests in winter
+  \item Goal: reduce number of unconfirmed cases
+  \item Alternative to lockdown measures
 \end{itemize}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Blocks of Highlighted Text}
-\begin{block}{Block 1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-\end{block}
+\frametitle{Model Description}
+\begin{itemize}
+\item SIR - Susceptible-Infectious-Recovered
+\item Compartment Exposed: freshly infected but not yet infectious
+\item Split Infectious into Confirmed and Unconfirmed
+\item Only Unconfirmed contribute to infections
+\item Recovered people do not contribute anymore
+\end{itemize}
+\end{frame}
 
-\begin{block}{Block 2}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
+%------------------------------------------------
 
-\begin{block}{Block 3}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
-\end{block}
+\section{Implementation}
+
+\begin{frame}
+\frametitle{Causal Loop Diagram}
+  Picture of Causal Loop Diagram
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Multiple Columns}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\frametitle{Parameters}
+\begin{block}{$\alpha$}
+  infection probability in case of contact
+\end{block}
 
-\column{.45\textwidth} % Left column and width
-\textbf{Heading}
-\begin{enumerate}
-\item Statement
-\item Explanation
-\item Example
-\end{enumerate}
+\begin{block}{c}
+  contacts per day per person
+\end{block}
 
-\column{.5\textwidth} % Right column and width
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
+\begin{block}{$\gamma$}
+  latency rate for moving from Exposed to Confirmed or Unconfirmed
+\end{block}
 
-\end{columns}
+\begin{block}{$p_d, p_u: p_d + p_u = 1$}
+  chance of being transferred to detected or undetected compartmet, respecitvely
+\end{block}
+
+\begin{block}{$\beta_d, \beta_u$}
+  recovery rates for detected and undetected persons
+\end{block}
 \end{frame}
 
 %------------------------------------------------
-\section{Second Section}
+\begin{frame}
+\frametitle{Masstests and Lockdown}
+Masstests:
+
+\begin{itemize}
+  \item A portion of people move directly from the Unconfirmed to the Confirmed compartmet
+  \item The flow from the Exposed compartmet is changed accordingly for the duration
+  \item Occur cyclically
+\end{itemize}
+
+A lockdown occurs:
+\begin{itemize}
+  \item When a certain number of people are infected (Confirmed + Unconfirmed, "Dunkelziffer")
+  \item Lockdown measures reduce number of contacts
+  \item Lift of lockdown in two steps - "Lockdown light"
+\end{itemize}
+\end{frame}
+
+
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Table}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
+\frametitle{Additional Assumptions}
+Some assumptions were made to make a better fit with the real data:
+
+\begin{itemize}
+  \item Less cases for first lockdown
+  \item Stricter first lockdown - more people follow the rules
+  \item Infection-Probability lower in summer
+  \item Model time: Start of Pandemic - about 1 year in the future, assuming no vaccinations!
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+  \frametitle{Lockdown numbers}
+
+  \begin{table}[!h]
+  \begin{center}
+  \begin{tabular}{|c||c|c|c|c|}
+  \hline
+    Nr. Infected &- & $\geq 45,000$ & $\leq 5,000$ & $\leq 1,000$ \\
+    \hline
+    contacts per Day & 14 & 2 & 6 & 9 \\
+    \hline
+  \end{tabular}
+  \end{center}
+  \caption{Numbers for first lockdown}
+  \end{table}
+
+  \begin{table}[!h]
+  \begin{center}
+  \begin{tabular}{|c||c|c|c|c|}
+  \hline
+    Nr. Infected &- & $\geq 115,000$ & $\leq 25,000$ & $\leq 15,000$ \\
+    \hline
+    contacts per Day & 9 & 2 & 6 & 9 \\
+    \hline
+  \end{tabular}
+  \end{center}
+  \caption{Numbers for other lockdowns}
+  \end{table}
+
+  Here the $-$ column means number of contacts per day before the respective lockdown.
+\end{frame}
+%------------------------------------------------
+
+
+
+\begin{frame}
+\frametitle{Actual Implementation}
+
+\begin{figure}[h!]
+\includegraphics[width=110mm, scale = 0.5]{AnyLogicSIR}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Results}
+
+\begin{table}[!h]
+{\small%
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}
+ \hline
+ & 30 days    & 21 days   & 14 days  & 7 days  \\
+  \hline
+  \hline
+      $35\%$ participation    & 98 &  86&  46  & 11   \\
+  \hline
+      $50\%$ participation & 80 & 45 & 11 & 9 \\
+  \hline
+      $70\%$ participation & 9 &  9 & 9& 8 \\
+  \hline
+      $90\%$ participation & 7 &7 &7  & 7\\
+      \hline
 \end{tabular}
-\caption{Table caption}
+\end{center}
+}%
+
+\caption{Days of lockdown with different participation rate and interval between masstests}
 \end{table}
+To compare: without any masstests at all the number of days in lockdown would be $193$.
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Verbatim}
-\begin{example}[Theorem Slide Code]
-\begin{verbatim}
-\begin{frame}
-\frametitle{Theorem}
-\begin{theorem}[Mass--energy equivalence]
-$E = mc^2$
-\end{theorem}
-\end{frame}\end{verbatim}
-\end{example}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Figure}
-Uncomment the code on this slide to include your own image from the same directory as the template .TeX file.
-%\begin{figure}
-%\includegraphics[width=0.8\linewidth]{test}
-%\end{figure}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
-\frametitle{Citation}
-An example of the \verb|\cite| command to cite within the presentation:\\~
-
-This statement requires citation \cite{p1}.
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{References}
-\footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
-\end{thebibliography}
-}
-\end{frame}
-
 %------------------------------------------------
 
 \begin{frame}

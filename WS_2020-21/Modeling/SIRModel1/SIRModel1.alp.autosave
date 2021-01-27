@@ -128,7 +128,7 @@
 				<Variable Class="AuxVariable">
 					<Id>1611253729957</Id>
 					<Name><![CDATA[first_lockdown_over]]></Name>
-					<X>130</X><Y>470</Y>
+					<X>120</X><Y>590</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -158,7 +158,7 @@
 				<Variable Class="AuxVariable">
 					<Id>1611699482275</Id>
 					<Name><![CDATA[temp]]></Name>
-					<X>130</X><Y>510</Y>
+					<X>120</X><Y>640</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -253,7 +253,7 @@
 				<Variable Class="StockVariable">
 					<Id>1611746644369</Id>
 					<Name><![CDATA[days_of_lockdown]]></Name>
-					<X>390</X><Y>780</Y>
+					<X>770</X><Y>580</Y>
 					<Label><X>-45</X><Y>25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -368,7 +368,7 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Flow">
 					<Id>1611746648388</Id>
 					<Name><![CDATA[Lockdown]]></Name>
-					<X>180</X><Y>780</Y>
+					<X>560</X><Y>580</Y>
 					<Label><X>-30</X><Y>25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -445,7 +445,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[12]]></Code>
+							<Code><![CDATA[14]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1604587378416</Id>
@@ -589,7 +589,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[4]]></Code>
+							<Code><![CDATA[2]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1608564810541</Id>
@@ -627,8 +627,8 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1611746723957</Id>
 					<Name><![CDATA[is_lockdown]]></Name>
-					<X>190</X><Y>720</Y>
-					<Label><X>-25</X><Y>20</Y></Label>
+					<X>730</X><Y>500</Y>
+					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1013,10 +1013,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1611746723957" TargetId="1611746648388" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>90</X><Y>60</Y></Direction>
+					<Direction><X>-70</X><Y>80</Y></Direction>
 					<Id>1611746745325</Id>
 					<Name><![CDATA[is_lockdown - Lockdown]]></Name>
-					<X>190</X><Y>720</Y>
+					<X>730</X><Y>500</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1028,43 +1028,9 @@ Unconfirmed*1/N]]></Formula>
 			</Dependences>
 			<Events>
 				<Event>
-					<Id>1604588191628</Id>
-					<Name><![CDATA[lockdown]]></Name>
-					<X>40</X><Y>620</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="condition" Mode="occuresOnce">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</Timeout>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
-						</Rate>
-						<OccurrenceAtTime>true</OccurrenceAtTime>
-						<OccurrenceDate>1604649600000</OccurrenceDate>
-						<OccurrenceTime Class="CodeUnitValue">
-							<Code><![CDATA[10]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</OccurrenceTime>
-						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</RecurrenceCode>
-						<Condition><![CDATA[Infected >= 40000 && contactsPerDay != 2 && first_lockdown_over == 0]]></Condition>
-					</Properties>
-					<Action><![CDATA[contactsPerDay = 2;
-first_lockdown_over = 1;
-is_lockdown = 1;
-lockdown.restart();]]></Action>
-				</Event>
-				<Event>
 					<Id>1604588556896</Id>
-					<Name><![CDATA[openthecountry]]></Name>
-					<X>40</X><Y>680</Y>
+					<Name><![CDATA[openthecountry_1]]></Name>
+					<X>50</X><Y>810</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1088,16 +1054,18 @@ lockdown.restart();]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 12 && contactsPerDay != 9]]></Condition>
+						<Condition><![CDATA[Infected <= 10000 && contactsPerDay != 14 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over !=2]]></Condition>
 					</Properties>
-					<Action><![CDATA[contactsPerDay = 9;
-is_lockdown = 0;
-openthecountry.restart();]]></Action>
+					<Action><![CDATA[contactsPerDay = 6;
+if(time() > 291){
+is_lockdown = 0.5;
+}
+openthecountry_1.restart();]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565558456</Id>
 					<Name><![CDATA[masstestanfang]]></Name>
-					<X>360</X><Y>660</Y>
+					<X>250</X><Y>840</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1118,7 +1086,7 @@ openthecountry.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[30]]></Code>
+							<Code><![CDATA[14]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
@@ -1131,7 +1099,7 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 				<Event>
 					<Id>1608565907323</Id>
 					<Name><![CDATA[masstestende]]></Name>
-					<X>360</X><Y>690</Y>
+					<X>250</X><Y>870</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1152,7 +1120,7 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[30]]></Code>
+							<Code><![CDATA[14]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
@@ -1160,9 +1128,141 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 					<Action><![CDATA[masstestrate = 0]]></Action>
 				</Event>
 				<Event>
-					<Id>1611248895640</Id>
-					<Name><![CDATA[Lockdown_2_electric_boogaloo]]></Name>
-					<X>40</X><Y>650</Y>
+					<Id>1611745023128</Id>
+					<Name><![CDATA[summer_start]]></Name>
+					<X>360</X><Y>840</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="timeout" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>false</OccurrenceAtTime>
+						<OccurrenceDate>1589529600000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[100]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[InfectionProbability = 0.02]]></Action>
+				</Event>
+				<Event>
+					<Id>1611745042751</Id>
+					<Name><![CDATA[summer_end]]></Name>
+					<X>360</X><Y>870</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="timeout" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>false</OccurrenceAtTime>
+						<OccurrenceDate>1597219200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[170]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[InfectionProbability = 0.045]]></Action>
+				</Event>
+				<Event>
+					<Id>1611756257961</Id>
+					<Name><![CDATA[openthecountry_2]]></Name>
+					<X>50</X><Y>840</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="condition" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1611820800000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 14 && contactsPerDay !=9 && first_lockdown_over !=2]]></Condition>
+					</Properties>
+					<Action><![CDATA[contactsPerDay = 9;
+is_lockdown = 0;
+first_lockdown_over = 2;
+openthecountry_2.restart();]]></Action>
+				</Event>
+				<Event>
+					<Id>1611756341304</Id>
+					<Name><![CDATA[lockdown1]]></Name>
+					<X>47.333</X><Y>752</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="condition" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1604649600000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[10]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[Infected >= 45000 && contactsPerDay != 2 && first_lockdown_over == 0]]></Condition>
+					</Properties>
+					<Action><![CDATA[contactsPerDay = 2;
+first_lockdown_over = 1;
+if(time() > 291){
+is_lockdown = 1;
+}
+lockdown1.restart();]]></Action>
+				</Event>
+				<Event>
+					<Id>1611756341307</Id>
+					<Name><![CDATA[Lockdown_2_electric_boogaloo1]]></Name>
+					<X>50</X><Y>780</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1186,16 +1286,86 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected >= 40000 && contactsPerDay !=2 &&contactsPerDay != 4 && first_lockdown_over == 1]]></Condition>
+						<Condition><![CDATA[Infected >= 115000 && contactsPerDay != 2 && contactsPerDay != 4 && first_lockdown_over == 2]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 4;
+if(time() > 291){
 is_lockdown = 1;
-Lockdown_2_electric_boogaloo.restart();]]></Action>
+}
+Lockdown_2_electric_boogaloo1.restart();]]></Action>
 				</Event>
 				<Event>
-					<Id>1611745023128</Id>
-					<Name><![CDATA[summer_start]]></Name>
-					<X>250</X><Y>590</Y>
+					<Id>1611759061311</Id>
+					<Name><![CDATA[openthecountry_3]]></Name>
+					<X>50</X><Y>870</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="condition" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1611820800000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[Infected <= 25000 && contactsPerDay != 14 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over ==2]]></Condition>
+					</Properties>
+					<Action><![CDATA[contactsPerDay = 6;
+if(time() > 291){
+is_lockdown = 0.5;
+}
+openthecountry_3.restart();]]></Action>
+				</Event>
+				<Event>
+					<Id>1611759073709</Id>
+					<Name><![CDATA[openthecountry_4]]></Name>
+					<X>50</X><Y>900</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="condition" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1611820800000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[Infected <= 15000 && contactsPerDay != 9 && first_lockdown_over ==2]]></Condition>
+					</Properties>
+					<Action><![CDATA[contactsPerDay = 9;
+is_lockdown = 0;
+openthecountry_4.restart();]]></Action>
+				</Event>
+				<Event>
+					<Id>1611759255000</Id>
+					<Name><![CDATA[event]]></Name>
+					<X>280</X><Y>710</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1210,9 +1380,9 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
 						</Rate>
 						<OccurrenceAtTime>false</OccurrenceAtTime>
-						<OccurrenceDate>1592208000000</OccurrenceDate>
+						<OccurrenceDate>1607760000000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[0]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
@@ -1221,38 +1391,16 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[InfectionProbability = 0.02]]></Action>
-				</Event>
-				<Event>
-					<Id>1611745042751</Id>
-					<Name><![CDATA[summer_end]]></Name>
-					<X>370</X><Y>590</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="occuresOnce">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
-						</Timeout>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
-						</Rate>
-						<OccurrenceAtTime>false</OccurrenceAtTime>
-						<OccurrenceDate>1598860800000</OccurrenceDate>
-						<OccurrenceTime Class="CodeUnitValue">
-							<Code><![CDATA[170]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
-						</OccurrenceTime>
-						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
-						</RecurrenceCode>
-						<Condition><![CDATA[false]]></Condition>
-					</Properties>
-					<Action><![CDATA[InfectionProbability = 0.045]]></Action>
+					<Action><![CDATA[if(contactsPerDay == 2){
+is_lockdown = 1;
+}else if(contactsPerDay == 6){
+is_lockdown = 0.5;
+}else if(contactsPerDay == 4){
+is_lockdown = 1;
+}else{
+is_lockdown = 0;
+}
+]]></Action>
 				</Event>
 			</Events>
 			<AgentLinks>
@@ -1756,11 +1904,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 				<RealTimeScale>1.0</RealTimeScale>
 			</PresentationProperties>
 			<ModelTimeProperties>
-				<StopOption><![CDATA[Never]]></StopOption>
+				<StopOption><![CDATA[Stop at specified date]]></StopOption>
 				<InitialDate><![CDATA[1582588800000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1607126400000]]></FinalDate>	
-				<FinalTime><![CDATA[100.0]]></FinalTime>	
+				<FinalDate><![CDATA[1643241600000]]></FinalDate>	
+				<FinalTime><![CDATA[702.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<BypassInitialScreen>true</BypassInitialScreen>
 		</SimulationExperiment>	
