@@ -1070,7 +1070,7 @@ openthecountry_1.restart();]]></Action>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="occuresOnce">
+					<Properties TriggerType="timeout" Mode="cyclic">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -1086,15 +1086,15 @@ openthecountry_1.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[21]]></Code>
+							<Code><![CDATA[30]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
 					<Action><![CDATA[temp = Unconfirmed;
-masstestrate = 0.9;
-Unconfirmed = Unconfirmed*0.1;
-Confirmed = Confirmed+temp*0.9;]]></Action>
+masstestrate = 0.35;
+Unconfirmed = Unconfirmed*0.65;
+Confirmed = Confirmed+temp*0.35;]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565907323</Id>
@@ -1104,7 +1104,7 @@ Confirmed = Confirmed+temp*0.9;]]></Action>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="occuresOnce">
+					<Properties TriggerType="timeout" Mode="cyclic">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -1120,7 +1120,7 @@ Confirmed = Confirmed+temp*0.9;]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[21]]></Code>
+							<Code><![CDATA[30]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
@@ -1365,7 +1365,7 @@ openthecountry_4.restart();]]></Action>
 				<Event>
 					<Id>1611759255000</Id>
 					<Name><![CDATA[event]]></Name>
-					<X>280</X><Y>710</Y>
+					<X>50</X><Y>930</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
