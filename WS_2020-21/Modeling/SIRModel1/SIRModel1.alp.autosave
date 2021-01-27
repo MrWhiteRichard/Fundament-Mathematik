@@ -469,7 +469,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.045]]></Code>
+							<Code><![CDATA[0.06]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1604587391565</Id>
@@ -589,7 +589,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[2]]></Code>
+							<Code><![CDATA[4]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1608564810541</Id>
@@ -1070,7 +1070,7 @@ openthecountry_1.restart();]]></Action>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="cyclic">
+					<Properties TriggerType="timeout" Mode="occuresOnce">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -1086,15 +1086,15 @@ openthecountry_1.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[14]]></Code>
+							<Code><![CDATA[21]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
 					<Action><![CDATA[temp = Unconfirmed;
-masstestrate = 0.35;
-Unconfirmed = Unconfirmed*0.65;
-Confirmed = Confirmed+temp*0.35;]]></Action>
+masstestrate = 0.9;
+Unconfirmed = Unconfirmed*0.1;
+Confirmed = Confirmed+temp*0.9;]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565907323</Id>
@@ -1104,7 +1104,7 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="cyclic">
+					<Properties TriggerType="timeout" Mode="occuresOnce">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -1120,7 +1120,7 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[14]]></Code>
+							<Code><![CDATA[21]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
@@ -1187,7 +1187,7 @@ Confirmed = Confirmed+temp*0.35;]]></Action>
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[InfectionProbability = 0.045]]></Action>
+					<Action><![CDATA[InfectionProbability = 0.06]]></Action>
 				</Event>
 				<Event>
 					<Id>1611756257961</Id>
@@ -1286,9 +1286,9 @@ lockdown1.restart();]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected >= 115000 && contactsPerDay != 2 && contactsPerDay != 4 && first_lockdown_over == 2]]></Condition>
+						<Condition><![CDATA[Infected >= 115000 && contactsPerDay != 2 && contactsPerDay != 3 && first_lockdown_over == 2]]></Condition>
 					</Properties>
-					<Action><![CDATA[contactsPerDay = 4;
+					<Action><![CDATA[contactsPerDay = 3;
 if(time() > 291){
 is_lockdown = 1;
 }
@@ -1321,7 +1321,7 @@ Lockdown_2_electric_boogaloo1.restart();]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 25000 && contactsPerDay != 14 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over ==2]]></Condition>
+						<Condition><![CDATA[Infected <= 30000 && contactsPerDay != 14 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over ==2]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 6;
 if(time() > 291){
@@ -1356,7 +1356,7 @@ openthecountry_3.restart();]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 15000 && contactsPerDay != 9 && first_lockdown_over ==2]]></Condition>
+						<Condition><![CDATA[Infected <= 20000 && contactsPerDay != 9 && first_lockdown_over ==2]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 9;
 is_lockdown = 0;

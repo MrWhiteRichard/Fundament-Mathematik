@@ -78,7 +78,8 @@
 
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-
+\usepackage{tikz}
+\usepackage{babel}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -113,7 +114,7 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{Motivation and Model Description} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Motivation} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
 
@@ -132,12 +133,12 @@
 \end{frame}
 
 %------------------------------------------------
-
+\section{Model Description}
 \begin{frame}
 \frametitle{Model Description}
 \begin{itemize}
 \item SIR - Susceptible-Infectious-Recovered
-\item Compartment Exposed: freshly infected but not yet infectious
+\item Compartment Exposed: freshly infected but not yet infectious - SEIR Model
 \item Split Infectious into Confirmed and Unconfirmed
 \item Only Unconfirmed contribute to infections
 \item Recovered people do not contribute anymore
@@ -147,14 +148,26 @@
 %------------------------------------------------
 
 \section{Implementation}
-
+\subsection{Causal Loop Diagram}
 \begin{frame}
 \frametitle{Causal Loop Diagram}
   \input{causalloop.tex}
+
 \end{frame}
 
 %------------------------------------------------
 
+\subsection{Stock and Flow}
+\begin{frame}
+\frametitle{AnyLogic Implementation}
+
+\begin{figure}[h!]
+\includegraphics[width=110mm, scale = 0.5]{AnyLogicSIR}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Parameters}
 \begin{frame}
 \frametitle{Parameters}
 \begin{block}{$\alpha$}
@@ -170,7 +183,7 @@
 \end{block}
 
 \begin{block}{$p_d, p_u: p_d + p_u = 1$}
-  chance of being transferred to detected or undetected compartmet, respecitvely
+  chance of being transferred to detected or undetected compartment, respecitvely
 \end{block}
 
 \begin{block}{$\beta_d, \beta_u$}
@@ -179,6 +192,8 @@
 \end{frame}
 
 %------------------------------------------------
+
+\subsection{Masstests}
 \begin{frame}
 \frametitle{Masstests and Lockdown}
 Masstests:
@@ -191,15 +206,16 @@ Masstests:
 
 A lockdown occurs:
 \begin{itemize}
-  \item When a certain number of people are infected (Confirmed + Unconfirmed, "Dunkelziffer")
+  \item When a certain number of people are infected (Confirmed + Unconfirmed, \glqq Dunkelziffer\grqq)
   \item Lockdown measures reduce number of contacts
-  \item Lift of lockdown in two steps - "Lockdown light"
+  \item Lift of lockdown in two steps - \glqq Lockdown light\grqq
 \end{itemize}
 \end{frame}
 
 
 %------------------------------------------------
 
+\subsection{}
 \begin{frame}
 \frametitle{Additional Assumptions}
 Some assumptions were made to make a better fit with the real data:
@@ -237,7 +253,7 @@ Some assumptions were made to make a better fit with the real data:
   \hline
     Nr. Infected &- & $\geq 115,000$ & $\leq 25,000$ & $\leq 15,000$ \\
     \hline
-    contacts per Day & 9 & 2 & 6 & 9 \\
+    contacts per Day & 9 & 3 & 6 & 9 \\
     \hline
   \end{tabular}
   \end{center}
@@ -248,17 +264,8 @@ Some assumptions were made to make a better fit with the real data:
 \end{frame}
 %------------------------------------------------
 
+\subsection{Results}
 
-
-\begin{frame}
-\frametitle{Actual Implementation}
-
-\begin{figure}[h!]
-\includegraphics[width=110mm, scale = 0.5]{AnyLogicSIR}
-\end{figure}
-\end{frame}
-
-%------------------------------------------------
 \begin{frame}
 \frametitle{Results}
 
@@ -270,13 +277,13 @@ Some assumptions were made to make a better fit with the real data:
  & 30 days    & 21 days   & 14 days  & 7 days  \\
   \hline
   \hline
-      $35\%$ participation    & 98 &  86&  46  & 11   \\
+      $35\%$ participation    & 199 &  170&  154  & 48   \\
   \hline
-      $50\%$ participation & 80 & 45 & 11 & 9 \\
+      $50\%$ participation & 174 & 151 & 91 & 11 \\
   \hline
-      $70\%$ participation & 9 &  9 & 9& 8 \\
+      $70\%$ participation & 147 &  77 & 11 & 8 \\
   \hline
-      $90\%$ participation & 7 &7 &7  & 7\\
+      $90\%$ participation & 67 &7 &7  & 6\\
       \hline
 \end{tabular}
 \end{center}
@@ -284,10 +291,10 @@ Some assumptions were made to make a better fit with the real data:
 
 \caption{Days of lockdown with different participation rate and interval between masstests}
 \end{table}
-To compare: without any masstests at all the number of days in lockdown would be $193$.
+To compare: without any masstests at all the number of days in lockdown would be $243$.
 \end{frame}
 %------------------------------------------------
-
+\section{}
 \begin{frame}
 \Huge{\centerline{The End}}
 \end{frame}
