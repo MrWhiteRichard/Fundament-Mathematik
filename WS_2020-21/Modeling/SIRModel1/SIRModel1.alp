@@ -10,7 +10,7 @@
 	<Name><![CDATA[SIRModel1]]></Name>
 	<EngineVersion>6</EngineVersion>
 	<JavaPackageName><![CDATA[sirmodel]]></JavaPackageName>
-	<ModelTimeUnit><![CDATA[Second]]></ModelTimeUnit>
+	<ModelTimeUnit><![CDATA[Day]]></ModelTimeUnit>
 	<ActiveObjectClasses>
 		<!--   =========   Active Object Class   ========  -->
 		<ActiveObjectClass>
@@ -84,11 +84,11 @@
 					<OccurrenceDate>1604649600000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 			</DatasetsCreationProperties>
 			<ScaleRuler>
@@ -113,28 +113,13 @@
 				<Variable Class="AuxVariable">
 					<Id>1604587300160</Id>
 					<Name><![CDATA[N]]></Name>
-					<X>138.786</X><Y>55.625</Y>
+					<X>90</X><Y>150</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties External="false" Constant="false" Array="false">
 						<Formula><![CDATA[S0+I0+R0]]></Formula>
-						<Value><![CDATA[0]]></Value>
-						<Color/>
-					</Properties>
-
-				</Variable>
-				<Variable Class="AuxVariable">
-					<Id>1611253205346</Id>
-					<Name><![CDATA[temp]]></Name>
-					<X>280</X><Y>530</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties External="false" Constant="false" Array="false">
-						<Formula><![CDATA[0]]></Formula>
 						<Value><![CDATA[0]]></Value>
 						<Color/>
 					</Properties>
@@ -158,8 +143,8 @@
 				<Variable Class="AuxVariable">
 					<Id>1611254465167</Id>
 					<Name><![CDATA[Infected]]></Name>
-					<X>480</X><Y>220</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<X>530</X><Y>340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -170,10 +155,25 @@
 					</Properties>
 
 				</Variable>
+				<Variable Class="AuxVariable">
+					<Id>1611699482275</Id>
+					<Name><![CDATA[temp]]></Name>
+					<X>280</X><Y>510</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false">
+						<Formula><![CDATA[0]]></Formula>
+						<Value><![CDATA[0]]></Value>
+						<Color/>
+					</Properties>
+
+				</Variable>
 				<Variable Class="StockVariable">
 					<Id>1604586903167</Id>
 					<Name><![CDATA[Susceptible]]></Name>
-					<X>0</X><Y>100</Y>
+					<X>0</X><Y>320</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -189,7 +189,7 @@
 				<Variable Class="StockVariable">
 					<Id>1604586909068</Id>
 					<Name><![CDATA[Recovered]]></Name>
-					<X>678.064</X><Y>109.687</Y>
+					<X>840</X><Y>330</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -205,7 +205,7 @@
 				<Variable Class="StockVariable">
 					<Id>1608563570317</Id>
 					<Name><![CDATA[Exposed]]></Name>
-					<X>150.509</X><Y>285.39</Y>
+					<X>210</X><Y>320</Y>
 					<Label><X>-50</X><Y>15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -221,8 +221,8 @@
 				<Variable Class="StockVariable">
 					<Id>1608563678793</Id>
 					<Name><![CDATA[Unconfirmed]]></Name>
-					<X>430</X><Y>410</Y>
-					<Label><X>-40</X><Y>20</Y></Label>
+					<X>510</X><Y>390</Y>
+					<Label><X>-35</X><Y>30</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -237,7 +237,7 @@
 				<Variable Class="StockVariable">
 					<Id>1608563681099</Id>
 					<Name><![CDATA[Confirmed]]></Name>
-					<X>350</X><Y>130</Y>
+					<X>490</X><Y>250</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -253,8 +253,8 @@
 				<Variable Class="Flow">
 					<Id>1604586970796</Id>
 					<Name><![CDATA[Infections]]></Name>
-					<X>0</X><Y>100</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<X>0</X><Y>320</Y>
+					<Label><X>5</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -264,19 +264,20 @@ contactsPerDay*
 InfectionProbability*
 Unconfirmed*1/N]]></Formula>
 						<Color/>
-						<ValveIndex>1</ValveIndex>
+						<ValveIndex>2</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>80</X><Y>100</Y></Point>
-							<Point><X>150</X><Y>185</Y></Point>
+							<Point><X>126</X><Y>0</Y></Point>
+							<Point><X>135</X><Y>0</Y></Point>
+							<Point><X>210</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
 					<Id>1604587002653</Id>
 					<Name><![CDATA[RecoveriesConfirmed]]></Name>
-					<X>349.255</X><Y>129.203</Y>
-					<Label><X>-25</X><Y>20</Y></Label>
+					<X>489.255</X><Y>249.203</Y>
+					<Label><X>-74.255</X><Y>25.797</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -286,16 +287,16 @@ Unconfirmed*1/N]]></Formula>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>152</X><Y>-6</Y></Point>
-							<Point><X>328</X><Y>-21</Y></Point>
+							<Point><X>175</X><Y>40</Y></Point>
+							<Point><X>350</X><Y>80</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
 					<Id>1608563909214</Id>
 					<Name><![CDATA[positivetests]]></Name>
-					<X>149.509</X><Y>284.39</Y>
-					<Label><X>10</X><Y>5</Y></Label>
+					<X>209.50900000000001</X><Y>319.39</Y>
+					<Label><X>-34.509</X><Y>-29.39</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -305,16 +306,16 @@ Unconfirmed*1/N]]></Formula>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>110</X><Y>-85</Y></Point>
-							<Point><X>200</X><Y>-155</Y></Point>
+							<Point><X>140</X><Y>-35</Y></Point>
+							<Point><X>280</X><Y>-70</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
 					<Id>1608563919635</Id>
 					<Name><![CDATA[incubation]]></Name>
-					<X>149.509</X><Y>284.39</Y>
-					<Label><X>0</X><Y>-20</Y></Label>
+					<X>209.50900000000001</X><Y>319.39</Y>
+					<Label><X>-29.509</X><Y>25.61</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -324,16 +325,16 @@ Unconfirmed*1/N]]></Formula>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>100</X><Y>85</Y></Point>
-							<Point><X>280</X><Y>125</Y></Point>
+							<Point><X>150</X><Y>35</Y></Point>
+							<Point><X>300</X><Y>70</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Flow">
 					<Id>1608564442539</Id>
 					<Name><![CDATA[RecoveriesUnconfirmed]]></Name>
-					<X>430</X><Y>410</Y>
-					<Label><X>10</X><Y>10</Y></Label>
+					<X>510</X><Y>390</Y>
+					<Label><X>10</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -343,15 +344,15 @@ Unconfirmed*1/N]]></Formula>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
-							<Point><X>120</X><Y>-100</Y></Point>
-							<Point><X>248</X><Y>-301</Y></Point>
+							<Point><X>165</X><Y>-30</Y></Point>
+							<Point><X>330</X><Y>-60</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1604587110414</Id>
 					<Name><![CDATA[S0]]></Name>
-					<X>40</X><Y>20</Y>
+					<X>0</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -423,7 +424,7 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1604587378418</Id>
 					<Name><![CDATA[contactsPerDay]]></Name>
-					<X>-90</X><Y>230</Y>
+					<X>30</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -447,7 +448,7 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1604587391567</Id>
 					<Name><![CDATA[InfectionProbability]]></Name>
-					<X>44.998</X><Y>393.515</Y>
+					<X>20</X><Y>390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -457,7 +458,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.15]]></Code>
+							<Code><![CDATA[0.12]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1604587391565</Id>
@@ -496,7 +497,7 @@ Unconfirmed*1/N]]></Formula>
 					<Id>1608564695994</Id>
 					<Name><![CDATA[betau]]></Name>
 					<X>630</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<Label><X>-15</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -519,7 +520,7 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1608564779578</Id>
 					<Name><![CDATA[Pu]]></Name>
-					<X>370</X><Y>220</Y>
+					<X>410</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -543,8 +544,8 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1608564794100</Id>
 					<Name><![CDATA[Pc]]></Name>
-					<X>197.403</X><Y>123.203</Y>
-					<Label><X>-5</X><Y>15</Y></Label>
+					<X>420</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -567,8 +568,8 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1608564810543</Id>
 					<Name><![CDATA[gamma]]></Name>
-					<X>210</X><Y>290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>250</X><Y>200</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -591,8 +592,8 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1608565527935</Id>
 					<Name><![CDATA[masstestrate]]></Name>
-					<X>380</X><Y>310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>480</X><Y>310</Y>
+					<Label><X>-25</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -617,10 +618,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587110414" TargetId="1604586903167" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-40</X><Y>80</Y></Direction>
+					<Direction><X>0</X><Y>210</Y></Direction>
 					<Id>1604587221056</Id>
 					<Name><![CDATA[S0 - Susceptible]]></Name>
-					<X>40</X><Y>20</Y>
+					<X>0</X><Y>110</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -632,10 +633,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587145966" TargetId="1608563570317" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>0</X><Y>108</Y></Direction>
+					<Direction><X>60</X><Y>143</Y></Direction>
 					<Id>1604587225902</Id>
 					<Name><![CDATA[I0 - Exposed]]></Name>
-					<X>150.509</X><Y>177.265</Y>
+					<X>150</X><Y>177</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -647,7 +648,7 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587168207" TargetId="1604586909068" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>348</X><Y>89</Y></Direction>
+					<Direction><X>510</X><Y>310</Y></Direction>
 					<Id>1604587231070</Id>
 					<Name><![CDATA[R0 - Recovered]]></Name>
 					<X>330</X><Y>20</Y>
@@ -662,10 +663,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587110414" TargetId="1604587300160" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>98</X><Y>35</Y></Direction>
+					<Direction><X>90</X><Y>40</Y></Direction>
 					<Id>1604587321671</Id>
 					<Name><![CDATA[S0 - N]]></Name>
-					<X>40</X><Y>20</Y>
+					<X>0</X><Y>110</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -677,7 +678,7 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587168207" TargetId="1604587300160" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-192</X><Y>35</Y></Direction>
+					<Direction><X>-240</X><Y>130</Y></Direction>
 					<Id>1604587327967</Id>
 					<Name><![CDATA[R0 - N]]></Name>
 					<X>330</X><Y>20</Y>
@@ -692,10 +693,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587145966" TargetId="1604587300160" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-12</X><Y>-122</Y></Direction>
+					<Direction><X>-60</X><Y>-27</Y></Direction>
 					<Id>1604587334919</Id>
 					<Name><![CDATA[I0 - N]]></Name>
-					<X>150.509</X><Y>177.265</Y>
+					<X>150</X><Y>177</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -707,10 +708,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604586903167" TargetId="1604586970796" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>80</X><Y>100</Y></Direction>
+					<Direction><X>75</X><Y>-128</Y></Direction>
 					<Id>1604587427120</Id>
 					<Name><![CDATA[Susceptible - Infections]]></Name>
-					<X>0</X><Y>100</Y>
+					<X>0</X><Y>320</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -722,10 +723,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587300160" TargetId="1604586970796" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-71</X><Y>202</Y></Direction>
+					<Direction><X>45</X><Y>170</Y></Direction>
 					<Id>1604587431871</Id>
 					<Name><![CDATA[N - Infections]]></Name>
-					<X>138.786</X><Y>55.625</Y>
+					<X>90</X><Y>150</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -737,10 +738,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587391567" TargetId="1604586970796" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>23</X><Y>-136</Y></Direction>
+					<Direction><X>115</X><Y>-70</Y></Direction>
 					<Id>1604587436527</Id>
 					<Name><![CDATA[InfectionProbability - Infections]]></Name>
-					<X>44.998</X><Y>393.515</Y>
+					<X>20</X><Y>390</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -752,25 +753,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1604587378418" TargetId="1604586970796" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>170</X><Y>-30</Y></Direction>
+					<Direction><X>105</X><Y>70</Y></Direction>
 					<Id>1604587445576</Id>
 					<Name><![CDATA[contactsPerDay - Infections]]></Name>
-					<X>-90</X><Y>230</Y>
-					<Label><X>40</X><Y>-50</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color/>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
-				<Link SourceId="1608563678793" TargetId="1604586970796" Polarity="null">
-					<Height>258.941</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-350</X><Y>-210</Y></Direction>
-					<Id>1604587458983</Id>
-					<Name><![CDATA[Unconfirmed - Infections]]></Name>
-					<X>430</X><Y>410</Y>
+					<X>30</X><Y>250</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -797,10 +783,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563681099" TargetId="1604587002653" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>151</X><Y>-7</Y></Direction>
+					<Direction><X>11</X><Y>-127</Y></Direction>
 					<Id>1604587793953</Id>
 					<Name><![CDATA[Confirmed - RecoveriesConfirmed]]></Name>
-					<X>350</X><Y>130</Y>
+					<X>490</X><Y>250</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -812,10 +798,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564779578" TargetId="1608563919635" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-127</X><Y>159</Y></Direction>
+					<Direction><X>-51</X><Y>24</Y></Direction>
 					<Id>1608564163944</Id>
 					<Name><![CDATA[Pu - incubation]]></Name>
-					<X>370</X><Y>220</Y>
+					<X>410</X><Y>330</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -827,10 +813,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564810543" TargetId="1608563919635" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>39</X><Y>79</Y></Direction>
+					<Direction><X>109</X><Y>154</Y></Direction>
 					<Id>1608564217919</Id>
 					<Name><![CDATA[gamma - incubation]]></Name>
-					<X>210</X><Y>290</Y>
+					<X>250</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -842,10 +828,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564794100" TargetId="1608563909214" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>58</X><Y>67</Y></Direction>
+					<Direction><X>-71</X><Y>114</Y></Direction>
 					<Id>1608564248216</Id>
 					<Name><![CDATA[Pc - positivetests]]></Name>
-					<X>197.403</X><Y>123.203</Y>
+					<X>420</X><Y>170</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -857,10 +843,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564810543" TargetId="1608563909214" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>49</X><Y>-91</Y></Direction>
+					<Direction><X>99</X><Y>84</Y></Direction>
 					<Id>1608564254992</Id>
 					<Name><![CDATA[gamma - positivetests]]></Name>
-					<X>210</X><Y>290</Y>
+					<X>250</X><Y>200</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -887,10 +873,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563678793" TargetId="1608564442539" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>120</X><Y>-100</Y></Direction>
+					<Direction><X>165</X><Y>-30</Y></Direction>
 					<Id>1608564747103</Id>
 					<Name><![CDATA[Unconfirmed - RecoveriesUnconfirmed]]></Name>
-					<X>430</X><Y>410</Y>
+					<X>510</X><Y>390</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -902,10 +888,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563570317" TargetId="1608563919635" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>46</X><Y>40</Y></Direction>
+					<Direction><X>179</X><Y>34</Y></Direction>
 					<Id>1608564987027</Id>
 					<Name><![CDATA[Exposed - incubation]]></Name>
-					<X>150.509</X><Y>285.39</Y>
+					<X>210</X><Y>320</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -917,10 +903,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563570317" TargetId="1608563909214" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>93</X><Y>-41</Y></Direction>
+					<Direction><X>169</X><Y>-36</Y></Direction>
 					<Id>1608565108374</Id>
 					<Name><![CDATA[Exposed - positivetests]]></Name>
-					<X>150.509</X><Y>285.39</Y>
+					<X>210</X><Y>320</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -932,10 +918,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608565527935" TargetId="1608563909214" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-121</X><Y>-111</Y></Direction>
+					<Direction><X>-131</X><Y>-26</Y></Direction>
 					<Id>1608565791627</Id>
 					<Name><![CDATA[masstestrate - positivetests]]></Name>
-					<X>380</X><Y>310</Y>
+					<X>480</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -947,10 +933,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608565527935" TargetId="1608563919635" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-131</X><Y>59</Y></Direction>
+					<Direction><X>-121</X><Y>44</Y></Direction>
 					<Id>1608565799076</Id>
 					<Name><![CDATA[masstestrate - incubation]]></Name>
-					<X>380</X><Y>310</Y>
+					<X>480</X><Y>310</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -962,10 +948,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564779578" TargetId="1608563909214" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-115</X><Y>-30</Y></Direction>
+					<Direction><X>-61</X><Y>-46</Y></Direction>
 					<Id>1611252641242</Id>
 					<Name><![CDATA[Pu - positivetests]]></Name>
-					<X>370</X><Y>220</Y>
+					<X>410</X><Y>330</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -977,10 +963,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563681099" TargetId="1611254465167" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>130</X><Y>90</Y></Direction>
+					<Direction><X>40</X><Y>90</Y></Direction>
 					<Id>1611254472202</Id>
 					<Name><![CDATA[Confirmed - Infected]]></Name>
-					<X>350</X><Y>130</Y>
+					<X>490</X><Y>250</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -992,10 +978,25 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608563678793" TargetId="1611254465167" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>50</X><Y>-190</Y></Direction>
+					<Direction><X>20</X><Y>-50</Y></Direction>
 					<Id>1611254479776</Id>
 					<Name><![CDATA[Unconfirmed - Infected]]></Name>
-					<X>430</X><Y>410</Y>
+					<X>510</X><Y>390</Y>
+					<Label><X>40</X><Y>-50</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+					<LineWidth>1</LineWidth>
+					<Delay>false</Delay>
+				</Link>
+				<Link SourceId="1608563678793" TargetId="1604586970796" Polarity="null">
+					<Height>74.41</Height>
+					<PolarityPosition>0.95</PolarityPosition>
+					<Direction><X>-375</X><Y>-70</Y></Direction>
+					<Id>1611692413833</Id>
+					<Name><![CDATA[Unconfirmed - Infections]]></Name>
+					<X>510</X><Y>390</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1033,7 +1034,7 @@ Unconfirmed*1/N]]></Formula>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected >= 50000 && contactsPerDay != 2 && first_lockdown_over == 0]]></Condition>
+						<Condition><![CDATA[Infected >= 20000 && contactsPerDay != 2 && first_lockdown_over == 0]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 2;
 first_lockdown_over = 1;
@@ -1092,11 +1093,11 @@ openthecountry.restart();]]></Action>
 						<OccurrenceDate>1608624000000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
 							<Code><![CDATA[50]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
 							<Code><![CDATA[30]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
@@ -1126,11 +1127,11 @@ Confirmed = Confirmed+temp*0.7;]]></Action>
 						<OccurrenceDate>1608624000000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
 							<Code><![CDATA[53]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
 							<Code><![CDATA[30]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
 					</Properties>
@@ -1163,7 +1164,7 @@ Confirmed = Confirmed+temp*0.7;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected >= 50000 && contactsPerDay != 4 && first_lockdown_over == 1]]></Condition>
+						<Condition><![CDATA[Infected >= 20000 && contactsPerDay !=2 &&contactsPerDay != 4 && first_lockdown_over == 1]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 4;
 Lockdown_2_electric_boogaloo.restart();]]></Action>
@@ -1220,11 +1221,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 					<OccurrenceDate>1608624000000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>304.80961923847696</Width>
@@ -1286,11 +1287,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 					<OccurrenceDate>1608624000000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>304.80961923847696</Width>
@@ -1352,11 +1353,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 					<OccurrenceDate>1608624000000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>350</Width>
@@ -1418,11 +1419,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 					<OccurrenceDate>1608624000000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>304.80961923847696</Width>
@@ -1484,11 +1485,11 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 					<OccurrenceDate>1611302400000</OccurrenceDate>
 					<OccurrenceTime Class="CodeUnitValue">
 						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</OccurrenceTime>
 					<RecurrenceCode Class="CodeUnitValue">
 						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>260</Width>
@@ -1690,6 +1691,12 @@ Lockdown_2_electric_boogaloo.restart();]]></Action>
 		<VersionMajor>8</VersionMajor>
 		<VersionMinor>0</VersionMinor>
 		<VersionBuild>5</VersionBuild>
+    </RequiredLibraryReference>
+    <RequiredLibraryReference>
+		<LibraryName><![CDATA[model]]></LibraryName>
+		<VersionMajor>0</VersionMajor>
+		<VersionMinor>0</VersionMinor>
+		<VersionBuild>0</VersionBuild>
     </RequiredLibraryReference>
 </Model>
 </AnyLogicWorkspace>
