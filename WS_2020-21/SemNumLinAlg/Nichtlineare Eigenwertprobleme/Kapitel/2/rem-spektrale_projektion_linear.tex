@@ -1,0 +1,69 @@
+\begin{remark} \label{rem:spektrale_projektion_linear}
+
+    Weil $P_1$ eine Projektion ist, gilt $\C^N = X \oplus Y$, wobei
+
+    \begin{align*}
+        X & := \ker P_1 = \ran (I_N - P_1) \stackrel{!}{=} \ran (A - \lambda_1 I_N) \xrightarrow{A - \lambda_1 I_N} \ran (A - \lambda_1 I_N)^2 \subseteq \ran (A - \lambda_1 I_N) = X, \\
+        Y & := \ker (I_N - P_1) = \ran P_1 \stackrel{!}{=} \ker (A - \lambda_1 I_N) \xrightarrow{A - \lambda_1 I_N} \Bbraces{0} \subseteq Y.
+    \end{align*}
+
+    Das $2$-te \Quote{!} gilt, weil als Spektrale Projektion
+
+    \begin{align*}
+        P_1: \C^N \to \ker (A - \lambda_1 I_N),
+        \quad
+        \Forall x \in \ker (A - \lambda_1 I_N):
+            x = P_1 x \in \ran P_1.
+    \end{align*}
+
+    Das $1$-te \Quote{!} gilt, weil einerseits $\ran (A - \lambda_1 I_N) \subseteq \ran (I_N - P_1)$,
+
+    \begin{align*}
+        P_1 (A - \lambda_1 I_N)
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l} w_{1, l}^\ast
+        (A - \lambda_1 I_N)
+        =
+        -\sum_{l=1}^{L_1}
+            v_{1, l}
+            \underbrace
+            {
+                (w_{1, l}^\ast A
+                -
+                w_{1, l}^\ast \lambda_1)
+            }_{=0}
+        =
+        0.
+    \end{align*}
+
+    und andererseits gilt laut der Rangformel
+
+    \begin{align*}
+        \dim \ran (I_N - P_1)
+        =
+        N - \dim \ker (I_N - P_1)
+        =
+        N - \dim \ker (A - \lambda I_N)
+        =
+        \dim \ran (A - \lambda I_N).
+    \end{align*}
+
+    $X$ und $Y$ sind also $(A - \lambda_1 I_N)$-invariant.
+    Wir sagen, dass $A - \lambda_1 I_N$ auch $X$- und $Y$-invariant ist.
+
+    Außerdem, kommutieren $A - \lambda_1 I_N$ und $I_N - P_1$, weil
+
+    \begin{multline*}
+        (A - \lambda_1 I_N) (I_N - P_1)
+        =
+        (A - \lambda_1 I_N) - \underbrace{(A - \lambda_1 I_N) P_1}_{=0}
+        =
+        A - \lambda_1 I_N \\
+        =
+        (A - \lambda_1 I_N) - \underbrace{P_1 (A - \lambda_1 I_N)}_{=0}
+        =
+        (I_N - P_1) (A - \lambda_1 I_N).
+    \end{multline*}
+    
+\end{remark}

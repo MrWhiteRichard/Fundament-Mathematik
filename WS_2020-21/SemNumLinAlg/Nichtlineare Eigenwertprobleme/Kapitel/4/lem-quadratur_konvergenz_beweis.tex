@@ -1,0 +1,169 @@
+\begin{proof}
+
+    Wir können $f$ in eine Laurent-Reihe entwickeln, d.h.
+
+    \begin{align*}
+        f(\lambda) = \sum_{\mu = - \infty}^\infty \lambda^\mu f_\mu,
+        \quad
+        \text{mit}
+        \quad
+        f_\mu := \frac{1}{2\pi i} \Int[|\lambda| = R]{\lambda^{-\mu - 1} f(\lambda)}{\lambda}.
+    \end{align*}
+
+    Aufgrund der Holomorphie von $f$ konvergiert die Reihe für alle $\lambda$ gleichmäßig in einer kompakten Teilmenge von $D$.
+    Betrachte die Parametrisierung
+
+    \begin{align*}
+        \gamma:
+        [0,1] \to \partial B_R^\C(0),
+        t \mapsto R\exp(2\pi i t).
+    \end{align*}
+
+    Wir berechnen das Integral
+
+    \begin{multline*}
+        Q(\lambda \to \lambda^\mu)
+        =
+        \frac{1}{2 \pi i}
+        \Int[\abs{\lambda} = R]{\lambda^\mu}{\lambda}
+        =
+        \frac{1}{2 \pi i}
+        \Int[\gamma]{\lambda^\mu}{\lambda}
+        =
+        \frac{1}{2 \pi i}
+        \Int[0][1]{\gamma^\prime(t) \gamma(t)^\mu}{t} \\
+        =
+        R
+        \Int[0][1]{\exp(2 \pi i t)(R \exp(2 \pi i t))^\mu}{t}
+        =
+        R^{\mu + 1}
+        \Int[0][1]{\exp(2\pi i t(\mu + 1))}{t}
+        =
+        \begin{cases}
+            R^{\mu + 1}, & \mu + 1 = 0, \\
+            0,           & \text{sonst},
+        \end{cases}
+    \end{multline*}
+
+    sowie die Quadratur
+
+    \begin{multline*}
+        Q_m(\lambda \to \lambda^\mu)
+        =
+        \frac{R}{m}
+        \sum_{\nu = 0}^{m - 1}
+            \omega_m^\nu (R \omega_m^\nu)^\mu
+        =
+        \frac{R^{\mu + 1}}{m}
+        \sum_{\nu = 0}^{m - 1}
+            \exp \pbraces{\frac{2\pi i}{m}(\mu + 1)}^v \\
+        =
+        \begin{cases}
+            R^{\mu + 1},
+            & \mu + 1 \in m \Z \\
+            \frac{R^{\mu + 1}}{m}
+            \frac
+            {
+                1 - \exp \pbraces{2 \pi i(\mu + 1)}
+            }{
+                1 - \exp \pbraces{\frac{2\pi i}{m}(\mu + 1)}
+            }
+            =
+            0,
+            & \text{sonst}.
+        \end{cases}
+    \end{multline*}
+    
+    Also erhalten wir für die Differenz
+    
+    \begin{align*}
+        Q_m(\lambda \to \lambda^\mu) - Q(\lambda \to \lambda^\mu)
+        =
+        \begin{cases}
+            R^{\mu + 1}, & \mu + 1 \in m \Z \setminus \Bbraces{0}, \\
+            0,           & \text{sonst}.
+        \end{cases}
+    \end{align*}
+    
+    Mit der Linearität und Stetigkeit des Integrals und der Quadraturformel erhalten wir somit
+    
+    \begin{align*}
+        Q_m(f) - Q(f)
+        =
+        \sum_{l=1}^\infty
+            (f_{l m}R^{l m} + f_{-l m} R^{-l m}).
+    \end{align*}
+    
+    Zur Berechnung der Koeffizienten können wir, mit Hilfe des Cauchy'schen Integralsatzes, die Kurve, über die integriert wird, innerhalb von $D$ beliebig verändern.
+    Damit erhalten wir
+    
+    \begin{align*}
+        |f_{l m}R^{l m}|
+        & =
+        \abs
+        {
+            \frac{R^{l m}}{2\pi i}
+            \Int[|\lambda| = \rho^+R]{\lambda^{-l m - 1} f(\lambda)}{\lambda}
+        } \\
+        & =
+        \abs
+        {
+            R^{l m+1} \rho_+
+            \Int[0][1]
+            {
+                \exp(2\pi i t)
+                (R \rho_+ \exp(2 \pi i t))^{-l m -1} f(\exp(2 \pi i t))
+            }{t}
+        } \\
+        & =
+        \abs
+        {
+            \rho_+^{-l m}
+            \Int[0][1]
+            {
+                \exp(2 \pi i t)^{-l m} f(\exp(2\pi i t))
+            }{t}
+        } \\
+        & \leq
+        \max_{|\lambda| = \rho^+R}
+            \norm{f(\lambda)}
+            \rho_+^{-l m}.
+    \end{align*}
+    
+    und analog
+    
+    \begin{align*}
+        |f_{-l m}R^{-l m}|
+        \leq
+        \max_{|\lambda| = \rho_-R}
+            \norm{f(\lambda)}
+            \rho_-^{-l m}.
+    \end{align*}
+    
+    Daraus erhalten wir zusammen
+    
+    \begin{multline*}
+        |Q_m(f) - Q(f)|
+        \leq
+        \sum_{l=1}^\infty
+            \pbraces
+            {
+                \max_{|\lambda| = \rho^+R}
+                    \norm{f(\lambda)}
+                    \rho_+^{-l m}
+                +
+                \max_{|\lambda| = \rho_-R}
+                    \norm{f(\lambda)}
+                    \rho_-^{-l m}
+            } \\
+        =
+        \max_{\abs{\lambda} = R \rho_+}
+            \norm{f(\lambda)}
+        \frac{\rho_+^{-m}}{1 - \rho_+^{-m}}
+        +
+        \max_{\abs{\lambda} = R \rho_-}
+            \norm{f(\lambda)}
+        \frac{\rho_-^{-m}}{1 - \rho_-^{-m}}.
+    \end{multline*}
+    
+\end{proof}

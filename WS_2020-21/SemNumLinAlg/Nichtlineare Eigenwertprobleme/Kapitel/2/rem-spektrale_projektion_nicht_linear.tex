@@ -1,0 +1,55 @@
+\begin{remark} \label{rem-spektrale_projektion_nicht_linear}
+
+    $P_1 := S_1 A^\prime(\lambda_1)$ ist eine Projektion von $\C^N$ auf den (Rechts-)Eigenraum $\ker A(\lambda_1)$.
+    Sei nämlich $x \in \C^N$, so gilt
+
+    \begin{align*}
+        P_1 x
+        =
+        \sum_{l=1}^{L_1}
+            v_{1, l}
+            \underbrace
+            {
+                w_{1, l}^\ast
+                A^\prime(\lambda_1)
+                x
+            }_{
+                \in \C
+            }
+        \in
+        \ker A(\lambda).
+    \end{align*}
+
+    Außerdem ist $P_1$ idempotent, weil
+
+    \begin{multline*}
+        \Forall x \in \ker A(\lambda_1):
+            P_1 x
+            =
+            \sum_{l=1}^{L_1}
+                v_{1, l} w_{1, l}^\ast
+                A^\prime(\lambda_1)
+                \sum_{k=1}^{L_1}
+                    (x, v_{1, k})_2 v_{1, k} \\
+            =
+            \sum_{l=1}^{L_1}
+                \sum_{k=1}^{L_1}
+                    (x, v_{1, k})_2
+                    v_{1, l}
+                    \underbrace
+                    {
+                        w_{1, l}^\ast
+                        A^\prime(\lambda_1)
+                        v_{1, k}
+                    }_{
+                        = \delta_{l, k}
+                    }
+            =
+            \sum_{l=1}^{L_1}
+                (x, v_{1, l})_2
+                v_{1, l}
+            =
+            x.
+    \end{multline*}
+
+\end{remark}

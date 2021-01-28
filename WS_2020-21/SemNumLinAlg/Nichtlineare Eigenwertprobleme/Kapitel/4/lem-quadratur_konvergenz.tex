@@ -1,0 +1,47 @@
+\begin{lemma} \label{lem:quadratur_konvergenz}
+
+    Sei $R > 0$, $1 < a_- < a_+$ und $U$ ein Ringgebiet.
+
+    \begin{align*}
+        U := \Bbraces{z \in \C: R / a_- < \abs{z} < R a_+}
+    \end{align*}
+
+    Weiter sei $f \in H(U, \C^N)$ eine holomorphe Funktion und
+
+    \begin{align*}
+        Q(f)
+        :=
+        \frac{1}{2 \pi i}
+        \Int[\abs{\lambda} = R]{f(\lambda)}{\lambda}.
+    \end{align*}
+
+    Dann gilt für die summierte Rechtecksregel (hier gleichbedeutend mit einer summierten Trapezregel)
+
+    \begin{align*}
+        Q_m(f)
+        :=
+        \frac{R}{m}
+        \sum_{\nu = 0}^{m - 1}
+            \omega_m^\nu
+            f(R \omega_m^\nu),
+        \quad
+        \omega_m
+        :=
+        \exp \frac{2 \pi i}{m},
+    \end{align*}
+
+    mit $m \in \N$ Quadraturknoten für alle $\rho_\pm \in (1, a_\pm)$ die Fehlerabschätzung
+
+    \begin{align*}
+        \abs{Q_m(f) - Q(f)}
+        \leq
+        \max_{\abs{\lambda} = R \rho_+}
+            \norm{f(\lambda)}
+        \frac{\rho_+^{-m}}{1 - \rho_+^{-m}}
+        +
+        \max_{\abs{\lambda} = R \rho_-}
+            \norm{f(\lambda)}
+        \frac{\rho_-^{-m}}{1 - \rho_-^{-m}}.
+    \end{align*}
+
+\end{lemma}

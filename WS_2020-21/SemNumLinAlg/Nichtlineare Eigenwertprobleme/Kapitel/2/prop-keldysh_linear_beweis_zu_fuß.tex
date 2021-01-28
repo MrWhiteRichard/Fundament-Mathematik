@@ -189,7 +189,7 @@
         \begin{align*}
             (A - \lambda I_N)^{-1}
             & \stackrel{!}{=}
-            \frac{1}{\lambda - \lambda_1} P_1^+
+            \frac{1}{\lambda - \lambda_1} S_1
             +
             R_1(\lambda) \\
             \iff
@@ -198,7 +198,7 @@
             (A - \lambda I_N)
             \pbraces
             {
-                \frac{1}{\lambda - \lambda_1} P_1^+
+                \frac{1}{\lambda - \lambda_1} S_1
                 +
                 R_1(\lambda)
             } \\
@@ -237,25 +237,25 @@
             (A - \lambda I_N)
             R_1(\lambda) \\
             & =
-            P_1^-
+            P_1
             +
             (A - \lambda I_N)
             R_1(\lambda) \\
             \stackrel{!}{\iff}
-            I_N - P_1^-
+            I_N - P_1
             & =
             (A - \lambda I_N) R_1(\lambda)
         \end{align*}
 
         Das motiviert folgende Definition des Residuums.
-        Dabei ist $X$ so wie in \ref{spektrale_projektion}.
+        Dabei ist $X$ so wie in \ref{rem:spektrale_projektion_linear}.
 
         \begin{multline*}
             R_1(\lambda)
             :=
             \begin{cases}
-                (A - \lambda I_N)    ^{-1} (I_N - P_1^-), & \lambda \neq \lambda_1, \\
-                (A - \lambda I_N) |_X^{-1} (I_N - P_1^-), & \lambda =    \lambda_1, \\
+                (A - \lambda I_N)    ^{-1} (I_N - P_1), & \lambda \neq \lambda_1, \\
+                (A - \lambda I_N) |_X^{-1} (I_N - P_1), & \lambda =    \lambda_1, \\
             \end{cases} \\
             \lambda
             \in
@@ -288,22 +288,22 @@
         Dies soll nun auch für $\lambda_1$ gelten.
         Laut Bemerkung \ref{semi_inverse}, ist $(A - \lambda_1 I_N) |_X^{-1}$, also auch $R_1(\lambda_1)$, wohldefiniert.
 
-        Weil $(A - \lambda_1 I_N) |_X^{-1} (I_N - P_1^-) \in \Lin(\C^N, X)$, gilt
+        Weil $(A - \lambda_1 I_N) |_X^{-1} (I_N - P_1) \in \Lin(\C^N, X)$, gilt
 
         \begin{align*}
             (A - \lambda_1 I_N)
             (A - \lambda_1 I_N) |_X^{-1}
-            (I_N - P_1^-)
+            (I_N - P_1)
             =
             (A - \lambda_1 I_N) |_X
             (A - \lambda_1 I_N) |_X^{-1}
-            (I_N - P_1^-)
+            (I_N - P_1)
             =
-            (I_N - P_1^-)
+            (I_N - P_1)
         \end{align*}
 
         Darauf basierend, machen wir zunächst eine kleine Nebenrechnung, die wir mehrmals einsetzen werden.
-        Dabei sollte man eigentlich immer $I_N - P_1^-$ links dazuschreiben.
+        Dabei sollte man eigentlich immer $I_N - P_1$ links dazuschreiben.
 
         \begin{align*}
             (A - \lambda I_N)^{-1}
@@ -346,21 +346,21 @@
                 -
                 (A - \lambda_1 I_N) |_X^{-1}
             }
-            (I_N - P_1^-) \\
+            (I_N - P_1) \\
             & =
             \frac{1}{\lambda - \lambda_1}
             (A - \lambda I_N)^{-1}
             (\lambda - \lambda_1)
             (A - \lambda_1 I_N) |_X^{-1}
-            (I_N - P_1^-) \\
+            (I_N - P_1) \\
             & =
             (A - \lambda I_N)^{-1}
             (A - \lambda_1 I_N) |_X^{-1}
-            (I_N - P_1^-) \\
+            (I_N - P_1) \\
             & \xrightarrow[\lambda \to \lambda_1]{!}
             (A - \lambda_1 I_N) |_X^{-1}
             (A - \lambda_1 I_N) |_X^{-1}
-            (I_N - P_1^-)
+            (I_N - P_1)
         \end{align*}
 
         Letzterer Grenzwert muss noch gerechtfertigt werden.
@@ -371,11 +371,11 @@
             {
                 (A - \lambda I_N)^{-1}
                 (A - \lambda_1 I_N) |_X^{-1}
-                (I_N - P_1^-)
+                (I_N - P_1)
                 -
                 (A - \lambda_1 I_N) |_X^{-1}
                 (A - \lambda_1 I_N) |_X^{-1}
-                (I_N - P_1^-)
+                (I_N - P_1)
             } \\
             & \leq
             \norm[X \to X]
@@ -385,7 +385,7 @@
                 (A - \lambda_1 I_N) |_X^{-1}
             }
             \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
-            \norm[\C^N \to X]{I_N - P_1^-} \\
+            \norm[\C^N \to X]{I_N - P_1} \\
             & \leq
             \underbrace
             {
@@ -401,7 +401,7 @@
             }
             \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
             \norm[X \to X]{(A - \lambda_1 I_N) |_X^{-1}}
-            \norm[\C^N \to X]{I_N - P_1^-}
+            \norm[\C^N \to X]{I_N - P_1}
         \end{align*}
 
         Die Beschränktheit durch $C > 0$, eine Schranke, die von $\lambda$ unabhängig ist, sieht man für $\abs{\lambda - \lambda_1}$ hinreichend klein.
