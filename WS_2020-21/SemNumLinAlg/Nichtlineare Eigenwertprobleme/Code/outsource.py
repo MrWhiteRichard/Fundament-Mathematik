@@ -78,14 +78,21 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
     )
 
     if debug:
-        return (
-            eigen_values,
-            V_hat,
-            integrand, f_0, f_1,
-            A_0, A_1,
-            V_tilde_full, Sigma_full, W_tilde_full,
-            V_tilde_reduced, Sigma_reduced, W_tilde_reduced,
-        )
+        return {
+            'eigen_values': eigen_values,
+            'V_hat': V_hat,
+            'integrand': integrand, 
+            'f_0': f_0, 
+            'f_1': f_1,
+            'A_0': A_0, 
+            'A_1': A_1,
+            'V_tilde_full': V_tilde_full, 
+            'Sigma_full': Sigma_full, 
+            'W_tilde_full': W_tilde_full,
+            'V_tilde_reduced': V_tilde_reduced, 
+            'Sigma_reduced': Sigma_reduced, 
+            'W_tilde_reduced': W_tilde_reduced
+        }
     else:
         return eigen_values
 
@@ -94,33 +101,38 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
 def plot_complex(
     number_matrix,
     title = None, legend = None,
-    size_figure = (15, 10), size_dots = plt.rcParams['lines.markersize'] ** 2
+    figure_size = (15, 10),
+    markers_size = None, markers_shapes = None
 ):
 
-    fig = plt.figure(figsize = size_figure)
+    if markers_size == None:
+        markers_size = plt.rcParams['lines.markersize'] ** 2
 
-    marker_array = ["o","x"]
+    if markers_shapes == None:
+        markers_shapes = ['o'] * len(number_matrix)
 
-    for number_array, i in zip(number_matrix,range(len(number_matrix))):
+    fig = plt.figure(figsize = figure_size)
+
+    for i, number_array in enumerate(number_matrix):
 
         plt.scatter(
             *np.array([
                 [number.real, number.imag]
                 for number in number_array
             ]).T,
-            s = size_dots,
-            marker = marker_array[i%2]
+            s = markers_size,
+            marker = markers_shapes[i]
         )
-
-    plt.grid(linestyle = ':')
-    plt.xlabel('$\Re$')
-    plt.ylabel('$\Im$')
 
     if title != None:
         plt.suptitle(title)
 
     if legend != None:
         plt.legend(legend)
+
+    plt.xlabel('$\Re$')
+    plt.ylabel('$\Im$')
+    plt.grid(linestyle = ':')
 
     fig.show()
 
