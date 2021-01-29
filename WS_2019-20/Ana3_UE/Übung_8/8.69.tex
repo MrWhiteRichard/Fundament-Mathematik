@@ -20,7 +20,61 @@ mit der Flächenformel.
 
 \begin{solution}
 
-ToDo!
+Sei $A_R$ der obere Kegelmantel.
+Wir wollen Satz 4.2.15 anwenden, um $\mathcal{H}(A_R)$ auszurechnen.
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 4.2.15.png}
+
+Um das $f$ für die Parametrisierung herauszufinden, setzen wir für $x_1$, $x_2$, und $x_3$ ein.
+
+\begin{align*}
+    &
+    z
+    \stackrel{!}{<}
+    (R - \sqrt{(f(z) \cos \theta)^2 + (f(z) \sin \theta)^2}) h
+    =
+    (R - |f(z)|) h \\
+    \impliedby &
+    f(z) = R - \frac{z}{h} \geq 0
+\end{align*}
+
+Weil $x_1 = x_2 = 0$ sein kann, ist $z \in (a, b)$, mit $a := 0$ und $b := R h$.
+
+\begin{align*}
+    \implies
+    \mathcal{H}(A_R)
+    & =
+    2 \pi
+    \Int[a][b]
+    {
+        |f(z)| \sqrt{1 + f^\prime(z)^2}
+    }{z} \\
+    & =
+    2 \pi
+    \Int[0][R h]
+    {
+        \pbraces{R - \frac{z}{h}}
+        \sqrt{1 + \pbraces{-\frac{1}{h}}^2}
+    }{z} \\
+    & =
+    2 \pi \sqrt{1 + \frac{1}{h^2}}
+    \pbraces
+    {
+        R
+        \Int[0][R h]{}{z}
+        -
+        \frac{1}{h}
+        \Int[0][R h]{z}{z}
+    } \\
+    & =
+    2 \pi \sqrt{1 + \frac{1}{h^2}}
+    \pbraces{R^2 h - \frac{1}{h} \frac{1}{2} R^2 h^2} \\
+    & =
+    2 \pi \sqrt{1 + \frac{1}{h^2}}
+    \frac{R^2 h}{2} \\
+    & =
+    \pi R^2 \sqrt{h^2 + 1}
+\end{align*}
 
 \end{solution}
 
