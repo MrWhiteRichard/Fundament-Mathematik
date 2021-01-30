@@ -11,54 +11,56 @@ Sei nun $f \in H(\C, \C)$ holomorph.
 Für $n = 1, \dots, k$, sei dazu $r_n$ hinreichend klein, sodass $B(\lambda_n, r_n) \subset U_n$.
 Wir wenden Korollar \ref{corr:keldysh_multi} sowie die Cauchyche Integralformel und den Cauchychen Integralsatz an, und erhalten
 
-\begin{multline} \label{eq:cauchysche_integral_formel_satz}
-    \frac{1}{2 \pi i}
-    \Int[\Gamma]
-    {
-        f(\lambda) A(\lambda)^{-1}
-    }{\lambda}
-    \stackrel
-    {
-        \ref{keldysh_multi}
-    }{=}
-    \frac{1}{2 \pi i}
-    \Int[\Gamma]
-    {
-        f(\lambda)
-        \pbraces
-        {
-            \sum_{n=1}^k
-                \frac{1}{\lambda - \lambda_n} S_n
-                +
-                R(\lambda)
-        }
-    }{\lambda} \\
-    =
-    \sum_{n=1}^k
-        \underbrace
-        {
-            \frac{1}{2 \pi i}
-            \Int[\partial B(\lambda_n, r_n)]
-            {
-                \frac{f(\lambda)}{\lambda - \lambda_n}
-            }{\lambda}
-        }_{=f(\lambda_n)}
-        S_n
-    +
-    \frac{1}{2 \pi i}
-    \underbrace
-    {
+\begin{align} \label{eq:cauchysche_integral_formel_satz}
+    \begin{split}
+        \frac{1}{2 \pi i}
         \Int[\Gamma]
         {
-            f(\lambda) R(\lambda)
+            f(\lambda) A(\lambda)^{-1}
         }{\lambda}
-    }_{=0}
-    =
-    \sum_{n=1}^k
-        f(\lambda_n)
-        \sum_{l=1}^{L_n}
-            v_{n, l} w_{n, l}^\ast.
-\end{multline}
+        & \stackrel
+        {
+            \ref{corr:keldysh_multi}
+        }{=}
+        \frac{1}{2 \pi i}
+        \Int[\Gamma]
+        {
+            f(\lambda)
+            \pbraces
+            {
+                \sum_{n=1}^k
+                    \frac{1}{\lambda - \lambda_n} S_n
+                    +
+                    R(\lambda)
+            }
+        }{\lambda} \\
+        & =
+        \sum_{n=1}^k
+            \underbrace
+            {
+                \frac{1}{2 \pi i}
+                \Int[\partial B(\lambda_n, r_n)]
+                {
+                    \frac{f(\lambda)}{\lambda - \lambda_n}
+                }{\lambda}
+            }_{=f(\lambda_n)}
+            S_n
+        +
+        \frac{1}{2 \pi i}
+        \underbrace
+        {
+            \Int[\Gamma]
+            {
+                f(\lambda) R(\lambda)
+            }{\lambda}
+        }_{=0} \\
+        & =
+        \sum_{n=1}^k
+            f(\lambda_n)
+            \sum_{l=1}^{L_n}
+                v_{n, l} w_{n, l}^\ast.
+    \end{split}
+\end{align}
 
 Diese Formel bildet die Grundlage zur Berechnung der Eigenwerte.
 Sei $J$ die Summe aller Eigenraum-Dimensionen, d.h.
