@@ -1,5 +1,5 @@
-\chapter{Einführung}
-
+\chapter{Einleitung}
+Wir beschäftigen uns in dieser Arbeit mit der Lösung nichtlinearer Eigenwertprobleme.
 Die herkömmliche (lineare) Formulierung des Eigenwert-Problems dürfte bekannt sein:
 Sei $A \in \C^{N \times N}$ eine Matrix.
 Suche $\lambda \in \C$ und $v \in \C^N \setminus \Bbraces{0}$, sodass $A v = \lambda v$, oder
@@ -13,9 +13,9 @@ Suche $\lambda \in \C$ und $v \in \C^N \setminus \Bbraces{0}$, sodass $A v = \la
 
 Dabei bezeichnet $\ker B(\lambda)$ den Eigenraum von $\lambda$.
 In manchen Anwendungen ist die Funktion $B$ jedoch nicht mehr linear oder gar polynomiell.
-Herkömmliche Algorithmen zur Suche von Eigenwerten sind jedoch bloß für lineare $B$, so wie in \eqref{eq:lineares_ewp}, konzipiert.
+Herkömmliche Algorithmen zur Suche von Eigenwerten sind jedoch bloß für lineare $B$ konzipiert.
 
-Die wohl naheliegendste Variante, einer nichtlinearen Eigenwert-Suche ist eine Nullstellen-Suche
+Die wohl naheliegendste Variante einer nichtlinearen Eigenwert-Suche ist eine Nullstellen-Suche
 des nichtlinearen charakteristischen Polynoms $\lambda \mapsto \det B(\lambda)$.
 Bereits bei linearen Eigenwertproblemen kann man folgende Nachteile erkennen:
 
@@ -23,8 +23,16 @@ Bereits bei linearen Eigenwertproblemen kann man folgende Nachteile erkennen:
     \item Die Berechnung der Determinante ist (insbesondere für große Matrizen) überaus kostspielig
     und numerisch instabil.
     \item Wir bekommen bloß eine Nullstelle (Eigenwert).
-    \item Selbst wenn ein Algorithmus wie das Newton-Verfahren zur Nullstellen-Suche verwendet wird, wird immer noch ein geeigneter Startwert benötigt.
+    \item Selbst wenn ein vergleichsweise effizienter Algorithmus wie das Newton-Verfahren zur Nullstellen-Suche verwendet wird, wird immer noch ein geeigneter Startwert benötigt.
 \end{enumerate}
 
-Die, in \cite{BEYN20123839} vorgeschlagene Konturintegral-Methode wird all diese Probleme umgehen.
-Deren Grundbaustein ist folgendes Resultat aus der komplexen Analysis.
+Die, in \cite{BEYN20123839} vorgeschlagene Konturintegral-Methode wird auf elegante Weise all diese Probleme umgehen.
+Die Grundidee des Algorithmus liegt darin mittels Konturintegralen und dem
+Satz von Keldysh das nichtlineare Eigenwertproblem auf ein gewöhnliches,
+lineares Problem zu reduzieren, welches mit bekannten Methoden wie dem QR-Verfahren
+gelöst werden kann.
+Der Beweis des Satzes aus der komplexen Analysis soll nicht Thema dieser Arbeit werden, wir beschäftigen uns
+stattdessen ausführlicher mit der Herleitung und Analyse der Konturintegral-Methode, wobei wir uns größtenteils an \cite{EWPs} orientieren werden.
+
+Abschließend werden wir noch eine Anwendung des Algorithmus
+auf das \Quote{Hadeler Problem}, welches in \cite{saad2020rational} eingeführt wird, präsentieren.
