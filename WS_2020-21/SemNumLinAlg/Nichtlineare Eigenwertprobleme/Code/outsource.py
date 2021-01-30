@@ -26,18 +26,19 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
     """
     A ... matrix-function
     N ... number of rows/columns of A(lambda)
-    j ... number of expected eigen values in ball B_R(z) ...
+    j ... number of expected eigen values in ball B_R(z)
     m ... number of quadrature nodes
     R ... ball-radius
     z ... ball-center
-    tol ... tolerance for singular value decomposition reduction
+    tol ... tolerance for SVD reduction
     """
 
     # random matrix
     V_hat = np.random.random((N, j))
 
     # ------------------------ #
-    # step 1: calculate A_0 and A_1
+    # step 1:
+    # calculate A_0 and A_1
 
     # integrand of A_0 and A_1 (with index 0 resp. 1)
     def integrand(index, lamda):
@@ -57,10 +58,15 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
     A_1 = Q(m, f_1, R, z)
 
     # ------------------------ #
-    # step 2: calculate and reduce singular value decomposition to J singular values
+    # step 2:
+    # calculate SVD
+    # reduce to J singular values
 
-    # get full i.e. unreduced singular value decomposition
-    V_tilde_full, Sigma_full, W_tilde_full = linalg.svd(A_0, full_matrices = False)
+    # get full i.e. unreduced SVD
+    V_tilde_full, Sigma_full, W_tilde_full = linalg.svd(
+        A_0,
+        full_matrices = False
+    )
 
     # mask for SVD reduction (kill zero values)
     mask = np.abs(Sigma_full) > tol
@@ -71,10 +77,18 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
     W_tilde_reduced = W_tilde_full[mask, :]
 
     # ------------------------ #
-    # step 3: calculate eigen values (e.g. via QR-method)
+    # step 3:
+    # calculate eigen values of linearized problem
+
+    matrices = (
+        V_tilde_reduced.conj().T,
+        A_1,
+        W_tilde_reduced.conj().T,
+        np.diag(Sigma_reduced ** (-1))
+    )
 
     eigen_values = linalg.eigvals(
-        V_tilde_reduced.conj().T @ A_1 @ W_tilde_reduced.conj().T @ np.diag(Sigma_reduced ** (-1))
+        matrices[0] @ matrices[1] @ matrices[2] @ matrices[3]
     )
 
     if debug:
