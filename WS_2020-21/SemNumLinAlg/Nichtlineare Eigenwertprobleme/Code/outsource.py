@@ -95,16 +95,16 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
         return {
             'eigen_values': eigen_values,
             'V_hat': V_hat,
-            'integrand': integrand, 
-            'f_0': f_0, 
+            'integrand': integrand,
+            'f_0': f_0,
             'f_1': f_1,
-            'A_0': A_0, 
+            'A_0': A_0,
             'A_1': A_1,
-            'V_tilde_full': V_tilde_full, 
-            'Sigma_full': Sigma_full, 
+            'V_tilde_full': V_tilde_full,
+            'Sigma_full': Sigma_full,
             'W_tilde_full': W_tilde_full,
-            'V_tilde_reduced': V_tilde_reduced, 
-            'Sigma_reduced': Sigma_reduced, 
+            'V_tilde_reduced': V_tilde_reduced,
+            'Sigma_reduced': Sigma_reduced,
             'W_tilde_reduced': W_tilde_reduced
         }
     else:
@@ -115,7 +115,7 @@ def integral_method(A, N, j, m, R, z, tol, debug = False):
 def plot_complex(
     number_matrix,
     title = None, legend = None,
-    figure_size = (15, 10),
+    figure_size = (15, 15),
     markers_size = None, markers_shapes = None
 ):
 
@@ -139,13 +139,15 @@ def plot_complex(
         )
 
     if title != None:
-        plt.suptitle(title)
+        plt.suptitle(title, fontsize = 25)
 
     if legend != None:
-        plt.legend(legend)
+        plt.legend(legend, fontsize = 20, loc = "upper right")
 
-    plt.xlabel('$\Re$')
-    plt.ylabel('$\Im$')
+    plt.xticks(fontsize = 20)
+    plt.xlabel('$\Re$', fontsize = 25)
+    plt.yticks(fontsize = 20)
+    plt.ylabel('$\Im$', fontsize = 25)
     plt.grid(linestyle = ':')
 
     fig.show()
