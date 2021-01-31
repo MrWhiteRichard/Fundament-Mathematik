@@ -445,7 +445,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[14]]></Code>
+							<Code><![CDATA[12]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1604587378416</Id>
@@ -589,7 +589,7 @@ Unconfirmed*1/N]]></Formula>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[4]]></Code>
+							<Code><![CDATA[5]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1608564810541</Id>
@@ -1054,7 +1054,7 @@ Unconfirmed*1/N]]></Formula>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 10000 && contactsPerDay != 14 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over !=2]]></Condition>
+						<Condition><![CDATA[Infected <= 10000 && contactsPerDay != 12 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over !=2]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 6;
 if(time() > 291){
@@ -1086,15 +1086,15 @@ openthecountry_1.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[30]]></Code>
+							<Code><![CDATA[7]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
 					<Action><![CDATA[temp = Unconfirmed;
-masstestrate = 0.5;
-Unconfirmed = Unconfirmed*0.5;
-Confirmed = Confirmed+temp*0.5;]]></Action>
+masstestrate = 0.9;
+Unconfirmed = Unconfirmed*0.1;
+Confirmed = Confirmed+temp*0.9;]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565907323</Id>
@@ -1120,7 +1120,7 @@ Confirmed = Confirmed+temp*0.5;]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[30]]></Code>
+							<Code><![CDATA[7]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
@@ -1176,7 +1176,7 @@ Confirmed = Confirmed+temp*0.5;]]></Action>
 							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
 						</Rate>
 						<OccurrenceAtTime>false</OccurrenceAtTime>
-						<OccurrenceDate>1597219200000</OccurrenceDate>
+						<OccurrenceDate>1597737600000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
 							<Code><![CDATA[170]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
@@ -1216,7 +1216,7 @@ Confirmed = Confirmed+temp*0.5;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 14 && contactsPerDay !=9 && first_lockdown_over !=2]]></Condition>
+						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 12 && contactsPerDay !=9 && first_lockdown_over !=2]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 9;
 is_lockdown = 0;

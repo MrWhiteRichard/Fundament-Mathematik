@@ -3,7 +3,7 @@
 Es gelten die Bezeichnungen des vorherigen Kapitels.
 Sei $\Gamma \subset \Lambda$ zudem eine positiv orientierte Jordan-Kurve (d.h. ein geschlossener Weg).
 $\Gamma$ umschließe alle Eigenwerte $\lambda_1, \dots, \lambda_k \not \in \Gamma$, und sonst keine weiteren.
-Eine Veranschaulichung dazu ist in Abbildung \ref{fig:gebiet_kurve_ews} zu finden.
+Eine Veranschaulichung davon ist in Abbildung \ref{fig:gebiet_kurve_ews} zu finden.
 
 \input{Kapitel/3/fig-gebiet_kurve_ews.tex}
 
@@ -158,7 +158,7 @@ Sei $D$ die Diagonal-Matrix der Eigenwerte, ihrer Vielfachheit nach aufgeführt,
     \C^{N \times N}.
 \end{align}
 
-Sei $\hat V \in \C^{N \times j}$ zunächst beliebig mit $J \leq j \ll N$.
+Sei $\hat V \in \C^{N \times j}$ zunächst eine beliebige Zufallsmatrix mit $J \leq j \ll N$.
 Die folgenden Matrizen $A_0$ und $A_1$ sind der Grund für die Namensgebung der \Quote{Konturintegral-Methode}.
 
 \begin{align} \label{eq:integral_matrizen}
@@ -167,7 +167,7 @@ Die folgenden Matrizen $A_0$ und $A_1$ sind der Grund für die Namensgebung der 
     A_1 := \frac{1}{2 \pi i} \Int[\Gamma]{\lambda^1 A(\lambda)^{-1} \hat V}{\lambda} \in \C^{N \times j}
 \end{align}
 
-\eqref{eq:cauchysche_integral_formel_satz} lässt uns nun $A_0$ und $A_1$ wie folgt umformulieren.
+Mittels \eqref{eq:cauchysche_integral_formel_satz} lassen sich nun $A_0$ und $A_1$ wie folgt umformen.
 Letztere Gleichheit ist dabei eine elementare, aber sperrige Rechnung.
 
 \begin{align} \label{eq:integral_matrizen_resultat_compact}
@@ -185,14 +185,14 @@ Letztere Gleichheit ist dabei eine elementare, aber sperrige Rechnung.
     }{\lambda}
     \stackrel
     {
-        \eqref{eq:integral_matrizen_resultat}
-    }{}
+        \eqref{eq:cauchysche_integral_formel_satz}
+    }{=}
     \sum_{n=1}^k
         \lambda_n^i
         \sum_{l=1}^{L_n}
             v_{n, l} w_{n, l}^\ast
     \hat V
-    \stackrel{!}{=}
+    =
     V D^i W^\ast \hat V,
     \quad
     i = 0, 1
