@@ -91,7 +91,7 @@ are the Susceptible, Exposed, Confirmed, Unconfirmed and Recovered compartments.
 \section{Parameters}
 
 We choose our contactsPerDay to be 12 before the start of the pandemic,
-based on [CITATION NEEDED]. With our lockdown events, which we will discuss
+based on \cite{Spiegel}. With our lockdown events, which we will discuss
 later, this value will vary through the course of the pandemic.
 Inseperably intertwined with the contactsPerDay parameter is our parameter
 for the InfectionProbability. Since our formula for the Infections states
@@ -106,7 +106,7 @@ a change in the first parameter would have the same effect on our model
 as the analogous change in the second parameter.
 This posed the challenging task of finding realistic values for those parameters.
 Therefore we determined our parameter for the InfectionProbability by comparing
-our model results with the data provided by [CITATION NEEDED] and finally
+our model results with the data provided by \cite{OrfCorona} and finally
 settled for the baseline
 
 \begin{align*}
@@ -117,9 +117,9 @@ Furthermore to reflect the seasonal differences in the course of the pandemic,
 we lowered the InfectionProbability in the summer to $0.02$. \\
 Next we needed to determine the value of gamma, which is determined by the time
 it takes from contracting the virus to becoming infectious oneself.
-We refer to [CITATION NEEDED], where a feasible parameter value of $5$ is given. \\
+We refer to \cite{RobertKochInstitut}, where a feasible parameter value of $5$ is given. \\
 For the rate of positive tests, we took a look at the current state in Austria,
-where approximately $65\%$ of infection go by unnoticed [CITATION NEEDED].
+where approximately $65\%$ of infection go by unnoticed \cite{MassTests}.
 Of course one constant value for the rate of positive tests cannot perfectly
 modeled an ever changing pandemic, however, continuously changing the value
 throughout the pandemic seemed to be a too daunting task to handle. \\
@@ -219,4 +219,7 @@ the number of contactsPerDay to pre-pandemic levels.
 \caption{Days of lockdown with different participation rate and interval between masstests}
 \end{table}
 To compare: without any masstests at all the number of days in lockdown would be $156$.
+
+\printbibliography
+
 \end{document}
