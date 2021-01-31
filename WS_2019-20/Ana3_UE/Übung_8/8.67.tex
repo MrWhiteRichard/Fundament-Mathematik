@@ -10,7 +10,152 @@ Berechnen Sie das Volumen von $K \cap Z$, wobei $K = \Bbraces{(x, y, z): x^2 + y
 
 \begin{solution}
 
-ToDo!
+Der Radius von $K$ ist $\sqrt{16} = 4$ und der $x$-$y$-Radius von $Z$ ist $\sqrt 4 = 2$.
+Wir teilen $K \cap Z$ in zwei beschränkte Zyliner $B_\pm$ und Kappen $A_\pm$.
+Sei $a$ die Höhe von $B_\pm$ und $b$ der Radius von $K$.
+Dann ist $b - a$ die Höhe von $A_\pm$.
+
+\begin{center}
+    \begin{tikzpicture}[scale = 0.5]
+
+        % Achsen
+        \draw [->] (-10, 0) -- (10, 0)  node [right] {$x$};
+        \draw [->] (0, -10) -- (0, 10)  node [above] {$z$};
+        \draw [->] (5, 10) -- (-5, -10) node [below left] {$y$};
+
+        % Kugel $K$
+        \draw (0, 0) circle (6 cm);
+
+        \draw [dashed] (-6, 5.2) node [left] {$a$} -- (6, 5.2);
+        \draw [dashed] (-6, 6)   node [left] {$b$} -- (6, 6);
+
+        % Zylinder $Z$
+        \draw (-3, 8) -- (-3, -8)
+                      .. controls (-3, -10) and ( 3, -10) .. ( 3, -8)
+                      -- ( 3,  8)
+                      .. controls ( 3,  10) and (-3,  10) .. (-3,  8)
+                      .. controls (-3,  6)  and ( 3,  6)  .. ( 3,  8);
+
+        % Kappen-Boden bzw. -Deckel
+        \draw (-3,  5.2) -- (3,  5.2);
+        \draw (-3, -5.2) -- (3, -5.2);
+
+        \draw (0, 3) -- (5.2, 3);
+        \draw (0, 0) -- (5.2, 3);
+        \draw (0.5, 3) arc (0 : -90 : 0.5) (0, 2.5);
+        \draw (0.23, 2.75) node {$\cdot$};
+
+        \draw (-0.5,  5.6) node {\scriptsize $A_+$};
+        \draw ( 0.5, -5.6) node {\scriptsize $A_-$};
+        \draw (-0.5,  3)   node {\scriptsize $B_+$};
+        \draw ( 0.5, -3)   node {\scriptsize $B_-$};
+
+        \draw (-1.5, 0) node [below]       {\scriptsize $2$};
+        \draw ( 4,   3) node [above]       {\scriptsize $f(z)$};
+        \draw ( 4,   2) node [below right] {\scriptsize $4$};
+
+    \end{tikzpicture}
+\end{center}
+
+Der Abbildung ist Folgendes zu entnehmen.
+
+\begin{gather*}
+    a = \sqrt{4 - 2} = \sqrt 2,
+    \quad
+    b = \sqrt{16} = 4, \\
+    \sqrt{z^2 + f(z)^2} \stackrel{!}{=} \sqrt 4
+    \iff
+    f(z) := \sqrt{4 - z^2}
+\end{gather*}
+
+Wir wollen $A_+$ mit Zylinderkoordinaten parametrisieren.
+Das wurde netterweise in Beispiel 4.3.3 bereits gemacht.
+
+\includegraphicsgraphicsboxed
+{Ana3/Ana3 - Beispiel 4.3.3.1.png}
+{Ana3/Ana3 - Beispiel 4.3.3.2.png}
+
+\begin{align*}
+    \psi:
+    D_+ := \Bbraces{(r, \varphi, z): r \in [0, f(z)], \varphi \in [0, 2 \pi), z \in [a, b]} \to A_+,
+    (r, \varphi, z)
+    \mapsto
+    \begin{pmatrix}
+        r \cos \varphi \\
+        r \sin \varphi \\
+        z
+    \end{pmatrix}
+\end{align*}
+
+\begin{multline*}
+    \implies
+    \lambda^3(A_+)
+    =
+    \Int[A_+]{}{\lambda^3}
+    \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    \Int[D_+]{r}{(r, \varphi, z)}
+    =
+    \Int[a][b]
+    {
+        \Int[0][2 \pi]
+        {
+            \Int[0][f(z)]
+            {
+                r
+            }{r}
+        }{\varphi}
+    }{z} \\
+    =
+    2 \pi
+    \Int[a][b]
+    {
+        \frac{1}{2}
+        f(z)^2
+    }{z}
+    =
+    \pi
+    \Int[a][b]
+    {
+        4 - z^2
+    }{z}
+    =
+    \pi
+    \pbraces
+    {
+        4 (b - a)
+        -
+        \frac{1}{3}
+        (b^3 - a^3)
+    }
+\end{multline*}
+
+$A_-$ hat dasselbe Volumen, wie $A_+$.
+Das Volument der Zyliner $B_\pm$ ist Grundfläche (Radius Quadrat mal Pi) mal Höhe.
+
+\begin{align*}
+    \implies
+    \lambda^3(B_\pm)
+    =
+    \sqrt 4^2 \pi a
+\end{align*}
+
+Nun müssen wir nur noch die Volumina der, bis auf $\lambda^3$-Nullmengen disjunkten, Teile von $K \cap Z$ aufsummieren.
+
+\begin{align*}
+    \implies
+    \lambda^3(K \cap Z)
+    =
+    \lambda^3(A_+)
+    +
+    \lambda^3(A_-)
+    +
+    \lambda^3(B_+)
+    +
+    \lambda^3(B_-)
+\end{align*}
 
 \end{solution}
 

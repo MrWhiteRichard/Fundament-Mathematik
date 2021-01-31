@@ -1,4 +1,4 @@
-\subsection*{Zusammenfassung}
+\section{Überblick}
 
 Wenn wir in \eqref{eq:integral_matrizen_resultat_compact} explizit für $i = 0, 1$ einsetzen, erhalten wir
 
@@ -8,9 +8,8 @@ Wenn wir in \eqref{eq:integral_matrizen_resultat_compact} explizit für $i = 0, 
     A_1 = V D W^\ast \hat V.
 \end{align}
 
-Nun gilt es, $D$, die Diagonal-Matrix aller Eigenwerte, zu bestimmen.
-$A_0$ und $A_1$ bieten dazu einen vielversprechenden Anfang.
-Unsere Hoffnung besteht nämlich darin, $D$ aus $A_1$ mittels $A_0$ irgendwie zu \Quote{isolieren}.
+Nun gilt es, $D$, die Diagonal-Matrix aller Eigenwerte aus den Matrizen $A_0$ und $A_1$ zu berechnen.
+Unsere Hoffnung besteht nämlich darin, $D$ aus $A_1$ mittels $A_0$ zu \Quote{isolieren}.
 
 Dazu müssen $A_0$ und $A_1$ zunächst \Quote{berechnet}, bzw. mit einer Quadraturformel approximiert werden.
 Das motivieren wir im ersten Schritt mit einer komplexen Variante der summierten Trapezregel.
@@ -25,13 +24,10 @@ Wir verwenden lediglich den Befehl \texttt{linalg.eigvals}, aus der \texttt{scip
 \begin{algorithm}[H]
 	\caption{Integral-Methode}
     \begin{algorithmic}[0]
-        \Procedure{Integral-Methode Zusammenfassung}{}
-            \State Berechne (bzw. approximiere) $A_0, A_1 \in \C^{N \times j}$;
-            \State Berechne und reduziere eine Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
-            \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1} \sim D$;
-            \State \Return $\lambda_1, \dots, \lambda_k$
-		\EndProcedure
+          \State Berechne (bzw. approximiere) $A_0, A_1 \in \C^{N \times j}$;
+          \State Berechne eine reduzierte Singulärwert-Zerlegung $A_0 = \tilde V \Sigma \tilde W^\ast$ auf $J$ Singulärwerte;
+          \State Berechne Eigenwerte $\lambda_1, \dots, \lambda_k$ der Matrix $\tilde V A_1 \tilde W \Sigma^{-1} \sim D$;
+          \State \Return $\lambda_1, \dots, \lambda_k$
     \end{algorithmic}
-    \caption{}
     \label{alg:integral_methode_zusammenfassung}
 \end{algorithm}

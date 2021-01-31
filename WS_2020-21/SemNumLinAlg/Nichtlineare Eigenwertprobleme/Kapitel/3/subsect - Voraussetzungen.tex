@@ -1,12 +1,14 @@
-\subsection*{Voraussetzungen}
+\section{Voraussetzungen}
 
-Man sei sich dabei bewusst, dass die einzigen Objekte, mit denen der Algorithmus \ref{alg:integral_methode_zusammenfassung} letztenendes operiert, $\hat V$, $A_0$, $A_1$, sowie $\tilde V$, $\Sigma$, $\tilde W$, voll bzw. reduziert, sind.
-Bei der Herleitung des Algorithmus' haben wir jedoch auch auf $V$, $W$, $D$, und $S$ zurückgegriffen.
-Ohne Kenntnis der gesuchten Eigenpaare sind diese aber sowieso nicht berechenbar.
+Bei der Herleitung des Algorithmus' haben wir unter anderem auf die Matrizen
+$V$, $W$, $D$, und $S$ zurückgegriffen. Man sollte sich aber bewusst sein, dass
+diese Matrizen bei der Implementierung des Algorithmus nicht verwendet werden,
+nachdem sie ohne Kenntnis der gesuchten Eigenpaare nicht berechenbar sind.
 
 Die Tatsache, dass sie nicht im Algorithmus \ref{alg:integral_methode_zusammenfassung} vorkommen, heißt aber nicht, dass ihre Eigenschaften (z.B. $S \in \GL_J(\C)$) unwichtig sind.
-Wählt man z.B. eine zu kleine Matrix $\hat V$, so kann $S \not \in \GL_J(\C)$.
-Die numerischen Resultate können dann in der Tat inkorrekt sein.
+Wählt man z.B. eine zu kleine Matrix $\hat V$, könnten wir unter Umständen
+die Regularität von $S$ verlieren.
+Die numerischen Resultate werden dann in der Regel inkorrekt sein.
 
 Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassung} braucht, um korrekte Ergebnisse zu liefern.
 
@@ -17,20 +19,19 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
     Sollte dies passieren, müsste man die Kurve $\Gamma$ anpassen.
 
     \item $V, W \in \C^{N \times J}$ haben vollen Rang $J$, d.h. deren Spalten seien linear unabhängig.
-    Diese Annahme ist sinnvoll.
 
     $V, W$ bestehen ja schließlich aus Rechts- bzw. Links-Eigenvektoren.
-    Die Voraussetzung gilt also zumindest im linearen Fall.
-    
+    Die Voraussetzung gilt zumindest im linearen Fall, daher ist es durchaus
+    plausibel sie auch im nichtlinearen Fall anzunehmen.
+
     \item $\hat V$ sei eine hinreichend große, gleichverteilt gewählte Zufallsmatrix, mit vollem Rang $j$.
-    Diese Annahme ist sinnvoll.
 
-    Zur Illustration, sei dazu $K$, anstelle von $\C$, ein endlicher Körper und $\hat V \in K^{j \times j}$.
-    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit
+    Zur Illustration, dass auch diese Annahme sinnvoll ist, sei dazu $K$ ein endlicher Körper und $\hat V \in K^{j \times j}$.
+    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit:
 
-    \begin{multline*}
+    \begin{align*}
         \mathbf{P}(\hat V \in \GL_j(K))
-        =
+        &=
         \frac
         {
             |\GL_j(K)|
@@ -47,7 +48,7 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             {
                 |K|^j - |K|^{i-1}
             } \\
-        =
+        &=
         \prod_{i=1}^j
             \frac
             {
@@ -63,7 +64,7 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             }
         \xrightarrow{|K| \to |\C|}
         1.
-    \end{multline*}
+    \end{align*}
 
     \item $W^\ast \hat V \in C^{J \times j}$ habe vollen Rang $J \leq j$.
     Diese Annahme ist sinnvoll.
@@ -99,28 +100,24 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             \hat v_i \in (\Span W)^{\bot_2}.
     \end{align*}
 
-    Das ist aber vernachlässigbar.
-    Bei der Vektoriteration (Potenzmethode) geht man schließlich auch davon aus, dass der Startvektor (Zufallsvektor) nicht orthogonal auf den Eigenraum, des betrags-größten Eigenwerts, steht.
-    Hier haben wir es zu tun, mit einer Zufallsmatrix $\hat V \in \C^{N \times j}$ aus $j$ Zufallsvektoren $\hat v_1, \dots, \hat v_j$, und der Summe aller Links-Eigenräume, d.h.
+    In der Praxis wird dieser Fall zum Glück kaum eintreten. Hier sieht man
+    auch den Grund, warum wir $\hat{V}$ als Zufallsmatrix gewählt haben.
+    Würde man beispielsweise stattdessen als Spalten in $\hat{V}$ Einheitsvektoren
+    wählen, könnte diese Bedingung in der Praxis durchaus verletzt werden.
+    Bei der Vektoriteration (Potenzmethode) geht man beispielweise auch davon aus,
+    dass der Startvektor (Zufallsvektor) nicht orthogonal auf den Eigenraum
+    des betrags-größten Eigenwerts steht.
 
-    \begin{align*}
-        \Span W
-        =
-        \sum_{n=1}^k
-            \ker A^\ast(\lambda_n).
-    \end{align*}
-
-    \item $S := \tilde V^\ast V \in \C^{J \times J}$ habe vollen Rang $J$, also sogar $S \in \GL_J(\C)$.
-    Diese Annahme ist, analog zum vorigen Punkt, sinnvoll.
-    Es gilt nämlich
+    \item $S := \tilde V^\ast V \in \C^{J \times J}$ habe vollen Rang $J$, also $S \in \GL_J(\C)$.
+    Diese Annahme ist, analog zum vorigen Punkt sinnvoll, da
 
     \begin{align*}
         S^\ast
-        =
+        &=
         V^\ast \tilde V
         =
-        (v_1, \dots, v_J)^\ast (\tilde v_1, \dots, \tilde v_J)
-        =
+        (v_1, \dots, v_J)^\ast (\tilde v_1, \dots, \tilde v_J) \\
+        &=
         \begin{pmatrix}
             v_1^\ast \tilde v_1 & \cdots & v_1^\ast \tilde v_J \\
             \vdots              & \ddots & \vdots              \\
@@ -134,7 +131,7 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
         \end{pmatrix}.
     \end{align*}
 
-    $\tilde V \in C^{N \times J}$ hat, als Teilmatrix einer unitären $\in \U_N(\C)$, vollen Rang $J$, d.h. $\tilde v_1, \dots, \tilde v_J$ sind linear unabhängig.
+    Die Matrix $\tilde V \in C^{N \times J}$ hat, als Teilmatrix einer unitären Matrix, vollen Rang $J$, d.h. $\tilde v_1, \dots, \tilde v_J$ sind linear unabhängig.
     Die Spalten von $S^\ast$ wären also genau dann linear abhängig, wenn eine davon $0$ ist, d.h.
 
     \begin{align*}
@@ -146,15 +143,6 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             \tilde v_i \in (\Span V)^{\bot_2}.
     \end{align*}
 
-    Das ist aber vernachlässigbar.
-    $\tilde V$ hängt schließlich von $\hat V$ ab, ist also in gewisser Weise zufällig.
-    Hier haben wir es zu tun, mit einer (Quasi-)Zufallsmatrix $\tilde V \in \C^{N \times J}$ aus $J$ (Quasi-)Zufallsvektoren $\tilde v_1, \dots, \tilde v_J$, und der Summe aller Rechts-Eigenräume, d.h.
-
-    \begin{align*}
-        \Span V
-        =
-        \sum_{n=1}^k
-            \ker A(\lambda_n).
-    \end{align*}
+    Wieder ist dieser Fall in der Praxis vernachlässigbar.
 
 \end{enumerate}

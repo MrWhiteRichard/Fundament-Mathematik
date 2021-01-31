@@ -74,20 +74,33 @@
 
 \begin{document}
 
-\subject{Lehrveranstaltungstitel}
-\title{Titel\\}
+\subject{Modeling \& Simulation}
+\title{SIR Model - Mass Tests}
 
-\publishers{Betreuer: Max Mustermann }
+\publishers{Betreuer: Martin Bicher }
+
+
 \author{
-Max Mustermann jun.\\
-Studienkennzahl - Matrikelnummer\\
-Max Mustermann2\\
-Studienkennzahl - Matrikelnummer}
+Christian Göth \and
+Christian Sallinger \and
+Florian Schager \and
+Paul Winkler
+}
+
 \maketitle
 
 \section*{Abstract}
 
-Abstract comes here \dots
+In 2020 the COVID-19 pandemic caused worldwide suffering and deaths and the
+whole world is waiting for a vaccine. In winter 2020/2021 countries in Europe
+came up with the idea of executing nationwide mass tests to reduce the number
+of unconfirmed cases. This strategy should serve as an alternative to
+lockdown measures that force people to reduce their contacts.
+In this project we want to contrast these alternatives qualitatively and quantitatively
+by constructing a modified SIR Model to simulate the spread of the disease.
+With our model we want to answer the question:
+How many days of lockdown are necessary with different strategies of mass-testing?
+
 
 \newpage
 
@@ -95,64 +108,24 @@ Abstract comes here \dots
 
 \newpage
 
-\section{Aufgabenstellung}
+\section{Model Description}
 
-Eine nummerierte Gleichung:
-\begin{equation}
- a^2 + b^2 = c^2
-\end{equation}
+Our model is based on the classical SIR Model by Kermack and McKendrick,
+but in addition to the standard compartments Susceptible, Infectious, Recovered
+we introduce an extra Exposed compartment between the Susceptible and the Infectious.
+Furthermore we split the Infectious compartment into two seperate compartments:
+Confirmed and Unconfirmed. \\
+In our model we assume, that the persons in the Confirmed compartment are in
+quarantine and do not contribute to the infection rate anymore.
 
-Eine nicht nummerierte Gleichung:
-\begin{equation*}
- \al + \be + \g = 180
-\end{equation*}
 
-Eine Gleichung auf die verwiesen werden kann:
-\begin{equation}
-\label{eqn:Sinussatz}
- \frac{a}{sin(\al)} = \frac{b}{sin(\be)} = \frac{c}{sin(\g)}
-\end{equation}
 
-Gleichung (\ref{eqn:Sinussatz}) zeigt den Sinussatz.\\
+Causal Loop Diagram: \\
 
-\noindent
-Eine mehrzeilige Gleichung bei der jede Zeile nummeriert ist:
-\begin{eqnarray}
-  a &=& b\cdot \frac{sin(\al)}{sin(\be)} \\
-    &=& c\cdot \frac{sin(\al)}{sin(\g)}
-\end{eqnarray}
-Die Nummerierung einzelner Zeilen kann mit \verb|\nonumber| deaktiviert werden:
-\begin{eqnarray}
- \dot{\mathbf{x}}(t) &=& \begin{cases}
-                         f(t,\mathbf{x}) &, \text{ für } t>0 \\
-                         \mathbf{x}_0 &, \text{ für } t=0
-                       \end{cases} \\
- \mathbf{x}_0 &=& 1.5 \nonumber
-\end{eqnarray}
-Die Eingabe einer Matrix:
-$$ r\cdot
-\begin{pmatrix}
- cos(\p) & sin(\p) & 0 \\
- -sin(\p) & cos(\p) & 0 \\
- 0 & 0 & 1
-\end{pmatrix}
-$$
+
+Stock and Flow Diagram: \\
 
 \section{Modell}
-
-Das mathematische Modell wurde \cite{zeigler2000theory} entnommen.
-In \cite{BEBG93} findet sich eine Implementierung in ASCL dazu.
-
-Einfügen eines Bildes:
-\begin{figure}[!ht]
- \centering
- \includegraphics[width=\textwidth]{./Bilder/ClassEAmplifier.pdf}
- % bBheightode23last5Sec.png: 1130x487 pixel, 90dpi, 31.89x13.75 cm, bb=0 0 904 390
- \caption{Dies ist ein Beispielbild.}
- \label{fig:Bild1}
-\end{figure}
-
-Abbildung \ref{fig:Bild1} zeigt ein Beispielbild.
 
 \subsection{Unterkapitel 2.1}
 \label{sec:Unterkapitel21}
@@ -170,7 +143,7 @@ Abbildung \ref{fig:Bild1} zeigt ein Beispielbild.
 \subsection{Unterkapitel 2.2}
 Hier möchte ich auf Kapitel \ref{sec:Unterkapitel21} Bezug nehmen.
 
-\section{Implementierung}
+\section{Implementation}
 
 \subsection{Source Code}
 
@@ -231,7 +204,7 @@ Source Code ohne Datei:
 In Zeile \ref{lnbr:InOutput_constructor} in Listing \ref{src:InOutputVector_defs} ist der Kontruktor der Klasse
 \verb|InOutputVector| implementiert.
 
-\section{Simulationsergebnisse}
+\section{Simulation Results}
 
 Tabelle \ref{tab:ParA} zeigt den verwendeten Parametersatz.
 \begin{table}[!h]
@@ -259,7 +232,7 @@ Tabelle \ref{tab:ParA} zeigt den verwendeten Parametersatz.
  \label{fig:Bild2}
 \end{figure}
 
-\section{Zusammenfassung}
+\section{Conclusio}
 Es wurde gezeigt, wie in Latex einzeilige, mehrzeilige, nummerierte und nicht nummerierte
 Formeln erzeugt werden können, sowie wie auf Formeln verwiesen werden kann und wie Matrizen
 erzeugt werden können. Weiters wurde gezeigt wie auf verwendete Literatur verwiesen werden kann,

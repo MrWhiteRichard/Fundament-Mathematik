@@ -1,11 +1,10 @@
-\subsection*{2. Schritt: Singulärwert-Zerlegung}
+\section{Singulärwert-Zerlegung}
 
 Wir führen zunächst eine Singulärwert-Zerlegung von $A_0$ durch.
-Diese sei gegeben in der Form
+Dies ist eine Zerlegung der Form
 
-\begin{align*}
-    \tilde V \Sigma \tilde W^\ast = A_0 \in \C^{N \times j},
-    \quad
+\begin{gather*}
+    \tilde V \Sigma \tilde W^\ast = A_0 \in \C^{N \times j}, \\
     \tilde V \in \U_N(\C),
     \quad
     \tilde W \in \U_j(\C),
@@ -13,13 +12,13 @@ Diese sei gegeben in der Form
     \Sigma = \begin{pmatrix}
         \diag(\sigma_1, \dots, \sigma_J, \dots, \sigma_j) \\
         0_{(N - j) \times j}
-    \end{pmatrix} \in \C^{N \times j}
-\end{align*}
+    \end{pmatrix} \in \C^{N \times j}.
+\end{gather*}
 
 Dabei gehen wir nicht auf die technischen Details zur Bestimmung der Singulärwert-Zerlegung ein.
-Wir verwenden lediglich den Befehl \texttt{linalg.svd}, aus der \texttt{scipy}-Bibliothek.
+Wir verwenden lediglich den Befehl \texttt{linalg.svd} aus der \texttt{scipy}-Bibliothek.
 
-Nehmen wir zunächst an, dass die Rechts- bzw. Links-Eigenraum-Basen $V, W \in \C^{N \times J}$ vollen Rang $J$ haben, und die Zufallsmatrix $\hat V \in \C^{N \times j}$ vollen Rang $j$ hat.
+Wir nehmen zunächst an, dass die Rechts- bzw. Links-Eigenraum-Basen $V, W \in \C^{N \times J}$ vollen Rang $J$ haben, und die Zufallsmatrix $\hat V \in \C^{N \times j}$ vollen Rang $j$ hat.
 Weiters gehen wir davon aus, dass $W^\ast \hat V \in C^{J \times j}$ vollen Rang $J \leq j$ hat.
 Das heißt, $V$ und $W^\ast \hat V$ sind injektiv, also auch deren Komposition $A_0 = V W^\ast \hat V$.
 Daher ist auch die Annahme, dass $A_0$ Rang $J$ hat, sinnvoll.
@@ -42,18 +41,18 @@ Wir erhalten die Äquivalenz
     A_0
     \equiv
     \begin{pmatrix}
-        I_J \enspace 0_{J \times (j - J)} \\ 0_{(N - J) \times j}
+        I_J & 0_{J \times (j - J)} \\ 0_{(N - J) \times J} &0_{(N - J) \times (j - J)}
     \end{pmatrix}.
 \end{align*}
 
 Damit verschwinden die letzten Singulärwerte $\sigma_{J+1} = \cdots = \sigma_j = 0$.
 Somit können wir statt der alten vollen Singulärwert-Zerlegung (jetzt indiziert mit \Quote{full}) eine reduzierte (indiziert mit \Quote{reduced}) verwenden.
-Dabei bestehen $\tilde V_\mathrm{reduced}$, $\Sigma_\mathrm{reduced}$, und $\tilde W_\mathrm{reduced}$ aus den $1$-ten $J$ Spalten von $\tilde V_\mathrm{full}$, $\Sigma_\mathrm{full}$, bzw. $\tilde W_\mathrm{full}$.
+Dabei bestehen $\tilde V_\mathrm{reduced}$, $\Sigma_\mathrm{reduced}$, und $\tilde W_\mathrm{reduced}$ aus den ersten $J$ Spalten von $\tilde V_\mathrm{full}$, $\Sigma_\mathrm{full}$, bzw. $\tilde W_\mathrm{full}$.
 Diese beiden Singulärwert-Zerlegungen sind tatsächlich gleichwertig, weil
 
 \begin{align*}
     A_0
-    =
+    &=
     \tilde V_\mathrm{full} \Sigma_\mathrm{full} \tilde W_\mathrm{full}^\ast
     =
     \begin{pmatrix}
@@ -65,13 +64,12 @@ Diese beiden Singulärwert-Zerlegungen sind tatsächlich gleichwertig, weil
     \end{pmatrix}
     \begin{pmatrix}
         \tilde W_\mathrm{reduced}^\ast \\ \ast
-    \end{pmatrix}
-    =
+    \end{pmatrix} \\
+    &=
     \tilde V_\mathrm{reduced} \Sigma_\mathrm{reduced} \tilde W_\mathrm{reduced}^\ast.
 \end{align*}
 
-$\tilde V_\mathrm{full} \in \U_N(\C)$ und $\tilde W_\mathrm{full} \in \U_j(\C)$ sind ja unitär, d.h. ihre Adjungierten sind ihre Inversen.
-Etwas Ähnliches gilt für die reduzierten Varianten, weil
+Die reduzierten Matrizen sind zwar nicht mehr unitär, aber es gilt
 
 \begin{align*}
     I_N
@@ -107,38 +105,33 @@ Etwas Ähnliches gilt für die reduzierten Varianten, weil
 \end{align*}
 
 Wir vereinbaren, ab sofort nur noch die reduzierte Singulärwert-Zerlegung zu verwenden und den Index wegzulassen.
-Insgesamt erhalten wir also folgende Tatsachen über unsere reduzierte Singulärwert-Zerlegung.
+Insgesamt erhalten wir also unsere reduzierte Singulärwert-Zerlegung
 
-\begin{align} \label{eq:singulärwert_zerlegung}
-    A_0 = \tilde V \Sigma \tilde W^\ast,
-    \quad
-    \Sigma = \diag(\sigma_1, \dots, \sigma_J) \in \C^{J \times J},
-    \quad
+\begin{gather}
+    A_0 = \tilde V \Sigma \tilde W^\ast, \nonumber \\
     \tilde V \in \C^{N \times J},
     \quad
     \tilde W \in \C^{j \times J},
     \quad
+    \Sigma = \diag(\sigma_1, \dots, \sigma_J) \in \C^{J \times J}, \label{eq:singulaerwert_zerlegung} \\
     \tilde V^\ast \tilde V
     =
     \tilde W^\ast \tilde W
     =
-    I_J
-\end{align}
+    I_J \nonumber
+\end{gather}
 
 Da wir an $V$ vollen Rang vorausgesetzt haben, können wir auch annehmen, dass $S := \tilde V^\ast V \in \C^{J \times J}$ vollen Rang $J$ hat, also $\in \GL_J(\C)$, d.h. invertierbar ist.
-In den folgenden Gleichungsketten wird bei \Quote{!} die jeweils vorgerige eingesetzt.
+Nun nutzen wir die Singulärwert-Zerlegung von $A_0$ und berechnen
 
 \begin{align*}
-    &
     \Sigma \tilde W^\ast
     \stackrel
-    {
-        \eqref{eq:singulärwert_zerlegung}
-    }{=}
+    {\eqref{eq:singulaerwert_zerlegung}}{=}
     \tilde V^\ast \tilde V \Sigma \tilde W^\ast
     \stackrel
     {
-        \eqref{eq:singulärwert_zerlegung}
+        \eqref{eq:singulaerwert_zerlegung}
     }{=}
     \tilde V^\ast A_0
     \stackrel
@@ -147,25 +140,31 @@ In den folgenden Gleichungsketten wird bei \Quote{!} die jeweils vorgerige einge
     }{=}
     \tilde V^\ast V W^\ast \hat V
     =
-    S W^\ast \hat V \\
-    \implies &
+    S W^\ast \hat V.
+\end{align*}
+Setzen wir in dies in die Darstellung von $A_1$ über die Konturintegrale ein, erhalten wir
+\begin{align*}
     A_1
     \stackrel
     {
         \eqref{eq:integral_matrizen_resultat}
     }{=}
     V D W^\ast \hat V
-    \stackrel{!}{=}
-    V D S^{-1} \Sigma \tilde W^\ast \\
-    \implies &
+    =
+    V D S^{-1} \Sigma \tilde W^\ast,
+\end{align*}
+
+was uns schließlich
+\begin{align*}
     \tilde V^\ast A_1 \tilde W \Sigma^{-1}
-    \stackrel{!}{=}
+    =
     \tilde V^\ast V D S^{-1} \Sigma \tilde W^\ast \tilde W \Sigma^{-1}
     =
     S D S^{-1}
-    \approx
+    \sim
     D
 \end{align*}
 
+liefert.
 Somit ist die Diagonalmatrix $D$, welche ja die gesuchten Eigenwerte $\lambda_1, \dots, \lambda_k$ von $A$ enthält, ähnlich zur Matrix $\tilde V^\ast A_1 \tilde W \Sigma^{-1}$.
 Ähnliche Matrizen haben dieselben Eigenwerte.

@@ -1,18 +1,9 @@
-\subsection*{1. Schritt: Konturintegrale}
+\section{Approximation der Konturintegrale}
 
-% Betrachte folgendes Ringgebiet
-%
-% \begin{align*}
-%     U := \Bbraces{z \in \C: R / a_- < |z| < R a_+},
-%     \quad
-%     \text{mit}
-%     \quad
-%     R > 0,
-%     \quad
-%     1 < a_- < a_+.
-% \end{align*}
+In der Praxis werden wir die Kurve $\Gamma$ innerhalb welcher
+die gesuchten Eigenwerte liegen, zumeist als Kreis wählen. \\
 
-Wir parametrisieren den Kreis $\partial B(0, R) \subset U$ vermöge dem komplexen Weg
+Betrachte daher die Parametrisierung von $\partial B(0, R)$ vermöge dem komplexen Weg
 
 \begin{align*}
     \gamma: [0, 1) \to \partial B(0, R): t \mapsto R \exp(2 \pi i t),
@@ -23,7 +14,7 @@ Wir parametrisieren den Kreis $\partial B(0, R) \subset U$ vermöge dem komplexe
 \end{align*}
 
 Wir approximieren ihn durch die $m$-ten Einheitswurzeln.
-Diese wählen wir dann auch als Quadraturknoten, gemeinsam mit gleichmäßigen Gewichten (bzw. Gewicht) $1 / m$.
+Diese wählen wir dann auch als Quadraturknoten mit uniformen Gewicht $1 / m$.
 In Formeln geschrieben, lauten diese
 
 \begin{align*}
@@ -66,8 +57,8 @@ Wir verwenden nun tatsächlich eine klassische summierte Rechtecksregel und erha
         R
         \exp(2 \pi i t)
         f(R \exp(2 \pi i t))
-    }{t}
-    \stackrel{!}{\approx}
+    }{t} \\
+    &\approx
     \sum_{\nu = 0}^{m-1}
         \frac{1}{m}
         R \exp \pbraces{\frac{2 \pi i \nu}{m}}
@@ -85,13 +76,12 @@ Wir verwenden nun tatsächlich eine klassische summierte Rechtecksregel und erha
     Q_m(f).
 \end{align*}
 
-Für $f$ werden wir später dann die Integranden von $A_0$ und $A_1$ einsetzen.
-Diese müssen vorhin aber noch passend zum Ursprung translatiert werden, damit über $\ran \gamma$ anstelle von $\Gamma$ integriert (bzw. quadriert) werden kann.
-Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird im $4$-ten Kapitel diskutiert.
+Für $f$ werden wir in der Implementierung des Algorithmus $\lambda^i A(\lambda)^{-1} \hat V$ mit $i = 0,1$ einsetzen.
+Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird im vierten Kapitel diskutiert.
 
-Um $A(\lambda)^{-1} \hat V$ in den Integranden von $A_0$ und $A_1$ zu bestimmen, werden wir nicht $A(\lambda)^{-1}$ direkt berechnen.
-Stattdessen, bestimmen wir eine LU-Zerlegung von $A(\lambda)$.
-Der Einfachkeit halber sei diese $L U = A(\lambda)$, mit $L$ und $U$ als untere bzw. obere Dreiecks-Matrizen.
+Um $A(\lambda)^{-1} \hat V$ in den Integranden von $A_0$ und $A_1$ zu bestimmen, werden wir nicht
+die Inverse $A(\lambda)^{-1}$ direkt berechnen.
+Stattdessen bestimmen wir eine LU-Zerlegung von $A(\lambda)$.
 Dann führen wir für alle Spalten $\hat v_1, \dots, \hat v_j$ der Zufallsmatrix $\hat V \in \C^{N \times j}$ jeweils eine Vorwärts- und Rückwärts-Substitution durch.
 Es gilt ja schließlich
 
@@ -106,4 +96,4 @@ Es gilt ja schließlich
 
 Somit können dann die Spalten $x_1, \dots, x_j$ von $A(\lambda)^{-1} \hat V$ effizient ermittelt werden, ohne $A(\lambda)^{-1}$ explizit auszurechnen.
 Um technische Details der LU-Zerlegung, z.B. das Arbeiten mit Permutationsmatrizen, Pivotsuche usw., machen wir uns hierbei aber keine Gedanken.
-Wir verwenden lediglich die Befehle \texttt{linalg.lu\_factor} und \texttt{linalg.lu\_solve}, aus der \texttt{scipy}-Bibliothek.
+Wir verwenden lediglich die Befehle \texttt{linalg.lu\_factor} und \texttt{linalg.lu\_solve} aus der \texttt{scipy}-Bibliothek.

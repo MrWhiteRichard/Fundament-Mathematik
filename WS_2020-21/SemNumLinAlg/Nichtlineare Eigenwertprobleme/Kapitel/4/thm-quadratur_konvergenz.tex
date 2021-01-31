@@ -1,0 +1,27 @@
+\begin{theorem} \label{thm:quadratur_konvergenz}
+
+    Werden die Kurven in der Definition \eqref{eq:integral_matrizen} von $A_0$ und $A_1$ als Kreise der Form $z_0 + R \exp*{i t}$ mit $t \in [0, 2 \pi)$ gewählt und durch eine Rechtecksregel mit $m$ äquidistant verteilten Punkten diskretisiert, so erhalten wir für die angenäherten Matrizen $A_{0, 1}^{(m)} \in \C^{N \times j}$ die Fehlerabschätzung
+
+    \begin{align*}
+        \norm{A_{0, 1}^{(m)} - A_{0, 1}}
+        \leq
+        C (\rho_-^{m - r + 1} + \rho_+^{m - r + 1}),
+    \end{align*}
+
+    wobei $r$ die maximale Ordnung der Pole von $A(\lambda)^{-1}$ und
+
+    \begin{align*}
+        \rho_-
+        :=
+        \max_{\substack{\lambda \in \sigma(A) \\ \abs{\lambda - z_0} < R}}
+            \frac{\abs{\lambda - z_0}}{R},
+        \quad
+        \rho_+
+        :=
+        \max_{\substack{\lambda \in \sigma(A) \\ \abs{\lambda - z_0} > R}}
+            \frac{R}{\abs{\lambda - z_0}}
+    \end{align*}
+
+    ist.
+
+\end{theorem}

@@ -1,0 +1,91 @@
+\chapter{Fazit}
+
+Die Konturintegral-Methode ist ein Verfahren zur Lösung nichtlinearer Eigenwertprobleme, basierend auf dem \Quote{Satz von Keldysh}.
+Die zentrale Formel, die dem Algorithmus zu Grunde liegt ist
+
+\begin{gather*}
+    \frac{1}{2 \pi i}
+    \Int[\Gamma]{f(\lambda) A(\lambda)^{-1}}{\lambda}
+    =
+    \sum_{n=1}^k
+        f(\lambda_n)
+        \sum_{l=1}^{L_n}
+            v_{n, l} w_{n, l}^\ast.
+\end{gather*}
+
+Um den Algorithmus durzuführen, müssen wir die Matrizen
+
+\begin{align*}
+    A_0
+    & :=
+    \frac{1}{2 \pi i}
+    \Int[\Gamma]{\lambda^0 A(\lambda)^{-1} \hat V}{\lambda}
+    =
+    V D^0 W^\ast \hat V
+    \in
+    \C^{N \times j}, \\
+    A_1
+    & :=
+    \frac{1}{2 \pi i}
+    \Int[\Gamma]{\lambda^1 A(\lambda)^{-1} \hat V}{\lambda}
+    =
+    V D^1 W^\ast \hat V
+    \in
+    \C^{N \times j}
+\end{align*}
+
+mit der Quadratur-Formel
+
+\begin{gather*}
+    Q(f)
+    :=
+    \frac{1}{2 \pi i}
+    \Int[|\lambda| = R]{f(\lambda)}{\lambda}
+    \approx
+    Q_m(f)
+    :=
+    \frac{R}{m}
+    \sum_{\nu = 0}^{m-1}
+        \omega_m^\nu f(R \omega_m^\nu), \\
+    \omega_m
+    :=
+    \exp \frac{2 \pi i}{m},
+    \quad
+    R > 0,
+    \quad
+    m \in \N,
+    \quad
+    f \in H(\C),
+\end{gather*}
+
+approximieren, die reduzierte Singulärwertzerlegung
+
+\begin{align*}
+    A_0
+    =
+    \tilde V \Sigma \tilde W^\ast
+\end{align*}
+
+bestimmen und das lineare Eigenwertproblem der Matrix
+
+\begin{align*}
+    \tilde V^\ast A_1 \tilde W \Sigma^{-1}
+    \sim
+    D
+    =
+    \operatorname{diag}(\lambda_1, \dots, \lambda_k)
+\end{align*}
+
+(beispielsweise mit dem QR-Verfahren) lösen.
+
+Die Integralmethode zur Berechnung der Eigenwerte nichtlinearer Eigenwertprobleme ist vergleichsweise neu und Gegenstand aktueller Forschung.
+Die Methode hat die Lösung von nichtlinearen Eigenwertproblemen deutlich vereinfacht,
+dennoch birgt sie auch wesentliche Probleme.
+Neben dem relativ hohen Aufwand wird durch die Verwendung von $A_{0, 1}^{(m)}$ die Anzahl der nicht-verschwindenden Singulärwerte deutlich erhöht.
+Solange die \Quote{korrekten} Singulärwerte um Größenordnungen über den zusätzlichen liegen, können letztere einfach aussortiert werden.
+Sind die Approximationen von $A_0, A_1$ nicht genau genug, kann es passieren, dass
+die \Quote{korrekten} Singulärwerte kaum mehr von den zusätzlichen Singulärwerten
+zu unterscheiden sind, und der Algorithmus eventuell falsche Resultate liefert. \\
+Dennoch hat die Integralmethode die Lösung von nichtlinearen Eigenwertproblemen massiv vereinfacht.
+Sie ermöglicht bei entsprechender Genauigkeit die zuverlässige Berechnung aller Eigenwerte innerhalb einer gewählten Kurve.
+Dies ist ein sehr großer Vorteil zu iterativen Verfahren, bei denen typischerweise die Lage der gefundenen Eigenwerte nicht zuverlässig kontrolliert werden kann.

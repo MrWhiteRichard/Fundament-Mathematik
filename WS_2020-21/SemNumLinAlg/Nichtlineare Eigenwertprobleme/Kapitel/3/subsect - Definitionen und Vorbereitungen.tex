@@ -1,64 +1,66 @@
-\subsection*{Definitionen und Vorbereitungen}
+\section{Definitionen und Vorbereitungen}
 
 Es gelten die Bezeichnungen des vorherigen Kapitels.
 Sei $\Gamma \subset \Lambda$ zudem eine positiv orientierte Jordan-Kurve (d.h. ein geschlossener Weg).
 $\Gamma$ umschließe alle Eigenwerte $\lambda_1, \dots, \lambda_k \not \in \Gamma$, und sonst keine weiteren.
-Eine Veranschaulichung dazu ist in Abbildung \ref{fig:gebiet_kurve_ews} zu finden.
+Eine Veranschaulichung davon ist in Abbildung \ref{fig:gebiet_kurve_ews} zu finden.
 
-\input{Kapitel/3/gebiet_kurve_ews.tex}
+\input{Kapitel/3/fig-gebiet_kurve_ews.tex}
 
 Sei nun $f \in H(\C, \C)$ holomorph.
 Für $n = 1, \dots, k$, sei dazu $r_n$ hinreichend klein, sodass $B(\lambda_n, r_n) \subset U_n$.
-Wir wenden Korollar \ref{keldysh_multi} sowie die Cauchyche Integralformel und den Cauchychen Integralsatz an, und erhalten
+Wir wenden Korollar \ref{corr:keldysh_multi} sowie die Cauchyche Integralformel und den Cauchychen Integralsatz an, und erhalten
 
-\begin{multline} \label{eq:cauchysche_integral_formel_satz}
-    \frac{1}{2 \pi i}
-    \Int[\Gamma]
-    {
-        f(\lambda) A(\lambda)^{-1}
-    }{\lambda}
-    \stackrel
-    {
-        \ref{keldysh_multi}
-    }{=}
-    \frac{1}{2 \pi i}
-    \Int[\Gamma]
-    {
-        f(\lambda)
-        \pbraces
-        {
-            \sum_{n=1}^k
-                \frac{1}{\lambda - \lambda_n} S_n
-                +
-                R(\lambda)
-        }
-    }{\lambda} \\
-    =
-    \sum_{n=1}^k
-        \underbrace
-        {
-            \frac{1}{2 \pi i}
-            \Int[\partial B(\lambda_n, r_n)]
-            {
-                \frac{f(\lambda)}{\lambda - \lambda_n}
-            }{\lambda}
-        }_{=f(\lambda_n)}
-        S_n
-    +
-    \frac{1}{2 \pi i}
-    \underbrace
-    {
+\begin{align} \label{eq:cauchysche_integral_formel_satz}
+    \begin{split}
+        \frac{1}{2 \pi i}
         \Int[\Gamma]
         {
-            f(\lambda) R(\lambda)
+            f(\lambda) A(\lambda)^{-1}
         }{\lambda}
-    }_{=0}
-    =
-    \sum_{n=1}^k
-        f(\lambda_n)
-        \sum_{l=1}^{L_n}
-            v_{n, l} w_{n, l}^\ast.
-\end{multline}
+        & \stackrel
+        {
+            \ref{corr:keldysh_multi}
+        }{=}
+        \frac{1}{2 \pi i}
+        \Int[\Gamma]
+        {
+            f(\lambda)
+            \pbraces
+            {
+                \sum_{n=1}^k
+                    \frac{1}{\lambda - \lambda_n} S_n
+                    +
+                    R(\lambda)
+            }
+        }{\lambda} \\
+        & =
+        \sum_{n=1}^k
+            \underbrace
+            {
+                \frac{1}{2 \pi i}
+                \Int[\partial B(\lambda_n, r_n)]
+                {
+                    \frac{f(\lambda)}{\lambda - \lambda_n}
+                }{\lambda}
+            }_{=f(\lambda_n)}
+            S_n
+        +
+        \frac{1}{2 \pi i}
+        \underbrace
+        {
+            \Int[\Gamma]
+            {
+                f(\lambda) R(\lambda)
+            }{\lambda}
+        }_{=0} \\
+        & =
+        \sum_{n=1}^k
+            f(\lambda_n)
+            \sum_{l=1}^{L_n}
+                v_{n, l} w_{n, l}^\ast.
+    \end{split}
+\end{align}
 
 Diese Formel bildet die Grundlage zur Berechnung der Eigenwerte.
 Sei $J$ die Summe aller Eigenraum-Dimensionen, d.h.
@@ -156,7 +158,7 @@ Sei $D$ die Diagonal-Matrix der Eigenwerte, ihrer Vielfachheit nach aufgeführt,
     \C^{N \times N}.
 \end{align}
 
-Sei $\hat V \in \C^{N \times j}$ zunächst beliebig mit $J \leq j \ll N$.
+Sei $\hat V \in \C^{N \times j}$ zunächst eine beliebige Zufallsmatrix mit $J \leq j \ll N$.
 Die folgenden Matrizen $A_0$ und $A_1$ sind der Grund für die Namensgebung der \Quote{Konturintegral-Methode}.
 
 \begin{align} \label{eq:integral_matrizen}
@@ -165,7 +167,7 @@ Die folgenden Matrizen $A_0$ und $A_1$ sind der Grund für die Namensgebung der 
     A_1 := \frac{1}{2 \pi i} \Int[\Gamma]{\lambda^1 A(\lambda)^{-1} \hat V}{\lambda} \in \C^{N \times j}
 \end{align}
 
-\eqref{eq:cauchysche_integral_formel_satz} lässt uns nun $A_0$ und $A_1$ wie folgt umformulieren.
+Mittels \eqref{eq:cauchysche_integral_formel_satz} lassen sich nun $A_0$ und $A_1$ wie folgt umformen.
 Letztere Gleichheit ist dabei eine elementare, aber sperrige Rechnung.
 
 \begin{align} \label{eq:integral_matrizen_resultat_compact}
@@ -183,14 +185,14 @@ Letztere Gleichheit ist dabei eine elementare, aber sperrige Rechnung.
     }{\lambda}
     \stackrel
     {
-        \eqref{eq:integral_matrizen_resultat}
-    }{}
+        \eqref{eq:cauchysche_integral_formel_satz}
+    }{=}
     \sum_{n=1}^k
         \lambda_n^i
         \sum_{l=1}^{L_n}
             v_{n, l} w_{n, l}^\ast
     \hat V
-    \stackrel{!}{=}
+    =
     V D^i W^\ast \hat V,
     \quad
     i = 0, 1
