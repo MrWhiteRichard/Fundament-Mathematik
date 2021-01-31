@@ -58,7 +58,7 @@ Um die aus dem numerischen Verfahren gewonnen Eigenwerte mit den tatsächlichen 
 Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst mit einem Separationsansatz berechnet.
 
 \begin{theorem}
-	Die Eigenfunktionen für das Eigenwertproblem \ref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
+	Die Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
 	\begin{align*}
 		u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y), \quad n,m \in \N
 	\end{align*}
@@ -149,7 +149,8 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 	A^{(0)} \coloneqq A, \quad A^{(t+1)} \coloneqq R^{(t)}Q^{(t)}
 \end{equation}
 
-gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist. Die Folge $(A^{(t)})_{t \in \N}$ konvergiert dann gegen eine obere Dreiecksmatrix, die die gleichen Eigenwerte wie $A$ besitzt.
+gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist. 
+Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -170,12 +171,12 @@ gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist. D
 \end{algorithm}
 
 
-Die Konvergenz dieses Algoritmus kann unter gewissen Voraussetzungen gezeigt werden. Wir Zitieren hier nur den Satz und verweisen für den Beweis auf \cite{Num}, Satz 9.15.
+Die Konvergenz dieses Algoritmus kann unter gewissen Voraussetzungen gezeigt werden. Wir zitieren hier nur den Satz und verweisen für den Beweis auf \cite{Num}, Satz 9.15.
 %\cite{Nannen-Skript}, Satz 9.15.
 
 \begin{theorem}[Konvergenz des QR-Verfahrens]
 	\label{Konv_QR}
-	Sei $A \in \C^{n\times n}$ eine diagonalisierbare Matrix mit Eigenwerten $\lambda_1,\dots,\lambda_n \in \C$ und $|\lambda_1| > |\lambda_2| > \dots > |\lambda_n| > 0$. Weiters sei $V \in \C^{n \times n}$ die Matrix, die die Eigenvektoren $v_1,\dots v_n$ zu den jeweiligen Eigenwerten als Spalten enthält. Zudem existiert eine untere normierte Dreiecksmatrix $L$ und eine obere Dreiecksmatrix $U$, sodass $V^{-1} = LU$.\\
+	Sei $A \in \C^{n\times n}$ eine diagonalisierbare Matrix mit Eigenwerten $\lambda_1,\dots,\lambda_n \in \C$ und $|\lambda_1| > |\lambda_2| > \dots > |\lambda_n| > 0$. Weiters sei $V \in \C^{n \times n}$ die Matrix, die die Eigenvektoren $v_1,\dots v_n$ zu den jeweiligen Eigenwerten als Spalten enthält. Zudem existiere eine untere normierte Dreiecksmatrix $L$ und eine obere Dreiecksmatrix $U$, sodass $V^{-1} = LU$.\\
 	Dann konvergieren die Hauptdiagonaleinträge der Matrizen $A^{(t)}$, die in Algorithmus \ref{QR-Verfahren} definiert sind, gegen die Eigenwerte von $A$.
 \end{theorem}
 
@@ -195,7 +196,7 @@ Wir betrachten die Matrizen $M^{(t)} \coloneqq \Lambda^t L \Lambda^{-t},\, t \in
 \end{equation*}
 
 \vspace{4pt}
-Da die Eigenwerte der größe nach sortiert sind, erkennt man, dass diese Matrixfolge gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
+Da die Eigenwerte der Größe nach sortiert sind, erkennt man, dass diese Matrixfolge gegen die Einheitsmatrix konvergiert. Dies zieht schlussendlich die Konvergenz von $(A^{(t)})_{t\in \N}$ gegen eine obere Dreiecksmatrix nach sich.
 Die Einträge konvergieren schneller gegen $0$, wenn die Brüche kleiner sind. Das versuchen wir zu erreichen, in dem wir einen Shift durchführen.\\
 Für einen Eigenwert $\lambda$ einer Matrix $A \in \C^{n\times n}$ gilt
 
@@ -224,7 +225,7 @@ Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Tole
 			\EndWhile
 		\EndFor
 	\end{algorithmic}
-	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit gleichen Eigenwerten wie $A$ anfangs hatte}
+	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit den gleichen Eigenwerten die $A$ anfangs hatte}
 \end{algorithm}
 
 Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Num}, S. 114. Dieser Shift wird auch Wilkinson-Shift genannt.
@@ -251,12 +252,12 @@ Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1
 		\EndWhile
 		\EndFor
 	\end{algorithmic}
-	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit gleichen Eigenwerten wie $A$ anfangs hatte}
+	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit den gleichen Eigenwerten die $A$ anfangs hatte}
 \end{algorithm}
 
 
 In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführte Methode.\\
-Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat. Auf diesen Fall werden wir jetzt im nächsten Abschnitt eingehen.
+Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat. Auf diesen Fall werden wir im nächsten Abschnitt eingehen.
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
 \begin{algorithm}
@@ -546,12 +547,12 @@ welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ ha
 
 Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des Projektionsverfahrens nachweisen.
 
-\begin{theorem}[Konvergenz der Eigenwerte hermitscher Matrizen]
-	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$ und der zugehörigen Orthonormalbasis aus Eigenvektoren $u_1,\dots,u_n$. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \mapsto \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
+\begin{theorem}[Konvergenz der Eigenwerte hermitescher Matrizen]
+	Sei $A \in \C^{n \times n}$ eine hermitesche Matrix mit paarweise verschiedenen Eigenwerten $\lambda_1 > \lambda_2 > \dots > \lambda_n$. Bezeichne mit $u_1,\dots,u_n$ eine Orthonormalbasis aus Eigenvektoren zu den jeweiligen Eigenwerten. Für $1 \le m < n$ werden die Eigenwerte der linearen Abbildung $\mathcal{A}_m: \mathcal{K}_m(A,v_0)\rightarrow \mathcal{K}_m(A,v_0)$, die durch $v \mapsto \mathcal{P}_mAv$ gegeben ist,  mit $\lambda_1^{(m)} \ge \lambda_2^{(m)} \ge \dots \ge \lambda_m^{(m)}$ bezeichnet. Dabei ist $v_0$ ein beliebiger Startvektor, der nicht orthogonal zu den ersten $m-1$ Eigenvektoren von $A$ ist. Dann gilt
 
 	\begin{equation}
 		\label{konvergenz Eigenwerte}
-		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1
+		0 \le \lambda_i - \lambda_i^{(m)} \le (\lambda_i -\lambda_n) (\tan\theta_i)^2 \kappa_i^{(m)} \left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2, \quad i=1,\dots,m-1,
 	\end{equation}
 
 	wobei
@@ -575,7 +576,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 
 	die Matrixdarstellung der Abbildung $\mathcal{A}_m$ bezüglich der Orthonormalbasis $\{v_1,\dots,v_m\}$.
 
-	Diese Matrix ist offensichtlich hermitesch. Somit können die Eigenwerte $\lambda_1^{(m)}, \dots, \lambda_m^{(m)}$ mithilfe von \ref{lambdamaxmin} berechnet werden.
+	Diese Matrix ist offensichtlich hermitesch. Somit können die Eigenwerte $\lambda_1^{(m)}, \dots, \lambda_m^{(m)}$ mithilfe von \eqref{lambdamaxmin} berechnet werden.
 
 	Es gilt also
 
@@ -589,13 +590,13 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}
 	\end{equation}
 	
-	Bei der dritten Gleichheit gilt die Abschätzung nach oben, da für einen Unterraum $S \subseteq \C^m$ sicher $V(S) \subseteq \mathcal{K}_m$ mit Dimenstion $k$ ist, weil $V$ vollen Rang hat. Die Abschätzung nach unten erhalten wir, da die Abbildung $V$ nach $\mathcal{K}_m$ surjektiv ist und somit jede Basis eines $k$-dimensionalen Unterraums von $\mathcal{K}_m$ als Bild von einer Basis eines $k$-dimensionalen Unterraums des $\C^m$ dargestellt werden kann.
-	Somit ist die erste Ungleichung von \ref{konvergenz Eigenwerte} erfüllt.\\
+	Bei der dritten Gleichheit gilt die Abschätzung nach oben, da für einen Unterraum $S \subseteq \C^m$ sicher $V(S) \subseteq \mathcal{K}_m$ mit Dimenstion $k$ ist, weil $V$ vollen Rang hat. Die Abschätzung nach unten erhalten wir, da die Abbildung $V$ nach $\mathcal{K}_m$ surjektiv ist und somit jede Basis eines $k$-dimensionalen Unterraums von $\mathcal{K}_m$ als Bild einer Basis eines $k$-dimensionalen Unterraums des $\C^m$ dargestellt werden kann.
+	Somit ist die erste Ungleichung in \eqref{konvergenz Eigenwerte} erfüllt.\\
 
 	Wir beweisen nun die zweite Ungleichung zuerst für den Fall $i = 1$.
 	Sei $v_0 = \sum_{j=1}^{n}\alpha_j u_j$. Wir bemerken, dass $\alpha_1, \dots, \alpha_{m-1}$ nicht verschwinden, da $v_0$ nicht orthogonal zu diesen Eigenvektoren gewählt wurde. Dies Rechtfertigt im folgenden Abschätzungen, bei denen ohne diese Bedingung durch Null geteilt werden würde.\\
 
-	Mit analogen Umformungen wie in \ref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma \ref{v0_Polynom_Darstellung} gilt somit
+	Mit analogen Umformungen wie in \eqref{Eigenwert_Ungl}, dem Satz von Pythagoras und Lemma \ref{v0_Polynom_Darstellung} gilt somit
 	\begin{equation}
 		\label{Ungl i=1}
 		\begin{aligned}
@@ -611,15 +612,15 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 			(\tan\theta_1)^2 = \frac{\norm{(\id - \mathcal{P}_{u_1})v_0}^2}{\norm{ \mathcal{P}_{u_1}v_0}^2} = \frac{\norm{v_0 - \alpha_1 u_1}^2}{\norm{\alpha_1 u_1}^2} = \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2}
 		\end{equation*}
 	genau einem Term, der in obiger Abschätzung vorkommt. 
-	Mithilfe der Ungleichung \ref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$ erhalten wir außerdem
+	Mithilfe der Ungleichung \eqref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$ erhalten wir außerdem
 
 		\begin{equation*}
 			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
 		\end{equation*}
-	Daraus folgt die gewünschte Ungleichung und \ref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.\\
+	Daraus folgt die gewünschte Ungleichung und \eqref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.\\
 
 	Betrachten wir nun den Fall $i>1$.
-	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ eine Orthonormalbasis aus Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $T_m$. Mit \ref{lambdamax} erhalten wir dann
+	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ eine Orthonormalbasis aus Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $T_m$. Mit \eqref{lambdamax} erhalten wir dann
 
 	\begin{equation}
 		\begin{aligned}
@@ -644,7 +645,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\end{equation*}
 	schreiben, wobei $q \in \Pi_{m-i}$.\\
 
-	Mit der Darstellung \ref{Darstellung EW} von $\lambda_i^{(m)}$ gilt nach analogen Umformungen wie in \ref{Ungl i=1}
+	Mit der Darstellung \eqref{Darstellung EW} von $\lambda_i^{(m)}$ gilt nach analogen Umformungen wie in \eqref{Ungl i=1}
 
 	\begin{equation*}
 		\begin{aligned}
@@ -663,16 +664,17 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 
 	und  mit $a = \lambda_n, b= \lambda_{i+1}$, $c = \lambda_i$ in Lemma \ref{lem:polminmax}, erhalten wir die Behauptung.\\
 
-	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bediungung $p(\lambda_j^{(m)}) = 0$ weglassen und das mit den neuen Nebenbedingungen berechnete Minimum wird dadurch nicht größer, also kann die gleiche Abschätzung verwendet werden.
-	Also gilt \ref{konvergenz Eigenwerte} für alle $i = 1, \dots, m-1$.
+	Wenn nun $\beta_j$ existieren, die gleich 0 sind, kann man die Bedinungung $p(\lambda_j^{(m)}) = 0$ für die Polynome, über die minimiert wird, weglassen.
+	Da somit mehr Polynome betrachtet werden, wird das Minimum sicherlich nicht größer. Das heißt, wir können für diesen Fall die gleiche Abschätzung verwenden.
+	Also gilt \eqref{konvergenz Eigenwerte} für alle $i = 1, \dots, m-1$.
 	\end{proof}
 \end{theorem}
 
-Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit \ref{polminmax}
+Die mit $m$ exponentielle Konvergenz der Eigenwerte ist nun ersichtlich, da mit \eqref{polminmax}
 \begin{equation*}
 	\left(\frac{1}{T_{m-i}(\gamma_i)}\right)^2 \le 4 \left(\gamma_i + \sqrt{\gamma_i^2 -1}\right)^{-2(m-i)}
 \end{equation*}
-gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleineren Eigenwerte ab, da der Grad des Tschebyschow-Polynoms mit wachsendem $i$ kleiner wird. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa_i^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge. Die anderen vorkommenden Terme wie $\tan \theta_i$ oder auch der Zähler vom Produkt in $\kappa_i^{(m)}$ haben für die Größenordnung der Abschätzung eher wenig Bedeutung. Wie sich die Konvergenz in der Praxis verhält, wird in den nachfolgenden Abschnitten beschrieben.
+gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleineren Eigenwerte ab, da der Grad des Chebyshev-Polynoms mit wachsendem $i$ kleiner wird. Wir bemerken noch, dass bei der Approximation von $\lambda_i$ bei Eigenwerten $\lambda_i \approx \lambda_j, \, j < i$, das Produkt $\kappa_i^{(m)}$ groß werden kann, da der Nenner wegen $\lambda^{(m)}_j - \lambda_i$ klein wird. Dies hat eine schlechtere Approximation zur Folge. Die anderen vorkommenden Terme wie $\tan \theta_i$ oder auch der Zähler vom Produkt in $\kappa_i^{(m)}$ haben für die Größenordnung der Abschätzung eher wenig Bedeutung. Wie sich die Konvergenz in der Praxis verhält, wird in den nachfolgenden Abschnitten beschrieben.
 
 
 \subsection{Implementierung}
