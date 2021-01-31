@@ -1,13 +1,10 @@
 \section{Voraussetzungen}
 
-Bei der Herleitung des Algorithmus' haben wir unter anderem auf die Matrizen
-$V$, $W$, $D$, und $S$ zurückgegriffen. Man sollte sich aber bewusst sein, dass
-diese Matrizen bei der Implementierung des Algorithmus nicht verwendet werden,
-nachdem sie ohne Kenntnis der gesuchten Eigenpaare nicht berechenbar sind.
+Bei der Herleitung des Algorithmus' haben wir unter anderem auf die Matrizen $V$, $W$, $D$, und $S$ zurückgegriffen.
+Man sollte sich aber bewusst sein, dass diese Matrizen bei der Implementierung des Algorithmus nicht verwendet werden, nachdem sie ohne Kenntnis der gesuchten Eigenpaare nicht berechenbar sind.
 
 Die Tatsache, dass sie nicht im Algorithmus \ref{alg:integral_methode_zusammenfassung} vorkommen, heißt aber nicht, dass ihre Eigenschaften (z.B. $S \in \GL_J(\C)$) unwichtig sind.
-Wählt man z.B. eine zu kleine Matrix $\hat V$, könnten wir unter Umständen
-die Regularität von $S$ verlieren.
+Wählt man z.B. eine zu kleine Matrix $\hat V$, könnten wir unter Umständen die Regularität von $S$ verlieren.
 Die numerischen Resultate werden dann in der Regel inkorrekt sein.
 
 Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassung} braucht, um korrekte Ergebnisse zu liefern.
@@ -21,17 +18,16 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
     \item $V, W \in \C^{N \times J}$ haben vollen Rang $J$, d.h. deren Spalten seien linear unabhängig.
 
     $V, W$ bestehen ja schließlich aus Rechts- bzw. Links-Eigenvektoren.
-    Die Voraussetzung gilt zumindest im linearen Fall, daher ist es durchaus
-    plausibel sie auch im nichtlinearen Fall anzunehmen.
+    Die Voraussetzung gilt zumindest im linearen Fall, daher ist es durchaus plausibel sie auch im nichtlinearen Fall anzunehmen.
 
     \item $\hat V$ sei eine hinreichend große, gleichverteilt gewählte Zufallsmatrix, mit vollem Rang $j$.
 
     Zur Illustration, dass auch diese Annahme sinnvoll ist, sei dazu $K$ ein endlicher Körper und $\hat V \in K^{j \times j}$.
-    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf folgende Wahrscheinlichkeit:
+    Durch Abzählen der möglichen Komponenten der Spalten der regulären Matrizen, kommt man auf die Wahrscheinlichkeit
 
     \begin{align*}
-        \mathbf{P}(\hat V \in \GL_j(K))
-        &=
+        \mathbf P(\hat V \in \GL_j(K))
+        & =
         \frac
         {
             |\GL_j(K)|
@@ -48,7 +44,7 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             {
                 |K|^j - |K|^{i-1}
             } \\
-        &=
+        & =
         \prod_{i=1}^j
             \frac
             {
@@ -100,13 +96,10 @@ Wir fassen zusammen, was der Algorithmus \ref{alg:integral_methode_zusammenfassu
             \hat v_i \in (\Span W)^{\bot_2}.
     \end{align*}
 
-    In der Praxis wird dieser Fall zum Glück kaum eintreten. Hier sieht man
-    auch den Grund, warum wir $\hat{V}$ als Zufallsmatrix gewählt haben.
-    Würde man beispielsweise stattdessen als Spalten in $\hat{V}$ Einheitsvektoren
-    wählen, könnte diese Bedingung in der Praxis durchaus verletzt werden.
-    Bei der Vektoriteration (Potenzmethode) geht man beispielweise auch davon aus,
-    dass der Startvektor (Zufallsvektor) nicht orthogonal auf den Eigenraum
-    des betrags-größten Eigenwerts steht.
+    In der Praxis wird dieser Fall zum Glück kaum eintreten.
+    Hier sieht man auch den Grund, warum wir $\hat{V}$ als Zufallsmatrix gewählt haben.
+    Würde man beispielsweise stattdessen als Spalten in $\hat{V}$ Einheitsvektoren wählen, könnte diese Bedingung in der Praxis durchaus verletzt werden.
+    Bei der Vektoriteration (Potenzmethode) geht man beispielweise auch davon aus, dass der Startvektor (Zufallsvektor) nicht orthogonal auf den Eigenraum des betrags-größten Eigenwerts steht.
 
     \item $S := \tilde V^\ast V \in \C^{J \times J}$ habe vollen Rang $J$, also $S \in \GL_J(\C)$.
     Diese Annahme ist, analog zum vorigen Punkt sinnvoll, da
