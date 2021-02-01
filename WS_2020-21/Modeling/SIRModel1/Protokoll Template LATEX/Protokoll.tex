@@ -1,8 +1,8 @@
 \documentclass
 [
-    a4paper,
+    report,
     11pt,
-    %bibliography = totoc,
+    bibliography = totoc,
     listof = totoc,
     headinclude = true,
 ]
@@ -15,6 +15,7 @@
 \input{../../../../Fundament-LaTeX/listings.tex}
 
 \addbibresource{Quellen/references.bib}
+
 
 \begin{document}
 
@@ -149,19 +150,6 @@ For the recurrence of the \textit{Masstests}, we implemented them to occur cycli
 experimenting again with different time intervals for the cycle. The first one
 starts on 12.\,12.\,2020, just like it did in reality.\\
 
-The second big event we implemented was of course the \textit{Lockdown}. To be precise,
-we modeled multiple different version of \textit{Lockdowns}, but all with the same basic idea:
-The events trigger once the number of \texttt{Infected} people (\texttt{Confirmed} plus \texttt{Unconfirmed})
-reaches a certain level. Precise numbers for this are found in the table below.
-We chose the value of \texttt{Infected} people over the value of
-the \texttt{Confirmed} people as the main indicator for our \textit{Lockdown}, even though only the number of confirmed people is accurately known in reality.
-Our reasoning for this was that the total number of \texttt{Infected} people in our
-model should be the best indicator for the strain of the virus on our health system,
-which would be a major deciding factor in the decision to implement a lockdown in reality.
-The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter.
-To account for the multiple levels of reopening like we have seen in previous
-lockdowns, we implemented different levels of \textit{Lockdown}, which gradually increase
-the number of \textit{contactsPerDay} to pre-pandemic levels.
 \begin{table}[!h]
   \begin{center}
   \begin{tabular}{|c||c|c|c|c|}
@@ -188,7 +176,39 @@ the number of \textit{contactsPerDay} to pre-pandemic levels.
   \caption{Numbers for other \textit{Lockdowns}}
 \end{table}
 
+The second big event we implemented was of course the \textit{Lockdown}. To be precise,
+we modeled multiple different version of \textit{Lockdowns}, but all with the same basic idea:
+The events trigger once the number of \texttt{Infected} people (\texttt{Confirmed} plus \texttt{Unconfirmed})
+reaches a certain level. Precise numbers for this are found in the table below.
+We chose the value of \texttt{Infected} people over the value of
+the \texttt{Confirmed} people as the main indicator for our \textit{Lockdown}, even though only the number of confirmed people is accurately known in reality.
+Our reasoning for this was that the total number of \texttt{Infected} people in our
+model should be the best indicator for the strain of the virus on our health system,
+which would be a major deciding factor in the decision to implement a lockdown in reality.
+The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter.
+To account for the multiple levels of reopening like we have seen in previous
+lockdowns, we implemented different levels of \textit{Lockdown}, which gradually increase
+the number of \textit{contactsPerDay} to pre-pandemic levels.
+
+
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Simulation Results}
+\endgroup
+
+In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases. We can also observe the cange of the flow in the following three days, there the \texttt{Confirmed} cases grow but go down again after the three days.
+
+\begin{figure}[!h]
+  \centering
+  \subfloat[][\texttt{Unconfirmed}]{\includegraphics[width=0.45\linewidth]{Bilder/Unconfirmed}}%
+  \qquad
+  \subfloat[][\texttt{Confirmed}]{\includegraphics[width=0.45\linewidth]{Bilder/Confirmed}}%
+  \caption{Change of \texttt{Unconfirmed} and \texttt{Confirmed} cases with \textit{Masstests}}%
+  \label{uncon&con}
+\end{figure}
+
+
 
 To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. To do this, we created a different stock and assumed a flow of $1$ during a lockdown and $0.5$ during the first level of reopening.
 \begin{table}[!h]
@@ -203,11 +223,11 @@ To compare the different parameters for our \textit{Masstest} events, we measure
  \hline
      $35\%$ participation & 96 &  86&  78  & 36   \\
  \hline
-     $50\%$ participation & 86 & 77 & 49 & 5\\
+     $50\%$ participation & 86 & 77 & 49 & \colorbox{green}{5}\\
  \hline
-     $70\%$ participation & 75 &  45 & 6 & 4 \\
+     $70\%$ participation & 75 &  45 & \colorbox{green}{6} & 4 \\
  \hline
-     $90\%$ participation & 39 &4 &4  & 3\\
+     $90\%$ participation & 39 & \colorbox{green}{4} &4  & 3\\
      \hline
 \end{tabular}
 \end{center}
@@ -215,12 +235,18 @@ To compare the different parameters for our \textit{Masstest} events, we measure
 
 \caption{Days of \textit{Lockdown} with different participation rate and interval between \textit{Masstests}}
 \end{table} \\
-To compare: Without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
+In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
 
-Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between mass tests, ideally both. \\
+Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We observe that we could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff.
+
+To reach a participation rate high enough politicians would probably need to enact laws making participation mandatory. There have been tries to do it but the opposition parties heavily criticised it, questioning the legality. \\
 
 One thing we want to stress is, that in our model we ignored the existence of vaccines. Since the first vaccinations are already happening right now, our model might make the situation look more grim than it really is.
 
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \printbibliography
+\endgroup
 
 \end{document}
