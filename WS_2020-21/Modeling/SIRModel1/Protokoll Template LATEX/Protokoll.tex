@@ -54,7 +54,7 @@ What would happen if lockdowns are foregone, but regular mass tests are establis
 \chapter{Model Description}
 
 Our model is based on the classical SIR model by Kermack and McKendrick,
-but in addition to the standard compartments \texttt{Susceptible}, \texttt{Infectious}, \texttt{Recovered} we introduce an extra \texttt{Exposed} compartment between the \texttt{Susceptible} and the \texttt{Infectious}.
+but in addition to the standard compartments \texttt{Susceptible}, \texttt{Infectious}, \texttt{Recovered} we introduce an extra \texttt{Exposed} compartment between the \texttt{Susceptible} and the \texttt{Infectious}. It contains the persons that have been freshly infected but do not contribute to the infections yet. After some time-delay they get \texttt{Infectious}.
 Furthermore we split the \texttt{Infectious} compartment into two seperate compartments:
 \texttt{Confirmed} and \texttt{Unconfirmed}. \\
 In our model we assume, that the persons in the \texttt{Confirmed} compartment are in
@@ -65,14 +65,14 @@ causal loop diagram:
 \section{Causal Loop Diagram}
 
 As one can see in the figure below, there are two main balancing loops
-in our model and one reinforcing loop. The upper balancing loop only
+in our model and one reinforcing loop. The reinforcing loop illustrates the impact, the \texttt{Unconfirmed} have on the dynamic behaviour of the pandemic. The upper balancing loop only
 becomes relevant after a big portion of the population has already recovered
 from the virus and therefore our model will focus on how the disease can
 be controlled with different strategies of countermeasures.
 
 \begin{figure}[hbt!]
-  \caption{Causal Loop Diagram}
   \input{../causalloop.tex}
+  \caption{Causal Loop Diagram}
 \end{figure}
 
 \section{Stock and Flow Diagram}
@@ -82,8 +82,8 @@ our implementation in AnyLogic. As already mentioned, the stocks in our model
 are the \texttt{Susceptible}, \texttt{Exposed}, \texttt{Confirmed}, \texttt{Unconfirmed} and \texttt{Recovered} compartments.
 
 \begin{figure}[hbt!]
-  \caption{Stock and Flow Diagram}
   \includegraphics[width=\linewidth]{../AnyLogicSIR.JPG}
+  \caption{Stock and Flow Diagram}
 \end{figure}
 
 \FloatBarrier
@@ -123,9 +123,9 @@ Of course one constant value cannot perfectly model an ever changing pandemic, h
 For the recovery duration, the only value that truly matters in our model
 is the recovery rate for the \texttt{Unconfirmed} compartment, since the people in the
 \texttt{Confirmed} compartment already do not contribute to the spread of the pandemic anymore.
-For the value of \textit{RecoveriesUnconfirmed} we oriented us on the average number of days
+For the value of \textit{RecoveriesUnconfirmed} we oriented ourselves to the average number of days
 it takes to recover from the virus, which we assumed to be around $7$ days.
-The inverse of this value roughly yield our parameter value of
+The inverse of this value roughly yields our parameter value of
 
 \begin{align*}
   \beta_u = 0.15.
@@ -141,7 +141,7 @@ We end our simulation on 28.\,01.\,2022, exactly one year after the presentation
 
 First of all, we of course implemented a \textit{Masstest} event. In our implementation
 this immediately transfers a predefined fraction of our \texttt{Unconfirmed} compartment
-to the \texttt{Confirmed} compartment. In addition to this instanteous shift, we also
+to the \texttt{Confirmed} compartment. In addition to this instantaneous shift, we also
 adjusted the rate of \texttt{Confirmed} cases for the next three days after the start of
 the \textit{Masstest} accordingly. We experimented with different participation rates
 for our \textit{Masstests}, starting from $25\%$, roughly the average participation rate
