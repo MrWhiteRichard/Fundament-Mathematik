@@ -1,0 +1,196 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie das Wegintegral
+
+\begin{align*}
+    \int_{\partial B}
+            (x - y^3)
+            ~\mathrm d x
+        +
+        y^3
+        ~\mathrm d y
+\end{align*}
+
+direkt und über den Stoke'schen Integralsatz wobei $B$ der offene Einheitskreis in $\R^2$ ist.
+
+(Das Wegintegral
+$\Int[\gamma]
+{
+    \begin{pmatrix}
+        f_1(\mathbf z) \\
+        f_2(\mathbf z)
+    \end{pmatrix}
+}{\mathbf z}$
+im $\R^2$ wird hier als
+$\int_\gamma
+        f_1(\mathbf z)
+        ~\mathrm d x
+        +
+    f_2(\mathbf z)
+    ~\mathrm d y$
+geschrieben).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $\mathbf f$ unser Vektorfeld, d.h.
+
+\begin{align*}
+    \mathbf f:
+        \partial B \to \R^2,
+        (x, y)
+        \mapsto
+        \begin{pmatrix}
+            x - y^3 \\ y^3
+        \end{pmatrix}.
+\end{align*}
+
+Wir parametrisieren den Rand des offenen Einheitskreises vermöge
+
+\begin{align*}
+    \gamma:
+        [0, 2 \pi) \to \partial B,
+        t
+        \mapsto
+        \begin{pmatrix}
+            \cos t \\ \sin t
+        \end{pmatrix}.
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil (\Quote{direkt}):
+    
+    \includegraphicsboxed{Ana1&2/Ana1&2 - 11.2.5 Satz.png}
+    
+    Wir verwenden Satz 11.2.5 und berechnen
+
+    \begin{align*}
+        \int_{\partial B}
+        (x - y^3)
+        ~\mathrm d x
+    +
+    y^3
+    ~\mathrm d y
+    & =
+    \Int[\gamma]
+    {
+        \mathbf f(x, y)
+    }{(x, y)} \\
+    & =
+    \Int[0][2 \pi]
+    {
+        \mathbf f(\gamma(t)) \gamma^\prime(t)
+    }{t} \\
+    & =
+    \Int[0][2 \pi]
+    {
+        (\cos t - \sin^3 t, \sin^3 t)
+        \begin{pmatrix}
+            -\sin t \\
+             \cos t
+        \end{pmatrix}
+        }{t} \\
+        & =
+        -
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \sin t \cos t
+            }{t}
+        }_0
+        +
+        \Int[0][2 \pi]
+        {
+            \sin^4 t
+        }{t}
+        +
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \cos t \sin^3 t
+            }{t}
+        }_0 \\
+        & =
+        \frac{3 \pi}{4}.
+    \end{align*}
+
+    \item Teil (\Quote{über den den Stoke'schen Integralsatz}):
+    
+    \includegraphicsgraphicsboxed
+    {Ana3/Ana3 - Satz 5.4.1.1 (Integralsatz von Stokes für die Ebene).png}
+    {Ana3/Ana3 - Satz 5.4.1.2 (Integralsatz von Stokes für die Ebene).png}
+
+    Wir verwenden Satz 5.4.1 und Polarkoordinaten und berechnen
+
+    \begin{align*}
+        \int_{\partial B}
+                (x - y^3)
+                ~\mathrm d x
+            +
+            y^3
+            ~\mathrm d y
+        & \stackrel
+        {
+            \text{Stokes ?}
+        }{=}
+        \Int[B]
+        {
+            \rot \mathbf f
+        }{\lambda^2} \\
+        & =
+        \Int[B]
+        {
+            \pderivative[][\mathbf f_2]{x}
+            -
+            \pderivative[][\mathbf f_1]{y}
+        }{\lambda^2} \\
+        & =
+        \Int[B]
+        {
+            3 y^2
+        }{\lambda^2(x, y)} \\
+        & \stackrel
+        {
+            \text{TRAFO}
+        }{=}
+        3
+        \Int[0][2 \pi]
+        {
+            \Int[0][1]
+            {
+                (r \sin \varphi)^2 r
+            }{r}
+        }{\varphi} \\
+        & =
+        3
+        \underbrace
+        {
+            \Int[0][1]
+            {
+                r^3
+            }{r}
+        }_\frac{1}{4}
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \sin^2 \varphi
+            }{\varphi}
+        }_\pi \\
+        & =
+        \frac{3 \pi}{4}.
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

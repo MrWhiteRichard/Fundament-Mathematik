@@ -1,0 +1,118 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+Für ein $C^2$-Vektorfeld $\mathbf F$ gilt $\Div \rot \mathbf F = 0$.
+Für eine $C^2$-Funktion $f$ gilt $\rot \nabla f = 0$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir erinnern uns an den Satz von Schwarz.
+
+\includegraphicsboxed{Ana1&2/Ana1&2 - 10.2.3 Satz (Satz von Schwarz).png}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil:
+
+    \begin{align*}
+        \Div \rot \mathbf F
+        & =
+        \Div
+            \pbraces
+            {
+                \pderivative[][\mathbf F_3]{x_2}
+                -
+                \pderivative[][\mathbf F_2]{x_3},
+                \pderivative[][\mathbf F_1]{x_3}
+                -
+                \pderivative[][\mathbf F_3]{x_1},
+                \pderivative[][\mathbf F_2]{x_1}
+                -
+                \pderivative[][\mathbf F_1]{x_2}
+            }^t \\
+        & =
+        \pderivative{x_1}
+            \pbraces
+            {
+                \pderivative[][\mathbf F_3]{x_2}
+                -
+                \pderivative[][\mathbf F_2]{x_3}
+            }
+        +
+        \pderivative{x_2}
+            \pbraces
+            {
+                \pderivative[][\mathbf F_1]{x_3}
+                -
+                \pderivative[][\mathbf F_3]{x_1}
+            }
+        +
+        \pderivative{x_3}
+            \pbraces
+            {
+                \pderivative[][\mathbf F_2]{x_1}
+                -
+                \pderivative[][\mathbf F_1]{x_2}
+            } \\
+        & =
+        \frac{\partial^2 \mathbf F_3}{\partial x_1 \partial x_2}
+        -
+        \frac{\partial^2 \mathbf F_2}{\partial x_1 \partial x_3}
+        +
+        \frac{\partial^2 \mathbf F_1}{\partial x_2 \partial x_3}
+        -
+        \frac{\partial^2 \mathbf F_3}{\partial x_2 \partial x_1}
+        +
+        \frac{\partial^2 \mathbf F_2}{\partial x_3 \partial x_1}
+        -
+        \frac{\partial^2 \mathbf F_1}{\partial x_3 \partial x_2} \\
+        & =
+        0
+    \end{align*}
+
+    \item Teil:
+    
+    \begin{align*}
+        \rot \nabla f
+        & =
+        \rot
+        \pbraces
+        {
+            \pderivative[][f]{x_1},
+            \pderivative[][f]{x_2},
+            \pderivative[][f]{x_3}
+        }^t \\
+        & =
+        \pbraces
+        {
+            \pderivative{x_2}
+                \pderivative[][f]{x_3}
+            -
+            \pderivative{x_3}
+                \pderivative[][f]{x_2},
+            \pderivative{x_3}
+                \pderivative[][f]{x_1}
+            -
+            \pderivative{x_1}
+                \pderivative[][f]{x_3},
+            \pderivative{x_1}
+                \pderivative[][f]{x_2}
+            -
+            \pderivative{x_2}
+                \pderivative[][f]{x_1}
+        }^t \\
+        & =
+        0
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

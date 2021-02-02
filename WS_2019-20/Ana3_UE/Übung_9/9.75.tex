@@ -1,0 +1,140 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Verifizieren Sie den Integralsatz von Gauß dür das Gebiet $\Omega = \Bbraces{(x, y, z): 0 < z < 1 - x^2 - y^2}$ und die Funktion $f(x, y, z) = (x, x + y, x^2 + z)^t$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir bestimmen zunächst das Normalvektorfeld.
+Dazu zerlegen wir $\partial \Omega$ in
+
+\begin{align*}
+    A := \Bbraces{(x, y, z): 0 = z < 1 - x^2 - y^2},
+    \quad
+    \text{und}
+    \quad
+    B := \Bbraces{(x, y, z): 0 < z = 1 - x^2 - y^2}.
+\end{align*}
+
+Nun sind $A$ und $B$ die Nullstellenmengen der Funktionen $F_A$ und $F_B$.
+
+\begin{gather*}
+    F_A(x, y, z) := z,
+    \quad
+    \nabla F_A(x, y, z) = (0, 0, 1)^t, \\
+    F_B(x, y, z) := 1 - x^2 - y^2 - z,
+    \quad
+    \nabla F_B(x, y, z) = (-2 x, -2 y, -1)^t, \\
+    (x, y, z) \in \partial \Omega
+\end{gather*}
+
+\includegraphicsboxed{Ana3/Ana3 - Satz 5.1.9.png}
+
+Laut Satz 5.1.9, lautet das Normalvektorfeld daher
+
+\begin{align*}
+    \nu:
+        \partial \Omega \to \R^3,
+        (x, y, z)
+        \mapsto
+        \begin{cases}
+            (0, 0, -1)^t,                                  & z = 0, \\
+            \sqrt{4 (x^2 + y^2) + 1}^{-1} (2 x, 2 y, 1)^t, & \text{sonst}.
+        \end{cases}
+\end{align*}
+
+Das $-$ rührt daher, dass das Normalvektorfeld nach Außen zeigen muss.
+Wir parametrisieren das Gebiet mit Zylinderkoordinaten, d.h. vermöge
+
+\begin{align*}
+    \psi:
+        D := \Bbraces{(r, \varphi, z): 0 \leq \varphi < 2 \pi, 0 < z < 1, 0 \leq r < \sqrt{1 - z}} \to \Omega,
+        (r, \varphi, z) \mapsto (r \cos \varphi, r \sin \varphi, z).
+\end{align*}
+
+\begin{align*}
+    \implies
+    \Int[\partial \Omega]
+    {
+        f^t \nu
+    }{
+        \mathcal H^2
+    }
+    & \stackrel
+    {
+        \text{Gauß}
+    }{=}
+    \Int[\Omega]
+    {
+        \Div f
+    }{\lambda^3} \\
+    & =
+    \Int[\psi(D)]
+    {
+        \derivative[][f_1]{x}
+        +
+        \derivative[][f_2]{y}
+        +
+        \derivative[][f_3]{z}
+    }{
+        \lambda^3
+    } \\
+    & =
+    \Int[\psi(D)]
+    {
+        3
+    }{
+        \lambda^3
+    } \\
+    & \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    3
+    \Int[D]{r}{(r, z, \varphi)} \\
+    & =
+    3
+    \Int[0][2 \pi]
+    {
+        \Int[0][1]
+        {
+            \Int[0][\sqrt{1 - z}]
+            {
+                r
+            }{r}
+        }{z}
+    }{\varphi} \\
+    & =
+    3
+    \Int[0][2 \pi] {}{\varphi}
+    \Int[0][1]
+    {
+        \frac{1}{2}
+        \sqrt{1 - z}^2
+    }{z} \\
+    & =
+    3 \pi
+    \pbraces
+    {
+        \Int[0][1]{}{z}
+        -
+        \Int[0][1]{z}{z}
+    } \\
+    & =
+    3 \pi
+    \pbraces
+    {
+        1 - \frac{1}{2}
+    } \\
+    & =
+    \frac{3 \pi}{2}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
