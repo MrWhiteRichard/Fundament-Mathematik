@@ -1,6 +1,6 @@
 \documentclass
 [
-    a4paper,
+    report,
     11pt,
     bibliography = totoc,
     listof = totoc,
@@ -16,12 +16,13 @@
 
 \addbibresource{Quellen/references.bib}
 
+
 \begin{document}
 
 \subject{Modeling \& Simulation}
-\title{SIR Model - Mass Tests}
+\title{SIR Model -- Mass Tests}
 
-\publishers{Betreuer: Martin Bicher }
+\publishers{Supervisor : Martin Bicher}
 
 
 \author{
@@ -43,58 +44,66 @@ of unconfirmed cases. This strategy should serve as an alternative to
 lockdown measures that force people to reduce their contacts.
 In this project we want to contrast these alternatives qualitatively and quantitatively
 by constructing a modified SIR Model to simulate the spread of the disease.
-With our model we want to answer the question:
-How many days of lockdown are necessary with different strategies of mass-testing?
-
+With our model we want to answer two questions:
+How many days of lockdown are necessary with different strategies of mass testing?
+What would happen if lockdowns are foregone, but regular mass tests are established instead?
 
 \tableofcontents
 
 
 \chapter{Model Description}
 
-Our model is based on the classical SIR Model by Kermack and McKendrick,
-but in addition to the standard compartments Susceptible, Infectious, Recovered
-we introduce an extra Exposed compartment between the Susceptible and the Infectious.
-Furthermore we split the Infectious compartment into two seperate compartments:
-Confirmed and Unconfirmed. \\
-In our model we assume, that the persons in the Confirmed compartment are in
+Our model is based on the classical SIR model by Kermack and McKendrick,
+but in addition to the standard compartments \texttt{Susceptible}, \texttt{Infectious}, \texttt{Recovered} we introduce an extra \texttt{Exposed} compartment between the \texttt{Susceptible} and the \texttt{Infectious}. It contains the persons that have been freshly infected but do not contribute to the infections yet. After some time-delay they get \texttt{Infectious}.
+Furthermore we split the \texttt{Infectious} compartment into two seperate compartments:
+\texttt{Confirmed} and \texttt{Unconfirmed}. \\
+In our model we assume, that the persons in the \texttt{Confirmed} compartment are in
 quarantine and do not contribute to the infection rate anymore.
-To capture the causal relations within our model we first sketch a basic
-causal loop diagram.
+To capture the causal relations within our model, we first sketch a basic
+causal loop diagram:
 
 \section{Causal Loop Diagram}
 
 As one can see in the figure below, there are two main balancing loops
-in our model and one reinforcing loop. The upper balancing loop only
+in our model and one reinforcing loop. The reinforcing loop illustrates the impact the \texttt{Unconfirmed} have on the dynamic behaviour of the pandemic. The upper balancing loop only
 becomes relevant after a big portion of the population has already recovered
 from the virus and therefore our model will focus on how the disease can
 be controlled with different strategies of countermeasures.
 
 \begin{figure}[hbt!]
-  \caption{Causal Loop Diagram}
   \input{../causalloop.tex}
+  \caption{Causal Loop Diagram}
 \end{figure}
 
 \section{Stock and Flow Diagram}
 
-For the Stock and Flow Diagram of our model we jump directly into
-our AnyLogic-Implementation. As already mentioned, the stocks in our model
-are the Susceptible, Exposed, Confirmed, Unconfirmed and Recovered compartments.
+For the stock and flow Diagram of our model, we jump directly into
+our implementation in AnyLogic. As already mentioned, the stocks in our model
+are the \texttt{Susceptible}, \texttt{Exposed}, \texttt{Confirmed}, \texttt{Unconfirmed} and \texttt{Recovered} compartments. \\
+The number of infections determines the flow from the \texttt{Susceptible} to the
+\texttt{Exposed} compartment, which in turn is dependent on the number of contacts
+per day, the infection probability, as well as the number of \texttt{Susceptible}
+and \texttt{Unconfirmed} people. To determine how many people of our \texttt{Exposed}
+department get \texttt{Confirmed} or \texttt{Unconfirmed} we introduce the parameter
+\textit{pc} and \textit{pu}, which represent the probability that an infection
+is detected or not detected, respectively. Furthermore the parameter \textit{gamma}
+models the average number of days it takes for an infected person to become infectious. \\
+Lastly the flow of the \texttt{Confirmed} and \texttt{Unconfirmed} to the \texttt{Recovered}
+compartment is determined by their respective recovery rates \textit{betac} and \textit{betau}.
 
 \begin{figure}[hbt!]
-  \caption{Stock and Flow Diagram}
   \includegraphics[width=\linewidth]{../AnyLogicSIR.JPG}
+  \caption{Stock and Flow Diagram}
 \end{figure}
 
 \FloatBarrier
 
 \section{Parameters}
 
-We choose our contactsPerDay to be 12 before the start of the pandemic,
+We choose the parameter \textit{contactsPerDay} to be 12 before the start of the pandemic,
 based on \cite{Spiegel}. With our lockdown events, which we will discuss
 later, this value will vary through the course of the pandemic.
-Inseperably intertwined with the contactsPerDay parameter is our parameter
-for the InfectionProbability. Since our formula for the Infections states
+Inseperably intertwined with the \textit{contactsPerDay} parameter is the parameter \textit{InfectionProbability}. From our formula
 
 \begin{align*}
   \text{Infections} = \text{Susceptible} \cdot \text{contactsPerDay} \cdot
@@ -102,10 +111,10 @@ for the InfectionProbability. Since our formula for the Infections states
   \text{Unconfirmed} \cdot \frac{1}{N},
 \end{align*}
 
-a change in the first parameter would have the same effect on our model
+we can deduce that a change in the first parameter would have the same effect on our model
 as the analogous change in the second parameter.
 This posed the challenging task of finding realistic values for those parameters.
-Therefore we determined our parameter for the InfectionProbability by comparing
+We determined our parameter for the \textit{InfectionProbability} by comparing
 our model results with the data provided by \cite{OrfCorona} and finally
 settled for the baseline
 
@@ -113,122 +122,145 @@ settled for the baseline
   \text{InfectionProbability} = 0.06.
 \end{align*}
 
-Furthermore to reflect the seasonal differences in the course of the pandemic,
-we lowered the InfectionProbability in the summer to $0.02$. \\
-Next we needed to determine the value of gamma, which is determined by the time
+Furthermore, to reflect the seasonal differences in the course of the pandemic,
+we lowered the \textit{InfectionProbability} in the summer to $0.02$. \\
+Next we needed to determine the value of \textit{gamma}, which represents the time
 it takes from contracting the virus to becoming infectious oneself.
 We refer to \cite{RobertKochInstitut}, where a feasible parameter value of $5$ is given. \\
-For the rate of positive tests, we took a look at the current state in Austria,
-where approximately $65\%$ of infection go by unnoticed \cite{MassTests}.
-Of course one constant value for the rate of positive tests cannot perfectly
-modeled an ever changing pandemic, however, continuously changing the value
-throughout the pandemic seemed to be a too daunting task to handle. \\
-For the recovery parameter the only value that truly matters in our model
-is the recovery rate for the Unconfirmed compartment, since the people in the
-Confirmed compartment already do not contribute to the spread of the pandemic anymore.
-For the value of RecoveriesUnconfirmed we oriented us on the average number of days
+For the number of undetected cases, we took a look at the current state in Austria,
+where approximately $65\%$ of the infections go by unnoticed \cite{MassTests}.
+Of course one constant value cannot perfectly model an ever changing pandemic, however, continuously changing the value throughout the pandemic seemed to go beyond the scope of this model. \\
+For the recovery duration, the only value that truly matters in our model
+is the recovery rate for the \texttt{Unconfirmed} compartment, since the people in the
+\texttt{Confirmed} compartment already do not contribute to the spread of the pandemic anymore.
+For the value of \textit{RecoveriesUnconfirmed} we oriented ourselves to the average number of days
 it takes to recover from the virus, which we assumed to be around $7$ days.
-The inverse of this value roughly yield our parameter value of
+The inverse of this value roughly yields our parameter value of
 
 \begin{align*}
   \beta_u = 0.15.
 \end{align*}
 
 Finally we address the starting values for our model. We choose our start date
-to be the 25th of February 2020 and assume an initial 300 infections.
+to be the 25.\,02.\,2020 and assumed an initial 300 infections.
 Our parameter for $N$ is simply chosen as the current population of Austria,
 which yields the approximate value of $N = 8,900,000$.
-We end our simulation on 28.01.2022, exactly one year after the presentation date.
+We end our simulation on 28.\,01.\,2022, exactly one year after the presentation date.
 
 \section{Events}
 
-First of all, we of course implemented a mass test event. In our implementation
-this immediately transfers a predefined fraction of our Unconfirmed compartment
-to the Confirmed compartment. In addition to this instanteous shift we also
-adjusted the rate of confirmed cases for the next three days after the start of
-the mass test accordingly. We experimented with different participation rates
-for our masstests, starting from $25\%$, roughly the average participation rate
-for the previous masstests in Austria, all the way up to the illusive rate of $90\%$.
-For the recurrence of the masstests, we implemented them to occur cyclically,
-experimenting again with different time intervals for the cycle. The first masstest
-starts on the 12th of December, just like in reality.\\
+First of all, we of course implemented a \textit{Masstest} event. In our implementation
+this immediately transfers a predefined fraction of our \texttt{Unconfirmed} compartment
+to the \texttt{Confirmed} compartment. In addition to this instantaneous shift, we also
+adjusted the rate of \texttt{Confirmed} cases for the next three days after the start of
+the \textit{Masstest} accordingly. We experimented with different participation rates
+for our \textit{Masstests}, starting from $25\%$, roughly the average participation rate
+for the previous mass tests in Austria \cite{MassTests}, all the way up to the illusive rate of $90\%$.
+For the recurrence of the \textit{Masstests}, we implemented them to occur cyclically,
+experimenting again with different time intervals for the cycle. The first one
+starts on 12.\,12.\,2020, just like it did in reality.\\
 
-The second big event we implemented was of course the Lockdown. To be precise,
-we modeled multiple different version of Lockdowns, but all with the same basic idea:
-The Lockdowns triggers, once the number of Infected people (Confirmed and Unconfirmed combined)
+\begin{table}[!h]
+  \begin{center}
+  \begin{tabular}{|c||c|c|c|c|}
+  \hline
+    \texttt{Infected} &- & $\geq 45.000$ & $\leq 10.000$ & $\leq 5.000$ \\
+    \hline
+    \textit{contactsPerDay} & 12 & 2 & 6 & 9 \\
+    \hline
+  \end{tabular}
+  \end{center}
+  \caption{Numbers for first \textit{Lockdown}}
+\end{table}
+
+\begin{table}[!h]
+  \begin{center}
+  \begin{tabular}{|c||c|c|c|c|}
+  \hline
+    \texttt{Infected} &- & $\geq 115.000$ & $\leq 30.000$ & $\leq 20.000$ \\
+    \hline
+    \textit{contactsPerDay} & 9 & 3 & 6 & 9 \\
+    \hline
+  \end{tabular}
+  \end{center}
+  \caption{Numbers for other \textit{Lockdowns}}
+\end{table}
+
+The second big event we implemented was of course the \textit{Lockdown}. To be precise,
+we modeled multiple different version of \textit{Lockdowns}, but all with the same basic idea:
+The events trigger once the number of \texttt{Infected} people (\texttt{Confirmed} plus \texttt{Unconfirmed})
 reaches a certain level. Precise numbers for this are found in the table below.
-We chose the value of Infected people over the value of
-the Confirmed people as the main indicator for our model Lockdown, even though
-in reality only the number of Confirmed people is accurately known.
-Our reasoning for this was, that the total number of Infected people in our
+We chose the value of \texttt{Infected} people over the value of
+the \texttt{Confirmed} people as the main indicator for our \textit{Lockdown}, even though only the number of confirmed people is accurately known in reality.
+Our reasoning for this was that the total number of \texttt{Infected} people in our
 model should be the best indicator for the strain of the virus on our health system,
-which would be a major deciding factor in the decision to implement a Lockdown in reality.
-The effect of a Lockdown in our model is simply a reduction of the contactsPerDay parameter.
+which would be a major deciding factor in the decision to implement a lockdown in reality.
+The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter.
 To account for the multiple levels of reopening like we have seen in previous
-lockdown, we implemented different levels of lockdown, which gradually increase
-the number of contactsPerDay to pre-pandemic levels.
-\begin{table}[!h]
-  \begin{center}
-  \begin{tabular}{|c||c|c|c|c|}
-  \hline
-    Nr. Infected &- & $\geq 45,000$ & $\leq 10,000$ & $\leq 5,000$ \\
-    \hline
-    contacts per Day & 14 & 2 & 6 & 9 \\
-    \hline
-  \end{tabular}
-  \end{center}
-  \caption{Numbers for first lockdown}
-\end{table}
+lockdowns, we implemented different levels of \textit{Lockdown}, which gradually increase
+the number of \textit{contactsPerDay} to pre-pandemic levels.
 
-\begin{table}[!h]
-  \begin{center}
-  \begin{tabular}{|c||c|c|c|c|}
-  \hline
-    Nr. Infected &- & $\geq 115,000$ & $\leq 30,000$ & $\leq 20,000$ \\
-    \hline
-    contacts per Day & 9 & 3 & 6 & 9 \\
-    \hline
-  \end{tabular}
-  \end{center}
-  \caption{Numbers for other lockdowns}
-\end{table}
 
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
 \chapter{Simulation Results}
+\endgroup
 
-To compare the different masstest parameters we measured the amount of days in
-Lockdown after December 12th. To do this we created a different stock and assumed
-a flow of $1$ during a lockdown and $0.5$ during the first level of reopening.
+In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases. We can also observe the cange of the flow in the following three days, there the \texttt{Confirmed} cases grow but go down again after the three days.
+As we can see in the graphs below, even with this relatively optimistic participation rate
+and a high frequency of \textit{masstesting}, this strategy alone is merely enough
+to slow down the exponential growth of cases.
+To effectively reduce the number of infections, however, we have to make use of our \textit{lockdown} events.
+
+\begin{figure}[!h]
+  \centering
+  \subfloat[][\texttt{Unconfirmed}]{\includegraphics[width=0.45\linewidth]{Bilder/Unconfirmed}}%
+  \qquad
+  \subfloat[][\texttt{Confirmed}]{\includegraphics[width=0.45\linewidth]{Bilder/Confirmed}}%
+  \caption{Change of \texttt{Unconfirmed} and \texttt{Confirmed} cases with \textit{Masstests}}%
+  \label{uncon&con}
+\end{figure}
+
+
+
+To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. To do this, we created a different stock and assumed a flow of $1$ during a lockdown and $0.5$ during the first level of reopening.
 \begin{table}[!h]
 {\small%
 \begin{center}
 \begin{tabular}{|c||c|c|c|c|}
 \hline
-& 30 days    & 21 days   & 14 days  & 7 days  \\
+& 30 days   & 21 days   & 14 days   & 7 days  \\
  \hline
  \hline
      $25\%$ participation & 119 &96 & 86 & 60\\
  \hline
      $35\%$ participation & 96 &  86&  78  & 36   \\
  \hline
-     $50\%$ participation & 86 & 77 & 49 & 5\\
+     $50\%$ participation & 86 & 77 & 49 & \colorbox{green}{5}\\
  \hline
-     $70\%$ participation & 75 &  45 & 6 & 4 \\
+     $70\%$ participation & 75 &  45 & \colorbox{green}{6} & 4 \\
  \hline
-     $90\%$ participation & 39 &4 &4  & 3\\
+     $90\%$ participation & 39 & \colorbox{green}{4} &4  & 3\\
      \hline
 \end{tabular}
 \end{center}
 }
 
-\caption{Days of lockdown with different participation rate and interval between masstests}
+\caption{Days of \textit{Lockdown} with different participation rate and interval between \textit{Masstests}}
 \end{table} \\
-To compare: without any masstests at all the number of days in lockdown would be
-$156$. The actual participation rate ranged from $14-36\%$ (averageing about $25\%$), depending on state, with the lowest rate in Vienna and the highest in Lower Austria. The first two masstests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the masstests.
+In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria \cite{MassTests}. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
 
-Our simulation now suggests that to really get the most out of masstesting we would need to either heavily increase the participation rate or decrease the interval between masstests, ideally both. \\
+Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We observe that we could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff.
 
-One thing we want to stress is, that in our model no vaccinations are done at all. Since the first vaccinations are already happening right now our model might make the situation look more grim than it really is.
+To reach a participation rate high enough politicians would probably need to enact laws making participation mandatory. There have been tries to do it but the opposition parties heavily criticised it, questioning the legality. \\
 
-\printbibliography{}
+One thing we want to stress is, that in our model we ignored the existence of vaccines. Since the first vaccinations are already happening right now, our model might make the situation look more grim than it really is.
+
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+\printbibliography
+\endgroup
 
 \end{document}

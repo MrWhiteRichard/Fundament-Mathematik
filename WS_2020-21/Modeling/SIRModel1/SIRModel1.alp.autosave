@@ -1054,7 +1054,7 @@ Unconfirmed*1/N]]></Formula>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 10000 && contactsPerDay != 12 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over !=2]]></Condition>
+						<Condition><![CDATA[Infected <= 10000 && contactsPerDay != 12 && contactsPerDay != 9 && contactsPerDay !=6 && first_lockdown_over ==1]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 6;
 if(time() > 291){
@@ -1086,15 +1086,15 @@ openthecountry_1.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[7]]></Code>
+							<Code><![CDATA[14]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
 					<Action><![CDATA[temp = Unconfirmed;
-masstestrate = 0.9;
-Unconfirmed = Unconfirmed*0.1;
-Confirmed = Confirmed+temp*0.9;]]></Action>
+masstestrate = 0.5;
+Unconfirmed = Unconfirmed*0.5;
+Confirmed = Confirmed+temp*0.5;]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565907323</Id>
@@ -1120,7 +1120,7 @@ Confirmed = Confirmed+temp*0.9;]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[7]]></Code>
+							<Code><![CDATA[14]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
@@ -1216,7 +1216,7 @@ Confirmed = Confirmed+temp*0.9;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
-						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 12 && contactsPerDay !=9 && first_lockdown_over !=2]]></Condition>
+						<Condition><![CDATA[Infected <= 5000 && contactsPerDay != 12 && contactsPerDay !=9 && first_lockdown_over ==1]]></Condition>
 					</Properties>
 					<Action><![CDATA[contactsPerDay = 9;
 is_lockdown = 0;
@@ -1402,6 +1402,38 @@ is_lockdown = 0;
 }
 ]]></Action>
 				</Event>
+				<Event>
+					<Id>1612111587192</Id>
+					<Name><![CDATA[Nomorelockdown]]></Name>
+					<X>250</X><Y>810</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="timeout" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>false</OccurrenceAtTime>
+						<OccurrenceDate>1607760000000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[contactsPerDay = 9;
+first_lockdown_over = 3;]]></Action>
+				</Event>
 			</Events>
 			<AgentLinks>
 				<AgentLink>
@@ -1527,14 +1559,14 @@ is_lockdown = 0;
 						<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>400</Width>
+					<Width>410</Width>
 					<Height>229.7651376146789</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>335.19</Width>
+						<Width>345.19000000000005</Width>
 						<Height>139.7651376146789</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
@@ -1788,9 +1820,9 @@ is_lockdown = 0;
 		<Height>910</Height>
 	</Frame>
 	<Database>
-		<Logging>false</Logging>
+		<Logging>true</Logging>
 		<AutoExport>false</AutoExport>
-		<ShutdownCompact>false</ShutdownCompact>
+		<ShutdownCompact>true</ShutdownCompact>
 		<ImportSettings>
 		</ImportSettings>
 		<ExportSettings>
