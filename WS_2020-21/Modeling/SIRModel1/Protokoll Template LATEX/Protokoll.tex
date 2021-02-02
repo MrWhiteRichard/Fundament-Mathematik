@@ -65,7 +65,7 @@ causal loop diagram:
 \section{Causal Loop Diagram}
 
 As one can see in the figure below, there are two main balancing loops
-in our model and one reinforcing loop. The reinforcing loop illustrates the impact, the \texttt{Unconfirmed} have on the dynamic behaviour of the pandemic. The upper balancing loop only
+in our model and one reinforcing loop. The reinforcing loop illustrates the impact the \texttt{Unconfirmed} have on the dynamic behaviour of the pandemic. The upper balancing loop only
 becomes relevant after a big portion of the population has already recovered
 from the virus and therefore our model will focus on how the disease can
 be controlled with different strategies of countermeasures.
@@ -79,7 +79,17 @@ be controlled with different strategies of countermeasures.
 
 For the stock and flow Diagram of our model, we jump directly into
 our implementation in AnyLogic. As already mentioned, the stocks in our model
-are the \texttt{Susceptible}, \texttt{Exposed}, \texttt{Confirmed}, \texttt{Unconfirmed} and \texttt{Recovered} compartments.
+are the \texttt{Susceptible}, \texttt{Exposed}, \texttt{Confirmed}, \texttt{Unconfirmed} and \texttt{Recovered} compartments. \\
+The number of infections determines the flow from the \texttt{Susceptible} to the
+\texttt{Exposed} compartment, which in turn is dependent on the number of contacts
+per day, the infection probability, as well as the number of \texttt{Susceptible}
+and \texttt{Unconfirmed} people. To determine how many people of our \texttt{Exposed}
+department get \texttt{Confirmed} or \texttt{Unconfirmed} we introduce the parameter
+\textit{pc} and \textit{pu}, which represent the probability that an infection
+is detected or not detected, respectively. Furthermore the parameter \textit{gamma}
+models the average number of days it takes for an infected person to become infectious. \\
+Lastly the flow of the \texttt{Confirmed} and \texttt{Unconfirmed} to the \texttt{Recovered}
+compartment is determined by their respective recovery rates \textit{betac} and \textit{betau}.
 
 \begin{figure}[hbt!]
   \includegraphics[width=\linewidth]{../AnyLogicSIR.JPG}
@@ -145,7 +155,7 @@ to the \texttt{Confirmed} compartment. In addition to this instantaneous shift, 
 adjusted the rate of \texttt{Confirmed} cases for the next three days after the start of
 the \textit{Masstest} accordingly. We experimented with different participation rates
 for our \textit{Masstests}, starting from $25\%$, roughly the average participation rate
-for the previous mass tests in Austria, all the way up to the illusive rate of $90\%$.
+for the previous mass tests in Austria \cite{MassTests}, all the way up to the illusive rate of $90\%$.
 For the recurrence of the \textit{Masstests}, we implemented them to occur cyclically,
 experimenting again with different time intervals for the cycle. The first one
 starts on 12.\,12.\,2020, just like it did in reality.\\
@@ -198,6 +208,10 @@ the number of \textit{contactsPerDay} to pre-pandemic levels.
 \endgroup
 
 In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases. We can also observe the cange of the flow in the following three days, there the \texttt{Confirmed} cases grow but go down again after the three days.
+As we can see in the graphs below, even with this relatively optimistic participation rate
+and a high frequency of \textit{masstesting}, this strategy alone is merely enough
+to slow down the exponential growth of cases.
+To effectively reduce the number of infections, however, we have to make use of our \textit{lockdown} events.
 
 \begin{figure}[!h]
   \centering
@@ -235,7 +249,7 @@ To compare the different parameters for our \textit{Masstest} events, we measure
 
 \caption{Days of \textit{Lockdown} with different participation rate and interval between \textit{Masstests}}
 \end{table} \\
-In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
+In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria \cite{MassTests}. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
 
 Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We observe that we could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff.
 
