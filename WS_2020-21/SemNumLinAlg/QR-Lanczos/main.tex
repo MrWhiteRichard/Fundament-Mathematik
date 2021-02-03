@@ -5,11 +5,22 @@
 \input{../../../Fundament-LaTeX/environments.tex}
 \input{../../../Fundament-LaTeX/listings.tex}
 
-\parskip 0pt
+\parskip 5pt
 \parindent 0pt
 
 \addbibresource{references.bib}
 
+\setlength{\headsep}{0.25in}
+
+\lstset{language=Python,
+frame=tb,
+numbers = left,
+numbersep = 8pt,
+captionpos=b,
+tabsize=2,
+basicstyle=\footnotesize,
+xleftmargin = 0.2\textwidth,
+xrightmargin = 0.2\textwidth}
 
 \begin{document}
 
@@ -32,6 +43,7 @@
 \tableofcontents
 \newpage
 
+\pagestyle{headings}
 
 \section{Einleitung}
 
@@ -151,7 +163,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 	A^{(0)} \coloneqq A, \quad A^{(t+1)} \coloneqq R^{(t)}Q^{(t)}
 \end{equation}
 
-gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist. 
+gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist.
 Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
@@ -233,7 +245,7 @@ Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Tole
 Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Num}, S. 114. Dieser Shift wird auch Wilkinson-Shift genannt.
 
 
-\begin{algorithm}
+\begin{algorithm}[H]
 	\label{QR-Verfahren_shifts}
 	\caption{QR-Verfahren mit Wilkinson-Shift}
 	\algorithmicrequire{ $A \in \C^{n\times n}$}
@@ -262,6 +274,139 @@ In unserer Implementierung des QR-Verfahrens verwenden wir die letzte angeführt
 Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix $A$ Hessenbergform hat. Auf diesen Fall werden wir im nächsten Abschnitt eingehen.
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
+
+Den Hauptaufwand beim QR-Verfahren bildet die QR-Zerlegung die in jedem Iterationsschritt durchgeführt werden muss. Der Aufawnd einer QR-Zerlegung mithilfe von Householdermatrizen wächst kubisch mit der Dimension der Matrix (Vgl. \cite{Num}, S.78). Nun gibt es für sogenannte Hessenbergmatrizen einen wesentlich effizienteren Algorithmus, bei dem statt Householdermatrizen andere unitäre Matrizen verwendet werden.
+
+\begin{definition}[Hessenberg-Matrix]
+	Eine Matrix $A = (a_{ij})_{i,j = 1}^n \in \C^{n \times n}$ hat (obere) Hessenbergform, falls $a_{ij} = 0$ für alle $j = 1,\dots,n$ und $i = j+2, \dots, n$. Eine Hessenberg-Matrix hat also fast obere Dreiecksform, nur in der unteren Nebendiagonale sind noch nicht-null Einträge.
+\end{definition}
+
+\begin{definition}[Givens-Rotation]
+	Eine Givens-Rotation $G \in \C^{n\times n}$ ist eine Matrix der Form
+
+	\begin{align*}
+	G(j,k,c,s)  = \left(\begin{array}{ccc|ccccc|ccc}
+	1 &  &  & & & & & & &\\
+	& \ddots & & & & & & & & &\\
+	& & 1 & & & & & & & \\
+	\hline
+	& & &  \overline{c} & & & & \overline{s} & & &\\
+	& & & & 1 & & & & & &\\
+	& & & & & \ddots & & & & &\\
+	& & & & &  &1 & & & &\\
+	& & & -s & & & & c & & &\\
+	\hline
+	& & & & & & & & 1 & &\\
+	& & & & & & & & & \ddots &\\
+	& & & & & & & & & & 1\\
+	\end{array}\right)
+	\end{align*}
+	mit $|c|^2 + |s|^2 = 1$. Der innere Block reicht dabei von der $j$-ten bis zur $k$-ten Zeile sowie Spalte.
+\end{definition}
+
+
+Wir wollen nun für die QR-Zerlegung geeignete Givens-Rotationen verwenden. Zunächst sehen wir, dass Givens-Rotationen unitär sind, da
+
+\begin{align*}
+\left(\begin{array}{cc}
+\overline{c}& \overline{s} \\
+-s & c\\
+\end{array}\right)\left(\begin{array}{cc}
+c & -\overline{s} \\
+s & \overline{c}
+\end{array}\right)
+=
+\left(\begin{array}{cc}
+|c|^2 + |s|^2 & 0 \\
+0 & |c|^2 + |s|^2 \\
+\end{array}\right).
+\end{align*}
+
+
+Wir werden es mit Givens-Rotationen der Form
+
+$$
+G(j,j+1,c,s) =
+    \left(\begin{array}{ccc|cc|ccc}
+    1 & & & & & & & \\
+    & \ddots & & & & & & \\
+    & & 1 & & & & & \\
+    \hline
+    & & & \overline{c} & \overline{s} & & & \\
+    & & & -s & c & & &\\
+    \hline
+    & & & & & 1 & & \\
+    & & & & & & \ddots & \\
+    & & & & & & & 1\\
+    \end{array}\right)
+$$
+
+zu tun haben.
+
+Wie man unmittelbar sieht, hat die Multiplikation einer Givens-Rotation der obigen Form von links an eine Matrix $A\in \C^{n\times n}$ nur in der $j$-ten sowie $j+1$-ten Zeile von $A$ eine Auswirkung. Dort werden für $k = 1,\dots, n$ die Einträge $a_{j,k}$ sowie $a_{j+1, k}$ ersetzt durch $a_{j,k}\overline{c} + a_{j+1, k}\overline{s}$ bzw. $-a_{j,k}s + a_{j+1, k}c$. Dies können wir nun dazu verwenden um bei einer Hessenberg-Matrix die Einträge unter der Diagonale zu eliminieren und dadurch eine obere Dreiecksmatrix erhalten.
+
+Dazu müssen wir die Gleichung $-a_{j,j}s + a_{j+1, j}c = 0$ unter der Nebenbedingung $|c|^2 + |s|^2 = 1$ lösen. Dieses Problem hat zwei Lösungen die sich, wie man sich leicht überzeugen kann, nur durch das Vorzeichen unterscheiden. Eine Lösung ist gegeben durch
+
+\begin{align*}
+\left(\begin{array}{c}
+    c \\
+    s \\
+\end{array}\right)
+=
+\textbf{rot}(a_{j,j},a_{j+1,j})
+:=
+\frac{1}{\sqrt{|a_{j,j}|^2 + |a_{j+1,j}|^2}}
+\left(\begin{array}{c}
+a_{j,j} \\
+a_{j+1,j} \\
+\end{array}\right).
+\end{align*}
+
+Zur Vermeidung von over- bzw. underflow verwendet man in der Praxis jedoch die äquivalenten Formeln
+
+\begin{align*}
+	c &= \frac{a_{j,j} / |a_{j,j}|}{\sqrt{1+|t|^2}},~
+	s = \frac{t}{\sqrt{1 +|t|^2}},~
+	t = \frac{a_{j+1,j}}{|a_{j,j}|}, \quad
+	\text{für}~ |a_{j,j}| \geq |a_{j+1,j}|, \\
+	c &= \frac{t}{\sqrt{1 +|t|^2}},~
+	s = \frac{a_{j+1,j} / |a_{j+1,j}|}{\sqrt{1+|t|^2}},~
+	t = \frac{a_{j,j}}{|a_{j+1,j}|}, \quad
+	\text{für}~ |a_{j,j}| < |a_{j+1,j}|.
+\end{align*}
+
+Eine Hessenberg-Matrix $A \in \C^{n\times n}$ können wir dann durch Anwendung von $n-1$ Givens-Rotationen auf eine obere Dreiecksmatrix bringen. Dies können wir iterativ durchführen, dazu definieren wir $A^{(0)} := A$ und für $j = 1,\dots, n-1$
+
+\begin{align*}
+	A^{(j)} :=
+	G(j, j+1, c_j, s_j)A^{(j-1)} \quad
+	\text{mit}~
+	(c_j, s_j)^\top  = \textbf{rot}(a_{j,j},a_{j+1,j}).
+\end{align*}
+
+Die spezielle Struktur der Hessenberg-Matrix können wir nun verwenden, um Rechenschritte zu sparen: In der $j$-ten Zeile sind, wegen unserer Wahl von $c$ und $s$, die ersten $j-1$ Spalteneinträge bereits $0$ (erst recht in der $j+1$-ten Zeile). Daher müssen wir die Anwendung der Givens-Rotation erst ab dem $j$-ten Spalteneintrag realisieren.
+
+Um schließlich noch die $Q$-Matrix aus der QR-Zerlegung zu erhalten, bemerken wir zunächst, dass die Multiplikation zweier unitärer Matrizen wieder eine unitäre Matrix liefert. Durch unseren Algorithmus erhalten wir
+
+$$
+R := A^{(n-1)} = G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1) A.
+$$
+
+Die Multiplikaton der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
+
+$$
+\overline{Q}^\top := G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1),
+$$
+
+erhalten wir $Q$ durch transponieren und konjugieren des Produktes der Givens-Rotationen, da dann
+
+$$
+QR = A.
+$$
+
+Bei Multiplikation der $l+1$-ten Givens-Rotation mit dem Produkt der $l$ vorhergegangenen können wir wieder verwenden, dass nur in zwei Zeilen eine Änderung passiert. Da das Produkt der Givens-Rotationen jedoch keine Hessenberg-Matrix ist, müssen wir die Rechnung in allen Spalten durchführen.
+
+
 \begin{algorithm}
 	\label{QR-Zerlegung_Hessenberg}
 	\caption{QR-Zerlegung für Hessenbergmatrizen}
@@ -315,11 +460,77 @@ a_{i+1,i} \\
 	\end{algorithmic}
 	\algorithmicensure{ $A$ wird mit oberer Dreiecksmatrix (=R) überschrieben, Q ist das Produkt der Givens-Rotationen und $\overline{Q}^\top$ ist die gewünschte unitäre Matrix}
 \end{algorithm}
+
+Wie man hier schnell erkennt, hat eine QR-Zerlegung einer Hessenberg-Matrix mithilfe von Givens-Rotationen nun Aufwand $\Landau(n^2)$, ist also um eine ganze $n-$Potenz weniger Aufwändig als die Zerlegung mit Householdermatrizen.
+\newpage
 \subsection{Implementierung und Vergleich der verschiedenen Methoden}
 
+Die Implementierung der Verfahren wurde in Python durchgeführt. Wir werden bei den Codeausschnitten nur auf etwaige Unterschiede oder Ergänzungen zum Pseudocode eingehen, da die Algoritmen grundsätzlich schon dort erklärt wurden.
+
+
+\lstset{caption={Implementation des QR-Verfahren ohne shifts}}
+
+\begin{lstlisting}
+def QR_simple(A, tol = 1e-7):
+	n = A.shape[1]
+	count = 0
+	for i in range(n-1,0,-1):
+		while abs(A[i,i-1]) > tol:
+				Q,R = np.linalg.qr(A)
+				A = R@Q
+				count +=1
+		A[i,:i-n] = 0
+return A, sorted(np.diag(A)), count
+\end{lstlisting}
+
+
+Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, dass laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
+Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
+
+
+\lstset{caption={Implementation des QR-Verfahrens mit Rayleigh-Quotienten-Shift}}
+\begin{lstlisting}
+def QR_shift(A,tol=1e-10):
+	n = A.shape[1]
+	count = 0
+	for i in range(n-1,0,-1):
+			while abs(A[i,i-1]) > tol:
+					rho = A[i,i]
+					Q,R = np.linalg.qr(A-rho*np.identity(n))
+					A = R@Q + rho*np.identity(n)
+					count +=1
+			A[i,:i-n] = 0
+	return A, sorted(np.diag(A)), count
+\end{lstlisting}
+
+Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon Besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben.
+
+Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
+
+\begin{figure}[H]
+  \centering
+  \subfloat[][Ohne shifts]{\includegraphics[width=0.45\linewidth]{Plots/schleifendurchläufe_wo_shifts}}%
+  \qquad
+  \subfloat[][Mit shifts]{\includegraphics[width=0.45\linewidth]{Plots/schleifendurchläufe_shifts}}%
+  \caption{Anzahl der Schleifendurchläufe bei Matrixdimension $n$}%
+  \label{Schleifendurchläufe}
+\end{figure}
+
+Wir sehen in Abbildung \ref{Schleifendurchläufe} die Anzahl an Schritten bei den Verfahren für verschiedene Matrixdimensionen $n$. Hier kann man beobachten, dass das Verfahren ohne shifts selbst für kleine Matrizen schon sehr viele Schritte benötigt.  Man sieht, dass die Anzahl an Schleifendurchläufen mit dem Wilkinson-Shift doch erkennbar niedriger ist, als die Anzahl beim Verfahren mit Rayleigh-Quotienten-Shift.
+
+In Abbildung \ref{Error_QR} wird der Fehler in der Approximation semilogarithmisch dargestellt, dabei wird das Eigenwertarray sowie das Array mit den Approximationen an die Eigenwerte sortiert, die Differenz der Arrays gebildet und davon die Euklidnorm gemessen. Bei dem Verfahren ohne shifts wurde die Toleranz etwas höher gewählt, was sich auch im Fehler wiederspiegelt. Die Fehler in den beiden Verfahren mit den shifts unterscheiden sich nur minimal. Daher ist wohl das QR-Verfahren mit Wilkinson-Shift vorzuziehen.
+
+
+\begin{figure}[H]
+  \centering
+  \subfloat[][Ohne shifts]{\includegraphics[width=0.45\linewidth]{Plots/error_wo_shifts}}%
+  \qquad
+  \subfloat[][Mit shifts]{\includegraphics[width=0.45\linewidth]{Plots/error_shifts}}%
+  \caption{Fehler in den Eigenwerten, gemessen in $||\cdot||_2$ bei Matrixdimension $n$}%
+  \label{Error_QR}
+\end{figure}
 
 \section{Das Lanczos-Verfahren}
-
 Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertproblem Matrizen mit sehr großer Dimension. Außerdem ist man in der Praxis häufig nur an wenigen extremalen Eigenwerten interessiert. Das QR-Verfahren ist für solche Probleme also nicht geeignet. Im Folgenden werden wir deshalb das Lanczos-Verfahren kennenlernen.
 
 \subsection{Idee}
@@ -591,7 +802,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 			 &\le \max_{\substack{T \subseteq \C^n\\ \dim T = k}} \min_{w\in T\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k.
 		\end{aligned}
 	\end{equation}
-	
+
 	Dabei gilt die dritte Gleichheit, da $V$ als Abbildung von $\C^m$ nach $\mathcal{K}_m$ bijektiv ist. Also kann jeder $k$-dimensionale Unterraum $T \subseteq \mathcal{K}_m$ als Bild von einem $k$-dimensionalen Unterraum $S \subseteq \C^m$ mit der Abbildung $V$ gesehen werden.
 	Somit ist die erste Ungleichung in \eqref{konvergenz Eigenwerte} erfüllt.\\
 
@@ -613,7 +824,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\begin{equation*}
 			(\tan\theta_1)^2 = \frac{\norm{(\id - \mathcal{P}_{u_1})v_0}^2}{\norm{ \mathcal{P}_{u_1}v_0}^2} = \frac{\norm{v_0 - \alpha_1 u_1}^2}{\norm{\alpha_1 u_1}^2} = \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2}
 		\end{equation*}
-	genau einem Term, der in obiger Abschätzung vorkommt. 
+	genau einem Term, der in obiger Abschätzung vorkommt.
 	Mithilfe der Ungleichung \eqref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$ erhalten wir außerdem
 
 		\begin{equation*}
@@ -630,7 +841,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
 			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
-		\end{aligned}	
+		\end{aligned}
 	\end{equation}
 
 	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
