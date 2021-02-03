@@ -592,7 +592,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}
 	\end{equation}
 	
-	Dabei gilt die dritte Gleichheit, da $V$ als Abbildung von $\C^m$ nach $\mathcal{K}_m$ bijektiv ist. Also kann jeder $k$-dimensionale Unterraum $T \subseteq \mathcal{K}_m$ als $V(S)$ gesehen werden, wobei $S$ ein $k$-dimensionaler Unterraum von $\C^m$ ist. 
+	Dabei gilt die dritte Gleichheit, da $V$ als Abbildung von $\C^m$ nach $\mathcal{K}_m$ bijektiv ist. Also kann jeder $k$-dimensionale Unterraum $T \subseteq \mathcal{K}_m$ als Bild von einem $k$-dimensionalen Unterraum $S \subseteq \C^m$ mit der Abbildung $V$ gesehen werden.
 	Somit ist die erste Ungleichung in \eqref{konvergenz Eigenwerte} erfüllt.\\
 
 	Wir beweisen nun die zweite Ungleichung zuerst für den Fall $i = 1$.
@@ -604,8 +604,8 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\begin{aligned}
 			\lambda_1 - \lambda_1^{(m)} &= \lambda_1 - \max_{v \in \mathcal{K}_m \setminus\{0\}} \frac{(Av,v)}{(v,v)} = \min_{v \in \mathcal{K}_m\setminus\{0\}} \lambda_1 - \frac{(Av,v)}{(v,v)} = \min_{v \in \mathcal{K}_m\setminus\{0\}} \frac{\lambda_1(v,v) - (Av,v)}{(v,v)} \\ &= \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\lambda_1 \norm{\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j}^2 - (\sum_{j=1}^{n}p(\lambda_j)\alpha_j A u_j,\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j)}{\norm{\sum_{j=1}^{n}p(\lambda_j)\alpha_j u_j}^2} \\
 			&= \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\lambda_1 \sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2 - \sum_{j=1}^{n} \lambda_j |p(\lambda_j)\alpha_j|^2 }{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
-			&=  \min_{p\in \Pi_{m-1}\setminus \{0\}} \frac{\sum_{j=2}^{n} (\lambda_1 - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
-			&\le (\lambda_1 - \lambda_n) \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2} \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2.
+			&\le \min_{\substack{p\in \Pi_{m-1} \\ p(\lambda_1) =1}} \frac{\sum_{j=2}^{n} (\lambda_1 - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
+			&\le (\lambda_1 - \lambda_n) \frac{\sum_{j=2}^{n} |\alpha_j|^2}{|\alpha_1|^2} \min_{\substack{p\in \Pi_{m-1} \\ p(\lambda_1) =1}} \max_{j=2,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2.
 		\end{aligned}
 	\end{equation}
 
@@ -617,7 +617,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	Mithilfe der Ungleichung \eqref{polminmax} mit $a = \lambda_n, b= \lambda_2$ und $c= \lambda_1$ erhalten wir außerdem
 
 		\begin{equation*}
-			\min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{j=2,\dots,n} 		\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{p\in \Pi_{m-1}\setminus \{0\}} \max_{\lambda \in [a,b]} \left(\frac{|p(\lambda)|}{|p(\lambda_1)|}\right)^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
+			\min_{\substack{p\in \Pi_{m-1} \\ p(\lambda_1) = 1}} \max_{j=2,\dots,n} 	\left(\frac{|p(\lambda_j)|}{|p(\lambda_1)|}\right)^2 \le \min_{\substack{p\in \Pi_{m-1} \\ p(\lambda_1) = 1}} \max_{\lambda \in [\lambda_n,\lambda_2]} |p(\lambda)|^2 \le \left(\frac{1}{T_{m-1}(\gamma_1)}\right)^2.
 		\end{equation*}
 	Daraus folgt die gewünschte Ungleichung und \eqref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.\\
 
@@ -633,7 +633,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}	
 	\end{equation}
 
-	Wegen $ 0 = (u_i, u_j) = (Vu_i, Vu_j)$ sind auch die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_i}{\norm{Vu_i}}$ orthogonal und somit auch eine Basis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
@@ -653,9 +653,9 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\begin{aligned}
 			\lambda_i - \lambda_i^{(m)} &= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{j=1}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
 			&= \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \frac{\sum_{\substack{j=1, j\neq i}}^{n} (\lambda_i - \lambda_j)|p(\lambda_j)\alpha_j|^2}{\sum_{j=1}^{n} |p(\lambda_j)\alpha_j|^2} \\
-			& \le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{p\in \Pi_{m-1}\setminus \{0\} \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \max_{j=i+1,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_i)|}\right)^2 \\
-			&= (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_j}{\lambda_k^{(m)} - \lambda_i}\right| \left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
-			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\max_{j=i+1,\dots,n} (\lambda_k^{(m)} -\lambda_j)}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{q\in \Pi_{m-i}\setminus \{0\}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2. \\
+			& \le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{p\in \Pi_{m-1}, p(\lambda_i) \neq 0 \\ p(\lambda_j^{(m)}) = 0, j = 1,\dots,i-1}} \max_{j=i+1,\dots,n} \left(\frac{|p(\lambda_j)|}{|p(\lambda_i)|}\right)^2 \\
+			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \min_{\substack{q\in \Pi_{m-i} \\ q(\lambda_i) = 1}} \max_{j=i+1,\dots,n} \left(\left|\prod_{k = 1}^{i-1} \frac{\lambda_k^{(m)} -\lambda_j}{\lambda_k^{(m)} - \lambda_i}\right| \left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2 \\
+			&\le (\lambda_i - \lambda_n) \frac{\sum_{\substack{j=1, j\neq i}}^{n} |\alpha_j|^2}{|\alpha_i|^2} \left|\prod_{k = 1}^{i-1} \frac{\max_{j=i+1,\dots,n} (\lambda_k^{(m)} -\lambda_j)}{\lambda_k^{(m)} - \lambda_i}\right|^2 \min_{\substack{q\in \Pi_{m-i} \\ q(\lambda_i) = 1}} \max_{j=i+1,\dots,n} \left(\left|\frac{q(\lambda_j)}{q(\lambda_i)}\right|\right)^2. \\
 		\end{aligned}
 	\end{equation*}
 
