@@ -47,18 +47,18 @@ xrightmargin = 0.2\textwidth}
 
 \section{Einleitung}
 
-Das folgende Projekt beschäftigt sich mit der numerischen Berechnung von Eigenwerten mithilfe des Lanczos-Verfahrens. Zur Motivation dieser Berechnung betrachten wir das Eigenwertproblem des negativen Laplace-Operators mit homogenene Neumann-Randbedingungen auf einem zweidimensionalen Gebiet $\Omega$.
+Das folgende Projekt beschäftigt sich mit der numerischen Berechnung von Eigenwerten mithilfe des Lanczos-Verfahrens. Zur Motivation dieser Berechnung betrachten wir das Eigenwertproblem des negativen Laplace-Operators mit homogenen Neumann-Randbedingungen auf einem zweidimensionalen Gebiet $\Omega$.
 
 \subsection{Problemstellung}
 
 Wir wiederholen zunächst die Definition eines Eigenwertproblems.
 
 \begin{definition}
-	Das Paar $(\lambda, u) \in \C \times H^2(\Omega) \setminus \{0\}$ heisst ein Eigenpaar, wenn es eine Lösung des Eigenwertproblems
+	Das Paar $(\lambda, u) \in \C \times H^2(\Omega) \setminus \{0\}$\footnote{$H^k(\Omega)$ bezeichnet hier den Sobolevraum $W^{k,2}(\Omega)$} heißt Eigenpaar, wenn es eine Lösung des Eigenwertproblems
 	\begin{align}
 	    \begin{cases}
 	    -\Delta u = \lambda u & \text{in } \Omega, \\
-	    \nabla u \cdot \nu = 0 & \text{auf}~ \partial\Omega,
+	    \frac{\partial u}{\partial \nu} = 0 & \text{auf}~ \partial\Omega,
 	    \end{cases}
 	    \label{neumann}
 	\end{align}
@@ -69,10 +69,41 @@ Um die aus dem numerischen Verfahren gewonnen Eigenwerte mit den tatsächlichen 
 
 \subsection{Analytische Lösung für ein Rechteck}
 
-Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst mit einem Separationsansatz berechnet.
+Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst mit einem Separationsansatz hergeleitet.
+Sei dazu $u(x,y) = v(x)w(y)$, die Differentialgleichung ergibt dann
+\begin{align*}
+	- \Delta u(x,y) = -v''(x) w(y) - v(x) w''(y) = \lambda v(x)w(y)
+\end{align*}
+Dividiert man formal durch $v(x)w(y)$, erhält man
+\begin{align*}
+	-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} &= \lambda \\
+	\Leftrightarrow \quad -\frac{v''(x)}{v(x)} &= \lambda + \frac{w''(y)}{w(y)}
+\end{align*}
+Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
+\begin{align*}
+	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
+	\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
+	\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x)
+\end{align*}
+
+Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
+
+Nun lassen wir noch die Neumann-Randbedingungen einfließen. Mit $\nabla u(x,y) = (v'(x)w(y), v(x)w'(y))$ erhalten wir für den linken Rand
+\begin{align*}
+	\frac{\partial u}{\partial \nu}(0,y) = - v'(0)w(y) = \kappa_{x}(- c_1 \cos(\kappa_{x} \cdot 0) + c_2 \underbrace{\sin(\kappa_{x} \cdot 0)}_{=0})w(y) \stackrel{!}{=} 0
+\end{align*}
+Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
+
+Für den rechten Rand gilt nun
+\begin{align*}
+	\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
+	\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N
+\end{align*}
+
+Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wählen $c_2 = c_4 := 1$ und halten fest:
 
 \begin{theorem}
-	Die Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
+	Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
 	\begin{align*}
 		u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y), \quad n,m \in \N
 	\end{align*}
@@ -83,45 +114,19 @@ Die Eigenwerte und Eigenfunktionen des oben genannten Problems werden zunächst 
 \end{theorem}
 
 \begin{proof}
-	Wir machen einen Separationsansatz. Sei $u(x,y) = v(x)w(y)$, die Differentialgleichung ergibt dann
-	\begin{align*}
-		- \Delta u(x,y) = -v''(x) w(y) - v(x) w''(y) = \lambda v(x)w(y)
-	\end{align*}
-	Multiplizieren mit $1/\left(v(x)w(y)\right)$ liefert
-	\begin{align*}
-		-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} &= \lambda \\
-		\Leftrightarrow \quad -\frac{v''(x)}{v(x)} &= \lambda + \frac{w''(y)}{w(y)}
-	\end{align*}
-	Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
-	\begin{align*}
-		-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
-		\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
-		\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x)
-	\end{align*}
-
-	Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
-
-	Nun lassen wir noch die Neumann-Randbedingungen einfließen. Mit $\nabla u(x,y) = (v'(x)w(y), v(x)w'(y))$ erhalten wir für den linken Rand
-	\begin{align*}
-		\frac{\partial u}{\partial \nu}(0,y) = - v'(0)w(y) = \kappa_{x}(- c_1 \cos(\kappa_{x} \cdot 0) + c_2 \underbrace{\sin(\kappa_{x} \cdot 0)}_{=0})w(y) \stackrel{!}{=} 0
-	\end{align*}
-	Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
-
-	Für den rechten Rand gilt nun
-	\begin{align*}
-		\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
-		\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N
-	\end{align*}
-
-	Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Durch die Wahl $c_2 = c_4 := 1$ erhalten wir also die Eigenfunktionen $u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y)$ mit Eigenwerten $\lambda_{n,m} = \frac{n^2 \pi^2}{a^2} + \frac{m^2 \pi^2}{b^2}$.
+	Nachrechnen.
 \end{proof}
+
+\begin{remark}
+	Man rechnet leicht nach, dass die Eigenfunktionen aus dem Satz paarweise orthogonal sind. Wählt man einen geeigneten Funktionenraum, lässt sich sogar zeigen, dass es sich bei den Eigenfunktionen um ein vollständiges Orthogonalsystem handelt.
+\end{remark}
 
 \subsection{Numerischer Lösungsansatz}
 
-Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $(\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$ von
+Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und Integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $(\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$, sodass
 
 \begin{align*}
-	\Int[\Omega]{\nabla u \nabla v}{x} = \lambda \Int[\Omega]{uv}{x}, \quad \Forall v \in H^1(\Omega)
+	\Int[\Omega]{\nabla u \nabla v}{x} = \lambda \Int[\Omega]{uv}{x}, \quad \Forall v \in H^1(\Omega).
 \end{align*}
 
 Dieses Problem kann mittels Finite-Elemente-Methoden auf ein endlichdimensionales verallgemeinertes Eigenwertproblem der Form
@@ -140,6 +145,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 \end{lemma}
 
 \begin{proof}
+	Der Einfachheit halber lassen wir den Index $h$ weg.
 	\begin{align*}
 		A x = \lambda B x =& A x = (\frac{1}{\mu} + \rho) B x \\
 		\Leftrightarrow (A - \rho B)x =& \frac{1}{\mu} B x \\
@@ -151,7 +157,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
-Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
+Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
 
 \section{Das QR-Verfahren}
 
@@ -484,7 +490,7 @@ return A, sorted(np.diag(A)), count
 \end{lstlisting}
 
 
-Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, dass laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
+Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, das laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
 Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
 
 
@@ -503,9 +509,9 @@ def QR_shift(A,tol=1e-10):
 	return A, sorted(np.diag(A)), count
 \end{lstlisting}
 
-Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon Besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben.
+Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben. (besser: sind im Anhang zu finden? \textit{Anm. CG})
 
-Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
+Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind, erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
 
 \begin{figure}[H]
   \centering
@@ -518,7 +524,7 @@ Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Mat
 
 Wir sehen in Abbildung \ref{Schleifendurchläufe} die Anzahl an Schritten bei den Verfahren für verschiedene Matrixdimensionen $n$. Hier kann man beobachten, dass das Verfahren ohne shifts selbst für kleine Matrizen schon sehr viele Schritte benötigt.  Man sieht, dass die Anzahl an Schleifendurchläufen mit dem Wilkinson-Shift doch erkennbar niedriger ist, als die Anzahl beim Verfahren mit Rayleigh-Quotienten-Shift.
 
-In Abbildung \ref{Error_QR} wird der Fehler in der Approximation semilogarithmisch dargestellt, dabei wird das Eigenwertarray sowie das Array mit den Approximationen an die Eigenwerte sortiert, die Differenz der Arrays gebildet und davon die Euklidnorm gemessen. Bei dem Verfahren ohne shifts wurde die Toleranz etwas höher gewählt, was sich auch im Fehler wiederspiegelt. Die Fehler in den beiden Verfahren mit den shifts unterscheiden sich nur minimal. Daher ist wohl das QR-Verfahren mit Wilkinson-Shift vorzuziehen.
+In Abbildung \ref{Error_QR} wird der Fehler in der Approximation semilogarithmisch dargestellt, dabei wird das Eigenwertarray sowie das Array mit den Approximationen an die Eigenwerte sortiert, die Differenz der Arrays gebildet und davon die Euklidnorm gemessen. Bei dem Verfahren ohne shifts wurde die Toleranz etwas höher gewählt, was sich auch im Fehler widerspiegelt. Die Fehler in den beiden Verfahren mit den shifts unterscheiden sich nur minimal. Daher ist wohl das QR-Verfahren mit Wilkinson-Shift vorzuziehen.
 
 
 \begin{figure}[H]
@@ -537,7 +543,7 @@ Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertprobl
 
 Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Eigenwerte für hermitesche Matrizen liefert. Man sieht leicht, dass es sich hierbei um eine Verallgemeinerung des Satzes von Rayleigh handelt.
 
-\begin{lemma}
+\begin{lemma} \label{Rayleigh}
 	Sei $A \in \C^{n \times n}$ hermitesch bezüglich des Skalarproduktes $(\cdot, \cdot)$, $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n$ die Eigenwerte von $A$ (gemäß Vielfachheit gezählt) und $u_1, \dots, u_n$ die zugehörigen normierten Eigenvektoren. Dann gilt
 	\begin{align}\label{lambdamax}
 		\lambda_1 = \max_{v \in \C^n \setminus \{0\}} \frac{(Av,v)}{(v,v)}, \quad \lambda_k = \max_{\substack{v \in \C^n \setminus \{0\}\\
@@ -553,13 +559,13 @@ Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Ei
 \end{lemma}
 
 \begin{proof}
-	Sei $v \in \C^n \setminus \{0\}$ beliebig. Da $u_1, \dots, u_n$ eine Orthonormalbasis des $\C^n$ bilden, gilt $ v = \sum_{j=1}^{n} (v,u_j) u_j$ und damit
+	Sei $v \in \C^n \setminus \{0\}$ beliebig. Da $u_1, \dots, u_n$ eine Orthonormalbasis des $\C^n$ bilden, gilt $ v = \sum_{j=1}^{n} (v,u_j) u_j$ und $\|v\|^2 = \sum_{j=1}^{n} |(u_j,v)|^2$. Damit folgt
 	\begin{align*}
-		(Av,v) = \sum_{j=1}^{n} (u_j,v) (\lambda_j u_j,v) = \sum_{j=1}^{n} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{n} |(u_j,v)|^2 = \lambda_1 (v,v).
+		(Av,v) = \sum_{j=1}^{n} (v,u_j) (\lambda_j u_j,v) = \sum_{j=1}^{n} \lambda_j |(u_j,v)|^2 \leq \lambda_1 \sum_{j=1}^{n} |(u_j,v)|^2 = \lambda_1 (v,v).
 	\end{align*}
 	Dividieren durch $(v,v)$ liefert $\lambda_1 \geq \frac{(Av,v)}{(v,v)}$ für alle $v \in \C^n \setminus \{0\}$ und für $v = u_1$ gilt sogar Gleichheit.
 
-	Für ein anderes $k = 2,\dots,n$ können wir analog ein beliebiges $v \in \C^n \setminus \{0\}$ wählen, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{n} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
+	Für ein anderes $k = 2,\dots,n$ können wir analog ein beliebiges $v \in \C^n \setminus \{0\}$ wählen, nun aber mit der Bedingung $(u_j,v) = 0, j=1,\dots,k$ betrachten. In der Summe $\sum_{j=1}^{n} \lambda_j |(u_j,v)|^2$ fallen somit die ersten $k-1$ Summanden weg und wir können die verbleibenden Eigenwerte mit $\lambda_k$ nach oben abschätzen. Gleichheit gilt für den jeweiligen Eigenvektor $u_k$.
 
 	Für die Gleichheit in \ref{lambdamaxmin} gilt ähnlich zu oben für $v \in \tilde{S} := \textbf{span}\{v_1, \dots, v_k\}$, dass
 	\begin{align*}
@@ -571,7 +577,7 @@ Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Ei
 	Betrachten wir nun einen anderen Unterraum $S \neq \tilde{S}$ mit $\dim S = k$. Dann gibt es ein $v_0 \in S \setminus \{0\}$ mit $(v_0,u_j) = 0$ für $j=1,\dots,k$. Für dieses $v_0$ gilt $(Av_0,v_0) \leq \lambda_k (v_0,v_0)$. Das heißt, für beliebige solche $S$ ist $\min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)} \leq \lambda_k$, womit die Gleichheit gezeigt ist.
 \end{proof}
 
-Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \C^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$. (vgl. Nannen-Skript)
+Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \C^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$. (vgl.\ \cite{Num}, Satz 9.9)
 
 \begin{definition}[Krylov-Raum]
 	Sei $v_0 \in \C^{n}$ und $A \in \C^{n \times n}$. Dann bezeichnet
@@ -608,7 +614,7 @@ Betrachten wir die Abbildung
 so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}_m$
 
 \begin{align*}
-	(\mathcal{A}_mx, y) = (\mathcal{A}_m\mathcal{P}_m x, y) = x^*\mathcal{P}_m A \mathcal{P}_m y = (x, \mathcal{A}_m y),
+	(\mathcal{A}_mx, y) = (\mathcal{P}_m A \mathcal{P}_m x, y) = (x, \mathcal{P}_m A \mathcal{P}_m y) = (x, \mathcal{A}_m y),
 \end{align*}
 
 da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
@@ -617,11 +623,11 @@ da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur re
 	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \lambda_1^{(m)}.
 \end{align*}
 
-Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren Überlegungen in ref*** eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
+Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lemma \ref{Rayleigh} überlegen. Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren bisherigen Überlegungen eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
 
 \subsection{Herleitung des Verfahrens}
 
-Wie wir eben gesehen haben, ist es also Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums. Für die Einträge von $T_m$ gilt
+Im Vertrauen auf die Sinnhaftigkeit der eben gemachten Überlegungen ist es also nun Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums $\mathcal{K}_m(A,v_0)$. Für die Einträge von $T_m$ gilt
 \begin{align*}
 	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
 	\Rightarrow T_m &= V_m^*AV_m.
@@ -644,10 +650,10 @@ Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren
 aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
 \begin{align*}
 	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
-	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}
+	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}, \quad j=1, \dots, m-2.
 \end{align*}
 
-Da es sich bei $\{v_0, \dots, v_{m-1}\}$ um ein Orthogonalsystem handelt, liefert Multiplizieren der $j$-ten Gleichung von links mit $v_j^*$, dass $\gamma_j = v_j^*Av_j$ für $j = 0, \dots, m-2$. Somit können wir die $j$-te Gleichung rekursiv nach $v_{j+1}$ auflösen:
+Da es sich bei $\{v_0, \dots, v_{m-1}\}$ um ein Orthogonalsystem handelt, liefert Multiplizieren der $j$-ten Gleichung von links mit $v_j^*$ die Bedingung $\gamma_j = v_j^*Av_j$ für $j = 0, \dots, m-2$. Somit können wir die $j$-te Gleichung rekursiv nach $v_{j+1}$ auflösen:
 
 \begin{align*}
 	v_{j+1} = \begin{cases}
@@ -669,14 +675,14 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 		\State $\gamma_0 = v_0^*Av_0$
 		\State $w_0 = (A-\gamma_0 I)v_0$
 	  \State $\delta_0 = \|w_0\|_2$
-		\While{$\delta_j \neq 0$ und $j \leq m$}
+		\While{$\delta_j \neq 0$ und $j < m$}
 		\State $v_{j+1} = w_j/\delta_j$
 		\State $j = j+1$
 		\State $\gamma_j = v_j^*Av_j$
 		\State $w_j = (A-\gamma_j I)v_j - \delta_{j-1}v_{j-1}$
 		\State $\delta_j = \|w_j\|_2$
 		\EndWhile
-		\State Berechne mittels QR-Verfahren Eigenwerte von $T_j \in \C^{(j+1) \times (j+1)}$ aus \ref{trimatrix} (Hessenbergmatrix)
+		\State Berechne mittels QR-Verfahren Eigenwerte von $T_j \in \C^{j \times j}$ aus \ref{trimatrix} (Hessenbergmatrix)
 	\end{algorithmic}
 	\algorithmicensure{Approximation an die Eigenwerte von $\mathcal{A}_j$}
 \end{algorithm}
@@ -700,17 +706,17 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 \begin{proof}
 	Wir zeigen zunächst die erste Aussage. Nach Definition des Krylov-Raums gilt
 	\begin{align}
-		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \C: v = \sum_{i=0}^{m-1} a_i C^i v_0 = (\sum_{i=0}^{m-1} a_i C^i)v_0\\
-		\Leftrightarrow& \Exists p(x) = \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(C)v_0.
+		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \C: v = \sum_{i=0}^{m-1} a_i A^i v_0 = (\sum_{i=0}^{m-1} a_i A^i)v_0\\
+		\Leftrightarrow& \Exists p(x) = \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(A)v_0.
 		\label{eq:Krylov}
 	\end{align}
 
-	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $C^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
+	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $A^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
 \end{proof}
 
 
 \begin{definition}
-	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert druch
+	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert durch
 	\begin{align}\label{chebyshev}
 		T_m(x) := \frac{1}{2}((x+ \sqrt{x^2 - 1})^m + (x- \sqrt{x^2 - 1})^m), \quad x \in \R.
 	\end{align}
@@ -733,7 +739,7 @@ welche zeigt, dass es sich bei $T_m$ tatsächlich um ein Polynom vom Grad $m$ ha
 
 \begin{lemma}
 	\label{lem:polminmax}
-	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} > 1$
+	Sei $[a,b]$ ein nicht-leeres Intervall in $\R$ und sei $c \geq b$. Dann gilt mit $\gamma := 1 + 2 \frac{c-b}{b-a} \geq 1$
 	\begin{align}\label{polminmax}
 		\min_{\substack{p \in \Pi_m \\
 		p(c) = 1}} \max_{x \in [a,b]} |p(x)| \leq \frac{1}{|T_m(\gamma)|} \leq 2 (\gamma + \sqrt{\gamma^2 -1})^{-m}.
