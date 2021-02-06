@@ -2,7 +2,6 @@
 
 \input{../../../Fundament-LaTeX/packages.tex}
 \input{../../../Fundament-LaTeX/macros.tex}
-\input{../../../Fundament-LaTeX/environments.tex}
 \input{../../../Fundament-LaTeX/listings.tex}
 
 \parskip 5pt
@@ -21,6 +20,19 @@ tabsize=2,
 basicstyle=\footnotesize,
 xleftmargin = 0.2\textwidth,
 xrightmargin = 0.2\textwidth}
+
+\theoremstyle{plain}
+
+% numbered theorems
+\newtheorem{theorem}    {Satz}   [section]
+\newtheorem{lemma}      [theorem]{Lemma}
+\newtheorem{corollary}  [theorem]{Korollar}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}     [theorem]{Bemerkung}
+\newtheorem{definition} [theorem]{Definition}
+\newtheorem{example}    [theorem]{Beispiel}
+\newtheorem{heuristics} [theorem]{Heuristik}
+\renewcommand{\proofname}{Beweis}
 
 \begin{document}
 
@@ -92,19 +104,19 @@ Sei dazu $u(x,y) = v(x)w(y)$, die Differentialgleichung ergibt dann
 \end{align*}
 Dividiert man formal durch $v(x)w(y)$, erhält man
 \begin{align*}
-	-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} &= \lambda \\
-	\Leftrightarrow \quad -\frac{v''(x)}{v(x)} &= \lambda + \frac{w''(y)}{w(y)}
+	&-\frac{v''(x)}{v(x)} - \frac{w''(y)}{w(y)} = \lambda \\
+	 \Leftrightarrow\quad &-\frac{v''(x)}{v(x)} = \lambda + \frac{w''(y)}{w(y)}.
 \end{align*}
 Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
 \begin{align*}
 	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
 	\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
-	\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x)
+	\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x).
 \end{align*}
 
 Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
 
-Nun lassen wir noch die Neumann-Randbedingungen einfließen. Mit $\nabla u(x,y) = (v'(x)w(y), v(x)w'(y))$ erhalten wir für den linken Rand
+Nun lassen wir noch die Neumann-Randbedingungen einfließen. Mit $\nabla u(x,y) = \Big(v'(x)w(y), v(x)w'(y)\Big)^\top$ erhalten wir für den linken Rand
 \begin{align*}
 	\frac{\partial u}{\partial \nu}(0,y) = - v'(0)w(y) = \kappa_{x}(- c_1 \cos(\kappa_{x} \cdot 0) + c_2 \underbrace{\sin(\kappa_{x} \cdot 0)}_{=0})w(y) \stackrel{!}{=} 0
 \end{align*}
@@ -113,13 +125,13 @@ Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
 Für den rechten Rand gilt nun
 \begin{align*}
 	\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
-	\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N
+	\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N.
 \end{align*}
 
 Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wählen $c_2 = c_4 := 1$ und halten fest:
 
 \begin{theorem}\label{satz_1_2}
-	Die Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
+	Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
 	\begin{align*}
 		u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y), \quad n,m \in \N
 	\end{align*}
@@ -173,9 +185,9 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
-Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
+Die Diskretisierung durch die Finite-Elemente-Methode liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
 
-\section{Das QR-Verfahren}
+\section{Das QR-Verfahren}\label{section_QR}
 
 \subsection{Idee und Algorithmus}
 
@@ -264,7 +276,7 @@ Je nachdem, wie genau $\lambda_n$ approximiert werden soll, wählt man eine Tole
 	\algorithmicensure{ $A$ als Approximation einer oberen Dreiecksmatrix mit den gleichen Eigenwerten die $A$ anfangs hatte}
 \end{algorithm}
 
-Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert. Vergleiche dazu \cite{Num}, S. 114. Dieser Shift wird auch Wilkinson-Shift genannt.
+Eine weitere Möglichkeit, den Shift zu wählen, ist sich die Eigenwerte $\rho_1, \rho_2$ der $2 \times 2$ Matrix rechts unten von $A^{(t)}$ zu berechnen und anschließend den Eigenwert, der betragsmäßig näher an $a^{(t)}_{nn}$ liegt, zu wählen. Die Konvergenzgeschwindigkeit wird dadurch nochmals verbessert (vgl. \cite{Num}, S. 114). Dieser Shift wird auch Wilkinson-Shift genannt.
 
 
 \begin{algorithm}[H]
@@ -297,7 +309,7 @@ Eine weitere Beschleunigung erreichen wir bei der QR-Zerlegung, wenn die Matrix 
 
 \subsection{Die QR-Zerlegung für Hessenbergmatrizen}
 
-Den Hauptaufwand beim QR-Verfahren bildet die QR-Zerlegung die in jedem Iterationsschritt durchgeführt werden muss. Der Aufawnd einer QR-Zerlegung mithilfe von Householdermatrizen wächst kubisch mit der Dimension der Matrix (Vgl. \cite{Num}, S.78). Nun gibt es für sogenannte Hessenbergmatrizen einen wesentlich effizienteren Algorithmus, bei dem statt Householdermatrizen andere unitäre Matrizen verwendet werden.
+Den Hauptaufwand beim QR-Verfahren bildet die QR-Zerlegung die in jedem Iterationsschritt durchgeführt werden muss. Der Aufawnd einer QR-Zerlegung mithilfe von Householdermatrizen wächst kubisch mit der Dimension der Matrix (vgl. \cite{Num}, S.78). Nun gibt es für sogenannte Hessenbergmatrizen einen wesentlich effizienteren Algorithmus, bei dem statt Householdermatrizen andere unitäre Matrizen verwendet werden.
 
 \begin{definition}[Hessenberg-Matrix]
 	Eine Matrix $A = (a_{ij})_{i,j = 1}^n \in \C^{n \times n}$ hat (obere) Hessenbergform, falls $a_{ij} = 0$ für alle $j = 1,\dots,n$ und $i = j+2, \dots, n$. Eine Hessenberg-Matrix hat also fast obere Dreiecksform, nur in der unteren Nebendiagonale sind noch nicht-null Einträge.
@@ -487,7 +499,7 @@ Wie man hier schnell erkennt, hat eine QR-Zerlegung einer Hessenberg-Matrix mith
 \newpage
 \subsection{Implementierung und Vergleich der verschiedenen Methoden}
 
-Die Implementierung der Verfahren wurde in Python durchgeführt. Wir werden bei den Codeausschnitten nur auf etwaige Unterschiede oder Ergänzungen zum Pseudocode eingehen, da die Algoritmen grundsätzlich schon dort erklärt wurden.
+Die Implementierung der Verfahren wurde in Python durchgeführt. Wir werden bei den Codeausschnitten nur auf etwaige Unterschiede oder Ergänzungen zum Pseudocode eingehen, da die Algoritmen grundsätzlich schon dort erklärt wurden.\newline
 
 
 \lstset{caption={Implementation des QR-Verfahren ohne shifts}}
@@ -593,7 +605,7 @@ Wir zeigen zunächst ein theoretisches Resultat, welches eine Darstellung der Ei
 	Betrachten wir nun einen anderen Unterraum $S \neq \tilde{S}$ mit $\dim S = k$. Dann gibt es ein $v_0 \in S \setminus \{0\}$ mit $(v_0,u_j) = 0$ für $j=1,\dots,k$. Für dieses $v_0$ gilt $(Av_0,v_0) \leq \lambda_k (v_0,v_0)$. Das heißt, für beliebige solche $S$ ist $\min_{v \in S \setminus \{0\}} \frac{(Av,v)}{(v,v)} \leq \lambda_k$, womit die Gleichheit gezeigt ist.
 \end{proof}
 
-Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \C^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$. (vgl.\ \cite{Num}, Satz 9.9)
+Wir wollen das Verfahren der Vektoriteration zur Bestimmung des größten Eigenwertes einer hermiteschen Matrix wiederholen. Diese erzeugt ausgehend von einem Startvektor $x^{(0)} \in \C^{n}$ eine Folge von Iterierten $x^{(m)} := \frac{Ax^{(m-1)}}{\|Ax^{(m-1)}\|}$ für $m \in \N$. Definiert man die Approximationen $\lambda^{(m)}$ an den größten Eigenwert $\lambda_1$ durch den Rayleigh-Quotienten von $x^{(m-1)}$, so konvergiert $\lambda^{(m)}$ quadratisch gegen $\lambda_1$ (vgl.\ \cite{Num}, Satz 9.9).
 
 \begin{definition}[Krylov-Raum]
 	Sei $v_0 \in \C^{n}$ und $A \in \C^{n \times n}$. Dann bezeichnet
@@ -639,7 +651,7 @@ da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur re
 	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \lambda_1^{(m)}.
 \end{align*}
 
-Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lemma \ref{Rayleigh} überlegen. Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren bisherigen Überlegungen eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im übernächsten Unterabschnitt zeigen.
+Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lemma \ref{Rayleigh} überlegen. Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren bisherigen Überlegungen eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im  Abschnitt \ref{konvergenz} zeigen.
 
 \subsection{Herleitung des Verfahrens}
 
@@ -649,7 +661,7 @@ Im Vertrauen auf die Sinnhaftigkeit der eben gemachten Überlegungen ist es also
 	\Rightarrow T_m &= V_m^*AV_m.
 \end{align*}
 
-Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel 2 bekannten QR-Verfahren mit wenig Aufwand berechnen.
+Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel \ref{section_QR} bekannten QR-Verfahren mit wenig Aufwand berechnen.
 
 Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $T_m$ als eine Tridiagonalmatrix (also auch Hessenbergmatrix) der Form
 
@@ -704,7 +716,7 @@ Hierbei setzen wir $\delta_j := \|w_j\|$ falls $\|w_j\| \neq 0$. Andernfalls bri
 \end{algorithm}
 
 
-\subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}
+\subsection{Konvergenz der Eigenwerte von hermiteschen Matrizen}\label{konvergenz}
 
 In diesem Abschnitt beweisen wir, dass die durch das Lanczos-Verfahren erhaltenen Eigenwerte $\lambda_1^{(m)},\dots,\lambda_m^{(m)}$ gegen Eigenwerte $\lambda_1,\dots,\lambda_m$ der hermiteschen Matrix $A \in \C^{n \times n}$ konvergieren. Die Argumentation ist dabei in großen Teilen angelehnt an \cite{EWPs}, Abschnitt 4.1.
 
@@ -734,7 +746,7 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 \begin{definition}
 	Für $m \in \N$ sind die Chebyshev-Polynome $T_m \in \Pi_m$ definiert durch
 	\begin{align}\label{chebyshev}
-		T_m(x) := \frac{1}{2}((x+ \sqrt{x^2 - 1})^m + (x- \sqrt{x^2 - 1})^m), \quad x \in \R.
+		T_m(x) := \frac{1}{2}\Big((x+ \sqrt{x^2 - 1})^m + (x- \sqrt{x^2 - 1})^m\Big), \quad x \in \R.
 	\end{align}
 \end{definition}
 
@@ -1002,12 +1014,13 @@ Verwenden wir nun also zur Testung keine uniform Verteilten Eigenwerte, sondern 
 
 Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwertprobleme eignet, bei denen sich einige Eigenwerte stark vom Spektrum abheben. Beim Arnoldi-Verfahren erkennt man, bei Testung mit nun voll besetzten Matrizen, ein ähnliches Verhalten, auch hier kann man wesentlich bessere Konvergenzgeschwindigkeit bei lognormal-Verteilen Eigenwerten feststellen.
 
-Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \ref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert. Wir erkennen eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
-
-\begin{figure}\label{error_eigv_laplace}
+\begin{figure}[H]\label{error_eigv_laplace}
 	\includegraphics[width = 0.9\linewidth]{Plots/error_eigv_laplace}
 	\caption{Fehler in den ersten 40\% der Eigenwerte bei Anwendung des Arnoldi-Verfahrens auf das diskretisierte Problem}
 \end{figure}
+Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \ref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert. Wir erkennen eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
+
+
 \newpage
 \pagestyle{plain}
 \section*{Code}
