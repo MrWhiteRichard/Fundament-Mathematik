@@ -102,13 +102,8 @@ Für den rechten Rand gilt nun
 
 Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wählen $c_2 = c_4 := 1$ und halten fest:
 
-<<<<<<< HEAD
 \begin{theorem}\label{satz_1_2}
 	Die Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
-=======
-\begin{theorem}
-	Eigenfunktionen für das Eigenwertproblem \eqref{neumann} auf dem Gebiet $\Omega := (0,a) \times (0,b)$ sind gegeben durch
->>>>>>> 7c1800ef56a8717bf750cde9cefc6dbadb536085
 	\begin{align*}
 		u_{n,m}(x,y) = \cos(\frac{n \pi}{a}x)\cos(\frac{m \pi}{b}y), \quad n,m \in \N
 	\end{align*}
@@ -162,11 +157,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
-<<<<<<< HEAD
-Die Diskretisierung durch die Finite-Elemente-Methode liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an die kleinsten Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
-=======
 Die Diskretisierung durch Finite-Elemente-Methoden liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
->>>>>>> 7c1800ef56a8717bf750cde9cefc6dbadb536085
 
 \section{Das QR-Verfahren}
 
@@ -501,9 +492,6 @@ return A, sorted(np.diag(A)), count
 
 Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, das laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
 Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
-<<<<<<< HEAD
-Auch in den QR-Verfahren mit shifts unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon Besprochenen Schritte. Der Code ist im Anhang zu finden.
-=======
 
 
 \lstset{caption={Implementation des QR-Verfahrens mit Rayleigh-Quotienten-Shift}}
@@ -522,7 +510,6 @@ def QR_shift(A,tol=1e-10):
 \end{lstlisting}
 
 Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben. (besser: sind im Anhang zu finden? \textit{Anm. CG})
->>>>>>> 7c1800ef56a8717bf750cde9cefc6dbadb536085
 
 Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind, erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
 
