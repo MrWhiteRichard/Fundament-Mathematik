@@ -1,23 +1,25 @@
 \section{Statement and proof of Wigner's Theorem}
 
+If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ we mean in this section a function from $\mathcal{P}(H_1)$ to $\mathcal{P}(H_2)$ which is isometric with respect to the metric $d$ from Lemma \ref{lemma:projective_metric}.
+
 \begin{example} \label{example:zerodim}
-	Let $H_1$ and $H_2$ be Hilbert spaces where $\dim H_1 = 0$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. As $H_1 = \{0\}$ we obtain $\mathcal{P}(H_1) = \emptyset$. Now by defining $U: H_1 \to H_2: 0 \mapsto 0$ we observe that $U$ is linear as well as antilinear and also both unitary and antiunitary. Furthermore for every $R \in \mathcal{P}(H_1)$ and every $x \in H_1$ the implication 
+	Let $H_1$ and $H_2$ be Hilbert spaces where $H_1 = \{0\}$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Obviously, we have $\mathcal{P}(H_1) = \emptyset$. Now by defining $U: H_1 \to H_2$ as the zero operator, we observe that $U$ is linear as well as antilinear and both unitary and antiunitary. Furthermore for every $R \in \mathcal{P}(H_1)$ and every $x \in H_1$ the implication 
 	\begin{align*}
 		x \in R \Rightarrow Ux \in g(R)
 	\end{align*} 
-	is true simply because $\mathcal{P}(H_1) = \emptyset$.
+	is true simply because of $\mathcal{P}(H_1) = \emptyset$.
 \end{example}
 
 \begin{example} \label{example:onedim}
-	Let $H_1$ and $H_2$ be Hilbert sapces where $\dim H_1 = 1$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Now we have $\mathcal{P}(H_1) = \{H_1\}$ which means there exists only one ray in $\mathcal{P}(H_1)$. Now we take a normalized $x \in H_1$ and a normalized $y \in g(H_1)$ and define $U: H_1 \to H_2: \lambda x \mapsto \lambda y$ and $T: H_1 \to H_2: \lambda x \mapsto \overline{\lambda} y$. For any $\lambda \in \C$
+	Let $H_1$ and $H_2$ be Hilbert spaces where $\dim H_1 = 1$ and let $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Due to the fact that $\mathcal{P}(H_1) = \{H_1\}$ there exists only one ray in $\mathcal{P}(H_1)$. Take a normalized $x \in H_1$ and a normalized $y \in g(H_1)$. We define $U: H_1 \to H_2$ by $\lambda x \mapsto \lambda y$ and $T: H_1 \to H_2$ by $\lambda x \mapsto \overline{\lambda} y$. For any $\lambda \in \C$ we have
 	\begin{align*}
 		\norm[H_2]{U\lambda x} = \norm[H_2]{\lambda y} = \vbraces{\lambda} \norm[H_2]{y} = \vbraces{\lambda} = \vbraces{\lambda} \norm[H_1]{x} = \norm[H_1]{\lambda x}
 	\end{align*}
 	and 
 	\begin{align*}
-		\norm[H_2]{T\lambda x} = \norm[H_2]{\overline{\lambda} y} = \vbraces{\lambda} \norm[H_2]{y} = \vbraces{\lambda} = \vbraces{\lambda} \norm[H_1]{x} = \norm[H_1]{\lambda x},
+		\norm[H_2]{T\lambda x} = \norm[H_2]{\overline{\lambda} y} = \vbraces{\lambda} \norm[H_2]{y} = \vbraces{\lambda} = \vbraces{\lambda} \norm[H_1]{x} = \norm[H_1]{\lambda x}.
 	\end{align*}
-	hence $U$ is unitary and $T$ is antiunitary. Furthermore by definition for any ray $R \in \mathcal{P}(H)$ and any $z \in R$ we have $Uz, Tz \in g(R)$. 
+	Hence, $U$ is unitary and $T$ is antiunitary. Furthermore, by definition, for any ray $R \in \mathcal{P}(H)$ and any $z \in R$ we have $Uz, Tz \in g(R)$. 
 \end{example}
 
 \begin{lemma} \label{lemma:phase_adjustment_ray}
@@ -225,10 +227,7 @@
 
 
 \begin{theorem} \label{theorem:wigner}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists an isometry $U: H_1 \to H_2$ that is either linear or antilinear and fulfills for every ray $R \in \mathcal{P}(H_1)$ the implication
-	\begin{align*}
-		x \in R \Rightarrow Ux \in g(R).
-	\end{align*}
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be an isometry. Then there exists an isometry $U: H_1 \to H_2$ that is either linear or antilinear and satisfies $Ux \in g(\C x)$ for every $x \in H_1$. 
 \end{theorem}
 
 \begin{proof}
@@ -315,10 +314,7 @@
 
 
 \begin{corollary}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be a surjective isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and unitary or antilinear and antiunitary and fulfills for every ray $R \in \mathcal{P}(H_1)$ the implication
-	\begin{align*}
-	x \in R \Rightarrow Ux \in g(R).
-	\end{align*}
+	Let $H_1$ and $H_2$ be Hilbert spaces and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ be a surjective isometry. Then there exists a function $U: H_1 \to H_2$ that is either linear and unitary or antilinear and antiunitary and satisfies $Ux \in g(\C x)$ for every $x \in H_1$.
 \end{corollary}
 
 \begin{proof}
