@@ -1,0 +1,332 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie den Fluss
+
+\begin{align*}
+    \Int[M]
+    {
+        \mathbf F^t \mathbf n
+    }{
+        \mathcal H^2
+    }
+\end{align*}
+
+des Vektorfeldes
+
+\begin{align*}
+    \mathbf F(x, y, z)
+    =
+    (x y, y z, x^2 + y^2)
+\end{align*}
+
+durch den Zylindermantel $x^2 + y^2 = 1$, $0 < z < 1$ direkt und mithilfe des Gauß'schen Integralsatzes.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}
+
+    \item Teil (\Quote{direkt}):
+    
+    Wir parametrisieren den Mantel mit Zylinderkoordinaten, d.h. vermöge
+
+    \begin{align*}
+        \psi:
+            D := [0, 2 \pi) \times (0, 1) \to M,
+            (\varphi, z) \mapsto (\cos \varphi, \sin \varphi, z).
+    \end{align*}
+
+    Das Normalvektorfeld lautet
+
+    \begin{align*}
+        \mathbf n:
+            M \to \R^3,
+            (x, y, z) \mapsto (x, y, 0).
+    \end{align*}
+
+    Wir wollen wieder Satz 4.2.15 anwenden.
+    Also berechnen wir zunächst
+
+    \begin{align*}
+        \vbraces
+        {
+            \derivative[][\psi]{\varphi}
+            \times
+            \derivative[][\psi]{z}
+        }
+        =
+        \vbraces
+        {
+            \begin{pmatrix}
+                -\sin \varphi \\
+                 \cos \varphi \\
+                 0
+            \end{pmatrix}
+            \times
+            \begin{pmatrix}
+                0 \\ 0 \\ 1
+            \end{pmatrix}
+        }
+        =
+        \vbraces
+        {
+            \begin{pmatrix}
+                \cos \varphi \\
+                \sin \varphi \\
+                0
+            \end{pmatrix}
+        }
+        =
+        \sin^2 \varphi + \cos^2 \varphi
+        =
+        1,
+    \end{align*}
+
+    und zu guter Letzt
+
+    \begin{align*}
+        \Int[M]
+        {
+            \mathbf F^t \mathbf n
+        }{
+            \mathcal H^2
+        }
+        & =
+        \Int[\psi(D)]
+        {
+            x^2 y + y^2 z
+        }{
+            \mathcal H^2(x, y, z)
+        } \\
+        & =
+        \Int[D]
+        {
+            (
+                \cos^2 \varphi \sin \varphi
+                +
+                \sin^2 \varphi z
+            )
+            \underbrace
+            {
+                \vbraces
+                {
+                    \derivative[][\psi]{\varphi}
+                    \times
+                    \derivative[][\psi]{z}
+                }
+            }_1
+        }{
+            \lambda^2(\varphi, z)
+        } \\
+        & =
+        \Int[0][2 \pi]
+        {
+            \Int[0][1]
+            {
+                \cos^2 \varphi \sin \varphi
+                +
+                \sin^2 \varphi z
+            }{z}
+        }{\varphi} \\
+        & =
+        \underbrace
+        {
+            \Int[0][1]{}{z}
+        }_1
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \cos^2 \varphi \sin \varphi
+            }{\varphi}
+        }_0
+        +
+        \underbrace
+        {
+            \Int[0][1]{z}{\varphi}
+        }_\frac{1}{2}
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \sin^2 \varphi
+            }{z}
+        }_\pi \\
+        & =
+        \frac{\pi}{2}.
+    \end{align*}
+
+    Dabei haben wir verwendet, dass $\cos^2 \sin$ $2 \pi$-periodisch und ungerade ist und damit
+
+    \begin{multline*}
+        \Int[0][2 \pi]
+        {
+            \cos^2 \varphi \sin \varphi
+        }{\varphi}
+        =
+        \Int[0][\pi]
+        {
+            \cos^2 \varphi \sin \varphi
+        }{\varphi}
+        +
+        \Int[\pi][2 \pi]
+        {
+            \cos^2 \varphi \sin \varphi
+        }{\varphi} \\
+        =
+        \Int[0][\pi]
+        {
+            \cos^2 \varphi \sin \varphi
+        }{\varphi}
+        +
+        \Int[-\pi][0]
+        {
+            \cos^2 \varphi \sin \varphi
+        }{\varphi}
+        =
+        0.
+    \end{multline*}
+
+    Letzteres Integral sollte allgemein bekannt sein.
+
+    \item Teil (\Quote{mithilfe des Gauß'schen Integralsatzes}):
+    
+    Sei $Z$ der gesamte Zylinder.
+    Wir parametrisieren den Zylinder mit Zylinderkoordinaten, d.h. vermöge
+
+    \begin{align*}
+        \psi:
+            D := [0, 2 \pi) \times (0, 1)^2 \to Z,
+            (\varphi, r, z) \mapsto (r \cos \varphi, r \sin \varphi, z).
+    \end{align*}
+
+    Seien $A$ und $B$ der obere bzw. untere Deckel von $Z$.
+    Das Normalvektorfeld können wir darauf fortsetzen durch
+
+    \begin{align*}
+        \mathbf n(v) =  e_3,
+        \quad
+        v \in A,
+        \quad
+        \mathbf n(v) = -e_3,
+        \quad
+        v \in B.
+    \end{align*}
+
+    \includegraphicsboxed{Ana3/Ana3 - Satz 5.3.5 (Integralsatz v. Gauß).png}
+
+    Wir verwenden Satz 5.3.5 (Integralsatz v. Gauß) und berechnen zu guter Letzt
+
+    \begin{align*}
+        \Int[M]
+        {
+            \mathbf F^t \mathbf n
+        }{
+            \mathcal H^2
+        }
+        & =
+        \Int[\partial Z]
+        {
+            \mathbf F^t \mathbf n
+        }{
+            \mathcal H^2
+        }
+        -
+        \underbrace
+        {
+            \pbraces
+            {
+                \Int[A]
+                {
+                    \mathbf F^t \mathbf n
+                }{
+                    \mathcal H^2
+                }
+                +
+                \Int[B]
+                {
+                    \mathbf F^t \mathbf n
+                }{
+                    \mathcal H^2
+                }
+            }
+        }_0 \\
+        & \stackrel
+        {
+            \text{Gauß}
+        }{=}
+        \Int[Z]
+        {
+            \Div \mathbf F
+        }{
+            \lambda^3
+        } \\
+        & =
+        \Int[\psi(D)]
+        {
+            y + z
+        }{(x, y, z)} \\
+        & \stackrel
+        {
+            \text{TRAFO}
+        }{=}
+        \Int[D]
+        {
+            (r \sin \varphi + z) r
+        }{(z, r, \varphi)} \\
+        & =
+        \Int[0][2 \pi]
+        {
+            \Int[0][1]
+            {
+                \Int[0][1]
+                {
+                    (r \sin \varphi + z) r
+                }{z}
+            }{r}
+        }{\varphi} \\
+        & =
+        \underbrace
+        {
+            \Int[0][1]{}{z}
+        }_1
+        \underbrace
+        {
+            \Int[0][1]{r^2}{r}
+        }_\frac{1}{3}
+        \underbrace
+        {
+            \Int[0][2 \pi]
+            {
+                \sin \varphi
+            }{\varphi}
+        }_0
+        +
+        \underbrace
+        {
+            \Int[0][1]{z}{z}
+        }_\frac{1}{2}
+        \underbrace
+        {
+            \Int[0][1]{r}{r}
+        }_\frac{1}{2}
+        \underbrace
+        {
+            \Int[0][2 \pi]{}{\varphi}
+        }_{2 \pi} \\
+        & =
+        \frac{\pi}{2}.
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

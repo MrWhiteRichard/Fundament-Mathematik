@@ -1,0 +1,97 @@
+\section{Approximation der Konturintegrale}
+
+In der Praxis werden wir die Kurve $\Gamma$ innerhalb welcher die gesuchten Eigenwerte liegen, zumeist als Kreis wählen.
+Betrachte daher die Parametrisierung von $\partial B_R(0)$ vermöge dem komplexen Weg
+
+\begin{align*}
+    \gamma: [0, 1) \to \partial B_R(0): t \mapsto R \exp(2 \pi i t),
+    \quad
+    \text{mit}
+    \quad
+    \gamma^\prime: t \mapsto 2 \pi i R \exp(2 \pi i t).
+\end{align*}
+
+Wir approximieren ihn durch die $m$-ten Einheitswurzeln.
+Diese wählen wir dann auch als Quadraturknoten mit uniformen Gewicht $1 / m$.
+In Formeln geschrieben, lauten diese
+
+\begin{align*}
+    \omega_m^0, \dots, \omega_m^{m - 1},
+    \quad
+    \text{mit}
+    \quad
+    \omega_m := \exp \pbraces{\frac{2 \pi i}{m}},
+    \quad
+    m \in \N.
+\end{align*}
+
+Sei $f \in H(U, \C)$ holomorph.
+Wir verwenden nun tatsächlich eine klassische summierte Rechtecksregel und erhalten
+
+\begin{align*}
+    Q(f)
+    & :=
+    \frac{1}{2 \pi i}
+    \Int[|\lambda| = R]
+    {
+        f(\lambda)
+    }{\lambda}
+    =
+    \frac{1}{2 \pi i}
+    \Int[\gamma]
+    {
+        f(\lambda)
+    }{\lambda}
+    =
+    \frac{1}{2 \pi i}
+    \Int[0][1]
+    {
+        \gamma^\prime(t)
+        f(\gamma(t))
+    }{t} \\
+    & =
+    \Int[0][1]
+    {
+        R
+        \exp(2 \pi i t)
+        f(R \exp(2 \pi i t))
+    }{t} \\
+    &\approx
+    \sum_{\nu = 0}^{m-1}
+        \frac{1}{m}
+        R \exp \pbraces{\frac{2 \pi i \nu}{m}}
+        f
+        \pbraces
+        {
+            R \exp \pbraces{\frac{2 \pi i \nu}{m}}
+        } \\
+    & =
+    \frac{R}{m}
+    \sum_{\nu = 0}^{m-1}
+        \omega_m^\nu
+        f(R \omega_m^\nu)
+    =:
+    Q_m(f).
+\end{align*}
+
+Für $f$ werden wir in der Implementierung des Algorithmus $\lambda^i A(\lambda)^{-1} \hat V$ mit $i = 0,1$ einsetzen.
+Die (überaus hohe) Genauigkeit der Quadraturformel $Q_m$ wird im vierten Kapitel diskutiert.
+
+Um $A(\lambda)^{-1} \hat V$ in den Integranden von $A_0$ und $A_1$ zu bestimmen, werden wir nicht
+die Inverse $A(\lambda)^{-1}$ direkt berechnen.
+Stattdessen bestimmen wir eine LU-Zerlegung von $A(\lambda)$.
+Dann führen wir für alle Spalten $\hat v_1, \dots, \hat v_j$ der Zufallsmatrix $\hat V \in \C^{N \times j}$ jeweils eine Vorwärts- und Rückwärts-Substitution durch.
+Es gilt ja schließlich
+
+\begin{align*}
+    \Forall i = 1, \dots, j:
+        A(\lambda)^{-1} \hat v_i = x_i
+        \iff
+        \hat v_i = A(\lambda) x_i = L U x_i = L y_i,
+        \quad
+        y_i = U x_i.
+\end{align*}
+
+Somit können dann die Spalten $x_1, \dots, x_j$ von $A(\lambda)^{-1} \hat V$ effizient ermittelt werden, ohne $A(\lambda)^{-1}$ explizit auszurechnen.
+Um technische Details der LU-Zerlegung, z.B. das Arbeiten mit Permutationsmatrizen, Pivotsuche usw., machen wir uns hierbei aber keine Gedanken.
+Wir verwenden lediglich die Befehle \texttt{linalg.lu\_factor} und \texttt{linalg.lu\_solve} aus der \texttt{scipy}-Bibliothek.

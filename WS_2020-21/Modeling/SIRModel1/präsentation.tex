@@ -80,6 +80,7 @@
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 \usepackage{tikz}
 \usepackage{babel}
+\usepackage{verbatim}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -167,29 +168,32 @@
 \end{frame}
 
 %------------------------------------------------
-\subsection{Parameters}
-\begin{frame}
-\frametitle{Parameters}
-\begin{block}{$\alpha = 0.06$}
-  infection probability in case of contact
-\end{block}
 
-\begin{block}{c = 14}
-  contacts per day per person
-\end{block}
 
-\begin{block}{$\gamma = 4$}
-  latency rate for moving from Exposed to Confirmed or Unconfirmed
-\end{block}
 
-\begin{block}{$p_c = 0.35, p_u = 0.65; p_c + p_u = 1$}
-  chance of being transferred to detected or undetected compartment, respectively
-\end{block}
-
-\begin{block}{$\beta_c = 0.1, \beta_u = 0.15$}
-  recovery rates for detected and undetected persons
-\end{block}
-\end{frame}
+% \subsection{Parameters}
+% \begin{frame}
+% \frametitle{Parameters}
+% \begin{block}{$\alpha = 0.06$}
+%   infection probability in case of contact
+% \end{block}
+%
+% \begin{block}{c = 14}
+%   contacts per day per person
+% \end{block}
+%
+% \begin{block}{$\gamma = 4$}
+%   latency rate for moving from Exposed to Confirmed or Unconfirmed
+% \end{block}
+%
+% \begin{block}{$p_c = 0.35, p_u = 0.65; p_c + p_u = 1$}
+%   chance of being transferred to detected or undetected compartment, respectively
+% \end{block}
+%
+% \begin{block}{$\beta_c = 0.1, \beta_u = 0.15$}
+%   recovery rates for detected and undetected persons
+% \end{block}
+% \end{frame}
 
 %------------------------------------------------
 
@@ -215,18 +219,20 @@ A lockdown occurs:
 
 %------------------------------------------------
 
-\subsection{}
-\begin{frame}
-\frametitle{Additional Assumptions}
-Some assumptions were made to make a better fit with the real data:
 
-\begin{itemize}
-  \item Less cases for first lockdown
-  \item Stricter first lockdown - more people follow the rules
-  \item Infection-Probability lower in summer
-  \item Model time: Start of Pandemic - about 1 year in the future, assuming no vaccinations!
-\end{itemize}
-\end{frame}
+
+% \subsection{}
+% \begin{frame}
+% \frametitle{Additional Assumptions}
+% Some assumptions were made to make a better fit with the real data:
+%
+% \begin{itemize}
+%   \item Less cases for first lockdown
+%   \item Stricter first lockdown - more people follow the rules
+%   \item Infection-Probability lower in summer
+%   \item Model time: Start of Pandemic - about 1 year in the future, assuming no vaccinations!
+% \end{itemize}
+% \end{frame}
 
 %------------------------------------------------
 
@@ -269,6 +275,7 @@ Some assumptions were made to make a better fit with the real data:
 \begin{frame}
 \frametitle{Results}
 
+Number of days in lockdown between 12.12.2020 and 28.01.2022 assuming no vaccinations.
 \begin{table}[!h]
 {\small%
 \begin{center}
@@ -277,13 +284,15 @@ Some assumptions were made to make a better fit with the real data:
  & 30 days    & 21 days   & 14 days  & 7 days  \\
   \hline
   \hline
-      $35\%$ participation    & 124 &  88&  83  & 44   \\
+      $25\%$ participation & 119 &96 & 86 & 60\\
   \hline
-      $50\%$ participation & 88 & 81 & 61 & 11 \\
+      $35\%$ participation    & 96 &  86&  78  & 36   \\
   \hline
-      $70\%$ participation & 79 &  49 & 11 & 8 \\
+      $50\%$ participation & 86 & 77 & 49 & 5\\
   \hline
-      $90\%$ participation & 40 &7 &7  & 6\\
+      $70\%$ participation & 75 &  45 & 6 & 4 \\
+  \hline
+      $90\%$ participation & 39 &4 &4  & 3\\
       \hline
 \end{tabular}
 \end{center}
@@ -291,7 +300,7 @@ Some assumptions were made to make a better fit with the real data:
 
 \caption{Days of lockdown with different participation rate and interval between masstests}
 \end{table}
-To compare: without any masstests at all the number of days in lockdown would be $168$.
+To compare: without any masstests at all the number of days in lockdown would be $156$.
 \end{frame}
 %------------------------------------------------
 \section{}

@@ -1,0 +1,125 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie über den Satz von Stokes
+
+\begin{align*}
+    I
+    =
+    \Int[\Omega]
+    {
+        (\rot f, n)
+    }{
+        \mathcal H^2
+    }
+\end{align*}
+
+für die Fläche
+
+\begin{align*}
+    x = 2 r \cos t,
+    y = 2 r \sin t,
+    z = r \cos t \sin t,
+    \quad
+    0 \leq r < 1,
+    0 \leq t < 2 \pi
+\end{align*}
+
+und das Vektorfeld $(z, -z, y)^T$, wobei das Normalvektorfeld $n$ so gewählt sei, dass $n \cdot e_3 > 0$ gelte.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir parametrisieren den Rand vermöge
+
+\begin{align*}
+    \gamma:
+        [0, 2 \pi) \to \partial \Omega,
+        t
+        \mapsto
+        \begin{pmatrix}
+            2 \cos t \\
+            2 \sin t \\
+            \cos t \sin t
+        \end{pmatrix}.
+\end{align*}
+
+\begin{align*}
+    \implies
+    I
+    =
+    \Int[\Omega]
+    {
+        \rot f \cdot n
+    }{
+        \mathcal H^2
+    }
+    & \stackrel
+    {
+        \text{Stokes}
+    }{=}
+    \Int[\partial \Omega]
+    {
+        f^T \cdot t
+    }{
+        \mathcal H^1
+    } \\
+    & =
+    \Int[\gamma]
+    {
+        f
+    }{(x, y, z)} \\
+    & =
+    \Int[0][2 \pi]
+    {
+        f(\gamma(t))^T \gamma^\prime(t)
+    }{t} \\
+    & =
+    \Int[0][2 \pi]
+    {
+        \begin{pmatrix}
+             \cos t \sin t \\
+            -\cos t \sin t \\
+            2 \sin t
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix}
+            -2 \sin t \\
+             2 \cos t \\
+            -\sin t \sin t + \cos t \cos t
+        \end{pmatrix}
+    }{t} \\
+    & =
+    \Int[0][2 \pi]
+    {
+        -2 \cos t \sin^2 t - 2 \cos^2 t \sin t - 2 \sin^3 t + 2 \sin t \cos^2 t
+    }{t} \\
+    & =
+    -2
+    \underbrace
+    {
+        \Int[0][2 \pi]
+        {
+            \cos t \sin^2 t
+        }{t}
+    }_0
+    -
+    2
+    \underbrace
+    {
+        \Int[0][2 \pi]
+        {
+            \sin^3 t
+        }{t}
+    }_0 \\
+    & =
+    0
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

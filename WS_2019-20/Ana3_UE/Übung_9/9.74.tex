@@ -1,0 +1,193 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Berechnen Sie den Fluss des Vektorfeldes
+
+\begin{align*}
+    \mathbf F = (x z, x y, z^2 - x)
+\end{align*}
+
+durch den Rand des Gebietes
+
+\begin{align*}
+    0 < x < 1,
+    0 < y < x + 1,
+    0 < z < x + y.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $\Omega$ das obere Gebiet.
+
+\begin{center}
+    \begin{tikzpicture}[scale = 0.5]
+
+        \draw [->] (0, 0) -- ( 4,  0) node [right]      {$x$};
+        \draw [->] (0, 0) -- (-6, -3) node [below left] {$y$};
+        \draw [->] (0, 0) -- ( 0,  7) node [above]      {$z$};
+
+        \filldraw (0, 0) circle (1 pt);
+
+        \filldraw (2, 0) circle (1pt) node [below] {$1$};
+
+        \filldraw (-2, -1) circle (1pt) node [above left] {$1$};
+        \filldraw (-4, -2) circle (1pt) node [above left] {$2$};
+
+        \filldraw (0, 2) circle (1pt) node [left] {$1$};
+        \filldraw (0, 4) circle (1pt) node [left] {$2$};
+        \filldraw (0, 6) circle (1pt) node [left] {$3$};
+        
+        \draw [dashed] (0, 0) -- ( 2,  0);
+        \draw [dashed] (0, 0) -- (-2, -2);
+        \draw [dashed] (0, 0) -- (-2,  5);
+
+        \draw [dashed] (2, 0) -- (-2, -2) -- (-2, 5) -- cycle;
+
+        \draw [dotted] (-4, -2) -- (-2, -2);
+        \draw [dotted] ( 0,  6) -- (-4,  5) -- (-2,  5);
+        \draw [dotted] ( 0,  6) -- ( 2,  6) -- (-2,  5);
+
+    \end{tikzpicture}
+\end{center}
+
+\begin{align*}
+    \Int[\partial \Omega]
+     {
+         \mathbf F^t \mathbf n
+     }{
+         \mathcal H^2
+     }
+     & \stackrel
+     {
+         \text{Gauß}
+     }{=}
+     \Int[\Omega]
+     {
+         \Div \mathbf F
+     }{
+         \lambda^3
+     } \\
+     & =
+     \Int[0][1]
+     {
+        \Int[0][x + 1]
+        {
+            \Int[0][x+y]
+            {
+                x + 3 z
+            }{z}
+        }{y}
+     }{x} \\
+     & =
+     \Int[0][1]
+     {
+        \Int[0][x + 1]
+        {
+            x (x + y)
+            +
+            3 \frac{1}{2} (x + y)^2
+        }{y}
+    }{x} \\
+    & =
+     \Int[0][1]
+     {
+        \Int[0][x + 1]
+        {
+            x^2
+            +
+            x y
+            +
+            \frac{3}{2} x^2
+            +
+            \frac{3}{2} 2 x y
+            +
+            \frac{2}{3} y^2
+        }{y}
+    }{x} \\
+    & =
+     \Int[0][1]
+     {
+        \Int[0][x + 1]
+        {
+            \frac{5}{2} x^2
+            +
+            4 x y
+            +
+            \frac{3}{2} y^2
+        }{y}
+    }{x} \\
+    & =
+     \Int[0][1]
+     {
+        (x + 1) \frac{5}{2} x^2
+        +
+        4 x \frac{1}{2} (x + 1)^2
+        +
+        \frac{3}{2} \frac{1}{3} (x + 1)^3
+    }{x} \\
+    & =
+     \Int[0][1]
+     {
+        \frac{5}{2} x^3
+        +
+        \frac{5}{2} x^2
+        +
+        2 x^3
+        +
+        4 x^2
+        +
+        2 x
+        +
+        \frac{1}{2} x^3
+        +
+        \frac{3}{2} x^2
+        +
+        \frac{3}{2} x
+        +
+        \frac{1}{2}
+    }{x} \\
+    & =
+    5
+    \underbrace
+    {
+        \Int[0][1]
+        {
+            x^3
+        }{x}
+    }_\frac{1}{4}
+    +
+    8
+    \underbrace
+    {
+        \Int[0][1]
+        {
+            x^2
+        }{x}
+    }_\frac{1}{3}
+    +
+    \frac{7}{2}
+    \underbrace
+    {
+        \Int[0][1]
+        {
+            x
+        }{x}
+    }_\frac{1}{2}
+    +
+    \frac{1}{2}
+    \underbrace
+    {
+        \Int[0][1]{}{x}
+    }_1 \\
+    & =
+    \frac{37}{6}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

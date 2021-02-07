@@ -1,0 +1,198 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Beweisen Sie den Cauchyschen Integralsatz:
+Eine Funktion $f$ sei in einer offenen Teilmenge $\Omega$ von $\C$ holomorph, $\gamma$ sei eine glatte Kurve in $\Omega$ die der Rand einer Teilmenge $D$ von $\Omega$ ist.
+Dann gilt $\Int[\gamma]{f(z)}{z} = 0$ indem Sie das komplexe Wegintegral über $\gamma$ als
+
+\begin{align*}
+    \Int[\gamma]
+    {
+        f(z)
+    }{z}
+    =
+    \int_\gamma
+            \Re f
+            ~\mathrm d x
+            -
+        \Im f
+        ~\mathrm d y
+    +
+    \iu
+    \int_\gamma
+            \Im f
+            ~\mathrm d x
+            +
+        \Re f
+        ~\mathrm d y
+\end{align*}
+
+($z = x + \iu y$) auffassen, das Vektorfeld
+
+\begin{align*}
+    F
+    =
+    \begin{pmatrix}
+         \Re f + \iu \Im f \\
+        -\Im f + \iu \Re f
+    \end{pmatrix}
+    =
+    (F_1) + \iu (F_2)
+\end{align*}
+
+betrachen und die Cauchy-Riemann'schen Differentialgleichungen sowie einen Integralsatz verwenden.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Laut den Cauchy-Riemann'schen Differentialgleichungen, gilt
+
+\begin{multline*}
+    \rot F
+    =
+    \derivative[][F_2]{y}
+    -
+    \derivative[][F_1]{x}
+    =
+    -
+    \derivative[][\Im f]{y}
+    +
+    \iu
+    \derivative[][\Re f]{y}
+    -
+    \derivative[][\Re f]{x}
+    +
+    \iu
+    \derivative[][\Im f]{x} \\
+    \stackrel
+    {
+        \text{CR}
+    }{=}
+    \derivative[][\Re f]{x}
+    -
+    \iu
+    \derivative[][\Im f]{x}
+    -
+    \derivative[][\Re f]{x}
+    +
+    \iu
+    \derivative[][\Im f]{x}
+    =
+    0.
+\end{multline*}
+
+\begin{multline*}
+    \Forall (\xi, \eta)^t \in \R^2:
+        F
+        \begin{pmatrix}
+            \xi \\ \eta
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \Re f + \iu \Im f \\
+           -\Im f + \iu \Re f
+       \end{pmatrix}
+       \begin{pmatrix}
+        \xi \\ \eta
+    \end{pmatrix}
+    =
+    \xi \Re f + \iu \xi \Im f - \eta \Im f + \iu \eta \Re f \\
+    =
+    (\xi + \iu \eta) \Re f + \iu (\xi + \iu \eta) \Im f
+    =
+    (\xi + \iu \eta) f
+\end{multline*}
+
+\includegraphicsboxed{Ana1&2/Ana1&2 - (11.22).png}
+
+Sei $\dom f = [a, b]$.
+
+\begin{align*}
+    \Int[\gamma]
+    {
+        f(z)
+    }{z}
+    & \stackrel
+    {
+        \text{(11.22)}
+    }{=}
+    \Int[\gamma]
+    {
+        F^t(z)
+    }{z} \\
+    & =
+    \Int[a][b]
+    {
+        F^t(\gamma)
+        \frac{\gamma^\prime}{|\gamma^\prime|}
+        |\gamma^\prime|
+    }{\lambda} \\
+    & =
+    \Int[a][b]
+    {
+        F^t(\gamma) t(\gamma)
+    }{\mathcal H^1 \gamma} \\
+    & =
+    \Int[\partial D]
+    {
+        F^t t
+    }{\mathcal H^1} \\
+    & =
+    \Int[\partial D]
+    {
+        F^t t
+    }{s} \\
+    & =
+    \Int[\partial D]
+    {
+        F_1^t t
+    }{s}
+    +
+    \iu
+    \Int[\partial D]
+    {
+        F_2^t t
+    }{s} \\
+    & \stackrel
+    {
+        \text{Stokes}
+    }{=}
+    \Int[D]
+    {
+        \rot F_1
+    }{\lambda^2}
+    +
+    \iu
+    \Int[D]
+    {
+        \rot F_2
+    }{\lambda^2} \\
+    & =
+    \Int[D]
+    {
+        \rot F
+    }{\lambda^2} \\
+    & =
+    0
+\end{align*}
+
+Dabei haben wir verwendet, dass $|\gamma^\prime|$ die Dichte von $\mathcal H^1 \gamma$ bzgl. $\lambda$ ist, weil
+
+\begin{align*}
+    (\mathcal H^1 \gamma)([\alpha, \beta])
+    =
+    \ell(\gamma |_\bbraces{\alpha, \beta})
+    =
+    \Int[\alpha][\beta]
+    {
+        |\gamma^\prime|
+    }{\lambda}.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

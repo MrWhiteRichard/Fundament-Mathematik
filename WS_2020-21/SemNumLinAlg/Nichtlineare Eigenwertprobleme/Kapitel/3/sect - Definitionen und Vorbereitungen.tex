@@ -1,0 +1,199 @@
+\section{Definitionen und Vorbereitungen}
+
+Es gelten die Bezeichnungen des vorherigen Kapitels.
+Sei $\Gamma \subset \Lambda$ zudem eine positiv orientierte Jordan-Kurve (d.h. ein geschlossener Weg).
+$\Gamma$ umschließe alle Eigenwerte $\lambda_1, \dots, \lambda_k \not \in \Gamma$, und sonst keine weiteren.
+Eine Veranschaulichung davon ist in Abbildung \ref{fig:gebiet_kurve_ews} zu finden.
+
+\input{Kapitel/3/fig-gebiet_kurve_ews.tex}
+
+Sei nun $f \in H(\C, \C)$ holomorph.
+Für $n = 1, \dots, k$, sei dazu $r_n$ hinreichend klein, sodass $B_{r_n}(\lambda_n) \subset U_n$.
+Wir wenden Korollar \ref{corr:keldysh_multi} sowie die Cauchyche Integralformel und den Cauchychen Integralsatz an, und erhalten
+
+\begin{align} \label{eq:cauchysche_integral_formel_satz}
+    \begin{split}
+        \frac{1}{2 \pi i}
+        \Int[\Gamma]
+        {
+            f(\lambda) A(\lambda)^{-1}
+        }{\lambda}
+        & \stackrel
+        {
+            \ref{corr:keldysh_multi}
+        }{=}
+        \frac{1}{2 \pi i}
+        \Int[\Gamma]
+        {
+            f(\lambda)
+            \pbraces
+            {
+                \sum_{n=1}^k
+                    \frac{1}{\lambda - \lambda_n} S_n
+                    +
+                    R(\lambda)
+            }
+        }{\lambda} \\
+        & =
+        \sum_{n=1}^k
+            \underbrace
+            {
+                \frac{1}{2 \pi i}
+                \Int[\partial B_{r_n}(\lambda_n)]
+                {
+                    \frac{f(\lambda)}{\lambda - \lambda_n}
+                }{\lambda}
+            }_{=f(\lambda_n)}
+            S_n
+        +
+        \frac{1}{2 \pi i}
+        \underbrace
+        {
+            \Int[\Gamma]
+            {
+                f(\lambda) R(\lambda)
+            }{\lambda}
+        }_{=0} \\
+        & =
+        \sum_{n=1}^k
+            f(\lambda_n)
+            \sum_{l=1}^{L_n}
+                v_{n, l} w_{n, l}^\ast.
+    \end{split}
+\end{align}
+
+Diese Formel bildet die Grundlage zur Berechnung der Eigenwerte.
+Sei $J$ die Summe aller Eigenraum-Dimensionen, d.h.
+
+\begin{align*}
+    J
+    :=
+    \sum_{n=1}^k
+        L_n.
+\end{align*}
+
+\begin{comment}
+
+    Für lineare Eigenwertprobleme würde weiters gelten
+
+    \begin{align*}
+        J
+        \stackrel{!}{=}
+        \sum_{n=1}^k
+            \Def(A - \lambda_n I_N)
+        =
+        \dim
+        \bigoplus_{n=1}^k
+            \ker (A - \lambda_n I_N)
+        \ll
+        \dim \C^N
+        =
+        N.
+    \end{align*}
+
+\end{comment}
+
+Wir vereinigen die Basen aller (Rechts)-Eigenräume zu
+
+\begin{multline*}
+    V
+    :=
+    (V_1, \dots, V_k)
+    =
+    (v_{1, 1}, \dots, v_{1, L_1}, \dots, v_{k, 1}, \dots, v_{k, L_k}) \\
+    =
+    \begin{pmatrix}
+        v_{1, 1, 1} & \cdots & v_{1, L_1, 1} & \cdots & v_{k, 1, 1} & \cdots & v_{k, L_k, 1} \\
+        \vdots      & \ddots & \vdots        & \ddots & \vdots      & \ddots & \vdots        \\
+        v_{1, 1, N} & \cdots & v_{1, L_1, N} & \cdots & v_{k, 1, N} & \cdots & v_{k, L_k, N}
+    \end{pmatrix}
+    \in
+    \C^{N \times J}.
+\end{multline*}
+
+Wir vereinigen die Basen aller Links-Eigenräume zu
+
+\begin{multline*}
+    W
+    :=
+    (W_1, \dots, W_k)
+    =
+    (w_{1, 1}, \dots, w_{1, L_1}, \dots, w_{k, 1}, \dots, w_{k, L_k}) \\
+    =
+    \begin{pmatrix}
+        w_{1, 1, 1} & \cdots & w_{1, L_1, 1} & \cdots & w_{k, 1, 1} & \cdots & w_{k, L_k, 1} \\
+        \vdots      & \ddots & \vdots        & \ddots & \vdots      & \ddots & \vdots        \\
+        w_{1, 1, N} & \cdots & w_{1, L_1, N} & \cdots & w_{k, 1, N} & \cdots & w_{k, L_k, N}
+    \end{pmatrix}
+    \in
+    \C^{N \times J}.
+\end{multline*}
+
+Sei $D$ die Diagonal-Matrix der Eigenwerte, ihrer Vielfachheit nach aufgeführt, d.h.
+
+\begin{align} \label{eq:diagonal_matrix}
+    D
+    :=
+    \diag
+    (
+        \underbrace
+        {
+            \lambda_1, \dots, \lambda_1
+        }_{
+            \displaystyle
+            \text{$L_1$-viele}
+        },
+        \dots,
+        \underbrace
+        {
+            \lambda_k, \dots, \lambda_k
+        }_{
+            \displaystyle
+            \text{$L_k$-viele}
+        }
+    )
+    =
+    \diag(\lambda_1 I_{L_1}, \dots, \lambda_k I_{L_k})
+    \in
+    \C^{N \times N}.
+\end{align}
+
+Sei $\hat V \in \C^{N \times j}$ zunächst eine beliebige Zufallsmatrix mit $J \leq j \ll N$.
+Die folgenden Matrizen $A_0$ und $A_1$ sind der Grund für die Namensgebung der \Quote{Konturintegral-Methode}.
+
+\begin{align} \label{eq:integral_matrizen}
+    A_0 := \frac{1}{2 \pi i} \Int[\Gamma]{\lambda^0 A(\lambda)^{-1} \hat V}{\lambda} \in \C^{N \times j},
+    \quad
+    A_1 := \frac{1}{2 \pi i} \Int[\Gamma]{\lambda^1 A(\lambda)^{-1} \hat V}{\lambda} \in \C^{N \times j}
+\end{align}
+
+Mittels \eqref{eq:cauchysche_integral_formel_satz} lassen sich nun $A_0$ und $A_1$ wie folgt umformen.
+Letztere Gleichheit ist dabei eine elementare, aber sperrige Rechnung.
+
+\begin{align} \label{eq:integral_matrizen_resultat_compact}
+    A_i
+    \stackrel
+    {
+        \eqref{eq:integral_matrizen}
+    }{=}
+    \frac{1}{2 \pi i}
+    \Int[\Gamma]
+    {
+        \lambda^i
+        A(\lambda)^{-1}
+        \hat V
+    }{\lambda}
+    \stackrel
+    {
+        \eqref{eq:cauchysche_integral_formel_satz}
+    }{=}
+    \sum_{n=1}^k
+        \lambda_n^i
+        \sum_{l=1}^{L_n}
+            v_{n, l} w_{n, l}^\ast
+    \hat V
+    =
+    V D^i W^\ast \hat V,
+    \quad
+    i = 0, 1
+\end{align}

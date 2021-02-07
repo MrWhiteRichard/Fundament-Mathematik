@@ -1,0 +1,35 @@
+\chapter{Numerische Ergebnisse}
+
+In diesem Kapitel werden wir mit unserer persönlichen Implementierung das \Quote{Hadeler Problem}
+
+\begin{gather*}
+    T(z) = (e^z - 1) B_1 + z^2 B_2 - B_0 \\
+    B_0 = b_0 I_n,
+    \quad
+    B_1 = (b_{j k}^{(1)}),
+    \quad
+    B_2 = (b_{j k}^{(2)}) \\
+    b_{j k}^{(1)} = (n + 1 - \max(j, k)) j k,
+    \quad
+    b_{j k}^{(2)} = n \delta_{j k} + 1 / (j + k),
+    \quad
+    j, k = 1, \dots, n,
+\end{gather*}
+
+aus \cite{saad2020rational} lösen, und die theoretischen Ergebnisse veranschaulichen.
+
+Wir legen die Parameter mit $n = 200$, $b_0 = 100$ fest und wählen unsere Kurve als Kreis mit Mittelpunkt $\texttt{z} = -30$ und Radius $\texttt{R} = 11.5$.
+Als Toleranz zur Bestimmung der \Quote{korrekten} Singulärwerte wählen wir $\texttt{tol} = 10^{-5}$.
+
+Im ersten Testlauf plotten wir die berechneten Eigenwerte im Vergleich zu den zusätzlich aussortierten Werten.
+Zur besseren Veranschaulichung haben wir die Quadraturpunkte, über die wir summieren, auch miteingezeichnet.
+Wie man in Abbildung \ref{fig:plot1} sieht, befinden sich die, von unserem Algorithmus als \Quote{korrekt} identifizierten, Eigenwerte alle innerhalb unserer Konturintegralkurve, während die zusätzlichen Werte außerhalb liegen.
+
+\begin{figure}[H]
+  \includegraphics[width = \linewidth]{Plots/eigenwerte_complex_plot.png}
+  \caption{Approximierte Eigenwerte vs. zusätzliche Werte}
+  \label{fig:plot1}
+\end{figure}
+
+\input{Kapitel/5/sect - Cut-Off.tex}
+\input{Kapitel/5/sect - Pitfalls.tex}

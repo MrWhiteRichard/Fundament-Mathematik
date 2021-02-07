@@ -19,6 +19,7 @@ def gen_hess(n, compl = False):
     else:
         A = np.zeros((n,n))
         a = np.random.rand(n)*50
+        A = A + np.diag(a)
         for j in range(n-1):
             b = np.random.rand(n-j-1)*50
             A = A + np.diag(b,j+1)

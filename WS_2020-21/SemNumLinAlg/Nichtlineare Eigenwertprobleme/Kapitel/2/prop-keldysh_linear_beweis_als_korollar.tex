@@ -9,14 +9,14 @@
 
         \item Für alle $\lambda \in \rho(A)$, ist $A - \lambda I_N \in \GL_N(\C)$.
 
-        \item Die Existenz einer Orthonormalbasis $V_1$ von $\ker (A - \lambda_1 I_N)$, wenn $\lambda_1 \in \sigma(A)$ halb-einfach ist, ist einfache Linearen Algebra.
+        \item Die Existenz einer Orthonormalbasis $V_1$ von $\ker (A - \lambda_1 I_N)$, wenn $\lambda_1 \in \sigma(A)$ halb-einfach ist, ist einfache Lineare Algebra.
 
         \begin{comment}
 
             Seien $\lambda_2, \dots, \lambda_k$ die restlichen (paarweise verschiedenen) Eigenwerte von $A$.
             Seien $L_n^\mathrm{geo}$ und $L_n^\mathrm{alg}$ die geometrische bzw. algebraische Vielfachheit von $\lambda_n$ für $n = 2, \dots, k$.
             Betrachte die Jordan Normalform von $A$.
-        
+
             \begin{align*}
                 T J T^{-1} & = A, \\
                 J & = \diag (J_1, \dots, J_k),
@@ -56,10 +56,10 @@
                 \quad
                 n = 1, \dots, k
             \end{align*}
-        
+
             Weil $\lambda_1$ halb-einfach ist, muss $J_1 = \lambda_1 I_{L_1}$.
             Seien $\hat v_1, \dots, \hat v_N$ die linear unabhängig Spalten der \\ Transformations-Matrix $T$.
-        
+
             \begin{align*}
                 \implies
                 (A \hat v_1, \dots, A \hat v_{L_1}, \ast)
@@ -82,7 +82,7 @@
                 =
                 (\lambda_1 \hat v_1, \dots, \lambda_1 \hat v_{L_1}, \ast)
             \end{align*}
-        
+
             Wir können die linear unabhängig $\hat v_1, \dots, v_{L_1}$ also orthonormalisieren (Gram-Schmidt) und erhalten die Orthonormalbasis $V_1 := (v_{1, 1}, \dots, v_{1, L_1})$.
 
         \end{comment}
@@ -102,7 +102,7 @@
 
         Weil $\lambda_1$ halb-einfach ist, sein Jordan-Block genau $\lambda_1 I_{L_1}$.
         Alle zugehörigen Jordan-Kästchen haben also die Größe $1 \times 1$.
-        Es gibt somit bloß Hauptvektoren $1$-ter Stufe (Eigenwerte), und keine $2$-ter oder höherer.
+        Es gibt somit bloß Hauptvektoren erster Stufe (Eigenvekotren), und keine zweiter oder höherer Stufe.
 
         Sei $y \in \ker (A - \lambda_1 I_N) \cap \ran (A - \lambda_1 I_N)$, dann
 
@@ -113,7 +113,7 @@
                 (A - \lambda_1 I_N)^2 x = (A - \lambda_1 I_N) y = 0.
         \end{align*}
 
-        Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor $2$-ter Stufe.
+        Angenommen, $y \neq 0$, dann wäre $x$ ein Hauptvektor zweiter Stufe.
         Widerspruch!
         Damit gilt also
 
@@ -128,30 +128,30 @@
                 \not \in \ran (A - \lambda I_N).
             \end{cases}
         \end{align*}
-    
+
     \end{enumerate}
 
     Wir können also Satz \ref{thm:keldysh_nicht_linear} anwenden.
-    
+
     \begin{enumerate}[label = (\roman*), start = 2]
 
         \item Der Satz \ref{thm:keldysh_nicht_linear} gibt uns eine Basis $w_{1, 1}, \dots, w_{1, L_1}$ von $\ker (A - \lambda_1 I_N)^\ast = \ker (A^\ast - \overline \lambda_1 I_N)$, sodass
-        
-        \begin{align*}
+
+        \begin{multline*}
             \Forall l, k = 1, \dots, L_1:
                 (v_{1, k}, w_{1, l})_2
                 =
                 w_{1, l}^\ast v_{1, k}
                 =
-                -w_{1, l}^\ast (-I_N) v_{1, k}
+                -w_{1, l}^\ast (-I_N) v_{1, k} \\
                 =
                 -w_{1, l}^\ast \derivative{\lambda}(A - \lambda I_N) \Big |_{\lambda = \lambda_1} v_{1, k}
                 =
                 -\delta_{l, k}.
-        \end{align*}
+        \end{multline*}
 
-        \item Diese Tatsache kann $1 : 1$ aus Satz \ref{thm:keldysh_nicht_linear} übernommen werden.
+        \item Diese Tatsache kann eins zu eins aus Satz \ref{thm:keldysh_nicht_linear} übernommen werden.
 
     \end{enumerate}
-    
+
 \end{proof}
