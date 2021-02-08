@@ -1,0 +1,38 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[85]
+
+Seien $\varphi$ und $\psi$ Formeln einer Sprache $\mathscr{L}$, $\mathscr{M}$
+eine Struktur für $\mathscr{L}$ und $b$ eine Belegung. Zeigen Sie:
+\begin{itemize}
+  \item Wenn $\mathscr{M} \vDash \varphi[b]$ und
+  $\mathscr{M} \vDash (\varphi \rightarrow \psi)[b]$, dann auch
+  $\mathscr{M} \vDash \psi[b]$.
+  \item Wenn $\mathscr{M} \vDash \varphi$ und
+  $\mathscr{M} \vDash (\varphi \rightarrow \psi)$, dann auch
+  $\mathscr{M} \vDash \psi$.
+\end{itemize}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+\begin{itemize}
+  \item Aus der Voraussetzung erhalten wir
+  \begin{align*}
+    \hat{b}(\varphi) = 1, \quad \hat{b}(\varphi \rightarrow \psi) = 1.
+  \end{align*}
+  Mit der Tautologie $\psi \leftrightarrow (\varphi \land \varphi \rightarrow \psi)$ erhalten wir
+  \begin{align*}
+    \hat{b}(\psi) =  \hat{b}(\varphi \land \varphi \rightarrow \psi)
+    = \hat{b}(\varphi) \land_{Bool} \hat{b}(\varphi \rightarrow \psi) = 1.
+  \end{align*}
+  \item Man übernehme den obigen Beweis mit einem Allquantor vor der Belegung.
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
