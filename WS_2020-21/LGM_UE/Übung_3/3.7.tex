@@ -1,0 +1,62 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[83]
+
+Sei $h$ ein Homomorphismus von den aussagenlogischen in die prädikatenlogischen
+Formeln einer festen Sprache $\mathscr{L}$, also
+\begin{align*}
+  h(\top) = \top, \quad h(\bot) = \bot, \quad h(\varphi \land \psi) =
+  h(\varphi) \land h(\psi) \quad \cdots.
+\end{align*}
+Sei $\mathscr{U}$ eine $\mathscr{L}$-Struktur, und sei $b$ eine Belegung
+im prädikatenlogischen Sinn. \\
+Dann gibt es eine aussagenlogische Belegung $b'$, die
+$\hat{b'}(A) = \hat{b}(h(A))$ für alle aussagenlogischen Formeln $A$ erfüllt.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Definiere für alle aussagenlogischen Variablen $p$
+
+\begin{align*}
+  b'(p) := \hat{b}(h(p)).
+\end{align*}
+
+Wir führen einen Induktionsbeweis über die Menge aller aussagenlogischen Formeln.
+
+Für aussagenlogische Variablen folgt die Aussage aus der Definition von $b'$.
+Die Abgeschlossenheit unter den Junktoren folgt aus der Homomorphie-Eigenschaft von $h$, hier exemplarisch für die Konjunktion:
+\begin{align*}
+  \hat{b'}(A \land B) = \hat{b'}(A) \land_{Bool} \hat{b'}(B)
+  = \hat{b}(h(A)) \land_{Bool} \hat{b}(h(B)) = \hat{b}(h(A) \land h(B))
+  = \hat{b}(h(A \land B))
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[84]
+
+Schließen Sie aus der vorigen Aufgabe: Wenn $A$ aussagenlogische Tautologie ist,
+$h$ ein Homomorphismus, dann ist $h(A)$ allgemeingültig.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Es gilt also für alle aussagenlogischen Belegungen $\hat{b}(A) = 1$. \\
+Sei nun $b$ beliebige prädikatenlogische Belegung und $b'$ definiert wie
+in der Aufgabe davor. Dann gilt
+
+\begin{align*}
+  \hat{b}(h(A)) = \hat{b'}(A) = 1
+\end{align*}
+und $h(A)$ ist somit prädikatenlogisch allgemeingültig.
+
+\end{solution}
