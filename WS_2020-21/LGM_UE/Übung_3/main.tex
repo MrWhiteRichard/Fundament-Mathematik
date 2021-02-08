@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\input{../../../Fundament-LaTeX/packages.tex}
+\input{../../../Fundament-LaTeX/macros.tex}
+\input{../../../Fundament-LaTeX/environments.tex}
+\input{../../../Fundament-LaTeX/listings.tex}
+
+\parskip 0pt
+\parindent 0pt
+
+\title
+{
+  Logik und Grundlagen der Mathematik \\
+  \vspace{4pt}
+  \normalsize
+  \textit{3. Übung am 22.10.2020}
+}
+\author
+{
+  Richard Weiss
+  \and
+  Florian Schager
+  % \and
+  % Christian Sallinger
+  \and
+  Fabian Zehetgruber
+  % \and
+  % Paul Winkler
+  % \and
+  % Christian Göth
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Substitution}
+
+\input{3.1.tex}
+\input{3.2.tex}
+
+\section*{Ableitungskalküle}
+
+In den folgenden Beispielen betrachten wir Zeichenfolgen (Strings), die aus
+den Zeichen $1,+,=$ zusammengesetzt sind. Auch die leere Folge gilt als
+Zeichenfolge; sie hat Länge $0$. Meist wird sie mit $\epsilon$ oder mit $\Lambda$
+bezeichnet. \\
+Gewisse Zeichenfolgen zeichnen wir als \Quote{ableitbar} aus. \\
+Gewisse Zeichenfolgen nennen wir \Quote{Axiome}. Axiome $A$ schreiben wir in
+der Form
+
+\begin{align*}
+  \frac{\emptyset}{A}
+\end{align*}
+
+an. Wir lesen dies als \Quote{A ist ableitbar}. Eine \Quote{Regel}, die wir in
+der Form
+
+\begin{align*}
+  \frac{A_1,\dots,A_n}{B}
+\end{align*}
+
+schreiben, lesen wir als \Quote{Wenn $A_1,\dots,A_n$ ableitbar sind, dann auch $B$}. \\
+Die Menge der ableitbaren Zeichenfolgen ist die kleinste Menge $M$, die alle
+Axiome enthält und unter allen Regeln abgeschlossen ist.
+\input{3.3.tex}
+\input{3.4.tex}
+
+In den folgenden Beispielen betrachten wir Zeichenfolgen, die aus $1,+,!,=$
+zusammengesetzt sind. Unser Ableitungssystem enthält nun das einzige Axiom
+$\frac{\emptyset}{1!}$ und die folgenden Regeln
+\begin{align*}
+  \frac{A!}{1A!} \quad \frac{A!}{A + 1 = A} \quad \frac{A + B = C}{A + B1 = CA}
+\end{align*}
+für beliebige Zeichenfolgen $A,B,C$.
+
+\input{3.5.tex}
+\input{3.6.tex}
+
+\section*{Logische Axiome, MP}
+\input{3.7.tex}
+
+\end{document}

@@ -1,0 +1,36 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[56]
+
+Geben Sie ein Kriterium ab, das entscheidet, ob eine vorgegebene Zeichenfolge
+ableitbar ist.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir vereinbaren die Kurzschreibweise $n := \underbrace{1\dots 1}_{n \text{ Mal}}$
+und stellen folgendes Kriterium auf:
+
+Eine Zeichenfolge $A$ ist genau dann ableitbar, wenn sie eine der folgenden
+Bedingungen erfüllt:
+\begin{enumerate}[label = \alph*)]
+  \item $\exists n \in \N: A = n!$
+  \item $\exists n,m \in N: A = (n + m = m\cdot n)$
+\end{enumerate}
+Wieder enthält die Menge an Zeichenfolgen, die unser Kriterium erfüllen das Axiom
+und ist unter Regeln abgeschlossen, da
+\begin{itemize}
+  \item Regel 1: $\frac{n!}{(n+1)!}$
+  \item Regel 2: $\frac{n!}{n + 1 = n}$
+  \item Regel 3: $\frac{n + m = n\cdot m}{n + (m + 1) = m\cdot n + n = n(m+1)}$.
+\end{itemize}
+Weiters können wir für jedes Element dieser Menge explizit eine Herleitung angeben:
+Für $n!$ müssen wir nur $(n-1)$-Mal die erste Regel anwenden, beginnend beim
+einzigen Axiom. Für $n + m = n\cdot m$ leiten wir zuerst $n!$ her, wenden
+einmal Regel 2 an, um $n + 1 = n$ zu erhalten und schließlich nach $(m-1)$-maliger
+Anwendung der dritten Regel $n + m = n \cdot m$ zu erhalten.
+\end{solution}
+
+% --------------------------------------------------------------------------------

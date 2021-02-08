@@ -1,0 +1,26 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[68]
+
+Geben Sie in einer geeigneten Sprache eine möglichst einfache Formel $\varphi$
+an, sowie einen Term $t$, eine Struktur $\mathscr{M}$ und eine Belegung $b$,
+sodass mit $b' := b_{x/\overline{b}(t)}$ die Werte $\hat{b}(\varphi[x/t])$
+und $\hat{b'}(\varphi)$ verschieden sind.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir wählen als unser Modell $\mathscr{M} = (\N, =)$, unsere Formel
+$\varphi: \exists y: \neg (y = x)$ und unser Term $t = y$.
+Dann gilt für alle Belegungen $b$
+\begin{align*}
+  \hat{b}(\varphi[x/t]) = \hat{b}(\exists y: \neg (y = y))
+  = 0 \neq 1 = \widehat{b_{x/\overline{b}(y)}}(\exists y: \neg (y = x)) = \hat{b'}(\varphi).
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

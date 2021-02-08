@@ -1,0 +1,36 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[54]
+
+Geben Sie ein Kriterium an, das entscheidet, ob eine vorgegebene Zeichenfolge ableitbar ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+Eine Zeichenfolge ist genau dann ableitbar wenn:
+\begin{enumerate}[label = \alph*)]
+  \item Die Zeichenfolge hat die Form $x + y = z$, wobei $x,y,z$
+  endliche Folgen von Einsern bezeichnen.
+  \item Die Anzahl der Einser auf beiden Seiten des Gleichheitszeichen stimmen überein.
+\end{enumerate}
+
+Wir zeigen nun, dass die Menge $N$ an Zeichenfolgen, die unser Kriterium erfüllt
+alle Axiome enthält, unter den vorgegebenen Regeln abgeschlossen ist und
+die kleinste Menge mit dieser Eigenschaft ist.
+
+\begin{itemize}
+  \item Enthält Axiome: Klar.
+  \item Unter Regeln abgeschlossen: \\
+  Sei $A = x + y = z \in N$. Dann ist $1A1: 1x + y = z1$ ebenfalls in $N$
+  und $x + y1 = 1z$ ebenso.
+  \item Kleinste solche Menge: Sei $x + y = z \in N$ beliebig mit
+  $|x| = n, |y| = m$ und daher $|z| = n + m$. Durch $(n-1)$-malige
+  Anwendung der ersten und $(m-1)$-malige Anwendung der zweiten Regel
+  können wir $x + y = z$ herleiten. Also enthält $N$ genau die
+  ableitbaren Zeichenfolgen.
+\end{itemize}
+\end{solution}
+
+% --------------------------------------------------------------------------------
