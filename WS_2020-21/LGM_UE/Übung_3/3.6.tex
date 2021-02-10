@@ -1,0 +1,47 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[58]
+
+Geben Sie ein möglichst einfaches Ableitungssystem an, in dem eine
+Zeichenfolge der Form $1^n$ genau dann ableitbar ist, wenn $n > 1$ und keine
+Primzahl ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+Wir wählen als Axiome für $n \geq 2$
+\begin{align*}
+  \frac{\emptyset}{1^n|1^{2n}}
+\end{align*}
+und als Regeln für $n, k \in \N$
+\begin{align*}
+  \frac{1^n|1^k}{1^n|1^{k+n}} \quad \frac{1^n|1^k}{1^k}.
+\end{align*}
+Wir behaupten nun, dass die Zeichenfolge $1^n$ genau dann ableitbar ist,
+wenn $n$ keine Primzahl ist.
+
+Dazu zeigen wir, dass die Menge der ableitbaren Zeichenfolgen genau aus
+den Zeichenfolgen der Form $1^n$ mit $n$ nicht prim und $1^n|1^k$ mit $n$
+echter Teiler von $k$ besteht.
+
+Diese Menge enthält sicher die Axiome und ist unter den Regeln abgeschlossen,
+da mit der ersten Regel, wenn $n$ echter Teiler von $k$, dann auch $n$
+echter Teiler von $k + n$ und mit Regel 2, wenn $n$ echter Teiler von $k$,
+dann ist $k$ keine Primzahl.
+
+Wir zeigen nun noch, dass alle diese Zeichenfolgen tatsächlich herleitbar sind.
+Sei $n$ keine Primzahl, also gibt es $p, q \neq n$ mit $n = pq$.
+\begin{algorithmic}
+  \State $\frac{\emptyset}{1^p|1^{2p}}$ \Comment Axiom
+  \State $\frac{1^p|1^{2p}}{1^p|1^{3p}}$ \Comment Regel 1
+  \State $\vdots$ \Comment Regel 1 iterieren
+  \State $\frac{1^p|1^{(q-1)p}}{1^p|1^{(q-1)p + p}}$
+  \State $\frac{1^p|1^{qp}}{1^n}$
+\end{algorithmic}
+Sei nun $n$ echter Teiler von $k$, also $k = nm$.
+Dann erhalten wir durch iteriertes Anwenden der ersten Regel $1^n|1^k$ wie oben.
+\end{solution}
+
+% --------------------------------------------------------------------------------

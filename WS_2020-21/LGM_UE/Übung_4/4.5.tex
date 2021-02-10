@@ -1,0 +1,43 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[94]
+
+\phantom{}
+
+\begin{enumerate}[label = \alph*)]
+  \item Geben Sie einen formalen Beweis für eine der Formeln in 77-82 an.
+  \item Seien $\varphi$ und $\psi$ beliebige Formeln. \\
+  Geben Sie einen formalen Beweis für die Formel $(\forall x\, \varphi) \rightarrow
+  \forall x \, (\varphi \lor \psi)$
+  an.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}
+  \item Wir beweisen 82, also
+  \begin{align*}
+    \forall x\, (Px \rightarrow Qx) \rightarrow ((\forall x\, Px) \rightarrow (\forall x\, Qx)).
+  \end{align*}
+  Genau genommen sind wir damit schon fertig, denn 82 ist einfach ein Distributivitätsaxiom.
+  \item
+  \begin{algorithmic}[1]
+    \State $\vdash \forall x\, (\varphi \rightarrow \varphi \lor \psi)$
+    \Comment Allquantor vor Tautologie: Axiom
+    \State $\vdash \forall x\, (\varphi \rightarrow (\varphi \lor \psi))
+    \rightarrow ((\forall x\, \varphi) \rightarrow (\forall x\, (\varphi \lor \psi)))$
+    \Comment Distributivitätsaxiom
+    \State $\vdash (\forall x \varphi) \rightarrow \forall x (\varphi \rightarrow \psi)$
+    \Comment Modus Ponens
+  \end{algorithmic}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

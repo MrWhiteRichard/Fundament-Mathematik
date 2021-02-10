@@ -1,0 +1,49 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[66]
+
+Sei $\mathscr{M}$ eine Struktur, sei $b$ eine Belegung, seien $s$ und $t$ Terme,
+und $x$ eine Variable. \\
+Sei $a := \overline{b}(t)$. dann ist $\overline{b}(s[x/t])
+= \overline{b_{x/a}}(s)$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir zeigen die Aussage mittels der induktiven Definition der Substitution.
+\begin{enumerate}
+  \item Sei $s = x$:
+  \begin{align*}
+    \overline{b}(s[x/t]) = \overline{b}(t) = \overline{b_{x/a}}(s).
+  \end{align*}
+  \item Sei $s = y$ eine von $x$ verschiedene Variable:
+  \begin{align*}
+    \overline{b}(s[x/t]) = \overline{b}(y) = \overline{b_{x/a}}(s).
+  \end{align*}
+  \item Sei $s = c$ eine Konstante:
+  \begin{align*}
+    \overline{b}(s[x/t]) = \overline{b}(c) = \overline{b_{x/a}}(s).
+  \end{align*}
+  \item Sei $s = f(s_1,\dots,s_k)$ mit einem $k$-stelligen Funktionssymbol $f$
+  und Termen $s_1,\dots,s_k$:
+  \begin{align*}
+    \overline{b}(s[x/t]) &= \overline{b}(f(s_1,\dots,s_k)[x/t])
+    = \overline{b}(f(s_1[x/t],\dots,s_k[x/t])) \\
+    &= f^{\mathscr{M}}(\overline{b}(s_1[x/t]),\dots,\overline{b}(s_k[x/t])) \\
+    &= f^{\mathscr{M}}(\overline{b_{x/a}}(s_1),\dots,\overline{b_{x/a}}(s_k)) \\
+    &= \overline{b_{x/a}}(f(s_1,\dots,s_k)).
+  \end{align*}
+\end{enumerate}
+Damit enthält die Menge aller Terme $s$, sodass für alle Terme $t$ und Belegungen $b$
+\begin{align*}
+  \overline{b}(s[x/t]) = \overline{b_{x/a}}(s)
+\end{align*}
+gilt, alle Konstanten und Variablen und ist unter Anwendung von Funktionssymbolen
+abgeschlossen. \\
+Also gilt die Aussage für alle Terme $s$.
+\end{solution}
+
+% --------------------------------------------------------------------------------
