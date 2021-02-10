@@ -189,16 +189,23 @@ starts on 12.\,12.\,2020, just like it did in reality.\\
 The second big event we implemented was of course the \textit{Lockdown}. To be precise,
 we modeled multiple different version of \textit{Lockdowns}, but all with the same basic idea:
 The events trigger once the number of \texttt{Infected} people (\texttt{Confirmed} plus \texttt{Unconfirmed})
-reaches a certain level. Precise numbers for this are found in the table below.
+reaches a certain level.
 We chose the value of \texttt{Infected} people over the value of
 the \texttt{Confirmed} people as the main indicator for our \textit{Lockdown}, even though only the number of confirmed people is accurately known in reality.
 Our reasoning for this was that the total number of \texttt{Infected} people in our
 model should be the best indicator for the strain of the virus on our health system,
 which would be a major deciding factor in the decision to implement a lockdown in reality.
-The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter.
+The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter. \\
 To account for the multiple levels of reopening like we have seen in previous
 lockdowns, we implemented different levels of \textit{Lockdown}, which gradually increase
 the number of \textit{contactsPerDay} to pre-pandemic levels.
+In addition to that, we modeled the first \textit{Lockdown} in Spring 2020 to be more
+restrictive than following \textit{Lockdowns}, where we use the numbers in Table 1.2.
+For the first \textit{Lockdown}, we lift the \textit{Lockdown} restrictions after the number of \texttt{Infected}
+people sinks below 5.000. However, we do not increase the number of \textit{contactsPerDay}
+entirely to pre-pandemic levels to simulate the safety measures, which are still
+in place without the \textit{Lockdown}.
+For the other \textit{Lockdowns}, we already lift the restrictions at less than 20.000 \texttt{Infected}.
 
 
 \begingroup
@@ -224,7 +231,13 @@ To effectively reduce the number of infections, however, we have to make use of 
 
 
 
-To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. To do this, we created a different stock and assumed a flow of $1$ during a lockdown and $0.5$ during the first level of reopening.
+To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. Since the first \textit{Lockdown} in our model only
+takes place in Spring 2020, we only need to look at the numbers for the other \textit{Lockdowns}
+to quantitatively measure the time spent in \textit{Lockdown}.
+To do this, we created a different stock and assumed a flow of $1$ during full lockdown
+(\textit{contactsPerDay = 3}) and $0.5$ during the first level of reopening
+(\textit{contactsPerDay = 6}). As soon as the lockdown ends (\textit{contactsPerDay = 9})
+the flow is set to 0.
 \begin{table}[!h]
 {\small%
 \begin{center}
@@ -256,6 +269,11 @@ Our simulation now suggests that to really get the most out of mass testing, we 
 To reach a participation rate high enough politicians would probably need to enact laws making participation mandatory. There have been tries to do it but the opposition parties heavily criticised it, questioning the legality. \\
 
 One thing we want to stress is, that in our model we ignored the existence of vaccines. Since the first vaccinations are already happening right now, our model might make the situation look more grim than it really is.
+Another limitation of our model is test sensitivity.
+Even if we assumed 100\% of the population would participate at the mass test,
+we still would not catch 100\% of the infections.
+Neglecting that, we assume that the participation rate is equal to the rate
+of detected infections.
 
 \begingroup
 \renewcommand{\cleardoublepage}{}
