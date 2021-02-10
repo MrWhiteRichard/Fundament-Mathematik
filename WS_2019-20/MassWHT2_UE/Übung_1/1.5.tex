@@ -1,0 +1,54 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Für welche Werte von $p \in \R$ gibt es ein signiertes Maß $\mu$ auf $(\N, 2^\N)$ mit $\mu(\Bbraces{x}) = x^p (-1)^x$?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \mu:
+        2^N \to \R,
+        A \mapsto \sum_{x \in A} x^p (-1)^x
+\end{align*}
+
+Die Summe (Reihe) ist für $p < -1$ absolut konvergent, als Minorante der Geometrischen Reihe oder laut dem Leibniz-Kriterium, und $\mu$ damit wohldefiniert, und sonst divergent (nicht gegen $\infty$ oder $-\infty$).
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Definition 6.1.png}
+
+\begin{enumerate}
+
+    \item $2^\N$ ist eine Sigmaalgebra.
+
+    \item Der Wertebereich ist entweder $(-\infty, \infty]$ oder $[-\infty, \infty)$, weil
+    
+    \begin{align*}
+        \Forall A \in 2^\N:
+            \mu(A) \leq \mu(\N) < \infty.
+    \end{align*}
+
+    \item $\mu$ ist sigmaadditiv.
+    
+    \begin{align*}
+        \Forall \vec A := (A_n) \subset 2^\N, ~\text{disjunkt}, A := \bigcup \vec A:
+            \mu(A)
+            =
+            \sum_{x \in A}
+                x^p (-1)^x
+            =
+            \sum_{n \in \N}
+                \sum_{x \in A_n}
+                    x^p (-1)^x
+            \sum_{n \in \N}
+                \mu(A_n)
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

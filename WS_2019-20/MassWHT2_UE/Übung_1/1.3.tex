@@ -1,0 +1,76 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Ein fairer Würfel wird wiederholt geworfen, $X_n$ sei die Augenzahl beim $n$-ten Wurf.
+Bestimmen Sie
+
+\begin{align*}
+    \lim_{n \to \infty}
+        \frac{\sum_{i=1}^n X_i}{n}
+\end{align*}
+
+und
+
+\begin{align*}
+    \lim_{n \to \infty}
+        \pbraces{\prod_{i=1}^n X_i}^{1/n}
+\end{align*}
+
+(überzeugen Sie sich auch, dass diese Grenzwerte mit Wahrscheinlichkeit $1$ existieren).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 5.25 - starkes Gesetz der großen Zahlen von Kolmogorov 2.png}
+
+\begin{align*}
+    \lim_{n \to \infty}
+        \frac{\sum_{i=1}^n X_i}{n}
+    \stackrel
+    {
+        \text{GGZ}
+    }{=}
+    \E(X_1)
+    =
+    \sum_{i \leq 6}
+        i \cdot \P(X_1 = i)
+    \stackrel
+    {
+        \text{Gauß}
+    }{=}
+    \frac{6 \cdot (6 + 1)}{2} \frac{1}{6}
+    =
+    7/2
+\end{align*}
+
+\begin{multline*}
+    \lim_{n \to \infty}
+        \pbraces{\prod_{i=1}^n X_i}^{1/n}
+    =
+    \exp \pbraces{\lim_{n \to \infty} \frac{1}{n} \sum_{k \leq n} \ln X_i}
+    \stackrel
+    {
+        \text{GGZ}
+    }{=}
+    \exp \E(\ln X_1)
+    =
+    \exp \pbraces{\Int{\ln X_1}{\P}} \\
+    =
+    \exp \pbraces{\sum_{i \leq 6} \ln i \cdot \P(\ln X_i = \ln i)}
+    =
+    \exp \pbraces{\sum_{i \leq 6} \ln i \cdot \P(X_i = i)}
+    =
+    \exp \pbraces{\sum_{i \leq 6} \ln i \cdot \frac{1}{6}}
+    =
+    6!^{1/6}
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,182 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$(X_n)$ sei eine Folge von unabhängigen Zufallsvariablen mit $\P(X_n = 1) = \P(X_n = -1) = 1/2$, $(a_n)$ eine Folge von reellen Zahlen.
+Zeigen Sie, dass $\sum_n a_n X_n$ genau dann fast sicher konvergiert, wenn die Reihe $\sum_n a_n^2$ konvergiert.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \Forall n \in \N:
+    \pbraces
+    {
+        t \mapsto t a_n ~\text{stetig}
+        \implies
+        t \mapsto t a_n ~\text{messbar}
+        \implies
+        a_n X_n ~\text{unabhängig}
+    }
+\end{align*}
+
+Wir wollen den Dreireihensatz von Kolmogorov auf $(Y_n)$ anwenden.
+
+\includegraphicsgraphicsboxed[0.75][0]
+{MassWHT1&2/MassWHT1&2 - Satz 5.22.1 - Dreireihensatz von Kolmogorov.png}
+{MassWHT1&2/MassWHT1&2 - Satz 5.22.2 - Dreireihensatz von Kolmogorov.png}
+
+\begin{itemize}
+
+    \item Wahrscheinlichkeiten:
+    
+    \begin{align*}
+        &
+        \P(X_i^2 = 1)
+        =
+        \P(|X_i| = 1)
+        =
+        \P(X_i = \pm 1)
+        =
+        \P(X_i = 1) + \P(X_i = -1)
+        =
+        1/2 + 1/2
+        =
+        1 \\
+        \implies &
+        \P(X_i \neq \pm 1)
+        =
+        1 - \P(X_i = \pm 1)
+        =
+        0
+    \end{align*}
+
+    \item Erwartungswerte:
+    
+    \begin{align*}
+        \E(X_i)
+        =
+        \Int{X_i}{\P}
+        =
+        1 \cdot \P(X_i = 1) + (-1) \cdot \P(X_i = 1)
+        =
+        1/2 - 1/2
+        =
+        0
+    \end{align*}
+
+    \begin{align*}
+        \E(X_i^2)
+        =
+        \Int{X_i^2}{\P}
+        =
+        1 \cdot \P(X_i^2 = 1)
+        =
+        1
+    \end{align*}
+
+    \begin{align*}
+        0
+        \leq
+        \E(X_i [|X_i| \leq \epsilon])
+        =
+        \Int{X_i [|X_i| \leq \epsilon]}{\P}
+        \leq
+        \Int{X_i}{\P}
+        =
+        \E(X_i)
+        =
+        0
+    \end{align*}
+
+    \begin{align*}
+        \E(X_i^2 [|X_i \leq \epsilon])
+        =
+        \Int{X_i^2 [|X_i \leq \epsilon]}{\P}
+        =
+        \begin{cases}
+            \E(X_i) = 1, & \epsilon^2 \geq 1 \iff \epsilon \geq 1, \\
+            0,           & \text{sonst}
+        \end{cases}
+    \end{align*}
+
+    \item Varianzen:
+    
+    \begin{align*}
+        \V(X_i)
+        =
+        \E(X_i^2) - \E(X_i)^2
+        =
+        1
+    \end{align*}
+
+    \begin{align*}
+        \V(X_i [|X_i| \leq \epsilon])
+        =
+        \V(X_i^2 [|X_i| \leq \epsilon]) - \V(X_i [|X_i| \leq \epsilon])^2
+        =
+        \begin{cases}
+            1, & \epsilon \geq 1, \\
+            0, & \text{sonst}
+        \end{cases}
+    \end{align*}
+
+\end{itemize}
+
+\begin{itemize}
+
+    \item [\Quote{$\Rightarrow$}]:
+    Möge $\sum_n a_n X_n$ fast sicher konvergieren.
+
+    \begin{align*}
+        \implies
+        \Exists \epsilon > 0:
+            \P(|a_n X_n| \leq \epsilon) = 1
+    \end{align*}
+
+    Also konvergieren die $3$ Kolmogorov-Reihen fast sicher.
+
+    \begin{align*}
+        \implies
+        V_n(\epsilon)
+        =
+        \sum_{i \leq n}
+            \V(a_i X_i \underbrace{[|a_i X_i| \leq \epsilon]}_1)
+        =
+        \sum_{i \leq n}
+            a_i^2 \underbrace{\V(X_i)}_1
+        ~\text{konviergiert fast sicher}
+    \end{align*}
+
+    \item [\Quote{$\Leftarrow$}]:
+    Möge $\sum_n a_n^2$ konvergieren.
+    
+    \begin{align*}
+        a_i^2 \xrightarrow{n \to \infty} 0
+        \implies
+        |a_i| \xrightarrow{n \to \infty} 0
+        \implies
+        |a_i X_i| \xrightarrow{n \to \infty} 0
+        ~\text{d.h.}~
+        \Exists \epsilon > 0:
+            \Exists n \in \N:
+                \Forall i \geq n:
+                    |a_i X_i| \leq \epsilon
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \Forall m > n: ~
+            & P_m(\epsilon) = P_n(\epsilon) < \infty, \\
+            & E_m(\epsilon) \leq \sum_{i \leq n} a_i \underbrace{\E(X_i)}_0 = 0, \\
+            & V_m(\epsilon) \leq \sum_{i \leq n} \V(a_i X_i) = \sum_{i \leq n} a_i^2 \underbrace{\V(X_i)}_1 < \infty
+    \end{align*}
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

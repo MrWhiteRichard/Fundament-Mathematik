@@ -1,0 +1,132 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+In einem Spiel kann auf die Ausgänge $1, \dots, m$ gesetzt werden, die mit Wahrscheinlichkeit $p_1, \dots, p_m$ gezogen werden.
+Wird $i$ gezogen, weren die Einsätze auf $i$ $m$-fach zurückgezahlt, alle anderen Einsätze verfallen.
+Eine Spielerin teilt ihr Kapital $K$ (mit Anfangswert $K_0$) in jeder Runde so auf, dass sie $K$ $q_i$ auf $i$ setzt, wobei $q_1, \dots, q_n$ Zahlen mit $q_i > 0$ und $\sum_i q_i = 1$ sind.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Zeigen Sie:
+    für das Kapital $K_n$ der Spielerin nach $n$ Runden gilt
+
+    \begin{align*}
+        K_n
+        =
+        K_0 m^n \prod_{j=1}^n q_{X_j},
+    \end{align*}
+
+    wobei $(X_j)$ eine Folge von unabhängigen Zufallsvariablen mit
+
+    \begin{align*}
+        \P(X_j = i) = p_i
+    \end{align*}
+
+    ist.
+
+    \item Bestimmen Sie
+    
+    \begin{align*}
+        \lim_{n \to \infty}
+            \frac{\log K_n}{n}.
+    \end{align*}
+
+    \item Für welche Wahl von $q_1, \dots, q_n$ ist dieser Grenzwert maximal?
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Wir verwenden vollständige Induktion.
+    Der Induktionsanfang ($k = 0$) ist trivial.
+    Der Induktionsschritt ($k \mapsto k + 1$) ist auch nicht schwierig.
+
+    \begin{align*}
+        K_{k+1}
+        =
+        K_k \cdot m q_{X_{k+1}}
+        \stackrel
+        {
+            \text{IV}
+        }{=}
+        K_0 m^{k+1} \prod_{j=1}^{k+1} q_{X_j}
+    \end{align*}
+
+    Die Aussage folgt für $k = n$.
+
+    \item
+
+    \begin{multline*}
+        \lim_{n \to \infty}
+            \frac{\log K_n}{n}
+        =
+        \lim_{n \to \infty}
+            \frac{1}{n}
+            \pbraces
+            {
+                \log K_0 + n \log m + \sum_{i \leq m} \log q_{X_i}
+            }
+        \stackrel
+        {
+            \text{GGZ}
+        }{=}
+        \log m + \E(\log q_{X_1}) \\
+        =
+        \log m + \Int{\log q_{X_1}}{\P}
+        =
+        \log m + \sum_{i \leq m} \log q_{X_1} \cdot \P(X_1 = i)
+        =
+        \log m + \sum_{i \leq m} \log q_{X_1} \cdot p_i
+    \end{multline*}
+
+    \item
+
+    \begin{align*}
+        q := (q_1, \dots, q_m),
+        \quad
+        \sum q := \sum_{i \leq m} q_i,
+        \quad
+        p := (p_1, \dots, p_m),
+        \quad
+        \sum p := \sum_{i \leq m} p_i
+    \end{align*}
+
+    \begin{gather*}
+        f(q) := \sum_{i \leq m} \log q_i \cdot p_i,
+        \quad
+        G(q) := 1 - \sum q \stackrel{!}{=} 0,
+        \quad
+        q > 0,
+        \quad
+        F(q, \lambda) := f(q) - \lambda G(q)
+    \end{gather*}
+
+    \begin{align*}
+        \implies
+            &   \pderivative[][F]{q_i}    (q, \lambda) = \frac{p_i}{q_i} + \lambda \stackrel{!}{=} 0,
+                \quad
+                \pderivative[][F]{\lambda}(q, \lambda) = \sum q - 1   \stackrel{!}{=} 0  \\
+        \implies
+            &   1 = \sum q,
+                \quad
+                q_i = -\frac{p_i}{\lambda} \implies \sum q = -\frac{1}{\lambda} \sum p \\
+        \implies
+            & \lambda = -\sum p \\
+        \implies
+            & q_i = \frac{p_i}{\sum p}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
