@@ -15,7 +15,7 @@
 \input{../../../../Fundament-LaTeX/listings.tex}
 
 \addbibresource{Quellen/references.bib}
-
+\usepackage{diagbox}
 
 \begin{document}
 
@@ -214,7 +214,7 @@ For the other \textit{Lockdowns}, we already lift the restrictions at less than 
 \chapter{Simulation Results}
 \endgroup
 
-In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases. We can also observe the cange of the flow in the following three days, there the \texttt{Confirmed} cases grow but go down again after the three days.
+In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases.
 As we can see in the graphs below, even with this relatively optimistic participation rate
 and a high frequency of \textit{masstesting}, this strategy alone is merely enough
 to slow down the exponential growth of cases.
@@ -237,7 +237,8 @@ to quantitatively measure the time spent in \textit{Lockdown}.
 To do this, we created a different stock and assumed a flow of $1$ during full lockdown
 (\textit{contactsPerDay = 3}) and $0.5$ during the first level of reopening
 (\textit{contactsPerDay = 6}). As soon as the lockdown ends (\textit{contactsPerDay = 9})
-the flow is set to 0.
+the flow is set to 0. We can see the results in Table \ref{days_of_lockdown}.
+
 \begin{table}[!h]
 {\small%
 \begin{center}
@@ -246,27 +247,56 @@ the flow is set to 0.
 & 30 days   & 21 days   & 14 days   & 7 days  \\
  \hline
  \hline
-     $25\%$ participation & 119 &96 & 86 & 60\\
+     $25\%$ participation & 138 &124 & 95 & 81\\
  \hline
-     $35\%$ participation & 96 &  86&  78  & 36   \\
+     $35\%$ participation & 123 &  94&  87  & 67   \\
  \hline
-     $50\%$ participation & 86 & 77 & 49 & \colorbox{green}{5}\\
+     $50\%$ participation & 96 & 87 & 79 & 39\\
  \hline
-     $70\%$ participation & 75 &  45 & \colorbox{green}{6} & 4 \\
+   $70\%$ participation & 88 &  78 & 48 & \colorbox{green}{5} \\
  \hline
-     $90\%$ participation & 39 & \colorbox{green}{4} &4  & 3\\
+     $90\%$ participation & 78 & 47 & 37 & \colorbox{green}{4}\\
      \hline
 \end{tabular}
 \end{center}
 }
 
 \caption{Days of \textit{Lockdown} with different participation rate and interval between \textit{Masstests}}
-\end{table} \\
+\label{days_of_lockdown}
+\end{table}
 In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria \cite{MassTests}. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
 
-Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We observe that we could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff.
+Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff. Since the numbers at that cutoff are highly unlikely to be reached in reality, it seems that masstesting should be done alongside lockdowns instead of replacing them.
 
 To reach a participation rate high enough politicians would probably need to enact laws making participation mandatory. There have been tries to do it but the opposition parties heavily criticised it, questioning the legality. \\
+
+In Table \ref{days_of_lockdown} we see that the days of \textit{Lockdown} needed is roughly equal if we compare the \textit{Masstests} with $25\%$ participation every $14$ days to the \textit{Masstests} with $50\%$ every $30$ days. More generally, we can observe that the days of \textit{Lockdown} needed is roughly constant for a given ratio \textit{days between tests}/\textit{participation rate}. Only in the comparison of $35\%$ participation every $7$ days and $70\%$ participation every $14$ days we get a significant difference. This called for some more testing.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ \diagbox{participation\\ per month}{\textit{Masstests} \\per month}& one & two & three & four \\
+ \hline
+ \hline
+ $20\%$ &142 & 142& 142& 142 \\
+ \hline
+ $40\%$ & 112 & 118 & 120 & 120 \\
+ \hline
+ $60\%$ & 90& 87& 87 & 87\\
+ \hline
+ $80\%$&  82 & 85& 85& 85\\
+ \hline
+\end{tabular}
+
+\end{center}
+  \caption{A set number of participants per month; participation per \textit{Masstest}: p.p.m. /number of \textit{Masstests}}
+  \label{intervall_vs_teilnehmer}
+\end{table}
+
+In Table \ref{intervall_vs_teilnehmer} we compared the number of days of \textit{Lockdown} for a fixed ratio $x/y$ where $x$ is the participation rate and $y$ is the number of days between tests. We set a fixed participation rate per month, where a month is assumed to have 30 days, so the ratios are the percentages in the table divided by $30$. We compared doing one \textit{Masstest} per month, so $30$ days between tests, to up to four \textit{Masstest} per month, so $7.5$ days between tests. So in the first row we first do one \textit{Masstest} with $20\%$ participation, then two \textit{Masstests} with $10\%$ participation and so on.
+
+In some cases, namely in the second and fourth row, we get better results when doing one \glqq big\grqq~\textit{Masstest} compared to a higher number of \glqq small\grqq~ones, while in the third row we get the opposite result. All in all it seems that the number of days in lockdown is roughly equal for \textit{Masstests} with the same ratio. \\
 
 One thing we want to stress is, that in our model we ignored the existence of vaccines. Since the first vaccinations are already happening right now, our model might make the situation look more grim than it really is.
 Another limitation of our model is test sensitivity.

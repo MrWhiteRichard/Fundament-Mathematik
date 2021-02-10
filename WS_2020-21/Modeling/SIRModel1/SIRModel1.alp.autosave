@@ -317,7 +317,7 @@ Unconfirmed*1/N]]></Formula>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1608563570317" TargetId="1608563681099" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[(Exposed*Pc)/gamma + (Exposed*masstestrate*Pu)/gamma]]></Formula>
+						<Formula><![CDATA[(Exposed*Pc)/gamma]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -336,7 +336,7 @@ Unconfirmed*1/N]]></Formula>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SourceId="1608563570317" TargetId="1608563678793" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[(Exposed*Pu*(1-masstestrate))/gamma]]></Formula>
+						<Formula><![CDATA[Exposed*Pu/gamma]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
@@ -531,7 +531,7 @@ Unconfirmed*1/N]]></Formula>
 				<Variable Class="Parameter">
 					<Id>1608564779578</Id>
 					<Name><![CDATA[Pu]]></Name>
-					<X>440</X><Y>330</Y>
+					<X>300</X><Y>410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -593,30 +593,6 @@ Unconfirmed*1/N]]></Formula>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1608564810541</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1608565527935</Id>
-					<Name><![CDATA[masstestrate]]></Name>
-					<X>510</X><Y>310</Y>
-					<Label><X>-25</X><Y>-15</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1608565527933</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -803,10 +779,10 @@ Unconfirmed*1/N]]></Formula>
 				<Link SourceId="1608564779578" TargetId="1608563919635" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-51</X><Y>24</Y></Direction>
+					<Direction><X>84</X><Y>-41</Y></Direction>
 					<Id>1608564163944</Id>
 					<Name><![CDATA[Pu - incubation]]></Name>
-					<X>440</X><Y>330</Y>
+					<X>300</X><Y>410</Y>
 					<Label><X>40</X><Y>-50</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -920,51 +896,6 @@ Unconfirmed*1/N]]></Formula>
 					<LineWidth>1</LineWidth>
 					<Delay>false</Delay>
 				</Link>
-				<Link SourceId="1608565527935" TargetId="1608563909214" Polarity="null">
-					<Height>20.0</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-131</X><Y>-26</Y></Direction>
-					<Id>1608565791627</Id>
-					<Name><![CDATA[masstestrate - positivetests]]></Name>
-					<X>510</X><Y>310</Y>
-					<Label><X>40</X><Y>-50</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color/>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
-				<Link SourceId="1608565527935" TargetId="1608563919635" Polarity="null">
-					<Height>20.0</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-121</X><Y>44</Y></Direction>
-					<Id>1608565799076</Id>
-					<Name><![CDATA[masstestrate - incubation]]></Name>
-					<X>510</X><Y>310</Y>
-					<Label><X>40</X><Y>-50</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color/>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
-				<Link SourceId="1608564779578" TargetId="1608563909214" Polarity="null">
-					<Height>20.0</Height>
-					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>-61</X><Y>-46</Y></Direction>
-					<Id>1611252641242</Id>
-					<Name><![CDATA[Pu - positivetests]]></Name>
-					<X>440</X><Y>330</Y>
-					<Label><X>40</X><Y>-50</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Color/>
-					<LineWidth>1</LineWidth>
-					<Delay>false</Delay>
-				</Link>
 				<Link SourceId="1608563681099" TargetId="1611254465167" Polarity="null">
 					<Height>20.0</Height>
 					<PolarityPosition>0.95</PolarityPosition>
@@ -1064,7 +995,7 @@ openthecountry_1.restart();]]></Action>
 				</Event>
 				<Event>
 					<Id>1608565558456</Id>
-					<Name><![CDATA[masstestanfang]]></Name>
+					<Name><![CDATA[masstest]]></Name>
 					<X>250</X><Y>840</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1086,51 +1017,19 @@ openthecountry_1.restart();]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[14]]></Code>
+							<Code><![CDATA[7]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[first_lockdown_over == 1 ]]></Condition>
 					</Properties>
 					<Action><![CDATA[temp = Unconfirmed;
-masstestrate = 0.5;
-Unconfirmed = Unconfirmed*0.5;
-Confirmed = Confirmed+temp*0.5;]]></Action>
-				</Event>
-				<Event>
-					<Id>1608565907323</Id>
-					<Name><![CDATA[masstestende]]></Name>
-					<X>250</X><Y>870</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="timeout" Mode="cyclic">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</Timeout>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
-						</Rate>
-						<OccurrenceAtTime>false</OccurrenceAtTime>
-						<OccurrenceDate>1608019200000</OccurrenceDate>
-						<OccurrenceTime Class="CodeUnitValue">
-							<Code><![CDATA[273]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
-						</OccurrenceTime>
-						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[14]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[DAY]]></Unit>
-						</RecurrenceCode>
-						<Condition><![CDATA[masstestrate > 0 ]]></Condition>
-					</Properties>
-					<Action><![CDATA[masstestrate = 0]]></Action>
+Unconfirmed = Unconfirmed*0.65;
+Confirmed = Confirmed+temp*0.35;]]></Action>
 				</Event>
 				<Event>
 					<Id>1611745023128</Id>
 					<Name><![CDATA[summer_start]]></Name>
-					<X>360</X><Y>840</Y>
+					<X>390</X><Y>840</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1161,7 +1060,7 @@ Confirmed = Confirmed+temp*0.5;]]></Action>
 				<Event>
 					<Id>1611745042751</Id>
 					<Name><![CDATA[summer_end]]></Name>
-					<X>360</X><Y>870</Y>
+					<X>390</X><Y>870</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1405,6 +1304,7 @@ is_lockdown = 0;
 				<Event>
 					<Id>1612111587192</Id>
 					<Name><![CDATA[Nomorelockdown]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>250</X><Y>810</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1921,9 +1821,6 @@ first_lockdown_over = 3;]]></Action>
 					<ParameterName><![CDATA[gamma]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[masstestrate]]></ParameterName>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[is_lockdown]]></ParameterName>
 				</Parameter>
 			</Parameters>			
@@ -1956,12 +1853,6 @@ first_lockdown_over = 3;]]></Action>
 		<VersionMajor>8</VersionMajor>
 		<VersionMinor>0</VersionMinor>
 		<VersionBuild>5</VersionBuild>
-    </RequiredLibraryReference>
-    <RequiredLibraryReference>
-		<LibraryName><![CDATA[model]]></LibraryName>
-		<VersionMajor>0</VersionMajor>
-		<VersionMinor>0</VersionMinor>
-		<VersionBuild>0</VersionBuild>
     </RequiredLibraryReference>
 </Model>
 </AnyLogicWorkspace>
