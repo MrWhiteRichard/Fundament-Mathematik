@@ -538,7 +538,7 @@ Das QR-Verfahren für Hessenberg-Matrizen kann nun noch weiter vereinfacht werde
 	Q = \overline{G}(1,2,c_1,s_1)^\top\cdots\overline{G}(n-1,n,c_{n-1},s_{n-1})^\top
 \end{align*}
 
-erhalten. Nun hat die Multiplikation der Givens-Rotation $\overline{G}(j,j+1, c_j, s_j)$ an eine Matrix $A \in \C^{n\times n}$ nur in der $j-$ten sowie $j+1-ten$ Spalte eine Auswirkung. Hierbei werden nun für $k = 1,\dots,n$ die Einträge $a_{k,j}$ sowie $a_{k,j+1}$ ersetzt durch $a_{k,j}c + a_{k,j+1}s$ respektive $-a_{k,j}\overline{s} + a_{k,j+1}\overline{c}$.
+erhalten. Nun hat die Multiplikation der Givens-Rotation $\overline{G}(j,j+1, c_j, s_j)$ an eine Matrix $A \in \C^{n\times n}$ nur in der $j-$ten sowie $j+1-$ten Spalte eine Auswirkung. Hierbei werden nun für $k = 1,\dots,n$ die Einträge $a_{k,j}$ sowie $a_{k,j+1}$ ersetzt durch $a_{k,j}c + a_{k,j+1}s$ respektive $-a_{k,j}\overline{s} + a_{k,j+1}\overline{c}$.
 So können wir mit nochmaliger Anwendung von $n-1$ Inversen der Givens-Rotationen schließlich das Produkt $RQ$ berechnen, dabei wird die Matrix $R$ mit der Matrix $RQ$ überschrieben. Da um die Matrix $R$ zu erhalten ja bereits unsere ursprüngliche Matrix $A$ überschrieben wurde muss nur für die $2 \cdot (n-1)$ Werte von $c$ und $s$ neuer Speicher allokiert werden. Wir skizzieren die Vorgehensweise wiederum für den Fall $n=4$, wobei wieder genau die Einträge in denen Änderungen geschehen mit $*$ gekennzeichnet sind.
 
 \begin{align*}
