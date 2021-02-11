@@ -39,14 +39,14 @@ xrightmargin = 0.2\textwidth}
 \begin{titlepage}
 	%\vspace*{-2cm}
 	\begin{center}
-		\includegraphics[width=0.45\textwidth]{TULogo.eps}
+		%\includegraphics[width=0.45\textwidth]{TULogo.eps}
 		\vskip 1cm%
 		{\LARGE S~\Large E~M~I~N~A~R~A~R~B~E~I~T}
 		\vskip 8mm
 		{\huge\bfseries Eigenwertberechnung mithilfe des Lanczos-Verfahrens}
 		\vskip 1cm
-		\large 
-		ausgef\"uhrt am    
+		\large
+		ausgef\"uhrt am
 		\vskip 0.75cm
 		{\Large Institut f\"ur\\[1ex] Analysis und Scientific Computing}\\[1ex]
 		{\Large TU Wien}
@@ -59,9 +59,9 @@ xrightmargin = 0.2\textwidth}
 		\vskip 0.5cm
 		{\Large\bfseries Göth Christian \quad Moik Matthias \quad Sallinger Christian}\\[1ex]
 	\end{center}
-	
+
 	\vfill
-	
+
 	\small
 	Wien, am {\today}
 	\vspace*{-15mm}
@@ -109,9 +109,15 @@ Dividiert man formal durch $v(x)w(y)$, erhält man
 \end{align*}
 Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
 \begin{align*}
-	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
-	\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
-	\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x).
+	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a).
+\end{align*}
+Dies liefert uns die gewöhnliche Differentialgleichung für $v$
+\begin{align*}
+	v''(x) = -\kappa_{x}^2 v(x)
+\end{align*}
+mit der Lösung
+\begin{align*}
+	v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x).
 \end{align*}
 
 Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
@@ -124,8 +130,8 @@ Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
 
 Für den rechten Rand gilt nun
 \begin{align*}
-	\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
-	\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N.
+	&\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
+	\Rightarrow \quad &\kappa_x = \frac{n \pi}{a}, \quad n \in \N.
 \end{align*}
 
 Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wählen $c_2 = c_4 := 1$ und halten fest:
@@ -151,7 +157,7 @@ Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wähle
 
 \subsection{Numerischer Lösungsansatz}
 
-Das Eigenwertproblem \ref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und Integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $(\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$, sodass
+Das Eigenwertproblem \eqref{neumann} kann durch Multiplizieren mit $v \in H^1(\Omega)$ und Integrieren auf schwache Form gebracht werden (beim Anwenden des Satzes von Gauß verschwindet der Randterm aufgrund der homogenen Randbedingungen). Gesucht sind also Lösungen $(\lambda, u) \in \C \times H^1(\Omega) \setminus \{0\}$, sodass
 
 \begin{align*}
 	\Int[\Omega]{\nabla u \nabla v}{x} = \lambda \Int[\Omega]{uv}{x}, \quad \Forall v \in H^1(\Omega).
@@ -166,23 +172,24 @@ Dieses Problem kann mittels der Finite-Elemente-Methode auf ein endlichdimension
 gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 
 \begin{lemma}\label{lemma_1_3}
-	Mit $\rho_h \in \R$, welches kein Eigenwert ist, und $\lambda_h = \frac{1}{\mu_h} + \rho_h$ ist das verallgemeinerte Problem \ref{discretization} äquivalent  zu
+	Mit $\rho_h \in \R$, welches kein Eigenwert ist, und $\lambda_h = \frac{1}{\mu_h} + \rho_h$ ist das verallgemeinerte Problem \eqref{discretization} äquivalent  zu
 	\begin{align} \label{equivdiscret}
 		(A - \rho_h B)^{-1} B x_h = \mu_h x_h
 	\end{align}
 \end{lemma}
 
 \begin{proof}
-	Der Einfachheit halber lassen wir den Index $h$ weg.
+	Der Einfachheit halber lassen wir den Index $h$ weg. Die Umformungen
 	\begin{align*}
-		A x = \lambda B x =& A x = (\frac{1}{\mu} + \rho) B x \\
-		\Leftrightarrow (A - \rho B)x =& \frac{1}{\mu} B x \\
-		\Leftrightarrow \mu x =& (A - \rho B)^{-1}B x
+		&A x = \lambda B x = (\frac{1}{\mu} + \rho) B x \\
+		\Leftrightarrow \quad &(A - \rho B)x = \frac{1}{\mu} B x \\
+		\Leftrightarrow \quad &\mu x = (A - \rho B)^{-1}B x
 	\end{align*}
+	zeigen die Äquivalenz
 \end{proof}
 
 \begin{remark}\label{remark_1_4}
-	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \ref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
+	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \eqref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
 \end{remark}
 
 Die Diskretisierung durch die Finite-Elemente-Methode liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
@@ -198,7 +205,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 \end{equation}
 
 gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist.
-Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
+Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -215,7 +222,7 @@ Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge 
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
-	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie $A$ besitzt.}
+	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie die Ursprüngliche Matrix $A$ besitzt.}
 \end{algorithm}
 
 
@@ -377,7 +384,7 @@ $$
 
 zu tun haben.
 
-Wie man unmittelbar sieht, hat die Multiplikation einer Givens-Rotation der obigen Form von links an eine Matrix $A\in \C^{n\times n}$ nur in der $j$-ten sowie $j+1$-ten Zeile von $A$ eine Auswirkung. Dort werden für $k = 1,\dots, n$ die Einträge $a_{j,k}$ sowie $a_{j+1, k}$ ersetzt durch $a_{j,k}\overline{c} + a_{j+1, k}\overline{s}$ bzw. $-a_{j,k}s + a_{j+1, k}c$. Dies können wir nun dazu verwenden um bei einer Hessenberg-Matrix die Einträge unter der Diagonale zu eliminieren und dadurch eine obere Dreiecksmatrix erhalten.
+Wie man unmittelbar sieht, hat die Multiplikation einer Givens-Rotation der obigen Form von links an eine Matrix $A\in \C^{n\times n}$ nur in der $j$-ten sowie $j+1$-ten Zeile von $A$ eine Auswirkung. Dort werden für $k = 1,\dots, n$ die Einträge $a_{j,k}$ sowie $a_{j+1, k}$ ersetzt durch $a_{j,k}\overline{c} + a_{j+1, k}\overline{s}$ respektive $-a_{j,k}s + a_{j+1, k}c$. Dies können wir nun dazu verwenden um bei einer Hessenberg-Matrix die Einträge unter der Diagonale zu eliminieren und dadurch eine obere Dreiecksmatrix erhalten.
 
 Dazu müssen wir die Gleichung $-a_{j,j}s + a_{j+1, j}c = 0$ unter der Nebenbedingung $|c|^2 + |s|^2 = 1$ lösen. Dieses Problem hat zwei Lösungen die sich, wie man sich leicht überzeugen kann, nur durch das Vorzeichen unterscheiden. Eine Lösung ist gegeben durch
 
@@ -418,19 +425,54 @@ Eine Hessenberg-Matrix $A \in \C^{n\times n}$ können wir dann durch Anwendung v
 	(c_j, s_j)^\top  = \textbf{rot}(a_{j,j},a_{j+1,j}).
 \end{align*}
 
-Die spezielle Struktur der Hessenberg-Matrix können wir nun verwenden, um Rechenschritte zu sparen: In der $j$-ten Zeile sind, wegen unserer Wahl von $c$ und $s$, die ersten $j-1$ Spalteneinträge bereits $0$ (erst recht in der $j+1$-ten Zeile). Daher müssen wir die Anwendung der Givens-Rotation erst ab dem $j$-ten Spalteneintrag realisieren.
+Die spezielle Struktur der Hessenberg-Matrix können wir nun verwenden, um Rechenschritte zu sparen: In der $j$-ten Zeile sind, wegen unserer Wahl von $c$ und $s$, die ersten $j-1$ Spalteneinträge bereits $0$ (erst recht in der $j+1$-ten Zeile). Daher müssen wir die Anwendung der Givens-Rotation erst ab dem $j$-ten Spalteneintrag realisieren. Wir skizzieren die Vorgehensweise für $n=4$, wobei $+$ für beliebige Einträge der Matrix und $*$ für die im jeweiligen Schritt durch Anwendung der Givens-Rotation veränderten Einträge steht.
+
+\begin{align*}
+\setlength\arraycolsep{1.5pt}
+	A
+	=
+	\begin{pmatrix}
+		+ & + & + & + \\
+		+ & + & + & + \\
+		& + & + & + \\
+		& & +& + \\
+	\end{pmatrix}
+	\stackrel{j=1}{\longrightarrow}
+	\begin{pmatrix}
+		* & * & * & * \\
+		 & * & * & * \\
+		& + & + & + \\
+		& & + &+ \\
+	\end{pmatrix}
+	\stackrel{j=2}{\longrightarrow}
+	\begin{pmatrix}
+		+ & + & + & + \\
+		 & * & * & * \\
+		&  & * & * \\
+		& & +& + \\
+	\end{pmatrix}
+	\stackrel{j=3}{\longrightarrow}
+	\begin{pmatrix}
+		+ & + & + & + \\
+		 & + & + & + \\
+		&  & * & * \\
+		& & & * \\
+	\end{pmatrix}
+	= R
+\end{align*}
 
 Um schließlich noch die $Q$-Matrix aus der QR-Zerlegung zu erhalten, bemerken wir zunächst, dass die Multiplikation zweier unitärer Matrizen wieder eine unitäre Matrix liefert. Durch unseren Algorithmus erhalten wir
 
-$$
+\begin{align*}
 R := A^{(n-1)} = G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1) A.
-$$
+\end{align*}
 
-Die Multiplikaton der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
+Die Multiplikation der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
 
-$$
+\begin{align}
 \overline{Q}^\top := G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1),
-$$
+\label{Q_givens}
+\end{align}
 
 erhalten wir $Q$ durch transponieren und konjugieren des Produktes der Givens-Rotationen, da dann
 
@@ -474,7 +516,7 @@ a_{i+1,i} \\
 		a_{i+1,j}\\
 		\end{array}\right)$
 		\EndFor
-		\For{$i= 1,\dots,n$}
+		\For{$j= 1,\dots,n$}
 		\State $\left(\begin{array}{c}
 		q_{i,j} \\
 		q_{i+1,j}\\
@@ -496,6 +538,106 @@ a_{i+1,i} \\
 \end{algorithm}
 
 Wie man hier schnell erkennt, hat eine QR-Zerlegung einer Hessenberg-Matrix mithilfe von Givens-Rotationen nun Aufwand $\Landau(n^2)$, ist also um eine ganze $n-$Potenz weniger Aufwändig als die Zerlegung mit Householdermatrizen.
+
+Das QR-Verfahren für Hessenberg-Matrizen kann nun noch weiter vereinfacht werden, wenn wir die Matrix $Q$ nicht explizit aufstellen. Man kann die obige QR-Zerlegung noch dahingehend abändern, dass nicht die unitäre Matrix $Q$ und die Dreiecksmatrix $R$ zurückgegeben werden, sondern direkt das Produkt $RQ$. Dazu verwenden die Gleichheit in \eqref{Q_givens}, wonach wir
+
+\begin{align*}
+	Q = \overline{G}(1,2,c_1,s_1)^\top\cdots\overline{G}(n-1,n,c_{n-1},s_{n-1})^\top
+\end{align*}
+
+erhalten. Nun hat die Multiplikation der Givens-Rotation $\overline{G}(j,j+1, c_j, s_j)$ an eine Matrix $A \in \C^{n\times n}$ nur in der $j-$ten sowie $j+1-$ten Spalte eine Auswirkung. Hierbei werden nun für $k = 1,\dots,n$ die Einträge $a_{k,j}$ sowie $a_{k,j+1}$ ersetzt durch $a_{k,j}c + a_{k,j+1}s$ respektive $-a_{k,j}\overline{s} + a_{k,j+1}\overline{c}$.
+So können wir mit nochmaliger Anwendung von $n-1$ Inversen der Givens-Rotationen schließlich das Produkt $RQ$ berechnen, dabei wird die Matrix $R$ mit der Matrix $RQ$ überschrieben. Da um die Matrix $R$ zu erhalten ja bereits unsere ursprüngliche Matrix $A$ überschrieben wurde muss nur für die $2 \cdot (n-1)$ Werte von $c$ und $s$ neuer Speicher allokiert werden. Wir skizzieren die Vorgehensweise wiederum für den Fall $n=4$, wobei wieder genau die Einträge in denen Änderungen geschehen mit $*$ gekennzeichnet sind.
+
+\begin{align*}
+	\setlength\arraycolsep{1.5pt}
+	R
+	=
+	\begin{pmatrix}
+		+ & + & + & + \\
+		 & + & + & + \\
+		&  & + & + \\
+		& & & + \\
+	\end{pmatrix}
+	\stackrel{j=1}{\longrightarrow}
+	\begin{pmatrix}
+		* & * & + & + \\
+		* & * & + & + \\
+		&  & + & + \\
+		& & & + \\
+	\end{pmatrix}
+	\stackrel{j=2}{\longrightarrow}
+	\begin{pmatrix}
+		+ & * & * & + \\
+		+ & * & * & + \\
+		& * &*  & + \\
+		& & & + \\
+	\end{pmatrix}
+	\stackrel{j=3}{\longrightarrow}
+	\begin{pmatrix}
+		+ & + & * & * \\
+		+ & + & * & * \\
+		& + &*  & * \\
+		& & *& * \\
+	\end{pmatrix}
+\end{align*}
+
+Auch hier können wir die Struktur der Matrix verwenden, wir müssen die Anwendung der Inversen der Givens-Rotationen nur bis zum $j+1$-ten Zeileneintrag realisieren. Wie man schnell einsieht ist nun auch $RQ$ wieder von oberer Hessenbergform. Im folgenden ist der Algorithmus in Pseudocode formuliert.
+
+\begin{algorithm}
+	\label{RQ_Hessenberg}
+	\caption{Berechnung von RQ für Hessenbergmatrizen}
+	\algorithmicrequire{ $A \in \C^{n\times n}$}
+	\begin{algorithmic}[1]
+		\For{$i = 1,\dots,n-1$}
+		\State $\left(\begin{array}{c}
+    c_i \\
+    s_i \\
+\end{array}\right)
+=
+\frac{1}{\sqrt{|a_{i,i}|^2 + |a_{i+1,i}|^2}}
+\left(\begin{array}{c}
+a_{i,i} \\
+a_{i+1,i} \\
+\end{array}\right)$
+		\For{$j = i,\dots,n$}
+		\State $\left(\begin{array}{c}
+		a_{i,j} \\
+		a_{i+1,j}\\
+		\end{array}\right)
+		=
+		\left(\begin{array}{cc}
+		\overline{c_i} & \overline{s_i} \\
+		-s_i & c_i \\
+		\end{array}
+		\right)
+		\left(\begin{array}{c}
+		a_{i,j} \\
+		a_{i+1,j}\\
+		\end{array}\right)$
+		\EndFor
+		\EndFor
+	\For{$j = 1,\dots, n-1$}
+		\For{$i = 1,\dots, j+1$}
+			\State $\left(
+			a_{i,j},
+			a_{i,j+1}
+			\right)
+			=
+			\left(
+			a_{i,j},
+			a_{i,j+1}
+			\right)
+			\left(\begin{array}{cc}
+			c_j & -\overline{s_j} \\
+			s_j & \overline{c_j} \\
+			\end{array}
+			\right)$
+			\EndFor
+			\EndFor
+	\end{algorithmic}
+	\algorithmicensure{ $A$ wird mit dem Produkt $RQ$ überschrieben, wobei $Q$ und $R$ die Matrizen aus einer QR-Zerlegung von $A$ sind}
+\end{algorithm}
+
 \newpage
 \subsection{Implementierung und Vergleich der verschiedenen Methoden}
 
@@ -521,23 +663,7 @@ return A, sorted(np.diag(A)), count
 Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, das laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
 Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
 
-
-\lstset{caption={Implementation des QR-Verfahrens mit Rayleigh-Quotienten-Shift}}
-\begin{lstlisting}
-def QR_shift(A,tol=1e-10):
-	n = A.shape[1]
-	count = 0
-	for i in range(n-1,0,-1):
-			while abs(A[i,i-1]) > tol:
-					rho = A[i,i]
-					Q,R = np.linalg.qr(A-rho*np.identity(n))
-					A = R@Q + rho*np.identity(n)
-					count +=1
-			A[i,:i-n] = 0
-	return A, sorted(np.diag(A)), count
-\end{lstlisting}
-
-Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben. (besser: sind im Anhang zu finden? \textit{Anm. CG})
+Die Implementation der anderen Verfahren unterscheidet sich vom Pseudocode nur in den schon dargelegten Punkten. Die anderen Codeausschnitte sind daher im Anhang zu finden.
 
 Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind, erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
 
@@ -648,7 +774,7 @@ so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}
 da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
 
 \begin{align*}
-	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \lambda_1^{(m)}.
+	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{A}_m x, x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(Ax, \mathcal{P}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(A x, x)}{(x,x)} = \lambda_1^{(m)}.
 \end{align*}
 
 Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lemma \ref{Rayleigh} überlegen. Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren bisherigen Überlegungen eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im  Abschnitt \ref{konvergenz} zeigen.
@@ -657,9 +783,13 @@ Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lem
 
 Im Vertrauen auf die Sinnhaftigkeit der eben gemachten Überlegungen ist es also nun Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums $\mathcal{K}_m(A,v_0)$. Für die Einträge von $T_m$ gilt
 \begin{align*}
-	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
-	\Rightarrow T_m &= V_m^*AV_m.
+	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j,
 \end{align*}
+woraus wir die Matrixgleichung
+\begin{align}\label{mateq}
+	T_m &= V_m^*AV_m \in \C^{m \times m}
+\end{align}
+erhalten.
 
 Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel \ref{section_QR} bekannten QR-Verfahren mit wenig Aufwand berechnen.
 
@@ -675,7 +805,7 @@ Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren
 \end{pmatrix}
 \end{align}
 
-aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
+aufzustellen. Die Gleichung \ref{mateq} schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
 \begin{align*}
 	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
 	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}, \quad j=1, \dots, m-2.
@@ -733,13 +863,12 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 
 \begin{proof}
 	Wir zeigen zunächst die erste Aussage. Nach Definition des Krylov-Raums gilt
-	\begin{align}
+	\begin{align}\label{Krylovproof}
 		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \C: v = \sum_{i=0}^{m-1} a_i A^i v_0 = (\sum_{i=0}^{m-1} a_i A^i)v_0\\
-		\Leftrightarrow& \Exists p(x) = \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(A)v_0.
-		\label{eq:Krylov}
+		\Leftrightarrow& \Exists p: x \mapsto \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(A)v_0.
 	\end{align}
 
-	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $A^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
+	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0 = \sum_{j=1}^{n} \alpha_j u_j$. Setzen wir diese in \ref{Krylovproof} ein und verwenden die Tatsache, dass $A^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, so erhalten wir auch die zweite Aussage.
 \end{proof}
 
 
@@ -872,18 +1001,18 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation}
 		\begin{aligned}
 			\label{Darstellung EW}
-			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
-			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(T_m v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
 		\end{aligned}
 	\end{equation}
 
-	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis des $\C^m$ aus Eigenvektoren von $T_m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Diese Darstellung ergibt sich aus der Tatsache, dass $w$ als Linearkombination von $\tilde{u}_j^{(m)}, \quad j = 1,\dots, m$ geschrieben werden kann und Lemma \ref{v0_Polynom_Darstellung}. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
 
-	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
+	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ ist.
 
 	Da dann die $\lambda_j^{(m)}, \, j = 1,\dots,i-1$ Nullstellen von $p$ sind, können wir
 
@@ -926,7 +1055,7 @@ gilt. Die Konvergenzgeschwindigkeit nimmt in der Theorie in Richtung der kleiner
 
 \subsection{Implementierung und Arnoldi-Verfahren}
 
-Die Implementation des Lanczos-Verfahrens entspricht dem Pseudocode und ist im Anhang zu finden. Hier werden wir besprechen, wo das Lanczos-Verfahren an seine Grenzen stößt. Da wir das Lanczos-Verfahren nur auf einfache Eigenwertprobleme und nicht auf verallgemeinerte Eigenwertprobleme der Form \ref{discretization} anwenden können, müssen wir so ein verallgemeinertes Eigenwertproblem zuerst nach Lemma \ref{lemma_1_3} zu einem äquivalenten einfachen Eigenwertproblem umformulieren. Hier kommt Bemerkung \ref{remark_1_4} zu tragen, das Lanczos-Verfahren können wir nicht ohne weiteres Anwenden.
+Die Implementation des Lanczos-Verfahrens entspricht dem Pseudocode und ist im Anhang zu finden. Hier werden wir besprechen, wo das Lanczos-Verfahren an seine Grenzen stößt. Da wir das Lanczos-Verfahren nur auf einfache Eigenwertprobleme und nicht auf verallgemeinerte Eigenwertprobleme der Form \eqref{discretization} anwenden können, müssen wir so ein verallgemeinertes Eigenwertproblem zuerst nach Lemma \ref{lemma_1_3} zu einem äquivalenten einfachen Eigenwertproblem umformulieren. Hier kommt Bemerkung \ref{remark_1_4} zu tragen, das Lanczos-Verfahren können wir nicht ohne weiteres Anwenden.
 
 Um diese Problematik zu umgehen werden wir das sogenannte Arnoldi-Verfahren verwenden. Auch in diesem Verfahren bekommen wir eine Orthonormalbasis des Kyrlov-Raums und eine Matrix, welche die Abbildung $\mathcal{A}_m$ bezüglich dieser Basis beschreibt. Dabei ist $\mathcal{A}_m$ nicht mehr selbstadjungiert. In dem Arnoldi-Verfahren wird nun jeder neue Basisvektor mit dem (modifizierten) Gram-Schmidtschen Orthogonalisierungsverfahren gewonnen. Dabei wird ein neuer Basisvektor zu allen bisherigen Basisvektoren orthogonalisiert. Dies ist ein wesentlicher unterschied zum Lanczos-Verfahren, wo nur gegen den vorhergegangenen Basisivektor orthogonalisiert werden musste.
 Es macht Sinn auch beim Lanczos-Verfahren eine volle Reorthogonalisierung durchzuführen. Diese ist zwar etwas Aufwändiger, aber wenn nur gegen den vorherigen Basisvektor orthogonalisiert wird, kann es zu Auslöschung und somit zu Verlust der Orthogonalität kommen. Es gibt auch diverse Strategien, bei denen keine volle, sondern nur eine teilweise Reorthogonalisierung durchgeführt wird. Dazu gibt es eine vielzahl an Literatur, wir verweisen hier auf \cite{reorthogonalization}.
@@ -1018,7 +1147,7 @@ Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwe
 	\includegraphics[width = 0.9\linewidth]{Plots/error_eigv_laplace}
 	\caption{Fehler in den ersten 40\% der Eigenwerte bei Anwendung des Arnoldi-Verfahrens auf das diskretisierte Problem}
 \end{figure}
-Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \ref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert. Wir erkennen eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
+Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \eqref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert. Wir erkennen eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
 
 
 \newpage
@@ -1082,6 +1211,103 @@ def QR_shift2(A,tol=1e-14):
     return A, sorted(np.diag(A)), count
 \end{lstlisting}
 
+\newpage
+\subsection*{QR-Zerlegung einer Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation der QR-Zerlegung für Hessenbergmatrizen mit Givens-Rotationen}}
+
+\begin{lstlisting}
+def QR_decomp_hesse(A):
+    n = A.shape[0]
+    Q = np.eye(n,n, dtype = complex)
+
+    for i in range(0,n-1):
+        if abs(A[i,i]) >= abs(A[i+1,i]):
+            t = A[i+1,i]/abs(A[i,i])
+            root = (1+abs(t)**2)**(1/2)
+            c = A[i,i]/(abs(A[i,i])*root)
+            s = t/root
+        else:
+            t = A[i,i]/abs(A[i+1,i])
+            root = (1+abs(t)**2)**(1/2)
+            s = A[i+1,i]/(abs(A[i+1,i])*root)
+            c = t/root
+
+        for j in range(n):
+            if j < i:
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+            else:
+                temp_1 = A[i,j]
+                A[i,j] = c.conj()*temp_1 + s.conj()*A[i+1,j]
+                A[i+1,j] = -s*temp_1 + c*A[i+1,j]
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+
+    return Q.T.conj(), A
+\end{lstlisting}
+
+\newpage
+\subsection*{Berechnung von RQ für eine Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation eines Schrittes des QR-Verfahrens für Hessenbergmatrizen}}
+\begin{lstlisting}
+def Hessenberg_QR_RQ(A):
+	n = A.shape[0]
+	c_arr = np.zeros(n, dtype = complex)
+	s_arr = np.zeros(n, dtype = complex)
+	for i in range(0,n-1):
+			if abs(A[i,i]) >= abs(A[i+1,i]):
+					t = A[i+1,i]/abs(A[i,i])
+					root = (1+abs(t)**2)**(1/2)
+					c_arr[i] = A[i,i]/(abs(A[i,i])*root)
+					s_arr[i] = t/root
+			else:
+					t = A[i,i]/abs(A[i+1,i])
+					root = (1+abs(t)**2)**(1/2)
+					s_arr[i] = A[i+1,i]/(abs(A[i+1,i])*root)
+					c_arr[i] = t/root
+
+			for j in range(i,n):
+							temp_1 = A[i,j]
+							A[i,j] = c_arr[i].conj()*temp_1 + s_arr[i].conj()*A[i+1,j]
+							A[i+1,j] = -s_arr[i]*temp_1 + c_arr[i]*A[i+1,j]
+
+	for i in range(0,n-1):
+			for j in range(0,i+2):
+					temp_1 = A[j,i]
+					A[j,i] = c_arr[i]*temp_1 + s_arr[i]*A[j,i+1]
+					A[j,i+1] = -s_arr[i].conj()*temp_1 + c_arr[i].conj()*A[j,i+1]
+
+	return A
+\end{lstlisting}
+
+
+\subsection*{QR-Verfahren mit Wilkinson-Shift für Hessenberg-Matrix}
+
+\lstset{caption={Implementation des QR-Verfahrens mit Wilkinson-Shift für Hessenbergmatrizen}}
+
+\begin{lstlisting}
+def QR_hesse(A,tol=1e-14):
+	n = A.shape[1]
+	count = 0
+	for i in range(n-1,0,-1):
+			while abs(A[i,i-1]) > tol*(abs(A[i-1,i-1])+abs(A[i,i])):
+					w = np.linalg.eigvals(A[i-1:i+1,i-1:i+1])
+					if abs(w[0] - A[i,i]) < abs(w[1] - A[i,i]):
+							rho = w[0]
+					else:
+							rho = w[1]
+					A = Hessenberg_QR_RQ(A-rho*np.identity(n))
+					A += rho*np.identity(n)
+					count += 1
+			A[i,:i-n] = 0
+	return A, sorted(np.diag(A)), count
+\end{lstlisting}
+
+\newpage
 \subsection*{Lanczos-Verfahren}
 
 \lstset{caption={Implementation des Lanczos-Verfahrens}}
@@ -1135,6 +1361,7 @@ def arnoldi(A, dim, k = 0):
 							v.append(w/h[j+1][j])
 	return QR_hesse(h)
 \end{lstlisting}
+
 \newpage
 
 \printbibliography
