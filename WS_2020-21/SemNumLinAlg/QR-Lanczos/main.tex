@@ -460,7 +460,7 @@ Um schließlich noch die $Q$-Matrix aus der QR-Zerlegung zu erhalten, bemerken w
 R := A^{(n-1)} = G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1) A.
 \end{align*}
 
-Die Multiplikaton der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
+Die Multiplikation der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
 
 \begin{align}
 \overline{Q}^\top := G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1),
@@ -656,23 +656,7 @@ return A, sorted(np.diag(A)), count
 Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, das laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
 Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
 
-
-\lstset{caption={Implementation des QR-Verfahrens mit Rayleigh-Quotienten-Shift}}
-\begin{lstlisting}
-def QR_shift(A,tol=1e-10):
-	n = A.shape[1]
-	count = 0
-	for i in range(n-1,0,-1):
-			while abs(A[i,i-1]) > tol:
-					rho = A[i,i]
-					Q,R = np.linalg.qr(A-rho*np.identity(n))
-					A = R@Q + rho*np.identity(n)
-					count +=1
-			A[i,:i-n] = 0
-	return A, sorted(np.diag(A)), count
-\end{lstlisting}
-
-Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben. (besser: sind im Anhang zu finden? \textit{Anm. CG})
+Die Implementation der anderen Verfahren unterscheidet sich vom Pseudocode nur in den schon dargelegten Punkten. Die anderen Codeausschnitte sind daher im Anhang zu finden.
 
 Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind, erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
 
@@ -1217,6 +1201,103 @@ def QR_shift2(A,tol=1e-14):
     return A, sorted(np.diag(A)), count
 \end{lstlisting}
 
+\newpage
+\subsection*{QR-Zerlegung einer Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation der QR-Zerlegung für Hessenbergmatrizen mit Givens-Rotationen}}
+
+\begin{lstlisting}
+def QR_decomp_hesse(A):
+    n = A.shape[0]
+    Q = np.eye(n,n, dtype = complex)
+
+    for i in range(0,n-1):
+        if abs(A[i,i]) >= abs(A[i+1,i]):
+            t = A[i+1,i]/abs(A[i,i])
+            root = (1+abs(t)**2)**(1/2)
+            c = A[i,i]/(abs(A[i,i])*root)
+            s = t/root
+        else:
+            t = A[i,i]/abs(A[i+1,i])
+            root = (1+abs(t)**2)**(1/2)
+            s = A[i+1,i]/(abs(A[i+1,i])*root)
+            c = t/root
+
+        for j in range(n):
+            if j < i:
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+            else:
+                temp_1 = A[i,j]
+                A[i,j] = c.conj()*temp_1 + s.conj()*A[i+1,j]
+                A[i+1,j] = -s*temp_1 + c*A[i+1,j]
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+
+    return Q.T.conj(), A
+\end{lstlisting}
+
+\newpage
+\subsection*{Berechnung von RQ für eine Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation eines Schrittes des QR-Verfahrens für Hessenbergmatrizen}}
+\begin{lstlisting}
+def Hessenberg_QR_RQ(A):
+	n = A.shape[0]
+	c_arr = np.zeros(n, dtype = complex)
+	s_arr = np.zeros(n, dtype = complex)
+	for i in range(0,n-1):
+			if abs(A[i,i]) >= abs(A[i+1,i]):
+					t = A[i+1,i]/abs(A[i,i])
+					root = (1+abs(t)**2)**(1/2)
+					c_arr[i] = A[i,i]/(abs(A[i,i])*root)
+					s_arr[i] = t/root
+			else:
+					t = A[i,i]/abs(A[i+1,i])
+					root = (1+abs(t)**2)**(1/2)
+					s_arr[i] = A[i+1,i]/(abs(A[i+1,i])*root)
+					c_arr[i] = t/root
+
+			for j in range(i,n):
+							temp_1 = A[i,j]
+							A[i,j] = c_arr[i].conj()*temp_1 + s_arr[i].conj()*A[i+1,j]
+							A[i+1,j] = -s_arr[i]*temp_1 + c_arr[i]*A[i+1,j]
+
+	for i in range(0,n-1):
+			for j in range(0,i+2):
+					temp_1 = A[j,i]
+					A[j,i] = c_arr[i]*temp_1 + s_arr[i]*A[j,i+1]
+					A[j,i+1] = -s_arr[i].conj()*temp_1 + c_arr[i].conj()*A[j,i+1]
+
+	return A
+\end{lstlisting}
+
+
+\subsection*{QR-Verfahren mit Wilkinson-Shift für Hessenberg-Matrix}
+
+\lstset{caption={Implementation des QR-Verfahrens mit Wilkinson-Shift für Hessenbergmatrizen}}
+
+\begin{lstlisting}
+def QR_hesse(A,tol=1e-14):
+	n = A.shape[1]
+	count = 0
+	for i in range(n-1,0,-1):
+			while abs(A[i,i-1]) > tol*(abs(A[i-1,i-1])+abs(A[i,i])):
+					w = np.linalg.eigvals(A[i-1:i+1,i-1:i+1])
+					if abs(w[0] - A[i,i]) < abs(w[1] - A[i,i]):
+							rho = w[0]
+					else:
+							rho = w[1]
+					A = Hessenberg_QR_RQ(A-rho*np.identity(n))
+					A += rho*np.identity(n)
+					count += 1
+			A[i,:i-n] = 0
+	return A, sorted(np.diag(A)), count
+\end{lstlisting}
+
+\newpage
 \subsection*{Lanczos-Verfahren}
 
 \lstset{caption={Implementation des Lanczos-Verfahrens}}
@@ -1270,6 +1351,7 @@ def arnoldi(A, dim, k = 0):
 							v.append(w/h[j+1][j])
 	return QR_hesse(h)
 \end{lstlisting}
+
 \newpage
 
 \printbibliography
