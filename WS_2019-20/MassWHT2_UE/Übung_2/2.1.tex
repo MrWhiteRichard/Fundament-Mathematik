@@ -1,0 +1,79 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Die Lebesguezerlegung lässt sich natürlich unabhängig von der Sigmaadditivität der beteiligten Maße definieren, wir nennen also
+
+\begin{align*}
+    \nu = \nu_1 + \nu_2
+\end{align*}
+
+ganz allgemein eine Lebesgue-Zerlegung von $\nu$ bezüglich $\mu$, wenn $\nu_1 \ll \mu$ und $\nu_2 \Bot \mu$ gilt.
+Zeigen Sie, dass eine solche zerlegung (wenn sie existiert, was nur für sigmaendliches $\mu$ und $\nu$ garantiert ist) eindeutig bestimmt ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Definition 7.1.png}
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Definition 6.4.png}
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 7.2 - Zerlegungssatz von Lebesgue.png}
+
+Seien $\nu = \nu_1 + \nu_2 = \nu_1^\prime + \nu_2^\prime$ Lebesgue-Zerlegungen von $\nu$ bzgl. $\mu$,
+
+\begin{align*}
+    \text{d.h.}~ & \nu_1, \nu_1^\prime \ll \mu, \quad \nu_2, \nu_2^\prime \Bot \mu, \\
+    \text{d.h.}~ & \Forall M \in \mathfrak S:( \mu(M) = 0 \implies \nu_1(M) = \nu_1^\prime(M) = 0), \\
+                 & \Exists A, B \in \mathfrak S: A + B = \Omega, \quad \nu_2(A) = \nu_2^\prime(A) = \mu(B) = 0.
+\end{align*}
+
+Sei $M \in \mathfrak S$.
+
+\begin{align*}
+    \implies
+    0 \stackrel{!}{=} \nu_1(M \cap B), \nu_1^\prime(M \cap B) \ll \mu         (M \cap B) \leq \mu         (B) & = 0, \\
+    0 \stackrel{!}{=}                                             \nu_2       (M \cap A) \leq \nu_2       (A) & = 0, \\
+    0 \stackrel{!}{=}                                             \nu_2^\prime(M \cap A) \leq \nu_2^\prime(A) & = 0
+\end{align*}
+
+\begin{multline*}
+    \implies
+    \nu_1(M)
+    =
+    \nu_1(M \cap A) + \underbrace{\nu_1(M \cap B)}_0
+    =
+    \nu_1(M \cap A) + \underbrace{\nu_2(M \cap A)}_0
+    =
+    \nu(M \cap A) \\
+    =
+    \nu^\prime_1(M \cap A) + \underbrace{\nu^\prime_2(M \cap A)}_0
+    =
+    \nu_1^\prime(M \cap A) + \underbrace{\nu_1^\prime(M \cap B)}_0
+    =
+    \nu_1^\prime(M)
+\end{multline*}
+
+\begin{multline*}
+    \implies
+    \nu_2(M)
+    =
+    \underbrace{\nu_2(M \cap A)}_0 + \nu_2(M \cap B)
+    =
+    \underbrace{\nu_1(M \cap B)}_0 + \nu_2(M \cap B)
+    =
+    \nu(M \cap B) \\
+    =
+    \underbrace{\nu_1^\prime(M \cap B)}_0 + \nu_2^\prime(M \cap B)
+    =
+    \underbrace{\nu_2^\prime(M \cap A)}_0 + \nu_2^\prime(M \cap B)
+    =
+    \nu_2^\prime(M)
+\end{multline*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

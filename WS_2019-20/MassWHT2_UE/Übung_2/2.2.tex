@@ -1,0 +1,78 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Die $\epsilon$-$\delta$-Bedingung (zu jedem $\epsilon > 0$ gibt es ein $\delta > 0$, sodass aus $\mu(A) < \delta$ die Ungleichung $\nu(A) < \epsilon$ folgt) für die absolute Stetigkeit muss nicht gelten, wenn $\nu$ nicht endlich ist:
+geben Sie ein Beispiel für zwei maßfunktionen $\mu$ und $\nu$ mit $\mu$ endlich, $\nu$ sigmaendlich, und $\nu \ll \mu$, aber die $\epsilon$-$\delta$-Bedingung gilt nicht.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 7.3 - epsilon-delta-Kriterium.png}
+
+Betrachte dem Messraum $(\N, 2^\N)$.
+
+\begin{align*}
+    \mu:
+        \begin{Bmatrix}
+            \emptyset \mapsto 0 \\
+            \Bbraces{n} \mapsto 1/2^n
+        \end{Bmatrix},
+    \quad
+    \text{bzw.}
+    \quad
+    \mu(A) := \sum_{n \in A} 1 / 2^n,
+    \quad
+    A \in 2^\N
+\end{align*}
+
+Sei $\nu$ das Zählmaß.
+Offenbar ist $\nu$ nicht endlich, weil $\nu(\N) = |\N| = \aleph_0 = \infty$.
+$\mu$ ist endlich, weil
+
+\begin{align*}
+    \Forall A \in 2^\N:
+        \mu(A) \leq \mu(\N) = \sum_{n \in \N} 1 / 2^n = 2 < \infty.
+\end{align*}
+
+$\nu \ll \mu$, weil
+
+\begin{align*}
+    \Forall A \in 2^\N:
+        \pbraces
+        {
+            \sum_{n \in A} 1/2^n = \mu(A) = 0
+            \implies
+            A = \emptyset
+            \implies
+            \nu(A) = |A| = 0
+        }.
+\end{align*}
+
+Die $\epsilon$-$\delta$-Bedingung ist nicht erfüllt, d.h.
+
+\begin{align*}
+    \Exists \epsilon > 0:
+        \Forall \delta > 0:
+            \Exists A \in 2^\N:
+                \mu(A) < \delta,
+                \quad
+                \nu(A) > \epsilon.
+\end{align*}
+
+Zeugen dafür sind $\epsilon \in (0, 1)$, ($\delta > 0$), und $A := \Bbraces{\log_2 \alpha}$ mit $\alpha > 1 / \delta$, weil dann
+
+\begin{align*}
+    \mu(A) = 1 / 2^{\log_2 \alpha} = 1 / \alpha < \delta,
+    \quad
+    \nu(A) = |\Bbraces{1 / 2^{\log_2 \alpha}}| = 1 \not < \epsilon.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,189 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es sei
+
+\begin{align*}
+    F(x)
+    =
+    \begin{cases}
+        0         & \text{für}~ x < 0 \\
+        x         & \text{für}~ 0 \leq x < 1 \\
+        (x + 1)^2 & \text{für}~ 1 \leq x < 2 \\
+        9         & \text{für}~ x \geq 2
+    \end{cases}
+\end{align*}
+
+und
+
+\begin{align*}
+    G(x)
+    =
+    \begin{cases}
+        0     & \text{für}~ x < 0 \\
+        x + 1 & \text{für}~ 0 \leq x < 2 \\
+        x^2   & \text{für}~ 2 \leq x < 3 \\
+        9     & \text{für}~ x \geq 3
+    \end{cases}
+\end{align*}
+
+Bestimmen Sie die Lebesguezerlegung von $\mu_G$ bezüglich $\mu_F$ und die Radon-Nikodym Dichte des absolutstetigen Anteils.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+$F$ und $G$ sind monoton nichtfallend und rechtsstetig, also Verteilungsfunktionen.
+Wir bestimmen die Sprungstellen von $F$.
+
+\begin{enumerate}
+    \item $0$ ist keine, weil $F(0 - 0) = 0 = F(0) = 0$;
+    \item $1$ ist eine,  weil $F(1 - 0) = 1 \neq F(1) = (1 + 1)^2 = 4$;
+    \item $2$ ist keine, weil $F(2 - 0) = (2 + 1)^2 = 9 = F(2) = 9$;
+\end{enumerate}
+
+Wir bestimmen die Sprungstellen von $G$.
+
+\begin{enumerate}
+    \item $0$ ist eine,  weil $G(0 - 0) = 0 \neq G(0) = 0 + 1 = 1$;
+    \item $2$ ist eine,  weil $G(2 - 0) = 2 + 1 = 3 \neq G(2) = 2^2 = 4$;
+    \item $3$ ist keine, weil $G(3 - 0) = 3^2 = 9 = G(3) = 9$;
+\end{enumerate}
+
+$F$ hat also die Sprungstelle $1$ und $G$ die Sprungstellen $0$ und $2$.
+
+Mit dem \Quote{Kochrezept} erhalten wir folgende Tabelle.
+
+\begin{align*}
+    \begin{array}{c|c|c|c|c}
+        \text{Kommentar}  & x         & f(x)              & G_\mathrm{c}(x) & G_\mathrm{s}(x) \\ \hline
+        1.                & x < 0     & 0                 & 0               & 0               \\
+        2.                & x = 0     & 0                 & 0               & 1               \\
+        3.                & 0 < x < 1 & 1                 & x               & 1               \\
+        4.                & x = 1     & 0                 & 1               & 1               \\
+        5.                & 1 < x < 2 & \frac{1}{2 x + 2} & x               & 1               \\
+        6.                & x = 2     & 0                 & 2               & 2               \\
+        7.                & 2 < x < 3 & 0                 & 2               & x^2 - 2         \\
+        8.                & 3 \leq x  & 0                 & 2               & 7
+    \end{array}
+\end{align*}
+
+\begin{enumerate}
+
+    \item Intervall ($x < 0$); $F^\prime(x) = 0$: \\
+    $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)$ kann beliebig gesetzt werden, etwa $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) = 0$;
+
+    \begin{align*}
+        &
+        G_\mathrm{s}^\prime(x) = G^\prime(x) = 0 \\
+        \implies &
+        G_\mathrm{s}(x) = \int G^\prime(x) := 0 \\
+        \implies &
+        G_\mathrm{c}(x) := G(x) - G_\mathrm{s}(x) = 0 - 0 = 0
+    \end{align*}
+
+    \item Sprungstelle ($x = 0$) von $G$; $F(x) = F(x - 0)$: \\
+    $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)$ kann beliebig gesetzt werden, etwa $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) = 0$;
+    der Sprung von $G$ kommt in den singulären Anteil, also
+
+    \begin{align*}
+        &
+        G_\mathrm{s}(x) - G_\mathrm{s}(x - 0) = G(x) - G(x - 0) \\
+        \implies &
+        G_\mathrm{s}(x) := G(x) - G(x - 0) + G_\mathrm{s}(x - 0) = (0 + 1) - 0 + 0 = 1 \\
+        \implies &
+        G_\mathrm{c}(x) := G(x) - G_\mathrm{s}(x) = x + 1 - 1 = x = 0
+    \end{align*}
+
+    \item Intervall ($0 < x < 1$); $F^\prime(x) = 1 > 0$:
+    
+    \begin{align*}
+        \derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) & = \frac{G^\prime(x)}{F^\prime(x)} = \frac{1}{1} = 1, \\
+        G_\mathrm{c}^\prime(x) & = G^\prime(x) = 1. \\
+        \implies &
+        G_\mathrm{c}(x) = \int G^\prime(x) := x \\
+        \implies &
+        G_\mathrm{s}(x) := G(x) - G_\mathrm{s}(x) = x + 1 - x = 1
+    \end{align*}
+
+    \item Sprungstelle ($x = 1$) von $F$; $F(x) = (1 + 1)^2 = 4 \neq F(x - 0) = 1$:
+    
+    \begin{align*}
+        \derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)
+        =
+        \frac{G(x) - G(x - 0)}{F(x) - F(x - 0)}
+        =
+        \frac{(1 + 1) - (1 + 1)}{(1 + 1)^2 - 1}
+        =
+        0,
+    \end{align*}
+
+    der Sprung von $G$ kommt in den absolutstetigen Anteil, also
+
+    \begin{align*}
+        &
+        G_\mathrm{c}(x) - G_\mathrm{c}(x - 0) = G(x) - G(x - 0). \\
+        \implies &
+        G_\mathrm{c}(x) = G(x) - G(x - 0) + G_\mathrm{c}(x - 0) = (1 + 1) - (1 + 1) + x = 1 \\
+        \implies &
+        G_\mathrm{s}(x) := G(x) - G_\mathrm{c}(x) = (1 + 1) - x = 2 - 1 = 1
+    \end{align*}
+
+    \item Intervall ($1 < x < 2$); $F^\prime(x) = 2 (x + 1) > 0$:
+
+    \begin{align*}
+        \derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) & = \frac{G^\prime(x)}{F^\prime(x)} = \frac{1}{2 (x + 1)} = \frac{1}{2 x + 2}, \\
+        G_\mathrm{c}^\prime(x) & = G^\prime(x) = 1. \\
+        \implies &
+        G_\mathrm{c}(x) = \int G^\prime(x) := x \\
+        \implies &
+        G_\mathrm{s}(x) := G(x) - G_\mathrm{s}(x) = x + 1 - x = 1
+    \end{align*}
+
+    \item Sprungstelle ($x = 2$) von $G$; $F(x) = 9 = F(x - 0) = (2 + 1)^2 = 9$: \\
+    $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)$ kann beliebig gesetzt werden, etwa $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) = 0$;
+    der Sprung von $G$ kommt in den singulären Anteil, also
+
+    \begin{align*}
+        &
+        G_\mathrm{s}(x) - G_\mathrm{s}(x - 0) = G(x) - G(x - 0) \\
+        \implies &
+        G_\mathrm{s}(x) := G(x) - G(x - 0) + G_\mathrm{s}(x - 0) = 2^2 - (2 + 1) + 1 = 2 \\
+        \implies &
+        G_\mathrm{c}(x) := G(x) - G_\mathrm{s}(x) = 2^2 - 2 = 2
+    \end{align*}
+
+    \item Intervall ($2 < x < 3$); $F^\prime(x) = 0$:
+    $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)$ kann beliebig gesetzt werden, etwa $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x) = 0$;
+
+    \begin{align*}
+        &
+        G_\mathrm{s}^\prime(x) = G^\prime(x) = 2 x. \\
+        \implies &
+        G_\mathrm{s}(x) = \int G^\prime(x) = x^2 + ~\text{konst.}, quad G_\mathrm{s}(2) = 2 \implies G_\mathrm{s}(x) = x^2 - 2 \\
+        \implies &
+        G_\mathrm{c}(x) := G(x) - G_\mathrm{s}(x) = x^2 - (x^2 - 2) = 2
+    \end{align*}
+
+    \item Intervall ($3 \leq x$); $F^\prime(x) = 0$:
+
+    $\derivative[][\mu_{G_\mathrm{c}}]{\mu_F}(x)$ kann beliebig gesetzt werden, etwa $\derivative[][\mu_{G_c}]{\mu_F}(x) = 0$;
+
+    \begin{align*}
+        &
+        G_\mathrm{s}^\prime(x) = G^\prime(x) = 0. \\
+        \implies &
+        G_\mathrm{s}(x) = \int G^\prime(x) = ~\text{konst.}, G_\mathrm{s}(3) = G(3) - G_c(3) = 9 - 2 = 7 \implies G_\mathrm{s}(x) = 7 \\
+        \implies &
+        G_\mathrm{c}(x) = G(x) - G_\mathrm{s}(x) = 9 - 7 = 2
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    
