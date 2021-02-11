@@ -1,0 +1,29 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[98]
+
+Der \Quote{indirekte Beweis}: Wenn $\Sigma \cup \{\varphi\} \vdash \bot$, dann
+$\Sigma \vdash \neg \varphi$. Erklären Sie, wie man aus einem formalen Beweis
+$P_1$ für $\Sigma \cup \{\varphi\} \vdash \bot$ einen formalen Beweis $P_2$
+für $\Sigma \vdash \neg \varphi$ machen kann, und geben Sie eine obere
+Abschätzung für die Länge von $P_2$ verglichen mit der Länge von $P_1$ an. \\
+Ebenso: Wenn $\Sigma \cup \{\neg \varphi\} \vdash \bot$, dann $\Sigma \vdash \varphi$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $\varphi_1,\dots,\varphi_n = \bot$ ein formaler Beweis aus $\Sigma \cup \{\varphi\}$.
+Mit dem Deduktionstheorem erhalten wir in $3n$ Schritten
+\begin{align*}
+  \Sigma \vdash \varphi \rightarrow \bot.
+\end{align*}
+Mit der Tautologie $(\varphi \rightarrow \bot) \rightarrow \neq \varphi$
+und einmaligen Anwenden von Modus Ponens erhalten wir $\Sigma \vdash \neg \varphi$
+mit höchstens $3n + 2$ Ableitungsschritten.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

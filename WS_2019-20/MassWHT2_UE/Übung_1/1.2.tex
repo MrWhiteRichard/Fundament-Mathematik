@@ -1,0 +1,121 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$X$ sei standardnormalverteilt.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Bestimmen Sie $\E(e^{t X})$ für $t \in \R$.
+
+    \item Wenden Sie die Markov-Ungleichung auf $e^{t X}$ an, um eine obere Schranke für $\P(X \geq x)$ ($x > 0$) zu erhalten.
+    Was ist die kleinste Schranke, die man so erhält?
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{multline*}
+        \E(e^{t X})
+        =
+        \Int{e^{t X}}{\P}
+        =
+        \Int[-\infty][\infty]
+        {
+            e^{t x}
+            \derivative{x}
+            \pbraces
+            {
+                \frac{1}{\sqrt{2 \pi}}
+                \Int[-\infty]{x}
+                {
+                    e^{-u^2 / 2}
+                }{u}
+            }
+        }{x}
+        =
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\infty][\infty]
+        {
+            e^{t x - x^2 / 2}
+        }{x} \\
+        =
+        e^{t^2 / 2}
+        \frac{1}{\sqrt{2 \pi}}
+        \Int[-\infty][\infty]
+        {
+            e^{-(x - t)^2 / 2}
+        }{x}
+        =
+        e^{t^2 / 2}
+        \underbrace
+        {
+            \frac{1}{\sqrt{2 \pi}}
+            \Int[-\infty][\infty]
+            {
+                e^{-u^2 / 2}
+            }{u}
+        }_1
+    \end{multline*}
+
+    Dabei haben wir die folgende Substitution verwendet.
+
+    \begin{align*}
+        u = x - t
+        \implies
+        \derivative[][u]{x} = 1
+        \implies
+        \mathrm d u = \mathrm d x
+    \end{align*}
+
+    \item \phantom{}
+
+    \includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 5.16 - Ungleichung von Markov.png}
+
+    \begin{align*}
+        \P(X \geq x)
+        =
+        \P(e^{t X} \geq e^{t x})
+        \stackrel
+        {
+            \text{Markov}
+        }{\leq}
+        e^{-t x} \Int{e^{t x}}{\P}
+        =
+        e^{t^2 / 2 - t x}
+    \end{align*}
+
+    \begin{align*}
+        0
+        \stackrel{!}{=}
+        \derivative{t}
+        \pbraces
+        {
+            t^2 / 2 - t x
+        }
+        =
+        t - x
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \inf \Bbraces{e^{t^2 / 2 - t x}: t \in \R}
+        =
+        e^{\inf \Bbraces{t^2 / 2 - t x: t \in \R}}
+        =
+        e^{-x^2 / 2}
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

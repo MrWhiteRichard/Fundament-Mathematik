@@ -15,7 +15,7 @@
 \input{../../../../Fundament-LaTeX/listings.tex}
 
 \addbibresource{Quellen/references.bib}
-
+\usepackage{diagbox}
 
 \begin{document}
 
@@ -151,9 +151,7 @@ We end our simulation on 28.\,01.\,2022, exactly one year after the presentation
 
 First of all, we of course implemented a \textit{Masstest} event. In our implementation
 this immediately transfers a predefined fraction of our \texttt{Unconfirmed} compartment
-to the \texttt{Confirmed} compartment. In addition to this instantaneous shift, we also
-adjusted the rate of \texttt{Confirmed} cases for the next three days after the start of
-the \textit{Masstest} accordingly. We experimented with different participation rates
+to the \texttt{Confirmed} compartment. We experimented with different participation rates
 for our \textit{Masstests}, starting from $25\%$, roughly the average participation rate
 for the previous mass tests in Austria \cite{MassTests}, all the way up to the illusive rate of $90\%$.
 For the recurrence of the \textit{Masstests}, we implemented them to occur cyclically,
@@ -189,16 +187,23 @@ starts on 12.\,12.\,2020, just like it did in reality.\\
 The second big event we implemented was of course the \textit{Lockdown}. To be precise,
 we modeled multiple different version of \textit{Lockdowns}, but all with the same basic idea:
 The events trigger once the number of \texttt{Infected} people (\texttt{Confirmed} plus \texttt{Unconfirmed})
-reaches a certain level. Precise numbers for this are found in the table below.
+reaches a certain level.
 We chose the value of \texttt{Infected} people over the value of
 the \texttt{Confirmed} people as the main indicator for our \textit{Lockdown}, even though only the number of confirmed people is accurately known in reality.
 Our reasoning for this was that the total number of \texttt{Infected} people in our
 model should be the best indicator for the strain of the virus on our health system,
 which would be a major deciding factor in the decision to implement a lockdown in reality.
-The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter.
+The effect of a \textit{Lockdown} in our model is simply a reduction of the \textit{contactsPerDay} parameter. \\
 To account for the multiple levels of reopening like we have seen in previous
 lockdowns, we implemented different levels of \textit{Lockdown}, which gradually increase
 the number of \textit{contactsPerDay} to pre-pandemic levels.
+In addition to that, we modeled the first \textit{Lockdown} in Spring 2020 to be more
+restrictive than following \textit{Lockdowns}, where we use the numbers in Table 1.2.
+For the first \textit{Lockdown}, we lift the \textit{Lockdown} restrictions after the number of \texttt{Infected}
+people sinks below 5.000. However, we do not increase the number of \textit{contactsPerDay}
+entirely to pre-pandemic levels to simulate the safety measures, which are still
+in place without the \textit{Lockdown}.
+For the other \textit{Lockdowns}, we already lift the restrictions at less than 20.000 \texttt{Infected}.
 
 
 \begingroup
@@ -207,7 +212,7 @@ the number of \textit{contactsPerDay} to pre-pandemic levels.
 \chapter{Simulation Results}
 \endgroup
 
-In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases. We can also observe the cange of the flow in the following three days, there the \texttt{Confirmed} cases grow but go down again after the three days.
+In Figure \ref{uncon&con} we can see the effect of the \textit{Masstests} (in the graphic with $50 \%$ participation rate every $14$ days): a steep dropoff of the \texttt{Unconfirmed} cases and simultaneous growth of \texttt{Confirmed} cases.
 As we can see in the graphs below, even with this relatively optimistic participation rate
 and a high frequency of \textit{masstesting}, this strategy alone is merely enough
 to slow down the exponential growth of cases.
@@ -224,7 +229,14 @@ To effectively reduce the number of infections, however, we have to make use of 
 
 
 
-To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. To do this, we created a different stock and assumed a flow of $1$ during a lockdown and $0.5$ during the first level of reopening.
+To compare the different parameters for our \textit{Masstest} events, we measured the amount of days in \textit{Lockdown} after 12.\,12.\,2020. Since the first \textit{Lockdown} in our model only
+takes place in Spring 2020, we only need to look at the numbers for the other \textit{Lockdowns}
+to quantitatively measure the time spent in \textit{Lockdown}.
+To do this, we created a different stock and assumed a flow of $1$ during full lockdown
+(\textit{contactsPerDay = 3}) and $0.5$ during the first level of reopening
+(\textit{contactsPerDay = 6}). As soon as the lockdown ends (\textit{contactsPerDay = 9})
+the flow is set to 0. We can see the results in Table \ref{days_of_lockdown}.
+
 \begin{table}[!h]
 {\small%
 \begin{center}
@@ -233,29 +245,63 @@ To compare the different parameters for our \textit{Masstest} events, we measure
 & 30 days   & 21 days   & 14 days   & 7 days  \\
  \hline
  \hline
-     $25\%$ participation & 119 &96 & 86 & 60\\
+     $25\%$ participation & 138 &124 & 95 & 81\\
  \hline
-     $35\%$ participation & 96 &  86&  78  & 36   \\
+     $35\%$ participation & 123 &  94&  87  & 67   \\
  \hline
-     $50\%$ participation & 86 & 77 & 49 & \colorbox{green}{5}\\
+     $50\%$ participation & 96 & 87 & 79 & 39\\
  \hline
-     $70\%$ participation & 75 &  45 & \colorbox{green}{6} & 4 \\
+   $70\%$ participation & 88 &  78 & 48 & \colorbox{green}{5} \\
  \hline
-     $90\%$ participation & 39 & \colorbox{green}{4} &4  & 3\\
+     $90\%$ participation & 78 & 47 & 37 & \colorbox{green}{4}\\
      \hline
 \end{tabular}
 \end{center}
 }
 
 \caption{Days of \textit{Lockdown} with different participation rate and interval between \textit{Masstests}}
-\end{table} \\
+\label{days_of_lockdown}
+\end{table}
 In comparison, without any \textit{Masstests} at all, the number of days in \textit{Lockdown} would be $156$. The actual participation rate ranged from $14 - 36\%$ (averaging about $25\%$), depending on the state, with the lowest rate in Vienna and the highest in Lower Austria \cite{MassTests}. The first two mass tests happened in the middle of December and January, respectively, so the parameters that best fit reality would be the $25\%$ participation with a $30$ day interval between the \textit{Masstests}.
 
-Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We observe that we could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff.
+Our simulation now suggests that to really get the most out of mass testing, we would need to either heavily increase the participation rate or decrease the interval between \textit{Masstests}, ideally both. The sweetspot seems to be at the rates/intervals highlighted in green, there we see a significant dropoff in the days of \textit{Lockdown} needed. We could significantly impact the epidemic wave with just \textit{Masstests} and no \textit{Lockdown} at that cutoff. Since the numbers at that cutoff are highly unlikely to be reached in reality, it seems that masstesting should be done alongside lockdowns instead of replacing them.
 
 To reach a participation rate high enough politicians would probably need to enact laws making participation mandatory. There have been tries to do it but the opposition parties heavily criticised it, questioning the legality. \\
 
+In Table \ref{days_of_lockdown} we see that the days of \textit{Lockdown} needed is roughly equal if we compare the \textit{Masstests} with $25\%$ participation every $14$ days to the \textit{Masstests} with $50\%$ every $30$ days. More generally, we can observe that the days of \textit{Lockdown} needed is roughly constant for a given ratio \textit{days between tests}/\textit{participation rate}. Only in the comparison of $35\%$ participation every $7$ days and $70\%$ participation every $14$ days we get a significant difference. This called for some more testing.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ \diagbox{participation\\ per month}{\textit{Masstests} \\per month}& one & two & three & four \\
+ \hline
+ \hline
+ $20\%$ &142 & 142& 142& 142 \\
+ \hline
+ $40\%$ & 112 & 118 & 120 & 120 \\
+ \hline
+ $60\%$ & 90& 87& 87 & 87\\
+ \hline
+ $80\%$&  82 & 85& 85& 85\\
+ \hline
+\end{tabular}
+
+\end{center}
+  \caption{A set number of participants per month; participation per \textit{Masstest}: p.p.m. /number of \textit{Masstests}}
+  \label{intervall_vs_teilnehmer}
+\end{table}
+
+In Table \ref{intervall_vs_teilnehmer} we compared the number of days of \textit{Lockdown} for a fixed ratio $x/y$ where $x$ is the participation rate and $y$ is the number of days between tests. We set a fixed participation rate per month, where a month is assumed to have 30 days, so the ratios are the percentages in the table divided by $30$. We compared doing one \textit{Masstest} per month, so $30$ days between tests, to up to four \textit{Masstest} per month, so $7.5$ days between tests. So in the first row we first do one \textit{Masstest} with $20\%$ participation, then two \textit{Masstests} with $10\%$ participation and so on.
+
+In some cases, namely in the second and fourth row, we get better results when doing one \glqq big\grqq~\textit{Masstest} compared to a higher number of \glqq small\grqq~ones, while in the third row we get the opposite result. All in all it seems that the number of days in lockdown is roughly equal for \textit{Masstests} with the same ratio. \\
+
 One thing we want to stress is, that in our model we ignored the existence of vaccines. Since the first vaccinations are already happening right now, our model might make the situation look more grim than it really is.
+Another limitation of our model is test sensitivity.
+Even if we assumed 100\% of the population would participate at the mass test,
+we still would not catch 100\% of the infections.
+Neglecting that, we assume that the participation rate is equal to the rate
+of detected infections.
 
 \begingroup
 \renewcommand{\cleardoublepage}{}

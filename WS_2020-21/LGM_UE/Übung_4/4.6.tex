@@ -1,0 +1,37 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[96]
+
+Sei $\Sigma$ eine Menge von Formeln. Die folgenden Aussagen sind äquivalent:
+
+\begin{enumerate}[label = \alph*)]
+  \item $\Sigma \vdash \bot$.
+  \item Für alle $\varphi$ gilt $\Sigma \vdash \varphi$.
+  \item Für alle $\varphi$ gibt es eine endliche Teilmenge $\Sigma' \subseteq \Sigma$ mit $\Sigma' \vdash \varphi$.
+\end{enumerate}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir zeigen zuerst $a) \implies b)$: \\
+Sei $\varphi_1, \dots \varphi_n = \bot$ ein formaler Beweis aus $\Sigma$.
+Um daraus einen Beweis für $\varphi$ zu konstruieren, wählen wir
+$\varphi_{n + 1} = \bot \rightarrow \varphi$ als Tautologie und $\varphi_{n + 2} = \varphi$
+als Modus Ponens der beiden vorhergehenden Formeln. \\
+Für $b) \implies c)$ betrachte wieder $\varphi$ beliebig mit ihrer formalen Ableitung
+ $\varphi_1, \dots \varphi_n = \bot$ aus $\Sigma$. Dann ist
+ \begin{align*}
+   \Sigma' := \Sigma \cap \{\varphi_1,\dots,\varphi_n\}
+ \end{align*}
+ eine endliche Teilmenge mit $\Sigma' \vdash \varphi$ (selber Beweis). \\
+ Für $c) \implies a)$ gelte also $\Sigma' \vdash \varphi$ und
+ $\Sigma^{''} \vdash \neg \varphi$. Schreiben wir die beiden Beweise hintereinander
+ erhalten wir mit der Tautologie $\varphi \rightarrow \neg \varphi \rightarrow \bot$
+ und zweimaligen Anwenden von Modus Ponens, dass $(\Sigma' \cup \Sigma^{''}) \vdash \bot$
+ und somit insbesondere $\Sigma \vdash \bot$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

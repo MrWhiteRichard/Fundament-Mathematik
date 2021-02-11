@@ -1,0 +1,33 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[78]
+
+$(\forall x\, \exists y\, R(x,y)) \rightarrow (\forall y\, \exists x\, R(y,x)), \quad
+(\forall x\, \exists y\, x \leq y) \rightarrow (\forall y\, \exists x\, y \leq x)$
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+Wir zeigen, dass die beiden Formeln allgemeingültig sind. \\
+Sei dazu $\mathscr{M}$ eine $\mathscr{L}$-Struktur, $b$ eine beliebige Belegung.
+Im Falle, dass $\hat{b}(\forall x\, \exists y\, R(x,y)) = 0$ sind wir bereits fertig. \\
+Gelte also
+\begin{align*}
+  1 = \hat{b}(\forall x\, \exists y\, R(x,y)).
+\end{align*}
+Dann folgt mit
+\begin{align*}
+  \hat{b}(\forall x\, \exists y\, R(x,y))
+  &= \inf\{\widehat{b_{x/m}}(\exists y\, R(x,y): m \in M)\} \\
+  &= \inf\{\sup\{\widehat{(b_{x/m})_{y/n}}(R(x,y): n \in M\} m \in M)\} \\
+  &= \inf\{\sup\{\widehat{(b_{y/m})_{x/n}}(R(y,x): n \in M\} m \in M)\} \\
+  &= \hat{b}(\forall y\, \exists x\, R(y,x)),
+\end{align*}
+dass auch $1 = \hat{b}(\forall y\, \exists x\, R(y,x))$. \\
+Für die zweite Formel setze einfach $R = \leq$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

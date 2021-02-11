@@ -1,0 +1,40 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[92]
+
+Geben Sie Formeln $\varphi$ und $\psi$ (in einer geeigneten Sprache $\mathscr{L}$)
+an, sodass zwar (a) aber nicht (b) gilt:
+\begin{enumerate}[label = \alph*)]
+  \item Für alle $\mathscr{L}$-Strukturen $\mathscr{M}$ gilt:
+  Wenn $\mathscr{M} \vDash \varphi$, dann $\mathscr{M} \vDash \psi$.
+  \item Für alle $\mathscr{L}$-Strukturen $\mathscr{M}$ gilt:
+  $\mathscr{M} \vDash \varphi \rightarrow \psi$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir wählen unsere Formeln $\varphi = x < y, \psi = y < x$. \\
+Es gilt (a), da aus
+\begin{align*}
+  \forall b: \hat{b}(\varphi) = 1
+\end{align*}
+folgt, dass
+\begin{align*}
+  \forall b: \hat{b}(\psi) = \widehat{(b_{x/b(y)})_{y/b(x)}}(\varphi) = 1.
+\end{align*}
+Damit (b) nicht gilt, wählen wir das Modell $\mathscr{M} = (\{0,1\}, <)$ und sehen
+mit der Belegung $b: x \mapsto 0, y \mapsto 1$
+
+\begin{align*}
+  \hat{b}(\varphi) &= \hat{b}(x < y) = 1 \\
+  \hat{b}(\psi) &= \hat{b}(y < x) = 0,
+\end{align*}
+
+also $\mathscr{M} \nvDash \varphi \rightarrow \psi$.
+\end{solution}
+
+% --------------------------------------------------------------------------------
