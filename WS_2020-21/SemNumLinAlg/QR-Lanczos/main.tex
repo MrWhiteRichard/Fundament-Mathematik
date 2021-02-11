@@ -198,7 +198,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 \end{equation}
 
 gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist.
-Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
+Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -215,7 +215,7 @@ Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge 
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
-	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie $A$ besitzt.}
+	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie die Ursprüngliche Matrix $A$ besitzt.}
 \end{algorithm}
 
 
@@ -1007,18 +1007,18 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation}
 		\begin{aligned}
 			\label{Darstellung EW}
-			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
-			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(T_m v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
 		\end{aligned}
 	\end{equation}
 
-	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis des $\C^m$ aus Eigenvektoren von $T_m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Diese Darstellung ergibt sich aus der Tatsache, dass $w$ als Linearkombination von $\tilde{u}_j^{(m)}, \quad j = 1,\dots, m$ geschrieben werden kann und Lemma \ref{v0_Polynom_Darstellung}. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
 
-	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
+	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ ist.
 
 	Da dann die $\lambda_j^{(m)}, \, j = 1,\dots,i-1$ Nullstellen von $p$ sind, können wir
 
