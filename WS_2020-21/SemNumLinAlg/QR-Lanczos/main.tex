@@ -109,9 +109,15 @@ Dividiert man formal durch $v(x)w(y)$, erhält man
 \end{align*}
 Da die linke Seite nur von $x$ abhängt und die rechte nur von $y$, müssen beide konstant sein. Es gibt also ein $\kappa_{x}^2$, sodass
 \begin{align*}
-	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a) \\
-	\Rightarrow v''(x) = -\kappa_{x}^2 v(x) \\
-	\Rightarrow v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x).
+	-\frac{v''(x)}{v(x)} = \kappa_{x}^2, \quad \Forall x \in (0,a).
+\end{align*}
+Dies liefert uns die gewöhnliche Differentialgleichung für $v$
+\begin{align*}
+	v''(x) = -\kappa_{x}^2 v(x)
+\end{align*}
+mit der Lösung
+\begin{align*}
+	v(x) = c_1 \sin(\kappa_{x} x) + c_2 \cos(\kappa_{x} x).
 \end{align*}
 
 Analog erhält man $w(y) = c_3 \sin(\kappa_{y} y) + c_4 \cos(\kappa_{y} y)$, wobei $\lambda = \kappa_{x}^2 + \kappa_{y}^2$ gelten muss.
@@ -124,8 +130,8 @@ Es muss also $c_1 = 0$ gelten. Analog schließt man auch $c_3 = 0$.
 
 Für den rechten Rand gilt nun
 \begin{align*}
-	\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
-	\Rightarrow \kappa_x = \frac{n \pi}{a}, \quad n \in \N.
+	&\frac{\partial u}{\partial \nu}(a,y) = v'(a)w(y) = \kappa_{x} c_2 \sin(\kappa_{x} \cdot a)w(y) \stackrel{!}{=} 0 \\
+	\Rightarrow \quad &\kappa_x = \frac{n \pi}{a}, \quad n \in \N.
 \end{align*}
 
 Wiederum analog schließt man $\kappa_y = \frac{m \pi}{b}, m \in \N$. Wir wählen $c_2 = c_4 := 1$ und halten fest:
@@ -173,12 +179,13 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 \end{lemma}
 
 \begin{proof}
-	Der Einfachheit halber lassen wir den Index $h$ weg.
+	Der Einfachheit halber lassen wir den Index $h$ weg. Die Umformungen
 	\begin{align*}
-		A x = \lambda B x =& A x = (\frac{1}{\mu} + \rho) B x \\
-		\Leftrightarrow (A - \rho B)x =& \frac{1}{\mu} B x \\
-		\Leftrightarrow \mu x =& (A - \rho B)^{-1}B x
+		&A x = \lambda B x = (\frac{1}{\mu} + \rho) B x \\
+		\Leftrightarrow \quad &(A - \rho B)x = \frac{1}{\mu} B x \\
+		\Leftrightarrow \quad &\mu x = (A - \rho B)^{-1}B x
 	\end{align*}
+	zeigen die Äquivalenz
 \end{proof}
 
 \begin{remark}\label{remark_1_4}
@@ -198,7 +205,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 \end{equation}
 
 gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist.
-Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
+Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -215,7 +222,7 @@ Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge 
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
-	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie $A$ besitzt.}
+	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie die Ursprüngliche Matrix $A$ besitzt.}
 \end{algorithm}
 
 
@@ -460,7 +467,7 @@ Um schließlich noch die $Q$-Matrix aus der QR-Zerlegung zu erhalten, bemerken w
 R := A^{(n-1)} = G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1) A.
 \end{align*}
 
-Die Multiplikaton der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
+Die Multiplikation der Givens-Rotationen gibt wieder eine unitäre Matrix, definieren wir also
 
 \begin{align}
 \overline{Q}^\top := G(n-1,n,c_{n-1},s_{n-1})\cdots G(1,2, c_1, s_1),
@@ -656,23 +663,7 @@ return A, sorted(np.diag(A)), count
 Hier werden in Codezeile $5$ die Zeilen der Matrix von unten nach oben durchgegangen. Sobald das (modulo Konstanten) größte Element, das laut Theorie in der unteren Nebendiagonale zu finden ist, nahe bei $0$ ist, wird (in Codezeile 9) die gesamte Matrixzeile bis zum Diagonalelement auf Null gesetzt. Dies ist nötig, um sich aufschaukelnde Fehler zu vermeiden.
 Es wurde zudem, für den späteren Vergleich, eine Programmvariable eingeführt, die die Anzahl an Schritten des Verfahrens zählt. Die QR-Zerlegung wird zunächst mit dem numpy-linalg Paket durchgeführt.
 
-
-\lstset{caption={Implementation des QR-Verfahrens mit Rayleigh-Quotienten-Shift}}
-\begin{lstlisting}
-def QR_shift(A,tol=1e-10):
-	n = A.shape[1]
-	count = 0
-	for i in range(n-1,0,-1):
-			while abs(A[i,i-1]) > tol:
-					rho = A[i,i]
-					Q,R = np.linalg.qr(A-rho*np.identity(n))
-					A = R@Q + rho*np.identity(n)
-					count +=1
-			A[i,:i-n] = 0
-	return A, sorted(np.diag(A)), count
-\end{lstlisting}
-
-Auch hier unterscheidet sich die wirkliche Implementation vom Pseudocode nur durch die schon besprochenen Schritte. Die anderen Codeausschnitte werden in den Anhang gegeben. (besser: sind im Anhang zu finden? \textit{Anm. CG})
+Die Implementation der anderen Verfahren unterscheidet sich vom Pseudocode nur in den schon dargelegten Punkten. Die anderen Codeausschnitte sind daher im Anhang zu finden.
 
 Kommen wir nun zum Vergleich der QR-Verfahren. Zur Testung werden zufällige Matrizen, deren Eigenwerte bekannt sind, erstellt. Dazu wird zuerst ein zufälliges Array mit $n$ Elementen generiert, unsere Eigenwerte, sowie eine Diagonalmatrix mit ebendiesen Werten auf der Diagonale. Schließlich wurde eine Ähnlichkeitstransformation mit einer Zufallsmatrix durchgeführt.
 
@@ -783,7 +774,7 @@ so sehen wir, dass diese selbstadjungiert ist. Es gilt für $x,y \in \mathcal{K}
 da $\mathcal{P}_m$ und $A$ hermitesch sind. Also besitzt $ \mathcal{A}_m$ nur reelle Eigenwerte $\lambda_1(\mathcal{A}_m) \geq \lambda_2(\mathcal{A}_m) \geq \dots \geq \lambda_m(\mathcal{A}_m)$. Für den größten Eigenwert gilt
 
 \begin{align*}
-	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, \mathcal{A}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{P}_m x, A x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(x, A x)}{(x,x)} = \lambda_1^{(m)}.
+	\lambda_1(\mathcal{A}_m) = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(\mathcal{A}_m x, x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(Ax, \mathcal{P}_m x)}{(x,x)} = \max_{x \in \mathcal{K}_m \setminus \{0\}} \frac{(A x, x)}{(x,x)} = \lambda_1^{(m)}.
 \end{align*}
 
 Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lemma \ref{Rayleigh} überlegen. Der größte Eigenwert $\lambda_1(\mathcal{A}_m)$ von $\mathcal{A}_m$ ist also nach unseren bisherigen Überlegungen eine gute Approximation an den größten Eigenwert $\lambda_1$ von $A$. Es liegt nahe, für alle $j \leq m$ auch $\lambda_j(\mathcal{A}_m)$ als Approximation von $\lambda_j$ zu betrachten. Dass dies eine gute Wahl ist, werden wir im  Abschnitt \ref{konvergenz} zeigen.
@@ -792,9 +783,13 @@ Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lem
 
 Im Vertrauen auf die Sinnhaftigkeit der eben gemachten Überlegungen ist es also nun Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums $\mathcal{K}_m(A,v_0)$. Für die Einträge von $T_m$ gilt
 \begin{align*}
-	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j \\
-	\Rightarrow T_m &= V_m^*AV_m.
+	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j,
 \end{align*}
+woraus wir die Matrixgleichung
+\begin{align}\label{mateq}
+	T_m &= V_m^*AV_m \in \C^{m \times m}
+\end{align}
+erhalten.
 
 Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel \ref{section_QR} bekannten QR-Verfahren mit wenig Aufwand berechnen.
 
@@ -810,7 +805,7 @@ Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren
 \end{pmatrix}
 \end{align}
 
-aufzustellen. Die Gleichung **ref** schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
+aufzustellen. Die Gleichung \ref{mateq} schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
 \begin{align*}
 	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
 	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}, \quad j=1, \dots, m-2.
@@ -868,13 +863,12 @@ Wir werden ein Lemma benötigen, welches Elemente des Krylov-Raums in Zusammenha
 
 \begin{proof}
 	Wir zeigen zunächst die erste Aussage. Nach Definition des Krylov-Raums gilt
-	\begin{align}
+	\begin{align}\label{Krylovproof}
 		v \in \mathcal{K}_m \Leftrightarrow& \Exists a_0, \dots a_{m-1} \in \C: v = \sum_{i=0}^{m-1} a_i A^i v_0 = (\sum_{i=0}^{m-1} a_i A^i)v_0\\
-		\Leftrightarrow& \Exists p(x) = \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(A)v_0.
-		\label{eq:Krylov}
+		\Leftrightarrow& \Exists p: x \mapsto \sum_{i=0}^{m-1} a_i x^i \in \Pi_{m-1}: v = p(A)v_0.
 	\end{align}
 
-	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0$. Setzen wir diese in die erste Zeile von \ref{eq:Krylov} ein und verwenden die Tatsache, dass $A^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, erhalten wir auch die zweite Aussage.
+	Da die Eigenvektoren eine Basis des $\C^n$ bilden, folgt die eindeutige Darstellung von $v_0 = \sum_{j=1}^{n} \alpha_j u_j$. Setzen wir diese in \ref{Krylovproof} ein und verwenden die Tatsache, dass $A^i u_j = \lambda_j^i u_j$ für $j=1,\dots, n $ und $i = 0, \dots, m-1$, so erhalten wir auch die zweite Aussage.
 \end{proof}
 
 
@@ -1007,18 +1001,18 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation}
 		\begin{aligned}
 			\label{Darstellung EW}
-			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
-			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(T_m v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
 		\end{aligned}
 	\end{equation}
 
-	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis des $\C^m$ aus Eigenvektoren von $T_m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Diese Darstellung ergibt sich aus der Tatsache, dass $w$ als Linearkombination von $\tilde{u}_j^{(m)}, \quad j = 1,\dots, m$ geschrieben werden kann und Lemma \ref{v0_Polynom_Darstellung}. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
 
-	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
+	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ ist.
 
 	Da dann die $\lambda_j^{(m)}, \, j = 1,\dots,i-1$ Nullstellen von $p$ sind, können wir
 
@@ -1217,6 +1211,103 @@ def QR_shift2(A,tol=1e-14):
     return A, sorted(np.diag(A)), count
 \end{lstlisting}
 
+\newpage
+\subsection*{QR-Zerlegung einer Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation der QR-Zerlegung für Hessenbergmatrizen mit Givens-Rotationen}}
+
+\begin{lstlisting}
+def QR_decomp_hesse(A):
+    n = A.shape[0]
+    Q = np.eye(n,n, dtype = complex)
+
+    for i in range(0,n-1):
+        if abs(A[i,i]) >= abs(A[i+1,i]):
+            t = A[i+1,i]/abs(A[i,i])
+            root = (1+abs(t)**2)**(1/2)
+            c = A[i,i]/(abs(A[i,i])*root)
+            s = t/root
+        else:
+            t = A[i,i]/abs(A[i+1,i])
+            root = (1+abs(t)**2)**(1/2)
+            s = A[i+1,i]/(abs(A[i+1,i])*root)
+            c = t/root
+
+        for j in range(n):
+            if j < i:
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+            else:
+                temp_1 = A[i,j]
+                A[i,j] = c.conj()*temp_1 + s.conj()*A[i+1,j]
+                A[i+1,j] = -s*temp_1 + c*A[i+1,j]
+                temp_2 = Q[i,j]
+                Q[i,j] = c.conj()*temp_2 + s.conj()*Q[i+1,j]
+                Q[i+1,j] = -s*temp_2 + c*Q[i+1,j]
+
+    return Q.T.conj(), A
+\end{lstlisting}
+
+\newpage
+\subsection*{Berechnung von RQ für eine Hessenberg-Matrix mit Givens-Rotationen}
+
+\lstset{caption={Implementation eines Schrittes des QR-Verfahrens für Hessenbergmatrizen}}
+\begin{lstlisting}
+def Hessenberg_QR_RQ(A):
+	n = A.shape[0]
+	c_arr = np.zeros(n, dtype = complex)
+	s_arr = np.zeros(n, dtype = complex)
+	for i in range(0,n-1):
+			if abs(A[i,i]) >= abs(A[i+1,i]):
+					t = A[i+1,i]/abs(A[i,i])
+					root = (1+abs(t)**2)**(1/2)
+					c_arr[i] = A[i,i]/(abs(A[i,i])*root)
+					s_arr[i] = t/root
+			else:
+					t = A[i,i]/abs(A[i+1,i])
+					root = (1+abs(t)**2)**(1/2)
+					s_arr[i] = A[i+1,i]/(abs(A[i+1,i])*root)
+					c_arr[i] = t/root
+
+			for j in range(i,n):
+							temp_1 = A[i,j]
+							A[i,j] = c_arr[i].conj()*temp_1 + s_arr[i].conj()*A[i+1,j]
+							A[i+1,j] = -s_arr[i]*temp_1 + c_arr[i]*A[i+1,j]
+
+	for i in range(0,n-1):
+			for j in range(0,i+2):
+					temp_1 = A[j,i]
+					A[j,i] = c_arr[i]*temp_1 + s_arr[i]*A[j,i+1]
+					A[j,i+1] = -s_arr[i].conj()*temp_1 + c_arr[i].conj()*A[j,i+1]
+
+	return A
+\end{lstlisting}
+
+
+\subsection*{QR-Verfahren mit Wilkinson-Shift für Hessenberg-Matrix}
+
+\lstset{caption={Implementation des QR-Verfahrens mit Wilkinson-Shift für Hessenbergmatrizen}}
+
+\begin{lstlisting}
+def QR_hesse(A,tol=1e-14):
+	n = A.shape[1]
+	count = 0
+	for i in range(n-1,0,-1):
+			while abs(A[i,i-1]) > tol*(abs(A[i-1,i-1])+abs(A[i,i])):
+					w = np.linalg.eigvals(A[i-1:i+1,i-1:i+1])
+					if abs(w[0] - A[i,i]) < abs(w[1] - A[i,i]):
+							rho = w[0]
+					else:
+							rho = w[1]
+					A = Hessenberg_QR_RQ(A-rho*np.identity(n))
+					A += rho*np.identity(n)
+					count += 1
+			A[i,:i-n] = 0
+	return A, sorted(np.diag(A)), count
+\end{lstlisting}
+
+\newpage
 \subsection*{Lanczos-Verfahren}
 
 \lstset{caption={Implementation des Lanczos-Verfahrens}}
@@ -1270,6 +1361,7 @@ def arnoldi(A, dim, k = 0):
 							v.append(w/h[j+1][j])
 	return QR_hesse(h)
 \end{lstlisting}
+
 \newpage
 
 \printbibliography

@@ -1,0 +1,134 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Geben Sie ein Beispiel für zwei Maßfunktionen $\mu$ und $\nu$ mit $\mu$ endlich, $\nu$ sigmaendlich aber nicht endlich, und $\nu \ll \mu$, und die $\epsilon$-$\delta$-Bedingung gilt, oder beweisen Sie, dass es kein solches Beispiel gibt (das vorige Beispiel wird gelegentlich so formuliert, dass \Quote{nicht einmal dann, wenn $\mu$ endlich und $\nu$ sigmaendlich ist}, die $\epsilon$-$\delta$-Bedingung gelten muss; diese Formulierung ist nicht ganz gerechtfertigt, weil es ja umso schwieriger ist, die Bedingung zu erfüllen, je kleiner $\mu$ ist).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Wir zeigen, dass es kein solches Beispiel gibt, d.h.
+
+\begin{align*}
+    &
+    \mu, \nu ~\text{Maßfunktionen}, \quad
+    \mu ~\text{endlich}, \quad
+    \nu ~\text{sigmaendlich, nicht endlich}, \quad
+    \nu \ll \mu \\
+    \implies &
+    \Exists \epsilon > 0:
+        \Forall \delta > 0:
+            \Exists A \in \mathfrak S:
+                \mu(A) < \delta, \nu(A) \geq \epsilon.
+\end{align*}
+
+Dass $\mu$ endlich ist, heißt
+
+\begin{align*}
+    \Forall A \in \mathfrak S:
+        \mu(A) < \infty.
+\end{align*}
+
+Dass $\nu$ sigmaendlich, aber nicht endlich ist, heißt
+
+\begin{align*}
+    \Exists \vec A = (A_n) \subset \mathfrak S:
+        \sum \vec A = \Omega,
+        \Forall n \in \N:
+            \nu(A_n) < \infty,
+    \quad
+    \Exists A \in \mathfrak S:
+        \nu(A) = \infty,
+    \quad
+    \text{bzw.}
+    \quad
+    \nu(\Omega) = \infty.
+\end{align*}
+
+\begin{align*}
+    N := \Bbraces{n \in \N: \nu(A_n) = 0},
+    \quad
+    B_0 := \sum_{n \in N} A_n,
+    \quad
+    B_n := A_n,
+    \quad
+    n \in M := \N \setminus N
+\end{align*}
+
+Nun ist $M$ abzählbar, weil
+
+\begin{align*}
+    \infty
+    =
+    \nu(\Omega)
+    =
+    \underbrace{\nu(B_0)}_0 + \nu \pbraces{\sum_{n \in M} B_n}
+    =
+    \sum_{n \in M} \underbrace{\nu(B_n)}_{< \infty}.
+\end{align*}
+
+Wir finden also eine Bijektion $f: \N \to M$.
+
+\begin{align*}
+    C_0 := B_0,
+    \quad
+    C_n := B_{f(n)},
+    \quad
+    n \in \N
+\end{align*}
+
+Wir haben also eine weiteren Zeugen der Sigmaendlichkeit von $\nu$ gefunden.
+
+\begin{align*}
+    \implies &
+    \sum_{n \in \N_0} C_n
+    =
+    B_0 + \sum_{n \in M} B_n
+    =
+    \sum_{n \in N} A_n + \sum_{n \in M} A_n
+    =
+    \sum \vec A
+    =
+    \Omega, \\
+    &
+    \Forall n \in \N:
+        (
+            f(n) \in M
+            \implies
+            0 < \nu(A_{f(n)}) = \nu(B_{f(n)}) = \nu(C_n) < \infty
+        )
+\end{align*}
+
+\begin{align*}
+    \implies &
+    \sum_{n \in \N_0}
+        \mu(C_n)
+    =
+    \mu \pbraces{\sum_{n \in \N_0} C_n}
+    =
+    \mu(\Omega)
+    <
+    \infty \\
+    \implies &
+    \Forall \delta > 0:
+        \Exists m \in \N:
+            \sum_{n=m}^\infty
+                \mu(C_n)
+            <
+            \delta
+\end{align*}
+
+\begin{align*}
+    \implies
+    \Forall \epsilon > 0:
+        \mu \pbraces{\sum_{n=m}^\infty C_n} & = \sum_{n=m}^\infty \mu(C_n) < \delta, \\
+        \nu \pbraces{\sum_{n=m}^\infty C_n} & = \sum_{n=m}^\infty \nu(C_n) = \nu(\Omega) - \underbrace{\sum_{n=0}^{m-1} \nu(C_n)}_{< \infty} = \infty \geq \epsilon
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    

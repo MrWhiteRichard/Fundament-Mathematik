@@ -1,0 +1,123 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$\nu_n$, $n \in \N$ seien sigmaendliche Maße auf dem sigmaendlichen Maßraum $(\Omega, \mathfrak S, \mu)$, $\nu = \sum \nu_n$, $\nu_{n \mathrm c} \ll \mu$, $\nu_{n \mathrm{s}} \Bot \mu$ sei die Lebesgue-Zerlegung vun $\nu$ bezüglich $\mu$.
+Zeigen Sie, dass $\nu_\mathrm{s} = \sum_n \nu_{n \mathrm{s}}$ und $\nu_\mathrm{c} = \sum_n \nu_{n \mathrm c}$ eine Lebesgue-Zerlegung von $\nu$ ist.
+Ist $\nu$ auch sigmaendlich, dann ist
+
+\begin{align*}
+    \derivative[][\nu_\mathrm{c}]{\mu}
+    =
+    \sum_n
+        \derivative[][\nu_{n \mathrm c}]{\mu}
+\end{align*}
+
+(ist $\nu$ nicht sigmaendlich, dann ist die rechte Seite immer noch \textit{eine} Radon-Nikodym Dichte, aber diese muss nicht eindeutig bestimmt sein.)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Schritt:
+    
+    \begin{align*}
+        \nu
+        =
+        \sum_n \nu_n
+        =
+        \sum_n (\nu_{n \mathrm{s}} + \nu_{n \mathrm c})
+        =
+        \sum_n \nu_{n \mathrm{s}} + \sum_n \nu_{n \mathrm c}
+        =
+        \nu_\mathrm{s} + \nu_\mathrm{c}
+    \end{align*}
+    
+    \item Schritt ($\nu_\mathrm{c} \ll \mu$):
+    
+    Sei $\Forall A \in \mathfrak S$, mit $\mu(A) = 0$.
+    Weil $(\nu_{n \mathrm{s}}) \ll \mu$, gilt
+
+    \begin{align*}
+        \Forall n \in \N:
+            \nu_{n \mathrm c} = 0.
+    \end{align*}
+
+    Nun ist $\nu_\mathrm{c} \ll \mu$, weil
+
+    \begin{align*}
+        \nu_\mathrm{c}(A) = \sum_n \underbrace{\nu_{n \mathrm c}}_0 = 0.
+    \end{align*}
+
+    \item Schritt ($\nu_\mathrm{s} \Bot \mu$):
+    
+    Weil $(\nu_{n \mathrm{s}}) \Bot \mu$, gilt
+    
+    \begin{align*}
+        \Forall n \in \N:
+            \Exists A_n \in \mathfrak S:
+                \nu_{n \mathrm{s}}(A_n) = \mu(A_n^C) = 0.
+    \end{align*}
+
+    Sei $A := \bigcap_n A_n$.
+    Nun ist $\nu_\mathrm{s} \Bot \mu$, weil
+
+    \begin{align*}
+        \nu_\mathrm{s}(A) & = \sum_n \nu_{n \mathrm{s}} \pbraces{\bigcap_k A_k} \leq \sum_n \nu_{n \mathrm{s}}(A_n) = 0, \\
+        \mu(A^C) & = \sum_n \mu \pbraces{\bigcup_n A_k^C} \leq \sum_k \mu(A_k^C) = 0
+    \end{align*}
+
+    \item Schritt:
+    
+    Laut Satz 7.1: Radon-Nikodym, existieren alle Dichten.
+    Sei $A \in \mathfrak S$.
+    Laut Satz 5.3: monotone Konvergenz, Beppo Levi-Theorem, gilt
+
+    \begin{multline*}
+        \Int[A]
+        {
+            \lim_{N \to \infty}
+                \sum_{n=1}^N
+                    \derivative[][\nu_{n \mathrm c}]{\mu}
+        }{\mu}
+        \stackrel
+        {
+            \text{MK}
+        }{=}
+        \lim_{N \to \infty}
+        \Int[A]
+        {
+            \sum_{n=1}^N
+                \derivative[][\nu_{n \mathrm c}]{\mu}
+        }{\mu}
+        =
+        \lim_{N \to \infty}
+            \sum_{n=1}^N
+                \Int[A]
+                {
+                    \derivative[][\nu_{n \mathrm c}]{\mu}
+                }{\mu} \\
+        =
+        \lim_{N \to \infty}
+            \sum_{n=1}^N
+                \nu_{n \mathrm c}(A)
+        =
+        \nu_\mathrm{c}(A)
+        =
+        \Int[A]
+        {
+            \derivative[][\nu_\mathrm{c}]{\mu}
+        }{\mu}.
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
