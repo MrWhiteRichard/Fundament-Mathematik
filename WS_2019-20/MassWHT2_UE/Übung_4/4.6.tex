@@ -1,0 +1,53 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Ein Würfel wird zweimal geworfen, $X$ sei die kleinere der beiden Augenzahlen, $Y$ die größere.
+Bestimmen Sie
+
+\begin{align*}
+    \E(X | Y = y).
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    P(y) := \P(X = x | Y = y)
+\end{align*}
+
+\begin{align*}
+    \begin{array}{c|c|c|c|c|c|c}
+        x & P(1) & P(2) & P(3) & P(4) & P(5) & P(6) \\ \hline
+        1 & 1    & 2/3  & 2/5  & 2/7  & 2/9  & 2/11 \\
+        2 & 0    & 1/3  & 2/5  & 2/7  & 2/9  & 2/11 \\
+        3 & 0    & 0    & 1/5  & 2/7  & 2/9  & 2/11 \\
+        4 & 0    & 0    & 0    & 1/7  & 2/9  & 2/11 \\
+        5 & 0    & 0    & 0    & 0    & 1/9  & 2/11 \\
+        6 & 0    & 0    & 0    & 0    & 0    & 1/11
+    \end{array}
+\end{align*}
+
+\begin{align*}
+    \E(X | Y = y)
+    & =
+    \sum_{x \leq 6}
+        x \cdot \P(X = x | Y = y) \\
+    & =
+    y \frac{1}{2 y - 1} + \sum_{i \leq y-1} i \frac{2}{2 y - 1} \\
+    & =
+    \frac{y}{2 y - 1} + \frac{2}{2 y - 1} \sum_{i \leq y-1} i \\
+    & =
+    \frac{y}{2 y - 1} + \frac{2}{2 y - 1} \frac{(y - 1) y}{2} \\
+    & =
+    \frac{y}{2 y - 1} + \frac{(y - 1) y}{2 y - 1} \\
+    & =
+    \frac{y^2}{2 y - 1}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,101 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Bekanntlich ist die Funktion
+    
+    \begin{align*}
+        f(x)
+        =
+        \begin{cases}
+            \sin(1 / x) & \text{für}~ x > 0 \\
+            0         & \text{für}~ x = 0
+        \end{cases}
+    \end{align*}
+
+    Im Intervall $[0, 1]$ Riemann-integrierbar.
+    Zeigen Sie
+
+    \begin{align*}
+        g(x)
+        =
+        \Int[0][x]{f(u)}{u}
+        =
+        x^2 \cos(1 / x) - \Int[0][x]{2 u \cos(1/u)}{u}
+    \end{align*}
+
+    und damit $g^\prime(x) = f(x)$ für alle $x \in [0, 1]$ (wobei in $0$ eigentlich nur die einseitige Ableitung existiert, Sie können sich aber vorstellen, dass $g$ (und $f$) auf er negativen Achse einfach null sind.)
+
+    \item Für $a > 0$ wählen wir $n$ so, dass
+    
+    \begin{align*}
+        \frac{1}{n \pi} < \frac{a}{2}
+    \end{align*}
+
+    gilt.
+    Dann ist für $a > 0$ die Funktion
+
+    \begin{align*}
+        h_{0, a}(x)
+        =
+        \begin{cases}
+            g(x)               & \text{für}~ 0 \leq x \leq \frac{1}{n \pi}, \\
+            g(\frac{1}{n \pi}) & \text{für}~ \frac{1}{n \pi} < x < a - \frac{1}{n \pi}, \\
+            g(a - x)           & \text{für}~ a - \frac{1}{n \pi} \leq x \leq a, \\
+            0                  & \text{sonst}
+        \end{cases}
+    \end{align*}
+
+    überall differenzierbar, die Ableitung $h_{0, a}^\prime$ ist überall stetig außer in den Punkten $0$ und $a$, und in jeder Umbegung von $0$ und $a$ gibt es Punkte mit $h^\prime = 1$ und $h^\prime = -1$.
+
+    \item $h_{a, b}(x) = h_{0, b - a}(x - a)$ ist überall differenzierbar mit einer Ableitung, die überall stetig ist, außer in den Punkten $a$ und $b$ (es soll natürlich $a < b$ gelten.)
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Die linke und rechte Seite verschwinden beide für $x \to 0$.
+    Weiters stimmen ihre Ableitungen in $x \in ]0, 1]$ überein.
+    Unter Verwendung des rechtsseitigen Differentialquotienten, und dieser Identität, zeigt man unmittelbar $g^\prime(0) = 0$.
+
+    \item Zwischen den Sprüngen ist die Funktion offensichtlich stetig differenzierbar.
+    Darauf verschwinden die jeweiligen linksseitigen und rechtsseitigen Differentialquotienten, stimmen also insbesondere überein.
+
+    Sei $\epsilon > 0$ hinreichend klein.
+
+    \begin{align*}
+        \implies
+        \Forall x \in B_\epsilon(0) \cap (0, a):
+            h_{0, 1}^\prime(x)
+            =
+            g^\prime(x)
+            =
+            f(x)
+            =
+            \sin(1 / x)
+            \stackrel{!}{=}
+            \pm 1
+    \end{align*}
+
+    Letztere Gleichheit gilt für $x := \pm \frac{1}{m \pi}$ und $m \in \N$ hinreichend groß.
+    Analoges Spiel gilt für eine $\epsilon$-Umgebung von $a$.
+
+    \item Nachdem $h_{a, b}$ eine affine Transformation der Funktion aus (b) ist, übertragen sich alle Regularitätseigenschaften.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

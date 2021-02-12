@@ -1,0 +1,67 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Aus dem Dichtesatz von Lebesgue folgt, dass es zu jeder Menge mit positivem Lebesguemaß ein Intervall $[a, b]$ gibt, sodass $\lambda(A \cap [a, b]) > \frac{3 (b - a)}{4}$.
+Für $h < (b - a) / 2$ folgt daraus $A \cap (A \oplus h) \neq \emptyset$.
+Mit anderen Worten:
+$A \ominus A$ enthält ein Intervall.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\arabic*)]
+
+    \item Aus dem Dichtesatz von Lebesgue folgt, dass
+    
+    \begin{align*}
+        \Exists x \in A:
+            \Forall \epsilon > 0:
+                \Exists h > 0:
+                    1 - \frac{\lambda(A \cap [x - h, x + h])}{2 h} < \epsilon.
+    \end{align*}
+
+    \begin{align*}
+        a := x - h, \quad b := x + h \\
+        & \implies
+        1 - \frac{\lambda(A \cap [a, b])}{b - a} < \epsilon \\
+        & \implies
+        (1 - \epsilon) (b - a) < \lambda(A \cap [a, b])
+    \end{align*}
+
+    Für $\epsilon := 1/4$ folgt die Behauptung.
+
+    \item $\lambda$ ist translationsinvariant und
+
+    \begin{align*}
+        \Forall A, B \in \mathfrak S:
+            \lambda(A \cap B) = \lambda(A) + \lambda(B) - \lambda(A \cup B).
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \lambda((A \cap [a, b]) \oplus h) & = \lambda(A \cap [a, b]) > \frac{3}{4} (b - a), \\
+        \lambda(A \cap [a, b + h]) & < \lambda([a, b + h]) = b + h - a < b - a + \frac{b - a}{2} = \frac{3}{2} (b - a)
+    \end{align*}
+
+    \begin{multline*}
+        \implies
+        \lambda((A \cap [a, b]) \cap ((A \cap [a, b]) \oplus h))
+        =
+        \lambda(A \cap [a, b]) + \lambda(((A \cap [a, b]) \oplus h)) - \lambda(A \cap [a, b + h]) \\
+        >
+        \pbraces{2 \cdot \frac{3}{4} + 1} (b - a)
+        >
+        0
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

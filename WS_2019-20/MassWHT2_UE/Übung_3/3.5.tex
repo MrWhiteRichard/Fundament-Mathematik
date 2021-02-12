@@ -1,0 +1,73 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie:
+wenn $F$ eine stetige Verteilungsfunktion ist, dann gilt $\mu_F$-fast überall
+
+\begin{align*}
+    \lim_{h \downarrow 0}
+        \frac{\Delta F}{\Delta F}(x, h)
+    =
+    \lim_{h \uparrow 0}
+        \frac{\Delta F}{\Delta F}(x, h)
+    =
+    1,
+\end{align*}
+
+wobei wir für zwei Verteilungsfunktionen $F$ und $G$
+
+\begin{align*}
+    \frac{\Delta G}{\Delta F}(x, h)
+    =
+    \begin{cases}
+        \frac{G(x + h) - G(x)}{F(x + h) - F(x)} & \text{wenn}~ F(x + h) \neq F(x), \\
+        0                                       & \text{sonst}
+    \end{cases}
+\end{align*}
+
+setzen.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Weil $\Q$ dicht in $\R$ liegt, gilt
+
+\begin{align*}
+    \Forall a, b \in \R, a < b:
+        \Exists q \in \Q:
+            q \in ]a, b].
+\end{align*}
+
+\begin{align*}
+    \implies
+    |K| \leq |\Q| = \aleph_0,
+    \quad
+    K := \Bbraces{]a, b] \in \mathfrak J \setminus \Bbraces{\emptyset}: F |_{]a, b]} ~\text{konst.}}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \mu_F \pbraces{\lim_{h \downarrow 0} \frac{\Delta F}{\Delta F}(\cdot, h) \neq 1}
+    & =
+    \mu_F \pbraces{\lim_{h \downarrow 0} \frac{\Delta F}{\Delta F}(\cdot, h) = 0} \\
+    & =
+    \mu_F \pbraces{\Bbraces{x \in \R: \Exists \epsilon > 0: \Forall h \in (0, \epsilon): F(x + h) = F(x)}} \\
+    & =
+    \mu_F \pbraces{\bigcup K} \\
+    & \leq
+    \sum_{{]a, b]} \in K}
+        \mu_F(]a, b]) \\
+    & =
+    \sum_{{]a, b]} \in K}
+        \underbrace{F(b) - F(a)}_0 \\
+    & =
+    0
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
