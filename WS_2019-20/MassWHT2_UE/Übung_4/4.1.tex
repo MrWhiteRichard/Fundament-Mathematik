@@ -1,0 +1,75 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Der Dichtesatz von Lebesgue:
+für jede Borel-messbare Menge $A$ gilt fast überall auf $A$
+
+\begin{align*}
+    \lim_{h \to 0}
+        \frac{\lambda(A \cap [x - h, x + h])}{2 h}
+    =
+    1.
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}
+
+    \item Fall ($A$ beschränkt):
+    
+    Sei $[a, b] \supset A$.
+    $A$ ist als Indikatorfunktion Lebesgue-integrierbar.
+    Laut dem Hauptsatu der Differential- und Integralrechnung für das Lebesgue-Integral, gilt für $\lambda$-fast alle $x \in A:$
+
+    \begin{align*}
+        1
+        & =
+        A(x) \\
+        & =
+        \derivative{x}
+            \Int[a][x]{A}{\lambda} \\
+        & =
+        \frac{1}{2}
+        \lim_{h \to 0}
+            \frac
+            {
+                \Int[a][x + h]{A}{\lambda}
+                -
+                \Int[a][x]{A}{\lambda}
+            }{h}
+            +
+            \frac
+            {
+                \Int[a][x]{A}{\lambda}
+                -
+                \Int[a][x - h]{A}{\lambda}
+            }{h} \\
+        & =
+        \lim_{h \to 0}
+            \frac{1}{2 h}
+            \Int{A \cdot ([a, x + h] - [a, x - h])}{\lambda} \\
+        & =
+        \lim_{h \to 0}
+            \frac{1}{2 h}
+            \Int{A \cap [x - h, x + h]}{\lambda} \\
+        & =
+        \lim_{h \to 0}
+            \frac{\lambda(A \cap [x - h, x + h])}{2 h}.
+    \end{align*}
+
+    \item Fall ($A$ unbeschränkt):
+    
+    Zerteile $A$ in beschränkte $(A_n)$ und verwende den $1$-ten Fall.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

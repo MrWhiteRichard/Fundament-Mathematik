@@ -1,0 +1,178 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Additive Funktionen auf $\R$ (etwas hochtrabender: Homomorphismen von $(\R, +)$ nach $(\R, +)$) sind Funktionen $f: \R \to \R$ mit
+
+\begin{align*}
+    f(x + y) = f(x) + f(y)
+    \Forall x, y \in \R.
+\end{align*}
+
+Jede lineare Funktion $f(x) = c x$ zählt dazu;
+aus dem Auswahlaxiom folgt die Existenz von additiven Funktionen, die nicht linear sind.
+Zeigen Sie, dass diese \Quote{nichttrivialen Homomorphismen} auf jedem nichtleeren Intervall unbeschränkt sind, also dass jede additive Funktion linear ist, wenn es ein nichtleeres Intervall gibt, auf dem sie beschränkt ist.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \implies &
+    f(0) = f(0 + 0) = f(0) + f(0) \\
+    \implies &
+    0 = f(0) = f(x - x) = f(x) + f(-x) \\
+    \implies &
+    f(x) = -f(-x)
+\end{align*}
+
+\begin{itemize}
+    \item Sei $n \in \N$.
+    
+    \begin{align*}
+        \implies
+        f(n x)
+        =
+        f(\underbrace{x + \cdots + x}_{\displaystyle \text{$n$-mal}})
+        =
+        \underbrace{f(x) + \cdots + f(x)}_{\displaystyle \text{$n$-mal}}
+        =
+        n f(x)
+    \end{align*}
+
+    \item Sei $m \in -\N$.
+    
+    \begin{align*}
+        \implies
+        f(m x)
+        =
+        f(|m| (-x))
+        =
+        |m| f(-x)
+        =
+        m (-f(-x))
+        =
+        m f(x)
+    \end{align*}
+
+    \item Sei $q \in \Q$.
+    
+    \begin{align*}
+        \implies &
+        \Exists m \in \Z, \Exists n \in \N:
+            q = \frac{m}{n} \\
+        \implies &
+        n f \pbraces{\frac{1}{n} x} = \frac{n}{n} f(x) = f(x) \\
+        \implies &
+        f(q x)
+        =
+        m f \pbraces{\frac{1}{n} x}
+        =
+        \frac{m}{n} f(x)
+        =
+        q f(x)
+    \end{align*}
+
+\end{itemize}
+
+Angenommen, $f$ wäre nicht linear.
+o.B.d.A. $f(1) = 1$
+
+\begin{align*}
+    \implies
+    \Forall q \in \Q:
+        f(q) = q f(1) = q
+\end{align*}
+
+Nachdem $f$ nicht linear ist, gilt $f \neq \id$.
+
+\begin{align*}
+    \implies
+    \Exists \alpha \in \R \setminus \Q:
+        f(\alpha) \neq \alpha
+\end{align*}
+
+Setze $\delta := f(\alpha) - \alpha \neq 0$.
+Sei $r > 0$, und $x, y \in \Q$ mit $x \neq y$, und setze $\beta := \frac{y - x}{\delta}$.
+$\Q$ liegt dicht in $\R$.
+
+\begin{align*}
+    \implies &
+    \Exists b \in \Q:
+        |\beta - b| < \frac{r}{2 |\delta|}, \\
+    &
+    \Exists a \in \Q:
+        |\alpha - a| < \frac{r}{2 |b|}
+\end{align*}
+
+Setze $X := x + b (\alpha - a)$ und $Y := f(X)$.
+
+\begin{multline*}
+    \implies
+    Y
+    =
+    f(x + b \alpha - b a))
+    =
+    f(x) + f(b \alpha) - f(b a)
+    =
+    x + b f(\alpha) - b a
+    =
+    (y - \delta \beta) + b (\alpha + \delta) - b a \\
+    =
+    y + b (\alpha - a) - \delta (\beta - b)
+\end{multline*}
+
+\begin{align*}
+    \implies
+    \vbraces
+    {
+        \begin{pmatrix}
+            x \\ y
+        \end{pmatrix}
+        -
+        \begin{pmatrix}
+            X \\ Y
+        \end{pmatrix}
+    }^2
+    & =
+    \vbraces
+    {
+        \begin{pmatrix}
+            x - x - b (\alpha - a) \\
+            y - y - b (\alpha - a) + \delta (\beta - b)
+        \end{pmatrix}
+    }^2 \\
+    & =
+    b^2 (\alpha - a)^2 + \delta^2 (\beta - b)^2 - 2 \delta b (\beta - b) (\alpha - a) + b^2 (\alpha - a)^2 \\
+    & \leq
+    b^2 \frac{r^2}{4 b^2} + \delta^2 \frac{r^2}{4 \delta^2} + 2 |\delta b| \frac{r}{2 |b|} \frac{r}{2 |\delta|} + b^2 \frac{r^2}{4 b^2} \\
+    & =
+    \frac{5 r^2}{4}
+\end{align*}
+
+\begin{align*}
+    \implies
+    \begin{pmatrix}
+        X \\ Y
+    \end{pmatrix}
+    \in
+    B
+    \pbraces
+    {
+        \begin{pmatrix}
+            x \\ y
+        \end{pmatrix},
+        \frac{5 r^2}{4}
+    }
+\end{align*}
+
+Sei nun $I$ ein nichtleeres Intervall.
+Wähle $x \in I^\circ$ und $y > 0$ beliebig.
+Nach dem bisher Gezeigtem, gibt es ein $X \in I^\circ$, sodass $Y = f(X)$ beliebig nahe an $y$ ist.
+$f$ ist also auf jedem nichtleerem Intervall unbeschränkt.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
