@@ -198,7 +198,7 @@ Das QR-Verfahren ist eine Methode zur Eigenwertbestimmung einer Matrix $A \in \C
 \end{equation}
 
 gegeben, wobei $A^{(t)} = Q^{(t)} R^{(t)}$ die QR-Zerlegung von $A^{(t)}$ ist.
-Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
+Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge $(A^{(t)})_{t \in \N}$ konvergiert gegen eine obere Dreiecksmatrix. Das heißt, die Diagonaleinträge von $A^{(t)}$ konvergieren gegen die Eigenwerte von $A$.
 
 \floatname{algorithm}{Algorithmus}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -215,7 +215,7 @@ Für alle $t\in \N$ hat $A^{(t)}$ die gleichen Eigenwerte wie $A$ und die Folge 
 		\State $A \coloneqq RQ$
 		\EndWhile
 	\end{algorithmic}
-	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie die Ursprüngliche Matrix $A$ besitzt.}
+	\algorithmicensure{ $A$ wird überschrieben mit einer Matrix, die eine Approximation einer oberen Dreiecksmatrix ist und die gleichen Eigenwerte wie $A$ besitzt.}
 \end{algorithm}
 
 
@@ -683,6 +683,15 @@ In Abbildung \ref{Error_QR} wird der Fehler in der Approximation semilogarithmis
   \label{Error_QR}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 0.6\linewidth]{Plots/Laufzeitvergleich}
+	\caption{Vergleich der Laufzeit des vorimplementierten QR-Verfahrens mit QR-Verfahren speziell für Hessenbergmatrizen}
+	\label{Laufzeitvergleich}
+\end{figure}
+
+Um noch die Laufzeit zwischen dem QR-Verfahren mit Wilkinson-Shift, welches die vorimplementierte QR-Zerlegung aus dem \textit{numpy.linalg} Paket verwendet, und dem selbstimplementierten Verfahren speziell für Hessenbergmatrizen zu vergleichen verwenden wir das \textit{time} Paket und messen so die Zeit, die das Verfahren bei zufällig generierten Hessenbergmatrizen mit immer höher werdender Dimension, benötigt. In Abbildung \ref{Laufzeitvergleich} werden dabei beide Verfahren auf zufällige Matrizen der Dimension $n$ angewendet und die Laufzeit gemessen. Dem QR-Verfahren mit der vorimplementierten QR-Zerlegung werden dabei volle Matrizen übergeben, während das QR-Verfahren für Hessenbergmatrizen natürlich auf eine Hessenbergmatrix angewendet wird. Dabei zeigt sich, dass das Verfahren mit der vorimplementierten QR-Zerlegung selbst bei vollbesetzten Matrizen noch um ein vielfaches schneller ist als das selbstimplementierte Verfahren. In der \textit{numpy} Dokumentation liest man, dass die Verwendete vorimplementierte QR-Zerlegung Interface für eine \texttt{LAPACK}-Routine ist. Das \texttt{LAPACK} (Linear Algebra Package) ist Fortran basiert und Fortran ist für berechnungen aus der numerischen Linearen Algebra um ein vielfaches schneller als Python-Code. Das erklärt wohl auch, warum das Verfahren mit der vorimplementierten QR-Zerlegung so viel besser abschneidet. Eine Dokumentation von \texttt{LAPACK} ist in \cite{LAPACK} zu finden.
+
 \section{Das Lanczos-Verfahren}
 Wie in der Einleitung erwähnt, liefert uns das dort beschriebene Eigenwertproblem Matrizen mit sehr großer Dimension. Außerdem ist man in der Praxis häufig nur an wenigen extremalen Eigenwerten interessiert. Das QR-Verfahren ist für solche Probleme also nicht geeignet. Im Folgenden werden wir deshalb das Lanczos-Verfahren kennenlernen.
 
@@ -991,18 +1000,18 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation}
 		\begin{aligned}
 			\label{Darstellung EW}
-			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(T_m v,v)}{(v,v)} \\
-			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(A^{(m)}v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^n\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
 		\end{aligned}
 	\end{equation}
 
-	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis des $\C^m$ aus Eigenvektoren von $T_m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Diese Darstellung ergibt sich aus der Tatsache, dass $w$ als Linearkombination von $\tilde{u}_j^{(m)}, \quad j = 1,\dots, m$ geschrieben werden kann und Lemma \ref{v0_Polynom_Darstellung}. Dann gilt für alle $j < i$
+	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
 	\begin{equation*}
 		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
 
-	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ ist.
+	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
 
 	Da dann die $\lambda_j^{(m)}, \, j = 1,\dots,i-1$ Nullstellen von $p$ sind, können wir
 
@@ -1096,9 +1105,10 @@ Zunächst wird das Lanczos-Verfahren mit zufällig generierten hermiteschen Matr
 	=
 	B^* A^* B^{**}
 	=
-	B^{-1} A B
+	B^{-1} A B.
 \end{align*}
-Erste Testungen mit zufällig generierten uniform Verteilten Eigenwerten zeigten sehr mäßige Konvergenz von sowohl den größten als auch den kleinsten Eigenwerten. In Abbildung \ref{error_uniform} ist der absolute Fehler in den 2 größten Eigenwerten für steigende Kyrlovraumdimension dargestellt.Dabei wurde das Lanczos-Verfahren auf eine Matrix der Dimension $1000$ mit Eigenwerten uniform Verteilt im Intervall $(-100,400)$ angewendet. Selbst bei Kyrlovraumdimension 100 haben wir noch keine gute Approximation an nur zwei Eigenwerte. Für uniform Verteilte Eigenwerte ist das Lanczos-Verfahren also nicht gut geeignet. Sobald jedoch Eigenwerte existieren, die sich weiter vom Spektrum entfernen, erhalten wir sehr schnelle Konvergenz gegen diese.
+
+Erste Testungen mit zufällig generierten uniform Verteilten Eigenwerten zeigen sehr mäßige Konvergenz. Lässt man dabei das gesamte Array mit den approximieren Eigenwerten ausgeben zeigt sich eine gewisse Symmetrie, mit dem Fehler in den größten Eigenwerten sinkt auch der in den kleinsten Eigenwerten mit der selben Rate. In Abbildung \ref{error_uniform} ist der absolute Fehler in den 2 größten Eigenwerten für steigende Kyrlovraumdimension dargestellt. Dabei wurde das Lanczos-Verfahren auf eine Matrix der Dimension $1000$ mit Eigenwerten uniform Verteilt im Intervall $(-100,400)$ angewendet. Selbst bei Kyrlovraumdimension 100 lässt sich noch keine besonders gute Approximation an nur zwei Eigenwerte erkennen. Für uniform Verteilte Eigenwerte ist das Lanczos-Verfahren also nicht gut geeignet. Sobald jedoch Eigenwerte existieren, die sich weiter vom Spektrum entfernen, erhalten wir sehr schnelle Konvergenz gegen diese.
 
 \begin{figure}[H]\label{error_uniform}
 \begin{center}
@@ -1108,7 +1118,7 @@ Erste Testungen mit zufällig generierten uniform Verteilten Eigenwerten zeigten
 	\end{center}
 \end{figure}
 
-Diese Eigenschaft und andererseits die Symmetrie der Konvergenz kann man sehr gut in \ref{eigv_lanczos} erkennen. Dort wurde das Lanczos-Verfahren auf eine $500 \times 500$ Matrix, mit Eigenwerten gleichverteilt im Intervall $(0,2)$ und $4$ extremalen Eigenwerten bei $-1$, $-0.5$, $2.5$ und $3$, angewendet. Bei $x = 12$ sieht man das gesamte Spektrum der Eigenwerte, wobei ein Eigenwert durch ein Kreuz mit dem entsprechenden Wert an der $y-$Achse dargestellt wird. Für $x = 2,...,11$ sind die Approximationen an die Eigenwerte bei entsprechender Kyrlovraumdimension dargestellt. Der größte sowie kleinste Eigenwert werden hier schon bei Kyrlovraumdimension $6$ gut approximiert. Bei Kyrlovraumdimension $10$ beginnt die rapide Konvergenz der Approximation an den zweitgrößten sowie zweitkleinsten Eigenwert.
+Diese Eigenschaft und andererseits die Symmetrie der Konvergenz kann man sehr gut in \ref{eigv_lanczos} erkennen. Dort wird das Lanczos-Verfahren auf eine $500 \times 500$ Matrix, mit Eigenwerten gleichverteilt im Intervall $(0,2)$ und $4$ extremalen Eigenwerten bei $-1$, $-0.5$, $2.5$ und $3$, angewendet. Bei $x = 12$ sieht man das gesamte Spektrum der Eigenwerte, wobei ein Eigenwert durch ein Kreuz mit dem entsprechenden Wert an der $y-$Achse dargestellt wird. Für $x = 2,...,11$ sind die Approximationen an die Eigenwerte bei entsprechender Kyrlovraumdimension dargestellt. Der größte sowie kleinste Eigenwert werden hier schon bei Kyrlovraumdimension $6$ gut approximiert. Bei Kyrlovraumdimension $10$ beginnt die rapide Konvergenz der Approximation an den zweitgrößten sowie zweitkleinsten Eigenwert.
 
 
 \begin{figure}[H]\label{eigv_lanczos}
@@ -1127,17 +1137,29 @@ Diese Eigenschaft und andererseits die Symmetrie der Konvergenz kann man sehr gu
 	\end{center}
 \end{figure}
 
-Verwenden wir nun also zur Testung keine uniform Verteilten Eigenwerte, sondern lognormal Verteilte erhalten wir nun wesentlich bessere Konvergenzgeschwindigkeit. In Abbildung \ref{lanczos_lognomal} wurde das Lanczos-Verfahren wieder auf eine Matrix der Dimension $1000$ angewendet, diesmal jedoch mit lognormal-Verteilen Eigenwerten ($\mu = 3, \sigma = 1$). Hier erkennt man die erwartete exponentielle Konvergenz, da der Fehler ja semilogarithmisch dargestellt wird.
+Verwendet man nun also zur Testung keine uniform Verteilten Eigenwerte, sondern lognormal Verteilte erhält man nun wesentlich bessere Konvergenzgeschwindigkeit. In Abbildung \ref{lanczos_lognomal} wird das Lanczos-Verfahren wieder auf eine Matrix der Dimension $1000$ angewendet, diesmal jedoch mit lognormal-Verteilen Eigenwerten ($\mu = 1, \sigma = 1$). Hier erkennt man die erwartete exponentielle Konvergenz, da der Fehler ja semilogarithmisch dargestellt wird.
 
 
 
-Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwertprobleme eignet, bei denen sich einige Eigenwerte stark vom Spektrum abheben. Beim Arnoldi-Verfahren erkennt man, bei Testung mit nun voll besetzten Matrizen, ein ähnliches Verhalten, auch hier kann man wesentlich bessere Konvergenzgeschwindigkeit bei lognormal-Verteilen Eigenwerten feststellen.
+Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwertprobleme eignet, bei denen sich einige Eigenwerte stark vom Spektrum abheben. Beim Arnoldi-Verfahren erkennt man, bei Testung mit nun voll besetzten Matrizen, ein ähnliches Verhalten, auch hier kann man wesentlich bessere Konvergenzgeschwindigkeit bei lognormal-Verteilen Eigenwerten feststellen, wie man in Abbildung \ref{Arnoldi_error} erkennen kann.
 
-\begin{figure}[H]\label{error_eigv_laplace}
+\begin{figure}[H]
+  \centering
+  \subfloat[][uniform Verteilte Eigenwerten]{\includegraphics[width=0.45\linewidth]{Plots/error_arnoldi_uniform}}%
+  \qquad
+  \subfloat[][lognormal Verteilte Eigenwerte]{\includegraphics[width=0.45\linewidth]{Plots/error_arnoldi_lognormal}}%
+  \caption{Fehler in der Approximation bei Verwendung des Arnoldi-Verfahrens}%
+  \label{Arnoldi_error}
+\end{figure}
+
+\begin{figure}\label{error_eigv_laplace}
+	\centering
 	\includegraphics[width = 0.9\linewidth]{Plots/error_eigv_laplace}
 	\caption{Fehler in den ersten 40\% der Eigenwerte bei Anwendung des Arnoldi-Verfahrens auf das diskretisierte Problem}
 \end{figure}
-Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \eqref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert. Wir erkennen eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
+
+Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \eqref{equivdiscret} wurde $\rho = 3$ gewählt. In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Kyrlovraumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler von der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert.
+ Man erkennt eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten ja genau mit der Kyrlovraumdimension übereinstimmt. Die Schranke der $40\%$ wurde dabei aus Skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an.
 
 
 \newpage
