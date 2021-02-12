@@ -1,0 +1,102 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Es ist naheliegend, dass für eine diskrete Verteilungsfunktion $F$ die Menge der Punkte, in denen $F^\prime$ nicht $0$ ist, mit der Menge der Sprungstellen von $F$ übereinstimmen sollte (und dass $F^\prime$, wenn definiert, nur die Werte $0$ und $\infty$ annimmt).
+Das gilt so, wenn die Sprungstellen schön getrennt liegen (was eigentlich im \Quote{diskret} drinsteckt), muss aber im allgemeinen nicht so sein:
+
+Zeigen sie, dass für
+
+\begin{align*}
+    F(x)
+    =
+    \begin{cases}
+        -1               & \text{für}~ x < -1,                                           \\
+        \frac{-1}{n + 1} & \text{für}~ n \in \N, -\frac{1}{n} \leq x < -\frac{1}{n + 1}, \\
+        0                & \text{für}~ x = 0,                                            \\
+        \frac{1}{n + 1}  & \text{für}~ n \in \N, \frac{1}{n + 1} \leq x < \frac{1}{n},   \\
+        1                & \text{für}~ x \geq 1
+    \end{cases}
+\end{align*}
+
+$|F(x) - x| \leq x^2$ und daher $F^\prime(0) = 1$ gilt.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Sei $x \in \R$.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($x < -1$):
+    
+    \begin{align*}
+        \implies &
+        0 < -1 - x, \quad |x| \leq x^2 \\
+        \implies &
+        |F(x) - x|
+        =
+        |-1 - x|
+        =
+        -1 - x
+        =
+        -1 + |x|
+        <
+        |x|
+        \leq
+        x^2
+    \end{align*}
+
+    \item Fall ($\Exists n \in \N: -\frac{1}{n} \leq x < -\frac{1}{n+1}$):
+    
+    \begin{align*}
+        \implies &
+        0 < \frac{-1}{n+1} - x, \quad -x - x^2 = -x (1 + x) \leq \frac{1}{n} \pbraces{1 - \frac{1}{n+1}} = \frac{1}{n} \frac{n}{n+1} = \frac{1}{n+1} \\
+        \implies &
+        |F(x) - x|
+        =
+        \vbraces{\frac{-1}{n+1} - x}
+        =
+        -\frac{1}{n+1} - x
+        \leq
+        x^2
+    \end{align*}
+
+    \item Fall ($\Exists n \in \N: \frac{1}{n+1} \leq x < \frac{1}{n}$):
+    
+    Wir wenden den $2$-ten Fall auf $-x$ an, weil
+
+    \begin{align*}
+        |F(x) - x| = \vbraces{\frac{1}{n+1} - x} = \vbraces{\frac{-1}{n+1} - (-x)},
+        \quad
+        -\frac{1}{n+1} \geq -x > \frac{1}{n}.
+    \end{align*}
+
+\end{enumerate}
+
+Weil $F$ symmetrisch ist, betrachten wir bloß den rechtsseitigen Differentialquotienten.
+Für $\epsilon > 0$ hinreichend klein
+
+\begin{align*}
+    \Exists n_\epsilon \in \N:
+        \frac{1}{n_\epsilon + 1} \leq x < \frac{1}{n_\epsilon}.
+\end{align*}
+
+\begin{align*}
+    \implies
+    F^\prime(0)
+    =
+    \lim_{\epsilon \to 0+}
+        \frac{F(0 + \epsilon) - F(0)}{\epsilon}
+    \begin{cases}
+        \leq \lim_{\epsilon \to 0+} \frac{\frac{1}{n_\epsilon + 1}}{\frac{1}{n_\epsilon + 1}} = 1 \\
+        \geq \lim_{\epsilon \to 0+} \frac{\frac{1}{n_\epsilon + 1}}{\frac{1}{n_\epsilon    }} = 1
+    \end{cases}
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

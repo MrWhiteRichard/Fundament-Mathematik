@@ -1,0 +1,144 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$(q_n, n \in \N)$ sei eine Abzählung der rationalen Zahlen in $]0, 1[$, $\epsilon > 0$.
+Die Menge
+
+\begin{align*}
+    A = (\bigcup_n ]q_n - \frac{\epsilon}{2^n}, q_n + \frac{\epsilon}{2^n}[) \cap ]0, 1[
+\end{align*}
+
+ist offen und daher als disjunkte Vereinigung von offenen Intervallen darstellbar:
+
+\begin{align*}
+    A = \sum_n ]a_n, b_n[.
+\end{align*}
+
+jedes offene intervall hat mit $A$ nichtleeren Schnitt, insbesondere gibt es in jeder Umgebung eines Punktes $x \in ]0, 1[ \setminus A$ einen $a_n$ oder $b_n$.
+Die Funktion
+
+\begin{align*}
+    F = \sum_n h_{a_n, b_n}
+\end{align*}
+
+ist dann überall differenzierbar, und ihre Ableitung $F^\prime$ ist beschränkt, auf $A$ stetig und auf $A^C$ unstetig.
+Insbesondere hat die Menge der Unstetigkeitsstellen von $F^\prime$ positives Lebesguemaß, und daher ist $F^\prime$ nicht Riemann-integrierbar.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{comment}
+
+    \begin{solution}
+
+    \phantom{}
+
+    \begin{enumerate}
+
+        \item $A$ ist, als Vereinigung offener Intervalle (und endlichem Schnitt), offen.
+        
+        \item Der Schnitt der $q_n$-Intervalle mit $]0, 1[$ ist auch offen.
+        
+        \item Sei $\emptyset \neq ]a, b[ \subset ]0, 1[$.
+        Laut Konstruktion gilt
+
+        \begin{align*}
+            \Forall n \in \N:
+                q_n \in A.
+        \end{align*}
+
+        $\Q$ ist dicht in $\R$.
+
+        \begin{align*}
+            \implies &
+            \Exists n \in \N:
+                q_n \in ]a, b[ \\
+            \implies &
+            ]a, b[ \cap A \supset \Bbraces{q_n} \neq \emptyset
+        \end{align*}
+
+        \item Sei $x \in ]0, 1[ \setminus A$ und $\epsilon > 0$.
+        Nun gilt ja $]x - \epsilon, x + \epsilon[ \cap A \neq \emptyset$.
+        Also muss $a_n \in B_\epsilon(x)$ oder $b_n \in B_\epsilon(x)$.
+
+        \item Sei $x \in ]0, 1[$.
+        
+        \begin{multline*}
+            h_{a, b}(x)
+            =
+            h_{0, b-a}(x - a)
+            =
+            \begin{cases}
+                g(x - a),                    & 0 \leq x - a \leq \frac{1}{n \pi},                 \\
+                g \pbraces{\frac{1}{n \pi}}, & \frac{1}{n \pi} < x - a < b - a - \frac{1}{n \pi}, \\
+                g(b - a - x + a),            & b - a - \frac{1}{n \pi} \leq x - a \leq b - a,     \\
+                0,                           & \text{sonst}
+            \end{cases} \\
+            =
+            \begin{cases}
+                g(x - a),                    & a \leq x \leq \frac{1}{n \pi} + a,             \\
+                g \pbraces{\frac{1}{n \pi}}, & \frac{1}{n \pi} + a < x < b - \frac{1}{n \pi}, \\
+                g(b - x),                    & b - \frac{1}{n \pi} \leq x \leq b,             \\
+                0,                           & \text{sonst}
+            \end{cases}
+        \end{multline*}
+
+        \begin{enumerate}[label = \arabic*.]
+
+            \item Fall ($x \in A$):
+            
+            \begin{align*}
+                \implies &
+                \Exists n \in \N:
+                    x \in ]a_n, b_n[ \\
+                \implies &
+                F^\prime(x) = h_{a_n, b_n}^\prime(x)
+            \end{align*}
+
+            \item Fall ($x \in A^C$):
+
+            \begin{enumerate}[label = \arabic*.]
+
+                \item Fall ($\Exists n \in \N: x \in \Bbraces{a_n, b_n}$):
+                
+                Laut der vorigen Aufgabe, verschwinden die linksseitigen und rechtsseitigen Differentialquotienten von $h$ am rechten bzw. linken Randpunkt.
+
+                \begin{align*}
+                    \implies
+                    &
+                    F^\prime(a_n)_+
+                    =
+                    \lim_{\epsilon \to 0+}
+                        \frac{F(a_n + \epsilon) - F(a_n)}{\epsilon}
+                    =
+                    \lim_{\epsilon \to 0+}
+                        \frac{h_{a_n, b_n}(a_n + \epsilon) - h_{a_n, b_n}(a_n)}{\epsilon}
+                    =
+                    0, \\
+                    &
+                    F^\prime(b_n)_-
+                    =
+                    \lim_{\epsilon \to 0-}
+                        \frac{F(b_n + \epsilon) - F(b_n)}{\epsilon}
+                    =
+                    \lim_{\epsilon \to 0-}
+                        \frac{h_{b_n, b_n}(b_n + \epsilon) - h_{b_n, b_n}(b_n)}{\epsilon}
+                    =
+                    0
+                \end{align*}
+
+                \item Fall ($\nExists n \in \N: x \in \Bbraces{a_n, b_n}$):
+
+            \end{enumerate}
+
+        \end{enumerate}
+
+    \end{enumerate}
+
+    \end{solution}
+
+\end{comment}
+
+% --------------------------------------------------------------------------------
