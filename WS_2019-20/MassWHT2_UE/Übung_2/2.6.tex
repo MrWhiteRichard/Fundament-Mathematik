@@ -1,0 +1,137 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$F$ sei eine nichtnegative Verteilungsfunktion und $G(x) = F(x)^2$, $x \in \R$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Zeigen Sie:
+    $G$ ist eine Verteilungsfunktion
+
+    \item Zeigen Sie:
+    $\mu_G \ll \mu_F$
+
+    \item Bestimmen Sie $\derivative[][\mu_G]{\mu_F}$
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item $G$ ist monoton nichtfallend und rechtsstetig, weil $F$ es ist.
+    
+    \item Sei $]a, b] \in \mathfrak J$, mit
+    
+    \begin{align*}
+        0 = \mu_F(]a, b]) = F(b) - F(a).
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \mu_G(]a, b])
+        =
+        G(b) - G(a)
+        =
+        F(b)^2 - F(a)^2
+        =
+        \underbrace{(F(b) - F(a))}_0 (F(b) + F(a))
+        =
+        0
+    \end{align*}
+
+    Der Fortsetzungssatz erledigt den Rest.
+    
+    \begin{comment}
+
+        \item Sei $A \in \mathfrak B$ mit $\mu_F(A) = 0$.
+        $\mu_F$ ist ein Lebesgue-Stieltjes-Maß, also sigmaendlich.
+
+        \begin{align*}
+            \implies &
+            \mu_F(A)
+            =
+            \inf \Bbraces{\sum_{n \in \N} \mu_F(E_n): E_n \in \mathfrak J, A \subseteq \bigcup_{n \in \N} E_n} \\
+            \implies &
+            \Forall \epsilon > 0:
+                \Exists (]a_n, b_n[) \subset \mathfrak J:
+                    \sum_{n \in \N} ]a_n, b_n[ \supseteq A,
+                    \quad
+                    \mu_F \pbraces{\sum_{n \in \N} ]a_n, b_n[} \leq \underbrace{\mu_F(A)}_0 + \epsilon
+        \end{align*}
+
+        Sei $K \subseteq A$ kompakt.
+        Laut dem Satz von Heine-Borel, gilt also
+
+        \begin{align*}
+            \Exists N \in \N:
+                \sum_{n=1}^N:
+                    ]a_n, b_n[ \supseteq K.
+        \end{align*}
+
+        \begin{align*}
+            \implies
+            \mu_G(K)
+            \leq
+            \mu_G \pbraces{\sum_{n=1}^N ]a_n, b_n[}
+            \leq
+            \sum_{n=1}^N
+                \mu_G(]a_n, b_n[)
+            \leq
+            \sum_{n=1}^N
+                \mu_G(]a_n, b_n])
+            =
+            \sum_{n=1}^N
+                F(b_n)^2 - F(a_n)^2
+            =
+            \sum_{n=1}^N
+                (F(b_n) - F(a_n)) (F(b_n) + F(a_n))
+            \leq
+            M \sum_{n=1}^N \mu_F(]a_n, b_n[)
+            \leq
+            M \cdot \epsilon
+        \end{align*}
+
+        Weil das für alle $\epsilon$ gilt, muss $\mu_G(K) = 0$.
+        $\mu_G$ ist sigmaendlich, also insbesondere regulär von unten, d.h.
+
+        \begin{align*}
+            \mu_G(A) = \sup \Bbraces{\mu_G(K): K \subseteq A, ~\text{kompakt}}.
+        \end{align*}
+
+        Damit gilt aber $\mu_G(A) = 0$.
+
+    \end{comment}
+
+    \item
+
+    \begin{multline*}
+        \derivative[][\mu_G]{\mu_F}(x)
+        =
+        \lim_{h \to 0}
+            \frac{G(x + h) - G(x - h)}{F(x + h) - F(x - h)}
+        =
+        \lim_{h \to 0}
+            \frac{F(x + h)^2 - F(x - h)^2}{F(x + h) - F(x - h)} \\
+        =
+        \lim_{h \to 0}
+            \frac{F(x + h) - F(x - h)}{F(x + h) - F(x - h)}
+            (F(x + h) + F(x - h))
+        =
+        F(x) F(x - 0)
+    \end{multline*}
+
+\end{enumerate}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    

@@ -1,0 +1,141 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$f: [a, b] \to \R$ heißt Lipschitz-stetig, wenn es eine konstante $M$ gibt, sodass für $a \leq s \leq t \leq b$ $|f(t) - f(s)| \leq M (t - s)$ gilt.
+Zeigen Sie:
+
+\begin{enumerate}[label = (\alph*)]
+    \item $f$ ist absolutstetig,
+    \item $g = \derivative[][\mu_f]{\lambda}$ erfüllt $|g| \leq M$ fast überall.
+\end{enumerate}
+
+Insgesamt ist $f$ genau dann Lipschitz-stetig, wenn
+
+\begin{align*}
+    f(x)
+    =
+    \Int[\bbraces{a, x}]{g}{\lambda}
+\end{align*}
+
+mit einer beschränkten maessbaren Funktion $g$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        \Forall \epsilon > 0:
+            \Exists \delta > 0:
+                \Forall a \leq s_1 < t_1 \leq \cdots \leq s_n < t_n \leq b:
+                    \pbraces
+                    {
+                        \sum_{i=1}^n
+                            |t_i - s_i|
+                        \leq
+                        \delta
+                        \implies
+                        \sum_{i=1}^n
+                            |f(t_i) - f(s_i)|
+                        \leq
+                        \epsilon
+                    }
+    \end{align*}
+
+    nämlich $\delta := \epsilon / M$, weil
+
+    \begin{align*}
+        \sum_{i=1}^n
+            |f(t_i) - f(s_i)|
+        \leq
+        \sum_{i=1}^n
+            M |t_i - s_i|
+        \leq
+        M \delta
+        =
+        \epsilon.
+    \end{align*}
+
+    \item Laut Satz 7.1: Radon-Nikodym, ist $g$ nicht-negativ.
+    
+    \includegraphicsboxed{MassWHT1&2/MassWHT1&2 - Satz 7.1 - Radon-Nikodym.png}
+
+    \begin{align*}
+        \Forall ]s, t] \subset [a, b]:
+            \Int[s][t]{|g|}{\lambda}
+            =
+            \Int[s][t]{g}{\lambda}
+            =
+            \mu_f(]s, t])
+            =
+            |f(t) - f(s)|
+            \leq
+            M |t - s|
+            =
+            \Int[s][t]{M}{\lambda}
+    \end{align*}
+
+    Laut dem Fortsetzungssatz, gilt diese Gleichung nicht nur für Intervalle, sondern alle Borelmengen.
+    Daraus folgt die Behauptung.
+
+\end{enumerate}
+
+\begin{itemize}
+
+    \item [\Quote{$\Rightarrow$}]:
+
+    \begin{align*}
+        \implies
+        f(x)
+        \stackrel{?}{=}
+        |f(x) - f(a)|
+        =
+        \mu_f(]a, x])
+        =
+        \Int[a][x]{g}{\lambda}
+    \end{align*}
+
+    \item [\Quote{$\Leftarrow$}]:
+    Sei $g \leq M$ messbar und
+
+    \begin{align*}
+        f(x) = \Int[\bbraces{a, x}]{g}{\lambda}.
+    \end{align*}
+
+    \begin{align*}
+        \Forall ]s, t] \subset [a, b]:
+            |f(t) - f(s)|
+            =
+            \vbraces
+            {
+                \Int[a][t]{g}{\lambda}
+                -
+                \Int[a][s]{g}{\lambda}
+            }
+            =
+            \vbraces
+            {
+                \Int[s][t]{g}{\lambda}
+            }
+            \leq
+            \Int[s][t]{|g|}{\lambda}
+            \leq
+            M \lambda(]s, t])
+            =
+            M |t - s|
+    \end{align*}    
+
+\end{itemize}
+    
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    
