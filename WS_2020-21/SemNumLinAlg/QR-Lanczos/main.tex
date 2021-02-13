@@ -799,19 +799,19 @@ Die erste Gleichheit kann man sich mit gleichen Rechnungen wie im Beweis von Lem
 
 \subsection{Herleitung des Verfahrens}
 
-Es ist also nun Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $T_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums $\mathcal{K}_m(A,v_0)$. Für die Einträge von $T_m$ gilt
+Es ist also nun Ziel, die Eigenwerte der Abbildung $\mathcal{A}_m$ zu berechnen. Hierfür benötigen wir eine Repräsentation von $\mathcal{A}_m$ durch eine Matrix $B_m$ bezüglich einer Orthonormalbasis $\{v_0, \dots, v_{m-1}\}$ des Krylov-Raums $\mathcal{K}_m(A,v_0)$. Für die Einträge von $B_m$ gilt
 \begin{align*}
-	(T_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j,
+	(B_m)_{ij} &= (v_i, \mathcal{A}_m v_j) = v_i^*Av_j,
 \end{align*}
 woraus wir die Matrixgleichung
 \begin{align}\label{mateq}
-	T_m &= V_m^*AV_m \in \C^{m \times m}
+	B_m &= V_m^*AV_m \in \C^{m \times m}
 \end{align}
 erhalten.
 
-Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $T_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel \ref{section_QR} bekannten QR-Verfahren mit wenig Aufwand berechnen.
+Der Vorteil dieser Darstellung ist, dass die Eigenwerte von $B_m$ jenen von $\mathcal{A}_m$ entsprechen. Wenn wir $m$ nicht zu groß gewählt haben, können wir diese mit dem aus Kapitel \ref{section_QR} bekannten QR-Verfahren mit wenig Aufwand berechnen.
 
-Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $T_m$ als eine Tridiagonalmatrix (also auch Hessenberg-Matrix) der Form
+Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren, auf welches an dieser Stelle nicht genauer eingegangen werden soll. Aus diesem ergibt sich der Ansatz, $B_m$ als eine Tridiagonalmatrix (also auch Hessenberg-Matrix) der Form
 
 \begin{align}\label{trimatrix}
 \begin{pmatrix}
@@ -823,7 +823,7 @@ Eine Möglichkeit zur Bestimmung einer Orthonormalbasis liefert das CG-Verfahren
 \end{pmatrix}
 \end{align}
 
-aufzustellen. Die Gleichung \eqref{mateq} schreiben wir um als $AV_m = V_m T_m$, was spaltenweise zu folgenden Gleichungen führt:
+aufzustellen. Die Gleichung \eqref{mateq} schreiben wir um als $AV_m = V_m B_m$, was spaltenweise zu folgenden Gleichungen führt:
 \begin{align*}
 	A v_0 &= \gamma_0 v_0 + \delta_0 v_1 \\
 	A v_j &= \delta_{j-1} v_{j-1} + \gamma_j v_j + \delta_j v_{j+1}, \quad j=1, \dots, m-2.
@@ -979,7 +979,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\begin{equation}
 		\label{Eigenwert_Ungl}
 		\begin{aligned}
-			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(T_m v,v)}{(v,v)} \\
+			\lambda_k^{(m)} &= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(B_m v,v)}{(v,v)} \\
 			&= \max_{\substack{S \subseteq \C^m\\ \dim S = k}} \min_{v\in S\setminus\{0\}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
 			&= \max_{\substack{T \subseteq \mathcal{K}_m \\ \dim T = k}} \min_{w\in T\setminus\{0\}} \frac{(Aw,w)}{(w,w)}\\
 			 &\le \max_{\substack{T \subseteq \C^n\\ \dim T = k}} \min_{w\in T\setminus\{0\}} \frac{(Aw,w)}{(w,w)} = \lambda_k.
@@ -1028,7 +1028,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\end{equation}
 
 	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$. Diese Darstellung erhalten wir, da $\C^m$ als ein Krylov-Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ gesehen werden kann, wobei $V \tilde{v_0} = v_0$ sein soll. Der Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ hat Dimension $m$, da
-	
+
 	\begin{equation*}
 		\begin{aligned}
 			\mathcal{K}_m (B_m, \tilde{v_0}) &= \mathcal{K}_m (V^*AV, \tilde{v_0})
@@ -1037,13 +1037,13 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	\end{equation*}
 
 	gilt und $\mathcal{K}_m$ nach Vorraussetzung $m$-dimensional sein muss. Durch $V^*$ geht keine Dimension verloren, also gilt $\C^m = \mathcal{K}_m (B_m, \tilde{v_0})$
-	
+
 	Weil es für jedes $w\in \mathcal{K}_m$ ein $\tilde{w} \in \C^m$ gibt, sodass $w = V \tilde{w}$, folgt mit Lemma \ref{v0_Polynom_Darstellung} die Darstellung
-	
+
 	\begin{equation*}
 		w = V \left(\sum_{k=1}^{m} p(\lambda_k^{(m)}) \tilde{\beta_k} \tilde{u}_j^{(m)}\right) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)},
 	\end{equation*}
-	
+
 	wobei $p \in \Pi_{m-1}$ ist.
 	Dann gilt für alle $j < i$
 	\begin{equation*}
