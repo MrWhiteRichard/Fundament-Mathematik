@@ -1,0 +1,110 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+$F$ und $G$ seien eindimensionale Verteilungsfunktionen.
+Dann ist $H = F \circ G$ ebenfalls eine Verteilungsfunktionen, und wenn $F$ absolutstetig ist, dann gilt $\mu_H \ll \mu_G$ (für Mutige außer Konkurrenz: wie sieht die Radon-Nikodym-Dichte aus?).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+$H$ ist monoton nichtfallend und rechtsstetig, also eine Verteilungsfunktion.
+Sei $A \in \mathfrak B$ mit
+
+\begin{multline*}
+    0
+    =
+    \mu_G(A)
+    =
+    \mu_G^\ast(A)
+    =
+    \inf \Bbraces{\sum_{n \in \N} \mu_G(E_n): \Forall n \in \N: E_n \in \mathfrak R(\mathfrak J), \bigcup_{n \in \N} E_n \supset A} \\
+    =
+    \inf \Bbraces{\sum_{n \in \N} \mu_G(]a_n, b_n]): \Forall n \in \N: ]a_n, b_n] \in \mathfrak J, \bigcup_{n \in \N} ]a_n, b_n] \supset A}.
+\end{multline*}
+
+Sei $\delta > 0$ beliebig und $(]a_n, b_n]) \subset \mathfrak J$, sodass
+
+\begin{align*}
+    \sum_{n \in \N} \mu_G(]a_n, b_n]) < \delta / 2,
+    \quad
+    \bigcup_{n \in \N} ]a_n, b_n] \supset A.
+\end{align*}
+
+$\mu_H$ ist regulär von unten, d.h.
+
+\begin{align*}
+    \mu_H(A) = \sup \Bbraces{\mu_H(K): K \supseteq A, ~\text{kompakt}}.
+\end{align*}
+
+Sei $\epsilon > 0$ und $K \subset A$ kompakt, sodass $\mu_H(A) \leq \mu_H(K) + \epsilon / 2$.
+Für $n \in \N$, können wir $\hat b_n > b_n$ finden, sodass
+
+\begin{align*}
+    \mu_G(]a_n, \hat b_n[) \leq \mu_G(]a_n, b_n]) + \delta / 2^{n+1},
+    \quad
+    \mu_H(]a_n, \hat b_n[) \leq \mu_H(]a_n, b_n]) + \delta / 2^n.
+\end{align*}
+
+Laut dem Satz von Heine-Borel,
+
+\begin{align*}
+    \Exists N \in \N:
+        \bigcup_{n \leq N} ]a_n, \hat b_n[ \supset K.
+\end{align*}
+
+Weiters gilt ja
+
+\begin{align*}
+    \sum_{n \leq N}
+        G(b_n) - G(a_n)
+    =
+    \sum_{n \leq N}
+            \mu_G(]a_n, \hat b_n[)
+    \leq
+    \sum_{n \leq N}
+        \mu_G(]a_n, b_n])
+    +
+    \sum_{n \leq N}
+        \delta / 2^{n+1}
+    <
+    \delta / 2 + \sum_{n \in \N} \delta / 2^{n+1}
+    <
+    \delta.
+\end{align*}
+
+Wegen der absoluten Stetigkeit von $F$, folgt für $\delta$ hinreichend klein, dass
+
+\begin{multline*}
+    \mu_H(A) - \epsilon / 2
+    \leq
+    \mu_H(K)
+    \leq
+    \mu_H \pbraces{\bigcup_{n \leq N} ]a_n, \hat b_n[}
+    \leq
+    \sum_{n \leq N}
+        \mu_H(]a_n, \hat b_n[) \\
+    \leq
+    \sum_{n \leq N}
+        \mu_H(]a_n, b_n])
+    +
+    \sum_{n \leq N}
+        \delta / 2^n
+    =
+    \sum_{n \leq N}
+        F(G(b_n)) - F(G(a_n))
+    +
+    \sum_{n \in \N}
+        \delta / 2^n
+    <
+    \epsilon / 2 + \delta.
+\end{multline*}
+
+Wir erhalten also $\mu_H(A) \leq \epsilon + \delta$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,172 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Die Funktion
+
+\begin{align*}
+    F(x) = x^2 \sin(1 / x^2)
+\end{align*}
+
+mit $F(0) = 0$ ist im Intervall $[-1, 1]$ überall differenzierbar, aber $F^\prime$ ist nicht Lebesgue-integrierbar (und auch nicht eigentlich Riemann-integrierbar, weil unbeschränkt, aber immerhin noch uneigentlich Riemann-integrierbar).
+Anmerkung:
+Das zeigt uns Grenzen unserer Hauptsatz-Variationen.
+Wir haben schöne Ergebnisse, wenn wir mit integrierbaren Funktionen (im Legesgueschen oder Riemannschen Sinn) beginnen:
+dann ist das Integral (als Funktion der Obergrenze) fast überall differenzierbar, und die Ableitung stimmt fast überall mit der Ausgangsfunktion überein.
+In der anderen Richtung sind wir weniger glücklich:
+wenn eine Funktion überall differenzierbar ist, muss ihre Ableitung weder im (uneigentlich) Riemannschen noch im Lebesguschen Sinn integrierbar sein.
+Wenn wir nur Differenzierbarkeit fast überall fordern, dann gibt es sogar ein negatives Resultat:
+da jede singuläre monotone Funktion fast überall Ableitung $0$ hat, ist es hoffnungslos, aus dieser die ursprüngliche Funktion zurückbekommen zu wollen.
+Es bleibt die Frage, ob es für überall differenzierbare Funktionen ein Integral gibt, das die ursprungliche Funktion rekonstruiert, und erstaunlicherweise gibt es das mit dem Henstock-Kurzweil-Integral (auch als verallgemeinertes Riemann-Integral bekannt).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Teil ($F$ überall differenzierbar):
+    
+    \begin{align*}
+        \Forall x \in [-1, 1] \setminus \Bbraces{0}:
+            F^\prime(x)
+            =
+            2 x \sin(1 / x^2) + x^2 (-2) \frac{1}{x^3} \cos(1 / x^2)
+            =
+            2 (x \sin(1 / x^2) - \frac{1}{x} \cos(1/x^2))
+    \end{align*}
+    
+    Die einzige interessante Stelle ist $x = 0$.
+
+    \begin{align*}
+        \vbraces
+        {
+            \frac{F(0 + \epsilon) - F(0)}{\epsilon}
+        }
+        =
+        \vbraces
+        {
+            \frac{F(\epsilon)}{\epsilon}
+        }
+        =
+        \vbraces
+        {
+            \frac{\epsilon^2 \sin(1 / \epsilon^2)}{\epsilon}
+        }
+        \leq
+        |\epsilon|
+        \xrightarrow{\epsilon \to 0}
+        0
+    \end{align*}
+
+    \item Teil ($F^\prime$ nicht Lebesgue-integrierbar):
+    
+    Wir bestimmen
+
+    \begin{align*}
+        [F^\prime \geq 0]
+        =
+        \Bbraces{x \in [-1, 1]: 2 (x \sin(1 / x^2) - \frac{1}{x} \cos(1 / x^2)) \geq 0}
+        \supset
+        \Bbraces{x \in ]0, 1]: \sin(1 / x^2) \geq 0 \geq \cos(1 / x^2)}
+    \end{align*}
+
+    Sei $x \in ]0, 1]$.
+    Durch malen der $\sin$- und $\cos$-Plots und markieren der richtigen Stellen, kann man sich leicht überlegen, dass
+
+    \begin{align*}
+        \sin(1 / x^2) \geq 0
+        \iff &
+        1 / x^2 \in \sum_{n \in \Z} [2 n \pi, (2 n + 1) \pi] \\
+        \iff &
+        x \in \sum_{n \in \Z} [a_n, b_n] \subset ]0, 1], \\
+        \cos(1 / x^2) \leq 0
+        \iff &
+        1 / x^2 \in \sum_{n \in \Z} \bbraces{\frac{(4 n + 1) \pi}{2}, \frac{(4 n + 3) \pi}{2}} \\
+        \iff &
+        x \in \sum_{n \in \N} [c_n, d_n],
+    \end{align*}
+
+    wobei
+
+    \begin{align*}
+        a_n := \sqrt{\frac{1}{(2 n + 1) \pi}}
+        \leq
+        c_n := \sqrt{\frac{2}{(4 n + 3) \pi}}
+        \leq
+        b_n := \sqrt{\frac{1}{2 n \pi}}
+        \leq
+        d_n := \sqrt{\frac{2}{(4 n + 1) \pi}},
+        \quad
+        n \in \N.
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        [F^\prime \geq 0]
+        \supset
+        \sum_{n \in \N}
+            [a_n, b_n]
+        \cap
+        \sum_{n \in \N}
+            [c_n, d_n]
+        =
+        \sum_{n \in \N}
+            [a_n, b_n]
+            \cap
+            [c_n, d_n]
+        \supset
+        \sum_{n \in \N}
+            [c_n, b_n]
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \Int{(F^\prime)^+}{\lambda}
+        & =
+        \Int[\bbraces{F^\prime \geq 0}]{F^\prime}{\lambda} \\
+        & \geq
+        \Int
+        {
+            F^\prime
+            \sum_{n \in \N}
+                [c_n, b_n]
+        }{\lambda} \\
+        & =
+        \sum_{n \in \N}
+        \Int[c_n][b_n]
+        {
+            F^\prime
+        }{\lambda} \\
+        & =
+        \sum_{n \in \N}
+            F(b_n) - F(c_n) \\
+        & =
+        \sum_{n \in \N}
+            \frac{2}{(4 n + 1) \pi}
+            \underbrace
+            {
+                \sin \pbraces
+                {
+                    \frac{(4 n + 1) \pi}{2}
+                }
+            }_1
+            -
+            \frac{1}{(2 n + 1) \pi}
+            \underbrace
+            {
+                \sin((2 n + 1) \pi)
+            }_0 \\
+        & =
+        \infty
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

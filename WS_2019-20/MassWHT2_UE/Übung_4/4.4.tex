@@ -1,0 +1,65 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie, dass jede messbare additive FUnktion $f: \R \to \R$ linear ist (zeigen Sie, dass es ein $M > 0$ gibt, sodass $A = [|f| < M]$ positives Lebesguemaß hat -- bei genauerer Betrachtung gilt das sogar für jedes $M > 0$. Was gilt dann für $A \ominus A$?).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    \bigcup_{n \in \N}
+        f^{-1}(]-n, n[)
+    =
+    f^{-1} \pbraces{\bigcup_{n \in \N} ]-n, n[}
+    =
+    f^{-1}(\R)
+    =
+    \Bbraces{x \in \R: f(x) \in \R}
+    =
+    \R
+\end{align*}
+
+\begin{align*}
+    \implies
+    \infty
+    =
+    \lambda(\R)
+    =
+    \lambda \pbraces{\bigcup_{n \in \N} f^{-1}(]-n, n[)}
+    \leq
+    \sum_{n \in \N}
+        \lambda(f^{-1}(]-n, n[))
+\end{align*}
+
+\begin{align*}
+    \implies
+    \Exists n \in \N:
+        \lambda(A) > 0,
+        \quad
+        A := [|f| < M],
+        \quad
+        M := n    
+\end{align*}
+
+Laut der $2$-ten Aufgabe, enthält $A \ominus A$ ein nichtleeres Intervall $[a, b]$.
+
+\begin{align*}
+    \implies
+    \Forall x \in [a, b] \subset A \ominus A:
+        \Exists a_1, a_2 \in A:
+            & ~
+            x = a_1 - a_2 \\
+        \implies & ~
+        f(x) = f(a_1) - f(a_2) \leq |f(a_1)| + |f(a_2)| \leq 2 M
+\end{align*}
+
+$f$ ist also auf $[a, b]$ beschränkt.
+Laut der $3$-ten Aufgabe, ist $f$ linear.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
