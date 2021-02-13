@@ -5,33 +5,33 @@
 	\begin{enumerate}
 		\item $(x,x) > 0$ for all $x \in H \setminus \{0\}$.
 		\item $(x,y) = \overline{(y,x)}$ for all $x,y \in H$.
-		\item $(x + y, z) = (x,z) + (y,z)$ for all $x,y,z \in H$, and $(\lambda x, y) = \lambda (x,y)$ for all $\lambda \in \C$ and $x,y \in H$. 
+		\item $(x + y, z) = (x,z) + (y,z)$ for all $x,y,z \in H$, and $(\lambda x, y) = \lambda (x,y)$ for all $\lambda \in \C$, $x,y \in H$. 
 	\end{enumerate}
 \end{definition}
 
 
 \begin{remark}
-	We know from \cite[p.41]{FAna1} that an inner product induces a norm. Throughout this paper a vector space $H$ with an inner product will always be a normed spaces with this norm.
+	We know from \cite[p.41]{FAna1} that an inner product induces a norm $\norm{x} = \sqrt{\pbraces{x, x}}$. Throughout this paper a vector space $H$ provided with an inner product will always be normed with this norm.
 \end{remark}
 
 
 \begin{remark} \label{remark:csb}
-	Let $V$ be a vector space and $(\cdot, \cdot)_H$ an inner product on $V$. Then for all $x,y \in V$ the inequality $\vbraces{(x,y)} \leq \norm{x} \norm{y}$ holds. Equality holds if and only if $x$ and $y$ are linearly independent. The inequality is called \textit{Cauchy-Schwarz inequality}. The proof can be found in \cite[p. 41]{FAna1}.
+	Let $V$ be a vector space and $(\cdot, \cdot)$ an inner product on $V$. Then for all $x,y \in V$ the inequality $\vbraces{(x,y)} \leq \norm{x} \norm{y}$ holds true. Equality holds if and only if $x$ and $y$ are linearly dependent. This inequality is called \textit{Cauchy-Schwarz inequality}. The proof can be found in \cite[p. 41]{FAna1}.
 \end{remark}
 
 
-\begin{remark}
-	For a vector space with inner product $(\cdot, \cdot): V \times V \to \C$ the inner product is continuous when $V \times V$ in endowed with the product topology. Furthermore for every $y \in V$ we know that $f_y:V \to \C: x \mapsto (x,y)$ is continuous. The proof of these facts can be found in \cite[p.43]{FAna1} 
+\begin{remark} \label{remark:inner_product_continuity}
+	For a vector space with inner product $(\cdot, \cdot): V \times V \to \C$ the inner product is continuous when $V$ is endowed with the topology induced by the norm and $V \times V$ is endowed with the product topology. Furthermore for every $y \in V$ the linear functional $f_y:V \to \C: x \mapsto (x,y)$ is continuous. The proof of these facts can be found in \cite[p.43]{FAna1} 
 \end{remark}
 
 \begin{definition}
 	A vector space $H$ over $\C$ with a scalar product that is complete as a normed space endowed with the norm induced by the scalar product is called \textit{Hilbert space}.
 \end{definition}
 
-In this paper a Hilbert spaces is by definition a vector space over the field $\C$ and not over $\R$. 
+In this paper a Hilbert space is by definition a vector space over the field $\C$ and not over $\R$. 
 
 \begin{definition}
-	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call two subsets $M,N \subseteq V$ \textit{orthogonal}, denoted $M \perp N$, if for all $x \in M$ and all $y \in N$ we have $(x,y) = 0$. Two vectors $v,w \in V$ are called \textit{orthogonal} if $(v,w) = 0$. 
+	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call two subsets $M,N \subseteq V$ \textit{orthogonal}, denoted by $M \perp N$, if for all $x \in M$ and all $y \in N$ we have $(x,y) = 0$. Two vectors $v,w \in V$ are called \textit{orthogonal} if $(v,w) = 0$. 
 \end{definition}
 
 \begin{definition}
@@ -39,32 +39,25 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 	\begin{align*}
 		(u,v) = 
 		\begin{cases}
-			1 &, \text{if } u = v \\
-			0 &, \text{if } u \neq v
-		\end{cases}.
+			1 &, \text{if } u = v, \\
+			0 &, \text{if } u \neq v.
+		\end{cases}
 	\end{align*}
-	If every orthonormal system $\tilde{M}$ fulfills
-	\begin{align*}
-		\tilde{M} \supseteq M \Rightarrow \tilde{M} = M
-	\end{align*}
-	then $M$ is called an \textit{orthonormal basis}.
+	If $M$ is an orthonormal system and every orthonormal system $\tilde{M}$  with $\tilde{M} \supseteq M$ satisfies $\tilde{M} = M$ then $M$ is called an \textit{orthonormal basis} of $H$.
 \end{definition}
 
+
 \begin{remark}
-	Whenever we denote an orthonormal system $M = \{e_j \mid j \in J\}$ in this paper we require that for all $j,k \in M$ the implication
-	\begin{align*}
-		j \neq k \Rightarrow e_j \neq e_k
-	\end{align*}
-	holds.
+	Whenever we write an orthonormal system $M$ as an indexed set $M = \{e_j \mid j \in J\}$ in this paper, we require that $e_j \neq e_k$ for $j,k \in J$ with $j \neq k$.
 \end{remark}
 
+
 \begin{lemma}\label{lemma:onb}
-	Let $H$ be a Hilbert space and $M$ an orthonormal system. Then there exists an orthonormal basis $\tilde{M} \supseteq M$. Particularly there exists an orthonormal basis of $H$. 
+	Let $H$ be a Hilbert space and $M$ an orthonormal system. Then there exists an orthonormal basis $\tilde{M} \supseteq M$. In particular, there exists an orthonormal basis of $H$. 
 \end{lemma}
 
-\begin{proof}
-	The proof can be found in \cite[p.52]{FAna1}.
-\end{proof}
+The proof can be found in \cite[p.52]{FAna1}.
+
 
 \begin{theorem}
 	Let $H$ be a Hilbert space and $M = \{e_j \mid j \in J\}$ an orthonromal system. Then the following statements are equivalent.
@@ -73,60 +66,56 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 		
 		\item For every $x \in H$
 		\begin{align}\label{eq:parzeval}
-		\sum_{j \in J} \vbraces{(x, e_j)_H}^2 = \norm[H]{x}^2.
+		\sum_{j \in J} \vbraces{(x, e_j)}^2 = \norm[]{x}^2.
 		\end{align}
 		
 		\item For all $x,y \in H$ the equality
 		\begin{align*}
-			\sum_{j \in J} (x, e_j)_H \overline{(y,e_j)_H} = (x,y)_H
+			\sum_{j \in J} (x, e_j) \overline{(y,e_j)} = (x,y)
 		\end{align*}
-		holds.
+		holds true.
 		
 		\item For every $x \in H$  
 		\begin{align} \label{eq:fourierseries}
-		x = \sum_{j \in J} (x, e_j)_H e_j
+		x = \sum_{j \in J} (x, e_j) e_j
 		\end{align}
 	\end{enumerate} 
 \end{theorem}
 
-
-\begin{proof}
-	The proof can be found in \cite[p. 54]{FAna1}.
-\end{proof}
+The proof can be found in \cite[p. 54]{FAna1}.
 
 
 \begin{definition}
-	For a Hilbert space $H$ and an orthonormal basis $M = \{e_j \mid j \in J\}$ and an $x \in H$ the equality \eqref{eq:parzeval} is called \textit{Parseval's equality}. The series in \eqref{eq:fourierseries} is called \textit{fourierseries} of $x$ with regard to the orthonormal basis $M$. 
+	For a Hilbert space $H$, an orthonormal basis $M = \{e_j \mid j \in J\}$ of $H$ and $x \in H$, equality \eqref{eq:parzeval} is called \textit{Parseval's equality}. The series in \eqref{eq:fourierseries} is called \textit{Fourier series} of $x$ with respect to the orthonormal basis $M$. 
 \end{definition}
 
+
 \begin{lemma}
-	Let $H$ be a Hilbert space and $M := \{e_j \mid j \in J\}$ be a non-empty orthonormal system. Then for every $x \in H$ the equivalence
+	Let $H$ be a Hilbert space and $M := \{e_j \mid j \in J\}$ be a non-empty orthonormal system. Then for every $x \in H$ we have
 	\begin{align}
-		\norm[H]{x}^2 = \sum_{j \in J} \vbraces{(x, e_j)_H}^2 \Leftrightarrow x = \sum_{j \in J} (x,e_j) e_j \label{eq:parceval_to_fourier}
+		\norm[]{x}^2 = \sum_{j \in J} \vbraces{(x, e_j)}^2 \Leftrightarrow x = \sum_{j \in J} (x,e_j) e_j. \label{eq:parceval_to_fourier}
 	\end{align}
-	holds.
 \end{lemma}
 
 \begin{proof}
-	We proof the two implications separately. For both directions we consider an orthonormal basis $\{f_k \mid k \in K\} \supseteq M$ that exists according to lemma \ref{lemma:onb}. 
+	We proof the two implications separately. For both directions we consider an orthonormal basis $\{f_k \mid k \in K\} \supseteq M$ that exists according to Lemma \ref{lemma:onb}. 
 	\begin{enumerate}
 		\item[\Quote{$\Rightarrow$}]  Using Parzeval's equality \eqref{eq:parzeval} we obtain
 		\begin{align*}
-		\sum_{j \in J} |(x, e_j)_H|^2 = \norm[H]{x}^2 = \sum_{k \in K} |(x,f_k)_H|^2
+			\sum_{j \in J} |(x, e_j)|^2 = \norm[]{x}^2 = \sum_{k \in K} |(x,f_k)|^2.
 		\end{align*}
-		and hence for all $k \in K$ with $f_k \notin M$
-		 the equality $(x, f_k)_H = 0$ must be true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
+		Hence,  for all $k \in K$ with $f_k \notin M$ the equality $(x, f_k) = 0$ must hold true. Finally, using the representation as a Fourier series \eqref{eq:fourierseries} we obtain
 		\begin{align*}
-		x = \sum_{k \in K} (x,f_k)_H f_k = \sum_{j \in J} (x,e_j)_H e_j.
+			x = \sum_{k \in K} (x,f_k) f_k = \sum_{j \in J} (x,e_j) e_j.
 		\end{align*}
 		
-		\item[\Quote{$\Leftarrow$}] This time we immediately observe that for all $k \in K$ with $f_k \notin M$ we have 
+		\item[\Quote{$\Leftarrow$}] We observe that for all $k \in K$ with $f_k \notin M$ we have 
 		\begin{align*}
-			\pbraces{x, f_k}_H = \pbraces{\sum_{j \in J} \pbraces{x, e_j}_H e_j, f_k}_H = \sum_{j \in J} \pbraces{x, e_j}_H \pbraces{e_j, f_k}_H = 0
+			\pbraces{x, f_k} = \pbraces{\sum_{j \in J} \pbraces{x, e_j} e_j, f_k} = \sum_{j \in J} \pbraces{x, e_j} \pbraces{e_j, f_k} = 0.
 		\end{align*}
-		and hence with Parseval's equality
+		Hence, with Parseval's equality we obtain
 		\begin{align*}
-			\sum_{j \in J} \vbraces{\pbraces{x,e_j}_H}^2 = \sum_{k \in K} \vbraces{\pbraces{x,f_k+}_H}^2 = \norm[H]{x}^2.
+			\sum_{j \in J} \vbraces{\pbraces{x,e_j}}^2 = \sum_{k \in K} \vbraces{\pbraces{x,f_k}}^2 = \norm[]{x}^2.
 		\end{align*}
 	\end{enumerate}
 	
@@ -135,40 +124,39 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 
 
 \begin{definition}
-	Let $V$ and $W$ be two vector spaces over the same field $K$ and $\zeta$ an automorphism of $K$. A function $f: V \to W$ is called \textit{semilinear} with regard to $\zeta$, if all $x,y \in V$ and all $\lambda \in K$ fulfill
-	\begin{enumerate}
-		\item $f(x + y) = f(x) + f(y)$
-		\item $f(\lambda x) = \zeta(\lambda) f(x)$.
-	\end{enumerate}
-	We also call $f$ a $\zeta$\textit{-linear function}. If $\zeta = id_K$ then $f$ is simply a \textit{linear function} and if $K = \C$ and $\zeta$ is the complex conjugation then $f$ is called an \textit{antilinear function}.
+	Let $V$ and $W$ be two vector spaces over the same field $K$ and $\zeta$ be an automorphism on $K$. A function $f: V \to W$ is called \textit{semilinear} with respect to $\zeta$ or $\zeta$\textit{-linear}, if for all $x,y \in V$ and all $\lambda \in K$ the equations
+	\begin{align*}
+		f(x + y) = f(x) + f(y) \quad \text{and} \quad f(\lambda x) = \zeta(\lambda) f(x)
+	\end{align*}
+	are satisfied. If $K = \C$ and $\zeta$ is the complex conjugation, then $f$ is called an \textit{antilinear function}.
 \end{definition}
 
 
 \begin{remark}
-	The properties of $\zeta$-linear functions are very similar to the ones we know from linear function. See \cite[p. 138]{LinAG1&2} for these results. We will use the property that a $\zeta$-linear function $f$ is injective if $\ker f = \{0\}$.
+	If $f$ is a $\zeta$-linear function and $\zeta = id_K$ then $f$ is simply a \textit{linear function}. The properties of $\zeta$-linear functions are very similar to the ones we know from linear function. See \cite[p. 138]{LinAG1&2} for these results. We will use the property that a $\zeta$-linear function $f$ is injective if $\ker f = \{0\}$. Furthermore, a scalar product in this paper is linear in the first and antilinear in the second argument, as can be found in \cite[p. 41]{FAna1}.
 \end{remark}
+
+
+It is not necessary to precisely define a topological vector space here. We only need to know that every normed space is a topological vector space. This result can be found in \cite[p. 18]{FAna1}
 
 
 \begin{definition}
-	Let $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ be topological vector spaces. We denote the set of all $\zeta$-linear and continuous functions from $X$ to $Y$ with $\zeta$-$L_b(X,Y)$. If $(X, \mathcal{T}_X) = (Y, \mathcal{T}_Y)$ then we write $L_b(X) = L_b(X,Y)$. If $\zeta$ is the identity function then we write $L_b(X,Y)$ and $L_b(X)$.
+	Let $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ be topological vector spaces. We denote the set of all $\zeta$-linear and continuous functions from $X$ to $Y$ with $\zeta$-$L_b(X,Y)$. In the case $(X, \mathcal{T}_X) = (Y, \mathcal{T}_Y)$ we write $\zeta$-$L_b(X) = \zeta$-$L_b(X,Y)$. If $\zeta$ is the identity function then we write $L_b(X,Y)$ and $L_b(X)$.
 \end{definition}
 
-
-\begin{remark}
-	The scalar products in this paper are linear in the first and antilinear in the second argument. This result can be found in \cite[p. 41]{FAna1}.
-\end{remark}
 
 \begin{definition}
-	Let $(X, \mathcal{T})$ be a topological vector space over $\C$. Then we denote $(X, \mathcal{T})^\prime$ for the set of all linear and continuous functions from $X$ into the field $\C$. We call this set the \textit{continuous dual space} of $(X, \mathcal{T})$.
+	If $(X, \mathcal{T})$ is a topological vector space over $\C$, then we denote by $(X, \mathcal{T})^\prime$ the set of all linear and continuous functions from $X$ into the field $\C$. We call this set the \textit{continuous dual space} of $(X, \mathcal{T})$.
 \end{definition}
 
 \begin{remark}
-	It is not necessary to precisely define a topological vector space here. We only need to know that every normed space is a topological vector space. This result can be found in \cite[p. 18]{FAna1}
+	Let $X$ be a normed space. Then $X^\prime$ provided with the operator norm 
+	\begin{align*}
+		\norm{f} = \sup\Bbraces{\vbraces{f(x)} : x \in X \land \norm[X]{x} \leq 1}, \quad f \in X^\prime,
+	\end{align*}
+	is a Banach space. See \cite[p. 25]{FAna1} for this result.
 \end{remark}
 
-\begin{remark}
-	Let $X$ be a normed space. Then $X^\prime$ with the operator norm is a Banach space. See \cite[p. 25]{FAna1} for this result.
-\end{remark}
 
 \begin{proposition} \label{prop:riesz}
 	Let $H$ be a Hilbert space. Then the function
@@ -179,46 +167,45 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 			y \mapsto f_y
 		\end{cases}
 	\end{align*}
-	where $f_y: H \to \C: x \mapsto (x,y)_H$ is an isometric and antilinear bijection from $H$ to $H^\prime$. 
+	where $f_y: H \to \C$ defined by $x \mapsto (x,y)_H$ is an isometric and antilinear bijection from $H$ onto $H^\prime$. 
 \end{proposition}
 
-\begin{proof}
-	The proof can be found in \cite[p. 50]{FAna1}
-\end{proof}
+The proof can be found in \cite[p. 50]{FAna1}
+
 
 \begin{definition}
-	Let $A$ be an algebra with an identity element $e$. An element $a \in A$ is called \textit{inveritble}, if there exists $b \in A$ with $ab = ba = e$. We define
+	Let $A$ be an algebra with an identity element $e$. This is a vector space additionally provided with a bilinear and associative multiplication $\cdot: A \times A \to A$, where $e \in A$ satisfies $ea = ae = a$ for all $a \in  A$. See \cite[p.121-122]{FAna1} for this definition and some properties of an algebra. An element $a \in A$ is called \textit{inveritble}, if there exists $b \in A$ with $ab = ba = e$. We define
 	\begin{align*}
 		\Inv(A) := \{a \in A \mid a \text{ is invertible}\}
 	\end{align*}
-	and based on this we define the \textit{spectrum} of an element $a \in A$ as
+	and based on this the \textit{spectrum} of an element $a \in A$ as
 	\begin{align*}
 		\sigma(a) = \{\lambda \in \C \mid (a - \lambda e) \notin \Inv(A)\}.
 	\end{align*}
+	Furthermore, we define the \textit{spectral radius} of an element $a \in A$ by
+	\begin{align*}
+		r(a) := \sup\{|\lambda| : \lambda \in \sigma(a)\},
+	\end{align*}
+	where $\sup \emptyset := 0$.
 \end{definition}
 
+
 \begin{remark}
-	A precise definition of an algebra is not required in this paper. It can be found in \cite[p. 122]{FAna1}. We only need to know that for a Banach space $X$ the space $L_b(X)$ is a Banach algebra with identity element, thus for every $T \in L_b(X)$ the spectrum $\sigma(T)$ is defined. See \cite[p.121-122]{FAna1} for this result. 
+	For a Banach space $X$ the space $L_b(X)$ is a Banach algebra with the identity mapping as the identity element, see \cite[p.121-122]{FAna1} for this result. 
 \end{remark}
+
 
 \begin{definition}
 	Let $X$ be a Banach space and $T \in L_b(X)$. Then $\lambda \in \C$ is called \textit{eigenvalue} of $T$ if $\ker(T - \lambda I) \neq \{0\}$. 
 \end{definition}
 
-\begin{definition}
-	Let $A$ be a Banach algebra with an identity element and $a \in A$. Then we define the \textit{spectral radius}
-	\begin{align*}
-		r(a) := \max\{|\lambda| : \lambda \in \sigma(a)\}
-	\end{align*}
-	where $\sigma(a)$ is the spectrum of $a$.
-\end{definition}
 
 \begin{definition}
-	Let $X, Y$ be Banach spaces and $K := \{x \in X: |x| \leq 1\}$. Then a linear function $T: X \to Y$ is called compact, if $T(K)$ is relatively compact in $Y$. 
+	Let $X, Y$ be Banach spaces. A linear function $T: X \to Y$ is called compact, if $T\pbraces{\Bbraces{x \in X: \vbraces{x} \leq 1}}$ is relatively compact in $Y$. 
 \end{definition}
 
 \begin{remark} \label{remark:compact}
-	Let $X, Y$ be Banach spaces and $T:X \to Y$ a linear and continuous function with $\dim \ran T < \infty$. Then $T$ is compact. This result can be found in \cite[p. 133]{FAna1}.
+	Let $X, Y$ be Banach spaces and $T \in L_b(X,Y)$ with $\dim \ran T < \infty$. Then $T$ is compact. This result can be found in \cite[p. 133]{FAna1}.
 \end{remark}
 
 \begin{remark} \label{remark:compact_spectrum}
@@ -226,7 +213,7 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 \end{remark}
 
 \begin{lemma}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $\zeta$ an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Furthermore, let $T \in \zeta\text{-}L_b(H_1, H_2)$. Then there exists a unique function $T_\zeta^\ast: H_2 \to H_1$ such that for all $x \in H_1$ and $y \in H_2$ the equation 
+	Let $H_1$ and $H_2$ be Hilbert spaces and $\zeta$ an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. If $T \in \zeta\text{-}L_b(H_1, H_2)$, then there exists a unique function $T_\zeta^\ast: H_2 \to H_1$ such that for all $x \in H_1$ and $y \in H_2$ the equation 
 	\begin{align*}
 		(Tx, y)_{H_2} = \zeta\pbraces{(x, T_\zeta^\ast y)_{H_1}}
 	\end{align*}
@@ -234,25 +221,28 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 \end{lemma}
 
 \begin{proof}
-	For an arbitrary $y \in H_2$ we define $f_y: H_1 \to \C: x \mapsto \zeta^{-1}\pbraces{(Tx,y)_{H_2}}$. For arbitrary $u,v \in H_1$ and arbitrary $\lambda \in \C$ we obtain
+	For an arbitrary $y \in H_2$ we define $f_y: H_1 \to \C$ by $f_y (x) := \zeta^{-1}\pbraces{(Tx,y)_{H_2}}$. For $u,v \in H_1$ and $\lambda, \mu \in \C$ we obtain
 	\begin{align*}
-		f_y(u + \lambda v) &= \zeta^{-1}\pbraces{(T(u + \lambda v), y)_{H_2}} = \zeta^{-1}\pbraces{(Tu, y)_{H_2} + \zeta(\lambda) (Tv, y)_{H_2}} \\
-		&= \zeta^{-1}\pbraces{(Tu,y)_{H_2}} + \lambda \zeta^{-1}\pbraces{(Tv,y)_{H_2}} = f_y(u) + \lambda f_y(v),
+		f_y(\mu u + \lambda v) &= \zeta^{-1}\pbraces{(T(\mu u + \lambda v), y)_{H_2}} = \zeta^{-1}\pbraces{\zeta(\mu) (Tu, y)_{H_2} + \zeta(\lambda) (Tv, y)_{H_2}} \\
+		&= \mu \zeta^{-1}\pbraces{(Tu,y)_{H_2}} + \lambda \zeta^{-1}\pbraces{(Tv,y)_{H_2}} = \mu f_y(u) + \lambda f_y(v).
 	\end{align*}
-	hence $f_y$ is a linear function. Furthermore, from Fana corollary 3.1.4 we know that $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous and we have $\zeta^{-1}$ continuous hence $f_y$ is continuous. Now, using proposition \ref{prop:riesz}, we know that there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
+	Hence, $f_y$ is a linear function. Furthermore, by Remark \ref{remark:inner_product_continuity} the function $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous. By assumption, $\zeta^{-1}$ is continuous and we conclude continuity of $f_y$. Using Proposition \ref{prop:riesz} there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
 	\begin{align*}
-		T_\zeta^\ast: H_2 \to H_1: y \mapsto z_y
+		T_\zeta^\ast: H_2 \to H_1, \quad y \mapsto z_y
 	\end{align*}
-	that fulfills for all $x \in H_1$ and all $y \in H_2$ the equalities
+	that satisfies
 	\begin{align*}
 		(Tx,y)_{H_2} = \zeta\pbraces{\zeta^{-1}\pbraces{(Tx,y)_{H_2}}} = \zeta\pbraces{f_y(x)} = \zeta \pbraces{(x, T_\zeta^\ast y)_{H_1}}.
 	\end{align*}
+	for all $x \in H_1$ and all $y \in H_2$.
+	
+	Consider arbitrary $y,z \in H_2$ and $\lambda, \mu \in \C$. For every $x \in H_1$ we have
+	\begin{align*}
+		\pbraces{x, T_\zeta^\ast \pbraces{\mu y + \lambda z}}_{H_1} &= \zeta^{-1}\pbraces{\pbraces{Tx, \mu y + \lambda z}_{H_2}} = \zeta^{-1}\pbraces{\overline{\mu}} \zeta^{-1}\pbraces{\pbraces{Tx, y}_{H_2}} + \zeta^{-1}\pbraces{\overline{\lambda}} \zeta^{-1}\pbraces{\pbraces{Tx, z}_{H_2}} \\
+		&= \zeta^{-1}\pbraces{\overline{\mu}} \pbraces{x, T_\zeta^\ast y}_{H_1} + \zeta^{-1}\pbraces{\overline{\lambda}} \pbraces{x, T_\zeta^\ast z}_{H_1} = \pbraces{x, \overline{\zeta^{-1}\pbraces{\overline{\mu}}}T_\zeta^\ast y + \overline{\zeta^{-1}\pbraces{\overline{\lambda}}}T_\zeta^\ast z}_{H_1}.
+	\end{align*}
+	We conclude $T_\zeta^\ast \pbraces{\mu y + \lambda z} = \overline{\zeta^{-1}\pbraces{\overline{\mu}}}T_\zeta^\ast y + \overline{\zeta^{-1}\pbraces{\overline{\lambda}}}T_\zeta^\ast z$. The function $\zeta^{-1}$ is a continuous automorphism on $\C$. Thus, by Lemma \ref{lemma:continuous_auto}, it is either the identity mapping or the complex conjugation. In both cases we see that $T_\zeta^\ast$ is a $\zeta$-linear function.
 \end{proof}
-
-
-\begin{remark}
-	We certainly know that the identity function and the complex conjugation are automorphisms of $\C$ with continuous inverse. The question how many other function of this kind exist is not answered here. Furthermore, the identity function and the complex conjugation are the only two automorphisms of $\C$ that act as the identity function on $\R$. A proof of this result can be found in \cite[p. 41]{LinAG1&2}. 
-\end{remark}
 
 
 \begin{definition}
@@ -260,18 +250,23 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 \end{definition}
 
 
+\begin{remark} \label{remark:spectral_radius}
+	If $H$ is a Hilbert space and $N: H \to H$ is normal, then $r(N) = \norm{N}$. The proof of this statement can be found in \cite[p.142]{FAna1}.
+\end{remark}
+
+
 \begin{definition}
-	Let $H_1$ and $H_2$ be Hilbert spaces, $\zeta$ an automorphism of $\C$ with continuous inverse and $U \in \zeta$-$L_b(H_1, H_2)$. Then $U$ is called $\zeta$-unitary, if $U_\zeta^\ast U = I_{H_1}$ and $U U_\zeta^\ast = I_{H_2}$. If $\zeta$ is the identity mapping then $U$ is called \textit{unitary} and if $\zeta$ is the complex conjugation then $U$ is called \textit{antiunitary}.
+	Let $H_1$ and $H_2$ be Hilbert spaces, $\zeta$ an automorphism on $\C$ with continuous inverse and $U \in \zeta$-$L_b(H_1, H_2)$. If $\zeta$ is the identity mapping then $U$ is called \textit{unitary} and if $\zeta$ is the complex conjugation then $U$ is called \textit{antiunitary}. Note that, according to Lemma \ref{lemma:continuous_auto}, there exist only these two automorphisms on $\C$ with continuous inverse.
 \end{definition}
 
 
 \begin{remark}\label{remark:operator_equivalence_hilbert}
-		Let $H$ be a Hilbert space and $T\in L_b(H)$ with $(Tx,x)_H = 0$ for all $x \in H$. Then $T = 0$. The proof of this can be found in \cite[p.142]{FAna1}.
+		If $H$ is a Hilbert space and if $T\in L_b(H)$ satisfies $(Tx,x)_H = 0$ for all $x \in H$, then $T = 0$. The proof of this can be found in \cite[p.142]{FAna1}.
 \end{remark}
 
 
 \begin{proposition} \label{prop:unitary}
-	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b\pbraces{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ that fulfills $\zeta(x) = x$ for all $x \in \R$. Then the following statements are equivalent.
+	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b\pbraces{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Then the following statements are equivalent.
 	\begin{enumerate}[label = (\roman*)]
 		\item $U$ is $\zeta$-unitary. 
 		\item $\ran U = H_2$ and $(Ux , Uy)_{H_2} = \zeta\pbraces{(x,y)_{H_1}}$ for all $x,y \in H_1$.
@@ -280,28 +275,27 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 \end{proposition}
 
 \begin{proof}
-	We will split the proof in two implications.
 	\begin{enumerate}
-		\item[\Quote{$(\mathrm{i}) \Rightarrow \ (\mathrm{ii})$}] Due to the fact that $U U_\zeta^\ast = I_{H_2}$ we know that $\ran U = H_2$ and using $U_\zeta^\ast U = I_{H_1}$, we obtain for every $x,y \in H_1$ 
+		\phantom{}
+		\item[]\Quote{$(\mathrm{i}) \Rightarrow \ (\mathrm{ii})$}. Due to the fact that $U U_\zeta^\ast = I_{H_2}$ we have $\ran U = H_2$. Because of the assumption $U_\zeta^\ast U = I_{H_1}$ we obtain for $x,y \in H_1$ 
 		\begin{align*}
-			(Ux, Uy)_{H_2} = \zeta\pbraces{(x, U_\zeta^\ast U y)_{H_1}} = \zeta \pbraces{(x,y)_{H_1}}
+			(Ux, Uy)_{H_2} = \zeta\pbraces{(x, U_\zeta^\ast U y)_{H_1}} = \zeta \pbraces{(x,y)_{H_1}}.
 		\end{align*}
-		which is exactly what we wanted to show.
 		
-		\item[\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}] For this implication we make use of the fact that $\zeta$ acts as the identity function on $\R$. We obtain for all $x \in H_1$ the equalities
+		\item[]\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}. By Lemma \ref{lemma:continuous_auto} the function $\zeta$ is either the identity function or the complex conjugation. Thus, $\zeta(\alpha) = \alpha$ for all $\alpha \in \R$. Given $x \in H_1$ we have
 		\begin{align*}
-			\norm[H_2]{Ux}^2 = \zeta\pbraces{\norm[H_1]{x}^2} = \norm[H_1]{x}^2.
+			\norm[H_2]{Ux}^2 = \pbraces{Ux, Ux}_{H_2} = \zeta\pbraces{\pbraces{x, x}_{H_2}} = \zeta\pbraces{\norm[H_1]{x}^2} = \norm[H_1]{x}^2.
 		\end{align*} 
 		
-		\item[\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}] Now we have for every $x \in H_1$ that 
+		\item[]\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}. By Lemma \ref{lemma:continuous_auto} the function $\zeta^{-1}$ is either the identity function or the complex conjugation. For every $x \in H_1$ we have 
 		\begin{align*}
-			(x, U_\zeta^\ast U x)_{H_1} = \zeta^{-1}\pbraces{(Ux, Ux)_{H_2}} = \zeta^{-1}\pbraces{\zeta\pbraces{(x,x)_{H_1}}} = (x,x)_{H_1}.
+			(x, U_\zeta^\ast U x)_{H_1} = \zeta^{-1}\pbraces{(Ux, Ux)_{H_2}} = \zeta^{-1} \pbraces{\norm[H_2]{Ux}^2} = \norm[H_2]{Ux}^2 = \norm[H_1]{x}^2 = (x,x)_{H_1}.
 		\end{align*}
-		Using remark \ref{remark:operator_equivalence_hilbert} we now know that $U_\zeta^\ast U = I_{H_1}$. For $x \in H_1$ and $Ux = 0$ we know that 
+		Using Remark \ref{remark:operator_equivalence_hilbert} we obtain $U_\zeta^\ast U = I_{H_1}$. For $x \in H_1$ with $Ux = 0$ we derive from 
 		\begin{align*}
 			0 = (Ux, Ux)_{H_2} = \zeta((x,x)_{H_1})
 		\end{align*}
-		and hence $x = 0$. We conclude that $U$ is bijective and from $U_\zeta^\ast U = I_{H_1}$ we obtain
+		the equality $x = 0$. Hence, $U$ is bijective. Finally, it is a consequence of $U_\zeta^\ast U = I_{H_1}$ that
 		\begin{align*}
 			U U_\zeta^\ast = U U_\zeta^\ast UU^{-1} = UI_{H_1}U^{-1} = UU^{-1} = I_{H_2}.
 		\end{align*}
@@ -309,29 +303,20 @@ In this paper a Hilbert spaces is by definition a vector space over the field $\
 \end{proof}
 
 
-\begin{remark} \label{remark:spectral_radius}
-	Let $H$ be a Hilbert space and $N: H \to H$ normal. Then $r(N) = \norm{N}$ where $r(N)$ is the spectral radius of $N$. The proof of this statement can be found in \cite[p.142]{FAna1}.
-\end{remark}
-
-
 \begin{definition}
-	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call a linear function $P: V \to V$ \textit{orthogonal projection}, if
-	\begin{enumerate}
-		\item $P = P^2$
-		\item $\ran P \perp \ker P$
-	\end{enumerate}
+	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call a linear function $P: V \to V$ an \textit{orthogonal projection}, if $P = P^2$ and $\ran P \perp \ker P$.
 \end{definition}
 
 
 \begin{remark}
-	In a vector space $V$ with an inner product $(\cdot, \cdot)$ a linear function $P: V \to V$ with $P^2 = P$ is an orthogonal projection if and only if for all $x,y \in V$ the equality
+	In a vector space $V$ with an inner product $(\cdot, \cdot)$ a linear function $P: V \to V$ with $P^2 = P$ is an orthogonal projection if and only if for all $x,y \in V$
 	\begin{align*}
-		(Px, y) = (x,Py)
+		(Px, y) = (x,Py).
 	\end{align*}
-	holds. This result can be found in \cite[p. 47]{FAna1}.
+	This result can be found in \cite[p. 47]{FAna1}.
 \end{remark}
 
 
 \begin{remark} \label{remark:orth_proj_uniqueness}
-	Let $H$ be a Hilbert space and $M \subseteq H$ a closed subspace. Then there exists a unique orthogonal projection $P$ with $\ran P = M$. The proof of this statement can be found in \cite[p. 48]{FAna1}.
+	Let $H$ be a Hilbert space. If $M \subseteq H$ is a closed subspace, then there exists a unique orthogonal projection $P$ with $\ran P = M$. The proof of this statement can be found in \cite[p. 48]{FAna1}.
 \end{remark}

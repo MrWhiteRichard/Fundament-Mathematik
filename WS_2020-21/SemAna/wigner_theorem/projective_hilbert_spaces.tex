@@ -13,7 +13,7 @@
 \end{lemma}
 
 \begin{proof}
-	Let $x_1, y_1 \in R_1 \setminus \{0\}$ and $x_2, y_2 \in R_2 \setminus \{0\}$. We know that $y_1 = \lambda_1 x_1$ and $y_2 = \lambda_2 x_2$ for some $\lambda_1, \lambda_2 \in \C \setminus \{0\}$. Hence,
+	Let $x_1, y_1 \in R_1 \setminus \{0\}$ and $x_2, y_2 \in R_2 \setminus \{0\}$. We have $y_1 = \lambda_1 x_1$ and $y_2 = \lambda_2 x_2$ for some $\lambda_1, \lambda_2 \in \C \setminus \{0\}$. Hence,
 	\begin{align*}
 		\rho := \frac{\vbraces{(y_1, y_2)}}{\norm[]{y_1} \norm[]{y_2}} = \frac{\vbraces{(\lambda_1 x_1, \lambda_2 x_2)_H}}{\norm[]{\lambda_1 x_1} \norm[]{\lambda_2 x_2}} = \frac{\vbraces{\lambda_1 \lambda_2}\vbraces{(x_1, x_2)}}{\vbraces{\lambda_1 \lambda_2}\norm[]{x_1} \norm[]{x_2}} = \frac{\vbraces{(x_1, x_2)}}{\norm[]{x_1} \norm[]{x_2}}.
 	\end{align*}
@@ -22,7 +22,7 @@
 
 
 \begin{definition}
-	The previous lemma \ref{lemma:ray_prod} allows us to define the \textit{ray-product} $(\cdot, \cdot)_{\mathcal{P}(H)}: \mathcal{P}(H) \times \mathcal{P}(H) \to [0,1]$ on a projective Hilbert space $\mathcal{P}(H)$ by
+	The previous Lemma \ref{lemma:ray_prod} allows us to define the \textit{ray-product} $(\cdot, \cdot)_{\mathcal{P}(H)}: \mathcal{P}(H) \times \mathcal{P}(H) \to [0,1]$ on a projective Hilbert space $\mathcal{P}(H)$ by
 	\begin{align*}
 		 (\C x, \C y)_{\mathcal{P}(H)} := \frac{\vbraces{(x, y)}}{\norm[]{x} \norm[]{y}}.
 	\end{align*}
@@ -30,7 +30,7 @@
 
 
 \begin{lemma} \label{lemma:projective_metric}
-	Let $\mathcal{P}(H)$ be a projective Hilbert space and let $f: \mathcal{P}(H) \to L_b(H)$ be defined by $f(R)(x) = (x,v_R)v_R$ for $x \in H$ and $R \in \mathcal{P}(H)$, where $v_R \in R$ is a vector of norm one. Then for all $R \in \mathcal{P}(H)$ the operator $f(R)$ is the orthogonal projection with $\ran f(R) = R$. Moreover, $d: \mathcal{P}(H) \times \mathcal{P}(H) \to [0, \infty)$ defined by $(R,S) \mapsto \norm{f(R) - f(S)}$ is a metric. 
+	Let $\mathcal{P}(H)$ be a projective Hilbert space and let $f: \mathcal{P}(H) \to L_b(H)$ be defined by $f(R)(x) := (x,v_R)v_R$ for $x \in H$ and $R \in \mathcal{P}(H)$, where $v_R \in R$ is a vector of norm one. Then for all $R \in \mathcal{P}(H)$ the operator $f(R)$ is the orthogonal projection with $\ran f(R) = R$. Moreover, $d: \mathcal{P}(H) \times \mathcal{P}(H) \to [0, \infty)$ defined by $(R,S) \mapsto \norm{f(R) - f(S)}$ is a metric. 
 \end{lemma}
 
 \begin{proof}
@@ -51,29 +51,29 @@
 
 
 \begin{remark}
-	Throughout this paper a projective Hilbert space will be endowed with the metric from lemma \ref{lemma:projective_metric}. 
+	Throughout this paper a projective Hilbert space will be endowed with the metric from Lemma \ref{lemma:projective_metric}. 
 \end{remark}
 
 
 \begin{lemma} \label{lemma:metric_representation}
-	In a projective Hilbert space $\mathcal{P}(H)$ for all rays $R$ and $S$ the equality 
+	In a projective Hilbert space $\mathcal{P}(H)$ the equality 
 	\begin{align*}
 		d(R,S) = \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}
 	\end{align*}
-	holds true.
+	holds true for all rays $R, S \in \mathcal{P}\pbraces{H}$.
 \end{lemma}
 
 \begin{proof}
-	Let $R,S \in\mathcal{P}(H)$ be arbitrary rays and let $P := f(R)$ and $Q:= f(S)$ be the orthogonal projections onto $R$ and $S$ respectively as in Lemma \ref{lemma:projective_metric} and set $u := v_R$ and $v := v_R$. If $R = S$ then, using Remark \ref{remark:csb}, we easily see that the equation holds true. Thus, from now on we assume $R \neq S$. We are going to have a look at the spectrum of $T: H \to H$ defined by $Tx = Px - Qx$. According to Lemma \ref{lemma:projective_metric} $P$ and $Q$ are orthogonal projections. As
+	Let $R,S \in\mathcal{P}(H)$ be arbitrary rays and let $P := f(R)$ and $Q:= f(S)$ be the orthogonal projections onto $R$ and $S$ respectively as in Lemma \ref{lemma:projective_metric} and set $u := v_R$ and $v := v_S$. If $R = S$ then the equation holds true because of Remark \ref{remark:csb}. Thus, from now on we assume $R \neq S$. We are going to have a look at the spectrum of $T: H \to H$ defined by $Tx = Px - Qx$. As
 	\begin{align*}
 		T^\ast = P^\ast - Q^\ast = P - Q = T
 	\end{align*}
-	the operator $T$ is selfadjoint and hence normal. We also observe that $\ran T \subseteq \mathrm{span}\{u, v\} =: W$. According to Remark \ref{remark:compact}¸ this implies that $T$ is compact.
+	the operator $T$ is selfadjoint and therefore normal. We also observe that $\ran T \subseteq \mathrm{span}\{u, v\} =: W$. According to Remark \ref{remark:compact} this implies that $T$ is compact.
 	
-	Let us now assume $\lambda \in \C \setminus \{0\}$ belongs to the spectrum of $T$. Due to the fact that $T$ is compact we know from Remark \ref{remark:compact_spectrum} that $\lambda$ is eigenvalue of $T$ which gives us $T x = \lambda x$ for some $x \in H \setminus \{0\}$. Hence, $x \in \mathrm{span 
-	}\ T$ which means there exist $\mu, \nu \in \C$ with $x = \mu u + \nu v$, where due to $x \neq 0$ we have $\mu \neq 0$ or $\nu \neq 0$. With no loss of generality we assume $\mu \neq 0$. Now we start calculating.
+	Let us now assume $\lambda \in \C \setminus \{0\}$ belongs to the spectrum of $T$. Due to the fact that $T$ is compact we know from Remark \ref{remark:compact_spectrum} that $\lambda$ is eigenvalue of $T$, which gives $T x = \lambda x$ for some $x \in H \setminus \{0\}$. Hence, $x \in \mathrm{span 
+	}\ T$ which implies the existence of $\mu, \nu \in \C$ with $x = \mu u + \nu v$. From $x \neq 0$ we conclude $\mu \neq 0$ or $\nu \neq 0$. With no loss of generality we assume $\mu \neq 0$.
 	
-	As $R \neq S$ we know that $u$ and $v$ are linearly independent. By $Qu = (u,v) v$, and $Pv = (v,u) u$ we conclude
+	As $R \neq S$ we have linear independence of $u$ and $v$. By $Qu = (u,v) v$, $Pv = (v,u) u$ we conclude
 	\begin{align}
 		\lambda \mu  = \mu  + \nu (v,u) \label{eq:metric1}\\
 		 \lambda \nu  = - \nu  - \mu (u,v) \label{eq:metric2}
@@ -92,7 +92,7 @@
 	\begin{align*}
 		\lambda = \frac{\mu + \nu (v,u)}{\mu} = 1 + \frac{\nu}{\mu} (v,u) 
 	\end{align*}
-	and further
+	and hence
 	\begin{align}
 		\frac{\nu}{\mu} = \frac{\lambda - 1}{(v,u)}. \label{eq:metric3}
 	\end{align}
@@ -104,11 +104,11 @@
 	\begin{align*}
 			\frac{\lambda^2 - 1}{(v,u)} = (\lambda + 1) \frac{\lambda - 1}{(v,u)} =  - (u,v).
 	\end{align*}
-	With a simple transformation we get
+	With a simple transformation we find
 	\begin{align*}
 		\lambda = \pm \sqrt{1 - |(u,v)|^2} = \pm \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}.
 	\end{align*}
-	Although we do not know for sure, whether $0$ belongs to the spectrum of $T$, we know its spectral radius $\vbraces{\lambda}$. Finally by Remark \ref{remark:spectral_radius} we obtain
+	Although we do not know for sure, whether $0$ belongs to the spectrum of $T$, we know its spectral radius $\vbraces{\lambda}$. Finally, by Remark \ref{remark:spectral_radius} we obtain
 	\begin{align*}
 		d(R,S) = \norm{P - Q} = r(P - Q) = \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}.
 	\end{align*}
@@ -120,14 +120,14 @@
 	\begin{align} 
 		\vbraces{(\tilde{x}, \tilde{y})_{H_1}} = \vbraces{(x, y)_{H_2}} \label{eq:vector_isometry},
 	\end{align}
-	the set $L:=\{e_j \mid j \in J\}$ is an orthonormal system in $H_2$, and 
+	the set $L:=\{\tilde{e}_j \mid j \in J\}$ is an orthonormal system in $H_2$, and 
 	\begin{align}
 	\tilde{x} = \sum_{j \in J} (\tilde{x}, \tilde{e}_j)_{H_2} \tilde{e}_j. \label{eq:ran_fourier}
 	\end{align} 
 \end{lemma}
 
 \begin{proof}
-	Using lemma \ref{lemma:metric_representation} we obtain
+	Employing Lemma \ref{lemma:metric_representation} we obtain
 	\begin{align*}
 		\sqrt{1 - \dfrac{|(x,y)_{H_1}|^2}{\norm[H_1]{x}^2 \norm[H_1]{y}^2}} &= \sqrt{1 - (\C x,\C y)_{\mathcal{P}(H_1)}^2} = d(\C x,\C y) \\
 		&= d\pbraces{g(\C x), g(\C y)} = \sqrt{1 - (g(\C x), g(\C y))_{\mathcal{P}(H_2)}^2} = \sqrt{1 - \dfrac{|(\tilde{x}, \tilde{y})_{H_2}|^2}{\norm[H_2]{\tilde{x}}^2 \norm[H_2]{\tilde{y}}^2}}

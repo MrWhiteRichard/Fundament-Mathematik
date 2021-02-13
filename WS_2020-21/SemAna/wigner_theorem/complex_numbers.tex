@@ -1,24 +1,46 @@
 \section{Complex numbers $\C$}
 
-As we will have to work a lot with the complex numbers $\C$ we want to start with some properties of them. 
+As we will have to work a lot with the complex numbers $\C$ we want to start with some of their properties.
 
 \begin{definition}
-	Let $K$ be a field and $\zeta: K \to K$ a bijective function. We call $\zeta$ an \textit{automorphism} of $K$ if for all $\lambda, \mu \in K$ the equalities
-	\begin{enumerate}
-		\item $\zeta(\lambda + \mu) = \zeta(\lambda) + \zeta(\mu)$
-		\item $\zeta(\lambda \mu) = \zeta(\lambda) \zeta(\mu)$
-	\end{enumerate}
-	are true.
-	
+	Let $K$ be a field and $\zeta: K \to K$ a bijective function. We call $\zeta$ an \textit{automorphism} on $K$ if for all $\lambda, \mu \in K$ the equalities
+	\begin{align*}
+		\zeta(\lambda + \mu) = \zeta(\lambda) + \zeta(\mu) \quad \text{and} \quad \zeta(\lambda \mu) = \zeta(\lambda) \zeta(\mu)
+	\end{align*}
+	hold true.
 \end{definition}
+
 
 \begin{definition}
 	Throughout this paper $\overline{\cdot}: \C \to \C: \lambda_1 + i \lambda_2 \mapsto \lambda_1 - i \lambda_2$ will be the \textit{complex conjugation}.
 \end{definition}
 
-\begin{remark}
-	The complex conjugation is a continuous automorphism of $\C$ and is it's own inverse. Some of this can be found in \cite[p.40]{LinAG1&2}.
-\end{remark}
+
+\begin{lemma} \label{lemma:continuous_auto}
+	There exist only two continuous automorphisms on $\C$, namely the identity function and the complex conjugation. These two functions both conincide with their own inverse and act as the identity function on the real line.
+\end{lemma}
+
+\begin{proof}
+	The identity function and the complex conjugation are both isometries. Thus, they are continuous and they are clearly automorphisms on $\C$. They both coincide with their own inverse and act as the identity function on the real line.
+	
+	For an automorphism $\zeta$ on $\C$ we have $\zeta(0) = 0$ and $\zeta(1) = 1$. Assume $\zeta(\alpha) = \alpha$ for some $\alpha \in \N$. We conclude $\zeta(\alpha + 1) = \zeta(\alpha) + \zeta(1) = \alpha + 1$. Hence, by induction we showed that for all $\alpha \in \N$ the equality $\zeta(\alpha) = \alpha$ holds true. For an arbitrary $\lambda \in \C \setminus \{0\}$ we have
+	\begin{align*}
+		0 = \zeta(0) = \zeta(\lambda - \lambda) = \zeta(\lambda) + \zeta(-\lambda) \quad \text{and} \quad 1 = \zeta(1) = \zeta\pbraces{\frac{\lambda}{\lambda}} = \zeta(\lambda) \zeta(\lambda^{-1}).
+	\end{align*}
+	Thus, $\zeta(- \lambda) = -\zeta(\lambda)$ and $\zeta\pbraces{\lambda^{-1}}= \zeta(\lambda)^{-1}$. First we conclude $\zeta(\beta) = \beta$ for all $\beta \in \Z$ and once we have this we obtain $\zeta(\gamma) = \gamma$ for all $\gamma \in \Q$. For any $\delta \in \R$ there exists a sequence of rational numbers $\pbraces{\gamma_n}_{n \in \N}$ that converges to $\delta$. Due to continuity of $\zeta$ we have 
+	\begin{align*}
+		\zeta(\delta) = \zeta\pbraces{\lim_{n \to \infty} \gamma_n} = \lim_{n \to \infty} \zeta(\gamma_n) = \lim_{n \to \infty} \gamma_n = \delta.
+	\end{align*}
+	From
+	\begin{align*}
+		-1 = \zeta(-1) = \zeta\pbraces{i^2} = \zeta(i)^2
+	\end{align*}
+	we conclude that $\zeta(i) \in \Bbraces{i, -i}$. For a complex number $\mu = \mu_1 + i \mu_2$, where $\mu_1, \mu_2 \in \R$, we obtain
+	\begin{align*}
+		\zeta(\mu) = \zeta\pbraces{\mu_1 + i \mu_2} = \zeta\pbraces{\mu_1} + \zeta(i) \zeta\pbraces{\mu_2} = \mu_1 + \zeta(i) \mu_2.
+	\end{align*}
+	Thus, $\zeta$ is either the identity function or the complex conjugation.
+\end{proof}
 
 
 \begin{figure}[!h]
@@ -45,50 +67,56 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 \end{figure}
 
 
-
-
 \begin{lemma} \label{lemma:complex_geom}
-	Let $\lambda \in \C$ and $|\lambda| = 1$. Then the following statements are true.
+	For $\lambda \in \C$ with $|\lambda| = 1$ the following statements are true.
 	\begin{enumerate}
-		\item $|1 + \lambda| = 2 \Rightarrow \lambda = 1$
-		\item $|1 + \lambda| = \sqrt{2} \Rightarrow \lambda = i \lor \lambda = -i$
+		\item If $-\lambda$ has euclidean distance $2$ from the complex number $1$ then $\lambda = 1$. Written as a formula we have
+			\begin{align*}
+				|1 + \lambda| = 2 \Rightarrow \lambda = 1.
+			\end{align*}
+		\item If $-\lambda$ has euclidean distance $\sqrt{2}$ from the complex number $1$ then either $\lambda = i$ or $\lambda = -i$ holds true. Written as a formula we have
+			\begin{align*}
+				|1 + \lambda| = \sqrt{2} \Rightarrow \lambda = i \lor \lambda = -i.
+			\end{align*}
 	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-	We will proof the two statements separately. We always have $\lambda = \mu + i \nu$ with $\mu, \nu \in \R$. We start calculating and obtain
+	We will proof the two statements separately. We have
 	\begin{align*}
-		|1 + \lambda|^2 = |(1 + \mu) + i \nu|^2 = (1 + \mu)^2 + \nu^2 = 1 + 2\mu + \mu^2 + \nu^2 = 1 + 2\mu + |\lambda|^2 = 2 + 2 \mu.
+		|1 + \lambda|^2 \lambda = (1 + \lambda) \pbraces{1 + \overline{\lambda}} \lambda = (1 + \lambda)^2 = 1 + 2 \lambda + \lambda^2.
 	\end{align*}
 	\begin{enumerate}
-		\item We know that $4 = |1 + \lambda|^2 = 2 + 2\mu$ and this implies $\mu = 1$ and using this knowledge we obtain
+		\item If $|1 + \lambda|^2 = 4$ then we obtain
+			\begin{align*}
+				0 = 1 - 2 \lambda + \lambda^2 = (1 - \lambda)^2.
+			\end{align*} 
+		Thus, $\lambda = 1$. 
+		\item If $|1 + \lambda|^2 = 2$ then we obtain 
 		\begin{align*}
-			1 + \nu^2 = \mu^2 + \nu^2 = |\lambda|^2 = 1
+			0 = 1 + \lambda^2.
 		\end{align*}
-		which lets us conclude $\nu^2 = 0$ and hence $\nu = 0$ thus $\lambda = \mu + i \nu = 1$. 
-		
-		\item Here we know that $2 = |1 + \lambda|^2 = 2 + 2\mu$ and hence $\mu = 0$. Using this knowledge we observe
-		\begin{align*}
-			\nu^2 = \mu^2 + \nu^2 = |\lambda|^2 = 1
-		\end{align*}
-		and thus $\nu = 1$ or $\nu = -1$. This implies $\lambda = \mu + i \nu = i$ or $\lambda = -i$.  
+		Thus, $\lambda \in \Bbraces{i, -i}$.  
 	\end{enumerate}
 \end{proof}
 
 \begin{lemma} \label{lemma:phase_adjustment_complex}
-	For any complex number $\mu \in \C \setminus \{0\}$ there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\lambda \mu| = \lambda \mu$. 
+	Let $\mu \in \C \setminus \{0\}$. If a function $\zeta:\C \to \C$ satisfies $\vbraces{\zeta(\mu)} = \vbraces{\mu}$, then there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\mu| = \lambda \zeta(\mu)$. 
 \end{lemma}
 
 \begin{proof}
-	Let $\mu \in \C \setminus \{0\}$ be an arbitrary number. We define $\lambda := \frac{|\mu|}{\mu}$ which implies $|\lambda| = \frac{|\mu|}{|\mu|} = 1$ and obtain
+	Let $\mu \in \C \setminus \{0\}$ be an arbitrary number. Defining
 	\begin{align*}
-		|\lambda \mu| = |\lambda| |\mu| = |\mu| = \frac{|\mu|}{\mu} \mu = \lambda \mu.
+		\lambda := \frac{|\mu|}{\zeta(\mu)} \quad \text{we have} \quad |\lambda| = \frac{|\mu|}{|\zeta(\mu)|} = \frac{\vbraces{\mu}}{\vbraces{\mu}} = 1
 	\end{align*}
-	For another $\nu \in \C$ with $|\nu| = 1$ and $|\nu \mu| = \nu \mu$ we obtain
+	and
 	\begin{align*}
-		\nu = \frac{|\nu \mu|}{\mu} = \frac{|\nu| |\mu|}{\mu} = \frac{|\mu|}{\mu} = \lambda,
+		|\mu| = \frac{|\mu|}{\zeta(\mu)} \zeta(\mu) = \lambda \zeta(\mu).
 	\end{align*}
-	hence $\lambda$ is unique. 
+	For another $\nu \in \C$ with $|\nu| = 1$ and $|\mu| = \nu \zeta(\mu)$ we obtain
+	\begin{align*}
+		\nu = \frac{|\mu|}{\zeta(\mu)} = \lambda.
+	\end{align*}
 \end{proof}
 
 \begin{lemma} \label{lemma:complex_alg}
@@ -99,22 +127,17 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 \end{lemma}
 
 \begin{proof}
-	We write $\lambda = \lambda_1 + i \lambda_2$, $\mu = \mu_1 + i \mu_2$ and $\nu = \nu_1 + i \nu_2$ with $\lambda_1, \lambda_2, \mu_1, \mu_2, \nu_1, \nu_2 \in \R$ and start calculating.
+	We have
 	\begin{align*}
-		|\lambda|^2 + |\nu|^2 + 2 \lambda_1 \nu_1 + 2 \lambda_2 \nu_2  &= (\lambda_1 + \nu_1)^2 + (\lambda_2 + \nu_2)^2 = |\lambda + \nu|^2 \\
-		&= |\lambda + \mu|^2 = |\lambda|^2 + |\mu|^2 + 2 \lambda_1 \mu_1 + 2 \lambda_2 \mu_2
+		|\lambda|^2 + \lambda \overline{\mu} + \overline{\lambda} \mu + \vbraces{\mu}^2 = \pbraces{\lambda + \mu}\pbraces{\overline{\lambda} + \overline{\mu}} = \vbraces{\lambda + \mu}^2 = \vbraces{\lambda + \nu}^2 = \pbraces{\lambda + \nu}\pbraces{\overline{\lambda} + \overline{\nu}} = |\lambda|^2 + \lambda \overline{\nu} + \overline{\lambda} \nu + \vbraces{\nu}^2
 	\end{align*}
-	thus $\lambda_1 \nu_1 + \lambda_2 \nu_2 - \lambda_1 \mu_1 - \lambda_2 \nu_2 = 0$ and
+	and because of $\vbraces{\mu} = \vbraces{\nu}$ we conclude $\lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}$. Furthermore, we have
 	\begin{align*}
-		|\lambda|^2 + |\nu|^2 + 2 \lambda_1 \nu_2 - 2 \lambda_2 \nu_1  &= (\lambda_1 + \nu_2)^2 + (\lambda_2 - \nu_1)^2 = |\lambda - i\nu|^2 \\
-		&= |\lambda - i\mu|^2 = |\lambda|^2 + |\mu|^2 + 2 \lambda_1 \mu_2 - 2 \lambda_2 \mu_1
+		|\lambda|^2 + i\lambda \overline{\mu} - i\overline{\lambda} \mu + \vbraces{\mu}^2 = \pbraces{\lambda - i\mu}\pbraces{\overline{\lambda} + i\overline{\mu}} = \vbraces{\lambda - i\mu}^2 = \vbraces{\lambda - i\nu}^2 = \pbraces{\lambda - i\nu}\pbraces{\overline{\lambda} + i\overline{\nu}} = |\lambda|^2 + i\lambda \overline{\nu} - i\overline{\lambda} \nu + \vbraces{\nu}^2.
 	\end{align*}
-	thus $\lambda_1 \nu_2 - \lambda_2 \nu_1 - \lambda_1 \mu_2 + \lambda_2 \mu_1 = 0$.
-	Now we find that
+	Again because of the assumption $\vbraces{\mu} = \vbraces{\nu}$ we obtain
 	\begin{align*}
-		\overline{\lambda}(\nu - \mu) &= (\lambda_1 - i\lambda_2)(\nu_1 + i \nu_2 - \mu_1 - i\mu_2) \\
-		&= \lambda_1\nu_1 + i\lambda_1 \nu_2 - \lambda_1\mu_1 - i\lambda_1\mu_2 -i\lambda_2\nu_1 + \lambda_2\nu_2 + i\lambda_2\mu_1 - \lambda_2\mu_2 \\
-		&= (\lambda_1 \nu_1 + \lambda_2\nu_2 - \lambda_1\mu_1 - \lambda_2\mu_2) + i(\lambda_1 \nu_2 - \lambda_2\nu_1 -\lambda_1\mu_2 + \lambda_2\mu_1) = 0
+		\overline{\lambda} \pbraces{\nu - \mu} = \lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}
 	\end{align*}
-	and because $\overline{\lambda} \neq 0$ we know that $\nu = \mu$.
+	and $\overline{\lambda} \neq 0$ implies $\nu = \mu$.
 \end{proof}
