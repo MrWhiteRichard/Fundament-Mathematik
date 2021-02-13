@@ -963,6 +963,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	Dabei wird mit $\mathcal{P}_{u_i}$ die Projektion auf den eindimensionalen Unterraum, der von $u_i$ aufgespannt wird, bezeichnet. Das $\theta_i$ kann somit als Winkel zwischen $v_0$ und $u_i$  verstanden werden.
 	\begin{proof}
 
+	Aufgrund der Übersichtlichkeit bezeichnen wir im folgenden Beweis mit $\mathcal{K}_m$ den Krylov-Raum $\mathcal{K}_m(A,v_0)$.\\
 	Seien $v_1, \dots, v_m$ Orthonormalbasisvektoren von $\mathcal{K}_m$ und $V \in \C^{n\times m}$ die Matrix, die diese Vektoren als Spalten besitzt. Dann ist
 
 	\begin{equation*}
@@ -1015,20 +1016,38 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 	Daraus folgt die gewünschte Ungleichung und \eqref{konvergenz Eigenwerte} ist für $i = 1$ erfüllt.\\
 
 	Betrachten wir nun den Fall $i>1$.
-	Bezeichne mit $u_j^{(m)} \in \C^m, \, j = 1,\dots, m$ eine Orthonormalbasis aus Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $B_m$. Mit \eqref{lambdamax} erhalten wir dann
+	Bezeichne mit $\tilde{u}_j^{(m)} \in \C^m, \, j = 1,\dots, m$ eine Orthonormalbasis aus Eigenvektoren zu den Eigenwerten $\lambda_j^{(m)} , \, j = 1,\dots, m$ der Abbildung $B_m$. Mit \eqref{lambdamax} erhalten wir dann
 
 	\begin{equation}
 		\begin{aligned}
 			\label{Darstellung EW}
-			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(B_m v,v)}{(v,v)} \\
-			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (u_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
-			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (Vu_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
+			\lambda_i^{(m)} &= \max_{\substack{v\in \C^m\setminus \{0\} \\ (\tilde{u}_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(B_m v,v)}{(v,v)} \\
+			&= \max_{\substack{v\in \C^m\setminus \{0\} \\ (\tilde{u}_j^{(m)},v) = 0, j = 1,\dots,i-1}} \frac{(AVv,Vv)}{(Vv,Vv)}\\
+			&= \max_{\substack{w\in \mathcal{K}_m\setminus \{0\} \\ (V\tilde{u}_j^{(m)},w) = 0 j = 1,\dots,i-1}} \frac{(Aw,w)}{(w,w)}
 		\end{aligned}
 	\end{equation}
 
-	Da die $u_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $\tilde{u}_j^{(m)} \coloneqq \nicefrac{Vu_j^{(m)}}{\norm{Vu_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)}$. Dann gilt für alle $j < i$
+	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$. Diese Darstellung erhalten wir, da $\C^m$ als ein Krylov-Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ gesehen werden kann, wobei $V \tilde{v_0} = v_0$ sein soll. Der Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ hat Dimension $m$, da
+	
 	\begin{equation*}
-		0 \stackrel{!}{=} (w,\tilde{u}_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k \tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (\tilde{u}_k^{(m)},\tilde{u}_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
+		\begin{aligned}
+			\mathcal{K}_m (B_m, \tilde{v_0}) &= \mathcal{K}_m (V^*AV, \tilde{v_0})
+			&= \textbf{span}\{V^*v_0, V^*Av_0, \dots, V^*A^{m-1}v_0\} = V^* \mathcal{K}_m
+		\end{aligned}
+	\end{equation*}
+
+	gilt und $\mathcal{K}_m$ nach Vorraussetzung $m$-dimensional sein muss. Durch $V^*$ geht keine Dimension verloren, also gilt $\C^m = \mathcal{K}_m (B_m, \tilde{v_0})$
+	
+	Weil es für jedes $w\in \mathcal{K}_m$ ein $\tilde{w} \in \C^m$ gibt, sodass $w = V \tilde{w}$, folgt mit Lemma \ref{v0_Polynom_Darstellung} die Darstellung
+	
+	\begin{equation*}
+		w = V \left(\sum_{k=1}^{m} p(\lambda_k^{(m)}) \tilde{\beta_k} \tilde{u}_j^{(m)}\right) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)},
+	\end{equation*}
+	
+	wobei $p \in \Pi_{m-1}$ ist.
+	Dann gilt für alle $j < i$
+	\begin{equation*}
+		0 \stackrel{!}{=} (w,u_j^{(m)}) = (\sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)},u_j^{(m)}) = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k (u_k^{(m)},u_j^{(m)}) = p(\lambda_j^{(m)}) \beta_j.
 	\end{equation*}
 
 	Es gibt also zwei Möglichkeiten, diese Gleichheit zu erfüllen. Entweder ist $p(\lambda_j^{(m)}) = 0$ oder $\beta_j = 0$. Wir betrachten zuerst den Fall, dass  $\beta_j \neq 0$ für alle $j = 1,\dots, i-1$ gilt.
