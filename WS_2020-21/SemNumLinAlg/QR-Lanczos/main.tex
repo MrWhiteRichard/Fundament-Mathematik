@@ -1027,16 +1027,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}
 	\end{equation}
 
-	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$. Diese Darstellung erhalten wir, da $\C^m$ als ein Krylov-Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ gesehen werden kann, wobei $V \tilde{v_0} = v_0$ sein soll. Der Raum $\mathcal{K}_m (B_m, \tilde{v_0})$ hat Dimension $m$, da
-
-	\begin{equation*}
-		\begin{aligned}
-			\mathcal{K}_m (B_m, \tilde{v_0}) &= \mathcal{K}_m (V^*AV, \tilde{v_0})
-			&= \textbf{span}\{V^*v_0, V^*Av_0, \dots, V^*A^{m-1}v_0\} = V^* \mathcal{K}_m
-		\end{aligned}
-	\end{equation*}
-
-	gilt und $\mathcal{K}_m$ nach Vorraussetzung $m$-dimensional sein muss. Durch $V^*$ geht keine Dimension verloren, also gilt $\C^m = \mathcal{K}_m (B_m, \tilde{v_0})$
+	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$. 
 
 	Weil es für jedes $w\in \mathcal{K}_m$ ein $\tilde{w} \in \C^m$ gibt, sodass $w = V \tilde{w}$, folgt mit Lemma \ref{v0_Polynom_Darstellung} die Darstellung
 
@@ -1211,11 +1202,11 @@ Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleit
 \newpage
 \section{Conclusio}
 
-Wir wollen am Ende die in der Arbeit verwendeten Verfahren noch einmal kurz Vergleichen. Das QR-Verfahren liefert eine sehr gute Approximation an alle Eigenwerte. Der Nachteil ist der sehr große Aufwand, den die benötigte QR-Zerlegung hat. Um dem entgegenzuwirken ist es Sinnvoll, das Verfahren mit Wilkinson-Shifts durchzuführen, bei welchem bei selber Approximations-Fehlergröße weniger QR-Zerlegungen nötig sind. Zudem kann hier auch für die spezielle Klasse der Hessenberg-Matrizen ein weiterer speed-up gewonnen werden, indem man die QR-Zerlegung mit Givens-Rotationen durchführt.
+Wir wollen am Ende die in der Arbeit verwendeten Verfahren noch einmal kurz vergleichen. Das QR-Verfahren liefert eine sehr gute Approximation an alle Eigenwerte. Der Nachteil ist der sehr große Aufwand, den die benötigte QR-Zerlegung hat. Um dem entgegenzuwirken ist es Sinnvoll, das Verfahren mit Wilkinson-Shifts durchzuführen, bei welchem bei selber Approximations-Fehlergröße weniger QR-Zerlegungen nötig sind. Zudem kann hier auch für die spezielle Klasse der Hessenberg-Matrizen ein weiterer speed-up gewonnen werden, indem man die QR-Zerlegung mit Givens-Rotationen durchführt.
 
-Für die meisten Anwendungen in der Praxis ist die Laufzeit des QR-Verfahrens jedoch nicht tragbar, zumal ist man dort oft nicht an allen Eigenwerten interessiert sondern nur an einigen wenigen. Hier kommt das Lanczos-Verfahren zum Einsatz. Für hermitesche Matrizen bekommt man in diesem eine gute Approximation an die größten Eigenwerte. Der Aufwand beim Lanczos-Verfahren ist wesentlich geringer als der beim QR-Verfahren. Ein Nachteil des Verfahrens sind eventuelle numerische Instabilität, der jedoch mit zusätzlichem Aufwand entgegengewirkt werden kann. Ein weiterer Nachteil ist, dass das Verfahren nur für hermitesche Matrizen funktionert. Will man nun Eigenwerte einer nicht hermiteschen Matrix berechnen muss man auf das Arnoldi-Verfahren zurückgreifen.
+Für die meisten Anwendungen in der Praxis ist die Laufzeit des QR-Verfahrens jedoch nicht tragbar, zumal ist man dort oft nicht an allen Eigenwerten interessiert sondern nur an einigen wenigen. Hier kommt das Lanczos-Verfahren zum Einsatz. Für hermitesche Matrizen bekommt man in diesem eine gute Approximation an die größten Eigenwerte. Der Aufwand beim Lanczos-Verfahren ist wesentlich geringer als der beim QR-Verfahren. Ein Nachteil des Verfahrens ist die eventuelle numerische Instabilität, der jedoch mit zusätzlichem Aufwand entgegengewirkt werden kann. Ein weiterer Nachteil ist, dass das Verfahren nur für hermitesche Matrizen funktionert. Will man nun Eigenwerte einer nicht hermiteschen Matrix berechnen, muss man auf das Arnoldi-Verfahren zurückgreifen.
 
-Die Testungen zeigen zudem, dass die Konvergenz des Verfahrens sehr stark vom Spektrum der Eigenwerte abhängt. Wenn sich die extremalen Eigenwerte wirklich stark vom Sprektrum abheben erhalten wir eine gute Konvergenzrate. Es macht also auch dann Sinn, das Lanczos-Verfahren zu verwenden, wenn man schon eine ungefähre Vorstellung hat, wie die Eigenwerte verteilt sind. Oft ist es nun so, dass sich die extremalen Eigenwerte, an der man in der Praxis interessiert ist, eben stark vom breiteren Spektrum abheben. Hier eignet sich das Lanczos-Verfahren also gut.
+Die Testungen zeigen zudem, dass die Konvergenz des Verfahrens sehr stark vom Spektrum der Eigenwerte abhängt. Wenn sich die extremalen Eigenwerte wirklich stark vom Sprektrum abheben erhalten wir eine gute Konvergenzrate. Es macht also auch dann Sinn, das Lanczos-Verfahren zu verwenden, wenn man schon eine ungefähre Vorstellung hat, wie die Eigenwerte verteilt sind. In der Praxis ist es nun oft so, dass man eben genau an diesen extremalen Eigenwerten interessiert ist, die sich vom breiteren Spektrum abheben. Hier eignet sich das Lanczos-Verfahren also gut.
 
 \newpage
 \pagestyle{plain}
