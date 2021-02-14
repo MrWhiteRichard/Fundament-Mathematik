@@ -1027,7 +1027,7 @@ Mit den bis hier getroffenen Vorbereitungen können wir nun die Konvergenz des P
 		\end{aligned}
 	\end{equation}
 
-	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$. 
+	Da die $\tilde{u}_j^{(m)}, j = 1,\dots,m$ eine Orthonormalbasis von $\C^m$ sind, sind somit die $u_j^{(m)} \coloneqq \nicefrac{V\tilde{u}_j^{(m)}}{\norm{V\tilde{u}_j^{(m)}}}$ eine Orthonormalbasis von $\mathcal{K}_m$. Sei nun $w\in \mathcal{K}_m$ gegeben durch $w = \sum_{k=1}^{m} p(\lambda_k^{(m)}) \beta_k u_k^{(m)}$.
 
 	Weil es für jedes $w\in \mathcal{K}_m$ ein $\tilde{w} \in \C^m$ gibt, sodass $w = V \tilde{w}$, folgt mit Lemma \ref{v0_Polynom_Darstellung} die Darstellung
 
@@ -1148,32 +1148,31 @@ Zunächst wird das Lanczos-Verfahren mit zufällig generierten hermiteschen Matr
 
 Erste Testungen mit zufällig generierten uniform verteilten Eigenwerten zeigen sehr mäßige Konvergenz. Lässt man dabei das gesamte Array mit den approximierten Eigenwerten ausgeben, zeigt sich eine gewisse Symmetrie, mit dem Fehler in den größten Eigenwerten sinkt auch der in den kleinsten Eigenwerten mit der selben Rate. In Abbildung \ref{error_uniform} ist der absolute Fehler in den 2 größten Eigenwerten für steigende Krylov-Raumdimension dargestellt. Dabei wird das Lanczos-Verfahren auf eine Matrix der Dimension $1000$ mit Eigenwerten uniform verteilt im Intervall $(-100,400)$ angewendet. Selbst bei Krylov-Raumdimension 100 lässt sich noch keine besonders gute Approximation an nur zwei Eigenwerte erkennen. Für uniform verteilte Eigenwerte ist das Lanczos-Verfahren also nicht gut geeignet. Sobald jedoch Eigenwerte existieren, die sich weiter vom Spektrum entfernen, erhalten wir sehr schnelle Konvergenz gegen diese.
 
-\begin{figure}[H]\label{error_uniform}
-\begin{center}
-
+\begin{figure}[H]
+	\centering
 	\includegraphics[width = 0.6 \linewidth]{Plots/error_uniform}
 	\caption{Fehler im größten sowie zweitgrößten Eigenwert bei Verwendung des Lanczos-Verfahrens}
-	\end{center}
+	\label{error_uniform}
 \end{figure}
 
 Diese Eigenschaft und andererseits die Symmetrie der Konvergenz kann man sehr gut in \ref{eigv_lanczos} erkennen. Dort wird das Lanczos-Verfahren auf eine $500 \times 500$ Matrix, mit Eigenwerten gleichverteilt im Intervall $(0,2)$ und $4$ extremalen Eigenwerten bei $-1$, $-0.5$, $2.5$ und $3$, angewendet. Bei $x = 12$ sieht man das gesamte Spektrum der Eigenwerte, wobei ein Eigenwert durch ein Kreuz mit dem entsprechenden Wert an der $y-$Achse dargestellt wird. Für $x = 2,...,11$ sind die Approximationen an die Eigenwerte bei entsprechender Krylov-Raumdimension dargestellt. Der größte sowie kleinste Eigenwert werden hier schon bei Krylov-Raumdimension $6$ gut approximiert. Bei Krylov-Raumdimension $8$ beginnt die rapide Konvergenz der Approximation an den zweitgrößten sowie zweitkleinsten Eigenwert.
 
 
-\begin{figure}[H]\label{eigv_lanczos}
-	\begin{center}
-		\includegraphics[width = 0.7 \linewidth]{Plots/eigv_kyrlov_approx}
-		\caption{Die Approximation an die Eigenwerte beim Lanczos-Verfahren}
-	\end{center}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 0.7 \linewidth]{Plots/eigv_kyrlov_approx}
+	\caption{Die Approximation an die Eigenwerte beim Lanczos-Verfahren}
+	\label{eigv_lanczos}
 \end{figure}
 
 
-Verwendet man nun also zur Testung keine uniform verteilten Eigenwerte, sondern lognormal verteilte, erhält man nun wesentlich bessere Konvergenzgeschwindigkeit. In Abbildung \ref{lanczos_lognomal} wird das Lanczos-Verfahren wieder auf eine Matrix der Dimension $1000$ angewendet, diesmal jedoch mit lognormal verteilen Eigenwerten ($\mu = 1, \sigma = 1$). Hier erkennt man die erwartete exponentielle Konvergenz, da der Fehler ja semilogarithmisch dargestellt wird.
+Verwendet man nun also zur Testung keine uniform verteilten Eigenwerte, sondern lognormal verteilte, erhält man nun wesentlich bessere Konvergenzgeschwindigkeit. In Abbildung \ref{lanczos_lognormal} wird das Lanczos-Verfahren wieder auf eine Matrix der Dimension $1000$ angewendet, diesmal jedoch mit lognormal verteilen Eigenwerten ($\mu = 1, \sigma = 1$). Hier erkennt man die erwartete exponentielle Konvergenz, da der Fehler semilogarithmisch dargestellt wird.
 
 \begin{figure}[H]
-\begin{center}
-	\includegraphics[width = 0.7 \linewidth]{Plots/lanczos_lognormal}\label{lanczos_lognomal}
+	\centering
+	\includegraphics[width = 0.7 \linewidth]{Plots/lanczos_lognormal}
 	\caption{Fehler in den drei größten Eigenwerten bei Verwendung des Lanczos-Verfahrens mit lognormal Verteilen Eigenwerten}
-	\end{center}
+	\label{lanczos_lognormal}
 \end{figure}
 
 
@@ -1188,10 +1187,11 @@ Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwe
   \label{Arnoldi_error}
 \end{figure}
 
-\begin{figure}\label{error_eigv_laplace}
+\begin{figure}
 	\centering
 	\includegraphics[width = 0.9\linewidth]{Plots/error_eigv_laplace}
 	\caption{Fehler in den ersten 40\% der Eigenwerte bei Anwendung des Arnoldi-Verfahrens auf das diskretisierte Problem}
+	\label{error_eigv_laplace}
 \end{figure}
 
 Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen, die genaue Ausführung dazu befindet sich im Anhang. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \eqref{equivdiscret} wird $\rho = 3$ gewählt. In diesem Schritt ist zusätzlicher Aufwand nötig, da in \eqref{equivdiscret} eine Inverse berechnet werden muss.
@@ -1202,11 +1202,11 @@ Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleit
 \newpage
 \section{Conclusio}
 
-Wir wollen am Ende die in der Arbeit verwendeten Verfahren noch einmal kurz vergleichen. Das QR-Verfahren liefert eine sehr gute Approximation an alle Eigenwerte. Der Nachteil ist der sehr große Aufwand, den die benötigte QR-Zerlegung hat. Um dem entgegenzuwirken ist es Sinnvoll, das Verfahren mit Wilkinson-Shifts durchzuführen, bei welchem bei selber Approximations-Fehlergröße weniger QR-Zerlegungen nötig sind. Zudem kann hier auch für die spezielle Klasse der Hessenberg-Matrizen ein weiterer speed-up gewonnen werden, indem man die QR-Zerlegung mit Givens-Rotationen durchführt.
+Wir wollen am Ende die in der Arbeit verwendeten Verfahren noch einmal kurz vergleichen. Das QR-Verfahren liefert eine sehr gute Approximation an alle Eigenwerte. Der Nachteil ist der sehr große Aufwand, den die benötigte QR-Zerlegung hat. Um dem entgegenzuwirken, ist es sinnvoll, das Verfahren mit Wilkinson-Shifts durchzuführen. Bei diesem sind bei selber Approximations-Fehlergröße weniger QR-Zerlegungen nötig. Zudem kann auch für die spezielle Klasse der Hessenberg-Matrizen ein weiterer Speedup erreicht werden, indem man die QR-Zerlegung mit Givens-Rotationen durchführt.
 
-Für die meisten Anwendungen in der Praxis ist die Laufzeit des QR-Verfahrens jedoch nicht tragbar, zumal ist man dort oft nicht an allen Eigenwerten interessiert sondern nur an einigen wenigen. Hier kommt das Lanczos-Verfahren zum Einsatz. Für hermitesche Matrizen bekommt man in diesem eine gute Approximation an die größten Eigenwerte. Der Aufwand beim Lanczos-Verfahren ist wesentlich geringer als der beim QR-Verfahren. Ein Nachteil des Verfahrens ist die eventuelle numerische Instabilität, der jedoch mit zusätzlichem Aufwand entgegengewirkt werden kann. Ein weiterer Nachteil ist, dass das Verfahren nur für hermitesche Matrizen funktionert. Will man nun Eigenwerte einer nicht hermiteschen Matrix berechnen, muss man auf das Arnoldi-Verfahren zurückgreifen.
+Für die meisten Anwendungen in der Praxis ist die Laufzeit des QR-Verfahrens jedoch nicht tragbar, zumal ist man dort oft nicht an allen Eigenwerten interessiert, sondern nur an einigen wenigen. Hier kommt das Lanczos-Verfahren zum Einsatz. Für hermitesche Matrizen bekommt man mit diesem eine gute Approximation an die größten Eigenwerte. Der Aufwand beim Lanczos-Verfahren ist wesentlich geringer als der beim QR-Verfahren. Ein Nachteil des Verfahrens ist die eventuelle numerische Instabilität, welcher jedoch mit zusätzlichem Aufwand entgegengewirkt werden kann. Ein weiterer Nachteil ist, dass das Verfahren nur für hermitesche Matrizen funktionert. Will man nun Eigenwerte einer nicht hermiteschen Matrix berechnen, muss man auf das Arnoldi-Verfahren zurückgreifen.
 
-Die Testungen zeigen zudem, dass die Konvergenz des Verfahrens sehr stark vom Spektrum der Eigenwerte abhängt. Wenn sich die extremalen Eigenwerte wirklich stark vom Sprektrum abheben erhalten wir eine gute Konvergenzrate. Es macht also auch dann Sinn, das Lanczos-Verfahren zu verwenden, wenn man schon eine ungefähre Vorstellung hat, wie die Eigenwerte verteilt sind. In der Praxis ist es nun oft so, dass man eben genau an diesen extremalen Eigenwerten interessiert ist, die sich vom breiteren Spektrum abheben. Hier eignet sich das Lanczos-Verfahren also gut.
+Die Testungen zeigen zudem, dass die Konvergenz des Verfahrens sehr stark vom Spektrum der Eigenwerte abhängt. Wenn sich die extremalen Eigenwerte wirklich stark vom Spektrum abheben, erhalten wir eine gute Konvergenzrate. Es macht also auch dann Sinn, das Lanczos-Verfahren zu verwenden, wenn man schon eine ungefähre Vorstellung hat, wie die Eigenwerte verteilt sind. Wie wir gesehen haben, kann dies in der Praxis relevant sein.
 
 \newpage
 \pagestyle{plain}
