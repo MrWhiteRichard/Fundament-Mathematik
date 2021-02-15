@@ -189,7 +189,7 @@ gebracht werden, mit $A, B \in \R^{N \times N}$ und symmetrisch.
 \end{proof}
 
 \begin{remark}\label{remark_1_4}
-	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \eqref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für symmetrische Matrizen funktioniert.
+	Die Matrix $(A - \rho_h B)^{-1} B$ im Eigenwertproblem \eqref{equivdiscret} ist zwar Produkt zweier symmetrischer Matrizen, aber i. A. nicht mehr symmetrisch. Dies wird im Laufe des Projektes noch wichtig sein, da das Lanczos-Verfahren nur für hermitesche Matrizen funktioniert.
 \end{remark}
 
 Die Diskretisierung durch die Finite-Elemente-Methode liefert uns Matrizen $A$ und $B$ mit sehr großer Dimension $N$. Daher ist es sinnvoll, ein Verfahren zu entwickeln, das uns für sehr große Matrizen eine gute Approximation zumindest an extremale Eigenwerte liefert. Das Lanczos-Verfahren wird dies unter Zuhilfenahme des QR-Verfahrens bewerkstelligen.
@@ -1196,10 +1196,11 @@ Die Testungen zeigen also, dass sich das Lanczos-Verfahren vorallem für Eigenwe
 
 Wir wollen nun das Arnoldi-Verfahren verwenden, um unser Problem aus der Einleitung, die Eigenwertberechnung für $-\Delta$ auf einem Rechteck $\Omega$, zu lösen. Dabei verwenden wir zur Diskretisierung des Problems die Finite-Elemente-Methode. Hier kommen das Netgen sowie NG-Solve Paket zum Einsatz. Mit diesen können wir das Rechteck $\Omega := (0,2) \times (0,1)$ triangulieren und einen Finite-Elemente-Raum darauf erstellen. Aus NG-Solve bekommen wir dann unsere Matrizen, die genaue Ausführung dazu befindet sich im Anhang. Zum Vergleich verwenden wir die in Satz \ref{satz_1_2} berechneten Eigenwerte. Als shift in \eqref{equivdiscret} wird $\rho = 3$ gewählt. In diesem Schritt ist zusätzlicher Aufwand nötig, da in \eqref{equivdiscret} eine Inverse berechnet werden muss.
 
+\newpage
  In Abbildung \ref{error_eigv_laplace} sieht man den Fehler für verschiedene Krylov-Raumdimensionen. Dabei ist auf der $x-$Achse die Nummer des betrachteten Eigenwerts (aufsteigend sortiert) und auf der $y-$Achse je der Fehler der Approximation aus dem Arnoldi-Verfahren zu dem analytisch berechneten Eigenwert.
  Man erkennt eine gute Approximation in den ersten $40\%$ der berechneten Eigenwerte, wobei die Anzahl an berechneten Eigenwerten genau mit der Krylov-Raumdimension übereinstimmt. Die Schranke der $40\%$ ist dabei aus skalierungstechnischen Gründen gewählt, man erhält sogar eine ziemlich gute Approximation an die ersten (also kleinsten) $45\%$ Eigenwerte, bei den größeren steigt der Fehler jedoch schnell und stark an. Im Bezug zu den vorhergegangenen Testungen scheinen die Eigenwerte der geshifteten Matrix aus dem verallgemeinerten Problem eine günstige Verteilung der Eigenwerte zu haben, bei dem sich einige extremale ausprägen.
 
-\newpage
+
 \section{Conclusio}
 
 Wir wollen am Ende die in der Arbeit verwendeten Verfahren noch einmal kurz vergleichen. Das QR-Verfahren liefert eine sehr gute Approximation an alle Eigenwerte. Der Nachteil ist der sehr große Aufwand, den die benötigte QR-Zerlegung hat. Um dem entgegenzuwirken, ist es sinnvoll, das Verfahren mit Wilkinson-Shifts durchzuführen. Bei diesem sind bei selber Approximations-Fehlergröße weniger QR-Zerlegungen nötig. Zudem kann auch für die spezielle Klasse der Hessenberg-Matrizen ein weiterer Speedup erreicht werden, indem man die QR-Zerlegung mit Givens-Rotationen durchführt.
