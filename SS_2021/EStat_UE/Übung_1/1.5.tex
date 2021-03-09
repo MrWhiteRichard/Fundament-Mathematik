@@ -29,7 +29,110 @@ where $a$ and $b$ are real constants.
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item $F$ is a cdf iff
+    
+    \begin{enumerate}[label = (\arabic*)]
+        
+        \item $\lim_{y \to -\infty} F(y) = 0$ and $\lim_{y \to \infty} F(y) = 1$
+        
+        \item $F$ is a non-decreasing function of $y$.
+        Hence, there must be $a \geq 0$.
+
+        \item $F$ ist right continuous;
+        
+        \begin{align*}
+            \implies &
+            \frac{2}{5} = F(1) = \lim_{y \to 1^+} F(y) = \lim_{y \to 1^+} a y - b = a - b,
+            \quad
+            2 a - b = F(2) = \lim_{y \to 2^+} F(y) = 1 \\
+            \implies &
+            \begin{pmatrix}
+                1 & -1 \\ 2 & -1
+            \end{pmatrix}
+            \begin{pmatrix}
+                a \\ b
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \frac{2}{5} \\ 1
+            \end{pmatrix} \\
+            \implies &
+            a = \frac{3}{5}, \quad b = \frac{1}{5}
+        \end{align*}
+
+    \end{enumerate}
+
+    \item
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Case ($y \leq 0$):
+        
+        \begin{align*}
+            0 = F(y) - F(-\infty) = \Int[-\infty][y]{f(x)}{x}
+            \implies
+            f(y) = 0
+        \end{align*}
+
+        \item Case ($0 < y \leq 1$):
+        
+        \begin{align*}
+            \frac{2}{5} y = F(y) - F(0) = \Int[0][y]{f(x)}{x}
+            \implies
+            f(y) = \frac{2}{5}
+        \end{align*}
+
+        \item Case ($1 < y \leq 2$):
+        
+        \begin{align*}
+            \frac{3}{5} y - \frac{1}{5} - \frac{2}{5} = F(y) - F(1) = \Int[1][y]{f(x)}{x}
+            \implies
+            f(y) = \frac{3}{5}
+        \end{align*}
+
+        \item Case ($y > 2$):
+        
+        \begin{align*}
+            1 - \frac{3}{5} \cdot 2 + \frac{1}{5} = F(y) - F(2) = \Int[2][y]{f(x)}{x}
+            \implies
+            f(y) = 0
+        \end{align*}
+
+    \end{enumerate}
+
+    \begin{align*}
+        \implies
+        f(y)
+        =
+        \begin{cases}
+            0,             & y \leq 0,     \\
+            \frac{2}{5} y, & 0 < y \leq 1, \\
+            \frac{3}{5} y, & 1 < y \leq 2, \\
+            1,             & y > 2,
+        \end{cases}
+    \end{align*}
+
+    \item
+
+    \begin{align*}
+        P(Y > 1.8 ~|~ Y > 1)
+        =
+        \frac{P(Y > 1.8, Y > 1)}{P(Y > 1)}
+        =
+        \frac{1 - P(Y \leq 1.8)}{1 - P(Y \leq 1)}
+        =
+        \frac{1 - F(1.8)}{1 - F(1)}
+        =
+        \frac{1 - \frac{3}{5} \cdot 1.8 + \frac{1}{5}}{1 - \frac{2}{5}}
+        =
+        \frac{1}{5}
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

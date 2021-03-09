@@ -22,7 +22,121 @@ A box contains three coins with a head on each side, two coins with a tail on ea
 
 \begin{solution}
 
-ToDo!
+Let $X_i$ denote the type of the $i$-th selected coin (head, tail, or fair) and $Y_i$ the yield of the $i$-th toss (head or tail).
+Furthermore, to ease notation, let $X := X_1$ and $Y := Y_1$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        P(Y = \mathrm{tail})
+        & =
+        P(Y = \mathrm{tail} ~|~ X = \mathrm{head}) P(X = \mathrm{head}) \\
+        & +
+        P(Y = \mathrm{tail} ~|~ X = \mathrm{tail}) P(X = \mathrm{tail}) \\
+        & +
+        P(Y = \mathrm{tail} ~|~ X = \mathrm{fair}) P(X = \mathrm{fair}) \\
+        & =
+        0 \frac{3}{3 + 2 + 4} + 1 \frac{2}{3 + 2 + 4} + \frac{1}{2} \frac{4}{3 + 2 + 4} \\
+        & =
+        \frac{4}{9}
+    \end{align*}
+
+    \item
+
+    \begin{multline*}
+        P(X = \mathrm{tail} ~|~ Y = \mathrm{tail})
+        =
+        \frac{P(X = \mathrm{tail}, Y = \mathrm{tail})}{P(Y = \mathrm{tail})}
+        =
+        \frac{P(Y = \mathrm{tail} ~|~ X = \mathrm{tail}) P(X = \mathrm{tail})}{P(Y = \mathrm{tail})} \\
+        =
+        \frac{1 \frac{2}{3 + 2 + 4}}{\frac{4}{9}}
+        =
+        \frac{2}{9} \frac{9}{4}
+        =
+        \frac{1}{2}
+    \end{multline*}
+
+    \begin{multline*}
+        P(X = \mathrm{fair} ~|~ Y = \mathrm{tail})
+        =
+        \frac{P(X = \mathrm{fair}, Y = \mathrm{tail})}{P(Y = \mathrm{tail})}
+        =
+        \frac{P(Y = \mathrm{tail} ~|~ X = \mathrm{fair}) P(X = \mathrm{fair})}{P(Y = \mathrm{tail})} \\
+        =
+        \frac{\frac{1}{2} \frac{2}{3 + 2 + 4}}{\frac{4}{9}}
+        =
+        \frac{1}{9} \frac{9}{4}
+        =
+        \frac{1}{4}
+    \end{multline*}
+
+    \item
+
+    \begin{align*}
+        &
+        P(Y_2 = \mathrm{tail} ~|~ Y_1 = \mathrm{tail}) P(Y_1 = \mathrm{tail}) \\
+        & =
+        P(Y_1 = Y_2 = \mathrm{tail}) \\
+        & =
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{head}) P(X_1 = \mathrm{head}, X_2 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{head}, X_2 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{head}, X_2 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{head}) P(X_1 = \mathrm{tail}, X_2 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{tail}, X_2 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{tail}, X_2 = \mathrm{fair}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{head}) P(X_1 = \mathrm{fair}, X_2 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{fair}, X_2 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{fair}, X_2 = \mathrm{fair}) \\
+        & =
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{head}) P(X_1 = \mathrm{head}) P(X_2 = \mathrm{head} ~|~ X_1 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{head}) P(X_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{head}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{head}) P(X_2 = \mathrm{head} ~|~ X_1 = \mathrm{head}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{head}) P(X_1 = \mathrm{tail}) P(X_2 = \mathrm{head} ~|~ X_1 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{tail}) P(X_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{tail}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{tail}) P(X_2 = \mathrm{fair} ~|~ X_1 = \mathrm{tail}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{head}) P(X_1 = \mathrm{fair}) P(X_2 = \mathrm{head} ~|~ X_1 = \mathrm{fair}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{tail}) P(X_1 = \mathrm{fair}) P(X_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}) \\
+        & +
+        P(Y_1 = Y_2 = \mathrm{tail} ~|~ X_1 = \mathrm{fair}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{fair}) P(X_2 = \mathrm{fair} ~|~ X_1 = \mathrm{fair}) \\
+        & =
+        0           \cdot 0           \cdot \frac{3}{9} \cdot \frac{3 - 1}{8}
+        +
+        0           \cdot 1           \cdot \frac{3}{9} \cdot \frac{2}{8}
+        +
+        0           \cdot \frac{1}{2} \cdot \frac{3}{9} \cdot \frac{4}{8} \\
+        & +
+        1           \cdot 0           \cdot \frac{2}{9} \cdot \frac{3}{8}
+        +
+        1           \cdot 1           \cdot \frac{2}{9} \cdot \frac{2 - 1}{8}
+        +
+        1           \cdot \frac{1}{2} \cdot \frac{2}{9} \cdot \frac{4}{8} \\
+        & +
+        \frac{1}{2} \cdot 0           \cdot \frac{4}{9} \cdot \frac{3}{8}
+        +
+        \frac{1}{2} \cdot 1           \cdot \frac{4}{9} \cdot \frac{2}{8}
+        +
+        \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{4}{9} \cdot \frac{4 - 1}{8}
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

@@ -13,7 +13,39 @@ What is the probability that the player $B$ wins?
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{align*}
+    &
+    P(\text{player $B$ wins}) \\
+    & =
+    P(\text{head is first obtained at an even turn}) \\
+    & =
+    \sum_{n \in 2 \N}
+        P(\text{head ist first obtained at turn $n$}) \\
+    & =
+    \sum_{n \in 2 \N}
+        P(X_1 = \cdots X_{n-1} = \text{tail}, X_n = \text{head}) \\
+    & =
+    \sum_{n \in 2 \N}
+        \pbraces
+        {
+            \prod_{i=1}^{n-1}
+                P(X_i = \text{tail})
+        }
+        P(X_n = \text{head}) \\
+    & =
+    \sum_{n \in 2 \N}
+        (1 - p)^{n-1} p \\
+    & =
+    p \sum_{n=0}^\infty (1 - p)^{2 n + 1} \\
+    & =
+    p (1 - p) \frac{1}{1 - (1 - p)^2} \\
+    & =
+    p (1 - p) \frac{1}{(2 - p) p} \\
+    & =
+    \frac{1 - p}{2 - p}
+\end{align*}
 
 \end{solution}
 
