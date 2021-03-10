@@ -47,7 +47,51 @@ in einen DFA umzuwandeln.
 
 \begin{solution}
 
-ToDo!
+Wir verwenden die Potenzmengenkonstruktion aus dem Beweis von Satz 1.1.
+Wir konstruieren dazu aber bloß jene Zustände, die vom Startzustand $q_0$ erreichbar sind.
+
+Wir erstellen eine Tabelle mit dem Startzustand und den Symbolen des Alphabets.
+Der Eintrag in der $i$-ten Zeile und der $j$-ten Spalte soll die Menge von Zuständen des NFA enthalten die von einem Zustand aus der Beschriftung der $i$-ten Zeile mit dem Symbol das die $j$-Spalte beschriftet erreichbar sind.
+Falls dieses Prozess einen neuen Zustand des DFA erzeugt, so wird dieser als neue, leere, Zeile der Tabelle hinzugefugt.
+Diese Tabelle ist saturiert wenn jeder Zustand des DFA der in der Tabelle vorkommt auch als Beschriftung einer Zeile vorkommt.
+Sobald die Tabelle saturiert ist, ist die Konstruktion des NFA vollständig.
+
+\begin{align*}
+    \begin{array}{c|cc}
+                           & a             & b                  \\ \hline
+        \Bbraces{q_0}      & \emptyset     & \Bbraces{q_1, q_2} \\
+        \emptyset          & \emptyset     & \emptyset          \\
+        \Bbraces{q_1, q_2} & \Bbraces{q_0} & \Bbraces{q_1}      \\
+        \Bbraces{q_1}      & \Bbraces{q_0} & \Bbraces{q_1}
+    \end{array}
+\end{align*}
+
+Auf diese Weise haben wir also den folgenden DFA konstruiert, der per constructionem äquivalent zu dem NFA aus der Angabe.
+
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm
+    ]
+
+        \node [state, initial]                   (q_0)  {$q_0$};
+        \node [state, right of = q_0]            (q_)   {$q_\emptyset$};
+        \node [state, below of = q_0, accepting] (q_12) {$q_{12}$};
+        \node [state, left of = q_12]            (q_1)  {$q_1$};
+
+        \draw
+        (q_0)  edge                    node [above]      {$a$} (q_)
+        (q_)   edge [loop above]       node [above]      {$a$} (q_)
+        (q_)   edge [loop below]       node [below]      {$b$} (q_)
+        (q_0)  edge                    node [left]       {$b$} (q_12)
+        (q_12) edge [bend right]       node [right]      {$a$} (q_0)
+        (q_12) edge                    node [below]      {$b$} (q_1)
+        (q_1)  edge                    node [above left] {$a$} (q_0);
+
+    \end{tikzpicture}
+\end{center}
 
 \end{solution}
 
