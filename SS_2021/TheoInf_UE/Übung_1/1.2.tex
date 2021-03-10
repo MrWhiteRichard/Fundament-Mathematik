@@ -1,0 +1,54 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Verwenden Sie den Algorithmus aus der Vorlesung, um den NFA
+
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm
+    ]
+
+        \node [state, initial]                   (q_0) {$q_0$};
+        \node [state, right of = q_0]            (q_1) {$q_1$};
+        \node [state, below of = q_0, accepting] (q_2) {$q_2$};
+
+        \draw
+        (q_0) edge [bend left]  node [above] {$b$} (q_1)
+        (q_1) edge [loop right] node         {$b$} (q_1)
+        (q_1) edge [bend left]  node [below] {$a$} (q_0)
+        (q_0) edge              node [left]  {$b$} (q_2);
+
+        % example from
+        % https://www3.nd.edu/~kogge/courses/cse30151-fa17/Public/other/tikz_tutorial.pdf
+
+        % \node [state, initial, accepting] (1) {$1$};
+        % \node [state, below left of = 1]  (2) {$2$};
+        % \node [state, right of = 2]       (3) {$3$};
+
+        % \draw
+        % (1) edge [above]                          node {$b$}        (2)
+        % (1) edge [below, bend right, left = 0.3]  node {$\epsilon$} (3)
+        % (2) edge [loop left]                      node {$a$}        (2)
+        % (2) edge [below]                          node {$a, b$}     (3)
+        % (3) edge [above, bend right, right = 0.3] node {$a$}        (1);
+ 
+    \end{tikzpicture}
+\end{center}
+
+in einen DFA umzuwandeln.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+ToDo!
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
