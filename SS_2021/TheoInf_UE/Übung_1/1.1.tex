@@ -10,7 +10,110 @@ Zeigen Sie dass $\Bbraces{ab, aba}^\ast = \Bbraces{\epsilon} \cup \Bbraces{a} \B
 
 \begin{solution}
 
-ToDo!
+Sei $L$ die linke und $R$ die rechte Menge.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Inklusion ($L \subseteq R$):
+    
+    Wir verwenden Induktion nach $k \geq 0$, um zu zeigen, dass
+
+    \begin{align*}
+        L = \bigcup_{k \geq 0} \Bbraces{ab, aba}^k \subseteq R.
+    \end{align*}
+
+    \begin{itemize}
+
+        \item ($k = 0$):
+        
+        \begin{align*}
+            \Bbraces{ab, aba}^0
+            =
+            \Bbraces{\epsilon}
+            =
+            \subseteq
+            R
+        \end{align*}
+
+        \item ($k = 1$):
+        
+        \begin{align*}
+            \Bbraces{ab, aba}^1
+            =
+            \Bbraces{ab, aba} \Bbraces{\epsilon}
+            =
+            \Bbraces{a} \Bbraces{b, ba}
+            \subseteq
+            R
+        \end{align*}
+
+        \item ($k \mapsto k + 1$):
+        
+        \begin{align*}
+            \Bbraces{ab, aba}^{k+1}
+            & =
+            \Bbraces{ab, aba} \Bbraces{ab, aba}^k \\
+            & \subseteq^\text{IH}
+            \Bbraces{ab, aba} R \\
+            & =
+            \Bbraces{ab, aba} \Bbraces{\epsilon} \cup \Bbraces{ab, aba} \Bbraces{a} \Bbraces{ba, baa}^\ast \Bbraces{b, ba} \\
+            & =
+            \Bbraces{ab, aba}^1 \cup \Bbraces{a} \Bbraces{ba, baa}^\ast \Bbraces{b, ba} \\
+            & \subseteq
+            R \cup R
+            =
+            R
+        \end{align*}
+
+    \end{itemize}
+
+    \item Inklusion ($R \subseteq L$):
+    
+    Für $k = 0$ sieht man $\Bbraces{\epsilon} \subseteq L$.
+    Wir verwenden Induktion nach $k \geq 0$, um zu zeigen, dass
+
+    \begin{align*}
+        R
+        =
+        \Bbraces{\epsilon} \cup \Bbraces{a} \pbraces{\bigcup_{k \geq 0} \Bbraces{ba, baa^k}} \Bbraces{b, ba}
+        =
+        \Bbraces{\epsilon} \cup \bigcup_{k \geq 0} \Bbraces{a} \Bbraces{ba, baa}^k \Bbraces{b, ba}
+        \subseteq
+        L.
+    \end{align*}
+
+    \begin{itemize}
+        \item ($k = 0$):
+        
+        \begin{align*}
+            \Bbraces{a} \Bbraces{ba, baa}^0 \Bbraces{b, ba}
+            =
+            \Bbraces{a} \Bbraces{\epsilon} \Bbraces{b, ba}
+            =
+            \Bbraces{ab, aba}
+            \subseteq
+            L
+        \end{align*}
+
+        \item ($k \mapsto k + 1$):
+        
+        \begin{align*}
+            \Bbraces{a} \Bbraces{ba, baa}^{k+1} \Bbraces{b, ba}
+            & =
+            \Bbraces{a} \Bbraces{ba, baa}^k \Bbraces{ba, baa} \Bbraces{b, ba} \\
+            & =
+            \Bbraces{a} \Bbraces{ba, baa}^k \Bbraces{b, ba} \Bbraces{a} \Bbraces{b, ba} \\
+            & \subseteq^\text{IH}
+            \Bbraces{ab, aba}^\ast \Bbraces{ab, aba} \\
+            & =
+            \Bbraces{ab, aba}^+ \\
+            & \subseteq
+            L
+        \end{align*}
+
+    \end{itemize}
+
+\end{enumerate}
 
 \end{solution}
 
