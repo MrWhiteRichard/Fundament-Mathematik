@@ -11,7 +11,64 @@ Ist $L_k$ eine reguläre Sprache?
 
 \begin{solution}
 
-ToDo!
+Wir finden einen expliziten NFA $D_k$, sodass $\operatorname L(D_k) = L_k$.
+
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm,
+        initial above
+    ]
+    
+        \node [state, accepting]                             (1) {$q_{-k}$};
+        \node [state, accepting, right of = 1, draw = white] (2) {$\cdots$};
+        \node [state, accepting, right of = 2]               (3) {$q_{-1}$};
+        \node [state, accepting, right of = 3, initial]      (4) {$q_0$};
+        \node [state, accepting, right of = 4]               (5) {$q_1$};
+        \node [state, accepting, right of = 5, draw = white] (6) {$\cdots$};
+        \node [state, accepting, right of = 6]               (7) {$q_k$};
+
+        \draw
+        (4) edge [bend left] node [above] {$a$} (5)
+        (5) edge [bend left] node [above] {$a$} (6)
+        (6) edge [bend left] node [above] {$a$} (7)
+        (7) edge [bend left] node [below] {$b$} (6)
+        (6) edge [bend left] node [below] {$b$} (5)
+        (5) edge [bend left] node [below] {$b$} (4)
+        (4) edge [bend left] node [below] {$b$} (3)
+        (3) edge [bend left] node [below] {$b$} (2)
+        (2) edge [bend left] node [below] {$b$} (1)
+        (1) edge [bend left] node [above] {$a$} (2)
+        (2) edge [bend left] node [above] {$a$} (3)
+        (3) edge [bend left] node [above] {$a$} (4);
+    
+    \end{tikzpicture}
+\end{center}
+
+Für einen Zustand $q_\ell$, $\ell \in \Bbraces{0, \pm 1, \dots, \pm k}$, und einem Pfad $w$ von $q_0$ nach $q_\ell$ gilt $n_a(w) - n_b(w) = \ell$.
+Das zeigt $\operatorname L(D_k) \subseteq L_k$.
+
+Für die umgekehrte Inklusion sei $w \in L_k$.
+Wir verwenden Induktion nach $|w|$.
+
+Für $|w| = 0$, muss $w = \epsilon$, also das leere Wort sein.
+Diese ist durch unseren Automaten offenbar unmittelbar (im Start-Zustand) erreichbar.
+Ansonsten gibt es ein $c \in \Bbraces{a, b}$ und $v \in \Bbraces{a, b}^{|w| - 1}$, sodass $w = v c$.
+Laut Induktionshypothese, ist $v$ erreichbar und führt zu einem Zustand $q_\ell$, $\ell \in \Bbraces{0, \pm 1, \dots, \pm k}$.
+
+\begin{align*}
+    \sigma := (n_a(w) - n_b(w)) - (n_a(v) - n_b(v)) = \sigma_a - \sigma_b,
+    \quad
+    \sigma_a := n_a(w) - n_a(v),
+    \quad
+    \sigma_b := n_b(w) - n_b(v)
+\end{align*}
+
+Für $c = a$ gilt $\sigma = 1 - 0$ und $w$ führt nach $q_{\ell + 1}$.
+Für $c = b$ gilt $\sigma = 0 - 1$ und $w$ führt nach $q_{\ell - 1}$.
+$w$ ist also erreichbar und führt zum Zustand $q_{\ell + \sigma}$.
 
 \end{solution}
 
