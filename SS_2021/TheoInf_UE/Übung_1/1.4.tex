@@ -10,7 +10,27 @@ Zeigen sie dass $\Bbraces{a^p \mid p \in \P}$ nicht regulär ist.
 
 \begin{solution}
 
-ToDo!
+Angenommen, $L := \Bbraces{a^p \mid p \in \P}$ wäre regulär.
+Sei $n$ wie im Pumping Lemma für $L$ und betrachte $w = a^p$ mit $p \geq n$.
+(Es gibt unendlich viele Primzahlen.)
+Dann existieren $v_1, v_2, v_3$ so dass $w = v_1 v_2 v_3$ und
+
+\begin{enumerate}
+    \item $v_2 \neq \epsilon$
+    \item $|v_1 v_2| \leq n$, und
+    \item für alle $k \geq 0: v_1 v_2^k v_3 \in L$.
+\end{enumerate}
+
+\begin{align*}
+    & \stackrel{3.}{\implies}
+    \Forall k \in \N \setminus \Bbraces{0}:
+        L \ni v_1 v_2 ^k v_3 = w v_2^{k-1} = a^p (a^{|v_2|})^{k-1} = a^{p + (k-1) |v_2|} \\
+    & \implies
+    \Forall l \in \N:
+        p + l |v_2| \in \P
+\end{align*}
+
+Wegen dem $1$-ten Punkt, erhalten wir $|v_2| \neq 0$ und einen Widerspruch (sonst gäbe es zu viele Primzahlen).
 
 \end{solution}
 
