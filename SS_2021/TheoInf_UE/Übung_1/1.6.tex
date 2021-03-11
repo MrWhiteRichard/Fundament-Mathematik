@@ -11,7 +11,53 @@ Zeigen Sie dass für alle regulären $L \subseteq A^\ast$ auch $\varphi(L) = \Bb
 
 \begin{solution}
 
-ToDo!
+Sei $N = \abraces{Q, A, \Delta, q_0, F}$ ein NFA für $L = \operatorname L(N)$.
+Betrachte den NFA $\varphi(N) := \abraces{Q, \varphi(A), \varphi(\Delta), q_0, F}$, wobei $\varphi(\Delta) := \Bbraces{(q_1, \varphi(w), q_2): (q_1, w, q_2) \in \Delta}$.
+
+Wir behaupten, dass $\varphi(L) = \varphi(\operatorname L(n)) = \operatorname L(\varphi(N))$.
+
+Aus der Definition 1.7 der erweiterten Übergangsrelation (hier als $\overline \Delta$) und der Tatsache, dass
+
+\begin{align*}
+    \varphi(\epsilon) = \epsilon,
+    \quad
+    \Forall u, v \in A^\ast:
+        \varphi(u v) = \varphi(u) \varphi(v),
+\end{align*}
+
+sieht man unmittelbar, dass
+
+\begin{align*}
+    \overline{\varphi(\Delta)}
+    =
+    \varphi(\overline \Delta)
+    :=
+    \Bbraces{(q_1, \varphi(w), q_2): (q_1, w, q_2) \in \overline \Delta}.
+\end{align*}
+
+Sei $v \in \varphi(\operatorname L(N))$ und $w \in \operatorname L(N)$ mit $\varphi(w) = v$.
+
+\begin{align*}
+    & \implies
+    \Exists q \in F: (q_0, w, q) \in \overline \Delta \\
+    & \implies
+    (q_0, v, q) = (q_0, \varphi(w), q) \in \varphi(\overline \Delta) = \overline{\varphi(\Delta)} \\
+    & \implies
+    v \in \operatorname L(\varphi(N))
+\end{align*}
+
+Sei nun $v \in \operatorname L(\varphi(N))$ und $q \in F$ sodass $(q_0, v, q) \in \overline{\varphi(\Delta)} = \varphi(\overline \Delta)$.
+
+\begin{align*}
+    & \implies
+    \Exists w \in A^\ast:
+        (q_0, w, q) \in \overline \Delta,
+        v = \varphi(w) \\
+    & \implies
+    w \in \operatorname L(N) \\
+    & \implies
+    v = \varphi(w) \in \varphi(\operatorname L(N))
+\end{align*}
 
 \end{solution}
 
