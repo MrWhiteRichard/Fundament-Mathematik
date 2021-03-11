@@ -35,7 +35,7 @@ Let $X_i$ denote the card that gets chosen in the $i$-th step and
         & =
         \sum_{s \in S} P(\operatorname{suit} X_1 = \cdots = \operatorname{suit} X_3 = s) \\
         & =
-        \sum_{s \in S} P(\operatorname{suit} X_1 = s) P(\operatorname{suit} X_2 = s ~|~ \operatorname{suit} X_1 = s) P(\operatorname{suit} X_3 = s ~|~ \operatorname{suit} X_1 = \operatorname{suit} X_2 = s) \\
+        \sum_{s \in S} P(\operatorname{suit} X_1 = s) P(\operatorname{suit} X_2 = s \mid \operatorname{suit} X_1 = s) P(\operatorname{suit} X_3 = s \mid \operatorname{suit} X_1 = \operatorname{suit} X_2 = s) \\
         & =
         |S| \frac{13}{52} \frac{12}{51} \frac{11}{50}
     \end{align*}
@@ -48,7 +48,7 @@ Let $X_i$ denote the card that gets chosen in the $i$-th step and
         & =
         \sum_{r \in R} P(\operatorname{rank} X_1 = \cdots = \operatorname{rank} X_3 = r) \\
         & =
-        \sum_{r \in R} P(\operatorname{rank} X_1 = r) P(\operatorname{rank} X_2 = r ~|~ \operatorname{rank} X_1 = r) P(\operatorname{rank} X_3 = r ~|~ \operatorname{rank} X_1 = \operatorname{rank} X_2 = r) \\
+        \sum_{r \in R} P(\operatorname{rank} X_1 = r) P(\operatorname{rank} X_2 = r \mid \operatorname{rank} X_1 = r) P(\operatorname{rank} X_3 = r \mid \operatorname{rank} X_1 = \operatorname{rank} X_2 = r) \\
         & =
         |R| \frac{4}{52} \frac{3}{51} \frac{2}{50}
     \end{align*}
@@ -77,11 +77,11 @@ Let $X_i$ denote the card that gets chosen in the $i$-th step and
             P(\operatorname{rank} X_3 = \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2) \\
         & =
         \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}} \\
-            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_1 ~|~ \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 ~|~ \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_1)
+            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_1 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_1)
             + \\
-            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_2 ~|~ \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 ~|~ \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2)
+            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_2 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2)
             + \\
-            & P(\operatorname{rank} X_1 = r_2) P(\operatorname{rank} X_2 = r_2 ~|~ \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 ~|~ \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2) \\
+            & P(\operatorname{rank} X_1 = r_2) P(\operatorname{rank} X_2 = r_2 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2) \\
         & =
         |R| (|R| - 1)
         \pbraces
