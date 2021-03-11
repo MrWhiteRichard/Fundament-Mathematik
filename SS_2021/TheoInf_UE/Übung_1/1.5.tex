@@ -11,7 +11,21 @@ Zeigen Sie dass eine Sprache $L$ regulär ist genau dann wenn ein gekürzter Aut
 
 \begin{solution}
 
-ToDo!
+Die Rückrichtung ist klar.
+Für die Hinrichtung bemerkt man, dass gekürzte Zustände $q \in Q \setminus \Bbraces{q_0}$ zum NFA $N = \abraces{Q, A, \Delta, q_0, F}$ mit $L = \operatorname L(N)$, d.h.
+
+\begin{align*}
+    \Exists u, v \in A^\ast, \Exists q_\mathrm{f} \in F:
+        (q_0, u, q), (q, v, q_\mathrm{f}) \in \Delta,
+\end{align*}
+
+genau jene sind, durch die ein Wort $w \in L$ führt.
+Sei nämlich $q$ ein solcher Zustand.
+Dann gilt $(q_0, w, q_\mathrm{f}) \in \Delta$.
+Das Wort $w := uv \in L$ führt durch $q$.
+Die Umkehrung ist klar.
+
+Der gekürzte \Quote{Teil-Automat} mit den gekürzten Zuständen aus $Q$ (und dem Anfangszustand $q_0$) reicht also aus, um alle Worte $w \in L$ zu generieren.
 
 \end{solution}
 
