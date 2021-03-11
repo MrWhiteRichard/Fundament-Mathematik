@@ -23,11 +23,11 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 \begin{proof}
 	The identity function and the complex conjugation are both isometries. Thus, they are continuous and they are clearly automorphisms on $\C$. They both coincide with their own inverse and act as the identity function on the real line.
 	
-	For an automorphism $\zeta$ on $\C$ we have $\zeta(0) = 0$ and $\zeta(1) = 1$. Assume $\zeta(\alpha) = \alpha$ for some $\alpha \in \N$. We conclude $\zeta(\alpha + 1) = \zeta(\alpha) + \zeta(1) = \alpha + 1$. Hence, by induction we showed that for all $\alpha \in \N$ the equality $\zeta(\alpha) = \alpha$ holds true. For an arbitrary $\lambda \in \C \setminus \{0\}$ we have
+	For any continuous automorphism $\zeta$ on $\C$ we have $\zeta(0) = 0$ and $\zeta(1) = 1$. Assume $\zeta(\alpha) = \alpha$ for some $\alpha \in \N$. We conclude $\zeta(\alpha + 1) = \zeta(\alpha) + \zeta(1) = \alpha + 1$. Hence, we showed by induction that for all $\alpha \in \N$ the equality $\zeta(\alpha) = \alpha$ holds true. For an arbitrary $\lambda \in \C \setminus \{0\}$ we have
 	\begin{align*}
 		0 = \zeta(0) = \zeta(\lambda - \lambda) = \zeta(\lambda) + \zeta(-\lambda) \quad \text{and} \quad 1 = \zeta(1) = \zeta\pbraces{\frac{\lambda}{\lambda}} = \zeta(\lambda) \zeta(\lambda^{-1}).
 	\end{align*}
-	Thus, $\zeta(- \lambda) = -\zeta(\lambda)$ and $\zeta\pbraces{\lambda^{-1}}= \zeta(\lambda)^{-1}$. First we conclude $\zeta(\beta) = \beta$ for all $\beta \in \Z$ and once we have this we obtain $\zeta(\gamma) = \gamma$ for all $\gamma \in \Q$. For any $\delta \in \R$ there exists a sequence of rational numbers $\pbraces{\gamma_n}_{n \in \N}$ that converges to $\delta$. Due to continuity of $\zeta$ we have 
+	Thus, $\zeta(- \lambda) = -\zeta(\lambda)$ and $\zeta\pbraces{\lambda^{-1}}= \zeta(\lambda)^{-1}$. We conclude $\zeta(\beta) = \beta$ for all $\beta \in \Z$ and, in turn, $\zeta(\gamma) = \gamma$ for all $\gamma \in \Q$. For any $\delta \in \R$ there exists a sequence of rational numbers $\pbraces{\gamma_n}_{n \in \N}$ that converges to $\delta$. Due to continuity of $\zeta$ we have 
 	\begin{align*}
 		\zeta(\delta) = \zeta\pbraces{\lim_{n \to \infty} \gamma_n} = \lim_{n \to \infty} \zeta(\gamma_n) = \lim_{n \to \infty} \gamma_n = \delta.
 	\end{align*}
@@ -63,18 +63,18 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 	
 	\draw[line width=0.5mm, blue, dashed] (1cm, 0cm) -- node[anchor=south east] {$2$} (-1cm, 0cm);
 	\end{tikzpicture}
-	\caption{Geometric interpretaion of lemma \ref{lemma:complex_geom}}
+	\caption{Geometric interpretaion of Lemma \ref{lemma:complex_geom}}
 \end{figure}
 
 
 \begin{lemma} \label{lemma:complex_geom}
 	For $\lambda \in \C$ with $|\lambda| = 1$ the following statements are true.
 	\begin{enumerate}
-		\item If $-\lambda$ has euclidean distance $2$ from the complex number $1$ then $\lambda = 1$. Written as a formula we have
+		\item If $-\lambda$ has euclidean distance $2$ from the complex number $1$ then $\lambda = 1$. Thus,
 			\begin{align*}
 				|1 + \lambda| = 2 \Rightarrow \lambda = 1.
 			\end{align*}
-		\item If $-\lambda$ has euclidean distance $\sqrt{2}$ from the complex number $1$ then either $\lambda = i$ or $\lambda = -i$ holds true. Written as a formula we have
+		\item If $-\lambda$ has euclidean distance $\sqrt{2}$ from the complex number $1$ then either $\lambda = i$ or $\lambda = -i$ holds true, i.e.
 			\begin{align*}
 				|1 + \lambda| = \sqrt{2} \Rightarrow \lambda = i \lor \lambda = -i.
 			\end{align*}
@@ -82,21 +82,21 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 \end{lemma}
 
 \begin{proof}
-	We will proof the two statements separately. We have
+	For any $\lambda \in \C$, $\vbraces{\lambda} = 1$, we have
 	\begin{align*}
 		|1 + \lambda|^2 \lambda = (1 + \lambda) \pbraces{1 + \overline{\lambda}} \lambda = (1 + \lambda)^2 = 1 + 2 \lambda + \lambda^2.
 	\end{align*}
 	\begin{enumerate}
-		\item If $|1 + \lambda|^2 = 4$ then we obtain
+		\item If $|1 + \lambda|^2 = 4$, then we obtain
 			\begin{align*}
-				0 = 1 - 2 \lambda + \lambda^2 = (1 - \lambda)^2.
+				0 = 1 - 2 \lambda + \lambda^2 = (1 - \lambda)^2,
 			\end{align*} 
-		Thus, $\lambda = 1$. 
-		\item If $|1 + \lambda|^2 = 2$ then we obtain 
+		and in turn $\lambda = 1$. 
+		\item If $|1 + \lambda|^2 = 2$, then we obtain 
 		\begin{align*}
 			0 = 1 + \lambda^2.
 		\end{align*}
-		Thus, $\lambda \in \Bbraces{i, -i}$.  
+		Hence, $\lambda \in \Bbraces{i, -i}$.  
 	\end{enumerate}
 \end{proof}
 
@@ -120,7 +120,7 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 \end{proof}
 
 \begin{lemma} \label{lemma:complex_alg}
-	Let $\lambda, \mu, \nu \in \C$ where $\lambda \neq 0$ and $|\mu| = |\nu|$. Then the following implication is  true. 
+	Let $\lambda, \mu, \nu \in \C$ where $\lambda \neq 0$ and $|\mu| = |\nu|$. Then the following implication holds true. 
 	\begin{align*}
 		|\lambda + \nu| = |\lambda + \mu| \land |\lambda - i\nu| = |\lambda - i\mu| \Rightarrow \nu = \mu.
 	\end{align*}
@@ -131,13 +131,13 @@ As we will have to work a lot with the complex numbers $\C$ we want to start wit
 	\begin{align*}
 		|\lambda|^2 + \lambda \overline{\mu} + \overline{\lambda} \mu + \vbraces{\mu}^2 = \pbraces{\lambda + \mu}\pbraces{\overline{\lambda} + \overline{\mu}} = \vbraces{\lambda + \mu}^2 = \vbraces{\lambda + \nu}^2 = \pbraces{\lambda + \nu}\pbraces{\overline{\lambda} + \overline{\nu}} = |\lambda|^2 + \lambda \overline{\nu} + \overline{\lambda} \nu + \vbraces{\nu}^2
 	\end{align*}
-	and because of $\vbraces{\mu} = \vbraces{\nu}$ we conclude $\lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}$. Furthermore, we have
+	and because of $\vbraces{\mu} = \vbraces{\nu}$ we conclude $\lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}$. Furthermore,
 	\begin{align*}
 		|\lambda|^2 + i\lambda \overline{\mu} - i\overline{\lambda} \mu + \vbraces{\mu}^2 = \pbraces{\lambda - i\mu}\pbraces{\overline{\lambda} + i\overline{\mu}} = \vbraces{\lambda - i\mu}^2 = \vbraces{\lambda - i\nu}^2 = \pbraces{\lambda - i\nu}\pbraces{\overline{\lambda} + i\overline{\nu}} = |\lambda|^2 + i\lambda \overline{\nu} - i\overline{\lambda} \nu + \vbraces{\nu}^2.
 	\end{align*}
 	Again because of the assumption $\vbraces{\mu} = \vbraces{\nu}$ we obtain
 	\begin{align*}
-		\overline{\lambda} \pbraces{\nu - \mu} = \lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}
+		\overline{\lambda} \pbraces{\nu - \mu} = \lambda\pbraces{\overline{\nu} - \overline{\mu}} = -\overline{\lambda} \pbraces{\nu - \mu}.
 	\end{align*}
-	and $\overline{\lambda} \neq 0$ implies $\nu = \mu$.
+	$\overline{\lambda} \neq 0$ finally implies $\nu = \mu$.
 \end{proof}

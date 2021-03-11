@@ -1,6 +1,6 @@
 \section{Statement and proof of Wigner's Theorem}
 
-If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ we mean in this section a function from $\mathcal{P}(H_1)$ to $\mathcal{P}(H_2)$ which is isometric with respect to the metric $d$ from Lemma \ref{lemma:projective_metric}.
+If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$, we mean in this section a function from $\mathcal{P}(H_1)$ to $\mathcal{P}(H_2)$ which is isometric with respect to the metric $d$ from Lemma \ref{lemma:projective_metric}.
 
 
 \begin{example} \label{example:zerodim}
@@ -17,7 +17,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 		\norm[H_2]{T\lambda x} = \norm[H_2]{\overline{\lambda} y} = \vbraces{\lambda} \norm[H_2]{y} = \vbraces{\lambda} = \vbraces{\lambda} \norm[H_1]{x} = \norm[H_1]{\lambda x}.
 	\end{align*}
-	Hence, $U$ is unitary and $T$ is antiunitary. Furthermore, we clearly have $Ux \in g\pbraces{\C x}$ for every $x \in H_1 \setminus \{0\}$. 
+	Hence, $U$ is unitary and $T$ is antiunitary. Furthermore, we clearly have $Tu, Uu \in g\pbraces{\C u}$ for every $u \in H_1 \setminus \{0\}$. 
 \end{example}
 
 
@@ -26,7 +26,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 \end{lemma}
 
 \begin{proof}
-	Take an arbitrary vector $\tilde{w} \in g(\C y)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{\tilde{x}}$ and define $\mu := (\tilde{w}, \tilde{x})_{H_2}$. By \eqref{eq:vector_isometry} we have $|\mu| = |(\tilde{w},\tilde{x})_{H_2}| = |(y,x)_{H_1}| \neq 0$. Hence, we obtain $\mu \in \C \setminus \{0\}$. According to Lemma \ref{lemma:phase_adjustment_complex} there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\mu| = \lambda \mu$. For $\tilde{y} := \lambda \tilde{w}$ we obtain
+	Take an arbitrary vector $\tilde{w} \in g(\C y)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{\tilde{x}}$ and define $\mu := (\tilde{w}, \tilde{x})_{H_2}$. By \eqref{eq:vector_isometry} we have $|\mu| = |(\tilde{w},\tilde{x})_{H_2}| = |(y,x)_{H_1}| \neq 0$. According to Lemma \ref{lemma:phase_adjustment_complex} there exists a unique $\lambda \in \C$ with $|\lambda| = 1$ such that $|\mu| = \lambda \mu$. For $\tilde{y} := \lambda \tilde{w}$ we obtain
 	\begin{align*}
 		(\tilde{y}, \tilde{x})_{H_2} = \lambda (\tilde{w}, \tilde{x})_{H_2} = \lambda \mu = |\mu| = \vbraces{\lambda}|(\tilde{w}, \tilde{x})_{H_2}| = |(\tilde{y},\tilde{x})_{H_2}|
 	\end{align*}
@@ -51,18 +51,15 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\end{align*} 
 	If $k \in J$ such that $\lambda_k \in \C \setminus \{0\}$ and $\zeta: \C \to \C$ with $\vbraces{\lambda_k} = \vbraces{\zeta\pbraces{\lambda_k}}$, then there exists a unique $\tilde{x} \in g(\C x)$ such that
 	\begin{align*}
-		\tilde{x} = \zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus \{k\}} \pbraces{\tilde{x}, \tilde{e_j}}_{H_2} \tilde{e}_j.
+		\tilde{x} = \zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus \{k\}} \pbraces{\tilde{x}, \tilde{e}_j}_{H_2} \tilde{e}_j.
 	\end{align*}
-	This vector $\tilde{x} \in g(\C x)$ satisfies $\norm[H_2]{\tilde{x}} = \norm[H_1]{x}$. If we define $\mu_j := \pbraces{\tilde{x}, \tilde{e_j}}_{H_2}$ for all $j \in J \setminus \{k\}$, then we have $\vbraces{\mu_j} = \vbraces{\lambda_j}$ for all $j \in J \setminus \{k\}$ and
-	\begin{align*}
-		\tilde{x} = \zeta(\lambda_k) \tilde{e}_k + \sum_{j \in J \setminus \{k\}} \mu_j \tilde{e}_j.
-	\end{align*}
+	This vector $\tilde{x} \in g(\C x)$ satisfies $\norm[H_2]{\tilde{x}} = \norm[H_1]{x}$. Moreover, $\vbraces{\pbraces{\tilde{x}, \tilde{e}_j}_{H_2}} = \vbraces{\lambda_j}$ for $j \in J \setminus \{k\}$. 
 \end{lemma}
 
 \begin{proof}
 	We first observe that for every $l \in J$ 
 	\begin{align}
-		\pbraces{x, e_l}_{H_1} &= \pbraces{\sum_{j \in J} \lambda_j e_j, e_l}_{H_1} = \sum_{j \in J} \lambda_j \pbraces{e_j, e_l}_{H_1} = \lambda_l \label{eq:aux_fouriercoef}
+		\pbraces{x, e_l}_{H_1} &= \pbraces{\sum_{j \in J} \lambda_j e_j, e_l}_{H_1} = \sum_{j \in J} \lambda_j \pbraces{e_j, e_l}_{H_1} = \lambda_l. \label{eq:aux_fouriercoef}
 	\end{align}
 	As $\lambda_k \neq 0$ we can employ Lemma \ref{lemma:phase_adjustment_ray} and \eqref{eq:vector_isometry} in order to obtain a unique $\tilde{w} \in g(\C x)$ with $\norm[H_2]{\tilde{w}} = \norm[H_1]{x}$ and 
 	\begin{align*}
@@ -86,15 +83,15 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\end{align*}
 	we conclude $\mu = 1$. Thus, $\tilde{x} = \tilde{y}$. 
 	
-	Finally, by \eqref{eq:vector_isometry} we have for all $j \in J \setminus \{k\}$
+	Finally, by \eqref{eq:vector_isometry} for all $j \in J \setminus \{k\}$ we have 
 	\begin{align*}
-		\vbraces{\mu_j} = \vbraces{\pbraces{\tilde{x}, \tilde{e_j}}_{H_2}} = \vbraces{\pbraces{x, e_j}_{H_1}} = \vbraces{\lambda_j}.
+		\vbraces{\mu_j} = \vbraces{\pbraces{\tilde{x}, \tilde{e}_j}_{H_2}} = \vbraces{\pbraces{x, e_j}_{H_1}} = \vbraces{\lambda_j}.
 	\end{align*}
 \end{proof}
 
 
 \begin{lemma} \label{lemma:function_on_onb}
-	Let $H_1$ and $H_2$ be Hilbert spaces with $\dim H_1 > 1$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Furthermore, let $M = \{e_j \mid j \in J\}$ be an orthonormal basis of $H_1$. For $q \in J$ we define for all $j \in J \setminus \{q\}$ the vectors
+	Let $H_1$ and $H_2$ be Hilbert spaces with $\dim H_1 > 1$ and $g: \mathcal{P}(H_1) \to \mathcal{P}(H_2)$ an isometry. Furthermore, let $M = \{e_j \mid j \in J\}$ be an orthonormal basis of $H_1$. We fix $q \in J$ and define for all $j \in J \setminus \{q\}$
 	\begin{align*}
 		v_{qj} := \frac{1}{\sqrt{2}} (e_q + e_j), \qquad w_{qj} := \frac{1}{\sqrt{2}}(e_q + ie_j), \qquad w_{jq} := \frac{1}{\sqrt{2}}(e_j + ie_q).
 	\end{align*} 
@@ -121,11 +118,11 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 		\pbraces{\tilde{v}_{qk}, \tilde{e}_k}_{H_2} = \vbraces{\pbraces{\tilde{v}_{qk}, \tilde{e}_k}_{H_2}} = \vbraces{\pbraces{v_{qk}, e_k}_{H_1}} = \frac{1}{\sqrt{2}}.
 	\end{align*}
-	For all $j \in J \setminus \{q, k\}$ we obtain
+	Since for all $j \in J \setminus \{q, k\}$
 	\begin{align*}
-		\vbraces{\pbraces{\tilde{v}_{qk}, \tilde{e}_j}_{H_2}} = \vbraces{\pbraces{v_{qk}, e_j}_{H_1}} = 0.
+		\vbraces{\pbraces{\tilde{v}_{qk}, \tilde{e}_j}_{H_2}} = \vbraces{\pbraces{v_{qk}, e_j}_{H_1}} = 0,
 	\end{align*}
-	From \eqref{eq:ran_fourier} we derive
+	we derive \eqref{eq:ran_fourier} from
 	\begin{align*}
 		\tilde{v}_{qk} = \sum_{j \in J} (\tilde{v}_{qk}, \tilde{e}_j)_{H_2} \tilde{e}_j = \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_k).
 	\end{align*}
@@ -137,8 +134,8 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\end{align*}
 	and $\vbraces{\lambda_q} = \vbraces{\lambda_k} = 1$. We have
 	\begin{align*}
-		\frac{1}{\sqrt{2}}\vbraces{1 + \lambda_k} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_q + \lambda_k \tilde{e}_k), \frac{1}{\sqrt{2}} (\tilde{e}_q + \tilde{e}_k)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{qk}, \tilde{v}_{qk}}_{H_2}} \\
-		&= \vbraces{\pbraces{w_{qk}, v_{qk}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_q + ie_k), \frac{1}{\sqrt{2}} (e_q + e_k)}_{H_1}} = \frac{1}{\sqrt{2}} \vbraces{1 + i} = 1
+		\vbraces{1 + \lambda_k} &= \vbraces{\pbraces{\tilde{e}_q + \lambda_k \tilde{e}_k,  \tilde{e}_q + \tilde{e}_k}_{H_2}} = 2 \vbraces{\pbraces{\tilde{w}_{qk}, \tilde{v}_{qk}}_{H_2}} \\
+		&= 2\vbraces{\pbraces{w_{qk}, v_{qk}}_{H_1}} = \vbraces{\pbraces{e_q + ie_k,  e_q + e_k}_{H_1}} = \vbraces{1 + i} = \sqrt{2}
 	\end{align*}
 	and similarly $\vbraces{1 + \lambda_q} = \sqrt{2}$. By Lemma \ref{lemma:complex_geom} we obtain $\lambda_k, \lambda_q \in \{i, -i\}$. From
 	\begin{align*}
@@ -154,13 +151,13 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 		v := \frac{1}{\sqrt{2}}(e_1 + e_2), \qquad w_{12} := \frac{1}{\sqrt{2}}(e_1 + i e_2), \qquad  w_{21} := \frac{1}{\sqrt{2}}(e_2 + i e_1).
 	\end{align*} 
-	From Lemma \ref{lemma:function_on_onb} we know that there exist $\tilde{e}_1 \in g(\C e_1)$, $\tilde{e}_2 \in g(\C e_2)$, $\tilde{v} \in g(\C v)$, $\tilde{w}_{12} \in g(\C w_{12})$, $\tilde{w}_{21} \in g(\C w_{21})$ and $\lambda \in \{i, -i\}$ with
+	By Lemma \ref{lemma:function_on_onb} there exist $\tilde{e}_1 \in g(\C e_1)$, $\tilde{e}_2 \in g(\C e_2)$, $\tilde{v} \in g(\C v)$, $\tilde{w}_{12} \in g(\C w_{12})$, $\tilde{w}_{21} \in g(\C w_{21})$ and $\lambda \in \{i, -i\}$ with
 	\begin{align*}
 		\tilde{v} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \tilde{e}_2), \qquad \tilde{w}_{12} = \frac{1}{\sqrt{2}}(\tilde{e}_1 + \lambda \tilde{e}_2), \qquad \tilde{w}_{21} = \frac{1}{\sqrt{2}}(\tilde{e}_2 + \lambda \tilde{e}_1).
 	\end{align*} 
-	If $\lambda = i$ then we define $\zeta := \id_\C$ and if $\lambda = -i$ then we define $\zeta$ as the complex conjugation. Either way we have $\lambda = \zeta(i)$.
+	If $\lambda = i$, then we define $\zeta := \id_\C$. If $\lambda = -i$, then we define $\zeta$ as the complex conjugation. Either way we have $\lambda = \zeta(i)$.
 	
-	We are going to define $U:H_1 \to H_2$. First of all set $U0 := 0$. For an arbitrary $z \in H_1 \setminus \{0\}$ there exist $\lambda_1, \lambda_2 \in \C$ with $z = \lambda_1 e_1 + \lambda_2 e_2$ where $\lambda_r \neq 0$ for some $r \in \{1,2\}$. Let $s \in \{1, 2\} \setminus \{r\}$. By Lemma \ref{lemma:aux_main} there exists a unique $\tilde{z} \in g(\C z)$ with 
+	We are going to define $U:H_1 \to H_2$. First of all set $U0 := 0$. For an arbitrary $z \in H_1 \setminus \{0\}$ there exist $\lambda_1, \lambda_2 \in \C$ with $z = \lambda_1 e_1 + \lambda_2 e_2$ where $\lambda_j \neq 0$ for some $j \in \{1,2\}$. We choose $r = 1$ if $\lambda_1 \neq 0$ and $r = 2$ otherwise. Let $s \in \{1, 2\} \setminus \{r\}$. By Lemma \ref{lemma:aux_main} there exists a unique $\tilde{z} \in g(\C z)$ with 
 	\begin{align*}
 		\tilde{z} = \zeta(\lambda_r) \tilde{e}_r + \pbraces{\tilde{z}, \tilde{e}_s}_{H_2} \tilde{e}_s
 	\end{align*}
@@ -234,7 +231,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 	\tilde{v}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \nu_l \tilde{e}_l) \quad \text{and} \quad \tilde{w}_{kl} = \frac{1}{\sqrt{2}}(\tilde{e}_k + \lambda_{kl} \tilde{e}_l),
 	\end{align*}
-	where $\vbraces{\nu_l} = \vbraces{\lambda_{kl}}$. Due to 
+	where $\vbraces{\nu_l} = \vbraces{\lambda_{kl}} = 1$. Due to 
 	\begin{align*}
 		\frac{1}{\sqrt{6}}\vbraces{1 + \nu_l} &= \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_k + \nu_l \tilde{e}_l), \frac{1}{\sqrt{3}}(\tilde{e}_q + \tilde{e}_k + \tilde{e}_l)}_{H_2}} = \vbraces{\pbraces{\tilde{v}_{kl}, \tilde{x}_{kl}}_{H_2}} \\
 		&= \vbraces{\pbraces{v_{kl}, x_{kl}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_k + e_l), \frac{1}{\sqrt{3}}(e_q + e_k + e_l)}_{H_1}} = \frac{2}{\sqrt{6}}
@@ -249,7 +246,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 		\frac{1}{2}\vbraces{\lambda_{kl} - \lambda_{lk}} &= \frac{1}{2}\vbraces{\lambda_{kl} + \overline{\lambda_{lk}}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(\tilde{e}_k + \lambda_{kl} \tilde{e}_l), \frac{1}{\sqrt{2}}(\tilde{e}_l + \lambda_{lk} \tilde{e}_k)}_{H_2}} = \vbraces{\pbraces{\tilde{w}_{kl}, \tilde{w}_{lk}}_{H_2}} \\
 		&= \vbraces{\pbraces{w_{kl}, w_{lk}}_{H_1}} = \vbraces{\pbraces{\frac{1}{\sqrt{2}}(e_k + i e_l), \frac{1}{\sqrt{2}}(e_l + i e_k)}_{H_1}} = \frac{1}{2} \vbraces{i + \overline{i}} = 0
 	\end{align*}
-	yields $\lambda_{kl} = \lambda_{lk}$ because of $\lambda_{kl}, \lambda_{lk} \in \{i, -i\}$. 
+	yields $\lambda_{kl} = \lambda_{lk}$. 
 \end{proof}
 
 
@@ -258,7 +255,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 \end{theorem}
 
 \begin{proof}
-	We already showed the theorem for $\dim H_1 = 0$ in Example \ref{example:zerodim}, for $\dim H_1 = 1$ in Example \ref{example:onedim} and for $\dim H_1 = 2$ in Example \ref{example:twodim}. Thus we assume $\dim H_1 > 2$. We know from Lemma \ref{lemma:onb} that there exists an orthonormal basis $M := \{e_j \mid j \in J\}$ of $H_1$. For all distinct $k,l \in J$ we define
+	We already showed the theorem for $\dim H_1 = 0$ in Example \ref{example:zerodim}, for $\dim H_1 = 1$ in Example \ref{example:onedim} and for $\dim H_1 = 2$ in Example \ref{example:twodim}. Thus we assume $\dim H_1 > 2$. We know from Lemma \ref{lemma:onb} that there exists an orthonormal basis $M := \{e_j \mid j \in J\}$ of $H_1$. We assume that $J$ is well-ordered and note that by the well-ordering theorem every set can be well-ordered. For all distinct $k,l \in J$ we define
 	\begin{align*}
 		v_{kl} := \frac{1}{\sqrt{2}}(e_k + e_l) \quad \text{and} \quad w_{kl} := \frac{1}{\sqrt{2}}(e_k + ie_l).
 	\end{align*}
@@ -305,7 +302,7 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 		z = \sum_{j \in J} \lambda_j e_j
 	\end{align*}
-	where $\lambda_j := (z,e_j)_{H_1}$ for all $j \in J$. As $z \neq 0$ there exists some $k \in J$ with $\lambda_k \neq 0$. By Lemma \ref{lemma:aux_main} there exists a unique vector $\tilde{z} \in g(\C z)$ such that
+	where $\lambda_j := (z,e_j)_{H_1}$ for all $j \in J$. As $z \neq 0$ there exists a least element $k \in J$ with $\lambda_k \neq 0$. By Lemma \ref{lemma:aux_main} there exists a unique vector $\tilde{z} \in g(\C z)$ such that
 	\begin{align*}
 		\tilde{z} = \zeta\pbraces{\lambda_k} \tilde{e}_k + \sum_{j \in J \setminus \{k\}} \pbraces{\tilde{z}, \tilde{e}_j}_{H_2} \tilde{e}_j.
 	\end{align*} 
@@ -331,9 +328,9 @@ If for Hilbert spaces $H_1$ and $H_2$ we consider an isometry $g: \mathcal{P}(H_
 	\begin{align*}
 		Uz = \sum_{j \in J} \zeta(\lambda_j) \tilde{e}_j = \sum_{j \in J} \zeta\pbraces{\pbraces{z, e_j}_{H_1}}\tilde{e}_j.
 	\end{align*}
-	By definition $Uz \in g(\C z)$. For arbitrary $x,y \in H_1$ and $\mu, \lambda \in \C$ we obtain
+	By definition $Uz = \tilde{z} \in g(\C z)$. For arbitrary $x,y \in H_1$ and $\mu, \lambda \in \C$ we obtain
 	\begin{align*}
-		U(\mu x + \lambda y) &= U \pbraces{\sum_{j \in J} \pbraces{\pbraces{\mu x, e_j}_{H_1} + \lambda \pbraces{y, e_j}_{H_1}} e_j} \\
+		U(\mu x + \lambda y) &= U \pbraces{\sum_{j \in J} \pbraces{\mu \pbraces{x, e_j}_{H_1} + \lambda \pbraces{y, e_j}_{H_1}} e_j} \\
 		&= \zeta(\mu) \sum_{j \in J} \zeta\pbraces{\pbraces{x, e_j}_{H_1}} \tilde{e}_j + \zeta(\lambda) \sum_{j \in J} \zeta\pbraces{\pbraces{y, e_j}_{H_1}} \tilde{e}_j = \zeta(\mu) Ux + \zeta\pbraces{\lambda} Uy.
 	\end{align*}
 	Thus, $U$ is $\zeta$-linear and 

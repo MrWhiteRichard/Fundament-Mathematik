@@ -6,14 +6,14 @@
 
 
 \begin{lemma} \label{lemma:ray_prod}
-	Let $R_1$ and $R_2$ be rays of the projective Hilbert space $\mathcal{P}(H)$. Then there exists a unique $\rho \in [0, 1]$ such that for all $x_1 \in R_1 \setminus \{0\}$ and $x_2 \in R_2 \setminus \{0\}$
+	If $R_1$ and $R_2$ are rays of a projective Hilbert space $\mathcal{P}(H)$, then there exists a unique $\rho \in [0, 1]$ such that for all $x_1 \in R_1 \setminus \{0\}$ and $x_2 \in R_2 \setminus \{0\}$
 	\begin{align*}
 		\frac{\vbraces{(x_1, x_2)}}{\norm[]{x_1} \norm[]{x_2}} = \rho.
 	\end{align*}
 \end{lemma}
 
 \begin{proof}
-	Let $x_1, y_1 \in R_1 \setminus \{0\}$ and $x_2, y_2 \in R_2 \setminus \{0\}$. We have $y_1 = \lambda_1 x_1$ and $y_2 = \lambda_2 x_2$ for some $\lambda_1, \lambda_2 \in \C \setminus \{0\}$. Hence,
+	Let $x_1, y_1 \in R_1 \setminus \{0\}$ and $x_2, y_2 \in R_2 \setminus \{0\}$. Then we can write $y_1 = \lambda_1 x_1$ and $y_2 = \lambda_2 x_2$ for some $\lambda_1, \lambda_2 \in \C \setminus \{0\}$. Hence,
 	\begin{align*}
 		\rho := \frac{\vbraces{(y_1, y_2)}}{\norm[]{y_1} \norm[]{y_2}} = \frac{\vbraces{(\lambda_1 x_1, \lambda_2 x_2)_H}}{\norm[]{\lambda_1 x_1} \norm[]{\lambda_2 x_2}} = \frac{\vbraces{\lambda_1 \lambda_2}\vbraces{(x_1, x_2)}}{\vbraces{\lambda_1 \lambda_2}\norm[]{x_1} \norm[]{x_2}} = \frac{\vbraces{(x_1, x_2)}}{\norm[]{x_1} \norm[]{x_2}}.
 	\end{align*}
@@ -42,11 +42,11 @@
 	\begin{align*}
 		P^2x = P\pbraces{(x, v_R) v_R} = \pbraces{(x, v_R) v_R, v_R} v_R = (x,v_R) v_R = Px.
 	\end{align*}
-	Since also
+	Since also for $x,y \in H$ we have
 	\begin{align*}
-		(Px, y) = \pbraces{(x, v_R) v_R, y} = (x, v_R) (v_R, y) = \pbraces{x, (y, v_R) v_R} = (x, Py)
+		(Px, y) = \pbraces{(x, v_R) v_R, y} = (x, v_R) (v_R, y) = \pbraces{x, (y, v_R) v_R} = (x, Py),
 	\end{align*}
-	for $x,y \in H$, the operator $P = f(R)$ is an orthogonal projection. The map $d$ is a metric, because the operator norm induces a metric in the well known way. 
+	the operator $P = f(R)$ is an orthogonal projection. The map $d$ is a metric, because the operator norm induces a metric in the well known way. 
 \end{proof}
 
 
@@ -64,26 +64,31 @@
 \end{lemma}
 
 \begin{proof}
-	Let $R,S \in\mathcal{P}(H)$ be arbitrary rays and let $P := f(R)$ and $Q:= f(S)$ be the orthogonal projections onto $R$ and $S$ respectively as in Lemma \ref{lemma:projective_metric} and set $u := v_R$ and $v := v_S$. If $R = S$ then the equation holds true because of Remark \ref{remark:csb}. Thus, from now on we assume $R \neq S$. We are going to have a look at the spectrum of $T: H \to H$ defined by $Tx = Px - Qx$. As
+	Let $R,S \in\mathcal{P}(H)$ be arbitrary rays and let $P := f(R)$ and $Q:= f(S)$ be the orthogonal projections onto $R$ and $S$ respectively as in Lemma \ref{lemma:projective_metric} and set $u := v_R$ and $v := v_S$. If $R = S$ then the equation holds true because of Remark \ref{remark:csb}. Thus, from now on we assume $R \neq S$. We are going to have a look at the spectrum of $T: H \to H$ defined by $Tx = Px - Qx = (x,u)u - (x,v)v$. From
+	\begin{align*}
+	T\pbraces{u - \frac{\pbraces{u,v}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}v} &= Tu - \frac{\pbraces{u,v}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}} Tv = u - (u,v)v - \frac{\pbraces{u,v}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}} \pbraces{(v,u) u - v} \\
+	&= \pbraces{1 - \frac{\vbraces{\pbraces{u,v}}^2}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}}u - \pbraces{(u,v) - \frac{\pbraces{u,v}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}}v \\
+	&= \frac{1 - \vbraces{\pbraces{u,v}}^2 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}} u - \frac{(u,v) \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}v \\
+	&= \sqrt{1 - \vbraces{\pbraces{u,v}}^2} \pbraces{u - \frac{\pbraces{u,v}}{1 + \sqrt{1 - \vbraces{\pbraces{u,v}}^2}}v}
+	\end{align*}
+	we conclude that $\sqrt{1 - \vbraces{\pbraces{u,v}}^2} = \sqrt{1 - (R,S)_{\mathcal{P}(H)}^2}$ is an eigenvalue of $T$. As
 	\begin{align*}
 		T^\ast = P^\ast - Q^\ast = P - Q = T
 	\end{align*}
-	the operator $T$ is selfadjoint and therefore normal. We also observe that $\ran T \subseteq \mathrm{span}\{u, v\} =: W$. According to Remark \ref{remark:compact} this implies that $T$ is compact.
+	the operator $T$ is selfadjoint and therefore normal. We also observe that $\ran T \subseteq \mathrm{span}\{u, v\}$. According to Remark \ref{remark:compact} this implies that $T$ is compact.  
+	Let us now assume that $\lambda \in \C \setminus \{0\}$ belongs to the spectrum of $T$. Due to the fact that $T$ is compact and by Remark \ref{remark:compact_spectrum} the complex number $\lambda$ is eigenvalue of $T$, which gives $T x = \lambda x$ for some $x \in H \setminus \{0\}$. Hence, $x \in \ran T$ which implies the existence of $\mu, \nu \in \C$ with $x = \mu u + \nu v$. From $x \neq 0$ we conclude $\mu \neq 0$ or $\nu \neq 0$. With no loss of generality we assume $\mu \neq 0$.
 	
-	Let us now assume $\lambda \in \C \setminus \{0\}$ belongs to the spectrum of $T$. Due to the fact that $T$ is compact we know from Remark \ref{remark:compact_spectrum} that $\lambda$ is eigenvalue of $T$, which gives $T x = \lambda x$ for some $x \in H \setminus \{0\}$. Hence, $x \in \mathrm{span 
-	}\ T$ which implies the existence of $\mu, \nu \in \C$ with $x = \mu u + \nu v$. From $x \neq 0$ we conclude $\mu \neq 0$ or $\nu \neq 0$. With no loss of generality we assume $\mu \neq 0$.
-	
-	As $R \neq S$ we have linear independence of $u$ and $v$. By $Qu = (u,v) v$, $Pv = (v,u) u$ we conclude
+	As $R \neq S$, the vectors $u$ and $v$ are linearly independent. We conclude
 	\begin{align}
 		\lambda \mu  = \mu  + \nu (v,u) \label{eq:metric1}\\
 		 \lambda \nu  = - \nu  - \mu (u,v) \label{eq:metric2}
 	\end{align}
 	from
 	\begin{align*}
-		\lambda \mu u + \lambda \nu v = \lambda x = Tx = Px - Qx = \mu Pu + \nu Pv - \mu Qu - \nu Qv = \mu u + \nu Pv - \mu Qu - \nu v .
+		\lambda \mu u + \lambda \nu v = \lambda x = Tx = \mu Tu + \nu Tv = \mu \pbraces{u - (u,v)v} + \nu \pbraces{(v,u)u - v} = \pbraces{\mu + \nu (v,u)} u - \pbraces{\nu + \mu(u,v)} v. 
 	\end{align*}
 	
-	If $(v,u) = 0$ then \eqref{eq:metric1} yields $\lambda \mu = \mu$ and hence $\lambda = 1$. In this case we have $(R,S)_{\mathcal{P}(H)} = |(u,v)_H| = 0$ which, according to Remark \ref{remark:spectral_radius}, yields 
+	If $(v,u) = 0$, then \eqref{eq:metric1} yields $\lambda \mu = \mu$ and hence $\lambda = 1$. In this case we have $(R,S)_{\mathcal{P}(H)} = |(u,v)_H| = 0$ which, according to Remark \ref{remark:spectral_radius}, yields 
 	\begin{align*}
 		d(R,S) = \norm{P - Q} = r(P - Q) = 1 = \sqrt{1 - (R,S)_{\mathcal{P}(H)}}.
 	\end{align*}

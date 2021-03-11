@@ -21,14 +21,14 @@
 
 
 \begin{remark} \label{remark:inner_product_continuity}
-	For a vector space with inner product $(\cdot, \cdot): V \times V \to \C$ the inner product is continuous when $V$ is endowed with the topology induced by the norm and $V \times V$ is endowed with the product topology. Furthermore for every $y \in V$ the linear functional $f_y:V \to \C: x \mapsto (x,y)$ is continuous. The proof of these facts can be found in \cite[p.43]{FAna1} 
+	For a vector space with inner product $(\cdot, \cdot): V \times V \to \C$ the inner product is continuous when $V$ is endowed with the topology induced by the norm and $V \times V$ is endowed with the product topology. Furthermore for every $y \in V$ the linear functional $f_y:V \to \C$ defined by $f_y(x) = (x,y)$, is continuous. The proof of these facts can be found in \cite[p.43]{FAna1} 
 \end{remark}
 
 \begin{definition}
 	A vector space $H$ over $\C$ with a scalar product that is complete as a normed space endowed with the norm induced by the scalar product is called \textit{Hilbert space}.
 \end{definition}
 
-In this paper a Hilbert space is by definition a vector space over the field $\C$ and not over $\R$. 
+In this paper a Hilbert space shall always be a vector space over the field $\C$ and not over $\R$. 
 
 \begin{definition}
 	Let $V$ be a vector space with an inner product $(\cdot, \cdot)$. We call two subsets $M,N \subseteq V$ \textit{orthogonal}, denoted by $M \perp N$, if for all $x \in M$ and all $y \in N$ we have $(x,y) = 0$. Two vectors $v,w \in V$ are called \textit{orthogonal} if $(v,w) = 0$. 
@@ -43,7 +43,7 @@ In this paper a Hilbert space is by definition a vector space over the field $\C
 			0 &, \text{if } u \neq v.
 		\end{cases}
 	\end{align*}
-	If $M$ is an orthonormal system and every orthonormal system $\tilde{M}$  with $\tilde{M} \supseteq M$ satisfies $\tilde{M} = M$ then $M$ is called an \textit{orthonormal basis} of $H$.
+	If $M$ is an orthonormal system and every orthonormal system $\tilde{M}$  with $\tilde{M} \supseteq M$ satisfies $\tilde{M} = M$, then $M$ is called an \textit{orthonormal basis} of $H$.
 \end{definition}
 
 
@@ -77,7 +77,7 @@ The proof can be found in \cite[p.52]{FAna1}.
 		
 		\item For every $x \in H$  
 		\begin{align} \label{eq:fourierseries}
-		x = \sum_{j \in J} (x, e_j) e_j
+		x = \sum_{j \in J} (x, e_j) e_j.
 		\end{align}
 	\end{enumerate} 
 \end{theorem}
@@ -98,7 +98,7 @@ The proof can be found in \cite[p. 54]{FAna1}.
 \end{lemma}
 
 \begin{proof}
-	We proof the two implications separately. For both directions we consider an orthonormal basis $\{f_k \mid k \in K\} \supseteq M$ that exists according to Lemma \ref{lemma:onb}. 
+	We consider an orthonormal basis $\{f_k \mid k \in K\} \supseteq M$; see Lemma \ref{lemma:onb}. 
 	\begin{enumerate}
 		\item[\Quote{$\Rightarrow$}]  Using Parzeval's equality \eqref{eq:parzeval} we obtain
 		\begin{align*}
@@ -113,7 +113,7 @@ The proof can be found in \cite[p. 54]{FAna1}.
 		\begin{align*}
 			\pbraces{x, f_k} = \pbraces{\sum_{j \in J} \pbraces{x, e_j} e_j, f_k} = \sum_{j \in J} \pbraces{x, e_j} \pbraces{e_j, f_k} = 0.
 		\end{align*}
-		Hence, with Parseval's equality we obtain
+		Hence, Parseval's equality yields
 		\begin{align*}
 			\sum_{j \in J} \vbraces{\pbraces{x,e_j}}^2 = \sum_{k \in K} \vbraces{\pbraces{x,f_k}}^2 = \norm[]{x}^2.
 		\end{align*}
@@ -124,16 +124,16 @@ The proof can be found in \cite[p. 54]{FAna1}.
 
 
 \begin{definition}
-	Let $V$ and $W$ be two vector spaces over the same field $K$ and $\zeta$ be an automorphism on $K$. A function $f: V \to W$ is called \textit{semilinear} with respect to $\zeta$ or $\zeta$\textit{-linear}, if for all $x,y \in V$ and all $\lambda \in K$ the equations
+	Let $V$ and $W$ be two vector spaces over the same field $K$ and $\zeta$ be an automorphism on $K$. A function $f: V \to W$ is called \textit{semilinear} with respect to $\zeta$ or $\zeta$\textit{-linear}, if for all $x,y \in V$ and all $\lambda \in K$
 	\begin{align*}
-		f(x + y) = f(x) + f(y) \quad \text{and} \quad f(\lambda x) = \zeta(\lambda) f(x)
+		f(x + y) = f(x) + f(y) \quad \text{and} \quad f(\lambda x) = \zeta(\lambda) f(x).
 	\end{align*}
-	are satisfied. If $K = \C$ and $\zeta$ is the complex conjugation, then $f$ is called an \textit{antilinear function}.
+	If $K = \C$ and $\zeta$ is the complex conjugation, then $f$ is called an \textit{antilinear function}.
 \end{definition}
 
 
 \begin{remark}
-	If $f$ is a $\zeta$-linear function and $\zeta = id_K$ then $f$ is simply a \textit{linear function}. The properties of $\zeta$-linear functions are very similar to the ones we know from linear function. See \cite[p. 138]{LinAG1&2} for these results. We will use the property that a $\zeta$-linear function $f$ is injective if $\ker f = \{0\}$. Furthermore, a scalar product in this paper is linear in the first and antilinear in the second argument, as can be found in \cite[p. 41]{FAna1}.
+	If $f$ is a $\zeta$-linear function and $\zeta = id_K$, then $f$ is simply a \textit{linear function}. The properties of $\zeta$-linear functions are very similar to the ones we know from linear function. See \cite[p. 138]{LinAG1&2} for these results. We will use the property that a $\zeta$-linear function $f$ is injective if $\ker f = \{0\}$. Furthermore, a scalar product in this paper is linear in the first and antilinear in the second argument, as can be found in \cite[p. 41]{FAna1}.
 \end{remark}
 
 
@@ -141,7 +141,7 @@ It is not necessary to precisely define a topological vector space here. We only
 
 
 \begin{definition}
-	Let $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ be topological vector spaces. We denote the set of all $\zeta$-linear and continuous functions from $X$ to $Y$ with $\zeta$-$L_b(X,Y)$. In the case $(X, \mathcal{T}_X) = (Y, \mathcal{T}_Y)$ we write $\zeta$-$L_b(X) = \zeta$-$L_b(X,Y)$. If $\zeta$ is the identity function then we write $L_b(X,Y)$ and $L_b(X)$.
+	Let $(X,\mathcal{T}_X)$ and $(Y,\mathcal{T}_Y)$ be topological vector spaces. We denote the set of all $\zeta$-linear and continuous functions from $X$ to $Y$ with $\zeta$-$L_b(X,Y)$. In the case $(X, \mathcal{T}_X) = (Y, \mathcal{T}_Y)$ we write $\zeta$-$L_b(X) = \zeta$-$L_b(X,Y)$. If $\zeta$ is the identity function, then we write $L_b(X,Y)$ and $L_b(X)$.
 \end{definition}
 
 
@@ -149,7 +149,7 @@ It is not necessary to precisely define a topological vector space here. We only
 	If $(X, \mathcal{T})$ is a topological vector space over $\C$, then we denote by $(X, \mathcal{T})^\prime$ the set of all linear and continuous functions from $X$ into the field $\C$. We call this set the \textit{continuous dual space} of $(X, \mathcal{T})$.
 \end{definition}
 
-\begin{remark}
+\begin{remark} \label{remark:dual_space_norm}
 	Let $X$ be a normed space. Then $X^\prime$ provided with the operator norm 
 	\begin{align*}
 		\norm{f} = \sup\Bbraces{\vbraces{f(x)} : x \in X \land \norm[X]{x} \leq 1}, \quad f \in X^\prime,
@@ -167,7 +167,7 @@ It is not necessary to precisely define a topological vector space here. We only
 			y \mapsto f_y
 		\end{cases}
 	\end{align*}
-	where $f_y: H \to \C$ defined by $x \mapsto (x,y)_H$ is an isometric and antilinear bijection from $H$ onto $H^\prime$. 
+	where $f_y: H \to \C$ defined by $f_y(x) = (x,y)$ is an isometric and antilinear bijection from $H$ onto $H^\prime$ endowed with the norm introduced in Remark \ref{remark:dual_space_norm}.
 \end{proposition}
 
 The proof can be found in \cite[p. 50]{FAna1}
@@ -186,7 +186,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 	\begin{align*}
 		r(a) := \sup\{|\lambda| : \lambda \in \sigma(a)\},
 	\end{align*}
-	where $\sup \emptyset := 0$.
+	where $\sup \emptyset := 0$. If $A$ is a Banach space with a norm $\norm{\cdot}$ that satisfies $\norm{ab} \leq \norm{a}\norm{b}$ for all $a,b \in A$, then we call it a Banach algebra with identity element.
 \end{definition}
 
 
@@ -205,19 +205,19 @@ The proof can be found in \cite[p. 50]{FAna1}
 \end{definition}
 
 \begin{remark} \label{remark:compact}
-	Let $X, Y$ be Banach spaces and $T \in L_b(X,Y)$ with $\dim \ran T < \infty$. Then $T$ is compact. This result can be found in \cite[p. 133]{FAna1}.
+	If $X, Y$ are Banach spaces and $T \in L_b(X,Y)$ with $\dim \ran T < \infty$, then $T$ is compact. This result can be found in \cite[p. 133]{FAna1}.
 \end{remark}
 
 \begin{remark} \label{remark:compact_spectrum}
-	Let $X$ be a Banach space and $T: X \to X$ compact. Then every $\lambda \in \sigma(T) \setminus\{0\}$, where $\sigma(T)$ is the spectrum of $T$, is an eigenvalue of $T$. This result can be found in \cite[p.138]{FAna1}.
+	Let $X$ be a Banach space and $T: X \to X$ compact. Then every $\lambda \in \sigma(T) \setminus\{0\}$ is an eigenvalue of $T$. This result can be found in \cite[p.138]{FAna1}.
 \end{remark}
 
 \begin{lemma}
-	Let $H_1$ and $H_2$ be Hilbert spaces and $\zeta$ an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. If $T \in \zeta\text{-}L_b(H_1, H_2)$, then there exists a unique function $T_\zeta^\ast: H_2 \to H_1$ such that for all $x \in H_1$ and $y \in H_2$ the equation 
+	Let $H_1$ and $H_2$ be Hilbert spaces and $\zeta: \C \to \C$ either the identity mapping or the complex conjugation. If $T \in \zeta$-$L_b(H_1, H_2)$, then there exists a unique function $T_\zeta^\ast: H_2 \to H_1$ such that for all $x \in H_1$ and $y \in H_2$ the equation 
 	\begin{align*}
 		(Tx, y)_{H_2} = \zeta\pbraces{(x, T_\zeta^\ast y)_{H_1}}
 	\end{align*}
-	holds. The function $T_\zeta^\ast$ is $\zeta$-linear.
+	holds true. The function $T_\zeta^\ast$ is $\zeta$-linear.
 \end{lemma}
 
 \begin{proof}
@@ -226,7 +226,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 		f_y(\mu u + \lambda v) &= \zeta^{-1}\pbraces{(T(\mu u + \lambda v), y)_{H_2}} = \zeta^{-1}\pbraces{\zeta(\mu) (Tu, y)_{H_2} + \zeta(\lambda) (Tv, y)_{H_2}} \\
 		&= \mu \zeta^{-1}\pbraces{(Tu,y)_{H_2}} + \lambda \zeta^{-1}\pbraces{(Tv,y)_{H_2}} = \mu f_y(u) + \lambda f_y(v).
 	\end{align*}
-	Hence, $f_y$ is a linear function. Furthermore, by Remark \ref{remark:inner_product_continuity} the function $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous. By assumption, $\zeta^{-1}$ is continuous and we conclude continuity of $f_y$. Using Proposition \ref{prop:riesz} there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
+	Hence, $f_y$ is a linear function. Furthermore, by Remark \ref{remark:inner_product_continuity} the function $(\cdot, \cdot)_{H_2}: H_2 \times H_2 \to \C$ is continuous and by Lemma \ref{lemma:continuous_auto} we have continuity of $\zeta^{-1}$. As $f_y$ is a composition function of these two functions it is continuous as well. Using Proposition \ref{prop:riesz} there exists a unique $z_y \in H_1$ which fulfills $f_y(x) = (x,z_y)_{H_1}$ for all $x \in H_1$. This allows us to uniquely define a function
 	\begin{align*}
 		T_\zeta^\ast: H_2 \to H_1, \quad y \mapsto z_y
 	\end{align*}
@@ -241,7 +241,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 		\pbraces{x, T_\zeta^\ast \pbraces{\mu y + \lambda z}}_{H_1} &= \zeta^{-1}\pbraces{\pbraces{Tx, \mu y + \lambda z}_{H_2}} = \zeta^{-1}\pbraces{\overline{\mu}} \zeta^{-1}\pbraces{\pbraces{Tx, y}_{H_2}} + \zeta^{-1}\pbraces{\overline{\lambda}} \zeta^{-1}\pbraces{\pbraces{Tx, z}_{H_2}} \\
 		&= \zeta^{-1}\pbraces{\overline{\mu}} \pbraces{x, T_\zeta^\ast y}_{H_1} + \zeta^{-1}\pbraces{\overline{\lambda}} \pbraces{x, T_\zeta^\ast z}_{H_1} = \pbraces{x, \overline{\zeta^{-1}\pbraces{\overline{\mu}}}T_\zeta^\ast y + \overline{\zeta^{-1}\pbraces{\overline{\lambda}}}T_\zeta^\ast z}_{H_1}.
 	\end{align*}
-	We conclude $T_\zeta^\ast \pbraces{\mu y + \lambda z} = \overline{\zeta^{-1}\pbraces{\overline{\mu}}}T_\zeta^\ast y + \overline{\zeta^{-1}\pbraces{\overline{\lambda}}}T_\zeta^\ast z$. The function $\zeta^{-1}$ is a continuous automorphism on $\C$. Thus, by Lemma \ref{lemma:continuous_auto}, it is either the identity mapping or the complex conjugation. In both cases we see that $T_\zeta^\ast$ is a $\zeta$-linear function.
+	We conclude $T_\zeta^\ast \pbraces{\mu y + \lambda z} = \overline{\zeta^{-1}\pbraces{\overline{\mu}}}T_\zeta^\ast y + \overline{\zeta^{-1}\pbraces{\overline{\lambda}}}T_\zeta^\ast z$. By assumption $\zeta = id_\C$ or $\zeta = \overline{\cdot}$. In both cases we see that $T_\zeta^\ast$ is a $\zeta$-linear function.
 \end{proof}
 
 
@@ -256,7 +256,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 
 
 \begin{definition}
-	Let $H_1$ and $H_2$ be Hilbert spaces, $\zeta$ an automorphism on $\C$ with continuous inverse and $U \in \zeta$-$L_b(H_1, H_2)$. If $\zeta$ is the identity mapping then $U$ is called \textit{unitary} and if $\zeta$ is the complex conjugation then $U$ is called \textit{antiunitary}. Note that, according to Lemma \ref{lemma:continuous_auto}, there exist only these two automorphisms on $\C$ with continuous inverse.
+	Let $H_1$ and $H_2$ be Hilbert spaces, $\zeta: \C \to \C$ either the identity mapping or the complex conjugation and $U \in \zeta$-$L_b(H_1, H_2)$ satisfying $U_\zeta^\ast U = I_{H_1}$ and $UU_\zeta^\ast = I_{H_2}$. If $\zeta$ is the identity mapping, then $U$ is called \textit{unitary}. If $\zeta$ is the complex conjugation, then $U$ is called \textit{antiunitary}.
 \end{definition}
 
 
@@ -266,7 +266,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 
 
 \begin{proposition} \label{prop:unitary}
-	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b\pbraces{H_1, H_2}$, where $\zeta$ is an automorphism of $\C$ with continuous inverse $\zeta^{-1}$. Then the following statements are equivalent.
+	Let $H_1$ and $H_2$ be Hilbert spaces $U \in \zeta$-$L_b\pbraces{H_1, H_2}$, where $\zeta: \C \to \C$ is either the identity mapping or the complex conjugation. Then the following statements are equivalent.
 	\begin{enumerate}[label = (\roman*)]
 		\item $U$ is $\zeta$-unitary. 
 		\item $\ran U = H_2$ and $(Ux , Uy)_{H_2} = \zeta\pbraces{(x,y)_{H_1}}$ for all $x,y \in H_1$.
@@ -282,20 +282,16 @@ The proof can be found in \cite[p. 50]{FAna1}
 			(Ux, Uy)_{H_2} = \zeta\pbraces{(x, U_\zeta^\ast U y)_{H_1}} = \zeta \pbraces{(x,y)_{H_1}}.
 		\end{align*}
 		
-		\item[]\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}. By Lemma \ref{lemma:continuous_auto} the function $\zeta$ is either the identity function or the complex conjugation. Thus, $\zeta(\alpha) = \alpha$ for all $\alpha \in \R$. Given $x \in H_1$ we have
+		\item[]\Quote{$(\mathrm{ii}) \Rightarrow \ (\mathrm{iii})$}. By assumption the function $\zeta$ is either the identity function or the complex conjugation. Hence, $\zeta(\alpha) = \alpha$ for all $\alpha \in \R$. Given $x \in H_1$ we have
 		\begin{align*}
-			\norm[H_2]{Ux}^2 = \pbraces{Ux, Ux}_{H_2} = \zeta\pbraces{\pbraces{x, x}_{H_2}} = \zeta\pbraces{\norm[H_1]{x}^2} = \norm[H_1]{x}^2.
+			\norm[H_2]{Ux}^2 = \pbraces{Ux, Ux}_{H_2} = \zeta\pbraces{\pbraces{x, x}_{H_1}} = \zeta\pbraces{\norm[H_1]{x}^2} = \norm[H_1]{x}^2.
 		\end{align*} 
 		
-		\item[]\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}. By Lemma \ref{lemma:continuous_auto} the function $\zeta^{-1}$ is either the identity function or the complex conjugation. For every $x \in H_1$ we have 
+		\item[]\Quote{$(\mathrm{iii}) \Rightarrow \ (\mathrm{i})$}. For every $x \in H_1$ we have 
 		\begin{align*}
 			(x, U_\zeta^\ast U x)_{H_1} = \zeta^{-1}\pbraces{(Ux, Ux)_{H_2}} = \zeta^{-1} \pbraces{\norm[H_2]{Ux}^2} = \norm[H_2]{Ux}^2 = \norm[H_1]{x}^2 = (x,x)_{H_1}.
 		\end{align*}
-		Using Remark \ref{remark:operator_equivalence_hilbert} we obtain $U_\zeta^\ast U = I_{H_1}$. For $x \in H_1$ with $Ux = 0$ we derive from 
-		\begin{align*}
-			0 = (Ux, Ux)_{H_2} = \zeta((x,x)_{H_1})
-		\end{align*}
-		the equality $x = 0$. Hence, $U$ is bijective. Finally, it is a consequence of $U_\zeta^\ast U = I_{H_1}$ that
+		Using Remark \ref{remark:operator_equivalence_hilbert} we obtain $U_\zeta^\ast U = I_{H_1}$. The function $U$ is surjective by assumption and injective as a consequence of $\norm[H_2]{Ux} = \norm[H_1]{x}$. Hence, $U$ is bijective and $U_\zeta^\ast U = I_{H_1}$ implies
 		\begin{align*}
 			U U_\zeta^\ast = U U_\zeta^\ast UU^{-1} = UI_{H_1}U^{-1} = UU^{-1} = I_{H_2}.
 		\end{align*}
@@ -313,7 +309,7 @@ The proof can be found in \cite[p. 50]{FAna1}
 	\begin{align*}
 		(Px, y) = (x,Py).
 	\end{align*}
-	This result can be found in \cite[p. 47]{FAna1}.
+	Moreover, orthogonal projections are bounded with norm one in case $P \neq 0$. This result can be found in \cite[p. 47]{FAna1}.
 \end{remark}
 
 
