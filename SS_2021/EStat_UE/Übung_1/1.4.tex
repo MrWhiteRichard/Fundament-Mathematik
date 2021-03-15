@@ -117,23 +117,38 @@ Furthermore, to ease notation, let $X := X_1$ and $Y := Y_1$.
         & +
         P(Y_1 = Y_2 = \mathrm{tail} \mid X_1 = \mathrm{fair}, X_2 = \mathrm{fair}) P(X_1 = \mathrm{fair}) P(X_2 = \mathrm{fair} \mid X_1 = \mathrm{fair}) \\
         & =
-        0           \cdot 0           \cdot \frac{3}{9} \cdot \frac{3 - 1}{8}
+        \pbraces{0           \cdot 0           \cdot \frac{3}{9} \cdot \frac{3 - 1}{8}}
         +
-        0           \cdot 1           \cdot \frac{3}{9} \cdot \frac{2}{8}
+        \pbraces{0           \cdot 1           \cdot \frac{3}{9} \cdot \frac{2}{8}}
         +
-        0           \cdot \frac{1}{2} \cdot \frac{3}{9} \cdot \frac{4}{8} \\
-        & +
-        1           \cdot 0           \cdot \frac{2}{9} \cdot \frac{3}{8}
+        \pbraces{0           \cdot \frac{1}{2} \cdot \frac{3}{9} \cdot \frac{4}{8}} \\
+        &
         +
-        1           \cdot 1           \cdot \frac{2}{9} \cdot \frac{2 - 1}{8}
+        \pbraces{1           \cdot 0           \cdot \frac{2}{9} \cdot \frac{3}{8}}
         +
-        1           \cdot \frac{1}{2} \cdot \frac{2}{9} \cdot \frac{4}{8} \\
-        & +
-        \frac{1}{2} \cdot 0           \cdot \frac{4}{9} \cdot \frac{3}{8}
+        \pbraces{1           \cdot 1           \cdot \frac{2}{9} \cdot \frac{2 - 1}{8}}
         +
-        \frac{1}{2} \cdot 1           \cdot \frac{4}{9} \cdot \frac{2}{8}
+        \pbraces{1           \cdot \frac{1}{2} \cdot \frac{2}{9} \cdot \frac{4}{8}} \\
+        &
         +
-        \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{4}{9} \cdot \frac{4 - 1}{8}
+        \pbraces{\frac{1}{2} \cdot 0           \cdot \frac{4}{9} \cdot \frac{3}{8}}
+        +
+        \pbraces{\frac{1}{2} \cdot 1           \cdot \frac{4}{9} \cdot \frac{2}{8}}
+        +
+        \pbraces{\frac{1}{2} \cdot \frac{1}{2} \cdot \frac{4}{9} \cdot \frac{4 - 1}{8}} \\
+        & =
+        \frac{13}{72}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        P(Y_2 = \mathrm{tail} \mid Y_1 = \mathrm{tail})
+        =
+        \frac{\frac{13}{72}}{P(Y_1 = \mathrm{tail})}
+        =
+        \frac{\frac{13}{72}}{\frac{4}{9}}
+        =
+        \frac{13}{32}
     \end{align*}
 
 \end{enumerate}
