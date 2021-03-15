@@ -19,23 +19,27 @@ Three cards are drawn randomly without replacement from a deck of $52$ cards.
 
 Let $X_i$ denote the card that gets chosen in the $i$-th step and
 
-\begin{align*}
+\begin{gather*}
     S := \Bbraces{\textcolor{red}{\heartsuit}, \spadesuit, \textcolor{red}{\diamondsuit}, \clubsuit},
     \quad
-    R := \Bbraces{2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A}
-\end{align*}
+    R := \Bbraces{2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A}, \\
+    s_i := \operatorname{suit},
+    \quad
+    r_i := \operatorname{rank},
+    \quad
+    i = 1, 2, 3.
+\end{gather*}
 
 \begin{enumerate}[label = (\alph*)]
 
     \item
 
     \begin{align*}
-        &
-        P(\operatorname{suit} X_1 = \cdots = \operatorname{suit} X_3) \\
+        P(s_1 = \cdots = s_3)
         & =
-        \sum_{s \in S} P(\operatorname{suit} X_1 = \cdots = \operatorname{suit} X_3 = s) \\
+        \sum_{s \in S} P(s_1 = \cdots = s_3 = s) \\
         & =
-        \sum_{s \in S} P(\operatorname{suit} X_1 = s) P(\operatorname{suit} X_2 = s \mid \operatorname{suit} X_1 = s) P(\operatorname{suit} X_3 = s \mid \operatorname{suit} X_1 = \operatorname{suit} X_2 = s) \\
+        \sum_{s \in S} P(s_1 = s) P(s_2 = s \mid s_1 = s) P(s_3 = s \mid s_1 = s_2 = s) \\
         & =
         |S| \frac{13}{52} \frac{12}{51} \frac{11}{50}
     \end{align*}
@@ -43,12 +47,11 @@ Let $X_i$ denote the card that gets chosen in the $i$-th step and
     \item
 
     \begin{align*}
-        &
-        P(\operatorname{rank} X_1 = \dots = \operatorname{rank} X_3) \\
+        P(r_1 = \dots = r_3)
         & =
-        \sum_{r \in R} P(\operatorname{rank} X_1 = \cdots = \operatorname{rank} X_3 = r) \\
+        \sum_{r \in R} P(r_1 = \cdots = r_3 = r) \\
         & =
-        \sum_{r \in R} P(\operatorname{rank} X_1 = r) P(\operatorname{rank} X_2 = r \mid \operatorname{rank} X_1 = r) P(\operatorname{rank} X_3 = r \mid \operatorname{rank} X_1 = \operatorname{rank} X_2 = r) \\
+        \sum_{r \in R} P(r_1 = r) P(r_2 = r \mid r_1 = r) P(r_3 = r \mid r_1 = r_2 = r) \\
         & =
         |R| \frac{4}{52} \frac{3}{51} \frac{2}{50}
     \end{align*}
@@ -56,54 +59,89 @@ Let $X_i$ denote the card that gets chosen in the $i$-th step and
     \item
 
     \begin{align*}
-        &
-        P((X_1, \dots, X_3) ~\text{contains exactly one pair}) \\
-        & =
-        P(|\Bbraces{\operatorname{rank} X_1, \dots, \operatorname{rank} X_3}| = 2) \\
-        & =
-        P(\operatorname{rank} X_1 = \operatorname{rank} X_2 \neq \operatorname{rank} X_3) \\
-        & +
-        P(\operatorname{rank} X_2 = \operatorname{rank} X_3 \neq \operatorname{rank} X_1) \\
-        & +
-        P(\operatorname{rank} X_3 = \operatorname{rank} X_1 \neq \operatorname{rank} X_2) \\
-        & =
-        \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
-            P(\operatorname{rank} X_1 = \operatorname{rank} X_2 = r_1, \operatorname{rank} X_3 = r_2) \\
-        & +
-        \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
-            P(\operatorname{rank} X_2 = \operatorname{rank} X_3 = r_2, \operatorname{rank} X_1 = r_1) \\
-        & +
-        \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
-            P(\operatorname{rank} X_3 = \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2) \\
-        & =
-        \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}} \\
-            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_1 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_1)
-            + \\
-            & P(\operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_2 = r_2 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2)
-            + \\
-            & P(\operatorname{rank} X_1 = r_2) P(\operatorname{rank} X_2 = r_2 \mid \operatorname{rank} X_1 = r_1) P(\operatorname{rank} X_3 = r_2 \mid \operatorname{rank} X_1 = r_1, \operatorname{rank} X_2 = r_2) \\
-        & =
-        |R| (|R| - 1)
-        \pbraces
-        {
-            \frac{4}{52} \frac{3}{51} \frac{12 \cdot 4}{50}
-            +
-            \frac{4}{52} \frac{12 \cdot 4}{51} \frac{12 \cdot 4 - 1}{50}
-            +
-            \frac{4}{52} \frac{12 \cdot 4}{51} \frac{3}{50}
-        } \\
-    	& =
-    	13 \cdot 12 \frac{1}{13} 
-    	\pbraces
-    	{
-    		\frac{3}{51} \frac{12 \cdot 4}{50}
-    		+
-    		\frac{12 \cdot 4}{51} \frac{12 \cdot 4 - 1}{50}
-    		+
-    		\frac{12 \cdot 4}{51} \frac{3}{50}
-    	} \\
-    	& = 12 \frac{3 \cdot 48 + 48 \cdot 47 + 48 \cdot 3 }{50 \cdot 51} = 4 \cdot 24 \frac{3 + 47 + 3}{25 \cdot 17} = \frac{53 \cdot 96}{25 \cdot 17} > 1
+        P((X_1, \dots, X_3) ~\text{contains exactly one pair})
+        =
+        \frac{3}{51} \frac{48}{50}
+        +
+        \frac{48}{51} \frac{3}{50}
+        +
+        \frac{48}{51} \frac{3}{50}
+        =
+        3 \cdot \frac{3 \cdot 48}{51 \cdot 50}
+        =
+        \frac{72}{425}
     \end{align*}
+
+    \begin{center}
+        \begin{tikzpicture}
+
+            \draw (0, 0) node [above] {$r_1$};
+                \draw (0, 0) -- node [above left] {$\nfrac{3}{51}$} (-4, -1) node [above left] {$r_1 = r_2$};
+                    \draw (-4, -1) -- node [above left]  {$\nfrac{2}{50}$}  (-6, -2) node [below] {$r_1 = r_2 = r_3 = r_1$};
+                    \draw (-4, -1) -- node [above right] {$\nfrac{48}{50}$} (-2, -2) node [below] {$r_1 = r_2 \neq r_3 \neq r_1$};
+                \draw (0, 0) -- node [above left] {$\nfrac{48}{51}$} (4, -1) node [above right] {$r_1 \neq r_2$};
+                    \draw (4, -1) -- node [above left]  {$\nfrac{3}{50}$}  (2, -2) node [below] {$r_1 \neq r_2 \neq r_3 = r_1$};
+                    \draw (4, -1) -- node [below right] {$\nfrac{3}{50}$}  (4, -4) node [below] {$r_1 \neq r_2 = r_3 \neq r_1$};
+                    \draw (4, -1) -- node [above right] {$\nfrac{44}{50}$} (6, -2) node [below] {$r_1 \neq r_2 \neq r_3 \neq r_1$};
+
+        \end{tikzpicture}
+    \end{center}
+
+    \begin{comment}
+
+        Achtung Falsch!!!
+
+        \begin{align*}
+            &
+            P((X_1, \dots, X_3) ~\text{contains exactly one pair}) \\
+            & =
+            P(|\Bbraces{r_1, \dots, r_3}| = 2) \\
+            & =
+            P(r_1 = r_2 \neq r_3) \\
+            & +
+            P(r_2 = r_3 \neq r_1) \\
+            & +
+            P(r_3 = r_1 \neq r_2) \\
+            & =
+            \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
+                P(r_1 = r_2 = r_1, r_3 = r_2) \\
+            & +
+            \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
+                P(r_2 = r_3 = r_2, r_1 = r_1) \\
+            & +
+            \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}}
+                P(r_3 = r_1 = r_1, r_2 = r_2) \\
+            & =
+            \sum_{r_1 \in R} \sum_{r_2 \in R \setminus \Bbraces{r_1}} \\
+                & P(r_1 = r_1) P(r_2 = r_1 \mid r_1 = r_1) P(r_3 = r_2 \mid r_1 = r_1, r_2 = r_1)
+                + \\
+                & P(r_1 = r_1) P(r_2 = r_2 \mid r_1 = r_1) P(r_3 = r_2 \mid r_1 = r_1, r_2 = r_2)
+                + \\
+                & P(r_1 = r_2) P(r_2 = r_2 \mid r_1 = r_1) P(r_3 = r_2 \mid r_1 = r_1, r_2 = r_2) \\
+            & =
+            |R| (|R| - 1)
+            \pbraces
+            {
+                \frac{4}{52} \frac{3}{51} \frac{12 \cdot 4}{50}
+                +
+                \frac{4}{52} \frac{12 \cdot 4}{51} \frac{12 \cdot 4 - 1}{50}
+                +
+                \frac{4}{52} \frac{12 \cdot 4}{51} \frac{3}{50}
+            } \\
+            & =
+            13 \cdot 12 \frac{1}{13} 
+            \pbraces
+            {
+                \frac{3}{51} \frac{12 \cdot 4}{50}
+                +
+                \frac{12 \cdot 4}{51} \frac{12 \cdot 4 - 1}{50}
+                +
+                \frac{12 \cdot 4}{51} \frac{3}{50}
+            } \\
+            & = 12 \frac{3 \cdot 48 + 48 \cdot 47 + 48 \cdot 3 }{50 \cdot 51} = 4 \cdot 24 \frac{3 + 47 + 3}{25 \cdot 17} = \frac{53 \cdot 96}{25 \cdot 17} > 1
+        \end{align*}
+
+    \end{comment}
 
 \end{enumerate}
 
