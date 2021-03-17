@@ -1,0 +1,83 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Basketball free throws]
+
+Two professional basketball players, Tom and John, each throw ten free throws with a basketball.
+Tom makes $80 \%$ of the free throws he tries, while John makes $85 \%$ of the free throws he tries.
+
+\begin{enumerate}[label = (\alph*)]
+    
+    \item What is the probability that the number of free throws that Tom will make is exactly $7$?
+    
+    \item What is the probability that the number of free throws that John will make is at least $8$?
+    
+    \item Player who achives the highest score wins the game.
+    It is assumed that the two players do not influence each other when throwing.
+    What is the probability that neither Tom or John will win the game?
+
+    \text{Hint:}
+    Use \texttt R-function \texttt{dbinom()} to calculate the probability mass functions.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Let $X_T$ and $X_J$ denote the number of Tom's resp. John's made throws.
+
+\begin{align*}
+    \implies
+    X_T \sim b(10, 0.8),
+    \quad
+    X_J \sim b(10, 0.85)
+\end{align*}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item 
+
+    \begin{align*}
+        P(X_T = 7)
+        =
+        \binom{10}{7} (0.8)^7 (1 - 0.8)^{10 - 7}
+        \approx
+        0.201326592 \dots
+    \end{align*}
+
+    \item 
+
+    \begin{align*}
+        P(X_J \geq 8)
+        =
+        \sum_{x=8}^{10}
+            \binom{10}{x} (0.85)^x (1 - 0.85)^{10 - x}
+        \approx
+        0.82019648 \dots
+    \end{align*}
+
+    \item 
+
+    \begin{multline*}
+        P(X_T = X_J)
+        =
+        \sum_{x=0}^{10}
+            P(X_T = x, X_J = x)
+        =
+        \sum_{x=0}^{10}
+            P(X_T = x) P(X_J = x) \\
+        =
+        \sum_{x=0}^{10}
+            \binom{10}{x} (0.8)^x (1 - 0.8)^{10 - x}
+            \binom{10}{x} (0.85)^x (1 - 0.85)^{10 - x}
+        \approx
+        0.227620492 \dots
+    \end{multline*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

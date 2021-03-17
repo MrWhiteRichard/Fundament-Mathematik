@@ -1,0 +1,66 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[A left-turn lane problem]
+
+A civil engineer is studying a left-turn lane that is long enough to hold six cars.
+Let $X$ ba the number of cars in the lane at the end of a randomly chosen red light.
+The engineer believes that the probability that $X = x$ is proportional to $(x + 1) (7 - x)$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Find the probability mass function (pmf) of $X$.
+
+    \item Compute the proability that $X$ will be at least $4$.
+
+    \item Calculate the expectation and standard deviation of $X$.
+    \textit{Note:}
+    \texttt R might be useful.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Suppose, there exists a constant $c \in \R$ such that
+    
+    \begin{align*}
+        P(X = x) = c (x + 1) (7 - x).
+    \end{align*}
+
+    Since $P$ is supposed to be a probability measure,
+
+    \begin{align*}
+        1 = \sum_{x=0}^6 P(X = x) = c \sum_{x=0}^6 (x + 1) (7 - x) = 84 c.
+    \end{align*}
+
+    Therefore, $c = \frac{1}{84}$ and the pmf of $X$ reads
+
+    \begin{align*}
+        f_X(x) = \frac{1}{84} (x + 1) (7 - x).
+    \end{align*}
+
+    \item
+
+    \begin{align*}
+        P(X \geq 4) = \sum_{x=4}^6 f_X(x) = \frac{17}{42}
+    \end{align*}
+
+    \item
+
+    \begin{align*}
+        E(X) & = \sum_{x=0}^6 x f_X(x) = 3, \\
+        V(X) & = E(X^2) - E(X)^2 = \sum_{x=0}^6 x^2 f_X(x) - 3^2 = 12 - 9 = 3
+    \end{align*}
+
+\end{enumerate}
+    
+\end{solution}
+
+% --------------------------------------------------------------------------------

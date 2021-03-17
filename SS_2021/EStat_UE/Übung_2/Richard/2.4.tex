@@ -1,0 +1,80 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Hurricane insurance]
+
+An insurance company needs to asses the risk associated with providing hurricane insurance.
+During $22$ years from $1990$ through $2011$, Florida was hit by $27$ major hurricanes (level $3$ and above).
+The insurance company assumed a Poisson distribution for modeling the number of hurricanes.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item If hurricanes are independent and the mean has not changed, what is the probability of having a year in Florida with each of the following?
+
+    \begin{enumerate}[label = (\arabic*)]
+        \item No hits.
+        \item Exactly one hit.
+        \item More than two its.
+    \end{enumerate}
+
+    \item Use \texttt R to estimate the number of hurricane hits that will occur with the probability $99.5 \%$.
+
+    \textit{Hint:}
+    One of the following \texttt R-commands:
+    \texttt{dpois()}, \texttt{ppois()}, \texttt{qpois()}, \texttt{rpois()} is applicable.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Florida was hit by $\lambda := \frac{27}{22}$ hurricanes per year on average (from $1990$ through $2011$).
+    Let $X$ denote teh number of hurricane hits per year.
+
+    \begin{align}
+        P(X = 0)
+        =
+        \frac{\lambda^0}{0!} e^{-\lambda}
+        =
+        e^{-\frac{27}{22}}
+        \approx
+        0.29309 \\
+        P(X = 1)
+        =
+        \frac{\lambda^1}{1!} e^{-\lambda}
+        =
+        \frac{27}{22} e^{-\frac{27}{22}}
+        \approx
+        0.3597 \\
+        \sum_{k=3}^\infty P(X = k)
+        =
+        1 - \sum_{k=0}^2 P(X = k)
+        =
+        1 - \pbraces
+        {
+            \frac{27 / 22}{2} + 27 / 22 + 1
+        }
+        e^{-\frac{27}{22}}
+        \approx
+        0.16736
+    \end{align}
+
+    \item In the \Quote{help}-section of \texttt{qpois} it says:
+    \Quote{The quantile is right continuous: \texttt{qpois(p, lambda)} is the smallest integer $x$ such that $P(X \leq x) \geq p$.}
+
+    The folliwing code yields $3$.
+
+    \lstset{style = fundament}
+    \lstinputlisting{2.4.r}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
