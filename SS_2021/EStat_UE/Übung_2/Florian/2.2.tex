@@ -27,15 +27,15 @@ mass functions.
 \phantom{}
 
 \begin{enumerate}[label = (\alph*)]
-  \item $\P(X_{\text{Tom}} = 7) = 105 \cdot 0.8^{7}\cdot0.2^{3}$.
+  \item $\P(X_{\text{Tom}} = 7) = 120 \cdot 0.8^{7}\cdot0.2^{3} \approx 0.20$.
   \item $\P(X_{\text{John}} \geq 8) =
-  45\cdot0.85^{8}\cdot0.15^{2} + 10\cdot 0.85^{9}\cdot 0.15 + 0.85^{10}$.
+  45\cdot0.85^{8}\cdot0.15^{2} + 10\cdot 0.85^{9}\cdot 0.15 + 0.85^{10} \approx 0.82$.
   \item
   \begin{align*}
     \P(\text{draw}) = \sum_{i=0}^{10} \P(X_{\text{Tom}} = i) \cdot \P(X_{\text{John}} = i)
   \end{align*}
-  The command \texttt{sum(dbinom(0:10, 10, 0.8)*dbinom(0:10, 10, 0.75))} in \texttt{R}
-  yields a probability of $0.2063486$.
+  The command \texttt{sum(dbinom(0:10, 10, 0.8)*dbinom(0:10, 10, 0.85))} in \texttt{R}
+  yields a probability of $0.2276205$.
 \end{enumerate}
 
 \end{solution}
