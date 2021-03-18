@@ -44,31 +44,31 @@ The insurance company assumed a Poisson distribution for modeling the number of 
         =
         e^{-\frac{27}{22}}
         \approx
-        0.29309 \\
+        0.293090827 \\
         P(X = 1)
         =
         \frac{\lambda^1}{1!} e^{-\lambda}
         =
         \frac{27}{22} e^{-\frac{27}{22}}
         \approx
-        0.3597 \\
+        0.359702379 \\
         \sum_{k=3}^\infty P(X = k)
         =
         1 - \sum_{k=0}^2 P(X = k)
         =
         1 - \pbraces
         {
-            \frac{27 / 22}{2} + 27 / 22 + 1
+            \frac{(27 / 22)^2}{2} + 27 / 22 + 1
         }
         e^{-\frac{27}{22}}
         \approx
-        0.16736
+        0.126480334
     \end{align}
 
     \item In the \Quote{help}-section of \texttt{qpois} it says:
     \Quote{The quantile is right continuous: \texttt{qpois(p, lambda)} is the smallest integer $x$ such that $P(X \leq x) \geq p$.}
 
-    The folliwing code yields $3$.
+    The following code yields $5$.
 
     \lstset{style = fundament}
     \lstinputlisting{2.4.r}
