@@ -1,0 +1,48 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Hurricane Insurance}]
+
+An insurance companty needs to assess the risks associated with providing hurricane
+insurance. During 22 years from 1990 through 2011, Florida was hit by 27 major
+hurricanes (level 3 and above). The insurance company assumed Poisson distribution
+for modeling number of hurricanes.
+
+\begin{enumerate}[label = (\alph*)]
+  \item If hurricanes are independent and the mean has not changed, what is the
+  probability of having a year in Florida with each of the following?
+  \begin{enumerate}[label = (\arabic*)]
+    \item No hits.
+    \item Exactly one hit.
+    \item More than two hits.
+  \end{enumerate}
+  \item Use \texttt{R} to estimate the number of hurricane hits that will occur
+  with the probability 99.5\%. \\
+  \textit{Hint:} One of the following \texttt{R}-commands: \texttt{dpois(), ppois(), qpois(), rpois()}
+  is applicable.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item The mean is $\lambda = \frac{27}{22}$. Since we assume a Poisson distribution,
+  we obtain $\P(X = k) = \frac{\lambda^k}{k!}\exp(-\lambda)$ and therefore
+  \begin{enumerate}[label = (\arabic*)]
+    \item $\P(\text{no hits}) = \P(X = 0) = \exp(-\frac{27}{22}) \approx 0.29$
+    \item $\P(\text{one hit}) = \P(X = 1) = \frac{27}{22}\exp(-\frac{27}{22}) \approx 0.36$
+    \item $\P(\text{more than two hits}) = 1 - \P(X = 0) - \P(X = 1) - \P(X = 2)
+    = 1 - \exp(-\frac{27}{22})\left[1 + \frac{27}{22} + \frac{1}{2}\left(\frac{27}{22}\right)^2\right]
+    \approx 0.13$.
+  \end{enumerate}
+  \item With the command \texttt{qpois(0.995, 27/22)} we obtain that there will
+  be a maximum of 5 hurricanes in a year with a probability of at least 99.5\%.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
