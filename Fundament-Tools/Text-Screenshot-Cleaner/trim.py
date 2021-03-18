@@ -4,8 +4,8 @@ import os
 
 from PIL import Image, ImageGrab
 
-from colors import colors
-from PIL_file_extensions import PIL_file_extensions
+from colors import *
+from PIL_file_extensions import *
 
 # ---------------------------------------------------------------- #
 
