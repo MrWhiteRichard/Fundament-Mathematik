@@ -1,0 +1,59 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Uniform-exponential relationship}]
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Let $Y$ be an exponential random variable $Y \sim \exp(\lambda)$, i.e.
+  its pdf is given by
+
+  \begin{align*}
+    f_Y(y) = \begin{cases}
+      \lambda\exp(-\lambda y), & y \geq 0 \\
+      0, & \text{else}
+    \end{cases}
+  \end{align*}
+  and its mean equals $\frac{1}{\lambda}$. Compute $\P(Y > y)$.
+
+  \item Let $X$ be a random variable, uniformly distributed on $(0,1)$.
+  Find the cumulative distribution function of $X$. What is the distribution of
+  $Z = - \log X$?
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item
+  \begin{align*}
+    \P(Y > y) = 1 - \int_{-\infty}^{y} f_Y(x) dx =
+    1 - \lambda \int_{0}^{y} \exp(-\lambda x) dx =
+    1 - \int_{0}^{\lambda y} \exp(-u) du = \exp( - \lambda u).
+  \end{align*}
+
+  \item $F_X(x) = \P(X \leq x) = \int_0^x f_X(y) dy = \int_0^x 1 dy = x$.
+
+  The transformation
+
+  \begin{align*}
+    g: (0,1) \to (0, \infty); \quad x \mapsto -\log(x)
+  \end{align*}
+
+  is a bijective mapping between $(0,1)$ and $(0,\infty)$ with differentiable
+  inverse $g^{-1}(y) = \exp(-y)$. Therefore
+  \begin{align*}
+    f_Z(y) = f_X(g^{-1}(y))|g^{-1}(y)^{\prime}|
+    = f_X(\exp(-y))\exp(-y) = \exp(-y).
+  \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,43 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Basketball free throws}]
+
+Two professional basketball players, Tom and John, each throw ten free throws with
+a basketball. Tom makes 80\% of the free throws he tries, while John makes 85\%
+of the free throws he tries.
+
+\begin{enumerate}[label = (\alph*)]
+  \item What is the probability that the number of free throws that Tom will make
+  is exactly 7?
+  \item What is the probability that the number of free throws that John will make
+  is at least 8?
+  \item Player who achieves the highest score wins the game. It is assumed that
+  the two players do not influence each other when throwing. What is the probability
+  that neither Tom or John will win the game?
+\end{enumerate}
+\textit{Hint:} Use \texttt{R}-function \texttt{dbinom()} to calculate the probability
+mass functions.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item $\P(X_{\text{Tom}} = 7) = 105 \cdot 0.8^{7}\cdot0.2^{3}$.
+  \item $\P(X_{\text{John}} \geq 8) =
+  45\cdot0.85^{8}\cdot0.15^{2} + 10\cdot 0.85^{9}\cdot 0.15 + 0.85^{10}$.
+  \item
+  \begin{align*}
+    \P(\text{draw}) = \sum_{i=0}^{10} \P(X_{\text{Tom}} = i) \cdot \P(X_{\text{John}} = i)
+  \end{align*}
+  The command \texttt{sum(dbinom(0:10, 10, 0.8)*dbinom(0:10, 10, 0.75))} in \texttt{R}
+  yields a probability of $0.2063486$.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

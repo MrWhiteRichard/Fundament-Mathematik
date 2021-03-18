@@ -30,19 +30,19 @@
 % This will be 0 by default
 % and hence, completely ignored
 
-%\ifnum \thechapter = 0
-%{
-%  \newtheorem{exercise}{exercise}
-%}
-%\else
-%{
-%  \newtheorem{exercise}{exercise}[section]
-%}
-%\fi
-%
-%\ifdef
-%{\lastexercisenumber}
-%{\setcounter{exercise}{\lastexercisenumber}}
+\ifnum \thesection = 0
+{
+ \newtheorem{exercise}{Problem}
+}
+\else
+{
+ \newtheorem{exercise}{Problem}[section]
+}
+\fi
+
+\ifdef
+{\lastexercisenumber}
+{\setcounter{exercise}{\lastexercisenumber}}
 
 \newenvironment{solution}
 {

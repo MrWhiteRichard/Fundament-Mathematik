@@ -1,0 +1,74 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{A left-turn lane problem}]
+
+A civil engineer is studying a left-turn lane that is long enough to hold six cars.
+Let $X$ be the number of cars in the lane at the end of a randomly chosen red light.
+The engineer believes that the probability that $X = x$ is proportional to $(x + 1) (7 - x)$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Find the probability mass function (pmf) of $X$.
+
+    \item Compute the probability that $X$ will be at least $4$.
+
+    \item Calculate the expectation and standard deviation of $X$. \\
+    \textit{Note:} \texttt{R} might be useful.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item We have $\P(X = x) = C(x+1)(7-x)$. To determine the constant $C$ we calculate
+
+  \begin{align*}
+    1 = \sum_{i=0}^6 \P(X = i) = \sum_{i=0}^6 C(i+1)(7-i)
+    = C[7 + 12 + 15 + 16 + 15 + 12 + 7] = 84C.
+  \end{align*}
+
+  Therefore we obtain the probability mass function
+
+  \begin{align*}
+    f_X: \begin{cases}
+      0 \mapsto & \frac{1}{12} \\
+      1 \mapsto & \frac{1}{7} \\
+      2 \mapsto & \frac{5}{28} \\
+      3 \mapsto & \frac{4}{21} \\
+      4 \mapsto & \frac{5}{28} \\
+      5 \mapsto & \frac{1}{7} \\
+      6 \mapsto & \frac{1}{12}.
+    \end{cases}
+  \end{align*}
+
+  \item
+
+  \begin{align*}
+    \P(X \geq 4) = \frac{15 + 12 + 7}{84} = \frac{17}{42}.
+  \end{align*}
+
+  \item
+
+  \begin{align*}
+    \E(X) = \sum_{i=0}^6 i \cdot \P(X = i)
+    = \frac{12 + 30 + 48 + 60 + 60 + 42}{84} = 3.
+  \end{align*}
+
+  \begin{align*}
+    \V(X) = \E(X^2) - [\E(X)]^2 = \frac{12 + 60 + 144 + 240 + 300 + 252}{84} - 9.
+    = \frac{1008}{84} - 9 = 3
+  \end{align*}
+
+\end{enumerate}
+
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
