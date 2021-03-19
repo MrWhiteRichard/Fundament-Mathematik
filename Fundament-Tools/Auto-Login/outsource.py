@@ -106,3 +106,10 @@ def drive(site, discord_name, matriculation_number, private_path, password):
         driver.find_element_by_id('rcmloginsubmit').click()
 
 # ---------------------------------------------------------------- #
+
+def main(site, discord_name):
+
+    matriculation_number, private_path, password = get_login_data(site, discord_name)
+    drive(site, discord_name, matriculation_number, private_path, password)
+
+# ---------------------------------------------------------------- #
