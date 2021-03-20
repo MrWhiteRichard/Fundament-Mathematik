@@ -1,0 +1,49 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Lösen Sie mit Hilfe der letzten Aufgabe:
+\begin{enumerate}[label = (\alph*)]
+  \item Auf wieviel Nullen endet $(169!)$?
+  \item $\sqrt[n]{n!} \leq \prod_{p|n}p^{\frac{1}{p-1}}$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Wir zählen also, wie oft der Faktor $10$ in $(169!)$ vorkommt,
+  was genau dem Minimum der Anzahl der Zweier- und Fünfer-Faktoren entspricht.
+  \begin{align*}
+    \sum_{k \geq 1} \left\lfloor \frac{169}{2^k}\right\rfloor
+    &= 84 + 42 + 21 + 10 + 5 + 2 + 1 = 165 \\
+    \sum_{k \geq 1} \left\lfloor \frac{169}{5^k}\right\rfloor
+    &= 33 + 6 + 1 = 40.
+  \end{align*}
+  Also endet $(169!)$ auf $40$ Nullen.
+  \item
+  \begin{align*}
+    \sqrt[n]{n!} \leq \prod_{p|n}p^{\frac{1}{p-1}}
+    \iff n! \leq \prod_{p|n}p^{\frac{n}{p-1}}
+  \end{align*}
+  Es gilt zusätzlich mit der geometrischen Summenformel
+  \begin{align*}
+    \sum_{k \geq 1} \left\lfloor \frac{n}{p^k}\right\rfloor
+    \leq n\sum_{k \geq 1} \frac{1}{p^k} = n\sum_{k \geq 1} \frac{1}{p^k}
+    = n\frac{1/p}{1 - 1/p} = \frac{n}{p - 1}
+  \end{align*}
+  und damit mit der vorigen Aufgabe
+  \begin{align*}
+    n! = \prod_{p|n}p^{\sum_{k \geq 1} \left\lfloor \frac{n}{p^k}\right\rfloor}
+    \leq \prod_{p|n}p^{\frac{n}{p - 1}}.
+  \end{align*}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
