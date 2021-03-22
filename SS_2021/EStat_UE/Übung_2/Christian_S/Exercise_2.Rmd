@@ -192,7 +192,11 @@ $$
 
 (a)
 ```{r}
-hist(rnorm(2000,188,24),main="Histogramm of 2000 samples",xlab = "mg/dL", ylab="Number of women",xlim=c(115,270))
+x <- seq(115,270,0.1)
+y <- dnorm(x,188,24)
+plot(x,y,type="l", main = "pdf of the normal-distribution",xlab = "mg/dL", ylab = "Value of pdf", xaxp  = c(115, 270, 5))
+z <- pnorm(x,188,24)
+plot(x,z,type = "l", main = "cdf of the normal-distribution",xlab = "mg/dL", ylab = "Value of cdf",xaxp  = c(115, 270, 5))
 ```
 (b) We use R to calculate
 
