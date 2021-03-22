@@ -1,0 +1,220 @@
+---
+title: "UE2 - Christian Sallinger"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## (1) A left-turn lane problem 
+A civil engineer is studying a left-turn lane that is long enough to hold six cars. Let $X$ be the number of cars in the lane at the end of a randomly chosen red light. The engineer believes that the probability that $X=x$ is proportional to $(x+1)(7-x)$. \newline
+(a) Find the probability mass function (pmf) of $X$.\newline
+(b) Compute the probability that $X$ will be at least 4. \newline
+(c) Calulate the expectation and standard deviation of $X$. Note: $\mathrm{R}$ might be useful. \newline \newline
+
+### \textit{Solution}
+
+  (a) Our random variable is obviously discrete and the probability mass function of a discrete random variable X is by definition given by
+
+  \begin{align*}
+    f_X(x)
+    =
+    P(X=x)
+    =
+    (x+1)(7-x)\cdot c
+  \end{align*}
+  To find the value for $c$ we note, that 
+  \begin{align*}
+  \sum_{i=0}^6 f_X(i)
+  \stackrel{!}{=}
+  1
+  \end{align*}
+  has to hold.
+
+```{r}
+find_c <- function(x){(x+1)*(7-x)}
+sum(find_c(0:6))
+```
+This quick calculation shows, that $c = \frac{1}{84}$, so we get 
+
+\begin{align*}
+    f_X(x)=
+    \frac{(x+1)(7-x)}{84}
+  \end{align*}
+
+ (b) Here we just do a quick calculation.
+
+```{r}
+f_X <- function(x){(x+1)*(7-x)/84}
+sum(f_X(4:6))
+```
+ (c) We use our formulas and R to calculate the values.
+```{r}
+mean_x = sum(c(0:6)*f_X(0:6))
+standard_deviation = sqrt(sum(((c(0:6)-mean_x)^2)*f_X(0:6)))
+
+mean_x
+standard_deviation
+```
+## (2) Basketball free throws 
+Two professional basketball players, Tom and John, each throw ten free throws with a basketball. Tom makes $80 \%$ of the free throws he tries, while John makes $85 \%$ of the free throws he tries. \newline
+(a) What is the probability that the number of free throws that Tom will make is exactly $7$ \newline
+(b) What is the probability that the number of free throws that John will make is at least $8$? \newline
+(c) Player who achives the highest score wins the game. It is assumed that the two players do not influence each other when throwing. What is the probability that neither Tom or John will win the game?\newline
+Hint: Use R-function dbinom() to calculate the probability mass functions.
+
+### \textit{Solution}
+
+(a) We use the R-function to calculate
+\begin{align*}
+P(X = 7)
+\end{align*}
+
+```{r}
+dbinom(7,10,0.8)
+```
+(b) Again we use the R-function to calculate
+\begin{align*}
+P(Y \geq 8) = P(Y = 10) + P(Y = 9) + P(Y = 8)
+\end{align*}
+```{r}
+sum(dbinom(8:10,10,0.85))
+```
+(c) Neither of them wins the game, if both make the same amount of free throws. So we have to calculate 
+
+
+$$
+\sum_{i = 0}^{10} P(X=i)\cdot P(Y=i)
+$$
+```{r}
+sum(dbinom(0:10,10,0.8)*dbinom(0:10,10,0.85))
+```
+## (3) Uniform-exponential relationship
+(a) Let $Y$ be an exponential random variable $Y \sim \exp (\lambda)$, i.e. its pdf is given by
+$$
+f_{Y}(y)=\left\{\begin{array}{cc}
+\lambda e^{-\lambda y}, & y \geq 0 \\
+0, & \text { else }
+\end{array}\right.
+$$
+and its mean equals $\frac{1}{\lambda} .$ Compute $P(Y>y)$.
+(b) Let $X$ be a random variable, uniformlly distributed on (0,1) . Find the cumulative distribution function of $X$. What is the distribution of $Z=-\log X ?$
+
+### \textit{Solution}
+
+(a) We use our formula 
+
+$$
+P(Y > y) = 1 - P(Y \leq y) = 1 -\int_{-\infty}^y f_Y(t) dt = 
+\left\{\begin{array}{cc}
+1, & y < 0 \\
+e^{-\lambda y}, & y \geq 0
+\end{array}\right.
+$$
+(b) For a uniformlly distributed random variable $X$ (on (0,1)) the pdf is of the form
+
+$$
+f_{X}(x)=\left\{\begin{array}{cc}
+1, & x \in (0,1) \\
+0, & \text { else }
+\end{array}\right.
+$$
+
+The cdf is then given by
+$$
+F_{X}(x)=\left\{\begin{array}{cc}
+0, & x \leq 0 \\
+x, & x \in (0,1) \\
+1, & \text { else }
+\end{array}\right.
+$$
+Now to get the distribution of $Z$, we use a transformation. The transformation in question is $g:(0,\infty) \to (0,\infty)$ defined by
+
+$$
+g(x) = -\log(x)
+$$
+
+Our transformation is invertible with differentiable inverse $g^{-1}(x) = e^{-x}$. We now get the pdf of $Z$ by
+
+$$
+f_Z(z)
+=
+f_X(e^{-z})|-e^{-z}|
+=
+e^{-z}, \quad z > 0
+$$
+
+## (4) Hurricane insurance 
+An insurance company needs to asses the risk associated with providing hurricane insurance. During 22 years from 1990 through 2011 , Florida was hit by 27 major hurricanes (level 3 and above). The insurance company assumed Poisson distribution for modeling number of hurricanes. \newline
+(a) If hurricanes are independent and the mean has not changed, what is the probability of having a year in Florida with each of the following?\newline
+(1) No hits.\newline
+(2) Exactly one hit.\newline
+(3) More than two hits.\newline
+(b) Use $\mathrm{R}$ to estimate the number of hurricane hits that will occur with the probability $99.5 \%$.\newline \textit{Hint:} One of the following R-commands: dpois(), ppois(), qpois(), rpois() is applicable.
+
+### \textit{Solution}
+
+(a) From the lecture we know that $E(X) = \lambda$. According to the information we take $\lambda = \frac{27}{22}$. Now we use R to calculate the probabilities.
+
+(1)
+```{r}
+dpois(0,27/22)
+```
+(2)
+```{r}
+dpois(1,27/22)
+```
+(3)
+```{r}
+1-sum(dpois(0:2,27/22))
+```
+(b) We calculate the value with the help of the quantile-function.
+
+```{r}
+qpois(0.995,27/22)
+```
+
+## (5) Drug company 
+Manufacturing and selling drugs that claim to reduce an individual's cholesterol level is big business. A company would like to market their drug to women if their cholesterol is in the top $15 \%$. Assume the cholesterol levels of adult American women can be desribed by a Normal model with a mean of $188 \mathrm{mg} / \mathrm{dL}$ and a standard deviation of $24 \mathrm{mg} / \mathrm{dL}$. \newline
+(a) Use $\mathrm{R}$ to draw and label the Normal model.\newline
+(b) What percent of adult women do you expect to have cholesterol levels over $200 \mathrm{mg} / \mathrm{dL}$ ?\newline
+(c) What percent of adult women do you expect to have cholesterol levels between $150 \mathrm{mg} / \mathrm{dL}$ and $170 \mathrm{mg} / \mathrm{dL} ?$\newline
+(d) Calculate the interquartile range of the cholesterol levels. Recall, the interquartile range is the diference between upper and lower quartile, i.e.
+$$
+I Q R=x_{0.75}-x_{0.25}
+$$
+\noindent
+(e) Above what value are the highest $15 \%$ of women's cholesterol levels?\newline
+\textit{Hint:} If using $\mathrm{R}$ for all computations the following commands pnorm(), qnorm() and dnorm() are useful. Otherwise values from Table of standard Normal distribution should be used.
+
+### \textit{Solution}
+
+(a)
+```{r}
+hist(rnorm(2000,188,24),main="Histogramm of 2000 samples",xlab = "mg/dL", ylab="Number of women",xlim=c(115,270))
+```
+(b) We use R to calculate
+
+$$
+P(X > 200) = 1 - P(X \leq 200).
+$$
+```{r}
+1 - pnorm(200,188,24)
+```
+(c) We again use R to calculate
+
+$$
+P(150 < X < 170) = P(X \leq 170) - P(X \leq 150)
+$$
+```{r}
+pnorm(170,188,24)-pnorm(150,188,24)
+```
+(d) We use R.
+```{r}
+qnorm(0.75,188,24)-qnorm(0.25,188,24)
+```
+(e) Again R.
+```{r}
+qnorm(0.85,188,24)
+```
