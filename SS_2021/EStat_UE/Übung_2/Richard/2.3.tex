@@ -2,6 +2,8 @@
 
 \begin{exercise}[Uniform-exponential relationship]
 
+\phantom{}
+
 \begin{enumerate}
 
     \item Let $Y$ be an exponential random variable $Y \sim \exp(\lambda)$, i.e. its pdf is given by
@@ -68,7 +70,7 @@
         \begin{cases}
             0, & x \leq 0,  \\
             x, & 0 < x < 1, \\
-            0, & x \geq 1.
+            1, & x \geq 1.
         \end{cases}
     \end{align*}
 
@@ -81,19 +83,19 @@
         =
         P(X > e^{-x})
         =
-        P(X \leq e^{-x}) \\
+        1 - P(X \leq e^{-x}) \\
         =
         \begin{rcases}
             \begin{dcases}
                 1,         & e^{-x} \leq 0, \\
                 1 - e^{-x} & 0 < e^{-x} < 1, \\
-                1,         & e^{-x} \geq 1                
+                0,         & e^{-x} \geq 1                
             \end{dcases}
         \end{rcases}
         =
         \begin{cases}
-            1,         & \leq 0, \\
-            1 - e^{-x} & x > 0
+            0,          & x \leq 0, \\
+            1 - e^{-x}, & x > 0
         \end{cases}
     \end{multline*}
 
