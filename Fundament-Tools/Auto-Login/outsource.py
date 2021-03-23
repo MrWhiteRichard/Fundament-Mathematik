@@ -22,7 +22,7 @@ def get_discord_name(site):
     discord_aliases = {
         'MrRichardWhite': 'MrWhiteRichard',
         'Tabletcam': 'salli',
-        'Dokumentenkamera': 'Deklaminius',
+        'Dokumentenkamera': 'Declaminius',
         'pwin_tab': 'pwin_99'
     }
 
