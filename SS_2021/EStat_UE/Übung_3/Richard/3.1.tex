@@ -53,8 +53,7 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
         \draw [color = green, thick] (0, 0) -- (10, 10);
         \draw [color = green, thick] (2, 0) -- (10, 8);
         \draw [color = green, thick] (0, 2) -- (8, 10);
-        \filldraw [color = green] (9, 10) circle (4pt);
-        \filldraw [color = green] (10, 9) circle (4pt);
+        \filldraw [color = green] (10, 10) circle (4pt);
 
         \filldraw [color = blue] (0, 0) circle (4pt);
         \draw node [below left] {$(0, 0)$};
@@ -101,10 +100,7 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
         0.19 \dot 4
     \end{align*}
 
-    \item We will first consider the counter probability.
-    It describes the robot moving in between the outer green diagonals $D_1 := \Bbraces{(x+2, x)}_{x=0}^8$ and $D_2 := \Bbraces{(x, x+2)}_{x=0}^8$ towards the upper right green dots $(9, 10)$ and $(10, 9)$.
-
-    Note that on the middle green diagonal $\Bbraces{(x, x)}_{x=0}^{10}$ every element $(x, x)$ has an even value $x + x$.
+    \item On the middle green diagonal $\Bbraces{(x, x)}_{x=0}^{10}$ every element $(x, x)$ has an even value $x + x$.
 
     \begin{align*}
         &
@@ -123,9 +119,19 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
         &
         P(\text{ending position $(x, y)$ fulfills $x + y \neq 2$}) \\
         & =
-        P(\text{ending position is $(10, 9)$ or $(9, 10)$ and robot only moves between diagonals $D_1$ and $D_2$}) \\
+        P
+        \pbraces
+        {
+            \begin{array}{l}
+                \text{ending position is $(10, 10)$ and} \\
+                \text{robot only moves between diagonals $\Bbraces{(x+2, x)}_{x=0}^8$ and $\Bbraces{(x, x+2)}_{x=0}^8$}
+            \end{array}
+        } \\
         & =
-        P(\text{robot will move to $(10, 9)$ or $(9, 10)$} \mid \text{robot sits at $(9, 9)$}) \\
+        \underbrace
+        {
+            P(\text{robot will move to $(10, 10)$} \mid \text{robot sits at $(9, 9)$})
+        }_1 \\
         & \quad
         P(\text{robot will move to $(9, 9)$} \mid \text{robot sits at $(8, 8)$}) \\
         & \quad

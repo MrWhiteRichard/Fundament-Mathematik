@@ -13,7 +13,7 @@ The joint pdf of two random variables $X$ and $Y$ is defined by
     \end{cases}.
 \end{align*}
 
-\begin{enumerate}
+\begin{enumerate}[label = (\alph*)]
     \item Find the values of $c$ and the marginal distribution of $Y$.
     \item Find the foint cdf of $X$ and $Y$.
     \item Find the marginal distribution of $X$ and the pdf of $Z = \frac{9}{(X + 1)^2}$.
@@ -25,7 +25,276 @@ The joint pdf of two random variables $X$ and $Y$ is defined by
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{multline*}
+        1
+        =
+        \Int[\R^2]{f(x, y)}{(x, y)}
+        =
+        \Int[0][1]
+        {
+            \Int[0][1]
+            {
+                c (x + 2 y)
+            }{x}
+        }{y}
+        =
+        c
+        \pbraces
+        {
+            \Int[0][2]{x}{x} \Int[0][1]{}{y}
+            +
+            2 \Int[0][2]{}{x} \Int[0][1]{y}{y}
+        } \\
+        =
+        c
+        \pbraces
+        {
+            \frac{2^2}{2} \cdot 1 + 2 \cdot 2 \cdot \frac{1}{2}
+        }
+        =
+        4 c
+    \end{multline*}
+
+    \begin{align*}
+        \implies c = \frac{1}{4}
+    \end{align*}
+
+    \begin{multline*}
+        f_Y(y)
+        =
+        \Int[\R]{f(x, y)}{x}
+        =
+        \mathbf 1_{(0, 1)} \Int[0][2]{\frac{1}{4} (x + 2 y)}{x}
+        =
+        \mathbf 1_{(0, 1)}
+        \frac{1}{4}
+        \pbraces
+        {
+            \Int[0][2]{x}{x}
+            +
+            2 y \Int[0][2]{}{x}
+        } \\
+        =
+        \mathbf 1_{(0, 1)}
+        \frac{1}{4}
+        \pbraces
+        {
+            \frac{2^2}{2}
+            +
+            2 y \cdot 2
+        }
+        =
+        \mathbf 1_{(0, 1)}
+        \pbraces{y + \frac{1}{2}}
+    \end{multline*}
+
+    \item
+
+    \begin{align*}
+        F_{X, Y}(x, y)
+        & =
+        \Int[-\infty][x]
+        {
+            \Int[-\infty][y]
+            {
+                f(\xi, \eta)
+            }{\eta}
+        }{\xi} \\
+        & =
+        \mathbf 1_{(0, \infty)^2}(x, y)
+        \Int[0][\min \Bbraces{x, 2}]
+        {
+            \Int[0][\min \Bbraces{y, 1}]
+            {
+                \frac{1}{4}
+                (\xi + 2 \eta)
+            }{\eta}
+        }{\xi} \\
+        & =
+        \mathbf 1_{(0, \infty)^2}(x, y)
+        \frac{1}{4}
+        \pbraces
+        {
+            \Int[0][\min \Bbraces{x, 2}]{\xi}{\xi}
+            \Int[0][\min \Bbraces{y, 1}]{}{\eta}
+            +
+            2
+            \Int[0][\min \Bbraces{x, 2}]{}{\xi}
+            \Int[0][\min \Bbraces{y, 1}]{\eta}{\eta}
+        } \\
+        & =
+        \mathbf 1_{(0, \infty)^2}(x, y)
+        \frac{1}{4}
+        \pbraces
+        {
+            \frac{\min \Bbraces{x, 2}^2}{2} \cdot y
+            +
+            2 \min \Bbraces{x, 2} \cdot \frac{\min \Bbraces{y, 1}^2}{2}
+        } \\
+        & =
+        \mathbf 1_{(0, \infty)^2}
+        \pbraces
+        {
+            \frac{\min \Bbraces{x, 2}^2 \min \Bbraces{y, 1}}{8}
+            +
+            \frac{\min \Bbraces{x, 2} \min \Bbraces{y, 1}^2}{4}
+        }
+    \end{align*}
+
+    \item
+
+    \begin{multline*}
+        f_X(x)
+        =
+        \Int[\R]{f(x, y)}{y}
+        =
+        \mathbf 1_{(0, 2)}(x) \Int[0][1]{\frac{1}{4} (x + 2 y)}{y}
+        =
+        \mathbf 1_{(0, 2)}(x)
+        \frac{1}{4}
+        \pbraces
+        {
+            x \Int[0][1]{}{y}
+            +
+            2 \Int[0][1]{y}{y}
+        } \\
+        =
+        \mathbf 1_{(0, 2)}(x) \frac{1}{4} \pbraces{x \cdot 1 + 2 \cdot \frac{1}{2}}
+        =
+        \mathbf 1_{(0, 2)}(x)
+        \pbraces
+        {
+            \frac{x}{4}
+            +
+            \frac{1}{4}
+        }
+    \end{multline*}
+
+    \begin{align*}
+        &
+        g:
+            (-\infty, -1) \cup (-1, \infty) \to (0, \infty), \,
+            x \mapsto \frac{9}{(x + 1)^2} \stackrel{!}{=} y \\
+        & \iff
+        \frac{9}{y} = (x + 1)^2 \\
+        & \iff
+        \frac{3}{\sqrt y}
+        =
+        \begin{Bmatrix}
+            +x + 1 \\
+            -x + 1
+        \end{Bmatrix}
+        \iff
+        \pm \pbraces{\frac{3}{\sqrt y} - 1} = x
+    \end{align*}
+
+    has two right inverses
+
+    \begin{align*}
+        h_+:
+            (0, \infty) \to (-\infty, -1), \,
+            y \mapsto \frac{3}{\sqrt y} - 1,
+        \quad
+        h_-:
+            (0, \infty) \to (-1, \infty), \,
+            y \mapsto -\frac{3}{\sqrt y} + 1
+    \end{align*}
+
+    with derivative(s)
+
+    \begin{align*}
+        h_\pm^\prime(y)
+        =
+        \mp \frac{1}{2} \frac{3}{y^{3 / 2}}
+        =
+        \mp \frac{3 / 2}{y^{3 / 2}}.
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        f_Z(z)
+        & =
+        -
+        f_X \pbraces{ \frac{3}{\sqrt z} - 1} \frac{3 / 2}{z^{3 / 2}}
+        +
+        f_X \pbraces{-\frac{3}{\sqrt z} + 1} \frac{3 / 2}{z^{3 / 2}} \\
+        & \stackrel{!}{=}
+        \pbraces
+        {
+            -
+            \mathbf 1_{(1, 9)}(z)
+            \pbraces
+            {
+                \frac{\frac{3}{\sqrt z} - 1}{4}
+                +
+                \frac{1}{4}
+            }
+            +
+            \mathbf 1_{(9, \infty)}(z)
+            \pbraces
+            {
+                \frac{-\frac{3}{\sqrt z} + 1}{4}
+                +
+                \frac{1}{4}
+            }
+        }
+        \frac{3 / 2}{z^{3 / 2}} \\
+        & =
+        \pbraces
+        {
+            \mathbf 1_{(1, 9)}(z)
+            \pbraces
+            {
+                \frac{-\frac{3}{\sqrt z} + 1}{4}
+                -
+                \frac{1}{4}
+            }
+            +
+            \mathbf 1_{(9, \infty)}(z)
+            \pbraces
+            {
+                \frac{-\frac{3}{\sqrt z} + 1}{4}
+                +
+                \frac{1}{4}
+            }
+        }
+        \frac{3 / 2}{z^{3 / 2}} \\
+        & =
+        \pbraces
+        {
+            -
+            \mathbf 1_{(1, 9)}
+            \frac{3 / 4}{\sqrt z}
+            +
+            \mathbf 1_{(9, \infty)}(z)
+            \pbraces
+            {
+                -\frac{3 / 4}{\sqrt z}
+                +
+                \frac{1}{2}
+            }
+        }
+        \frac{3 / 2}{z^{3 / 2}}
+    \end{align*}
+
+    For \Quote{$!$} we have used the following.
+
+    \begin{align*}
+        \frac{3}{\sqrt z} - 1 \in (0, 2)
+        & \iff
+        z \in (1, 9), \\
+        -\frac{3}{\sqrt z} + 1 \in (0, 2)
+        & \iff
+        z \in (9, \infty)
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

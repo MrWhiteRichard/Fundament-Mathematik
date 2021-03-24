@@ -24,7 +24,180 @@ Consider the following two random variables
 
 \begin{solution}
 
-ToDo!
+We first calculate the inverse transformation $h$ \dots
+
+\begin{align*}
+    V = \frac{X}{X + Y}
+    & \implies
+    X = V (X + Y) = V X + V Y \\
+    & \implies
+    V Y = X - V X = X (1 - V ) \\
+    U = X + Y
+    & \implies
+    \frac{X}{V} - X = X \pbraces{\frac{1}{V} - 1} = Y = U - X \\
+    & \implies
+    \frac{X}{V} = U \\
+    & \implies
+    X = U V =: h_1(U, V) \\
+    U = X + Y
+    & \implies
+    Y = U - X = U - U V = U (1 - V) =: h_2(U, V)
+\end{align*}
+
+\dots and its Jacobian \dots
+
+\begin{align*}
+    J(u, v)
+    :=
+    \det \nabla h(u, v)
+    =
+    \det
+    \begin{pmatrix}
+        \partial_u h_1(u, v) & \partial_v h_1(u, v) \\
+        \partial_u h_2(u, v) & \partial_v h_2(u, v)
+    \end{pmatrix}
+    =
+    \det
+    \begin{pmatrix}
+            v &  u \\
+        1 - v & -u
+    \end{pmatrix}
+    =
+    -u v - u (1 - v)
+    =
+    -u
+\end{align*}
+
+Because $X$ and $Y$ are independent, $f_{X, Y}(x, y) = f_X(x) f_Y(y)$.
+
+\begin{align*}
+    f_{U, V}(u, v)
+    & \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    f_{X, Y}(h(u, v)) |J(u, v)| \\
+    & =
+    f_X(h_1(u, v)) f_Y(h_2(u, v)) |u| \\
+    & =
+    f_X(u v) f_Y(u (1 - v)) |u| \\
+    & =
+    \frac{\beta^{\alpha_1}}{\Gamma(\alpha_1)} (u v)      ^{\alpha_1 - 1} \exp*{-\beta u v}       \mathbf 1_{(0, \infty)}(u v)
+    \frac{\beta^{\alpha_2}}{\Gamma(\alpha_2)} (u (1 - v))^{\alpha_2 - 1} \exp*{-\beta u (1 - v)} \mathbf 1_{(0, \infty)}(u (1 - v))
+    |u| \\
+    & =
+    \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+    u^{\alpha_1 + \alpha_2 - 2}
+    v^{\alpha_1 - 1} (1 - v)^{\alpha_2 - 1}
+    \exp*{-\beta u}
+    \mathbf 1_{(0, \infty)}(u v)
+    \mathbf 1_{(0, \infty)}(u (1 - v))
+    |u| \\
+    & \stackrel{!}{=}
+    \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+    u^{\alpha_1 + \alpha_2 - 1}
+    \exp*{-\beta u}
+    \mathbf 1_{(0, \infty)}(u)
+    v^{\alpha_1 - 1} (1 - v)^{\alpha_2 - 1}
+    \mathbf 1_{(0, 1)}(v)
+\end{align*}
+
+For \Quote{$!$} we have used the following calculation.
+
+\begin{multline*}
+    \mathbf 1_{(0, \infty)}(u v) \mathbf 1_{(0, \infty)}(u (1 - v)) = 1
+    \iff
+    u v > 0, \quad u - u v > 0
+    \stackrel
+    {
+        u > u v > 0
+    }{\iff}
+    1 > v > 0, \quad u > 0 \\
+    \iff
+    \mathbf 1_{(0, 1)}(v) \mathbf 1_{(0, \infty)}(u) = 1
+\end{multline*}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{multline*}
+        f_U(u)
+        =
+        \Int[\R]{f_{U, V}(u, v)}{v}
+        =
+        \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+        u^{\alpha_1 + \alpha_2 - 1}
+        \exp*{-\beta u}
+        \mathbf 1_{(0, \infty)}(u)
+        \underbrace
+        {
+            \Int[0][1]
+            {
+                v^{\alpha_1 - 1}
+                (1 - v)^{\alpha_2 - 1}
+            }{v}
+        }_{
+            B(\alpha_1, \alpha_2)
+        } \\
+        =
+        \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)}
+        u^{\alpha_1 + \alpha_2 - 1}
+        \exp*{-\beta u}
+        \mathbf 1_{(0, \infty)}(u)
+    \end{multline*}
+
+    \item
+
+    \begin{align*}
+        f_V(v)
+        & =
+        \Int[\R]{f_{U, V}(u, v)}{u} \\
+        & =
+        \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+        \Int[0][\infty]
+        {
+            u^{\alpha_1 + \alpha_2 - 1}
+            \exp*{-\beta u}
+        }{u} \,
+        v^{\alpha_1 - 1}
+        (1 - v)^{\alpha_2 - 1}
+        \mathbf 1_{(0, 1)}(v) \\
+        & \stackrel{!}{=}
+        \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+        \Int[0][\infty]
+        {
+            \frac{s^{\alpha_1 + \alpha_2 - 1}}{\beta^{\alpha_1 + \alpha_2 - 1}}
+            \exp*{-s}
+            \frac{1}{\beta}
+        }{s} \,
+        v^{\alpha_1 - 1}
+        (1 - v)^{\alpha_2 - 1}
+        \mathbf 1_{(0, 1)}(v) \\
+        & =
+        \frac{\Gamma(\alpha_1 + \alpha_2)}{\Gamma(\alpha_1) \Gamma(\alpha_2)}
+        v^{\alpha_1 - 1}
+        (1 - v)^{\alpha_2 - 1}
+        \mathbf 1_{(0, 1)}(v)
+    \end{align*}
+
+    For \Quote{$!$} we have used the following substitution.
+
+    \begin{align*}
+        s = \beta u
+        \implies
+        \begin{cases}
+            u = \frac{s}{\beta} \\
+            \derivative[][s]{u} = \beta \implies \mathrm d u = \frac{1}{\beta} \mathrm d s
+        \end{cases}
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        f_U(u) f_V(v) = f_{U, V}(u, v)        
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

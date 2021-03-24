@@ -17,7 +17,74 @@ Find the cdf, pdf, and teh expectation the random variable $R$.
 
 \begin{solution}
 
-ToDo!
+Because the area of the unit disc is $\lambda^2(B_1(0)) = \pi$, we obtain the pdf $f_{X, Y}(x, y) = \mathbf 1_{B_1(0)}(x, y) \frac{1}{\pi}$.
+$R = \sqrt{X^2 + Y^2}$ is the radius component of the polar coordinate transfomation.
+Its inverse is given by
+
+\begin{align*}
+    x = r \cos \varphi,
+    \quad
+    y = r \sin \varphi,
+    \quad
+    \text{with commonly known Jacobian}~
+    J(r, \varphi) = r.
+\end{align*}
+
+\begin{align*}
+    f_{R, \Phi}(r, \varphi)
+    \stackrel
+    {
+        \text{TRAFO}
+    }{=}
+    f_{X, Y}
+    \begin{pmatrix}
+        r \cos \varphi \\
+        r \sin \varphi
+    \end{pmatrix}
+    r
+    =
+    \mathbf 1_{\overline B_1(0)}
+    \begin{pmatrix}
+        r \cos \varphi \\
+        r \sin \varphi
+    \end{pmatrix}
+    \frac{1}{\pi}
+    r
+    =
+    \mathbf 1_{[0, 1]}(r)
+    \mathbf 1_{[0, 2 \pi)}(\varphi)
+    \frac{r}{\pi}
+\end{align*}
+
+\begin{align*}
+    f_R(r)
+    =
+    \Int[\R]{f_{R, \Phi}(r, \varphi)}{\varphi}
+    =
+    \mathbf 1_{[0, 1]}(r) \frac{r}{\pi} \Int[0][2 \pi]{}{\varphi}
+    =
+    \mathbf 1_{[0, 1]}(r) \cdot 2 r
+\end{align*}
+
+\begin{align*}
+    F_R(r)
+    =
+    \Int[-\infty][r]{f_R(\rho)}{\rho} \,
+    =
+    \mathbf 1_{[0, \infty)}(r) \cdot 2 \Int[0][\min \Bbraces{r, 1}]{r}{r}
+    \mathbf 1_{[0, \infty)}(r) \cdot 2 \frac{\min \Bbraces{r, 1}^2}{2}
+    \mathbf 1_{[0, \infty)}(r) \min \Bbraces{r, 1}^2
+\end{align*}
+
+\begin{align*}
+    E(R)
+    =
+    \Int[\R]{r \cdot f_R(r)}{r}
+    =
+    2 \Int[0][1]{r^2}{r}
+    =
+    \frac{2}{3}
+\end{align*}
 
 \end{solution}
 

@@ -9,7 +9,7 @@ Show that $Z^2 \sim \chi_1^2$, i.e. show that the pdf of $Z^2$ is given by
 \begin{align*}
     f_{Z^2}(z)
     =
-    \frac{1}{\sqrt{2 \pi}} \cdot z^{-\frac{1}{2}} \cdot e^{-\frac{z}{2}} \cdot \mathbf 1_\Bbraces{z > 0},
+    \frac{1}{\sqrt{2 \pi}} \cdot z^{-\frac{1}{2}} \cdot \exp*{-\frac{z}{2}} \cdot \mathbf 1_\Bbraces{z > 0},
 \end{align*}
 
 \end{exercise}
@@ -18,7 +18,27 @@ Show that $Z^2 \sim \chi_1^2$, i.e. show that the pdf of $Z^2$ is given by
 
 \begin{solution}
 
-ToDo!
+\begin{align*}
+    \text{lhs}
+    =
+    \frac{1}{2 \sqrt z}
+    \pbraces
+    {
+        f_Z(\sqrt z) + f_Z(-\sqrt z)
+    }
+    \mathbf 1_{(0, \infty)}
+    =
+    \frac{1}{2} z^{-\frac{1}{2}}
+    \pbraces
+    {
+        \frac{1}{\sqrt{2 \pi}} \exp*{-\frac{\sqrt z^2}{2}}
+        +
+        \frac{1}{\sqrt{2 \pi}} \exp*{-\frac{(-\sqrt z)^2}{2}}
+    }
+    \mathbf 1_{(0, \infty)}
+    =
+    \text{rhs}
+\end{align*}
 
 \end{solution}
 
