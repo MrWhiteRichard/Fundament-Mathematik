@@ -1,0 +1,89 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.2 Bandit example]
+
+Consider a $k$-armed bandit problem with $k = 4$ actions, denoted $1$, $2$, $3$, and $4$.
+Consider applying to this problem a bandit algorithm using $\epsilon$-greedy action selection, sample-average action-value estimation, and initial estimates of $Q_1(a) = 0$, for all $a$.
+Suppose the initial sequence of actions and rewards is $A_1 = 1$, $R_1 = 1$, $A_2 = 2$, $R_2 = 1$, $A_3 = 2$, $R_3 = 2$, $A_4 = 2$, $R_4 = 2$, $A_5 = 3$, $R_5 = 0$.
+On some of these time steps the $\epsilon$ case may have occured, causing an action to be selected at random.
+On with time steps did this definitely occur?
+On with time steps could this possibly have occured?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+    Q_t(a)
+    & \doteq
+    \frac
+    {
+        \text{sum of rewards when $a$ taken prior to $t$}
+    }{
+        \text{number of times $a$ taken prior to $t$}
+    }
+    =
+    \frac
+    {
+        \sum_{i=1}^{t-1}
+            R_i \cdot \1_{A_i = a}
+    }{
+        \sum_{i=1}^{t-1}
+            \1_{A_i = a}
+    }, \\
+    A_t
+    & \doteq
+    \begin{cases}
+        \argmax_{a \in \mathcal A} Q_t(a),    & \text{greedy: $(1 - \epsilon)$-likely}, \\
+        a \in \mathcal A ~\text{uniformally}, & \text{exploratory: $\epsilon$-likely}
+    \end{cases}
+\end{align*}
+
+\begin{align*}
+    \begin{array}{c|cccccccc}
+        Q_t(a) & 1      & 2      & 3      & 4                 & 5            & 6            & \cdots & t \\ \hline
+        1      & 0^{+1} & 1      & 1      & 1                 & 1            & 1            &        &   \\
+        2      & 0      & 0^{+1} & 1^{+2} & \nfrac{3}{2}^{+2} & \nfrac{5}{3} & \nfrac{5}{3} &        &   \\
+        3      & 0      & 0      & 0      & 0                 & 0^{+0}       & 0            &        &   \\
+        4      & 0      & 0      & 0      & 0                 & 0            & 0            &        &   \\
+        \vdots &        &        &        &                   &              &              &        &   \\
+        a      &        &        &        &                   &              &              &        &   \\
+    \end{array}
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Timestep:
+    
+    The algorithm may have been greedy or not.
+    Each (most beneficial) action is equally beneficial.
+    Either way, an action would have been selected uniformally from $\mathcal A = \Bbraces{1, 2, 3, 4}$.
+
+    \item Timestep:
+    
+    The algorithm was definitely exploratory.
+    Otherwise, not $2$ but $1 = \argmax_{a \in \mathcal A} Q_2(a)$ would have been chosen.
+
+    \item Timestep:
+    
+    The algorithm may have been greedy or not.
+    Each most beneficial action is equally beneficial.
+    Either way, an action would have been selected uniformally from $\Bbraces{1, 2} = \argsmax_{a \in \mathcal A} Q_3(a)$ or $\mathcal A$ respectively.
+    Nevertheless, since $\Bbraces{1, 2} \subsetneq \mathcal A$, a greedy action is more likely.
+
+    \item Timestep:
+    
+    The algorithm was probably greedy, since indeed $A_4 = \argmax_{a \in \mathcal A} Q_4(a)$.
+    
+    \item Timestep:
+    
+    The algorithm was definitely exploratory.
+    Otherwise, not $3$ but $2 = \argmax_{a \in \mathcal A} Q_5(a)$ would have been chosen.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

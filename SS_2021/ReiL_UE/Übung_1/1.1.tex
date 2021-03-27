@@ -1,0 +1,31 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.1]
+
+In $\epsilon$-greedy action selection, for the case of two actions and $\epsilon = 0.5$, what is the probability that the greedy action is selected?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Every once in a while, with probability $\epsilon$, we select randomly from among all the actions with equal probability.
+There are two actions in total.
+Therefore, the probability that teh greedy (locally optimal) action $a_\text{greedy}$ is selected is
+
+\begin{align*}
+    \P(A_t = a_\text{greedy})
+    & =
+    \P(A_t = a_\text{greedy} \mid \text{select greedily at $t$}) \P(\text{select greedily at $t$}) \\
+    & \quad +
+    \P(A_t = a_\text{greedy} \mid \text{select uniformally at $t$}) \P(\text{select uniformally at $t$}) \\
+    & =
+    1 \cdot (1 - \epsilon) + \frac{1}{2} \cdot \epsilon \\
+    & =
+    1 - \frac{\epsilon}{2}.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
