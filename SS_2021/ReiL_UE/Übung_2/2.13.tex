@@ -16,7 +16,44 @@ If the current state is $S_t$, and actions are selected according to stochastic 
 
 \begin{solution}
 
-ToDo!
+\begin{align*}
+    p(s^\prime, r \mid s, a)
+    & =
+    \Pr \Bbraces{S_{t+1} = s^\prime, R_{t+1} \mid S_t = s, A_t = a} \\
+    & =
+    \frac
+    {
+        \Pr \Bbraces{S_{t+1} = s^\prime, R_{t+1} = r, A_t = a \mid S_t = s}
+    }{
+        \Pr \Bbraces{A_t = a \mid S_t = s}
+    } \\
+    & =
+    \frac
+    {
+        \Pr \Bbraces{S_{t+1} = s^\prime, R_{t+1} = r, A_t = a \mid S_t = s}
+    }{
+        \pi(a \mid s)
+    }
+\end{align*}
+
+\begin{align*}
+    \implies
+    \E_\pi[R_{t+1} \mid S_t = s]
+    & =
+    \sum_{r \in \mathcal R}
+        r
+        \Pr \Bbraces{R_{t+1} = r \mid S_t = s} \\
+    & =
+    \sum_{r \in \mathcal R}
+        r
+        \sum_{\substack{a \in \mathcal A(s) \\ s^\prime \in \mathcal S}}
+            \Pr \Bbraces{S_{t+1} = s^\prime, R_{t+1} = r, A_t = a \mid S_t = s} \\
+    & =
+    \sum_{r \in \mathcal R}
+        r
+        \sum_{\substack{a \in \mathcal A(s) \\ s^\prime \in \mathcal S}}
+            p(s^\prime, r \mid s, a) \pi(a \mid s)
+\end{align*}
 
 \end{solution}
 

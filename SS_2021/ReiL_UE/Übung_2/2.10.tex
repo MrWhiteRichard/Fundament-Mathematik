@@ -19,7 +19,25 @@ Have you effectively communicated to the agent what you want it to achieve?
 
 \begin{solution}
 
-ToDo!
+For the robot it does not make any difference, whether it finishes the maze in more or less steps.
+This is because $R_t = -\delta_{T t}$ and thus the expected return $G_t = 1$.
+Introducing additional steps in between $t = 0$ and $t = T$ does not influence it.
+Since the agent acts according to $G_t$, it does not "care" about escaping the maze quickly either.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Solution:
+
+    Modify the expected total reward (3.7) to an episodic version of (3.8) with $\gamma < 1$.
+	The more steps the agent allows itsself to use, the more the discount rate gets squished by the powers.
+	As a result, less squishing is better, so less steps are as well.
+
+    \item Solution:
+
+    \Quote{In making a robot learn how to escape from a maze, the reward is often -1 for every time step that passes prior to escape; this encourages the agent to escape as quickly as possible.}
+    \cite*[page 53]{SuttonRichardS2018Rl:a}
+
+\end{enumerate}
 
 \end{solution}
 

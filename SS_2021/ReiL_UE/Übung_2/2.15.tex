@@ -22,7 +22,122 @@ What is $v_c$ in terms of $c$ and $\gamma$?
 
 \begin{solution}
 
-ToDo!
+The signs of the rewards are irrelevant insofar that, if the rewards are altered, as long as the relative distances are perserved they were only shifted by a common constant $c$.
+As shown below, this property (existence of a universal shifting constant $v_c$) gets passed on to state value functions (under an arbitrary policy $\pi$).
+
+Let the index $\text{new}$ denote the (by $c$) shifted version of an object and write $\text{old}$ for the unshifted one.
+There are $2$ possiblities of proving the desired result.
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Possiblity (following to the specification):
+    
+    \begin{align*}
+        v_c \doteq \frac{c}{1 - \gamma}
+    \end{align*}
+    
+    \begin{align*}
+        G_t^\text{new}
+        \stackrel
+        {
+            \eqref{eq:2.15}
+        }{=}
+        \sum_{k=0}^\infty
+            \gamma^k R_{t+k+1}^\text{new}
+        =
+        \sum_{k=0}^\infty
+            \gamma^k (R_{t+k+1}^\text{old} + c)
+        =
+        \sum_{k=0}^\infty
+            \gamma^k R_{t+k+1}^\text{old}
+        +
+        c
+        \sum_{k=0}^\infty
+            \gamma^k
+        =
+        G_t^\text{old} + v_c
+    \end{align*}
+
+    \begin{align*}
+        v_\pi^\text{new}
+        \doteq
+        \E_\pi[G_t^\text{new} \mid S_t = s]
+        =
+        \E_\pi[G_t^\text{old} + v_c \mid S_t = s]
+        =
+        \E_\pi[G_t^\text{old} \mid S_t = s] + v_c
+        =
+        v_\pi^\text{old} + v_c
+    \end{align*}
+
+    \item Possiblity (using the Bellman equations):
+    
+    Borrowing from Differential Equations, we first make the Ansatz $v_\pi^\text{new}(s^\prime) = v_\pi^\text{old}(s^\prime) + v_c$.
+
+    \begin{align*}
+        v_\pi^\text{new}
+        & =
+        \sum_{a \in \mathcal A(s)}
+            \pi(a \mid s)
+            \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{new}}}
+                p(s^\prime, r \mid s, a)
+                [r + \gamma v_\pi^\text{new}(s^\prime)] \\
+        & =
+        \sum_{a \in \mathcal A(s)}
+            \pi(a \mid s)
+            \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{old}}}
+                p(s^\prime, r \mid s, a)
+                [(r + c) + \gamma (v_\pi^\text{old}(s^\prime) + v_c)] \\
+        & =
+        \sum_{a \in \mathcal A(s)}
+            \pi(a \mid s)
+            \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{old}}}
+                p(s^\prime, r \mid s, a)
+                [(r + \gamma v_\pi^\text{old}(s^\prime)) + (c + \gamma v_c)] \\
+        & =
+        \sum_{a \in \mathcal A(s)}
+            \pi(a \mid s)
+            \Bigg (
+                \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{old}}}
+                    p(s^\prime, r \mid s, a)
+                    (r + \gamma v_\pi^\text{old}(s^\prime))
+                +
+                (c + \gamma v_c)
+                \underbrace
+                {
+                    \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{old}}}
+                        p(s^\prime, r \mid s, a)
+                }_1
+            \Bigg ) \\
+        & =
+        \sum_{a \in \mathcal A(s)}
+            \pi(a \mid s)
+            \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R^\text{old}}}
+                p(s^\prime, r \mid s, a)
+                (r + \gamma v_\pi^\text{old}(s^\prime))
+        +
+        (c + \gamma v_c)
+        \underbrace
+        {
+            \sum_{a \in \mathcal A(s)}
+                \pi(a \mid s)
+        }_1 \\
+        & \stackrel{!}{=}
+        v_\pi^\text{old}(s) + v_c
+    \end{align*}
+
+    \begin{align*}
+        \impliedby
+        v_c \stackrel{!}{=} c + \gamma v_c
+        \iff
+        c = v_c - \gamma v_c = (1 - \gamma) v_c
+        \iff
+        \frac{c}{1 - \gamma} = v_c
+    \end{align*}
+
+    Since the oinear system of Bellman equations is uniquely solvable and we have guessed the solution correctly, it is in fact this unique solution.
+
+\end{enumerate}
 
 \end{solution}
 

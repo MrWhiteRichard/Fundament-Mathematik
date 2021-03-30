@@ -12,7 +12,22 @@ How does this return differ from that in the discounted, continuing formulation 
 
 \begin{solution}
 
-ToDo!
+Failure always occures at timestep $T$, followed by the start of the next episode.
+Therefore, the specification  of the reward translates to $R_\tau = -\delta_{T \tau}$.
+
+\begin{align*}
+    \implies
+    G_t
+    & \doteq
+    R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots + \gamma^{T-t-1} R_T \\
+    & =
+    \sum_{\tau = t+1}^T
+        \gamma^{\tau - t - 1} \\
+    & =
+    -\gamma^{T-t-1}
+\end{align*}
+
+In the continuing formulation, multiple $\gamma$-powers are subtracted, depending on which timesteps failure occures at.
 
 \end{solution}
 

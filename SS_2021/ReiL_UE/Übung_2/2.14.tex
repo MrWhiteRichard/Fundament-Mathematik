@@ -15,7 +15,7 @@ Show numerically that this equation holds for the center state, valued at $+0.7$
     \hspace{1cm}
     \subfloat
     {
-        \includegraphics[width = 0.1 \textwidth]{2.14.2.png}
+        \includegraphics[width = 0.075 \textwidth]{2.14.2.png}
     }
     \hspace{1cm}
     \subfloat
@@ -49,7 +49,32 @@ Show numerically that this equation holds for the center state, valued at $+0.7$
 
 \begin{solution}
 
-ToDo!
+Let $s$ denote the center state.
+
+\begin{align*}
+    &
+    \sum_{a \in \mathcal A(s)}
+        \pi(a \mid s)
+        \sum_{\substack{s^\prime \in \mathcal S \\ r \in \mathcal R}}
+            p(s^\prime, r \mid s, a)
+            [r + \gamma v_\pi(s^\prime)] \\
+    & \approx
+    \frac{1}{4} \cdot (1 \cdot (0 + 0.9 \cdot 2.3))
+    +
+    \frac{1}{4} \cdot (1 \cdot (0 + 0.9 \cdot 0.4))
+    +
+    \frac{1}{4} \cdot (1 \cdot (0 + 0.9 \cdot (-0.4)))
+    +
+    \frac{1}{4} \cdot (1 \cdot (0 + 0.9 \cdot 0.7)) \\
+    & =
+    \frac{1}{4} \cdot 0.9 \cdot (2.3 - 0.4 + 0.4 + 0.7) \\
+    & =
+    0.675 \\
+    & \approx
+    0.7 \\
+    & =
+    v_\pi(s)
+\end{align*}
 
 \end{solution}
 

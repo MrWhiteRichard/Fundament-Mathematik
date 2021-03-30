@@ -13,7 +13,59 @@ Give an example.
 
 \begin{solution}
 
-ToDo!
+Since we are adding a constant $c \neq 0$, the notion of an absorbing state, that generates only rewards of zero, is not applicable any more.
+Furthermore, we should differentiate between episodes by virtue of a (secondary) index $i$.
+This has to be taken into account when working with
+
+\begin{align*}
+    v_{c, i} \doteq c \gamma^{t+1} \frac{1 - \gamma^{T_i - t - 1}}{1 - \gamma},
+\end{align*}
+
+\begin{align*}
+    G_{t, i}^\text{new}
+    =
+    \sum_{k=t+1}^{T_i}
+        \gamma^{k-t-1} R_{k, i}^\text{new}
+    =
+    \sum_{k=t+1}^{T_i}
+        \gamma^{k-t-1} (R_{k, i}^\text{old} + c)
+    =
+    \sum_{k=t+1}^{T_i}
+        \gamma^{k-t-1} R_{k, i}^\text{old}
+    +
+    c \gamma^{t+1}
+    \sum_{k=0}^{T_i - t - 1}
+        \gamma^k
+    =
+    G_t^\text{old} + v_{c, i},
+\end{align*}
+
+and
+
+\begin{align*}
+    v_\pi^\text{new}(s)
+    \stackrel{!}{=}
+    \E[G_{t, i}^\text{new} \mid S_{t, i} = s]
+    =
+    \E[G_{t, i}^\text{old} + v_{c, i} \mid S_{t, i} = s]
+    =
+    \E[G_{t, i}^\text{old} \mid S_{t, i} = s] + v_{c, i}
+    =
+    v_\pi^\text{old}(s) + v_{c, i}.
+\end{align*}
+
+Now, it may occur that for the $i$-th and $j$-th expisode, $T_i \neq T_j$.
+In that case we run into an issue because of
+
+\begin{align*}
+    v_\pi^\text{new}(s)
+    \stackrel{!}{=}
+    v_\pi^\text{old} + v_{c, i}
+    \neq
+    v_\pi^\text{old} + v_{c, j}
+    \stackrel{!}{=}
+    v_\pi^\text{new}(s).
+\end{align*}
 
 \end{solution}
 

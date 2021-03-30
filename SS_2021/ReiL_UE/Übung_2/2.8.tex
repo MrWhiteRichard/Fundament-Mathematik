@@ -11,7 +11,51 @@ It should have columns for $s$, $a$, $s^\prime$, $r$ and $p(s^\prime, r \mid s, 
 
 \begin{solution}
 
-ToDo!
+Let the return value be modeled by virtue of a Poisson distrubution, i.e. if $R_\texttt{search}$ and $R_\texttt{wait}$ denote the reward for \texttt{search}-ing and \texttt{wait}-ing respectively, then
+
+\begin{align*}
+    p_\texttt{search}(k) \doteq \Pr \Bbraces{R_\texttt{search} = k} = \frac{r_\texttt{search}^k}{k!} \cdot \exp*{-k},
+    \quad
+    p_\texttt{wait}  (k) \doteq \Pr \Bbraces{R_\texttt{wait}   = k} = \frac{r_\texttt{wait}^k}  {k!} \cdot \exp*{-k},
+    \quad
+    k \in \N.
+\end{align*}
+
+\begin{align*}
+    \begin{array}{l|l|l|r|l}
+        s             & a                 & s^\prime      & r  & p(s^\prime, r \mid s, a)                \\ \hline
+        \texttt{high} & \texttt{search}   & \texttt{high} & -3 & 0                                       \\
+        \texttt{high} & \texttt{search}   & \texttt{low}  & -3 & 0                                       \\
+        \texttt{low}  & \texttt{search}   & \texttt{high} & -3 & 1 - \beta                               \\
+        \texttt{low}  & \texttt{search}   & \texttt{low}  & -3 & 0                                       \\
+        \texttt{high} & \texttt{wait}     & \texttt{high} & -3 & 0                                       \\
+        \texttt{high} & \texttt{wait}     & \texttt{low}  & -3 & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{high} & -3 & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{low}  & -3 & 0                                       \\
+        \texttt{low}  & \texttt{recharge} & \texttt{high} & -3 & 0                                       \\
+        \texttt{low}  & \texttt{recharge} & \texttt{low}  & -3 & 0                                       \\
+        \texttt{high} & \texttt{search}   & \texttt{high} &  0 & p_\texttt{search}(0) \cdot \alpha       \\
+        \texttt{high} & \texttt{search}   & \texttt{low}  &  0 & p_\texttt{search}(0) \cdot (1 - \alpha) \\
+        \texttt{low}  & \texttt{search}   & \texttt{high} &  0 & 0                                       \\
+        \texttt{low}  & \texttt{search}   & \texttt{low}  &  0 & p_\texttt{search}(0) \cdot \beta        \\
+        \texttt{high} & \texttt{wait}     & \texttt{high} &  0 & p_\texttt{wait}(0)                      \\
+        \texttt{high} & \texttt{wait}     & \texttt{low}  &  0 & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{high} &  0 & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{low}  &  0 & p_\texttt{wait}(0)                      \\
+        \texttt{low}  & \texttt{recharge} & \texttt{high} &  0 & 1                                       \\
+        \texttt{low}  & \texttt{recharge} & \texttt{low}  &  0 & 0                                       \\
+        \texttt{high} & \texttt{search}   & \texttt{high} &  k & p_\texttt{search}(k) \cdot \alpha       \\
+        \texttt{high} & \texttt{search}   & \texttt{low}  &  k & p_\texttt{search}(k) \cdot (1 - \alpha) \\
+        \texttt{low}  & \texttt{search}   & \texttt{high} &  k & 0                                       \\
+        \texttt{low}  & \texttt{search}   & \texttt{low}  &  k & p_\texttt{search}(k) \cdot \beta        \\
+        \texttt{high} & \texttt{wait}     & \texttt{high} &  k & p_\texttt{wait}(k)                      \\
+        \texttt{high} & \texttt{wait}     & \texttt{low}  &  k & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{high} &  k & 0                                       \\
+        \texttt{low}  & \texttt{wait}     & \texttt{low}  &  k & p_\texttt{wait}(k)                      \\
+        \texttt{low}  & \texttt{recharge} & \texttt{high} &  k & 0                                       \\
+        \texttt{low}  & \texttt{recharge} & \texttt{low}  &  k & 0                                       \\
+    \end{array}
+\end{align*}
 
 \end{solution}
 
