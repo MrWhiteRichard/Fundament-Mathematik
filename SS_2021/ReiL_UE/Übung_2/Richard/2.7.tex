@@ -23,7 +23,26 @@ Appart from Agent-Environment Interface, a crucial part of the MDP framework ist
 }
 \cite*[page 49]{SuttonRichardS2018Rl:a}
 
-Various exceptions can be found in \cite{WhiteheadStevenD1995Rlon}.
+Consider an agent attempting to learn playing poker against some human opponent that occasionally bluffs (according his internal psychological state).
+
+\begin{itemize}
+    \item Actions:
+    \Quote{call}, \Quote{raise} (by some amount), or \Quote{fold};
+    \item Rewards:
+    The amount of money (or game chips) won or lost after each action.
+    \item States:
+    Everything that a player is allowed to percieve by following the rules of poker!?
+    This will be an issue \dots
+\end{itemize}
+
+The agent would have to try and approximate the probaility of the human bluffing.
+Since modelling human behaviour is inherently non-trivial, this means bad news for fitting this situation in an MDP framework.
+Let alone finding all defining all of the parameters that steer the human oppenent towards bluffing is near impossible.
+Moreover, human emotions are too complex to accurately model due to the sheer amount of data required.
+
+Other examples, similar to the one just given, may be constructed by introducing a human (unpredictable) component.
+More generally, whenever it is not possible to adequately model a situation (e.g. due to the lack of proper sensors) it is refered to as \textit{hidden state tasks}.
+More on that can be found in \cite{WhiteheadStevenD1995Rlon}.
 
 \end{solution}
 
