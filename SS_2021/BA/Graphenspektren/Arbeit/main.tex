@@ -1,0 +1,30 @@
+\documentclass
+[
+    a4paper,
+    11pt,
+    bibliography = totoc,
+    listof = totoc,
+    headinclude = true,
+    cleardoublepage = empty
+]
+{scrreprt}
+% {scrbook}
+
+\input{preamble/packages.tex}
+\input{preamble/document style.tex}
+\input{preamble/macros.tex}
+
+\begin{document}
+
+    \input{MISC/titlepage.tex}
+    \input{MISC/acknowledgement.tex}
+    \input{MISC/statutory declaration.tex}
+    \input{MISC/table of contents.tex}
+
+    \input{chapters/chapter 1 - Introduction.tex}
+
+    \bibliographystyle{alpha} 
+    %\bibliographystyle{abbrv}
+    \bibliography{literature.bib}
+
+\end{document}
