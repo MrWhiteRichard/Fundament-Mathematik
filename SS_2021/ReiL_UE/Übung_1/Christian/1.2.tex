@@ -1,0 +1,32 @@
+\begin{exercise}
+Consider a $k$-armed bandit problem with $k = 4$ actions, denoted $1$, $2$, $3$, and $4$.
+Consider applying to this problem a bandit algorithm using $\epsilon$-greedy action selection, sample-average action-value estimation, and initial estimates of $Q_1(a) = 0$, for all $a$.
+Suppose the initial sequence of actions and rewards is $A_1 = 1$, $R_1 = 1$, $A_2 = 2$, $R_2 = 1$, $A_3 = 2$, $R_3 = 2$, $A_4 = 2$, $R_4 = 2$, $A_5 = 3$, $R_5 = 0$.
+On some of these time steps the $\epsilon$ case may have occured, causing an action to be selected at random.
+On with time steps did this definitely occur?
+On with time steps could this possibly have occured?
+\end{exercise}
+
+\begin{solution}
+The first action is taken arbitrarily, since $\forall a: Q_1(a)=0$. Here we can not differentiate if the $\epsilon$ case occured or not. We take action $1$ and update $Q$:
+
+\begin{align*}
+  Q_2(1) = 1
+  \qquad
+  Q_2(a) = 0, \quad a \in \{2,3,4\}
+\end{align*}
+
+Then we are definitely in the $\epsilon$-case. The $\argmax_a Q_2(a) = 1$ but we take action $2$. Again we update $Q$:
+
+\begin{align*}
+  Q_3(1) = 1
+  \quad
+  Q_3(2) = 1
+  \quad
+  Q_3(3) = 0
+  \quad
+  Q_3(4) = 0
+\end{align*}
+
+
+\end{solution}
