@@ -1,0 +1,30 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.3]
+
+In the comparison shown in Figure 2.2 (below), which method will perform best in
+the long run in terms of cumulative reward and probability of selecting the best
+action? How much better will it be? Express your answer quantitatively.
+
+\includegraphicsboxed{figure_2.2.png}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+With enough steps the $0.01$-greedy method should probably outperform the
+$0.1$-greedy in the long run. If we assume an arbitrarily large number of steps,
+the probability of choosing the optimal action converges to $(1 - \epsilon)$.
+Therefore the $0.1$-greedy action-value method can never exceed an optimal action
+probability of $0.91$, while the $0.01$-greedy action value method can potentially
+achieve an optimal action probability of $0.991$, i.e. $8,1\%$ higher than the
+$0.1$-greedy action-value method.
+The difference in the cumulative rewards then depends on the expected reward of
+the random action selection in comparison to the optimal action reward and on
+how fast the methods converge to their potential optimum.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

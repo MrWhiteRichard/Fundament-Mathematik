@@ -1,0 +1,27 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.7]
+
+Imagine that you are designing a robot to run a maze. You decide to give it a
+reward of +1 for escaping from the maze and a reward of zero at all other times.
+The task seems to break down naturally into episodes - the successive runs through the maze -
+so you decide to treat it as an episodic task, where the goal is to maximize expected
+total reward (3.7). After running the learning agent for a while, you find that it
+is showing no improvement in escaping from the maze. What is going wrong?
+Have you effectively communicated to the agent what you want it to achieve?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Assuming we don't use discounting then the agent always receives a reward of +1
+regardless of when it leaves the maze. Since the maze is finite, even an aimless
+random-walk should eventually achieve the goal. Because the agent doesn't care
+about how fast it escape the mace, it thinks that has already found the optimal
+strategy, since the expected total reward cannot be further improved.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

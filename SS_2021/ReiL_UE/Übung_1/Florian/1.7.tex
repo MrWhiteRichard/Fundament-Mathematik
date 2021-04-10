@@ -1,0 +1,43 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.2]
+
+Is the MDP framework adequate to usefully represent all goal-directed learning tasks?
+Can you think of any clear exceptions?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+No, it is not, since it requires complete information of the stochastic processes
+within the system. Since it is a mathematically idealized system, not all practical
+applications can be perfectly fitted in to it. Specifically it is supposed that
+the agent always knows, which actions are possible at every time step.
+
+An concrete example would be the board game of Diplomacy.
+If you only conclude the possible moves by your armies and navies on the board,
+the State space would be quite easy to define and to represent it in an adequate format.
+However, an agent, that bases all his strategic decisions solely on the actions that
+are visible on the board, misses the most important part of the game: The diplomatic
+interactions between players. Since the anatomy of the agent's opponent would be
+unknown to the agent, it would be a very difficult task of accurately modeling the
+probabilities of each player making certain moves.
+
+Furthermore, once you try to include the diplomatic aspect of the game into
+your state space, you start to face the problem of a practically infinite space of actions.
+In addition to that, decisions from human players are significantly influenced
+by long-term concepts such as trust or a more general sense of the playing styles
+of their opponents. In order for our agent to compete with human players, it
+would not only need to consider the last state that it visited, but all the actions
+leading up to it.
+
+Therefore, MDP would not be a useful representation of the problem of winning the game Diplomacy,
+since every state would need to include all previous actions of the game,
+or even, if the agent should be multiple games against the same opponents,
+probably also actions from previous games.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,32 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.14]
+
+The Bellman equation (3.14) must hold for each state for the value function $v_\pi$
+shown in Figure 3.2 (right) of Example 3.5. Show numerically that this equation
+holds for the center state, valued at +0.7, with respect to its four neighboring states,
+valued at +2.3, +0.4, -0.4 and +0.7. (These numbers are accurate only to one decimal place.)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+The Bellman equation states
+
+\begin{align*}
+  v_\pi(s) = \sum_a \pi(a|s) \sum_{s',r} p(s',r|s,a)[r + \gamma v_\pi(s')].
+\end{align*}
+
+In our case, we can confirm that
+
+\begin{align*}
+  0.7 &\approx v_\pi(s) = \sum_a \pi(a|s) \sum_{s',r} p(s',r|s,a)[r + \gamma v_\pi(s')] \\
+  &\approx \frac{1}{4}[0.9\cdot 2.3 + 0.9 \cdot 0.4 - 0.9 \cdot 0.4 + 0.9 \cdot 0.7]
+  = 0.675.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

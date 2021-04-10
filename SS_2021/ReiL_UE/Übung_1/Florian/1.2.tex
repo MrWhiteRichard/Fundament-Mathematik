@@ -1,0 +1,47 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.2 Bandit example]
+
+Consider a $k$-armed bandit problem with $k = 4$ actions, denoted 1, 2, 3 and 4.
+Consider applying to this problem a bandit algorithm using $\epsilon$-greedy action
+selection, sample-average action-value estimates, and initial estimates of $Q_1(a) = 0$, for all $a$.
+Suppose the initial sequence of actions and rewards is $A_1 = 1, R_1 = 1, A_2 = 2, R_2 = 1,
+A_3 = 2, R_3 = 2, A_4 = 2, R_4 = 2, A_5 = 3, R_5 = 0$. On some of these time steps
+the $\epsilon$-case may have occurred, causing an action to be selected at random.
+On which time steps did this definitively occur? On which time steps could this possibly
+have occured?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Since we initialize the action-value estimates equally with $0$, in the first
+step the greedy action selection is indistinguishable from the $\epsilon$ random selection,
+therefore both could have occurred.
+In general, we can never exclude the possibility that a certain action was picked
+at random, since we don't exclude the optimal actions from the random selection.
+
+
+\begin{center}
+\begin{tabular}{ |c||c|c|c|c|c|c| }
+ \hline
+ \multicolumn{7}{|c|}{Action-value estimates over time} \\
+ \hline
+ Time step & $Q(A_1)$ & $Q(A_2)$ & $Q(A_3)$ & $Q(A_4)$ & Action taken & Random?\\
+ \hline
+ 1 & \hl{0} & \hl{0} & \hl{0} & \hl{0} & 1 & Possible \\
+ 2 & \hl{1} & 0 & 0 & 0 & 2 & Definitively\\
+ 3 & \hl{1} & \hl{1} & 0 & 0 & 2 & Possible \\
+ 4 & 1 & \hl{3/2} & 0 & 0 & 2 & Possible\\
+ 5 & 1 & \hl{5/3} & 0 & 0 & 2 & Possible\\
+ 6 & 1 & \hl{5/3} & 0 & 0 & 3 & Definitively\\
+ \hline
+\end{tabular}
+\end{center}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

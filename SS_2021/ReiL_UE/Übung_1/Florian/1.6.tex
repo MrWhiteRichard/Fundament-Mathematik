@@ -1,0 +1,53 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.6 Mysterious Spikes]
+
+The results shown in Figure 2.3 (below) should be quite reliable because they are
+averages over 2000 individual, randomly chosen 10-armed bandit tasks. Why, then,
+are there oscillations and spikes in the early part of the curve for the optimistic
+method? In other words, what might make this method perform particularly better or
+worse, on average, on particular early steps?
+\includegraphicsboxed{figure_2.3.png}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Assuming that the optimistic initialization is significantly above the mean values
+of the 10-armed testbed, then the optimistic method would start with trying all 10
+actions once first, thus significantly decreasing the action-value estimates for each action.
+After these initial ten steps, the method continues with the action, which yielded
+the highest reward in the first try. However, most likely, the action-value estimation
+for this action is still too high and gets thus decreased further with increased exploration,
+therefore opening the door for the other possible actions again.
+
+An illustration of that fact is given by the table below.
+
+\begin{center}
+\begin{tabular}{ |c||c|c|c|c|c|c|c|c|c|c| }
+ \hline
+ \multicolumn{11}{|c|}{Action-value estimates over time} \\
+ \hline
+ Time step & $Q(A_1)$ & $Q(A_2)$ & $Q(A_3)$ & $Q(A_4)$ & $Q(A_5)$ & $Q(A_6)$ & $Q(A_7)$ & $Q(A_8)$ & $Q(A_9)$ & $Q(A_10)$ \\
+ \hline
+ 1 & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} \\
+ 2 & \hl{5} & \hl{5} & \hl{5} & 3.4 & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} \\
+ 3 & \hl{5} & \hl{5} & \hl{5} & 3.4 & \hl{5} & \hl{5} & \hl{5} & \hl{5} & \hl{5} & 2.7 \\
+ 4 & \hl{5} & \hl{5} & \hl{5} & 3.4 & \hl{5} & \hl{5} & \hl{5} & \hl{5} & 4.1 & 2.7 \\
+ 5 & \hl{5} & \hl{5} & 3.8 & 3.4 & \hl{5} & \hl{5} & \hl{5} & \hl{5} & 4.1 & 2.7 \\
+ 6 & \hl{5} & \hl{5} & 3.8 & 3.4 & 4.2 & \hl{5} & \hl{5} & \hl{5} & 4.1 & 2.7 \\
+ 7 & 3.9 & \hl{5} & 3.8 & 3.4 & 4.2 & \hl{5} & \hl{5} & \hl{5} & 4.1 & 2.7 \\
+ 8 & 3.9 & \hl{5} & 3.8 & 3.4 & 4.2 & \hl{5} & 3.3 & \hl{5} & 4.1 & 2.7 \\
+ 9 & 3.9 & 4.4 & 3.8 & 3.4 & 4.2 & \hl{5} & 3.3 & \hl{5} & 4.1 & 2.7 \\
+ 10 & 3.9 & 4.4 & 3.8 & 3.4 & 4.2 & \hl{5} & 3.3 & 3.7 & 4.1 & 2.7 \\
+ 11 & 3.9 & \hl{4.4} & 3.8 & 3.4 & 4.2 & 3.6 & 3.3 & 3.7 & 4.1 & 2.7 \\
+ \hline
+\end{tabular}
+\end{center}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,64 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.22]
+
+Consider the continuing MDP shown below. The only decision to be made is that in
+the top state, where two actions are available, left and right. The numbers show
+the rewards that are received deterministically after each action. There are
+exactly two deterministic policies, $\pi_{\text{left}}$ and $\pi_{\text{right}}$.
+What policy is optimal if $\gamma = 0$? If $\gamma = 0.9?$ If $\gamma = 0.5$?
+
+\includegraphicsboxed{3.22.png}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+  v_{\pi_{\text{left}}}(\text{top}) &= \E[G_t | S_t = \text{top}] = \E[R_{t+1} + \gamma G_{t+1} | S_t = \text{top}]
+  = 1 + \gamma\E[G_{t+1} | S_t = \text{top}] \\
+  &= 1 + 0 + \gamma^2 \E[G_{t+2} | S_t = \text{top}]
+  = 1 + 0 + \gamma^2 v_{\pi_{\text{left}}}(\text{top}).
+\end{align*}
+
+Therefore, we obtain
+
+\begin{align*}
+  (1 - \gamma^2)v_{\pi_{\text{left}}}(\text{top}) = 1
+  \iff v_{\pi_{\text{left}}}(\text{top}) = \frac{1}{1 - \gamma^2}
+\end{align*}
+
+and
+
+\begin{align*}
+  v_{\pi_{\text{right}}}(\text{top}) &= 0 + 2\gamma + \gamma^2v_{\pi_{\text{right}}}(\text{top}) \\
+  \iff v_{\pi_{\text{right}}}(\text{top}) &= \frac{2\gamma}{1 - \gamma^2}.
+\end{align*}
+
+\begin{itemize}
+  \item[$\gamma = 0:$]
+  \begin{align*}
+    v_{\pi_{\text{left}}}(\text{top}) &= 1 \\
+    v_{\pi_{\text{left}}}(\text{top}) &= 0.
+  \end{align*}
+  As expected, $\pi_{\text{left}}$ is the optimal strategy, when discarding all
+  future rewards after the next step.
+  \item[$\gamma = 0.9:$]
+  \begin{align*}
+    v_{\pi_{\text{left}}}(\text{top}) &= \frac{100}{19} \approx 5.26 \\
+    v_{\pi_{\text{left}}}(\text{top}) &= \frac{180}{19} \approx 9.47.
+  \end{align*}
+  With a relatively low discount factor, the right strategy is clearly superior.
+  \item[$\gamma = 0.5:$]
+\end{itemize}
+\begin{align*}
+  v_{\pi_{\text{left}}}(\text{top}) &= \frac{4}{3} \\
+  v_{\pi_{\text{left}}}(\text{top}) &= \frac{4}{3}.
+\end{align*}
+Both strategies are equal.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

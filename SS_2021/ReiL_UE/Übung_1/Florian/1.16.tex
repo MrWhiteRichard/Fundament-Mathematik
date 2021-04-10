@@ -1,0 +1,26 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.16]
+
+Now consider adding a constant $c$ to all the rewards in an episodic task, such
+as maze running. Would this have any effect, or would it leave the task unchanged
+as in the continuing task above? Why or why not? Give an example.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+With the same calculations as before, we can see that this doesn't affect relative state values,
+since it just adds $c\cdot T$ to the value of all states (assuming no discounting).
+
+However, now we have to account for different episode lengths.
+In the example of the maze task, where we gave a reward of -1 for every time step
+in which the agent has not escaped the maze; if we now increase all rewards by +1,
+the task becomes completely meaningless, since every possible set of actions
+yields a total return of 0.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

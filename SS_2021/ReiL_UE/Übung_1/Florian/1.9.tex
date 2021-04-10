@@ -1,0 +1,29 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.6]
+
+Suppose you treated pole-balancing as an episodic task but also used discounting,
+with all rewards zero except for -1 upon failure. What then would be the return
+be at each time? How does this return differ from that in the discounted, continuing
+formulation of this task?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Let $T$ denote the time of failure, i.e. the end of the episode.
+Then at every time step $k$ the discounted return is given by $-\gamma^{T-k-1}$.
+
+In the discounted, continuing formulation the discounted return would need to
+include all future instances of failure.
+Therefore the discounted return at time step $k$ would look like this:
+\begin{align*}
+  G_k = \sum_{i = 1}^{\infty} -\gamma^{T_i -k-1},
+\end{align*}
+whereas $T_i$ denote the time steps, where the pole falls over.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

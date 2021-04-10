@@ -1,0 +1,34 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.15]
+
+In the gridworld example, rewards are positive for goals, negative for running
+into the edge of the world, and zero the rest of the time. Are the signs of these
+rewards important, or only the intervals between them?
+Prove, using (3.8), that adding a constant $c$ to all the rewards adds a constant, $v_c$,
+to the values of all states, and thus does not affect the relative values of any
+states under any policies. What is $v_c$ in terms of $c$ and $\gamma$?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Of course the signs are important, since inverting them would also invert all
+state-values, which would render the previously worst action in each state to be the best one.
+
+Denote by $G_t^*, R_t^*$ and $v_\pi^*$ the modified rewards, returns and value function by adding the constant $c$ to every reward.
+
+\begin{align*}
+  v_\pi^*(s) &= \E[G_t^* | S_t = s] = \E\left[\sum_{k=0}^{\infty}\gamma^kR_{t+k+1}^* | S_t = s\right]
+  = \E\left[\sum_{k=0}^{\infty}\gamma^k(R_{t+k+1} + c) | S_t = s\right] \\
+  &= \E\left[\sum_{k=0}^{\infty}\gamma^kR_{t+k+1} | S_t = s\right] + \frac{c}{1 - \gamma}
+  = v_\pi(s) + \frac{c}{1 - \gamma}.
+\end{align*}
+
+Therefore we obtain $v_c = c/(1-\gamma)$.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

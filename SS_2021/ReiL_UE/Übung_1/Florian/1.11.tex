@@ -1,0 +1,29 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.8]
+
+Suppose $\gamma = 0.5$ and the following sequence of rewards is received:
+\begin{align*}
+  R_1 = -1, \quad R_2 = 2, \quad R_3 = 6, \quad R_4 = 4, \quad \text{and } R_5 = 2
+\end{align*}
+with $T = 5$. What are $G_0, \dots, G_5$? \\
+\textit{Hint:} Work backwards.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+  G_5 &= 0 \\
+  G_4 &= R_5 = 2 \\
+  G_3 &= R_4 + \frac{G_4}{2} = 5 \\
+  G_2 &= R_3 + \frac{G_3}{2} = \frac{17}{2} \\
+  G_1 &= R_2 + \frac{G_2}{2} = \frac{25}{4} \\
+  G_0 &= R_1 + \frac{G_1}{2} = \frac{17}{8}.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

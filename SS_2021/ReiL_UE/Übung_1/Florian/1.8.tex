@@ -1,0 +1,34 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 3.4]
+
+Give a table analogous to that in Example 3.3 (textbook p. 52), but for $p(s',r|s,a)$.
+It should have columns for $s, a, s', r$, and $p(s',r|s,a)$, and a row for every 4-tuple
+for which $p(s',r|s,a) > 0$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+Let $p_{\texttt{search}}$ and $p_{\texttt{wait}}$ denote the probability
+distributions of the number of cans picked up while searching or waiting
+respectively.
+\begin{center}
+\begin{tabular}{ ccc|c|c }
+ $s$ & $a$ & $s'$ & $r$ & $p(s',r|s,a)$\\
+ \hline
+ \texttt{high} & \texttt{search} & \texttt{high} & $k$ & $\alpha \cdot p_{\texttt{search}}(k)$ \\
+ \texttt{high} & \texttt{search} & \texttt{low} & $k$ & $(1 -\alpha) \cdot p_{\texttt{search}}(k)$ \\
+ \texttt{low} & \texttt{search} & \texttt{high} & $-3$ & $1- \beta$ \\
+ \texttt{low} & \texttt{search} & \texttt{low} & $k$ & $\beta \cdot p_{\texttt{search}}(k)$ \\
+ \texttt{high} & \texttt{wait} & \texttt{high} & $k$ & $p_{\texttt{wait}}(k)$ \\
+ \texttt{low} & \texttt{wait} & \texttt{low} & $k$ & $p_{\texttt{wait}}(k)$ \\
+ \texttt{low} & \texttt{recharge} & \texttt{high} & $0$ & $1$ \\
+\end{tabular}
+\end{center}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

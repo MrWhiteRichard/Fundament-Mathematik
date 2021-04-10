@@ -1,0 +1,28 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 2.4]
+
+If the step-size parameters, $\alpha_n$, are not constant, then the estimate $Q_n$
+is a weighted average of previously received rewards with a weighting different
+from that given by (2.6). What is the weighting on each prior reward for the
+general case, analogous to (2.6), in terms of the sequence of step-size parameters?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+  Q_{n+1} &\stackrel{\cdot}{=} Q_n + \alpha_n[R_n - Q_n]
+  = \alpha_n R_n + (1 - \alpha_n)Q_n \\
+  &= \alpha_n R_n + (1 - \alpha_n)(Q_{n-1} + \alpha_{n-1}[R_{n-1} - Q_{n-1}])
+  = \alpha_n R_n + \alpha_{n-1}(1 - \alpha_n) R_{n-1} + (1 - \alpha_n)(1 - \alpha_{n-1})Q_{n-1} \\
+  &= \prod_{i=1}^n (1 - \alpha_i)Q_1 + \sum_{i=1}^n \alpha_i
+  \prod_{j = i+1}^n (1 - \alpha_j) R_i.
+\end{align*}
+
+The weight given to the reward $R_i$ is therefore $\alpha_i\prod_{j = i+1}^n (1 - \alpha_j)$.
+\end{solution}
+
+% --------------------------------------------------------------------------------
