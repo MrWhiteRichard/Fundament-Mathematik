@@ -28,5 +28,29 @@ Then we are definitely in the $\epsilon$-case. The $\argmax_a Q_2(a) = 1$ but we
   Q_3(4) = 0
 \end{align*}
 
+On step three it is likely that we took a greedy action, though we can obviously not guarantee it, since we take action $2$ and $\argmax_a Q_3(a) = \{1,2\}.$ Again we update $Q$:
 
+\begin{align*}
+  Q_4(1) = 1
+  \quad
+  Q_4(2) = \frac{3}{2}
+  \quad
+  Q_4(3) = 0
+  \quad
+  Q_4(4) = 0
+\end{align*}
+
+On step four it again is likely, though not guaranteed, that we take the greedy action. Again update $Q$:
+
+\begin{align*}
+  Q_5(1) = 1
+  \quad
+  Q_5(2) = \frac{5}{3}
+  \quad
+  Q_5(3) = 0
+  \quad
+  Q_5(4) = 0
+\end{align*}
+
+On step five we definitely do exploration, since $\argmax_a Q(a) = 2$ but we take action 3. Since we get a reward of 0, it holds that $Q_6(a) = Q_5(a)$ for all actions $a$.
 \end{solution}

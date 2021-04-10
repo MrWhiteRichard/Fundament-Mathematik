@@ -1,0 +1,44 @@
+\begin{exercise}
+If the step-size parameters, $\alpha_n$, are not constant, then the estimate $Q_n$ is a weighted average of previously received rewards with a weighting different from that given by \eqref{eq}.
+What is the weighting on each prior reward for the general case, analogous to \eqref{eq}, in terms of the sequence of step-size parameters?
+
+\begin{align} \label{eq}
+    Q_{n+1}
+    \doteq
+    Q_n + \alpha \bbraces{R_n - Q_n}
+    = \cdots =
+    (1 - \alpha)^n Q_1
+    +
+    \sum_{i=1}^n
+        \alpha (1 - \alpha)^{n-i} R_i
+\end{align}
+\end{exercise}
+
+\begin{solution}
+In the general case, with $\alpha_n \in \R$ for $n \in \N$, we obtain
+
+\begin{align*}
+  Q_{n+1}
+  &=
+  Q_n + \alpha_n [R_n + Q_n] \\
+  &\stackrel{(*)}{=}
+  \alpha_n R_n + (1 - \alpha_n) Q_n \\
+  &=
+  \alpha_n R_n + \big(
+  1 - \alpha_n
+  \big)\big(
+  \alpha_{n-1}R_{n-1} + (1-\alpha_{n-1})Q_{n-1}
+  \big) \\
+  &=
+  \alpha_n R_n + (1 - \alpha_n)\alpha_{n-1}R_{n-1}
+  +
+  (1-\alpha_n)(1-\alpha_{n-1})Q_{n-1} \\
+  &= \cdots \\
+  &=
+  \bigg(\prod_{k=1}^n(1-\alpha_k)\bigg)Q_1
+  +
+  \sum_{i = 1}^n \bigg(\alpha_i  \prod_{j = i+1}^n(1-\alpha_j)\bigg) R_i
+\end{align*}
+
+This can be proven by a simple induction using $(*)$ with trivial base case $n = 0$.
+\end{solution}
