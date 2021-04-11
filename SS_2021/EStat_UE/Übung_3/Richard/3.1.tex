@@ -48,12 +48,11 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
         \draw [->] (0, 0) -- (11, 0);
         \draw (0, 0) grid (10, 10);
 
-        \draw [color = yellow, thick] (10, 4) -- (4, 10);
+        \draw [<->, color = yellow, thick] (11, 3) -- (3, 11);
 
-        \draw [color = green, thick] (0, 0) -- (10, 10);
-        \draw [color = green, thick] (2, 0) -- (10, 8);
-        \draw [color = green, thick] (0, 2) -- (8, 10);
-        \filldraw [color = green] (10, 10) circle (4pt);
+        \draw [->, color = green, thick] (0, 0) -- (11, 11);
+        \draw [->, color = green, thick] (0, 2) -- (9, 11);
+        \draw [->, color = green, thick] (2, 0) -- (11, 9);
 
         \filldraw [color = blue] (0, 0) circle (4pt);
         \draw node [below left] {$(0, 0)$};
@@ -68,7 +67,7 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
 
     \item Each path that the robot moves along is equally likely.
     
-    There are $\binom{x+y}{x} = \binom{x+y}{y}$ paths that lead from $(0, 0)$ to $(x, y)$.
+    There are $\binom{a}{b}$ paths ($a = x + y$, $b \in \Bbraces{x, y}$) that lead from $(0, 0)$ to $(x, y)$.
     This can be observed by turning one of the figures above by $90 + 45$ degrees clockwise and modifying it to be a Pascal's triangle.
     The number of downwards paths that lead from the root of a Pascal's to one of its nodes with value $z$ is $z$.
     
@@ -85,73 +84,120 @@ The robot can either move right to $(x + 1, y)$ or move up to $(x, y + 1)$.
     \end{figure}
     
     Let the robot move $8 + 6$ steps.
-    Assuming that it cannot leave the grid, it would then have to land on the yellow diagonal $\Bbraces{(10, 4), \dots, (4, 10)}$.
-    The position on that diagonal completely determines, whether the robot reaches $(8, 6)$ or not (since it can only move right or up).
+    It must land on the yellow diagonal $\Bbraces{(10, 4), \dots, (4, 10)}$.
+    The position on that diagonal completely determines, whether the robot reaches $(8, 6)$ or not (since it can only move right and up).
+    Consider the Binomial Theorem for $(1 + 1)^n$.
     
     \begin{align*}
         P(\text{robot passes through $(8, 6)$})
         & =
         P(\text{robot sits on $(8, 6)$} \mid \text{robot moved exactly $8 + 6$ steps}) \\
         & =
-        \binom{14}{8} \div \sum_{n=4}^{10} \binom{14}{n}
-        =
-        \binom{14}{6} \div \sum_{n=4}^{10} \binom{14}{n} \\
+        \frac
+        {
+            \binom{14}{7 \pm 1}
+        }{
+            \sum_{n=0}^{14}
+                \binom{14}{n}
+        } \\
         & =
-        0.19 \dot 4
+        \frac{\binom{14}{7 \pm 1}}{2^n} \\
+        & \approx
+        0.183288574219
     \end{align*}
 
     \item On the middle green diagonal $\Bbraces{(x, x)}_{x=0}^{10}$ every element $(x, x)$ has an even value $x + x$.
 
+    $\Forall x = 0, \dots, 8:$
+
     \begin{align*}
         &
-        P(\text{robot will move to $(x+1, x+1)$} \mid \text{robot sits at $(x, x)$ for some $x = 0, \dots, 8$}) \\
+        P(\text{robot will move to $(x+1, x+1)$} \mid \text{robot sits at $(x, x)$}) \\
         & =
-        P(\text{robot will move up and then down} \mid \text{robot sits at $(x, x)$ for some $x = 0, \dots, 8$}) \\
+        P(\text{robot will move up and then right} \mid \text{robot sits at $(x, x)$}) \\
         & +
-        P(\text{robot will move down and then up} \mid \text{robot sits at $(x, x)$ for some $x = 0, \dots, 8$}) \\
+        P(\text{robot will move right and then up} \mid \text{robot sits at $(x, x)$}) \\
         & =
         \frac{1}{3} \frac{1}{4} + \frac{2}{3} \frac{3}{4} \\
         & =
-        \frac{7}{12}
+        \frac{7}{12} =: p_0,
     \end{align*}
 
     \begin{align*}
-        &
-        P(\text{ending position $(x, y)$ fulfills $x + y \neq 2$}) \\
-        & =
-        P
-        \pbraces
-        {
-            \begin{array}{l}
-                \text{ending position is $(10, 10)$ and} \\
-                \text{robot only moves between diagonals $\Bbraces{(x+2, x)}_{x=0}^8$ and $\Bbraces{(x, x+2)}_{x=0}^8$}
-            \end{array}
-        } \\
-        & =
-        \underbrace
-        {
-            P(\text{robot will move to $(10, 10)$} \mid \text{robot sits at $(9, 9)$})
-        }_1 \\
-        & \quad
-        P(\text{robot will move to $(9, 9)$} \mid \text{robot sits at $(8, 8)$}) \\
-        & \quad
-        \vdots \\
-        & \quad
-        P(\text{robot will move to $(1, 1)$} \mid \text{robot sits at $(0, 0)$}) \\
-        & =
-        \prod_{x=0}^8
-            P(\text{robot will move to $(x+1, x+1)$} \mid \text{robot sits at $(x, x)$}) \\
-        & =
-        \pbraces{\frac{7}{12}}^9
-    \end{align*}
-
-    \begin{align*}
-        P(\text{ending position $(x, y)$ fulfills $x + y = 2$})
+        P(\text{robot will move to $(x+2, x)$} \mid \text{robot sits at $(x, x)$})
         =
-        1 - \pbraces{\frac{7}{12}}^9
-        \approx
-        0.992179201
+        \frac{1}{3} \frac{3}{4}
+        =
+        \frac{3}{12} =: p_{-1},
     \end{align*}
+
+    \begin{align*}
+        P(\text{robot will move to $(x, x+2)$} \mid \text{robot sits at $(x, x)$})
+        =
+        \frac{2}{3} \frac{1}{4}
+        =
+        \frac{2}{12} =: p_1
+    \end{align*}
+
+    \begin{multline*}
+        \pi_n
+        :=
+        P(\text{ending position $(x, y)$ fulfills $x - y = 2$} \mid x + y \leq 2 n) \\
+        \xrightarrow{n \to \infty}
+        P(\text{ending position $(x, y)$ fulfills $x - y = 2$}) =: \pi_\infty
+    \end{multline*}
+
+    \begin{align*}
+        \pi_1 & = p_1 \\
+        \pi_2 & = \pi_1 + p_0 p_1 = p_1 + p_0 p_1 = p_1 (1 + p_1) \\
+        \pi_3 & = \pi_2 + p_0^2 p_1 = p_1 (1 + p_0) + p_0^2 p_1 = p_1 (1 + p_0 + p_0^2) \\
+        & \vdots \\
+        \pi_\infty & = p_1 \sum_{k=0}^\infty p_0^k = \frac{p_1}{1 - p_0} = \frac{2 / 12}{1 - 7 / 12} = \frac{2 / 12}{5 / 12} = \frac{2}{5} = 0.4
+    \end{align*}
+
+    \begin{comment}
+
+        \begin{align*}
+            &
+            P(\text{ending position $(x, y)$ fulfills $|x - y| \neq 2$}) \\
+            & =
+            P
+            \pbraces
+            {
+                \begin{array}{l}
+                    \text{ending position is $(10, 10)$ and} \\
+                    \text{robot only moves between diagonals $\Bbraces{(x+2, x)}_{x=0}^8$ and $\Bbraces{(x, x+2)}_{x=0}^8$}
+                \end{array}
+            } \\
+            & =
+            \underbrace
+            {
+                P(\text{robot will move to $(10, 10)$} \mid \text{robot sits at $(9, 9)$})
+            }_1 \\
+            & \quad
+            P(\text{robot will move to $(9, 9)$} \mid \text{robot sits at $(8, 8)$}) \\
+            & \quad
+            \vdots \\
+            & \quad
+            P(\text{robot will move to $(1, 1)$} \mid \text{robot sits at $(0, 0)$}) \\
+            & =
+            \prod_{x=0}^8
+                P(\text{robot will move to $(x+1, x+1)$} \mid \text{robot sits at $(x, x)$}) \\
+            & =
+            \pbraces{\frac{7}{12}}^9
+        \end{align*}
+
+        \begin{align*}
+            P(\text{ending position $(x, y)$ fulfills $x - y = 2$})
+            =
+            P(\text{ending position $(x, y)$ fulfills $|x - y| = 2$}) / 2
+            =
+            \pbraces{1 - \pbraces{\frac{7}{12}}^9} / 2
+            \approx
+            0.496089600308
+        \end{align*}
+
+    \end{comment}
 
 \end{enumerate}
 
