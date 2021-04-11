@@ -1,0 +1,24 @@
+\begin{exercise}
+Give a table analogous to that in Example 3.3 (texbook p. 52), but for $p(s^\prime, r \mid s, a)$.
+It should have columns for $s$, $a$, $s^\prime$, $r$ and $p(s^\prime, r \mid s, a)$, and a row for every $4$-tuple for which $p(s^\prime, r \mid s, a) > 0$.
+
+\end{exercise}
+
+\begin{solution}
+We assume that the number of cans the robot collects while performing the respective action are distributed according to the pmf's $r_{\text{\text{search}}}(k), r_{\text{\text{wait}}}(k)$ for $k \in \N$. With this we get the table:
+
+\begin{align*}
+  \begin{array}{cccc|c}
+  s & a & s^\prime & r & p(s^\prime, r \mid s, a) \\
+  \hline
+  \text{high} & \text{search} & \text{high} & k & \alpha \cdot r_{\text{search}}(k) \\
+  \text{high} & \text{search} & \text{low} & k & (1 - \alpha) \cdot r_{\text{search}}(k) \\
+  \text{low} & \text{search} & \text{low} & k & \beta \cdot r_{\text{search}}(k) \\
+  \text{low} & \text{wait} & \text{low} & k &  r_{\text{wait}}(k) \\
+  \text{high} & \text{wait} & \text{high}t & k & r_{\text{wait}}(k) \\
+  \text{low} & \text{search} & \text{high} & -3 & 1- \beta \\
+  \text{low} & \text{recharge} & \text{high} & 0 & 1 \\
+  \end{array}
+\end{align*}
+
+\end{solution}

@@ -1,0 +1,34 @@
+\begin{exercise}
+Now consider adding a constant $c$ to all the rewards in an episodic task, such as maze running.
+Would this have any effect, or would it leave the task unchanged as in the continuing task above?
+Why or why not?
+Give an example.
+\end{exercise}
+
+\begin{solution}
+  This would change the task at hand. We write $G^+_t$ for the expected return where we add the constant to all the rewards and $G_t$ for the expected return without the constants. Without discounts we would get:
+
+  \begin{align*}
+    G_t^+
+    =
+    \sum_{k=t+1}^T (R_k + c)
+    =
+    G_t + (T-t-1)\cdot c
+  \end{align*}
+
+  With discounts:
+
+  \begin{align*}
+    G_t^+
+    =
+    \sum_{k=t+1}^T \gamma^{k-t-1}(R_k + c)
+    =
+    G_t + c \sum_{k=t+1}^T \gamma^{k-t-1}
+    =
+    G_t + c \frac{1-\gamma^{T-t}}{1-\gamma}
+  \end{align*}
+
+  In both cases we see that the added constant to the reward is not constant when considering the expected return (and with that also $v_\pi$) but instead is depenend both on the terminal state of the episode as well as the current timestep.
+
+  An example where this would have a heavy impact would be the maze example: If we would give a reward of $-1$ in every timestep the agent does not leave the maze and a reward of $0$ in the terminal state where we leave the state and then add $1$ to the rewards, we would end up with the same problem as in exercise $10$.
+\end{solution}

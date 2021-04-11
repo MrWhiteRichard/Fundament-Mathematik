@@ -1,0 +1,59 @@
+\begin{exercise}
+In the gridworld example, rewards are positive for goals, negative for running into the edge of the world, and zero the rest of the time.
+Are the signs of these rewards important, or only the intervals between them?
+Prove, using \eqref{eq:2.15}, that adding a constant $c$ to all the rewards adds a constant, $v_c$, to the values of all states, and thus does not affect the relative values of any states under any policies.
+What is $v_c$ in terms of $c$ and $\gamma$?
+
+\begin{align} \label{eq:2.15}
+    G_t
+    \doteq
+    R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots
+    =
+    \sum_{k=0}^\infty
+        \gamma^k R_{t+k+1}
+\end{align}
+
+\end{exercise}
+
+\begin{solution}
+In the following we write $ v_\pi^+$ for the state value where we added a constant and $v_\pi$ for the state value function where we have not added the constant. By use the definition of $v_\pi$ as well as basic properties of the expectation we get
+
+\begin{align*}
+  v_\pi^+(s)
+  &=
+  \E_\pi
+  \bigg[
+  G_t^+ \big| S_t = s
+  \bigg]
+  =
+  \E_\pi
+  \bigg[
+  \sum_{k=0}^\infty \gamma^k (R_{t+k+1} + c) \big| S_t = s
+  \bigg] \\
+  &=
+  \E_\pi
+  \bigg[
+  \sum_{k=0}^\infty \gamma^k R_{t+k+1} + \sum_{k=0}^\infty \gamma^k c \big| S_t = s
+  \bigg]
+  =
+  \E_\pi
+  \bigg[
+  \sum_{k=0}^\infty \gamma^k R_{t+k+1} \big| S_t = s
+  \bigg]
+  +
+  \E_\pi
+  \bigg[
+  \frac{c}{1-\gamma} \big| S_t = s
+  \bigg] \\
+  &=
+  v_\pi(s) + \frac{c}{1-\gamma} \qquad \forall s \in \mathcal{S}.
+\end{align*}
+
+So we get
+
+\begin{align*}
+  v_\pi^+(s) = v_\pi(s) + v_c, \qquad \forall s \in \mathcal{S}
+\end{align*}
+
+with $v_c = \frac{c}{1-\gamma}$.
+\end{solution}

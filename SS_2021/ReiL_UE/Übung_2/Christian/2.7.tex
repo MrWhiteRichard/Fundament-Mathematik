@@ -1,0 +1,34 @@
+\begin{exercise}
+If the current state is $S_t$, and actions are selected according to stochastic policy $\pi$, then what is the expectation of $R_{t+1}$ in terms of $\pi$ and the four-argument function $p$ \eqref{eq:2.13}?
+
+\begin{align} \label{eq:2.13}
+    p(s^\prime, r \mid s, a)
+    \doteq
+    \Pr \Bbraces{S_t = s^\prime, R_t = r \mid S_{t-1} = s, A_{t-1} = a}
+\end{align}
+\end{exercise}
+
+\begin{solution}
+  We first remind of the definition of the expected rewards for state-action pairs:
+
+\begin{align*}
+  r(s\mid a)
+  =
+  \E[R_t \mid S_{t-1} = s, A_{t-1} = a]
+  =
+  \sum_{r \in \mathcal{R}} r \sum_{s^\prime \in \mathcal{S}} p(s^\prime, r \mid s, a)
+\end{align*}
+
+With this and the total law of expectation we show
+
+\begin{align*}
+  \E_\pi[R_{t+1} \mid S_t]
+  =
+  \sum_{a \in \mathcal{A}} \pi(a\mid S_t) \E[R_{t+1} \mid S_t, A_t = a]
+  =
+  \sum_{a \in \mathcal{A}} \pi(a \mid S_t) r(S_t \mid a)
+  =
+  \sum_{a \in \mathcal{A}}\sum_{r \in \mathcal{R}} r \pi(a \mid S_t) \sum_{s^\prime \in \mathcal{S}} p(s^\prime, r \mid S_t, a)
+\end{align*}
+
+\end{solution}

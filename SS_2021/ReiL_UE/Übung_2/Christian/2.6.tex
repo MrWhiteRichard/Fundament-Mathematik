@@ -1,0 +1,29 @@
+\begin{exercise}
+Suppose $\gamma = 0.9$ and the reward sequence is $R_1 = 2$ followed by an infinite sequence of $7$s.
+What are $G_1$ and $G_0$?
+\end{exercise}
+
+\begin{solution}
+We use the formula \eqref{eq:2.15} and the geometric series to compute the values:
+
+\begin{align*}
+  G_1
+  &=
+  \sum_{k=0}^\infty \gamma^k R_{k+2}
+  =
+  7 \cdot \sum_{k=0}^\infty \gamma^k
+  =
+  7 \cdot \frac{1}{1/10}
+  =
+  70 \\
+  G_0
+  &=
+  2 + 7 \cdot \sum_{k=1}^\infty \gamma^k
+  =
+  2 + 7\cdot \bigg( \sum_{k=0}^\infty \gamma^k - 1\bigg)
+  =
+  2 + 7 \cdot 9
+  =
+  65
+  \end{align*}
+\end{solution}

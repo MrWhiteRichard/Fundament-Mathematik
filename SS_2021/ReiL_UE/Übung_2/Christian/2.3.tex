@@ -1,0 +1,25 @@
+\begin{exercise}
+Suppose you treated pole-balancing as an episodic task but also used discounting, with all rewards zero except for $-1$ upon failure.
+What then would the return be at each time?
+How does this return differ from that in the discounted, continuing formulation of this task?
+\end{exercise}
+
+\begin{solution}
+The terminal state of the episode would always be the state where we fail to balance the pole, so we would always get reward $0$ an get exactly one reward of $-1$. All in all we would get
+
+\begin{align*}
+  G_t
+  =
+  \sum_{k=t+1}^T \gamma^{k-t-1} R_k
+  =
+  -\gamma^{T-t-1}
+\end{align*}
+
+In the discounted, continuing formulation where we fail at steps $T_1, T_2, \dots$ we would get
+
+\begin{align*}
+  G_t
+  =
+  -\sum_{j = 1}^\infty \gamma^{T_j - t - 1} 
+\end{align*}
+\end{solution}

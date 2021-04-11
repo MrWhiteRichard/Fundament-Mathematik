@@ -1,0 +1,28 @@
+\begin{exercise}
+Suppose $\gamma = 0.5$ and the following sequence of rewards is received $R_1 = -1$, $R_2 = 2$, $R_3 = 6$, $R_4 = 3$, and $R_5 = 2$, with $T = 5$.
+What are $G_0, G_1 , \dots, G_5$?
+Hint:
+Work backwards.
+\end{exercise}
+
+\begin{solution}
+We follow the hint and note that for the terminal state $T = 5$ we defined $G_T = 0$. Now we use the recursive formula
+
+\begin{align*}
+  G_t
+  =
+  R_{t+1} +\gamma G_{t+1}.
+\end{align*}
+
+So we end up with
+
+\begin{align*}
+  G_5 &= 0 \\
+  G_4 &= 2 + 0 = 2 \\
+  G_3 &= 3 + \frac{1}{2}\cdot 2 = 4 \\
+  G_2 &= 6 + \frac{1}{2}\cdot 4 =  8 \\
+  G_1 &= 2 + \frac{1}{2}\cdot 8 = 6 \\
+  G_0 &= -1 + \frac{1}{2}\cdot 6 = 2
+\end{align*}
+
+\end{solution}

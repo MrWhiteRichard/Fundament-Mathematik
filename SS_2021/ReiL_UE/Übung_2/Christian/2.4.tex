@@ -1,0 +1,16 @@
+\begin{exercise}
+Imagine that you are designing a robot to run a maze.
+You decide to give it a reward of $+1$ for escaping from the maze and a reward of zero at all other times.
+The task seems to break down naturally into episodes - the successive runs through the maze - so you decide to treat it as an episodic task, where the goal is to maximize expected total reward \eqref{eq:2.10}.
+After running the learning agent for a while, you find that it is showing no improvement in escaping from the maze.
+What is going wrong?
+Have you effectively communicated to the agent what you want it to achieve?
+
+\begin{align} \label{eq:2.10}
+    G_t \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots + R_T
+\end{align}
+\end{exercise}
+
+\begin{solution}
+  As we can see in \eqref{eq:2.10}, it does not matter at all at which step we get our reward of 1. So we show no improvement because to the robot there is no difference as to when it leaves the maze. We have not effectively communicated to the agent what we want it to achieve, our goal is not to have it just leave the maze, but to leave the maze as fast as possible. One possible solution would be to give the agent a reward of $-1$ for each step that it does not leave the maze, to incentivice it to leave the maze as soon as possible. Another possible way of doing it would be to use discounting, so it gets less reward the longer it takes. 
+  \end{solution}

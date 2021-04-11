@@ -1,0 +1,10 @@
+\begin{exercise}
+Is the MDP framework adequate to usefully represent all goal-directed learning tasks?
+Can you think of any clear exceptions?
+\end{exercise}
+
+\begin{solution}
+In the MDP framework the probability of each possible value for $S_t$ and $R_t$ depend only on the immediately preeceding state and action and given them not at all on earlier states and action. We can still obtain information from earlier states if we define our states accordingly but here problems might arise. If we were to include some information form earlier states into every preeceding state the amount of memory nedded for just one state would probably soon be too high. In this case it would probably be useful to use some alternatives.
+
+Another example would be when we try to have an agent learn poker. To get good at poker and yield high wins, the agent would have to try to find out with what probability the opponents will bluff. If it is playing against humans, there is no clear way to find this probability. The human component of bluffing would probably make it very hard to fit this problem into the MDP framework.
+\end{solution}
