@@ -26,6 +26,70 @@ Consider the following two random variables
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+    \item
+    Since $X$ and $Y$ are independent, the joint distribution is the product of
+    the marginal distributions.
+    \begin{align*}
+      f_{X,Y}(x,y) &= f_X(x)f_Y(y) = \frac{\beta^{\alpha_1}}{\Gamma(\alpha_1)}x^{\alpha_1 - 1}\exp(-\beta x)
+      \frac{\beta^{\alpha_2}}{\Gamma(\alpha_2)}y^{\alpha_2 - 1}\exp(-\beta y) \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\exp(-\beta (x+y))x^{\alpha_1 - 1}y^{\alpha_2 - 1}
+    \end{align*}
+    Our transformation function is $g: (0,\infty)^2 \to (0,\infty)\times (0,1); \ (x,y) \mapsto (x+y, x/(x+y))$.
+    We calculate the inverse by
+    \begin{align*}
+      u &= x + y \iff x = u - y \\
+      v &= \frac{x}{x+y} \iff v(x + y) = x \iff y = \frac{x - vx}{v} \\
+      \iff x &= u - \frac{x - vx}{v} \iff vx + x -vx = uv \iff x = uv \\
+      \iff y &= u - uv.
+    \end{align*}
+    Therefore $g^{-1}(u,v) = h(u,v) = (uv, u(1-v))$ with the Jacobi matrix
+    \begin{align*}
+      J(u,v) = \begin{pmatrix}
+        v & u \\ 1 -v & -u
+      \end{pmatrix}.
+    \end{align*}
+    We use the transformation formula to calculate
+    \begin{align*}
+      f_{U,V}(u,v) &= |\det(J(u,v))|f_{X,Y}(h(u,v))
+      = uf_{X,Y}(uv, u(1-v)) \\
+      &= u\frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)(uv)^{\alpha_1 - 1}(u(1-v))^{\alpha_2 - 1} \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} \\
+    \end{align*}
+    We integrate over $v$ to obtain the marginal distribution for $U$:
+    \begin{align*}
+      f_U(u) &= \int_0^1 \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} dv \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}\int_0^1 v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} dv \\
+      &= \frac{B(\alpha_1, \alpha_2)\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1} \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}.
+    \end{align*}
+    \item We calculate the marginal distribution for $V$:
+    \begin{align*}
+      f_V(v) &= \int_0^{\infty}\frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} du \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1}
+      \int_0^{\infty}\exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1} du \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1}
+      \frac{1}{\beta}\int_0^{\infty}\exp(t)\left(\frac{t}{\beta}\right)^{\alpha_1 + \alpha_2 - 1} dt \\
+      &= \frac{\Gamma(\alpha_1+\alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1}.
+    \end{align*}
+    We check the independence by multiplying the marginal distributions:
+    \begin{align*}
+      f_U(v)f_V(v) &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}\frac{\Gamma(\alpha_1+\alpha_2)}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} \\
+      &= \frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+      \exp(-\beta u)u^{\alpha_1 + \alpha_2 - 1}v^{\alpha_1 - 1}(1-v)^{\alpha_2 - 1} \\
+      &= f_{U,V}(u,v).
+    \end{align*}
+\end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------

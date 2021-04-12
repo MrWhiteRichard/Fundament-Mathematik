@@ -18,7 +18,29 @@ Show that $Z^2 \sim \chi_1^2$, i.e. show that the pdf of $Z^2$ is given by
 
 \begin{solution}
 
-\phantom{}
+We use the independence of $X$ and $Y$ to calculate
+
+\begin{align*}
+  \P(Z^2 \leq x) &= \P(Z \leq \sqrt{x}) - \P(Z < -\sqrt{x})
+  = (1 - \P(Z > \sqrt{x})) + (\P(Z \geq -\sqrt{x}) - 1) \\
+  &= (1 - \P(X > \sqrt{x})\P(Y > \sqrt{x})) + (\P(X \geq - \sqrt{x})\P(Y \geq - \sqrt{x}) - 1) \\
+  &= (1 - (1 - \Phi(\sqrt{x}))^2) + ((1 - \Phi(-\sqrt{x}))^2-1) \\
+  &=  (2\Phi(\sqrt{x}) - \Phi(\sqrt{x})^2 ) + (\Phi(\sqrt{x})^2-1) \\
+  &= 2\Phi(\sqrt{x}) - 1
+\end{align*}
+
+and
+
+\begin{align*}
+  \P(X^2 \leq x) = \P(X \leq \sqrt{x}) - \P(X < -\sqrt{x}) = \Phi(\sqrt{x}) - \Phi(\sqrt{-x})
+  = \Phi(\sqrt{x}) - (1 - \Phi(\sqrt{x})) = 2\Phi(\sqrt{x}) - 1.
+\end{align*}
+
+Therefore $Z^2 \sim X^2$ and since $X$ is symmetric around 0 we know from the lecture that
+
+\begin{align*}
+  f_{Z^2}(z) = f_{X^2}(z) = \sqrt{z}f_X(\sqrt{z})\1_{(0,\infty)}(z) = \frac{1}{\sqrt{2\pi z}}\exp\left(-\frac{z}{2}\right)\1_{(0,\infty)}(z).
+\end{align*}
 
 \end{solution}
 

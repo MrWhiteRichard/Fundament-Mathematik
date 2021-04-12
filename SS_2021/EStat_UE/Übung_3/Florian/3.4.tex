@@ -1,6 +1,6 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}[Random ariables on the unit disk]
+\begin{exercise}[Random variables on the unit disk]
 
 Let $(X, Y)$ be uniformly distributed on the unit disk $\Bbraces{f(x; y): x^2 + y^2 \leq 1}$.
 Let
@@ -9,7 +9,7 @@ Let
     R = \sqrt{X^2 + Y^2}.
 \end{align*}
 
-Find the cdf, pdf, and teh expectation the random variable $R$.
+Find the cdf, pdf, and the expectation the random variable $R$.
 
 \end{exercise}
 
@@ -17,7 +17,13 @@ Find the cdf, pdf, and teh expectation the random variable $R$.
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+  F_R(x) &= \P(R \leq x) = \P(\sqrt{X^2 + Y^2} \leq x) = \int_{B_x(0)} f(x,y) dx dy
+  = \int_{B_x(0)} \frac{1}{\pi} dx dy = \int_0^x\int_0^{2\pi} \frac{r}{\pi} d\phi dr
+  = 2\int_0^x r dr = x^2. \\
+  f_R(x) &= \frac{d}{dx}F_R(x) = 2x. \\
+  \E(R) &= \int_0^1 x f_R(x) dx = \int_0^1 2x^2 = \frac{2}{3}.
+\end{align*}
 
 \end{solution}
 

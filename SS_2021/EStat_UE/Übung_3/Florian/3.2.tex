@@ -30,7 +30,8 @@ The joint pdf of two random variables $X$ and $Y$ is defined by
 \begin{enumerate}[label = (\alph*)]
   \item We calculate
   \begin{align*}
-    1 != \int_0^1\int_0^2 c(x + 2y) dx dy = c\int_0^1 2 + 4y dy = 4c
+    1 \stackrel{!}{=} \int_0^1\int_0^2 c(x + 2y) dx dy = c\int_0^1 2 + 4y dy = 4c
+    \iff c = \frac{1}{4}
   \end{align*}
   and obtain the marginal distribution
   \begin{align*}
@@ -45,8 +46,12 @@ The joint pdf of two random variables $X$ and $Y$ is defined by
   \begin{align*}
     f_X(x) = \int_0^1 \frac{x + 2y}{4} dy = \frac{x + 1}{4}.
   \end{align*}
+  The function $g(x) = \frac{9}{(x+1)^2}$ is a bijection from $(0,2)$ to $(1,9)$
+  with continuously differentiable inverse $h(y) = \frac{3}{\sqrt{y}} - 1$.
+  Therefore
   \begin{align*}
-    f_Z(x) =
+    f_Z(y) = f_X(h(y))|h'(y)| = \frac{\frac{3}{\sqrt{y}} - 1 + 1}{4}\frac{3}{2}y^{-3/2}.
+    = \frac{9}{8y^2}
   \end{align*}
 \end{enumerate}
 
