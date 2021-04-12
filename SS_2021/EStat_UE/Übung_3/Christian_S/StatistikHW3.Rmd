@@ -1,0 +1,333 @@
+---
+title: "HW3"
+author: "Sallinger Christian"
+date: "13 4 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 2. Continous two-dimensional random variable
+
+The joint pdf of two random variables $X$ and $Y$ is defined by
+
+$$
+f(x,y)
+=
+\begin{cases}
+c(x + 2y), &0 < y < 1 \text{ and } 0 < x < 2 \\
+0, & \text{otherwise}
+\end{cases}
+$$
+\noindent
+(a) Find the value of $c$ and the marginal distribution of $Y$.\newline
+(b) Find the joint cdf of $X$ and $Y$. \newline
+(c) Find the marginal distribution of $X$ and the pdf of $Z = \frac{9}{(X+1)^2}$.\newline
+
+\textbf{Solution} \newline
+(a) To find the value of $c$ we stress, that $\int_{\mathbb{R}^2}f(x,y) dx dy = 1$ has to hold. So we just integrate over the values where $f$ is not zero.
+
+$$
+\int_0^1 \int_0^2 f(x,y) dx dy
+=
+c\int_0^1 (2+4y) dy
+=
+4c
+$$
+
+So we conclude $c = \frac{1}{4}$. To find the marginal of $Y$ we have to integrate over $x$.
+
+$$
+f_Y(y)
+=
+\int_0^2 \frac{x + 2y}{4} dx
+=
+y +\frac{1}{2}, \quad \text{for}\ 0<y<1
+$$
+\noindent
+(b) The joint cdf is given by 
+
+$$
+F(x,y) 
+= 
+\int_{-\infty}^x\int_{-\infty}^y f(\xi, \tau) d\tau d\xi
+=
+\begin{cases}
+0 & \text{for } x\leq 0\ \lor\ y \leq 0  \\
+\frac{yx^2 + 2xy^2}{8}, & \text{for } 0< x < 2,0 < y < 1 \\
+1, & \text{for } x\geq 2 \ \land \ y \geq 1
+\end{cases}
+$$
+\noindent
+(c) For the marginal of $X$ we integrate over $y$.
+
+$$
+f_X(x)=
+\int_0^1 \frac{x + 2y}{4} dy
+=
+\frac{x+1}{4}, \quad\text{for}\ 0<x<2
+$$
+
+To find the pdf of $Z$ we use our transformation theorem. The transformation $g: (0,2) \rightarrow(1,9), x \mapsto \frac{9}{(x+1)^2}$ is invertible with differentiable inverse $h(z)= \frac{3}{\sqrt{z}}-1$. Then the theorem states that the pdf of $Z$ is given by:
+
+$$
+f_Z(z)
+=
+f_X(h(z))|h^\prime(z)|
+=
+\frac{3}{4z^{\frac{1}{2}}}|-\frac{3}{2z^{\frac{3}{2}}}|
+=
+\frac{9}{8z^2}, \quad \text{for} \ \ 1<z < 9
+$$
+
+## 3. Chi squared distribution
+
+Let $X$ and $Y$ be independent and identically distributed (i.i.d.) $\mathcal{N}(0,1)$ random variables. Define $Z = \min\{X,Y\}$. Show that $Z^2 \sim \chi_1^2$, i.e. show that the pdf of $Z^2$ is given by 
+
+$$
+f_{Z^2}(z) = \frac{1}{\sqrt{2\pi}}
+\cdot z^{-\frac{1}{2}} 
+\cdot e^{-\frac{z}{2}}
+\cdot \textbf{1}_{\{z > 0 \}}.
+$$
+\textbf{Solution} \newline
+We first aim to calculate the cdf of $Z$:
+
+\begin{align*}
+F_Z(z)
+&=
+P(Z \leq z)
+=
+P(\min\{X,Y\} \leq z)
+=
+1 - P(\min\{X,Y\} > z) \\
+&= 1 -P(X >z \ \land \ Y>z)
+=
+1-P(X>z)P(Y>z) \\
+&=
+1 - \big((1-P(X\leq z))(1-P(Y\leq z))\big) \\
+&=
+P(X\leq z) +P(Y \leq z) - P(Y\leq z)P(X\leq z) \\
+&=
+F_X(z) + F_Y(z) - F_X(z)F_Y(z)
+=
+2 \Phi(z) - \Phi(z)^2\\
+\end{align*}
+
+With this we can easily get the cdf of $Z^2$:
+
+\begin{align*}
+F_{Z^2}(z)
+&=
+P(Z^2 \leq z)
+=
+P(Z\leq \sqrt z) - P(Z\leq -\sqrt z)
+=
+2 \Phi(\sqrt z) - \Phi(\sqrt z)^2 -2 \Phi(-\sqrt z)+ \Phi(- \sqrt z)^2 \\
+&=
+2 \Phi(\sqrt z) - \Phi(\sqrt z)^2 -2 (1 -\Phi(\sqrt z))+ (1-\Phi(\sqrt z))^2
+=
+2 \Phi(\sqrt z) - 1
+\end{align*}
+Now to get the pdf we differentiate
+
+$$
+f_{Z^2}(z)
+=
+F_{Z^2}^\prime(z)
+=
+\frac{\Phi^\prime(\sqrt{z})}{\sqrt{z}}\cdot \textbf{1}_{\{z>0\}}
+=
+\frac{f_X(\sqrt{z})}{\sqrt{z}}\cdot \textbf{1}_{\{z>0\}}
+=
+\frac{1}{\sqrt{2\pi}}
+\cdot z^{-\frac{1}{2}} 
+\cdot e^{-\frac{z}{2}}
+\cdot \textbf{1}_{\{z > 0 \}}
+$$
+
+
+## 4. Random variables on the unit disk
+
+Let $(X,Y)$ be uniformly distributed on the unit disk ${f(x,y): x^2 + y^2 < 1}$. Let 
+
+$$
+R 
+=
+\sqrt{X^2 + Y^2}
+$$
+
+Find the cdf, pdf and the expectation of the random variable $R$.
+
+\textbf{Solution} \newline
+
+Fist we compute $f(x,y)$, we know that it is constant in the unit disk and 0 outside of it. To fix the constant we note that the area of the unit disk is $\pi$ so we get $f(x,y) = \frac{1}{\pi}\cdot \textbf{1}_{B_1(0)}$. We know that $r = \sqrt{x^2+y^2}$ is the radius, so we aim to use transformation to polar coordinates and take the marginal with respect to $R$. Using our transformation theorem and the differentiable inverse $h: [0,1)\times[0,2\pi) \rightarrow B_1(0), (r,\phi)\mapsto (r \cos \varphi,r \sin\varphi)$ with jacobian 
+
+$$
+\Bigg|
+\begin{pmatrix}
+\cos \varphi & - r\sin\varphi \\
+\sin \varphi & r \cos\varphi
+\end{pmatrix}
+\Bigg|
+=
+r
+$$
+
+we calculate:
+
+$$
+f_R(r)
+=
+\int_0^{2\pi}f_{(R,\Phi)}(r,\varphi)d\varphi
+=
+\int_0^{2\pi} f_{(X,Y)}(h(r,\varphi))\cdot r\ d\varphi
+=
+2r, \quad r\in[0,1)
+$$
+
+We find our cdf by integrating our pdf:
+
+$$
+F_R(r)
+=
+\int_{-\infty}^r f(\tau)d\tau
+=
+\begin{cases}
+0, & r \leq 0\\
+r^2 & 0 < r < 1 \\
+1, & r \geq 1
+\end{cases}
+$$
+
+Last but not least we calculate the expected value of $R$.
+
+$$
+E(R)
+=
+\int_{-\infty}^\infty f_R(r)\cdot r\ dr
+=
+2\int_0^1 r^2 dr
+=
+\frac{2}{3}
+$$
+
+## 5. Transformations
+
+Suppose $X$ and $Y$ are independent gamma distributed random variables with $X \sim Gamma(\alpha_1,\beta)$ and $Y \sim Gamma(\alpha_2,\beta)$. Consider the following two random variables
+
+$$
+U = X + Y
+\quad
+\text{and}
+\quad
+V = \frac{X}{X + Y}
+$$
+
+(a) Show that $U \sim Gamma(\alpha_1+\alpha_2,\beta)$. \\
+\noindent
+(b) Show that $U$ and $V$ are also independent random variables.
+
+\textbf{Solution} \newline
+(a) To show this we use our transformation theorem. The transformation is undefined when $X+Y = 0$ but that event occurs with probability zero and can therefore be ignored. The inverse is given by $X=VU, \ Y=U(1-V)$ with jacobian
+
+$$
+\Bigg|
+\begin{pmatrix}
+\frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\
+\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{pmatrix}
+\Bigg|
+=
+\Bigg|
+\begin{pmatrix}
+v & u \\
+1-v & -u
+\end{pmatrix}
+\Bigg|
+=
+- u
+$$
+As reminder, the gamma function is defined via 
+
+$$
+\Gamma(z)
+=
+\int_0^\infty x^{z-1}e^{-x} dx
+$$
+
+and the beta function is related via
+
+$$
+B(x,y) 
+=
+\int_0^1 t^{x-1}(1-t)^{y-1}dt
+=
+\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+$$
+
+If we give the name $h$ to our inverse function and use the independence of our random variables we get 
+
+\begin{align*}
+f_U(u)
+&=
+-\int_{-\infty}^\infty f_{(X,Y)}(h(u,v))\cdot u \ dv \\
+&=
+-\int_{-\infty}^\infty \frac{\beta^{\alpha_1}}{\Gamma(\alpha_1)}(uv)^{\alpha_1 -1}e^{- \beta uv} \cdot \textbf{1}_{\{uv > 0\}}
+\frac{\beta^{\alpha_2}}{\Gamma(\alpha_2)}(u(1-v))^{\alpha_2 -1}e^{- \beta(u-uv)}
+\cdot \textbf{1}_{\{u(1-v) > 0\}}\cdot u\ dv \\
+&=
+\textbf{1}_{\{u>0\}} \cdot
+\frac{\beta^{\alpha_1 + \alpha_2} \cdot u^{\alpha_1 + \alpha_2 - 1}e^{-\beta u}}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+\int_0^1 v^{\alpha_1 -1}(v-1)^{\alpha_2 - 1} dv
+=
+\frac{\beta^{\alpha_1 + \alpha_2}}{\Gamma(\alpha_1 + \alpha_2)} u^{\alpha_1 + \alpha_2 -1}e^{-\beta u} \cdot \textbf{1}_{\{u>0\}}
+\end{align*}
+
+which is exactly what we wanted to show. \\
+(b) To show the independence of $U$ and $V$ we have to show that 
+
+$$
+f_{(U,V)}(u,v)
+=
+f_U(u)\cdot f_V(v)
+$$
+
+So we calculate
+
+\begin{align*}
+f_V(v)
+&=
+-\int_{-\infty}^\infty f_{(X,Y)}(h(u,v))\cdot u \ du \\
+&=
+-\int_{-\infty}^\infty \frac{\beta^{\alpha_1}}{\Gamma(\alpha_1)}(uv)^{\alpha_1 -1}e^{- \beta uv} \cdot \textbf{1}_{\{uv > 0\}}
+\frac{\beta^{\alpha_2}}{\Gamma(\alpha_2)}(u(1-v))^{\alpha_2 -1}e^{- \beta(u-uv)}
+\cdot \textbf{1}_{\{u(1-v) > 0\}}\cdot u\ du \\
+&=
+\textbf{1}_{\{0<v<1\}}\frac{ v^{\alpha_1-1}(1-v)^{\alpha_2 - 1}
+}{\Gamma(\alpha_1)\Gamma(\alpha_2)}
+\int_0^\infty (\beta u)^{\alpha_1 + \alpha_2 -1}e^{-\beta u}du \\
+&=
+\textbf{1}_{\{0<v<1\}}\frac{ v^{\alpha_1-1}(1-v)^{\alpha_2 - 1}
+}{\Gamma(\alpha_1)\Gamma(\alpha_2)}\Gamma(\alpha_1+\alpha_2)
+\end{align*}
+
+All in all we see that
+
+$$
+f_{(U,V)}(u,v)
+=
+-\frac{
+\beta^{\alpha_1 + \alpha_2}
+}{
+\Gamma(\alpha_1)\Gamma(\alpha_2)}
+u^{\alpha_1 + \alpha_2 -1}
+v^{\alpha_1-1}
+(1-v)^{\alpha_2-1}
+e^{-\beta u}
+\cdot \textbf{1}_{\{u>0\}}\cdot \textbf{1}_{\{0<v<1\}}
+=
+f_U(u) \cdot f_V(v)
+$$
