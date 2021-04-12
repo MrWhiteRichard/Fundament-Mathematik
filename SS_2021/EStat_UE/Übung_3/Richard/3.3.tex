@@ -18,25 +18,125 @@ Show that $Z^2 \sim \chi_1^2$, i.e. show that the pdf of $Z^2$ is given by
 
 \begin{solution}
 
+\begin{multline*}
+    P(Z < z)
+    =
+    1 - P(Z \geq z)
+    =
+    1 - P(\min \Bbraces{X, Y} \geq z)
+    =
+    1 - P(X \geq z, Y \geq z) \\
+    =
+    1 - P(X \geq z) P(Y \geq z)
+    =
+    1 - \pbraces{\Int[z][\infty]{\frac{1}{\sqrt{2 \pi}} \exp*{-\frac{\zeta^2}{2}}{\zeta}}{\zeta}}^2
+    \stackrel{!}{=}
+    1 - \frac{1}{2 \pi} \pbraces{\Int[-\infty][-z]{-\exp*{-\frac{\eta^2}{2}}}{\eta}}^2
+\end{multline*}
+
+For \Quote{!} we used the following substitution and then swapped the integral bounds (the factor $-1$ gets swallowed by the square).
+
+\begin{align*}
+    \eta = -\zeta
+    \implies
+    \begin{cases}
+        \derivative[][\eta]{\zeta} = -1 \implies \mathrm d \eta = \mathrm d \zeta \\
+        \zeta = -\eta
+    \end{cases}
+\end{align*}
+
+\begin{align*}
+    f_Z(z)
+    =
+    \derivative{z}
+        P(Z < z)
+    =
+    -\frac{1}{2 \pi}
+    \pbraces
+    {
+        -
+        \pbraces
+        {
+            -\exp*{-\frac{z^2}{2}}
+        }
+    }
+    2
+    \Int[-\infty][-z]
+    {
+        -\exp*{-\frac{\zeta^2}{2}}
+    }{\zeta}
+    =
+    -\frac{1}{\pi}
+    \exp*{-\frac{z^2}{2}}
+    \Int[-\infty][-z]
+    {
+        -\exp*{-\frac{\zeta^2}{2}}
+    }{\zeta}
+\end{align*}
+
+Recall the Corollary from \cite[Lecture 3, Slide 42]{EStat}.
+
 \begin{align*}
     \text{lhs}
-    =
+    & =
     \frac{1}{2 \sqrt z}
     \pbraces
     {
         f_Z(\sqrt z) + f_Z(-\sqrt z)
     }
-    \mathbf 1_{(0, \infty)}
-    =
-    \frac{1}{2} z^{-\frac{1}{2}}
+    \mathbf 1_{(0, \infty)} \\
+    & =
+    \frac{1}{2 \sqrt z}
     \pbraces
     {
-        \frac{1}{\sqrt{2 \pi}} \exp*{-\frac{\sqrt z^2}{2}}
-        +
-        \frac{1}{\sqrt{2 \pi}} \exp*{-\frac{(-\sqrt z)^2}{2}}
+        -
+        \frac{1}{\pi}
+        \exp*{-\frac{\sqrt z^2}{2}}
+        \Int[-\infty][-\sqrt z]
+        {
+            \exp*{-\frac{\zeta^2}{2}}
+        }{\zeta}
+        -
+        \frac{1}{\pi}
+        \exp*{-\frac{(-\sqrt z)^2}{2}}
+        \Int[-\infty][-(-\sqrt z)]
+        {
+            \exp*{-\frac{\zeta^2}{2}}
+        }{\zeta}
     }
-    \mathbf 1_{(0, \infty)}
-    =
+    \mathbf 1_{(0, \infty)}(z) \\
+    & =
+    -\frac{1}{2 \sqrt z}
+    \frac{1}{\pi}
+    \exp*{-\frac{z}{2}}
+    \pbraces
+    {
+        \Int[-\infty][-\sqrt z]
+        {
+            -\exp*{-\frac{\zeta^2}{2}}
+        }{\zeta}
+        +
+        \Int[-\sqrt z][\infty]
+        {
+            -\exp*{-\frac{\zeta^2}{2}}
+        }{\zeta}
+    }
+    \mathbf 1_{(0, \infty)}(z) \\
+    & =
+    \frac{1}{2 \pi}
+    z^{-\frac{1}{2}}
+    \exp*{-\frac{z}{2}}
+    \underbrace
+    {
+        \Int[-\infty][\infty]
+        {
+            \exp*{-\frac{\zeta^2}{2}}
+        }{\zeta}
+    }_{
+        \sqrt{2 \pi}
+    }
+    \mathbf 1_{(0, \infty)}(z) \\
+    & =
     \text{rhs}
 \end{align*}
 
