@@ -8,6 +8,104 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## 1. Random walk of a robot
+
+A robot is placed at the origin (the point $(0,0)$) on a two-dimensional integer grid (see the figure below). Denote the position of the robot by $(x,y)$. The robot can either move right to $(x+1,y)$ or move up to $(x,y+1)$.
+
+\begin{center}
+\includegraphics[width = 0.5 \linewidth]{Grid.jpg}
+\end{center}
+
+\noindent
+(a) Suppose each time the robot randomly moves right or up with equal chance. What is the probability that the robot will ever reach the point $(8,6)$? \newline
+(b) Suppose another robot has a $\frac{2}{3}$ chance to move right and a $\frac{1}{3}$ chance to move up when $x+y$ is even, otherwise it has a $\frac{1}{4}$ chance to move right and a $\frac{3}{4}$ chance to move up. It stops whenever $|x-y| \geq 2$. Find the probability that $x-y = 2$ when it stops.
+
+\textbf{Solution} \newline
+(a) The robot can only ever get to the point $(8,6)$ if we get there after exactly $14$ moves, $6$ up and $8$ to the right. After $14$ moves we can be anywhere on the diagonal form $(0,14)$ to $(14,0)$. If we define the random variable 
+$$
+X =
+ \text{Total number of times we moved right in 14 moves}
+$$
+then $X \sim B(14,\frac{1}{2})$.
+With this get the following probabilities for any of the points on this diagonal:
+
+\begin{align*}
+&P(\text{are at point (14-k,k)}\mid \text{have made exactly 14 moves})
+=
+P(\text{are at point (k,14-k)}\mid \text{have made exactly 14 moves}) \\
+&=
+P(X = k)
+=
+\binom{14}{k}\Big(\frac{1}{2}\Big)^{14}
+=
+\binom{14}{14-k}\Big(\frac{1}{2}\Big)^{14}
+\end{align*}
+
+So we get the probablility
+
+$$
+P(\text{ever reach point} (8,6))
+=
+P(\text{are at} (8,6)\mid \text{have made exactly 14 moves})
+=
+\binom{14}{8} \Big(\frac{1}{2}\Big)^{14}
+$$
+
+(b) Since we can only make one move at a time we actually stop when $|x-y| = 2$. We calculate
+
+\begin{align*}
+&P(x-y = 2 \ \Big|\ |x-y| = 2)
+=
+P(x-y = 2 \mid x-y = 2 \lor x-y = -2) \\
+&=
+\frac{P(x-y = 2 \land( x-y = 2 \lor x-y = -2))}{P(x-y = 2 \lor x-y = -2)}
+=
+\frac{P(x-y = 2)}{P(x-y = 2 \lor x-y = -2)}
+=
+\cdots
+\end{align*}
+
+It holds that $x-y = 2$ exactly when we are at point $(x+2,x)$ for any $x \in \mathbb{N}$. Also $x-y = -2$ exactly when we are at point $(x,x+2)$ for any $x \in \mathbb{N}$. So we get
+
+$$
+\cdots 
+=
+\frac{\sum_{x\in \mathbb{N}}P(\text{are at point} \ (x+2,x))}{\sum_{x\in \mathbb{N}}\Big(P(\text{are at point}\ (x+2,x))+P(\text{are at point}\ (x,x+2))\Big)}
+=
+\cdots
+$$
+
+To calculate further we show two identities:
+\begin{align*}
+&P(\text{are at point}\ (x+2,x+2))
+=
+P(\text{are at point}\ (x+2,x+1)) \cdot P(\text{move up}\mid x+y\ \text{is odd}) \\
+&=
+P(\text{are at point}\ (x+2,x+1)) \cdot \frac{3}{4}
+=
+P(\text{are at point}\ (x+2,x))\cdot P(\text{move up}\mid x+y\ \text{is even}) \cdot \frac{3}{4}\\
+&=
+P(\text{are at point}\ (x+2,x)) \cdot \frac{1}{4}
+\end{align*}
+
+Similarly we get
+
+$$
+P(\text{are at point}\ (x+2,x+2))
+=
+P(\text{are at point}\ (x,x+2)) \cdot \frac{1}{6}
+$$
+Using these identities we get
+
+$$
+\cdots
+=
+\frac{4\sum_{x\in \mathbb{N}}P(\text{are at point} \ (x+2,x+2))}{10\sum_{x\in \mathbb{N}}P(\text{are at point}\ (x+2,x+2))}
+=
+\frac{2}{5}
+$$
+
+So the probability that $x-y = 2$ when it stops is $\frac{2}{5}$.
 
 ## 2. Continous two-dimensional random variable
 
@@ -225,9 +323,8 @@ U = X + Y
 \quad
 V = \frac{X}{X + Y}
 $$
-
-(a) Show that $U \sim Gamma(\alpha_1+\alpha_2,\beta)$. \\
 \noindent
+(a) Show that $U \sim Gamma(\alpha_1+\alpha_2,\beta)$. \newline
 (b) Show that $U$ and $V$ are also independent random variables.
 
 \textbf{Solution} \newline
