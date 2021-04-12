@@ -39,19 +39,21 @@ The joint pdf of two random variables $X$ and $Y$ is defined by
   \end{align*}
   \item
   \begin{align*}
-    F(x,y) = \P(X \leq x, Y \leq y) = \int_0^y\int_0^x \frac{t+2s}{4} dt ds
-    = \int_0^y \frac{x^2 + 4sx}{8} = \frac{x^2y + 2y^2x}{8}.
+    F(x,y) &= \P(X \leq x, Y \leq y) = \1_{(0,\infty)^2}(x,y)\int_0^{\min(1,y)}
+    \int_0^{\min(2,x)} \frac{t+2s}{4} dt ds \\
+    &= \1_{(0,\infty)^2}(x,y)\int_0^{\min(1,y)} \frac{\min(2,x)^2 + 4sx}{8} \\
+    &= \1_{(0,\infty)^2}(x,y)\frac{\min(2,x)^2\min(1,y) + 2\min(1,y)^2\min(2,x)}{8}.
   \end{align*}
   \item
   \begin{align*}
-    f_X(x) = \int_0^1 \frac{x + 2y}{4} dy = \frac{x + 1}{4}.
+    f_X(x) = \int_0^1 \frac{x + 2y}{4} dy = \frac{x + 1}{4}, \quad 0 < x < 2.
   \end{align*}
   The function $g(x) = \frac{9}{(x+1)^2}$ is a bijection from $(0,2)$ to $(1,9)$
   with continuously differentiable inverse $h(y) = \frac{3}{\sqrt{y}} - 1$.
   Therefore
   \begin{align*}
     f_Z(y) = f_X(h(y))|h'(y)| = \frac{\frac{3}{\sqrt{y}} - 1 + 1}{4}\frac{3}{2}y^{-3/2}.
-    = \frac{9}{8y^2}
+    = \frac{9}{8y^2}, \quad 1 < y < 9.
   \end{align*}
 \end{enumerate}
 
