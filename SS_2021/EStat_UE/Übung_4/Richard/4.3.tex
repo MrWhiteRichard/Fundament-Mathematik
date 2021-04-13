@@ -1,8 +1,32 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}[Real roots]
 
-ToDo!
+Let $A$, $B$ and $C$ be independent random variables, uniformly distributed on $(0, 1)$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item What is the probability that the quadratic equation $A x^2 + B x + C = 0$ has real roots?
+
+    \item Consider the following code in R.
+    What does it do and how is it related to your solution in part (a)?
+
+    \lstset{style = stackexchangeR}
+    \begin{lstlisting}[language = R]
+        n=10000
+        a=runif(n)
+        b=runif(n)
+        c=runif(n)
+        sum(b^2>4*a*c)/n
+    \end{lstlisting}
+
+\end{enumerate}
+
+\textit{Hint:}
+In HW2/ex. 3(b) we showed that if $X$ has uniform $(0, 1)$ distribution then $-\log X$ has exponential distribution $\exp(1)$.
+In an analogue way, one an prove that $-s \log X \sim \exp(\frac{1}{s})$ for any $s > 0$.
+Also, in HW4/ex. 2(b) we proved that the sum of two independent exponential distributions is a gamma distribution.
+Namely, if $X \sim \exp(1)$ and $Y \sim \exp(1)$ are independent then $X + Y = \operatorname{Gamma}(2, 1)$.
 
 \end{exercise}
 

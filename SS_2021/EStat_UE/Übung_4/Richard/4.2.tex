@@ -1,8 +1,60 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}[Sum of two independent distributions]
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Let $X \sim \mathcal P(\lambda_1)$ and $Y \sim \mathcal P(\lambda_2)$ be two independent Poisson random variables.
+    Show that
+
+    \begin{align*}
+        X + Y \sim \mathcal P(\lambda_1 + \lambda_2).
+    \end{align*}
+
+    \item Let $U$ and $V$ be two independent random variables with exponential distribution $\exp(\lambda)$.
+    Show that
+
+    \begin{align*}
+        U + V
+        & \sim
+        \operatorname{Gamma}(2, \lambda) \quad \text{and} \\
+        \min \Bbraces{U, V}
+        & \sim
+        \exp(2 \lambda).
+    \end{align*}
+
+    \textit{Hint}:
+    It is useful to use moment generating functions.
+    Recall the pdf of a random variable $X \sim \operatorname{Gamma}(\alpha, \beta)$ is
+
+    \begin{align*}
+        f(x)
+        =
+        \begin{cases}
+            \frac{x^{\alpha - 1} \exp*{-\frac{x}{\beta}}}{\Gamma(\alpha) \beta^\alpha}
+            & x > 0 \\
+            0,
+            & x \leq 0
+        \end{cases},
+    \end{align*}
+    
+    and its mgf is of the form $\pbraces{\frac{1}{1 - \beta t}}^\alpha$ for $t < \frac{1}{\beta}$.
+    Particularly, the pdf of a random variable $X \sim \exp(\lambda) = \operatorname{Gamma}(1, \frac{1}{\lambda})$ is of the form
+
+    \begin{align*}
+        f(x)
+        =
+        \begin{cases}
+            \lambda \exp*{-\lambda x},
+            & x \geq 0 \\
+            0,
+            & x \leq 0
+        \end{cases}.
+    \end{align*}
+
+\end{enumerate}
 
 \end{exercise}
 
