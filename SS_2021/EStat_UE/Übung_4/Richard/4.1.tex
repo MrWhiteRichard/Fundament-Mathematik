@@ -26,7 +26,237 @@
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        M_X(t)
+        & :=
+        E(e^{t x}) \\
+        & =
+        \Int[-\infty][\infty]
+        {
+            e^{t x}
+            \frac{1}{\sqrt{2 \pi \sigma^2}}
+            \exp*{-\frac{(x - \mu)^2}{2 \sigma^2}}
+        }{x} \\
+        & =
+        \frac{1}{\sqrt{2 \pi \sigma^2}}
+        \Int[-\infty][\infty]
+        {
+            \exp*
+            {
+                t x
+                -
+                \frac{1}{2} \pbraces{\frac{x - \mu}{\sigma}}^2
+            }
+        }{x} \\
+        & \stackrel{!}{=}
+        \frac{1}{\sqrt{2 \pi \sigma^2}}
+        \Int[-\infty][\infty]
+        {
+            \exp*
+            {
+                t (y \sigma + \mu)
+                -
+                \frac{y^2}{2}
+            }
+            \sigma
+        }{y} \\
+        & =
+        \frac{1}{\sqrt{2 \pi}}
+        \exp*{\mu t}
+        \Int[-\infty][\infty]
+        {
+            \exp*{-\pbraces{\frac{y^2}{2} - t y \sigma}}
+        }{y} \\
+        & \stackrel{!!}{=}
+        \frac{1}{\sqrt{2 \pi}}
+        \exp*{\mu t}
+        \Int[-\infty][\infty]
+        {
+            \exp*
+            {
+                \frac{(t \sigma)^2}{2}
+                -
+                \frac{(y - t \sigma)^2}{2}
+            }
+        }{y} \\
+        & \stackrel{!!!}{=}
+        \frac{1}{\sqrt{2 \pi}}
+        \exp*{\mu t}
+        \exp*{\frac{(t \sigma)^2}{2}}
+        \underbrace
+        {
+            \Int[-\infty][\infty]
+            {
+                \exp*{-\frac{z^2}{2}}
+            }{z}
+        }_{
+            \sqrt{2 \pi}
+        }
+        \end{align*}
+
+        For \Quote{!} we used
+
+        \begin{align*}
+            y = \frac{x - \mu}{\sigma}
+            \implies
+            \begin{cases}
+                x = y \sigma + \mu \\
+                \derivative[][y]{x} = \frac{1}{\sigma} \implies \mathrm d x = \sigma \mathrm d y
+            \end{cases}.
+        \end{align*}
+
+        For \Quote{!!} we used
+
+        \begin{align*}
+            \frac{y^2}{2} - t y \sigma
+            & =
+            \pbraces{\frac{y}{\sqrt 2}}^2 - 2 \frac{y}{\sqrt 2} \frac{t \sigma}{\sqrt 2} + \pbraces{\frac{t \sigma}{\sqrt 2}}^2 - \pbraces{\frac{t \sigma}{\sqrt 2}}^2 \\
+            & =
+            \pbraces{\frac{y}{\sqrt 2} - \frac{t \sigma}{\sqrt 2}}^2 - \frac{(t \sigma)^2}{2} \\
+            & =
+            \frac{(y - t \sigma)^2}{2} - \frac{(t \sigma)^2}{2}.
+        \end{align*}
+
+        For \Quote{!!!} we used
+
+        \begin{align*}
+            z = y - t \sigma
+            \implies
+            \derivative[][z]{y} = 1
+            \implies
+            \mathrm d z = \mathrm d y.
+        \end{align*}
+
+        \item Consider the linear function
+        
+        \begin{align*}
+            g:
+                \R \to \R, \,
+                x \mapsto a x + b,
+        \end{align*}
+
+        with inverse
+
+        \begin{align*}
+            h := g^{-1}:
+                \R \to \R, \,
+                y \mapsto \frac{y - b}{a},
+        \end{align*}
+
+        and Jacobian
+
+        \begin{align*}
+            J(y) = h^\prime(y) = \frac{1}{a}.
+        \end{align*}
+
+        Note that $Y = g(X)$.
+        Recall the Theorem from \cite[Lecture 3, Slide 32]{EStat}.
+
+        \begin{align*}
+            f_Y(y)
+            =
+            f_X(h(y)) |J(y)|
+            =
+            \frac{1}{\sqrt{2 \pi \sigma^2}}
+            \exp*
+            {
+                -
+                \frac
+                {
+                    \pbraces
+                    {
+                        \frac{y - b}{a} - \mu
+                    }^2
+                }{
+                    2 \sigma^2
+                }
+            }
+            \frac{1}{|a|}
+            =
+            \frac{1}{\sqrt{2 \pi (a^2 \sigma^2)}}
+            \exp*
+            {
+                -
+                \frac
+                {
+                    (y - (a \mu + b))^2
+                }{
+                    2 a^2 \sigma^2
+                }
+            }
+        \end{align*}
+
+        \item According to \href{https://en.wikipedia.org/wiki/Sum_of_normally_distributed_random_variables#:~:text=This%20means%20that%20the%20sum,squares%20of%20the%20standard%20deviations}{Wikipedia},
+
+        \begin{align*}
+            X_1                       & \sim \mathcal N(\mu, \sigma^2), \\
+            X_1 + X_2                 & \sim \mathcal N(\mu + \mu, \sigma^2 + \sigma^2), \\
+            X_1 + X_2 + X_3           & \sim \mathcal N(\mu + \mu + \mu, \sigma^2 + \sigma^2 + \sigma^2), \\
+                                      & \, \, \, \vdots \\
+            S_n := X_1 + \cdots + X_n & \sim \mathcal N(n \mu, n \sigma^2).
+        \end{align*}
+
+        \begin{align*}
+            P(\bar X \leq x)
+            & =
+            P(S_n \leq n x) \\
+            & =
+            \Int[-\infty][n x]
+            {
+                \frac{1}{\sqrt{2 \pi n \sigma^2}}
+                \exp*
+                {
+                    -\frac{(\xi - n \mu)^2}{2 n \sigma^2}
+                }
+            }{\xi} \\
+            & \stackrel{!}{=}
+            \Int[-\infty][x]
+            {
+                \frac{1}{\sqrt{2 \pi n \sigma^2}}
+                \exp*
+                {
+                    -\frac{(n \eta - n \mu)^2}{2 n \sigma^2}
+                }
+                n
+            }{\eta} \\
+            & =
+            \Int[-\infty][x]
+            {
+                \frac{1}{\sqrt{2 \pi n \sigma^2 / n}}
+                \exp*
+                {
+                    -\frac{(\eta - \mu)^2 n^2}{2 (\sigma^2 / n) n^2}
+                }
+            }{\eta} \\
+            & =
+            \Int[-\infty][x]
+            {
+                \frac{1}{\sqrt{2 \pi \sigma^2 / n}}
+                \exp*
+                {
+                    -\frac{(\eta - \mu)^2}{2 \sigma^2 / n}
+                }
+            }{\eta}
+        \end{align*}
+
+        For \Quote{!} we used
+
+        \begin{align*}
+            \eta = \frac{\xi}{n}
+            \implies
+            \begin{cases}
+                \xi = n \eta \\
+                \derivative[][\eta]{\xi} = \frac{1}{n} \implies \mathrm d \xi = n \mathrm d \eta
+            \end{cases}.
+        \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
