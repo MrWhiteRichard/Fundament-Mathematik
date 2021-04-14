@@ -13,6 +13,10 @@
 \graphicspath{{./}{./Figures/}}
 
 \usepackage{appendixnumberbeamer}
+\usepackage{algorithm2e}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 
 % To avoid a warning from the hyperref package:
 \pdfstringdefDisableCommands{%
@@ -35,7 +39,7 @@
 
 \institute[TU Wien]{TU Wien, Vienna, Austria}
 
-\date{12. April 2021}
+\date{19. April 2021}
 
 \input{packages.tex}
 \input{macros.tex}
@@ -51,10 +55,281 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Test}
-  Test1
+\begin{frame}{Problemstellung}
+  \begin{problem*}
+    Wir wollen in einem Flussnetzwerk die maximale Transportkapazität
+    von einem ausgezeichnetem Knoten, der Quelle $s$, zum Abflussknoten $t$ bestimmen.
+  \end{problem*}
+
+  \begin{remark*}
+    Ursprünglich wurde das Problem in den 50ern zur Modellierung des sowjetischen Schienenverkehrs gestellt.
+
+    Anwendungen reichen von der Fluglinienplanung
+  \end{remark*}
 \end{frame}
 
+
+\begin{frame}{Definitionen (1/2)}
+  \begin{definition*}[Flussnetzwerk]
+    Ein Flussnetzwerk $N = (G,c,s,t)$ besteht aus einem gerichteter Graph $G = (V,E)$ mit einer
+    Kapazitätsfunktion $c: E \to \R^+$ mit zwei ausgezeichneten Knoten $s$ und $t$,
+    wobei $t$ von $s$ aus erreichbar sein soll.
+  \end{definition*}
+
+  \pause
+
+  \begin{definition*}[Fluss]
+    Ein zulässiger Fluss durch $N$ ist eine Funktion $f: E \to \R_0^+$, welche
+    den folgenden Bedingungen genügt:
+    \begin{enumerate}
+      \item<3-> $0 \leq f(e) \leq c(e)$ for each edge $e$; \quad (Kapazitätsbeschränkung)
+      \item<4> $\sum_{e^+ = v} f(e) = \sum_{e^- = v} f(e)$ für jeden Knoten $v \neq s,t$. \\
+      Dabei bezeichnen $e^-$ und $e^+$ jeweils den Start- und Endpunkt der Kante $e$.
+      \quad (Flusserhaltung)
+    \end{enumerate}
+  \end{definition*}
+\end{frame}
+
+\begin{frame}{Definitionen (2/2)}
+  \begin{definition*}[Wert eines Flusses]
+    Die Größe
+    \begin{align*}
+      w(f) := \sum_{e^- = s}f(e) - \sum_{e^+ = s} f(e) = \sum_{e^+ = t}f(e) - \sum_{e^- = t} f(e)
+    \end{align*}
+    nennen wir den Wert eines Flusses.
+  \end{definition*}
+
+  \pause
+
+  \begin{definition*}[Cut]
+    Ein Cut ist eine Partition $V = S \dot \cup T$ eines Flussnetzwerks $N = (G,c,s,t)$
+    mit $s \in S$ und $t \in T$. Die Kapazität eines Cuts ist gegeben durch
+    \begin{align*}
+      c(S,T) = \sum_{e^- \in S, s^+ \in T} c(e).
+    \end{align*}
+    Ein Cut heißt minimal, wenn $c(S,T) \leq c(S',T')$ für alle Cuts $(S',T')$.
+  \end{definition*}
+
+  \end{frame}
+
+  \begin{frame}{Beispiel}
+
+  \begin{center}
+
+    -- IN ARBEIT --
+
+  \begin{tikzpicture}[
+      mycircle/.style={
+         circle,
+         draw=black,
+         fill=gray,
+         fill opacity = 0.3,
+         text opacity=1,
+         inner sep=0pt,
+         minimum size=20pt,
+         font=\small},
+      myarrow/.style={-Stealth},
+      node distance=0.6cm and 1.2cm
+      ]
+      \node[mycircle] (c1) {$s$};
+      \node[mycircle,below right=of c1] (c2) {$v_2$};
+      \node[mycircle,right=of c2] (c3) {$v_4$};
+      \node[mycircle,above right=of c1] (c4) {$v_1$};
+      \node[mycircle,right=of c4] (c5) {$v_3$};
+      \node[mycircle,below right=of c5] (c6) {$t$};
+
+    \foreach \i/\j/\txt/\p in {% start node/end node/text/position
+      c1/c2/8/below,
+      c1/c4/11/above,
+      c2/c3/11/below,
+      c3/c6/4/below,
+      c4/c5/12/above,
+      c5/c6/15/above,
+      c5/c2/4/below,
+      c3/c5/7/below,
+      c2.70/c4.290/1/below}
+       \draw [myarrow] (\i) -- node[sloped,font=\small,\p] {\txt} (\j);
+
+
+     % draw this outside loop to get proper orientation of 10
+     \draw [myarrow] (c4.250) -- node[sloped,font=\small,above,rotate=180] {10} (c2.110);
+    \end{tikzpicture}
+
+  \end{center}
+
+  \end{frame}
+
+  \begin{frame}{Erweiternde Pfade}
+
+  \begin{definition*}[Pfad]
+    Wir definieren einen Pfad in einem gerichteten Graphen als eine Folge
+    $(e_1,\dots,e_n)$ von Kanten, sodass die zugehörige Folge an ungerichteten
+    Kanten ein Pfad in dem zugehörigen ungerichteten Graph ist.
+    \pause
+
+
+    Sei $(v_0,\dots,v_n)$ die zum Pfad zugehörige Kantenfolge.
+    Dann heißt jede Kante der Form $v_{i-1}v_{i}$ eine Vorwärts-Kante
+    und jede Kante der Form $v_{i}v_{i-1}$ eine Rückwärts-Kante.
+
+  \end{definition*}
+
+  \pause
+
+  \begin{definition*}[Erweiternder Pfad]
+    Ein erweiternder Pfad bezüglich einem Fluss $f$ in einem Flussnetzwerk
+    $N = (G,c,s,t)$ ist ein Pfad $P$,
+    sodass $f(e) < c(e)$ für alle Vorwärts-Kanten $e \in P$ und $f(e) > 0$
+    für alle Rückwärts-Kanten $e \in P$ gilt.
+  \end{definition*}
+
+  \end{frame}
+
+  \begin{frame}{Wichtige Resultate}
+
+  \begin{theorem*}[Augmenting Path Theorem]
+    Ein Fluss $f$ in einem Flussnetzwerk $N = (G,c,s,t)$ ist genau dann maximal,
+    wenn es keine erweiternden Pfade bezüglich $f$ gibt.
+  \end{theorem*}
+
+  \pause
+
+  \begin{theorem*}[Integral Flow Theorem]
+    Sei $N = (G,c,s,t)$ ein Flussnetzwerk mit ausschließlich ganzzahligen Kapazitäten.
+    Dann existiert ein maximaler Fluss, der ebenso nur aus ganzzahligen Werten $f(e)$
+    besteht.
+  \end{theorem*}
+
+  \pause
+
+  \begin{theorem*}[Max-Flow Min-Cut Theorem]
+    Der maximale Wert eines Flusses in einem Flussnetzwerk $N$ entspricht
+    der minimalen Kapazität eines Cuts in $N$.
+  \end{theorem*}
+
+  \end{frame}
+
+  \begin{frame}{Algorithmus: Grundidee}
+
+  \begin{algorithmus*}
+    \begin{itemize}
+      \item<1-> Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
+      \item<2-> Finde einen erweiternden Pfad $P$.
+      \item<3-> Berechne
+      \begin{align*}
+        d := \min[&\{c(e) - f(e): e \text{ Vorwärts-Kante } \in P\} \\ \cup
+        &\{f(e): e \text{ Rückwärts-Kante } \in P\} ].
+      \end{align*}
+      \item<4-> Konstruiere erweiterten Fluss $f'$ mit $v(f') = v(f) + d$:
+      \begin{align*}
+        f'(e) = \begin{cases}
+          f(e) + d, & e \text{ ist Vorwärts-Kante } \in P \\
+          f(e) - d, & e \text{ ist Rückwärts-Kante } \in P\\
+          f(e), & \text{ sonst}
+        \end{cases}
+      \end{align*}
+      \item<5-> Wiederhole solange, bis kein erweiternder Pfad mehr gefunden werden kann.
+    \end{itemize}
+  \end{algorithmus*}
+
+  \end{frame}
+
+  \begin{frame}{Algorithmus: Ford-Fulkerson - Beispiel}
+
+  \begin{center}
+
+    -- IN ARBEIT --
+
+
+
+  \begin{tikzpicture}[
+      mycircle/.style={
+         circle,
+         draw=black,
+         fill=gray,
+         fill opacity = 0.3,
+         text opacity=1,
+         inner sep=0pt,
+         minimum size=20pt,
+         font=\small},
+      myarrow/.style={-Stealth},
+      node distance=0.6cm and 1.2cm
+      ]
+      \node[mycircle] (c1) {$s$};
+      \node[mycircle,below right=of c1] (c2) {$v_2$};
+      \node[mycircle,right=of c2] (c3) {$v_4$};
+      \node[mycircle,right=of c3] (c7) {$v_5$};
+      \node[mycircle,above right=of c1] (c4) {$v_1$};
+      \node[mycircle,right=of c4] (c5) {$v_3$};
+      \node[mycircle,right=of c5] (c8) {$v_6$};
+      \node[mycircle,below right=of c8] (c6) {$t$};
+
+    \foreach \i/\j/\txt/\p in {% start node/end node/text/position
+      c1/c2/10/below,
+      c1/c4/10/above,
+      c2/c3/10/below,
+      c3/c7/10/below,
+      c4/c5/10/above,
+      c5/c8/10/above,
+      c8/c6/10/above,
+      c7/c6/10/below,
+      c5/c3/1/below}
+       \draw [myarrow] (\i) -- node[sloped,font=\small,\p] {\txt} (\j);
+
+
+     % draw this outside loop to get proper orientation of 10
+     % \draw [myarrow] (c4.250) -- node[sloped,font=\small,above,rotate=180] {10} (c2.110);
+    \end{tikzpicture}
+
+  \end{center}
+
+  \end{frame}
+
+  \begin{frame}{Algorithmus: Ford-Fulkerson - Analyse}
+
+  \begin{itemize}
+    \item Nicht polynomielle Laufzeit, garantiert nicht effiziente Wahl der
+    erweiternden Pfade.
+    \pause
+    \item Kann für irrationale Kapazitäten scheitern, ist aber in der Praxis irrelevant.
+  \end{itemize}
+
+  \pause
+
+  \begin{remark*}[Modifikation: Edmonds und Karp]
+    Wird die Reihenfolge, in der die Knoten mit Labeln versehen werden, gemäß
+    einer Breitensuche gewählt, so lässt sich der Aufwand auf $O(|V||E|^2)$ reduzieren.
+  \end{remark*}
+
+  \end{frame}
+
+  \begin{frame}{Vertiefung}
+
+  \begin{anwendungen*}
+    Welche Probleme können auf ein Maximum Flow Problem reduziert werden?
+    \begin{itemize}
+      \item Maximale Anzahl disjunkter Pfade von der Quelle zum Abfluss.
+      \item Maximale Kardinalität eines Matching in einem bipartitem Graph und perfekte Matchings.
+      \item Knotenüberdeckungsproblem.
+      \item Circulation Problem.
+      \item Matrix-Rundungsproblem.
+    \end{itemize}
+
+  \end{anwendungen*}
+
+  \pause
+
+  \begin{algorithmen*}
+  \begin{itemize}
+    \item Blocking Flows
+    \item Push-Relabel-Algorithmus von Goldberg and Tarjan
+  \end{itemize}
+
+  \end{algorithmen*}
+
+
+
+  \end{frame}
 
 \end{document}
 
