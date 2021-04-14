@@ -1,0 +1,124 @@
+---
+title: "HW4"
+author: "Christian Sallinger"
+date: "20 4 2021"
+output: pdf_document
+---
+
+## 1. The mean of independent normal distributions
+
+(a) Show that the moment generating function (mgf) of $X \sim \mathcal{N}(\mu, \sigma^2)$ is of the form 
+
+$$
+M_X(t)
+=
+e^{\mu t + \frac{\sigma^2 t^2}{2}}.
+$$
+(b) Let $X \sim \mathcal{N}(\mu, \sigma^2)$ and let $Y = aX +b$ with fixed real constants $a$ and $b$. Show that $Y \sim \mathcal{N}(a \mu + b,a^2 \sigma^2)$. \newline
+(c) Let $X_1,\dots,X_n$ be independent identically distributed random variables with $X_1 \sim \mathcal{N}(\mu,\sigma^2)$. Show that the mean $\overline{X} = \frac{1}{n}(X_1 + \cdots + X_n)$ is also normally distributed and $\overline{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$.
+
+\textbf{Solution}:
+
+
+## 2. Sum of two independet distributions
+\noindent
+(a) Let $X \sim \mathcal{P}(\lambda_1)$ and $Y \sim \mathcal{P}(\lambda_2)$ be two independent Poisson random variables. Show that
+
+$$
+X + Y
+\sim
+\mathcal{P}(\lambda_1 + \lambda_2).
+$$
+\noindent
+(b) Let $U$ and $V$ be two independet random variables with exponential distribution $\exp(\lambda)$. Show that
+
+\begin{align*}
+U+V 
+&\sim
+Gamma(2,\lambda) 
+\quad
+\text{and} \\
+\min\{U,V\}
+&\sim
+\exp(2\lambda).
+\end{align*}
+
+\emph{Hint:} It is useful to use moment generating functions. Recall, the pdf of a random variable $X \sim Gamma(\alpha, \frac{1}{\beta})$ is
+
+$$
+f(x)
+=
+\begin{cases}
+\frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)},& x>0 \\
+0, & x\leq 0
+\end{cases}
+$$
+
+and its mgf is of the form $\Big(\frac{1}{1-\beta t}\Big)^\alpha$ for $t\leq \frac{1}{\beta}$. Particularly, the pdf of a random variable $X \sim \exp(\lambda) = Gamma(1, \frac{1}{\lambda})$ is of the form
+
+$$
+f(x)
+=
+\begin{cases}
+\lambda e^{-\lambda x}, & x > 0 \\
+0, & x\leq 0
+\end{cases}
+$$
+\textbf{Solution:}
+
+
+## 3. Real roots
+
+Let $A, B$ and $C$ be independent ramdom variables, uniformly distributed on $(0,1)$.
+
+\noindent
+(a) What is the probability that the quadratic equation $Ax^2 + Bx + C = 0$ has real roots? \newline
+(b) Consider the following code in R.
+
+```{r}
+n = 10000
+a = runif(n)
+b = runif(n)
+c = runif(n)
+sum(b^2>4*a*c)/n
+```
+
+\emph{Hint:} In HW2/ex. 3(b) we showed that if $X$ has uniform $(0,1)$ distribution then $-\log X$ has exponential distribution $\exp(1)$. In an analogue way, one can prove that $-s \log X \sim \exp(\frac{1}{s})$ for any $s > 0$. Also, in HW4/ex. 2(b) we proved that the sum of two independent exponential distributions is a gamma distribution. Namely, if $X \sim \exp(1)$ and $Y \sim \exp(1)$ are independent then $X + Y \sim Gamma(2,1)$.
+
+\textbf{Solution:}
+
+## 4. Sum and average
+
+Let X be a random variable with $\mathcal{N}(5,2^2)$. Let $X_1, X_2, \dots, X_{50}$ be independent identically distributed copies of $X$. Let $S$ be their sum and $\overline{X}$ their average, i.e.
+
+$$
+S 
+=
+X_1 + \cdots+ X_{50}
+\quad
+\text{and}
+\quad
+\overline{X} = \frac{1}{50}(X_1 + \cdots +X_{50}).
+$$
+
+\noindent
+(a) Plot the density and the distribution function for $X$ using R. \newline
+\noindent
+(b) What are the expectation and the standard deviation of $S$ and $\overline{X}$? \newline
+\noindent
+(c) Generate a sample of 50 numbers from $\mathcal{N}(5,2^2)$. Plot the histogram for this sample. Do the same for a sample of 500 numbers from $\mathcal{N}(5,2^2)$.
+
+\textbf{Solution:}
+
+## 5. Central Limit Theorem
+
+Let $\overline{X}_1$ and $\overline{X}_2$ be the means of two independent samples of size $n$ from the same population with variance $\sigma^2$. Use the Cental limit theorem to find a value for $n$ so that 
+
+$$
+P(|\overline{X}_1 - \overline{X}_2| < \frac{\sigma}{50})\approx 0.99.
+$$
+
+Justify your calculations.
+
+\textbf{Solution:}
+
