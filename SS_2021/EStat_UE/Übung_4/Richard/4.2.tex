@@ -62,7 +62,106 @@
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}
+
+    \item Recall the theorem from \cite[Lecture 3, Slide 35]{EStat}.
+    
+    \begin{align*}
+        f_{X + Y}(k)
+        & =
+        \sum_{l \in \N}
+            f_x(k - l) f_Y(l) \\
+        & =
+        \frac{k!}{k!}
+        \sum_{l \in \N}
+            \frac{\lambda_1^{k - l}}{(k - l)!}
+            \exp*{-\lambda_1}
+            \frac{\lambda_2^l}{l!}
+            \exp*{-\lambda_2} \\
+        & =
+        \exp*{-(\lambda_1 + \lambda_2)}
+        \frac{1}{k!}
+        \sum_{l \in \N}
+            \binom{k}{l}
+            \lambda_1^{k - l}
+            \lambda_2^l \\
+        & =
+        \frac{(\lambda_1 + \lambda_2)^k}{k!}
+        \exp*{-(\lambda_1 + \lambda_2)}
+    \end{align*}
+
+    \item
+
+    \begin{align*}
+        f_{U + V}(x)
+        & =
+        \Int[-\infty][\infty]
+        {
+            f_U(x - y) f_V(y)
+        }{y} \\
+        & =
+        \Int[-\infty][\infty]
+        {
+            \lambda
+            \exp*{-\lambda (x - y)}
+            \mathbf 1_{(0, \infty)}(x - y)
+            \lambda
+            \exp*{-\lambda y}
+            \mathbf 1_{(0, \infty)}(y)
+        }{y} \\
+        & =
+        \lambda^2
+        \exp*{-\lambda x}
+        \Int[-\infty][\infty]
+        {
+            \mathbf 1_{(-\infty, x)}(y)
+            \mathbf 1_{(0, \infty)}
+        }{y} \\
+        & =
+        \frac{\lambda^2}{1!}
+        \exp*{-\lambda x}
+        \Int[-\infty][\infty]
+        {
+            \mathbf 1_{(0, x)}(y)
+        }{y}
+        \mathbf 1_{(0, \infty)}(x) \\
+        & =
+        \frac{\lambda^2}{\Gamma(2)}
+        x^{2 - 1}
+        \exp*{-\lambda x}
+        \mathbf 1_{(0, \infty)}(x)
+    \end{align*}
+
+    \begin{align*}
+        P(\min \Bbraces{U, V} < x)
+        & =
+        1 - P(\min \Bbraces{U, V} \geq x) \\
+        & =
+        1 - P(U \geq x, V \geq x) \\
+        & =
+        1 - P(U \geq x) P(V \geq x) \\
+        & =
+        1 - \pbraces{\Int[x][\infty]{\lambda \exp*{-\lambda y} \mathbf 1_{0, \infty}(y)}{y}}^2 \\
+        & =
+        1 - \lambda^2 \pbraces{\Int[\max \Bbraces{0, x}][\infty]{\exp*{-\lambda y}}{y}}^2 \\
+        & =
+        1 - \lambda^2 \pbraces{\frac{1}{-\lambda} \exp*{-\lambda y} \Big |_{y = \max \Bbraces{0, x}}^\infty}^2 \\
+        & =
+        1 - (-\exp*{-\lambda \max \Bbraces{0, x}})^2 \\
+        & =
+        \begin{cases}
+            1 - \exp*{-2 \lambda x},
+            & x > 0, \\
+            0,
+            & x \leq 0
+        \end{cases}
+    \end{align*}
+
+\end{enumerate}
+
+
 
 \end{solution}
 

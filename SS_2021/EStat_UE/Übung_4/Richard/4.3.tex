@@ -34,7 +34,342 @@ Namely, if $X \sim \exp(1)$ and $Y \sim \exp(1)$ are independent then $X + Y = \
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Step (Calculate $f_{B^2}$):
+        
+        Recall the corollary from \cite[Lecture 3, Slide 42]{EStat}.
+
+        \begin{align*}
+            f_{B^2}(x)
+            & =
+            \frac{1}{2 \sqrt x}
+            (
+                f_b(\sqrt x) + f_B(-\sqrt x)
+            ) \\
+            & =
+            \frac{1}{2 \sqrt x}
+            (
+                \mathbf 1_{(0, 1)}(\sqrt x) + \mathbf 1_{(0, 1)}(-\sqrt x)
+            ) \\
+            & =
+            \frac{1}{2 \sqrt x}
+            \mathbf 1_{(0, 1)}(x)
+        \end{align*}
+
+        \item Step (Calculate $f_{A C}$):
+        
+        Let
+
+        \begin{align*}
+            u & = ac, \\
+            v & = a,
+        \end{align*}
+
+        with inverse mapping
+
+        \begin{align*}
+            a & = v, \\
+            c & = \frac{u}{v}.
+        \end{align*}
+
+        The Jacobian is
+
+        \begin{align*}
+            J(u, v)
+            & =
+            \vbraces
+            {
+                \begin{pmatrix}
+                    \pderivative[][a]{u} & \pderivative[][a]{v} \\
+                    \pderivative[][c]{u} & \pderivative[][c]{v} \\
+                \end{pmatrix}
+            } \\
+            & =
+            \vbraces
+            {
+                \begin{pmatrix}
+                    0            & 1               \\
+                    \nfrac{1}{v} & -\nfrac{u}{v^2} \\
+                \end{pmatrix}
+            } \\
+            & =
+            \frac{1}{v}.
+        \end{align*}
+
+        By the change-of-variable formula \cite[Lecture 3, Slide 32]{EStat}, the joint density $U$ and $V$ is
+
+        \begin{align*}
+            f_{U, V}(u, v)
+            & =
+            f_{A, C} \pbraces{v, \frac{u}{v}} |J(u, v)| \\
+            & =
+            f_A(v) f_C \pbraces{\frac{u}{v}} \frac{1}{|v|} \\
+            & =
+            \mathbf 1_{(0, 1)}(v) \mathbf 1_{(0, 1)} \pbraces{\frac{u}{v}} \frac{1}{|v|} \\
+            & \stackrel{!}{=}
+            \mathbf 1_{(0, 1)}(u) \mathbf 1_{(u, 1)}(v) \frac{1}{|v|}
+        \end{align*}
+
+        by the independence of $A$ and $C$.
+        For \Quote{!} we used
+
+        \begin{align*}
+            0 < v, \frac{u}{v} < 1
+            \iff
+            0 < u < v < 1.
+        \end{align*}
+
+        We find the marginal of $U$ by integrating out $V$.
+
+        \begin{align*}
+            f_U(u)
+            & =
+            \Int[-\infty][\infty]
+            {
+                f_{U, V}(u, v)
+            }{v} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                \mathbf 1_{(0, 1)}(u) \mathbf 1_{(u, 1)}(v) \frac{1}{|v|}
+            }{v} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                \frac{1}{v}
+            }{v}
+            \,
+            \mathbf 1_{(0, 1)}(u) \\
+            & =
+            \ln v \Big |_{v=u}^n \mathbf 1_{(0, 1)}(u) \\
+            & =
+            -\ln u \, \mathbf 1_{(0, 1)}(u)
+        \end{align*}
+
+        \item Step (\Quote{The Big Cheese}):
+        
+        Recall the solution formula for quadratic equations \dots
+
+        \begin{align*}
+            a x^2 + b x + c = 0
+            \iff
+            \frac
+            {
+                -b \pm \sqrt{b^2 - 4 a c}
+            }{
+                2 a
+            }
+        \end{align*}
+
+        \begin{align*}
+            P(\exists x \in \R: A x^2 + B x + C = 0)
+            & =
+            P(B^2 \geq 4 A C) \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                P(B^2 = x \geq 4 A C)
+            }{x} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                f_{B^2}(x)
+                P(4 A C \leq x)
+            }{x} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                f_{B^2}(x)
+                P \pbraces{A C \leq \frac{x}{4}}
+            }{x} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                f_{B^2}(x)
+                \Int[-\infty][\frac{x}{4}]
+                {
+                    f_{A C}(y)
+                }{y}
+            }{x} \\
+            & =
+            \Int[-\infty][\infty]
+            {
+                \frac{1}{2 \sqrt x} \mathbf 1_{(0, 1)}(x)
+                \Int[-\infty][\frac{x}{4}]
+                {
+                    -\ln y \, \mathbf 1_{(0, 1)}(y)
+                }{y}
+            }{x} \\
+            & =
+            -\frac{1}{2}
+            \Int[0][1]
+            {
+                \frac{1}{2 \sqrt x}
+                \Int[0][\frac{x}{4}]
+                {
+                    \ln y
+                }{y}
+            }{x} \\
+            & =
+            -\frac{1}{2}
+            \Int[0][1]
+            {
+                \frac{1}{2 \sqrt x}
+                y (\ln y - 1) \Big |_{y=0}^\frac{x}{4}
+            }{x} \\
+            & \stackrel{!}{=}
+            -\frac{1}{2}
+            \Int[0][1]
+            {
+                \frac{1}{2 \sqrt x}
+                \frac{x}{4} \pbraces{\ln \frac{x}{4} - 1}
+            }{x} \\
+            & =
+            -\frac{1}{8}
+            \Int[0][1]
+            {
+                \sqrt x
+                (
+                    \ln x - \ln 4 - 1
+                )
+            }{x} \\
+            & =
+            -\frac{1}{8}
+            \pbraces
+            {
+                \Int[0][1]
+                {
+                    \sqrt x \ln x
+                }{x}
+                -
+                (\ln 4 + 1)
+                \Int[0][1]
+                {
+                    \sqrt x
+                }{x}
+            } \\
+            & =
+            -\frac{1}{8}
+            \pbraces
+            {
+                \frac{2}{9}
+                x^\frac{3}{2}
+                (
+                    3 \ln x - 2
+                )
+                \Big |_{x=0}^1
+                -
+                (
+                    \ln 4 + 1
+                )
+                \frac{2}{3}
+                x^\frac{2}{3}
+                \Big |_{x=0}^1
+            } \\
+            & =
+            \stackrel{!!}{=}
+            -\frac{1}{8}
+            \pbraces
+            {
+                \frac{2}{9}
+                (-2)
+                -
+                (
+                    \ln 4 + 1
+                )
+                \frac{2}{3}
+            } \\
+            & =
+            \frac{1}{8}
+            \pbraces
+            {
+                \frac{2}{9}
+                2
+                +
+                (
+                    \ln 4 + 1
+                )
+                \frac{6}{9}
+            } \\
+            & =
+            \frac
+            {
+                4 + 6 (\ln 4 + 1)
+            }{
+                72
+            } \\
+            & \approx
+            0.254413419
+        \end{align*}
+
+        For \Quote{!} we used
+
+        \begin{align*}
+            \lim_{y \to 0}
+                y \ln y
+            & =
+            \lim_{y \to 0}
+                \frac{\ln}{1 / y} \\
+            & \stackrel
+            {
+                \text{L'Hospital}
+            }{=}
+            \lim_{y \to 0}
+                \frac{1 / y}{-1 / y^2} \\
+            & =
+            -\lim_{y \to 0}
+                \frac{1}{1 / y} \\
+            & =
+            0.
+        \end{align*}
+
+        For \Quote{!!} we used
+
+        \begin{align*}
+            \lim_{x \to 0}
+                x^\frac{3}{2} \ln x
+            & =
+            \lim_{x \to 0}
+                \frac{\ln x}{1 / x^\frac{3}{2}} \\
+            & \stackrel
+            {
+                \text{L'Hospital}
+            }{=}
+            \frac{2}{3}
+            \lim_{x \to 0}
+                \frac{1 / x}{1 / x^\frac{5}{2}} \\
+            & =
+            \frac{2}{3}
+            \lim_{x \to 0}
+                \frac{x^\frac{5}{2}}{x} \\
+            & =
+            0.
+        \end{align*}
+
+    \end{enumerate}
+
+    \item \verb|runif(n)| returns an array of length $n$ with uniformally chosen values in $(0, 1)$.
+    \verb|b^2>4*a*c| returns an array of length $n$, where the \texttt{i}-th entry ($\texttt{i} = 1, \dots, n$) is \texttt{TRUE} if \verb|b[i]^2 < 4*a[i]*c[i]| and \texttt{FALSE} otherwise.
+    \verb|sum(b^2>4*a*c)| returns the number of \texttt{TRUE}-entries in the array \verb|b^2>4*a*c|.
+
+    Let $X_i$ be $1$ if the \texttt{i}-th entry in the array \verb|b^2>4*a*c| ist \texttt{TRUE} and $0$ otherwise (i.e. if it is \texttt{FALSE}) and $\mu := E(X_i)$.
+    Due to the Weak Law of Large Numbers \cite[Lecture 4, Slide 52]{EStat},
+
+    \begin{align*}
+        \bar X_n \xrightarrow[n \to \infty]{\text P} \mu.
+    \end{align*}
+
+    Now, \verb|sum(b^2>4*a*c)/n| corresponds to $\bar X_n$.
+    Therefore, this code snippet approximates the expected value $E(X_i)$.
+
+\end{enumerate}
 
 \end{solution}
 
