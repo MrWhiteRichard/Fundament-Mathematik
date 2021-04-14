@@ -367,7 +367,15 @@ Namely, if $X \sim \exp(1)$ and $Y \sim \exp(1)$ are independent then $X + Y = \
     \end{align*}
 
     Now, \verb|sum(b^2>4*a*c)/n| corresponds to $\bar X_n$.
-    Therefore, this code snippet approximates the expected value $E(X_i)$.
+    Therefore, this code snippet approximates
+
+    \begin{align*}
+        E(X_i)
+        =
+        P(B^2 \geq 4 A C)
+        =
+        P(\exists x \in \R: A x^2 + B x + C = 0).
+    \end{align*}
 
 \end{enumerate}
 
