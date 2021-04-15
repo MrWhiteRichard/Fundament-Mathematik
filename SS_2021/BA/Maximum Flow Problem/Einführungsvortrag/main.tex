@@ -17,6 +17,17 @@
 \usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{positioning}
+\usetikzlibrary{overlay-beamer-styles}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\tikzstyle{highlight}=[red,ultra thick]
 
 % To avoid a warning from the hyperref package:
 \pdfstringdefDisableCommands{%
@@ -59,13 +70,12 @@
   \begin{problem*}
     Wir wollen in einem Flussnetzwerk die maximale Transportkapazität
     von einem ausgezeichnetem Knoten, der Quelle $s$, zum Abflussknoten $t$ bestimmen.
-  \end{problem*}
 
-  \begin{remark*}
     Ursprünglich wurde das Problem in den 50ern zur Modellierung des sowjetischen Schienenverkehrs gestellt.
 
-    Anwendungen reichen von der Fluglinienplanung
-  \end{remark*}
+    Anwendungen reichen von der Fluglinienplanung bis hin zur Segmentierung in der
+    Bildverarbeitung.
+  \end{problem*}
 \end{frame}
 
 
@@ -82,7 +92,7 @@
     Ein zulässiger Fluss durch $N$ ist eine Funktion $f: E \to \R_0^+$, welche
     den folgenden Bedingungen genügt:
     \begin{enumerate}
-      \item<3-> $0 \leq f(e) \leq c(e)$ for each edge $e$; \quad (Kapazitätsbeschränkung)
+      \item<3-> $0 \leq f(e) \leq c(e)$ für jede Kante $e$; \quad (Kapazitätsbeschränkung)
       \item<4> $\sum_{e^+ = v} f(e) = \sum_{e^- = v} f(e)$ für jeden Knoten $v \neq s,t$. \\
       Dabei bezeichnen $e^-$ und $e^+$ jeweils den Start- und Endpunkt der Kante $e$.
       \quad (Flusserhaltung)
@@ -112,11 +122,44 @@
 
   \end{frame}
 
-  \begin{frame}{Beispiel}
+  \begin{frame}{Beispiel - Flüsse und Cuts}
 
-  \begin{center}
+  \begin{figure}
+  \centering
 
-    -- IN ARBEIT --
+    \subfloat[$w(f) = 3$]{
+
+    \begin{tikzpicture}[
+        mycircle/.style={
+           circle,
+           draw=black,
+           fill=gray,
+           fill opacity = 0.3,
+           text opacity=1,
+           inner sep=0pt,
+           minimum size=25pt},
+        myarrow/.style={-Stealth},
+        node distance=0.8cm and 1.6cm
+        ]
+        \node[mycircle] (s) {$s$};
+        \node[mycircle,above right=of s] (v1) {$v_1$};
+        \node[mycircle,below right=of s] (v2) {$v_2$};
+        \node[mycircle,above right=of v2] (t) {$t$};
+
+        \node[above=of v1]{\textbf{Maximaler Fluss $f$}};
+
+
+      \draw [myarrow] (s) -- node[sloped,font=\small,above] {(2/2)} (v1);
+      \draw [myarrow] (s) -- node[sloped,font=\small,below] {(1/1)} (v2);
+      \draw [myarrow] (v1) -- node[sloped,font=\small,above] {(1/1)} (t);
+      \draw [myarrow] (v2) -- node[sloped,font=\small,below] {(2/2)} (t);
+      \draw [myarrow] (v2.70) -- node[sloped,font=\small,below] {(0/1)} (v1.290);
+      \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {(1/1)} (v2.110);
+
+    \end{tikzpicture}
+  }
+  \hspace{1cm}
+  \subfloat[$c(S,T) = 3$]{
 
   \begin{tikzpicture}[
       mycircle/.style={
@@ -126,36 +169,32 @@
          fill opacity = 0.3,
          text opacity=1,
          inner sep=0pt,
-         minimum size=20pt,
-         font=\small},
+         minimum size=25pt},
       myarrow/.style={-Stealth},
-      node distance=0.6cm and 1.2cm
+      node distance=0.8cm and 1.6cm
       ]
-      \node[mycircle] (c1) {$s$};
-      \node[mycircle,below right=of c1] (c2) {$v_2$};
-      \node[mycircle,right=of c2] (c3) {$v_4$};
-      \node[mycircle,above right=of c1] (c4) {$v_1$};
-      \node[mycircle,right=of c4] (c5) {$v_3$};
-      \node[mycircle,below right=of c5] (c6) {$t$};
-
-    \foreach \i/\j/\txt/\p in {% start node/end node/text/position
-      c1/c2/8/below,
-      c1/c4/11/above,
-      c2/c3/11/below,
-      c3/c6/4/below,
-      c4/c5/12/above,
-      c5/c6/15/above,
-      c5/c2/4/below,
-      c3/c5/7/below,
-      c2.70/c4.290/1/below}
-       \draw [myarrow] (\i) -- node[sloped,font=\small,\p] {\txt} (\j);
+      \node[mycircle, onslide=<1>{violet}] (s) {$s$};
+      \node[mycircle,above right=of s, onslide=<1>{violet}] (v1) {$v_1$};
+      \node[mycircle,below right=of s, onslide=<1>{violet}] (v2) {$v_2$};
+      \node[mycircle,above right=of v2, onslide=<1>{olive}] (t) {$t$};
 
 
-     % draw this outside loop to get proper orientation of 10
-     \draw [myarrow] (c4.250) -- node[sloped,font=\small,above,rotate=180] {10} (c2.110);
-    \end{tikzpicture}
+      \node[above=of v1]{\textbf{Minimaler Cut $({\color{violet}S},{\color{olive}T})$}};
 
-  \end{center}
+
+
+    \draw [myarrow] (s) -- node[sloped,font=\small,above] {2} (v1);
+    \draw [myarrow] (s) -- node[sloped,font=\small,below] {1} (v2);
+    \draw [myarrow, onslide=<1>{highlight}] (v1) -- node[sloped,font=\small,above] {1} (t);
+    \draw [myarrow, onslide=<1>{highlight}] (v2) -- node[sloped,font=\small,below] {2} (t);
+    \draw [myarrow] (v2.70) -- node[sloped,font=\small,below] {1} (v1.290);
+    \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {1} (v2.110);
+
+  \end{tikzpicture}
+  }
+
+
+  \end{figure}
 
   \end{frame}
 
@@ -182,6 +221,77 @@
     sodass $f(e) < c(e)$ für alle Vorwärts-Kanten $e \in P$ und $f(e) > 0$
     für alle Rückwärts-Kanten $e \in P$ gilt.
   \end{definition*}
+
+  \end{frame}
+
+  \begin{frame}{Beispiel - Erweiternde Pfade}
+
+  \begin{figure}
+  \centering
+
+  \subfloat[$w(f_0) = 2$]{
+    \begin{tikzpicture}[
+        mycircle/.style={
+           circle,
+           draw=black,
+           fill=gray,
+           fill opacity = 0.3,
+           text opacity=1,
+           inner sep=0pt,
+           minimum size=25pt},
+        myarrow/.style={-Stealth},
+        node distance=0.8cm and 1.6cm
+        ]
+        \node[mycircle] (s) {$s$};
+        \node[mycircle,above right=of s] (v1) {$v_1$};
+        \node[mycircle,below right=of s] (v2) {$v_2$};
+        \node[mycircle,above right=of v2] (t) {$t$};
+
+        \node[above=of v1]{\textbf{Erweiternder Pfad $(s,v_1,v_2,t)$}};
+
+
+      \draw [myarrow, onslide=<1>{highlight}] (s) -- node[sloped,font=\small,above] {(1/2)} (v1);
+      \draw [myarrow] (s) -- node[sloped,font=\small,below] {(1/1)} (v2);
+      \draw [myarrow] (v1) -- node[sloped,font=\small,above] {(1/1)} (t);
+      \draw [myarrow, onslide=<1>{highlight}] (v2) -- node[sloped,font=\small,below] {(1/2)} (t);
+      \draw [myarrow, onslide=<1>{highlight}] (v2.70) -- node[sloped,font=\small,below] {(1/1)} (v1.290);
+      \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {(1/1)} (v2.110);
+
+    \end{tikzpicture}
+  }
+  \hspace{1cm}
+  \subfloat[$w(f_1) = 3$]{
+    \begin{tikzpicture}[
+        mycircle/.style={
+           circle,
+           draw=black,
+           fill=gray,
+           fill opacity = 0.3,
+           text opacity=1,
+           inner sep=0pt,
+           minimum size=25pt},
+        myarrow/.style={-Stealth},
+        node distance=0.8cm and 1.6cm
+        ]
+        \node[mycircle] (s) {$s$};
+        \node[mycircle,above right=of s] (v1) {$v_1$};
+        \node[mycircle,below right=of s] (v2) {$v_2$};
+        \node[mycircle,above right=of v2] (t) {$t$};
+
+        \node[above=of v1]{\textbf{Erweiterter Fluss $f_1$}};
+
+
+      \draw [myarrow] (s) -- node[sloped,font=\small,above, onslide=<1>{green}] {(2/2)} (v1);
+      \draw [myarrow] (s) -- node[sloped,font=\small,below] {(1/1)} (v2);
+      \draw [myarrow] (v1) -- node[sloped,font=\small,above] {(1/1)} (t);
+      \draw [myarrow] (v2) -- node[sloped,font=\small,below, onslide=<1>{green}] {(2/2)} (t);
+      \draw [myarrow] (v2.70) -- node[sloped,font=\small,below, onslide=<1>{red}] {(0/1)} (v1.290);
+      \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {(1/1)} (v2.110);
+
+    \end{tikzpicture}
+  }
+
+  \end{figure}
 
   \end{frame}
 
@@ -217,10 +327,10 @@
       \item<2-> Finde einen erweiternden Pfad $P$.
       \item<3-> Berechne
       \begin{align*}
-        d := \min[&\{c(e) - f(e): e \text{ Vorwärts-Kante } \in P\} \\ \cup
+        d := \min[&\{c(e) - f(e): e \text{ Vorwärts-Kante } \in P\} \ \cup \\
         &\{f(e): e \text{ Rückwärts-Kante } \in P\} ].
       \end{align*}
-      \item<4-> Konstruiere erweiterten Fluss $f'$ mit $v(f') = v(f) + d$:
+      \item<4-> Konstruiere erweiterten Fluss $f'$ mit $w(f') = w(f) + d$:
       \begin{align*}
         f'(e) = \begin{cases}
           f(e) + d, & e \text{ ist Vorwärts-Kante } \in P \\
@@ -234,14 +344,12 @@
 
   \end{frame}
 
+
   \begin{frame}{Algorithmus: Ford-Fulkerson - Beispiel}
 
   \begin{center}
 
-    -- IN ARBEIT --
-
-
-
+  \begin{figure}
   \begin{tikzpicture}[
       mycircle/.style={
          circle,
@@ -250,36 +358,86 @@
          fill opacity = 0.3,
          text opacity=1,
          inner sep=0pt,
-         minimum size=20pt,
-         font=\small},
+         minimum size=25pt},
       myarrow/.style={-Stealth},
-      node distance=0.6cm and 1.2cm
+      node distance=0.8cm and 1.6cm
       ]
-      \node[mycircle] (c1) {$s$};
-      \node[mycircle,below right=of c1] (c2) {$v_2$};
-      \node[mycircle,right=of c2] (c3) {$v_4$};
-      \node[mycircle,right=of c3] (c7) {$v_5$};
-      \node[mycircle,above right=of c1] (c4) {$v_1$};
-      \node[mycircle,right=of c4] (c5) {$v_3$};
-      \node[mycircle,right=of c5] (c8) {$v_6$};
-      \node[mycircle,below right=of c8] (c6) {$t$};
+      \node[mycircle, onslide=<2-6>{blue}, onslide=<8-12>{blue}](s) {$s$};
+      \node[left=0cm of s, visible on=<{2-6,8-12}>, font=\small] {$(-, \infty)$};
 
-    \foreach \i/\j/\txt/\p in {% start node/end node/text/position
-      c1/c2/10/below,
-      c1/c4/10/above,
-      c2/c3/10/below,
-      c3/c7/10/below,
-      c4/c5/10/above,
-      c5/c8/10/above,
-      c8/c6/10/above,
-      c7/c6/10/below,
-      c5/c3/1/below}
-       \draw [myarrow] (\i) -- node[sloped,font=\small,\p] {\txt} (\j);
+      \node[mycircle,above right=of s, onslide=<3-6>{blue}] (v1) {$v_1$};
+      \node[above=0cm of v1, visible on=<2-6>, font=\small] {$(s, +, 10)$};
+      \node[above=0cm of v1, visible on=<8-12>, font=\small] {$(s, +, 9)$};
 
+      \node[mycircle,below right=of s, onslide=<9-12>{blue}] (v2) {$v_2$};
+      \node[below=0cm of v2, visible on=<{2-6,8-12}>, font=\small] {$(s, +, 10)$};
 
-     % draw this outside loop to get proper orientation of 10
-     % \draw [myarrow] (c4.250) -- node[sloped,font=\small,above,rotate=180] {10} (c2.110);
+      \node[mycircle,right=of v1, onslide=<{4-6,11-12}>{blue}] (v3) {$v_3$};
+      \node[above=0cm of v3, visible on=<3-6>, font=\small] {$(v_1, +, 10)$};
+      \node[above=0cm of v3, visible on=<10-12>, font=\small] {$(v_4, -, 1)$};
+
+      \node[mycircle,right=of v2, onslide=<{5-6,10-12}>{blue}] (v4) {$v_4$};
+      \node[below=0cm of v4, visible on=<4-6>, font=\small] {$(v_3, +, 1)$};
+      \node[below=0cm of v4, visible on=<9-12>, font=\small] {$(v_2, +, 10)$};
+
+      \node[mycircle,right=of v4, onslide=<6>{blue}] (v5) {$v_5$};
+      \node[below=0cm of v5, visible on=<5-6>, font=\small] {$(v_4, +, 10)$};
+      \node[below=0cm of v5, visible on=<11-12>, font=\small] {$(v_4, +, 9)$};
+
+      \node[mycircle,right=of v3, onslide=<12>{blue}] (v6) {$v_6$};
+      \node[above=0cm of v6, visible on=<11-12>, font=\small] {$(v_3, +, 10)$};
+
+      \node[mycircle,below right=of v6] (t) {$t$};
+      \node[right=0cm of t, visible on=<6>, font=\small] {$(v_5, +, 10)$};
+      \node[right=0cm of t, visible on=<12>, font=\small] {$(v_6, +, 10)$};
+
+      \node[below=of v4, visible on=<1>]
+      {\small {\color{blue} Abbildung:} Flussnetzwerk, Kanten mit $(f(e)/c(e))$ markiert};
+      \node[below=of v4, visible on=<2-6>] {\small {\color{blue} Abbildung:} $w(f_0) = 0$};
+      \node[below=of v4, visible on=<7-12>] {\small {\color{blue} Abbildung:} $w(f_1) = 1$};
+      \node[below=of v4, visible on=<13>] {\small {\color{blue} Abbildung:} $w(f_2) = 2$};
+
+    \draw [myarrow, visible on=<1-6>] (s) -- node[sloped,font=\small, above] {(0/10)} (v1);
+    \draw [myarrow, visible on=<7-13>, onslide=<7>{highlight}] (s) -- node[sloped,font=\small, above]
+    {(1/10)} (v1);
+
+    \draw [myarrow, visible on=<1-12>] (s) -- node[sloped,font=\small, below] {(0/10)} (v2);
+    \draw [myarrow, visible on=<13>, onslide=<13>{highlight}] (s) -- node[sloped,font=\small, below]
+    {(1/10)} (v2);
+
+    \draw [myarrow, visible on=<1-6>] (v1) -- node[sloped,font=\small, above] {(0/10)} (v3);
+    \draw [myarrow, visible on=<7-13>, onslide=<7>{highlight}] (v1) -- node[sloped,font=\small, above]
+    {(1/10)} (v3);
+
+    \draw [myarrow, visible on=<1-12>] (v2) -- node[sloped,font=\small, below] {(0/10)} (v4);
+    \draw [myarrow, visible on=<13>, onslide=<13>{highlight}] (v2) -- node[sloped,font=\small, below]
+    {(1/10)} (v4);
+
+    \draw [myarrow, visible on=<1-6>] (v3) -- node[sloped,font=\small, above] {(0/1)} (v4);
+    \draw [myarrow, visible on=<7-12>, onslide=<7>{highlight}] (v3) -- node[sloped,font=\small, above]
+    {(1/1)} (v4);
+    \draw [myarrow, onslide=<13>{highlight}, visible on=<13>] (v3) -- node[sloped,font=\small, above]
+    {(0/1)} (v4);
+
+    \draw [myarrow] (v4) -- node[sloped,font=\small, below, visible on=<1-6>] {(0/10)} (v5);
+    \draw [myarrow, visible on=<7-13>, onslide=<7>{highlight}] (v4) -- node[sloped,font=\small, below]
+    {(1/10)} (v5);
+
+    \draw [myarrow] (v3) -- node[sloped,font=\small, above, visible on=<1-12>] {(0/10)} (v6);
+    \draw [myarrow, visible on=<13>, onslide=<13>{highlight}] (v3) -- node[sloped,font=\small, above]
+    {(1/10)} (v6);
+
+    \draw [myarrow] (v5) -- node[sloped,font=\small, below, visible on=<1-6>] {(0/10)} (t);
+    \draw [myarrow, visible on=<7-13>, onslide=<7>{highlight}] (v5) -- node[sloped,font=\small, below]
+    {(1/10)} (t);
+
+    \draw [myarrow] (v6) -- node[sloped,font=\small, above, visible on=<1-12>] {(0/10)} (t);
+    \draw [myarrow, visible on=<13>, onslide=<13>{highlight}] (v6) -- node[sloped,font=\small, above]
+    {(1/10)} (t);
+
     \end{tikzpicture}
+
+  \end{figure}
 
   \end{center}
 
@@ -288,8 +446,9 @@
   \begin{frame}{Algorithmus: Ford-Fulkerson - Analyse}
 
   \begin{itemize}
-    \item Nicht polynomielle Laufzeit, garantiert nicht effiziente Wahl der
-    erweiternden Pfade.
+    \item Der Algorithmus garantiert noch nicht effiziente Wahl der
+    erweiternden Pfade und hat nicht polynomielle Laufzeit in Abhängigkeit von $|V|$ und $|E|$,
+    da die Laufzeit auch noch von der Kapazitätsfunktion $c$ abhängt.
     \pause
     \item Kann für irrationale Kapazitäten scheitern, ist aber in der Praxis irrelevant.
   \end{itemize}
