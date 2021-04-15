@@ -11,7 +11,66 @@ Geben Sie eine kontextfreie Grammatik an die $L$ erzeugt.
 
 \begin{solution}
 
-ToDo!
+Zum besseren Verständnis, listen wir die Elemente von $L$ für verschiedene $n \in \N$ auf.
+Dabei bezeichnet $x \cdot x = x^m$ für irgendein beliebiges $m \in \N$.
+Wenn der Ausdruck mehrmals vorkommt, dürfen die $m$ auch unterschiedlich sein.
+
+\begin{itemize}
+
+    \item $n = 0$:
+    
+    \begin{align*}
+        a \cdots a \\
+        b \cdots b \\
+    \end{align*}
+
+    \item $n = 1$:
+    
+    \begin{align*}
+        (a \cdots a) b (a \cdots b) c \\
+        (b \cdots b) a (b \cdots b) c \\
+    \end{align*}
+
+    \item $n = 2$:
+    
+    \begin{align*}
+        (a \cdots a) b (a \cdots a) b (a \cdots a) c^2 \\
+        (b \cdots b) a (b \cdots b) a (b \cdots b) c^2 \\
+    \end{align*}
+
+    \item $n \in \N$:
+    
+    \begin{align*}
+        \underbrace
+        {
+            ((a \cdots a) b)
+            \cdots
+            ((a \cdots a) b)
+        }_{
+            \text{$n$-mal}
+        }
+        (a \cdots a)
+        c^n \\
+        \underbrace
+        {
+            ((b \cdots b) a)
+            \cdots
+            ((b \cdots b) a)
+        }_{
+            \text{$n$-mal}
+        }
+        (b \cdots b)
+        c^n \\
+    \end{align*}
+\end{itemize}
+
+Jetzt betrachten wir die CFG $\abraces{N, T, P, S}$, wobei
+
+\begin{align*}
+    N & = \Bbraces{S, W, C}, \\
+    T & = \Bbraces{a, b, c}, \\
+    P & = \Bbraces{S, W C} \cup \Bbraces{(W, w) \mid w \in \Bbraces{a, b}^\ast, n_a(w) = n ~\text{oder}~ n_b(w) = n} \cup \Bbraces{(C, c^n)}.
+\end{align*}
 
 \end{solution}
 
