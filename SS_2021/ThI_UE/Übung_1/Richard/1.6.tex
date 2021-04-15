@@ -12,11 +12,113 @@ Zeigen Sie dass für alle regulären $L \subseteq A^\ast$ auch $\varphi(L) = \Bb
 \begin{solution}
 
 Sei $N = \abraces{Q, A, \Delta, q_0, F}$ ein NFA für $L = \operatorname L(N)$.
-Betrachte den NFA $\varphi(N) := \abraces{Q, \varphi(A), \varphi(\Delta), q_0, F}$, wobei $\varphi(\Delta) := \Bbraces{(q_1, \varphi(w), q_2): (q_1, w, q_2) \in \Delta}$.
+Betrachte den NFA $\varphi(N) := \abraces{\varphi(Q), \varphi(A), \varphi(\Delta), q_0, F}$.
+$\varphi(Q)$ und $\varphi(\Delta)$ werden im Folgenden noch festgelegt.
+Für jedes Tripel $(q_\delta, w_\delta, q_\delta^\prime) = \delta \in \Delta \subseteq Q \times A \times Q$ seien
 
-Wir behaupten, dass $\varphi(L) = \varphi(\operatorname L(n)) = \operatorname L(\varphi(N))$.
+\begin{align*}
+    n_\delta := \overline{\varphi(w_\delta)},
+    \quad
+    \text{und}
+    \quad
+    v_{\delta, 1}, \dots, v_{\delta, n_\delta} \in B:
+        v_{\delta, 1} \cdots v_{\delta, n_\delta}
+        =
+        v_\delta
+        :=
+        \varphi(w_\delta)
+        \in
+        \varphi(A) \subseteq B^\ast.
+\end{align*}
 
-Aus der Definition 1.7 der erweiterten Übergangsrelation (hier als $\overline \Delta$) und der Tatsache, dass
+Falls $n_\delta > 1$, was ja wegen $\varphi(A) \not \subseteq B$ passieren kann, ist $\varphi(w_\delta)$ kein Buchstabe $\in B$ mehr, sondern ein \Quote{echtes} Wort $\in B^\ast$.
+Wir fügen neue Zustände $q_{\delta, 2}, \dots, q_{\delta, n_{\delta}}$, wobei $q_{\delta, 1} := q_\delta \in Q$ und $q_{\delta, n_\delta + 1} := q_\delta^\prime \in Q$, zu $Q$ hinzu.
+Sei $\varphi(Q) \supseteq Q$ die Menge all jener (inklusive neuer) Zustände.
+Die neuen Zustände sollen dabei alle unterschiedlich sein, d.h.
+
+\begin{align*}
+    \Forall \delta_1, \delta_2 \in \Delta:
+        \pbraces
+        {
+            n_{\delta_1}, n_{\delta_2} > 1
+            \implies
+            \Bbraces{q_{\delta_1, 2}, \dots, q_{\delta_1, n_{\delta_1}}}
+            \cap
+            \Bbraces{q_{\delta_2, 2}, \dots, q_{\delta_2, n_{\delta_2}}}
+            =
+            \emptyset
+        }.
+\end{align*}
+
+Damit kommen wir schließlich zur Definition von
+
+\begin{align*}
+    \varphi(\Delta)
+    :=
+    \bigcup_{\delta \in \Delta}
+        \Bbraces
+        {
+            (q_{\delta, 1}, v_{\delta, 1}, q_{\delta, 2}),
+            \dots,
+            (q_{\delta, n_\delta}, v_{\delta, 1}, q_{\delta, n_\delta + 1})
+        }.
+\end{align*}
+
+Wir visualisieren einen Teil des Automaten $N$ und den zugehörigen Teil in $\varphi(N)$.
+Man beachte, dass $q_{\delta, 1} = q_\delta \in Q$ und $q_{\delta, n_\delta + 1} = q_\delta^\prime \in Q$ (o.B.d.A. sind diese Zustände $\in Q \setminus F$) und $q_{\delta, 2}, \dots, q_{\delta, n_\delta} \in \varphi(Q) \setminus Q$, sowie $v_{\delta, 1} \cdots v_{\delta, n_\delta} = v_\delta = \varphi(w_\delta)$.
+
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm,
+        initial above
+    ]
+
+        \node [state,               draw = white] (1) {$\cdots$};
+        \node [state, right of = 1]               (2) {$q_\delta$};
+        \node [state, right of = 2]               (3) {$q_\delta^\prime$};
+        \node [state, right of = 3, draw = white] (4) {$\cdots$};
+
+        \draw (2) edge node [above] {$w_\delta$} (3);
+    
+    \end{tikzpicture}
+
+    \vspace{1cm}
+
+    $\stackrel{\varphi}{\mapsto}$
+
+    \vspace{1cm}
+
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm,
+        initial above
+    ]
+
+        \node [state,               draw = white] (1) {$\cdots$};
+        \node [state, right of = 1]               (2) {$q_{\delta, 1}$};
+        \node [state, right of = 2]               (3) {$q_{\delta, 2}$};
+        \node [state, right of = 3, draw = white] (4) {$\cdots$};
+        \node [state, right of = 4]               (5) {$q_{\delta, n_\delta}$};
+        \node [state, right of = 5]               (6) {$q_{\delta, n_\delta + 1}$};
+        \node [state, right of = 6, draw = white] (7) {$\cdots$};
+
+        \draw (2) edge node [above] {$v_{\delta, 1}$}            (3);
+        \draw (3) edge node [above] {$v_{\delta, 2}$}            (4);
+        \draw (4) edge node [above] {$v_{\delta, n_\delta - 1}$} (5);
+        \draw (5) edge node [above] {$v_{\delta, n_\delta}$}     (6);
+
+        \draw (2) edge [bend right] node [below] {$v_\delta$} (6);
+    
+    \end{tikzpicture}
+\end{center}
+
+Wir behaupten, dass $\varphi(L) = \varphi(\operatorname L(N)) = \operatorname L(\varphi(N))$.
+Aus der Definition 1.7 der erweiterten Übergangsrelation (hier als $\Delta^\ast$), dem oberen Bild (Smiley), und der Tatsache, dass
 
 \begin{align*}
     \varphi(\epsilon) = \epsilon,
@@ -28,35 +130,61 @@ Aus der Definition 1.7 der erweiterten Übergangsrelation (hier als $\overline \
 sieht man unmittelbar, dass
 
 \begin{align*}
-    \overline{\varphi(\Delta)}
-    =
-    \varphi(\overline \Delta)
+    \varphi(Q) \times \varphi(A^\ast) \times \varphi(Q)
+    \supseteq
+    \varphi(\Delta)^\ast
+    \supseteq
+    \varphi(\Delta^\ast)
     :=
-    \Bbraces{(q_1, \varphi(w), q_2): (q_1, w, q_2) \in \overline \Delta}.
+    \Bbraces{(q_1, \varphi(w), q_2): (q_1, w, q_2) \in \Delta^\ast}.
 \end{align*}
 
 Sei $v \in \varphi(\operatorname L(N))$ und $w \in \operatorname L(N)$ mit $\varphi(w) = v$.
 
 \begin{align*}
     & \implies
-    \Exists q \in F: (q_0, w, q) \in \overline \Delta \\
+    \Exists q \in F: (q_0, w, q) \in \Delta^\ast \\
     & \implies
-    (q_0, v, q) = (q_0, \varphi(w), q) \in \varphi(\overline \Delta) = \overline{\varphi(\Delta)} \\
+    (q_0, v, q) = (q_0, \varphi(w), q) \in \varphi(\Delta^\ast) \subseteq \varphi(\Delta)^\ast \\
     & \implies
     v \in \operatorname L(\varphi(N))
 \end{align*}
 
-Sei nun $v \in \operatorname L(\varphi(N))$ und $q \in F$ sodass $(q_0, v, q) \in \overline{\varphi(\Delta)} = \varphi(\overline \Delta)$.
+Sei nun $v \in \operatorname L(\varphi(N))$ und $q \in F$ sodass $(q_0, v, q) \in \varphi(\Delta)^\ast$.
+Seien $q_1, \dots, q_n$, mit $q_n = q \in F$, Zustände $\in Q$, sodass
 
 \begin{align*}
-    & \implies
-    \Exists w \in A^\ast:
-        (q_0, w, q) \in \overline \Delta,
-        v = \varphi(w) \\
-    & \implies
-    w \in \operatorname L(N) \\
-    & \implies
-    v = \varphi(w) \in \varphi(\operatorname L(N))
+    \Exists v_1, \dots, v_n \in \varphi(A) \subseteq B^\ast:
+        (q_0, v_1, q_1), \dots, (q_{n-1}, v_n, q_n)
+        \in
+        \varphi(\Delta^\ast),
+        \quad
+        v_1 \cdots v_n = v.
+\end{align*}
+
+Seien $w_1, \dots, w_n \in A$, sodass
+
+\begin{align*}
+    \varphi(w_1) = v_1, \dots, \varphi(w_n) = v_n,
+    \quad
+    (q_0, w_1, q_1), \dots, (q_{n-1}, w_n, q_n) \in \Delta \subseteq Q \times A \times Q.
+\end{align*}
+
+Weil $q_n = q \in F$ und $(q_0, w, q) \in \Delta^\ast$ erhalten wir, dass $w := w_1 \cdots w_n \in \operatorname L(N)$.
+
+\begin{align*}
+    \implies
+    v
+    =
+    v_1 \cdots v_n
+    =
+    \varphi(w_1) \cdots \varphi(w_n)
+    =
+    \varphi(w_1 \cdots w_n)
+    =
+    \varphi(w)
+    \in
+    \varphi(\operatorname L(N))
 \end{align*}
 
 \end{solution}

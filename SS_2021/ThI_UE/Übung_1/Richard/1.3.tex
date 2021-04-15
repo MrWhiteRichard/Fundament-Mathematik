@@ -54,9 +54,10 @@ Für die umgekehrte Inklusion sei $w \in L_k$.
 Wir verwenden Induktion nach $|w|$.
 
 Für $|w| = 0$, muss $w = \epsilon$, also das leere Wort sein.
-Diese ist durch unseren Automaten offenbar unmittelbar (im Start-Zustand) erreichbar.
+Dieses induziert einen Pfad von $q_0$ nach $q_0$, d.h. $(q_0, \epsilon, q_0) \in \Delta$.
+
 Ansonsten gibt es ein $c \in \Bbraces{a, b}$ und $v \in \Bbraces{a, b}^{|w| - 1}$, sodass $w = v c$.
-Laut Induktionshypothese, ist $v$ erreichbar und führt zu einem Zustand $q_l$, $l \in \Bbraces{0, \pm 1, \dots, \pm k}$.
+Laut Induktionshypothese, induziert $v$ einen Pfad von $q_0$ zu einem Zustand $q_l$, $l \in \Bbraces{0, \pm 1, \dots, \pm k}$, d.h. $(q_0, v, q_l) \in \Delta$.
 
 \begin{align*}
     \sigma := (n_a(w) - n_b(w)) - (n_a(v) - n_b(v)) = \sigma_a - \sigma_b,
@@ -66,9 +67,10 @@ Laut Induktionshypothese, ist $v$ erreichbar und führt zu einem Zustand $q_l$, 
     \sigma_b := n_b(w) - n_b(v)
 \end{align*}
 
-Für $c = a$ gilt $\sigma = 1 - 0$ und $w$ führt nach $q_{l + 1}$.
-Für $c = b$ gilt $\sigma = 0 - 1$ und $w$ führt nach $q_{l - 1}$.
-$w$ ist also erreichbar und führt zum Zustand $q_{l + \sigma}$.
+Für $c = a$ gilt $\sigma = 1 - 0$ und $(q_l, c, q_{l + 1}) \in \Delta$.
+Für $c = b$ gilt $\sigma = 0 - 1$ und $(q_l, c, q_{l - 1}) \in \Delta$.
+Zudem, gilt ja immer noch $(q_0, v, q_l) \in \Delta$.
+$w$ induziert also einen Pfad von $q_0$ zum Zustand $q_{l + \sigma}$, d.h. $(q_0, v, q_{l + \sigma}) \in \Delta$.
 
 \end{solution}
 
