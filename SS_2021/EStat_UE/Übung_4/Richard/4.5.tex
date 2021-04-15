@@ -17,7 +17,7 @@ Justify your calculations.
 
 \begin{solution}
 
-Let $X_{1, 1} \sim \cdots \sim X_{n, 1} \sim X_{1, 2} \sim \cdots \sim X_{n, 2}$ be the samples of draws $1$ and $2$, respectively, i.e.
+Let $X_{1, 1} \sim \cdots \sim X_{n, 1} \sim X_{1, 2} \sim \cdots \sim X_{n, 2}$ be i.i.d. random variables yielding the samples of draws $1$ and $2$, respectively, i.e.
 
 \begin{align*}
     \bar X_1 =: \bar X_{n, 1} = \frac{1}{n} \sum_{i=1}^n X_{i, 1},
@@ -26,112 +26,215 @@ Let $X_{1, 1} \sim \cdots \sim X_{n, 1} \sim X_{1, 2} \sim \cdots \sim X_{n, 2}$
 \end{align*}
 
 with common mean $\mu$ and variance $\sigma^2$.
-Furthermore, let
+Let us calculate the first and second moments of $\bar X_{n, 1} - \bar X_{n, 2}$.
 
 \begin{align*}
-    X_i := X_{i, 1} - X_{i, 2},
-    \quad
-    i = 1, \dots, n,
-\end{align*}
-
-and
-
-\begin{align*}
-    \bar X_n
-    & :=
-    \bar X_{n, 1} - \bar X_{n, 2} \\
+    E(\bar X_{n, 1} - \bar X_{n, 2})
     & =
-    \frac{1}{n} \sum_{i=1}^n X_{i, 1}
-    -
-    \frac{1}{n} \sum_{i=1}^n X_{i, 2} \\
+    E
+    \pbraces
+    {
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 1}
+            -
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 2}
+    } \\
     & =
-    \frac{1}{n} \sum_{i=1}^n X_{i, 1} - X_{i, 2} \\
+    \frac{1}{n}
+    \sum_{i=1}^n
+        E(X_{i, 1}) - E(X_{i, 2}) \\
     & =
-    \frac{1}{n} \sum_{i=1}^n X_i.
+    \frac{1}{n}
+    \sum_{i=1}^n
+        \mu - \mu \\
+    & =
+    0
 \end{align*}
 
-For $i = 1, \dots, n$ we calculate the first and second moments.
+Note, that $X_{i, 1}$ and $X_{i, 2}$, $i = 1, \dots, n$ are independent.
 
 \begin{align*}
-    E(X_i) & = E(X_{i, 1} - X_{i, 2}) = E(X_{i, 1}) - E(X_{i, 2}) = \mu - \mu = 0 \\
-    V(X_i) & = V(X_{i, 1} + (-X_{i, 2})) = V(X_{i, 1}) + V(-X_{i, 2}) + 2 \operatorname{Cov}(X_{i, 1}), -X_{i, 2}) = 2 \sigma^2 - 2 \operatorname{Cov}(X_{i, 1}, X_{i, 2})
+    V(\bar X_{n, 1} - \bar X_{n, 2})
+    & =
+    V
+    \pbraces
+    {
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 1}
+            -
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 2}
+    } \\
+    & =
+    \frac{1}{n^2}
+    \sum_{i=1}^n
+        V(X_{i, 1}) + (-1)^2 V(X_{i, 2}) + \underbrace{\operatorname{Cov}(X_{i, 1}, X_{i, 2})}_0 \\
+    & =
+    \frac{1}{n^2}
+    \sum_{i=1}^n
+        \sigma^2 + \sigma^2 \\
+    & =
+    \frac{2 \sigma^2}{n}
 \end{align*}
 
-However, in order to apply the Central Limit Theorem, we should have
-
-\begin{align*}
-    V(X_i) = \sigma^2 > 0
-    \quad
-    \text{i.e.}
-    \quad
-    \operatorname{Cov}(X_{i, 1}, X_{i, 2}) = \frac{\sigma^2}{2}.
-\end{align*}
-
-Let us assume the former.
-Due to the Central Limit Theorem \cite[Lecture 4, Slide 61]{EStat}, there exists a $Z \sim \mathcal N(0, 1)$ such that
-
-\begin{align*}
-    Y_n
-    :=
-    \frac{\bar X_n - 0}{\sigma / \sqrt n}
-    \xrightarrow[n \to \infty]{\text d}
-    Z,
-    \quad
-    & \text{i.e.}
-    \quad
-    \forall x ~\text{continuity point of $F_Z = \Phi$}:
-        F_{Y_n}(x) \xrightarrow{n \to \infty} F_Z(x) = \Phi(x), \\
-    & \text{i.e.}
-    \quad
-    F_{Y_n} \xrightarrow[n \to \infty]{\text{point wise}} \Phi.
-\end{align*}
-
-Note that $\Phi$ is continuous.
-Therefore, all points are continuity points of $\Phi$.
+Let $m \leq n \in \N$.
+Recall Chebyshev's inequality \cite[Lecture 4, Slide 73]{EStat}.
 
 \begin{align*}
     0.99
     & \approx
-    P \pbraces{|\bar X_1 - \bar X_2| < \frac{\sigma}{50}} \\
-    & =
-    P \pbraces{|Y_n| < \frac{\sqrt n}{50}} \\
-    & =
-    P \pbraces{-\frac{\sqrt n}{50} < Y_n < \frac{\sqrt n}{50}} \\
-    & =
-    F_{Y_n} \pbraces{\frac{\sqrt n}{50}} - F_{Y_n} \pbraces{-\frac{\sqrt n}{50}} \\
-    & \stackrel
+    P
+    \pbraces
     {
-        \text{CLT}
-    }{\approx}
-    \Phi \pbraces{\frac{\sqrt n}{50}} - \Phi \pbraces{-\frac{\sqrt n}{50}} \\
+        |\bar X_{n, 1} - \bar X_{n, 2}|
+        <
+        \frac{\sigma}{50}
+    } \\
     & =
-    \Phi \pbraces{\frac{\sqrt n}{50}} - \pbraces{1 - \Phi \pbraces{\frac{\sqrt n}{50}}} \\
+    1
+    -
+    P
+    \pbraces
+    {
+        |\bar X_{n, 1} - \bar X_{n, 2}|
+        \geq
+        \frac{\sigma}{50}
+    } \\
+    & \geq
+    1
+    -
+    \frac{V(\bar X_{n, 1} - \bar X_{n, 2})}{\sigma^2 / 50^2} \\
     & =
-    2 \Phi \pbraces{\frac{\sqrt n}{50}} - 1
+    1 - \frac{2 \cdot 50^2}{n} \\
+    & \geq
+    1 - \frac{2 \cdot 50^2}{m} \\
+    & \stackrel{!}{=}
+    0.99
 \end{align*}
 
 \begin{align*}
     \iff
-    \Phi \pbraces{\frac{\sqrt n}{50}}
-    \approx
-    \frac{0.99 + 1}{2}
-    =
-    0.995
+    m = \frac{2 \cdot 50^2}{1 - 0.99} = 500 000
 \end{align*}
 
-Recall the table of $\mathcal N(0, 1)$-distribution \cite[Lecture 2, Slide 44]{EStat}.
+Any $n \geq m$ will definitely do the job.
+(There might be a smaller one. Because we used Chebyshev's inequality, which may not be sharp, we cannot tell for certain.)
 
-\begin{align*}
-    \iff
-    \frac{\sqrt n}{50} \approx \Phi^{-1}(0.995) \in (2.57, 2.58)
-    \iff
-    n
-    \approx
-    \begin{cases}
-        (50 \cdot 2.57)^2 = 16 512.25 \\
-        (50 \cdot 2.58)^2 = 16 641
-    \end{cases}
-\end{align*}
+\begin{comment}
+
+    Furthermore, let
+
+    \begin{align*}
+        X_i := X_{i, 1} - X_{i, 2},
+        \quad
+        i = 1, \dots, n,
+    \end{align*}
+
+    and
+
+    \begin{align*}
+        \bar X_n
+        & :=
+        \bar X_{n, 1} - \bar X_{n, 2} \\
+        & =
+        \frac{1}{n} \sum_{i=1}^n X_{i, 1}
+        -
+        \frac{1}{n} \sum_{i=1}^n X_{i, 2} \\
+        & =
+        \frac{1}{n} \sum_{i=1}^n X_{i, 1} - X_{i, 2} \\
+        & =
+        \frac{1}{n} \sum_{i=1}^n X_i.
+    \end{align*}
+
+    For $i = 1, \dots, n$ we calculate the first and second moments.
+
+    \begin{align*}
+        E(X_i) & = E(X_{i, 1} - X_{i, 2}) = E(X_{i, 1}) - E(X_{i, 2}) = \mu - \mu = 0 \\
+        V(X_i) & = V(X_{i, 1} + (-X_{i, 2})) = V(X_{i, 1}) + V(-X_{i, 2}) + 2 \operatorname{Cov}(X_{i, 1}), -X_{i, 2}) = 2 \sigma^2 - 2 \operatorname{Cov}(X_{i, 1}, X_{i, 2})
+    \end{align*}
+
+    However, in order to apply the Central Limit Theorem, we should have
+
+    \begin{align*}
+        V(X_i) = \sigma^2 > 0
+        \quad
+        \text{i.e.}
+        \quad
+        \operatorname{Cov}(X_{i, 1}, X_{i, 2}) = \frac{\sigma^2}{2}.
+    \end{align*}
+
+    Let us assume the former.
+    Due to the Central Limit Theorem \cite[Lecture 4, Slide 61]{EStat}, there exists a $Z \sim \mathcal N(0, 1)$ such that
+
+    \begin{align*}
+        Y_n
+        :=
+        \frac{\bar X_n - 0}{\sigma / \sqrt n}
+        \xrightarrow[n \to \infty]{\text d}
+        Z,
+        \quad
+        & \text{i.e.}
+        \quad
+        \forall x ~\text{continuity point of $F_Z = \Phi$}:
+            F_{Y_n}(x) \xrightarrow{n \to \infty} F_Z(x) = \Phi(x), \\
+        & \text{i.e.}
+        \quad
+        F_{Y_n} \xrightarrow[n \to \infty]{\text{point wise}} \Phi.
+    \end{align*}
+
+    Note that $\Phi$ is continuous.
+    Therefore, all points are continuity points of $\Phi$.
+
+    \begin{align*}
+        0.99
+        & \approx
+        P \pbraces{|\bar X_1 - \bar X_2| < \frac{\sigma}{50}} \\
+        & =
+        P \pbraces{|Y_n| < \frac{\sqrt n}{50}} \\
+        & =
+        P \pbraces{-\frac{\sqrt n}{50} < Y_n < \frac{\sqrt n}{50}} \\
+        & =
+        F_{Y_n} \pbraces{\frac{\sqrt n}{50}} - F_{Y_n} \pbraces{-\frac{\sqrt n}{50}} \\
+        & \stackrel
+        {
+            \text{CLT}
+        }{\approx}
+        \Phi \pbraces{\frac{\sqrt n}{50}} - \Phi \pbraces{-\frac{\sqrt n}{50}} \\
+        & =
+        \Phi \pbraces{\frac{\sqrt n}{50}} - \pbraces{1 - \Phi \pbraces{\frac{\sqrt n}{50}}} \\
+        & =
+        2 \Phi \pbraces{\frac{\sqrt n}{50}} - 1
+    \end{align*}
+
+    \begin{align*}
+        \iff
+        \Phi \pbraces{\frac{\sqrt n}{50}}
+        \approx
+        \frac{0.99 + 1}{2}
+        =
+        0.995
+    \end{align*}
+
+    Recall the table of $\mathcal N(0, 1)$-distribution \cite[Lecture 2, Slide 44]{EStat}.
+
+    \begin{align*}
+        \iff
+        \frac{\sqrt n}{50} \approx \Phi^{-1}(0.995) \in (2.57, 2.58)
+        \iff
+        n
+        \approx
+        \begin{cases}
+            (50 \cdot 2.57)^2 = 16 512.25 \\
+            (50 \cdot 2.58)^2 = 16 641
+        \end{cases}
+    \end{align*}
+
+\end{comment}
 
 \end{solution}
 
