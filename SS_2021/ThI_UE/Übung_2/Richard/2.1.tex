@@ -27,7 +27,7 @@ Wenn der Ausdruck mehrmals vorkommt, dürfen die $m$ auch unterschiedlich sein.
     \item $n = 1$:
     
     \begin{align*}
-        (a \cdots a) b (a \cdots b) c \\
+        (a \cdots a) b (a \cdots a) c \\
         (b \cdots b) a (b \cdots b) c \\
     \end{align*}
 
@@ -64,12 +64,21 @@ Wenn der Ausdruck mehrmals vorkommt, dürfen die $m$ auch unterschiedlich sein.
     \end{align*}
 \end{itemize}
 
-Jetzt betrachten wir die CFG $\abraces{N, T, P, S}$, wobei
+Wir wollen nun all diese Wörter systematisch aufbauen, mit einem endlichem Regelwerk $P$.
+Sei dabei aber o.B.d.A. $n \neq 0$.
+
+\begin{gather*}
+    S \to X^n C^n \mid Y^n C^n, \\
+    X \to X B \mid B X, \quad Y \to Y A \mid A Y, \\
+    A \to a, \quad B \to b, \quad C \to c
+\end{gather*}
+
+Die kontextfreie Grammatik $G = \abraces{N, T, P, S}$ erzeugt $L$.
 
 \begin{align*}
-    N & = \Bbraces{S, W, C}, \\
-    T & = \Bbraces{a, b, c}, \\
-    P & = \Bbraces{S, W C} \cup \Bbraces{(W, w) \mid w \in \Bbraces{a, b}^\ast, n_a(w) = n ~\text{oder}~ n_b(w) = n} \cup \Bbraces{(C, c^n)}.
+    N = \Bbraces{S, X, Y, A, B, C},
+    \quad
+    T = \Bbraces{a, b, c}
 \end{align*}
 
 \end{solution}
