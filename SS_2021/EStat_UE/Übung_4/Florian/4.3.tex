@@ -1,0 +1,62 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Real roots]
+
+Let $A, B$ and $C$ be independent random variables, uniformly distributed on $(0,1)$.
+
+\begin{enumerate}[label = (\alph*)]
+  \item What is the probability that the quadratic equation $Ax^2 + Bx + C = 0$ has real roots?
+  \item Consider the following code in \textsc{R}. \\
+  What does it do and how is it related to your solution in part (a)?
+  \begin{lstlisting}
+      n=10000
+      a=runif(n)
+      b=runif(n)
+      c=runif(n)
+      sum(b^2>4*a*c)/n
+  \end{lstlisting}
+  \textit{Hint:} In HW2/Ex. 3(b) we showed that if $X$ has uniform $(0,1)$
+  distribution then $- \log X$ has exponential distribution $\exp(1)$.
+  In an analogue way, one can prove that $- s \log X \sim \exp(1/s)$
+  for any $s > 0$. Also, in HW4/Ex. 2(b) we proved that the sum of two
+  independent exponential distributions is a gamma distribution.
+  Namely, if $X \sim \exp(1)$ and $Y \sim \exp(1)$ are independent then
+  $X + Y \sim \text{Gamma}(2,1)$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item The quadratic equation has real roots iff $B^2 - 4AC \geq 0$.
+  \begin{align*}
+    \P(B^2 - 4AC \geq 0) &= \P(B^2 \geq 4AC) = \P(2\log(B) \geq \log(A) + \log(C) + \log(4)) \\
+    &= \P(- \log(A) - \log(C) - \log(4) \geq -2\log(B))
+  \end{align*}
+
+  Using the hint, we get that $D := -2\log(B) \sim \exp(1/2)$ and $E := -\log(A) - \log(C) \sim \text{Gamma}(2,1)$.
+
+  \begin{align*}
+    \P(D \leq E - \log(4)) &= \int_{\log(4)}^\infty\int_0^{y - \log(4)} f_D(x)f_E(y) dx\ dy \\
+    &= \int_{\log(4)}^\infty y\exp(-y)\int_0^{y - \log(4)} \frac{\exp(-x/2)}{2}  dx\ dy \\
+    &= \int_{\log(4)}^\infty y\exp(-y)[1 - \exp([\log(4) - y]/ 2)] dy \\
+    &= \int_{\log(4)}^\infty y\exp(-y)[1 - 2\exp(-y/2)] dy \\
+    &= \int_{\log(4)}^\infty y\exp(-y) dy -  \int_{\log(4)}^\infty 2y\exp(-3y/2)] dy\\
+    &= \frac{1}{4}(1 + \log(4)) - \frac{1}{9}(1 + \log(8)) \\
+    &\approx 0.2544
+  \end{align*}
+
+  \item The code generates realizations of the uniformly distributed
+  random variables and measures, how many out of 10000 allow for real
+  solutions of the quadratic equation. It therefore provides us
+  with an useful approximation to the exact probability.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
