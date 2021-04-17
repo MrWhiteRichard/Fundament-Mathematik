@@ -2,7 +2,7 @@
 
 \begin{exercise}
 
-Ist die Sprache $L = \Bbraces{w w | w \in \Bbraces{a, b}^\ast}$ kontextfrei?
+Ist die Sprache $L = \Bbraces{w w \mid w \in \Bbraces{a, b}^\ast}$ kontextfrei?
 Begründen Sie Ihre Antwort?
 
 \end{exercise}
@@ -11,13 +11,21 @@ Begründen Sie Ihre Antwort?
 
 \begin{solution}
 
-Die Sprache $L$ ist kontextfrei, weil ein CFG $G = \abraces{N, T, P, S}$ existiert, der sie erzeugt, d.h. $\operatorname L(G) = L$.
+$L$ ist nicht kontextfrei.
+Ansonsten sei $n$ wie im Lemma 2.7 (Schleifensatz (pumping lemma) für kontextfrei Sprachen).
+$w := a^n b^n a^n b^n \in L$ kann geschrieben werden als $v_1 v_2 v_3 v_4 v_5$, wobei
 
-\begin{align*}
-    N & = \Bbraces{S, W}, \\
-    T & = \Bbraces{a, b}, \\
-    P & = \Bbraces{(S, WW)} \cup \Bbraces{(W, ww) \mid w \in \Bbraces{a, b}^\ast}
-\end{align*}
+\begin{enumerate}
+    \item $v_2 v_4 \neq \varepsilon$,
+    \item $|v_2 v_2 v_3| \leq n$, und
+    \item für alle $k \geq 0$ ist auch $w_k := v_1 v_2^k v_3 v_4^k v_5 \in L$.
+\end{enumerate}
+
+Wegen 2., gibt es ein $i = 0, \dots, n$, sodass $v_2 v_3 v_4$ ein Teil-Wort von $a^i b^{n-i}$ oder $b^i a^{n-i}$ ist.
+Wegen 1., ist $v_2 \neq \varepsilon$ oder $v_4 \neq \varepsilon$.
+Auf jeden Fall kann man $w$ so wie in 3. \Quote{aufpumpen} und aus $L$ rausfliegen.
+Man führt nämlich zu viele $a$-s oder $b$-s in der lokalen $a$- bzw. $b$-Sequenz ein, oder $a$-s und / oder $b$-s in angrenzenden Sequenzen (pro Sequenz aber jeweils nur $a$-s oder $b$-s).
+Widerspruch!
 
 \end{solution}
 
