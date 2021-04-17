@@ -16,7 +16,7 @@ Dann gibt es ein $n \in \N$ so dass jedes $w \in L$ mit $|w| \geq n$ geschrieben
     \item für alle $k \geq 0$ ist auch $v_1 v_2^k v_3 v_4^k v_5 \in L$.
 \end{enumerate}
 
-\textit{Hinweis: Entfernen Sie zunächst alle Umbenennungen aus $G$. Setzen Sie $n = m_{|N| + 1}$ wobei \\ $m_k = \max \Bbraces{|u| + |v| \mid S \implies_g^{\leq k} u A v}$.}
+\textit{Hinweis: Entfernen Sie zunächst alle Umbenennungen aus $G$. Setzen Sie $n = m_{|N| + 1}$ wobei \\ $m_k = \max \Bbraces{|u| + |v| \mid S \Longrightarrow_G^{\leq k} u A v}$.}
 
 \end{exercise}
 
@@ -24,7 +24,72 @@ Dann gibt es ein $n \in \N$ so dass jedes $w \in L$ mit $|w| \geq n$ geschrieben
 
 \begin{solution}
 
-ToDo!
+Sei $G = \abraces{N, T, P, S}$ eine lineare Grammatik mit $\operatorname L(G) = L$.
+O.B.d.A, habe $G$ (bzw. $P$) keine Umbenennungen.
+(Zur Entfernung gehe analog wie im Beweis von Lemma 2.4 vor.)
+O.B.d.A, sei $T \neq \emptyset$.
+(Sonst wähle $n \geq 1$; dann gibt es keine $w \in L$ mit $|w| \geq n$.)
+
+Setze $n = m_{|N| + 1}$ wobei $m_k = \max \Bbraces{|u| + |v| \mid \Exists A \in N: S \Longrightarrow_G^{\leq k} u A v}$.
+
+Offenbar gilt $m_{k_1} \leq m_{k_2}$ für $k_1 \leq k_2$.
+Weil $T \neq \emptyset$, gilt über dies $m_{k+1} \geq m_k + 2$.
+Dazu erweitert man einfach die maximierende Ableitung von $m_k$ durch ein $w \in T$.
+
+\begin{align*}
+    S \Longrightarrow_G^{\leq k} u A v \Longrightarrow_G u w A w v,
+    \quad
+    S \Longrightarrow_G^{\leq k + 1} u w A w v
+\end{align*}
+
+Somit bekommt man die Abschätzung
+
+\begin{align*}
+    m_{k+1} \geq |u w| + |v w| = |u| + |v| + 2 |w| = |u| + |v| + 2 \geq m_k + 2.
+\end{align*}
+
+Sei $w \in L$ mit $|w| \geq n$.
+
+Angenommen, $w$ hat eine Ableitung, sodass $A_1, \dots, A_k$, $k \leq |N|$ alle Nichtterminalsymbole sind, d.h.
+
+\begin{align*}
+    S \Longrightarrow_G l_1 A_1 r_1 \Longrightarrow_G \cdots \Longrightarrow_G l_1 \cdots l_k A_k r_k \cdots r_1 \Longrightarrow_G w,
+\end{align*}
+
+oder
+
+\begin{align*}
+    S \Longrightarrow_G^k l_k A_k r_k \cdots r_1 \Longrightarrow_G w.
+\end{align*}
+
+Damit erhalten wir aber den Widerspruch
+
+\begin{align*}
+    m_{|N| + 1} - 1 \geq m_{k+1} - 1 \geq m_k + 1 \geq |l_k| + |r_k| + 1 \geq |w| \geq n = m_{|N| + 1} > m_{|N| + 1} - 1.
+\end{align*}
+
+Jede Ableitung von $w$ enthält also zwangsläufig $A_1, \dots, A_{|N| + 1} \in N$.
+Seien diese die ersten $|N| + 1$.
+Nach dem Schubfachprinzip, gibt es nun $i, j = 1, \dots, |N|$, mit $i < j$, sodass $A_i = A_j =: A$.
+Eine Ableitung kann man nun schreiben als
+
+\begin{align*}
+    S \Longrightarrow_G^\ast v_1 A v_5 \Longrightarrow_G^\ast v_1 v_2 A v_4 v_5 \Longrightarrow_G^\ast w,
+\end{align*}
+
+oder
+
+\begin{align*}
+    S \Longrightarrow_G^{\leq |N| + 1} v_1 v_2 A v_4 v_5 \Longrightarrow_G^\ast w.
+\end{align*}
+
+1. gilt, weil $G$ keine Umbenennungen hat und wegen der ersten oberen Darstellung.
+Aus dieser liest man auch 3. heraus, indem man den zweiten $\Longrightarrow_G^\ast$ einfach $k$-mal widerholt.
+2. folgt aus der zweiten oberen Darstellung und der Definition von $m_{|N| + 1} = n$, weil
+
+\begin{align*}
+    |v_1 v_2 v_4 v_5| = |v_1 v_2| + |v_4 v_5| \in \Bbraces{|u| + |v| \mid \Exists A \in N: S \Longrightarrow_G^{\leq |N| + 1} u A v}.
+\end{align*}
 
 \end{solution}
 
