@@ -1,0 +1,69 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{The mean of independent normal distributions}]
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Show that the moment generating function (mgf) of $X \sim \mathcal{N}(\mu,\sigma^2)$
+  is of the form
+  \begin{align*}
+    M_X(t) = \exp\left(\mu t +  \frac{\sigma^2 t^2}{2}\right).
+  \end{align*}
+  \item Let $X \sim \mathcal{N}(\mu,\sigma^2)$ and let $Y = aX + b$ with fixed
+  real constants $a$ and $b$. Show that $Y \sim \mathcal{N}(a\mu + b, a^2\sigma^2)$.
+  \item Let $X_1,\dots,X_n$ be independent identically distributed random variables
+  with $X_1 \sim \mathcal{N}(\mu,\sigma^2)$. Show that the mean $\bar{X} = 1/n(X_1 + \dots + X_n)$
+  is also normally distributed and $\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Let $Y \sim \mathcal{N}(0,1)$ be standard normally distributed. Then
+  \begin{align*}
+    M_Y(t) &= \E(\exp(tX)) = \int_{-\infty}^{\infty}\exp(tx)f_X(x)dx \\
+    &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\exp(tx)\exp\left(-\frac{x^2}{2}\right)dx \\
+    &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\exp\left(-\frac{x^2 - 2tx}{2}\right)dx \\
+    &= \frac{1}{\sqrt{2\pi}}\exp\left(\frac{t^2}{2}\right)\int_{-\infty}^{\infty}\exp\left(-\frac{(x-t)^2}{2}\right)dx \\
+    &= \frac{1}{\sqrt{2\pi}}\exp\left(\frac{t^2}{2}\right)\int_{-\infty}^{\infty}\exp\left(-\frac{u^2}{2}\right)du \\
+    &= \exp\left(\frac{t^2}{2}\right).
+  \end{align*}
+  Since $\sigma Y + \mu \sim \mathcal{N}(\mu,\sigma^2)$ we know from the lecture that
+  \begin{align*}
+    M_X(t) = M_{\sigma Y + \mu}(t) = \exp(\mu t)M_X(\sigma t) = \exp\left(\mu t + \frac{\sigma^2 t^2}{2}\right).
+  \end{align*}
+
+  \item Since moment generating functions can characterize distributions we observe from
+
+  \begin{align*}
+    M_Y(t) &= M_{aX + b}(t) = \exp(bt)M_X(at) = \exp\left(bt + \mu at + \frac{(\sigma at)^2}{2}\right) \\
+    &= \exp\left( [a\mu + b]t + \frac{[a\sigma]^2 t^2}{2}\right) = M_Z(t),
+  \end{align*}
+
+  where $Z \sim \mathcal{N}(a\mu + b, a^2\sigma^2)$ that $Y \sim \mathcal{N}(a\mu + b, a^2\sigma^2)$.
+
+  \item Again we calculate the moment generating function of $\bar{X}$:
+  Since the $X_i$ are all mutually independent the calculation of the
+  moment generating function of $\bar{X}$ simplifies to
+
+  \begin{align*}
+    M_{\bar{X}}(t) &= (M_X(t/n))^n =
+    \exp\left(\mu t/n +  \frac{\sigma^2 (t/n)^2}{2}\right)^n =
+    \exp\left(\mu t +  \frac{[\sigma^2/n] t^2}{2}\right).
+  \end{align*}
+
+  Therefore $\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)$.
+\end{enumerate}
+
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

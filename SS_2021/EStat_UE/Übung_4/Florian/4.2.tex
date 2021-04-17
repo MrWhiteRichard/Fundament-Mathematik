@@ -1,0 +1,94 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Sum of two independent distributions]
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Let $X \sim \mathcal{P}(\lambda_1)$ and $Y \sim \mathcal{P}(\lambda_2)$ be
+  two independent Poisson random variables. Show that
+  \begin{align*}
+    X + Y \sim \mathcal{P}(\lambda_1 + \lambda_2).
+  \end{align*}
+  \item Let $U$ and $V$ be two independent random variables with exponential
+  distribution $\exp(\lambda)$. Show that
+
+  \begin{align*}
+    U + V &\sim \text{Gamma}(2,\lambda) \quad \text{and} \\
+    \min\{U,V\} &\sim \exp(2\lambda).
+  \end{align*}
+
+  \textit{Hint:} It is useful to use moment generating functions. Recall, the pdf
+  of a random variable $X \sim \text{Gamma}(\alpha,\beta)$ is
+  \begin{align*}
+    f(x) = \begin{cases}
+      \frac{x^{\alpha-1}\exp(-x/\beta)}{\Gamma(\alpha)\beta^\alpha}, & x > 0, \\
+      0, & x \leq 0
+    \end{cases}
+  \end{align*}
+  and its mgf is of the form $(1/(1- \beta t))^\alpha$ for $t < 1/\beta$.
+  Particularly, the pdf of a random variable $X \sim \exp(\lambda) = \text{Gamma}(1,1/\lambda)$
+  is of the form
+  \begin{align*}
+    f(x) = \begin{cases}
+      \lambda \exp(-\lambda x), & x > 0, \\
+      0, & x \leq 0.
+    \end{cases}
+  \end{align*}
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item We define the random variable $Z := X + Y$.
+  Using the independence of $X$ and $Y$, as well as the binomial formula, we obtain
+
+  \begin{align*}
+    f_Z(x) &= \P(Z = x) = \sum_{i=0}^x \P(X = i)\P(Y = x - i) =
+    \sum_{i=0}^x \frac{\lambda_1^i}{i!}\exp(-\lambda_1)\frac{\lambda_2^{x-i}}{(x-i)!}\exp(-\lambda_2) \\
+    &= \frac{1}{x!}\sum_{i=0}^x\binom{x}{i} \lambda_1^i\lambda_2^{x-i}\exp(-[\lambda_1 +\lambda_2]) \\
+    &= \frac{(\lambda_1 + \lambda_2)^x}{x!}\exp(-[\lambda_1 +\lambda_2]).
+  \end{align*}
+
+  \item Let's use moment generating functions this time. For all $t < \lambda$ it holds
+  \begin{align*}
+    M_{U+V}(t) &= M_U(t)M_V(t) = \lambda^2 \int_0^{\infty}\exp(tx)\exp(-\lambda x) dx
+  \int_0^{\infty}\exp(tx)\exp(-\lambda x) dx \\
+    &=\lambda^2 \int_0^{\infty}\exp(-[\lambda-t] x) dx
+  \int_0^{\infty}\exp(-[\lambda -t] x) dx \\
+  &= \frac{\lambda^2}{(\lambda-t)^2}.
+  \end{align*}
+
+  Let $Z \sim \text{Gamma}(2,\lambda)$. Then for $t < \lambda$ it holds
+
+  \begin{align*}
+    M_Z(t) &= \int_0^\infty \exp(tx) \frac{x\lambda^2\exp(-x\lambda)}{\Gamma(2)} dx \\
+    &= \lambda^2\int_0^\infty  x\exp(-[\lambda -t]x) dx \\
+    &= \frac{\lambda^2}{(\lambda - t)^2}\int_0^\infty  u\exp(-u) du \\
+    &= \frac{\lambda^2}{(\lambda - t)^2}.
+  \end{align*}
+
+  Since we have $M_Z(t) = M_{U+V}(t)$ for all $t < \lambda$ we conclude that
+  $U + V \sim \text{Gamma}(2,\lambda)$.
+
+
+  Define $Z := \min\{U,V\}$. The cumulative distribution function of $U$ and $V$
+  reads \\ $F_U(x) = F_V(x) = 1 - \exp(-\lambda x)$.
+  We use the independence of $U$ and $V$ to calculate
+
+  \begin{align*}
+    F_Z(x) &= \P(Z \leq x) = 1 - \P(Z > x) = 1 - \P(U > x)\P(V > x) = 1 - (1 - F_U(x))^2
+    = 1 - \exp(-\lambda x)^2\\
+    &= 1 - \exp(-2\lambda x).
+  \end{align*}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
