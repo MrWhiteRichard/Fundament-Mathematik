@@ -9,7 +9,7 @@ Sei $G = \abraces{\Bbraces{S}, \Bbraces{a, b, c, +, \cdot}, P, S}$ wobei $P =$
 \end{align*}
 
 Zeigen Sie dass $G$ mehrdeutig ist.
-Ist $\operatorname L$ inhärent mehrdeutig?
+Ist $\operatorname L(G)$ inhärent mehrdeutig?
 
 \end{exercise}
 
@@ -17,7 +17,138 @@ Ist $\operatorname L$ inhärent mehrdeutig?
 
 \begin{solution}
 
-ToDo!
+Betrachte die beiden Ableitungsbäume für $a \cdot b + c$.
+
+\begin{center}
+    \begin{tikzpicture}
+        \node {$S$}
+            child
+            {
+                node {$S$}
+                child
+                {
+                    node {$S$}
+                    child
+                    {
+                        node {$a$}
+                    }
+                }
+                child
+                {
+                    node {$\cdot$}
+                }
+                child
+                {
+                    node {$S$}
+                    child
+                    {
+                        node {$b$}
+                    }
+                }
+            }
+            child
+            {
+                node {$+$}
+            }
+            child
+            {
+                node {$S$}
+                child
+                {
+                    node {$c$}
+                }
+            };
+    \end{tikzpicture}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \node {$S$}
+            child
+            {
+                node {$S$}
+                child
+                {
+                    node {$a$}
+                }
+            }
+            child
+            {
+                node {$\cdot$}
+            }
+            child
+            {
+                node {$S$}
+                child
+                {
+                    node {$S$}
+                    child
+                    {
+                        node {$b$}
+                    }
+                }
+                child
+                {
+                    node {$+$}
+                }
+                child
+                {
+                    node {$S$}
+                    child
+                    {
+                        node {$c$}
+                    }
+                }
+            };
+    \end{tikzpicture}
+\end{center}
+
+Offenbar gilt
+
+\begin{align*}
+    \operatorname L(G)
+    =
+    L
+    :=
+    \Bbraces
+    {
+        \pbraces
+        {
+            \prod_{i=1}^n
+                x_i y_i
+        }
+        x_{n+1}
+        \mid
+        n \in \N, \,
+        x_1, \dots, x_{n+1} \in \Bbraces{a, b, c}, \,
+        y_1, \dots, y_n \in \Bbraces{+, \cdot}
+    }.
+\end{align*}
+
+Folgender NFA zeigt, dass $L$ regulär ist.
+
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm,
+        initial above
+    ]
+    
+        \node [state, initial] (1) {};
+        \node [state, accepting, right of = 1] (2) {};
+        \node [state, right of = 2] (3) {};
+        
+        \draw
+        (1) edge             node [above] {$a, b, c$}  (2)
+        (2) edge [bend left] node [above] {$+, \cdot$} (3)
+        (3) edge [bend left] node [below] {$a, b, c$}  (2);
+    
+    \end{tikzpicture}
+\end{center}
+
+Laut Aufgabe 6, kann $L$ daher auch nicht inhärent mehrdeutig sein.
 
 \end{solution}
 

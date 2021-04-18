@@ -12,7 +12,77 @@ Zeigen Sie dass keine inhärent mehrdeutige reguläre Sprache existiert. \\
 
 \begin{solution}
 
-ToDo!
+Sei $L \subseteq A^\ast$ eine reguläre Sprache und $D = \abraces{Q, A, \delta, q_0, F}$ ein DFA für $L$, d.h. $\operatorname L(D) = L$.
+Definiere die Grammatik $G = \abraces{N, T, P, S}$ durch $N = Q$, $T = A$,
+
+\begin{align*}
+    P = \Bbraces{q \to a p \mid \delta(q, a) = p} \cup \Bbraces{q \to \varepsilon \mid q \in F},
+\end{align*}
+
+und $S = q_0$.
+Dann behaupten wir, dass $\operatorname L(G) = \operatorname L(D) = L$.
+Das wurde im Beweis von Satz 2.1 bereits getan (für $D$ als NFA).
+(Darüber hinaus, wurde gezeigt, dass $G$ strikt rechtslinear ist.)
+Wir zeigen, dass $G$ nun auch eindeutig ist, d.h. für alle $w \in L$ genau ein Ableitungsbaum existiert.
+
+Sei $w = w_1 \cdots w_n$ mit $w_1, \dots, w_n \in A$ und
+
+\begin{align*}
+    \delta(q_0, w_1) =: q_1, \,
+    \delta(q_1, w_2) =: q_2, \,
+    \dots, \,
+    \delta(q_{n-1}, w_n) =: q_n.
+\end{align*}
+
+Weil $D$ ein DFA ist, ist $\delta$ eine Funktion, und $q_1, \dots, q_{n-1} \in Q$, $q_n \in F$ damit eindeutig.
+Laut Definition von $P$ gilt nun
+
+\begin{align*}
+    (q_0 \to w_1 q_1),
+    (q_1 \to w_2 q_2),
+    \dots,
+    (q_{n-1} \to w_n q_n),
+    (q_n \to \varepsilon)
+    \in
+    P.
+\end{align*}
+
+Das können wir auch in Form einer Ableitung von $w$ schreiben.
+
+\begin{align*}
+    S
+    \Longrightarrow_G
+    w_1 q_1
+    \Longrightarrow_G
+    w_1 w_2 q_2
+    \Longrightarrow_G
+    \cdots
+    \Longrightarrow_G
+    w_1 \cdots w_n q_n
+    \Longrightarrow_G
+    w_1 \cdots w_n = w
+\end{align*}
+
+Man sieht nun relativ leicht, dass diese Ableitung durch die Struktur von $D$ und den Aufbau von $w$ prädestiniert ist.
+
+\begin{enumerate}[label = \arabic*., start = 0]
+
+    \item Sie muss jedenfalls, an der $0$-ten Stelle, mit $q_0 = S$ anfangen.
+
+    \item Wenn $w = \varepsilon$, dann steht an der $1$-ten Stelle $\varepsilon$ und wir sind fertig.
+    Weil $G$ strikt rechtslinear ist, steht sonst an der $1$-ten Stelle auf der linken Seite $w_1$.
+    Laut der Definition von $P$, muss auf der rechten Seite $q_1 := \delta(q_0, w_1)$ stehen.
+    
+    \item Wenn $w = w_1$, dann steht an der $2$-ten Stelle $w_1$ und wir sind fertig.
+    Weil $G$ strikt rechtslinear ist, steht sonst an der $2$-ten Stelle auf der linken Seite $w_1 w_2$.
+    Laut der Definition von $P$, muss auf der rechten Seite $q_2 := \delta(q_1, w_2)$ stehen.
+
+    \item [\dots]
+
+\end{enumerate}
+
+Dieser Algorithmus terminiert, weil $n < \infty$.
+Er liefert eine eindeutige Ableitung von $w$.
 
 \end{solution}
 
