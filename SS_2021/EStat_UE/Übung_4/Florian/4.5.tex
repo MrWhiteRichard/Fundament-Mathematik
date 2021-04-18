@@ -18,10 +18,80 @@ Justify your calculations.
 
 \begin{solution}
 
-The central limit theorem states that
+Let $X_{1, 1} \sim \cdots \sim X_{n, 1} \sim X_{1, 2} \sim \cdots \sim X_{n, 2}$ be i.i.d. random variables yielding the samples of draws $1$ and $2$, respectively, i.e.
 
 \begin{align*}
-  \P\left(|\bar{X_1} - \bar{X_2}| < \frac{\sigma}{50}\right)
+    \bar X_1 =: \bar X_{n, 1} = \frac{1}{n} \sum_{i=1}^n X_{i, 1},
+    \quad
+    \bar X_2 =: \bar X_{n, 2} = \frac{1}{n} \sum_{i=1}^n X_{i, 2},
+\end{align*}
+
+with common mean $\mu$ and variance $\sigma^2$.
+Let us calculate the first and second moments of $\bar X_{n, 1} - \bar X_{n, 2}$.
+
+\begin{align*}
+    E(\bar X_{n, 1} - \bar X_{n, 2})
+    & =
+    E
+    \pbraces
+    {
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 1}
+            -
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 2}
+    } \\
+    & =
+    \frac{1}{n}
+    \sum_{i=1}^n
+        E(X_{i, 1}) - E(X_{i, 2}) \\
+    & =
+    \frac{1}{n}
+    \sum_{i=1}^n
+        \mu - \mu \\
+    & =
+    0
+\end{align*}
+
+Note, that $X_{i, 1}$ and $X_{i, 2}$, $i = 1, \dots, n$ are independent.
+
+\begin{align*}
+    V(\bar X_{n, 1} - \bar X_{n, 2})
+    & =
+    V
+    \pbraces
+    {
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 1}
+            -
+        \frac{1}{n}
+        \sum_{i=1}^n
+            X_{i, 2}
+    } \\
+    & =
+    \frac{1}{n^2}
+    \sum_{i=1}^n
+        V(X_{i, 1}) + (-1)^2 V(X_{i, 2}) + \underbrace{\operatorname{Cov}(X_{i, 1}, X_{i, 2})}_0 \\
+    & =
+    \frac{1}{n^2}
+    \sum_{i=1}^n
+        \sigma^2 + \sigma^2 \\
+    & =
+    \frac{2 \sigma^2}{n}
+\end{align*}
+
+Let $m \leq n \in \N$.
+Recall Chebyshev's inequality: $\P(|X - \mu| \geq k \sigma)  \leq \frac{1}{k^2}$.
+We apply the inequality with $k := n/100$.
+
+\begin{align*}
+    &\P \pbraces{|\bar X_{n, 1} - \bar X_{n, 2}| < \frac{\sigma}{50}} \\
+    & = 1 - \P\pbraces{|\bar X_{n, 1} - \bar X_{n, 2}| \geq \frac{\sigma}{50}} \\
+    &\geq 1 - \frac{10000}{n^2} \stackrel{!}{\geq} \frac{99}{100}
+    \iff n^2 \geq 1000.
 \end{align*}
 
 \end{solution}

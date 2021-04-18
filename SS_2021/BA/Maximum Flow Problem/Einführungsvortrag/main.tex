@@ -41,7 +41,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Maximum Flow Problem]{Maximum Flow Problem}
+\title[Maximum Flow Problem]{Maximal flows in networks}
 
 
 \subtitle{Bachelorarbeit aus Diskreter Mathematik}
@@ -159,6 +159,7 @@
     \end{tikzpicture}
   }
   \hspace{1cm}
+  \pause
   \subfloat[$c(S,T) = 3$]{
 
   \begin{tikzpicture}[
@@ -173,10 +174,10 @@
       myarrow/.style={-Stealth},
       node distance=0.8cm and 1.6cm
       ]
-      \node[mycircle, onslide=<1>{violet}] (s) {$s$};
-      \node[mycircle,above right=of s, onslide=<1>{violet}] (v1) {$v_1$};
-      \node[mycircle,below right=of s, onslide=<1>{violet}] (v2) {$v_2$};
-      \node[mycircle,above right=of v2, onslide=<1>{olive}] (t) {$t$};
+      \node[mycircle, onslide=<2>{violet}] (s) {$s$};
+      \node[mycircle,above right=of s, onslide=<2>{violet}] (v1) {$v_1$};
+      \node[mycircle,below right=of s, onslide=<2>{violet}] (v2) {$v_2$};
+      \node[mycircle,above right=of v2, onslide=<2>{olive}] (t) {$t$};
 
 
       \node[above=of v1]{\textbf{Minimaler Cut $({\color{violet}S},{\color{olive}T})$}};
@@ -185,8 +186,8 @@
 
     \draw [myarrow] (s) -- node[sloped,font=\small,above] {2} (v1);
     \draw [myarrow] (s) -- node[sloped,font=\small,below] {1} (v2);
-    \draw [myarrow, onslide=<1>{highlight}] (v1) -- node[sloped,font=\small,above] {1} (t);
-    \draw [myarrow, onslide=<1>{highlight}] (v2) -- node[sloped,font=\small,below] {2} (t);
+    \draw [myarrow, onslide=<2>{highlight}] (v1) -- node[sloped,font=\small,above] {1} (t);
+    \draw [myarrow, onslide=<2>{highlight}] (v2) -- node[sloped,font=\small,below] {2} (t);
     \draw [myarrow] (v2.70) -- node[sloped,font=\small,below] {1} (v1.290);
     \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {1} (v2.110);
 
@@ -207,7 +208,7 @@
     \pause
 
 
-    Sei $(v_0,\dots,v_n)$ die zum Pfad zugehörige Kantenfolge.
+    Sei $(v_0,\dots,v_n)$ die zum Pfad zugehörige Knotenfolge.
     Dann heißt jede Kante der Form $v_{i-1}v_{i}$ eine Vorwärts-Kante
     und jede Kante der Form $v_{i}v_{i-1}$ eine Rückwärts-Kante.
 
@@ -217,7 +218,7 @@
 
   \begin{definition*}[Erweiternder Pfad]
     Ein erweiternder Pfad bezüglich einem Fluss $f$ in einem Flussnetzwerk
-    $N = (G,c,s,t)$ ist ein Pfad $P$,
+    $N = (G,c,s,t)$ ist ein Pfad $P$ von $s$ nach $t$,
     sodass $f(e) < c(e)$ für alle Vorwärts-Kanten $e \in P$ und $f(e) > 0$
     für alle Rückwärts-Kanten $e \in P$ gilt.
   \end{definition*}
@@ -259,6 +260,7 @@
 
     \end{tikzpicture}
   }
+  \pause
   \hspace{1cm}
   \subfloat[$w(f_1) = 3$]{
     \begin{tikzpicture}[
@@ -281,11 +283,11 @@
         \node[above=of v1]{\textbf{Erweiterter Fluss $f_1$}};
 
 
-      \draw [myarrow] (s) -- node[sloped,font=\small,above, onslide=<1>{green}] {(2/2)} (v1);
+      \draw [myarrow] (s) -- node[sloped,font=\small,above, onslide=<2>{green}] {(2/2)} (v1);
       \draw [myarrow] (s) -- node[sloped,font=\small,below] {(1/1)} (v2);
       \draw [myarrow] (v1) -- node[sloped,font=\small,above] {(1/1)} (t);
-      \draw [myarrow] (v2) -- node[sloped,font=\small,below, onslide=<1>{green}] {(2/2)} (t);
-      \draw [myarrow] (v2.70) -- node[sloped,font=\small,below, onslide=<1>{red}] {(0/1)} (v1.290);
+      \draw [myarrow] (v2) -- node[sloped,font=\small,below, onslide=<2>{green}] {(2/2)} (t);
+      \draw [myarrow] (v2.70) -- node[sloped,font=\small,below, onslide=<2>{red}] {(0/1)} (v1.290);
       \draw [myarrow] (v1.250) -- node[sloped,font=\small,above,rotate=180] {(1/1)} (v2.110);
 
     \end{tikzpicture}
@@ -382,9 +384,10 @@
 
       \node[mycircle,right=of v4, onslide=<6>{blue}] (v5) {$v_5$};
       \node[below=0cm of v5, visible on=<5-6>, font=\small] {$(v_4, +, 10)$};
-      \node[below=0cm of v5, visible on=<11-12>, font=\small] {$(v_4, +, 9)$};
+      \node[below=0cm of v5, visible on=<10-12>, font=\small] {$(v_4, +, 9)$};
 
       \node[mycircle,right=of v3, onslide=<12>{blue}] (v6) {$v_6$};
+      \node[above=0cm of v6, visible on=<4-6>, font=\small] {$(v_3, +, 10)$};
       \node[above=0cm of v6, visible on=<11-12>, font=\small] {$(v_3, +, 10)$};
 
       \node[mycircle,below right=of v6] (t) {$t$};
@@ -455,10 +458,10 @@
 
   \pause
 
-  \begin{remark*}[Modifikation: Edmonds und Karp]
+  \begin{modifikation*}[Edmonds und Karp]
     Wird die Reihenfolge, in der die Knoten mit Labeln versehen werden, gemäß
     einer Breitensuche gewählt, so lässt sich der Aufwand auf $O(|V||E|^2)$ reduzieren.
-  \end{remark*}
+  \end{modifikation*}
 
   \end{frame}
 
