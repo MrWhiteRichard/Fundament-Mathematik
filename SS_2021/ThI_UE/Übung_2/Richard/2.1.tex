@@ -11,75 +11,114 @@ Geben Sie eine kontextfreie Grammatik an die $L$ erzeugt.
 
 \begin{solution}
 
-Zwecks besseren Verständnisses, listen wir die Elemente von $L$ für verschiedene $n \in \N$ auf.
-Dabei bezeichnet $x \cdot x = x^m$ für irgendein beliebiges $m \in \N$.
-Wenn der Ausdruck mehrmals vorkommt, dürfen die $m$ auch unterschiedlich sein.
+Die fehlende Quantisierung für $n$ lässt 2 zulässige Interpretationen von $L$ zu.
 
-\begin{itemize}
+\begin{enumerate}
 
-    \item $n = 0$:
+    \item Interpretation ($L = L_n := \Bbraces{w c^n \mid w \in \Bbraces{a, b}^\ast, n_a(w) = n ~\text{oder}~ n_b(w) = n}$, $n \in \N$):
+    
+    An diese habe ich ursprünglich gedacht.
+
+    Zwecks besseren Verständnisses, listen wir die Elemente von $L$ für verschiedene $n \in \N$ auf.
+    Dabei bezeichnet $x \cdot x = x^m$ für irgendein beliebiges $m \in \N$.
+    Wenn der Ausdruck mehrmals vorkommt, dürfen die $m$ auch unterschiedlich sein.
+    
+    \begin{itemize}
+    
+        \item $n = 0$:
+        
+        \begin{align*}
+            a \cdots a \\
+            b \cdots b \\
+        \end{align*}
+    
+        \item $n = 1$:
+        
+        \begin{align*}
+            (a \cdots a) b (a \cdots a) c \\
+            (b \cdots b) a (b \cdots b) c \\
+        \end{align*}
+    
+        \item $n = 2$:
+        
+        \begin{align*}
+            (a \cdots a) b (a \cdots a) b (a \cdots a) c^2 \\
+            (b \cdots b) a (b \cdots b) a (b \cdots b) c^2 \\
+        \end{align*}
+    
+        \item $n \in \N$:
+        
+        \begin{align*}
+            \underbrace
+            {
+                ((a \cdots a) b)
+                \cdots
+                ((a \cdots a) b)
+            }_{
+                \text{$n$-mal}
+            }
+            (a \cdots a)
+            c^n \\
+            \underbrace
+            {
+                ((b \cdots b) a)
+                \cdots
+                ((b \cdots b) a)
+            }_{
+                \text{$n$-mal}
+            }
+            (b \cdots b)
+            c^n \\
+        \end{align*}
+    \end{itemize}
+    
+    Wir wollen nun all diese Wörter systematisch aufbauen, mit einem endlichem Regelwerk $P$.
+    Sei dabei aber o.B.d.A. $n \neq 0$.
     
     \begin{align*}
-        a \cdots a \\
-        b \cdots b \\
+        P
+        =
+        \begin{cases}
+            S \to X^n C^n \mid Y^n C^n, \\
+            X \to X B \mid B X, \\
+            Y \to Y A \mid A Y, \\
+            A \to a, \\
+            B \to b, \\
+            C \to c            
+        \end{cases}
     \end{align*}
-
-    \item $n = 1$:
+    
+    Die kontextfreie Grammatik $G = \abraces{N, T, P, S}$ erzeugt $L$.
     
     \begin{align*}
-        (a \cdots a) b (a \cdots a) c \\
-        (b \cdots b) a (b \cdots b) c \\
+        N = \Bbraces{S, X, Y, A, B, C},
+        \quad
+        T = \Bbraces{a, b, c}
     \end{align*}
 
-    \item $n = 2$:
+    \item Interpretation ($L = \bigcup_{n \in \N} L_n$):
     
+    Man wäre möglicherweise nun dazu geneigt, Satz 2.2 zu verwenden; d.h. die Abschlusseigenschaft kontextfreier Sprachen unter Vereinigung.
+    Diese wurde aber nur für endliche Vereinigungen bewiesen.
+    Wir gehen also zu Fuß mit $G = \abraces{N, T, P, S}$, wobei
+
     \begin{align*}
-        (a \cdots a) b (a \cdots a) b (a \cdots a) c^2 \\
-        (b \cdots b) a (b \cdots b) a (b \cdots b) c^2 \\
+        N = \Bbraces{S, A, B},
+        \quad
+        T = \Bbraces{a, b},
+        \quad
+        P
+        =
+        \begin{cases}
+            S \to A \mid B, \\
+            A \to a A c \mid b A \mid \varepsilon, \\
+            B \to b B c \mid a B \mid \varepsilon.
+        \end{cases}
     \end{align*}
 
-    \item $n \in \N$:
-    
-    \begin{align*}
-        \underbrace
-        {
-            ((a \cdots a) b)
-            \cdots
-            ((a \cdots a) b)
-        }_{
-            \text{$n$-mal}
-        }
-        (a \cdots a)
-        c^n \\
-        \underbrace
-        {
-            ((b \cdots b) a)
-            \cdots
-            ((b \cdots b) a)
-        }_{
-            \text{$n$-mal}
-        }
-        (b \cdots b)
-        c^n \\
-    \end{align*}
-\end{itemize}
+\end{enumerate}
 
-Wir wollen nun all diese Wörter systematisch aufbauen, mit einem endlichem Regelwerk $P$.
-Sei dabei aber o.B.d.A. $n \neq 0$.
-
-\begin{gather*}
-    S \to X^n C^n \mid Y^n C^n, \\
-    X \to X B \mid B X, \quad Y \to Y A \mid A Y, \\
-    A \to a, \quad B \to b, \quad C \to c
-\end{gather*}
-
-Die kontextfreie Grammatik $G = \abraces{N, T, P, S}$ erzeugt $L$.
-
-\begin{align*}
-    N = \Bbraces{S, X, Y, A, B, C},
-    \quad
-    T = \Bbraces{a, b, c}
-\end{align*}
+Die missverständliche Formulierung der Angabe kostet zwar etwas Zeit, wirft aber gleichzeitig die Frage auf, wann unendliche Vereinigeungen (oder vielleicht sogar Grenzwerte) von kontextfreien Sprachen wieder kontextfrei sind.
 
 \end{solution}
 
