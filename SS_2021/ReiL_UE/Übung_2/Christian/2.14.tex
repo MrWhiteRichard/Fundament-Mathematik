@@ -24,27 +24,52 @@ If $\gamma = 0.5$?
   v_{\pi_\textbf{left}}(\text{top}) = 1
 \end{align*}
 
-So in this case the optimal policy would be $\pi_\textbf{left}$.
+In both bottom states we get the same reward regardless of the policy we follow,
+so in this case the optimal policy would be $\pi_\textbf{left}$.
 
-2. $\gamma = 0.9$: With the Bellman equation \eqref{eq:2.14} we get
+2. $\gamma = 0.9$: We call the bottom states left and right and with the Bellman equation \eqref{eq:2.14} we get
 
 \begin{align*}
   v_{\pi_\textbf{right}}(\text{top})
   =
-  0.9 \cdot v_{\pi_\textbf{right}}(\text{bottom})
+  0.9 \cdot v_{\pi_\textbf{right}}(\text{right})
   =
   0.9 \cdot (2 + 0.9 \cdot v_{\pi_\textbf{right}}(\text{top}))
   \implies
   v_{\pi_\textbf{right}}(\text{top}) = \frac{180}{19} \\
   v_{\pi_\textbf{left}}(\text{top})
   =
-  1 + (0.9 \cdot v_{\pi_\textbf{left}}(\text{bottom}))
+  1 + (0.9 \cdot v_{\pi_\textbf{left}}(\text{left}))
   =
   1 + 0.81 \cdot v_{\pi_\textbf{left}}(\text{top})
   \implies
-  v_{\pi_\textbf{left}}(\text{top}) = \frac{100}{19}
+  v_{\pi_\textbf{left}}(\text{top}) = \frac{100}{19} \\
 \end{align*}
 
+For the bottom states we get:
+
+\begin{align*}
+  v_{\pi_\textbf{right}}(\text{right})
+  =
+  2 + 0.9 \cdot v_{\pi_\textbf{right}}(\text{top})
+  =
+  10\\
+  v_{\pi_\textbf{right}}(\text{left})
+  =
+  0.9 \cdot v_{\pi_\textbf{right}}(\text{top})
+  =
+  \frac{162}{19}\\
+  v_{\pi_\textbf{left}}(\text{right})
+  =
+  2 + 0.9 \cdot v_{\pi_\textbf{left}}(\text{top})
+  =
+  \frac{118}{19} \\
+  v_{\pi_\textbf{left}}(\text{left})
+  =
+  0.9 \cdot v_{\pi_\textbf{left}}(\text{top})
+  =
+  \frac{90}{19}
+\end{align*}
 So in this case the optimal policy would be $\pi_\textbf{right}$.
 
 3. $\gamma = 0.5$: With the Bellman equation \eqref{eq:2.14} we get:
@@ -64,6 +89,31 @@ v_{\pi_\textbf{left}}(\text{top})
 1 + 0.25 \cdot v_{\pi_\textbf{left}}(\text{top})
 \implies
 v_{\pi_\textbf{left}}(\text{top}) = \frac{4}{3}
+\end{align*}
+
+For the bottom states we get:
+
+\begin{align*}
+v_{\pi_\textbf{right}}(\text{right})
+=
+2 + 0.5 \cdot v_{\pi_\textbf{right}}(\text{top})
+=
+\frac{8}{3}\\
+v_{\pi_\textbf{right}}(\text{left})
+=
+0.5 \cdot v_{\pi_\textbf{right}}(\text{top})
+=
+\frac{2}{3}\\
+v_{\pi_\textbf{left}}(\text{right})
+=
+2 + 0.5 \cdot v_{\pi_\textbf{left}}(\text{top})
+=
+\frac{8}{3} \\
+v_{\pi_\textbf{left}}(\text{left})
+=
+0.5 \cdot v_{\pi_\textbf{left}}(\text{top})
+=
+\frac{2}{3}
 \end{align*}
 
 So in this case both policies are optimal.
