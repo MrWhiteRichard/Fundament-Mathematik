@@ -1,8 +1,18 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}[Coin throws]
 
-ToDo!
+An unfair coin is trown $600$ times.
+The probability of geting a tail in each throw is $\frac{1}{4}$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Use a Binomial distribution to compute the probability that the number of heads obtained does not differ more than $10$ from $450$.
+    
+    \item Use a Normal approximation without a continuity correction to calculate the probability in (a).
+    How does the result change if the approimation is provided with a continuity correction?
+
+\end{enumerate}
 
 \end{exercise}
 
@@ -10,7 +20,55 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Let $X$ denote the number of heads.
+    
+    \begin{align*}
+        \P(|X - 450| \not > 10)
+        & =
+        \P(|X - 450| \leq 10) \\
+        & =
+        P(440 \leq X \leq 460) \\
+        & =
+        \sum_{k=440}^{460} f_X(k) \\
+        & \approx
+        0.6778428341479965
+    \end{align*}
+
+    \item Let $\mu := \E X$ and $\sigma := \sqrt{\Var X}$, then, according to \cite[Lecture 4, Slide 69]{EStat},
+    
+    \begin{align*}
+        Y := \frac{X - \mu}{\sigma} \approx \mathcal N(0, 1).
+    \end{align*}
+
+    \begin{align*}
+        \P(440 \leq X \leq 460)
+        & =
+        \P \pbraces{\frac{440 - \mu}{\sigma} \leq Y < \frac{460 - \mu}{\sigma}} \\
+        & \approx
+        \Phi \pbraces{\frac{460 - \mu}{\sigma}} - \Phi \pbraces{\frac{440 - \mu}{\sigma}} \\
+        & \approx
+        0.6542214138488397
+    \end{align*}
+
+    Apparently, continuity correction backfires.
+
+    \begin{align*}
+        \P(440 \leq X \leq 460)
+        & =
+        \P(440 - 0.5 \leq X < 460 + 0.5) \\
+        & =
+        \P \pbraces{\frac{440 - 0.5 - \mu}{\sigma} \leq Y \frac{460 + 0.5 - \mu}{\sigma}} \\
+        & \approx
+        \Phi \pbraces{\frac{460 + 0.5 - \mu}{\sigma}} - \Phi \pbraces{\frac{440 - 0.5 - \mu}{\sigma}} \\
+        & \approx
+        0.6295702089514392
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
