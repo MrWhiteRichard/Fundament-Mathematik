@@ -1,8 +1,17 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}[Distribution of the maximum]
 
-ToDo!
+Let $X_1, X_2, \dots$ be a sequence of i.i.d. with uniform $(0, 1)$ distribution and let $X_{(n)} = \max_{1 \leq i \leq n} X_i$.
+Show that the sequence
+
+\begin{align*}
+    Y_n = n (1 - X_{(n)}),
+    \quad
+    n \in \N
+\end{align*}
+
+converges to an exponential $\exp(1)$ random variable as $n \to \infty$.
 
 \end{exercise}
 
@@ -10,7 +19,41 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+\begin{align*}
+    F_{Y_n}(x)
+    & =
+    \P(Y_n \leq x) \\
+    & =
+    \P(n (1 - Y_{(n)}) \leq x) \\
+    & =
+    \P \pbraces{1 - \frac{x}{n} \leq X_{(n)}} \\
+    & =
+    \P \pbraces{1 - \frac{x}{n} \leq \max_{i=1}^n X_i} \\
+    & =
+    1 - \P \pbraces{1 - \frac{x}{n} > \max_{i=1}^n X_i} \\
+    & =
+    1 - \P \pbraces{\bigwedge_{i=1}^n 1 - \frac{x}{n} > X_i} \\
+    & =
+    1 - \prod_{i=1}^n \P \pbraces{1 - \frac{x}{n} > X_i} \\
+    & =
+    1
+    -
+    \Bbraces
+    {
+        \begin{array}{llll}
+            1,                           & 1 - \frac{x}{n} \leq 0  & \iff & n \leq x, \\
+            \pbraces{1 - \frac{x}{n}}^n, & 0 < 1 - \frac{x}{n} < 1 & \iff & 0 < x < n, \\
+            0,                           & 1 - \frac{x}{n} \geq 1  & \iff & x \leq 0            
+        \end{array}
+    } \\
+    & \xrightarrow{n \to \infty}
+    \begin{cases}
+        1,             & x \leq 0, \\
+        1 - \exp*{-x}, & x > 0.
+    \end{cases}
+\end{align*}
+
+
 
 \end{solution}
 
