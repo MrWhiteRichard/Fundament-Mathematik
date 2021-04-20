@@ -1,8 +1,24 @@
 % --------------------------------------------------------------------------------
 
-\begin{exercise}
+\begin{exercise}[Conditional variance]
 
-ToDo!
+\phantom{}
+    
+\begin{enumerate}[label = (\alph*)]
+
+    \item Show that for any two random variables $X$ and $Y$ the conditional variance identity holds
+    
+    \begin{align*}
+        \Var Y = \E(Var \, (Y \mid X)) + \Var(\E(Y \mid X)),
+    \end{align*}
+
+    provided that the expectations exist.
+    The law of total expectation (thw tower property) $\E X = \E(\E(Y \mid X))$ should be applied.
+
+    \item Suppose that the distribution of $Y$ conditional on $X = x$ is $\mathcal N (x, x^2)$ and that the marginal distribution of $X$ is uniform on $(0, 1)$.
+    Compute $\E Y$ , $\Var Y$ and $\Cov(X, Y)$.
+
+\end{enumerate}
 
 \end{exercise}
 
@@ -10,7 +26,98 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+Conditional variance is just like variance, just replace ordinary expectation with conditional expectation (\cite[Lecture 4, Slide 31]{EStat}).
+
+\begin{align*}
+    \Var(Y \mid X)
+    & =
+    \E \pbraces{(Y - \E(Y \mid X))^2 \mid X} \\
+    & =
+    \E(Y^2 \mid X) + \E(Y \mid X)^2
+\end{align*}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item We copy the proof from \cite[Lecture 4, Slide 31]{EStat}.
+    If $Y$ is integrable, by taking $a(X) = \E Y$ (constant), the law of total expectation and the Conditional Parallel Axis Theorem \cite[Lecture 4, Slide 30]{EStat}, give
+
+    \begin{align*}
+        \Var Y
+        & =
+        \E((Y - \E Y)^2) \\
+        & =
+        \E((Y - a(X))^2) \\
+        & =
+        \E(\E((Y - a(X))^2 \mid X)) \\
+        & =
+        \E(\Var(Y \mid X)) + \E((\E(Y \mid X) - a(X))^2) \\
+        & =
+        \E(\Var(Y \mid X)) + \E((\E(Y \mid X) - \E Y)^2) \\
+        & =
+        \E(\Var(Y \mid X)) + \E((\E(Y \mid X) - \E(\E(Y \mid X)))^2) \\
+        & =
+        \E(\Var(Y \mid X)) + \Var(\E(Y \mid X)),
+    \end{align*}
+
+    which obtains the iterated variance formula.
+
+    \item
+
+    \begin{align*}
+        \E Y
+        & =
+        \E(\E(Y \mid X)) \\
+        & =
+        \E X \\
+        & =
+        \frac{1}{2}
+    \end{align*}
+
+    \begin{align*}
+        \E(X^2)
+        & =
+        \Int[0][1]{x^2}{x} \\
+        & =
+        \frac{1}{3}
+    \end{align*}
+
+    \begin{align*}
+        \Var Y
+        & =
+        \E(\Var(Y \mid X)) + \Var(\E(Y \mid X)) \\
+        & =
+        \E(X^2) + \Var X \\
+        & =
+        \frac{1}{3} + \frac{1}{12} \\
+        & =
+        \frac{5}{12}
+    \end{align*}
+
+    \begin{align*}
+        \E(X Y)
+        & =
+        \E(\E(X Y \mid X)) \\
+        & =
+        \E(X \E(Y \mid X)) \\
+        & =
+        \E(X^2) \\
+        & =
+        \frac{1}{3}
+    \end{align*}
+
+    \begin{align*}
+        \Cov(X, Y)
+        & =
+        \E(X, Y) - \E X \E Y \\
+        & =
+        \frac{1}{3} - \frac{1}{2} \frac{1}{2} \\
+        & =
+        \frac{4}{12} - \frac{3}{12} \\
+        & =
+        \frac{1}{12}
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
