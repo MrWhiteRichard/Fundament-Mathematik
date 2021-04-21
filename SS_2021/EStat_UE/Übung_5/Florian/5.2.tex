@@ -1,0 +1,60 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Coin throws}]
+
+An unfair coin is thrown 600 times. The probability of getting a tail in each throw
+is $1/4$.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Use a Binomial distribution to compute the probability that the number of heads
+  obtained does not differ more than 10 from 450.
+  \item Use a Normal approximation without a continuity correction to calculate
+  the probability in (a). How does the result change if the approximation is provided
+  with a continuity correction?
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Let $X \sim \text{Binomial}(600,3/4)$ be the random variable that counts
+  the number of heads thrown with the unfair coin. Then,
+  \begin{align*}
+    &\P(440 \leq X \leq 460) = \sum_{n=440}^{460}\binom{600}{n}\frac{3^n}{4^{600}} \\
+    &= \frac{72946393215242439663366540816675566594258009167228823640961897469976
+    13723172686748472976865268180653427829957410396645333886215117910159417016477
+    63333403979901185681131458921634490462398604891829481761747172949210831227867
+    32935051080909386844450732322560656810685718440056180134770446272990874788233
+    6656751594918782146250420350108133903926928149742871116830239}
+    {107615496602410941362921110600328971772374529659054312010832730102504629320
+    2609101212342783577252885830398182439497599236786557955676041314061975617670
+    5448340412189669784994300552924935325034452441541915261910328894591053292650
+    3557561828586037737291154594898598371462366966116173641883629982754827985299
+    2159749169546641960180764219762832432152244594446314766336} \\
+    &\approx 0.6778428.
+  \end{align*}
+  \item We use the approximation
+  \begin{align*}
+    Y := \frac{X - 450}{\sqrt{450/4}} = \frac{X - np}{\sqrt{np(1-p)}} \approx \mathcal{N}(0,1)
+  \end{align*}
+  and calculate (without continuity correction)
+  \begin{align*}
+    \P(440 \leq X \leq 460) &= \P\left( - \frac{10}{\sqrt{450/4}} \leq Y \leq \frac{10}{\sqrt{450/4}}\right) \\
+    &\approx 2\Phi\left(\frac{10}{\sqrt{450/4}}\right) - 1 \approx 0.65422.
+  \end{align*}
+  Using continuity correction we obtain with
+  \begin{align*}
+  \P(440 \leq X \leq 460) &= \P(439.5 \leq X < 460.5) = \P\left( - \frac{10.5}{\sqrt{450/4}} \leq Y \leq \frac{10.5}{\sqrt{450/4}}\right) \\
+  &\approx 2\Phi\left(\frac{10.5}{\sqrt{450/4}}\right) - 1 \approx 0.6778012
+  \end{align*}
+  a much better approximation.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

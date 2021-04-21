@@ -1,0 +1,74 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item \textbf{Delta method}
+
+  Let $X_1,\dots,X_n$ be i.i.d from normal distribution with unknown mean $\mu$
+  and known variance $\sigma^2$. Let $\bar{X}_n = 1/n\sum_{i=1}^n X_i$.
+  Find the limiting distribution of $\sqrt{n}\left(\bar{X}^3 -c\right)$ for an
+  appropriate constant $c$.
+
+  \item \textbf{Logit transformation}
+
+  Let $X_n \sim \mathrm{Binomial}(n,p)$. Consider the logit transformation, defined by
+
+  \begin{align*}
+    \mathrm{logit}(y) = \ln\left(\frac{y}{1-y}\right), \quad 0 < y < 1.
+  \end{align*}
+
+  Determine the approximate distribution of $\mathrm{logit}(X_n/n)$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item We use the Delta method with the function
+  $g(x) = \sigma^3x^3$, $\alpha = 1/2 > 0, \theta = \mu/\sigma$
+  and derivative $g'(x) = 3\sigma^3x^2$.
+  The central limit theorem tells us
+  \begin{align*}
+    \sqrt{n}\left(\frac{\bar{X}_n - \mu}{\sigma}\right) \xrightarrow{\ d \ } \mathcal{N}(0,1).
+  \end{align*}
+  Applying the Delta method we obtain for $c := \mu^3$
+  \begin{align*}
+    \sqrt{n}\left(g\left(\frac{\bar{X}_n}{\sigma}\right) - g\left(\frac{\mu}{\sigma}\right)\right)
+    = \sqrt{n}(\bar{X_n}^3 - \mu^3) \xrightarrow{\ d \ } g'\left(\frac{\mu}{\sigma}\right)\mathcal{N}(0,1)
+    = \sigma\mu^2\mathcal{N}(0,1) = \mathcal{N}(0, \sigma^2\mu^4).
+  \end{align*}
+
+  \item We know from the central limit theorem that
+
+  \begin{align*}
+    \sqrt{n}(\bar{X_n} - p) \xrightarrow{\ d \ } \mathcal{N}(0,p(1-p))
+  \end{align*}
+
+  and therefore with $\mathrm{logit}'(y) = 1/(y(1-y))$ we obtain with the Delta method that
+
+  \begin{align*}
+    \sqrt{n}(\mathrm{logit}(\bar{X_n}) - \mathrm{logit}(p)) \xrightarrow{\ d \ }
+    g'(p)\mathcal{N}(0,p(1-p)) = \mathcal{N}\left(0,\frac{1}{p(1-p)}\right)
+  \end{align*}
+
+  and therefore
+
+  \begin{align*}
+    \mathrm{logit}(\bar{X_n}) \xrightarrow{\ d \ }
+    \mathcal{N}\left(\ln\left(\frac{p}{1-p}\right),\frac{1}{np(1-p)}\right).
+  \end{align*}
+
+\end{enumerate}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

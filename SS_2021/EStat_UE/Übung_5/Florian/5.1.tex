@@ -1,0 +1,39 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Distribution of the maximum}]
+
+Let $X_1,X_2,\dots$ be a sequence of i.i.d. random variables with uniform $(0,1)$
+distribution and let $X_{(n)} = \max_{1 \leq i \leq n} X_i$.
+Show that the sequence
+
+\begin{align*}
+  Y_n = n(1 - X_{(n)}), \quad n \in \N
+\end{align*}
+
+converges to an exponential $\exp(1)$ random variable as $n \to \infty$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+We first calculate the cumulative distribution function for the random variable $X_{(n)}$:
+
+\begin{align*}
+  F_{X_{(n)}}(x) = \P(X_{(n)} \leq x) = \prod_{i=1}^n \P(X_i \leq x) = \prod_{i=1}^n F_{X_i}(x)
+  = x^n.
+\end{align*}
+Let $Y \sim \exp(1)$ with cdf $F_Y(x) = 1 - \exp(x)$.
+Now we observe for $F_{Y_n}$ that for all $x \in (0,1)$
+\begin{align*}
+  F_{Y_n}(x) &= \P(Y_n \leq x) = \P(n(1 - X_{(n)}) \leq x)
+  = \P\left(X_{(n)} \geq 1 - \frac{x}{n}\right) \\
+  &= 1 - F_{X_{(n)}}\left(1 - \frac{x}{n}\right)
+  = 1 - \left(1 - \frac{x}{n}\right)^n \xrightarrow{n \to \infty} 1 - \exp(x) = F_Y(x).
+\end{align*}
+By definition, this means that $Y_n$ converges to $Y$ in distribution.
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

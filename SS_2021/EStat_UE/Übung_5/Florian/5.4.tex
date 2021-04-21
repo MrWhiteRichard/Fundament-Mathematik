@@ -1,0 +1,57 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Conditional variance}]
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Show that for any two random variables $X$ and $Y$ the conditional variance
+  identity holds
+
+  \begin{align*}
+    \V(Y) = \E[\V(Y|X)] + \V(E[Y|X]),
+  \end{align*}
+
+  provided that the expectations exist. The law of total expectation (the tower property)
+  $\E[X] = \E[\E[X|Y]]$ should be applied.
+
+  \item Suppose that the distribution of $Y$ conditional on $X = x$ is $\mathcal{N}(x,x^2)$
+  and that the marginal distribution of $X$ is uniform on $(0,1)$. Compute
+  $\E[Y], \V(Y)$ and $\mathrm{Cov}(X,Y)$.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item
+
+  \begin{align*}
+    \V(Y) &= \E\left[(Y - E[Y])^2\right] = \E[Y^2] - \E[Y]^2 \\
+    &= \E\left[\E[Y^2|X] - \E[Y|X]^2 + \E[Y|X]^2\right] - \E[Y]^2 \\
+    &= \E[\V(Y|X)] + \E\left[\E[Y|X]^2\right] - \E[\E[Y|X]]^2 \\
+    &= \E[\V(Y|X)] + \V(\E[Y|X]).
+  \end{align*}
+
+  \item
+
+  \begin{align*}
+    \E[Y] &= \E[\E[Y|X]] = \E[X] = \frac{1}{2}. \\
+    \V(Y) &= \E[X^2] + \V(X) = \frac{1}{3} + \frac{1}{12} = \frac{5}{12}. \\
+    \mathrm{Cov}(X,Y) &= \E[(X - \E[X])(Y - \E[Y])]
+    = \E\left[\left(X - \frac{1}{2}\right)\left(Y - \frac{1}{2}\right)\right] \\
+    &= \E[XY] - \frac{1}{2}(\E[X] + \E[Y]) + \frac{1}{4} \\
+    &= \E[\E[XY|X]] - \frac{1}{4} \\
+    &= \E[X\E[Y|X]] - \frac{1}{4} \\
+    &= \E[X^2] - \frac{1}{4} = \frac{1}{12}.
+  \end{align*}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
