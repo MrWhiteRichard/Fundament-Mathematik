@@ -2,7 +2,32 @@
 
 \begin{exercise}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Delta method
+    
+    Let $X_1, \dots, X_n$ be i.i.d. from normal distribution with unknown mean $\mu$ and known variance $\sigma^2$.
+    Let $\bar X = \frac{1}{n} \sum_{i=1}^n X_i$.
+    Find the limiting distribution of $\sqrt n \pbraces{\bar X^3 - c}$ for an appropriate constant $c$.
+
+    \item Logit transformation
+    
+    Let $X_n \sim \mathit{bin}(n, p)$.
+    Consider the logit transformation, defined by
+
+    \begin{align*}
+        \mathit{logit}(y)
+        =
+        \ln \frac{y}{1 - y},
+        \quad
+        0 < y < 1.
+    \end{align*}
+
+    Determine the approximate distribution of $\mathit{logit} \pbraces{\frac{X_n}{n}}$.
+
+\end{enumerate}
 
 \end{exercise}
 
@@ -10,7 +35,119 @@ ToDo!
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Due to the CLT, we have \cite[Lecture 4, Slide 59]{EStat}
+    
+    \begin{align*}
+        \sqrt n (\bar X - \mu) \xrightharpoondown[n \to \infty]{\mathrm d} \mathcal N(0, \sigma^2).
+    \end{align*}
+
+    Let $g(x) := x^3$, then
+
+    \begin{gather*}
+        g(\bar X) = \bar X ^3, \quad g(\mu) = \mu^3 =: c, \\
+        g^\prime(x) = 3 x^2, \quad \sigma g^\prime(\mu) = 3 \mu^2 \sigma =: s.
+    \end{gather*}
+
+    The lemma from \cite*[Lecture 5, Slide 10]{EStat} then implies
+
+    \begin{align*}
+        \sqrt n (\bar X^3 - c)
+        =
+        \sqrt n (g(\bar X) - g(\mu))
+        \xrightarrow[n \to \infty]{\mathrm d}
+        \mathcal N(0, \sigma^2 (g^\prime(\mu))^2)
+        =
+        \mathcal N(0, s^2).
+    \end{align*}
+
+    \item
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Step (CLT):
+        
+        Let $Y, Y_1, \dots, Y_n \sim \mathit{ber}(p)$ be i.i.d. and $X_n = \sum_{i=1}^n Y_i$.
+
+        \begin{align*}
+            \bar Y_n := \frac{1}{n} \sum_{i=1}^n Y_i = \frac{X_n}{n}
+        \end{align*}
+
+        Applying the CLT obtains
+
+        \begin{align*}
+            Z_n
+            :=
+            \sqrt n \frac{\bar Y_n - \E Y}{\sqrt{\Var Y}}
+            \xrightarrow[n \to \infty]{\mathrm d}
+            Z
+            \sim
+            \mathcal N(0, 1).
+        \end{align*}
+
+        Recall that
+
+        \begin{align*}
+            \E Y = p,
+            \quad
+            \Var Y = p (1 - p).
+        \end{align*}
+
+        Slutsky's Theorem \cite*[Lecture 4, Slide 70]{EStat} implies
+
+        \begin{align*}
+            \sqrt n \pbraces{\frac{X_n}{n} - p}
+            =
+            \sqrt{\Var Y} Z_n
+            \xrightarrow[n \to \infty]{\mathrm d}
+            \sqrt{\Var Y} Z
+            \sim
+            \mathcal N(0, \Var Y)
+            =
+            \mathcal N(0, p (1 - p)).
+        \end{align*}
+
+        \item Step (Delta Method):
+        
+        We want to apply it to $\mathit{logit}$.
+        For that, we first calulate
+
+        \begin{align*}
+            \mathit{logit}^\prime(y)
+            & =
+            \frac{1}{\frac{y}{1 - y}} \frac{-1}{(1 - y)^2} (-1) \\
+            & =
+            \frac{1}{y (1 - y)},
+        \end{align*}
+
+        with the help of
+
+        \begin{align*}
+            \frac{y}{1 - y}
+            & =
+            -\frac{y - 1 + 1}{y - 1} \\
+            & =
+            \frac{1}{1 - y} - 1.
+        \end{align*}
+
+        The lemma from \cite*[Lecture 5, Slide 10]{EStat} then implies
+
+        \begin{multline*}
+            \sqrt n \pbraces{\mathit{logit} \pbraces{\frac{X_n}{n}} - \ln \frac{p}{1 - p}}
+            =
+            \sqrt n \pbraces{\mathit{logit} \pbraces{\frac{X_n}{n}} - \mathit{logit}(p)} \\
+            \xrightarrow[n \to \infty]{\mathrm d}
+            \mathcal N(0, P (1 - p) \mathit{logit}^\prime(p)^2)
+            =
+            \mathcal N \pbraces{0, \frac{1}{p (1 - p)}}.
+        \end{multline*}
+
+    \end{enumerate}
+
+\end{enumerate}
 
 \end{solution}
 
