@@ -1,0 +1,299 @@
+\documentclass[aspectratio=169]{beamer}
+
+
+
+\mode<presentation>
+{
+ \usetheme[reversetitle,notitle,noauthor]{Wien}
+%    \usetheme[noauthor]{Wien}
+}
+
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{{./}{./Figures/}}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{algorithm2e}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{positioning}
+\usetikzlibrary{overlay-beamer-styles}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\tikzstyle{highlight}=[red,ultra thick]
+
+% To avoid a warning from the hyperref package:
+\pdfstringdefDisableCommands{%
+    \def\translate{}%
+}
+
+% To make sure, that the footnote is placed above and outside the
+% footline (but it only works for one footnote per frame):
+%
+% \addtobeamertemplate{footnote}{}{\vspace{4ex}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Zelluläre Automaten]{Design und Analyse eines Spiels}
+
+
+\subtitle{Bachelorarbeit aus Diskreter Mathematik}
+
+\author[C. Göth]{Christian Göth}
+
+\institute[TU Wien]{TU Wien, Vienna, Austria}
+
+\date{26. April 2021}
+
+\input{packages.tex}
+\input{macros.tex}
+\input{environments.tex}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+  \begin{frame}{Einleitung}
+
+    \begin{block}{Zelluläre Automaten}
+      \begin{itemize}
+        \item Erstmals um 1940 durch John von Neumann erforscht \\ %%vorgestellt von Stanislaw Ulam
+        \item Sind zeitlich diskret \\
+        \item Sind räumlich diskret \\
+        \item Geeignet zur Simulation komplexer physikalischer oder biologischer Systeme
+      \end{itemize}
+    \end{block}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Wohl bekanntester zellulärer Automat}
+    \begin{block}{"Game of Life"}
+      \begin{itemize}
+        \item Zweidimensionaler zellulärer Automat
+        \item Von John Horton Conway 1970 entworfen %%eineinhalb Jahre mit Kollegen experimentiert, ohne Computer-Unterstützung
+        \item Veröffentlichung in Scientific American %%erfreute sich großer Beliebtheit, Hype um Challenge
+        \item Komplexes Verhalten aus einfachen Regeln
+      \end{itemize}
+    \end{block}
+
+  \end{frame}
+
+
+  \begin{frame}{Regeln des Game of Life}
+
+    \begin{enumerate}
+      \item Eine lebendige Zelle mit weniger als 2 oder mehr als 3 Nachbarn stirbt %%Unterpopulation oder Überpopulation
+      \item Eine tote Zelle mit genau 3 Nachbarn wird lebendig %%Reproduktion
+      \item Alle anderen Zellen behalten ihren Zustand
+    \end{enumerate}
+
+    \pause
+
+    \begin{multicols*}{3}
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[height = 0.3 \textheight]{start_oscillator.png}
+      \end{figure}
+      \centering{$t = 0$}
+
+      \pause
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[height = 0.3 \textheight]{end_oscillator.png}
+      \end{figure}
+      \centering{$t = 1$}
+
+      \pause
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[height = 0.3 \textheight]{start_oscillator.png}
+      \end{figure}
+      \centering{$t = 2$}
+
+    \end{multicols*}
+    %%Erinnerung - alle Updates simultan
+
+  \end{frame}
+
+  \begin{frame}{Definitionen}
+    \begin{definition*}[Zellularraum]
+      Für $d \in \mathbb{N}$ betrachten wir ein $d$-dimensionales unendliches Gitter, dessen \textit{Zellen} mit Elementen aus $\mathbb{Z}^d$ identifiziert werden. Auf diesem \textit{Zellularraum} erhalten wir einen \textit{$d$-dimensionalen CA}.
+    \end{definition*}
+
+    \begin{multicols*}{3}
+      \centering{$d = 1$}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.4 \textheight]{1d_cellspace.png}
+      \end{figure}
+      \vfill\null
+      \columnbreak
+
+      \pause
+
+      \centering{$d = 2$}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.35 \textheight]{2d_cellspace.png}
+      \end{figure}
+      \vfill\null
+      \columnbreak
+
+      \pause
+
+      \centering{$d = 3$}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.35 \textheight]{3d_cellspace.png}
+      \end{figure}
+
+
+    \end{multicols*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Definitionen}
+    \begin{definition*}
+      Eine Abbildung $c: \mathbb{Z}^d \to S$ ($S$ endlicher \textit{Zustandsraum}) heißt $Konfiguration$.
+      Die Menge $S^{\mathbb{Z}^d}$ aller Konfigurationen bezeichnen wir mit $\mathcal{C}(d, S) = \mathcal{C}$.
+    \end{definition*}
+
+    Beispiel für $S = \{0, 1\}$:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.35 \textheight]{configuration.png}
+    \end{figure}
+
+  \end{frame}
+
+
+  \begin{frame}{Definitionen}
+    \begin{definition*}[Nachbarschaft]
+      Wir bezeichnen einen Vektor $N = (x_y, x_y, \dots, x_y)$ aus $n$ paarweise verschiedenen Elementen aus $\mathbb{Z}^d$ als \textit{Nachbarschaft}. Die \textit{Nachbarn} einer beliebigen Zelle $x \in \mathbb{Z}^d$ sind dann genau die Zellen $(x + x_y, x + x_y, \dots, x + x_y)$.
+    \end{definition*}
+
+    Beispiele bekannter Nachbarschaften:
+
+    \begin{multicols*}{2}
+      \begin{multicols*}{2}
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.28 \textheight]{moore_1.png}
+        \end{figure}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.28 \textheight]{moore_2.png}
+        \end{figure}
+
+      \end{multicols*}
+
+      \centering{Moore - $N = (y: \|y\|_{\infty} \leq r)$}
+
+      \vfill\null
+
+
+      \begin{multicols*}{2}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.28 \textheight]{von_Neumann_1.png}
+      \end{figure}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.28 \textheight]{von_Neumann_2.png}
+      \end{figure}
+
+      \end{multicols*}
+
+      \centering{von Neumann - $N = (y: \|y\|_1 \leq r)$}
+
+      \vfill\null
+
+    \end{multicols*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Nachbarschaften am Rand}
+    
+
+
+  \end{frame}
+
+
+
+    \begin{frame}{Definitionen}
+      \begin{definition*}[Lokale Update-Regel]
+        Sei $n$ die Größe der Nachbarschaft. Die \textit{Lokale Update-Regel} ist eine Funktion $f: S^n \to S$, die für jede Zelle $x \in \mathbb{Z}^d$ ihren neuen Zustand bestimmt, abhängig von den Zuständen der $n$ Nachbarn zum vorherigen Zeitschritt.
+      \end{definition*}
+
+      Eine Konfiguration $c \in \mathcal{C}$ wird also im nächsten Zeitschritt zu der Konfiguration $e \in \mathcal{C}$, die gegeben ist durch
+      \begin{align}\label{ctoe}
+        e(x) = f \big(c(x+y_1), c(x+y_2), \dots, c(x+y_n)\big)
+      \end{align}
+
+          \begin{definition*}[Globale Überführungsfunktion]
+            Die Funktion $G: \mathcal{C} \to \mathcal{C}$, die $G(c)=e$ gemäß \eqref{ctoe} erfüllt, nennen wir \textit{Globale Überführungsfunktion}.
+          \end{definition*}
+
+    \end{frame}
+
+
+
+  \begin{frame}{Definitionen}
+    \begin{definition*}[Zellulärer Automat]
+      Ein \textit{$d$-dimensionaler Zellulärer Automat (ZA)} ist gegeben durch das Tripel $(S,N,f)$, wobei $S$ den Zustandsraum, $N$ die Nachbarschaft und $f$ die Lokale Update-Regel bezeichnen.
+    \end{definition*}
+
+    \begin{remark*}
+      Wir identifizieren einen ZA auch durch seine Globale Überführungsfunktion $G$, welche auch durch das Tripel $(S,N,f)$ gegeben ist, und sprechen vom ZA $G$.
+    \end{remark*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{}
+    \begin{block}{}
+
+      {
+          \centering
+          \huge
+          Präsentation der Ergebnisse am 21. Juni 2021.
+      }
+
+    \end{block}
+
+  \end{frame}
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,82 @@
+% Copyright 2017,2018 by Axel Jantsch
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under GNU General Public License v. 3 (GPLv3) 
+%
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeWien}[2020/01/21 v0.5.3 The ICT TU Wien Beamer Theme]
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% load required packages
+
+\RequirePackage{tikz}
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme options and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Theme options:
+\newif\ifreversetitle  % set the frame title in white with blue background
+\reversetitlefalse      % default
+\DeclareOptionBeamer{reversetitle}{\reversetitletrue}
+
+\ProcessOptionsBeamer
+
+% beamer specific options
+
+\mode<presentation>%refers to the first four modes (beamer,handout,second and trans). That is, to all modes except the article mode
+{
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% colors
+%% defining colors 
+
+\definecolor{beamer@headercolor}{rgb}{0,0.41,0.54} % dark blue
+
+\definecolor{tucolor}{HTML}{0070AF} % The blue of the TU Wien logo
+
+\definecolor{ictbgcolor}{HTML}{D8E1F3} % The light blue backrgound
+                                % color of ICT slides at the right and
+                                % lower edges
+
+\definecolor{circlebgcolor}{HTML}{c0d5F3} % The color in the progress
+                                % circle
+
+%% setting various colors:
+
+\setbeamercolor{structure}{fg=blue} % E.g. header in blocks and bullet symbols
+
+\setbeamercolor{normal text}{fg=black} % Normal text
+
+% Frame title:
+\ifreversetitle
+  \setbeamercolor{frametitle}{fg=white,bg=tucolor} 
+  % \setbeamerfont{frametitle}{series=\bfseries} 
+\else
+  \setbeamercolor{frametitle}{fg=blue}
+  \setbeamerfont{frametitle}{series=\bfseries}
+  \setbeamertemplate{frametitle}
+  {%
+    \centering
+     \vskip15pt\par\insertframetitle
+    }
+  \fi
+  
+%\setbeamercolor{Wien}{fg=beamer@barcolor,bg=beamer@headercolor}
+
+% Colors and shape for the blocks:
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamercolor{block title}{bg=ictbgcolor!85}
+\setbeamercolor{block body}{parent=normal text, use=block title,bg=ictbgcolor!35}
+
+}
+
+\mode<all>
