@@ -1,0 +1,39 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.6]
+
+Suppose you are restricted to considering only policies that are $\epsilon$-soft,
+meaning that the probability of selecting each action in each state, $s$, is at
+least $\epsilon/|A(s)|$. Describe qualitatively the changes that would be required
+in each of the steps 3, 2, and 1, in that order, of the policy iteration algorithm for $v_*$
+(Textbook p. 80).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+In step 3 of the algorithm, we have to replace
+$\pi(s) \leftarrow \argmax_a \sum_{s',r} p(s',r|s,a)[r + \gamma V(s')]$ with
+\begin{align*}
+  \pi(a|S_t) \leftarrow \begin{cases}
+    1 - \epsilon + \nicefrac{\epsilon}{|\mathcal{A}(S_t)|} & \text{if } a = A^* \\
+    \epsilon/|\mathcal{A}(S_t)| & a \neq A^*,
+  \end{cases}
+\end{align*}
+where $A^* = \argmax_a \sum_{s',r} p(s',r|s,a)[r + \gamma V(s')]$.
+We also have to adapt the policy-stable check for stochastic policies.
+
+
+In step 2 we have to replace $V(s) \leftarrow \sum_{s',r p(s',r|s,\pi(s))}[r + \gamma V(s')]$ by
+
+\begin{align*}
+  V(s) \leftarrow \sum_a \pi(a|s) \sum_{s',r p(s',r|s,a)}[r + \gamma V(s')].
+\end{align*}
+
+
+In step 1 we just have to make sure to initialize our policy $\pi$ to be $\epsilon$-soft.
+\end{solution}
+
+% --------------------------------------------------------------------------------

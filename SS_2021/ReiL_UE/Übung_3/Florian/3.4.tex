@@ -1,0 +1,41 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.3]
+
+What are the equations analogous to (4.3), (4.4), and (4.5) for the action-value
+function $q_\pi$ and its successive approximation by a sequence of functions
+$q_0,q_1,q_2,\dots$?
+
+\begin{align}
+  v_\pi(s) \ &\dot= \  \E_\pi[G_t | S_t = s] \notag \\
+  &= \E_\pi[R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s] \notag \\
+  &= \E_\pi[R_{t+1} + \gamma v_\pi(S_{t+1}) | S_t = s] \tag{4.3}\label{eq:4.3} \\
+  &= \sum_a \pi(a|s) \sum_{s',r} p(s', r|s, a)[r + \gamma v_\pi(s')]. \tag{4.4}\label{eq:4.4}
+\end{align}
+
+\begin{align}
+  v_{k+1}(s) \ &\dot= \ \E_\pi[R_{t+1} + \gamma v_k(S_{t+1}) | S_t = s] \notag \\
+  &= \sum_a \pi(a|s) \sum_{s',r} p(s',r|s,a)[r + \gamma v_k(s')]. \tag{4.5}\label{eq:4.5}
+\end{align}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+  q_\pi(s,a) \ &\dot= \ \E_\pi[G_t | S_t = s, A_t = a] \\
+  &= \E_\pi[R_{t+1} + \gamma G_{t+1} | S_t = s, A_t = a] \\
+  &= \E_\pi[R_{t+1} + \gamma \sum_{a'}q_\pi(S_{t+1},a') | S_t = s, A_t = a] \\
+  &= \sum_{s',r} p(s',r|s,a)\left[r + \gamma \sum_{a'} \pi(a'|s')q_\pi(s',a')\right].
+\end{align*}
+
+\begin{align*}
+  q_{k+1}(s,a) \ &\dot= \ \E_\pi[R_{t+1} + \gamma v_k(S_{t+1}) | S_t = s, A_t = a] \\
+  &= \sum_{s',r} p(s',r|s,a)\left[r + \gamma \sum_{a'} \pi(a'|s')q_k(s',a')\right].
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
