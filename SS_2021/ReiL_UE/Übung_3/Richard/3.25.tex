@@ -1,0 +1,70 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.3]
+
+What are the equations analogous to (4.3), (4.4), and (4.5) for the action-value function $q_\pi$ and its successive approximation by a sequence of functions $q_0$, $q_1$, $q_2$, \dots?
+(Textbook p. 74)
+
+\begin{align*} % \label{eq:3.25.1_2}
+    v_\pi(s)
+    & \doteq
+    \E_\pi[G_t \mid S_t = s] \\
+    & =
+    \E_\pi[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
+    & =
+    \E_\pi[R_{t+1} + \gamma v_\pi(S_{t+1}) \mid S_t = s] \tag{4.3} \\
+    & =
+    \sum_a
+        \pi(a \mid s)
+        \sum_{s^\prime, r}
+            p(s^\prime, r \mid s, a)
+            \bbraces{r + \gamma v_\pi(s^\prime)} \tag{4.4}
+\end{align*}
+
+\begin{align*}
+    v_{k+1}
+    & \doteq
+    \E_\pi[R_{t+1} + \gamma v_k(S_{t+1}) \mid S_t = s] \\
+    & =
+    \sum_a
+        \pi(a \mid s)
+        \sum_{s^\prime, r}
+            p(s^\prime, r \mid s, a)
+            \bbraces{r + \gamma v_k(s^\prime)} \tag{4.5}
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Recall the results about the Bellman equations for $q_\pi$ from Exercise 3.17.
+
+\begin{align*}
+    q_\pi(s, a)
+    & =
+    \sum_{s^\prime, r}
+        p(s^\prime, r \mid s, a)
+        \sum_{a^\prime}
+            \pi(a^\prime \mid s^\prime)
+            \bbraces{r + \gamma q_\pi(s^\prime, a^\prime)} \tag{4.4'} \\
+    & =
+    \E_\pi[R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1}) \mid S_t = s] \tag{4.3'}
+\end{align*}
+
+\begin{align*}
+    q_{k+1}
+    & \doteq
+    \sum_{s^\prime, r}
+        p(s^\prime, r \mid s, a)
+        \sum_{a^\prime}
+            \pi(a^\prime \mid s^\prime)
+            \bbraces{r + \gamma q_k(s^\prime, a^\prime)} \tag{4.5'} \\
+    & =
+    \E_\pi[R_{t+1} + \gamma q_k(S_{t+1}, A_{t+1}) \mid S_t = s]
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

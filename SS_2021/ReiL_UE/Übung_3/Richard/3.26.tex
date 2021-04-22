@@ -1,0 +1,63 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.5]
+
+How would policy iteration be defined for action values?
+Give a complete algorithm for computing $q_\ast$, analogous to that on page 80 for computing $v_\ast$.
+Please pay special attention to this exercise, because the ideas involved will be used throughout the rest of the book.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Recall, from \cite*[page 79]{SuttonRichardS2018Rl:a}, that
+
+\begin{align*}
+    \pi^\prime(s)
+    \cdot
+    \argmax_a q_\pi(s, a).
+\end{align*}
+
+\begin{tcolorbox}[title = Policy Iteration (using iterative policy evaluation) for estimating $\pi \approx \pi_\ast$]
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Initialization
+        
+        \begin{align*}
+            & Q(s, a) \in \R ~\text{and}~ \pi(s) \in \mathcal A(s) ~\text{arbitrarily for all}~ s \in \mathcal S ~\text{and}~ a \in \mathcal A(s)            
+        \end{align*}
+
+        \item Policy Evaluation
+        
+        \begin{align*}
+            & \text{Loop}: \\
+            & \quad \Delta \leftarrow 0 \\
+            & \quad \text{Loop for each $s \in \mathcal S$}: \\
+            & \quad \quad \text{Loop for each $a \in \mathcal A(s)$}: \\
+            & \quad \quad \quad q \leftarrow Q(s, a) \\
+            & \quad \quad \quad Q(s, a) \leftarrow \sum_{s^\prime, r} p(s^\prime, r \mid s, a) \sum_{a^\prime} \pi(a^\prime \mid s^\prime) \bbraces{r + \gamma Q(s^\prime, a^\prime)} \\
+            & \quad \quad \quad \Delta \leftarrow \max(\Delta, |q - Q(s, a)|) \\
+            & \text{until $\Delta < \theta$ (a small positive number determining the accuracy of estimation)}
+        \end{align*}
+
+        \item Policy Improvement
+
+        \begin{align*}
+            & \textit{policy-stable} \leftarrow \textit{true} \\
+            & \text{For each $s \in \mathcal S$}: \\
+            & \quad \textit{old-action} \leftarrow \pi(s) \\
+            & \quad \pi(s) \leftarrow \argmax_a Q(s, a) \\
+            & \quad \text{If $\textit{old-action} \neq \pi(s)$, then $\textit{policy-stable} \leftarrow \textit{false}$} \\
+            & \text{If $\textit{policy-stable}$, then stop and return $Q \approx q_\ast$ and $\pi \approx \pi_\ast$; else go to $2$}
+        \end{align*}
+
+    \end{enumerate}
+
+\end{tcolorbox}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

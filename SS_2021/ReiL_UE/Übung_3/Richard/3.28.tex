@@ -1,0 +1,62 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.10]
+
+What is the analog of the value iteration update (4.10) for action avlues, $q_{k+1}(s, a)$?
+
+\begin{align*}
+    v_{k+1}(s)
+    & \doteq
+    \max_a
+        \E[R_{t+1} + \gamma v_k(S_{t+1}) \mid S_t = s, A_t = a] \\
+    & =
+    \max_a
+        \sum_{s^\prime, r}
+            p(s^\prime, r \mid s, a)
+            \bbraces{r + \gamma v_k(s^\prime)} \tag{4.10}
+\end{align*}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+According to \cite*[page 83]{SuttonRichardS2018Rl:a}, \Quote{value iteration is obtained simply by turning the Bellman optimality equation into an update rule}.
+Recall the Bellman optimality equation (3.20) for $q_\ast$ from \cite*[page 64]{SuttonRichardS2018Rl:a}.
+
+\begin{align*}
+    q_\ast(s, a)
+    & =
+    \E
+    \bbraces
+    {
+        R_{t+1} + \gamma \max_{a^\prime} q_\ast(S_{t+1}, a^\prime)
+        \mid
+        S_t = s, A_t = a
+    } \\
+    & =
+    \sum_{s^\prime, r}
+        p(s^\prime, r \mid s, a)
+        \bbraces
+        {
+            r + \gamma \max_{a^\prime} q_\ast(s^\prime, a^\prime)
+        } \tag{3.20}
+\end{align*}
+
+Therefore, it makes sense to define
+
+\begin{align*}
+    q_{k+1}(s, a)
+    \doteq
+    \sum_{s^\prime, r}
+        p(s^\prime, r \mid s, a)
+        \bbraces
+        {
+            r + \gamma \max_{a^\prime} q_k(s^\prime, a^\prime)
+        }.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,60 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.6]
+
+Suppose you are restricted to considering only policies that are $\epsilon$-soft, meaning that the probability of selecting each action in each state, $s$, is at least $\epsilon / |A(s)|$.
+Describe qualitatively the changes that would be required in each of the steps $3$, $2$, and $1$, in that order of the policy iteration algorithm for $v_\ast$ (Textbook p. 80).
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{tcolorbox}[title = Policy Iteration (using iterative policy evaluation) for estimating $\pi \approx \pi_\ast$]
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Initialization
+
+        \begin{multline*}
+            V(s) \in \R ~\text{and}~ \pi(a \mid s) \geq \epsilon / |\mathcal A(s)| ~\text{where}~ \sum_{a \in \mathcal A(s)} \pi(a \mid s) = 1 \\
+            ~\text{arbitrarily for all}~ s \in \mathcal S ~\text{and}~ a \in \mathcal A(s)
+        \end{multline*}
+
+        \item Policy Evaluation
+        
+        \begin{align*}
+            & \text{Loop}: \\
+            & \quad \Delta \leftarrow 0 \\
+            & \quad \text{Loop for each $s \in \mathcal S$}: \\
+            & \quad \quad v \leftarrow V(s) \\
+            & \quad \quad V(s) \leftarrow \sum_{a \in \mathcal A(s)} \pi(a \mid s) \sum_{s^\prime, r} p(s^\prime, r \mid s, a) \bbraces{r + \gamma V(s^\prime)} \\
+            & \quad \quad \Delta \leftarrow \max(\Delta, |v - V(s)|)
+        \end{align*}
+
+        \item Policy Improvement
+
+        \begin{align*}
+            & \textit{policy-stable} \leftarrow \textit{true} \\
+            & \text{For each $s \in \mathcal S$}: \\
+            & \quad \textit{old-actions} \leftarrow (\pi(a \mid s): a \in \mathcal A(s)) \\
+            & \quad \text{Loop for each $a \in \mathcal A(s)$}: \\
+            & \quad \quad \pi(a \mid s) \leftarrow \epsilon / |\mathcal A(s)| \\
+            & \quad \mathcal A_\text{max} \leftarrow \argsmax_a \sum_{s^\prime, r} p(s^\prime, r \mid s, a) \bbraces{r + \gamma V(s^\prime)} \\
+            & \quad \sum_{a \in \mathcal A_\text{max}(s)} p_\text{add}(a) \doteq 1 - \epsilon \\
+            & \quad \text{Loop for each $a \in \mathcal A_\text{max}(s)$}: \\
+            & \quad \quad \pi(a \mid s) \leftarrow \pi(a \mid s) + p_\text{add}(a) \\
+            & \quad \text{If $\textit{old-actions} \neq (\pi(a \mid s): a \in \mathcal A(s))$, then $\textit{policy-stable} \leftarrow \textit{false}$} \\
+            & \text{If $\textit{policy-stable}$, then stop and return $Q \approx q_\ast$ and $\pi \approx \pi_\ast$; else go to $2$}
+        \end{align*}
+
+    \end{enumerate}
+
+\end{tcolorbox}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
