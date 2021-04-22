@@ -1,0 +1,25 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 4.10]
+
+What is the analog of the value iteration update (4.10) for action values $q_{k+1}(s,a)$?
+
+\begin{align}
+  v_{k+1}(s) \ &\dot= \ \max_a \E[R_{t+1} + \gamma v_k(S_{t+1}) | S_t = s, A_t = a] \notag \\
+  &= \max_a \sum_{s',r} p(s',r,a|s,a)[r + \gamma v_k(s')] \tag{4.10}.
+\end{align}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align*}
+  q_{k+1}(s,a) \ &\dot= \ \max_{a} \E_\pi[R_{t+1} + \gamma \sum_{a'}q_\pi(S_{t+1},a') | S_t = s, A_t = a] \\
+  &= \max_{a} \sum_{s',r} p(s',r|s,a)\left[r + \gamma \sum_{a'} \pi(a'|s')q_k(s',a')\right].
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
