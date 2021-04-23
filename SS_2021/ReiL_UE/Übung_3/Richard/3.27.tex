@@ -44,9 +44,8 @@ Describe qualitatively the changes that would be required in each of the steps $
             & \quad \text{Loop for each $a \in \mathcal A(s)$}: \\
             & \quad \quad \pi(a \mid s) \leftarrow \epsilon / |\mathcal A(s)| \\
             & \quad \mathcal A_\text{max} \leftarrow \argsmax_a \sum_{s^\prime, r} p(s^\prime, r \mid s, a) \bbraces{r + \gamma V(s^\prime)} \\
-            & \quad \sum_{a \in \mathcal A_\text{max}(s)} p_\text{add}(a) \doteq 1 - \epsilon \\
             & \quad \text{Loop for each $a \in \mathcal A_\text{max}(s)$}: \\
-            & \quad \quad \pi(a \mid s) \leftarrow \pi(a \mid s) + p_\text{add}(a) \\
+            & \quad \quad \pi(a \mid s) \leftarrow \pi(a \mid s) + \frac{1 - \epsilon}{|\mathcal A_\text{max}(s)|} \\
             & \quad \text{If $\textit{old-actions} \neq (\pi(a \mid s): a \in \mathcal A(s))$, then $\textit{policy-stable} \leftarrow \textit{false}$} \\
             & \text{If $\textit{policy-stable}$, then stop and return $Q \approx q_\ast$ and $\pi \approx \pi_\ast$; else go to $2$}
         \end{align*}
