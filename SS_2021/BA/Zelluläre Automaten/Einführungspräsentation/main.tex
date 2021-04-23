@@ -41,7 +41,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Zelluläre Automaten]{Design und Analyse eines Spiels}
+\title[Zelluläre Automaten]{Design und Analyse eines Spiels \newline mithilfe von Zellulären Automaten}
 
 
 \subtitle{Bachelorarbeit aus Diskreter Mathematik}
@@ -136,7 +136,7 @@
 
   \begin{frame}{Definitionen}
     \begin{definition*}[Zellularraum]
-      Für $d \in \mathbb{N}$ betrachten wir ein $d$-dimensionales unendliches Gitter, dessen \textit{Zellen} mit Elementen aus $\mathbb{Z}^d$ identifiziert werden. Auf diesem \textit{Zellularraum} erhalten wir einen \textit{$d$-dimensionalen CA}.
+      Für $d \in \mathbb{N}$ betrachten wir ein $d$-dimensionales unendliches Gitter, dessen \textit{Zellen} mit Elementen aus $\mathbb{Z}^d$ identifiziert werden. Auf diesem \textit{Zellularraum} erhalten wir einen \textit{$d$-dimensionalen ZA}.
     \end{definition*}
 
     \begin{multicols*}{3}
@@ -175,9 +175,11 @@
 
   \begin{frame}{Definitionen}
     \begin{definition*}
-      Eine Abbildung $c: \mathbb{Z}^d \to S$ ($S$ endlicher \textit{Zustandsraum}) heißt $Konfiguration$.
+      Sei $S$ ein endlicher \textit{Zustandsraum}. Eine Abbildung $c: \mathbb{Z}^d \to S$  heißt $Konfiguration$. \\
       Die Menge $S^{\mathbb{Z}^d}$ aller Konfigurationen bezeichnen wir mit $\mathcal{C}(d, S) = \mathcal{C}$.
     \end{definition*}
+
+    \pause
 
     Beispiel für $S = \{0, 1\}$:
     \begin{figure}[H]
@@ -190,8 +192,10 @@
 
   \begin{frame}{Definitionen}
     \begin{definition*}[Nachbarschaft]
-      Wir bezeichnen einen Vektor $N = (x_y, x_y, \dots, x_y)$ aus $n$ paarweise verschiedenen Elementen aus $\mathbb{Z}^d$ als \textit{Nachbarschaft}. Die \textit{Nachbarn} einer beliebigen Zelle $x \in \mathbb{Z}^d$ sind dann genau die Zellen $(x + x_y, x + x_y, \dots, x + x_y)$.
+      Wir bezeichnen einen Vektor $N = (y_1, y_2, \dots, y_n)$ aus $n$ paarweise verschiedenen Elementen aus $\mathbb{Z}^d$ als \textit{Nachbarschaft}. Die \textit{Nachbarn} einer beliebigen Zelle $x \in \mathbb{Z}^d$ sind dann genau die Zellen $(x + y_1, x + y_2, \dots, x + y_n)$.
     \end{definition*}
+
+    \pause
 
     Beispiele bekannter Nachbarschaften:
 
@@ -212,6 +216,8 @@
       \centering{Moore - $N = (y: \|y\|_{\infty} \leq r)$}
 
       \vfill\null
+
+      \pause
 
 
       \begin{multicols*}{2}
@@ -238,8 +244,76 @@
 
 
   \begin{frame}{Nachbarschaften am Rand}
-    
 
+
+    \begin{multicols*}{5}
+
+      \onslide<2->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.25 \textheight]{neighborhood_border_sol1.png}
+      \end{figure}
+
+      \vfill\null
+
+      \onslide<2->\centering{\Huge $\leftarrow$ \par}
+      \vfill\null
+
+      \onslide<1->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.25 \textheight]{neighborhood_border.png}
+      \end{figure}
+
+      \vfill\null
+
+
+
+      \onslide<3->\centering{\Huge $\rightarrow$ \par}
+      \vfill\null
+
+      \onslide<3->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.25 \textheight]{neighborhood_border_sol2.png}
+      \end{figure}
+
+    \end{multicols*}
+
+    \onslide<4->\begin{multicols*}{5}
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+
+      \centering{\Huge $\Downarrow$ \par}
+
+      \vfill\null
+
+
+    \end{multicols*}
+
+    \begin{multicols*}{4}
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+      \vfill\null
+
+      \begin{figure}[H]
+        \includegraphics[width = 0.35 \textheight]{torus.png}
+      \end{figure}
+
+    \end{multicols*}
 
   \end{frame}
 
@@ -250,14 +324,18 @@
         Sei $n$ die Größe der Nachbarschaft. Die \textit{Lokale Update-Regel} ist eine Funktion $f: S^n \to S$, die für jede Zelle $x \in \mathbb{Z}^d$ ihren neuen Zustand bestimmt, abhängig von den Zuständen der $n$ Nachbarn zum vorherigen Zeitschritt.
       \end{definition*}
 
+      \pause
+
       Eine Konfiguration $c \in \mathcal{C}$ wird also im nächsten Zeitschritt zu der Konfiguration $e \in \mathcal{C}$, die gegeben ist durch
       \begin{align}\label{ctoe}
         e(x) = f \big(c(x+y_1), c(x+y_2), \dots, c(x+y_n)\big)
       \end{align}
 
-          \begin{definition*}[Globale Überführungsfunktion]
-            Die Funktion $G: \mathcal{C} \to \mathcal{C}$, die $G(c)=e$ gemäß \eqref{ctoe} erfüllt, nennen wir \textit{Globale Überführungsfunktion}.
-          \end{definition*}
+      \pause
+
+      \begin{definition*}[Globale Überführungsfunktion]
+        Die Funktion $G: \mathcal{C} \to \mathcal{C}$, die $G(c)=e$ gemäß \eqref{ctoe} erfüllt, nennen wir \textit{Globale Überführungsfunktion}.
+      \end{definition*}
 
     \end{frame}
 
@@ -268,9 +346,55 @@
       Ein \textit{$d$-dimensionaler Zellulärer Automat (ZA)} ist gegeben durch das Tripel $(S,N,f)$, wobei $S$ den Zustandsraum, $N$ die Nachbarschaft und $f$ die Lokale Update-Regel bezeichnen.
     \end{definition*}
 
+    \pause
+
     \begin{remark*}
       Wir identifizieren einen ZA auch durch seine Globale Überführungsfunktion $G$, welche auch durch das Tripel $(S,N,f)$ gegeben ist, und sprechen vom ZA $G$.
     \end{remark*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Beispiele}
+    \begin{example*}
+      Für einen ZA G nennen wir die Konfiguration $c \in \mathcal{C}$ \textit{zeitlich periodisch}, wenn $G^k(c) = c$ für ein $k \geq 1$. Für $k= 1$ nennen wir $c$ Fixpunkt von $G$.
+    \end{example*}
+
+    \pause
+
+    \begin{example*}
+      Seien $G_1$ und $G_2$ zwei ZA mit gleicher Zustandsmenge und Dimension. Die \textit{Komposition} $G_1 \circ G_2$ ist wiederum ein ZA mit Nachbarschaft $N_1 + N_2$.
+
+      Falls $G_1 \circ G_2 = G_2 \circ G_1 = id$ gilt, so nennen wir $G_1$ und $G_2$ \textit{reversibel}.
+    \end{example*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Ausblick}
+    \begin{block}{Design des Spiels}
+      \begin{itemize}
+        \item Implementierung in Python
+        \item 2-dimensionales Gitter
+        \item Voraussichtlich 1 oder 2 Spieler
+        \item Erweiterung auf stochastische Update-Regel
+      \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Analyse des Spiels}
+      \begin{itemize}
+        \item Abhängig, ob deterministisch oder stochastisch
+        \item Entscheidbarkeit
+        \item Reversibilität
+        \item Periodizität
+      \end{itemize}
+
+    \end{block}
+
 
   \end{frame}
 
