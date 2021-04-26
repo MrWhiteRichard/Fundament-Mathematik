@@ -92,14 +92,20 @@
       \end{itemize}
     \end{block}
 
+    \pause
+
+    \begin{block}{Satz [Berlekamp et al.]}
+      \textit{Game of Life is computationally universal. It is undecidable whether a given finite configuration dies.}
+    \end{block}
+
   \end{frame}
 
 
   \begin{frame}{Regeln des Game of Life}
 
     \begin{enumerate}
-      \item Eine lebendige Zelle mit weniger als 2 oder mehr als 3 Nachbarn stirbt %%Unterpopulation oder Überpopulation
-      \item Eine tote Zelle mit genau 3 Nachbarn wird lebendig %%Reproduktion
+      \item Eine lebendige Zelle mit weniger als 2 oder mehr als 3 lebendigen Nachbarn stirbt %%Unterpopulation oder Überpopulation
+      \item Eine tote Zelle mit genau 3 lebendigen Nachbarn wird lebendig %%Reproduktion
       \item Alle anderen Zellen behalten ihren Zustand
     \end{enumerate}
 
@@ -134,9 +140,9 @@
 
   \end{frame}
 
-  \begin{frame}{Definitionen}
+  \begin{frame}{Definitionen 1/5}
     \begin{definition*}[Zellularraum]
-      Für $d \in \mathbb{N}$ betrachten wir ein $d$-dimensionales unendliches Gitter, dessen \textit{Zellen} mit Elementen aus $\mathbb{Z}^d$ identifiziert werden. Auf diesem \textit{Zellularraum} erhalten wir einen \textit{$d$-dimensionalen ZA}.
+      Für $d \in \mathbb{N}$ betrachten wir ein $d$-dimensionales unendliches Gitter, dessen \textit{Zellen} mit Elementen aus $\mathbb{Z}^d$ identifiziert werden.
     \end{definition*}
 
     \begin{multicols*}{3}
@@ -173,9 +179,9 @@
 
 
 
-  \begin{frame}{Definitionen}
+  \begin{frame}{Definitionen 2/5}
     \begin{definition*}
-      Sei $S$ ein endlicher \textit{Zustandsraum}. Eine Abbildung $c: \mathbb{Z}^d \to S$  heißt $Konfiguration$. \\
+      Sei $S$ eine endliche \textit{Zustandsmenge}. Eine Abbildung $c: \mathbb{Z}^d \to S$  heißt $Konfiguration$. \\
       Die Menge $S^{\mathbb{Z}^d}$ aller Konfigurationen bezeichnen wir mit $\mathcal{C}(d, S) = \mathcal{C}$.
     \end{definition*}
 
@@ -190,7 +196,7 @@
   \end{frame}
 
 
-  \begin{frame}{Definitionen}
+  \begin{frame}{Definitionen 3/5}
     \begin{definition*}[Nachbarschaft]
       Wir bezeichnen einen Vektor $N = (y_1, y_2, \dots, y_n)$ aus $n$ paarweise verschiedenen Elementen aus $\mathbb{Z}^d$ als \textit{Nachbarschaft}. Die \textit{Nachbarn} einer beliebigen Zelle $x \in \mathbb{Z}^d$ sind dann genau die Zellen $(x + y_1, x + y_2, \dots, x + y_n)$.
     \end{definition*}
@@ -319,7 +325,7 @@
 
 
 
-    \begin{frame}{Definitionen}
+    \begin{frame}{Definitionen 4/5}
       \begin{definition*}[Lokale Update-Regel]
         Sei $n$ die Größe der Nachbarschaft. Die \textit{Lokale Update-Regel} ist eine Funktion $f: S^n \to S$, die für jede Zelle $x \in \mathbb{Z}^d$ ihren neuen Zustand bestimmt, abhängig von den Zuständen der $n$ Nachbarn zum vorherigen Zeitschritt.
       \end{definition*}
@@ -328,7 +334,7 @@
 
       Eine Konfiguration $c \in \mathcal{C}$ wird also im nächsten Zeitschritt zu der Konfiguration $e \in \mathcal{C}$, die gegeben ist durch
       \begin{align}\label{ctoe}
-        e(x) = f \big(c(x+y_1), c(x+y_2), \dots, c(x+y_n)\big)
+        e(x) = f \big(c(x+y_1), c(x+y_2), \dots, c(x+y_n)\big).
       \end{align}
 
       \pause
@@ -341,15 +347,15 @@
 
 
 
-  \begin{frame}{Definitionen}
+  \begin{frame}{Definitionen 5/5}
     \begin{definition*}[Zellulärer Automat]
-      Ein \textit{$d$-dimensionaler Zellulärer Automat (ZA)} ist gegeben durch das Tripel $(S,N,f)$, wobei $S$ den Zustandsraum, $N$ die Nachbarschaft und $f$ die Lokale Update-Regel bezeichnen.
+      In $\mathbb{Z}^d$ ist ein \textit{$d$-dimensionaler Zellulärer Automat (ZA)} gegeben durch das Tripel $(S,N,f)$, wobei $S$ die Zustandsmenge, $N$ die Nachbarschaft und $f$ die Lokale Update-Regel bezeichnen.
     \end{definition*}
 
     \pause
 
     \begin{remark*}
-      Wir identifizieren einen ZA auch durch seine Globale Überführungsfunktion $G$, welche auch durch das Tripel $(S,N,f)$ gegeben ist, und sprechen vom ZA $G$.
+      Wir identifizieren einen ZA auch durch seine Globale Überführungsfunktion $G$, welche ebenso durch das Tripel $(S,N,f)$ bestimmt ist, und sprechen vom ZA $G$.
     \end{remark*}
 
   \end{frame}
@@ -357,16 +363,17 @@
 
 
   \begin{frame}{Beispiele}
-    \begin{example*}
-      Für einen ZA G nennen wir die Konfiguration $c \in \mathcal{C}$ \textit{zeitlich periodisch}, wenn $G^k(c) = c$ für ein $k \geq 1$. Für $k= 1$ nennen wir $c$ Fixpunkt von $G$.
-    \end{example*}
-
-    \pause
 
     \begin{example*}
       Seien $G_1$ und $G_2$ zwei ZA mit gleicher Zustandsmenge und Dimension. Die \textit{Komposition} $G_1 \circ G_2$ ist wiederum ein ZA mit Nachbarschaft $N_1 + N_2$.
 
       Falls $G_1 \circ G_2 = G_2 \circ G_1 = id$ gilt, so nennen wir $G_1$ und $G_2$ \textit{reversibel}.
+    \end{example*}
+
+    \pause
+
+    \begin{example*}
+      Für einen ZA G nennen wir die Konfiguration $c \in \mathcal{C}$ \textit{zeitlich periodisch}, wenn $G^k(c) = c$ für ein $k \geq 1$. Für $k= 1$ nennen wir $c$ Fixpunkt von $G$.
     \end{example*}
 
   \end{frame}
@@ -387,10 +394,11 @@
 
     \begin{block}{Analyse des Spiels}
       \begin{itemize}
-        \item Abhängig, ob deterministisch oder stochastisch
+        \item Abhängig, ob stochastisch oder deterministisch
+        \item Zeitreihenanalyse
         \item Entscheidbarkeit
         \item Reversibilität
-        \item Periodizität
+        \item Periodizität, Grenzzyklen
       \end{itemize}
 
     \end{block}
