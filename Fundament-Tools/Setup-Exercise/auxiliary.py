@@ -24,7 +24,8 @@ def exercise_and_solution_file_names(
     author_names,
     exercise_number_min,
     exercise_number_max,
-    exercise_date
+    exercise_date,
+    language
 ):
 
     return [
@@ -44,7 +45,8 @@ def setup_exercises_and_solutions(
     author_names,
     exercise_number_min,
     exercise_number_max,
-    exercise_date
+    exercise_date,
+    language
 ):
 
     for exercise_and_solution_file_name in exercise_and_solution_file_names(
@@ -54,7 +56,8 @@ def setup_exercises_and_solutions(
         author_names,
         exercise_number_min,
         exercise_number_max,
-        exercise_date
+        exercise_date,
+        language
     ):
 
         # copy 'exercise and solution.tex' as destination_file_name ...
@@ -77,7 +80,8 @@ def setup_exercise_main(
     author_names,
     exercise_number_min,
     exercise_number_max,
-    exercise_date
+    exercise_date,
+    language
 ):
 
     # -------------------------------- #
@@ -102,47 +106,36 @@ def setup_exercise_main(
     # -------------------------------- #
     # add stuff to 'main.tex'
 
-    # ---------------- #
-    # add \input{}-s
-
-    main_content_add = []
-    main_content_add += ['\n']
-    main_content_add += [
-        r'\input{' + exercise_and_solution_file_name + r'}' + '\n'
-        for exercise_and_solution_file_name in exercise_and_solution_file_names(
-            exercise_folder_path,
-            lva_name,
-            exercise_session_number,
-            author_names,
-            exercise_number_min,
-            exercise_number_max,
-            exercise_date
+    main_content_add = [
+        (
+            r'\maketitle' + '\r' + '\n',
+            ['\n'] + [
+                r'\input{' + exercise_and_solution_file_name + r'}' + '\n'
+                for exercise_and_solution_file_name in exercise_and_solution_file_names(
+                    exercise_folder_path,
+                    lva_name,
+                    exercise_session_number,
+                    author_names,
+                    exercise_number_min,
+                    exercise_number_max,
+                    exercise_date,
+                    language
+                )
+            ]
+        ),
+        (
+            r'\documentclass{article}' + '\r' + '\n',
+            ['\n'] + [r'\def' + ' ' + r'\lastexercisenumber' + ' ' + r'{' + str(exercise_number_min - 1) + r'}'] + ['\n']
         )
     ]
 
-    # get index of line that says '\maketitle',
-    # will insert new content beneath that line
-    index = main_content.index(r'\maketitle' + '\r' + '\n')
+    for x, y in main_content_add:
 
-    # new content of 'main.tex'
-    main_content = main_content[:index+1:] + main_content_add + main_content[index+1::]
-
-    # ---------------- #
-    # add \lastexercisenumber
-
-    if exercise_number_min != 0:
-
-        # add counter ...
-
-        main_content = main_content
-        main_content_add = ['\n'] + [r'\def' + ' ' + r'\lastexercisenumber' + r'{' + str(exercise_number_min - 1) + r'}'] + ['\n']
-
-        # get index of line that says '\documentclass{article}',
-        # will insert new content beneath that line
-        index = main_content.index(r'\documentclass{article}' + '\r' + '\n')
+        # get index of line that says x
+        index = main_content.index(x)
 
         # new content of 'main.tex'
-        main_content = main_content[:index+1:] + main_content_add + main_content[index+1::]
+        main_content = main_content[:index+1:] + y + main_content[index+1::]
 
     # -------------------------------- #
     # replace stuff in 'main.tex'
@@ -150,7 +143,60 @@ def setup_exercise_main(
     main_content_replace = []
 
     # ---------------- #
-    # author_replacement
+    # input{}-s of packages, macros & environments replacements
+
+    path_split = exercise_folder_path.split('\\')
+
+    i = 0
+    while path_split[-i] != 'Fundament-Mathematik':
+        i += 1
+
+    main_content_replace += [
+        (
+            r'\input{Fundament-LaTeX/' + file_name + r'.tex}' + '\r' + '\n',
+            r'\input{' + r'../' * (i-1) + r'Fundament-LaTeX/' + file_name + '_' + language + r'.tex}' + '\r' + '\n'
+        )
+        for file_name in ['packages', 'macros', 'environments']
+    ]
+    
+    main_content_replace += [
+        (
+            r'\input{Fundament-LaTeX/listings.tex}' + '\r' + '\n',
+            r'\input{' + r'../' * (i-1) + r'Fundament-LaTeX/listings' + r'.tex}' + '\r' + '\n'
+        )
+    ]
+
+    # ---------------- #
+    # title replacement
+
+    if language == 'de':
+        exercise_session = u'Übung'
+    if language == 'en':
+        exercise_session = 'Exercise Session'
+
+    main_content_replace += [
+        (
+            '    ' + 'Titel' + ' ' + r'\\' + '\r' + '\n',
+            '    ' + lva_name + ' ' + r'\\' + '\r' + '\n'
+        ),
+        (
+            '    ' + r'\textit{' + 'Untertitel' + r'}' + '\r' + '\n',
+            '    ' + r'\textit{' + f'{exercise_session_number}.' + ' ' + exercise_session + r'}' + '\r' + '\n'
+        ),
+    ]
+
+    # ---------------- #
+    # author replacement
+
+    main_content_replace += [
+        (
+            r'\date{}' + '\r' + '\n',
+            r'\date{' + f'{exercise_date}' + r'}' + '\r' + '\n'
+        )
+    ]
+
+    # ---------------- #
+    # author replacement
 
     author_replacement = ''
 
@@ -173,48 +219,6 @@ def setup_exercise_main(
         (
             r'\author{' + 'Autor' + r'}' + '\r' + '\n',
             author_replacement
-        )
-    ]
-
-    # ---------------- #
-    # \input{}-replacements
-
-    path_split = exercise_folder_path.split('\\')
-
-    i = 0
-    n = len(path_split) - 1
-    while path_split[n-i] != 'Fundament-Mathematik':
-
-        assert n >= i
-        i += 1
-
-    for line in main_content:
-        if 'Fundament-LaTeX' in line:
-            main_content_replace += [
-                (
-                    line,
-                    line.replace(
-                        'Fundament-LaTeX',
-                        r'../' * i + 'Fundament-LaTeX'
-                    )
-                )
-            ]
-
-    # ---------------- #
-    # miscellaneous replacements
-
-    main_content_replace += [
-        (
-            '    ' + 'Titel' + ' ' + r'\\' + '\r' + '\n',
-            '    ' + lva_name + ' ' + r'\\' + '\r' + '\n'
-        ),
-        (
-            '    ' + r'\textit{' + 'Untertitel' + r'}' + '\r' + '\n',
-            '    ' + r'\textit{' + f'{exercise_session_number}.' + ' ' + u'Übung' + r'}' + '\r' + '\n'
-        ),
-        (
-            r'\date{}' + '\r' + '\n',
-            r'\date{' + f'{exercise_date}' + r'}' + '\r' + '\n'
         )
     ]
 
@@ -245,7 +249,8 @@ def setup_exercise(
     author_names,
     exercise_number_min,
     exercise_number_max,
-    exercise_date
+    exercise_date,
+    language
 ):
 
     # -------------------------------- #
@@ -275,7 +280,8 @@ def setup_exercise(
         author_names,
         exercise_number_min,
         exercise_number_max,
-        exercise_date
+        exercise_date,
+        language
     )
 
     setup_exercise_main(
@@ -285,7 +291,8 @@ def setup_exercise(
         author_names,
         exercise_number_min,
         exercise_number_max,
-        exercise_date
+        exercise_date,
+        language
     )
 
 # ---------------------------------------------------------------- #

@@ -1,48 +1,36 @@
-% -------------------------------- %
-% amsthm-stuff:
+% ---------------------------------------------------------------- %
+% amsthm-environments:
 
 \theoremstyle{definition}
 
 % numbered theorems
-\newtheorem{theorem}    {Theorem}   [section]
+\newtheorem{theorem}             {Theorem}[section]
 \newtheorem{lemma}      [theorem]{Lemma}
 \newtheorem{corollary}  [theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{remark}     [theorem]{Remark}
 \newtheorem{definition} [theorem]{Definition}
 \newtheorem{example}    [theorem]{Example}
+\newtheorem{heuristics} [theorem]{Heuristics}
 
 % unnumbered theorems
 \newtheorem*{theorem*}    {Theorem}
 \newtheorem*{lemma*}      {Lemma}
-\newtheorem*{corollary*}  {corollary}
+\newtheorem*{corollary*}  {Corollary}
 \newtheorem*{proposition*}{Proposition}
 \newtheorem*{remark*}     {Remark}
 \newtheorem*{definition*} {Definition}
 \newtheorem*{example*}    {Example}
+\newtheorem*{heuristics*} {Heuristics}
+
+% ---------------------------------------------------------------- %
+% exercise- and solution-environments:
 
 % Please define this stuff in project ("main.tex"):
-
 % \def \lastexercisenumber {...}
-% This will be 0 by default
 
-% \setcounter{section}{...}
-% This will be 0 by default
-% and hence, completely ignored
-
-\ifnum \thesection = 0
-{
- \newtheorem{exercise}{Problem}
-}
-\else
-{
- \newtheorem{exercise}{Problem}[section]
-}
-\fi
-
-\ifdef
-{\lastexercisenumber}
-{\setcounter{exercise}{\lastexercisenumber}}
+\newtheorem{exercise}{Exercise}
+\setcounter{exercise}{\lastexercisenumber}
 
 \newenvironment{solution}
 {
@@ -51,40 +39,11 @@
   \end{proof}
 }
 
-\renewcommand{\proofname}{Proof}
+% ---------------------------------------------------------------- %
+% MISC translations for environment-names
 
-% -------------------------------- %
-% environment zum einkasteln:
+\renewcommand{\proofname} {Proof}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename} {Table}
 
-% dickere vertical lines
-\newcolumntype
-{x}
-[1]
-{
-  !{
-    \centering
-    \arraybackslash
-    \vrule
-    width #1}
-}
-
-% environment selbst (the big cheese)
-\newenvironment
-{boxedin}
-{
-  \begin{tabular}
-  {
-    x{1 pt}
-    p{\textwidth}
-    x{1 pt}
-  }
-  \Xhline
-  {2 \arrayrulewidth}
-}
-{
-  \\
-  \Xhline{2 \arrayrulewidth}
-  \end{tabular}
-}
-
-% -------------------------------- %
+% ---------------------------------------------------------------- %
