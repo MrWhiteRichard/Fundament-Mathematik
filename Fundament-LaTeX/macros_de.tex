@@ -1,37 +1,34 @@
 % ---------------------------------------------------------------- %
+% special letters
 
-% special letters:
-
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\T}{\mathbb{T}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\V}{\mathbb{V}}
-\renewcommand{\S}{\mathbb{S}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\1}{\mathbbm{1}}
-\newcommand{\G}{\mathbb{G}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\K}{\mathbb K}
+\newcommand{\T}{\mathbb T}
+\newcommand{\E}{\mathbb E}
+\newcommand{\V}{\mathbb V}
+\renewcommand{\S}{\mathbb S}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\G}{\mathbb G}
 
 \newcommand{\iu}{\mathrm i}
 
 % ---------------------------------------------------------------- %
+% quantors
 
-% quantors:
-
-\newcommand{\Forall}{\forall \,}
-\newcommand{\Exists}{\exists \,}
-\newcommand{\nExists}{\nexists \,}
-\newcommand{\ExistsOnlyOne}{\exists! \,}
+\newcommand{\Forall}        {\forall \,}
+\newcommand{\Exists}        {\exists \,}
+\newcommand{\nExists}       {\nexists \,}
+\newcommand{\ExistsOnlyOne} {\exists! \,}
 \newcommand{\nExistsOnlyOne}{\nexists! \,}
-\newcommand{\ForAlmostAll}{\forall^\infty \,}
+\newcommand{\ForAlmostAll}  {\forall^\infty \,}
 
 % ---------------------------------------------------------------- %
-
-% graphics:
+% graphics boxed
 
 \newcommand
 {\includegraphicsboxed}
@@ -87,8 +84,7 @@
 }
 
 % ---------------------------------------------------------------- %
-
-% braces:
+% braces
 
 \newcommand{\pbraces}[1]{{\left  ( #1 \right  )}}
 \newcommand{\bbraces}[1]{{\left  [ #1 \right  ]}}
@@ -108,10 +104,10 @@
 
 \newcommand{\dabraces}[1]{{\left \langle \left \langle #1 \right \rangle \right \rangle}}
 
-\newcommand{\abs}[1]{\vbraces{#1}}
+\newcommand{\abs}  [1]{\vbraces{#1}}
 \newcommand{\round}[1]{\bbraces{#1}}
 \newcommand{\floor}[1]{\floorbraces{#1}}
-\newcommand{\ceil}[1]{\ceilbraces{#1}}
+\newcommand{\ceil} [1]{\ceilbraces{#1}}
 
 % ---------------------------------------------------------------- %
 
@@ -120,16 +116,8 @@
 % metric spaces
 \newcommand{\norm}[2][]{\Vbraces{#2}_{#1}}
 \DeclareMathOperator{\metric}{d}
-\DeclareMathOperator{\dist}{dist}
-\DeclareMathOperator{\diam}{diam}
-
-% hot bot
-\newcommand{\Bot}{~\bot~}
-\newcommand{\orth}[3][]{#2 ~\bot_{#1}~ #3}
-\newcommand{\sing}[3][]{#2 ~\bot_{#1}~ #3}
-
-% exclusive 'or'
-\newcommand{\lxor}{\dot \lor}
+\DeclareMathOperator{\dist}  {dist}
+\DeclareMathOperator{\diam}  {diam}
 
 % O-notation
 \newcommand{\landau}{{\scriptstyle \mathcal{O}}}
@@ -139,17 +127,17 @@
 
 % math operators
 
-% hyperbolic trigonometric functions inverses
+% hyperbolic trigonometric function inverses
 \DeclareMathOperator{\areasinh}{areasinh}
 \DeclareMathOperator{\areacosh}{areacosh}
 \DeclareMathOperator{\areatanh}{areatanh}
 
 % special functions
-\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\id} {id}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Inv}{Inv}
 \DeclareMathOperator{\erf}{erf}
-\DeclareMathOperator{\pv}{pv}
+\DeclareMathOperator{\pv} {pv}
 
 % exponential function as power
 \WithSuffix \newcommand \exp* [1]{\mathrm{e}^{#1}}
@@ -211,8 +199,7 @@
 \DeclareMathOperator{\eps}{eps}
 
 % ---------------------------------------------------------------- %
-
-% doubble trouble powered
+% doubble & tripple powers
 
 \newcommand
 {\primeprime}
@@ -231,65 +218,52 @@
 {{\ast \ast \ast}}
 
 % ---------------------------------------------------------------- %
-
-% extra fractions:
-
-\newcommand{\Frac}[2]{\frac{1}{#2} \pbraces{#1}}
-\newcommand{\nfrac}[2]{\nicefrac{#1}{#2}}
-
-% ---------------------------------------------------------------- %
-
-% derivatives & integrals:
-
-\newcommandtwoopt
-{\Int}[4][][]
-{\int_{#1}^{#2} #3 ~\mathrm{d} #4}
-
-\newcommandtwoopt
-{\Iint}[5][][]
-{\iint_{#1}^{#2} #3 ~\mathrm{d} #4 ~\mathrm{d} #5}
-
-\newcommandtwoopt
-{\Iiint}[6][][]
-{\iiint_{#1}^{#2} #3 ~\mathrm{d} #4 ~\mathrm{d} #5 \dots ~\mathrm{d} #6}
-
-\newcommandtwoopt
-{\Iiiint}[7][][]
-{\iiiint_{#1}^{#2} #3 ~\mathrm{d} #4 ~\mathrm{d} #5 \dots ~\mathrm{d} #6 \dots ~\mathrm{d} #7}
-
-\newcommandtwoopt
-{\Idotsint}[5][][]
-{\idotsint_{#1}^{#2} #3 ~\mathrm{d} #4 \dots ~\mathrm{d} #5}
-
-\newcommandtwoopt
-{\Oint}[4][][]
-{\oint_{#1}^{#2} #3 ~\mathrm{d} #4}
+% derivatives
 
 \newcommandtwoopt
 {\derivative}[3][][]
 {
   \frac
-  {\mathrm{d}^{#1} #2}
-  {\mathrm{d} #3^{#1}}
+  {\mathrm d^{#2} {#1}}
+  {\mathrm d {#3}^{#2}}
 }
 
 \newcommandtwoopt
 {\pderivative}[3][][]
 {
   \frac
-  {\partial^{#1} #2}
-  {\partial #3^{#1}}
+  {\partial^{#2} {#1}}
+  {\partial {#3}^{#2}}
 }
 
 \DeclareMathOperator{\Div}{div}
 \DeclareMathOperator{\rot}{rot}
-\DeclareMathOperator{\curl}{curl}
-\DeclareMathOperator{\Hess}{Hess}
 
 % ---------------------------------------------------------------- %
+% integrals
 
-% Text:
+\newcommandtwoopt
+{\Int}[4][][]
+{\int_{#1}^{#2} #3 ~\mathrm d #4}
 
-\newcommand{\Quote}[1]{\glqq #1\grqq{}}
+\newcommandtwoopt
+{\Iint}[5][][]
+{\iint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5}
+
+\newcommandtwoopt
+{\Iiint}[6][][]
+{\iiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6}
+
+\newcommandtwoopt
+{\Iiiint}[7][][]
+{\iiiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6 \dots ~\mathrm d #7}
+
+\newcommandtwoopt
+{\Idotsint}[5][][]
+{\idotsint_{#1}^{#2} #3 ~\mathrm d #4 \dots ~\mathrm d #5}
+
+\newcommandtwoopt
+{\Oint}[4][][]
+{\oint_{#1}^{#2} #3 ~\mathrm d #4}
 
 % ---------------------------------------------------------------- %
