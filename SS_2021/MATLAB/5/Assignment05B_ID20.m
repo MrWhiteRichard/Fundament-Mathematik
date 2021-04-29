@@ -12,10 +12,15 @@ Abc = sqrt(sbc*(sbc-c)*(sbc-b)*(sbc-d));
 
 A = d^2*sqrt(3)/4;
 
-sol = solve( Aab + Aac + Abc == A, d )
+symsols = solve( Aab + Aac + Abc == A, d );
 
-sol = double(subs(sol, [a b c], [3 4 5]));
+sides = [3 4 5];
 
-sol0 = sol(sol>5 & imag(sol)==0)
+numsols = double(subs(symsols, [a b c], sides));
 
-sol0sym = sym(sol0)
+ind = find(numsols>max(sides) & imag(numsols)==0);
+numsolb = numsols(ind);
+numsolA = numsolb^2*sqrt(3)/4
+
+symsolb = symsols(ind);
+symsolA = simplify(symsolb^2*sqrt(3)/4)
