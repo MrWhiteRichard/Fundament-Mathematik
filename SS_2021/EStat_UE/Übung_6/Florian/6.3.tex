@@ -1,0 +1,76 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Point estimator statistics: Comparison}]
+
+Let $X_1,\dots,X_n$ be i.i.d. uniform $(0,\theta)$, with unknown parameter $\theta > 0$.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Show that the method of moments estimator of $\theta$ is $2\bar{X}$ and the MLE
+  of $\theta$ is $X_{(n)} = \max_{1 \leq i \leq n} X_i$.
+  \item Compare the mean square errors of the two estimators. Which of the estimators
+  should be preferred if any? Explain your reasoning.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item For the method of moments we solve
+  \begin{align}
+    \bar{X} = \mu(\theta) = \int_0^\theta \frac{x}{\theta} dx = \frac{\theta}{2}
+    \iff \theta = w\bar{X}.
+  \end{align}
+  For the MLE we consider the likelihood function
+  \begin{align*}
+    L_n(\theta) = \prod_{i=1}^n \1_{[0, \theta]}(x_i)
+    = \begin{cases}
+      0, & \theta < \max_{i=1}^n x_i \\
+      \frac{1}{\theta^n}, & \theta \geq \max_{i=1}^n x_i.
+    \end{cases}
+  \end{align*}
+
+  Clearly, the maximum is attained at $\hat{\theta} = \max_{i=1}^n x_i.$
+
+  \item
+
+  \begin{align*}
+    \E_\theta[(\hat{\theta}_1 - \theta)^2] = \E_\theta[(2\bar{X} - \theta)^2]
+    = \sqrt{2}\E_\theta[(\bar{X} - \mu)^2] = \sqrt{2}\V(\bar{X}) = \sqrt{2}\frac{\theta^2}{12n}
+    = \theta^2 \Landau(n^{-1})
+  \end{align*}
+
+  For the second estimator we first calculate the corresponding pdf for $x \leq \theta^2$
+
+  \begin{align*}
+    \P((\max_{1 \leq i \leq n} X_i - \theta)^2 \leq x) &=
+    \P(\theta - \sqrt{x} \leq \max_{1 \leq i \leq n} X_i \leq \theta + \sqrt{x}) \\
+    &= 1 - \P(\max_{1\leq i \leq n} X_i \leq \theta - \sqrt{x}) \\
+    &= 1 - \prod_{i=1}^n \frac{\theta - \sqrt{x}}{\theta} \\
+    &= 1 - \left(\frac{\theta - \sqrt{x}}{\theta}\right)^n
+  \end{align*}
+
+  Therefore
+  \begin{align*}
+    \E_\theta[(\hat{\theta}_2 - \theta)^2] &= \E_\theta[(\max_{1 \leq i \leq n} X_i - \theta)^2] \\
+    &= \int_0^{\theta^2} x\frac{n-1}{2\theta\sqrt{x}}\left(\frac{\theta - \sqrt{x}}{\theta}\right)^{n-1} dx \\
+    &= \frac{n-1}{\theta^n}\int_0^{\theta} y^2(\theta - y)^{n-1} dy \\
+    &= -\frac{n-1}{\theta^n}\int_\theta^{0} (\theta - u)^2u^{n-1} du \\
+    &= -\frac{n-1}{\theta^n}\int_\theta^{0} (\theta^2 - 2\theta u + u^2)u^{n-1} du \\
+    &= \frac{n-1}{\theta^n}\left(\frac{\theta^{n+2}}{n} -
+    \frac{2\theta^{n+2}}{n+1} + \frac{\theta^{n+2}}{n+2}\right) \\
+    &= \theta^2(n-1)\left(\frac{(n+1)(n+2) - 2n(n+2) + n(n+1)}{n(n+1)(n+2)}\right) \\
+    &= \theta^2\left(\frac{2(n-1)}{n(n+1)(n+2)}\right) = \theta^2 \Landau(n^{-2}).
+  \end{align*}
+
+  Asymptotically for $n \to \infty$ the second estimator should be preferred, since
+  it converges faster.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

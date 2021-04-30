@@ -1,0 +1,59 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Box of candles}]
+
+There are blue and red candles in a box. Probability that a randomly chosen candle
+is blue is $1/(1 + 2a)$, for $a > 0$. Based on a sample of sample size $n$, find
+the maximum likelihood estimator (MLE) $\hat{a}$ of the parameter $a$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Let the random variable $X$ denote the number of blue candles chosen after $n$ attempts.
+Then $X \sim \text{Bin}(n, 1/(1 + 2a))$ and the likelihood reads
+
+\begin{align*}
+  L_n(a) = \binom{n}{x}\frac{1}{(1 + 2a)^x}\frac{(2a)^{n-x}}{(1 + 2a)^{n-x}}.
+\end{align*}
+
+Dropping the terms independent of $a$ we can simplify the expression to
+
+\begin{align*}
+  L_n(a) = \frac{(2a)^{n-x}}{(1 + 2a)^{n}}.
+\end{align*}
+
+Calculating the derivative, we obtain
+
+\begin{align*}
+  L_n'(a) &= \frac{2(n-x)(2a)^{n-x-1}(1+2a)^n - (2a)^{n-x}2n(1+2a)^{n-1}}{(1+2a)^{2n}} \\
+  &= \frac{2^{n-x}a^{n-x-1}(1+2a)^{n-1}[(n-x)(1+2a) - 2an]}{(1+2a)^{2n}}.
+\end{align*}
+
+Solving for zero we first consider the case $x \neq 0$:
+
+\begin{align*}
+  0 &\stackrel{!}{=} L_n'(a) = \frac{(2a)^{n-x-1}(1+2a)^{n-1}[2(n-x)(1+2a) - 4an]}{(1+2a)^{2n}} \\
+  \iff 0 &= (2a)^{n-x-1}(1+2a)^{n-1}[2(n-x)(1+2a) - 4an] \\
+  \iff a &= 0 \lor (n-x)(1+2a) = 2an \\
+  \iff a &= 0 \lor n-x = 2an - 2a(n - x)\\
+  \iff a &= 0 \lor n - x = 2ax \\
+  \iff a &= 0 \lor a = \frac{n - x}{2x} \\
+\end{align*}
+
+Since
+
+\begin{align*}
+  L_n^{\primeprime}\left(\frac{n-x}{2x}\right) &= 2^{n - x} \left(\frac{n-x}{2x}\right)^{-2 + n - x}
+  \left(1 + 2 \frac{n-x}{2x}\right)^{-2 - n}
+  \left(4 \left(\frac{n-x}{2x}\right)^2 x (1 + x) + (n - x) (-1 + n - x - 4 \frac{n-x}{2x} (1 + x))\right) \\
+  &< 0
+\end{align*}
+
+and $L_n(0) = 0 < L_n(a)$ the global maximizer of the likelihood function must be $\hat{a} = \frac{n - x}{2x}$.
+Plugging $\hat{a}$ into $X$ we obtain $X \sim \text{Bin}(n, x/n)$.
+\end{solution}
+
+% --------------------------------------------------------------------------------

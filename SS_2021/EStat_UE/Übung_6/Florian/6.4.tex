@@ -1,0 +1,68 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Unbiased estimators}]
+
+Let $\hat{a}$ and $\hat{b}$ be unbiased estimators of unknown parameters $a$ and $b$
+respectively.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Check if $\alpha \hat{a} + \beta \hat{b}$ is an unbiased estimator of the
+  parameter $\alpha a + \beta b$, where $\alpha, \beta \in \R$.
+  \item Is $\hat{a}^2$ an unbiased estimator of $a^2$?
+  \item Based on the following measurements of a side of a square (in millimeters)
+
+  \begin{align*}
+    15,17,16,16,17,14
+  \end{align*}
+
+  find an unbiased estimator of the area.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item Since $\hat{a}$ and $\hat{b}$ are unbiased estimators we have
+
+  \begin{align*}
+    \E[\hat{a}] = a, \quad \E[\hat{b}] = b
+  \end{align*}
+
+  and therefore
+
+  \begin{align*}
+    \E[\alpha\hat{a} + \beta\hat{b}] = \alpha\E[\hat{a}] + \beta\E[\hat{b}] = \alpha a + \beta b,
+  \end{align*}
+
+  i.e. $\alpha\hat{a} + \beta\hat{b}$ is an unbiased estimator of $\alpha a + \beta b$.
+
+  \item Only if $\V(\hat{a}) = 0$, i.e. $\hat{a}$ is a constant perfect estimator, since
+
+  \begin{align*}
+    0 \stackrel{!}{=} \E[\hat{a}^2] - a^2 = \E[\hat{a}^2] - \E[\hat{a}]^2 = \V(\hat{a}).
+  \end{align*}
+
+  \item We define our estimator as
+
+  \begin{align*}
+    \hat{A} = \frac{1}{\lfloor n/2\rfloor}\sum_{i=1}^{\lfloor n/2\rfloor} X_{2i-1}X_{2i}
+  \end{align*}
+
+  and denote with $a$ the true side length of the square. Then
+
+  \begin{align*}
+    \E[\hat{A}] = \frac{1}{\lfloor n/2\rfloor}\sum_{i=1}^n \E[X_{2i-1}X_{2i}]
+    = \frac{1}{\lfloor n/2\rfloor}\sum_{i=1}^{\lfloor n/2\rfloor}a^2 = a^2.
+  \end{align*}
+
+  Plugging in the given data we get the realization $A \approx \frac{749}{3}$.
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,91 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Rayleigh distribution}]
+
+Let $X_1,\dots,X_n$ be a random sample with Rayleigh distribution
+
+\begin{align*}
+  f(x|\theta) = \begin{cases}
+    \frac{x}{\theta^2}\exp\left(-\frac{x^2}{2\theta^2}\right), & x \geq 0 \\
+    0, & x < 0
+  \end{cases}
+\end{align*}
+
+where $\theta > 0$ is unknown.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Find the method of moments estimator of $\theta$.
+  \item Find the MLE of $\theta$ and its asymptotic variance.
+\end{enumerate}
+
+\textit{Hint:} Show that the first two moments are $\E[X] = \theta\sqrt{\pi/2}$
+and $\E[X^2] = 2\theta^2$.
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item We use the fact that the second moment of a standard normal distribution is 1.
+  \begin{align*}
+    \E[X] &= \int_0^{\infty} \frac{x^2}{\theta^2}\exp\left(-\frac{x^2}{2\theta^2}\right) dx \\
+    &= \frac{\theta}{2}\sqrt{2\pi}\int_\R u^2\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{u^2}{2}\right) du \\
+    &= \theta\sqrt{\pi/2}.
+  \end{align*}
+
+  For the method of moments we solve
+
+  \begin{align*}
+    \mu(\hat{\theta}) = \hat{\theta}\sqrt{\pi/2} \stackrel{!}{=} \bar{X}
+    \iff \hat{\theta} = \sqrt{2/\pi}\bar{X}.
+  \end{align*}
+
+  \item For the maximum likelihood estimation we consider the log-likelihood function
+  (after dropping factors not containing $\theta$)
+
+  \begin{align*}
+    \ell(\theta|x) = -2\log(\theta) - \frac{x^2}{2\theta^2}
+  \end{align*}
+  with derivative
+  \begin{align}
+    \ell'(\theta) = -\frac{2}{\theta} + \frac{x^2}{\theta^3} \stackrel{!}{=} 0
+    \iff x^2 = 2\theta^2 \iff \theta = \frac{x}{\sqrt{2}}.
+  \end{align}
+  The second derivative reads
+  \begin{align*}
+    \ell^{\primeprime}(\theta) = \frac{2}{\theta^2} - \frac{3x^2}{\theta^4}
+  \end{align*}
+  and plugging in $\hat{\theta} = \frac{x}{\sqrt{2}}$ yields
+
+  \begin{align*}
+    \ell^{\primeprime}(\hat{\theta}) = \frac{1}{x^2} - \frac{12}{x^2} < 0.
+  \end{align*}
+  Therefore we have found the global maximizer of the log-likelihood function.
+  For the asymptotic variance we calculate the second moment of the Rayleigh distribution.
+  \begin{align*}
+    \E[X^2] &= \int_0^{\infty} \frac{x^3}{\theta^2}\exp\left(-\frac{x^2}{2\theta^2}\right) dx \\
+    &= \theta^2 \int_0^{\infty} u^3\exp\left(-\frac{u^2}{2}\right) du \\
+    &= \theta^2\left( \left[-u^2\exp\left(-\frac{u^2}{2}\right)\right]_0^\infty
+    + 2 \int_0^{\infty} u \exp\left(-\frac{u^2}{2}\right) du\right) \\
+    &= 2\theta^2\left(\int_0^{\infty} u \exp\left(-\frac{u^2}{2}\right) du\right) \\
+    &= 2\theta^2\left[-\exp\left(-\frac{u^2}{2}\right)\right]_0^\infty \\
+    &= 2\theta^2.
+  \end{align*}
+  The CLT tells us
+  \begin{align*}
+    \sqrt{n}(X - \theta\sqrt{\pi/2}) \xrightarrow[n \to \infty]{d} \mathcal{N}(0,\theta^2(2-\pi/2)).
+  \end{align*}
+  Applying the Delta method yields
+  \begin{align*}
+    \sqrt{n}(X/\sqrt{2} - \theta\sqrt{\pi}) \xrightarrow[n \to \infty]{d} \mathcal{N}(0,\theta^2(1-\pi/4)),
+  \end{align*}
+  which gives the asymptotic variance as $\theta^2(1-\pi/4)n$.
+\end{enumerate}
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
