@@ -25,35 +25,50 @@ Dropping the terms independent of $a$ we can simplify the expression to
   L_n(a) = \frac{(2a)^{n-x}}{(1 + 2a)^{n}}.
 \end{align*}
 
-Calculating the derivative, we obtain
+To further simplify calculations, we consider the log-likelihood function
 
 \begin{align*}
-  L_n'(a) &= \frac{2(n-x)(2a)^{n-x-1}(1+2a)^n - (2a)^{n-x}2n(1+2a)^{n-1}}{(1+2a)^{2n}} \\
-  &= \frac{2^{n-x}a^{n-x-1}(1+2a)^{n-1}[(n-x)(1+2a) - 2an]}{(1+2a)^{2n}}.
+  \ell_n(a) = (n-x)\log(2a) - n\log(1 + 2a)
 \end{align*}
 
-Solving for zero we first consider the case $x \neq 0$:
+For $x = 0$ the maximum is never attained, as the function
+increases monotonously to the limit of 0 as $a$ goes to infinity.
+For $x = n$ the maximum is attained at $a = 0$. \\
+Calculating the derivative, we obtain for $0 < x < n$
 
 \begin{align*}
-  0 &\stackrel{!}{=} L_n'(a) = \frac{(2a)^{n-x-1}(1+2a)^{n-1}[2(n-x)(1+2a) - 4an]}{(1+2a)^{2n}} \\
-  \iff 0 &= (2a)^{n-x-1}(1+2a)^{n-1}[2(n-x)(1+2a) - 4an] \\
-  \iff a &= 0 \lor (n-x)(1+2a) = 2an \\
-  \iff a &= 0 \lor n-x = 2an - 2a(n - x)\\
-  \iff a &= 0 \lor n - x = 2ax \\
-  \iff a &= 0 \lor a = \frac{n - x}{2x} \\
+  \ell'_n(a) = \frac{n-x}{a} - \frac{2n}{1 + 2a}
 \end{align*}
 
-Since
+
+Now we find the zeros of the gradient for $x \neq 0$:
 
 \begin{align*}
-  L_n^{\primeprime}\left(\frac{n-x}{2x}\right) &= 2^{n - x} \left(\frac{n-x}{2x}\right)^{-2 + n - x}
-  \left(1 + 2 \frac{n-x}{2x}\right)^{-2 - n}
-  \left(4 \left(\frac{n-x}{2x}\right)^2 x (1 + x) + (n - x) (-1 + n - x - 4 \frac{n-x}{2x} (1 + x))\right) \\
-  &< 0
+  0 &\stackrel{!}{=} \ell'_n(a) = \frac{n-x}{a} - \frac{2n}{1 + 2a} \\
+  \iff \frac{2n}{1 + 2a} &= \frac{n-x}{a} \\
+  \iff 2na &= (n-x)(1 + 2a) \\
+  \iff 2xa &= n-x \\
+  \iff a &= \frac{n-x}{2x}.
 \end{align*}
 
-and $L_n(0) = 0 < L_n(a)$ the global maximizer of the likelihood function must be $\hat{a} = \frac{n - x}{2x}$.
-Plugging $\hat{a}$ into $X$ we obtain $X \sim \text{Bin}(n, x/n)$.
+We check the second derivative
+
+\begin{align*}
+  \ell^{\primeprime}(a) &= \frac{x-n}{a^2} + \frac{4n}{(1 + 2a)^2}
+\end{align*}
+
+and plug in $\hat{a} := \frac{n-x}{2x}$
+
+\begin{align*}
+  \ell^{\primeprime}(\hat{a}) &= \frac{4x^2(x-n)}{(n-x)^2} + 
+  \frac{4n}{(1 + (n-x)/x)^2} \\
+  &= \frac{4x^2(x-n)}{(n-x)^2} + \frac{4x^2n}{n^2} \\
+  &= \frac{4x^2}{(x-n)} + \frac{4x^2}{n} \\
+  &= \frac{4x^3}{n(x-n)} < 0.
+\end{align*}
+Therefore $\hat{a} = \frac{n-x}{2x}$ must be our maximum likelihood estimator.
+Like expected $1/(1+2\hat{a}) = \frac{x}{n}$.
+
 \end{solution}
 
 % --------------------------------------------------------------------------------

@@ -23,7 +23,7 @@ Let $X_1,\dots,X_n$ be i.i.d. uniform $(0,\theta)$, with unknown parameter $\the
   \item For the method of moments we solve
   \begin{align}
     \bar{X} = \mu(\theta) = \int_0^\theta \frac{x}{\theta} dx = \frac{\theta}{2}
-    \iff \theta = w\bar{X}.
+    \iff \theta = 2\bar{X}.
   \end{align}
   For the MLE we consider the likelihood function
   \begin{align*}
@@ -40,7 +40,7 @@ Let $X_1,\dots,X_n$ be i.i.d. uniform $(0,\theta)$, with unknown parameter $\the
 
   \begin{align*}
     \E_\theta[(\hat{\theta}_1 - \theta)^2] = \E_\theta[(2\bar{X} - \theta)^2]
-    = \sqrt{2}\E_\theta[(\bar{X} - \mu)^2] = \sqrt{2}\V(\bar{X}) = \sqrt{2}\frac{\theta^2}{12n}
+    = 4\E_\theta[(\bar{X} - \E[\bar{X}])^2] = 4\V(\bar{X}) = \frac{\theta^2}{3n}
     = \theta^2 \Landau(n^{-1})
   \end{align*}
 
@@ -56,15 +56,18 @@ Let $X_1,\dots,X_n$ be i.i.d. uniform $(0,\theta)$, with unknown parameter $\the
 
   Therefore
   \begin{align*}
-    \E_\theta[(\hat{\theta}_2 - \theta)^2] &= \E_\theta[(\max_{1 \leq i \leq n} X_i - \theta)^2] \\
-    &= \int_0^{\theta^2} x\frac{n-1}{2\theta\sqrt{x}}\left(\frac{\theta - \sqrt{x}}{\theta}\right)^{n-1} dx \\
-    &= \frac{n-1}{\theta^n}\int_0^{\theta} y^2(\theta - y)^{n-1} dy \\
-    &= -\frac{n-1}{\theta^n}\int_\theta^{0} (\theta - u)^2u^{n-1} du \\
-    &= -\frac{n-1}{\theta^n}\int_\theta^{0} (\theta^2 - 2\theta u + u^2)u^{n-1} du \\
-    &= \frac{n-1}{\theta^n}\left(\frac{\theta^{n+2}}{n} -
+    \E_\theta[(X_{(n)} - \theta)^2] &= \E_\theta[(\max_{1 \leq i \leq n} X_i - \theta)^2] \\
+    &= \int_0^{\theta^2} x\frac{n}{2\theta\sqrt{x}}
+    \left(\frac{\theta - \sqrt{x}}{\theta}\right)^{n-1} dx \\
+    &= \frac{n}{\theta^n}\int_0^{\theta} y^2(\theta - y)^{n-1} dy \\
+    &= -\frac{n}{\theta^n}\int_\theta^{0} (\theta - u)^2u^{n-1} du \\
+    &= -\frac{n}{\theta^n}\int_\theta^{0} 
+    (\theta^2 - 2\theta u + u^2)u^{n-1} du \\
+    &= \frac{n}{\theta^n}\left(\frac{\theta^{n+2}}{n} -
     \frac{2\theta^{n+2}}{n+1} + \frac{\theta^{n+2}}{n+2}\right) \\
-    &= \theta^2(n-1)\left(\frac{(n+1)(n+2) - 2n(n+2) + n(n+1)}{n(n+1)(n+2)}\right) \\
-    &= \theta^2\left(\frac{2(n-1)}{n(n+1)(n+2)}\right) = \theta^2 \Landau(n^{-2}).
+    &= \theta^2n
+    \left(\frac{(n+1)(n+2) - 2n(n+2) + n(n+1)}{n(n+1)(n+2)}\right) \\
+    &= \theta^2\left(\frac{2}{(n+1)(n+2)}\right) = \theta^2 \Landau(n^{-2}).
   \end{align*}
 
   Asymptotically for $n \to \infty$ the second estimator should be preferred, since

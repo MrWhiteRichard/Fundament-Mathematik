@@ -31,7 +31,7 @@ where $\theta \in \R^+$ is unknown parameter.
 
   \begin{align*}
     \bar{X} &\stackrel{!}{=} \mu(\hat{\theta}) = \int_\R x f_{\hat{\theta}}(x) dx
-    = \int_0^3 x \frac{\hat{\theta} x^{\hat{\theta}}}{3^{\hat{\theta}}} dx \\
+    = \int_0^3 x \frac{\hat{\theta} x^{\hat{\theta}-1}}{3^{\hat{\theta}}} dx \\
     &= \frac{\hat{\theta}}{3^{\hat{\theta}}} \int_0^3 x^{\hat{\theta}} dx \\
     &= \frac{\hat{\theta}}{3^{\hat{\theta}}} \frac{3^{\hat{\theta} + 1}}{\hat{\theta} + 1} \\
     &= 3\frac{\hat{\theta}}{\hat{\theta} + 1} \\
@@ -78,8 +78,10 @@ where $\theta \in \R^+$ is unknown parameter.
   we obtain
 
   \begin{align*}
-    \sqrt{n}(T_n - \theta) = \sqrt{n}(g(\bar{X}) - g(\mu)) \xrightarrow[n \to \infty]{d} g'(\mu)\mathcal{N}(0, 1) &= \frac{(\theta + 1)^2}{3} \mathcal{N}(0, 1) \\
-    &= \mathcal{N}\left(0, \frac{(\theta + 1)^4}{9}\right).
+    \sqrt{n}(T_n - \theta) = \sqrt{n}(g(\bar{X}) - g(\mu)) 
+    \xrightarrow[n \to \infty]{d} g'(\mu)\sigma\mathcal{N}(0, 1) 
+    &= \sigma\frac{(\theta + 1)^2}{3} \mathcal{N}(0, 1) \\
+    &= \mathcal{N}\left(0, \sigma^2\frac{(\theta + 1)^4}{9}\right).
   \end{align*}
 
   Hence, $T_n$ is a consistent and asymptotically normal (CAN) estimator of $\theta$.
