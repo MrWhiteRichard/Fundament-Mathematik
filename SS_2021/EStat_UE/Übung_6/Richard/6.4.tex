@@ -26,7 +26,79 @@ Let $\hat a$ and $\hat b$ be unbiased estimators of unknown parameters $a$ and $
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        \E(\alpha \hat a + \beta \hat b)
+        =
+        \alpha \E \hat a + \beta \E \hat b
+        =
+        \alpha a + \beta b
+    \end{align*}
+
+    \item No!
+    Let $X_1, \dots, X_n \sim \mathcal N(\mu, \sigma^2)$ be i.i.d.
+    Then $\bar X_n \sim \mathcal N \pbraces{\mu, \frac{\sigma^2}{n}}$ and hence, $\bar X_n$ is an unbiased estimator of $\mu$.
+
+    \begin{align*}
+        \mu^2
+        \stackrel{!}{\neq}
+        \E \bar X_n^2
+        =
+        \Var \bar X_n + \E^2 \bar X_n
+        =
+        \frac{\sigma^2}{n} + \mu^2
+    \end{align*}
+
+    Hence, $\bar X_n^2$ is not an unbiased estimator of $\mu^2$.
+
+    \item Instead of averaging over the squares, we average over the product of two consecutive odd-even indexed pairs.
+    
+    \begin{align*}
+        \hat Y_n
+        :=
+        \frac{1}{\floor{n/2}}
+        \sum_{i=1}^\floor{n/2}
+            X_{2 i - 1} X_{2 i}
+    \end{align*}
+
+    Due to the independence of $X_1, \dots, X_n$, we get
+
+    \begin{align*}
+        \E \hat Y_n
+        & =
+        \E
+        \pbraces
+        {
+            \frac{1}{\floor{n/2}}
+            \sum_{i=1}^\floor{n/2}
+                X_{2 i - 1} X_{2 i}    
+        } \\
+        & =
+        \frac{1}{\floor{n/2}}
+        \sum_{i=1}^\floor{n/2}
+            \E(X_{2 i - 1} X_{2 i}) \\
+        & =
+        \frac{1}{\floor{n/2}}
+        \sum_{i=1}^\floor{n/2}
+            \E X_{2 i - 1} \E X_{2 i} \\
+        & =
+        \frac{1}{\floor{n/2}}
+        \sum_{i=1}^\floor{n/2}
+            \E^2 X_1 \\
+        & =
+        \frac{1}{\floor{n/2}}
+        \E^2 X_1
+        \floor{n/2} \\
+        & =
+        \E^2 X_1.
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
