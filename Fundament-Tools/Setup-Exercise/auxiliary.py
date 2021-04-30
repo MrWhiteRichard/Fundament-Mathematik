@@ -153,7 +153,7 @@ def setup_exercise_main(
 
     main_content_replace += [
         (
-            r'\input{Fundament-LaTeX/' + file_name + r'.tex}' + '\r' + '\n',
+            r'\input{' +                  r'Fundament-LaTeX/' + file_name                  + r'.tex}' + '\r' + '\n',
             r'\input{' + r'../' * (i-1) + r'Fundament-LaTeX/' + file_name + '_' + language + r'.tex}' + '\r' + '\n'
         )
         for file_name in ['packages', 'macros', 'environments']
@@ -161,8 +161,22 @@ def setup_exercise_main(
     
     main_content_replace += [
         (
-            r'\input{Fundament-LaTeX/listings.tex}' + '\r' + '\n',
-            r'\input{' + r'../' * (i-1) + r'Fundament-LaTeX/listings' + r'.tex}' + '\r' + '\n'
+            r'\input{' +                  r'Fundament-LaTeX/listings.tex}' + '\r' + '\n',
+            r'\input{' + r'../' * (i-1) + r'Fundament-LaTeX/listings.tex}' + '\r' + '\n'
+        )
+    ]
+
+    main_content_replace += [
+        (
+            r'\addbibresource{' +                  r'Fundament-LaTeX/references.tex}' + '\r' + '\n',
+            r'\addbibresource{' + r'../' * (i-1) + r'Fundament-LaTeX/references.bib}' + '\r' + '\n'
+        )
+    ]
+
+    main_content_replace += [
+        (
+            r'\graphicspath{{' +                  r'Fundament-LaTeX/images/}}' + '\r' + '\n',
+            r'\graphicspath{{' + r'../' * (i-1) + r'Fundament-LaTeX/images/}}' + '\r' + '\n'
         )
     ]
 
