@@ -188,13 +188,7 @@ Let $X_1, \dots, X_n$ be i.i.d. uniform $(0, \theta)$, with unknown parameter $\
             & =
             \E X_{(n)}^2 - \E^2 X_{(n)} \\
             & =
-            \frac{n}{n+2} \theta^2 - \pbraces{\frac{n}{n+1} \theta}^2 \\
-            & =
-            \pbraces
-            {
-                \frac{n}{n+2} - \frac{n^2}{(n+1)^2}
-            }
-            \theta^2
+            \frac{n}{n+2} \theta^2 - \pbraces{\frac{n}{n+1} \theta}^2
         \end{align*}
 
         \begin{align*}
@@ -204,29 +198,59 @@ Let $X_1, \dots, X_n$ be i.i.d. uniform $(0, \theta)$, with unknown parameter $\
             & =
             \Var X_{(n)} + b^2(X_{(n)}) \\
             & =
-            \pbraces
-            {
-                \frac{n}{n+2} - \frac{n^2}{(n+1)^2}
-            }
-            \theta^2
+            \frac{n}{n+2} \theta^2 - \pbraces{\frac{n}{n+1} \theta}^2
             +
             \pbraces
             {
                 -\frac{\theta}{n+1}
             }^2 \\
             & =
-            \frac{n}{n+2} \theta^2
+            \frac{n}{n + 2} \theta^2
+            -
+            \frac{n^2}{(n + 1)^2} \theta^2
+            +
+            \frac{1}{(n + 1)^2} \theta^2 \\
+            & =
+            \pbraces
+            {
+                \frac{n}{n + 2} - \frac{n^2 - 1}{(n + 1)^2}
+            }
+            \theta^2 \\
+            & =
+            \pbraces
+            {
+                \frac{n}{n + 2}
+                -
+                \frac{(n + 1) (n - 1)}{(n + 1)^2}
+            }
+            \theta^2 \\
+            & =
+            \pbraces
+            {
+                \frac{n}{n + 2}
+                -
+                \frac{n - 1}{n + 1}
+            }
+            \theta^2 \\
+            & =
+            \frac{n (n + 1) - (n - 1) (n + 2)}{(n + 1) (n + 2)} \theta^2 \\
+            & =
+            \frac{n^2 + n - n^2 - 2 n + n + 2}{(n + 1) (n + 2)} \theta^2 \\
+            & =
+            \frac{2}{(n + 1) (n + 2)} \theta^2
         \end{align*}
-
-        \begin{align*}
-            \MSE(2 \bar X) \xrightarrow{n \to \infty} 0,
-            \quad
-            \MSE(X_{(n)}) \xrightarrow{n \to \infty} \theta
-        \end{align*}
-
-        If a lower $\MSE$ means that an estimator is better, then $2 \bar X$ is preferred.
 
     \end{enumerate}
+
+    Overall, we have
+
+    \begin{align*}
+        \MSE(2 \bar X) = \theta^2 \Landau(n^{-1}),
+        \quad
+        \MSE(X_{(n)}) = \theta^2 \Landau(n^{-2}).
+    \end{align*}
+
+    Because the $\MSE$ of $X_{(n)}$ converges to $0$ faster, $X_{(n)}$ ist probably better than $2 \bar X$.
 
 \end{enumerate}
 
