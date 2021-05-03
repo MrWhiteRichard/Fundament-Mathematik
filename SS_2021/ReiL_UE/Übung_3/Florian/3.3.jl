@@ -52,7 +52,7 @@ function policy_iteration(tau)
     counter = 0
     while policy_stable == false
         V,_ = policy_evaluation(policy, S, R, tau)
-        policy, policy_stable = policy_improvement(pi, S, R, V)
+        policy, policy_stable = policy_improvement(policy, S, R, V)
         counter += 1
     end
     return policy, V, counter, random_evaluation, random_num_iterations
