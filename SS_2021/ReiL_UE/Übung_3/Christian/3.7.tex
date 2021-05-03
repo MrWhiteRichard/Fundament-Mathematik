@@ -1,0 +1,28 @@
+\begin{exercise}
+  What is the analog of the value iteration update (4.10) for action values, $q_{k+1}(s, a)$?
+
+  \begin{align*}
+      v_{k+1}(s)
+      & \doteq
+      \max_a
+          \E[R_{t+1} + \gamma v_k(S_{t+1}) \mid S_t = s, A_t = a] \\
+      & =
+      \max_a
+          \sum_{s^\prime, r}
+              p(s^\prime, r \mid s, a)
+              \bbraces{r + \gamma v_k(s^\prime)} \tag{4.10}
+  \end{align*}
+
+\end{exercise}
+
+\begin{solution}
+  We use our formula from exercise 25 and get the analogous formula
+
+  \begin{align*}
+    q_{k+1}(s,a) = \sum_{s^\prime, r}
+        p(s^\prime, r \mid s, a)
+        \bbraces{r + \gamma \max_{a^\prime} q_k(s^\prime, a^\prime)}
+  \end{align*}
+
+  Note that this corresponds with the Bellman optimality equation for action-value functions (3.20), as what we do in value iteration is just turning the Bellman optimality equation into our update rule.
+\end{solution}

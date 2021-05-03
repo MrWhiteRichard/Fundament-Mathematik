@@ -1,0 +1,53 @@
+\begin{exercise}
+Suppose you are restricted to considering only policies that are $\epsilon$-soft, meaning that the probability of selecting each action in each state, $s$, is at least $\epsilon / |A(s)|$.
+Describe qualitatively the changes that would be required in each of the steps $3$, $2$, and $1$, in that order, of the policy iteration algorithm for $v_\ast$ (Textbook p. 80).
+\end{exercise}
+
+\begin{solution}
+  For the policy improvement in step 3 we get
+  \newline
+
+  \begin{algorithm}[H]
+  \SetKwData{Policy}{policy-stable}\SetKwData{True}{true}\SetKwData{False}{false}\SetKwData{Old}{old-action(a)}
+
+  {3. Policy improvement} \\
+  {\Policy $\leftarrow$ \True}\;
+  \For{each $s \in \mathcal S$}{
+    \For{each $a \in \mathcal A(s)$}{
+      \Old $\leftarrow \pi(a\mid s)$\;
+      $\pi(a \mid s) = \frac{\varepsilon}{|\mathcal{A}(s)|}$
+      }
+      $A_{\max} = \argmax_a \sum_{s^\prime, r} p(s^\prime, r\mid s, a)\big[r + \gamma V(s^\prime)\big] $\;
+    \For{$a^\prime \in A_{\max}$}{
+      $\pi(a^\prime \mid s) \leftarrow \pi(a^\prime \mid s) + \frac{1- \varepsilon}{|A_{\max}|}$
+    }
+  If \Old $\neq \pi(a\mid s)$ for any $a \in \mathcal A(s)$ then \Policy $\leftarrow$ \False\
+  }
+  \eIf{\Policy}{
+   stop\;
+  }{
+  go back to step 2\;
+  }
+ \caption{Policy improvement with an $\varepsilon$-soft policy}
+  \end{algorithm}
+
+  In the policy evaluation step we just have to replace one line, namely the one that states
+
+  \begin{align*}
+    V(s) \leftarrow  \sum_{s^\prime, r} p(s^\prime, r\mid s, \pi(s))\big[r + \gamma V(s^\prime)\big]
+  \end{align*}
+
+  We replace it with the following:
+
+  \begin{align*}
+    V(s) \leftarrow \sum_{a \in \mathcal A(s)} \pi(a\mid s)\sum_{s^\prime, r} p(s^\prime, r\mid s, a)\big[r + \gamma V(s^\prime)\big]
+  \end{align*}
+
+  For the change in initialization we use
+
+  \begin{align*}
+     \pi(a\mid s) = \frac{1}{|\mathcal{A}(s)|} \\
+  \end{align*}
+
+  for every $s \in \mathcal S$ and and $a \in \mathcal A(s)$ (here we assume that $\varepsilon \leq 1$).
+\end{solution}
