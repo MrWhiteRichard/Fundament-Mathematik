@@ -1,0 +1,65 @@
+\documentclass[a4paper,11pt,bibliography=totoc,listof=totoc,headinclude=true,cleardoublepage=empty,oneside]{scrbook}
+% Option "oneside" für einseitigen Druck. Weglassen, falls die Arbeit doppelseitig gedruckt wird
+
+%\usepackage{fullpage}
+\usepackage{color}
+\usepackage{psfrag}
+
+\def \lastexercisenumber {0}
+
+\input{../../../../Fundament-LaTeX/packages_de.tex}
+\input{../../../../Fundament-LaTeX/macros_de.tex}
+\input{../../../../Fundament-LaTeX/environments_de.tex}
+\input{../../../../Fundament-LaTeX/listings.tex}
+
+
+\addbibresource{literature.bib}
+
+% Zum Druck verwende schwarze Links!
+%\usepackage[unicode,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,pagebackref=false]{hyperref} 
+	% colorlinks=false umrahmt Links statt einzufärben, 
+
+
+% document style
+\KOMAoptions{footinclude=false} % Fußzeile wird nicht zu Satzspiegel gezählt
+\KOMAoptions{headsepline=true} % Trennlinie zwischen Kopfzeile und Text
+\KOMAoptions{DIV=12} % beeinflusst Satzspiegel
+\KOMAoptions{BCOR=8mm} % Bindekorrektur
+\pagestyle{headings} % mit Kopfzeilen
+
+\recalctypearea % berechne Satzspiegel neu
+
+\definecolor{change}{rgb}{0,.55,.55}
+
+\def\revision#1{{\color{red}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{titlepage.tex}
+
+\input{danksagung.tex}
+
+\input{eid.tex}
+
+\input{inhaltsverzeichnis.tex}
+
+\input{Kapitel/1-Einleitung.tex}
+
+\input{Kapitel/2-Definitionen.tex}
+
+\input{Kapitel/tipps.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LITERATURVERZEICHNIS MIT BIBTEX --> MATHSCINET VERWENDEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography
+
+\end{document}
