@@ -1,0 +1,46 @@
+\begin{exercise}
+How would policy iteration be defined for action values?
+Give a complete algorithm for computing $q_\ast$, analogous to that on page 80 for computing $v_\ast$.
+Please pay special attention to this exercise, because the ideas involved will be used throughout the rest of the book.
+\end{exercise}
+
+\begin{solution}
+  We will use the results of the last exercise to compute $q_\ast$:
+
+\begin{algorithm}[H]
+\SetKwData{Policy}{policy-stable}\SetKwData{True}{true}\SetKwData{False}{false}\SetKwData{Old}{old-action}
+ {1. Initialization}\\
+ {$Q(s,a)$ and $\pi(s)\in \mathcal A(s)$ arbitrarily for all $s \in \mathcal{S}$ and $a \in \mathcal A(s)$}\;
+ {set $\Delta > \theta$}
+
+ \BlankLine
+ {2. Policy evaluation}\\
+ \While{$\Delta < \theta$ (a small positive number determining the accuracy of estimation)}{
+  $\Delta \leftarrow 0$\;
+  \For{each $s \in \mathcal S$}{
+    \For{each $a \in \mathcal A(s)$}{
+      $q \leftarrow Q(s,a)$\;
+      $Q(s,a)
+      =
+      \sum_{s^\prime,r^\prime}p(s^\prime,r^\prime\mid s,a)\big[r + \gamma \sum_{a^\prime \in \mathcal A(s^\prime)}\pi(a^\prime \mid s^\prime)Q(s^\prime, a^\prime)\big]$\;
+      $\Delta \leftarrow \max\{\Delta, |q - Q(s,a)|\}$
+      }
+    }
+  }
+  \BlankLine
+  {3. Policy improvement} \\
+  {\Policy $\leftarrow$ \True}\;
+  \For{each $s \in \mathcal S$}{
+  \Old $\leftarrow \pi(s)$\;
+  $\pi(s) = \argmax_a Q(s,a)$\;
+  If \Old $\neq \pi(s)$ then \Policy $\leftarrow$ \False
+  }
+  \eIf{\Policy}{
+   stop\;
+  }{
+  go back to step 2\;
+  }
+ \caption{Policy evaluation and improvement with action-value functions}
+\end{algorithm}
+
+\end{solution}
