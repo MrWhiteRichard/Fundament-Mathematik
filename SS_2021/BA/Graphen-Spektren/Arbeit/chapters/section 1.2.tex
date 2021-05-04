@@ -1,0 +1,206 @@
+\section{Definitionen und Notationen}
+
+\begin{definition}
+
+    Als \textit{Graph} bezeichnen wir ein Paar $G = (V, E)$, das aus einer Menge $V$ von \textit{Ecken} und einer Menge $E$ von \textit{Kanten} besteht.
+    $V$ sei in dieser Arbeit stets endlich, $G$ also ein \textit{endlicher} Graph.
+    $E$ kann drei verschiedene Typen von Elementen enthalten.
+
+    \begin{enumerate}
+
+        \item $E$ kann aus Paaren $(v, w)$, mit $v, w \in V$, bestehen.
+        $G$ nennen wir dann \textit{gerichtet}.
+        Kanten der Form $(v, v)$, wobei $v \in V$, sind dabei \textit{gerichtete Schleifen}.
+
+        \item $E$ darf auch aus Multi-Paar-Mengen $[v, w]$, für $v, w \in V$ bestehen.
+        In diesem Fall heißt $G$ \textit{ungerichtet}.
+        \textit{Ungerichtete Schleifen} seien jetzt echte Multi-Mengen $[v, v]$ mit $v \in V$.
+
+        \item Falls $G$ ein ungerichteter Graph ohne Schleifen sein soll, könne die Kanten auch Paar-Mengen $\Bbraces{v, w}$, mit $v, w \in V$, sein.
+
+    \end{enumerate}
+
+    $E$ kann eine Multi-Menge sein.
+    $G$ ist dann ein \textit{Multi-Graph}.
+    Falls, darüber hinaus, $E$ eine echte Multi-Menge ist, schreiben wir $V(G)$ und $E(G)$ für dessen Ecken bzw. Kanten.
+
+\end{definition}
+
+\begin{definition}
+
+    Sei $G$ ein (Multi-)Graph.
+    Zwei Ecken $v, w \in V(G)$ heißen \textit{adjazent}, wenn wie durch eine Kante $e \in E(G)$ verbunden werden, i.Z.
+
+    \begin{align*}
+        v, w ~\text{adjazent}~
+        :\iff
+        \Exists e \in E(G):
+            \begin{cases}
+                e = [v, w],                 & \text{wenn}~ G ~\text{ungerichtet}, \\
+                e = (v, w) \lor e = (w, v), & \text{wenn}~ G ~\text{gerichtet}.
+            \end{cases}
+    \end{align*}
+
+    Eine Ecke $v \in V(G)$ und eine Kante $e \in E(G)$ heißen \textit{inzident}, wenn die Ecke auf der Kante liegt, bzw. in sie hinein oder aus ihr herausführt, i.Z.
+
+    \begin{align*}
+        v, e ~\text{inzident}~
+        :\iff
+        \begin{cases}
+            v \in e,                                        & \text{wenn}~ G ~\text{ungerichtet}, \\
+            \Exists w \in V(G): e = (v, w) \lor e = (w, v), & \text{wenn}~ G ~\text{gerichtet}.
+        \end{cases}
+    \end{align*}
+
+\end{definition}
+
+\begin{definition}
+
+    Sei $G$ ein ungerichteter (Multi-)Graph.
+    Die \textit{Adjazenz} zwischen zwei Ecken $v, w \in V(G)$ ist die Vielfachheit der Kanten $e \in E(G)$, die diese Verbindet, i.Z.
+
+    \begin{align*}
+        \operatorname{adj}(v, w)
+        :=
+        |\Bbraces{e \in E(G): e = [v, w]}|.
+    \end{align*}
+
+    Der \textit{Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die auf ihm liegen, i.Z.
+
+    \begin{align*}
+        \deg v
+        :=
+        |\Bbraces{e \in E(G): v \in e}|.
+    \end{align*}
+
+    Die \textit{Inzidenz} eines Knotens $v \in V(G)$ und einer Kante $e \in E(G)$ ist
+
+    \begin{align*}
+        \operatorname{inc}(v, e)
+        :=
+        \begin{cases}
+            1, & \text{wenn}~ v \in e, \\
+            0, & \text{sonst}.
+        \end{cases}
+    \end{align*}
+
+    Sei $G$ ein gerichteter (Multi-)Graph.
+    Die \textit{Adjazenz} zwischen zwei Ecken $v, w \in V(G)$ ist die Vielfachheit der Kanten $e \in E(G)$, die vom ersten zum zweiten Ecken führt, i.Z.
+
+    \begin{align*}
+        \operatorname{adj}(v, w)
+        :=
+        |\Bbraces{e \in E(G): e = (v, w)}|.
+    \end{align*}
+
+    Der \textit{Eingangs-Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die in ihn hineinführen, i.Z.
+
+    \begin{align*}
+        \deg^- v
+        :=
+        |\Bbraces{e \in E(G): \Exists w \in V(G): (w, v) = e}|.
+    \end{align*}
+
+    Der \textit{Ausgangs-Grad} oder auch \textit{Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die aus ihm herausführen, i.Z.
+
+    \begin{align*}
+        \deg v
+        :=
+        \deg^- v
+        :=
+        |\Bbraces{e \in E(G): \Exists w \in V(G): (v, w) = e}|.
+    \end{align*}
+
+    Die \textit{Inzidenz} eines Knotens $v \in V(G)$ und einer Kante $e \in E(G)$ ist
+
+    \begin{align*}
+        \operatorname{inc}(v, e)
+        :=
+        \begin{cases}
+             1, & \text{wenn}~ \Exists w \in V(G): (v, w) = e, \\
+            -1, & \text{wenn}~ \Exists w \in V(G): (w, v) = e, \\
+             0, & \text{sonst}.
+        \end{cases}
+    \end{align*}
+
+    Unabhängig davon, ob $G$ gerichtet oder ungerichtet ist, sei die \text{Seidel-Adjazenz} zweier Ecken $v, w \in V(G)$
+
+    \begin{align*}
+        \operatorname{adj}^\prime(v, w)
+        =
+        \begin{cases}
+             1, & \text{wenn}~ v \neq w, ~\text{und}~ v, w ~\text{adjazent}, \\
+            -1, & \text{wenn}~ v \neq w, ~\text{und}~ v, w ~\text{nicht adjazent}, \\
+             0, & \text{sonst}.
+        \end{cases}
+    \end{align*}
+
+\end{definition}
+
+\begin{definition} \label{def:listing}
+
+    Sei $G$ ein (Multi-)Graph.
+    Bezeichne $n = |V(G|$ die Anzahl der Ecken und $m = |E(G)|$ die Anzahl der Kanten von $G$.
+    Seien $f: \Bbraces{1, \dots, n} \to V(G)$ und $g: \Bbraces{1, \dots, m} \to E(G)$ Bijektionen und $v_i = f(i)$ sowie $e_k = g(k)$, für $i = 1, \dots, n$ bzw. $k = 1, \dots, m$.
+    $(v_1, \dots, v_n)$ und $(e_1, \dots, e_m)$ bezeichnen wir als Auflistungen von $V(G)$ bzw. $E(G)$.
+
+\end{definition}
+
+\begin{definition}
+
+    Wir schließen an Definition \ref{def:listing} direkt an und nennen
+
+    \begin{itemize}
+        \item $\mathbf A(G, f) := (\operatorname{adj}(v_i, v_j))_{i, j = 1}^n$ eine \textit{Adjazenz-Matrix},
+        \item $\mathbf D(G, f) := \diag (\deg v_i)_{i=1}^n$ eine \textit{Grad-Matrix},
+        \item $\mathbf L(G, f) := \mathbf D(G, f) - \mathbf A(G, f)$ eine \textit{Laplace-Matrix},
+        \item $\mathbf B(G, f, g) := (\operatorname{inc}(v_i, e_k))_{i, k = 1}^{n, m}$ eine \textit{Inzidenz-Matrix}, und
+        \item $\mathbf S(G, f) := (\operatorname{adj}^\prime(v_i, v_j))_{i, j = 1}^n$ eine \textit{Seidel-Matrix}
+    \end{itemize}
+
+    von $G$ unter der(n) Abzählung(en) $f$ (und $g$).
+
+    Die durch die Abzählungen indizierten Familien all jener genannten \textit{Graphen-Matrizen}, bezeichnen wir mit $\mathcal A(G)$, $\mathcal D(G)$, $\mathcal L(G)$, $\mathcal B(G)$, bzw. $\mathcal S(G)$.
+    Gelegentlich werden wir diese aber als Mengen auffassen und auf die Indizierung verzichten.
+
+\end{definition}
+
+Wenn wir verschiedene Graphen-Matrizen betrachten, un nichts Zusätzliches gesagt wird, sollen jene, die zu selben Graphen gehören, auch derselben Auflistung entspringen.
+
+\begin{remark}
+
+    Offenbar sind Graphen durch ihre Adjazenz-Matrix eindeutig bestimmt.
+    Je nachdem, wie man $V(G$ aufzählt, bekommt man aber möglicherweise, zum selben Graphen, verschiedene Adjazenz-Matrizen.
+    Zwei Adjazenz-Matrizen $\mathbf A_1 := \mathbf A(G, f_1) \in \mathcal A(G)$ und $\mathbf A_2 :=  \mathbf A(G, f_2) \in \mathcal A(G)$ sind allerdings immer permutations-ähnlich, vermöge jener Permutations-Matrix $\mathbf P_\pi$, die zur Permutation $\pi$ gehört, die die eine Aufzählung $f_1$ in die andere Aufzählung $f_2$ überführt, i.Z.
+
+    \begin{align*}
+        \mathbf A_1 = \mathbf P_\pi^{-1} \mathbf A_2 \mathbf P_\pi,
+        \quad
+        \pi = f_2 \circ f_1^{-1} \in S_n.
+    \end{align*}
+
+    Analoges gilt auch für die übrigen Graphen-Matrizen.
+
+\end{remark}
+
+\begin{definition}
+    Sei $G$ ein (Multi-)Graph, $\mathbf A \in \mathcal A(G)$, $\mathbf D \in \mathcal D(G)$, und $\mathbf S \in \mathcal S(G)$ beliebige Adjazenz-, Grad-, bzw. Seidel-Matrizen.
+    Wir definieren die \textit{charakteristischen Polynome}
+
+    \begin{gather*}
+        P_G(\lambda) := \det(\lambda \mathbf I - \mathbf A),
+        \quad
+        Q_G(\lambda) := \frac{1}{\det \mathbf D} \det(\lambda \mathbf D - \mathbf A), \\
+        R_G(\lambda) := \det(\lambda \mathbf I - \mathbf D - \mathbf A),
+        \quad
+        \text{und}
+        \quad
+        S_G(\lambda) := \det(\lambda \mathbf I - \mathbf S).
+    \end{gather*}
+
+    Bei der Definition von $Q_G$ setzen wir voraus, dass $\det D \neq 0$.
+    Die Nullstellen-Mengen $\sigma_P(G)$, $\sigma_Q(G)$, $\sigma_R(G)$, bzw. $\sigma_S(G)$ nennen wir \textit{(Graphen-)Spektren} von $G$.
+    $P_G$ und $\sigma_P(G)$ bekommen die Namen \textit{gewönliches} charakteristisches Polynom bzw. Spektrum;
+    $P_S$ und $\sigma_S(G)$ die Namen \textit{charakteristisches Seidel-Polynom} bzw. \textit{Seidel-Spektrum}.
+
+\end{definition}

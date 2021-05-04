@@ -1,0 +1,248 @@
+\section{Grundlagen}
+
+In diesem Kapitel sollen hoffentlich größtenteils bekannte Definitionen Ergebnisse in Erinnerung gerufen werden, die für einen Einstieg in die Spektrale Graphen-Theorie unverzichtbar sind.
+Nachdem diese nicht das zentrale Thema dieser Arbeit sind, werden die Beweise größtenteils zitiert.
+
+Das Kronecker-Delta sei wie üblich zu verstehen, für $i, j \in \mathbb N$, als
+
+\begin{align*}
+    \delta_{i, j}
+    :=
+    \begin{cases}
+        1, & \text{wenn}~ i = j, \\
+        0, & \text{sonst}.
+    \end{cases}
+\end{align*}
+
+Sei $n \in \mathbb N \setminus \Bbraces{0}$.
+Dies möge ebenfalls gelten, wenn $n$ nicht explizit beschrieben wird.
+
+Wir schreiben $(x_i)_{i=1}^n$ für das Tupel $(x_1, \dots, x_n)$ und $(x_{i, j})_{i, j = 1}^{n, m}$ für die Matrix
+
+\begin{align*}
+    \begin{pmatrix}
+        x_{1, 1} & \cdots & x_{1, m} \\
+        \vdots   & \ddots & \vdots   \\
+        x_{n, 1} & \cdots & x_{n, m}
+    \end{pmatrix},
+\end{align*}
+
+wobei $m \in \mathbb N \setminus \Bbraces{0}$.
+Falls $n = m$, so schreiben wir auch $(x_{i, j})_{i, j = 1}^n$.
+Matrizen sind hier \textbf{fett} gedruckt.
+
+$\mathbf I_n := (\delta_{i, j})_{i, j = 1}^n \in \mathbb R^{n \times n}$ soll die Einheits-Matrix und $\mathbf J_n := (1)_{i, j = 1}^n \in \mathbb R^{n \times n}$.
+Wenn es aus dem Kontext heraus klar ist, was $n$ ist, lassen wir den Index weg.
+
+\begin{definition}
+
+    Sei $\dom M$ eine endliche Menge.
+    Eine \textit{Multimenge} $M$ auf $\dom M$ ist eine Funktion von $\dom M$ in die Natürlichen Zahlen $\mathbb N$,
+
+    \begin{align*}
+        M: \dom M \to \mathbb N.
+    \end{align*}
+
+    Für $x \in \dom M$, nennen wir $M(x)$ dessen \textit{Vielfachheit}.
+    $M$ ist eine \textit{echte} Multimenge, wenn ihre Werte-Menge $\ran M$ ein Element mit Vielfachheit ungleich $1$ hat.
+    Der \textit{Träger} $\supp M$ von $M$ sei die Menge aller Elemente aus $\dom M$, mit positiver Vielfachheit, i.Z.
+    
+    \begin{align*}
+        \supp M
+        :=
+        \Bbraces{x \in \dom M: M(x) > 0}.
+    \end{align*}
+
+    Die \textit{Mächtigkeit} $|M|$ von $M$ sei die Summe aller Vielfachheiten,
+
+    \begin{align*}
+        |M| := \sum_{x \in \dom M} M(x).
+    \end{align*}
+
+\end{definition}
+
+Der Hauptzweck hinter Multi-Mengen soll darin bestehen, einen Kompromiss zwischen Mengen und Tupeln zu machen.
+Die deren Elemente sollen ungeordnet sein, es muss aber klar sein, wie oft sie vorkommen.
+Wir wollen mit ihnen aber möglichst so, wie mit Mengen arbeiten können.
+Dazu treffen wir folgende Vereinbarungen.
+
+\begin{itemize}
+
+    \item Für $x \in \supp M$ schreiben wir auch $x \in M$.
+
+    \item Multi-Mengen werden wir mit eckigen Klammern notieren.
+    Ein Beispiel wäre die Multi-Menge
+    
+    \begin{align*}
+        \Bbraces{(x, 0), (y, 1), (z, 2)}
+        & =
+        M \\
+        & =
+        [y, z, z] = [z, y, z] = [z, y, y] \\
+        & \neq
+        [y, z].
+    \end{align*}
+
+    \item Um Fallunterscheidungen zu vermeiden, werden wir Mengen gelegentlich auch mit eckigen statt geschweiften Klammen schreiben.
+    
+\end{itemize}
+
+Sollten wir $M$ jemals als Funktion, d.h. als Menge von Paaren betrachten, wird darauf explizit hingewiesen.
+
+\begin{lemma}
+
+    Sei $\mathbf A \in \mathbb R^{n \times n}$ eine symmetrische Matrix, d.h. $\mathbf A = \mathbf A^\top$.
+    Dann enthält deren Spektrum $\sigma(\mathbf A) \subseteq \mathbb R$ nur reelle Zahlen.
+
+\end{lemma}
+
+\begin{proof}
+    Sei $\lambda \in \sigma(\mathbf A)$ ein Eigenwert von $\mathbf A$, mit zugehörigem Eigenvektor $x \in \mathbb R^n \setminus \Bbraces{0}$.
+    $\lambda$ ist zunächst bloß eine Nullstelle des charakteristischen Polynoms $P(\mu) = \det(\mathbf A - \mu \mathbf I_n)$, also $\lambda \in \mathbb C$.
+
+    Das Eigenpaar $(\lambda, \mathbf x) \in \mathbb C \times \mathbb R^n \setminus \Bbraces{0}$ erfüllt aber auch die Gleichung $\mathbf A \mathbf x = \lambda \mathbf x$.
+    Weil $\mathbf A$ symmetrisch ist, folgt daraus
+
+    \begin{multline*}
+        \lambda |\mathbf x|^2
+        =
+        \lambda (\mathbf x, \mathbf x)
+        =
+        (\lambda \mathbf x, \mathbf x)
+        =
+        (\mathbf A \mathbf x, \mathbf x)
+        =
+        (\mathbf x, \mathbf A^\top \mathbf x) \\
+        =
+        (\mathbf x, \mathbf A \mathbf x)
+        =
+        (\mathbf x, \lambda \mathbf x)
+        =
+        \overline{(\lambda \mathbf x, \mathbf x)}
+        =
+        \overline \lambda \overline{(\mathbf x, \mathbf x)}
+        =
+        \overline \lambda \overline{|\mathbf x|^2}.
+    \end{multline*}
+
+    Dabei bezeichne $|\cdot|$ die Euklidsche Norm und $(\cdot, \cdot)$ das Euklidsche Skalarprodukt.
+    Weil $x \neq 0$ als Eigenvektor, ist $|x|^2 \in \mathbb R \setminus \Bbraces{0}$ und wir erhalten $\lambda = \overline \lambda$.
+    Das geht aber nur für $\lambda \in \mathbb R$.
+
+\end{proof}
+
+\begin{definition}
+    
+    Sei $S_n$ die \textit{Symmetrische Gruppe} auf $\Bbraces{1, \dots, n}$.
+    Für eine \textit{Permutation} $\pi \in S_n$ sei $\mathbf P_\pi := (\delta_{\pi(i), j})_{i, j = 1}^n$ die zugehörige \textit{Permutations-Matrix}.
+    Sei $\mathbb P_n := \Bbraces{\mathbf P_\pi: \pi \in S_n}$ die Menge aller Permutations-Matrizen der Größe $n$.
+    Zwei Matrizen $\mathbf A, \mathbf B \in \mathbb R^{n \times n}$ heißen \textit{permutations-ähnlich}, wenn es eine Permutations-Matrix $\mathbf P \in \mathbb P_n$ gibt, sodass $\mathbf A = \mathbf P^{-1} \mathbf B \mathbf P$.
+    Die dadurch definierte Relation $\sim_{\mathbb P}$ auf $\mathbb R^{n \times n}$ nennen wir \textit{Permutations-Ähnlichkeit}.
+
+\end{definition}
+
+\begin{lemma} \label{lem:permutation_matrices}
+
+    \phantom{}
+
+    \begin{enumerate}
+
+        \item Seien $\pi \in S_n$ und $(x_1, \dots, x_n)^\top \mathbf x \in \mathbb R^n$, so gilt
+
+        \begin{align*}
+            \mathbf P_\pi \mathbf x
+            =
+            \begin{pmatrix}
+                x_{\pi(1)} \\ \vdots \\ x_{\pi(n)}
+            \end{pmatrix},
+            \quad
+            \text{und}
+            \quad
+            \mathbf x^\top \mathbf P_\pi
+            =
+            (x_{\pi^{-1}(1)}, \dots, x_{\pi^{-1}(n)}).
+        \end{align*}
+
+        $\mathbb P_n$ ist eine Untergruppe der orthogonalen Matrizen $\operatorname O_n(\mathbb R)$ der Größe $n$.
+        $S_n$ ist anti-isomorph zu $\mathbb P_n$, vermöge $\pi \mapsto \mathbf P_\pi$.
+
+        \item Die Permutations-Ähnlichkeit ist eine Teil-Äquivalenz-Relation der herkömmlichen Ähnlichkeit $\sim$.
+        Permutations-ähnliche Matrizen haben dasselbe charakteristische Polynom und dieselben Eigenwerte.
+    
+    \end{enumerate}
+
+\end{lemma}
+
+\begin{proof}
+
+    Die ersten beiden Aussagen sind elementare Rechnungen.
+    Man kann sie benutzen, um die Homomorphie von $\pi \mapsto \mathbf P_\pi$ nachzuweisen, indem man die Permutations-Matrizen mit $\mathbf x$ testet.
+    Weil $\mathbb P_n$ ein homomorphes Bild der Gruppe $S_n$ folgt, dass es auch eine Gruppe sein muss.
+    Dass Permutations-Matrizen orthogonal sind, d.h. ihre Transponierten sind jeweils ihre Inversen, weist man auch rasch durch testen mit $\mathbf x$ nach. \\
+
+    Dass $\sim_{\mathbb P}$ eine Äquivalenz-Relation ist, sieht man analog zu $\sim$.
+    Die Reflexivität folgt daraus, dass $\mathbb P_n$ ein neutrales Element hat;
+    die Symmetrie daraus, dass $\mathbb P_n$ unter Inversen-Bildung abgeschlossen ist;
+    und die Transitivität gilt, weil $\mathbb P_n$ unter Verknüpfung abgeschlossen ist.
+    Die letzte Aussage folgt aus der vorletzten und der Tatsache, dass sie für ähnliche Matrizen gilt.
+
+\end{proof}
+
+\begin{remark}
+    
+    Obere letztere Aussage lässt sich noch verfeinern.
+    Seien $\mathbf A_1, \dots, \mathbf A_m \in \mathbb R^{n \times n}$ jeweils kongruent zu $\mathbf B_1, \dots, \mathbf B_m \in \mathbb R^{n \times n}$ vermöge einer orthogonalen Matrix $\mathbf P \in \operatorname O_n(\mathbb R)$.
+    Dann sind auch deren Summen kongruent vermöge $\mathbf P$, denn
+
+    \begin{align*}
+        \sum_{i=1}^m \mathbf A_i
+        =
+        \sum_{i=1}^m \mathbf P^\top \mathbf B_i \mathbf P
+        =
+        \mathbf P^\top \sum_{i=1}^m \mathbf B_i \mathbf P.
+    \end{align*}
+
+    Sei nun $\mathbf P_\pi \in \mathbb P$ eine Permutations-Matrix zur Permutation $\pi \in S_n$.
+    $\pi$ lässt sich in Traspositionen $\tau_1, \dots, \tau_m \in S_n$ zerlegen, d.h. $\pi = \tau_1 \circ \dots \circ \tau_m$.
+    Mit Lemma \ref{lem:permutation_matrices} sieht man, dass
+
+    \begin{align*}
+        \mathbf P_{\tau_i}^{-1} \mathbf I \mathbf P_{\tau_i} = \mathbf I,
+        \quad
+        \text{und}
+        \quad
+        \mathbf P_{\tau_i} \mathbf J = \mathbf J \mathbf P_{\tau_i},
+        \quad
+        \text{für}
+        \quad
+        i = 1, \dots, m.
+    \end{align*}
+
+    Mit demselben Lemma siht man nun, dass das auch für $\pi$ gelten muss.
+    Seien weiters $\lambda_1, \dots, \lambda_{m_1}, \mu_1, \dots, \mu_{m_2} \in \mathbb R$, so gilt nun
+
+    \begin{align*}
+        \sum_{i=1}^m \mathbf A_i
+        +
+        \sum_{i=1}^{m_1} \lambda_i \mathbf I
+        +
+        \sum_{i=1}^{m_2} \mu_i \mathbf J
+        & =
+        \sum_{i=1}^m \mathbf P_\pi^\top \mathbf B_i \mathbf P_\pi
+        +
+        \sum_{i=1}^{m_1} \mathbf P_\pi^\top \lambda_i \mathbf I \mathbf P_\pi
+        +
+        \sum_{i=1}^{m_2} \mathbf P_\pi^\top \mu_i \mathbf J \mathbf P_\pi \\
+        & =
+        \mathbf P_\pi^\top
+        \pbraces{
+            \sum_{i=1}^m \mathbf A_i
+            +
+            \sum_{i=1}^{m_1} \lambda_i \mathbf I
+            +
+            \sum_{i=1}^{m_2} \mu_i \mathbf J
+        }
+        \mathbf P_\pi.
+    \end{align*}
+
+\end{remark}
