@@ -1,0 +1,47 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 5.14]
+
+Modify the algorithm for off-policy Monte Carlo control (page 110) to use the idea of the truncated weighted-average estimator \eqref{eq:5.10}.
+Note that you will first need to convert this equation to action values.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align} \label{eq:5.10} \tag{5.10}
+    V(s)
+    \doteq
+    \frac
+    {
+        \sum_{t \in \mathcal T(s)}
+        \pbraces{
+            (1 - \gamma)
+            \sum_{h = t + 1}^{T(t) - 1}
+                \gamma^{h-t-1}
+                \rho_{t : h - 1}
+                \bar G_{t:h}
+            +
+            \gamma^{T(t) - t - 1}
+            \rho_{t : T(t) - 1}
+            \bar G_{t : T(t)}
+        }
+    }{
+        \sum_{t \in \mathcal T(s)}
+        \pbraces{
+            (1 - \gamma)
+            \sum_{h = t + 1}^{T(t) - 1}
+                \gamma^{h-t-1}
+                \rho_{t : h - 1}
+            +
+            \gamma^{T(t) - t - 1}
+            \rho_{t : T(t) - 1}
+        }
+    }
+\end{align}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

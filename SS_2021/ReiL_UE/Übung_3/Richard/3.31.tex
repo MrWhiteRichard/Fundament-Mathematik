@@ -1,0 +1,44 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 5.10]
+
+Derive the weighted-average update rule \eqref{eq:5.8} from \eqref{eq:5.7}.
+Follow the pattern of the derivation of the unweighted rule \eqref{eq:2.3}.
+(Textbook p. 109)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align} \label{eq:5.8} \tag{5.8}
+    V_{n+1}
+    \doteq
+    V_n + \frac{W_n}{C_n} \bbraces{G_n - V_n},
+    \quad
+    n \geq 1
+\end{align}
+
+\begin{align} \label{eq:5.7} \tag{5.7}
+    V_n
+    \doteq
+    \frac
+    {
+        \sum_{k=1}^{n-1} W_k G_k
+    }{
+        \sum_{k=1}^{n-1} W_k
+    },
+    \quad
+    n \geq 2
+\end{align}
+
+\begin{align} \label{eq:2.3} \tag{2.3}
+    Q_{n+1}
+    =
+    Q_n + \frac{1}{n} \bbraces{R_n - Q_n}
+\end{align}
+    
+\end{solution}
+
+% --------------------------------------------------------------------------------

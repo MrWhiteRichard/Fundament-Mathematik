@@ -2,10 +2,16 @@
 
 \begin{exercise}[Exercise 2.4]
 
-If the step-size parameters, $\alpha_n$, are not constant, then the estimate $Q_n$ is a weighted average of previously received rewards with a weighting different from that given by \eqref{eq}.
-What is the weighting on each prior reward for the general case, analogous to \eqref{eq}, in terms of the sequence of step-size parameters?
+If the step-size parameters, $\alpha_n$, are not constant, then the estimate $Q_n$ is a weighted average of previously received rewards with a weighting different from that given by \eqref{eq:2.6}.
+What is the weighting on each prior reward for the general case, analogous to \eqref{eq:2.6}, in terms of the sequence of step-size parameters?
 
-\begin{align} \label{eq}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align} \label{eq:2.6} \tag{2.6}
     Q_{n+1}
     \doteq
     Q_n + \alpha \bbraces{R_n - Q_n}
@@ -15,13 +21,7 @@ What is the weighting on each prior reward for the general case, analogous to \e
     \sum_{i=1}^n
         \alpha (1 - \alpha)^{n-i} R_i
 \end{align}
-
-\end{exercise}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
-
+    
 We will start with a formal calculation.
 
 \begin{align*}

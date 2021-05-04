@@ -6,6 +6,9 @@ The results shown in Figure \ref{fig:1.6} (below) should be quite reliable becau
 Why, then, are there oscillations and spikes in the early part of the curve for the optimistic method?
 In other words, what might make this method perform particularly better or worse, on average, on particular early steps?
 
+\setcounter{section}{2}
+\setcounter{figure}{2}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5 \textwidth]{1.6.png}
@@ -17,6 +20,8 @@ In other words, what might make this method perform particularly better or worse
     \label{fig:1.6}
 \end{figure}
 
+\setcounter{section}{1}
+
 \end{exercise}
 
 % --------------------------------------------------------------------------------
@@ -26,7 +31,7 @@ In other words, what might make this method perform particularly better or worse
 At first, the estimated expected rewards $Q_1 = 5$.
 Since $q_\ast \sim N(0, 1)$ and $R \sim N(q_\ast, 1)$, in order for $R$ to yield a reward $\approx 5$, it would have to stray (twice) $5$ standard deviations in total from the initial mean $0$.
 This is wildly unrealistic!
-Hence, at first the estimated expected rewards $Q_2, \dots$ get lowered via \eqref{eq} with $\alpha = 0.1$.
+Hence, at first the estimated expected rewards $Q_2, \dots$ get lowered via \eqref{eq:2.6} with $\alpha = 0.1$.
 
 The amount by which $Q(a)$, for $a = 1, \dots, 10$ gets lowered (towards $q_\ast(a)$) $\alpha (R - Q)$ roughly depends on how low $q_\ast$ is (because of $R$).
 Thus, for the optimal action $a_\text{opt} = \argmax_{a=1}^{10} q_\ast(a)$, $Q(a_\text{opt})$ would not get lowered as quickly as for other actions.

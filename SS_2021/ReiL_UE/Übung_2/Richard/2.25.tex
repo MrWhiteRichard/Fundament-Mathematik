@@ -2,24 +2,22 @@
 
 \begin{exercise}[Exercise 4.3]
 
-What are the equations analogous to (4.3), (4.4), and (4.5) for the action-value function $q_\pi$ and its successive approximation by a sequence of functions $q_0$, $q_1$, $q_2$, \dots?
+What are the equations analogous to \eqref{eq:4.3}, \eqref{eq:4.4}, and \eqref{eq:4.5} for the action-value function $q_\pi$ and its successive approximation by a sequence of functions $q_0$, $q_1$, $q_2$, \dots?
 (Textbook p. 74)
 
-\begin{align*} % \label{eq:3.25.1_2}
-    v_\pi(s)
-    & \doteq
-    \E_\pi[G_t \mid S_t = s] \\
-    & =
-    \E_\pi[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
-    & =
-    \E_\pi[R_{t+1} + \gamma v_\pi(S_{t+1}) \mid S_t = s] \tag{4.3} \\
-    & =
-    \sum_a
-        \pi(a \mid s)
-        \sum_{s^\prime, r}
-            p(s^\prime, r \mid s, a)
-            \bbraces{r + \gamma v_\pi(s^\prime)} \tag{4.4}
-\end{align*}
+\begin{subequations}
+    \begin{align*}
+        v_\pi(s)
+        & =
+        \E_\pi[R_{t+1} + \gamma v_\pi(S_{t+1}) \mid S_t = s] \label{eq:4.3} \tag{4.3} \\
+        & =
+        \sum_a
+            \pi(a \mid s)
+            \sum_{s^\prime, r}
+                p(s^\prime, r \mid s, a)
+                \bbraces{r + \gamma v_\pi(s^\prime)} \label{eq:4.4} \tag{4.4}
+    \end{align*}
+\end{subequations}
 
 \begin{align*}
     v_{k+1}
@@ -30,7 +28,7 @@ What are the equations analogous to (4.3), (4.4), and (4.5) for the action-value
         \pi(a \mid s)
         \sum_{s^\prime, r}
             p(s^\prime, r \mid s, a)
-            \bbraces{r + \gamma v_k(s^\prime)} \tag{4.5}
+            \bbraces{r + \gamma v_k(s^\prime)} \label{eq:4.5} \tag{4.5}
 \end{align*}
 
 \end{exercise}

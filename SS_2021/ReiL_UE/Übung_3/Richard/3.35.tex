@@ -1,0 +1,39 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 6.1]
+
+If $V$ changes during the episode, then \eqref{eq:6.6} only holds approximately;
+what would the difference be between the two sides?
+Let $V_t$ denote the array of state values used at time $t$ in the TD error \eqref{eq:6.5} and in the TD update \eqref{eq:6.2}.
+Redo the derivation above to determine the additional amount that must be added to the sum of TD errors in order to equal the Monte Carlo error.
+(page 121)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align} \tag{6.6} \label{eq:6.6}
+    G_t - V(S_t)
+    =
+    \sum_{k=t}^{T-1}
+        \gamma^{k-t}
+        \delta_k
+\end{align}
+
+\begin{align} \tag{6.5} \label{eq:6.5}
+    \delta_t
+    \doteq
+    R_{t+1} + \gamma V(S_{t+1}) - V(S_t)
+\end{align}
+
+\begin{align} \tag{6.2} \label{eq:6.2}
+    V(S_t)
+    \leftarrow
+    V(S_t) + \alpha \bbraces{R_{t+1} + \gamma V(S_{t+1}) - V(S_t)}
+\end{align}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

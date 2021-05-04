@@ -2,7 +2,13 @@
 
 \begin{exercise}[Exercise 4.10]
 
-What is the analog of the value iteration update (4.10) for action avlues, $q_{k+1}(s, a)$?
+What is the analog of the value iteration update \eqref{eq:4.10} for action avlues, $q_{k+1}(s, a)$?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
 
 \begin{align*}
     v_{k+1}(s)
@@ -13,17 +19,11 @@ What is the analog of the value iteration update (4.10) for action avlues, $q_{k
     \max_a
         \sum_{s^\prime, r}
             p(s^\prime, r \mid s, a)
-            \bbraces{r + \gamma v_k(s^\prime)} \tag{4.10}
+            \bbraces{r + \gamma v_k(s^\prime)} \label{eq:4.10} \tag{4.10}
 \end{align*}
 
-\end{exercise}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
-
 According to \cite*[page 83]{SuttonRichardS2018Rl:a}, \enquote{value iteration is obtained simply by turning the Bellman optimality equation into an update rule}.
-Recall the Bellman optimality equation (3.20) for $q_\ast$ from \cite*[page 64]{SuttonRichardS2018Rl:a}.
+Recall the Bellman optimality equation \eqref{eq:3.20} for $q_\ast$ from \cite*[page 64]{SuttonRichardS2018Rl:a}.
 
 \begin{align*}
     q_\ast(s, a)
@@ -41,7 +41,7 @@ Recall the Bellman optimality equation (3.20) for $q_\ast$ from \cite*[page 64]{
         \bbraces
         {
             r + \gamma \max_{a^\prime} q_\ast(s^\prime, a^\prime)
-        } \tag{3.20}
+        } \label{eq:3.20} \tag{3.20}
 \end{align*}
 
 Therefore, it makes sense to define

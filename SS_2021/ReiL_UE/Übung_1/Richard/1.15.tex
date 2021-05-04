@@ -4,10 +4,16 @@
 
 In the gridworld example, rewards are positive for goals, negative for running into the edge of the world, and zero the rest of the time.
 Are the signs of these rewards important, or only the intervals between them?
-Prove, using \eqref{eq:2.15}, that adding a constant $c$ to all the rewards adds a constant, $v_c$, to the values of all states, and thus does not affect the relative values of any states under any policies.
+Prove, using \eqref{eq:3.8}, that adding a constant $c$ to all the rewards adds a constant, $v_c$, to the values of all states, and thus does not affect the relative values of any states under any policies.
 What is $v_c$ in terms of $c$ and $\gamma$?
 
-\begin{align} \label{eq:2.15}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\begin{align} \label{eq:3.8} \tag{3.8}
     G_t
     \doteq
     R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots
@@ -15,12 +21,6 @@ What is $v_c$ in terms of $c$ and $\gamma$?
     \sum_{k=0}^\infty
         \gamma^k R_{t+k+1}
 \end{align}
-
-\end{exercise}
-
-% --------------------------------------------------------------------------------
-
-\begin{solution}
 
 The signs of the rewards are irrelevant insofar that, if the rewards are altered, as long as the relative distances are perserved they were only shifted by a common constant $c$.
 As shown below, this property (existence of a universal shifting constant $v_c$) gets passed on to state value functions (under an arbitrary policy $\pi$).
@@ -40,7 +40,7 @@ There are $2$ possiblities of proving the desired result.
         G_t^\text{new}
         \stackrel
         {
-            \eqref{eq:2.15}
+            \eqref{eq:3.8}
         }{=}
         \sum_{k=0}^\infty
             \gamma^k R_{t+k+1}^\text{new}

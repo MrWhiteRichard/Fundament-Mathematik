@@ -4,20 +4,20 @@
 
 Imagine that you are designing a robot to run a maze.
 You decide to give it a reward of $+1$ for escaping from the maze and a reward of zero at all other times.
-The task seems to break down naturally into episodes - the successive runs through the maze - so you decide to treat it as an episodic task, where the goal is to maximize expected total reward \eqref{eq:2.10}.
+The task seems to break down naturally into episodes - the successive runs through the maze - so you decide to treat it as an episodic task, where the goal is to maximize expected total reward \eqref{eq:3.7}.
 After running the learning agent for a while, you find that it is showing no improvement in escaping from the maze.
 What is going wrong?
 Have you effectively communicated to the agent what you want it to achieve?
-
-\begin{align} \label{eq:2.10}
-    G_t \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots + R_T
-\end{align}
 
 \end{exercise}
 
 % --------------------------------------------------------------------------------
 
 \begin{solution}
+
+\begin{align} \label{eq:3.7} \tag{3.7}
+    G_t \doteq R_{t+1} + R_{t+2} + R_{t+3} + \cdots + R_T
+\end{align}
 
 For the robot it does not make any difference, whether it finishes the maze in more or less steps.
 This is because $R_t = -\delta_{T t}$ and thus the expected return $G_t = 1$.
@@ -28,7 +28,7 @@ Since the agent acts according to $G_t$, it does not "care" about escaping the m
 
     \item Solution:
 
-    Modify the expected total reward (3.7) to an episodic version of (3.8) with $\gamma < 1$.
+    Modify the expected total reward \eqref{eq:3.7} to an episodic version of \eqref{eq:3.8} with $\gamma < 1$.
 	The more steps the agent allows itsself to use, the more the discount rate gets squished by the powers.
 	As a result, less squishing is better, so less steps are as well.
 
