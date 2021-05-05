@@ -103,44 +103,44 @@ def setup_exercise_main(
     with codecs.open(source_file_path, 'r', 'utf-8') as main:
         main_content = main.readlines()
 
-    # -------------------------------- #
-    # add stuff to 'main.tex'
+    main_content_replace = []
 
-    main_content_add = [
+    # -------------------------------- #
+    # last exercise number
+
+    if exercise_number_min > 1:
+        main_content_replace += [
+            (
+                r'\begin{document}' + '\r' + '\n',
+                (r'\setcounter{exercise}{' + str(exercise_number_min - 1) + r'}' + '\r' + '\n') + ('\r' + '\n') + (r'\begin{document}' + '\r' + '\n')
+            )
+        ]
+
+    # ---------------- #
+    # input{}-s of exercises
+
+    exercise_inputs_old = exercise_inputs_new = r'\maketitle' + '\r' + '\n'
+
+    exercise_inputs_new += '\r' + '\n'
+
+    for exercise_and_solution_file_name in exercise_and_solution_file_names(
+        exercise_folder_path,
+        lva_name,
+        exercise_session_number,
+        author_names,
+        exercise_number_min,
+        exercise_number_max,
+        exercise_date,
+        language
+    ):
+        exercise_inputs_new += r'\input{' + exercise_and_solution_file_name + r'}' + '\r' + '\n'
+
+    main_content_replace += [
         (
-            r'\maketitle' + '\r' + '\n',
-            ['\n'] + [
-                r'\input{' + exercise_and_solution_file_name + r'}' + '\n'
-                for exercise_and_solution_file_name in exercise_and_solution_file_names(
-                    exercise_folder_path,
-                    lva_name,
-                    exercise_session_number,
-                    author_names,
-                    exercise_number_min,
-                    exercise_number_max,
-                    exercise_date,
-                    language
-                )
-            ]
-        ),
-        (
-            r'\documentclass{article}' + '\r' + '\n',
-            ['\n'] + [r'\def' + ' ' + r'\lastexercisenumber' + ' ' + r'{' + str(exercise_number_min - 1) + r'}'] + ['\n']
+            exercise_inputs_old,
+            exercise_inputs_new
         )
     ]
-
-    for x, y in main_content_add:
-
-        # get index of line that says x
-        index = main_content.index(x)
-
-        # new content of 'main.tex'
-        main_content = main_content[:index+1:] + y + main_content[index+1::]
-
-    # -------------------------------- #
-    # replace stuff in 'main.tex'
-
-    main_content_replace = []
 
     # ---------------- #
     # input{}-s of packages, macros & environments replacements
@@ -168,7 +168,7 @@ def setup_exercise_main(
 
     main_content_replace += [
         (
-            r'\addbibresource{' +                  r'Fundament-LaTeX/references.tex}' + '\r' + '\n',
+            r'\addbibresource{' +                  r'Fundament-LaTeX/references.bib}' + '\r' + '\n',
             r'\addbibresource{' + r'../' * (i-1) + r'Fundament-LaTeX/references.bib}' + '\r' + '\n'
         )
     ]
