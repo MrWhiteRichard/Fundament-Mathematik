@@ -1,0 +1,269 @@
+% ---------------------------------------------------------------- %
+% special letters
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\K}{\mathbb K}
+\newcommand{\T}{\mathbb T}
+\newcommand{\E}{\mathbb E}
+\newcommand{\V}{\mathbb V}
+\renewcommand{\S}{\mathbb S}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\G}{\mathbb G}
+
+\newcommand{\iu}{\mathrm i}
+
+% ---------------------------------------------------------------- %
+% quantors
+
+\newcommand{\Forall}        {\forall \,}
+\newcommand{\Exists}        {\exists \,}
+\newcommand{\nExists}       {\nexists \,}
+\newcommand{\ExistsOnlyOne} {\exists! \,}
+\newcommand{\nExistsOnlyOne}{\nexists! \,}
+\newcommand{\ForAlmostAll}  {\forall^\infty \,}
+
+% ---------------------------------------------------------------- %
+% graphics boxed
+
+\newcommand
+{\includegraphicsboxed}
+[2][0.75]
+{
+  \begin{center}
+    \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+
+      \centering
+      \includegraphics[width = #1 \textwidth]{#2}
+
+    \end{tcolorbox}
+  \end{center}
+}
+
+\newcommand
+{\includegraphicsunboxed}
+[2][0.75]
+{
+  \begin{center}
+    \includegraphics[width = #1 \textwidth]{#2}
+  \end{center}
+}
+
+% \newcommandtwoopt
+% {\includegraphicsgraphicsboxed}
+% [4][0.75][0.25]
+% {
+%   \begin{center}
+%     \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+
+%       \centering
+%       \includegraphics[width = #1 \textwidth]{#3} \\
+%       \vspace{#2 cm}
+%       \includegraphics[width = #1 \textwidth]{#4}
+
+%     \end{tcolorbox}
+%   \end{center}
+% }
+
+% \newcommandtwoopt
+% {\includegraphicsgraphicsunboxed}
+% [4][0.75][0.25]
+% {
+%   \begin{center}
+
+%     \centering
+%     \includegraphics[width = #1 \textwidth]{#3} \\
+%     \vspace{#2 cm}
+%     \includegraphics[width = #1 \textwidth]{#4}
+
+%   \end{center}
+% }
+
+% ---------------------------------------------------------------- %
+% braces
+
+\newcommand{\pbraces}[1]{{\left  ( #1 \right  )}}
+\newcommand{\bbraces}[1]{{\left  [ #1 \right  ]}}
+\newcommand{\Bbraces}[1]{{\left \{ #1 \right \}}}
+\newcommand{\vbraces}[1]{{\left  | #1 \right  |}}
+\newcommand{\Vbraces}[1]{{\left \| #1 \right \|}}
+
+\newcommand{\abraces}[1]{{\left \langle #1 \right \rangle}}
+
+\newcommand{\floorbraces}[1]{{\left \lfloor #1 \right \rfloor}}
+\newcommand{\ceilbraces} [1]{{\left \lceil  #1 \right \rceil }}
+
+\newcommand{\dbbraces}    [1]{{\llbracket     #1 \rrbracket}}
+\newcommand{\dpbraces}    [1]{{\llparenthesis #1 \rrparenthesis}}
+\newcommand{\dfloorbraces}[1]{{\llfloor       #1 \rrfloor}}
+\newcommand{\dceilbraces} [1]{{\llceil        #1 \rrceil}}
+
+\newcommand{\dabraces}[1]{{\left \langle \left \langle #1 \right \rangle \right \rangle}}
+
+\newcommand{\abs}  [1]{\vbraces{#1}}
+\newcommand{\round}[1]{\bbraces{#1}}
+\newcommand{\floor}[1]{\floorbraces{#1}}
+\newcommand{\ceil} [1]{\ceilbraces{#1}}
+
+% ---------------------------------------------------------------- %
+
+% MISC
+
+% metric spaces
+\newcommand{\norm}[2][]{\Vbraces{#2}_{#1}}
+\DeclareMathOperator{\metric}{d}
+\DeclareMathOperator{\dist}  {dist}
+\DeclareMathOperator{\diam}  {diam}
+
+% O-notation
+\newcommand{\landau}{{\scriptstyle \mathcal{O}}}
+\newcommand{\Landau}{\mathcal{O}}
+
+% ---------------------------------------------------------------- %
+
+% math operators
+
+% hyperbolic trigonometric function inverses
+\DeclareMathOperator{\areasinh}{areasinh}
+\DeclareMathOperator{\areacosh}{areacosh}
+\DeclareMathOperator{\areatanh}{areatanh}
+
+% special functions
+\DeclareMathOperator{\id} {id}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\pv} {pv}
+
+% exponential function as power
+\WithSuffix \newcommand \exp* [1]{\mathrm{e}^{#1}}
+
+% operations on sets
+\DeclareMathOperator{\meas}{meas}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\mean}{mean}
+\DeclareMathOperator{\avg}{avg}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argsmax}{argsmax}
+
+% number theory stuff
+\DeclareMathOperator{\ggT}{ggT}
+\DeclareMathOperator{\kgV}{kgV}
+\DeclareMathOperator{\modulo}{mod}
+
+% polynomial stuff
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\grad}{grad}
+
+% function properties
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\graph}{graph}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\Def}{def}
+\DeclareMathOperator{\rg}{rg}
+
+% matrix stuff
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\PSU}{PSU}
+% \DeclareMathOperator{\O}{O}
+% \DeclareMathOperator{\PO}{PO}
+% \DeclareMathOperator{\PSO}{PSO}
+\DeclareMathOperator{\diag}{diag}
+
+% algebra stuff
+\DeclareMathOperator{\At}{At}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Lin}{L}
+
+% other function classes
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Dil}{Dil}
+
+% constants
+\DeclareMathOperator{\NIL}{NIL}
+\DeclareMathOperator{\eps}{eps}
+
+% ---------------------------------------------------------------- %
+% doubble & tripple powers
+
+\newcommand
+{\primeprime}
+{{\prime \prime}}
+
+\newcommand
+{\primeprimeprime}
+{{\prime \prime \prime}}
+
+\newcommand
+{\astast}
+{{\ast \ast}}
+
+\newcommand
+{\astastast}
+{{\ast \ast \ast}}
+
+% ---------------------------------------------------------------- %
+% derivatives
+
+% \newcommandtwoopt
+% {\derivative}[3][][]
+% {
+%   \frac
+%   {\mathrm d^{#2} {#1}}
+%   {\mathrm d {#3}^{#2}}
+% }
+
+% \newcommandtwoopt
+% {\pderivative}[3][][]
+% {
+%   \frac
+%   {\partial^{#2} {#1}}
+%   {\partial {#3}^{#2}}
+% }
+
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\rot}{rot}
+
+% ---------------------------------------------------------------- %
+% integrals
+
+% \newcommandtwoopt
+% {\Int}[4][][]
+% {\int_{#1}^{#2} #3 ~\mathrm d #4}
+
+% \newcommandtwoopt
+% {\Iint}[5][][]
+% {\iint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5}
+
+% \newcommandtwoopt
+% {\Iiint}[6][][]
+% {\iiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6}
+
+% \newcommandtwoopt
+% {\Iiiint}[7][][]
+% {\iiiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6 \dots ~\mathrm d #7}
+
+% \newcommandtwoopt
+% {\Idotsint}[5][][]
+% {\idotsint_{#1}^{#2} #3 ~\mathrm d #4 \dots ~\mathrm d #5}
+
+% \newcommandtwoopt
+% {\Oint}[4][][]
+% {\oint_{#1}^{#2} #3 ~\mathrm d #4}
+
+% ---------------------------------------------------------------- %
