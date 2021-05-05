@@ -53,9 +53,9 @@
   \end{center}
 }
 
-\newcommandtwoopt
+\NewDocumentCommand
 {\includegraphicsgraphicsboxed}
-[4][0.75][0.25]
+{ O{0.75} O{0.25} m m}
 {
   \begin{center}
     \begin{tcolorbox}[standard jigsaw, opacityback = 0]
@@ -69,9 +69,9 @@
   \end{center}
 }
 
-\newcommandtwoopt
+\NewDocumentCommand
 {\includegraphicsgraphicsunboxed}
-[4][0.75][0.25]
+{ O{0.75} O{0.25} m m}
 {
   \begin{center}
 
@@ -218,16 +218,18 @@
 % ---------------------------------------------------------------- %
 % derivatives
 
-\newcommandtwoopt
-{\derivative}[3][][]
+\NewDocumentCommand
+{\derivative}
+{ O{} O{} m m}
 {
   \frac
   {\mathrm d^{#2} {#1}}
   {\mathrm d {#3}^{#2}}
 }
 
-\newcommandtwoopt
-{\pderivative}[3][][]
+\NewDocumentCommand
+{\pderivative}
+{ O{} O{} m m}
 {
   \frac
   {\partial^{#2} {#1}}
@@ -240,28 +242,34 @@
 % ---------------------------------------------------------------- %
 % integrals
 
-\newcommandtwoopt
-{\Int}[4][][]
+\NewDocumentCommand
+{\Int}
+{ O{} O{} m m}
 {\int_{#1}^{#2} #3 ~\mathrm d #4}
 
-\newcommandtwoopt
-{\Iint}[5][][]
+\NewDocumentCommand
+{\Iint}
+{ O{} O{} m m m}
 {\iint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5}
 
-\newcommandtwoopt
-{\Iiint}[6][][]
-{\iiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6}
+\NewDocumentCommand
+{\Iiint}
+{ O{} O{} m m m m}
+{\iiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 ~\mathrm d #6}
 
-\newcommandtwoopt
-{\Iiiint}[7][][]
-{\iiiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 \dots ~\mathrm d #6 \dots ~\mathrm d #7}
+\NewDocumentCommand
+{\Iiiint}
+{ O{} O{} m m m m m}
+{\iiiint_{#1}^{#2} #3 ~\mathrm d #4 ~\mathrm d #5 ~\mathrm d #6 ~\mathrm d #7}
 
-\newcommandtwoopt
-{\Idotsint}[5][][]
+\NewDocumentCommand
+{\Iint}
+{ O{} O{} m m m}
 {\idotsint_{#1}^{#2} #3 ~\mathrm d #4 \dots ~\mathrm d #5}
 
-\newcommandtwoopt
-{\Oint}[4][][]
+\NewDocumentCommand
+{\Oint}
+{ O{} O{} m m}
 {\oint_{#1}^{#2} #3 ~\mathrm d #4}
 
 % ---------------------------------------------------------------- %
