@@ -20,7 +20,82 @@ Let $X_1, \dots, X_n$ be a random sample from uniform $(\theta, 1)$ distribution
 
 \begin{solution}
 
-ToDo!
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        L_n(\theta \mid x)
+        & =
+        f_{X_1, \dots, X_n}(x \mid \theta) \\
+        & =
+        \prod_{i=1}^n
+            f_{X_i}(x_i \mid \theta) \\
+        & =
+        \prod_{i=1}^n
+            \frac{1}{1 - \theta} \mathbf 1_{(\theta, 1)}(x_i) \\
+        & =
+        \frac{1}{(1 - \theta)^n} \mathbf 1_{(\theta, 1)^n}(x) \\
+        & =
+        \frac{1}{(1 - \theta)^n}
+        \mathbf 1_{(\theta, \infty)}
+        \pbraces
+        {
+            \min_{i=1}^n x_i
+        }
+        \mathbf 1_{(-\infty, 1)}
+        \pbraces
+        {
+            \max_{i=1}^n x_i
+        }
+    \end{align*}
+
+    We go back to the definition of the maximum liklihood estimator, on \cite*[lecture 6, slide 47]{EStat}.
+    The liklihood gien $x$ is zero for $\theta > \min_{i=1}^n x_i$ and is an increasing function of $\theta$ for $\theta \leq \min_{i=1}^n x_i$.
+    As a consequence, the maximum liklihood estimator of $\theta$ is
+
+    \begin{align*}
+        \hat \theta
+        & =
+        \min_{i=1}^n X_i \\
+        & =
+        X_{(1)},
+    \end{align*}
+
+    the smallest order statistic.
+
+    \item
+
+    \begin{align*}
+        F_{X_{(1)}}(x)
+        & =
+        \P \pbraces{\min_{i=1}^n X_i \leq x} \\
+        & =
+        1 - \P \pbraces{\min_{i=1}^n X_i > x} \\
+        & =
+        1 - \prod_{i=1}^n \P(X_i > x) \\
+        & =
+        1 - \P(X_1 > x)^n \\
+        & =
+        1 - (1 - \P(X_1 \leq x))^2 \\
+        & =
+        1 - (1 - F_{X_1}(x))^n \\
+        & =
+        \begin{cases}
+            0,
+            & x \leq \theta, \\
+            1 - \pbraces{1 - \frac{x - \theta}{1 - \theta}}^n,
+            & \theta < x < 1, \\
+            1,
+            & 1 \leq x
+        \end{cases} \\
+        & \xrightarrow{n \to \infty}
+        \mathbf 1_{(0, \infty)}(x)
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

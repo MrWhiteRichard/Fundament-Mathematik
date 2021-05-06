@@ -36,7 +36,139 @@ Show that
 
 \begin{solution}
 
-ToDo!
+Let $W = \sum_{i=1}^n a_i W_i$ be another estimator of the upper form.
+Because $W_1, \dots, W_n$ are unbiased, $\E W_1 = \cdots = \E W_n = \theta$, and thus, for $W$ to be unbiased as well,
+
+\begin{align*}
+    \theta
+    & \stackrel{!}{=}
+    \E W \\
+    & =
+    \E \pbraces{\sum_{i=1}^n a_i W_i} \\
+    & =
+    \sum_{i=1}^n a_i \E W_i \\
+    & =
+    \theta \sum_{i=1}^n a_i.
+\end{align*}
+
+Because $\Cov(W_i, W_j) = 0$ if $i \neq j$,
+
+\begin{align*}
+    \Var W
+    & =
+    \Var \pbraces{\sum_{i=1}^n a_i W_i} \\
+    & =
+    \sum_{i=1}^n a_i^2 \Var W_i \\
+    & =
+    \sum_{i=1}^n a_i^2 \sigma_i^2.
+\end{align*}
+
+Hence, we get the optimisation problem
+
+\begin{align*}
+    W^\ast
+    \stackrel{!}{=}
+    \sum_{i=1}^n a_i^2 \sigma_i^2
+    \stackrel{!}{=}
+    \min,
+\end{align*}
+
+subject to the constraint
+
+\begin{align*}
+    \sum_{i=1}^n a_i = 1.
+\end{align*}
+
+Choosing the coefficients
+
+\begin{align*}
+    a_i
+    :=
+    \frac
+    {
+        1 / \sigma_i^2
+    }{
+        \sum_{j=1}^n 1 / \sigma_j^2
+    },
+    \quad
+    \text{for}
+    \quad
+    i = 1, \dots, n,
+\end{align*}
+
+we see, that $W^\ast = \sum_{i=1}^n a_i W_i$ is indeed a convex combination.
+Plugging $a_1, \dots, a_n$ into the variance formula derived above immediately yields the desired result for $\Var W^\ast$.
+
+In order to show the minimisation property of $W^\ast$, let
+
+\begin{align*}
+    \varepsilon_i \in \R,
+    \quad
+    \delta_i
+    :=
+    \varepsilon_i \sum_{j=1}^n 1 / \sigma_j^2
+    =
+    \varepsilon_i a_i \sigma_i^2 \pbraces{\sum_{i=1}^n 1 / \sigma_i^2}^2,
+    \quad
+    \text{for}
+    \quad
+    i = 1, \dots, n,
+\end{align*}
+
+such that
+
+\begin{align*}
+    1
+    & =
+    \sum_{i=1}^n (a_i + \varepsilon_i) \\
+    & =
+    \underbrace
+    {
+        \sum_{i=1}^n a_i
+    }_1
+    +
+    \sum_{i=1}^n \varepsilon_i.
+\end{align*}
+
+We ths get
+
+\begin{align*}
+    \sum_{i=1}^n \delta_i
+    & =
+    \underbrace
+    {
+        \sum_{i=1}^n \varepsilon_i
+    }_0
+    \sum_{j=1}^n 1 / \sigma_j^2 \\
+    & =
+    0,
+\end{align*}
+
+and finally,
+
+\begin{align*}
+    \sum_{i=1}^n (c_i + \varepsilon_i)^2 \sigma_i^2
+    & =
+    \sum_{i=1}^n a_i^2 \sigma_i^2
+    +
+    2 \sum_{i=1}^n a_i \varepsilon_i \sigma_i^2
+    +
+    \underbrace
+    {
+        \sum_{i=1}^n \varepsilon_i^2 \sigma_i^2
+    }_0 \\
+    & \geq
+    W^\ast
+    +
+    2
+    \underbrace
+    {
+        \sum_{i=1}^n \delta_i
+    }_0
+    \Bigg / \sum_{j=1}^n 1 / \sigma_i^2 \\
+    & =
+    W^\ast.
+\end{align*}
 
 \end{solution}
 

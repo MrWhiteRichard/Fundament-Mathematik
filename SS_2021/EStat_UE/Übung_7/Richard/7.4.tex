@@ -18,7 +18,204 @@ Recall, Stein's Lemma states that for $X \sim \mathcal(\mu, \sigma^2)$ and diffe
 
 \begin{solution}
 
-ToDo!
+\begin{enumerate}[label = (\alph*)]
+
+    \item Recall from \cite[lecture 4, slide 27]{EStat}, that
+
+    \begin{align*}
+        \bar X
+        \sim
+        \mathcal N \pbraces{\mu, \frac{1}{n}}.
+    \end{align*}
+    
+    % \begin{align*}
+    %     \E \bar X
+    %     & =
+    %     \frac{1}{n} \sum_{i=1}^n \E X_i
+    %     =
+    %     \frac{1}{n} \mu n
+    %     =
+    %     \mu, \\
+    %     \Var \bar X
+    %     & =
+    %     \frac{1}{n^2} \sum_{i=1}^n \Var X_i
+    %     =
+    %     \frac{1}{n^2} n
+    %     =
+    %     \frac{1}{n}
+    % \end{align*}
+    
+    \begin{align*}
+        \implies
+        \E \bar X^2
+        & =
+        \Var \bar X + \E^2 \bar X \\
+        & =
+        \frac{1}{n} + \mu^2
+    \end{align*}
+    
+    \begin{align*}
+        \implies
+        \E \pbraces{\bar X^2 - \frac{1}{n}}
+        & =
+        \E \bar X^2 - \frac{1}{n} \\
+        & =
+        \pbraces{\frac{1}{n} + \mu} - \frac{1}{n} \\
+        & =
+        \mu
+    \end{align*}
+
+    \item First, we use Stein's Lemma to prove a little corollary.
+    
+    \begin{align*}
+        \implies
+        \sigma^2 \E g^\prime(X)
+        & =
+        \E (g(X) (X - \mu)) \\
+        & =
+        \E (g(X) X) - \mu \E g(X)
+    \end{align*}
+
+    \begin{align*}
+        \iff
+        \E(g(X) X)
+        & =
+        \sigma^2 \E g^\prime(X) + \mu \E g(X) \\
+        & =
+        \Var X \E g^\prime(X) + \E X \E g(X)
+    \end{align*}
+
+    Now let $g(x) := x^m$ (and $g^\prime(x) = m x^{m - 1}$).
+
+    \begin{align*}
+        \implies
+        \E X^{m + 1}
+        =
+        \Var X m \E X^{m-1} + \E X \E X^m
+    \end{align*}
+
+    In our case, we need
+
+    \begin{align*}
+        \E \bar X^{m+1}
+        =
+        \frac{m}{n} \E \bar X^{m-1} + \mu \E \bar X^m.
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \E \bar X^3
+        & =
+        \frac{2}{n} \E \bar X + \mu \E \bar X^2 \\
+        & =
+        \frac{2}{n} \mu + \mu \pbraces{\frac{1}{n} + \mu^2} \\
+        & =
+        \frac{3}{n} \mu + \mu^2 \\
+        \implies
+        \E \bar X^4
+        & =
+        \frac{3}{n} \E \bar X^2 + \mu \E \bar X^3 \\
+        & =
+        \frac{3}{n} \pbraces{\frac{1}{n} + \mu^2} + \mu \pbraces{\frac{3}{n} \mu + \mu^3} \\
+        & =
+        \frac{3}{n^2} + \frac{6}{n} \mu^2 + \mu^4
+    \end{align*}
+
+    \begin{align*}
+        \implies
+        \Var \pbraces{\bar X^2 - \frac{1}{n}}
+        & =
+        \Var \bar X^2 \\
+        & =
+        \E \bar X^4 - \E^2 \bar X^2 \\
+        & =
+        \pbraces
+        {
+            \frac{3}{n^2} + \frac{6}{n} \mu^2 + \mu^4
+        }
+        -
+        \pbraces
+        {
+            \frac{1}{n} + \mu^2
+        }^2 \\
+        & =
+        \frac{3}{n^2} + \frac{6}{n} \mu^2 + \mu^4 - \frac{1}{n^2} - \frac{2}{n} \mu^2 - \mu^4 \\
+        & =
+        \frac{2}{n^2} + \frac{4}{n} \mu^2
+    \end{align*}
+
+    \begin{align*}
+        L_n(\mu \mid x)
+        & =
+        f_{X_1, \dots, X_n}(x \mid \mu) \\
+        & =
+        \prod_{i=1}^n f_{X_i}(x_i \mid \mu) \\
+        & =
+        \prod_{i=1}^n
+            \frac{1}{\sqrt{2 \pi}}
+            \mathrm e^{-\frac{(x_i - \mu)^2}{2}} \\
+        & =
+        \pbraces
+        {
+            \frac{1}{\sqrt{2 \pi}}
+        }^n
+        \exp
+            \sum_{i=1}^n
+                -\frac{(x_i - \mu)^2}{2} \\
+        \implies
+        \ell_n(\mu \mid x)
+        & =
+        \log L_n(\mu \mid x) \\
+        & =
+        n \log \frac{1}{\sqrt{2 \pi}}
+        -
+        \frac{1}{2}
+        \sum_{i=1}^n
+            (x_i - \mu)^2 \\
+        \ell_n^\prime
+        & =
+        -\frac{1}{2}
+        \sum_{i=1}^n
+            2 (x_i - \mu) (-1) \\
+        & =
+        \sum_{i=1}^n
+            (x_i - \mu) \\
+        & =
+        n (\bar x - \mu) \\
+        \implies
+        \ell_n^\primeprime(\mu \mid x)
+        & =
+        -n
+    \end{align*}
+
+    \begin{align*}
+        I(\mu)
+        & =
+        -\E(\ell_n^\primeprime(\mu \mid x)) \\
+        & =
+        n
+    \end{align*}
+
+    Let $g(\mu) := \mu^2$ (and $g^\prime(\mu) = 2 \mu$).
+
+    \begin{align*}
+        &
+        \frac{g^\prime(\mu)}{n I(\mu)}
+        =
+        \frac{2 \mu}{n^2} \mu
+        \stackrel{!}{\leq}
+        \Var \pbraces{\bar X^2 - \frac{1}{n}}
+        =
+        \frac{2}{n^2} + \frac{4}{n} \mu^2 \\
+        & \iff
+        2 \mu \leq 2 + 4 n \mu^2 \\
+        & \iff
+        4 n \mu^2 \geq 2 \mu - 2 = 2 (\mu - 1) \\
+        & \iff
+        n \geq \frac{2 ( \mu - 1)}{4 \mu^2} = \frac{\mu - 1}{2 \mu^2}
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
