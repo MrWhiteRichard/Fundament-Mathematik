@@ -1,0 +1,58 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Cramér-Rao lower bound}]
+
+Let $X_1,\dots,X_n$ be a random sample with the pdf $f(x|\theta) = \theta x^{\theta -1}$,
+where $0 < x < 1$ and $\theta > 0$ is unknown. Is there a function of $\theta$,
+say $g(\theta)$, for which there exists an unbiased estimator whose
+variance attains the Cramér-Rao lower bound? If there is, find it.
+If not, show why not.
+  
+\end{exercise}
+  
+% --------------------------------------------------------------------------------
+  
+\begin{solution}
+  
+Let's first calculate the log-likelihood function and its first and 
+second derivative:
+
+\begin{align*}
+    \ell_n(\theta) &= \sum_{i=1}^n \log(\theta) + (\theta - 1)\log(g^{-1}(x_i)). \\
+    \ell_n'(\theta) &= \frac{n}{\theta} + \sum_{i=1}^n\log(x_i). \\
+    \ell_n^{\primeprime}(\theta) &= -\frac{n}{\theta^2} < 0.
+\end{align*}
+  
+Next let's find the corresponding MLE for $\theta$:
+
+\begin{align*}
+    0 \stackrel{!}{=} \ell_n'(\hat{\theta})
+    &\iff -\sum_{i=1}^n\log(x_i) = \frac{n}{\hat{\theta}} \\
+    &\iff \hat{\theta} = -\frac{n}{\sum_{i=1}^n\log(x_i)}.
+\end{align*}
+
+Since $\ell_n^{\primeprime}(\theta) < 0$ we must have found
+the unique global maximizer, i.e. our MLE.
+
+
+For an invertible change of parameter $g$ we know from the lecture that
+$g(\hat{\theta})$ is the MLE for $g(\theta)$.
+
+We try $g(x) := \frac{1}{x}$. Then 
+
+\begin{align*}
+    \E[g \circ \hat{\theta}(X)] &= 
+    -\frac{1}{n}\sum_{i=1}^n\E[\log(X_i)] \\
+    &= -\E[\log(X_1)]  \\
+    &= - \theta \int_0^1 \log(x)x^{\theta - 1} dx \\
+    &= - \theta \int_{-\infty}^0 u\exp(\theta u ) du \\
+    &= - \theta \frac{u}{\theta}\exp(\theta u)|_{-\infty}^0 + \int_{-\infty}^0 \exp(\theta u) du \\
+    &= \frac{1}{\theta} = g(\theta).
+\end{align*}
+
+Since $\hat{g \circ \theta}_n \approx \mathcal{N}(\theta_0, I_n^{-1}(\theta))$
+we have thus found an unbiased estimator whose variance attains the Cramér-Rao lower bound.
+\end{solution}
+  
+% --------------------------------------------------------------------------------
+  

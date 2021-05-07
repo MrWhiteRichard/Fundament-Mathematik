@@ -1,0 +1,83 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Uniform distribution}]
+
+Let $X_1,\dots,X_n$ be a random sample from uniform $(\theta,1)$ distribution,
+where $\theta < 1$ is an unknown parameter.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Find the MLE $\hat{\theta}$ of $\theta$.
+  \item Is $\hat{\theta}$ asymptotically normal? If yes, find the asymptotic
+  mean and variance. Otherwise, find a sequence $r_n$ and $a_n$ such that
+  $r_n(\hat{\theta} - a_n)$ converges in distribution to a non-degenerate
+  (not pointmass) distribution.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item For the maximum likelihood estimation we first determine the
+  joint distribution $f_X$.
+  \begin{align*}
+    L_n(\theta) &= f_X(x_1,\dots,x_n | \theta) 
+    = \prod_{i=1}^n f_{X_i}(x_i | \theta)
+    = \prod_{i=1}^n \frac{1}{1-\theta}\1_{(\theta,1)}(x_i) \\
+    &= \frac{1}{(1-\theta)^n}\1_{(\theta,1)^n}(x_1,\dots,x_n)\\
+    &= \begin{cases}
+      \frac{1}{(1-\theta)^n}, & \theta < \min_{i=1}^n x_i \\
+      0, & \theta \geq \min_{i=1}^n x_i
+    \end{cases}.
+  \end{align*}
+
+  Clearly, the maximum is attained at the point 
+  $\hat{\theta} = \min_{i=1}^n x_i$.
+
+  \item We calculate
+  
+  \begin{align*}
+    F_{\hat{\theta}}(x) &= 1 - \P(\hat{\theta}(X) > x)
+    = 1 - \prod_{i=1}^n \frac{(1-x)}{(1-\theta)}
+    = 1 - \frac{(1-x)^n}{(1-\theta)^n}
+  \end{align*}
+
+  and derive
+
+  \begin{align*}
+    f_{\hat{\theta}}(x) = n\frac{(1-x)^{n-1}}{(1-\theta)^{n}}.
+  \end{align*}
+
+  
+
+  With the affine transformation $f(x) = r_n(x - a_n)$
+  we obtain the distribution
+
+  \begin{align*}
+    f_{r_n(\hat{\theta} - a_n)}(y)
+    &= f_{\hat{\theta}}(y/r_n + a_n)\frac{1}{r_n} \\
+    &= n\frac{(1-y/r_n + a_n)^{n-1}}{(1-\theta)^{n}r_n} \\
+    &= \frac{n}{(1- \theta)r_n} \left(\frac{1 - \frac{y}{r_n} - a_n}{1 - \theta}\right)^{n-1}
+  \end{align*}
+
+  Setting $r_n = \frac{n - 1}{1 - \theta}$ and $a_n = \theta$ the expression simplifies to
+  
+  \begin{align*}
+    f_{\frac{n - 1}{1 - \theta}(\hat{\theta} - \theta)}(y) &= \frac{n}{n - 1}
+    \left(\frac{1 - \theta  - \frac{y(1 - \theta)}{n - 1}}{1 - \theta}\right)^{n-1} \\
+    &= \frac{n}{n - 1}\left(1 - \frac{y}{n-1}\right)^{n-1}
+    \xrightarrow{n \to \infty} \exp(-y).
+  \end{align*}
+
+  Therefore $\frac{n - 1}{1 - \theta}(\hat{\theta} - \theta)$ converges
+  in distribution to an exponential distribution with parameter $\lambda = 1$.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

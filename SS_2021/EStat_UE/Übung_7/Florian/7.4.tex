@@ -1,0 +1,104 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Normal unbiased estimator of $\mu^2$}]
+
+Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,1)$.
+
+\begin{enumerate}[label = (\alph*)]
+  \item Show that $\bar{X}^2 - 1/n$ is an unbiased estimator of $\mu^2$.
+  \item By using Stein's Lemma, calculate its variance and show that it is
+  greater than the Cramér-Rao lower bound.
+\end{enumerate}
+    
+\textit{Hint:} Recall, Stein's Lemma states that for 
+
+$X \sim \mathcal{N}(\mu,\sigma^2)$
+and a differentiable function $g$ satisfying $\E[|g'(X)|] < \infty$ it holds
+$\E[g(X)(X - \mu)] = \sigma^2\E[g'(X)]$.
+\end{exercise}
+    
+% --------------------------------------------------------------------------------
+    
+\begin{solution}
+    
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item 
+  \begin{align*}
+    \E\left[\bar{X}^2 - \frac{1}{n}\right] 
+    = \V(\bar{X}) + \E(\bar{X})^2 - \frac{1}{n}
+    = \frac{1}{n} + \mu^2 - \frac{1}{n} = \mu^2.
+  \end{align*}
+  \item We apply Stein's Lemma for $\bar{X} \sim 
+  \mathcal{N}\left(\mu, \frac{1}{n}\right)$.
+  \begin{align*}
+    \V\left(\bar{X}^2 - \frac{1}{n}\right)
+    &= \E\left[\left(\bar{X^2} - \frac{1}{n} - \mu^2\right)^2\right] \\
+    &= \E\left[\left((\bar{X} + \mu)(\bar{X} - \mu) - \frac{1}{n}\right)^2\right] \\
+    &= \E\left[(\bar{X} + \mu)^2(\bar{X} - \mu)^2\right]
+    - \frac{2}{n} \E\left[(\bar{X} + \mu)(\bar{X} - \mu)\right]
+    + \frac{1}{n^2}.
+  \end{align*}
+  Since $g_1(x) = x + \mu, g_2(x) = (x + \mu)^2(x - \mu)$ 
+  are continuously differentiable and
+  \begin{align*}
+    \E[|g_1'(\bar{X})|] &= \E[1] = 1, \\
+    \E[|g_2'(\bar{X})|] 
+    &= \E[|2(\bar{X} + \mu)(\bar{X} - \mu) + (\bar{X} + \mu)^2|]
+    \leq 2\E[|(\bar{X} + \mu)(\bar{X} - \mu)|] + \E[(\bar{X} + \mu)^2] \\
+    &\leq 2\E[\bar{X}^2] + 2\mu^2 + \E[\bar{X}^2] + 3\mu^2
+    = 3\V(\bar{X}) + 8\mu^2 < \infty,
+  \end{align*}
+  we may apply Stein's Lemma and obtain
+
+  \begin{align*}
+    \V\left(\bar{X}^2 - \frac{1}{n}\right)
+    &= \frac{1}{n}\E[g_2'(\bar{X})] - \frac{2}{n^2}\E[g_1'(\bar{X})] + \frac{1}{n^2} \\
+    &= \frac{1}{n}\E[2(\bar{X}^2 - \mu^2) + (\bar{X} + \mu)^2] 
+    - \frac{2}{n^2}\E[1] + \frac{1}{n^2} \\
+    &= \frac{2}{n}\V(\bar{X}) + \frac{\E[\bar{X}^2] + 3\mu^2}{n} - \frac{1}{n^2} \\
+    &= \frac{3}{n}\V(\bar{X}) + \frac{4\mu^2}{n} - \frac{1}{n^2} \\
+    &= \frac{2}{n^2} + \frac{4\mu^2}{n} \\
+  \end{align*}
+  The Cramér-Rao lower bound now claims
+
+  \begin{align*}
+    \V\left(\bar{X}^2 - \frac{1}{n}\right) \geq \frac{1}{I_n(\mu^2)}
+    = -\frac{1}{\E_{\mu^2}(\ell_n^{\primeprime}(\mu^2))}.
+  \end{align*}
+
+  The log-likelihood function $\ell_n$ reads
+  
+  \begin{align*}
+    \ell_n(\mu^2) = \sum_{i=1}^n \log(f_{\mu^2}(x_i))
+    = -\frac{n}{2}\log(2\pi) -\frac{1}{2}\sum_{i=1}^n (x_i - \sqrt{\mu^2})^2
+  \end{align*}
+
+  with derivative
+
+  \begin{align*}
+    \ell_n'(\mu^2) &= \frac{1}{2}\sum_{i=1}^n 2 (x_i - \sqrt{\mu^2})\frac{1}{2\sqrt{\mu^2}} \\
+    &= \frac{1}{2}\sum_{i=1}^n \frac{x_i - \sqrt{\mu^2}}{\sqrt{\mu^2}}
+  \end{align*}
+
+  and second derivative
+
+  \begin{align*}
+    \ell_n^{\primeprime}(\mu^2) = -\frac{1}{4}\sum_{i=1}^n \frac{x_i}{(\mu^2)^{3/2}}.
+  \end{align*}
+
+  Therefore the Cramér-Rao lower bound holds with
+
+  \begin{align*}
+    \V\left(\bar{X}^2 - \frac{1}{n}\right) &= \frac{2}{n^2} + \frac{4\mu^2}{n}
+    \geq -\frac{1}{\E_{\mu^2}[\ell_n^{\primeprime}(\mu^2)]} 
+    = \frac{4}{\E_{\mu^2}\left[\sum_{i=1}^n \frac{X_i}{\mu^3}\right]} \\
+    &= \frac{4\mu^3}{n\mu} = \frac{4\mu^2}{n}.
+  \end{align*}
+\end{enumerate}
+    
+\end{solution}
+    
+% --------------------------------------------------------------------------------
+    

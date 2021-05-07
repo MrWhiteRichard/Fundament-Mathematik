@@ -1,0 +1,69 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[\textbf{Minimum variance estimator}]
+
+Let $W_1,\dots,W_k$ be unbiased estimators of a parameter $\theta$ with
+$\V(W_i) = \sigma_i^2$ and $\Cov(W_i,W_j) = 0$ if $i \neq j$. Show that,
+of all estimators of the form $\sum_i a_iW_i$ where $a_i$ are constant and
+$\E_\theta\Big[\sum_i a_iW_i\Big] = \theta$, the estimator
+
+\begin{align*}
+  W^* = \frac{\sum_{i=1}^k \nicefrac{W_i}{\sigma_i^2}}
+  {\sum_{i=1}^k \nicefrac{1}{\sigma_i^2}}
+  =: \sum_{i=1}^k a_i^* W_i
+\end{align*}
+
+has minimum variance. Show that
+
+\begin{align*}
+  \V(W^*) = \frac{1}{\sum_i \nicefrac{1}{\sigma_i^2}}.
+\end{align*}
+
+\end{exercise}
+    
+% --------------------------------------------------------------------------------
+    
+\begin{solution}
+    
+For arbitrary constants $a_i$ we obtain the formulas
+
+\begin{align*}
+  \V\left(\sum_{i=1}^k a_i W_i\right) &= \sum_{i=1}^k \V(a_i W_i)
+  = \sum_{i=1}^k a_i^2\sigma_i^2 \quad \text{and} \\
+  \E\left[\sum_{i=1}^k a_i W_i\right] &= \theta\sum_{i=1}^k a_i.
+\end{align*}
+
+Plugging in the constants from $W^*$ we can verify its
+consistency, as well as the presupposed variance:
+
+\begin{align*}
+  \E[W^*] &= \sum_{i=1}^k \frac{\nicefrac{1}{\sigma_i^2}}{\sum_{j=1}^k \nicefrac{1}{\sigma_j^2}} \theta \\
+  &=  \frac{\sum_{i=1}^k \nicefrac{1}{\sigma_i^2}}{\sum_{j=1}^k \nicefrac{1}{\sigma_j^2}} \theta \\
+  &= \theta, \\
+  \V(W^*) &= \frac{1}{\left(\sum_{i=1}^k \nicefrac{1}{\sigma_i^2}\right)}
+  \sum_{i=1}^k \nicefrac{1}{\sigma^2} \\
+  &= \frac{1}{\sum_{i=1}^k \nicefrac{1}{\sigma^2}}
+\end{align*}
+
+For the minimisation property, let $(a_1,\dots,d_k)$ be
+an arbitrary coefficent vector with $\sum_{i=1}^k a_i = 1$.
+
+Then we obtain with $c_i := a_i - a_i^*$
+
+\begin{align*}
+  \sum_{i=1}^k a_i^2 \sigma_i^2 &= 
+  \sum_{i=1}^k (a_i^* + c_i)^2 \sigma_i^2 \\
+  &= \V(W^*) + \sum_{i=1}^k c_i^2 \sigma_i^2
+  + \sum_{i=1}^k 2c_ia_i^* \sigma_i^2 \\
+  &\geq V(W^*) + \sum_{i=1}^k \frac{2c_i}{\sum_{j=1}^k \nicefrac{1}{\sigma_j^2}} \\
+  &= V(W^*) + \sum_{j=1}^k \frac{2}{\nicefrac{1}{\sigma_j^2}}
+  \underbrace{\sum_{i=1}^k c_i}_{=0} \\
+  &= V(W^*)
+\end{align*}
+
+the minimality of $\V(W^*)$.
+    
+\end{solution}
+    
+% --------------------------------------------------------------------------------
+    
