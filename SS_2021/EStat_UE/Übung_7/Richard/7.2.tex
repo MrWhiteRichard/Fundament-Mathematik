@@ -13,7 +13,142 @@ If not, show why not.
 
 \begin{solution}
 
-ToDo!
+Recall the theorems from \cite[lecture 7, slides 12, 54]{EStat}.
+Applying the Delta Method to the theorem on slide 12, we get that the variance (times $\sqrt n$) of the MLE of $g(\theta)$ would converge to the Cramér-Rao lower bound of the theorem on slide 54.
+This motivates us to find the MLE of $g(\theta)$.
+According to \cite[lecture 7, slide 46]{EStat},
+
+\begin{align*}
+    \widehat{g(\theta)} = g(\hat \theta).
+\end{align*}
+
+Thus, we first calculate $\hat \theta$.
+
+\begin{align*}
+    L_n(\theta \mid x)
+    & =
+    f_{X_1, \dots, X_n}(x \mid \theta) \\
+    & =
+    \prod_{i=1}^n
+        \theta x_i^{\theta - 1} \mathbf 1_{(0, 1)}(x_i) \\
+    & =
+    \theta^n
+    \prod_{i=1}^n
+        x_i^{\theta - 1}
+    \mathbf 1_{(0, 1)^n}(x)
+\end{align*}
+
+Assume, that $x \in (0, 1)^n$.
+
+\begin{align*}
+    \ell_n(\theta \mid x)
+    & =
+    n \log \theta + (\theta - 1) \sum_{i=1}^n \log x_i, \\
+    \ell_n^\prime(\theta \mid x)
+    & =
+    \frac{n}{\theta} + \sum_{i=1}^n \log x_i, \\
+    \ell_n^\primeprime(\theta \mid x)
+    & =
+    -\frac{n}{\theta^2}
+\end{align*}
+
+\begin{align*}
+    0
+    \stackrel{!}{=}
+    \ell_n^\prime(\hat \theta \mid x)
+    =
+    \frac{n}{\hat \theta} + \sum_{i=1}^n \log x_i
+    \iff
+    \hat \theta = -n \Bigg / \sum_{i=1}^n \log x_i
+\end{align*}
+
+\begin{align*}
+    0
+    \stackrel{!}{>}
+    \ell_n^\primeprime(\hat \theta \mid x)
+    =
+    -\frac{n}{\hat \theta^2}
+    =
+    -\frac{1}{n}
+    \pbraces
+    {
+        \sum_{i=1}^n \log x_i
+    }^2
+\end{align*}
+
+Due to the necessitiy of easing the following calculation and sheer luck, we make the Ansatz $g(x) := \frac{1}{x}$.
+Now, we want $\widehat{g(\theta)}$ to be unbiased, i.e.
+
+\begin{align*}
+    \frac{1}{\theta}
+    =
+    g(\theta)
+    \stackrel{!}{=}
+    \E \widehat{g(\theta)}
+    & =
+    \E g(\hat \theta) \\
+    & =
+    \E g \pbraces{-n \Bigg / \sum_{i=1}^n \log X_i} \\
+    & \stackrel
+    {
+        \text{luck}
+    }{=}
+    \E \pbraces{\frac{1}{-n} \sum_{i=1}^n \log X_i} \\
+    & =
+    \frac{1}{-n} \sum_{i=1} \E \log X_i \\
+    & \stackrel{?}{=}
+    -\frac{1}{n} \sum_{i=1} -\frac{1}{\theta} \\
+    & =
+    \frac{1}{\theta}.
+\end{align*}
+
+For \enquote ? we used
+
+\begin{align*}
+    \Forall i = 1, \dots, n:
+        \E \log X_i
+        & =
+        \int_{-\infty}^\infty
+            \log x \theta x^{\theta - 1} \mathbf 1_{(0, 1)}(x)
+            ~ \mathrm d x \\
+        & =
+        \int_0^1
+            \log x \theta x^{\theta - 1}
+            ~ \mathrm d x \\
+        & \stackrel
+        {
+            \text{PI}
+        }{=}
+        \underbrace
+        {
+            \log x x^\theta \Big |_{x=0}^1
+        }_0
+        -
+        \int_0^1
+            \frac{1}{x} x^\theta
+            ~ \mathrm d x \\
+        & \stackrel{?}{=}
+        -\frac{1}{\theta} x^\theta \Big |_{x=0}^1 \\
+        & =
+        -\frac{1}{\theta}.
+\end{align*}
+
+For \enquote ? we used
+
+\begin{align*}
+    \lim_{x \to 0}
+        \log x x^\theta
+    & =
+    \lim_{x \to 0}
+        \frac{\log x}{x^{-\theta}} \\
+    & =
+    \lim_{x \to 0}
+        \frac{x^{-1}}{- \theta x^{-\theta-1}} \\
+    & =
+    -\frac{1}{\theta} \lim_{x \to 0} x^\theta \\
+    & =
+    0.
+\end{align*}
 
 \end{solution}
 

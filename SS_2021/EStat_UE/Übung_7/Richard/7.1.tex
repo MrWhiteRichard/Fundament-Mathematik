@@ -66,10 +66,10 @@ Let $X_1, \dots, X_n$ be a random sample from uniform $(\theta, 1)$ distribution
 
     the smallest order statistic.
 
-    \item
+    \item The cdf of $\hat \theta$ is
 
     \begin{align*}
-        F_{X_{(1)}}(x)
+        F_{\hat \theta}(x)
         & =
         \P \pbraces{\min_{i=1}^n X_i \leq x} \\
         & =
@@ -89,10 +89,98 @@ Let $X_1, \dots, X_n$ be a random sample from uniform $(\theta, 1)$ distribution
             1 - \pbraces{1 - \frac{x - \theta}{1 - \theta}}^n,
             & \theta < x < 1, \\
             1,
-            & 1 \leq x
+            & 1 \leq x.
+        \end{cases}
+    \end{align*}
+
+    The asymptotic cdf is $\mathbf 1_{(0, \infty)}(x)$;
+    the asymptotic pdf is the $\theta$-shifted delta distribution $\delta_\theta$, because
+
+    \begin{align*}
+        \Forall \varphi \in C_0^\infty:
+            \abraces{\mathbf 1_{(\theta, \infty)}^\prime, \varphi}
+            & =
+            - \abraces{\mathbf 1_{(\theta, \infty)}, \varphi^\prime} \\
+            & =
+            -\int_{-\infty}^\infty
+                \mathbf 1_{(\theta, \infty)}(x) \varphi^\prime(x)
+                ~ \mathrm d x \\
+            & =
+            -\int_\theta^\infty
+                \varphi^\prime(x)
+                ~ \mathrm d x \\
+            & =
+            -\varphi(x) \Big |_{x=\theta}^\infty \\
+            & =
+            \varphi(\theta) \\
+            & =
+            \abraces{\delta_\theta, \varphi}.
+    \end{align*}
+
+    Let us calculate the cdf of the affine transformed $\hat \theta$.
+
+    \begin{align*}
+        F_{r_n (\hat \theta - a_n)}(x)
+        & =
+        \P \pbraces{r_n \pbraces{\min_{i=1}^n X_i - a_n} \leq x} \\
+        & =
+        \P \pbraces{\min_{i=1}^n X_i \leq \frac{x}{r_n} + a_n} \\
+        & ~~ \vdots \\
+        & =
+        \begin{cases}
+            0,
+            & x / r_n + a_n \leq \theta
+            \iff
+            x \leq r_n (\theta - a_n), \\
+            1 - \pbraces{1 - \frac{x / r_n + a_n - \theta}{1 - \theta}}^n,
+            & \theta < x / r_n + a_n < 1
+            \iff
+            r_n (\theta - a_n) \leq x \leq r_n (1 - a_n), \\
+            1,
+            & 1 \leq x / r_n + a_n
+            \iff
+            r_n (1 - a_n) \leq x
+        \end{cases}
+    \end{align*}
+
+    Now, we can see that this expression screams \enquote{Euler}.
+    Thus, we set
+
+    \begin{align*}
+        a_n := \theta,
+        \quad
+        \text{and}
+        \quad
+        r_n := \frac{n}{\theta - 1},
+        \quad
+        \text{for}
+        \quad
+        n \in \N.
+    \end{align*}
+
+    Plugging in, we get
+
+    \begin{align*}
+        \cdots
+        & =
+        \begin{cases}
+            0,
+            & x \leq 0, \\
+            1 - \pbraces{1 + \frac{x}{n}}^n,
+            & 0 < x < n, \\
+            1,
+            & n \leq x
         \end{cases} \\
         & \xrightarrow{n \to \infty}
-        \mathbf 1_{(0, \infty)}(x)
+        (1 - \mathrm e^x) \mathbf 1_{0, \infty}(x).
+    \end{align*}
+
+    Finally,
+
+    \begin{align*}
+        r_n (\hat \theta - a_n)
+        \xrightarrow[n \to \infty]{\text d}
+        \exp(1).
     \end{align*}
 
 \end{enumerate}
