@@ -1,0 +1,341 @@
+---
+title: "HW7"
+author: "Sallinger Christian"
+date: "11 5 2021"
+output: pdf_document
+---
+
+
+## 1. Uniform distribution
+
+Let $X_1,\dots,X_n$ be a random sample from uniform $(\theta, 1)$ distribution, where $\theta < 1$ is an unknown parameter.
+
+(a) Find the MLE $\hat{\theta}$ of $\theta$.
+
+(b) Is $\hat{\theta}$ asymptotically normal? If yes, find the asymptotic mean and variance. Otherwise find a sequence $r_n$ and $a_n$ such that $r_n(\hat{\theta}- a_n)$ converges in distribution to a non-degenerate (not pointmass) distribution.
+
+\textbf{Solution:}
+
+(a) The likelihood function is given by
+
+$$
+L(\theta\mid x)
+=
+\prod_{i=1}^n f(x_i\mid\theta)
+=
+\prod_{i=1}^n \frac{1}{1-\theta}\textbf{1}_{[\theta,1]}(x_i)
+=
+\frac{1}{(1-\theta)^n} \textbf{1}_{(-\infty,1]}\Big(\max_{i=1,\dots,n} x_i\Big)\textbf{1}_{[\theta,\infty)}\Big(\min_{i=1,\dots,n}x_i\Big)
+$$
+
+We see that the indicator of the maximum does not depend on $\theta$, the fraction is a growing function in $\theta$ and the indicator of the minimum is a falling function in $\theta$. So the maximum of the likelihood function is reached when we take
+
+$$
+\hat{\theta} = \min_{i=1,\dots,n} X_i
+$$
+
+(b) We first calculate the cdf of $X_{(1)} = \min_{i=1,\dots,n} X_i$ where we use the fact that the random variables are independent
+
+$$
+F_{X_{(1)}}(x)
+=
+\mathbb{P}(X_{(1)} \leq x)
+=
+1-\mathbb{P}(X_{(1)} > x)
+=
+1 - \mathbb{P}(X_1 > x)^n
+=
+1- (1 - \mathbb{P}(X_1\leq x))^n
+=
+\begin{cases}
+0, & x < \theta \\
+1-(1-\frac{x-\theta}{1 - \theta})^n, & \theta \leq x \leq 1 \\
+1, &x> 1
+\end{cases}
+$$
+This looks very similar to the first example of HW 5. If we choose $r_n = \frac{n}{1 -\theta}$ and $a_n = \theta$ we get
+
+\begin{align*}
+\mathbb{P}(r_n(X_{(1)}-a_n) \leq x)
+=
+\mathbb{P}(X_{(1)} \leq \frac{1-\theta}{n}x +\theta)
+&=
+\begin{cases}
+0, & \frac{1-\theta}{n}x +\theta < \theta \\
+1 - (1-\frac{x}{n})^n, &\theta \leq \frac{1-\theta}{n}x +\theta \leq 1 \\
+1, &  \frac{1-\theta}{n}x +\theta > 1
+\end{cases} \\
+&=
+\begin{cases}
+0, & x < 0 \\
+1 - (1-\frac{x}{n})^n, & 0 \leq x \leq n \\
+1, &  x > n
+\end{cases} \\
+&\stackrel{n \to \infty}{\longrightarrow}
+\begin{cases}
+1-e^{-x}, & x\geq 0 \\
+0, &x<0
+\end{cases}
+\end{align*}
+
+So it converges to $\exp(1)$ in distribution.
+
+## 2. Cramér-Rao lower bound
+
+Let $X_1,\dots,X_n$ be a random sample with the pdf $f(x\mid \theta) = \theta x^{\theta-1}$, where $0<x<1$ and $\theta > 0$ is unknown. Is there a function of $\theta$, say $g(\theta)$, for which there exists an unbiased estimator whose variance attains the Cramér-Rao lower bound? If there is, find it. If not, show why not.
+
+\textbf{Solution:}
+
+## 3. Minimum variance estimator
+
+Let $W_1, \dots, W_k$ be unbiased estimators of a parameter $\theta$ with $\mathbb{V}ar = \sigma^2_i$ and $\mathbb{C}ov(W_i,W_j) = 0$ if $i \neq j$. Show that, of all estimators of the form $\sum a_i W_i$ where $a_i$s are constant and $\mathbb{E}_{\theta}\Big(\sum a_i W_i\Big) = \theta$, the estimator 
+
+$$
+W^*
+=
+\frac{
+\sum W_i / \sigma_i^2
+}{
+\sum (1/ \sigma_i^2)
+}
+$$
+
+has minimum variance. Show that
+
+$$
+\mathbb{V}ar W^*
+=
+\frac{1}{\sum(1/ \sigma_i^2)}
+$$
+
+\textbf{Solution:}
+
+Since the random variables have covariance 0 we can calculate the variance rather easily
+
+$$
+\mathbb{V}ar(\sum a_i W_i)
+=
+\sum a_i^2 \mathbb{V}ar(W_i)
+=
+\sum a_i^2 \sigma_i^2
+$$
+
+We can see that $\sum a_i = 1$ has to hold:
+
+$$
+\mathbb{E}_\theta(\sum a_i W_i)
+=
+\sum a_i \mathbb{E}_\theta(W_i)
+=
+\theta \sum a_i
+\stackrel{!}{=}
+\theta
+$$
+
+So we are dealing with the optimization problem of minimizing $f(a) = \sum a_i^2 \sigma_i^2$ where $a = (a_1,\dots,a_k) \in \mathbb{R}^n$ under the constraint $g(a) := \sum a_i - 1 = 0$. We can immediately observe that $D^2 f(a)$ is positive definite for any $a$, so we are dealing with a convex problem. This means we can use the method of Lagrange multipliers to not only get a necessary but also a sufficient condition for the minimum. Since $\nabla g(a) = (1,\dots,1) \neq 0$ for any $a$ the constraint qualification holds. We now define
+
+$$
+\Lambda(a,\lambda)
+=
+f(a) - \lambda g(a)
+$$
+
+and note that for the optimum $a$ has to fulfill
+
+\begin{align*}
+\partial_{a_i} \Lambda(a, \lambda) = 2a_i\sigma_i^2 - \lambda &= 0 \\
+\partial_\lambda \Lambda(a, \lambda) = \sum a_i - 1&=0
+\end{align*}
+
+From the first group of equations we get that for any $i = 1,\dots,k$
+
+$$
+2a_i\sigma_i^2 = \lambda
+\iff
+a_i = \frac{\lambda}{2\sigma_i^2}
+$$
+
+has to hold. From the last equation we then get
+
+$$
+\sum \frac{\lambda}{2\sigma_i^2} = 1
+\iff
+\lambda = \frac{1}{\sum 1 / 2\sigma_i^2}
+$$
+
+So in the end we get
+
+$$
+a_i = \frac{\lambda}{2\sigma_i^2}
+=
+\frac{\frac{1}{\sum 1 / 2\sigma_i^2}}{2\sigma_i^2}
+=
+\frac{1}{\sigma_i^2 \sum 1/\sigma_i^2}
+$$
+This choice of $a$ now gives not only a local but also global minimum.
+With this choice we can also see that 
+
+$$
+\sum W_i a_i = W^*
+$$
+so this estimator indeed has minimum variance. To now show the variance of this estimator we use the formula from above
+
+$$
+\mathbb{V}ar(W^*)
+=
+\sum a_i^2\sigma_i^2
+=
+\sum \frac{1}{\sigma_i^2 \big(\sum 1/\sigma_i^2\big)^2}
+=
+\frac{1}{\big(\sum 1/\sigma_i^2\big)^2}\cdot\sum \frac{1}{\sigma_i^2}
+=
+\frac{1}{\sum 1/\sigma_i^2}
+$$
+
+
+## 4. Normal unbiased estimator of $\mu^2$
+
+Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,1)$.
+
+(a) Show that $\bar{X}^2 - \frac{1}{n}$ is an unbiased estimator of $\mu^2$.
+
+(b) By using Stein's Lemma, calculate its variance and show that it is greater that the Cramèr-Rao lower bound.
+
+$\textit{Hint:}$ Recall, Stein's Lemma states that for $X \sim \mathcal{N}(\mu, \sigma^2)$ and a differentiable function $g$ satisfying $E|g^\prime(X)| < \infty$ it holds $\mathbb{E}\Big(g(X)(X-\mu)\Big) = \sigma^2 \mathbb{E} g^\prime(X)$.
+
+\textbf{Solution:}
+
+(a) Since the random variables are independent it holds that $\mathbb{V}ar(\bar{X}) = \frac{1}{n^2}\sum_{i=1}^n\mathbb{V}ar(X_i)$ with that and $\mathbb{E}(\bar{X}) = \mu$ we calculate
+
+$$
+\mathbb{E}(\bar{X}^2 - \frac{1}{n}) =
+\mathbb{E}(\bar{X}^2) - \frac{1}{n}
+=
+\mathbb{V}ar(\bar{X}) + \mathbb{E}(\bar{X})^2 - \frac{1}{n}
+=
+\frac{1}{n} + \mu^2 - \frac{1}{n}
+=
+\mu^2
+$$
+So this estimator is indeed unbiased.
+8
+(b) From (a) we can infer that $\mathbb{E}\big(\bar{X}^2\big) = \mu^2 + \frac{1}{n}$. We will use Stein's Lemma (with $g(x) = x^2$) to calculate
+
+$$
+\mathbb{E}(\bar{X}^3) =
+\mathbb{E}(\bar{X}^2(\bar{X}-\mu)) + \mu \mathbb{E}(\bar{X}^2)
+=
+\frac{2}{n}\mathbb{E}(\bar{X}) +\mu\big(\mu^2 + \frac{1}{n}\big)
+=
+\mu\big(\mu^2+ \frac{3}{n}\big)
+$$
+With the help of this and again using Stein's Lemma (this time with $g(x) = x^3$) we now calculate
+
+$$
+\mathbb{E}(\bar{X}^4)
+=
+\mathbb{E}(\bar{X}^3(\bar{X}-\mu)) + \mu \mathbb{E}(\bar{X}^3)
+=
+\frac{3}{n}\mathbb{E}(\bar{X}^2) + \mu^2(\mu^2 + \frac{3}{n})
+=
+\frac{3}{n}(\mu^2 +\frac{1}{n}) + \mu^2(\mu^2 + \frac{3}{n})
+=\mu^4 + \frac{6}{n}\mu^2 + \frac{3}{n^2}
+$$
+Finally we can calculate the variance
+
+$$
+\mathbb{V}ar(\bar{X}^2 - \frac{1}{n})
+=
+\mathbb{V}ar(\bar{X}^2)
+=
+\mathbb{E}\big(\bar{X}^4\big) - \mathbb{E}\big(\bar{X}^2\big)^2
+=
+\mu^4 + \frac{4}{n}\mu^2 + \frac{3}{n^2} - \big(\mu^2 + \frac{1}{n}\big)^2
+=
+\mu^2 \frac{4}{n} + \frac{2}{n^2}
+$$
+
+To now show that this is greater that the Cramèr-Rao lower bound we obviously have to calculate that bound. Our estimator is unbiased w.r. to $\mu^2$, so we actually have to use the Cramér-Rao inequality with $g(x) = x^2$
+
+$$
+\mathbb{V}ar_\mu(T) \geq
+\frac{g^\prime(\mu)^2}{nI(\mu)}
+=
+\frac{4\mu^2}{nI(\mu)}
+$$
+Where $I(\mu)$ is the Fisher information. To get this function we note that the log likelihood function for our random variables is (see page 62, Lecture 6)
+
+$$
+\ell(\mu\mid x) = -\frac{n}{2}\log(2\pi)-\frac{1}{2}\sum_{i =1}^n(x_i - \mu)^2
+$$
+We take the second derivative with respect to $\mu$:
+
+\begin{align*}
+\partial_\mu \ell(\mu \mid x)
+&=
+\sum_{i=1}^n (x_i - \mu) \\
+\partial_\mu^2 \ell(\mu \mid x)
+&=
+-n
+\end{align*}
+
+The Fisher information is now
+
+$$
+I(\mu)
+=
+-\mathbb{E}(-n)
+=n
+$$
+So the lower bound is given by
+
+$$
+\frac{4\mu^2}{n^2}
+$$
+and with this we get
+
+$$
+\mathbb{V}ar(\bar{X}^2 - \frac{1}{n}) = 
+\mu^2 \frac{4}{n} + \frac{2}{n^2}
+\stackrel{!}{>} \frac{4\mu^2}{n^2}
+\iff
+4\mu^2 n + 2 > 4\mu^2
+\iff
+4\mu^2(n-1) + 2 > 0
+$$
+and see that the variance is indeed greater than this bound.
+
+## 5. Exponential family
+
+Show that a Poisson family of distributions $\mathcal{P}oi(\lambda)$, with unknown $\lambda > 0$ belongs to the exponential family.
+
+\textbf{Solution:}
+
+We say a family of distributions belong to the exponential family if it can be represented in the form
+
+$$
+f(x\mid \theta)
+=
+h(x)c(\theta) e^{\sum w_i(\theta)t_i(x)}
+$$
+
+where $h(x) > 0, t_1(x),\dots,t_k(x)$ are real valued functions that do not depend on $\theta$ and $c(\theta) > 0, w_1(\theta),\dots,w_k(\theta)$ are real valued functions that do not depend on $x$. We recall that the pmf of a Poisson random variable is given by
+
+$$
+f(k\mid\lambda)
+=
+\frac{\lambda^k e^{-\lambda}}{k!} 
+=
+\frac{ e^{k\ln(\lambda)-\lambda}}{k!}
+$$
+
+So it belongs to the exponential family with
+
+\begin{align*}
+&h(k) = \frac{1}{k!} \\
+&c(\lambda) = 1 \\
+&w_1(\lambda) = \ln(\lambda) \\
+&t_1(k) = k \\
+&w_2(\lambda) = -\lambda \\
+&t_2(k) = 1
+\end{align*}
