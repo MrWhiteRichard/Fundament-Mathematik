@@ -10,7 +10,30 @@ What is the backup diagram for Monte Carlo estimation of $q_\pi$?
 
 \begin{solution}
 
-ToDo!
+\begin{center}
+    \begin{tikzpicture}[
+        ->,
+        node distance = 2cm,
+        initial text = $ $,
+        initial distance = 1.5cm,
+        initial above
+    ]
+    
+        \node [state] (1) {};
+        \node [right of = 1] {$s_1, a_1$};
+    
+        \node [below of = 1] (2) {$\vdots$};
+    
+        \node [state, below of = 2] (3) {};
+        \node [right of = 3] {$s_{T-1}, a_{T-1}$};
+        
+        \node [below of = 3] (4) {$\blacksquare$};
+    
+        \draw
+        (1) edge (2) (2) edge (3) (3) edge (4);
+    
+    \end{tikzpicture}
+\end{center}
 
 \end{solution}
 

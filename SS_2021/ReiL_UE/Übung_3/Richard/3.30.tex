@@ -10,7 +10,25 @@ Modify the algorithm for first-visit MC policy evaluation (Section 5.1) to use t
 
 \begin{solution}
 
-ToDo!
+In particular, we will use an update rule similar to \eqref{eq:2.3}.
+The $R_i$-s shall be replaced by $G_t$-s, $n$ by $\mathit{AveragesCounters}(S_t)$-s, and $Q_n$-s by $\mathit{AveragesValues}(S_t)$-s.
+
+\begin{tcolorbox}[title = {First-visit MC prediction, for estimating $V \approx v_\pi$, incremental implementation}]
+    Input: a policy $\pi$ to be evaluated
+
+    Initialize: \\
+    \hspace*{0.5cm} $V(s) \in \R$, arbitrarily, for all $s \in \mathcal S$ \\
+    \hspace*{0.5cm} $\mathit{AveragesValues}(s), \mathit{AveragesCounters}(s) \leftarrow 0$, for all $s \in \mathcal S$
+
+    Loop forever (for each episode): \\
+    \hspace*{0.5cm} Generate an episode following $\pi: S_0, A_0, R_1, S_1, A_1, R_2, \dots, S_{t-1}, A_{T-1}, R_T$ \\
+    \hspace*{0.5cm} $G \leftarrow 0$ \\
+    \hspace*{0.5cm} Loop for each step of episode, $t = T-1, T-2, \dots, 0$: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} $G \leftarrow \gamma G + R_{t+1}$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} Unless $S_t$ appears in $S_0, S_1, \dots, S_{t-1}$: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $\mathit{AveragesCounters}(S_t) \leftarrow \mathit{AveragesCounters}(S_t) + 1$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $V(S_t) \leftarrow \mathit{AveragesValues}(S_t) \leftarrow \mathit{AveragesValues}(S_t) + \frac{G - \mathit{AveragesValues}(S_t)}{\mathit{AveragesCounters}(S_t)}$
+\end{tcolorbox}
 
 \end{solution}
 

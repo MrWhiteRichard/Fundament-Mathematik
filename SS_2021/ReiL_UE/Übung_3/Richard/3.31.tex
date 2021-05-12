@@ -38,6 +38,56 @@ Follow the pattern of the derivation of the unweighted rule \eqref{eq:2.3}.
     =
     Q_n + \frac{1}{n} \bbraces{R_n - Q_n}
 \end{align}
+
+\begin{align*}
+    V_{n+1}
+    & \doteq
+    \frac
+    {
+        \sum_{k=1}^n W_k G_k
+    }{
+        \sum_{k=1}^n W_k
+    } \\
+    & =
+    \frac{1}{C_n}
+    \sum_{k=1}^n W_k G_k \\
+    & =
+    \frac{1}{C_n}
+    \pbraces
+    {
+        \sum_{k=1}^{n-1} W_k G_k
+        +
+        W_n G_n
+    } \\
+    & =
+    \frac{1}{C_n}
+    \pbraces
+    {
+        V_n \sum_{k=1}^{n-1} W_k
+        +
+        W_n G_n
+    } \\
+    & =
+    \frac{1}{C_n}
+    \pbraces
+    {
+        V_n \sum_{k=1}^n W_k
+        -
+        V_n W_n
+        +
+        W_n G_n
+    } \\
+    & =
+    \frac{1}{C_n}
+    \pbraces
+    {
+        V_n C_n
+        +
+        W_n \bbraces{G_n - V_n}
+    } \\
+    & =
+    V_n + \frac{W_n}{C_n} \bbraces{G_n - V_n}
+\end{align*}
     
 \end{solution}
 

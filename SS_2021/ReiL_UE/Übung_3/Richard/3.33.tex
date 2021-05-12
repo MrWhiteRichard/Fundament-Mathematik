@@ -34,6 +34,71 @@ Show the steps to derive \eqref{eq:5.14} from \eqref{eq:5.13}.
     1
 \end{align}
 
+We use induction over $T$.
+For $T = t+1$, there is nothing to prove.
+Now, assume that
+
+\begin{align*}
+    \E_b[\rho_{t:t} R_{t+1}]
+    =
+    \E_b[\rho_{t:T-2} R_{t+1}],
+\end{align*}
+
+then
+
+\begin{align*}
+    \E_b[\rho_{t:T-1} R_{t+1}]
+    & =
+    \E_b
+    \bbraces
+    {
+        \rho_{t:T-2}
+        \frac{\pi(A_{T-1} \mid S_{T+1})}{b(A_{T-1} \mid S_{T+1})}
+        R_{t+1}
+    } \\
+    & =
+    \sum_a
+        b(a \mid S_{T-1})
+        \E_b
+        \bbraces
+        {
+            \rho_{t:T-2}
+            \frac{\pi(A_{T-1} \mid S_{T+1})}{b(A_{T-1} \mid S_{T+1})}
+            R_{t+1}
+            ~ \Bigg | ~
+            A_{T-1} = a
+        } \\
+        & =
+        \sum_a
+            b(a \mid S_{T-1})
+            \E_b
+            \bbraces
+            {
+                \rho_{t:T-2}
+                \frac{\pi(a \mid S_{T+1})}{b(a \mid S_{T+1})}
+                R_{t+1}
+            } \\            
+        & =
+        \sum_a
+            b(a \mid S_{T-1})
+            \frac{\pi(a \mid S_{T+1})}{b(a \mid S_{T+1})}
+            \E_b
+            \bbraces
+            {
+                \rho_{t:T-2}
+                R_{t+1}
+            } \\
+        & =
+        \underbrace
+        {
+            \sum_a
+                \pi(a \mid S_{T-1})
+        }_1
+        \E_b[\rho_{t:t} R_{t+1}] \\
+        & =
+        \E_b[\rho_{t:t} R_{t+1}].
+\end{align*}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------
