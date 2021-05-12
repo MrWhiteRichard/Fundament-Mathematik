@@ -34,53 +34,53 @@
 {\includegraphicsboxed}
 [2][0.75]
 {
-  \begin{center}
-    \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \begin{center}
+        \begin{tcolorbox}[standard jigsaw, opacityback = 0]
 
-      \centering
-      \includegraphics[width = #1 \textwidth]{#2}
+            \centering
+            \includegraphics[width = #1 \textwidth]{#2}
 
-    \end{tcolorbox}
-  \end{center}
+        \end{tcolorbox}
+    \end{center}
 }
 
 \newcommand
 {\includegraphicsunboxed}
 [2][0.75]
 {
-  \begin{center}
-    \includegraphics[width = #1 \textwidth]{#2}
-  \end{center}
+    \begin{center}
+        \includegraphics[width = #1 \textwidth]{#2}
+    \end{center}
 }
 
 \NewDocumentCommand
 {\includegraphicsgraphicsboxed}
 { O{0.75} O{0.25} m m}
 {
-  \begin{center}
-    \begin{tcolorbox}[standard jigsaw, opacityback = 0]
+    \begin{center}
+        \begin{tcolorbox}[standard jigsaw, opacityback = 0]
 
-      \centering
-      \includegraphics[width = #1 \textwidth]{#3} \\
-      \vspace{#2 cm}
-      \includegraphics[width = #1 \textwidth]{#4}
+            \centering
+            \includegraphics[width = #1 \textwidth]{#3} \\
+            \vspace{#2 cm}
+            \includegraphics[width = #1 \textwidth]{#4}
 
-    \end{tcolorbox}
-  \end{center}
+        \end{tcolorbox}
+    \end{center}
 }
 
 \NewDocumentCommand
 {\includegraphicsgraphicsunboxed}
 { O{0.75} O{0.25} m m}
 {
-  \begin{center}
+    \begin{center}
 
-    \centering
-    \includegraphics[width = #1 \textwidth]{#3} \\
-    \vspace{#2 cm}
-    \includegraphics[width = #1 \textwidth]{#4}
+        \centering
+        \includegraphics[width = #1 \textwidth]{#3} \\
+        \vspace{#2 cm}
+        \includegraphics[width = #1 \textwidth]{#4}
 
-  \end{center}
+    \end{center}
 }
 
 % ---------------------------------------------------------------- %
@@ -222,18 +222,18 @@
 {\derivative}
 { O{} O{} m m}
 {
-  \frac
-  {\mathrm d^{#2} {#1}}
-  {\mathrm d {#3}^{#2}}
+    \frac
+    {\mathrm d^{#2} {#1}}
+    {\mathrm d {#3}^{#2}}
 }
 
 \NewDocumentCommand
 {\pderivative}
 { O{} O{} m m}
 {
-  \frac
-  {\partial^{#2} {#1}}
-  {\partial {#3}^{#2}}
+    \frac
+    {\partial^{#2} {#1}}
+    {\partial {#3}^{#2}}
 }
 
 \DeclareMathOperator{\Div}{div}
@@ -271,5 +271,45 @@
 {\Oint}
 { O{} O{} m m}
 {\oint_{#1}^{#2} #3 ~ \mathrm d #4}
+
+% ---------------------------------------------------------------- %
+
+% source:
+% https://tex.stackexchange.com/questions/203257/tikz-chains-with-one-side-of-the-leftmost-node-thickbold
+
+% #1 (optional): current state, e.g. $q_0$
+% #2: cursor position, e.g. 1
+% #3: number of displayed cells, e.g. 5
+% #4: contents of cells, e.g. {$\triangleright$, $x_1$, \dots, $x_n$, \textvisiblespace}
+
+\newcommand{\turingtape}[4][]
+{
+    \begin{tikzpicture}
+
+        \tikzset{tape/.style={minimum size=.7cm, draw}}
+
+        \begin{scope}[start chain=0 going right, node distance=0mm]
+            \foreach \x [count=\i] in #4
+            {
+                \ifnum\i=#3 % if last node reset outer sep to 0pt
+                    \node [on chain=0, tape, outer sep=0pt] (n\i) {\x};
+                    \draw (n\i.north east) -- ++(.1,0) decorate [decoration={zigzag, segment length=.12cm, amplitude=.02cm}] {-- ($(n\i.south east)+(+.1,0)$)} -- (n\i.south east) -- cycle;
+                \else
+                    \node [on chain=0, tape] (n\i) {\x};
+                \fi
+
+                \ifnum\i=1 % if first node draw a thick line at the left
+                    \draw [line width=.1cm] (n\i.north west) -- (n\i.south west);
+                \fi
+            }
+ 
+            \node [right=.25cm of n#3] {$\cdots$};
+            \node [tape, above left=.25cm and 1cm of n1] (q) {#1};
+            \draw [>=latex, ->] (q) -| (n#2);
+
+        \end{scope}
+
+    \end{tikzpicture}
+}
 
 % ---------------------------------------------------------------- %
