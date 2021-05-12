@@ -1,0 +1,239 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie dass die folgenden Funktionen primitiv rekursiv sind \footnote{Sie dürfen dafür annehmen dass für alle $n, k \in \N$ die konstante Funktion $c_k^n: \N^n \to \N, (x_1, \dots, x_n) \mapsto k$ primitiv rekursiv ist.}:
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Multiplikation $(x, y) \mapsto x \cdot y$
+
+    \item Abgeschnittener Vorgänger $x \mapsto \operatorname p(x) = \begin{cases} 0 & \text{falls}~ x = 0 \\ x - 1 & \text{falls}~ x > 0 \end{cases}$
+
+    \item Abgeschnittene Subtraktion $(x, y) \mapsto x \dotdiv y = \begin{cases} 0 & \text{falls}~ x \leq y \\ x - y & \text{falls}~ x > y \end{cases}$
+
+    \item Die charakteristische Funktion von kleiner-gleich $(x, y) \mapsto \chi_\leq(x, y) = \begin{cases} 1 & \text{falls}~ x \leq y \\ 0 & \text{falls}~ x > y \end{cases}$
+
+    \item Die charakteristische Funktion der Gleichheit $(x, y) \mapsto \chi_=(x, y) = \begin{cases} 1 & \text{falls}~ x = y \\ 0 & \text{falls}~ x \neq y \end{cases}$
+
+    \item Falls $g, f_0, f_1, \dots, f_n: \N^k \to \N$ primitiv rekursiv sin, dann ist auch
+    
+    \begin{align*}
+        h:
+            \N^k \to \N:
+            \overline x
+            \mapsto
+            \begin{cases}
+                f_1(\overline x)     & \text{falls}~ g(\overline x) = 1     \\
+                f_0(\overline x)     & \text{falls}~ g(\overline x) = 0     \\
+                \vdots               &                                      \\
+                f_{n-1}(\overline x) & \text{falls}~ g(\overline x) = {n-1} \\
+                f_n(\overline x)     & \text{falls}~ g(\overline x) \geq n
+            \end{cases}
+    \end{align*}
+
+    primitiv rekursiv.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item $f := \Cn[P_1^1, 0]$ ist, als Verknüpfung von Basisfunktion, primitiv rekursiv.
+
+    \begin{align*}
+        f(x) := 0,, \quad \text{für}~ x \in \N.
+    \end{align*}
+
+    Es gilt für alle $x \in \N:$
+
+    \begin{align*}
+        x \cdot 0 = 0 = f(x).
+    \end{align*}
+
+    Aus Beispiel 3.1 wissen wir schon, dass die Addition $(x, y) \mapsto x + y$ zweier natürlicher Zahlen primitiv rekursiv ist.
+
+    Wir können $\cdot$ also als primitive Rekursion der primitiv Rekursiven
+    $g := \Cn[+, P_1^1, P_1^3]$ ist daher, als Verknüpfung von primitiv rekursiven Funktionen, primitiv rekursiv.
+
+    \begin{align*}
+        g(x, y, z) := z + x,, \quad \text{für}~ x, y, z \in \N.
+    \end{align*}
+
+    Es gilt für alle $x, y \in \N:$
+    
+    \begin{align*}
+        x \cdot (y + 1) = x \cdot y + x = g(x, y, x \cdot y).
+    \end{align*}
+
+    Schließlich ist $\cdot = \Pr[f, g]$, als primitive Rekursion von primitiv rekursiven Funktionen, primitiv rekursiv.
+
+    \item $f := 0$ ist, als Basisfunktion, primitiv rekursiv.
+    Es gilt
+
+    \begin{align*}
+        \operatorname p(0) = 0 = f.
+    \end{align*}
+
+    $g = P_1^2$ ist, als Basisfunktion, primitiv rekursiv.
+
+    \begin{align*}
+        g(y, z) = y, \quad \text{für}~ y, z \in \N.
+    \end{align*}
+
+    Es gilt für alle $y \in \N:$
+
+    \begin{align*}
+        \operatorname p(y + 1) = y = g(y, z).
+    \end{align*}
+
+    Schließlich ist $\operatorname p = \Pr[f, g]$, als primitive Rekursion von primitiv rekursiven (Basis-)Funktionen, primitiv rekursiv.
+
+    \item $f := P_1^1$ ist, als Basisfunktion, primitiv rekursiv.
+    
+    \begin{align*}
+        f(x) = x, \quad \text{für}~ x \in \N.
+    \end{align*}
+    
+    Es gilt für alle $x \in \N:$
+
+    \begin{align*}
+        x \dotdiv 0 = x = f(x)
+    \end{align*}
+    
+    $g = \Cn[\operatorname p, P_3^3]$ ist, als Verknüpfung von primitiv rekursiven Funktionen, primitiv rekursiv.
+
+    \begin{align*}
+        g(x, y, z) = \operatorname p(z), \quad \text{für}~ x, y, z \in \N.
+    \end{align*}
+
+    Wir machen eine Fallunterscheidung, um zu zeigen, dass für alle $x, y \in \N:$
+
+    \begin{align*}
+        x \dotdiv (y + 1) = \operatorname p(x \dotdiv y) = g(x, y, x \dotdiv y), \quad \text{für}~ x, y \in \N.
+    \end{align*}
+
+    Seien also $x, y \in \N$.
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Fall ($x \leq y + 1$):
+        
+        \begin{align*}
+            x \dotdiv (y + 1)
+            =
+            0
+            =
+            \operatorname p(0)
+            =
+            \operatorname p(x \dotdiv y)
+        \end{align*}
+
+        \item Fall ($x > y + 1$):
+            
+        \begin{align*}
+            x \dotdiv (y + 1)
+            =
+            x - (y + 1)
+            =
+            \underbrace{x - y}_{> 0} - 1
+            =
+            \underbrace{x \dotdiv y}_{> 0} - 1
+            =
+            \operatorname p(x \dotdiv y)
+        \end{align*}    
+
+    \end{enumerate}
+
+    Schließlich ist $\operatorname \dotdiv = \Pr[f, g]$, als primitive Rekursion von primitiv rekursiven Funktionen, primitiv rekursiv.
+
+\end{enumerate}
+
+Es sei angemerkt, dass man mit Projektionen die Argumente immer umstrukturieren kann;
+z.b.
+
+\begin{align*}
+    (a, b, c, x, y, z) \rightsquigarrow (z, x, x, c, a, z)
+\end{align*}
+
+durch
+
+\begin{align*}
+    (P_6^6, P_4^6, P_4^6, P_3^6, P_1^6, P_6^6).
+\end{align*}
+
+Nachdem die Projektionen allesamt primitiv rekursive (Basis-)Funktionen sind, ist diese Umstrukturierung auch \enquote{primitiv rekursiv}.
+
+\begin{enumerate}[label = (\alph*), start = 4]
+
+    \item Es gilt gilt für alle $x, y \in \N:$
+    
+
+    \begin{align*}
+        x \lor y
+        & :=
+        \max(x, y) \\
+        & =
+        \begin{cases}
+            x, & x \geq y, \\
+            y, & x < y
+        \end{cases} \\
+        & =
+        x + (y \dotdiv x),
+    \end{align*}
+
+    \begin{align*}
+        x \land y
+        & :=
+        \min(x, y) \\
+        & =
+        x + y - \max(x, y),
+    \end{align*}
+
+    und
+
+    \begin{align*}
+        \chi_\leq(x, y)
+        =
+        \min(1, (y + 1) \dotdiv x).
+    \end{align*}
+
+    Die $\lor$-$\land$-Notation verwenden wir später noch.
+
+    \item Es gilt für alle $x, y \in \N:$
+
+    \begin{align*}
+        \chi_=(x, y)
+        =
+        \chi_\leq(x, y) \cdot \chi_\leq(y, x).
+    \end{align*}
+
+    \item Mittels Induktion nach $n$ sieht man, dass für alle $\overline x \in \N^k:$
+    
+    \begin{align*}
+        h(\overline x)
+        =
+        \sum_{i=0}^{n-1}
+            f_i(\overline x)
+            \cdot
+            \chi_=(0, g(\overline x))
+        +
+        f_n(\overline x)
+        \cdot
+        \chi_\leq(n, g(\overline x))
+    \end{align*}
+
+    und $h$, als endliche Verknüpfung primitiv rekursiver Funktionen, primitiv ist.
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,146 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Geben Sie eine Turingmaschine an, die eine Duplikation durchführt, d.h. die das Eingabeband
+
+\begin{center}
+
+    \turingtape{1}{5}
+    {
+        {
+            $\triangleright$,
+            $x_1$,
+            \dots,
+            $x_n$,
+            \textvisiblespace
+        }
+    }
+
+\end{center}    
+
+für $x_1, \dots, x_n \in \Bbraces{0, 1}$ in das Ausgabeband
+
+\begin{center}
+
+    \turingtape{1}{9}
+    {
+        {
+            $\triangleright$,
+            $x_1$,
+            \dots,
+            $x_n$,
+            \textvisiblespace,
+            $x_1$,
+            \dots,
+            $x_n$,
+            \textvisiblespace
+        }
+    }
+
+\end{center}    
+
+transformiert.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Eine Turingmaschine, die die Instrukitonen aus dem folgenden Diagramm befolgt, leistet das Gewünschte.
+
+\resizebox{\textwidth}{!}
+{
+    \begin{tikzpicture}[
+        ->,
+        node distance = 3cm,
+        initial text = $ $
+    ]
+    
+        % -------------------------------- %
+        % nodes
+
+        \node [state, initial] (s) {$s$};
+        \node [state, right of = s] (q_0) {$q_0$};
+        
+        \node [state, above right of = q_0] (q_m1) {$q_{-1}$};
+        \node [state, right of = q_m1]      (q_m2) {$q_{-2}$};
+        \node [state, right of = q_m2]      (q_m3) {$q_{-3}$};
+        \node [state, right of = q_m3]      (q_m4) {$q_{-4}$};
+        
+        \node [state, below right of = q_0] (q_p1) {$q_1$};
+        \node [state, right of = q_p1]      (q_p2) {$q_2$};
+        \node [state, right of = q_p2]      (q_p3) {$q_3$};
+        \node [state, right of = q_p3]      (q_p4) {$q_4$};
+        
+        \node [state, below right of = q_m4] (q_0_clone) {$q_0$};
+        \node [state, right of = q_0_clone, accepting] (finish) {fertig};
+        
+        % -------------------------------- %
+        % edges
+        
+        \draw (s) edge node [above] {$\triangleright : \rightarrow$} (q_0);
+        
+        \draw
+        (q_0)  edge              node [above, rotate =  45] {$0 : ($ \textvisiblespace $,  \rightarrow)$} (q_m1)
+        (q_m1) edge [loop above] node                       {$0, 1: \rightarrow$}                         (q_m1)
+        (q_m1) edge              node [above]               {\textvisiblespace $: \rightarrow$}           (q_m2)
+        (q_m2) edge [loop above] node                       {$0, 1: \rightarrow$}                         (q_m2)
+        (q_m2) edge              node [above]               {\textvisiblespace $: (0, \leftarrow)$}       (q_m3)
+        (q_m3) edge [loop above] node                       {$0, 1: \leftarrow$}                          (q_m3)
+        (q_m3) edge              node [above]               {\textvisiblespace $: \leftarrow$}            (q_m4)
+        (q_m4) edge [loop above] node                       {$0, 1: \leftarrow$}                          (q_m4)
+        (q_m4) edge              node [above, rotate = -45]  {\textvisiblespace $: (0, \rightarrow)$}     (q_0_clone);
+
+        \draw
+        (q_0)  edge              node [below, rotate = -45] {$1 : ($ \textvisiblespace $,  \rightarrow)$} (q_p1)
+        (q_p1) edge [loop below] node                       {$0, 1: \rightarrow$}                         (q_p1)
+        (q_p1) edge              node [below]               {\textvisiblespace $: \rightarrow$}           (q_p2)
+        (q_p2) edge [loop below] node                       {$0, 1: \rightarrow$}                         (q_p2)
+        (q_p2) edge              node [below]               {\textvisiblespace $: (1, \leftarrow)$}       (q_p3)
+        (q_p3) edge [loop below] node                       {$0, 1: \leftarrow$}                          (q_p3)
+        (q_p3) edge              node [below]               {\textvisiblespace $: \leftarrow$}            (q_p4)
+        (q_p4) edge [loop below] node                       {$0, 1: \leftarrow$}                          (q_p4)
+        (q_p4) edge              node [below, rotate =  45]  {\textvisiblespace $: (1, \rightarrow)$}     (q_0_clone);
+
+        \draw (q_0_clone) edge node [above] {\textvisiblespace $: -$} (finish);
+    
+        % -------------------------------- %
+
+    \end{tikzpicture}
+}
+
+Der Ästhetik halber kommt $q_0$ doppelt vor.
+Beide Vorkommnisse werden identifiziert und die Mengen der jeweiligen Inputs bzw. Outputs vereinigt.
+
+Die Zustände sind wie folgt zu verstehen.
+
+\begin{itemize}
+    
+    \item $q_0$
+    \dots
+    Wenn ein \textvisiblespace vorliegt, terminiere;
+    sonst, kopiere das vorliegende Bit, $0$ oder $1$, und setze den Platzhalter \textvisiblespace.
+
+    \item $q_{\pm 1}$
+    \dots
+    Trage den Bit bis zur Barriere, dem nächsten \textvisiblespace.
+
+    \item $q_{\pm 2}$
+    \dots
+    Setze den Bit beim nächst-rechten \textvisiblespace ein.
+
+    \item $q_{\pm 3}$
+    \dots
+    Geh zur Barriere zurück.
+
+    \item $q_{\pm 4}$
+    \dots
+    Geh zum Platzhalter zurück.
+
+\end{itemize}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

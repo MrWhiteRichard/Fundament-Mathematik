@@ -1,0 +1,131 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Sei $f: \N^{k+1} \to \N$ primitiv rekursiv.
+Zeigen Sie dass die folgenden Funktionen ebenfalls primitiv rekursiv sind:
+
+\begin{enumerate}[label = (\alph*)]
+    \item $(\overline x, z) \mapsto \sum_{y=0}^z f(\overline x, y)$
+    \item $(\overline x, z) \mapsto \prod_{y=0}^z f(\overline x, y)$
+\end{enumerate}
+
+Sei nun $f: \N^{k+1} \to \Bbraces{0, 1}$ primitiv rekursiv.
+Zeigen Sie dass die folgenden Funktionen ebenfalls primitiv rekursiv sind:
+
+\begin{enumerate}[label = (\alph*), start = 3]
+    \item $(\overline x, z) \mapsto \forall y \leq z f(\overline x, y) = \begin{cases} 1 & \text{falls für alle}~ y \in \Bbraces{0, \dots, z} ~\text{gilt:}~ f(\overline x, y) = 1 \\ 0 & \text{falls ein}~ y \in \Bbraces{0, \dots, z} ~\text{existiert so dass:}~ f(\overline x, z) = 0 \end{cases}$
+    \item $(\overline x, z) \mapsto \exists y \leq z f(\overline x, y) = \begin{cases} 1 & \text{falls ein}~ y \in \Bbraces{0, \dots, z} ~\text{existiert so dass}~ f(\overline x, z) = 1 \\ 0 & \text{falls für alle}~ y \in \Bbraces{0, \dots, z} ~\text{gilt:}~ f(\overline x, y) = 0 \end{cases}$
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Wir schreiben (nur) hier $\varphi$ statt $f$, um das Symbol \enquote{$f$} zu reserveren.
+    Seien
+
+    \begin{align*}
+        h(\overline x, y)
+        :=
+        \sum_{\eta = 0}^y
+            \varphi(\overline x, \eta),
+        \quad
+        \text{für}~
+        \overline x \in \N^k,
+        y \in \N
+    \end{align*}
+
+    und
+
+    \begin{align*}
+        f & := \Cn[\varphi, P_1^k, \dots, P_k^k, 0], \\
+        g & := \Cn[+, P_{k+2}, \Cn[\varphi, P_1^{k+2}, \dots, P_k^{k+2}, \Cn[+, P_{k+1}^{k+2}, 1]]],
+    \end{align*}
+
+    d.h. für $\overline x \in \R^k$, und $y, z \in \R$ ist
+
+    \begin{align*}
+        f(\overline x)
+        & :=
+        \varphi(P_1^k(\overline x), \dots, P_k^k(\overline x), 0) \\
+        & =
+        \varphi(\overline x, 0), \\
+        g(\overline x, y, z)
+        & :=
+        P_{k+2}^{k+2}(\overline x, y, z)
+        +
+        \varphi(P_1^{k+2}(\overline x, y, z), \dots, P_k^{k+2}(\overline x, y, z), P_{k+1}^{k+2}(\overline x, y, z) + 1) \\
+        & =
+        z + \varphi(\overline x, y + 1).
+    \end{align*}
+
+    Dann gilt
+
+    \begin{align*}
+        h(\overline x, 0)
+        & :=
+        \sum_{\eta = 0}^0
+            \varphi(\overline x, \eta) \\
+        & =
+        \varphi(\overline x, 0) \\
+        & =
+        f(\overline x), \\
+        h(\overline x, y + 1)
+        & =
+        \sum_{\eta = 0}^{y+1}
+            \varphi(\overline x, \eta) \\
+        & =
+        \sum_{\eta = 0}^y
+            \varphi(\overline x, \eta)
+        +
+        \varphi(\overline x, y + 1) \\
+        & =
+        h(\overline x, y) + \varphi(y + 1) \\
+        & =
+        g(\overline x, y, h(\overline x, y)).
+    \end{align*}
+
+    \item Das sieht man analog zu (a), nur mit \enquote{$\prod$} statt \enquote{$\sum$}, und \enquote{$\cdot$} statt \enquote{$+$}.
+    
+    \item
+
+    \begin{align*}
+        \pbraces
+        {
+            \forall y \leq z
+                f(\overline x, y)
+        }
+        =
+        \prod_{y=1}^z
+            f(\overline x, y).
+    \end{align*}
+
+    \item Wir treiben den Spaß weiter mit $\neg g := 1 \divdot g$, für $g: \N^{k+1} \to \Bbraces{0, 1}$.
+    
+    \begin{align*}
+        \pbraces
+        {
+            \exists y \leq z
+                f(\overline x, y)
+        }
+        =
+        \pbraces
+        {
+            \neg
+            \forall y \leq z
+                \neg f(\overline x, y)
+        }
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

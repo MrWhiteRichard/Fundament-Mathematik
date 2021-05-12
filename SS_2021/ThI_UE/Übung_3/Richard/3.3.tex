@@ -1,0 +1,80 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Zeigen Sie dass die folgenden Relationen und Funktionen primitiv rekursiv sind:
+
+\begin{enumerate}
+
+    \item Teilbarkeit:
+    $(x, y) \mapsto \begin{cases} 1 & \text{falls}~ x ~\text{ein Teiler von}~ y ~\text{ist} \\ 0 & \text{sonst} \end{cases}$
+
+    \item Teilerfremdheit:
+    $(x, y) \mapsto \begin{cases} 1 & \text{falls}~ \ggT(x, y) = 1 \\ 0 & \text{sonst} \end{cases}$
+
+    \item Die Eulersche $\varphi$-Funktion:
+    $\varphi: \N \to \N, n \mapsto |\Bbraces{i \in \N \mid 1 \leq i \leq n, \ggT(i, n) = 1}|$.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item
+
+    \begin{align*}
+        x \mid y
+        =
+        \pbraces
+        {
+            \exists z \leq y
+                \chi_=(x \cdot z, y)
+        }
+    \end{align*}
+
+    \item Sei $\chi_\neq := 1 \dotdiv \chi_=$.
+
+    \begin{align*}
+        \chi_=(\ggT(x, y), 1)
+        =
+        \pbraces
+        {
+            \neg
+            \exists z \leq x + y
+            \pbraces
+            {
+                z \mid x
+                \land
+                z \mid y
+                \land
+                \chi_\neq(z, 1)
+            }
+        }
+    \end{align*}
+
+    \item Es gilt für alle $n \in \N:$
+
+    \begin{align*}
+        \varphi(n)
+        & =
+        |\Bbraces{i \in \N \mid 1 \leq i \leq n, \ggT(i, n) = 1}| \\
+        & =
+        \sum_{i=1}^n
+            |\Bbraces{i \mid \ggT(i, n) = 1}| \\
+        & =
+        \sum_{i=1}^n
+            \chi_=(\ggT(i, n), 1).
+    \end{align*}
+    
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
