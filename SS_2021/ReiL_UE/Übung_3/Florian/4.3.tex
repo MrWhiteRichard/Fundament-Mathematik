@@ -1,0 +1,35 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 5.10]
+
+Derive the weighted-average update rule (5.8) from (5.7). Follow the pattern
+of the derivation of the unweighted rule (2.3). (Textbook p. 109)
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+We wish to form the estimate
+
+\begin{align}
+    V_n \stackrel{.}{=} \frac{\sum_{k=1}^{n-1}W_k G_k}{\sum_{k=1}^{n-1}W_k} \tag{5.7}
+\end{align}
+
+and keep it up-to-date as we obtain a single additional return $G_n$.
+Following the pattern of chapter 2 we derive with
+$C_n := \sum_{k=1}^{n}W_k$
+
+\begin{align*}
+    V_{n+1} &= \frac{\sum_{k=1}^{n}W_k G_k}{\sum_{k=1}^{n}W_k} \\
+    &= \frac{1}{\sum_{k=1}^{n}W_k}\left(W_nG_n + \sum_{k=1}^{n - 1}W_k G_k\right) \\
+    &= \frac{1}{C_n}\left(W_nG_n + (C_n - W_n) \frac{1}{C_n-W_n}\sum_{k=1}^{n - 1}W_k G_k\right) \\
+    &= \frac{1}{C_n}\left(W_nG_n + (C_n - W_n) V_n\right) \\
+    &= V_n + \frac{1}{C_n}\left(W_nG_n - W_nV_n\right) \\
+    &= V_n + \frac{W_n}{C_n}\left(G_n - V_n\right). \tag{5.8}
+\end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------
+    

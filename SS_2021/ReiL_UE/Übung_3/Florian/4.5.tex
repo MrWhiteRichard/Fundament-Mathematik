@@ -1,0 +1,61 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Exercise 5.13]
+
+Show the steps to derive
+
+\begin{align*}
+    \E[\rho_{t:T-1}R_{t+1}] = \E[\rho_{t:t}R_{t+1}] \tag{5.14}
+\end{align*}
+
+from
+
+\begin{align*}
+    \rho_{t:T-1}R_{t+1} = \prod_{k=t}^{T-1}\frac{\pi(A_k|S_k)}{b(A_k|S_k)}R_{t+1} \tag{5.12}
+\end{align*}
+
+and
+
+\begin{align} \label{eq:5.13} \tag{5.13}
+    \E\bbraces{\frac{\pi(A_k \mid S_k)}{b(A_k \mid S_k)}}
+    \doteq \sum_a b(a \mid S_k) \frac{\pi(a \mid S_k)}{b(a \mid S_k)}
+    = \sum_a \pi(a \mid S_k) = 1
+\end{align}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+We use induction over $h = t+1,\dots,T$.
+For $h = t+1$, there is nothing to prove.
+Now, assume that
+
+\begin{align*}
+    \E_b[\rho_{t:t} R_{t+1}]
+    =
+    \E_b[\rho_{t:h-2} R_{t+1}],
+\end{align*}
+
+then
+
+\begin{align*}
+    \E_b[\rho_{t:h-1} R_{t+1}]
+    &= \E_b\bbraces{\rho_{t:h-2}
+    \frac{\pi(A_{h-1} \mid S_{h-1})}{b(A_{h-1} \mid S_{h-1})}R_{t+1}} \\
+    &= \sum_a b(a \mid S_{h-1})
+    \E_b\bbraces{\rho_{t:h-2}\frac{\pi(A_{h-1} \mid S_{h-1})}
+    {b(A_{h-1} \mid S_{h-1})}R_{t+1}~ \Bigg | ~ A_{h-1} = a} \\
+    &= \sum_a b(a \mid S_{h-1}) \E_b\bbraces{
+    \rho_{t:h-2}\frac{\pi(a \mid S_{h-1})}{b(a \mid S_{h-1})}R_{t+1}} \\            
+    &= \sum_a b(a \mid S_{h-1})\frac{\pi(a \mid S_{h-1})}{b(a \mid S_{h-1})}
+    \E_b\bbraces{\rho_{t:h-2}R_{t+1}} \\
+    &= \underbrace{\sum_a \pi(a \mid S_{h-1})}_{=1}
+    \E_b[\rho_{t:t} R_{t+1}] \\
+    &= \E_b[\rho_{t:t} R_{t+1}].
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
