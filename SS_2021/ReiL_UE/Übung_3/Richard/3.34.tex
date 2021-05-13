@@ -2,7 +2,7 @@
 
 \begin{exercise}[Exercise 5.14]
 
-Modify the algorithm for off-policy Monte Carlo control (page 110) to use the idea of the truncated weighted-average estimator \eqref{eq:5.10}.
+Modify the algorithm for off-policy Monte Carlo control (page 111) to use the idea of the truncated weighted-average estimator \eqref{eq:5.10}.
 Note that you will first need to convert this equation to action values.
 
 \end{exercise}
@@ -41,6 +41,121 @@ Note that you will first need to convert this equation to action values.
         }
     }
 \end{align}
+
+For $s \in \mathcal S$ and $a \in \mathcal A(x)$, let the set of time steps, where $(s, a)$ is visited, be
+
+\begin{align*}
+    \mathcal T(s, a)
+    :=
+    \Bbraces{t \in \N: S_t = s, A_t = a}.
+\end{align*}
+
+Now we can define \eqref{eq:5.10} for action values.
+
+\begin{align} \label{eq:5.10'} \tag{5.10$^\prime$}
+    Q(s, a)
+    \doteq
+    \frac
+    {
+        \sum_{t \in \mathcal T(s, a)}
+        \pbraces{
+            (1 - \gamma)
+            \sum_{h = t + 1}^{T(t) - 1}
+                \gamma^{h-t-1}
+                \rho_{t : h - 1}
+                \bar G_{t:h}
+            +
+            \gamma^{T(t) - t - 1}
+            \rho_{t : T(t) - 1}
+            \bar G_{t : T(t)}
+        }
+    }{
+        \sum_{t \in \mathcal T(s, a)}
+        \pbraces{
+            (1 - \gamma)
+            \sum_{h = t + 1}^{T(t) - 1}
+                \gamma^{h-t-1}
+                \rho_{t : h - 1}
+            +
+            \gamma^{T(t) - t - 1}
+            \rho_{t : T(t) - 1}
+        }
+    }
+\end{align}
+
+In order to use an incremental implementation, we define the weights
+
+\begin{align*}
+    W_{t:h}
+    \doteq
+    \gamma^{h-t-1}
+    \rho_{t:h-1}
+    \begin{cases}
+        1 - \gamma, & h < T(t), \\
+        1,          & h = T(t),
+    \end{cases}
+    \quad
+    \text{for}~
+    t \in \N,
+    ~\text{and}~
+    h = t + 1, \dots, T(t).
+\end{align*}
+
+This lets us, analagously to \eqref{eq:5.7}, write
+
+\begin{align} \label{eq:5.7'} \tag{5.7$^\prime$}
+    Q_n(s, a)
+    =
+    \frac
+    {
+        \sum_{t \in \mathcal T_n(s, a)}
+            \sum_{h=t+1}^{T(t)}
+                W_{t:h} \bar G_{t:h}
+    }{
+        \sum_{t \in \mathcal T(s, a)}
+            \sum_{h=t+1}^{T(t)}
+                W_{t:h}
+    },
+    \quad
+    n \geq 2,
+\end{align}
+
+where $\mathcal T_n(s, a)$ are the $n$ smallest elements of $\mathcal T(s, a)$.
+
+\begin{tcolorbox}[title = {Off-policy MC control, for estimating $\pi \approx \pi_\ast$, using \eqref{eq:5.10'}}]
+
+    Initialize, for all $s \in \mathcal S$, $a \in \mathcal A(s)$: \\
+    \hspace*{0.5cm} $Q(s, a) \in \R$ (arbitrarily) \\
+    \hspace*{0.5cm} $C(s, a)$ \\
+    \hspace*{0.5cm} $\pi(s) \leftarrow \argmax_a Q(s, a)$ \hspace*{0.5cm} (with ties broken consistently) \\
+
+    Loop forever (for each episode): \\
+    \hspace*{0.5cm} $b \leftarrow$ any soft policy \\
+    \hspace*{0.5cm} Generate an episode using $b: S_0, A_0, R_1, \dots, S_{T-1}, A_{T-1}, R_T$ \\
+    \hspace*{0.5cm} Loop for each step of episode, $t = T-1, T-2, \dots, 0$: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} $\rho \leftarrow 1$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} $\bar G \leftarrow 0$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} Loop for each horizon, $h = t+1, \dots, T$: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $G \leftarrow G + R_h$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $\rho \leftarrow \rho \frac{\pi(A_{h-1} \mid S_{h-1})}{b(A_{h-1} \mid S_{h-1})}$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} If $h < T$, then: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $C(S_t, A_t) \leftarrow C(S_t, A_t) + (1 - \gamma) \gamma^{h-t-1} \rho$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \frac{(1 - \gamma) \gamma^{h-t-1} \rho}{C(S_t, A_t)} (\bar G - Q(S_t, A_t))$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} else: \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $C(S_t, A_t) \leftarrow C(S_t, A_t) + \gamma^{h-t-1} \rho$ \\
+    \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} \hspace*{0.5cm} $Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \frac{\gamma^{h-t-1} \rho}{C(S_t, A_t)} (\bar G - Q(S_t, A_t))$
+
+\end{tcolorbox}
+
+This implementation could be modified, to be even more efficient.
+In order to avoid computing $\gamma^{h-t-1}$ individually, one can use $\rho_\gamma$ instead of $\rho$.
+To that end, we just substitute
+
+\begin{itemize}
+    \item $\gamma^{h-t-1}$ for $\gamma^{-1}$,
+    \item $\rho_\gamma \leftarrow \rho_\gamma \frac{\pi(A_{h-1} \mid S_{h-1})}{b(A_{h-1} \mid S_{h-1})} \gamma$ for $\rho \leftarrow \rho \frac{\pi(A_{h-1} \mid S_{h-1})}{b(A_{h-1} \mid S_{h-1})}$, and the remaining
+    \item $\rho_\gamma$ for $\rho$.
+\end{itemize}
 
 \end{solution}
 
