@@ -12,7 +12,19 @@ and weight updates?
 
 \begin{solution}
 
-\phantom{}
+No. In time step $t$ Sarsa first takes action $A_t$ as the
+greedy action with regard to the current approximation $Q_t$
+and observes $R_{t+1},S_{t+1}$. For the update step, it
+chooses the greedy action $A'$ with regard to $Q_t$ but
+it doesn't take the action $A'$ as $A_{t+1}$ yet!
+Only after the update has taken place, we now find
+the greedy action $A_{t+1}$ with regard to the updated value function $Q_{t+1}$.
+Therefore $A_{t+1}$ does not necessarily have to coincide with $A'$.
+
+
+In contrast, Q-learning always takes the greedy action $A'$
+used to update the value function immediately as the action
+to take in the next time step, i.e. $A' = A_{t+1}$ in every case.
 
 \end{solution}
 

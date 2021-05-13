@@ -11,7 +11,12 @@ target policy?
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+    Q_1(S,A) &\leftarrow Q_1(S,A) + 
+    \alpha\left[R + \gamma \sum_{a} \pi(a|S) Q_2(S,a) - Q_1(S,A)\right]. \\
+    Q_2(S,A) &\leftarrow Q_2(S,A) + 
+    \alpha\left[R + \gamma \sum_{a} \pi(a|S) Q_1(S,a) - Q_2(S,A)\right]. \\
+\end{align*}
 
 \end{solution}
 

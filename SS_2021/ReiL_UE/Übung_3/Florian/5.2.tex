@@ -12,7 +12,14 @@ again assuming that the values don't change from step to step.
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+    G_t - Q(S_t, A_t) 
+    &= R_{t+1} + \gamma G_{t+1} - Q(S_t,A_t) + \gamma Q(S_{t+1}, A_{t+1}) - \gamma Q(S_{t+1}, A_{t+1}) \\
+    &= \delta_t + \gamma (G_{t+1} - Q(S_{t+1}, A_{t+1})) \\
+    &= \delta_t + \gamma \delta_{t+1} + \dots + 
+    \underbrace{\gamma^{T-t}(G_T - Q(S_T,A_T))}_{=0} \\
+    &= \sum_{k=t}^{T-1} \gamma^{k-t} \delta_k.
+\end{align*}
 
 \end{solution}
 
