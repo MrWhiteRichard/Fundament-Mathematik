@@ -2,9 +2,9 @@
 
 \begin{exercise}
 
-Wir sagen dass eine deterministische Turingmaschine $M = \abraces{Q, \delta, q_0}$ \textit{primitiv rekursive Laufzeit} hat galls eine primitiv rekursiv FUnktion $t: \N \to \N$ existiert so dass für alle $x \in \N$ eine Konfiguration $(\mathrm{fertig}, u, v)$ existiert sowie ein $k \leq t(x)$ so dass $(q_0, \triangleright, x) \xrightarrow{M^k} (\mathrm{fertig}, u, v)$.
+Wir sagen dass eine deterministische Turingmaschine $M = \abraces{Q, \delta, q_0}$ \textit{primitiv rekursive Laufzeit} hat falls eine primitiv rekursiv Funktion $t: \N \to \N$ existiert so dass für alle $x \in \N$ eine Konfiguration $(\mathrm{fertig}, u, v)$ existiert sowie ein $k \leq t(x)$ so dass $(q_0, \triangleright, x) \xrightarrow{M^k} (\mathrm{fertig}, u, v)$.
 
-Zeigen Sie dass eine Funktion $f: \N \to \N$ primitiv rekursiv ist genau dann wenn eine Turingmaschine existiert die $f$ in primitiv rekursiv Laufzeit berechnet.
+Zeigen Sie dass eine Funktion $f: \N \to \N$ primitiv rekursiv ist genau dann wenn eine Turingmaschine existiert die $f$ in primitiv rekursiver Laufzeit berechnet.
 
 \begin{itshape}
 
@@ -36,6 +36,392 @@ Zeigen Sie dass eine Funktion $f: \N \to \N$ primitiv rekursiv ist genau dann we
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[wide, labelindent = 0pt]
+
+    \item Richtung (\enquote{$\implies$}):
+    
+    Wir zeigen, dass es für jede primitiv rekursive Funktion eine Turingmaschine, und eine primitiv rekursive Funktion gibt, die deren Laufzeit beschränkt, i.Z.
+
+    \begin{align*}
+        & \Forall f: \N^k \to \N ~\text{primitiv rekursiv}: \\
+        & \quad \Exists M = \abraces{Q, \delta, q_0} ~\text{Turingmaschine},
+                \Exists t: \N \to \N ~\text{primitiv rekursiv}: \\
+        & \quad \quad \Forall x \in \N^k: \\
+        & \quad \quad \quad \Exists (\mathrm{fertig}, u, v) ~\text{Konfiguration},
+                            \Exists k \leq t(x): \\
+        & \quad \quad \quad \quad (q_0, \triangleright, \rightarrow)
+                                  \xrightarrow{M^k}
+                                  (\mathrm{fertig}, u, v).
+    \end{align*}
+
+    Sei $h$ primitiv rekursiv.
+    Dann hat $h$ eine Operatordarstellung.
+    Wir gehen mit Induktion auf dieser Operatordarstellung vor.
+    Dabei werden wir immer die Turingmaschine aus dem Beweis von Satz 3.2 verwenden.
+
+    Für die Induktionsbasis ist zu zeigen, dass jede der Basisfunktionen, in primitiv rekursiver Laufzeit, Turing-berechenbar ist.
+
+    \begin{itemize}
+
+        \item Konstante Null:
+        
+        Der Cursor läuft immer eins nach vorne, und dann wieder zurück.
+        Die Turingmaschine hat also Konstante Laufzeit.
+        Wir wählen also
+
+        \begin{align*}
+            t_0
+            :=
+            2
+            \geq
+            2.
+        \end{align*}
+
+        \item Nachfolgerfunktion:
+        
+        Sei $x \in \N$ die Eingabe 
+        Der Cursor läuft in beiden Fällen, $x = 2^n - 1$ für ein $n \in \N$, und sonst, vom Anfang bis eine Stelle nach dem Ende der besetzten Stellen, und dann wieder (komplett) zurück.
+        (In ersterem Fall wird am Ende noch, in konstanter Laufzeit, eine $1$ an die erste Stelle geschrieben.)
+        Die Turingmaschine hat also lineare Laufzeit.
+        Wir wählen also
+
+        \begin{align*}
+            t_s(x)
+            :=
+            2 x + 2
+            \geq
+            2 \floor{\log_2 x} + 2.
+        \end{align*}
+
+        \item Projektionen:
+        
+        Für $k \geq 1$ und $1 \leq i \leq k$, wird die Projektion $\operatorname P_i^k$, auf der Eingabe $\overline x = (x_1, \dots, x_k)$, durch $4$ Schritte berechnet.
+        Diese haben allesamt primitiv rekursive Laufzeit.
+
+        \begin{enumerate}[label = \arabic*.]
+
+            \item \enquote{Überschreibe $x_1, \dots, x_{i-1}, x_i, \dots, x_k$ mit \textvisiblespace.}
+
+            Der Cursor muss vom Anfang bis zur $k$-ten Stelle mit \textvisiblespace laufen.
+            Wir wählen also
+
+            \begin{align*}
+                t_1(\overline x)
+                :=
+                \sum_{j=1}^k
+                    (x_j + 1)
+                \geq
+                \sum_{j=1}^k
+                    (\floor{\log_2 x_j} + 1).
+            \end{align*}
+
+            \item \enquote{Bewege den Cursor zurück an den Anfang von $x_i$.}
+
+            Wir wählen also
+
+            \begin{align*}
+                t_2(\overline x)
+                :=
+                \sum_{j=k}^i
+                    (x_j + 1)
+                \geq
+                \sum_{j=k}^i
+                    (\floor{\log_2 x_j} + 1).
+            \end{align*}
+
+            \item \enquote{Verschiebe $x_i$ Zeichen für Zeichen an den Anfang des Bands.}
+
+            Das funktioniert ähnlich wie in Aufgabe 4, nur dass die Bits nicht kopiert (d.h. ausgeschnitten und dann wieder aufgefüllt), sondern ausgeschnitten werden.
+            Insgesamt muss der Cursor $(\log_2 x_i)$-mal, in linearer Laufzeit, nach hinten und nach vorne fahren.
+            Eventuell muss dann noch ein Marker gelöscht werden, damit der Cursor nicht ewig lang nach (nicht) noch nicht verschobenen $x_i$-Bits sucht, nachdem alle $x_i$-Bits von den alten Stellen zu den neuen verschoben wurden.
+            Das geht aber in konstanter Laufzeit.
+            Insgesamt finden wir ein passendes $t_3(\overline x)$
+
+            \item \enquote{Bewege den Cursor auf da Startsymbol.}
+
+            Der Cursor ist höchstens and der Stelle des ursprünglich $k$-ten \textvisiblespace (von links).
+            Wir wählen also
+
+            \begin{align*}
+                t_4(\overline x)
+                :=
+                t_1(\overline x).
+            \end{align*}
+
+        \end{enumerate}
+
+        Insgesamt wählen wir also
+
+        \begin{align*}
+            t_{\operatorname P_i^k}(\overline x)
+            :=
+            \sum_{j=1}^4
+                t_j(\overline x).
+        \end{align*}
+
+    \end{itemize}
+
+    Kommen wir nun zum Induktionsschritt.
+
+    \begin{itemize}
+
+        \item Komposition:
+        
+        Seien $f: \N^n \to \N$ und $g_1, \dots, g_n: \N^k \to \N$ primitiv Rekursiv, sodass $h = \Cn[f, g_1, \dots, g_n]: \N^k \to \N$.
+        Die Komposition $h$ wird, auf der Eingabe $\overline x = (x_1, \dots, x_k)$, auf einem der $n$ Bänder (und bei den anderen $n-1$ Bändern mit leerer Eingabe $\varepsilon$), wieder durch $4$ Schritte berechnet.
+
+        \begin{enumerate}[label = \arabic*.]
+            
+            \item \enquote{Kopiere die Eingabe $\overline x$ auf jedes der $n$ Bänder.}
+
+            Auf dem Band, auf dem die Eingabe $\overline x$ liegt, muss der Cursor den anderen \enquote{voranschreiten}, und die übrigen Cursor tragen auf den übrigen Bändern den entsprechenden Input ein.
+            Insgesamt, muss der \enquote{Eingabe-Cursor} zum $k$-ten \textvisiblespace, und zurück laufen.
+            Nachdem die übrigen Cursor diesem \enquote{folgen}, gilt das auch für sie.
+            Wir wählen also
+
+            \begin{align*}
+                t_1(\overline x)
+                :=
+                2
+                \sum_{i=1}^k
+                    (x_i + 1)
+                =
+                2
+                \sum_{i=1}^k
+                    (\floor{\log_2 x_i} + 1).
+            \end{align*}
+            
+            \item \enquote{Für $i = 1, \dots, n$ berechne $g_i(\overline x)$ durch die Turingmaschine $M_{g_i}$ auf dem $i$-ten Band.}
+
+            Laut der Induktionshypothese, gibt es für jedes $M_{g_i}$ eine entsprechende primitiv rekursive \enquote{Laufzeit-Funktion} $t_{g_i}$.
+            Wenn die Turingmaschinen $M_{g_i}$ hintereinander operieren, so wählen wir
+
+            \begin{align*}
+                t_2(\overline x)
+                :=
+                \sum_{i=1}^n
+                    t_{g_i}(\overline x).
+            \end{align*}
+
+            Falls sie parallel agieren, so wählen wir
+
+            \begin{align*}
+                t_2(\overline x)
+                :=
+                \max_{i=1}^n
+                    t_{g_i}(\overline x),
+            \end{align*}
+
+            wobei wir die \enquote{nicht maximierenden} Turingmaschinen $M_{g_b}$, mit $a := \argmax \max_{i=1}^n t_{g_i}(\overline x) \neq b = 1, \dots, n$, erweitern, sodass sie auf $M_{g_a}$ \enquote{warten} müssen.
+            
+            \item \enquote{Kopiere $g_2(\overline x), \dots, g_n(\overline x)$ auf das erste Band zu $g_1(\overline x)$.}
+
+            Das Kopieren verläuft ähnlich wie bei 1.
+            Der Curor muss beim $1$-ten Band zunächst bis zum Ende (dem ersten \textvisiblespace) laufen, die anderen Bänder müssen warten.
+            Dann werden, eines nach dem anderen, das $2$-te bis zum $n$-ten Band an die passenden freien Stellen des $1$-ten Bands verschoben.
+            Danach müssen die Cursor wieder zum Anfang zurückkehren.
+            Wir wählen also, analog zu 1.,
+
+            \begin{align*}
+                t_3(\overline x)
+                :=
+                2
+                \sum_{i=1}^n
+                    (g_i(\overline x) + 1)
+                =
+                2
+                \sum_{i=1}^n
+                    (\floor{\log_2 g_i(\overline x)} + 1).
+            \end{align*}
+
+            \item \enquote{Berechne $f(g_1(\overline x), \dots, g_n(\overline x))$ durch die Turingmaschine $M_f$ auf dem ersten Band.}
+
+            Laut der Induktionshypothese, gibt es für $M_f$ eine entsprechende primitiv rekursive \enquote{Laufzeit-Funktion} $t_f$.
+            Wir wählen also
+
+            \begin{align*}
+                t_4(\overline x)
+                :=
+                t_f(\overline x).
+            \end{align*}
+
+        \end{enumerate}
+
+        Insgesamt wählen wir also
+
+        \begin{align*}
+            t_h(\overline x)
+            :=
+            \sum_{j=1}^4
+                t_j(\overline x).
+        \end{align*}
+
+        \item Primitive Rekursion:
+        
+        Seien $f: \N^k \to \N$ und $g: \N^{k+2} \to \N$ primitiv Rekursiv, sodass $h = \Pr[f, g]: \N^{k+1} \to \N$.
+
+        \begin{itemize}
+
+            \item \enquote{Das erste Band enthält konstant die Eingabe $\overline x$, $y$ von $h$.}
+
+            Dafür ist keine Laufzeit nötig.
+
+            \item \enquote{Daszweite Band entähält einen Zähler $z$ der mit $0$ initialisiert wird.}
+            
+            Dafür ist Laufzeit $t_0$ erforderlich.
+
+            \item \enquote{Das dritte Band wird unter Verwendung von $M_f$ mit $f(\overline x) = h(\overline x, 0)$ initialisiert.}
+
+            Laut der Induktionshypothese, gibt es für $M_f$ eine entsprechende primitiv rekursive \enquote{Laufzeit-Funktion} $t_f$.
+            Dieser Schritt hat also Laufzeit $t_f(x)$.
+
+            Wir wählen also
+
+            \begin{align*}
+                t_h(\overline x, 0)
+                :=
+                t_f(\overline x),
+            \end{align*}
+
+            bzw.
+
+            \begin{align*}
+                \varphi(\overline x)
+                :=
+                t_f(\overline x).
+            \end{align*}
+
+            \item
+
+            \begin{itemize}
+
+                \item \enquote{In jedem Schritt wird nun unter Verwendung von $M_g$ auf dem zweiten Band aus $h(\overline x, z)$ der Wert $h(x, z + 1)$ berechnet [\dots]}
+
+                Sei $ t_h(\overline x, z)$ bereits bekannt und primitiv rekursiv (am Anfang $z = 0$).
+                Laut der Induktionshypothese, gibt es für $M_g$ eine entsprechende primitiv rekursive \enquote{Laufzeit-Funktion} $t_g$.
+                Die Turingmaschine berechnet zunächst $h(\overline x, z)$.
+                Das benötigt die Laufzeit
+    
+                \begin{align*}
+                    t_h(\overline x, z).
+                \end{align*}
+    
+                Danach wird der Wert $h(\overline, z + 1)$ berechnet.
+                Das benötigt die Laufzeit
+
+                \begin{align*}
+                    t_g(x, z, h(\overline x, z)).
+                \end{align*}
+
+                \item \enquote{[\dots] und dabei $z$ auf dem zweiten Band entsprechend inkrementiert.}
+                
+                Das benötigt die Laufzeit
+
+                \begin{align*}
+                    t_s(z).
+                \end{align*}
+
+                \item \enquote{Dieser Schritt wird wiederholt bis $z$ (vom zweiten Band gleich $y$ (vom ersten Band) ist.}
+                
+                Um zu überprüfen, ob $z = y$ ist, muss mindestens der ganze Bit-String von $z$, nach vorne und zurück, durchlaufen werden.
+                Das benötigt Laufzeit
+                
+                \begin{align*}
+                    2 \floor{\log_2 z}.
+                \end{align*}
+
+                Wir wählen also
+
+                \begin{align*}
+                    t_=(z)
+                    :=
+                    2 z
+                    \geq
+                    2 \floor{\log_2 z}.
+                \end{align*}
+
+            \end{itemize}
+
+            Wir wählen also
+
+            \begin{align*}
+                t_h(\overline x, z + 1)
+                :=
+                t_h(\overline x, z)
+                +
+                t_g(x, z, h(\overline x, z))
+                +
+                t_s(z)
+                +
+                t_=(z),
+            \end{align*}
+
+            bzw.
+
+            \begin{align*}
+                \psi(\overline x, z, u)
+                :=
+                u
+                +
+                t_g(x, z, u)
+                +
+                t_s(z)
+                +
+                t_=(z),
+                \quad
+                \text{für}~
+                u \in \N.
+            \end{align*}
+
+            Insgesamt wählen wir also
+
+            \begin{align*}
+                t_h
+                :=
+                \Pr[\phi, \psi].
+            \end{align*}
+
+        \end{itemize}
+
+    \end{itemize}
+
+    \item Richtung (\enquote{$\impliedby$}):
+    
+    Wir zeigen, dass jede Funktion, für die es eine Turingmaschine, und eine primitiv rekursive Funktion gibt, die deren Laufzeit beschränkt, primitiv rekursiv ist.
+
+    Sei $f: \N \to \N$ eine solche Funktion, und $M_f$ sowie $t_f$ die zugehörige Turingmaschine bzw. primitiv rekursive Laufzeit-Funktion.
+    Laut Satz 3.3, ist diese bereits partiell rekursiv.
+    Nachdem $f$ aber total ist, ist $f$ schlicht rekursiv.
+
+    Wenn $f$ eine Basisfunktion ist, oder daraus, durch eine endliche Anzahl von Anwendungen der Operatoren Komposition und primitive Rekursion, erhalten wird, ist $f$ bereits, per definitionem, primitiv rekursiv.
+    Möge $f$ nun ebenfalls durch eine endliche Anzahl von Minimierungen entstehen;
+    o.B.d.A. bloß eine Anwendung des $\mu$-Operators.
+    Für $x \in \N$, können wir $f(x)$ daher schreiben als
+
+    \begin{align*}
+        f(x)
+        =
+        \mu y g(x, y).
+    \end{align*}
+
+    mit einer, von $x$ unabhängigen, primitiv rekursiven Funktion $g: \N^{1+1} \to \N$.
+
+    Nachdem $f$ ja total ist, terminiert $M_f$, mit einer Laufzeit von höchstens $t_f(x)$ Schritten.
+    o.B.d.A. möge $M_f$ seinen \enquote{Minimierungs-Vorgang} so vollziehen, dass zuerst mit $0$ getestet wird, dann $1$, dann $2$, usw.
+    Dann kann die Anzahl der Tests locker durch $t(x)$ beschränkt werden.
+    Weil $M_f$ schießlich terminiert, wurde der passende Kandidat für die Minimierung, unter $t(x)$ Schritten, gefunden.
+    Daher gilt sogar
+
+    \begin{align*}
+        f(x)
+        =
+        (\mu y \leq t(x)) g(x, y).
+    \end{align*}
+
+    Wenn man nun and die, durchaus plausible, Annahme im Hinweis glaubt, dann auch, dass $f$ tatsächlich, als Komposition von $t_f$ und dem primitiv rekursiven $\mu$-Operator, primitiv rekursiv ist.
+
+\end{enumerate}
 
 \end{solution}
 

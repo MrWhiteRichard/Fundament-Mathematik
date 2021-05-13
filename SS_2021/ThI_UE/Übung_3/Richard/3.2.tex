@@ -45,8 +45,8 @@ Zeigen Sie dass die folgenden Funktionen ebenfalls primitiv rekursiv sind:
     und
 
     \begin{align*}
-        f & := \Cn[\varphi, P_1^k, \dots, P_k^k, 0], \\
-        g & := \Cn[+, P_{k+2}, \Cn[\varphi, P_1^{k+2}, \dots, P_k^{k+2}, \Cn[+, P_{k+1}^{k+2}, 1]]],
+        f & := \Cn[\varphi, \operatorname P_1^k, \dots, \operatorname P_k^k, 0], \\
+        g & := \Cn[+, \operatorname P_{k+2}, \Cn[\varphi, \operatorname P_1^{k+2}, \dots, \operatorname P_k^{k+2}, \Cn[+, \operatorname P_{k+1}^{k+2}, 1]]],
     \end{align*}
 
     d.h. für $\overline x \in \R^k$, und $y, z \in \R$ ist
@@ -54,14 +54,14 @@ Zeigen Sie dass die folgenden Funktionen ebenfalls primitiv rekursiv sind:
     \begin{align*}
         f(\overline x)
         & :=
-        \varphi(P_1^k(\overline x), \dots, P_k^k(\overline x), 0) \\
+        \varphi(\operatorname P_1^k(\overline x), \dots, \operatorname P_k^k(\overline x), 0) \\
         & =
         \varphi(\overline x, 0), \\
         g(\overline x, y, z)
         & :=
-        P_{k+2}^{k+2}(\overline x, y, z)
+        \operatorname P_{k+2}^{k+2}(\overline x, y, z)
         +
-        \varphi(P_1^{k+2}(\overline x, y, z), \dots, P_k^{k+2}(\overline x, y, z), P_{k+1}^{k+2}(\overline x, y, z) + 1) \\
+        \varphi(\operatorname P_1^{k+2}(\overline x, y, z), \dots, \operatorname P_k^{k+2}(\overline x, y, z), \operatorname P_{k+1}^{k+2}(\overline x, y, z) + 1) \\
         & =
         z + \varphi(\overline x, y + 1).
     \end{align*}
