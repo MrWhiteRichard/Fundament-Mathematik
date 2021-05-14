@@ -14,7 +14,7 @@ Redo the derivation above to determine the additional amount that must be added 
 
 \begin{solution}
 
-\begin{align} \tag{6.6} \label{eq:6.6}
+\begin{align} \label{eq:6.6} \tag{6.6}
     G_t - V(S_t)
     =
     \sum_{k=t}^{T-1}
@@ -22,17 +22,112 @@ Redo the derivation above to determine the additional amount that must be added 
         \delta_k
 \end{align}
 
-\begin{align} \tag{6.5} \label{eq:6.5}
+\begin{align} \label{eq:6.5} \tag{6.5}
     \delta_t
     \doteq
     R_{t+1} + \gamma V(S_{t+1}) - V(S_t)
 \end{align}
 
-\begin{align} \tag{6.2} \label{eq:6.2}
+\begin{align} \label{eq:6.2} \tag{6.2}
     V(S_t)
     \leftarrow
     V(S_t) + \alpha \bbraces{R_{t+1} + \gamma V(S_{t+1}) - V(S_t)}
 \end{align}
+
+Firstly, we have to adjust \eqref{eq:6.5}.
+
+\begin{align} \label{eq:6.5'} \tag{6.5$^\prime$}
+    \delta_t
+    \doteq
+    R_{t+1} + \gamma V_t(S_{t+1}) - V_t(S_t)
+\end{align}
+
+Then, we can redo the derivation.
+
+\begin{align*}
+    &
+    G_t - V_t(S_t) \\
+    & =
+    R_{t+1} + \gamma G_{t+1} - V_t(S_t)
+    +
+    \underbrace
+    {
+        \gamma V_t(S_{t+1})
+        -
+        \gamma V_t(S_{t+1})
+    }_0
+    +
+    \underbrace
+    {
+        \gamma V_{t+1}(S_{t+1})
+        -
+        \gamma V_{t+1}(S_{t+1})
+    }_0 \\
+    & =
+    \delta_t
+    +
+    \gamma (G_{t+1} - V_{t+1}(S_{t+1}))
+    +
+    \gamma (V_{t+1}(S_{t+1}) - V_t(S_{t+1})) \\
+    & ~ \vdots \\
+    & =
+    \delta_t
+    +
+    \gamma (\delta_{t+1} + \gamma (G_{t+2} - V_{t+2}(S_{t+2})) + \gamma (V_{t+2}(S_{t+2}) - V_{t+1}(S_{t+2})))
+    +
+    \gamma (V_{t+1}(S_{t+1}) - V_t(S_{t+1})) \\
+    & =
+    (
+        \delta_t
+        +
+        \gamma \delta_{t+1}
+    )
+    +
+    \gamma^2 (G_{t+2} - V_{t+2}(S_{t+2}))
+    +
+    (
+        \gamma (V_{t+1}(S_{t+1}) - V_t(S_{t+1}))
+        +
+        \gamma^2 (V_{t+2}(S_{t+2}) - V_{t+1}(S_{t+2}))
+    ) \\
+    & ~ \vdots \\
+    & =
+    (
+        \delta_t
+        +
+        \gamma \delta_{t+1}
+        +
+        \cdots
+        +
+        \gamma^{T-t-1} \delta_{T-t}
+    )
+    +
+    \gamma^{T-t} \underbrace{(G_T - V_T(S_T))}_0 \\
+    & +
+    (
+        \gamma (V_{t+1}(S_{t+1}) - V_t(S_{t+1}))
+        +
+        \gamma^2 (V_{t+2}(S_{t+2}) - V_{t+1}(S_{t+2}))
+        +
+        \cdots
+        +
+        \gamma^{T-t} (V_T(S_T) - V_{T-1}(S_T))
+    ) \\
+    & =
+    \sum_{k=t}^{T-1}
+        \gamma^{k-t} \delta_k
+    +
+    \sum_{k=t}^{T-1}
+        \gamma^{k-t-1} (V_{k+1}(S_{k+1}) - V_k(S_{k+1})) \\
+    & =
+    \sum_{k=t}^{T-1}
+        \gamma^{k-t}
+        (
+            \delta_k
+            +
+            \gamma (V_{k+1}(S_{k+1}) - V_k(S_{k+1}))
+        )
+\end{align*}
 
 \end{solution}
 

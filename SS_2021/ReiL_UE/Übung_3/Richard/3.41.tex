@@ -10,7 +10,38 @@ What are the update equations for Double Expected Sarsa with an $\epsilon$-greed
 
 \begin{solution}
 
-ToDo!
+They are
+
+\begin{align*}
+    Q_i(S_t, A_t)
+    \leftarrow
+    Q_i(S_t, A_t) + \alpha \bbraces{R_{t+1} + \gamma \sum_a \pi(a \mid S_{t+1}) Q_i(S_{t+1}, a) - Q_i(S_t, A_t)},
+    \quad
+    \text{where}
+    \quad
+    i = 1, 2,
+\end{align*}
+
+and $\pi$ is $\epsilon$-greedy w.r.t. $Q_1 + Q_2$, i.e.
+
+\begin{align*}
+    \pi(a \mid s)
+    =
+    \frac{\epsilon}{|\mathcal A(s)|}
+    +
+    \begin{cases}
+        1 - \epsilon, & a = a^\ast, \\
+        0,            & \text{else},
+    \end{cases}
+    \quad
+    \text{for}
+    \quad
+    s \in \mathcal S,
+    \quad
+    \text{where}
+    \quad
+    a^\ast = \argmax_a (Q_1(s, a) + Q_2(s, a)).
+\end{align*}
 
 \end{solution}
 

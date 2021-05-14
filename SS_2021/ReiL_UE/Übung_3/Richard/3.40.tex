@@ -12,7 +12,32 @@ Will they make exactly the same action selections and weight updates?
 
 \begin{solution}
 
-ToDo!
+No!
+In the case of greedy action selection, one could indeed replace
+
+\begin{align*} \label{eq:ast} \tag{$\ast$}
+	Q(S, A)
+	\leftarrow
+	Q(S, A) + \alpha [R + \gamma Q(S^\prime, A^\prime) - Q(S, A)]
+\end{align*}
+
+by
+
+\begin{align*}
+	Q(S, A)
+	\leftarrow
+	Q(S, A) + \alpha \bbraces{R + \gamma \max _a Q(S^\prime, a) - Q(S, A)}
+\end{align*}
+
+and expect the algorithms to operate the same in the first loop instance.
+However, in order for them to do so in the future, one should include, in Sarsa,
+
+\begin{displayquote}
+	Choose $A^\prime$ from $S^\prime$ using policy derived from $Q$ (greedy)
+\end{displayquote}
+
+after \eqref{eq:ast}.
+Then, both Sarsa and Q-learning will both be on-policy, i.e. they use the same policy for generating samples, as they do for updating $Q$.
 
 \end{solution}
 
