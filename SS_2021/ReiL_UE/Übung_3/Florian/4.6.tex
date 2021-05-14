@@ -21,11 +21,11 @@ Converting (5.10) into action-values we obtain
 
 \begin{align*}
   Q(s,a) \doteq \frac{\sum_{t \in \mathcal{T}(s,a)}\left(
-  (1 - \gamma)\sum_{h=t+1}^{T(t) - 1} \rho_{t:h-1}\bar{G}_{t:h} + 
-  \gamma^{T(t) - t - 1} \rho_{t:T(1)-1}\bar{G}_{t:T(t)}\right)}
+  (1 - \gamma)\sum_{h=t+1}^{T(t) - 1} \gamma^{h - t - 1}\rho_{t:h-1}\bar{G}_{t:h} + 
+  \gamma^{T(t) - t - 1} \rho_{t:T(t)-1}\bar{G}_{t:T(t)}\right)}
   {\sum_{t \in \mathcal{T}(s,a)}\left(
-  (1 - \gamma)\sum_{h=t+1}^{T(t) - 1} \rho_{t:h-1} + 
-  \gamma^{T(t) - t - 1} \rho_{t:T(1)-1}\right)}
+  (1 - \gamma)\sum_{h=t+1}^{T(t) - 1} \gamma^{h - t - 1}\rho_{t:h-1} + 
+  \gamma^{T(t) - t - 1} \rho_{t:T(t)-1}\right)}
 \end{align*}
 
 If we define
@@ -40,7 +40,7 @@ If we define
 we can rewrite the sum in a form, where we can use incremental implementation:
 
 \begin{align*}
-  Q(s,a) = \frac{\sum_{t \in \mathcal{T}(s,a)}\sum_{h=t+1}^{T(t)}W_{t,h}G_{t:h}}
+  Q(s,a) = \frac{\sum_{t \in \mathcal{T}(s,a)}\sum_{h=t+1}^{T(t)}W_{t,h}\bar{G}_{t:h}}
   {\sum_{t \in \mathcal{T}(s,a)}\sum_{h=t+1}^{T(t)}W_{t,h}}
 \end{align*}
 \begin{algorithm}
@@ -48,7 +48,6 @@ we can rewrite the sum in a form, where we can use incremental implementation:
     \begin{algorithmic}[1]
       \State Initialize $Q(s,a) \in \R$ arbitrarily for all $s \in \mathcal{S}, a \in \mathcal{A}(s)$
       \State Initialize $C(s,a) \leftarrow 0$
-      \State Initialize $\pi(s) \leftarrow \argmax_a Q(s,a)$ with ties broken consistently
       \While{True (for each episode)}
         \State $b \leftarrow$ any soft policy
         \State Generate an episode following $b: S_0,A_0,R_1,\dots,S_{T-1},A_{T-1},R_T$
