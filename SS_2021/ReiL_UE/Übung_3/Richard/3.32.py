@@ -133,7 +133,7 @@ class Racetrack:
             plt.pause(show_time)
             plt.close()
 
-    def view_trajectory(
+    def view_trajectory_plot(
         self,
         S, A,
         crash_counter, steps_before_last_crash,
@@ -142,21 +142,28 @@ class Racetrack:
     ):
 
         S_safe = S[-steps_before_last_crash[crash_counter]:]
-        A_safe = A[-steps_before_last_crash[crash_counter]:]
-
-        if show_log:
-
-            for state, action in zip(S_safe, A_safe):
-                print(state)
-                print(action)
-                print()
-
-            print('#', '-'*64, '#', '\n')
+        # A_safe = A[-steps_before_last_crash[crash_counter]:]
 
         self.plot(
             extra = np.array(S_safe)[:, 0, :].T,
             show_time = show_time
         )
+
+    def view_trajectory_log(
+        self,
+        S, A,
+        crash_counter, steps_before_last_crash
+    ):
+
+        S_safe = S[-steps_before_last_crash[crash_counter]:]
+        A_safe = A[-steps_before_last_crash[crash_counter]:]
+
+        for state, action in zip(S_safe, A_safe):
+            print(state)
+            print(action)
+            print()
+
+        print('#', '-'*64, '#', '\n')
 
     @property
     def positions_all(self):
@@ -287,14 +294,18 @@ class Racetrack:
                 if position_new not in self.layout['starting line'] + self.layout['track']:
 
                     if show_log:
+
                         print(f'Crash (number {crash_counter+1})!', '\n')
+                        self.view_trajectory_log(
+                            S, A,
+                            crash_counter, steps_before_last_crash
+                        )
 
                     if show_time != 0:
-                        self.view_trajectory(
+                        self.view_trajectory_plot(
                             S, A,
                             crash_counter, steps_before_last_crash,
-                            show_time = show_time,
-                            show_log = show_log
+                            show_time = show_time
                         )
 
                     crash_counter += 1
@@ -369,7 +380,7 @@ def drive(learned_episodes, plot_final = False, show_time = 0, show_log = False)
     if plot_final:
 
         print('plotting last trajectory ...', '\n')
-        my_racetrack.view_trajectory(S, A, crash_counter, steps_before_last_crash)
+        my_racetrack.view_trajectory_plot(S, A, crash_counter, steps_before_last_crash)
 
     print('#', '-'*32,'#', '\n')
 
@@ -392,7 +403,7 @@ crash_counters = []
 drives = 16
 for _ in range(drives):
     crash_counters.append(
-        drive(learned_episodes, show_time = 0)
+        drive(learned_episodes, show_time = 0, show_log = True)
     )
 
 print(f'average crashes after learning {learned_episodes} episodes: {np.average(crash_counters)}', '\n')
