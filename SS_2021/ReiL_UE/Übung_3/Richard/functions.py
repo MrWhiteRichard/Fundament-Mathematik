@@ -21,29 +21,31 @@ def argsmax(A):
 
 # ---------------------------------------------------------------- #
 
-def test(class_name, sample_size = 1_000, episodes_learn = 10, sample_size_peak = None, episodes_learned_max = 1_000):
+gamma = 0.9
+epsilon = 0.1
+alpha = 0.5
 
-    if sample_size_peak is None:
-        sample_size_peak = sample_size * 10
+width = 10
+height = 7
 
-    # -------------------------------- #
+wind_means = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
 
-    gamma = 0.9
-    epsilon = 0.1
-    alpha = 0.5
+position_start = (0, 3)
+position_end = (7, 3)
 
-    width = 10
-    height = 7
+# ---------------------------------------------------------------- #
 
-    wind_means = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
-
-    position_start = (0, 3)
-    position_end = (7, 3)
+def test_1(class_name, sample_size = 100, episodes_learn = 10, sample_size_peak = None, episodes_learned_max = 1_000):
 
     my_windy_gridworld = class_name(
         gamma, epsilon, alpha,
         width, height, wind_means, position_start, position_end
     )
+
+    # -------------------------------- #
+
+    if sample_size_peak is None:
+        sample_size_peak = sample_size * 10
 
     # -------------------------------- #
 
@@ -71,6 +73,10 @@ def test(class_name, sample_size = 1_000, episodes_learn = 10, sample_size_peak 
         T_averages_array.append(
             np.average(T_array)
         )
+
+        print(f'learned {my_windy_gridworld.episodes_learned} episodes so far')
+        print(f'last average: {T_averages_array[-1]}')
+        print()
 
         # -------------------------------- #
 
@@ -127,5 +133,25 @@ def test(class_name, sample_size = 1_000, episodes_learn = 10, sample_size_peak 
     print(f'result: {np.average(T_array)} time steps per episode (on average)')
 
     # -------------------------------- #
+
+# ---------------------------------------------------------------- #
+
+def test_2(class_name, episodes_learned_max = np.infty, time_steps_observed_max = np.infty):
+
+    assert episodes_learned_max != np.infty or time_steps_observed_max != np.infty
+
+    my_windy_gridworld = class_name(
+        gamma, epsilon, alpha,
+        width, height, wind_means, position_start, position_end
+    )
+
+    t_array = []
+
+    while my_windy_gridworld.episodes_learned <= episodes_learned_max and my_windy_gridworld.time_steps_observed <= time_steps_observed_max:
+
+        my_windy_gridworld.Sarsa_learn()
+        t_array.append(my_windy_gridworld.time_steps_observed)
+
+    return t_array, range(my_windy_gridworld.episodes_learned)
 
 # ---------------------------------------------------------------- #

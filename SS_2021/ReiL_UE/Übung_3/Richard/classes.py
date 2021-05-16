@@ -24,6 +24,7 @@ class MDP:
         self.alpha = alpha
 
         self.episodes_learned = 0
+        self.time_steps_observed = 0
         self.Q = self.Sarsa_initialize_Q()
 
     @property
@@ -122,6 +123,8 @@ class MDP:
 
                 S = S_prime
                 A = A_prime
+
+                self.time_steps_observed += 1
 
         self.episodes_learned += episodes
 
