@@ -1,0 +1,5 @@
+from functions import test
+from classes import WindyGridworldKingsMoves, WindyGridworldKingsMovesStationary
+
+# test(WindyGridworldKingsMoves)
+test(WindyGridworldKingsMovesStationary)

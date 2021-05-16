@@ -4,31 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import itertools
-import time
 
 from PIL import Image
-
-# ---------------------------------------------------------------- #
-
-def argsmax(A):
-
-    if type(A) == dict:
-        maximum = max(A.values())
-        return [i for i, a in A.items() if a == maximum]
-
-    if type(A) == list:
-        maximum = max(A)
-        return [i for i, a in enumerate(A) if a == maximum]
-
-    return None
-
-# def hashable(unhashable):
-
-#     if type(unhashable) in [list, np.ndarray]:
-#         return tuple(unhashable)
-
-#     if type(unhashable) is dict:
-#         return tuple(unhashable.items())
+from outsource import argsmax
 
 # ---------------------------------------------------------------- #
 
@@ -395,18 +373,19 @@ learned_episodes = 0
 drive(learned_episodes, plot_final = True, show_time = 0.25, show_log = True)
 
 episodes = 10_000
+print(f'learning {episodes} episodes ...', '\n')
 my_racetrack.monte_carlo_learn_episodes(episodes)
 learned_episodes += episodes
 
 crash_counters = []
 
-drives = 16
+drives = 32
 for _ in range(drives):
     crash_counters.append(
-        drive(learned_episodes, show_time = 0, show_log = True)
+        drive(learned_episodes, show_time = 1, show_log = True)
     )
 
-print(f'average crashes after learning {learned_episodes} episodes: {np.average(crash_counters)}', '\n')
+print(f'average crashes, from {drives} drives, after having learned {learned_episodes} episodes: {np.average(crash_counters)}', '\n')
 
 print('one more "for the road" ...', '\n')
 drive(learned_episodes, plot_final = True, show_time = 1, show_log = True)
