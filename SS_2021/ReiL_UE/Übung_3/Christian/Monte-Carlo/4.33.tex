@@ -1,0 +1,89 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Show the steps to derive \eqref{eq:5.14} from \eqref{eq:5.12}.
+
+\begin{align} \label{eq:5.14} \tag{5.14}
+    \E[\rho_{t:T-1} R_{t+1}]
+    =
+    \E[\rho_{t:t} R_{t+1}]
+\end{align}
+
+\begin{align} \label{eq:5.13} \tag{5.13}
+    \E
+    \bbraces
+    {
+        \frac{\pi(A_k \mid S_k)}{b(A_k \mid S_k)}
+    }
+    \doteq
+    \sum_a
+        b(a \mid S_k)
+        \frac{\pi(a \mid S_k)}{b(a \mid S_k)}
+    =
+    \sum_a
+        \pi(a \mid S_k)
+    =
+    1
+\end{align}
+
+\begin{align} \label{eq:5.12} \tag{5.12}
+  \rho_{t:T-1} R_{t+1}
+  =
+  \frac{\pi(A_t \mid S_t)}{b(A_t\mid S_t)}
+  \frac{\pi(A_{t+1} \mid S_{t+1})}{b(A_{t+1}\mid S_{t+1})}
+  \cdots
+  \frac{\pi(A_{T-1} \mid S_{T-1})}{b(A_{T-1}\mid S_{T-1})}
+  R_{t+1}
+\end{align}
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+We will first show that for any $t$
+
+\begin{align*}
+  \mathbb{E}\bbraces{\rho_{t:T-1}} = 1
+\end{align*}
+holds. We can do this via induction. The base case $t = T-1$ is shown in \eqref{eq:5.13}. Assuming now that the identity holds for $\mathbb{E}\bbraces{\rho_{t:T-1}}$ we aim to show it for $t-1$:
+
+\begin{align*}
+  \mathbb{E}\bbraces{\rho_{t-1:T-1}}
+  &=
+  \sum_a b(a \mid S_{t-1}) \mathbb{E}\bbraces{\rho_{t-1:T-1}\mid A_{t-1} = a} \\
+  &=
+  \sum_a b(a \mid S_{t-1}) \mathbb{E}\bbraces{\frac{\pi(a\mid S_{t-1})}{b(a \mid S_{t-1})}\rho_{t:T-1}\mid A_{t-1} = a}\\
+  &=
+  \sum_a b(a \mid S_{t-1}) \frac{\pi(a\mid S_{t-1})}{b(a \mid S_{t-1})} \mathbb{E}\bbraces{\rho_{t:T-1}}
+  =
+  \sum_a \pi(a\mid S_{t-1})
+  = 1
+\end{align*}
+
+We remind ourselves of a formula from chapter 3:
+
+\begin{align*} \label{eq:3.5} \tag{3.5}
+  \mathbb{E}\bbraces{R_t\mid S_{t-1} = s, A_{t-1} = a}
+  =
+  \sum_{r \in \mathcal R} r \sum_{s^\prime \in \mathcal S} p(s^\prime,r\mid s,a)
+\end{align*}
+
+Now we can show the identity with the law of total expectation (that we already used in our induction) and \eqref{eq:3.5}:
+
+\begin{align*}
+  \mathbb{E}\bbraces{\rho_{t:T-1}R_{t+1}}
+  &=
+  \sum_a b(a\mid S_t) \sum_{r,s^\prime} p(s^\prime,r\mid S_t,a)
+  \mathbb{E}\bbraces{\rho_{t:T-1}R_{t+1}\mid A_t = a, S_{t+1} = s^\prime, R_{t+1} = r} \\
+  &=
+  \sum_a b(a\mid S_t) \frac{b(a \mid S_t)}{\pi(a \mid S_t)}\sum_{r,s^\prime} r p(s^\prime,r\mid S_t,a)
+  \mathbb{E}\bbraces{\rho_{t+1:T-1}\mid S_{t+1} = s^\prime} \\
+  &= \sum_a  b(a\mid S_t) \frac{b(a \mid S_t)}{\pi(a \mid S_t)} \mathbb{E}\bbraces{R_{t+1}\mid S_t = S_t, A_t = a} \\
+  &=
+  \mathbb{E}\bbraces{\rho_{t:t}R_{t+1}}
+\end{align*}
+\end{solution}
+
+% --------------------------------------------------------------------------------

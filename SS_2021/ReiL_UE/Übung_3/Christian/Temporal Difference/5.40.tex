@@ -1,0 +1,37 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Suppose action selection is greedy. Is Q-learning then exactly the same algorithm as Sarsa? Will they make exactly the same action selections and weight updates?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+They are not the same, in Sarsa the next action is chosen before the update of $Q$ whereas in the $Q$-learning we always do the update before the next action is chosen. To make it clear we look at an example:
+
+\begin{center}
+  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+                thick,main node/.style={circle,draw,font=\Large\bfseries}]
+  \node[main node] (1) {S};
+
+  \path
+    (1) edge [out=360,in=275,looseness=8] node[above] {l} (1)
+    (1) edge [out = 180, in = 265, looseness =8]node[above] {r} (1);
+  \end{tikzpicture}
+\end{center}
+
+We assume that the action $l$ has a reward of $-2$ and action $r$ has a reward of $+2$, both lead us to the same state again. We initialize
+
+\begin{align*}
+  Q(S,l) &= 1 \\
+  Q(S,r) &= 0
+\end{align*}
+
+The first action we choose for both algorithms is $l$ since we act greedily. In Sarsa we now take the action, observe $R = -2, S^\prime =S$, we then choose $A_2 = l$ greedily with our current estimates from $Q$. Only then do we do the update. In the $Q$ learning algorithm we observe $R = -2, S^\prime =S$, update $Q(S,l) = -1$ (assuming $\alpha = 1, \gamma = 1$) and choose our next action greedily, in this case $A_2 = r$.
+This example shows that they will not make exactly the same action selections.
+\end{solution}
+
+% --------------------------------------------------------------------------------

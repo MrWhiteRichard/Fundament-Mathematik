@@ -1,0 +1,34 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+Modify the algorithm for first-visit MC policy evaluation (Section 5.1) to use the incremental implementation for sample averages described in Section 2.4.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+\phantom{}
+
+\begin{algorithmic}[1]
+  \Statex \textbf{Input:} a policy $\pi$ to be evaluated
+  \Statex \textbf{Initialize:}
+  \State $V(s) \in \R$, arbitrarily, for all $s \in \mathcal{S}$
+  \State \textit{Returnsnum}$(s)$ $\leftarrow$ list with $0$, for all $s \in \mathcal{S}$
+  \Statex
+  \While{\texttt{True}}
+  \State Generate an episode folloing $\pi$: $S_0, A_0, R_1,S_1,A_1,R_2,\dots, S_{T-1},A_{T-1},R_T$
+  \State $G \leftarrow 0$
+  \For{ each step of episode, $t = T-1, T-2,\dots,0$}
+  \State $G \leftarrow \gamma G + R_{t+1}$
+  \State Unless $S_t$ appears in $S_0,S_1,\dots, S_{t-1}$:
+  \State \textit{Returnsnum}$(S_t) \leftarrow$ \textit{Returnsnum}$(S_t) + 1$
+  \State $V(S_t) \leftarrow V(S_t) + \frac{1}{\textit{Returnsnum}(S_t)}\big(G - V(S_t)\big)$
+  \EndFor
+  \EndWhile
+\end{algorithmic}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

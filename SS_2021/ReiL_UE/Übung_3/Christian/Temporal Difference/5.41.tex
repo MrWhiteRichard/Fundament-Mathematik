@@ -1,0 +1,26 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}
+
+What are the update equations for Double Expected Sarsa with an $\epsilon$-greedy target policy?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+The update equations are
+\begin{align*}
+  Q_1(S_t, A_t)
+  &\leftarrow
+  Q_1(S_t, A_t) + \alpha \big[R_{t+1} + \gamma \sum_a \pi(a\mid S_{t+1}) Q_2(S_{t+1},a) - Q_1(S_t,A_t)\big] \\
+  Q_2(S_t, A_t)
+  &\leftarrow
+  Q_2(S_t, A_t) + \alpha \big[R_{t+1} + \gamma \sum_a \pi(a\mid S_{t+1}) Q_1(S_{t+1},a) - Q_2(S_t,A_t)\big]
+\end{align*}
+
+The behavior policy can use both action-value estimates. For example, an $\varepsilon$-greedy policy for Double Expected Sarsa could be based on the average (or sum) of the two action-value estimates.
+\end{solution}
+
+% --------------------------------------------------------------------------------
