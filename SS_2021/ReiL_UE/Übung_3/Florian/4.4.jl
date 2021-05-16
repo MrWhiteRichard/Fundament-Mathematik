@@ -28,15 +28,15 @@ function monte_carlo(race_track, actions, epsilon, alpha, max_iterations)
 
     Q = Dict([state,action] => 0.0 for state in race_track.states, action in actions)
 
-    # Start with random policy
-    policy = Dict(state => [0,0] for state in race_track.states)
+    # Start with equiprobable random policy
+    policy = Dict(state => actions for state in race_track.states)
     
     avg_length = 1000
     i = 0
     while true
         i += 1
         start_state = rand(race_track.start_states)
-        state_action_array = generate_episode(policy, epsilon/log(i+1), start_state, race_track.finish_states, race_track.ylims, race_track.velocity_limits)
+        state_action_array, crashes = generate_episode(policy, epsilon/log(i+1), start_state, race_track.finish_states, race_track.ylims, race_track.velocity_limits)
 
         if state_action_array == "STOP"
             println("Warning: Maximum number of steps (100000) exceeded. Episode was discarded.")
@@ -44,6 +44,10 @@ function monte_carlo(race_track, actions, epsilon, alpha, max_iterations)
         end
 
         policy, avg_length = improve_policy(policy, Q, state_action_array, alpha, avg_length, i)
+
+        if i ∈ (1,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000)
+            println(crashes)
+        end
 
         if (avg_length < race_track.goal_steps) || (i > max_iterations)
             break
@@ -71,7 +75,7 @@ function improve_policy(policy, Q, state_action_array, alpha, avg_length, i)
                     push!(best_actions, action)
                 end
             end
-            policy[state_action_array[t][1]] = rand(best_actions)
+            policy[state_action_array[t][1]] = best_actions
         # end
     end
     avg_length += (length(state_action_array) - avg_length)*alpha
@@ -89,14 +93,14 @@ function generate_episode(policy, epsilon, start_state, finish_states, ylims, ve
     state_action_array = []
 
     n = 0
-
+    crashes = 0
     while current_state ∉ finish_states
         n += 1
         new_state = copy(current_state)
         if rand() < epsilon
             next_action = rand(actions)
         else
-            next_action = policy[current_state]
+            next_action = rand(policy[current_state])
         end
         push!(state_action_array, [current_state, next_action])
         # Update velocity
@@ -123,13 +127,14 @@ function generate_episode(policy, epsilon, start_state, finish_states, ylims, ve
             current_state = copy(new_state)
         else
             current_state = rand(start_states)
+            crashes += 1
         end
         if n > 100000
             return "STOP"
         end
     end
     push!(state_action_array, [current_state,[0,0]])
-    return state_action_array
+    return state_action_array, crashes
 end
 
 
@@ -157,25 +162,30 @@ function plot_trajectories(race_track, policy)
     linestyles = [:solid, :dash, :dot, :dashdot, :dashdotdot, :solid, :dash, :dot, :dashdot, :dashdotdot,]
     linewidths = [x for x in 3:-0.2:1]
     for (state,col,linestyle,linewidth) in zip(start_states,colors,linestyles, linewidths)
-        state_action_array = generate_episode(policy, 0, state, race_track.finish_states, race_track.ylims, race_track.velocity_limits)
+        state_action_array, crashes = generate_episode(policy, 0, state, race_track.finish_states, race_track.ylims, race_track.velocity_limits)
         if state_action_array != "STOP"
             len = length(state_action_array)
             states_x = [state[1] for (state,_) in state_action_array]
             states_y = [state[2] for (state,_) in state_action_array]
             for i in 2:len-1
-                plot!(fig, states_x[i-1:i], states_y[i-1:i], linetype=:steppre, linestyle = linestyle, linewidth = linewidth, arrow = true, color = col, label = "")
+                plot!(fig, states_x[i-1:i], states_y[i-1:i], linetype=:steppre, 
+                    linestyle = linestyle, linewidth = linewidth, arrow = true, 
+                    color = col, label = "")
             end
-            plot!(fig, states_x[len-1:len], states_y[len-1:len], linetype=:steppre, linestyle = linestyle, linewidth = linewidth, arrow = true, color = col, label = len)
+            plot!(fig, states_x[len-1:len], states_y[len-1:len], 
+                linetype=:steppre, linestyle = linestyle, 
+                linewidth = linewidth, arrow = true, color = col, 
+                label = "Time: "*string(len)*", Crashes: "*string(crashes))
         end
     end
 end
 
 # Code Execution
 
-race_track = race_track1
-epsilon = 0.4
-alpha = 1/1000
-max_iterations = 50000
+race_track = race_track2
+epsilon = 0.1
+alpha = 1/100
+max_iterations = 10000
 
 Q, policy = monte_carlo(race_track, actions, epsilon, alpha, max_iterations)
 

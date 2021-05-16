@@ -28,7 +28,7 @@ Implement the following steps in \texttt{R}:
   sample size $n = 500, 1000, 1500, \dots, 10000$ each with replications
   for the estimation of $g(\theta)$ with the statistic $S_n$.
   
-  \item Create s scatter plot of all the estimates over the sample size,
+  \item Create a scatter plot of all the estimates over the sample size,
   add the sample mean and standard deviation aggregated over
   the sample size to the plot. Finally, add the theoretical mean and
   standard deviation of the statistic $S_n$.
@@ -40,7 +40,34 @@ Implement the following steps in \texttt{R}:
 
 \begin{solution}
 
-\phantom{}
+  \phantom{}
+
+  \begin{enumerate}[label = (\alph*)]
+    \item
+    Our pdf reads $f(x|\theta) = \theta x^{\theta - 1}$. Integrating over x yields the pdf
+    \begin{align*}
+      F(x|\theta) &= \int_0^x f(y|\theta) dy = \theta \int_0^x y^{\theta - 1} dy \\
+      &=  [y^{\theta}]_0^{x} = x^{\theta}.
+    \end{align*}
+    Next we need to calculate the quantile function
+
+    \begin{align*}
+      p \stackrel{!}{=} F(x|\theta) \iff
+      p = x^{\theta} \iff
+      p^{1/\theta} = x.
+    \end{align*}
+
+    Therefore $q(p|\theta) = F^{-1}(p|\theta) = p^{1/\theta}$.
+
+    Let $X$ be uniformly distributed on the interval $(0,1)$. Then
+
+    \begin{align*}
+      f_{X^{1/\theta}} = f_X(x^{\theta})|\theta x^{\theta - 1}| = f(x|\theta).
+    \end{align*}
+
+    Therefore we can transform random samples from a uniform $(0,1)$ distribution
+    with $g(x) = x^{1/\theta}$ to obtain random samples for our custom distribution.
+  \end{enumerate}
 
 \end{solution}
 
