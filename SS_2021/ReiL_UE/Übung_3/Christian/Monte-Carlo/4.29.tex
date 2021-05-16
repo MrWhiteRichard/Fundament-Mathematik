@@ -10,8 +10,61 @@ What is the backup diagram for Monte Carlo estimation of $q_\pi$?
 
 \begin{solution}
 
-ToDo!
+\phantom{}
 
+\begin{center}
+
+    \begin{tikzpicture}[
+        mystate/.style = {
+            circle,
+            draw = black,
+            fill = white,
+            fill opacity = 0.3,
+            text opacity = 1,
+            inner sep = 0pt,
+            minimum size = 20pt
+        },
+        myarrow/.style = {-Stealth},
+        myaction/.style = {
+            circle,
+            draw = black,
+            fill = black,
+            fill opacity = 1,
+            text opacity = 1,
+            inner sep = 0pt,
+            minimum size = 10pt
+        },
+        myterminal/.style = {
+            rectangle,
+            draw = black,
+            fill = black,
+            fill opacity = 0.3,
+            text opacity = 1,
+            inner sep = 0pt,
+            minimum size = 20pt
+        },
+        node distance = 0.6cm and 1.2cm
+    ]
+
+        \node[myaction,                    label = right: {$(s, a)$} ] (a1)   {};
+        \node[mystate,    below = of a1,   label = right: {$S_{t+1}$}] (s1)   {};
+        \node[myaction,   below = of s1,   label = right: {$A_{t+1}$}] (a2)   {};
+        \node[mystate,    below = of a2,   label = right: {$S_{t+2}$}] (s2)   {};
+        \node[            below = of s2                              ] (dots) {$\vdots$};
+        \node[myaction,   below = of dots, label = right: {$A_{T-1}$}] (a3)   {};
+        \node[myterminal, below = of a3,   label = right: {$S_{T}$}  ] (s3)   {};
+
+        \draw [myarrow]
+        (a1)   -- node[sloped,  left,  midway,  rotate = 90] {$r$}       (s1)
+        (s1)   -- node[sloped,  left,  midway,  rotate = 90] {}          (a2)
+        (a2)   -- node[sloped,  left,  midway,  rotate = 90] {$R_{t+1}$} (s2)
+        (s2)   -- node[sloped,  left,  midway,  rotate = 90] {}          (dots)
+        (dots) -- node[sloped,  left,  midway,  rotate = 90] {}          (a3)
+        (a3)   -- node[sloped,  left,  midway,  rotate = 90] {$R_{T-1}$} (s3);
+
+    \end{tikzpicture}
+
+\end{center}
 \end{solution}
 
 % --------------------------------------------------------------------------------
