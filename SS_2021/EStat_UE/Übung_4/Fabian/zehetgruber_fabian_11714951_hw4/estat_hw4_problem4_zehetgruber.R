@@ -13,11 +13,11 @@ plot(x, distribution_function, type = "l")
 
 
 
-n = 50
+n <- 50
 random_sample <- rnorm(n, mu, sigma)
 hist(random_sample)
 
-n = 500
+n <- 500
 random_sample <- rnorm(n, mu, sigma)
 hist(random_sample)
 
