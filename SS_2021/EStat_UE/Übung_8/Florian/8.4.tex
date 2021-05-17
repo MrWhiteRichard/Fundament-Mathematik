@@ -19,8 +19,42 @@ for $\theta$.
 
 \begin{solution}
 
-\phantom{}
+  Let $\textbf{x} = (x_1,\dots,x_n)$ and $\textbf{y} = (y_1,\dots,y_n)$ 
+  be two sample points in $\R_+^n$. We calculate the ratio
 
+  \begin{align*}
+    \frac{f(\textbf{x}|\theta)}{f(\textbf{y}|\theta)} = \prod_{i=1}^n\frac{x_i}{y_i}
+    \frac{\1_{[0, \theta]}(\max_{i=1}^n x_i)}{\1_{[0, \theta]}(\max_{i=1}^n y_i)}
+  \end{align*}
+
+  We choose $T(X) := \max_{i=1}^n X_i$. 
+
+  If $T(x) = T(y)$, then the ratio simplifies to $\prod_{i=1}^n\frac{x_i}{y_i}$,
+  which is clearly independent of $\theta$.
+
+  If $T(x) < T(y)$, the ratio reads
+
+  \begin{align*}
+    \frac{f(\textbf{x}|\theta)}{f(\textbf{y}|\theta)} =
+    \begin{cases}
+      \prod_{i=1}^n\frac{x_i}{y_i}, & \theta < T(x) \\
+      0, & T(x) < \theta < T(y)
+    \end{cases},
+  \end{align*}
+
+  which is clearly not constant in $\theta$.
+
+  If $T(y) < T(x)$ we have
+
+  \begin{align*}
+    \frac{f(\textbf{x}|\theta)}{f(\textbf{y}|\theta)} =
+    \begin{cases}
+      \prod_{i=1}^n\frac{x_i}{y_i}, & \theta < T(y) \\
+      \frac{\prod_{i=1}^n\frac{x_i}{y_i}}{0}, & T(y) < \theta < T(x)
+    \end{cases},
+  \end{align*}
+
+  which is something, I guess.
 \end{solution}
 
 % --------------------------------------------------------------------------------

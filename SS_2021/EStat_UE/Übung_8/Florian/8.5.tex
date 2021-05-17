@@ -22,6 +22,58 @@ Let $X_1,\dots,X_n$ be i.i.d $\Poi(\lambda)$, with unknown $\lambda > 0$.
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+    \item The joint distribution reads
+    
+    \begin{align*}
+        f(\textbf{x}|\theta) &= \exp(-\lambda n)\prod_{i=1}^n{\frac{\lambda^{x_i}}{x_i!}} \\
+        &= \underbrace{\exp\left(-\lambda n + \log(\lambda)\sum_{i=1}^n x_i\right)}_{:= g(T(x)|\theta)}
+        \underbrace{\prod_{i=1}^n{\frac{1}{x_i!}}}_{:=h(x)}
+    \end{align*}
+
+    which implies that $Y = \sum_{i=1}^n X_i$ is indeed a sufficient statistic for $\lambda$.
+
+    \item We simply use
+    \begin{align*}
+        \hat{p_r} := \begin{cases}
+            1, & X_1 = r \\
+            0, & \text{otherwise}
+        \end{cases},
+    \end{align*}
+
+    which obviously fulfils $\E[\hat{p_r}(X)] = \P(X = r)$.
+
+    Next we calculate for $k \geq r$
+
+    \begin{align*}
+        \P(X_1 = r | Y = k) 
+        &= \frac{\P(X_1 = r \cap Y = k)}{\P(Y = k)} \\
+        &= \frac{\P(X_1 = r)\P(\sum_{i=2}^n X_i = k - r)}{\P(\sum_{i=1}^n X_i = k)} \\
+        &= \frac{\exp(-\lambda)\frac{\lambda^r}{r!}\exp(-(n-1)\lambda)\frac{(n-1)^{k-r}\lambda^{k-r}}{(k-r)!}}
+        {\exp(-n\lambda)\frac{n^k\lambda^k}{k!}} \\
+        &= \frac{k!}{(k-r)!r!}\frac{(n-1)^{k-r}}{n^k} = \binom{k}{r}\frac{(n-1)^{k-r}}{n^k}.
+    \end{align*}
+
+    For $k < r$ the probability is clearly $0$.
+    
+
+    Now, according to the Rao-Blackwell theorem we define our new estimator
+    as
+
+    \begin{align*}
+        \Phi(Y) &:= \E[\hat{p_r}(X_1)|Y] 
+        = \E\left[\1_{\{r\}}(X_1)| Y\right]
+        = \P(X_1 = r | Y) \\
+        &= \begin{cases}
+            \binom{Y}{r}\frac{(n-1)^{Y-r}}{n^Y}, & Y \geq r \\
+            0, & Y < r
+        \end{cases}.
+    \end{align*}
+
+    with $\E_\lambda[\Phi(Y)] = p_r$ and $\V_\lambda(\Phi(Y)) \leq \V_\lambda(\hat{p_r}(X_1))$.
+    
+\end{enumerate}
+
 \end{solution}
 
 % --------------------------------------------------------------------------------

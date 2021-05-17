@@ -182,7 +182,7 @@ end
 
 # Code Execution
 
-race_track = race_track2
+race_track = race_track1
 epsilon = 0.1
 alpha = 1/100
 max_iterations = 10000

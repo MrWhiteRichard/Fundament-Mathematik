@@ -11,7 +11,7 @@ Let $X_1,\dots,X_n$ be a random sample from a population with pdf
     \end{cases}
 \end{align*}
 
-with unknown $\theta > 0$. Use the Factorization theorem to obtain 
+with unknown $\theta > 0$. Use the factorization theorem to obtain 
 a sufficient statistic for $\theta$.
 \end{exercise}
 
@@ -19,7 +19,22 @@ a sufficient statistic for $\theta$.
 
 \begin{solution}
 
-\phantom{}
+The joint pdf of the random sample reads
+
+\begin{align*}
+    f(\textbf{x}| \theta) = \frac{\theta^n}{\prod_{i=1}^n x_i^2}\1_{[\theta,\infty]}(\min_{i=1}^n x_i)
+\end{align*}
+
+Therefore we define 
+
+\begin{align*}
+    g(T(x)|\theta) &:= \theta^n \cdot \1_{[\theta,\infty]}(\min_{i=1}^n x_i), \quad  \text{and}\\
+    h(x) &:= \frac{1}{\prod_{i=1}^n x_i^2}.
+\end{align*}
+
+Applying the factorization theorem then yields the order statistic 
+$X_{(1)} = \min_{i=1}^n X_i$ as a sufficient statistic for $\theta$.
+
 
 \end{solution}
 

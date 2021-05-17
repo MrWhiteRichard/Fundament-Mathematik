@@ -6,9 +6,9 @@ Let $X_1,\dots,X_n$ be a random sample from a population with $\mathcal{N}(\mu,\
 distribution, where $\mu > 0$ is unknown.
 
 \begin{enumerate}[label = (\alph*)]
-  \item Show that the statistic $\sum_i X_i^2$ is minimal sufficient
+  \item Show that the statistic $\sum_{i=1}^n X_i^2$ is minimal sufficient
   in the $\mathcal{N}(\mu,\mu)$ family.
-  \item Show that the statistic $(\sum_i X_i, \sum_i X_i^2)$ is sufficient
+  \item Show that the statistic $\left(\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2\right)$ is sufficient
   but not minimal sufficient in the $\mathcal{N}(\mu,\mu)$ family.
 \end{enumerate}
 
@@ -18,7 +18,50 @@ distribution, where $\mu > 0$ is unknown.
 
 \begin{solution}
 
-\phantom{}
+  \phantom{}
+
+  \begin{enumerate}[label = (\alph*)]
+    \item 
+    First we calculate the joint pdf:
+    \begin{align*}
+      f(\textbf{x}|\mu) = \frac{1}{(2\pi\mu)^{n/2}}
+      \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n(x_i - \mu)^2\right)
+    \end{align*}
+    Let $\textbf{x} = (x_1,\dots,x_n)$ and $\textbf{y} = (y_1,\dots,y_n)$ 
+    be two sample points. We calculate the ratio
+
+    \begin{align*}
+      \frac{f(\textbf{x}|\mu)}{f(\textbf{y}|\mu)}
+      &= \frac{\exp\left(-\frac{1}{2\mu}\sum_{i=1}^n(x_i - \mu)^2\right)}
+            {\exp\left(-\frac{1}{2\mu}\sum_{i=1}^n(y_i - \mu)^2\right)} \\
+      &= \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n[(x_i - \mu)^2 - (y_i - \mu)^2]\right) \\
+      &= \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n [x_i^2 - 2\mu x + \mu^2 - y_i^2 + 2\mu y - \mu^2]\right) \\
+      &= \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n [x_i^2 - y_i^2] + \sum_{i=1}^n [y_i - x_i]\right), \\
+    \end{align*}
+
+    which is constant as a function of $\mu$ if and only if $\sum_{i=1}^n x_i^2 = \sum_{i=1}^n y_i^2$.
+
+    Therefore $T(\textbf{x}) = \sum_{i=1}^n x_i^2$ is a minimal sufficient statistic for estimating $\mu$.
+
+    \item Factorizing the joint pdf into
+    
+    \begin{align*}
+      f(\textbf{x}|\mu) &= \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n(x_i - \mu)^2\right) \\
+      &= \exp\left(-\frac{1}{2\mu}\sum_{i=1}^n(x_i^2 - 2\mu x_i + \mu^2\right) \\
+      &= \exp\left(-\frac{1}{2\mu}\left(\sum_{i=1}^n x_i^2\right) + \sum_{i=1}^n x_i - 2n\mu\right) =: g(T(x)|\theta) \cdot 1
+    \end{align*}
+    
+    we can clearly see that $T(X) = \left(\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2\right)$ is a sufficient statistic.
+    
+    Since there is no function $r$ such that 
+
+    \begin{align*}
+      r\left(\sum_{i=1}^n X_i^2\right) = \left(\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2\right).
+    \end{align*}
+
+    and $\sum_{i=1}^n X_i^2$ is a (minimal) sufficient statistic, this means by definition
+    $\left(\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2\right)$ cannot be minimal sufficient.
+  \end{enumerate}
 
 \end{solution}
 
