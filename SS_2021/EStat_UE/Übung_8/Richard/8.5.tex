@@ -1,0 +1,129 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[Sufficiency, bias, Rao-Blackwell theorem]
+
+Let $X_1, \dots, X_n$ be i.i.d. $\mathit{Poi}(\lambda)$, with unknown $\lambda > 0$.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Show that $Y = \sum_{i=n}^n X_i$ is a sufficient statistic for $\lambda$.
+
+    \item Find an unbiased estimator of $p_r = P(X = r)$, which depends only on $X_1$.
+    Find $P(X_1 = r \mid Y = k)$ both for $k \geq r$ and $k < r$.
+    Hence use the Rao-Blackwell theorem to improve your estimator of $p_r$.
+
+\end{enumerate}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item This follows directly from Homework 7, Exercise 5, and the theorem from \cite[lecture, 8, slide 48]{EStat}.
+    
+    \item If we choose $W := \mathbf 1_{X_1 = r}$, then
+    
+    \begin{align*}
+        \E W
+        & =
+        \sum_{k \in \Z}
+            \mathbf 1_{k = r}
+            P(X = k) \\
+        & =
+        P(X = r) \\
+        & =
+        p_r.
+    \end{align*}
+
+    \begin{enumerate}[label = \arabic*.]
+
+        \item Case ($k < r$):
+
+        We get $X_1 = r$ only if there is an $i = 2, \dots, n$, such that $X_i < 0$.
+        But this has probability $P(X_i < 0) = 0$, so
+
+        \begin{align*}
+            P(X_1 = r \mid Y = k) = 0.
+        \end{align*}
+
+        \item Case ($k \geq r$):
+        
+        \begin{align*}
+            P(X_1 = r \mid Y = k)
+            & =
+            \frac
+            {
+                P(X_1 = r, Y = k)
+            }{
+                P(Y = k)
+            } \\
+            & =
+            \frac
+            {
+                P
+                \pbraces
+                {
+                    X_1 = r,
+                    \sum_{i=2}^n X_i = k - r
+                }
+            }{
+                P(Y = k)
+            } \\
+            & =
+            \frac
+            {
+                P(X_1 = r)
+                P \pbraces{\sum_{i=2}^n X_i = k - r}
+            }{
+                P(Y = k)
+            } \\
+            & =
+            \frac
+            {
+                \frac{\lambda^r}{r!} \mathrm e^{-\lambda}
+                \frac
+                {
+                    ((n - 1) \lambda)^{k - r}
+                }{
+                    (k - r)!
+                }
+                \mathrm e^{-(n-1) \lambda}
+            }{
+                \frac{(n \lambda)^k}{k!} \mathrm e^{-n \lambda}
+            } \\
+            & =
+            \frac{(n - 1)^{k - r}}{n^k}
+            \binom{k}{r}
+        \end{align*}
+
+    \end{enumerate}
+
+    We could even go with $\binom{k}{r} = 0$ for $k < r$ and unify both cases, by virtue of the previous formula.
+
+    Now, $W$ is an unbiased estimator of $\tau(\lambda) := \frac{\lambda^r}{r!} \mathrm e^{-\lambda} = P(X = r) = p_r$ and $Y$ a sufficient static for $\lambda$.
+    The, by virtue of the Rao-Blackwell theorem on \cite[lecture 8, slide 37]{EStat}, improved estimator is
+
+    \begin{align*}
+        \E(W \mid Y)(k)
+        & =
+        \E(\mathbf 1_{X_1 = r} \mid Y) \\
+        & =
+        \sum_{s \in \Z}
+            \mathbf 1_{s = r}
+            P(X_1 = s \mid Y = k) \\
+        & =
+        P(X_1 = r \mid Y = k),
+    \end{align*}
+
+    for $k \in \Z$.
+
+\end{enumerate}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
