@@ -1,0 +1,94 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Cramér-Rao lower bound - Simulation]
+
+In Homework 7 Exercise 2 a density $f(x \mid \theta) = \theta x^{\theta - 1}$ for $0 < x < 1$ and $\theta > 0$ was given.
+The goal was to find a sutable function $g$ of the parameter $\theta$ such taht there exists an unbiased estimator of $g(\theta)$ which attains the Cramér-Rao lower bound.
+
+A unbiased statistic which attains the Cramßer-Rao lower bound is for $g(\theta) = \frac{1}{\theta}$ given by
+
+\begin{align*}
+    S_n(X_1, \dots, X_n)
+    =
+    -\frac{1}{n}
+    \sum_{i=1}^n
+        \ln(X_i).
+\end{align*}
+
+Implement the following steps in \texttt R:
+
+\begin{enumerate}
+
+    \item Write pdf \texttt{dhw}, cdf \texttt{phw}, quantile \texttt{qhw} and random sampling function \texttt{rhw} for the above distribution parameterized by $\theta$ (see for example \texttt{?runif}, \texttt{?rnorm}).
+
+    \begin{itshape}
+        Hint:
+        Given an strict monotone continuous cdf $F$, then $F^{-1}(U)$ is distributed with cdf $F$ for $U \sim \mathit U(0, 1)$.
+    \end{itshape}
+
+    \item Fix an arbitrary $\theta$ and perform a simulation with growing sample size $n = 500, 1000, 1500, \dots, 10000$ each  with $100$ replications for the estimation of $g(\theta)$ with the statistic $S_n$.
+
+    \item Create a scatter plot of all the estimates over teh sample size, add the sample mean and standard deviation aggregated over the sample size to the plot.
+    Finally, add the theoretical mean an standard deviation of the statistic $S_n$.
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item For $x \in \R$, we have
+
+    \begin{align*}
+        f_\theta(x \mid \theta)
+        =
+        \begin{cases}
+            0,                     & x \leq 0,  \\
+            \theta x^{\theta - 1}, & 0 < x < 1, \\
+            0,                     & 1 \leq x,  \\
+        \end{cases}
+    \end{align*}
+
+    and
+
+    \begin{align*}
+        F_\theta(x \mid \theta)
+        =
+        \inf f(x \mid \theta)
+        =
+        \begin{cases}
+            0,        & x \leq 0,  \\
+            x^\theta, & 0 < x < 1, \\
+            1,        & 1 \leq  x.   \\
+        \end{cases}
+    \end{align*}
+    
+    For $x, p \in \R$, we have
+
+    \begin{align*}
+        x^\theta = F_\theta(x) = p
+        \iff
+        x = p^\frac{1}{\theta} = F_\theta^{-1}(p).
+    \end{align*}
+
+    \item Recall, from Homework 7, Exercise 2, that
+    
+    \begin{align*}
+        \E S_n = \frac{1}{\theta},
+        \quad
+        \Var S_n = \frac{1}{n \theta^2}.
+    \end{align*}
+
+\end{enumerate}
+
+\lstinputlisting{8.1.R}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

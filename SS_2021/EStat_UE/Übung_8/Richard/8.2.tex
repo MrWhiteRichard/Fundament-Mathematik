@@ -1,0 +1,51 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Sufficient statistic and point estimator statistics]
+
+Let $X_1, \dots, X_n$ be a random sample from a population with pdf
+
+\begin{align*}
+    f(x \mid \theta)
+    =
+    \begin{cases}
+        \frac{\theta}{x^2}, & \theta \leq x \\
+        0,                  & \text{otherwise}
+    \end{cases}
+\end{align*}
+
+with unknown $\theta > 0$.
+Use the Factorization theorem to obtain a sufficient statistic for $\theta$.
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+We apply the Fisher-Neyman Factorization theorem \cite[lecture 8, slide 13]{EStat}, with
+
+\begin{align*}
+    g(y \mid \theta) = \theta^n \mathbf 1_{(0, \infty)}(y),
+    \quad
+    h(x) = \pbraces{\prod_{i=1}^n x_i}^{-2},
+    \quad
+    T(x) = x_{(1)},
+\end{align*}
+
+and get
+
+\begin{align*}
+    f_{X_1, \dots, X_n}(x \mid \theta)
+    & =
+    \prod_{i=1}^n f_{X_i}(x_i \mid \theta) \\
+    & =
+    \prod_{i=1}^n \frac{\theta}{x_i^2} \mathbf 1_{(\theta, \infty)}(x_i) \\
+    & =
+    \theta^n \pbraces{\prod_{i=1}^n x_i}^{-2} \mathbf 1_{(\theta, \infty)} \pbraces{\min_{i=1}^n x_i} \\
+    & =
+    g(T(x)) h(x).
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

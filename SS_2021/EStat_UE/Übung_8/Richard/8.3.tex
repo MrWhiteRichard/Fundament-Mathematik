@@ -1,0 +1,217 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Minimal sufficient statistic 1]
+
+Let $X_1, \dots, X_n$ be a random sample from a population with $\mathcal N(\mu, \mu)$ distribution, where $\mu > 0$ is unknown.
+
+\begin{enumerate}[label = (\alph*)]
+    \item Show that the statistic $\sum X_i^2$ is iminal sufficient in the $\mathcal N(\mu, \mu)$ family.
+    \item Show that the static $(\sum X_i, \sum X_i^2)$ is sufficient but not minimal sufficient in the $\mathcal N(\mu, \mu)$ family.
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item First, we show that $T^\ast(X) = \sum_{i=1}^n X_i^2$ is sufficient.
+    We apply the Fisher-Neyman Factorization theorem \cite[lecture 8, slide 13]{EStat}, with
+
+    \begin{align*}
+        g(y \mid \mu) = \frac{1}{\sqrt{2 \pi \mu}^n} \mathrm e^{-\frac{y}{2 \mu}} \mathrm e^{-\frac{n \mu}{2}},
+        \quad
+        h(x) = \exp \pbraces{\sum_{i=1}^n x_i},
+    \end{align*}
+
+    and get
+
+    \begin{align*}
+        f_{X_1, \dots, X_n}(x \mid \theta)
+        & =
+        \prod_{i=1}^n
+            f_{X_i}(x_i \mid \theta) \\
+        & =
+        \prod_{i=1}^n
+            \frac{1}{\sqrt{2 \pi \mu}}
+            \mathrm e^{-\frac{(x_i - \mu)^2}{2 \mu}} \\
+        & =
+        \frac{1}{\sqrt{2 \pi \mu}^n}
+        \exp
+        \pbraces
+        {
+            -\frac{1}{2 \mu}
+            \sum_{i=1}^n
+                (x_i - \mu)^2
+        } \\
+        & =
+        \frac{1}{\sqrt{2 \pi \mu}^n}
+        \exp
+        \pbraces
+        {
+            -\frac{1}{2 \mu}
+            \pbraces
+            {
+                \sum_{i=1}^n
+                    x_i^2
+                -
+                2 \mu
+                \sum_{i=1}^n
+                    x_i
+                +
+                n \mu^2
+            }
+        } \\
+        & =
+        \frac{1}{\sqrt{2 \pi \mu}^n}
+        \exp
+        \pbraces
+        {
+            -\frac{1}{2 \mu}
+            \sum_{i=1}^n
+                x_i^2
+        }
+        \exp \pbraces{\sum_{i=1}^n x_i}
+        \mathrm e^{-\frac{n \mu}{2}} \\
+        & =
+        g(T^\ast(x) \mid \mu) h(x).
+    \end{align*}
+
+    Now, let $x, y \in \R^n$.
+    Then,
+
+    \begin{align*}
+        \frac
+        {
+            f_{X_1, \dots, X_n}(x \mid \mu)
+        }{
+            f_{X_1, \dots, X_n}(y \mid \mu)
+        }
+        & =
+        \frac
+        {
+            \frac{1}{\sqrt{2 \pi \mu}^n}
+            \exp
+            \pbraces
+            {
+                -\frac{1}{2 \mu}
+                \sum_{i=1}^n
+                    x_i^2
+            }
+            \exp \pbraces{\sum_{i=1}^n x_i}
+            \mathrm e^{-\frac{n \mu}{2}}
+        }{
+            \frac{1}{\sqrt{2 \pi \mu}^n}
+            \exp
+            \pbraces
+            {
+                -\frac{1}{2 \mu}
+                \sum_{i=1}^n
+                    y_i^2
+            }
+            \exp \sum_{i=1}^n y_i
+            \mathrm e^{-\frac{n \mu}{2}}
+        } \\
+        & =
+        \exp
+        \pbraces
+        {
+            -\frac{1}{2 \mu}
+            \pbraces
+            {
+                \sum_{i=1}^n
+                    x_i^2
+                -
+                \sum_{i=1}^n
+                    y_i^2
+            }
+        }
+        \exp \pbraces{\sum_{i=1}^n x_i - y_i}
+    \end{align*}
+
+    is constant as a function of $\theta$ if and only if
+
+    \begin{align*}
+        \sum_{i=1}^n
+            x_i^2
+        =
+        \sum_{i=1}^n
+            y_i^2.
+    \end{align*}
+
+    According to the theorem on \cite[lecture 8, slide 29]{EStat}, the $T^\ast(X)$ is minimal.
+
+    \item First, we show that $T(X) = \pbraces{\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2}$ is sufficient.
+    We apply the Fisher-Neyman Factorization theorem \cite[lecture 8, slide 13]{EStat}, with
+
+    \begin{align*}
+        g(y \mid \mu) = \frac{1}{\sqrt{2 \pi \mu}^n} \mathrm e^{-\frac{y_2}{2 \mu}} \mathrm e^{y_1} \mathrm e^{-\frac{n \mu}{2}},
+        \quad
+        h(x) = 1.
+    \end{align*}
+
+    Now, ther does not exist any function $r$ such that
+
+    \begin{align*}
+        \pbraces{\sum_{i=1}^n X_i, \sum_{i=1}^n X_i^2}
+        =
+        T(X)
+        \stackrel{!}{=}
+        r(T^\ast(X))
+        =
+        r \pbraces{\sum_{i=1}^n X_i^2}.
+    \end{align*}
+    
+    Say that there were, then consider
+
+    \begin{align*}
+        x = (0, 1),
+        \quad
+        y = (\sqrt \varepsilon, \sqrt{1 - \varepsilon}),
+        \quad
+        \text{for}
+        \quad
+        \varepsilon \in (0, 1).
+    \end{align*}
+
+    Then
+
+    \begin{multline*}
+        (1, 1)
+        =
+        (x_1 + x_2, x_1^2 + x_2^2)
+        =
+        r(x_1^2 + x_2^2)
+        =
+        r(1) \\
+        =
+        r(y_1^2 + y_1^2)
+        =
+        (y_1 + y_2, y_1^2 + y_2^2)
+        =
+        (\sqrt \varepsilon + \sqrt{1 - \varepsilon}, 1).
+    \end{multline*}
+
+    This does not work for $\varepsilon = \frac{1}{2}$, because
+
+    \begin{align*}
+        1
+        \stackrel{!}{\neq}
+        \sqrt \frac{1}{2} + \sqrt{1 - \frac{1}{2}}
+        =
+        \frac{1}{\sqrt 2} + \frac{1}{\sqrt 2}
+        =
+        \frac{2}{\sqrt 2}
+        =
+        \sqrt 2.
+    \end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
