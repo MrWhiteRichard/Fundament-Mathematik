@@ -1,0 +1,108 @@
+---
+title: "HW9"
+author: "Christian Sallinger"
+date: "18 5 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. The GLRT for the normal variance - simple hypotheses
+
+Derive the generalized likelihood ratio test (GLRT) for the normal variance: Assume $X_1,\dots,X_n$ are i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where both $\mu$ and $\sigma$ are unknown. We want to test
+
+$$
+H_0 : \sigma^2 = \sigma_0^2 \quad vs \quad H_1: \sigma^2 \neq \sigma_0^2
+$$
+
+\textbf{Solution:}
+
+## 2. Most powerful test 1
+
+Let $X_1,\dots,X_n$ be i.i.d. Uniform$(0,\theta)$.
+
+(a) Derive the most powerful (MP) test at level $\alpha$ for testing
+
+$$
+H_0 : \theta = \theta_0 \quad vs \quad H_1 : \theta = \theta_1, \ \theta_1 > 0.
+$$
+
+(b) Calculate the power of the MP test.
+
+\textbf{Solution:}
+
+## 3. Most powerful test 2
+
+Let $X_1,\dots, X_n$ be i.i.d. from a distribution with density
+
+$$
+f_{\theta}(x)
+=
+\frac{x}{\theta}e^{-\frac{x^2}{2\theta}}, \ x\geq 0,\ \theta > 0.
+$$
+
+(a) Derive the MP test at level $\alpha$ for testing two simple hypotheses
+
+$$
+H_0 : \theta = \theta_0 \quad vs \quad H_1 : \theta = \theta_1, \ \theta_1 > \theta_0.
+$$
+
+(b) Is there a uniformly most powerful (UMP) test at level $\alpha$ for testing the one-sided composite hypothesis
+
+$$
+H_0: \theta \leq \theta_0 \quad vs \quad H_1: \theta > \theta_0
+$$
+
+\quad What is its power function?
+
+\quad \textit{Hint:} Show $X_i^2 \sim \exp(1/2\theta)$, so that $\sum_i X_i^2 \sim \theta\chi^2(2n)$.
+
+\textbf{Solution:}
+
+## 4. Most powerful test for the normal variance - $\mu$ is known
+
+Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where $\mu$ is known.
+
+(a) Find an MP test at level $\alpha$ for testing two simple hypotheses 
+
+$$
+H_0:\sigma^2 = \sigma_0^2 \quad vs \quad H_1: \sigma^2 = \sigma_1^2, \ \sigma_1 > \sigma_0.
+$$
+
+(b) Show that the MP test is a UMP test for testing
+
+$$
+H_0: \sigma^2 \leq \sigma_0^2 \quad vs \quad H_1:\sigma^2 > \sigma_0^2.
+$$
+
+\textit{Hint:} $\sum_i (X_i-\mu)^2 \sim \sigma^2\chi^2(n)$.
+
+\textbf{Solution:}
+
+## 5. Most powerful test for the normal variance - $\mu$ is unknown
+
+Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where $\mu$ is unknown.
+
+(a) Is there an MP test at level $\alpha$ for testing?
+
+$$
+H_0 : \sigma^2 = \sigma_0^2 \quad vs \quad H_1:\sigma^2 =\sigma_1^2,\ \sigma_1>\sigma_0.
+$$
+
+If not, find the corresponding GLRT.
+
+(b) Is the above generalized likelihood ratio (GLR) test also a GLRT for testing the one-sided hypothesis?
+
+$$
+H_0 : \sigma^2 \leq \sigma_0^2 \quad vs \quad H_1 : \sigma^2 > \sigma_0^2.
+$$
+
+(c) Find the GLRT at level $\alpha$ for testing
+
+$$
+H_0:\sigma^2 \geq \sigma_0^2 \quad vs \quad H_1: \sigma^2 < \sigma_0^2.
+$$
+
+\textbf{Solution:}

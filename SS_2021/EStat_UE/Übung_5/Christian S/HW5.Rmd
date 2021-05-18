@@ -134,16 +134,21 @@ $\textit{Hint:}$ Use the commands \texttt{rbinom} and \texttt{rle}. The command 
 
 \texttt{rle(rbinom(5, 1, 0.5))\$lenghts}
 
-is a vector of the lenghts of all the different runs in a trial of 5 flips of a fair coin.
+is a vector of the lengths of all the different runs in a trial of 5 flips of a fair coin.
 
 \textbf{Solution:}
 
 (a)
 ```{r}
 x = replicate(10000, sum(rexp(10,0.2)))
+z =  seq(0,120,0.1)
+y = 100000*dgamma(z,10,0.2)
 hist(x, main = "Histogram of our simulation")
+lines(z,y, col ="red")
 ```
+As by 2(b) of HW4 we get a $Gamma(10,0.2)$ distribution.
 
+\noindent
 (b)
 ```{r}
 mean(replicate(10000,max(rle(rbinom(50, 1, 0.5))$lengths)))
@@ -172,7 +177,7 @@ $$
 =
 \mathbb{E}(Y^2|X) + \mathbb{E}(Y|X)^2.
 $$
-We will use the conditional parallel axis theorem
+We will use the conditional parallel axis theorem (taking $a(X) = \mathbb{E}(Y)$)
 
 $$
 \mathbb{E}\big((Y- \mathbb{E}(Y))^2|X\big)
