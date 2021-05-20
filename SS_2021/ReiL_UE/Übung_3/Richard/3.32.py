@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import itertools
 
 from PIL import Image
-from outsource import argsmax
+from functions import argsmax
 
 # ---------------------------------------------------------------- #
 
