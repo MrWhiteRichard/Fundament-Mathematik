@@ -1,6 +1,6 @@
 preamble
 
-dydt=@(t,y,mu) [y(2);mu*(1-y(1)^2)*y(2) + y(1)];
+dydt=@(t,y,mu) [y(2);mu*(1-y(1)^2)*y(2) - y(1)];
 
 opt=odeset('maxstep',0.01);
 solver=@ode23;
