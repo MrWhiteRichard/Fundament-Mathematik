@@ -1,0 +1,41 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[Exercise 7.1]
+
+In Chapter 6 we noted that the Monte Carlo error can be written as the sum 
+of TD errors (6.6) if the value estimates don't change from step to step.
+Show that the n-step error used in
+
+\begin{align*}
+    V_{t+n}(S_t) \doteq V_{t+n-1}(S_t) + \alpha[G_{t:t+n} - V_{t+n-1}(S_t)]
+    \tag{7.2}
+\end{align*}
+
+can also be written as a sum of TD
+errors (again if the value estimates don't change), generalizing the
+earlier result. (p. 143)
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+We define $\delta_t \doteq R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$.
+
+Now we express the n-step TD-error in terms of $\delta_t$ for $t + n < T$:
+
+\begin{align*}
+    G_{t:t+n} - V(S_t) 
+    &= \sum_{i=1}^n \gamma^{i-1} R_{t+i} + \gamma^n V(S_{t+n}) - V(S_t) \\
+    &= R_{t+1} + \gamma V(S_{t+1}) - \gamma V(S_{t+1}) - V(S_t) + \sum_{i=2}^n \gamma^{i-1} R_{t+i} + \gamma^n V(S_{t+n}) \\
+    &= \delta_t + \gamma \left[\sum_{i=1}^{n-1} \gamma^{i-1} R_{t+1+i} - V(S_{t+1})+ \gamma^{n-1} V(S_{t+n})\right]  \\
+    &= \delta_t + \gamma \left[ \delta_{t+1} + \sum_{i=1}^{n-2} \gamma^{i-1} R_{t+2+i} - V(S_{t+2})+ \gamma^{n-2} V(S_{t+n})\right] \\
+    &= \sum_{i=0}^{n-2} \gamma^i \delta_{t+i} + \gamma \left[ \delta_{t+n-1} - V(S_{t+n})  + V(S_{t+n})\right] \\
+    &= \sum_{i=0}^{n-1} \gamma^i \delta_{t+i}.
+\end{align*}
+
+For $t + n \geq T$ the TD update target reverts back to the Monte-Carlo update
+and can thus be expressed as a sum of TD errors as seen in Chapter 6.
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

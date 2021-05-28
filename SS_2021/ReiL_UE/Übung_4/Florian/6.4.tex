@@ -1,0 +1,32 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[Exercise 8.1]
+
+The non-planning method looks particularly poor in Figure 8.3 because it is
+a one-step method; a method using multi-step bootstrapping would do better.
+Do you think one of the multi-step bootstrapping methods from Chapter 7
+could do as well as the Dyna method? Explain why or why not.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+As seen in the previous exercise, multi-step bootstrapping
+definitively constitutes a big improvement from the simple one-step method,
+however the results show that they cannot quite achieve the top performances
+of the Dyna methods. 
+
+The big difference between the two methods is that in every step of the episode
+the multi-step method updates one action-value by looking $n$ steps ahead, whilst
+the planning method updates $n$ action-values by looking one step ahead respectively.
+Therefore the multi-step method obtains more accurate estimations for a small sample
+of state-action pairs, while the planning method obtains a less accurate, but far broader
+estimation over the state-action space, which allows it to find the optimal solution faster,
+since the precise values of the individual state-action pairs are not necessarily needed to find the
+optimal policy in this case.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
