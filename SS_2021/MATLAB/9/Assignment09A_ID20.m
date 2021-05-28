@@ -13,10 +13,10 @@ eqlatex="$x^2y''+"+string(a)+"xy'+"+string(b)+"y=0$";
 [M,F]=massMatrixForm(eqs,vars);
 f=M\F;
 fh=odeFunction(f,vars)
-x1=0; 
+x1=1; 
 x2=10; 
 
-yini=(2/25)*x^2-(3/5)*x;
+yini=(x-x1)*(x-x2);
 Dyini=simplify(diff(yini));
 Dy2ini = simplify(diff(yini,2));
 yinit=matlabFunction([-yini;-Dyini;-Dy2ini]);  
@@ -34,10 +34,12 @@ clf
 hold on
 hnum=plot(xs,ys,'b');
 ys1=solnum.y(2,:); % first derivative of y
+hnum1 = plot(xs,ys1,'r');
 ys2=solnum.y(3,:); % second derivative of y
+hnum2 = plot(xs,ys2, 'y')
 ys3=solnum.yp(3,:); % third derivative of y
 % proof
-lhs=a*xs.^4.*ys3 + b*xs.^3.*ys2 + c*xs.^2.*ys + d*xs.*ys; % subsitute solution into ODE
+lhs=a*xs.^4.*ys3 + b*xs.^3.*ys2 + c*xs.^2.*ys1 + d*xs.*ys; % subsitute solution into ODE
 hproof=plot(xs,lhs,'k--');
 box on
 grid on
