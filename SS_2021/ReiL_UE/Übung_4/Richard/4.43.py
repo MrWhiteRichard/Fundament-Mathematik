@@ -26,76 +26,20 @@ from gym.spaces.space import Space
 from collections import defaultdict
 from fractions import Fraction
 
-# ---------------------------------------------------------------- #
-
-class Policy(object):
-
-    def __init__(self, action_space, data=None):
-
-        self.action_space = action_space
-        self.data = data
-
-    def set_data(self, data=None):
-
-        if data is None:
-            self.reset()
-        else:
-            self.__data = data
-
-    def get_data(self):
-        return self.__data
-
-    data = property(get_data, set_data)
-
-    def reset(self):
-        self.data = defaultdict(
-            lambda: {
-                str(action): 1 / self.action_space.size
-                for action in self.action_space
-            }
-        )
-
-    def __getitem__(self, key):
-
-        if type(key) is not tuple:
-            state = key
-            return self.data[str(state)]
-        else:
-            state, action = key
-            return self.data[str(state)][str(action)]
-
-    def __setitem__(self, key, value):
-
-        if type(key) is not tuple:
-            state = key
-            self.data[str(state)] = value
-        else:
-            state, action = key
-            self.data[str(state)][str(action)] = value
-
-    def get_action(self, state):
-
-        actions, probabilities = zip(*self[state].items())
-        action = random.choices(population=actions, weights=probabilities)[0]
-
-        return action
-
-    def __str__(self):
-        return str(self.__data)
+from outsource import *
 
 # ---------------------------------------------------------------- #
 
 class TDEnv(Env):
 
-    def __init__(self, gamma, alpha, n, pi, mode='dynamic', default_value=None):
-
+    def __init__(self, gamma, alpha, n, pi, mode='dynamic', default_value=0):
 
         self.gamma = gamma
         self.alpha = alpha
         self.n = n
 
-        self.V = defaultdict(float) if default_value is None else defaultdict(lambda: default_value)
-        self.pi = pi
+        self.pi = Policy(self.action_space) if pi is None else pi
+        self.V = defaultdict(lambda: default_value)
 
         assert mode in ['dynamic', 'static']
         self.mode = mode
@@ -106,33 +50,45 @@ class TDEnv(Env):
         rewards = [None] * (self.n + 1)
         errors = [None] * self.n
 
+        # Initialize and stor S_0 != terminal
         states[0] = self.reset()
+
+        # T <- infty
         T = np.infty
+
         t = 0
 
+        # Loop for t = 0, 1, 2, ... :
         while True:
 
+            # If t < T, then:
             if t < T:
 
-                self.state = states[t % (self.n + 1)]
+                self.state = np.copy(states[t % (self.n + 1)])
+
+                # Take an action according to pi(.|S_t)
                 action = self.pi.get_action(self.state)
 
+                # Observe and store the next reward as R_{t+1} and the next state as S_{t+1}
                 observation, reward, done, _ = self.step(action)
-
                 states[(t + 1) % (self.n + 1)] = observation
                 rewards[(t + 1) % (self.n + 1)] = reward
 
+                # If S_{t+1} is terminal, then T <- t + 1
                 if done:
                     T = t + 1
 
                 errors[t % self.n] = rewards[(t + 1) % (self.n + 1)] + self.gamma * self.V[str(states[(t + 1) % (self.n + 1)])] - self.V[str(states[t % (self.n + 1)])]
 
+            # tau <- t - n + 1 (tau is the time whose state's estimate is being updated)
             tau = t - self.n + 1
 
+            # If tau >= 0:
             if tau >= 0:
 
                 if self.mode == 'dynamic':
 
+                    # G <- sum_{i=tau+1}^{min(tau+n,T)} gamma^{i-tau-1} R_i
                     G = sum([
                         self.gamma ** (i - tau - 1) * rewards[i % (self.n + 1)]
                         for i in range(
@@ -140,6 +96,7 @@ class TDEnv(Env):
                         )
                     ])
 
+                    # If tau + n < T, then G <- G + gamma^n
                     if tau + self.n < T:
                         G += self.gamma ** self.n * self.V[str(states[(tau + self.n) % (self.n + 1)])]
 
@@ -153,8 +110,10 @@ class TDEnv(Env):
                         )
                     ])
 
+                # V(S_tau) <- V(S_tau) + alpha [G - V(S_tau)]
                 self.V[str(states[tau % (self.n + 1)])] += self.alpha * error
 
+            # Until tau = T - 1
             if tau == T - 1:
                 break
 
@@ -255,10 +214,6 @@ class MyRandomWalkEnv(RandomWalkEnv, TDEnv):
     def __init__(self, gamma, alpha, n, pi=None, mode='dynamic', default_value=None):
 
         RandomWalkEnv.__init__(self)
-
-        if pi is None:
-            pi = Policy(self.action_space)
-
         TDEnv.__init__(self, gamma, alpha, n, pi, mode, default_value)
 
 # ---------------------------------------------------------------- #

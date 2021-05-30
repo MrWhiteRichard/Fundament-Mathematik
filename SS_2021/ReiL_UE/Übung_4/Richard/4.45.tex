@@ -29,7 +29,19 @@ Explain why or why not.
 
 \begin{solution}
 
-\phantom{}
+Judging by the previous exercside: No!
+
+In each time step of an episode
+
+\begin{itemize}
+    \item an $n$-step Dyna method performs $n$ one-step updates (i.e. looks one step into the future $n$ times), while
+    \item an $m$-step bootstrapping method performs a single $m$-step update (i.e. looks $m$ steps into the future one time).
+\end{itemize}
+
+The former thus aquires an accurate approximation of only a few state(-action) values, like hedgehogs (click \href{https://mathwithbaddrawings.com/2019/10/30/the-fox-hedgehog-game/}{here}).
+The latter, on the other hand, aquires an inaccurate approximation of a large number state(-action) values, like foxes.
+
+Apparently, in this context, it is more beneficial, to be a fox.
 
 \end{solution}
 
