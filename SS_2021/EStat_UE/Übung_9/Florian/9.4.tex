@@ -28,6 +28,36 @@
   \begin{solution}
   
   \phantom{}
+
+  \begin{enumerate}[label = (\alph*)]
+    \item The likelihood ratio reads
+
+    \begin{align*}
+      \lambda(\textbf{x}) &
+      = \frac{L(\sigma_1^2, \textbf{x})}{L(\sigma_0^2, \textbf{x})} \\
+      &= \frac{\sigma_0^n}{\sigma_1^n}
+      \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) \sum_{i=1}^n (x_i - \mu)^2\right).
+    \end{align*}
+
+    Since $\lambda(\textbf{x})$ is a non-decreasing function of
+    $T(\textbf{x}) = \sum_{i=1}^n (x_i - \mu)^2$ our test rejects $H_0$ if
+
+    \begin{align*}
+      T(\textbf{x}) \geq C,
+    \end{align*}
+
+    where $\alpha = \P_{\sigma_0^2}(T(\textbf{X}) \geq C)$.
+
+    Since $(X_i - \mu) \sim \mathcal{N}(0,\sigma^2)$ we have
+    $(X_i - \mu)^2 \sim \sigma^2 \chi^2(1)$ and 
+    $\sum_{i=1}^n (X_i - \mu)^2 \sim \sigma^2 \chi^2(n)$.
+
+    Hence our critical value reads $C = \frac{1}{\sigma^2}\chi_{\alpha}^2(n)$.
+
+    \item Since $\lambda(x)$ is monotonously non-decreasing in $T(\textbf{x})$ 
+    for $\sigma_1^2 > \sigma_0^2$ the theorem from the lecture proves that 
+    above test is indeed an UMP for testing this hypothesis.
+  \end{enumerate}
   
   \end{solution}
   

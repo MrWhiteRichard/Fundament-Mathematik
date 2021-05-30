@@ -24,7 +24,7 @@ Let $X_1,\dots,X_n$ be i.i.d. from a distribution with density
 
   What is its power function?
 
-  \textit{Hint:} Show $X_i^2 \sim \exp(1/(2\theta))$, so that $\sum_i X_i^2 \sim \theta_{\chi^2}(2n)$.
+  \textit{Hint:} Show $X_i^2 \sim \exp(1/(2\theta))$, so that $\sum_i X_i^2 \sim \theta \chi^2(2n)$.
 \end{enumerate}
 
 \end{exercise}
@@ -34,6 +34,61 @@ Let $X_1,\dots,X_n$ be i.i.d. from a distribution with density
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item We use the Neyman-Pearson Lemma. For this purpose we calculate the likelihood ratio
+  
+  \begin{align*}
+    \lambda(\textbf{x}) &= \frac{L(\theta_1 | \textbf{x})}{L(\theta_0 | \textbf{x})}
+    = \frac{\theta_0^n\exp\left(-\sum_{i=1}^n\frac{x_i^2}{2\theta_1}\right)}{\theta_1^n\exp\left(-\sum_{i=1}^n\frac{x_i^2}{2\theta_0}\right)} \\
+    &= \frac{\theta_0^n}{\theta_1^n} \exp\left(\sum_{i=1}^n\frac{x_i^2}{2\theta_0}-\frac{x_i^2}{2\theta_1}\right) \\
+    &= \frac{\theta_0^n}{\theta_1^n} \exp\left(\left(\frac{1}{2\theta_0}-\frac{1}{2\theta_1}\right)\sum_{i=1}^n x_i^2\right)
+  \end{align*}
+
+  Since $\lambda$ is a non decreasing function of 
+    $T(\textbf{x}) = \sum_{i=1}^n x_i^2$,
+  we use $T(\textbf{x})$ as our test statistic.
+
+  Now we determine the rejection region
+
+  \begin{align*}
+    \Omega_1 = \left\{ \textbf{x}:  T(\textbf{X}) \geq C \right\}
+  \end{align*}
+
+  such that
+
+  \begin{align*}
+    \alpha = \P_{\theta_0}(T(\textbf{X}) \geq C).
+  \end{align*}
+
+  For that purpose we first show $X_i \sim \exp(1/(2\theta))$:
+
+  \begin{align*}
+    F_{X_i^2}(x) &= \P_\theta(X_i^2 \leq X)
+    = \P_\theta(-\sqrt{x} \leq X_i \leq \sqrt{x})
+    = \int_{-\sqrt{x}}^{\sqrt{x}} f_{X_i}(y) dy \\
+    &= \int_{0}^{\sqrt{x}} \frac{y}{\theta} \exp\left(-\frac{y^2}{2\theta}\right) dy \\
+    &= -\left[\exp\left(-\frac{y^2}{2\theta}\right)\right]_{y = 0}^{\sqrt{x}} \\
+    &= 1 - \exp\left(-\frac{x}{2\theta}\right)
+  \end{align*}
+  
+  Therefore $X_i^2 \sim \exp(1/(2\theta))$ and $\sum_{i=1}^n X_i^2 \sim \Gamma(n, 1/(2\theta))$.
+
+  Since for a chi-squared distributed variable $Q \sim \chi^2(2n)$ it holds
+  that $\theta Q \sim \Gamma(n, 1/2\theta)$ we infer that $\sum_{i=1}^n X_i^2 \sim \theta \chi^2(2n)$.
+
+  Our critical value thus reads $C = \theta_0 \chi^2_{\alpha}(2n)$.
+
+  \item Since the family $f_\theta$ has a monotone likelihood ratio in $T(\textbf{X})$ there exists
+  a uniformly most powerful test at level $\alpha$.
+  We calculate its power function: Let $Y \sim \chi^2(2n)$, then
+
+  \begin{align*}
+    \pi(\theta) &= \P_\theta(X \in \Omega_1) = \P_\theta(T(X) \geq C)
+    = \P_\theta(Y \geq \frac{C}{\theta}) \\
+    &= 1 - F_{Y}(C/\theta).
+  \end{align*}
+\end{enumerate}
 
 \end{solution}
 

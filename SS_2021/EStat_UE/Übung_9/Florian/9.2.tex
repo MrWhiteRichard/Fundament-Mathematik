@@ -19,8 +19,49 @@ Let $X_1,\dots,X_n$ be i.i.d. Uniform$(0,\theta)$.
 
 \begin{solution}
 
-\phantom{}
+We choose our test statistic as
+    
+\begin{align*}
+    T(\textbf{X}) = \max_{i=1}^n X_i.
+\end{align*}
 
+Clearly we have to reject the null hypothesis if $T(\textbf{x}) > \theta_0$.
+
+Therefore we define $R := T^{-1}([y,\infty[)$ with $y < \theta_0$ as our rejection region and determine $y$
+to obtain a test at level $\alpha$.
+
+\begin{align*}
+    \alpha &\stackrel{!}{=} \P_{\theta_0}(\textbf{X} \in R)
+    = \P_{\theta_0}(X_{(n)} \geq y) 
+    = 1 - \prod_{i=1}^n \P_{\theta_0}(X < y)
+    = 1 - \left(\frac{y}{\theta_0}\right)^n \\
+    \iff \theta_0(1 - \alpha)^{1/n} &= y.
+\end{align*}
+
+Our test therefore reads: Reject $H_0$ iff $T(\textbf{x}) \geq \theta_0(1 - \alpha)^{1/n}$.
+
+The power of this test is now defined as
+
+\begin{align*}
+    \pi = \P_{\theta_1}(\textbf{X} \in R)
+    = \P_{\theta_1}(X_{(n)} \geq \theta_0(1 - \alpha)^{1/n})
+    = 1 - (1 - \alpha)\left(\frac{\theta_0}{\theta_1}\right)^n.
+\end{align*}
+
+Now consider any other test at level $\alpha$ with rejection region $R'$:
+
+\begin{align*}
+    \pi' &= \P_{\theta_1}(\textbf{X} \in R')
+    = \int_{R'} \frac{1}{\theta_1^n}\1_{[0,\theta_1]^n}(\textbf{x}) d\textbf{x} \\
+    &= \frac{\theta_0^n}{\theta_1^n}\int_{R'\cap [0,\theta_0]^n} \frac{1}{\theta_0^n} d\textbf{x}
+    + \int_{R'\cap ([0,\theta_0]^n)^\complement} \frac{1}{\theta_1^n}\1_{[0,\theta_1]^n}(\textbf{x}) d\textbf{x} \\
+    &\leq \frac{\theta_0^n}{\theta_1^n}\alpha
+    + \int_{([0,\theta_0]^n)^\complement} \frac{1}{\theta_1^n}\1_{[0,\theta_1]^n}(\textbf{x}) d\textbf{x} \\
+    &= \frac{\theta_0^n}{\theta_1^n}\alpha
+    + 1 - \frac{\theta_0^n}{\theta_1^n} = \pi.
+\end{align*}
+
+Hence we have derived the most powerful test for our hypothesis.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

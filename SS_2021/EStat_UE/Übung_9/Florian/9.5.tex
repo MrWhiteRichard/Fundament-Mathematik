@@ -1,8 +1,8 @@
 % -------------------------------------------------------------------------------- %
 
-\begin{exercise}[\textbf{Most powerful test for the normal variance - $\mu$ is known}]
+\begin{exercise}[\textbf{Most powerful test for the normal variance - $\mu$ is unknown}]
 
-    Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where $\mu$ is known.
+    Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where $\mu$ is unknown.
     
     
     \begin{enumerate}[label = (\alph*)]
@@ -18,7 +18,7 @@
       one-sided hypothesis
 
       \begin{align*}
-          H_0: \sigma^2 \leq \sigma_0^2 \quad \text{vs.} \quad H_1: \sigma^2 < \sigma_0^2.
+          H_0: \sigma^2 \leq \sigma_0^2 \quad \text{vs.} \quad H_1: \sigma^2 > \sigma_0^2.
       \end{align*}
 
       \item Find the GLRT at level $\alpha$ for testing
@@ -35,6 +35,22 @@
     \begin{solution}
     
     \phantom{}
+
+    \begin{enumerate}[label = (\alph*)]
+        \item Let's first consider the likelihood ratio
+        
+        \begin{align*}
+            \lambda(\textbf{x}) &
+            = \frac{L(\sigma_1^2, \textbf{x})}{L(\sigma_0^2, \textbf{x})} \\
+            &= \frac{\sigma_0^n}{\sigma_1^n}
+            \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) \sum_{i=1}^n (x_i - \mu)^2\right) \\
+            \lambda(\textbf{x}) &
+      = \frac{L(\sigma_1^2, \textbf{x})}{L(\sigma_0^2, \textbf{x})} \\
+      &= \frac{\sigma_0^n}{\sigma_1^n}
+      \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) 
+      \sum_{i=1}^n (x_i^2 - 2\mu x_i + \mu^2)\right).
+        \end{align*}
+      \end{enumerate}
     
     \end{solution}
     
