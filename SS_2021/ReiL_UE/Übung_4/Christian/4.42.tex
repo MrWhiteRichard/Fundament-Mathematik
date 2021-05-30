@@ -1,0 +1,59 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+In Chapter 6 we noted that Monte Carlo error can be written as the sum of TD errors \eqref{eq:6.6} if the value estimates don't change from step to step. Show that the n-step error used in \eqref{eq:7.2} can also be written as a sum of TD errors (again if the value estimates don't change) generalizing the earlier result.
+
+\begin{align} \label{eq:6.6} \tag{6.6}
+    G_t - V(S_t)
+    =
+    \sum_{k=t}^{T-1}
+        \gamma^{k-t}
+        \delta_k
+\end{align}
+
+\begin{align} \label{eq:7.2} \tag{7.2}
+    V_{t+n}(S_t)
+    \doteq
+    V_{t+n-1}(S_t) + \alpha [G_{t:t+n} - V_{t+n-1}(S_t)],
+    \quad
+    0 \leq t < T
+\end{align}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+We first remind of the definition of $\delta_t$ in \eqref{eq:6.6}:
+
+\begin{align*}
+  \delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t)
+\end{align*}
+
+We make the assumption that $t+n < T$, otherwise $G_{t:t+n} = G_t$ and in this case the error is just $\eqref{eq:6.6}$.
+
+\begin{align*}
+  G_{t:t+n} - V(S_t)
+  &=
+  R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n}) - V(S_t) \\
+  &=
+  R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n}) - V(S_t) + \gamma V(S_{t+1}) - \gamma V(S_{t+1}) \\
+  &=
+  \delta_t + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n}) - \gamma V(S_{t+1}) \\
+  &=
+  \delta_t + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n}) - \gamma V(S_{t+1}) + \gamma^2 V(S_{t+2}) - \gamma^2 V(S_{t+2}) \\
+  &=
+  \delta_t + \gamma \delta_{t+1} + \gamma^2 R_{t+3} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n V(S_{t+n}) - \gamma^2 V(S_{t+2}) \\
+  &=
+  \cdots \\
+  &=
+  \delta_t + \gamma \delta_{t+1}+ \cdots + \gamma^{n-1}(R_{t+n} + \gamma V(S_{t+n}) - V(S_{t+n-1}))
+  =
+  \sum_{k=t}^{t+n-1} \gamma^{k-t}\delta_k
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
