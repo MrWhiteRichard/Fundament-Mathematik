@@ -1,0 +1,50 @@
+\documentclass[a4paper,11pt,bibliography=totoc,listof=totoc,headinclude=true,cleardoublepage=empty,oneside]{scrbook}
+% Option "oneside" für einseitigen Druck. Weglassen, falls die Arbeit doppelseitig gedruckt wird
+
+\input{setup/anr_packages.tex}
+\input{setup/anr_macros.tex}
+\input{setup/anr_environments.tex}
+
+\addbibresource{anr_bibliogarphy.bib}
+
+% Zum Druck verwende schwarze Links!
+%\usepackage[unicode,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,pagebackref=false]{hyperref} 
+% colorlinks=false umrahmt Links statt einzufärben, 
+
+
+% document style
+\KOMAoptions{footinclude=false} % Fußzeile wird nicht zu Satzspiegel gezählt
+\KOMAoptions{headsepline=true} % Trennlinie zwischen Kopfzeile und Text
+\KOMAoptions{DIV=12} % beeinflusst Satzspiegel
+\KOMAoptions{BCOR=8mm} % Bindekorrektur
+\pagestyle{headings} % mit Kopfzeilen
+
+\recalctypearea % berechne Satzspiegel neu
+
+\definecolor{change}{rgb}{0,.55,.55}
+
+\def\revision#1{{\color{red}#1}}
+
+\begin{document}
+
+	\input{titlepage.tex}	
+	
+	\input{acknowledgement.tex}
+	
+	\input{eid.tex}
+	
+	\input{table_of_content.tex}
+	
+	\input{chapters/0introduction.tex}
+	
+	\input{chapters/1classes_and_categories.tex}
+	
+	\input{chapters/2miscellaneous.tex}
+	
+	\input{chapters/3ae_and_ane.tex}
+	
+	\input{chapters/4ar_and_anr.tex}
+
+\printbibliography
+
+\end{document}

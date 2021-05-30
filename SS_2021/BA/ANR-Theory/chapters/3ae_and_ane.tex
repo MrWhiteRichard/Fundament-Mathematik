@@ -1,0 +1,47 @@
+\section{Absolute extensors and absolute neighborhood extensors}
+
+\begin{definition}
+	A topological space $\tspace[Y][O]$ is called \textit{\aex} for a full subcategory $\cat$ of $\Top$, if and only if for every closed set $A$ of an object $\tspace$ of $\cat$ and every $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$ there exists an extension $\overline{f} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ of $f$.  
+\end{definition}
+
+The following theorem provides us with a great number of examples of AEs and hence also ANEs. 
+
+\begin{theorem}[Dugundji extension theorem]
+	Every convex subset of a locally convex topological vector space is an \aex for $\Met$.
+\end{theorem}
+
+\begin{proof}
+	Let $C$ be a convex subset of an object $\tvspace{\K}$ of $\LCTVS{\K}$ and let $\tspace$ be an object of $\Met$. Consider any arbitrary closed set $A$ in $\tspace$ and a continuous function $f \in \Hom_\Met\pbraces{\reltspace, \reltspace[C][O]}$. The set $\cover := \Bbraces{\ball[x][2^{-1} \dist\pbraces{x, A}] \mid x \in X \setminus A}$ is an open cover of $\reltspace[X\setminus A][T]$. 
+	
+	The metrizable space $\reltspace[X \setminus A][T]$ is paracompact by \ref{theorem:stone}, hence there exists a locally finite refinement $\cover[V]$ of $\cover$ which covers $X \setminus A$. By \ref{theorem:para_part}, we find for every $V \in \cover[V]$ a function $g_V \in \Hom_\Top\pbraces{\reltspace[X\setminus A][T], \pbraces{[0,1], \eucl}}$ such that $\supp g_V \subseteq V$ and $\partition[G] := \Bbraces{g_V \mid V \in \cover[V]}$ is a locally finite partition of unity of $\reltspace[X \setminus A][T]$.  
+	
+	\colorbox{red}{why?}For every $V \in \cover[V]$ we find a point $a_V \in A$ such that for all $y \in V$ we have $\metric\pbraces{y, a_V} \leq 2 \metric\pbraces{y, A}$. We define a function $\overline{f}: X \to C$ by
+	\begin{align*}
+		\overline{f}(x) :=
+		\begin{cases}
+			f(x) &, \text{if } x \in A \\
+			\sum_{V \in \cover[V]} g_V(x) f\pbraces{a_V} &, \text{if } x \in X \setminus A.
+		\end{cases}
+	\end{align*}
+	We will show that $\overline{f} \in \Hom_\Top\pbraces{\tspace, \reltspace[C][O]}$. In order to prove this, consider some $x \in X \setminus A$. Since $\tspace[L][O]$ is locally convex, there exists a neighborhood $W$ of $x$ in $\reltspace[X \setminus A][T]$ that only meets the elements of a finite subset $\cover[V]^\prime$ of $\cover[V]$. Hence, for an arbitrary $y \in W$, we can write
+	\begin{align*}
+		\overline{f}(y) = \sum_{V \in \cover[V]} g_V(y) f\pbraces{a_V} = \sum_{V \in \cover[V]^\prime} g_V(y) f\pbraces{a_V}.
+	\end{align*} 
+	Since the last sum is a convex combination, we verified $\overline{f}(y) \in C$. Furthermore, we see that $\overline{f}$ restricted to $W$ is continuous, because it can be written as a finite sum of continuous functions. Therefore, $\overline{f}$ is continuous at any point in $X \setminus A$. 
+	
+	It remains to show continuity at any point $x \in A$. In order to prove this, let $W$ be any neighborhood of $f(x)$ in $\reltspace[C][O]$. Since $\tspace[L][O]$ is locally convex, we can assume \Wlog that $W$ is convex. Since $f$ is continuous, there exists $\delta \in \R^+$ such that $f\bbraces{\ball[x][\delta][\metric] \cap A} \subseteq W$.
+	
+	Consider some $y \in \ball[x][3^{-1}\delta][\metric]$. if $y \in A$ then we obviously have $\overline{f}(y) = f(y) \in W$. Let us assume from now on that $y \notin A$. Since $\partition[G]$ is locally finite, the set $\cover[V]^\prime := \Bbraces{V \in \cover[V] \mid y \in V}$ is finite. For any $V \in \cover[V]^\prime$ we have $\metric\pbraces{y, A} \leq \metric\pbraces{y, x} < 3^{-1}\delta$ and hence
+	\begin{align*}
+		\metric\pbraces{x, a_V} \leq \metric\pbraces{x, y} + \metric\pbraces{y, a_V} \leq \metric\pbraces{x, y} + 2 \metric\pbraces{y, A} < \delta.
+	\end{align*}
+	Therefore, $a_V \in \ball[x][\delta][\metric] \cap A$ and $f\pbraces{a_V} \in W$. We finally obtain
+	\begin{align*}
+		\overline{f}(y) = \sum_{V \in \cover[V]} g_V(y) f(a_V) = \sum_{V \in \cover[V]^\prime} g_V(y) f(a_V).
+	\end{align*}
+	The last sum is a convex combination, hence $\overline{f}(y) \in W$. This completes the proof. 
+\end{proof}
+
+\begin{remark}
+	Local convexity can not be dropped in the Dugundji extension theorem.\cite[remark1.2.4]{IDT}
+\end{remark}

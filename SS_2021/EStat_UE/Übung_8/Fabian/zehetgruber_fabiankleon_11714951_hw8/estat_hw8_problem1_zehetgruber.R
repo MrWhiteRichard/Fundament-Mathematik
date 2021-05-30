@@ -60,17 +60,6 @@ for (n in sample_size) {
     col = "red"
   )
   points(n, mu, col = "red", pch = 19)
-  theoretical_sigma <- 1 / (sqrt(n) * theta)
-  arrows(
-    n,
-    theoretical_mu - theoretical_sigma,
-    n,
-    theoretical_mu + theoretical_sigma,
-    length = 0.1,
-    angle = 90,
-    code = 3,
-    col = "green"
-  )
 }
 
 lines(
@@ -80,3 +69,14 @@ lines(
   lwd = 2
 )
 
+theoretical_sigma <- 1 / (sqrt(sample_size) * theta)
+lines(sample_size,  theoretical_mu + theoretical_sigma, col = "green")
+lines(sample_size,  theoretical_mu - theoretical_sigma, col = "green")
+
+legend(
+  "topright",
+  c("estimates", "theoretical values"),
+  col = c("red", "green"),
+  lty = 1,
+  cex = 0.8
+)

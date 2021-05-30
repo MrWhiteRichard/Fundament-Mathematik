@@ -1,0 +1,114 @@
+\section{The topological spaces as a category}
+
+
+\begin{definition}
+	Let $\K \in \Bbraces{\R, \C}$. The tuple $\tvspace{\K}$ is said to be a \textit{topological vector space}, if and only if $\pbraces{L, +, \pbraces{\omega_\lambda}_{\lambda \in \K}}$ is a vector space with the scalar multiplication $\cdot: \K \times X \to X$ defined by $\cdot(\lambda, x) = \omega_\lambda(x)$, and $\tspace[L][O]$ is a topological space such that $+$ and $\cdot$ are continuous functions, when $\K$ is furnished with the standard toplogy and products of sets with the product toplogy.
+\end{definition}
+
+\begin{definition}
+	Let $(X, \mathcal{T})$ be a topological space. 
+	
+	Two subsets $A,B \subseteq X$ are said to be \textit{separated} in $(X, \mathcal{T})$, if and only if each is disjoint from the others closure in $(X, \mathcal{T})$. Two points $x,y \in X$ are said to be separated in $(X, \mathcal{T})$, if and only if the sets $\{x\}$ and $\{y\}$ can be separated in $(X, \mathcal{T})$.
+	
+	A subset $U$ of $X$ is called a \textit{neighbourhood} of a subset $A$ of $X$ in $\tspace$ if and only if there exists a set $O \in \mathcal{T}$ with $A \subseteq O \subseteq U$. The neighbourhoods of a point $x \in X$ in $(X, \mathcal{T})$ are the neighbourhoods of the set $\{x\}$ in $(X, \mathcal{T})$.
+	
+	Two subsets $A$ and $B$ of $X$ are said to be \textit{separated by neighbourhoods} in $(X, \mathcal{T})$, if and only if there are disjoint neighbourhoods of the two sets. 
+\end{definition}
+
+\begin{definition}
+	We define the following separation axioms for a topological space $(X, \mathcal{T})$.
+	\begin{enumerate}[label= $(T_\arabic*)$]
+		\item \label{axiom:t1} Any two distinct points can be separated in $(X, \mathcal{T})$. 
+		
+		\item \label{axiom:t2} Any two distinct points can be separated by neighbourhoods in $(X, \mathcal{T})$. 
+		
+		\item \label{axiom:t3} Any closed subset $A$ of $\tspace$ and any point $x \in X\setminus A$ can be separated by neighbourhoods in $(X, \mathcal{T})$. 
+		
+		\item \label{axiom:t4} Any two disjoint closed subsets of $(X, \mathcal{T})$ can be separated by neighbourhoods. 
+	\end{enumerate}
+\end{definition}
+
+We want to use the notion of a \textit{class} in this bachelor thesis. Since the whole bachelor thesis is based on the ZFC-axioms, we can not define classes as objects, because they do not exist in this axiomatic system. We can think of a class as a property, written down as a mathematical formula. An object, which is always a set in our axiomatic system, is said to be in the class $\mathcal{C}$, if and only if it has the property that characterizes $\mathcal{C}$. We will for example talk about the class of all metrizable spaces. 
+
+You might wonder why we do not simply talk about the set of all metrizable spaces. The answer is simple. This set does not exist. Since the discrete metric induces the discrete Toplogy on any arbitrary set \cite[p.414]{Ana1&2}, there is a metric space for every set. Since the set of all sets does not exist due to Russel's paradox, the set of all metric spaces with the discrete Toplogy does also not exist. Therefore, every class that contains all these topological spaces, for example the class of all metrizable spaces, is a \textit{proper class} as well, meaning it is not a set.
+
+\begin{definition}
+	A \textit{category} $\cat$ is given by the following.
+	\begin{enumerate}
+		\item A class $\Ob\pbraces{\cat}$ of \textit{objects}.
+		\item For all $A, B$ in $\Ob\pbraces{\cat}$ there is a set $\Hom_\cat\pbraces{A, B}$ of \textit{morphisms}. All these sets have to be pairwise disjoint. For every object $A$ there is the \textit{identity} morphism $\id_A \in \Hom_\cat\pbraces{A, A}$.
+		\item For all $A, B, C$ in $\Ob\pbraces{\cat}$ there is a function $\Hom_\cat\pbraces{B, C} \times \Hom_\cat\pbraces{A, B} \to \Hom_\cat\pbraces{A, C}$ given by $\pbraces{g, f} \mapsto g \circ f$ which is called \textit{composition}. For all $A, B, C, D$ in $\Ob(\cat)$ and for all $f \in \Hom_\cat(A, B)$, $g \in \Hom_\cat(B,C)$ and $h \in \Hom_\cat(C,D)$ we have $h \circ (g \circ f) = (h \circ g) \circ f$ and $\id_B \circ f = f$ as well as $g \circ \id_B = g$. 
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	There are various examples of categories. 
+	\begin{enumerate}
+		\item The category $\Set$ of all sets with the functions between sets as the morphisms and the usual composition of functions as the composition.
+		
+		\item The category $\Grp$ of all groups with the homomorphisms as morphisms and the usual composition of functions as the composition.
+		
+		\item The full subcategory $\Ab$ of $\Grp$ containing all abelian groups. 
+		
+		\item The categroy $\Top$ of all topological sapces with the continuous functions as morphisms and the usual composition of functions as the composition.
+		
+		\item The full subcategory $\Haus$ of $\Top$ containing all topological spaces that fulflill the axiom \ref{axiom:t2}. 
+		
+		\item The full subcategory $\Normal$ of $\Top$ containing all topological spaces that fulfill the axiom \ref{axiom:t4}. 
+		
+		\item The category $\TVS{\K}$ of all topological vector spaces over a given topological field $\K$ with the continuous and $\K$-linear functions as morphisms and the usual composition of functions as the composition.
+		
+		\item The full subcategory $\LCTVS{\K}$ of $\TVS{\K}$ containing all locally convex topological vector spaces over a given topological field $\K$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Two objects $A, B$ of a category $\cat$ are said to be \textit{equivalent}, if and only if there exist $f \in \Hom_\cat(A,B)$ and $g \in \Hom_\cat(B,A)$, such that $f \circ g = \id_A$ and $g \circ f = \id_B$. 
+\end{definition}
+
+\begin{definition}
+	An object $A$ of a category $\cat$ is said to be \textit{initial}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom_\cat(A, B)$. The object $A$ is said to be \textit{terminal}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom_\cat(B, A)$.   
+\end{definition}
+
+\begin{theorem} \cite[p. 83]{Alg1&2}
+	If $A$ and $B$ are two initial or two terminal objects of a category $\cat$, then they are equivalent. 
+\end{theorem}
+\begin{proof}
+	There exists exactly one $f \in \Hom_\cat(A, B)$ and exactly one $g \in \Hom_\cat(B,A)$. Since $\id_A$ is the only morphism in $\Hom_\cat(A, A)$ and $\id_B$ is the only morphism in $\Hom_\cat(B, B)$, we have $g \circ f = \id_A$ and $f \circ g = \id_B$. Therefore, $A$ and $B$ are equivalent. 
+\end{proof}
+
+\begin{definition}
+	Let $\mathcal{C}$ be a category $K$ some set and $A_k$ in $\Ob\pbraces{\mathcal{C}}$ for every $k \in K$. An Object $C$ in this category together with a family $(e_k)_{k \in K}$ of morphisms $e_k: A_k \to C$ is called a \textit{coproduct} of the family $A_k$, if and only if it is an initial object in the category $\mathcal{C}^\ast$ that is given by all tuples $\pbraces{A, (\varphi_k)_{k \in K}}$, where $A$ in $Ob(\mathcal{C})$ and $\phi_k: A_k \to A$ is a morphism from $\mathcal{C}$ for every $k \in K$. The Morphisms in $\mathcal{C}^\ast$ of two objects $\pbraces{A, (\varphi_k)_{k \in K}}$ and $\pbraces{B, (\psi_k)_{k \in K}}$ are given by all triple $(A, f, B)$, where $f \in \Hom_\Top(A, B)$ such that $\psi_k = f \circ \varphi_k$. The composition is the one from the categroy $\mathcal{C}$. 
+\end{definition}
+
+\begin{definition}
+	Let $I$ be an object of $\Set$ and for every $i \in I$ let $\pbraces{X_i, \Tc_i}$ be an object of $\Top$. The coproduct 
+	\begin{align*}
+	\pbraces{\tspace, \pbraces{\varphi_i}_{i \in I}} := \coprod_{i \in I} \pbraces{X_i, \Tc_i}
+	\end{align*}
+	is called \textit{disjoint union} of the family $\pbraces{\pbraces{X_i, \Tc_i}}_{i \in I}$.
+\end{definition}
+
+\begin{lemma}
+	Let $I$ be a set, for every $i \in I$ the tuple $\pbraces{X_i, \mathcal{T}_i}$ a topological space and $X := \Bbraces{\pbraces{x, i} \mid x \in X_i}$. If we define for every $i \in I$ the function $f_i: X_i \to X$ by $f_i(x) := \pbraces{x, i}$ and denote with $\mathcal{T}$ the final topology on $X$ induced by $\pbraces{f_i}_{i \in I}$, then
+	\begin{align*}
+		\pbraces{\tspace, \pbraces{f_i}_{i \in I}} = \coprod_{i \in I} \pbraces{X_i, \mathcal{T}_i}.
+	\end{align*}
+	in the category $\Top$. 
+\end{lemma}
+\begin{proof}
+	Let $\tspace[Y][O]$ be some topological space and for every $i \in I$ let $g_i \in \Hom_\Top\pbraces{\pbraces{X_i, \mathcal{T}_i}, \tspace[Y][O]}$. Since $\tau$ is the final topology on $X$ induced by $\pbraces{f_i}_{i \in I}$ and the function $h: X \to Y$ defined by $h\pbraces{(x,i)} := g_i(x)$ fulfills $h\pbraces{f_i(x)} = h\pbraces{(x,i)} = g_i(x)$ for every $i \in I$ and $x \in X$, we have $h \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$. 
+	If $\tilde{h} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ is another function such that for all $i \in I$ we have $g_i = \tilde{h} \circ f_i$, then we obtain for any arbitrary $(x,i) \in X$ that
+	\begin{align*}
+		\tilde{h}\pbraces{(x,i)} = \tilde{h}\pbraces{f_i(x)} = g_i(x) = h\pbraces{(x,i)}.
+	\end{align*}
+	The observation $\tilde{h} = h$ concludes the proof.
+\end{proof}
+
+\begin{lemma}\label{lemma:disjoint_met}
+	If $I$ is any arbitrary set and $\pbraces{\tspace, \pbraces{f_i}_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}_{i \in I}$ of metrizable topological spaces, then $\tspace$ is a metrizable topological space. 
+\end{lemma}
+
+\begin{lemma}\label{lemma:disjoint_comp}
+	If $I$ is any finite set and $\pbraces{\tspace, \pbraces{f_i}_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}_{i \in I}$ of compact topological spaces, then $\tspace$ is a compact topological space. 
+\end{lemma}
