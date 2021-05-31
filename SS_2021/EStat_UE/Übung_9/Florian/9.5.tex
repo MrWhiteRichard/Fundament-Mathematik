@@ -34,21 +34,60 @@
     
     \begin{solution}
     
-    \phantom{}
+    We consider the composite hypotheses $\Theta_0 := \{ (\mu, \sigma_0^2): \mu \in \R\}$
+    and $\Theta_1 := \{ (\mu, \sigma_1^2): \mu \in \R \}$.
 
     \begin{enumerate}[label = (\alph*)]
-        \item Let's first consider the likelihood ratio
+        \item We already know the general MLE for $(\mu,\sigma^2)$:
         
         \begin{align*}
-            \lambda(\textbf{x}) &
-            = \frac{L(\sigma_1^2, \textbf{x})}{L(\sigma_0^2, \textbf{x})} \\
-            &= \frac{\sigma_0^n}{\sigma_1^n}
-            \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) \sum_{i=1}^n (x_i - \mu)^2\right) \\
-            \lambda(\textbf{x}) &
-      = \frac{L(\sigma_1^2, \textbf{x})}{L(\sigma_0^2, \textbf{x})} \\
-      &= \frac{\sigma_0^n}{\sigma_1^n}
-      \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) 
-      \sum_{i=1}^n (x_i^2 - 2\mu x_i + \mu^2)\right).
+            \hat{\mu} &= \bar{X} \\
+            \hat{\sigma}^2 &= \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2
+        \end{align*}
+
+        For the MLE under $H_0$ we simply replace $\hat{\sigma}^2$ by $\sigma_0^2$.
+
+        For the MLE under $H_1$ we simply replace $\hat{\sigma}^2$ by $\sigma_1^2$.
+
+        Now we can write down the GLRT:
+
+        \begin{align*}
+            \lambda(\textbf{x}) 
+            &= \frac{L(\hat{\mu}, \sigma_1^2 | \textbf{x})}{L(\hat{\mu}, \sigma_0^2 | \textbf{x})} \\
+            &= \left(\frac{\sigma_0^2}{\sigma_1^2}\right)^{n/2}
+            \exp\left(-\left( \frac{1}{2\sigma_1^2} - \frac{1}{2\sigma_0^2}\right) \sum_{i=1}^n (X_i - \bar{X})^2\right) \\
+        \end{align*}
+  
+        We simplify our test statistic to $T(\textbf{X}) = \sum_{i=1}^n (X_i - \bar{X})^2$.
+        Finally we find the corresponding critical value for $T(\textbf{X})$ by solving
+
+        \begin{align*}
+            \alpha &\stackrel{!}{=} \sup_{\theta \in \Theta_0} \P(T(\textbf{X}) \geq C) \\
+            &= \sup_{\mu \in \R} \P(T(\textbf{X}) \geq C) \\
+            &= \sup_{\mu \in \R} \P\left(\sum_{i=1}^n \frac{(X_i - \bar{X})^2}{\sigma_0^2/n} \geq \frac{n}{\sigma_0^2}C\right) \\
+            &= 1 - F_{\chi^2(n)}\left(\frac{n}{\sigma_0^2}C\right) \\
+            \iff C &= \frac{\sigma_0^2}{n}\chi_{1 - \alpha}^2(n).
+        \end{align*}
+
+        \item Our new MLE under $H_0$ for calculating the GLRT for the one-sided
+        hypothesis now reads
+
+        \begin{align*}
+            \hat{\mu} &= \bar{X} \\
+            \hat{\sigma}^2 &= \begin{cases}
+                \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2, & \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 \leq \sigma_0^2 \\
+                \sigma_0^2, & \text{otherwise}.
+            \end{cases}
+        \end{align*}
+
+        Therefore we obtain the new GLR
+
+        \begin{align*}
+            \lambda(\textbf{x}) = \begin{cases}
+                \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}
+            \exp\left(-\frac{n}{2}\left(1 - \frac{\hat{\sigma}^2}{\sigma_0^2}\right)\right), & \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2 > \sigma_0^2 \\
+            1, & \text{otherwise}
+            \end{cases}
         \end{align*}
       \end{enumerate}
     

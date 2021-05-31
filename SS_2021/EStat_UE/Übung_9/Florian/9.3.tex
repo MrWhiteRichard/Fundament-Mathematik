@@ -75,18 +75,18 @@ Let $X_1,\dots,X_n$ be i.i.d. from a distribution with density
   Therefore $X_i^2 \sim \exp(1/(2\theta))$ and $\sum_{i=1}^n X_i^2 \sim \Gamma(n, 1/(2\theta))$.
 
   Since for a chi-squared distributed variable $Q \sim \chi^2(2n)$ it holds
-  that $\theta Q \sim \Gamma(n, 1/2\theta)$ we infer that $\sum_{i=1}^n X_i^2 \sim \theta \chi^2(2n)$.
+  that $\theta Q \sim \Gamma(n, 1/2\theta)$ we infer that $T(\textbf{X}) = \sum_{i=1}^n X_i^2 \sim \theta \chi^2(2n)$.
 
-  Our critical value thus reads $C = \theta_0 \chi^2_{\alpha}(2n)$.
+  Our critical value thus reads $C = \theta_0 \chi^2_{1 - \alpha}(2n)$.
 
-  \item Since the family $f_\theta$ has a monotone likelihood ratio in $T(\textbf{X})$ there exists
-  a uniformly most powerful test at level $\alpha$.
+  \item Since the family $f_\theta$ has a monotone likelihood ratio in $T(\textbf{X})$ we have
+  already found a uniformly most powerful test at level $\alpha$.
   We calculate its power function: Let $Y \sim \chi^2(2n)$, then
 
   \begin{align*}
     \pi(\theta) &= \P_\theta(X \in \Omega_1) = \P_\theta(T(X) \geq C)
     = \P_\theta(Y \geq \frac{C}{\theta}) \\
-    &= 1 - F_{Y}(C/\theta).
+    &= 1 - F_{Y}\left(\frac{\theta_0}{\theta} \chi^2_{1 - \alpha}(2n)\right).
   \end{align*}
 \end{enumerate}
 

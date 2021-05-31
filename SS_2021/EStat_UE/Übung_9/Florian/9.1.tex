@@ -22,7 +22,7 @@ $\Theta_1 = \{(\mu, \sigma^2): \mu \in \R, \sigma^2 \neq \sigma_0^2\}$.
 We first find the general MLE of $(\mu, \sigma)$.
 
 \begin{align*}
-  L(\mu, \sigma^2 | \textbf{x}) &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\exp\left(-\frac{\sum_{i=1}^n (x_i - \mu)^2}{2\sigma^2}\right) \\
+  L(\mu, \sigma^2 | \textbf{x}) &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i - \mu)^2\right) \\
   \ell(\mu, \sigma^2 | \textbf{x}) &= \log(L(\sigma,\textbf{x})) 
   = -\frac{n}{2}(\log(2\pi) + \log(\sigma^2)) - \frac{\sum_{i=1}^n (x_i - \mu)^2}{2\sigma^2}
 \end{align*}
@@ -73,24 +73,30 @@ The MLE under the restriction of the null hypothesis thus reads
 Therefore the generalized likelihood ratio reads
 
 \begin{align*}
-  \frac{L(\hat{\mu}, \hat{\sigma}^2 | \textbf{x})}{L(\hat{\mu}_0, \hat{\sigma}^2_0, \textbf{x})} 
-  &= \frac{\exp\left(-n\frac{\sum_{i=1}^n(x_i - \bar{x})^2}{2\sum_{i=1}^n (x_i - \bar{x})^2}\right)}
+  \lambda(x) &= \frac{\sup_{\theta \in \Theta} L(\theta | \textbf{x})}{\sup_{\theta \in \Theta_0} L(\theta | \textbf{x})}
+  = \frac{L(\hat{\mu}, \hat{\sigma}^2 | \textbf{x})}{L(\hat{\mu}_0, \hat{\sigma}^2_0, \textbf{x})} 
+  = \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\frac{\exp\left(-n\frac{\sum_{i=1}^n(x_i - \bar{x})^2}{2\sum_{i=1}^n (x_i - \bar{x})^2}\right)}
   {\exp\left(-\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{2\sigma_0^2}\right)} \\
-  &= \exp\left(\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{2\sigma_0^2}-\frac{n}{2}\right),
+  &= \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\exp\left(\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{2\sigma_0^2}-\frac{n}{2}\right) \\
+  &= \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\exp\left(\frac{1}{2}\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{\sigma_0^2}-\frac{n}{2}\right),
 \end{align*}
 
-which is a non-decreasing function of the test statistic
+which is a non-decreasing function of our test statistic
 
 \begin{align*}
-  T(\textbf{X}) = \sum_{i=1}^n \frac{(X_i - \bar{X})^2}{\sigma_0^2} \sim \chi^2(n).
+  T(\textbf{X}) = \sum_{i=1}^n \frac{(X_i - \bar{X})^2}{\sigma_0^2}.
 \end{align*}
 
+We know from the lecture that $T(\textbf{X}) \sim  \chi^2(n-1)$.
+
+Our test now rejects $H_0$ iff $T(\textbf{X}) \geq C$.
 For the critical value $C$ we have to solve
 
 \begin{align*}
   \alpha &\stackrel{!}{=} \sup_{(\mu, \sigma^2) \in \Theta_0} \P_{(\mu, \sigma^2)}(T(\textbf{X}) \geq C) \\
-  &= \sup_{\mu \in \R} \P_{(\mu, \sigma_0^2)}\theta(T(\textbf{X}) \geq C) \\
-  &\iff T(\textbf{X}) \geq \chi_{1 - \alpha}^2(n)
+  &= \sup_{\mu \in \R} \P_{(\mu, \sigma_0^2)}(T(\textbf{X}) \geq C) \\
+  &= 1 - F_{\chi^2}(C) \\
+  \iff C &= \chi_{1 - \alpha}^2(n-1).
 \end{align*}
 \end{solution}
 
