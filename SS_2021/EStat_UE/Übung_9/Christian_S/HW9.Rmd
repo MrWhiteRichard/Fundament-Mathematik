@@ -1,7 +1,7 @@
 ---
 title: "HW9"
 author: "Christian Sallinger"
-date: "18 5 2021"
+date: "01 6 2021"
 output: pdf_document
 ---
 
@@ -19,6 +19,54 @@ $$
 
 \textbf{Solution:}
 
+Our test-regions are $\Theta_0 = \mathbb{R}\times\{\sigma_0^2\}$, $\Theta_1 = \mathbb{R}\times \mathbb{R}^+\setminus\{\sigma_0^2\}$ and the GLR is given by
+
+$$
+\lambda(\textbf{x})
+=
+\frac{\sup_{(\mu,\sigma^2) \in \Theta} L(\mu,\sigma^2;\textbf{x})}{\sup_{(\mu,\sigma^2) \in \Theta_0} L(\mu,\sigma^2;\textbf{x})}
+$$
+
+We already know the MLEs of the normal
+
+\begin{align*}
+&\hat{\mu} = \bar X \\
+&\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2
+\end{align*}
+
+from the lecture. The MLE for $\Theta_0$ is given by $\hat{\mu} = \bar X$ and $\hat{\sigma}^2 = \sigma_0^2$. This means the GLR reads as follows:
+
+\begin{align*}
+\lambda(\textbf{x})
+&=
+\Big(\frac{\sigma_0^2}{\hat{\sigma}^2}\Big)^{n/2} \exp\Big(\big(\frac{1}{2\sigma_0^2} - \frac{1}{2\hat{\sigma}^2}\big)\sum_i (x_i-\bar{\textbf{x}})^2\Big) \\
+&=
+\Big(\frac{\sigma_0^2}{\hat{\sigma}^2}\Big)^{n/2} \exp\Big(\big(\frac{1}{2\sigma_0^2} - \frac{1}{2\hat{\sigma}^2}\big)n\hat{\sigma}^2\Big) \\
+&=
+\Big(\frac{\sigma_0^2}{\hat{\sigma}^2}\Big)^{n/2} \exp\Big(\big(\frac{\hat{\sigma}^2}{\sigma_0^2} - 1\big) \frac{n}{2}\Big) \\
+\end{align*}
+
+We note the statistic $T(\textbf{x}) = \frac{\hat{\sigma}^2}{\sigma_0^2}$ and the function
+
+$$
+f(x)
+=
+\Big(\frac{1}{x}\Big)^n \exp\big((x-1)\frac{n}{2}\big)
+$$
+fulfill $\lambda(\textbf{x}) = f(T(\textbf{x}))$. We now reject $H_0$ if 
+
+$$
+\lambda(\textbf{x}) = f(T(\textbf{x})) \geq C
+$$
+
+where the critical value $C$ at level $\alpha$ is given by
+
+$$
+\alpha
+=
+\sup_{(\mu,\sigma^2) \in \Theta_0}\mathbb{P}(\lambda \geq C)
+$$
+
 ## 2. Most powerful test 1
 
 Let $X_1,\dots,X_n$ be i.i.d. Uniform$(0,\theta)$.
@@ -32,6 +80,73 @@ $$
 (b) Calculate the power of the MP test.
 
 \textbf{Solution:}
+
+We use the test statistic $T(\textbf{X}) = \max_{i=1}^n X_i$ with rejection region $\Omega_1 = \{\textbf{x}: T(\textbf{x}) \geq C\}$. We reject $H_0$ at level $\alpha$ when
+
+$$
+\alpha 
+=
+\mathbb{P}_{\theta_0}(\textbf{X} \in \Omega_1)
+=
+\mathbb{P}_{\theta_0}(T(\textbf{X}) \geq C)
+=
+1 - \mathbb{P}_{\theta_0}(\textbf{X}_{(n)} \leq C)
+=
+1 - \mathbb{P}_{\theta_0}(X_1 \leq C)^n
+=
+1- \Big(\frac{C}{\theta_0}\Big)^n
+$$
+so our critical value is
+
+$$
+C = \theta_0 \sqrt[n]{1-\alpha}
+$$
+The power of this test for fixed $\alpha$ is given by
+
+$$
+\pi
+=
+\mathbb{P}_{\theta_1}(T(\textbf{X})\geq C)
+=
+1 - \mathbb{P}_{\theta_1}(\textbf{X}_{(n)}\leq C)
+=
+1 - \mathbb{P}_{\theta_1}(X_1\leq C)^n
+=
+1 - (1-\alpha)\Big(\frac{\theta_0}{\theta_1}\Big)^n
+$$
+
+If we now consider any other test at level $\alpha^\prime \leq \alpha$ and let $\Omega_1^\prime$ and $\pi^\prime$ be its rejection region and power, respectively
+
+$$
+\alpha^\prime = \int_{\Omega_1^\prime} f_{\theta_0}(\textbf{x})d\textbf{x}, \quad \pi^\prime = \int_{\Omega_1^\prime} f_{\theta_1}(\textbf{x})d\textbf{x}
+$$
+
+Then it holds
+
+\begin{align*}
+\pi^\prime 
+&= 
+\int_{\Omega_1^\prime} \Big(\frac{1}{\theta_1}\Big)^n \textbf{1}_{[0,\theta_1]^n}(\textbf{x})d\textbf{x} \\
+&=
+\int_{\Omega_1^\prime \cap[0,\theta_0]^n} \Big(\frac{1}{\theta_1}\Big)^nd\textbf{x}
++
+\int_{\Omega_1^\prime \cap ([0,\theta_0]^n)^c} \Big(\frac{1}{\theta_1}\Big)^n \textbf{1}_{[0,\theta_1]^n}(\textbf{x})d\textbf{x} \\
+&=
+\Big(\frac{\theta_0}{\theta_0}\Big)^n\int_{\Omega_1^\prime \cap[0,\theta_0]^n} \Big(\frac{1}{\theta_1}\Big)^nd\textbf{x}
++
+\int_{\Omega_1^\prime \cap ([0,\theta_0]^n)^c} \Big(\frac{1}{\theta_1}\Big)^n \textbf{1}_{[0,\theta_1]^n}(\textbf{x})d\textbf{x} \\
+&\leq
+\Big(\frac{\theta_0}{\theta_1}\Big)^n \alpha^\prime +\int_{([0,\theta_0]^n)^c} \Big(\frac{1}{\theta_1}\Big)^n \textbf{1}_{[0,\theta_1]^n}(\textbf{x})d\textbf{x} \\
+&=
+\Big(\frac{\theta_0}{\theta_1}\Big)^n \alpha^\prime +\int_{[\theta_0,\theta_1]^n} \Big(\frac{1}{\theta_1}\Big)^n d\textbf{x} \\
+&=
+\Big(\frac{\theta_0}{\theta_1}\Big)^n \alpha^\prime + 1 -\Big(\frac{\theta_0}{\theta_1}\Big)^n \\
+&\leq
+1 - (1-\alpha)\Big(\frac{\theta_0}{\theta_1}\Big)^n
+=
+\pi
+\end{align*}
+
 
 ## 3. Most powerful test 2
 
@@ -61,6 +176,95 @@ $$
 
 \textbf{Solution:}
 
+We first show the hint, to do that we use the transformation theorem with function $g: \mathbb{R}^+ \rightarrow \mathbb{R}^+: x \mapsto x^2$ with differentiable inverse $h(x) = \sqrt{x}$. The theorem now states that
+
+$$
+f_{X_i^2}(x)
+=
+f_{X_i}(h(x))h^\prime(x)
+=
+\frac{\sqrt{x}}{\theta}e^{-\frac{x}{2\theta}}\frac{1}{2\sqrt{x}}
+=
+\frac{1}{2\theta}e^{-\frac{x}{2\theta}}, \quad x\geq 0
+$$
+which is exactly the PDF of the $\exp(\frac{1}{2\theta})$. With the same transformation theorem we can easily show that 
+$$
+\frac{X_i^2}{2\theta} \sim \exp(1) =\chi^2(2)/2,
+$$
+
+therefore $\frac{1}{{2\theta}}\sum_iX_i^2 \sim \chi^2(2n)/2$ or 
+
+$$
+\sum_iX_i^2 \sim \theta \chi^2(2n).
+$$ 
+
+To derive the MP test at level $\alpha$ we look at the likelihood ratio
+
+$$
+\lambda(x)
+=
+\frac{L(\theta_1,\bf x)}{L(\theta_0,\bf x)}
+=
+\prod_{i=1}^n \frac{x_i}{\theta_1}e^{- \frac{x_i^2}{2\theta_1}}\frac{\theta_0}{x_i} e^{ \frac{x_i^2}{2\theta_0}}
+=
+\Big(\frac{\theta_0}{\theta_1}\Big)^n \exp\big(\sum_{i=1}^n \frac{x_i^2}{2\theta_0} - \frac{x_i^2}{2\theta_1}\big)
+=
+\Big(\frac{\theta_0}{\theta_1}\Big)^n \exp\big((\frac{1}{2\theta_0}-\frac{1}{2\theta_1})\sum_{i=1}^nx_i^2\big)
+$$
+we see that it is an increasing function in the statistic $T(\textbf{x}) = \sum_{i=1}^n x_i^2$. We can now do the Test: reject $H_0$ if
+
+$$
+\lambda(\textbf{x}) \geq C^*
+$$
+or equivalently
+
+$$
+T(\textbf{x}) \geq C
+$$
+where $C$ fulfills
+
+$$
+\mathbb{P}_{\theta_0}(T(\textbf{X})\geq C) = \alpha
+$$
+so 
+
+$$
+1-\mathbb{P}_{\theta_0}(T(\textbf{X})\leq C) = \alpha
+\iff
+\mathbb{P}_{\theta_0}(T(\textbf{X})\leq C) = 1-\alpha
+$$
+we know the distribution of $T(\textbf{X})$ so we can use the quantile-function
+
+$$
+C = \theta_0 \chi^2_{\alpha}(2n)
+$$
+\noindent
+(b) According to theorem on site 33, Lecture 10, the UMP at level $\alpha$ for testing this hypothesis is to reject $H_0$ if 
+
+$$
+T(\textbf{X}) \geq C, \quad \text{and} \quad P_{\theta_0}(T(\textbf{X}) \geq C) = \alpha
+$$
+where $X \sim f_\theta(\textbf{x})$ belongs to a family of distributions with monotone likelihood ratio in statistic $T(\textbf{X})$. We have already seen in (a) that the likelihood ratio is monotone in statistic $T(\textbf{x}) = \sum_{i=1}^n x_i^2$ for any $\theta$ that fulfills $\theta_0 < \theta$. So the UMP is the test we derived in (a). The power function is defined by
+
+$$
+\pi(\theta) = \mathbb{P}_\theta(\text{reject} \ H_0)
+=
+\mathbb{P}_\theta(\textbf{X} \in \Omega_1)
+$$
+where $\Omega_1 = \{\textbf{x}: T(\textbf{x}) \geq C\}$ and $C$ is given like above. With $Y \sim \chi^2(2n)$ the power function for fixed $\alpha$ is
+
+$$
+\pi(\theta) 
+=
+\mathbb{P}_\theta(T(\textbf{X}) \geq C)
+=
+1 - \mathbb{P}_\theta(T(\textbf{X}) \leq C)
+=
+1 - \mathbb{P}_\theta(Y \leq \frac{C}{\theta})
+=
+1 - F_Y\Big(\frac{\theta_0 \chi^2_{\alpha}(2n)}{\theta}\Big)
+$$
+
 ## 4. Most powerful test for the normal variance - $\mu$ is known
 
 Let $X_1,\dots,X_n$ be i.i.d. $\mathcal{N}(\mu,\sigma^2)$, where $\mu$ is known.
@@ -80,6 +284,33 @@ $$
 \textit{Hint:} $\sum_i (X_i-\mu)^2 \sim \sigma^2\chi^2(n)$.
 
 \textbf{Solution:}
+
+We first show the hint again: We know that $\frac{(X_i-\mu)}{\sigma^2} \sim \mathcal{N}(0,1)$ so $\frac{1}{\sigma^2}\sum_i (X_i-\mu)^2 \sim\chi^2(n)$. To find the MP test we look at the likelihood function
+
+$$
+\lambda(x)
+=
+\frac{L(\sigma_1^2,\bf x)}{L(\sigma_0^2,\bf x)}
+=
+\Big(\frac{\sigma_0^2}{\sigma_1^2}\Big)^{n/2}\exp\Big(\big(\frac{1}{2\sigma_0^2} - \frac{1}{2\sigma_1^2}\big)\sum_i (x_i-\mu)^2\Big)
+$$
+
+Because $\sigma_1 > \sigma_0$ this is monotone in the statistic $T(\textbf{X}) = \sum_i (X_i-\mu)^2$. We reject $H_0$ if 
+$$
+T(\textbf{x}) \geq C
+$$
+where $C$ fulfills
+
+$$
+\mathbb{P}_{\sigma^2_0}(T(\textbf{x})\geq C) = \alpha
+$$
+so just as in the last exercise
+
+$$
+C = \sigma_0^2\chi^2_{\alpha}(n).
+$$
+\noindent
+(b) As we have seen in (a), the likelihood is monotone in $T(\textbf{X}) = \sum_i (X_i-\mu)^2$ so the fact that the MP test is a UMP test for testing this hypothesis follows from the theorem on site 33, Lecture 10.
 
 ## 5. Most powerful test for the normal variance - $\mu$ is unknown
 
