@@ -37,7 +37,74 @@ Let $X_1, \dots, X_n$ be iid $\mathcal N(\mu, \sigma^2)$, where $\mu$ is known.
 
 \begin{solution}
 
-\phantom{}
+First, we show the hint.
+
+\begin{align*}
+    \pbraces{\frac{X_i - \mu}{\sigma}}^2 \sim \chi^2(1)
+    & \implies
+    (X_i - \mu)^2 \sim \sigma^2 \chi^2(1) \\
+    & \implies
+    T(\mathbf X) := \sum_{i=1}^n (X_i - \mu)^2 \sim \sigma^2 \chi^2(n)
+\end{align*}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item We proceed analogously to the previous exercise.
+    
+    \begin{align*}
+        \lambda(\mathbf x)
+        & =
+        \frac
+        {
+            L(\sigma_1 \mid \mathbf x)
+        }{
+            L(\sigma_0 \mid \mathbf x)
+        } \\
+        & =
+        \frac
+        {
+            \prod_{i=1}^n
+                \frac{1}{\sqrt{2 \pi \sigma_1^2}}
+                \mathrm e^{-\frac{(x_i - \mu)^2}{2 \sigma_1^2}}
+        }{
+            \prod_{i=1}^n
+                \frac{1}{\sqrt{2 \pi \sigma_0^2}}
+                \mathrm e^{-\frac{(x_i - \mu)^2}{2 \sigma_0^2}}
+        } \\
+        & =
+        \pbraces{\frac{\sigma_0}{\sigma_1}}^2
+        \exp \sum_{i=1}^n \frac{(x_i - \mu)^2}{2 \sigma_0} - \frac{(x_i - \mu)^2}{2 \sigma_1} \\
+        & =
+        \pbraces{\frac{\sigma_0}{\sigma_1}}^2
+        \exp \pbraces{\frac{1}{2} \frac{\sigma_1 - \sigma_0}{\sigma_0 \sigma_1} T(\mathbf x)}
+    \end{align*}
+
+    \begin{align*}
+        \Omega_1
+        :=
+        \Bbraces{\mathbf x: \lambda(\mathbf x) \geq C}
+    \end{align*}
+
+    \begin{align*}
+        \lambda(\mathbf x) \geq C
+        \iff
+        T(\mathbf x) \geq 2 \frac{\sigma_0 \sigma_1}{\sigma_1 - \sigma_0} \ln \pbraces{\pbraces{\frac{\sigma_1}{\sigma_0}}^2 C} =: C^\star
+    \end{align*}
+
+    \begin{align*}
+        \implies &
+        \alpha = P_{\sigma_0}(\lambda(\mathbf X) \geq C) = P_{\sigma_0}(T(\mathbf X) \geq C^\star) = 1 - P_{\sigma_0}(T(\mathbf X) \leq C^\star) \\
+        \implies &
+        1 - \alpha = P_{\sigma_0}(T(\mathbf X) / \sigma_0^2 \leq C^\star / \sigma_0^2) = F_{\chi^2(n)}(C^\star / \sigma_0^2) \\
+        \implies &
+        C^\star / \sigma_0^2 = \chi_{1 - \alpha}^2(n) \\
+        \implies &
+        C^\star = \sigma_0^2 \chi_{1 - \alpha}^2(n)
+    \end{align*}
+
+    \item We proceed analogously to the previous exercise.
+
+\end{enumerate}
 
 \end{solution}
 

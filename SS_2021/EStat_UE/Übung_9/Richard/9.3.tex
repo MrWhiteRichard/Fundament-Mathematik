@@ -45,7 +45,243 @@ Let $X_1, \dots, X_n$ be iid from a distribution with density
 
 \begin{solution}
 
-\phantom{}
+First, we show the hint.
+
+\begin{align*}
+    F_{X_i^2}(x)
+    & =
+    P(X_i^2 \leq x) \\
+    & =
+    P(-\sqrt x \leq X_i \leq \sqrt x) \\
+    & =
+    \int_{-\sqrt x}^{\sqrt x}
+        f_{X_i}(\xi)
+        ~ \mathrm d \xi \\
+    & =
+    \int_{-\sqrt x}^{\sqrt x}
+        \frac{\xi}{2 \theta}
+        \mathrm e^{-\frac{\xi^2}{2 \theta}}
+        ~ \mathrm d \xi \\
+    & =
+    \frac{1}{2}
+    \pbraces
+    {
+        \int_0^{\sqrt x}
+            \frac{\xi}{\theta}
+            \mathrm e^{-\frac{\xi^2}{2 \theta}}
+            ~ \mathrm d \xi
+        -
+        \int_0^{\sqrt{-x}}
+            \frac{\xi}{\theta}
+            \mathrm e^{-\frac{\xi^2}{2 \theta}}
+            ~ \mathrm d \xi
+    } \\
+    & \stackrel{!}{=}
+    \frac{2}{2}
+    \int_0^x
+        \frac{\xi}{\theta}
+        \mathrm e^{-\frac{\eta}{2 \theta}}
+        \frac{1}{2 \xi}
+        ~ \mathrm d \eta \\
+    & =
+    \int_0^x
+        \frac{1}{2 \theta}
+        \mathrm e^{-\frac{\eta}{2 \theta}}
+        ~ \mathrm d \eta \\
+    & \sim
+    \exp \pbraces{\frac{1}{2 \theta}}
+\end{align*}
+
+For \enquote ! we used
+
+\begin{align*}
+    \eta = \xi^2
+    \implies
+    \frac{\mathrm d \eta}{\mathrm d \xi} = 2 \xi
+    \implies
+    \mathrm d \xi = \frac{1}{2 \xi} \mathrm d \eta.
+\end{align*}
+
+\begin{align*}
+    T(\mathbf X)
+    & =
+    \sum_{i=1}^n
+        X_i \\
+    & \sim
+    \sum_{i=1}^n
+        \exp \pbraces{\frac{1}{2 \theta}} \\
+    & \stackrel{!}{=}
+    \operatorname{Gamma} \pbraces{n, \frac{1}{2 \theta}} \\
+    & \sim
+    \int_{-\infty}^x
+        \frac
+        {
+            \pbraces{\frac{1}{2 \theta}}^n
+        }{
+            \Gamma(n)
+        }
+        \xi^{n-1}
+        \mathrm e^{-\frac{1}{2 \theta} \xi}
+        ~ \mathrm d \xi \\
+    & \stackrel{!!}{=}
+    \int_{-\infty}^{x / \theta}
+        \frac{1}{\theta^n}
+        \frac{1 / 2^n}{\Gamma(n)}
+        (\theta \eta)^{n-1}
+        \mathrm e^{-\frac{\eta}{\theta}}
+        \theta
+        ~ \mathrm d \eta \\
+    & =
+    \int_{-\infty}^{x / \theta}
+        \frac{1 / 2^n}{\Gamma(n)}
+        \eta^{n-1}
+        \mathrm e^{-\frac{\eta}{\theta}}
+        ~ \mathrm d \eta \\
+    & =
+    F(T(\mathbf X) \leq x / \theta) \\
+    & =
+    F(\theta T(\mathbf X) \leq x) \\
+    & \sim
+    \theta \operatorname{Gamma} \pbraces{\frac{2 n}{2}, \frac{1}{2}} \\
+    & \stackrel{!}{=}
+    \theta \chi^2(2 n)
+\end{align*}
+
+For \enquote ! we used \cite[section 10, 11]{brand}.
+For \enquote{!!}, we used
+
+\begin{align*}
+    \eta = \frac{\xi}{\theta}
+    \implies
+    \frac{\mathrm d \xi}{\mathrm d \eta} = \frac{1}{\theta}
+    \implies
+    \mathrm \eta = \theta ~ \mathrm d \xi.
+\end{align*}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item We apply the Neyman-Pearson Lemma from \cite[lecture 10, slide 18]{EStat}.
+    
+    \begin{align*}
+        \lambda(\mathbf x)
+        & =
+        \frac
+        {
+            L(\theta_1 \mid \mathbf x)
+        }{
+            L(\theta_0 \mid \mathbf x)
+        } \\
+        & =
+        \frac
+        {
+            f_{\theta_1}(\mathbf x)
+        }{
+            f_{\theta_0}(\mathbf x)
+        } \\
+        & =
+        \frac
+        {
+            \prod_{i=1}^n
+                \frac{x_i}{\theta_1}
+                \mathrm e^{-\frac{x_i^2}{2 \theta_1}}
+        }{
+            \prod_{i=1}^n
+                \frac{x_i}{\theta_0}
+                \mathrm e^{-\frac{x_i^2}{2 \theta_0}}
+        } \\
+        & =
+        \pbraces{\frac{\theta_0}{\theta_1}}^n
+        \exp \sum_{i=1}^n \frac{x_i^2}{2 \theta_0} - \frac{x_i^2}{2 \theta_1} \\
+        & =
+        \pbraces{\frac{\theta_0}{\theta_1}}^n
+        \exp \sum_{i=1}^n \frac{(\theta_1 - \theta_0) x_i^2}{\theta_0 \theta_1} \\
+        & =
+        \pbraces{\frac{\theta_0}{\theta_1}}^n
+        \exp \frac{(\theta_1 - \theta_0) T(x)}{\theta_0 \theta_1}
+    \end{align*}
+
+    \begin{align*}
+        \Omega_1
+        :=
+        \Bbraces{\mathbf x: \lambda(\mathbf x) \geq C}
+    \end{align*}
+
+    \begin{align*}
+        \lambda(\mathbf x) \geq C
+        \iff
+        T(\mathbf x) \geq \frac{\theta_0 \theta_1}{\theta_1 - \theta_0} \ln \pbraces{\pbraces{\frac{\theta_1}{\theta_0}}^n C} =: C^\star
+    \end{align*}
+
+    \begin{align*}
+        \implies &
+        \alpha = P_{\theta_0}(\lambda(\mathbf X) \geq C) = P_{\theta_0}(T(\mathbf X \geq C^\star)) = 1 - P_{\theta_0}(T(\mathbf X \leq C^\star)) \\
+        \implies &
+        1 - \alpha = P_{\theta_0}(T(\mathbf X) / \theta_0 \leq C^\star / \theta_0) \stackrel{!}{=} F_{\chi^2(2 n)}(C^\star / \theta_0) \\
+        \implies &
+        C^\star / \theta_0 = \chi^2_{1 - \alpha}(2 n) \\
+        \implies &
+        C^\star = \theta_0 \chi^2_{1 - \alpha}(2 n)
+    \end{align*}
+
+    For \enquote ! we used
+
+    \begin{align*}
+        P_\theta(T(\mathbf X) / \theta \leq x)
+        & =
+        \int_\bbraces{T(\mathbf X) / \theta \leq x}
+            ~ \mathrm d P_\theta \\
+        & =
+        \int_{(T(\mathbf X) / \theta)^{-1}((-\infty, x])}
+            1 \circ (T(\mathbf X) / \theta)
+            ~ \mathrm d P_\theta \\
+        & \stackrel{!}{=}
+        \int_{-\infty}^x
+            1
+            ~ \mathrm d P_\theta (T(\mathbf X) / \theta)^{-1} \\
+        & \stackrel{!!}{=}
+        \int_{-\infty}^x
+            f_{\chi^2(2 n)}(\xi)
+            ~ \mathrm d \xi \\
+        & =
+        F_{\chi^2(2 n)}(x).
+    \end{align*}
+
+    For \enquote ! we used \cite[Satz 9.62]{kusolitsch2014maß}.
+    For \enquote{!!} we used \cite[Satz 9.49]{kusolitsch2014maß}.
+
+    \item We apply the Theorem on \cite[lecture 10, slide 33]{EStat}, so yes!
+    Indeed, $\lambda(\mathbf x)$ is monotone in $T(\mathbf x)$.
+    Furthermore,
+
+    \begin{align*}
+        \pi(\theta)
+        & =
+        P_\theta(\text{reject}~ H_0) \\
+        & =
+        P_\theta(\mathbf X \in \Omega_1) \\
+        & =
+        P_\theta(T(\mathbf X) \geq C^\star) \\
+        & =
+        1 - P_\theta(T(\mathbf X) / \theta \leq \theta_0 \chi_{1 - \alpha}^2(2 n) / \theta) \\
+        & =
+        1 - F_{\chi^2(2 n)}(\theta_0 \chi_{1 - \alpha}^2(2 n) / \theta).
+    \end{align*}
+
+    Indeed,
+
+    \begin{align*}
+        \pi(\theta_0)
+        & =
+        1 - F_{\chi^2(2 n)}(\chi_{1 - \alpha}^2(2 n)) \\
+        & =
+        1 - F_{\chi^2(2 n)}(F_{\chi^2(2 n)}^{-1}(1 - \alpha)) \\
+        & =
+        1 - (1 - \alpha) \\
+        & =
+        \alpha.
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 

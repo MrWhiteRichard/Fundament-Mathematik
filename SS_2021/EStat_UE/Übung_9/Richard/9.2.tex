@@ -4,7 +4,7 @@
 
 Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
 
-\begin{enumerate}
+\begin{enumerate}[label = (\alph*)]
 
     \item Derive the most powerful (MP) test at level $\alpha$ for testing
     
@@ -27,6 +27,160 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
 \begin{solution}
 
 \phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item First, we decide, how to choose the rejection region $\Omega_1$ (and acceptance region $\Omega_0$).
+    If $\mathbf X \in \Omega_1$, then we should reject $H_0$.
+    According to \cite[lecture 6, slide 69]{EStat}, the MLE for $\theta$ is
+
+    \begin{align*}
+        T(X) := X_{(n)}.
+    \end{align*}
+
+    If $T(X)$ is large, then there is a higher chance of $\theta \approx T(X) \approx \theta_1$.
+    Then, we should favour $H_1$ and reject $H_0$.
+    In order to aquire an appropriate $\alpha$, we have to specify exactly, where $T(X)$ should be, in order to reject $H_0$.
+    We make the Ansatz
+
+    \begin{align*}
+        \Omega_1
+        :=
+        \Bbraces{\mathbf x: T(\mathbf x) > a}
+        =
+        T^{-1}([a, \infty)).
+    \end{align*}
+
+    This leads to the condition
+
+    \begin{align*}
+        \alpha
+        \stackrel{!}{=}
+        P_{\theta_0}(\mathbf X \in \Omega_1)
+        =
+        P_{\theta_0}(T(X) > a)
+        =
+        1 - P_{\theta_0}(X_{(n)} \leq a)
+        =
+        1 - \prod_{i=1}^n P_{\theta_0}(X_i \leq a)
+        =
+        1 - \pbraces{\frac{a}{\theta_0}}^n,
+    \end{align*}
+
+    and hence,
+
+    \begin{align*}
+        a = \theta_0 (1 - \alpha)^{1/n}.
+    \end{align*}
+
+    Now, only the question remains, whether our test is the most powerful one.
+    In order to prove this, we will first calculate the power \dots
+
+    \item The power of this test is now defined as
+
+    \begin{align*}
+        \pi
+        & =
+        P_{\theta_1}(\mathbf X \in \Omega_1) \\
+        & =
+        P_{\theta_1}(T(X) > a) \\
+        & =
+        P_{\theta_1}(X_{(n)} > \theta_0 (1 - \alpha)^{1/n}) \\
+        & =
+        1 - P_{\theta_1}(X_{(n)} \leq \theta_0 (1 - \alpha)^{1/n}) \\
+        & =
+        1 - \prod_{i =1}^n P_{\theta_1}(X_i \leq \theta_0 (1 - \alpha)^{1/n}) \\
+        & =
+        1 - \pbraces{\frac{1}{\theta_1} \theta_0 (1 - \alpha)^{1/n}}^n \\
+        & =
+        1 - (1 - \alpha) \pbraces{\frac{\theta_0}{\theta_1}}^n.
+    \end{align*}
+
+    Now, any other test at level $\alpha$ with rejection region $\Omega_1^\prime$, has power
+
+    \begin{align*}
+        \pi^\prime
+        & =
+        P_{\theta_1}(\mathbf X \in \Omega_1^\prime) \\
+        & =
+        \int_{\Omega_1^\prime}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & =
+        \int_{\Omega_1^\prime \cap (0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x
+        +
+        \int_{\Omega_1^\prime \setminus (0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & \stackrel{!}{\leq}
+        \frac{\theta_0^n}{\theta_1^n} \alpha
+        +
+        1 - \frac{\theta_0^n}{\theta_1^n} \\
+        & =
+        \pi.
+    \end{align*}
+
+    For \enquote{!} we used
+
+    \begin{align*}
+        \int_{\Omega_1^\prime \cap (0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x
+        & =
+        \frac{\theta_0^n}{\theta_1^n}
+        \int_{\Omega_1^\prime}
+            \frac{1}{\theta_0^n}
+            \mathbf 1_{(0, \theta_0)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & =
+        \frac{\theta_0^n}{\theta_1^n}
+        P_{\theta_0}(\mathbf X \in \Omega_1^\prime) \\
+        & =
+        \frac{\theta_0^n}{\theta_1^n} \alpha,
+    \end{align*}
+
+    and
+
+    \begin{align*}
+        \int_{\Omega_1^\prime \setminus (0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x
+        & \leq
+        \int_{(0, 1)^n \setminus (0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & =
+        1
+        - 
+        \int_{(0, \theta_0)^n}
+            \frac{1}{\theta_1^n}
+            \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & =
+        1
+        - 
+        \frac{1}{\theta_1^n}
+        \int
+            \mathbf 1_{(0, \theta_1)^n \cap (0, \theta_0)^n}(\mathbf x)
+            ~ \mathrm d \mathbf x \\
+        & =
+        1
+        - 
+        \frac{1}{\theta_1^n}
+        \lambda^n((0, \theta_0)^n) \\
+        & =
+        1 - \frac{\theta_0^n}{\theta_1^n}.
+    \end{align*}
+
+\end{enumerate}
 
 \end{solution}
 
