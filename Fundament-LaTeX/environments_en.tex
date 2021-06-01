@@ -39,6 +39,25 @@
 }
 
 % ---------------------------------------------------------------- %
+% a tcolorbox-preset designed to mimic the text boxes typically used by Prof. Stefan Hetzl
+
+% starting template:
+% https://tex.stackexchange.com/a/527829
+
+% provide box title as optional argument
+\newtcolorbox[auto counter]{hetzlbox}[1][]{%
+    colback = white,
+    coltitle = black,
+    fonttitle = \bfseries,
+    sharp corners,
+    detach title,
+    width = 12cm,
+    #1,
+    code = {\ifdefempty{\tcbtitletext}{}{\tcbset{before upper = {{\centering \tcbtitle \par} \medskip}}}},
+    boxrule = 0.5pt
+}
+
+% ---------------------------------------------------------------- %
 % MISC translations for environment-names
 
 \renewcommand{\proofname} {Proof}
