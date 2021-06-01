@@ -35,12 +35,12 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
     According to \cite[lecture 6, slide 69]{EStat}, the MLE for $\theta$ is
 
     \begin{align*}
-        T(X) := X_{(n)}.
+        T(\mathbf X) := X_{(n)}.
     \end{align*}
 
-    If $T(X)$ is large, then there is a higher chance of $\theta \approx T(X) \approx \theta_1$.
+    If $T(\mathbf X)$ is large, then there is a higher chance of $\theta \approx T(\mathbf X) \approx \theta_1$.
     Then, we should favour $H_1$ and reject $H_0$.
-    In order to aquire an appropriate $\alpha$, we have to specify exactly, where $T(X)$ should be, in order to reject $H_0$.
+    In order to aquire an appropriate $\alpha$, we have to specify exactly, where $T(\mathbf X)$ should be, in order to reject $H_0$.
     We make the Ansatz
 
     \begin{align*}
@@ -48,7 +48,7 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
         :=
         \Bbraces{\mathbf x: T(\mathbf x) > a}
         =
-        T^{-1}([a, \infty)).
+        T^{-1}((a, \infty)).
     \end{align*}
 
     This leads to the condition
@@ -58,7 +58,7 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
         \stackrel{!}{=}
         P_{\theta_0}(\mathbf X \in \Omega_1)
         =
-        P_{\theta_0}(T(X) > a)
+        P_{\theta_0}(T(\mathbf X) > a)
         =
         1 - P_{\theta_0}(X_{(n)} \leq a)
         =
@@ -83,7 +83,7 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
         & =
         P_{\theta_1}(\mathbf X \in \Omega_1) \\
         & =
-        P_{\theta_1}(T(X) > a) \\
+        P_{\theta_1}(T(\mathbf X) > a) \\
         & =
         P_{\theta_1}(X_{(n)} > \theta_0 (1 - \alpha)^{1/n}) \\
         & =
@@ -153,7 +153,7 @@ Let $X_1, \dots, X_n$ be iid $\mathrm{Uniform}(0, \theta)$.
             \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
             ~ \mathrm d \mathbf x
         & \leq
-        \int_{(0, 1)^n \setminus (0, \theta_0)^n}
+        \int_{(0, \infty)^n \setminus (0, \theta_0)^n}
             \frac{1}{\theta_1^n}
             \mathbf 1_{(0, \theta_1)^n}(\mathbf x)
             ~ \mathrm d \mathbf x \\
