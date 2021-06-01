@@ -1,0 +1,71 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Sei $G = (V, E)$ ein ungerichteter Graph.
+Eine \textit{Knotenüberdeckung} von $G$ ist eine Menge $V^\prime \subseteq V$ so dass
+
+\begin{align*}
+    \Bbraces{u, v} \in E
+    \implies
+    u \in V^\prime ~\text{oder}~ v \in V^\prime.
+\end{align*}
+
+Das Knotenüberdeckungsproblem ist:
+
+\begin{center}
+    \begin{hetzlbox}[title = Knotenüberdeckung]
+    
+        Eingabe:
+        ein endlicher ungerichteter Graph $G$, ein $k \in \N$
+        
+        Frage:
+        Ist $\mathcal C$ erfüllbar?
+    
+    \end{hetzlbox}    
+\end{center}
+
+Zeigen Sie dass Knotenüberdecknung $\mathbf{NP}$-vollständig ist.
+
+\begin{itshape}
+    Hinweis:
+    Reduzieren Sie $\mathrm{3SAT}$ auf Knotenüberdecknung indem Sie zur Darstellung eines Atoms $p$ den Baustein
+
+    \begin{center}
+        \begin{tikzpicture}[node distance = 2cm]
+
+            \node [state]                   (not_p) {$\neg p$};
+            \node [state, right of = not_p] (p)     {$p$};
+        
+            \draw (not_p) edge (p);
+        
+        \end{tikzpicture}
+    \end{center}
+
+    verwenden und zur Darstellung einer Klausel $l_1 \lor l_2 \lor l_3$ den Baustein
+
+    \begin{center}
+        \begin{tikzpicture}[node distance = 2cm]
+
+            \node [state]                       (l_1) {$l_1$};
+            \node [state, below left  of = l_1] (l_3) {$l_3$};
+            \node [state, below right of = l_1] (l_2) {$l_2$};
+        
+            \draw (l_1) edge (l_2) (l_2) edge (l_3) (l_3) edge (l_1);
+        
+        \end{tikzpicture}
+    \end{center}
+
+\end{itshape}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
