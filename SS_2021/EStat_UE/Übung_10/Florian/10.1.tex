@@ -12,7 +12,41 @@ $w(\theta)$ is a non-decreasing function in $\theta$.
 
 \begin{solution}
 
-\phantom{}
+A family of pdfs or pmfs is called an \textit{exponential family of distributions}
+if it can be represented in the form
+
+\begin{align*}
+    f(x | \theta) = h(x)c(\theta)\exp\left(w(\theta) \cdot t(x)\right),
+\end{align*}
+
+where $h(x) \geq 0, c(\theta) \geq 0$.
+Now let $\theta_1 < \theta_2$ and define $T(x) := t(x)$. Then we have
+
+\begin{align*}
+    \frac{f(T | \theta_2)}{f(T | \theta_1)}
+    &= \frac{h(x)c(\theta_2)\exp\left(w(\theta_2)T\right)}{h(x)c(\theta_1)\exp\left(w(\theta_1)T\right)} \\
+    &= \frac{c(\theta_2)}{c(\theta_1)}\exp\left([w(\theta_2) - w(\theta_1)]T\right).
+\end{align*}
+
+We calculate the derivative with respect to $T$:
+
+\begin{align*}
+    \frac{\mathrm{d}}{\mathrm{d} T}\left(\frac{f(T | \theta_2)}{f(T | \theta_1)}\right)
+    &= \underbrace{[w(\theta_2) - w(\theta_1)]}_{\geq 0}
+    \underbrace{\frac{c(\theta_2)}{c(\theta_1)}}_{\geq 0}
+    \underbrace{\exp\left([w(\theta_2) - w(\theta_1)]T\right)}_{\geq 0} \geq 0.
+\end{align*}
+
+Therefore the likelihood ratio is non decreasing in $T(x)$ and it only remains to show that
+$T(\textbf{X})$ constitutes indeed a sufficient statistic.
+
+Since we can write
+
+\begin{align*}
+    f(x | \theta) = h(x) \cdot \underbrace{[c(\theta) \exp(w(\theta) \cdot T(x)))]}_{:= g(T(x) | \theta)},
+\end{align*}
+
+we see that $T(X)$ is in fact a sufficient statistic for $\theta$.
 
 \end{solution}
 
