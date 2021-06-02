@@ -2,26 +2,84 @@
 title: "HW10"
 author: "Christian Sallinger"
 date: "8 6 2021"
+header-includes:
+  - \usepackage{dsfont}
 output: pdf_document
 ---
 
 ## 1. Exponential family
 
-Show that the one-parameter exponential family has a monotone likelihood ratio in a sufficent statistic $T(\textbf{X})$ if the natural parameter $w(\theta)$ is a non-decreasing function in $\theta$.
+Show that the one-parameter exponential family has a monotone likelihood ratio in a sufficient statistic $T(\textbf{X})$ if the natural parameter $w(\theta)$ is a non-decreasing function in $\theta$.
 
 \textbf{Solution:}
+
+We say a family of distributions $\{f_\theta , \theta \in \Theta\}$ with a one-dimensional parameter $\theta$ has a monotone likelihood ratio in a statistic $T(\textbf{X})$ if for any $\theta_1 < \theta_2$, the likelihood ratio $f_{\theta_2}(\textbf{x})/f_{\theta_1}(\textbf{x})$ is a non-decreasing function of $T(\textbf{x})$. We also remind that a family of pdfs is called an one-parameter exponential family if it can be represented in the form
+
+$$
+f(x\mid \theta)
+=
+h(x)c(\theta) e^{\sum_{j=1}^k w_j(\theta)t_j(x)}
+$$
+where $h(x) > 0, t_1(x),\dots,t_k(x)$ are real valued functions that do not depend on $\theta$ and $c(\theta) > 0, w_1(\theta),\dots,w_k(\theta)$ are real valued functions that do not depend on $x$. The likelihood ratio is 
+
+$$
+\lambda(\textbf{x})
+=
+\frac{f_{\theta_2}(\textbf{x})}{f_{\theta_1}(\textbf{x})}
+=
+\prod_{i=1}^n \frac{h(x_i)c(\theta_2) \exp\Big({\sum_j w_j(\theta_2)t_j(x_i)}\Big)}{h(x_i)c(\theta_1) \exp\Big({\sum_j w_j(\theta_1)t_j(x_i)}\Big)}
+=
+\Big(\frac{c(\theta_2)}{c(\theta_1)}\Big)^n \exp\Big(\sum_j(w_j(\theta_2)-w_j(\theta_1))\cdot \sum_{i=1}^n t_j(x_i)\Big)
+$$
+
+We know form the Lecture (Lecture 8, page 48) that the statistic $T(\textbf{X}) = \Big(\sum_{i=1}^nt_1(X_i),\dots,\sum_{i=1}^n t_k(X_i)\Big)$ is a sufficient statistic for $\theta$. Since the natural parameter $w_j(\theta)$ are non decreasing and $\theta_1 < \theta_2$ it holds that
+
+$$
+w_j(\theta_2)-w_j(\theta_1) \geq 0
+$$
+so the likelihood ratio is indeed a non decreasing function of this statistic.
 
 ## 2. Confidence interval 1
 
 In the June 1986 issue of Consumer Reports, some data on the calorie content of beef hot dogs is given. Here are the numbers of calories in 20 different hot dog brands:
 
 $$
-186, 181, 176 149,184,190,158,139,175,148,152,111,141,153,190,157,131,149,135,132.
+186, 181, 176, 149,184,190,158,139,175,148,152,111,141,153,190,157,131,149,135,132.
 $$
 
 Assume that the numbers are from a normal distribution with mean $\mu$ and variance $\sigma^2$, both unknown. Use \texttt{R} to obtain a $90 \%$ confidence interval for the mean number of calories $\mu$.
 
 \textbf{Solution:}
+
+From the lecture (lecture 9, page 16) we know that a $100(1-\alpha)\%$ confidence interval for $\mu$ (when $\sigma^2$ is unknown) is given by
+
+$$
+\Big[\bar{X} - t_{\alpha/2}(n-1)\cdot\frac{S}{\sqrt{n}},\bar{X} + t_{\alpha/2}(n-1)\cdot\frac{S}{\sqrt{n}}\Big]
+$$
+We will calculate this interval with \texttt{R}:
+
+```{r}
+#Put the data into an array
+data_arr = c(186, 181, 176, 149,184,190,158,139,175,148,152,111,141,153,190,157,131,149,135,132)
+
+#n is the number of observations
+n = length(data_arr)
+
+#Calculate the mean
+X_bar = mean(data_arr)
+
+#Calculate our estimation for the variance, the subtraction in the sum happens element-wise
+S = sqrt(sum((data_arr-X_bar)^2)*(1/(n-1)))
+
+#The 1 - alpha/2 quantile of the t distribution with n-1 degrees of freedom
+t_alpha = qt(1 - 0.05,n-1)
+
+#Calculate the bounds of the CI and print them
+lower_bound = X_bar - t_alpha*S/sqrt(n)
+upper_bound = X_bar + t_alpha*S/sqrt(n)
+
+paste("90% CI = [",lower_bound,",",upper_bound,"]")
+```
 
 ## 3. Confidence interval 2
 
@@ -40,11 +98,113 @@ where $\lambda$ and $\eta$ are positive parameters with $\eta$ known but $\lambd
 
 \textbf{Solution:}
 
+The likelihood function is
+
+\begin{align*}
+L(\lambda \mid \textbf{x} )
+&=
+\prod_{i=1}^n \lambda e^{-\lambda(x_i - \eta)} \mathds{1}_{(\eta,\infty)}(x_i) \\
+&=
+\lambda^n \exp\Big(-\lambda \sum_i(x_i-\eta)\Big) \mathds{1}_{(\eta,\infty)}(x_{(1)}) \\
+&=
+\exp\Big(-\lambda \sum_i(x_i-\eta) + n \ln(\lambda)\Big)  \mathds{1}_{(\eta,\infty)}(x_{(1)})
+\end{align*}
+
+To be able to take the logarithm we have to assume that $\mathds{1}_{(\eta,\infty)}(x_{(1)}) = 1$ always holds (as is done implicitly in lecture 7, page 14?). The log-likelihood is then
+
+$$
+\ell(\lambda\mid \textbf{x} )
+=
+-\lambda \sum_i(x_i-\eta) + n \ln(\lambda)
+$$
+
+We calculate the derivative
+
+$$
+\frac{\partial}{\partial \lambda} \ \ell(\lambda\mid \textbf{x})|_{\lambda = \hat \lambda}
+=
+-\sum_i(x_i - \eta) + \frac{n}{\hat\lambda}
+$$
+and set it to zero
+
+$$
+-\sum_i(x_i - \eta) + \frac{n}{\hat\lambda}
+\stackrel{!}{=}
+0
+\iff
+\hat\lambda = \frac{n}{\sum_i(x_i - \eta)}
+$$
+To show that $\hat{\lambda} = \frac{n}{\sum_i(x_i - \eta)}$ is really our MLE we check the second derivative
+
+$$
+\frac{\partial^2}{\partial \lambda^2} \ \ell(\lambda\mid \textbf{x})|_{\lambda = \hat \lambda}
+=
+-\frac{n}{\hat\lambda^2} < 0
+$$
+so we have indeed found our MLE. The Fisher information is 
+
+$$
+I(\lambda)
+=
+-\mathbb{E}(\frac{\partial^2}{\partial \lambda^2} \ell(\lambda\mid \textbf{x}))
+=
+\frac{n}{\lambda^2}
+$$
+By the theorem in lecture 7, page 12, it holds that 
+
+$$
+\frac{\hat \lambda -\lambda}{\frac{1}{\sqrt{n}}}
+\stackrel{d}{\longrightarrow}
+\mathcal{N}(0,\lambda)
+$$
+
 ## 4. confidence interval 3
 
 Use \texttt{R} to generate a random sample $X_1,\dots, X_n$ from $Pois(1)$ distribution (for $n = 30$ and $n = 100$). Compute the $90\%$ confidence interval for $\lambda$, check if it contains the true value of $\lambda = 1$, and repeat this $10000$ times. What is the fraction of simulations for which the confidence interval covers $\lambda$?
 
 \textbf{Solution:}
+
+We know from the lecture (lecture 9, page 9 where we can also find this HW) that the asymptotic $100(1-\alpha)\%$ confidence interval for $\lambda$ is
+
+$$
+\Big[\hat{\lambda} - z_{\alpha/2}\cdot\sqrt{\frac{\hat{\lambda}}{n}},\hat{\lambda} + z_{\alpha/2}\cdot\sqrt{\frac{\hat{\lambda}}{n}}\Big]
+$$
+where $\hat{\lambda} = \bar{X}$.
+
+```{r}
+n_1 = 30
+n_2 = 100
+
+#Create a random n Pois(lambda) sample, compute the 90% confidence
+#interval for lambda, returns 1 if the confidence interval contains
+#lambda and 0 otherwise
+check_value = function(n,lambda = 1){
+  c_sample = rpois(n,lambda)
+  
+  X_bar = mean(c_sample)
+  
+  z_alpha = qnorm(1-0.05)
+  
+  lower_bound = X_bar - z_alpha*sqrt(X_bar/n)
+  upper_bound = X_bar + z_alpha*sqrt(X_bar/n)
+  
+  if(lambda <= upper_bound){
+    if(lambda >= lower_bound){
+        return(1)
+    }
+    else{
+      return(0)
+    }
+  }
+  else{
+    return(0)
+  }
+}
+
+print(sum(replicate(10000,check_value(n_1))))
+
+print(sum(replicate(10000,check_value(n_2))))
+```
 
 ## 5. Boxplots and quantiles
 
@@ -75,3 +235,11 @@ $$
 which are a subset of B, find all empirical (a) medians, (b) first quartiles and (c) $2/3$-quantiles (not using $\mathrm{R}$).
 
 \textbf{Solution:}
+
+```{r}
+runtimes = load("algorithms.Rdata")
+
+runtimes
+
+boxplot(y ~ grp, data = runtimes)
+```
