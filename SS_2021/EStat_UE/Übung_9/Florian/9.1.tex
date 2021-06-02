@@ -73,17 +73,28 @@ The MLE under the restriction of the null hypothesis thus reads
 Therefore the generalized likelihood ratio reads
 
 \begin{align*}
-  \lambda(x) &= \frac{\sup_{\theta \in \Theta} L(\theta | \textbf{x})}{\sup_{\theta \in \Theta_0} L(\theta | \textbf{x})}
+  \lambda(\textbf{x}) &= \frac{\sup_{\theta \in \Theta} L(\theta | \textbf{x})}{\sup_{\theta \in \Theta_0} L(\theta | \textbf{x})}
   = \frac{L(\hat{\mu}, \hat{\sigma}^2 | \textbf{x})}{L(\hat{\mu}_0, \hat{\sigma}^2_0, \textbf{x})} 
   = \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\frac{\exp\left(-n\frac{\sum_{i=1}^n(x_i - \bar{x})^2}{2\sum_{i=1}^n (x_i - \bar{x})^2}\right)}
   {\exp\left(-\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{2\sigma_0^2}\right)} \\
   &= \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\exp\left(\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{2\sigma_0^2}-\frac{n}{2}\right) \\
   &= \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\exp\left(\frac{1}{2}\frac{\sum_{i=1}^n (x_i - \bar{x})^2}{\sigma_0^2}-\frac{n}{2}\right) \\
   &= \left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right)^{n/2}\exp\left(\frac{n}{2}\left(\frac{\hat{\sigma}^2}{\sigma_0^2}-1\right)\right) \\
-  &= \exp\left(\frac{n}{2}\left(\log\left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right) + \frac{\hat{\sigma}^2}{\sigma_0^2}-1\right)\right),
+  &= \exp\left(\frac{n}{2}\left(\log\left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right) + \frac{\hat{\sigma}^2}{\sigma_0^2}-1\right)\right).
 \end{align*}
 
-which is a non-decreasing function of our test statistic
+Our test now rejects $H_0$ iff $\lambda(\textbf{x}) \geq C$, where $C$ is defined by
+
+\begin{align*}
+  \alpha = \sup_{\mu \in \R} \P(\lambda(\textbf{X}) \geq C).
+\end{align*}
+
+We can further simplify the test by introducing the statistic 
+
+\begin{align*}
+  T(\textbf{x}) = \log\left(\frac{\sigma_0^2}{\hat{\sigma}^2}\right) + \frac{\hat{\sigma}^2}{\sigma_0^2}
+\end{align*}
+of which $\lambda(T(\textbf{x}))$ is a non-decreasing function.
 
 \begin{align*}
   T(\textbf{X}) = \sum_{i=1}^n \frac{(X_i - \bar{X})^2}{\sigma_0^2} = n\frac{\hat{\sigma}^2}{\sigma_0^2},
@@ -101,9 +112,7 @@ since
   f(T(\textbf{x}) = n) &= \exp\left(\frac{n}{2}\left( \log(1) +  1 - 1\right)\right) = 1.
 \end{align*}
 
-Therefore, for $f(T(\textbf{x})) > 1$ the function is monotonously non-decreasing in $T(\textbf{x})$.
 We know from the lecture that $T(\textbf{X}) \sim  \chi^2(n-1)$.
-
 
 Our test now rejects $H_0$ iff $T(\textbf{X}) \geq C$.
 For the critical value $C$ we have to solve
