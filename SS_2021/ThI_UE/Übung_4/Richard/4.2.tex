@@ -35,7 +35,277 @@ Zeigen Sie dass $\mathrm{3SAT}$ $\mathbf{NP}$-vollständig ist.
 
 \begin{solution}
 
-\phantom{}
+Zunächst ein kleines \dots
+
+\begin{lemma*}
+
+    Wenn $C_1 \subseteq C_2$ Klauseln sind, dann gilt, für alle Belegungen $b: \operatorname L(\Bbraces{C_1, C_2}) \to \Bbraces{0, 1}$, dass
+
+    \begin{align*}
+        \hat b(C_1) \leq \hat b(C_2).
+    \end{align*}
+
+    Wenn $\mathcal C_1 \subseteq \mathcal C_2 = \mathcal C$ Klauselmengen sind, dann gilt für alle Belegungen $b: \operatorname L(\mathcal C_1 \cup \mathcal C_2) \to \Bbraces{0, 1}$, dass
+
+    \begin{align*}
+        \hat b(\mathcal C_1) \geq \hat b(\mathcal C_2)
+    \end{align*}
+
+    und
+    
+    \begin{align*}
+        \hat b(\mathcal C) = 1
+        \iff
+        \Forall C \in \mathcal C: \hat b(C) = 1.
+    \end{align*}
+
+\end{lemma*}
+
+Seien $L_3, \dots, L_m$ die restlichen Literale aus $C$, d.h.
+
+\begin{align*}
+    C = \Bbraces{L_1, \dots, L_m}
+    \quad
+    \text{d.h.}
+    \quad
+    C_0 = \Bbraces{L_3, \dots, L_m}.
+\end{align*}
+
+Sei weiters
+
+\begin{align*}
+    \mathcal C^\prime
+    :=
+    (\mathcal C \setminus \Bbraces{C})
+    \cup
+    \Bbraces{C_0 \cup \Bbraces{p}, C_1, \dots, C_n}
+\end{align*}
+
+\enquote{$\impliedby$}:
+
+Sei $\mathcal C^\prime$ erfüllbar.
+Dann gibt es eine Belegung $b: \operatorname L(\mathcal C^\prime) \to \Bbraces{0, 1}$, sodass $\hat b(\mathcal C^\prime) = 1$.
+Insbesondere gilt also
+
+\begin{align*}
+    1 \geq \hat b(\mathcal C \setminus \Bbraces{C}) \geq \hat b(\mathcal C^\prime),
+    \quad
+    \text{und}
+    \quad
+    \hat b(C_0 \cup \Bbraces{p}) = \hat b(C_1) = \dots = \hat b(C_n) = 1.
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($b(p) = 0$):
+    
+    Angenommen, $\hat b(C_0) = 0$, dann wäre
+
+    \begin{align*}
+        1
+        =
+        \hat b(C_0 \cup \Bbraces{p})
+        =
+        \underbrace{\hat b(C_0)}_0
+        \lor
+        \underbrace{\hat b(p)}_0
+        =
+        0.
+    \end{align*}
+
+    Also ist $\hat b(C_0) = 1$.
+    Damit gibt es ein $i = 3, \dots, m$, sodass
+
+    \begin{align*}
+        1 = \hat b(L_i) \leq \hat b(C) \leq 1.
+    \end{align*}
+
+    \item Fall ($b(p) = 1$):
+    
+    Seien
+
+    \begin{align*}
+        C_1 := C^\prime \cup \Bbraces{\neg p},
+        \quad
+        C^\prime \subseteq C,
+        \quad
+        |C^\prime| = 1, 2.
+    \end{align*}
+
+    Dann gilt
+
+    \begin{align*}
+        1
+        \geq
+        \hat b(C)
+        \geq
+        \hat b(C^\prime)
+        =
+        \hat b(C^\prime)
+        \lor \underbrace{\hat b(\neg p)}_0
+        =
+        \hat b(C_1)
+        =
+        1.
+    \end{align*}
+
+\end{enumerate}
+
+Insgesamt bekommen wir also 
+
+\begin{align*}
+    \hat b(C)
+    =
+    \underbrace{b(\mathcal C \setminus \Bbraces{C})}_1
+    \land
+    \underbrace{\hat b(C)}_1
+    =
+    1.
+\end{align*}
+
+\enquote{$\impliedby$}:
+
+Sei nun $\mathcal C$.
+Dann gibt es eine Belegung $b: \operatorname L(\mathcal C^\prime) \to \Bbraces{0, 1}$, sodass $\hat b(\mathcal C^\prime) = 1$.
+Insbesondere gilt also
+
+\begin{align*}
+    1 \geq \hat b(\mathcal C \setminus \Bbraces{C}) \geq \hat b(\mathcal C) = 1
+    \quad
+    \text{und}
+    \quad
+    \hat b(C) = 1.
+\end{align*}
+
+\begin{enumerate}[label = \arabic*.]
+
+    \item Fall ($\hat b(C_0) = 0$):
+    
+    Damit $\hat b(\mathcal C^\prime) = 1$, muss
+
+    \begin{align*}
+        1
+        \stackrel{!}{=}
+        \hat b(C_0 \cup \Bbraces{p})
+        =
+        \underbrace{\hat b(C_0)}_0
+        \lor
+        \hat b(p)
+        =
+        b(p).
+    \end{align*}
+
+    Außerdem gilt $\hat b(\Bbraces{L_1, L_2}) = 1$, sonst wäre
+
+    \begin{align*}
+        1
+        =
+        \hat b(C)
+        =
+        \underbrace{\hat b(C_0)}_0
+        \lor
+        \underbrace{\hat b(\Bbraces{L_1, L_2})}_0
+        =
+        0.
+    \end{align*}
+
+    Damit $\hat b(C) = 1$, muss aber auch
+
+    \begin{align*}
+        1
+        \stackrel{!}{=}
+        \hat b(C_1)
+        =
+        \hat b(C^\prime)
+        \lor
+        \underbrace{\hat b(\neg p)}_0
+        =
+        \hat b(C^\prime).
+    \end{align*}
+
+    \item Fall ($\hat b(C_0) = 1$):
+    
+    Wir können also getrost $b(p) := 0$ wählen und trotzdem gilt
+
+    \begin{align*}
+        \hat b(C_0 \cup \Bbraces{p})
+        =
+        \underbrace{\hat b(C_0)}_1
+        \lor
+        \underbrace{\hat b(p)}_0
+        =
+        1.
+    \end{align*}
+
+    Außerdem gilt
+
+    \begin{align*}
+        1
+        \geq
+        \hat b(C_1)
+        =
+        \hat b(C^\prime)
+        \lor
+        \underbrace{\hat b(\neg p)}_1
+        \geq
+        1.
+    \end{align*}
+
+\end{enumerate}
+
+Insgesamt bekommen wir also
+
+\begin{align*}
+    1
+    \geq
+    \hat b(\mathcal C^\prime)
+    =
+    \underbrace{\hat b(\mathcal C \setminus \Bbraces{C})}_1
+    \land
+    \underbrace{\hat b(C_0 \cup \Bbraces{p})}_1
+    \land
+    \underbrace{\hat b(C_1)}_1
+    =
+    1.
+\end{align*}
+
+Fun Fact:
+Für alle Belegungen $b: \operatorname L(\mathcal C^\prime) \to \Bbraces{0, 1}$ gilt
+
+\begin{align*}
+    \hat b(C_1)
+    =
+    \hat b(\Bbraces{L_1, L_2} \cup \Bbraces{p})
+    =
+    \hat b(\neg p \lor (L_1 \lor L_2))
+    =
+    \hat b(p \to (L_1 \lor L_2)),
+\end{align*}
+
+und
+
+\begin{align*}
+    \hat b(C_0 \cup \Bbraces{p})
+    =
+    \hat b(\Bbraces{L_3, \dots, L_m} \cup \Bbraces{p})
+    =
+    \hat b(\neg (\neg p) \lor (L_3 \lor \dots \lor L_m))
+    =
+    \hat b(\neg p \to (L_1 \lor \dots \lor L_m)).
+\end{align*}
+
+Nun können wir das soeben Gezeigte auf alle (endlichen) Klauseln $C$, einer beliebigen (endlichen) Klauselmenge $\mathcal C$ mit $|C| > 3$ anwenden.
+In polynomieller Laufzeit können wir für $\mathcal C$ also eine erfüllbarkeitsäquivalente Klauselmenge $\mathcal C^\prime$ finden, sodass für alle $C \in \mathcal C^\prime$ gilt $|C| \leq 3$.
+
+Nun ist
+
+\begin{itemize}
+    \item laut Satz 4.4, $\textsc{Sat} =: L$ $\mathbf{NP}$-vollständig,
+    \item laut Satz 4.3, $L$ und damit auch $L^\prime := \textsc{3Sat} \in \mathbf{NP}$, und
+    \item laut dem soeben Gezeigten, $L$ auf $L^\prime$ polynomiell reduzierbar, i.Z. $L \leq_\mathrm{p} L^\prime$.
+\end{itemize}
+
+Laut Lemma 4.2, ist also auch $L^\prime$ $\mathbf{NP}$-vollständig.
 
 \end{solution}
 
