@@ -1,22 +1,5 @@
 % -------------------------------------------------------------------------------- %
 
-\begin{exercise}
-
-\phantom{}
-
-\end{exercise}
-
-% -------------------------------------------------------------------------------- %
-
-\begin{solution}
-
-\phantom{}
-
-\end{solution}
-
-% -------------------------------------------------------------------------------- %
-% -------------------------------------------------------------------------------- %
-
 \begin{exercise}[\textbf{Confidence Interval 2}]
 
 Suppose $X_1,\dots,X_n$ are i.i.d. with pdf
@@ -39,7 +22,58 @@ is assumed to be large.
 
 \begin{solution}
 
-\phantom{}
+We consider the log-likelihood function
+
+\begin{align*}
+  \ell_n(\lambda | \textbf{x}) &= \log\left(\lambda^n \exp\left(-\lambda \sum_{i=1}^n (x_i - \eta)\right)\right) \\
+  &= n\log(\lambda) - \lambda\sum_{i=1}^n (x_i - \eta), \quad \min_{i=1}^n x_i > \eta.
+\end{align*}
+
+with derivative
+
+\begin{align*}
+  0 & \stackrel{!}{=} \ell'_n(\lambda | \textbf{x})|_{\lambda = \hat{\lambda}} 
+  = \frac{n}{\hat{\lambda}} - \sum_{i=1}^n (x_i - \eta) \\
+  \iff \hat{\lambda} &= \frac{n}{\sum_{i=1}^n (x_i - \eta)}.
+\end{align*}
+
+Since
+
+\begin{align*}
+  \ell''_n(\lambda | \textbf{x}) &= - \frac{n}{\lambda^2} < 0,
+\end{align*}
+
+$\hat{\lambda} = \frac{n}{\sum_{i=1}^n (x_i - \eta)}$ must be the unique
+global maximizer and therefore our MLE.
+
+The Fisher-Information reads
+
+\begin{align*}
+  I_n(\lambda) 
+  = -\E_\lambda[\ell''_n(\lambda)]
+  = \frac{n}{\lambda^2}.
+\end{align*}
+
+We know that the MLE is consistent and asymptotically normal with
+
+\begin{align*}
+  \sqrt{n}(\hat{\lambda} - \lambda) \xrightarrow{d} \mathcal{N}\left(0, \frac{1}{I_n(\lambda)}\right)
+  = \mathcal{N}\left(0, \frac{\lambda^2}{n}\right).
+\end{align*}
+
+Plugging in the estimate for $\lambda$ and applying the continuous mapping Theorem together with Slutsky's Theorem thus yields
+
+\begin{align*}
+  \sqrt{n}\frac{\hat{\lambda} - \lambda}{\hat{\lambda}} \xrightarrow{d} \mathcal{N}(0,1).
+\end{align*}
+
+Let $z_{\alpha/2}$ denote the $(1 - \alpha/2)$ quantile of the standard normal distribution.
+
+Then we can write the $(1 - \alpha) \cdot 100 \%$ confidence interval as follows:
+
+\begin{align*}
+  \left[\hat{\lambda} - z_{\alpha/2}\frac{\hat{\lambda}}{\sqrt{n}}, \hat{\lambda} + z_{\alpha/2}\frac{\hat{\lambda}}{\sqrt{n}}\right]
+\end{align*}
 
 \end{solution}
 
