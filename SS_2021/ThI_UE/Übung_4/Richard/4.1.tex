@@ -31,7 +31,203 @@ Zeigen Sie dass $\mathrm{2SAT} \in \mathbf P$ ist.
 
 \begin{solution}
 
-\phantom{}
+Es gibt bloß folgende Formen der Resolution:
+
+\begin{align}
+    \emptyset & = \Res(\Bbraces{L}, \Bbraces{\overline L}), \label{eq:res_1} \tag{1} \\
+    \Bbraces{L} & = \Res(\Bbraces{K}, \Bbraces{\overline K, L}), \label{eq:res_2.1} \tag{2.1} \\
+    \Bbraces{L} & = \Res(\Bbraces{K, L}, \Bbraces{\overline K, L}), \label{eq:res_2.2} \tag{2.2} \\
+    \Bbraces{L, K} & = \Res(\Bbraces{X, L}, \Bbraces{\overline X, K}); \label{eq:res_3} \tag{3}
+\end{align}
+
+Nachdem wir 2SAT und nicht 3SAT betrachten, gibt es keine
+
+\begin{align}
+    \Bbraces{L, K} & = \Res(\Bbraces{X, L, K}, \Bbraces{\overline X}), \label{eq:res_3.1} \tag{3.1} \\
+    \Bbraces{L, K} & = \Res(\Bbraces{X, L, K}, \Bbraces{\overline X, K}), \label{eq:res_3.2} \tag{3.2} \\
+    \Bbraces{L, K} & = \Res(\Bbraces{X, L, K}, \Bbraces{\overline X, K, L}). \label{eq:res_3.3} \tag{3.3} \\
+\end{align}
+
+Wenn wir \eqref{eq:res_1} anwenden, dann sind wir fertig.
+
+Wenn wir \eqref{eq:res_2.1} anwenden müssen, dann könnte es sein, dass $\Bbraces{K}$ erst durch \eqref{eq:res_2.1} oder \eqref{eq:res_2.2} erzeugt werden muss.
+Das werden wir auch tun.
+
+\begin{enumerate}[label = (\arabic*), start = 0]
+
+    \item Das gleiche könnte ad hoc auch für $\Bbraces{\overline K, L}$ und \eqref{eq:res_3} gelten.
+    $\Bbraces{\overline K, L}$ erhält man aber (nur) aus \eqref{eq:res_3}, d.h.
+
+    \begin{align*}
+        \Bbraces{\overline K, L}
+        =
+        \Res(\Bbraces{X, K}, \Bbraces{\overline X, L}).
+    \end{align*}
+
+    Wir haben aber bereits $\Bbraces{K}$.
+    Also können wir stattdessen auch mit \eqref{eq:res_2.1} arbeiten, d.h.
+
+    \begin{align} \label{eq:res_bsp_0} \tag{4}
+        \Bbraces{X, \overline K}
+        \xrightarrow{\Res(\Bbraces{K}, \cdot)}
+        \Bbraces{X}
+        \xrightarrow{\Res(\cdot, \Bbraces{\overline X, L})}
+        \Bbraces{L}.
+    \end{align}
+
+    \item Wenn $\Bbraces{X, \overline K}$ durch \eqref{eq:res_3} hervorgeht, dann sei
+
+    \begin{align*}
+        \Bbraces{X, \overline K}
+        =
+        \Res(\Bbraces{Y, X}, \Bbraces{\overline Y, \overline K}).        
+    \end{align*}
+
+    Wir haben aber bereits $\Bbraces{K}$.
+    Also können wir stattdessen auch mit \eqref{eq:res_2.1} arbeiten, d.h.
+
+    \begin{align*}
+        \Bbraces{\overline Y, \overline K}
+        \xrightarrow{\Res(\Bbraces{K}, \cdot)}
+        \Bbraces{\overline Y}
+        \xrightarrow{\Res(\cdot, \Bbraces{Y, X})}
+        \Bbraces{X}.
+    \end{align*}
+
+    Von da aus können wir mit \eqref{eq:res_bsp_0} weitermachen.
+
+    \item Wenn $\Bbraces{\overline X, L}$ durch \eqref{eq:res_3} hervorgeht, dann sei
+    
+    \begin{align*}
+        \Bbraces{\overline X, L}
+        =
+        \Res(\Bbraces{Y, \overline X}, \Bbraces{\overline Y, L}).
+    \end{align*}
+
+    Wir haben aber bereits $\Bbraces{K}$.
+    Wegen 1. haben wir damit auch $\Bbraces{X}$.
+    Also können wir stattdessen auch mit \eqref{eq:res_2.1} arbeiten, d.h.
+
+    \begin{align*}
+        \Bbraces{\overline X, L}
+        \xrightarrow{\Res(\Bbraces{X}, \cdot)}
+        \Bbraces{L}.
+    \end{align*}
+
+    \item Falls $\Bbraces{Y, X}$, $\Bbraces{\overline Y, \overline K}$ oder $\Bbraces{Y, \overline X}$, $\Bbraces{\overline Y, L}$ durch \eqref{eq:res_3} hervorgeht, so können wir jeweils 1. oder 2. analog darauf anwenden.
+
+\end{enumerate}
+
+An der Stelle noch zwei Bemerkungen.
+
+\begin{itemize}
+
+    \item Durch \eqref{eq:res_2.1} erzeugen wir ein Singleton.
+    \eqref{eq:res_2.1} arbeitet mit einem Singleton.
+    Es kann also sein, dass man \eqref{eq:res_2.1} mit einem Erzeugnis von \eqref{eq:res_2.1} anwenden muss.
+    D.h. also, wir müssen \eqref{eq:res_2.1} laufend anwenden, solange es nur get.
+
+    \item Durch \eqref{eq:res_2.2} erzeugen wir auch ein Singleton.
+    \eqref{eq:res_2.2} arbeitet aber nicht mit Singletons.
+    Es kann also nicht sein, dass man \eqref{eq:res_2.2} it einem Erzeugnis von \eqref{eq:res_2.1} oder \eqref{eq:res_2.2} anwenden muss.
+    D.h. also, wir müssen \eqref{eq:res_2.2} und \eqref{eq:res_3} bloß am Anfang ausschöpfen und uns dann erst um \eqref{eq:res_2.1} kümmern.
+
+\end{itemize}
+
+Nun zu unserem Algorithmus als Pseudocode.
+Sei dazu $\mathcal C$ eine passende Klauselmenge, d.h. for alle $C \in \mathcal C$ gilt $|C| \leq 2$.
+
+\begin{algorithm}[H]
+    $\mathcal C_\text{sing} := \Bbraces{C \in \mathcal C \mid |C| = 1}$ \\
+    $V_0 := \Bbraces{C \in \mathcal C \mid |C| = 2}$ \\
+    $E_0 := \Bbraces{\Bbraces{C, D} \mid C, E \in \mathcal C, C \neq D, C. D ~\text{resolvierbar}, \Res(C, D) \not \in V_0}$ \\
+    $w_0: E_0 \to \bigcup C: e \mapsto \Bbraces{L \mid e ~\text{kann entlang}~ L ~\text{resolviert werden.}} \neq \emptyset$ \\
+    $G_0 := (V_0, E_0, w_0)$ \\
+    $n := 0$ \\
+    \While{$|E(G_n)| \neq 0$}
+    {
+        $G_{n+1} := G_n$ \\
+        wähle $e \in E_{n+1}$ \\
+        wähle $L \in w(G_{n+1})(e)$ und $w(G_{n+1})(e) := w(G_{n+1})(e) \setminus \Bbraces{L}$ \\
+        \If{$|w(G_{n+1})(e)| = 0$}
+        {
+            $E(G_{n+1}) := E(G_{n+1}) \setminus \Bbraces{e}$ \\
+        }
+        $R := \Res_L(e)$ \\
+        \eIf{$|R| = 1$}
+        {
+            $\mathcal C_\text{sing} := \mathcal C_\text{sing} \cup \Bbraces{R}$ \\
+        }{
+            $V(G_{n+1}) := V(G_{n+1}) \cup \Bbraces{R}$ \\
+            $E_\text{new} := \Bbraces{\Bbraces{V, R} \mid v \in V(G_{n+1}), ~ v, r ~\text{resolvierbar}, ~ \Res(v, R) \not \in V(G_{n+1})}$ \\
+            $E(G_{n+1}) := E(G_{n+1}) \cup E_\text{new}$ \\
+            $w(G_{n+1}) := w(G_{n+1}) \cup \Bbraces{(e^\prime, \Bbraces{L^\prime \mid e ~\text{kann entlang}~ L^\prime ~\text{resolviert werden}}) \mid e^\prime \in E_\text{new}}$ \\
+        }
+        $n := n + 1$ \\
+    }
+    \caption
+    {
+        Ausschöpfen von \eqref{eq:res_2.2} und \eqref{eq:res_3}
+    }
+\end{algorithm}
+
+Sei $n$ die Anzahl der Variablen in $\mathcal C$.
+Es gibt nicht mehr als
+
+\begin{align*}
+    \binom{n}{2}
+    =
+    \frac{n!}{(n-2)! 2!}
+    =
+    \frac{n (n-1)}{2}
+\end{align*}
+
+Paarmengen auf $\operatorname L(\mathcal C)$.
+Mehr Knoten können also nicht erzeugt werden.
+Demnach können nicht mehr als doppelt so viele Kanten erzeugt werden.
+In jeder Schleifen-Instanz wird eine Kante entfernt.
+In jeder Schleifen-Instanz wird der ganze Graph (in polynomieller Zeit) durchlaufen.
+Irgendwann wird es also keine Kanten mehr geben und die Schleife terminiert (in polynomieller Zeit).
+
+\begin{algorithm}[H]
+    $\mathcal C_\text{sing} := \emptyset$ \\
+    \While{$C_\text{sing} \neq 0$}
+    {
+        wähle $C \in \mathcal C_\text{sing}$ und $\mathcal C_\text{sing} := \mathcal C_\text{sing} \setminus \Bbraces{C}$, $\mathcal C_\text{sing}^\prime := \mathcal C_\text{sing}^\prime \cup \Bbraces{C}$ \\
+        \For{$D \in \mathcal C_\text{pair}$}
+        {
+            $\mathcal C_\text{sing} := \mathcal C_\text{sing} \cup \Bbraces{\Res_L(C, D) \mid L \in \bigcup \mathcal C, ~ C, D ~\text{entlang}~ L ~\text{resolvierbar}}$ \\
+        }
+    }
+    \caption
+    {
+        Ausschöpfen von \eqref{eq:res_2.1}
+    }
+\end{algorithm}
+
+Es gibt nur begrenzt viele Singletons die durch Resolution entstehen können.
+$\mathcal C_\text{sing}$ wird immer leerer und es besteht eine immer geringere Chance, in einer while-Schleifen-Instanz, Singletons durch Resolution zu erhalten.
+Auch die for-Schleife ist polynomiell beschränkt.
+
+\begin{algorithm}[H]
+    \For{$C \in \mathcal C_\text{sing}^\prime$}
+    {
+        \For{$D \in \mathcal C_\text{sing}^\prime \setminus \Bbraces{C}$}
+        {
+            \If{$\emptyset \in \Bbraces{\Res_L(C, D) \mid L \in \bigcup \mathcal C, ~ C, D ~\text{entlang}~ L ~\text{resolvierbar}}$}
+            {
+                \KwRet nein
+            }
+        }
+    }
+    \KwRet ja
+    \caption
+    {
+        Ausschöpfen von \eqref{eq:res_1}
+    }
+\end{algorithm}
+
+Die Laufzeit ist hier beschränkt durch $\Landau(|\mathcal C_\text{sing}|^2)$.
 
 \end{solution}
 
