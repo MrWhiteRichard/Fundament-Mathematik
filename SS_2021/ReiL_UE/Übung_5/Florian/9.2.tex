@@ -12,8 +12,22 @@ vectors be?
 
 \begin{solution}
 
-\phantom{}
+We can interpret the tabular methods as a special case of linear function
+approximation if we choose the dimension of the feature vector to be
+the total number of states. Then we determine an (arbitrary) ordering
+of the state space $\mathcal{S} = \{s_1,\dots,s_n\}$, and identify
+each state $s_i$ with the $i$-th unit vector
 
+$x(s_i) = (\underbrace{0,\dots}_{i - 1},1,\dots,0)$.
+
+Then our linear function approximation $\hat{v}$ just reads
+
+\begin{align*}
+    \hat{v}(\textbf{w}, \textbf{x}(s_j)) = \sum_{i=1}^n x_i(s_j)w_j
+    = w_j.
+\end{align*}
+
+Hence every state has its own weight, which does not influence other state values.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

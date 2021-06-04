@@ -2,7 +2,13 @@
 
 \begin{exercise}[Exercise 11.1]
 
-Convert the equation of $n$-step off-policy TD (7.9) to semi-gradient form.
+Convert the equation of $n$-step off-policy TD 
+
+\begin{align}
+    V_{t+n}(S_t) \doteq V_{t+n-1}(S_t) + \alpha \rho_{t:t+n-1}[G_{t:t+n} - V_{t+n-1}(S_t)], \quad 0 \leq t < T \tag{7.9}
+\end{align}
+
+to semi-gradient form.
 Give accompanying definitions of the return for both the episodic and
 continuing cases.
 
@@ -13,6 +19,22 @@ continuing cases.
 \begin{solution}
 
 \phantom{}
+
+\begin{align*}
+    \textbf{w}_{t+n} \doteq \textbf{w}_{t+n-1} + \alpha \rho_{t:t+n-1}[G_{t:t+n} - \hat{v}(S_t, \textbf{w}_{t+n-1})]\nabla \hat{v}(S_t, \textbf{w}_{t+n-1}),
+\end{align*}
+
+where the return in the episodic case is defined by
+
+\begin{align*}
+    G_{t:t+n} \doteq R_{t+1} + \dots + \gamma^{n-1}R_{t+n} + \gamma^n \hat{v}(S_{t+n}, \textbf{w}_{t+n-1})
+\end{align*}
+
+or in the continuing case by
+
+\begin{align*}
+G_{t:t+n} \doteq R_{t+1} - \bar{R}_t + \dots + R_{t+n} - \bar{R}_{t+n-1} + \hat{v}(S_{t+n},\textbf{w}_{t+n-1}).
+\end{align*}
 
 \end{solution}
 
