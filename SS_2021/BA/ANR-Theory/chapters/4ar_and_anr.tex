@@ -12,11 +12,18 @@
 	A topological space $\tspace$ is called an \textit{\anr} for a full subcategory $\cat$ of $\Top$, if and only if every closed set $A$ of an object $\tspace[Y][O]$ of $\cat$, for which $\pbraces{A, \mathcal{O}\vert_A}$ is homeomorphic to $\tspace$, is a neighborhood retract of $\tspace[Y][O]$.    
 \end{definition}
 
-\begin{theorem}
-	Every \ane for a full subcategory $\cat$ of $\Top$ is an \anr for $\cat$. (also works for \aex and \ar respectively.)
+\begin{proposition}
+	If a topological space $\tspace$ is an \ar\ for a full subcategory $\cat$ of $\Top$, then $\tspace$ is also an \anr\ for the class $\cat$. 
+\end{proposition}
+\begin{proof}
+	Let $\tspace$ be an \ar\ for $\cat$ and consider any closed set $A$ of an object $\tspace[Y][O]$ of $\cat$ which is homeomorphic to $\tspace$. The set $A$ is a retract of $\tspace[Y][O]$, because $\tspace$ is an \ar\ for $\cat$. Since $Y$ is a neighborhood of $A$ in $\tspace[Y][O]$ we obtain that $A$ is also an \anr\ for $\cat$. This completes the proof. 
+\end{proof}
+
+\begin{theorem} \label{theorem:ane_to_anr}
+	Every \ane\ for a full subcategory $\cat$ of $\Top$ is an \anr\ for $\cat$. (also works for \aex\ and \ar\ respectively.)
 \end{theorem}
 \begin{proof}
-	Let $\tspace$ be an \ane for $\cat$ and let $A$ be some closed subset of an object $\tspace[Y][O]$ of $\cat$, such that $\pbraces{A, \mathcal{O}\vert_A}$ is homeomorphic to $\tspace$. Let $f \in \Hom\pbraces{\tspace, \reltspace[A][O]}$ be a homeomorphism and $g \in \Hom\pbraces{\reltspace[A][O], \tspace}$ its inverse. Since $\tspace$ is an \ane, there exists a neighborhood $U$ of $A$ in $\tspace[Y][O]$ and an extension $\overline{g} \in \Hom_\Top\pbraces{\reltspace[U][O], \tspace}$ of $g$. The function $f \circ \overline{g} \in \Hom_\Top\pbraces{\pbraces{U, \mathcal{O}\vert_U}, \pbraces{A, \mathcal{O}\vert_A}}$ is a retraction, since for $a \in A$ we have $\overline{g}(a) = g(a)$, hence $f(\overline{g}(a)) = f(g(a)) = a$. This concludes the proof. 
+	Let $\tspace$ be an \ane\ for $\cat$ and let $A$ be some closed subset of an object $\tspace[Y][O]$ of $\cat$, such that $\pbraces{A, \mathcal{O}\vert_A}$ is homeomorphic to $\tspace$. Let $f \in \Hom\pbraces{\tspace, \reltspace[A][O]}$ be a homeomorphism and $g \in \Hom_\Top\pbraces{\reltspace[A][O], \tspace}$ its inverse. Since $\tspace$ is an \ane\, there exists a neighborhood $U$ of $A$ in $\tspace[Y][O]$ and an extension $\overline{g} \in \Hom_\Top\pbraces{\reltspace[U][O], \tspace}$ of $g$. The function $f \circ \overline{g} \in \Hom_\Top\pbraces{\pbraces{U, \mathcal{O}\vert_U}, \pbraces{A, \mathcal{O}\vert_A}}$ is a retraction, since for $a \in A$ we have $\overline{g}(a) = g(a)$, hence $f(\overline{g}(a)) = f(g(a)) = a$. This concludes the proof. 
 \end{proof}
 
 \begin{lemma}
@@ -85,12 +92,12 @@
 	and since $g(\pbraces{\pbraces{z, 1}}) \neq 0$ we obtain $\lambda_z = 0$. This concludes the proof, because $z$ was arbitrary.  
 \end{proof}
 
-\begin{theorem}\cite[p. 84]{ToR}
+\begin{theorem}\cite[p. 84]{ToR} \label{theorem:anr_to_ane}
 	Let $\cat$ be one of the following full subcategories of $\Top$.
 	\begin{enumerate}
 		\item $\Met$
 		\item $\Normal$
 		\item seaparable and $\Met$
 	\end{enumerate}
-	Then every \anr (resp. \ar) for $\cat$ is an \ane (resp. \aex) for the class $\cat$. 
+	Then every \anr\ (resp. \ar) for $\cat$ is an \ane\ (resp. \aex) for the class $\cat$. 
 \end{theorem}

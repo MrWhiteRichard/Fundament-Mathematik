@@ -1,13 +1,48 @@
 \section{Absolute extensors and absolute neighborhood extensors}
 
+In this section we will study \aexs\ and \anes, because they are strongly connected to \ars\ and \anrs. The connection is stated in \ref{theorem:ane_to_anr} and \ref{theorem:anr_to_ane}. 
+
 \begin{definition}
 	A topological space $\tspace[Y][O]$ is called \textit{\aex} for a full subcategory $\cat$ of $\Top$, if and only if for every closed set $A$ of an object $\tspace$ of $\cat$ and every $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$ there exists an extension $\overline{f} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ of $f$.  
 \end{definition}
 
+\begin{definition}
+	A topological space $\tspace[Y][O]$ is called \textit{\ane} for a full subcategory $\cat$ of $\Top$, if and only if for every closed set of an object $\tspace$ of $\cat$ and every $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$ there exists a neighborhood $U$ of $A$ in $\tspace$ and an extension $\overline{f} \in \Hom_\Top\pbraces{\reltspace[U], \tspace[Y][O]}$ of $f$.
+\end{definition}
+
+\begin{proposition}
+	Every \aex\ for a full subcategory $\cat$ of $\Top$ ia an \ane\ for $\cat$. 
+\end{proposition}
+\begin{proof}
+	Let $\tspace[Y][O]$ be any \aex\ for $\cat$ and consider any closed set $A$ of an object $\tspace$ of $\cat$ and any $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$. Since $\tspace[Y][O]$ is an \aex\ for $\cat$, there exists an extension $\overline{f} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ of $f$. This concludes the proof, because $X$ is a neighborhood of $A$ in $\tspace$. 
+\end{proof}
+
+\begin{proposition}
+	Every \aex\ (respectively \ane) for a full subcategory $\cat$ of $\Top$ is also an \aex\ (respectively \ane) for every full subcategory $\mathcal{C}$ of $\cat$. 
+\end{proposition}
+\begin{proof}
+	We will proof the statement only for \anes, because the proof for \aexs\ is similar. Let $\tspace[Y][O]$ be an \ane\ for $\cat$. Let $A$ be a closed set of any object $\tspace$ of $\mathcal{C}$ and $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$. Since $\tspace[Y][O]$ is an \ane\ for $\cat$, there exists a neighborhood $U$ of $A$ in $\tspace[Y][O]$ and an extension $\overline{f} \in \Hom_\Top\pbraces{\reltspace[U], \tspace[Y][O]}$ of $f$. Thus, $\tspace[Y][O]$ is an \ane\ for $\mathcal{C}$ and the proof is complete.
+\end{proof}
+
+\begin{proposition}
+	If a subcategory $\cat$ of $\Top$ contains an object which does not fulfill \ref{axiom:t4}, then every \ane\ $\tspace$ for $\cat$ consists  of a single point. \colorbox{red}{or $X = \emptyset$ and $\mathcal{T} = \Bbraces{\emptyset}$ ?}
+\end{proposition}
+\begin{proof}
+	Assume there exists a Hausdorff space $\tspace[Y][O]$ which is an \ane\ for $\cat$ that contains two distinct points $y_1, y_2 \in Y$. There exists an object $\tspace$ of $\cat$ which is not normal, hence there are two disjoint closed sets $B$ and $C$ of $\tspace$ which can not be separated by neighborhoods. The set $A := B \cup C$ is closed in $\tspace$, because it is the union of two closed sets. We define a function $f: A \to Y$ by
+	\begin{align*}
+		f(x) := 
+		\begin{cases}
+			y_1 &, \text{if } x \in B \\
+			y_2 &, \text{if } x \in C
+		\end{cases}
+	\end{align*} 
+	\colorbox{red}{Show that $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$.} Since $\tspace[Y][O]$ is an \ane\ for the class $\cat$, there exists a neighborhood $U$ of $A$ in $\tspace$ and an extension $\overline{f} \in \Hom_\Top\pbraces{\reltspace[U], \tspace[Y][O]}$ of $f$. Since $\tspace[Y][O]$ is Hausdorff, we find a neighborhood $V$ of $y_1$ and a neighborhood $W$ of $y_2$ such that $V \cap W = \emptyset$. Therefore, $g^{-1}\bbraces{V}$ is a neighborhood of $B$ in $\reltspace[U]$, the set $g^{-1}\bbraces{W}$ is a neighborhood of $C$ in $\reltspace[U]$ and $g^{-1}\bbraces{V} \cap g^{-1}\bbraces{W} = \emptyset$. Thus we separated $B$ and $C$ by neighborhoods, which clearly is a contradiction that concludes the proof. 
+\end{proof}
+
 The following theorem provides us with a great number of examples of AEs and hence also ANEs. 
 
 \begin{theorem}[Dugundji extension theorem]
-	Every convex subset of a locally convex topological vector space is an \aex for $\Met$.
+	Every convex subset of a locally convex topological vector space is an \aex\ for $\Met$.
 \end{theorem}
 
 \begin{proof}
@@ -31,7 +66,7 @@ The following theorem provides us with a great number of examples of AEs and hen
 	
 	It remains to show continuity at any point $x \in A$. In order to prove this, let $W$ be any neighborhood of $f(x)$ in $\reltspace[C][O]$. Since $\tspace[L][O]$ is locally convex, we can assume \Wlog that $W$ is convex. Since $f$ is continuous, there exists $\delta \in \R^+$ such that $f\bbraces{\ball[x][\delta][\metric] \cap A} \subseteq W$.
 	
-	Consider some $y \in \ball[x][3^{-1}\delta][\metric]$. if $y \in A$ then we obviously have $\overline{f}(y) = f(y) \in W$. Let us assume from now on that $y \notin A$. Since $\partition[G]$ is locally finite, the set $\cover[V]^\prime := \Bbraces{V \in \cover[V] \mid y \in V}$ is finite. For any $V \in \cover[V]^\prime$ we have $\metric\pbraces{y, A} \leq \metric\pbraces{y, x} < 3^{-1}\delta$ and hence
+	Consider any $y \in \ball[x][3^{-1}\delta][\metric]$. If $y \in A$ then we obviously have $\overline{f}(y) = f(y) \in W$. Let us assume from now on that $y \notin A$. Since $\partition[G]$ is locally finite, the set $\cover[V]^\prime := \Bbraces{V \in \cover[V] \mid y \in V}$ is finite. For any $V \in \cover[V]^\prime$ we have $\metric\pbraces{y, A} \leq \metric\pbraces{y, x} < 3^{-1}\delta$ and hence
 	\begin{align*}
 		\metric\pbraces{x, a_V} \leq \metric\pbraces{x, y} + \metric\pbraces{y, a_V} \leq \metric\pbraces{x, y} + 2 \metric\pbraces{y, A} < \delta.
 	\end{align*}
@@ -45,3 +80,15 @@ The following theorem provides us with a great number of examples of AEs and hen
 \begin{remark}
 	Local convexity can not be dropped in the Dugundji extension theorem.\cite[remark1.2.4]{IDT}
 \end{remark}
+
+\begin{proposition}
+	The product space of \aexs\ for a full subcategory $\cat$ of $\Top$ is an \aex\ for $\cat$. 
+\end{proposition}
+\begin{proof}
+	Let $\tspace[Y][O]$ be the product space of a family $\pbraces{\indtspace[Y][O]}_{i \in I}$ of \aexs\ for $\cat$. Consider a closed set $A$ of any arbitrary object $\tspace$ of $\cat$ and $f \in \Hom_\Top\pbraces{\reltspace, \tspace[Y][O]}$. For any $i \in I$ we define $f_i := \pi_i \circ f$, where $\pi_i: Y \to Y_i$ is the projection. 
+	\begin{tikzcd}
+		X \arrow[r] \arrow[rd] & Y \arrow[d]\\
+		 & Y_i
+	\end{tikzcd}
+	Since $f_i \in \Hom_\Top\pbraces{\reltspace, \indtspace[Y][O]}$ and $\reltspace[Y][O]$ is an \aex\ for $\cat$, there exists an extension $\overline{f}_i \in f_i \in \Hom_\Top\pbraces{\tspace, \indtspace[Y][O]}$ of $f_i$. This allows us to define an extension $\overline{f} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ of $f$ by $\overline{f}(x) := \pbraces{\overline{g}_i(x)}_{i \in I}$. This concludes the proof. 
+\end{proof}
