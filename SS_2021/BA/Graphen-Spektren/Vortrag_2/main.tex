@@ -1,0 +1,400 @@
+\documentclass[aspectratio = 169]{beamer}
+
+\mode<presentation>
+{
+    \usetheme[reversetitle, notitle, noauthor]{Wien} 
+}
+
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{appendixnumberbeamer} 
+
+\graphicspath{{./}{./Figures/}}    
+
+\input{packages.tex}
+\input{macros.tex}
+\input{environments.tex}
+
+
+% To avoid a warning from the hyperref package:
+\pdfstringdefDisableCommands{ %
+    \def \translate{} %
+}
+
+\title[Graphen-Energie]{Graphen-Energie}
+\subtitle{Bachelorarbeit aus Diskreter Mathematik}
+\author[R. Weiss]{Richard Weiss}
+\institute[TU Wien]{TU Wien, Vienna, Austria}     
+\date{7. Juni 2021}
+
+\begin{document}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}
+    \titlepage
+\end{frame}            
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Wiederholung (1 / 2)}
+
+    \begin{definition*}
+    
+        \begin{align*}
+            V & := V(G)                                                    & \text{endliche Knoten-Menge}, \\
+            E & := E(G) \in \Bbraces{E^\prime \subseteq V: |E^\prime| = 2} & \text{Kanten-Menge}, \\
+            G & := (V, E)                                                  & \text{Graph}
+        \end{align*}
+
+    \end{definition*}    
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Wiederholung (2 / 2)}
+
+    \begin{definition*}
+    
+        \begin{gather*}
+            V = \Bbraces{v_1, \dots, v_n},
+            \quad
+            a_{i, j}
+            :=
+            \begin{cases}
+                1, & \Bbraces{v_i, v_j} \in E, \\
+                0, & \text{sonst},
+            \end{cases} \\
+            \mathbf A := \mathbf A(G) = (a_{i, j})_{i,j=1}^n ~\text{Adjazenz-Matrix},
+        \end{gather*}
+    
+        \begin{align*}
+            \chi(\lambda)
+            & :=
+            \chi(G, \lambda)
+            :=
+            \det(\mathbf A - \lambda \mathbf I)
+            & \text{charakteristisches Polynom von $G$}, \\
+            \sigma
+            & :=
+            \sigma(G)
+            :=
+            \Bbraces{\lambda \in \C: \chi(\lambda) = 0}
+            \subset
+            \R
+            & \text{Spektrum von $G$}
+        \end{align*}
+
+    \end{definition*}    
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Chemische Graphen-Theorie und Graphen-Indizes}
+
+    \begin{block}{}
+
+        \begin{itemize}
+
+            \item Chemische Graphen: Moleküle als Graphen darstellen:
+            
+            \begin{itemize}
+                \item Knoten  \dots Atome,
+                \item Kanten  \dots (Atom-)Bindungen,
+                \item Graphen \dots Moleküle
+            \end{itemize}
+
+            \item (topologische) Graphen-Indizes: Numerische Eigneschaften von Graphen, z.B.:
+
+            \begin{itemize}
+    
+                \item Wiener Index: Siedepunkt von Alkanen,
+
+                \[
+                    W(G) := \sum_{\Bbraces{u, v} \subseteq V(G)} d(u, v)
+                \]
+
+                \item Randic Index: Siedepunkt, Bildungsenthalpie, chromatographische Retentionszeit,
+
+                % Bildungsenthalpie, bezeichnet diejenige Energiemenge, die bei der Bildung einer Verbindung aus ihren Elementen freigesetzt (exotherme Reaktion) oder verbraucht (endotherme Reaktion) wird.
+                % Retentionszeit: Zeit, die ein Analyt für das Passieren der Säule benötigt. Dies entspricht der Zeitdifferenz zwischen Injektion und Detektion.
+
+                \[
+                    R_\alpha(G) := \sum_{\Bbraces{u, v} \in E(G)} (\deg(u) \deg(v))^\alpha,
+                    \quad
+                    \alpha \neq 0
+                \]
+
+                \item Energie \dots
+
+                % \item Energie: Energie der $\pi$-Elektronen-Bindungen,
+
+                % \[
+                %     \mathcal E := \mathcal E(G) := \sum_{\lambda \in \sigma(G)} |\lambda|
+                % \]
+
+            \end{itemize}
+
+        \end{itemize}
+
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Motivation (1 / 4)}
+
+    \begin{block}{}
+
+        Erich Hückel entwickelte in den 30ern eine Methode (Hückel molecular orbital (HMO) model), um Lösungen der Schrödinger-Gleichung \eqref{eq:Schrödinger} zu approximieren, für Konjugierte Kohlenwasserstoffe.
+        Sie beschreibt das Verhalten der Elektronen in einem Moleküle und deren Energie.
+
+        \begin{align} \label{eq:Schrödinger}
+            \hat H \Psi = \mathcal E \Psi
+        \end{align}
+
+        \begin{itemize}
+            \item $\Psi$ \dots Wellenfunktion
+            \item $\hat H$ \dots Hamiltonscher Operator des Systems
+            \item $\mathcal E$ \dots Energie des Systems
+        \end{itemize}
+
+        \eqref{eq:Schrödinger} zu lösen ist ein Schwieriges Eigenwert-Problem!
+
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Motivation (2 / 4)}
+
+    \begin{block}{}
+
+        Sei $G = (V, E)$ ein Kohlenwasserstoff-Molekül mit $n = |V|$ Atomen.
+        Wir approximieren $\Psi$ durch eine Linearkombination aus $n$ orthogonalen Basis-Funktionen, sowie $\hat H$ durch $\mathbf H := \alpha \mathbf I + \beta \mathbf A$, und erhalten
+
+        \begin{align} \label{eq:Schrödinger_lite}
+            \mathbf H \Psi = \mathcal E \Psi.
+        \end{align}
+
+        \eqref{eq:Schrödinger_lite} zu lösen ist ein leichteres Eigenwert-Problem!
+
+        Seien $\lambda_i$ die Eigenwerte von $G$ und $\mathcal E_i = \alpha + \beta \lambda_i$ die Energie-Level der $\pi$-Elektronen, für $i = 1, \dots, n$, dann gilt
+
+        \[
+            \det(\mathbf H - \mathcal E_i \mathbf I)
+            =
+            \beta^n \det(\mathbf A - \lambda_i \mathbf I)
+            =
+            0.
+        \]
+
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Motivation (3 / 4)}
+
+    \begin{block}{}
+
+        Die Eigenvektoren $\Psi_i$ von $G$ bzw. $\mathbf H$ entsprechen molekularen Orbitalen der $\pi$-Elektronen.
+        Die Anzahl der Elektronen in $\Psi_i$ ist, laut Physik, $g_i \in \Bbraces{0, 1, 2}$.
+        In Kohlenwasserstoffen ist die Anzahl der $\pi$-Elektronen insgesamt
+
+        \[
+            \sum_{i=1}^n g_i = n.
+        \]
+
+        Die HMO Approximation der gesamten $\pi$-Elektronen-Energie lautet damit
+
+        \[
+            \mathcal E_\pi
+            :=
+            \sum_{i=1}^n g_i \mathcal E_i
+            =
+            \alpha n + \beta \sum_{i=1}^n g_i \lambda_i.
+        \]
+
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Motivation (4 / 4)}
+
+    \begin{block}{}
+
+        Seien $\mathcal E_i$ nichtfallend geordnet.
+        In Molekülen wird ein Zustand minimaler Energie angestrebt.
+        In den meisten interessanten Anwendungen ist dabei
+
+        \[
+            g_i
+            =
+            \begin{cases}
+                2, & \lambda_i > 0, \\
+                0, & \lambda_i < 0.
+            \end{cases}
+        \]
+
+        Selbst, wenn $G$ beliebig gewesen wäre, würde dennoch gelten
+
+        \[
+            0
+            =
+            \tr \mathbf A
+            =
+            \sum_{i=1}^n \lambda
+            =
+            \sum_{\lambda_i > 0} \lambda_i
+            -
+            \sum_{\lambda_i < 0} (-\lambda_i).
+        \]
+
+        Wir erhalten unsere ultimative Definition der Energie des Graphen $G$
+
+        \[
+            \mathcal E
+            :=
+            \mathcal E(G)
+            :=
+            \sum_{\lambda \in \sigma} |\lambda|
+            =
+            2 \sum_{\lambda_i > 0} \lambda_i
+            =
+            \sum_{i=1}^n g_i \lambda_i.
+        \]
+
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Die Coulson-Integral-Formel (1 / 2)}
+    
+    \begin{theorem}
+
+        Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und charakteristischem Polynom $\chi(\lambda) := \chi(G, \lambda)$, dann ist dessen Energie
+
+        \begin{align}
+            \mathcal E(G)
+            & =
+            \frac{1}{\pi}
+            \int_0^\infty
+                \frac{1}{x^2}
+                \ln \pbraces{x^{2 n} \chi(i/x) \chi(-i/x)}
+                ~ \mathrm d x
+            \label{eq:Coulson_1} \\
+            & =
+            \frac{1}{\pi}
+            \int_0^\infty
+                \frac{1}{x^2}
+                \pbraces
+                {
+                    n \ln x
+                    +
+                    \ln |\chi(i/x)|
+                }
+                ~ \mathrm d x
+            \label{eq:Coulson_2} \\
+            & =
+            \frac{1}{\pi}
+            \int_{-\infty}^{+\infty}
+                n - i x \frac{\chi^\prime(i x)}{\chi(i x)}
+                ~ \mathrm d x
+            \label{eq:Coulson_3} \\
+            & =
+            \frac{1}{\pi}
+            \int_{-\infty}^{+\infty}
+                n - x \frac{\mathrm d}{\mathrm d \lambda} \ln \chi(i x)
+                ~ \mathrm d x.
+            \label{eq:Coulson_4}
+        \end{align}
+
+    \end{theorem}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Die Coulson-Integral-Formel (2 / 2)}
+    
+    \begin{proof}[Beweis-Idee]
+
+        Wir verwenden zunächst die Substitution $u = |a| x$, um zu zeigen, dass für alle $a \in \R$ gilt
+
+        \begin{align} \label{eq:lemma}
+            \int_0^\infty
+                \frac{1}{x^2}
+                \ln(1 + a^2 x^2)
+                ~ \mathrm d x
+            =
+            \pi |a|.
+        \end{align}
+
+        Wir stellen $\chi(\lambda)$ als Linearfaktor-Produkt dar.
+        Daraus und \eqref{eq:lemma} folgt \eqref{eq:Coulson_1}.
+        Daraus folgt wiederum \eqref{eq:Coulson_2}, wenn man beachtet, dass
+
+        \begin{align*}
+            \chi(-i/x) = \overline{\chi(i/x)}.
+        \end{align*}
+
+        Durch partielles Integrieren von \eqref{eq:Coulson_1} und der Substitution $u = -v$, erhalten wir \eqref{eq:Coulson_3}.
+        Daraus folgt unmittelbar \eqref{eq:Coulson_4}
+
+    \end{proof}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Das Sachs-Theorem}
+    
+    \begin{theorem}
+        Sei $G$ ein gerichteter (Multi-)Graph und sein charakteristisches Polynom
+
+        \begin{align*}
+            \chi(\lambda)
+            =
+            \lambda^n + a_1 \lambda^{n-1} + \cdots + a_n,
+        \end{align*}
+
+        sowie $\mathcal L_i$, für $i \in \N$, die Menge der linearen (für alle Knoten sind Eingangs- und Ausgangs-Grad gleich) Teil-Graphen $L$ von $G$, mit $i = V(L)$ und $p(L)$ Komponenten.
+        Dann gilt für alle $i = 1, \dots, n$, dass
+
+        \begin{align*}
+            a_i = \sum_{L \in \mathcal L_i} (-1)^{p(L)}.
+        \end{align*}
+
+    \end{theorem}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Ausgewählte aktuelle Forschung}
+
+    \begin{block}
+
+        \begin{itemize}
+            \item 17. July 2017 - ELSEVIER - What is the meaning of the graph energy after all?
+            \item 30. January 2021 - ELSEVIER - A sharp lower bound of the spectral radius with application to the energy of a graph
+            \item 31. March 2021 - Open journal of Discrete Applied Mathematics - Graph energy and nullity
+        \end{itemize}
+        
+    \end{block}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\end{document}
