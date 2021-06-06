@@ -11,7 +11,50 @@ What would the feature vectors be?
 
 \begin{solution}
 
-\phantom{}
+\begin{align} \label{eq:9.8} \tag{9.8}
+    \hat v(s, \mathbf w)
+    \doteq
+    \mathbf w^\top \mathbf x(s)
+    \doteq
+    \sum_{i=1}^d w_i x_i(s)
+\end{align}
+
+W.l.o.g assume that $\mathcal S = \Bbraces{1, \dots, d}$.
+Let $x_i(s) = \1_{i=s}$ for $s \in \mathcal S$.
+This yields
+
+\begin{align*}
+    \hat v(s, \mathbf w) \stackrel{\eqref{eq:9.8}}{=} w_s
+    \quad
+    \text{and}
+    \quad
+    \nabla \hat v(s, \mathbf w) = \mathbf x(s) = \mathbf e_s,
+\end{align*}
+
+where $\mathbf e_s \in \R^d$ is the $s$-th canonical basis vector.
+
+\begin{align} \label{eq:7.2} \tag{7.2}
+    V_{t+n}(S_t)
+    \doteq
+    V_{t+n-1}(S_t)
+    +
+    \alpha [G_{t:t+n} - V_{t+n-1}(S_t)],
+    \quad
+    0 \leq t < T
+\end{align}
+
+\begin{align} \label{eq:9.15} \tag{9.15}
+    \mathbf w_{t+n}
+    \doteq
+    \mathbf w_{t+n-1}
+    +
+    \alpha [G_{t:t+n} - \hat v(S_t, \mathbf w_{t+n-1})] \nabla \hat v(S_t, \mathbf w_{t+n-1}),
+    \quad
+    0 \leq t < T
+\end{align}
+
+Let $V_t(s) = w_{t, s}$, then \eqref{eq:7.2} describes the update of the $s$-th component of \eqref{eq:9.15}, because the respective component of $\mathbf e_s$ is $1$.
+All other components of \eqref{eq:9.15} are not really updated (i.e. they inherit the previous value), since the respective component of $\mathbf e_s$ is $0$.
 
 \end{solution}
 
