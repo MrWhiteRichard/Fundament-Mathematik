@@ -53,7 +53,7 @@ Wenn wir \eqref{eq:res_1} anwenden, dann sind wir fertig.
 Wenn wir \eqref{eq:res_2.1} anwenden müssen, dann könnte es sein, dass $\Bbraces{K}$ erst durch \eqref{eq:res_2.1} oder \eqref{eq:res_2.2} erzeugt werden muss.
 Das werden wir auch tun.
 
-\begin{enumerate}[label = (\arabic*), start = 0]
+\begin{enumerate}[label = \arabic*., start = 0]
 
     \item Das gleiche könnte ad hoc auch für $\Bbraces{\overline K, L}$ und \eqref{eq:res_3} gelten.
     $\Bbraces{\overline K, L}$ erhält man aber (nur) aus \eqref{eq:res_3}, d.h.
@@ -61,7 +61,7 @@ Das werden wir auch tun.
     \begin{align*}
         \Bbraces{\overline K, L}
         =
-        \Res(\Bbraces{X, K}, \Bbraces{\overline X, L}).
+        \Res(\Bbraces{X, \overline K}, \Bbraces{\overline X, L}).
     \end{align*}
 
     Wir haben aber bereits $\Bbraces{K}$.
@@ -109,8 +109,10 @@ Das werden wir auch tun.
     Also können wir stattdessen auch mit \eqref{eq:res_2.1} arbeiten, d.h.
 
     \begin{align*}
-        \Bbraces{\overline X, L}
+        \Bbraces{Y, \overline X}
         \xrightarrow{\Res(\Bbraces{X}, \cdot)}
+        \Bbraces{Y}
+        \xrightarrow{\Res(\cdot, \Bbraces{\overline Y, L})}
         \Bbraces{L}.
     \end{align*}
 
@@ -118,6 +120,7 @@ Das werden wir auch tun.
 
 \end{enumerate}
 
+Wir können also \eqref{eq:res_3}, in gewisser Weise, via \eqref{eq:res_2.1}, umgehen.
 An der Stelle noch zwei Bemerkungen.
 
 \begin{itemize}
@@ -125,7 +128,7 @@ An der Stelle noch zwei Bemerkungen.
     \item Durch \eqref{eq:res_2.1} erzeugen wir ein Singleton.
     \eqref{eq:res_2.1} arbeitet mit einem Singleton.
     Es kann also sein, dass man \eqref{eq:res_2.1} mit einem Erzeugnis von \eqref{eq:res_2.1} anwenden muss.
-    D.h. also, wir müssen \eqref{eq:res_2.1} laufend anwenden, solange es nur get.
+    D.h. also, wir müssen \eqref{eq:res_2.1} laufend anwenden, solange es nur geht.
 
     \item Durch \eqref{eq:res_2.2} erzeugen wir auch ein Singleton.
     \eqref{eq:res_2.2} arbeitet aber nicht mit Singletons.
@@ -135,14 +138,14 @@ An der Stelle noch zwei Bemerkungen.
 \end{itemize}
 
 Nun zu unserem Algorithmus als Pseudocode.
-Sei dazu $\mathcal C$ eine passende Klauselmenge, d.h. for alle $C \in \mathcal C$ gilt $|C| \leq 2$.
+Sei dazu $\mathcal C$ eine passende Klauselmenge, d.h. für alle $C \in \mathcal C$ gilt $|C| \leq 2$.
+Wir verwenden die Notation $V(G)$, $E(G)$, und $w(G)$, für die Knoten- und Kanten-Menge, bzw. Gewichts-Funktion eines Graphen $G$.
 
 \begin{algorithm}[H]
     $\mathcal C_\text{sing} := \Bbraces{C \in \mathcal C \mid |C| = 1}$ \\
-    $V_0 := \Bbraces{C \in \mathcal C \mid |C| = 2}$ \\
-    $E_0 := \Bbraces{\Bbraces{C, D} \mid C, E \in \mathcal C, C \neq D, C. D ~\text{resolvierbar}, \Res(C, D) \not \in V_0}$ \\
-    $w_0: E_0 \to \bigcup C: e \mapsto \Bbraces{L \mid e ~\text{kann entlang}~ L ~\text{resolviert werden.}} \neq \emptyset$ \\
-    $G_0 := (V_0, E_0, w_0)$ \\
+    $V(G_0) := \Bbraces{C \in \mathcal C \mid |C| = 2}$ \\
+    $E(G_0) := \Bbraces{\Bbraces{C, D} \mid C, E \in \mathcal C, C \neq D, C. D ~\text{resolvierbar}, \Res(C, D) \not \in V_0}$ \\
+    $w(G_0): E_0 \to \bigcup \mathcal C: e \mapsto \Bbraces{L \mid e ~\text{kann entlang}~ L ~\text{resolviert werden.}} \neq \emptyset$ \\
     $n := 0$ \\
     \While{$|E(G_n)| \neq 0$}
     {
@@ -190,13 +193,14 @@ In jeder Schleifen-Instanz wird der ganze Graph (in polynomieller Zeit) durchlau
 Irgendwann wird es also keine Kanten mehr geben und die Schleife terminiert (in polynomieller Zeit).
 
 \begin{algorithm}[H]
-    $\mathcal C_\text{sing} := \emptyset$ \\
-    \While{$C_\text{sing} \neq 0$}
+    $\mathcal C_\text{pair} := \Bbraces{C \in \mathcal C \mid |C| = 2} = \mathcal C \setminus \mathcal C_\text{sing}$ \\
+    $\mathcal C_\text{sing}^\prime := \emptyset$ \\
+    \While{$|\mathcal C_\text{sing}| \neq 0$}
     {
         wähle $C \in \mathcal C_\text{sing}$ und $\mathcal C_\text{sing} := \mathcal C_\text{sing} \setminus \Bbraces{C}$, $\mathcal C_\text{sing}^\prime := \mathcal C_\text{sing}^\prime \cup \Bbraces{C}$ \\
         \For{$D \in \mathcal C_\text{pair}$}
         {
-            $\mathcal C_\text{sing} := \mathcal C_\text{sing} \cup \Bbraces{\Res_L(C, D) \mid L \in \bigcup \mathcal C, ~ C, D ~\text{entlang}~ L ~\text{resolvierbar}}$ \\
+            $\mathcal C_\text{sing} := \mathcal C_\text{sing} \cup \Bbraces{\Res_L(C, D) \mid \Bbraces{C, D} ~\text{kann entlang}~ L ~\text{resolviert werden}}$ \\
         }
     }
     \caption
@@ -214,7 +218,7 @@ Auch die for-Schleife ist polynomiell beschränkt.
     {
         \For{$D \in \mathcal C_\text{sing}^\prime \setminus \Bbraces{C}$}
         {
-            \If{$\emptyset \in \Bbraces{\Res_L(C, D) \mid L \in \bigcup \mathcal C, ~ C, D ~\text{entlang}~ L ~\text{resolvierbar}}$}
+            \If{$\emptyset \in \Bbraces{\Res_L(C, D) \mid \Bbraces{C, D} ~\text{kann entlang}~ L ~\text{resolviert werden}}$}
             {
                 \KwRet nein
             }

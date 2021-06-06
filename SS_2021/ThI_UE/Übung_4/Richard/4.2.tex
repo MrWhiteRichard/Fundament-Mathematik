@@ -4,7 +4,7 @@
 
 Sei $\mathcal C$ eine Klauselmenge, sei $C \in \mathcal C$ eine Klausel und $L_1, L_2 \in C$.
 Sei $C_0 = C \setminus \Bbraces{L_1, L_2}$.
-Finden Sie, unter Zuhilfenahme eines neuen Atoms $P$, Klauseln $C_1, \dots, C_n$ die jeweils höchstens drei Literale enthalten so dass $\mathcal C$ erfüllbar ist genau dann wenn
+Finden Sie, unter Zuhilfenahme eines neuen Atoms $p$, Klauseln $C_1, \dots, C_n$ die jeweils höchstens drei Literale enthalten so dass $\mathcal C$ erfüllbar ist genau dann wenn
 
 \begin{align*}
     (\mathcal C \setminus \Bbraces{C})
@@ -39,25 +39,37 @@ Zunächst ein kleines \dots
 
 \begin{lemma*}
 
-    Wenn $C_1 \subseteq C_2$ Klauseln sind, dann gilt, für alle Belegungen $b: \operatorname L(\Bbraces{C_1, C_2}) \to \Bbraces{0, 1}$, dass
+    \phantom{}
 
-    \begin{align*}
-        \hat b(C_1) \leq \hat b(C_2).
-    \end{align*}
+    \begin{itemize}
 
-    Wenn $\mathcal C_1 \subseteq \mathcal C_2 = \mathcal C$ Klauselmengen sind, dann gilt für alle Belegungen $b: \operatorname L(\mathcal C_1 \cup \mathcal C_2) \to \Bbraces{0, 1}$, dass
+        \item Wenn $C_1 \subseteq C_2 = C$ Klauseln sind, dann gilt, für alle Belegungen $b: \operatorname L(\Bbraces{C_1, C_2}) \to \Bbraces{0, 1}$, dass
 
-    \begin{align*}
-        \hat b(\mathcal C_1) \geq \hat b(\mathcal C_2)
-    \end{align*}
+        \begin{align*}
+            \hat b(C_1) \leq \hat b(C_2)
+            \quad
+            \text{und}
+            \quad
+            \hat b(C) = 1
+            \iff
+            \Exists L \in C:
+                \hat b(L) = 1.
+        \end{align*}
 
-    und
-    
-    \begin{align*}
-        \hat b(\mathcal C) = 1
-        \iff
-        \Forall C \in \mathcal C: \hat b(C) = 1.
-    \end{align*}
+        \item Wenn $\mathcal C_1 \subseteq \mathcal C_2 = \mathcal C$ Klauselmengen sind, dann gilt für alle Belegungen $b: \operatorname L(\mathcal C_1 \cup \mathcal C_2) \to \Bbraces{0, 1}$, dass
+
+        \begin{align*}
+            \hat b(\mathcal C_1) \geq \hat b(\mathcal C_2)
+            \quad
+            \text{und}
+            \quad
+            \hat b(\mathcal C) = 1
+            \iff
+            \Forall C \in \mathcal C:
+                \hat b(C) = 1.
+        \end{align*}
+
+    \end{itemize}
 
 \end{lemma*}
 
@@ -65,9 +77,7 @@ Seien $L_3, \dots, L_m$ die restlichen Literale aus $C$, d.h.
 
 \begin{align*}
     C = \Bbraces{L_1, \dots, L_m}
-    \quad
-    \text{d.h.}
-    \quad
+    \supset
     C_0 = \Bbraces{L_3, \dots, L_m}.
 \end{align*}
 
@@ -78,17 +88,16 @@ Sei weiters
     :=
     (\mathcal C \setminus \Bbraces{C})
     \cup
-    \Bbraces{C_0 \cup \Bbraces{p}, C_1, \dots, C_n}
+    \Bbraces{C_0 \cup \Bbraces{p}, C_1, \dots, C_n}.
 \end{align*}
 
 \enquote{$\impliedby$}:
-
 Sei $\mathcal C^\prime$ erfüllbar.
 Dann gibt es eine Belegung $b: \operatorname L(\mathcal C^\prime) \to \Bbraces{0, 1}$, sodass $\hat b(\mathcal C^\prime) = 1$.
 Insbesondere gilt also
 
 \begin{align*}
-    1 \geq \hat b(\mathcal C \setminus \Bbraces{C}) \geq \hat b(\mathcal C^\prime),
+    \hat b(\mathcal C \setminus \Bbraces{C}) = 1,
     \quad
     \text{und}
     \quad
@@ -108,17 +117,13 @@ Insbesondere gilt also
         =
         \underbrace{\hat b(C_0)}_0
         \lor
-        \underbrace{\hat b(p)}_0
+        \underbrace{b(p)}_0
         =
         0.
     \end{align*}
 
     Also ist $\hat b(C_0) = 1$.
-    Damit gibt es ein $i = 3, \dots, m$, sodass
-
-    \begin{align*}
-        1 = \hat b(L_i) \leq \hat b(C) \leq 1.
-    \end{align*}
+    Damit ist auch $\hat b(C) = 1$.
 
     \item Fall ($b(p) = 1$):
     
@@ -151,26 +156,15 @@ Insbesondere gilt also
 
 \end{enumerate}
 
-Insgesamt bekommen wir also 
+Insgesamt bekommen wir also $\hat b(\mathcal C) = 1$. \\
 
-\begin{align*}
-    \hat b(C)
-    =
-    \underbrace{b(\mathcal C \setminus \Bbraces{C})}_1
-    \land
-    \underbrace{\hat b(C)}_1
-    =
-    1.
-\end{align*}
-
-\enquote{$\impliedby$}:
-
-Sei nun $\mathcal C$.
-Dann gibt es eine Belegung $b: \operatorname L(\mathcal C^\prime) \to \Bbraces{0, 1}$, sodass $\hat b(\mathcal C^\prime) = 1$.
+\enquote{$\implies$}:
+Sei nun $\mathcal C$ erfüllbar.
+Dann gibt es eine Belegung $b: \operatorname L(\mathcal C) \to \Bbraces{0, 1}$, sodass $\hat b(\mathcal C) = 1$.
 Insbesondere gilt also
 
 \begin{align*}
-    1 \geq \hat b(\mathcal C \setminus \Bbraces{C}) \geq \hat b(\mathcal C) = 1
+    \hat b(\mathcal C \setminus \Bbraces{C}) = 1
     \quad
     \text{und}
     \quad
@@ -222,6 +216,8 @@ Insbesondere gilt also
         =
         \hat b(C^\prime).
     \end{align*}
+
+    Wir wählen also $C^\prime := \Bbraces{L_1, L_2}$.
 
     \item Fall ($\hat b(C_0) = 1$):
     
@@ -291,17 +287,17 @@ und
     =
     \hat b(\neg (\neg p) \lor (L_3 \lor \dots \lor L_m))
     =
-    \hat b(\neg p \to (L_1 \lor \dots \lor L_m)).
+    \hat b(\neg p \to (L_3 \lor \dots \lor L_m)).
 \end{align*}
 
-Nun können wir das soeben Gezeigte auf alle (endlichen) Klauseln $C$, einer beliebigen (endlichen) Klauselmenge $\mathcal C$ mit $|C| > 3$ anwenden.
+Nun können wir das soeben Gezeigte auf alle (endlichen) Klauseln $C$, einer beliebigen (endlichen) Klauselmenge $\mathcal C$, mit $|C| > 3$, anwenden.
 In polynomieller Laufzeit können wir für $\mathcal C$ also eine erfüllbarkeitsäquivalente Klauselmenge $\mathcal C^\prime$ finden, sodass für alle $C \in \mathcal C^\prime$ gilt $|C| \leq 3$.
 
 Nun ist
 
 \begin{itemize}
     \item laut Satz 4.4, $\textsc{Sat} =: L$ $\mathbf{NP}$-vollständig,
-    \item laut Satz 4.3, $L$ und damit auch $L^\prime := \textsc{3Sat} \in \mathbf{NP}$, und
+    \item laut Satz 4.2, $L \in \mathbf{NP}$ und damit auch $L^\prime := \textsc{3Sat} \in \mathbf{NP}$, und
     \item laut dem soeben Gezeigten, $L$ auf $L^\prime$ polynomiell reduzierbar, i.Z. $L \leq_\mathrm{p} L^\prime$.
 \end{itemize}
 

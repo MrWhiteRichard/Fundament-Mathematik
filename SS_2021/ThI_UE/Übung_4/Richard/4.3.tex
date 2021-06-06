@@ -66,7 +66,7 @@ Zeigen Sie dass Knotenüberdecknung $\mathbf{NP}$-vollständig ist.
 
 Sei $\mathcal C$ eine Klauselmenge mit Klauseln $C \in \mathcal C$, sodass $|C| \leq 3$.
 Betrachte den Graphen $G = (V, E)$ mit $V = V_\text{Atom} \cup V_\text{Klausel}$.
-Für jedes Atom $p \in \operatorname L(\mathcal C)$ seien $(p, \_, \_)$, $(\neg p, \_, \_)$ durch Kanten aus $E$ verbundene (Atom-)Knoten aus $V_\text{Atom}$.
+Für jedes Atom $p \in \operatorname L(\mathcal C)$ seien $(p, \_, \_)$, $(\neg p, \_, \_)$ durch Kanten aus $E$ verbundene (Atom-)Knoten aus $V_\text{Atom}$ (Atom-Bauteil).
 Für jede Klausel
 
 \begin{itemize}
@@ -75,7 +75,7 @@ Für jede Klausel
     \item $\Bbraces{L_1, L_2, L_3} = C \in \mathcal C$ seien $(L_1, C, 1), (L_2, C, 1), (L_3, C, 1)$
 \end{itemize}
 
-durch Kanten aus $E$ verbundene (Klausel-)Knoten aus $V_\text{Klausel}$.
+durch Kanten aus $E$ verbundene (Klausel-)Knoten aus $V_\text{Klausel}$ (Klausel-Bauteil).
 Es seien zwei (verschiedene) Knoten aus $V_\text{Atom}$ bzw. $V_\text{Klausel}$ ebenfalls durch eine Kante aus $E$ verbunden, wenn ihre ersten Komponenten gleich sind.
 Sonst mögen $V$ und $E$ nichts Weiteres enthalten.
 
@@ -164,7 +164,6 @@ Sonst mögen $V$ und $E$ nichts Weiteres enthalten.
 \end{example*}
 
 \enquote{$\implies$}:
-
 Sei $\mathcal C$ erfüllbar und $b: \operatorname L(\mathcal C) \to \Bbraces{0, 1}$ eine Belegung mit $\hat b(\mathcal C) = 1$.
 Weil alle Klauseln $C \in \mathcal C$ ja $\hat b(C) = 1$ erfüllen, also jeweils für mindestens ein $L \in C$ gilt $\hat b(L) = 1$, können wir eine Auswahlfunktion $f$ betrachten:
 
@@ -179,7 +178,7 @@ Seien
 \begin{align*}
     V_\text{Atom}^\prime
     & :=
-    \Bbraces{(L, \_, \_) \in V_\text{Atom} \mid L \in \bigcup \mathcal C, \hat b(L) = 1}, \\
+    \Bbraces{(L, \_, \_) \in V_\text{Atom} \mid \hat b(L) = 1}, \\
     V_\text{Klausel}^\prime
     & :=
     \Bbraces{v \in V_\text{Klausel} \mid C \in \mathcal C, v \neq (f(C), C, 1)},
@@ -190,18 +189,18 @@ Dann ist $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\o
 
 \begin{enumerate}[label = \arabic*.]
     
-    \item Sei $e = \Bbraces{v_1, v_2}$ eine Kante zwischen zwei Atom-Knoten $v_1 = (p, \_, \_), v_2 = (\neg p, \_, \_) \in V_\text{Atom}$.
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen zwei Atom-Knoten $v_1 = (p, \_, \_), v_2 = (\neg p, \_, \_) \in V_\text{Atom}$.
     Wenn $b(p) = 1$, dann ist $v_1 \in V_\text{Atom}^\prime \subseteq V^\prime$, sonst ist $b(\neg p) = 1$ und $v_2 \in V_\text{Atom}^\prime \subseteq V^\prime$.
 
-    \item Sei $e = \Bbraces{v_1, v_2}$ eine Kante zwischen zwei Klausel-Knoten $v_1, v_2 \in V_\text{Klausel}$.
-    Es aknn nicht $v_1 \not \in V_\text{Klausel}^\prime$ und und $v_2 \not \in V_\text{Klausel}^\prime$, weil genau ein Knote aus dem Bauteil fehlt.
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen zwei Klausel-Knoten $v_1, v_2 \in V_\text{Klausel}$.
+    Es kann nicht: $v_1 \not \in V_\text{Klausel}^\prime$ und $v_2 \not \in V_\text{Klausel}^\prime$ sein, weil jeweils genau ein Knoten aus jedem Klausel-Bauteil fehlt.
     Wende De Morgan an.
 
-    \item Sei $e = \Bbraces{v_1, v_2}$ eine Kante zzwischen einem Atom-Knoten $v_1 = (L, \_, \_) \in V_\text{Atom}$ und Klausel-Knoten $v_2 = (L, C, i) \in V_\text{Klausel}$.
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen einem Atom-Knoten $v_1 = (L, \_, \_) \in V_\text{Atom}$ und Klausel-Knoten $v_2 = (L, C, i) \in V_\text{Klausel}$.
     Angenommen, $v_1, v_2 \not \in V^\prime$, dann gilt
 
     \begin{align*}
-        v_1 \not \in V_\text{Atom},
+        v_1 \not \in V_\text{Atom}^\prime,
         \quad
         \text{d.h.}
         \quad
@@ -211,7 +210,7 @@ Dann ist $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\o
     und
 
     \begin{align*}
-        v_2 \not \in V_\text{Klausel},
+        v_2 \not \in V_\text{Klausel}^\prime,
         \quad
         & \text{d.h.}
         \quad
@@ -226,10 +225,9 @@ Dann ist $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\o
 \end{enumerate}
 
 \enquote{$\impliedby$}:
-
 Sei $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\operatorname L(\mathcal C)| + 2 |\mathcal C|$.
-Weil die Klausel-Knoten in den jeweiligen Klausel-Bauteilen alle verbunden sind, müssten jeweils $2$ davon in $V^\prime$ liegen, insgesmt also $2 |\mathcal C|$.
-Weil die Atom-Knoten in den jeweiligen Klausel-Bauteilen alle verbunden sind, muss jeweils $1$ davon in $V^\prime$ liegen, insgesmt also $|\operatorname L(\mathcal C)|$.
+Weil die Klausel-Knoten in den jeweiligen Klausel-Bausteinen alle verbunden sind, müssten jeweils zwei davon in $V^\prime$ liegen, insgesmt also $2 |\mathcal C|$.
+Weil die Atom-Knoten in den jeweiligen Atom-Bausteinen alle verbunden sind, muss jeweils einer davon in $V^\prime$ liegen, insgesmt also $|\operatorname L(\mathcal C)|$.
 Das sind alle; insgesamt insgesamt also $k = |V^\prime|$.
 
 Sei
@@ -246,7 +244,7 @@ Sei
 \end{align*}
 
 Sei $C \in \mathcal C$ eine beliebige Klausel und $v_2 := (L, C, i) \not \in V^\prime$, insbesondere also $L \in C$.
-Laut Konstruktion von $G$, gibt es eine Kante $e = \Bbraces{v_1, v_2}$, mit $v_1 = \Bbraces{L, \_, \_} \in V_\text{Atom}$ ein Atom-Knoten ist.
+Laut Konstruktion von $G$, gibt es eine Kante $e = \Bbraces{v_1, v_2}$, wobei $v_1 = \Bbraces{L, \_, \_} \in V_\text{Atom}$ ein Atom-Knoten ist.
 Weil $V^\prime$ eine Knotenüberdeckung ist, $e = \Bbraces{v_1, v_2} \in E$, und $v_2 \not \in V^\prime$, muss $v_1 \in V^\prime$.
 Per Definitionem von $b$, gilt daher
 
