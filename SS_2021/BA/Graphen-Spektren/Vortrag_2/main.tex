@@ -42,9 +42,9 @@
     \begin{definition*}
     
         \begin{align*}
-            V & := V(G)                                                    & \text{endliche Knoten-Menge}, \\
-            E & := E(G) \in \Bbraces{E^\prime \subseteq V: |E^\prime| = 2} & \text{Kanten-Menge}, \\
-            G & := (V, E)                                                  & \text{Graph}
+            V & := V(G)                                                          & \text{endliche Knoten-Menge}, \\
+            E & := E(G) \subseteq \Bbraces{E^\prime \subseteq V: |E^\prime| = 2} & \text{Kanten-Menge}, \\
+            G & := (V, E)                                                        & \text{Graph}
         \end{align*}
 
     \end{definition*}    
@@ -162,7 +162,7 @@
             \item $\mathcal E$ \dots Energie des Systems
         \end{itemize}
 
-        \eqref{eq:Schrödinger} zu lösen ist ein Schwieriges Eigenwert-Problem!
+        \eqref{eq:Schrödinger} zu lösen, ist ein schwieriges Eigenwert-Problem!
 
     \end{block}
 
@@ -175,13 +175,20 @@
     \begin{block}{}
 
         Sei $G = (V, E)$ ein Kohlenwasserstoff-Molekül mit $n = |V|$ Atomen.
-        Wir approximieren $\Psi$ durch eine Linearkombination aus $n$ orthogonalen Basis-Funktionen, sowie $\hat H$ durch $\mathbf H := \alpha \mathbf I + \beta \mathbf A$, und erhalten
+        Im HMO-Modell wird ein Ansatz für $\Psi$ als Linearkombination von $n$ orthogonalen Basis-Funktionen gewählt und mit dem Koeffizienten-Vektor identifiziert.
+        Daraus ergibt sich \eqref{eq:Schrödinger_lite}.
 
         \begin{align} \label{eq:Schrödinger_lite}
-            \mathbf H \Psi = \mathcal E \Psi.
+            \mathbf H \Psi = \mathcal E \Psi
         \end{align}
 
-        \eqref{eq:Schrödinger_lite} zu lösen ist ein leichteres Eigenwert-Problem!
+        \begin{itemize}
+            \item $\alpha$ \dots Coulomb-Integral
+            \item $\beta$ \dots Resonanz-Integral
+            \item $\mathbf H := \alpha \mathbf I + \beta \mathbf A$ \dots Hamiltonsche Matrix
+        \end{itemize}
+
+        \eqref{eq:Schrödinger_lite} zu lösen, ist ein leichteres Eigenwert-Problem!
 
         Seien $\lambda_i$ die Eigenwerte von $G$ und $\mathcal E_i = \alpha + \beta \lambda_i$ die Energie-Level der $\pi$-Elektronen, für $i = 1, \dots, n$, dann gilt
 
@@ -213,13 +220,13 @@
 
         Die HMO Approximation der gesamten $\pi$-Elektronen-Energie lautet damit
 
-        \[
+        \begin{align} \label{eq:Energy_nontrivial}
             \mathcal E_\pi
             :=
             \sum_{i=1}^n g_i \mathcal E_i
             =
             \alpha n + \beta \sum_{i=1}^n g_i \lambda_i.
-        \]
+        \end{align}
 
     \end{block}
 
@@ -251,14 +258,14 @@
             =
             \tr \mathbf A
             =
-            \sum_{i=1}^n \lambda
+            \sum_{i=1}^n \lambda_i
             =
             \sum_{\lambda_i > 0} \lambda_i
             -
             \sum_{\lambda_i < 0} (-\lambda_i).
         \]
 
-        Wir erhalten unsere ultimative Definition der Energie des Graphen $G$
+        Wir erhalten unsere ultimative Definition der Energie des Graphen $G$, als den nicht-trivialen Teil von \eqref{eq:Energy_nontrivial}:
 
         \[
             \mathcal E
@@ -269,7 +276,7 @@
             =
             2 \sum_{\lambda_i > 0} \lambda_i
             =
-            \sum_{i=1}^n g_i \lambda_i.
+            \sum_{i=1}^n g_i \lambda_i.            
         \]
 
     \end{block}
@@ -282,7 +289,8 @@
     
     \begin{theorem}
 
-        Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und charakteristischem Polynom $\chi(\lambda) := \chi(G, \lambda)$, dann ist dessen Energie
+        Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und charakteristischem Polynom $\chi(\lambda) := \chi(G, \lambda)$.
+        Dann ist dessen Energie
 
         \begin{align}
             \mathcal E(G)
@@ -303,20 +311,20 @@
                     +
                     \ln |\chi(i/x)|
                 }
-                ~ \mathrm d x
-            \label{eq:Coulson_2} \\
-            & =
-            \frac{1}{\pi}
-            \int_{-\infty}^{+\infty}
-                n - i x \frac{\chi^\prime(i x)}{\chi(i x)}
-                ~ \mathrm d x
-            \label{eq:Coulson_3} \\
-            & =
-            \frac{1}{\pi}
-            \int_{-\infty}^{+\infty}
-                n - x \frac{\mathrm d}{\mathrm d \lambda} \ln \chi(i x)
                 ~ \mathrm d x.
-            \label{eq:Coulson_4}
+            \label{eq:Coulson_2}
+            % & =
+            % \frac{1}{\pi}
+            % \int_{-\infty}^{+\infty}
+            %     n - i x \frac{\chi^\prime(i x)}{\chi(i x)}
+            %     ~ \mathrm d x
+            % \label{eq:Coulson_3} \\
+            % & =
+            % \frac{1}{\pi}
+            % \int_{-\infty}^{+\infty}
+            %     n - x \frac{\mathrm d}{\mathrm d \lambda} \ln \chi(i x)
+            %     ~ \mathrm d x.
+            % \label{eq:Coulson_4}
         \end{align}
 
     \end{theorem}
@@ -348,8 +356,8 @@
             \chi(-i/x) = \overline{\chi(i/x)}.
         \end{align*}
 
-        Durch partielles Integrieren von \eqref{eq:Coulson_1} und der Substitution $u = -v$, erhalten wir \eqref{eq:Coulson_3}.
-        Daraus folgt unmittelbar \eqref{eq:Coulson_4}
+        % Durch partielles Integrieren von \eqref{eq:Coulson_1} und der Substitution $u = -v$, erhalten wir \eqref{eq:Coulson_3}.
+        % Daraus folgt unmittelbar \eqref{eq:Coulson_4}
 
     \end{proof}
 
@@ -360,6 +368,7 @@
 \begin{frame}{Das Sachs-Theorem}
     
     \begin{theorem}
+
         Sei $G$ ein gerichteter (Multi-)Graph und sein charakteristisches Polynom
 
         \begin{align*}
@@ -368,7 +377,7 @@
             \lambda^n + a_1 \lambda^{n-1} + \cdots + a_n,
         \end{align*}
 
-        sowie $\mathcal L_i$, für $i \in \N$, die Menge der linearen (für alle Knoten sind Eingangs- und Ausgangs-Grad gleich) Teil-Graphen $L$ von $G$, mit $i = V(L)$ und $p(L)$ Komponenten.
+        sowie $\mathcal L_i$, für $i \in \N$, die Menge der linearen (für alle Knoten sind Eingangs- und Ausgangs-Grad gleich) Teil-Graphen $L$ von $G$, mit $i = V(L)$ und habe $L$ genau $p(L)$ Komponenten.
         Dann gilt für alle $i = 1, \dots, n$, dass
 
         \begin{align*}
@@ -376,6 +385,48 @@
         \end{align*}
 
     \end{theorem}
+
+\end{frame}
+
+% ---------------------------------------------------------------- %
+
+\begin{frame}{Eine beliebte Abschätzung}
+
+    \begin{theorem}
+
+        Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und $m = |E|$ Kanten.
+        Dann ist dessen Energie
+
+        \[
+            \mathcal E(G)
+            \leq
+            \sqrt{2 n m}.
+        \]
+
+    \end{theorem}
+
+    \begin{proof}
+
+        Seien $\lambda_1, \dots, \lambda_n$ die Eigenwerte von $G$.
+        Dann gilt, laut der Ungleichung des Arithmetischen und Quadratischen Mittels, dass
+
+        \[
+            \mathcal E(G)^2
+            =
+            \pbraces
+            {
+                \sum_{i=1}^n
+                    |\lambda_i|
+            }^2
+            \leq
+            n \sum_{i=1}^n \lambda_i^2
+            =
+            n \tr \mathbf A(G)^2
+            =
+            2 n m.
+        \]
+
+    \end{proof}
 
 \end{frame}
 
