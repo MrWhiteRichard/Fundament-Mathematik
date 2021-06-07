@@ -1,0 +1,40 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Just as the return can be written recursively in terms of the first reward and itself one-step later \eqref{eq:3.9}, so can the $\lambda$-return.
+Derive the analogous recursive relationship for \eqref{eq:12.2} and \eqref{eq:12.1}.
+
+\begin{align} \label{eq:3.9} \tag{3.9}
+    G_t
+    \doteq
+    R_{t+1} + \gamma G_{t+1}
+\end{align}
+
+\begin{align} \label{eq:12.2} \tag{12.2}
+    G_t^\lambda
+    \doteq
+    (1 - \lambda)
+    \sum_{n=1}^\infty
+        \lambda^{n-1}
+        G_{t:t+n}
+\end{align}
+
+\begin{align} \label{eq:12.1} \tag{12.1}
+    G_{t:t+n}
+    \doteq
+    R_{t+1} + \gamma R_{t+2} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n \hat v(S_{t+n}, \mathbf w_{t+n-1}),
+    \quad
+    0 \leq t \leq T - n
+\end{align}
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+ToDo!
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
