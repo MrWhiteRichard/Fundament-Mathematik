@@ -6,6 +6,10 @@ header-includes:
   - \usepackage{dsfont}
 output: pdf_document
 ---
+```{r,eval=FALSE,include=FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
 
 ## 1. Exponential family
 
@@ -13,29 +17,29 @@ Show that the one-parameter exponential family has a monotone likelihood ratio i
 
 \textbf{Solution:}
 
-We say a family of distributions $\{f_\theta , \theta \in \Theta\}$ with a one-dimensional parameter $\theta$ has a monotone likelihood ratio in a statistic $T(\textbf{X})$ if for any $\theta_1 < \theta_2$, the likelihood ratio $f_{\theta_2}(\textbf{x})/f_{\theta_1}(\textbf{x})$ is a non-decreasing function of $T(\textbf{x})$. We also remind that a family of pdfs is called an one-parameter exponential family if it can be represented in the form
+We say a family of distributions $\{f_\theta , \theta \in \Theta\}$ with a one-dimensional parameter $\theta$ has a monotone likelihood ratio in a statistic $T(\textbf{X})$ if for any $\theta_1 < \theta_2$, the likelihood ratio $f_{\theta_2}(\textbf{x})/f_{\theta_1}(\textbf{x})$ is a non-decreasing function of $T(\textbf{x})$. We also remind that a family of pdfs is called an one-parameter exponential family (not curved!) if it can be represented in the form
 
 $$
 f(x\mid \theta)
 =
-h(x)c(\theta) e^{\sum_{j=1}^k w_j(\theta)t_j(x)}
+h(x)c(\theta) e^{w(\theta)t(x)}
 $$
-where $h(x) > 0, t_1(x),\dots,t_k(x)$ are real valued functions that do not depend on $\theta$ and $c(\theta) > 0, w_1(\theta),\dots,w_k(\theta)$ are real valued functions that do not depend on $x$. The likelihood ratio is 
+where $h(x) > 0, t(x)$ are real valued functions that do not depend on $\theta$ and $c(\theta) > 0, w(\theta)$ are real valued functions that do not depend on $x$. The likelihood ratio is 
 
 $$
 \lambda(\textbf{x})
 =
 \frac{f_{\theta_2}(\textbf{x})}{f_{\theta_1}(\textbf{x})}
 =
-\prod_{i=1}^n \frac{h(x_i)c(\theta_2) \exp\Big({\sum_j w_j(\theta_2)t_j(x_i)}\Big)}{h(x_i)c(\theta_1) \exp\Big({\sum_j w_j(\theta_1)t_j(x_i)}\Big)}
+\prod_{i=1}^n \frac{h(x_i)c(\theta_2) \exp\Big({ w(\theta_2)t(x_i)}\Big)}{h(x_i)c(\theta_1) \exp\Big({ w(\theta_1)t(x_i)}\Big)}
 =
-\Big(\frac{c(\theta_2)}{c(\theta_1)}\Big)^n \exp\Big(\sum_j(w_j(\theta_2)-w_j(\theta_1))\cdot \sum_{i=1}^n t_j(x_i)\Big)
+\Big(\frac{c(\theta_2)}{c(\theta_1)}\Big)^n \exp\Big((w(\theta_2)-w(\theta_1))\cdot \sum_{i=1}^n t(x_i)\Big)
 $$
 
-We know form the Lecture (Lecture 8, page 48) that the statistic $T(\textbf{X}) = \Big(\sum_{i=1}^nt_1(X_i),\dots,\sum_{i=1}^n t_k(X_i)\Big)$ is a sufficient statistic for $\theta$. Since the natural parameter $w_j(\theta)$ are non decreasing and $\theta_1 < \theta_2$ it holds that
+We know form the Lecture (Lecture 8, page 48) that the statistic $T(\textbf{X}) = \sum_{i=1}^nt(X_i)$ is a sufficient statistic for $\theta$. Since the natural parameter $w(\theta)$ is non decreasing and $\theta_1 < \theta_2$ it holds that
 
 $$
-w_j(\theta_2)-w_j(\theta_1) \geq 0
+w(\theta_2)-w(\theta_1) \geq 0
 $$
 so the likelihood ratio is indeed a non decreasing function of this statistic.
 
@@ -110,7 +114,7 @@ L(\lambda \mid \textbf{x} )
 \exp\Big(-\lambda \sum_i(x_i-\eta) + n \ln(\lambda)\Big)  \mathds{1}_{(\eta,\infty)}(x_{(1)})
 \end{align*}
 
-To be able to take the logarithm we have to assume that $\mathds{1}_{(\eta,\infty)}(x_{(1)}) = 1$ always holds (as is done implicitly in lecture 7, page 14?). The log-likelihood is then
+To be able to take the logarithm we constrain ourselves to $\bf x$ for which $\mathds{1}_{(\eta,\infty)}(x_{(1)}) = 1$ otherwise the likelihood function obtains its maximum $0$ for any $\lambda$ anyways. The log-likelihood is then
 
 $$
 \ell(\lambda\mid \textbf{x} )
@@ -134,6 +138,8 @@ $$
 \iff
 \hat\lambda = \frac{n}{\sum_i(x_i - \eta)}
 $$
+
+
 To show that $\hat{\lambda} = \frac{n}{\sum_i(x_i - \eta)}$ is really our MLE we check the second derivative
 
 $$
@@ -141,7 +147,21 @@ $$
 =
 -\frac{n}{\hat\lambda^2} < 0
 $$
-so we have indeed found our MLE. The Fisher information is 
+so we have indeed found our MLE. We note that we can rewrite our MLE as 
+
+$$
+\hat{\lambda}
+=
+\frac{n}{\sum_i(x_i - \eta)}
+=
+\frac{n}{\sum_i x_i - n\eta}
+=
+\frac{1}{\frac{1}{n}\sum_i x_i - \eta}
+=
+\frac{1}{\bar{x}-\eta}
+$$
+
+The Fisher information is 
 
 $$
 I(\lambda)
@@ -155,7 +175,27 @@ By the theorem in lecture 7, page 12, it holds that
 $$
 \frac{\hat \lambda -\lambda}{\frac{1}{\sqrt{n}}}
 \stackrel{d}{\longrightarrow}
-\mathcal{N}(0,\lambda)
+\mathcal{N}(0,\frac{\lambda^2}{n})
+$$
+
+We know that the MLE is a consistent estimator and the Fisher information is continuous for $\lambda \in \mathbb{R}^+$, so with Slutsky's theorem we get
+
+$$
+\frac{\hat \lambda -\lambda}{\frac{1}{\sqrt{nI(\hat{\lambda})}}}
+\stackrel{d}{\longrightarrow}
+\mathcal{N}(0,1)
+$$
+
+If we denote the $1-\frac{\alpha}{2}$ quantile of the normal with $z_{\alpha/2}$ we then get our $100(1-\alpha)\%$ confidence interval, our so called Wald interval for $\lambda$ with
+
+$$
+\Big[\hat{\lambda} - z_{\alpha/2} \cdot\frac{1}{\sqrt{nI(\hat{\lambda})}},
+\hat{\lambda} + z_{\alpha/2} \cdot\frac{1}{\sqrt{nI(\hat{\lambda})}}
+\Big]
+=
+\Big[\hat{\lambda} - z_{\alpha/2} \cdot\frac{\hat{\lambda}}{n},
+\hat{\lambda} + z_{\alpha/2} \cdot\frac{\hat{\lambda}}{n}
+\Big]
 $$
 
 ## 4. confidence interval 3
@@ -214,17 +254,17 @@ Two novel randomized algorithms (A and B) are to be compared regarding their run
 
 (b) Comment on the following statements / questions only using the graphic.
 
-\quad \quad  (a) The first quartile of the times in A was about?
+\quad \quad  (i) The first quartile of the times in A was about?
 
-\quad \quad (b) The interquartile range of the times in B is about trice the interquartile range     of A.
+\quad \quad (ii) The interquartile range of the times in B is about trice the interquartile range     of A.
 
-\quad \quad  (c) Is $n = 100$?
+\quad \quad  (iii) Is $n = 100$?
  
-\quad \quad (d) More than half of the running times in B were faster than $3/4$ of the running    times in A.
+\quad \quad (iv) More than half of the running times in B were faster than $3/4$ of the running    times in A.
 
-\quad \quad (e) At least $50\%$ in A were faster than the $25\%$ slowest in B.
+\quad \quad (v) At least $50\%$ in A were faster than the $25\%$ slowest in B.
 
-\quad \quad (f) at least $60\%$ in A were faster than the $25\%$ slowest in B.
+\quad \quad (vi) at least $60\%$ in A were faster than the $25\%$ slowest in B.
 
 (c) Regarding the runtimes
 
@@ -232,14 +272,38 @@ $$
 23.7, 13.7, 7.6, 9.0, 44.3, 3.5, 2.2, 34.2
 $$
 
-which are a subset of B, find all empirical (a) medians, (b) first quartiles and (c) $2/3$-quantiles (not using $\mathrm{R}$).
+which are a subset of B, find all empirical (a) medians, (b) first quartiles and (c) $2/3$-quantiles (not using $\texttt{R}$).
 
 \textbf{Solution:}
 
 ```{r}
 runtimes = load("algorithms.Rdata")
 
-runtimes
+# boxplot using base graphics package
+boxplot(runningtimes,col=c("lightgreen", "lightblue"), xlab ="runtimes in sec", 
+        ylab = "algorithm", horizontal = TRUE)
+legend(x="topright",col=c("lightgreen", "lightblue"),pch=c(15,15),
+       legend=c("algorithm A", "algorithm B"))
+title("runtimes boxplots")
 
-boxplot(y ~ grp, data = runtimes)
+# much cooler way to draw the boxplots!
+times = data.frame(times = c(runningtimes$algoA,runningtimes$algoB),group= c(rep("A",length(runningtimes$algoA)),rep("B",length(runningtimes$algoB))))
+
+#ggplot(times, aes(x=group, y=times,fill=group)) + geom_boxplot()
 ```
+
+(b)
+
+\quad (i) 20
+
+\quad (ii) No, more like twice
+
+\quad (iii) Can not answer this with only the graphic (but yes it is)
+
+\quad (iv) Yes
+
+\quad (v) No 
+
+\quad (vi) We can only say that at least $75\%$ in A were faster than the $25\%$ slowest in B.
+
+(c) The median is $m = (9,13.7)$, the first quartile $q_1 = (3.5,7.6)$ and the $2/3$-quantile is $q_{2/3} = 23.7$.
