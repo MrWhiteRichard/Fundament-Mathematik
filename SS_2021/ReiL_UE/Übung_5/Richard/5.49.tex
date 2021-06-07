@@ -21,6 +21,31 @@ Give accompanying definitions of the return for both the episodic and continuing
     0 \leq t < T
 \end{align}
 
+\begin{align*}
+    \mathbf w_{t+n}
+    \doteq
+    \mathbf w_{t+n-1}
+    +
+    \alpha \rho_t \cdots \rho_{t+n-1} [G_{t:t+n} - \hat v(S_t, \mathbf w_{t+n-1})] \nabla \hat v(S_t, \mathbf w_{t+n-1}),
+    \quad
+    0 \leq t < T
+\end{align*}
+
+\begin{align}
+    G_{t:t+n}
+    & \doteq
+    R_{t+1} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n \hat v(S_{t+n}, \mathbf w_{t+n-1}),
+    \label{eq:episodic}
+    \tag{episodic} \\
+    G_{t:t+n}
+    & \doteq
+    R_{t+1} - \bar R_t + \cdots + R_{t+n} - \bar R_{t+n-1} + \hat v(S_{t+n}, \mathbf w_{t+n-1})
+    \label{eq:continuing}
+    \tag{continuing}
+\end{align}
+
+Notice, that \eqref{eq:episodic} is in fact nothing but \eqref{eq:12.1}.
+
 \end{solution}
 
 % ---------------------------------------------------------------- %

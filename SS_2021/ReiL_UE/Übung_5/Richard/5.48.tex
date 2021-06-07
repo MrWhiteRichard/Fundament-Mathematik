@@ -10,7 +10,28 @@ Give pseudocode for a differential version of semi-gradient Q-learning.
 
 \begin{solution}
 
-\phantom{}
+We simply have to merge the algorithms
+
+\begin{itemize}
+    \item Q-learning (off-policy TD control) for estimating $\pi \approx \pi_\ast$, and
+    \item Differential semi-gradient Sarsa for estimating $\hat q \approx q_\ast$.
+\end{itemize}
+
+\begin{tcolorbox}[title = {Differential semi-gradient Q-learning for estimating $\hat q \approx q_\ast$}]
+    Input: a differentiable action-value function parameterization $\hat q: \mathcal S \times \mathcal A \times \R^d \to \R$ \\
+    Algorithm parameters: step sizes $\alpha, \beta > 0$, small $\varepsilon > 0$ \\
+    Initialize value-function weights $\mathbf w \in \R^d$ arbitrarily (e.g., $\mathbf w = \mathbf 0$) \\
+    Initialize average reward estimate $\bar R \in \R$ arbitrarily (e.g., $\bar R = 0$) \\
+
+    Loop for each step: \\
+    \hspace*{0.5cm} Initialize state $S$ \\
+    \hspace*{0.5cm} Choose $A$ from $S$ using policy derived from $\hat q(\cdot, \cdot, \mathbf w)$ (e.g., $\varepsilon$-greedy) \\
+    \hspace*{0.5cm} Take ation $A$, observe $R, S^\prime$ \\
+    \hspace*{0.5cm} $\delta \leftarrow R - \bar R + \max_a \hat q(S^\prime, a, \mathbf w) - \hat q(S, A, \mathbf w)$ \\
+    \hspace*{0.5cm} $\bar R \leftarrow \bar R + \beta \delta$ \\
+    \hspace*{0.5cm} $\mathbf w \leftarrow \mathbf w + \alpha \delta \nabla \hat q(S, A, \mathbf w)$ \\
+    \hspace*{0.5cm} $S \leftarrow S^\prime$
+\end{tcolorbox}
 
 \end{solution}
 
