@@ -64,7 +64,214 @@ Zeigen Sie dass Knotenüberdecknung $\mathbf{NP}$-vollständig ist.
 
 \begin{solution}
 
-\phantom{}
+Sei $\mathcal C$ eine Klauselmenge mit Klauseln $C \in \mathcal C$, sodass $|C| \leq 3$.
+Betrachte den Graphen $G = (V, E)$ mit $V = V_\text{Atom} \cup V_\text{Klausel}$.
+Für jedes Atom $p \in \operatorname L(\mathcal C)$ seien $(p, \_, \_)$, $(\neg p, \_, \_)$ durch Kanten aus $E$ verbundene (Atom-)Knoten aus $V_\text{Atom}$ (Atom-Bauteil).
+Für jede Klausel
+
+\begin{itemize}
+    \item $\Bbraces{L} = C \in \mathcal C$ seien $(L, C, 1), (L, C, 2), (L, C, 3)$
+    \item $\Bbraces{L_1, L_2} = C \in \mathcal C$ seien $(L_1, C, 1), (L_2, C, 1), (L_2, C, 2)$ oder $(L_1, C, 1), (L_1, C, 2), (L_2, C, 1)$
+    \item $\Bbraces{L_1, L_2, L_3} = C \in \mathcal C$ seien $(L_1, C, 1), (L_2, C, 1), (L_3, C, 1)$
+\end{itemize}
+
+durch Kanten aus $E$ verbundene (Klausel-)Knoten aus $V_\text{Klausel}$ (Klausel-Bauteil).
+Es seien zwei (verschiedene) Knoten aus $V_\text{Atom}$ bzw. $V_\text{Klausel}$ ebenfalls durch eine Kante aus $E$ verbunden, wenn ihre ersten Komponenten gleich sind.
+Sonst mögen $V$ und $E$ nichts Weiteres enthalten.
+
+\begin{example*}
+
+    Betrachte die Klauselmenge
+
+    \begin{align*}
+        \mathcal C
+        :=
+        \Bbraces{\Bbraces{\neg p_1}; \Bbraces{p_1, \neg p_2}; \Bbraces{p_1, p_2, \neg p_3}}.
+    \end{align*}
+
+    Diese wird erfüllt durch die Belegung
+
+    \begin{align*}
+        b:
+        \begin{cases}
+            p_1 \mapsto 0, \\
+            p_2 \mapsto 0, \\
+            p_3 \mapsto 0.
+        \end{cases}
+    \end{align*}
+
+    Im folgenden Graphen sind die roten Kanten nicht in der Knotenüberdeckung enthalten, die grünen allerdings schon.
+
+    \begin{center}
+        \begin{tikzpicture}[node distance = 2cm]
+
+            % Atom
+            \node [state, color = red]                        (atom_p_1)     {$p_1$};
+            \node [state, color = green, below of = atom_p_1] (atom_p_1_not) {$\neg p_1$};
+            \draw (atom_p_1) edge (atom_p_1_not);
+        
+            % Klausel
+            \node [state, color = green, right of       = atom_p_1_not]        (klausel_1_literal_2) {$\neg p_1$};
+            \node [state, color = red,   above right of = klausel_1_literal_2] (klausel_1_literal_1) {$\neg p_1$};
+            \node [state, color = green, below right of = klausel_1_literal_1] (klausel_1_literal_3) {$\neg p_1$};
+            \draw (klausel_1_literal_1) edge (klausel_1_literal_2)
+                  (klausel_1_literal_2) edge (klausel_1_literal_3)
+                  (klausel_1_literal_3) edge (klausel_1_literal_1);
+        
+            % Atom
+            \node [state, color = red,   below of = atom_p_1_not] (atom_p_2)     {$p_2$};
+            \node [state, color = green, below of = atom_p_2]     (atom_p_2_not) {$\neg p_2$};
+            \draw (atom_p_2) edge (atom_p_2_not);
+        
+            % Klausel
+            \node [state, color = red,   right of       = atom_p_2_not]        (klausel_2_literal_2) {$\neg p_2$};
+            \node [state, color = green, above right of = klausel_2_literal_2] (klausel_2_literal_1) {$p_1$};
+            \node [state, color = green, below right of = klausel_2_literal_1] (klausel_2_literal_3) {$\neg p_2$};
+            \draw (klausel_2_literal_1) edge (klausel_2_literal_2)
+                  (klausel_2_literal_2) edge (klausel_2_literal_3)
+                  (klausel_2_literal_3) edge (klausel_2_literal_1);
+        
+            % Atom
+            \node [state, color = red,   below of = atom_p_2_not] (atom_p_3)     {$p_3$};
+            \node [state, color = green, below of = atom_p_3]     (atom_p_3_not) {$\neg p_3$};
+            \draw (atom_p_3) edge (atom_p_3_not);
+        
+            % Klausel
+            \node [state, color = green, right of       = atom_p_3_not]        (klausel_3_literal_2) {$p_2$};
+            \node [state, color = green, above right of = klausel_3_literal_2] (klausel_3_literal_1) {$p_1$};
+            \node [state, color = red,   below right of = klausel_3_literal_1] (klausel_3_literal_3) {$\neg p_3$};
+            \draw (klausel_3_literal_1) edge (klausel_3_literal_2)
+                  (klausel_3_literal_2) edge (klausel_3_literal_3)
+                  (klausel_3_literal_3) edge (klausel_3_literal_1);
+                  
+            % other edges
+        
+            \draw (klausel_1_literal_1) edge             (atom_p_1_not);
+            \draw (klausel_1_literal_2) edge             (atom_p_1_not);
+            \draw (klausel_1_literal_3) edge [bend left] (atom_p_1_not);
+        
+            \draw (klausel_2_literal_1) -- (2, -4.6) --  (atom_p_1);
+            \draw (klausel_2_literal_2) edge             (atom_p_2_not);
+            \draw (klausel_2_literal_3) edge [bend left] (atom_p_2_not);
+        
+            \draw (klausel_3_literal_1) -- (1, -8.6) -- (1, 0) -- (atom_p_1);
+            \draw (klausel_3_literal_2) edge                      (atom_p_2);
+            \draw (klausel_3_literal_3) edge [bend left]          (atom_p_3_not);
+        
+        \end{tikzpicture}
+    \end{center}
+
+\end{example*}
+
+\enquote{$\implies$}:
+Sei $\mathcal C$ erfüllbar und $b: \operatorname L(\mathcal C) \to \Bbraces{0, 1}$ eine Belegung mit $\hat b(\mathcal C) = 1$.
+Weil alle Klauseln $C \in \mathcal C$ ja $\hat b(C) = 1$ erfüllen, also jeweils für mindestens ein $L \in C$ gilt $\hat b(L) = 1$, können wir eine Auswahlfunktion $f$ betrachten:
+
+\begin{align*}
+    f:
+        \mathcal C \to \bigcup \mathcal C:
+        C \mapsto f(C) \in \Bbraces{L \in C \mid \hat b(L) = 1} \neq \emptyset.
+\end{align*}
+
+Seien
+
+\begin{align*}
+    V_\text{Atom}^\prime
+    & :=
+    \Bbraces{(L, \_, \_) \in V_\text{Atom} \mid \hat b(L) = 1}, \\
+    V_\text{Klausel}^\prime
+    & :=
+    \Bbraces{v \in V_\text{Klausel} \mid C \in \mathcal C, v \neq (f(C), C, 1)},
+\end{align*}
+
+und $V^\prime := V_\text{Atom}^\prime \cup V_\text{Klausel}^\prime$.
+Dann ist $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\operatorname L(\mathcal C)| + 2 |\mathcal C|$.
+
+\begin{enumerate}[label = \arabic*.]
+    
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen zwei Atom-Knoten $v_1 = (p, \_, \_), v_2 = (\neg p, \_, \_) \in V_\text{Atom}$.
+    Wenn $b(p) = 1$, dann ist $v_1 \in V_\text{Atom}^\prime \subseteq V^\prime$, sonst ist $b(\neg p) = 1$ und $v_2 \in V_\text{Atom}^\prime \subseteq V^\prime$.
+
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen zwei Klausel-Knoten $v_1, v_2 \in V_\text{Klausel}$.
+    Es kann nicht: $v_1 \not \in V_\text{Klausel}^\prime$ und $v_2 \not \in V_\text{Klausel}^\prime$ sein, weil jeweils genau ein Knoten aus jedem Klausel-Bauteil fehlt.
+    Wende De Morgan an.
+
+    \item Sei $e = \Bbraces{v_1, v_2} \in E$ eine Kante zwischen einem Atom-Knoten $v_1 = (L, \_, \_) \in V_\text{Atom}$ und Klausel-Knoten $v_2 = (L, C, i) \in V_\text{Klausel}$.
+    Angenommen, $v_1, v_2 \not \in V^\prime$, dann gilt
+
+    \begin{align*}
+        v_1 \not \in V_\text{Atom}^\prime,
+        \quad
+        \text{d.h.}
+        \quad
+        \hat b(L) = 0,
+    \end{align*}
+
+    und
+
+    \begin{align*}
+        v_2 \not \in V_\text{Klausel}^\prime,
+        \quad
+        & \text{d.h.}
+        \quad
+        L = f(C), \quad i = 1, \\
+        & \text{also}
+        \quad
+        \hat b(L) = \hat b(f(C)) = 1.
+    \end{align*}
+
+    Widerspruch!
+
+\end{enumerate}
+
+\enquote{$\impliedby$}:
+Sei $V^\prime$ eine Knotenüberdeckung von $V$ mit $|V^\prime| \leq k = |\operatorname L(\mathcal C)| + 2 |\mathcal C|$.
+Weil die Klausel-Knoten in den jeweiligen Klausel-Bausteinen alle verbunden sind, müssten jeweils zwei davon in $V^\prime$ liegen, insgesmt also $2 |\mathcal C|$.
+Weil die Atom-Knoten in den jeweiligen Atom-Bausteinen alle verbunden sind, muss jeweils einer davon in $V^\prime$ liegen, insgesmt also $|\operatorname L(\mathcal C)|$.
+Das sind alle; insgesamt insgesamt also $k = |V^\prime|$.
+
+Sei
+
+\begin{align*}
+    b:
+        \operatorname L(\mathcal C) \to \Bbraces{0, 1}:
+        p
+        \mapsto
+        \begin{cases}
+            1, & (p, \_, \_) \in V^\prime, \\
+            0, & \text{sonst}.
+        \end{cases}
+\end{align*}
+
+Sei $C \in \mathcal C$ eine beliebige Klausel und $v_2 := (L, C, i) \not \in V^\prime$, insbesondere also $L \in C$.
+Laut Konstruktion von $G$, gibt es eine Kante $e = \Bbraces{v_1, v_2}$, wobei $v_1 = \Bbraces{L, \_, \_} \in V_\text{Atom}$ ein Atom-Knoten ist.
+Weil $V^\prime$ eine Knotenüberdeckung ist, $e = \Bbraces{v_1, v_2} \in E$, und $v_2 \not \in V^\prime$, muss $v_1 \in V^\prime$.
+Per Definitionem von $b$, gilt daher
+
+\begin{align*}
+    1 = \hat b(L) \leq \hat b(C) \leq 1.
+\end{align*}
+
+Nachdem das also für alle Klauseln gilt, folgt
+
+\begin{align*}
+    \hat b(\mathcal C)
+    =
+    \bigwedge_{C \in \mathcal C}
+        \underbrace{\hat b(C)}_1
+    =
+    1.
+\end{align*}
+
+Nun ist
+
+\begin{itemize}
+    \item laut Aufgabe 2, $L := \textsc{3Sat}$ $\mathbf{NP}$-vollständig,
+    \item laut Satz 4.3, $L^\prime := \textsc{Knotenüberdecknung} \in \mathbf{NP}$, und
+    \item laut dem soeben Gezeigten, $L$ auf $L^\prime$ polynomiell reduzierbar, i.Z. $L \leq_\mathrm{p} L^\prime$.
+\end{itemize}
+
+Laut Lemma 4.2, ist also auch $L^\prime$ $\mathbf{NP}$-vollständig.
 
 \end{solution}
 

@@ -1,0 +1,210 @@
+\documentclass[aspectratio=169]{beamer}
+
+
+
+\mode<presentation>
+{
+ \usetheme[reversetitle,notitle,noauthor]{Wien}
+%    \usetheme[noauthor]{Wien}
+}
+
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{{./}{./Figures/}}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{algorithm2e}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{positioning}
+\usetikzlibrary{overlay-beamer-styles}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\tikzstyle{highlight}=[red,ultra thick]
+
+% To avoid a warning from the hyperref package:
+\pdfstringdefDisableCommands{%
+    \def\translate{}%
+}
+
+% To make sure, that the footnote is placed above and outside the
+% footline (but it only works for one footnote per frame):
+%
+% \addtobeamertemplate{footnote}{}{\vspace{4ex}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Maximum Flow Problem]{Maximal flows in networks}
+
+
+\subtitle{Bachelorarbeit aus Diskreter Mathematik}
+
+\author[F. Schager]{Florian Schager}
+
+\institute[TU Wien]{TU Wien, Vienna, Austria}
+
+\date{14. Juni 2021}
+
+\input{packages.tex}
+\input{macros.tex}
+\input{environments.tex}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Wiederholung - Problemstellung}
+  Wir wollen in einem Flussnetzwerk $N = (G,c,s,t)$ einen maximalen Fluss 
+  von der Quelle $s$ zur Senke $t$ finden, der folgenden Bedingungen genügt:
+
+  \begin{enumerate}
+    \item $0 \leq f(e) \leq c(e)$ für jede Kante $e$; \quad (Kapazitätsbeschränkung)
+    \item $\sum_{e^+ = v} f(e) = \sum_{e^- = v} f(e)$ für jeden Knoten $v \neq s,t$.
+    \quad (Flusserhaltung)
+  \end{enumerate}
+
+
+
+  Der Wert eines Flusses ist gegeben durch
+
+  \begin{align*}
+    w(f) := \sum_{e^- = s}f(e) - \sum_{e^+ = s} f(e) = \sum_{e^+ = t}f(e) - \sum_{e^- = t} f(e).
+  \end{align*}
+
+\end{frame}
+
+
+\begin{frame}{Wiederholung - Algorithmus}
+
+  \begin{algorithmus*}
+    \begin{itemize}
+      \item Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
+      \item Finde einen erweiternden Pfad $P$.
+      \item Berechne
+      \begin{align*}
+        d := \min[&\{c(e) - f(e): e \text{ Vorwärts-Kante } \in P\} \ \cup \\
+        &\{f(e): e \text{ Rückwärts-Kante } \in P\} ].
+      \end{align*}
+      \item Konstruiere erweiterten Fluss $f'$ mit $w(f') = w(f) + d$:
+      \begin{align*}
+        f'(e) = \begin{cases}
+          f(e) + d, & e \text{ ist Vorwärts-Kante } \in P \\
+          f(e) - d, & e \text{ ist Rückwärts-Kante } \in P\\
+          f(e), & \text{ sonst}
+        \end{cases}
+      \end{align*}
+      \item Wiederhole solange, bis kein erweiternder Pfad mehr gefunden werden kann.
+    \end{itemize}
+  \end{algorithmus*}
+
+\end{frame}
+
+\begin{frame}{Blocking Flows}
+
+\end{frame}
+
+
+\begin{frame}{MKM-Algorithmus}
+  
+\end{frame}
+
+\begin{frame}{Preflows}
+  
+  Wir definieren einen Fluss neu als 
+  Funktion $f: V \times V \to \R$ die folgenden Bedingungen genügt:
+
+  \begin{enumerate}
+    \item[(1)] $\forall (v,w) \in V \times V: f(v,w) \leq c(v,w)$
+    \item[(2)] $\forall (v,w) \in V \times V: f(v,w) = -f(w,v)$
+    \item[(3)] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) = 0$.
+  \end{enumerate}
+
+  Ein \textit{Preflow} ist schließlich eine Funktion $f: V \times V \to \R$,
+  welche (1) und (2) erfüllt, sowie eine abgeschwächte dritte Bedingung:
+
+  \begin{enumerate}
+    \item[(3')] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) \geq 0$.
+  \end{enumerate}
+
+  Der Wert $e(v) = \sum_{u \in V} f(u,v)$ nennen wir den \textit{flow excess}
+  des Preflows $f$ in $v$.
+
+\end{frame}
+
+\begin{frame}{Residualgraph}
+  Zu einem gegebenen Preflow $f$ definieren wir vorerst die Residualkapazität
+  $r_f: V \times V \to \R$ durch
+
+  \begin{align*}
+    r_f(v,w) := c(v,w) - f(v,w).
+  \end{align*}
+
+  Wir definieren zusätzlich einen Residualgraphen $G_f = (V,E_f)$ mit
+
+  \begin{align*}
+    E_f := \{ vw \in E: r_f(v,w) > 0\}
+  \end{align*}
+
+\end{frame}
+
+\begin{frame}{Labels}
+  Ein \textit{valid labelling} ist eine Funktion $d: V \to \N_0 \cup \{\infty\}$ mit
+
+  \begin{enumerate}
+    \item[(4)] $d(s) = |V|, \quad d(t) = 0$
+    \item[(5)] $\forall vw \in E_f: d(v) \leq d(w) + 1$.  
+  \end{enumerate}
+
+  Weiters nennen wir einen Knoten $v \neq s$ aktiv, solange $e(v) > 0$ und $d(v) < \infty$.
+
+  Wir initialisieren den Algorithmus von Goldberg und Tarjan mit einem
+  geeigneten Preflow wie folgt:
+
+  \begin{align*}
+    \forall v \neq s: f(s,v) &= -f(v,s) = c(s,v) \\
+    \forall v,w \neq s: f(v,w) &= 0 \\
+    d(s) &= |V|, \quad \forall v \neq s: d(v) = 0.
+  \end{align*}
+\end{frame}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan}
+
+  Nach der Initialisierung kann in jedem Schritt einer der folgenden
+  Operationen verwendet werden, solange die jeweiligen Voraussetzungen erfüllt sind:
+
+  \begin{algorithmus*}
+    \begin{enumerate}
+      \item[(1)] Test
+    \end{enumerate}
+  \end{algorithmus*}
+  
+\end{frame}
+
+\begin{frame}{Reduktionen auf ein Maximum Flow Problem}
+  
+\end{frame}
+
+\begin{frame}{Bipartite Graph - Matching of maximal cardinality}
+  
+\end{frame}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -24,7 +24,106 @@ Find the MLE of $\lambda$ and construct a $(1 - \alpha) 100 \%$ confidence inter
 
 \begin{solution}
 
-\phantom{}
+\begin{align*}
+    L(\mathbf x \mid \lambda, \eta)
+    & =
+    \prod_{i=1}^n
+        f_{X_i}(x_i \mid \lambda, \eta) \\
+    & =
+    \prod_{i=1}^n
+        \lambda
+        \mathrm e^{-\lambda (x_i - \eta)}
+        \mathbf 1_(\eta, \infty)(x_i) \\
+    & =
+    \lambda^n
+    \exp
+    \pbraces
+    {
+        -\lambda
+        \sum_{i=1}^n
+            (x_i - \eta)
+    }
+    \mathbf 1_{(\eta, \infty)^n}(\mathbf x) \\
+    & =
+    \lambda^n
+    \mathrm e^{-\lambda n (\bar x - \eta)}
+    \mathbf 1_{(\eta, \infty)}(x_{(1)})
+\end{align*}
+
+Because $\eta$ is known, we can distinguish two cases.
+If $x_{(1)} \leq \eta$, then we would be maximising $0$.
+Otherwise, $\bar x \geq x_{(1)} > \eta$ and hence $n (\bar x - \eta) > 0$.
+We calculate the MLE $\hat \lambda$ of $\lambda$.
+
+\begin{align*}
+    0
+    & \stackrel{!}{=}
+    \frac{\partial}{\partial \lambda}
+        L(\mathbf x \mid \hat \lambda, \eta) \\
+    & =
+    n \hat \lambda^{n-1} \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+    -
+    \hat \lambda^n n (\bar x - \eta) \mathrm e^{-\hat \lambda n (\bar x - \eta)} \\
+    & =
+    n \hat \lambda^{n-1} \mathrm e^{\hat \lambda n (\bar x - \eta)} (1 - \hat \lambda (\bar x - \eta)) \\
+    \iff
+    \hat \lambda & = \frac{1}{\bar x - \eta} \\
+    0
+    & \stackrel{!}{>}
+    \frac{\partial^2}{\partial^2 \lambda}
+        L(\mathbf x \mid \hat \lambda, \eta) \\
+    & =
+    \pbraces
+    {
+        n (n - 1) \hat \lambda^{n-2} \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+        -
+        n \hat \lambda^{n-1} n (\bar x - \eta) \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+    }
+    \underbrace{(1 - \hat \lambda (\bar x - \eta))}_0
+    -
+    n \hat \lambda^{n-1} \mathrm e^{-\hat \lambda n (\bar x - \eta)} (\bar x - \eta) \\
+    & =
+    -n \frac{1}{(\bar x - \eta)^{n-2}} \mathrm e^{-n}
+\end{align*}
+
+Now for the CI.
+First of, we need the second derivative of the $\log$-likelihood
+
+\begin{align*}
+    \ell(\mathbf x \mid \lambda, \eta)
+    & =
+    n \log \lambda - \lambda n (\bar x - \eta), \\
+    \frac{\partial}{\partial \lambda}
+        \ell(\mathbf x \mid \lambda, \eta)
+    & =
+    \frac{n}{\lambda} - n (\bar x - \eta)
+    =
+    n \pbraces{\frac{1}{\lambda} - \bar x - \eta}, \\
+    \frac{\partial^2}{\partial \lambda^2}
+        \ell(\mathbf x \mid \lambda, \eta)
+    & =
+    -\frac{n}{\lambda^2},
+\end{align*}
+
+for the Fischer information
+
+\begin{align*}
+    I(\lambda)
+    =
+    -\E \frac{\partial^2}{\partial \lambda^2} \ell(\mathbf x \mid \lambda, \eta)
+    =
+    n (\bar x - \eta)^2.
+\end{align*}
+
+We plug into the Wald type interval (1) from \cite[lecture 9, slide 7]{EStat} and obtain the upper and lower bound of the CI respectively:
+
+\begin{align*}
+    \hat \lambda \pm z_{\alpha / 2} \frac{1}{\sqrt{n I(\hat \lambda)}}
+    =
+    \frac{1}{\bar x - \eta} \pm z_{\alpha / 2} \frac{1}{\sqrt{n^2 (\bar x - \eta)^2}}
+    =
+    \frac{1 \pm z_{\alpha / 2} / n}{\bar x - \eta}.
+\end{align*}
 
 \end{solution}
 

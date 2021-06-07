@@ -1,0 +1,42 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[Exercise 10.4]
+
+Give pseudocode for a differential version of semi-gradient Q-learning.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\FloatBarrier
+
+\begin{algorithm}
+    \caption{Semi-gradient Q-learning (differential version)}
+    \begin{algorithmic}[1]
+        \State Input: a differential action-value function parametrization $\hat{q}: \mathcal{S} \times \mathcal{A} \times \R^d \to \R$.
+        \State Algorithm parameters: step sizes $\alpha, \beta > 0$, small $\epsilon > 0$
+        \State Initialize value-function weights $\textbf{w} \in \R^d$ arbitrarily (e.g., $\textbf{w} = 0$)
+        \State Initialize average reward estimate $\bar{R} \in \R$ arbitrarily (e.g., $\bar{R} = 0$)
+        \While{True (for each episode)}
+            \State Initialize $S$
+            \For{ each step of the episode}
+                \State Choose $A$ from $S$ using policy derived from $\hat{q}(S,\cdot,\textbf{w})$ (e.g., $\epsilon$-greedy)
+                \State Take action $A$, observe $R, S'$
+                \State $\delta \leftarrow R - \bar{R} + \max_a\hat{q}(S',a,\textbf{w}) - \hat{q}(S,A,\textbf{w})$
+                \State $\bar{R} \leftarrow \bar{R} + \beta \delta$
+                \State $\textbf{w} \leftarrow \textbf{w} + \alpha \delta \nabla \hat{q}(S,A,\textbf{w})$
+                \State $S \leftarrow S'$
+            \EndFor
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+\FloatBarrier
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

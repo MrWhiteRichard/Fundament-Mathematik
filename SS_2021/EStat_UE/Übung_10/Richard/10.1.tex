@@ -10,7 +10,45 @@ Show that the oneparameter exponential family has a monotone liklihood ratio in 
 
 \begin{solution}
 
-\phantom{}
+According to the theorem on \cite[lecure 8, slide 48]{EStat} $T(\mathbf X) := \sum_{i=1}^n t(X_i)$ is a sufficient statistic for $\theta$.
+Let $\theta_0 \leq \theta_1$, then the following ratio is monotone in $T(\mathbf X)$:
+
+\begin{align*}
+    \frac
+    {
+        L(\mathbf x \mid \theta_1)
+    }{
+        L(\mathbf x \mid \theta_0)
+    }
+    =
+    \frac
+    {
+        \prod_{i=1}^n
+            h(x_i)
+            c(\theta_1)
+            \mathrm e^{w(\theta_1) t(x_i)}
+    }{
+        \prod_{i=1}^n
+        h(x_i)
+        c(\theta_0)
+        \mathrm e^{w(\theta_0) t(x_i)}
+    }
+    =
+    \pbraces
+    {
+        \frac{c(\theta_1)}{c(\theta_0)}
+    }^n
+    \exp
+    (
+        \underbrace
+        {
+            (w(\theta_1) - w(\theta_0))
+        }_{
+            \geq 0
+        }
+        T(\mathbf x)
+    ).
+\end{align*}
 
 \end{solution}
 

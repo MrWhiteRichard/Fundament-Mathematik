@@ -1,0 +1,230 @@
+% Copyright 2017,2018 by Axel Jantsch
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under GNU General Public License v. 3 (GPLv3) 
+%
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeWien}[2020/01/21 v0.5.3 The ICT TU Wien Beamer Theme]
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% load required packages
+
+\RequirePackage{tikz}
+\RequirePackage{calc}
+\usetikzlibrary{calc}
+
+% Theme options:
+% Options for the title:
+\newif\ifreversetitle  % set the frame title in white with blue background
+\reversetitlefalse      % default
+\DeclareOptionBeamer{reversetitle}{\reversetitletrue}
+
+%  Options for the foot line:
+\newif\ifshowframenumber  % show frame numbers
+\showframenumbertrue      % default
+\DeclareOptionBeamer{noframenumber}{\showframenumberfalse}
+
+\newif\ifshowauthor  % show author in foot line 
+\showauthortrue      % default
+\DeclareOptionBeamer{noauthor}{\showauthorfalse}
+
+\newif\ifshowtitle  % show title in foot line
+\showtitletrue      % default
+\DeclareOptionBeamer{notitle}{\showtitlefalse}
+
+\newif\ifshowcircle  % show the progress circle
+\showcircletrue      % default
+\DeclareOptionBeamer{nocircle}{\showcirclefalse}
+
+
+\ProcessOptionsBeamer
+
+
+
+ % ------------------------------------------------------------------------------------
+ % -- Frame title:
+ % ------------------------------------------------------------------------------------
+
+\setbeamertemplate{frametitle}
+{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \begin{beamercolorbox}[sep=0.3cm,center,wd=\paperwidth]{frametitle}
+    \usebeamerfont{frametitle}%
+    % If the title is set in reverse background, we use less space
+    % than if it is set in white background:
+    \ifreversetitle \vbox{}\vskip-1ex%
+    \else           \vbox{}\vskip0ex%
+    \fi
+    
+    \if@tempswa\else\csname beamer@ftecenter\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+ }
+ % ------------------------------------------------------------------------------------
+ % -- Foot line and the frame number display:
+ % ------------------------------------------------------------------------------------
+
+%% unnumberedframe to keep track of
+%% frames to be ignored for progressbar
+\newcounter{unnumberedframe}
+\define@key{beamerframe}{noframenumbering}[true]{%
+  \stepcounter{unnumberedframe}
+  \beamer@noframenumberingtrue}
+
+% The box \appstr is prepended to the framenumber.
+% If we are in the appendix, it is set as "A"  and if we are in the
+% main part it is set "".
+\newbox{\appstr}
+\sbox{\appstr}{}
+
+% the height of the footline is 1 times the lineheight of the frame title
+
+\newlength{\beamer@height}
+\usebeamerfont{frametitle} %use the frame title font
+%\setlength{\beamer@height}{0.7cm}
+\setlength{\beamer@height}{\baselineskip}
+
+% reset fonts
+
+\reset@font
+
+% width of the border
+\newlength{\beamer@borderwidth}
+\setlength{\beamer@borderwidth}{0.8mm} % as small is the thickness of the border the whole circle goes up
+ 
+% inner radius of border of the framenumber frame
+\newlength{\beamer@fninnerradius}
+\setlength{\beamer@fninnerradius}{0.6\beamer@height/2}
+
+% radius of the outer border of the framenumber frame
+\newlength{\beamer@fnouterradius}
+\setlength{\beamer@fnouterradius}{\beamer@fninnerradius+\beamer@borderwidth}
+
+% radius of the counters
+\newlength{\beamer@counterradius}
+\setlength{\beamer@counterradius}{\beamer@fninnerradius/2+\beamer@fnouterradius/2}
+
+% \mainend is defined in package appendixnumberbeamer.sty to
+% distinguish between the main part and the appendix. We use it also
+% for frame numbers. If appendixnumberbeamer.sty is not used, we
+% define \mainend here to avoid an error.
+\ifx \mainend \undefined
+  \def \mainend{-1}
+\fi
+
+%-----------------------------------------------------------------------------------------------------------%
+% Footline:
+
+\setbeamertemplate{footline}
+{
+  \ifnum\thepage>1\relax%
+     \ifnum\insertframenumber<\inserttotalframenumber\relax%
+        \wienfooterbackground
+       \fi
+     \fi
+}
+
+% The following code for the foot line, in particular for the progress
+% circle, was inspired by the Feather theme, and some code was
+% adapted from that theme. Feather is a lovely theme; many thanks to
+% Lilyana Vankova for that!
+
+\newcommand{\wienfooterbackground}[0] {%
+% \mainend is defined in package appendixnumberbeamer.sty and is set
+% to -1 in the beginning and to the framenumber when the
+% command \appendix is called. 
+  \ifnum\mainend>0%
+       \sbox{\appstr}{A}
+ \else \sbox{\appstr}{}
+ \fi
+
+
+
+ \begin{tikzpicture}[overlay]
+
+    \coordinate (ULF) at
+    (0,0.95\beamer@height); % upper left corner of the footline
+    \coordinate (LRF) at
+    (1\paperwidth,0); % lower right corner of the footline
+    \coordinate (fnpos) at ($ (LRF) + (-0.41cm,0.41cm) $);
+    % The center is positioned such, that the
+    % circle ends 0.7cm from botten and 0.7cm
+    % from the right, which is the thickness
+    % of the light blue frames.
+
+    
+    % Draw the progress circle:
+    \ifshowcircle
+       % draw outer circle:
+       \fill[fill=circlebgcolor] (fnpos) circle (\beamer@fnouterradius);
+
+       % draw inner circle:
+       \fill[fill=ictbgcolor] (fnpos) circle (\beamer@fninnerradius);
+
+
+       % Calculate the total number of frames to be considered
+       \pgfmathsetmacro{\effectivetotalframe}{max(\inserttotalframenumber-\theunnumberedframe-1,1)}
+
+       % Calculate the fraction of frames in terms of a full circle:
+       \pgfmathsetmacro{\progress}{%
+         ((\insertframenumber-\theunnumberedframe)/\effectivetotalframe*(-360))+90};
+
+       % Place a small line at the beginning of the circle:
+       \draw[color=tucolor,line width=0.1*\beamer@borderwidth]
+            ([yshift=\beamer@counterradius+0.4*\beamer@borderwidth] fnpos)
+            to ([yshift=\beamer@counterradius-0.4*\beamer@borderwidth] fnpos);
+            
+       %% draw the arc:
+       \draw[color=tucolor,line width=0.2*\beamer@borderwidth]
+       ([yshift=\beamer@counterradius] fnpos)
+       arc[radius=\beamer@counterradius, start angle=90, end
+       angle=\progress];
+
+       % Place a dot at the end of the arc:
+       \fill[fill=tucolor] ([shift={(\progress:\beamer@counterradius)}]
+       fnpos) circle (0.25\beamer@borderwidth);
+    \fi
+
+
+    % place the framenumber in the center of the circle:
+    \ifshowframenumber
+       \node[font=\tiny] at (fnpos) {{\usebeamercolor[fg]{normal
+             text}\usebox{\appstr}\insertframenumber}};
+       \fi
+
+    % \draw[draw=none,fill=tucolor] (ULF) rectangle (LRF); % footline
+
+    \ifshowauthor
+       \ifshowtitle 
+          % show both author and title in the foot line:
+          \node at (0.5\paperwidth,0.5\beamer@height) {{\insertshortauthor\ |\ \insertshorttitle}};
+       \else
+          % show only author in the foot line:
+         \node at (0.5\paperwidth,0.5\beamer@height) {{\insertshortauthor}};
+       \fi
+    \else
+       \ifshowtitle
+          % show only the title in the foot line:
+          \node at (0.5\paperwidth,0.5\beamer@height) {{\insertshorttitle}};
+       \fi
+    \fi
+    
+    % ----------------------------------------------------------------------------------------------------------------------------------
+
+  \end{tikzpicture}
+
+  
+}

@@ -1,0 +1,130 @@
+% Copyright 2017-2018 by Axel Jantsch
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under GNU General Public License v. 3 (GPLv3) 
+%
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeWien}[2020/01/21 v0.5.3 The ICT TU Wien Beamer Theme]
+
+% Version history:
+% v 0.5.3: Jan 2020 - Added support for 16:9 aspect ratio
+%
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% load required packages
+
+\RequirePackage{tikz}
+\RequirePackage{ifthen}
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme options and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% To set the frame title in white with blue background:
+\DeclareOptionBeamer{reversetitle}{\PassOptionsToPackage{reversetitle}{beamercolorthemeWien}
+                                   \PassOptionsToPackage{reversetitle}{beamerouterthemeWien}}
+
+% Control, what is shown in the foot line:
+\DeclareOptionBeamer{noframenumber}{\PassOptionsToPackage{noframenumber}{beamerouterthemeWien}}
+\DeclareOptionBeamer{noauthor}{\PassOptionsToPackage{noauthor}{beamerouterthemeWien}}
+\DeclareOptionBeamer{notitle}{\PassOptionsToPackage{notitle}{beamerouterthemeWien}}
+\DeclareOptionBeamer{nocircle}{\PassOptionsToPackage{nocircle}{beamerouterthemeWien}}
+
+% \DeclareOptionBeamer{rotationcw}{\PassOptionsToPackage{rotationcw}{beamerouterthemeFeather}}
+%\DeclareOptionBeamer{shownavsym}{\PassOptionsToPackage{shownavsym}{beamerouterthemeFeather}}
+
+% Three logos can be defined that are shown on the title page,
+% at the top left, top center, top right. They are inserted into the
+% title page by the beamerinnerthemeWien:
+\DeclareOptionBeamer{logoleft}{\PassOptionsToPackage{logoleft=#1}{beamerinnerthemeWien}}
+\DeclareOptionBeamer{logocenter}{\PassOptionsToPackage{logocenter=#1}{beamerinnerthemeWien}}
+\DeclareOptionBeamer{logoright}{\PassOptionsToPackage{logoright=#1}{beamerinnerthemeWien}}
+
+% The background pictures, used in the frames:
+\DeclareOptionBeamer{backgroundmain}{\PassOptionsToPackage{backgroundmain=#1}{beamerinnerthemeWien}}
+\DeclareOptionBeamer{backgroundfirst}{\PassOptionsToPackage{backgroundfirst=#1}{beamerinnerthemeWien}}
+\DeclareOptionBeamer{nobackgroundmain}{\PassOptionsToPackage{nobackgroundmain}{beamerinnerthemeWien}}
+\DeclareOptionBeamer{nobackgroundfirst}{\PassOptionsToPackage{nobackgroundfirst}{beamerinnerthemeWien}}
+
+% Default logos:
+\ExecuteOptionsBeamer{logoleft=TUW-Logo.png}  % TU Wien Logo
+\ExecuteOptionsBeamer{logocenter=}            % No logo
+\ExecuteOptionsBeamer{logoright=ICT-Logo.png} % ICT Logo
+
+% Default Background pictures:
+
+\ExecuteOptionsBeamer{backgroundfirst=TUW-Background.png} % TUW for first and last frame
+
+% For all main frames, we use different files depending on the aspect ratio:
+\makeatletter
+\ifthenelse{\lengthtest{\beamer@paperwidth=16cm}}
+  {\ifthenelse{\lengthtest{\beamer@paperheight=9cm}}
+    {\ExecuteOptionsBeamer{backgroundmain=ICT-Background-169.pdf}} % aspectratio 16:9
+    {\ExecuteOptionsBeamer{backgroundmain=ICT-Background-169.pdf}} % aspectratio 16:10
+    }    
+  {\ifthenelse{\lengthtest{\beamer@paperwidth=12.80cm}}
+    {\ExecuteOptionsBeamer{backgroundmain=ICT-Background-43.pdf}} % aspectratio 4:3
+    {\ifthenelse{\lengthtest{\beamer@paperwidth=12.50cm}}
+       {\ExecuteOptionsBeamer{backgroundmain=ICT-Background-43.pdf}} % aspectratio 5:4
+       {\ifthenelse{\lengthtest{\beamer@paperwidth=14cm}}
+          {\ExecuteOptionsBeamer{backgroundmain=ICT-Background-43.pdf}} % aspectratio 14:9
+          {\ifthenelse{\lengthtest{\beamer@paperwidth=13.50cm}}
+             {\ExecuteOptionsBeamer{backgroundmain=ICT-Background.pdf}} % aspectratio 3:2
+
+             {\ExecuteOptionsBeamer{backgroundmain=ICT-Background.pdf}} % default aspectratio
+             }}}}
+\makeatother             
+
+%
+% These are the aspect ratios that beamer uses and supports:
+% \DeclareOptionBeamer{aspectratio}[43]{%
+%   \ifnum#1=1610%
+%     \beamer@paperwidth 16.00cm%
+%     \beamer@paperheight 10.00cm%
+%   \else\ifnum#1=169%
+%     \beamer@paperwidth 16.00cm%
+%     \beamer@paperheight 9.00cm%
+%   \else\ifnum#1=149%
+%     \beamer@paperwidth 14.00cm%
+%     \beamer@paperheight 9.00cm%
+%   \else\ifnum#1=54%
+%     \beamer@paperwidth 12.50cm%
+%     \beamer@paperheight 10.00cm%
+%   \else\ifnum#1=43%
+%     \beamer@paperwidth 12.80cm%
+%     \beamer@paperheight 9.60cm%
+%   \else\ifnum#1=32%
+%     \beamer@paperwidth 13.50cm%
+%     \beamer@paperheight 9.00cm%
+%   \fi\fi\fi\fi\fi\fi%
+% }
+
+\ProcessOptionsBeamer
+
+
+  %----------------------------------------------------------------------------------------------------------------------------------
+
+%beamer specific options
+
+\mode<presentation>
+
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{frametitle}[default][center]
+
+\usecolortheme{Wien}
+\useinnertheme{Wien}
+\useoutertheme{Wien}
+
+
+\mode<all>
+
+

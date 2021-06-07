@@ -1,0 +1,192 @@
+% Copyright 2017,2018 by Axel Jantsch
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under GNU General Public License v. 3 (GPLv3) 
+%
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeWien}[2020/01/21 v0.5.3 The ICT TU Wien Beamer Theme]
+
+%----------------------------------------------------------------------------------------------------------------------------------
+
+% load required packages
+
+\RequirePackage{xcolor}
+\RequirePackage[skins]{tcolorbox}
+
+% Theme options:
+% The logo for the top left position on the title frame:
+\DeclareOptionBeamer{logoleft}{\def\beamer@Wien@logoleft{#1}}
+\DeclareOptionBeamer{logocenter}{\def\beamer@Wien@logocenter{#1}}
+\DeclareOptionBeamer{logoright}{\def\beamer@Wien@logoright{#1}}
+
+% The background picture used for the first and the last frame:
+\DeclareOptionBeamer{backgroundfirst}{\def\beamer@Wien@backgroundfirst{#1}}
+\newif\ifshowbackgroundfirst  % set the background immage for the first and last frames
+\showbackgroundfirsttrue      % default
+\DeclareOptionBeamer{nobackgroundfirst}{\showbackgroundfirstfalse}
+
+% The background picture for every frame except the first and the last:
+\DeclareOptionBeamer{backgroundmain}{\def\beamer@Wien@backgroundmain{#1}}
+\newif\ifshowbackgroundmain  % set the background image for the body frames
+\showbackgroundmaintrue      % default
+\DeclareOptionBeamer{nobackgroundmain}{\showbackgroundmainfalse}
+
+\ProcessOptionsBeamer
+
+
+% Color:
+%\definecolor{tucolor}{HTML}{0070AF}% Rule colour
+
+\newcommand\beamer@putleft[2]{%
+  \hbox to 0pt{\hss\vtop{%
+      \normalsize%
+      \@tempdima=.25\paperwidth%
+      \advance\@tempdima by-12ex%
+      \hsize=\@tempdima%
+      \leftskip=0pt plus 1fill%
+      \rightskip=0pt\relax%
+      \leavevmode#1}\kern#2}%
+}
+
+% The background images for the first, the last and all the other frames:
+       
+\setbeamertemplate{background}{
+    \ifnum\thepage=1\relax%
+       % The first frame: 
+       \ifshowbackgroundfirst
+          \IfFileExists{\beamer@Wien@backgroundfirst}{%
+             \includegraphics[width=\paperwidth,height=\paperheight]{%
+               \beamer@Wien@backgroundfirst}}{%
+           \PackageWarning{beamer Theme Wien}{Frame background file
+             not found: \beamer@Wien@backgroundfirst}}
+        \fi %showbackgroundfirst
+    \else
+    % To avoid counting unnumbered frames:
+    \pgfmathtruncatemacro{\effectivetotalframe}{max(\inserttotalframenumber-\theunnumberedframe,1)}
+%       \ifnum\insertframenumber=\inserttotalframenumber\relax%
+       \ifnum\insertframenumber=\effectivetotalframe\relax%
+          % The last frame:
+        \ifshowbackgroundfirst
+          \IfFileExists{\beamer@Wien@backgroundfirst}{%
+             \includegraphics[width=\paperwidth,height=\paperheight]{%
+               \beamer@Wien@backgroundfirst}}{%
+           \PackageWarning{beamer Theme Wien}{Frame background file
+             not found: \beamer@Wien@backgroundfirst}}
+        \fi %showbackgroundfirst
+       \else
+          % All body frames:  
+         \ifshowbackgroundmain
+            \IfFileExists{\beamer@Wien@backgroundmain}{%
+               \hspace{-3pt}\includegraphics[width=\paperwidth,height=\paperheight]{%
+                   \beamer@Wien@backgroundmain}
+             }{%
+             \PackageWarning{beamer Theme Wien}{Frame background file
+               not found: \beamer@Wien@backgroundmain}}
+           \fi %showbackgroundmain
+       \fi
+    \fi   
+}
+
+% Fonts and backgorund for the title page:
+%\colorlet{tucolorbg}{tucolor!80}
+
+\setbeamerfont{author}{size=\large}
+\setbeamercolor{author}{fg=white}
+\setbeamercolor{titlecolors}{fg=white,bg=tucolor}
+\setbeamercolor{subtitlecolors}{fg=white,bg=tucolor}
+\setbeamercolor{institute}{fg=white,bg=tucolor}
+\setbeamercolor{date}{fg=white,bg=tucolor}
+
+
+% The title page:
+\defbeamertemplate*{title page}{Wien}[1][]
+{
+  \vspace{1ex}
+  % At the top of the title page we can put three logos: left, center, right
+  % All three can be given as package options logoleft, logocenter and logright:
+  % For top left: Use the given file as logo, if it exists; if it does
+  % not exist, do nothing.
+  % We make an mbox with paperwidth size in order to use hfill
+  % commmands to distribute the logos uniformly. No idea, why we
+  % should use 0.92\paperwidth, but if we use 1.0\paperwidth, it
+  % becomes too wide.
+  % Actually, I think we should systematically measure the available
+  % boxes and distribute them based on those measurments. Now it is
+  % very ad-hoc.
+  \makebox[0.92\paperwidth]{%
+  \ifx\beamer@Wien@logoleft\empty
+  \else 
+    \IfFileExists{\beamer@Wien@logoleft}{%
+      \includegraphics[width=0.25\paperwidth,height=0.15\paperheight,keepaspectratio]{%
+        \beamer@Wien@logoleft}}{%
+             \PackageWarning{beamer Theme Wien}{File for top left
+               logo not found: \beamer@Wien@logoleft}}
+  \fi
+  \hfill
+  % For top center: Use the given file as logo, if it exists; if it does not exist, do nothing:
+  \ifx\beamer@Wien@logocenter\empty
+  \else 
+     \IfFileExists{\beamer@Wien@logocenter}{%
+        \includegraphics[width=0.25\paperwidth,height=0.15\paperheight,keepaspectratio]{%
+             \beamer@Wien@logocenter}}{%
+                \PackageWarning{beamer Theme Wien}{File for top center logo
+                  not found: \beamer@Wien@logocenter}}
+  \fi
+  \hfill
+  % For top right: Use the given file as logo, if it exists; if it does not exist, do nothing:
+  \ifx\beamer@Wien@logoright\empty
+  \else
+    \IfFileExists{\beamer@Wien@logoright}{%
+      \includegraphics[width=0.25\paperwidth,height=0.15\paperheight,keepaspectratio]{%
+        \beamer@Wien@logoright}}{%
+             \PackageWarning{beamer Theme Wien}{File for top right logo
+               not found: \beamer@Wien@logoright}}
+  \fi
+  }
+       
+  \vspace{1ex}
+  \beamer@putleft{%
+    \begin{minipage}{\paperwidth}
+    \raggedright
+    \begin{tcolorbox}[colframe=tucolor,colback=tucolor,coltext=white,boxrule=0pt,arc=8pt,
+    sharp corners, rounded corners=northeast,
+    enhanced,
+    left=20pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,
+    width=0.96\paperwidth, height=9cm]
+  \begingroup
+  \centering
+  \vspace{3ex}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{titlecolors}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\insertsubtitle\par}%
+      \fi%     
+     \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+    \end{tcolorbox}
+  \end{minipage}}{0cm}
+
+}
+
+% Circles instead of triangles for bullet lists:
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+

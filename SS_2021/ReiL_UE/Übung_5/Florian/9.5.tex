@@ -1,0 +1,32 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[Exercise 12.1]
+
+Just as the return can be written recursively in terms of the first reward
+and itself one step later (3.9), so can the $\lambda$-return.
+Derive the analogous recursive relationship from
+
+\begin{align}
+    G_{t:t+n} &\doteq R_{t+1} + \gamma R_{t+2} + \dots + \gamma^{n-1}R_{t+n} + \dots \gamma^n \hat{v}(S_{t+n}, \textbf{w}_{t+n-1}), \quad 0 \leq t \leq T - n \tag{12.1} \\
+    G_t^\lambda &\doteq (1-\lambda)\sum_{n=1}^{\infty} \lambda^{n-1} G_{t:t+n}. \tag{12.2}
+\end{align}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\begin{align*}
+    G_{t}^\lambda 
+    &= (1-\lambda)\sum_{n=1}^{\infty} \lambda^{n-1} G_{t:t+n} \\
+    &= (1-\lambda)\left[G_{t:t+1} +  \lambda \sum_{n=1}^{\infty}\lambda^{n-1}(R_{t+1} + \gamma G_{t+1:t+n+1})\right] \\
+    &= (1-\lambda)\left[\gamma \hat{v}(S_{t+1}, \textbf{w}_t) +  \sum_{n=1}^{\infty}  \gamma^{n-1} R_{t+1} + \lambda \gamma \sum_{n=1}^{\infty}\lambda^{n-1}(G_{t+1:t+n+1})\right] \\
+    &= R_{t+1} + (1-\lambda)\gamma \hat{v}(S_{t+1}, \textbf{w}_t) + \lambda \gamma G_{t+1}^\lambda.
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
