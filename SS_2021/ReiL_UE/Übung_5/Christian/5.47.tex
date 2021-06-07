@@ -11,8 +11,41 @@ What would the feature vectors be?
 
 \begin{solution}
 
-ToDo!
+To see this we note that the dimension $d$ of the problem is exactly $|\mathcal{S}|$ and write the subscripts in terms of states. If we then choose the feature vectors to be
 
+\begin{align*}
+  x_{S}(s) =
+  \mathds{1}_{S}(s), \quad S \in \mathcal{S}
+\end{align*}
+
+the approximate function $\hat{v}$ is just
+
+\begin{align*}
+  \hat{v}(s,\textbf{w})
+  =
+  w_s
+\end{align*}
+
+ so we can identify the approximate function at a state with the weight of the according state. The general SGD update for linear function approximation reads
+
+\begin{align*}
+  \textbf{w}_{t+1}
+  =
+  \textbf{w}_t + \alpha \bbraces{U_t - \hat{v}(S_t,\textbf{w}_t)}\textbf{x}(S_t).
+\end{align*}
+
+With our choice of feature vectors the weight vector thus fulfills
+
+\begin{align*}
+  w_{S,t+1}
+  =
+  \begin{cases}
+    w_{S,t} & \text{if } S \neq S_t \\
+    w_{S,t} + \alpha\bbraces{U_t - w_{S,t}} & \text{if } S = S_t
+  \end{cases}
+\end{align*}
+
+For special choices of $U_t$ this is just the same update as we did in the tabular case, e.g. $U_t = G_t$ leads to the Monte-Carlo update and $U_t = R_{t+1} + \gamma w_{S_{t+1}}$ leads to a TD(0) update.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

@@ -9,9 +9,26 @@ Give pseudocode for a differential version of semi-gradient Q-learning.
 % -------------------------------------------------------------------------------- %
 
 \begin{solution}
+\phantom{}
+\begin{algorithm}[H]
+\caption{Differential version of semi-gradient Q-learning}
+\begin{algorithmic}[1]
+  \State \textbf{Input:} a differnetiable action-value function parameterization $\hat{q}: \mathcal{S} \times \mathcal{A} \times \R^d \rightarrow \R$
+  \State Algorithm parameters: step sizes, $\alpha, \beta > 0$, small $\varepsilon > 0$
+  \State Inizialize value-function weights $\textbf{w} \in \R^d$ arbitrarily (e.g., $\textbf{w} = 0$)
+  \State Initialize average reward estimate $\bar{R} \in \R$ arbitrarily (e.g., $\bar{R} = 0$)
 
-ToDo!
-
+  \State Initialize state $S$
+  \Loop \ for each step:
+  \State Choose $A$ as a function of $\hat{q}(S^\prime,\cdot,\textbf{w})$ (e.g., $\varepsilon$-greedy)
+  \State Take action $A$, observe $R, S^\prime$
+  \State $\delta \leftarrow R - \bar{R} + \max_a \hat{q}(S^\prime,a,\textbf{w}) - \hat{q}(S,A,\textbf{w})$
+  \State $\bar{R} \leftarrow R + \beta \delta$
+  \State $\textbf{w} \leftarrow \textbf{w} + \alpha \delta \nabla \hat{q}(S,A,\textbf{w})$
+  \State $S \leftarrow S^\prime$
+  \EndLoop
+\end{algorithmic}
+\end{algorithm}
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

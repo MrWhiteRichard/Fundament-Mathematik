@@ -22,7 +22,24 @@ Give accompanying definitions of the return for both the episodic and continuing
 
 \begin{solution}
 
-ToDo!
+We will do this similarily to the $n$-step version of semi-gradient Sarsa, the equation in semi-gradient form reads
+
+\begin{align*}
+  \textbf{w}_{t+n}
+  =
+  \textbf{w}_{t+n-1} + \alpha \rho_{t:t+n-1}\bbraces{G_{t:t+n} - \hat{v}(S_{t+1},\textbf{w}_{t+n-1})}\nabla\hat{v}(S_t, \textbf{w}_{t+n-1})
+\end{align*}
+
+with
+
+\begin{align*}
+  G_{t:t+n} &\stackrel{\cdot}{=}
+  R_{t+1} + \cdots + \gamma^{n-1} R_{t+n} + \gamma^n \hat{v}(S_{t+n}, \textbf{w}_{t+n-1}), \  \text{or} \qquad \qquad \text{(episodic)} \\
+  G_{t:t+n} &\stackrel{\cdot}{=}
+  R_{t+1} - \bar{R}_t + \cdots + R_{t+n} - \bar{R}_{t+n-1} + \hat{v}(S_{t+n}, \textbf{w}_{t+n-1})\quad \quad  \text{(continuing)}
+\end{align*}
+
+In the episodic return the $\rho_k$s for $k\geq T$ (where $T$ is the terminal step of the episode) should be taken to be 1, and $G_{t:t+n}$ should be taken to be $G_t$ if $t+n \geq T$.
 
 \end{solution}
 

@@ -30,7 +30,7 @@ The orchard has several samples of the profits from other harvests:
 \phantom{}
 
 Begin to approximate (by hand) the function that maps the state feature vector to $Q(\text{state}, \text{harvest})$ using an MC goal.
-Do a gradient decent step on each ssample.
+Do a gradient decent step on each sample.
 A sensible learning rate would be around $0.01$, but feel free to try any value.
 
 
@@ -40,8 +40,132 @@ A sensible learning rate would be around $0.01$, but feel free to try any value.
 
 \begin{solution}
 
-ToDo!
+We start our with $\textbf{w}_0 = (0,0,0)^\top$, choose the parameter values $\gamma = 0.9 , \alpha = 0.01$ and note that the MC goal is $G_t$, which we will now calculate:
 
+\begin{align*}
+  G_0
+  &=
+  3 - 0.9\cdot 15 + 0.9^2\cdot 5 + 0.9^3 \cdot 21 = 8.859\\
+  G_1
+  &=
+  -15 + 0.9 \cdot 5 + 0.9^2 \cdot 21 = 15.369 \\
+  G_2
+  &=
+  5 + 0.9\cdot 21 = 23.9 \\
+  G_3
+  &=
+  21
+\end{align*}
+
+Our approximate function is
+
+\begin{align*}
+  \hat{q}(s,a,\textbf{w})
+  =
+  \sum_{i \in \{A,B,C\}} w_i \cdot x_i(s,a)
+\end{align*}
+
+where $\textbf{x}(S,A)$ is our feature vector. We assume that the above table gives us $\textbf{x}(s,\text{harvest})$ for $s \in \{S_1,\dots,S_4\}$. Our update rule for the weights is
+
+\begin{align*}
+  \textbf{w}_{t+1}
+  =
+  \textbf{w}_t + \alpha \bbraces{G_t - \hat{q}(S_t,A_t,\textbf{w}_t)}\textbf{x}(S_t,A_t)
+\end{align*}
+
+With all this information we can now happily begin to calculate the weights and in turn update our approximate function.
+
+\begin{align*}
+  \textbf{w}_1
+  =
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+  \end{pmatrix}
+  +
+  0.01\bbraces{8.859 - 0}
+  \begin{pmatrix}
+    4 \\
+    7 \\
+    1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0.35436 \\
+    0.62013 \\
+    0.08859
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  \textbf{w}_2
+  =
+  \begin{pmatrix}
+    0.35436 \\
+    0.62013 \\
+    0.08859
+  \end{pmatrix}
+  +
+  0.01\bbraces{15.369 - 7.26438}
+  \begin{pmatrix}
+    10 \\
+    6 \\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1.164822 \\
+    1.1064072 \\
+    0.08859
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  \textbf{w}_3
+  =
+  \begin{pmatrix}
+    1.164822 \\
+    1.1064072 \\
+    0.08859
+  \end{pmatrix}
+  + 0.01\bbraces{23.9 - 25.7316972}
+  \begin{pmatrix}
+    20 \\
+    1 \\
+    15
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0.79848256 \\
+    1.088090228 \\
+    -0.18616458
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  \textbf{w}_4
+  =
+  \begin{pmatrix}
+    0.79848256 \\
+    1.088090228 \\
+    -0.18616458
+  \end{pmatrix}
+  + 0.01\bbraces{21 - 23.30915083}
+  \begin{pmatrix}
+    4 \\
+    19 \\
+    3
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0.7061165268 \\
+    0.6493515703 \\
+    -0.2554391049
+  \end{pmatrix}
+\end{align*}
+
+If we really wanted to we could now calculate the approximate function for the states with this updated weight vector but that is just more tedious calculations.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

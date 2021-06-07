@@ -33,7 +33,21 @@ Derive the analogous recursive relationship for \eqref{eq:12.2} and \eqref{eq:12
 
 \begin{solution}
 
-ToDo!
+\begin{align*}
+  G_t^\lambda
+  &=
+  (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1}(R_{t+1} + \gamma G_{t+1:t+n})
+  =
+  (1-\lambda) R_{t+1} \sum_{n=0}^\infty \lambda^{n} + (1-\lambda)\gamma  \sum_{n=1}^\infty \lambda^{n-1}G_{t+1:t+n} \\
+  &=
+  R_{t+1} + \gamma (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1}G_{t+1:t+n}
+  =
+  R_{t+1} + \gamma (1-\lambda)\Big(G_{t+1:t+1} + \sum_{n=2}^\infty \lambda^{n-1}G_{t+1:t+n}\Big) \\
+  &=
+  R_{t+1} + \gamma (1-\lambda)\Big(\hat{v}(S_{t+1},\textbf{w}_t) + \lambda \sum_{n=1}^\infty \lambda^{n-1}G_{t+1:t+n+1}\Big)
+  =
+  R_{t+1} + \gamma (1-\lambda)\hat{v}(S_{t+1},\textbf{w}_t) + \gamma\lambda G_{t+1}^\lambda
+\end{align*}
 
 \end{solution}
 
