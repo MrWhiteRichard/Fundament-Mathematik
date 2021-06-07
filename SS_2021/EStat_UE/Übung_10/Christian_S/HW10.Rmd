@@ -161,21 +161,39 @@ $$
 \frac{1}{\bar{x}-\eta}
 $$
 
-The Fisher information is 
+To get the Fisher information we calculate the score function (for $x > \eta$)
 
+$$
+z(x,\lambda)
+=
+\frac{\partial}{\partial \lambda}
+\log f(x\mid \lambda)
+=
+\frac{1}{\lambda} - x + \eta
+$$
+Then
+
+$$
+z^\prime(x,\lambda)
+\frac{\partial^2}{\partial \lambda^2}
+\log f(x\mid \lambda)
+=
+-\frac{1}{\lambda^2}
+$$
+So the Fisher information is
 $$
 I(\lambda)
 =
--\mathbb{E}(\frac{\partial^2}{\partial \lambda^2} \ell(\lambda\mid \textbf{x}))
+-\mathbb{E}(z^\prime(x,\lambda))
 =
-\frac{n}{\lambda^2}
+\frac{1}{\lambda^2}
 $$
 By the theorem in lecture 7, page 12, it holds that 
 
 $$
 \frac{\hat \lambda -\lambda}{\frac{1}{\sqrt{n}}}
 \stackrel{d}{\longrightarrow}
-\mathcal{N}(0,\frac{\lambda^2}{n})
+\mathcal{N}(0,\lambda^2)
 $$
 
 We know that the MLE is a consistent estimator and the Fisher information is continuous for $\lambda \in \mathbb{R}^+$, so with Slutsky's theorem we get
@@ -193,8 +211,8 @@ $$
 \hat{\lambda} + z_{\alpha/2} \cdot\frac{1}{\sqrt{nI(\hat{\lambda})}}
 \Big]
 =
-\Big[\hat{\lambda} - z_{\alpha/2} \cdot\frac{\hat{\lambda}}{n},
-\hat{\lambda} + z_{\alpha/2} \cdot\frac{\hat{\lambda}}{n}
+\Big[\hat{\lambda} - z_{\alpha/2} \cdot\frac{\hat{\lambda}}{\sqrt{n}},
+\hat{\lambda} + z_{\alpha/2} \cdot\frac{\hat{\lambda}}{\sqrt{n}}
 \Big]
 $$
 
