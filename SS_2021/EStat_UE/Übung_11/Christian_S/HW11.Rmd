@@ -1,0 +1,83 @@
+---
+title: "HW11"
+author: "Christian Sallinger"
+date: "15 6 2021"
+output: pdf_document
+---
+
+## 1. Test power in the $z$ -test 
+Let $X_{1}, \ldots, X_{n}$ be i.i.d.random variables with $X_{1} \sim N\left(\mu, \sigma^{2}\right)$, and $H_{0}: \mu=\mu_{0}$.
+
+(a) Compute the test power of the left-sided $z$ -test. Express it through cdf of the $N(0,1)$ distribution, depending on $\mu_{0}, \mu, \sigma, n$ and the significance level $\alpha$.
+(b) Comment on the impact of $\mu_{0}, \mu, \sigma, n$ and $\alpha$ on the test power.
+
+\textbf{Solution:}
+
+## 2. Shock absorbers
+
+A manufacturer of automobile shock absorbers was interested in comparing the durability of its shocks with that of the shocks produced by its biggest competitor. To make the comparison, one of the manufacturer's and one of the competitor's shocks were randomly selected and installed on the rear wheel of each of six cars. After the cars had been driven 20000 miles, the strength of each test shock was measured, coded, and recorded. Results are shown in the table.
+\begin{center}
+\begin{tabular}{c|cc} 
+\textbf{Car number} & \textbf{Manufacturer's shock} & \textbf{Competitor's shock} \\
+\hline 1 & $8.8$ & $8.4$ \\
+2 & $10.5$ & $10.1$ \\
+3 & $12.5$ & $12.0$ \\
+4 & $9.7$ & $9.3$ \\
+5 & $9.6$ & $9.0$ \\
+6 & $13.2$ & $13.0$ \\
+\hline
+\end{tabular}
+\end{center}
+Do these data present sufficient evidence to conclude there is a difference in the mean strength of the two types of shocks after 20000 miles of use?
+
+\textbf{Solution:}
+
+
+## 3. Simulation of test-power
+
+Simulate the test-power in the two-sample $t$ -test: Let $X_{1}, \ldots, X_{n}, Y_{1}, \ldots, Y_{n}$ be independent random variables with $X_{i} \sim N\left(0, \sigma^{2}\right)$ and $Y_{i} \sim N\left(d, \sigma^{2}\right)$ for all $i=1,2, \ldots, n$. Let the null hypothesis be $H_{0}: d=0$ and the significance level $\alpha=5 \%$. Simulate the test-power (by computing the relative frequency of rejections) for $d \in\{-5,-4.5,-4, \ldots, 5\}$ in 1000 simulations each. Use the parameters
+
+(a) $n=10$ and $\sigma=3$
+(b) $n=20$ and $\sigma=3$
+(c) $n=20$ and $\sigma=1$
+
+for each of which you plot the testpower against $d$. Comment on your graphic. Hint: You can access the $p$ -value with \texttt{t.text()\$p.value}.
+
+\textbf{Solution:}
+
+## 4. Mechanics 
+In order to compare the means of two populations, independent random samples of 400 observations are selected from each population, with the following results:
+
+$$
+\begin{array}{ll}
+\text { Sample 1 } & \text { Sample 2 } \\
+\bar{x}_{1}=5,275 & \bar{x}_{2}=5,240 \\
+s_{1}=150 & s_{2}=200
+\end{array}
+$$
+
+(a) Use a $95 \%$ confidence interval to estimate the difference between the population means $\left(\mu_{1}-\mu_{2}\right)$. Interpret the confidence interval.
+(b) Test the null hypothesis $H_{0}:\left(\mu_{1}-\mu_{2}\right)=0$ versus the alternative hypothesis $H_{1}$ :
+$\left(\mu_{1}-\mu_{2}\right) \neq 0$. Give the $p$ -value of the test, and interpret the result.
+(c) Suppose the test in the previous part were conducted with the alternative hypothesis $H_{1}:\left(\mu_{1}-\mu_{2}\right)>0 .$ How would your answer change?
+(d) Test the null hypothesis $H_{0}:\left(\mu_{1}-\mu_{2}\right)=25$ versus the alternative $H_{1}:\left(\mu_{1}-\mu_{2}\right) \neq 25$. Give the $p$ -value, and interpret the result. Compare your answer with that obtained from the test conducted in part (b).
+(e) What assumptions are necessary to ensure the validity of the inferential procedures applied in parts (a)-(d)?
+
+\textbf{Solution:}
+
+## 5. Comparing groups 
+Health professionals warn that transmission of infectious diseases may occur during the traditional handshake greeting. Two alternative methods of greeting (popularized in sports) are the high five and the first bump. Researchers compared the hygiene of these alternative greetings in a designed study and reported the results in the American Journal of Infection Control (Aug. 2014). A sterile-gloved hand was dipped into a culture of bacteria, then made contact for three seconds with another sterile-gloved hand via either a handshake, high five, or fist bump. The researchers then counted the number of bacteria present on the second, recipient, gloved hand. This experiment was replicated five times for each contact method. Simulated data (recorded as a percentage relative to the mean of the handshake), based on information provided by the journal article, are provided in the table.
+
+$$
+\begin{array}{llllll}
+\text { Handshake: } & 131 & 74 & 129 & 96 & 92 \\
+\text { High five: } & 44 & 70 & 69 & 43 & 53 \\
+\text { Eist bump: } & 15 & 14 & 21 & 29 & 21
+\end{array}
+$$
+
+(a) The researchers reported that more bacteria were transferred during a handshake compared with a high five. Use a $95 \%$ confidence interval to support this statement statistically.
+(b) The researchers also reported that the first bump gave a lower transmission transmission of bacteria than the high five. Use a $95 \%$ confidence interval to support this statement statistically.
+(c) Based on the results, parts (a) and (b), which greeting method would you recommend as being the most hygienic?
+
+\textbf{Solution:}
