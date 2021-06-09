@@ -186,7 +186,7 @@
 
 \begin{frame}{MKM-Algorithmus (2/3)}
 
-  \begin{algorithmus*}[BlockMKM]
+  \begin{algorithmus*}[BlockMKM (Malhotra, Kumar und Mahashwari)]
     \begin{itemize}
       \item Starte mit dem trivialen Fluss: $g(e) = 0 , e \in E$.
       \item Berechne Flusspotentiale für alle $v \in V$.
@@ -645,7 +645,148 @@
   
 \end{frame}
 
-\begin{frame}{Algorithmus von Goldberg und Tarjan - Beispiel}
+\begin{frame}{Algorithmus von Goldberg und Tarjan (\texttt{Hlflow}) - Beispiel}
+
+  \begin{figure}
+    \begin{tikzpicture}[
+        mycircle/.style={
+           circle,
+           draw=black,
+           fill=gray,
+           fill opacity = 0.3,
+           text opacity=1,
+           inner sep=0pt,
+           minimum size=25pt},
+        myarrow/.style={-Stealth},
+        node distance=0.8cm and 1.6cm
+        ]
+        \node[mycircle, onslide=<1>{blue}, label = {\textcolor<1>{blue}{$(8)$}}] (s) {$s$};
+
+        \node[mycircle,above right=of s, onslide=<{2-3,8}>{blue}, label = 
+          \only<1>{$(0,30)$}
+          \only<2>{\textcolor{blue}{$(1,15)$}}
+          \only<3-6>{\textcolor<3>{blue}{$(9,0)$}}
+          \only<7>{$(9,5)$}
+          \only<8->{\textcolor<8>{blue}{$(9,0)$}}] 
+          (a) {$a$};
+
+        \node[mycircle,below right=of s, onslide = <4>{blue}, label = below:
+          \only<1-3>{$(0,1)$}
+          \only<4->{\textcolor<4>{blue}{$(1,0)$}}] 
+          (b) {$b$};
+
+        \node[mycircle,right=of b, onslide = <{5,11}>{blue}, label = below:
+          \only<1>{$(0,0)$}
+          \only<2-3>{$(0,9)$}
+          \only<4>{$(0,10)$}
+          \only<5-9>{\textcolor<5>{blue}{$(1,0)$}}
+          \only<10>{$(1,2)$}
+          \only<11->{\textcolor<11>{blue}{$(1,0)$}}] 
+          (c) {$c$};
+
+        \node[mycircle,right=of a, onslide = <6-7>{blue}, label = 
+          \only<1>{$(0,0)$}
+          \only<2-5>{$(0,6)$}
+          \only<6>{\textcolor<6>{blue}{$(1,5)$}}
+          \only<7->{\textcolor<7>{blue}{$(10,0)$}}] 
+          (d) {$d$};
+
+        \node[mycircle,right=of d, onslide = <9-10>{blue}, label = 
+          \only<1-4>{$(0,0)$}
+          \only<5>{$(0,8)$}
+          \only<6-8>{$(0,9)$}
+          \only<9>{$(1,2)$}
+          \only<10->{$(2,0)$}]
+          (e) {$e$};
+
+        \node[mycircle, onslide =<11>{blue}, right=of c, label = below:
+          \only<1-4>{$(0,0)$}
+          \only<5-10>{$(0,2)$}
+          \only<11->{\textcolor<11>{blue}{$(1,0)$}}] 
+          (f) {$f$};
+
+        \node[mycircle,below right=of e, label = {$(0)$}] (t) {$t$};
+
+
+        \draw [myarrow, onslide=<{1,3,8}>{blue}] (s) -- node[sloped,font=\small, above] {
+          \only<1-2>{(30/30)}
+          \only<3-7>{(15/30)}
+          \only<8->{(10/30)}
+          } (a);
+
+        \draw [myarrow, onslide=<1>{blue}] (s) -- node[sloped,font=\small, above] {(1/1)} (b);
+
+        \draw [myarrow, onslide = <{2,7}>{blue}] (a) -- node[sloped,font=\small, above] 
+          {\only<1>{(0/6)}\only<2-6>{(6/6)}\only<7->{(1/6)}} (d);
+
+        \draw [myarrow, onslide = <2>{blue}] (a) -- node[sloped,font=\small, above] 
+          {\only<1>{(0/9)}\only<2->{(9/9)}} (c);
+
+        \draw [myarrow, onslide = <4>{blue}] (b) -- node[sloped,font=\small, above] 
+          {\only<1-3>{(0/26)}\only<4->{(1/26)}} (c);
+
+        \draw [myarrow, onslide = <6>{blue}] (d) -- node[sloped,font=\small, above] 
+          {\only<1-5>{(0/1)}\only<6->{(1/1)}} (e);
+
+        \draw [myarrow, onslide=<{5,11}>{blue}] (c) -- node[sloped,font=\small, above] 
+          {\only<1-4>{(0/24)}\only<5-10>{(2/24)}\only<11>{(4/24)}} (f);
+
+        \draw [myarrow, onslide=<{5,10}>{blue}] (c) -- node[sloped,font=\small, above] 
+          {\only<1-4>{(0/8)}\only<5-9>{(8/8)}\only<10->{(6/8)}} (e);
+
+        \draw [myarrow, onslide = <11>{blue}] (f) -- node[sloped,font=\small, above] 
+          {\only<1-10>{(0/25)}\only<11->{(4/25)}} (t);
+
+        \draw [myarrow, onslide=<9>{blue}] (e) -- node[sloped,font=\small, above] 
+          {\only<1-8>{(0/7)}\only<9->{(7/7)}} (t);
+
+
+        \node[below=of c, visible on=<1>]
+        {\small {\color{blue} Abbildung:} Initialisierung, $Q = (a,b)$};
+
+        \node[below=of c, visible on=<2>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($a$), 
+          \texttt{Push}($a,c$), \texttt{Push}($a,d$), $Q = (a,b,c,d)$};
+
+        \node[below=of c, visible on=<3>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($a$), 
+        \texttt{Push}($a,s$), $Q = (b,c,d)$};
+
+        \node[below=of c, visible on=<4>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($b$), 
+        \texttt{Push}($b,c$), $Q = (c,d)$};
+
+        \node[below=of c, visible on=<5>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($c$), 
+        \texttt{Push}($c,e$), \texttt{Push}($c,f$), $Q = (d,e,f)$};
+
+        \node[below=of c, visible on=<6>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($d$), 
+        \texttt{Push}($d,e$), $Q = (d,e,f)$};
+
+        \node[below=of c, visible on=<7>]
+        {\small {\color{blue} Abbildung:} \texttt{Relabel}($d$), 
+        \texttt{Push}($d,a$), $Q = (a,e,f)$};
+
+        \node[below=of c, visible on=<8>]
+        {\small {\color{blue} Abbildung:} 
+        \texttt{Push}($a,s$), $Q = (e,f)$};
+
+        \node[below=of c, visible on=<9>]
+        {\small {\color{blue} Abbildung:} 
+        \texttt{Relabel}($e$), \texttt{Push}($e,t$), $Q = (e,f)$};
+
+        \node[below=of c, visible on=<10>]
+        {\small {\color{blue} Abbildung:} 
+        \texttt{Relabel}($e$), \texttt{Push}($e,c$), $Q = (c,f)$};
+
+        \node[below=of c, visible on=<11>]
+        {\small {\color{blue} Abbildung:} 
+        \texttt{Push}($c,f$), \texttt{Relabel}($f$), \texttt{Push}($f,t$), $Q = \emptyset$};
+  
+      \end{tikzpicture}
+  
+    \end{figure}
   
 \end{frame}
 
