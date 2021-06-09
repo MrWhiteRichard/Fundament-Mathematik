@@ -34,6 +34,7 @@
     \def\translate{}%
 }
 
+
 % To make sure, that the footnote is placed above and outside the
 % footline (but it only works for one footnote per frame):
 %
@@ -62,9 +63,15 @@
     \titlepage
 \end{frame}
 
+\begin{frame}{Übersicht}
+  \tableofcontents
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Wiederholung}
 
 \begin{frame}{Wiederholung - Problemstellung}
   Wir wollen in einem Flussnetzwerk $N = (G,c,s,t)$ einen maximalen Fluss 
@@ -112,92 +119,533 @@
 
 \end{frame}
 
+\section{Blocking Flows}
+
 \begin{frame}{Blocking Flows}
 
+\begin{definition}
+  Ein \textit{Flow} $f$ heißt \textit{Blocking Flow}, wenn
+  es keine erweiternden Pfade bezüglich $f$, welche nur aus
+  Vorwärtskanten bestehen, gibt.
+\end{definition}
+
+\begin{definition}
+  Zu einem bestehenden Flussnetzwerk $N = ((V,E), c, s, t)$
+  definieren wir das Hilfsnetzwerk $N' = ((V,E'), c', s, t)$.
+
+
+  Für jede Kante $e = uv \in E$ mit $f(e) < c(e)$
+  fügen wir eine Kante $e' = uv$ mit $c(e') = c(e) - f(e)$ zu $E'$ dazu.
+
+
+  Ebenso für jede Kante $e = uv, f(e) \neq 0$ fügen wir eine Kante
+  $e'' = vu, c'(e'') = f(e)$ zu $E'$ hinzu.
+\end{definition}
+
 \end{frame}
 
 
-\begin{frame}{MKM-Algorithmus}
+\begin{frame}{Algorithmus - Skizze}
+
+  Für eine effizientere Implementierung ersetzen wir das
+  Hilfsnetzwerk $N'$ durch ein Schichtnetzwerk $N''$, in
+  dem wir möglichst viel überflüssige Information weglassen.
+  
+  Das Schichtlevel eines Knoten entspricht dabei der Distanz zur Quelle $s$.
+
+
+  \begin{algorithmus*}[Blocking Flows]
+    \begin{itemize}
+      \item Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
+      \item Erstelle Schichtnetzwerk $N''$ bezüglich $f$.
+      \item Wiederhole solange $f$ nicht maximal:
+      \begin{itemize}
+        \item Finde \textit{Blocking Flow} $g$ in $N''$
+        \item Erweitere $f$ um $g$
+      \end{itemize}
+    \end{itemize}
+  \end{algorithmus*}
+
+\end{frame}
+
+\section{Algorithmus: MKM}
+
+\begin{frame}{MKM-Algorithmus (1/3)}
+
+  \begin{definition}[Flusspotential]
+    Für einen Knoten $v$ definieren wir das Flusspotential als
+
+    \begin{align*}
+      p(v) = \min \left\{ \sum_{e^- = v} c(e), \sum_{e^+ = v} c(e) \right\}. 
+    \end{align*}
+  \end{definition}
+
+  
   
 \end{frame}
 
-\begin{frame}{Preflows}
-  
-  Wir definieren einen Fluss neu als 
-  Funktion $f: V \times V \to \R$ die folgenden Bedingungen genügt:
+\begin{frame}{MKM-Algorithmus (2/3)}
 
-  \begin{enumerate}
-    \item[(1)] $\forall (v,w) \in V \times V: f(v,w) \leq c(v,w)$
-    \item[(2)] $\forall (v,w) \in V \times V: f(v,w) = -f(w,v)$
-    \item[(3)] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) = 0$.
-  \end{enumerate}
-
-  Ein \textit{Preflow} ist schließlich eine Funktion $f: V \times V \to \R$,
-  welche (1) und (2) erfüllt, sowie eine abgeschwächte dritte Bedingung:
-
-  \begin{enumerate}
-    \item[(3')] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) \geq 0$.
-  \end{enumerate}
-
-  Der Wert $e(v) = \sum_{u \in V} f(u,v)$ nennen wir den \textit{flow excess}
-  des Preflows $f$ in $v$.
-
-\end{frame}
-
-\begin{frame}{Residualgraph}
-  Zu einem gegebenen Preflow $f$ definieren wir vorerst die Residualkapazität
-  $r_f: V \times V \to \R$ durch
-
-  \begin{align*}
-    r_f(v,w) := c(v,w) - f(v,w).
-  \end{align*}
-
-  Wir definieren zusätzlich einen Residualgraphen $G_f = (V,E_f)$ mit
-
-  \begin{align*}
-    E_f := \{ vw \in E: r_f(v,w) > 0\}
-  \end{align*}
-
-\end{frame}
-
-\begin{frame}{Labels}
-  Ein \textit{valid labelling} ist eine Funktion $d: V \to \N_0 \cup \{\infty\}$ mit
-
-  \begin{enumerate}
-    \item[(4)] $d(s) = |V|, \quad d(t) = 0$
-    \item[(5)] $\forall vw \in E_f: d(v) \leq d(w) + 1$.  
-  \end{enumerate}
-
-  Weiters nennen wir einen Knoten $v \neq s$ aktiv, solange $e(v) > 0$ und $d(v) < \infty$.
-
-  Wir initialisieren den Algorithmus von Goldberg und Tarjan mit einem
-  geeigneten Preflow wie folgt:
-
-  \begin{align*}
-    \forall v \neq s: f(s,v) &= -f(v,s) = c(s,v) \\
-    \forall v,w \neq s: f(v,w) &= 0 \\
-    d(s) &= |V|, \quad \forall v \neq s: d(v) = 0.
-  \end{align*}
-\end{frame}
-
-\begin{frame}{Algorithmus von Goldberg und Tarjan}
-
-  Nach der Initialisierung kann in jedem Schritt einer der folgenden
-  Operationen verwendet werden, solange die jeweiligen Voraussetzungen erfüllt sind:
-
-  \begin{algorithmus*}
-    \begin{enumerate}
-      \item[(1)] Test
-    \end{enumerate}
+  \begin{algorithmus*}[BlockMKM]
+    \begin{itemize}
+      \item Starte mit dem trivialen Fluss: $g(e) = 0 , e \in E$.
+      \item Berechne Flusspotentiale für alle $v \in V$.
+      \item Wiederhole solange $s \in V$ und $t \in V$:
+      \begin{itemize}
+        \item Finde Knoten $w$ mit minimalem Flusspotential $p(w)$.
+        \item \texttt{Push}($w,p(w)$).
+        \item \texttt{Pull}($w,p(w)$).
+        \item Entferne redundante Ecken und Kanten.
+      \end{itemize}
+    \end{itemize}
   \end{algorithmus*}
   
 \end{frame}
 
-\begin{frame}{Reduktionen auf ein Maximum Flow Problem}
+\begin{frame}{MKM-Algorithmus (3/3)}
+
+  {\small
+  \begin{algorithmus*}
+    \begin{algorithm}[H]
+      \begin{algorithmic}
+          \Procedure{Push}{$w, p(w)$}
+          \State{Sei $Q$ Warteschlange mit einzigem Element $w$}
+          \State{$\forall u \in V: b(u) \leftarrow 0; \quad b(y) \leftarrow k$}
+          \State{
+          \Repeat{$Q = \emptyset$}
+            {\State{Entferne $v$ von $Q$}
+              \State{
+              \While{$v \neq t \land b(v) \neq 0$}
+                {
+                  \State{Wähle Kante $e = uv; \quad m \leftarrow \min\{c(e),b(v)\}$}
+                  \State{$c(e) \leftarrow c(e) - m; \quad g(e) \leftarrow g(e) + m$}
+                  \State{$p^+(u) \leftarrow p^+(u) - m; \quad b(u) \leftarrow b(u) +  m$}
+                  \State{$p^-(v) \leftarrow p^-(v) - m; \quad b(v) \leftarrow b(v) - m$}
+                  \State{Füge $u$ zu $Q$ hinzu}
+                  \State{\textbf{if} $c(e) = 0$ \textbf{then} entferne $e$ von $E$ \textbf{end}}
+                }
+              }
+            }
+          }
+          \EndProcedure
+      \end{algorithmic}
+    \end{algorithm}
+  \end{algorithmus*}
+  }
+
+\end{frame}
+
+\section{Reduktionen auf ein Maximum Flow Problem}
+
+\begin{frame}{Reduktionen auf ein Maximum Flow Problem  (1/3)}
+
+  \begin{problem}[Knotenkapazitäten]
+    Zusätzlich zu der Kapazitätsfunktion $c: E \to \R^+$ sei
+    noch eine Kapazitätsfunktion $d: V \to \R^+$ gegeben, welche
+    den maximalen Fluss durch einen Knoten limitiert.
+    
+
+  \pause
+
+    \begin{figure}
+    \centering
+  
+      \subfloat{
+  
+      \begin{tikzpicture}[
+          mycircle/.style={
+             circle,
+             draw=black,
+             fill=gray,
+             fill opacity = 0.3,
+             text opacity=1,
+             inner sep=0pt,
+             minimum size=30pt},
+          myarrow/.style={-Stealth},
+          node distance=0.5cm and 1.0cm
+          ]
+          \node[mycircle] (s) {$s$};
+          \node[mycircle,above right=of s] (v1) {$v_1 (2)$};
+          \node[mycircle,below right=of s] (v2) {$v_2 (2)$};
+          \node[mycircle,above right=of v2] (t) {$t$};
+  
+  
+        \draw [myarrow] (s) -- node[sloped,font=\small,above] {(2)} (v1);
+        \draw [myarrow] (s) -- node[sloped,font=\small,below] {(3)} (v2);
+        \draw [myarrow] (v1) -- node[sloped,font=\small,above] {(3)} (t);
+        \draw [myarrow] (v2) -- node[sloped,font=\small,below] {(2)} (t);
+        \draw [myarrow] (v2) -- node[sloped,font=\small,below] {(1)} (v1);
+  
+      \end{tikzpicture}
+    }
+    \hspace{1cm}
+    \pause
+    \subfloat{
+      \begin{tikzpicture}[
+        mycircle/.style={
+          circle,
+          draw=black,
+          fill=gray,
+          fill opacity = 0.3,
+          text opacity=1,
+          inner sep=0pt,
+          minimum size=30pt},
+        newcircle/.style={
+          circle,
+          draw=black,
+          fill=green,
+          fill opacity = 0.3,
+          text opacity=1,
+          inner sep=0pt,
+          minimum size=30pt},
+        myarrow/.style={-Stealth},
+        node distance=0.5cm and 1.0cm
+        ]
+        \node[mycircle] (s) {$s$};
+        \node[mycircle,above right=of s] (v1) {$v_{1,1}$};
+        \node[mycircle,below right=of s] (v2) {$v_{2,1}$};
+        \node[newcircle,right=of v1] (v3) {$v_{1,2}$};
+        \node[newcircle,right=of v2] (v4) {$v_{2,2}$};
+        \node[mycircle,above right=of v4] (t) {$t$};
+
+
+      \draw [myarrow] (s) -- node[sloped,font=\small,above] {(2)} (v1);
+      \draw [myarrow] (s) -- node[sloped,font=\small,below] {(3)} (v2);
+      \draw [myarrow] (v1) -- node[sloped,font=\small,below] {(2)} (v3);
+      \draw [myarrow] (v2) -- node[sloped,font=\small,below] {(2)} (v4);
+      \draw [myarrow] (v3) -- node[sloped,font=\small,above] {(3)} (t);
+      \draw [myarrow] (v4) -- node[sloped,font=\small,below] {(2)} (t);
+      \draw [myarrow] (v4) -- node[sloped,font=\small,below] {(1)} (v1);;
+
+    \end{tikzpicture}
+  }
+  
+  \end{figure}
+\end{problem}
   
 \end{frame}
 
-\begin{frame}{Bipartite Graph - Matching of maximal cardinality}
+
+\begin{frame}{Reduktionen auf ein Maximum Flow Problem  (2/3)}
+
+  \begin{definition}[Bipartiter Graph]
+    Ein ungerichteter Graph $G = (V, E)$ heißt bipartit, 
+    falls sich seine Knoten in zwei disjunkte Teilmengen $A$ und $B$ aufteilen lassen, 
+    sodass zwischen den Knoten innerhalb beider Teilmengen keine Kanten verlaufen. 
+    Das heißt, für jede Kante $uv \in E$ gilt entweder $u \in A$ und $v \in B$ oder $u \in B$ und $v \in A$.
+  \end{definition}
+
+  \begin{problem}[Bipartiter Graph - Matching of maximal cardinality]
+    Sei $G = (V,E)$ ein ungerichteter, bipartiter Graph.
+    Gesucht ist eine Teilmenge $M \subseteq E$ mit maximaler Kardinalität,
+    sodass keine zwei Kanten einen gemeinsamen Endknoten teilen.
+
+  \end{problem} 
+\end{frame}
+
+\begin{frame}{Reduktionen auf ein Maximum Flow Problem  (3/3)}
+
+  \begin{problem}[Bipartiter Graph - Matching of maximal cardinality]
+    \begin{figure}
+      \centering
+    
+        \subfloat{
+    
+        \begin{tikzpicture}[
+            mycircle1/.style={
+               circle,
+               draw=black,
+               fill=red,
+               fill opacity = 0.3,
+               text opacity=1,
+               inner sep=0pt,
+               minimum size=10pt},
+            mycircle2/.style={
+              circle,
+              draw=black,
+              fill=green,
+              fill opacity = 0.3,
+              text opacity=1,
+              inner sep=0pt,
+              minimum size=10pt},
+            myarrow/.style={-Stealth},
+            node distance=0.7cm and 1.4cm
+            ]
+
+            \node[mycircle1] (a1) {};
+            \node[mycircle1,below=of a1] (a2) {};
+            \node[mycircle1,below=of a2] (a3) {};
+            \node[mycircle1,below=of a3] (a4) {};
+            \node[mycircle1,below=of a4] (a5) {};
+            \node[mycircle2, right= of a1] (b1) {};
+            \node[mycircle2,below=of b1] (b2) {};
+            \node[mycircle2,below=of b2] (b3) {};
+            \node[mycircle2,below=of b3] (b4) {};
+            \node[mycircle2,below=of b4] (b5) {};
+    
+    
+          \draw [myarrow] (a1) -- node[sloped,font=\footnotesize,above] {} (b1);
+          \draw [myarrow] (a2) -- node[sloped,font=\footnotesize,above] {} (b1);
+          \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {} (b2);
+          \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {} (b3);
+          \draw [myarrow] (a4) -- node[sloped,font=\footnotesize,above] {} (b4);
+          \draw [myarrow] (a5) -- node[sloped,font=\footnotesize,above] {} (b5);
+    
+        \end{tikzpicture}
+      }
+      \hspace{1cm}
+      \pause
+      \subfloat{
+        \begin{tikzpicture}[
+          mycircle/.style={
+             circle,
+             draw=black,
+             fill=gray,
+             fill opacity = 0.3,
+             text opacity=1,
+             inner sep=0pt,
+             minimum size=15pt},
+          mycircle1/.style={
+             circle,
+             draw=black,
+             fill=red,
+             fill opacity = 0.3,
+             text opacity=1,
+             inner sep=0pt,
+             minimum size=10pt},
+          mycircle2/.style={
+            circle,
+            draw=black,
+            fill=green,
+            fill opacity = 0.3,
+            text opacity=1,
+            inner sep=0pt,
+            minimum size=10pt},
+          myarrow/.style={-Stealth},
+          node distance=0.7cm and 1.4cm
+          ]
+          \node[mycircle1] (a1) {};
+          \node[mycircle1,below=of a1] (a2) {};
+          \node[mycircle1,below=of a2] (a3) {};
+          \node[mycircle1,below=of a3] (a4) {};
+          \node[mycircle1,below=of a4] (a5) {};
+          \node[mycircle2, right= of a1] (b1) {};
+          \node[mycircle2,below=of b1] (b2) {};
+          \node[mycircle2,below=of b2] (b3) {};
+          \node[mycircle2,below=of b3] (b4) {};
+          \node[mycircle2,below=of b4] (b5) {};
+
+          \node[mycircle, left= of a3] (s) {$s$};
+          \node[mycircle, right= of b3] (t) {$t$};
+  
+  
+        \draw [myarrow] (a1) -- node[sloped,font=\footnotesize,above] {1} (b1);
+        \draw [myarrow] (a2) -- node[sloped,font=\footnotesize,above] {1} (b1);
+        \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {1} (b2);
+        \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {1} (b3);
+        \draw [myarrow] (a4) -- node[sloped,font=\footnotesize,above] {1} (b4);
+        \draw [myarrow] (a5) -- node[sloped,font=\footnotesize,above] {1} (b5);
+
+        \draw [myarrow] (s) -- node[sloped,font=\footnotesize,above, near end] {1} (a1);
+        \draw [myarrow] (s) -- node[sloped,font=\footnotesize,above, near end] {1} (a2);
+        \draw [myarrow] (s) -- node[sloped,font=\footnotesize,above, near end] {1} (a3);
+        \draw [myarrow] (s) -- node[sloped,font=\footnotesize,below, near end] {1} (a4);
+        \draw [myarrow] (s) -- node[sloped,font=\footnotesize,below, near end] {1} (a5);
+
+        \draw [myarrow] (b1) -- node[sloped,font=\footnotesize,above, near start] {1} (t);
+        \draw [myarrow] (b2) -- node[sloped,font=\footnotesize,above, near start] {1} (t);
+        \draw [myarrow] (b3) -- node[sloped,font=\footnotesize,above, near start] {1} (t);
+        \draw [myarrow] (b4) -- node[sloped,font=\footnotesize,below, near start] {1} (t);
+        \draw [myarrow] (b5) -- node[sloped,font=\footnotesize,below, near start] {1} (t);
+          
+      \end{tikzpicture}
+    }
+    
+    \end{figure}
+  \end{problem} 
+\end{frame}
+
+\section{Preflows}
+
+\begin{frame}{Preflows}
+
+  \begin{definition}[Fluss]
+
+    Ein Fluss ist eine Funktion $f: V \times V \to \R$ die folgenden Bedingungen genügt:
+
+    \begin{enumerate}
+      \item[(1)] $\forall (v,w) \in V \times V: f(v,w) \leq c(v,w)$
+      \item[(2)] $\forall (v,w) \in V \times V: f(v,w) = -f(w,v)$
+      \item[(3)] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) = 0$.
+    \end{enumerate}
+    
+  \end{definition}
+  
+  
+  \begin{definition}[Preflow]
+
+    Ein \textit{Preflow} ist schließlich eine Funktion $f: V \times V \to \R$,
+    welche (1) und (2) erfüllt, sowie eine abgeschwächte dritte Bedingung:
+
+    \begin{enumerate}
+      \item[(3')] $\forall v \in V \setminus \{s, t\}: \sum_{u \in V} f(u, v) \geq 0$.
+    \end{enumerate}
+
+    Der Wert $e(v) = \sum_{u \in V} f(u,v)$ nennen wir den \textit{flow excess}
+    des Preflows $f$ in $v$.
+    
+  \end{definition}
+  
+
+\end{frame}
+
+\begin{frame}{Residualgraph}
+
+  \begin{definition}[Residualgraph]
+
+    Zu einem gegebenen Preflow $f$ definieren wir vorerst die Residualkapazität
+    $r_f: V \times V \to \R$ durch
+
+    \begin{align*}
+      r_f(v,w) := c(v,w) - f(v,w).
+    \end{align*}
+
+    Wir definieren zusätzlich einen Residualgraphen $G_f = (V,E_f)$ mit
+
+    \begin{align*}
+      E_f := \{ vw \in E: r_f(v,w) > 0\}
+    \end{align*}
+      
+  \end{definition}
+  
+
+\end{frame}
+
+\begin{frame}{Labels}
+
+  \begin{definition}
+
+    Ein \textit{valid labelling} ist eine Funktion $d: V \to \N_0 \cup \{\infty\}$ mit
+
+    \begin{enumerate}
+      \item[(4)] $d(s) = |V|, \quad d(t) = 0$
+      \item[(5)] $\forall vw \in E_f: d(v) \leq d(w) + 1$.  
+    \end{enumerate}
+
+    Weiters nennen wir einen Knoten $v \neq s$ aktiv, solange $e(v) > 0$ und $d(v) < \infty$.
+    
+  \end{definition}
+
+\end{frame}
+
+\section{Algorithmus: Goldberg-Tarjan}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan (1/5)}
+
+  Wir initialisieren den Algorithmus von Goldberg und Tarjan mit einem
+  geeigneten Preflow und Labelling wie folgt:
+
+  \begin{algorithmus*}[Goldberg und Tarjan]
+    \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+          \Procedure{GoldbergTarjan}{$N,f,v,w$}
+          \State{$\forall v \neq s: f(s,v) \leftarrow c(s,v);  \quad f(v,s) \leftarrow -c(s,v)$}
+          \State{$\forall v,w \neq s: f(v,w) \leftarrow 0$}
+          \State{$d(s) = |V|; \quad \forall v \neq s: d(v) \leftarrow 0$}
+          \State \While{$\exists v $ aktiv}{Führe eine zulässige Operation aus.}
+          \EndProcedure
+      \end{algorithmic}
+    \end{algorithm}
+  \end{algorithmus*}
+  
+\end{frame}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan (2/5)}
+
+  \begin{algorithmus*}[Goldberg und Tarjan]
+    \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+          \Procedure{Push}{$N,f,v,w$}
+          \State{$\delta \leftarrow \min (e(v), r_f(v,w))$}
+          \State{$f(v,w) \leftarrow f(v,w) + \delta; \quad f(w,v) \leftarrow f(w,v) - \delta$}
+          \State{$r_f(v,w) \leftarrow r_f(v,w) - \delta; \quad r_f(w,v) \leftarrow f_f(w,v) - \delta$}
+          \State{$e(v) \leftarrow e(v) - \delta; e(w) \leftarrow e(w) + \delta$}
+          \EndProcedure
+      \end{algorithmic}
+      \textbf{Voraussetzungen:} 
+        \begin{enumerate}
+          \item $v$ ist aktiv
+          \item $r_f(v,w) > 0$
+          \item $d(v) = d(w) + 1$
+        \end{enumerate}
+    \end{algorithm}
+  \end{algorithmus*}
+  
+\end{frame}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan (3/5)}
+
+  \begin{algorithmus*}[Goldberg und Tarjan]
+    \begin{algorithm}[H]
+      \begin{algorithmic}[1]
+          \Procedure{Relabel}{$N,f,v,d$}
+          \State{$\delta \leftarrow \min \{ d(w) + 1: r_f(v,w) > 0$}
+          \EndProcedure
+      \end{algorithmic}
+      \textbf{Voraussetzungen:} 
+        \begin{enumerate}
+          \item $v$ ist aktiv
+          \item $\forall w: r_f(v,w) > 0 \implies d(v) \leq d(w)$
+        \end{enumerate}
+    \end{algorithm}
+  \end{algorithmus*}
+  
+\end{frame}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan (4/5)}
+
+  Bereits ohne besondere Wahl der Reihenfolge
+  der Operationen wird garantiert, dass der Algorithmus
+  nach maximal $\mathcal{O}(|V|^2|E|)$ Operationen terminiert.
+
+  Durch geschickte Strategie bei der Wahl der Reihenfolge der
+  Operationen kann jedoch noch Zeit gewonnen werden.
+  Dabei liegt es nahe, solange wie möglich den momentan aktiven
+  Knoten zu bearbeiten, bis entweder
+
+  \begin{enumerate}
+    \item $e(v) = 0$ (kein Exzess mehr vorhanden) oder
+    \item alle Kanten inzident mit $v$ schon für einen \texttt{Push} verwendet wurden
+    und ein \texttt{Relabel} stattgefunden hat. 
+  \end{enumerate}
+  
+\end{frame}
+
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan (5/5)}
+
+  Die beiden vielversprechendsten Versionen unterscheiden sich
+  nur in der Wahl des neuen aktiven Knotens:
+
+  \begin{itemize}
+    \item \texttt{Fifoflow} (first in, first out): Laufzeit $\mathcal{O}(|V|^3)$.
+    
+    Aktive Knoten werden in einer Warteschlange abgearbeitet.
+      
+    
+
+    \item \texttt{Hlflow} (highest label): Laufzeit $\mathcal{O}(|V|^2|E|^{1/2})$.
+    
+    Aktive Knoten werden in einer Prioritätswarteschlange 
+    in der Reihenfolge des höchsten Labels $d(v)$ abgearbeitet.
+      
+    
+  \end{itemize} 
+  
+  
+\end{frame}
+
+\begin{frame}{Algorithmus von Goldberg und Tarjan - Beispiel}
   
 \end{frame}
 
