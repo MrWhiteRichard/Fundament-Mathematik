@@ -5,7 +5,7 @@
 Let $X_1, \dots, X_n$ be iid from a distribution with density
 
 \begin{align*}
-    f_\theta(x) = \frac{x}{\theta} \mathrm e^{-\frac{x^2}{2 \theta}},
+    f_\theta(x) = \frac{x}{\theta} e^{-\frac{x^2}{2 \theta}},
     x \geq 0,
     \theta > 0.
 \end{align*}
@@ -60,7 +60,7 @@ First, we show the hint.
     & =
     \int_{-\sqrt x}^{\sqrt x}
         \frac{\xi}{2 \theta}
-        \mathrm e^{-\frac{\xi^2}{2 \theta}}
+        e^{-\frac{\xi^2}{2 \theta}}
         ~ \mathrm d \xi \\
     & =
     \frac{1}{2}
@@ -68,25 +68,25 @@ First, we show the hint.
     {
         \int_0^{\sqrt x}
             \frac{\xi}{\theta}
-            \mathrm e^{-\frac{\xi^2}{2 \theta}}
+            e^{-\frac{\xi^2}{2 \theta}}
             ~ \mathrm d \xi
         -
         \int_0^{\sqrt{-x}}
             \frac{\xi}{\theta}
-            \mathrm e^{-\frac{\xi^2}{2 \theta}}
+            e^{-\frac{\xi^2}{2 \theta}}
             ~ \mathrm d \xi
     } \\
     & \stackrel{!}{=}
     \frac{2}{2}
     \int_0^x
         \frac{\xi}{\theta}
-        \mathrm e^{-\frac{\eta}{2 \theta}}
+        e^{-\frac{\eta}{2 \theta}}
         \frac{1}{2 \xi}
         ~ \mathrm d \eta \\
     & =
     \int_0^x
         \frac{1}{2 \theta}
-        \mathrm e^{-\frac{\eta}{2 \theta}}
+        e^{-\frac{\eta}{2 \theta}}
         ~ \mathrm d \eta \\
     & \sim
     \exp \pbraces{\frac{1}{2 \theta}}
@@ -121,21 +121,21 @@ For \enquote ! we used
             \Gamma(n)
         }
         \xi^{n-1}
-        \mathrm e^{-\frac{1}{2 \theta} \xi}
+        e^{-\frac{1}{2 \theta} \xi}
         ~ \mathrm d \xi \\
     & \stackrel{!!}{=}
     \int_{-\infty}^{x / \theta}
         \frac{1}{\theta^n}
         \frac{1 / 2^n}{\Gamma(n)}
         (\theta \eta)^{n-1}
-        \mathrm e^{-\frac{\eta}{\theta}}
+        e^{-\frac{\eta}{\theta}}
         \theta
         ~ \mathrm d \eta \\
     & =
     \int_{-\infty}^{x / \theta}
         \frac{1 / 2^n}{\Gamma(n)}
         \eta^{n-1}
-        \mathrm e^{-\frac{\eta}{\theta}}
+        e^{-\frac{\eta}{\theta}}
         ~ \mathrm d \eta \\
     & =
     F(T(\mathbf X) \leq x / \theta) \\
@@ -183,11 +183,11 @@ For \enquote{!!}, we used
         {
             \prod_{i=1}^n
                 \frac{x_i}{\theta_1}
-                \mathrm e^{-\frac{x_i^2}{2 \theta_1}}
+                e^{-\frac{x_i^2}{2 \theta_1}}
         }{
             \prod_{i=1}^n
                 \frac{x_i}{\theta_0}
-                \mathrm e^{-\frac{x_i^2}{2 \theta_0}}
+                e^{-\frac{x_i^2}{2 \theta_0}}
         } \\
         & =
         \pbraces{\frac{\theta_0}{\theta_1}}^n

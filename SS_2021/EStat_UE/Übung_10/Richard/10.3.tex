@@ -8,7 +8,7 @@ Suppose $X_1, \dots, X_n$ are i.i.d. with pdf
     f(x \mid \lambda, \mu)
     =
     \begin{cases}
-        \lambda \mathrm e^{-\lambda (x - \eta)}
+        \lambda e^{-\lambda (x - \eta)}
         & x > \eta \\
         0,
         & \text{otherwise}
@@ -32,7 +32,7 @@ Find the MLE of $\lambda$ and construct a $(1 - \alpha) 100 \%$ confidence inter
     & =
     \prod_{i=1}^n
         \lambda
-        \mathrm e^{-\lambda (x_i - \eta)}
+        e^{-\lambda (x_i - \eta)}
         \mathbf 1_(\eta, \infty)(x_i) \\
     & =
     \lambda^n
@@ -46,7 +46,7 @@ Find the MLE of $\lambda$ and construct a $(1 - \alpha) 100 \%$ confidence inter
     \mathbf 1_{(\eta, \infty)^n}(\mathbf x) \\
     & =
     \lambda^n
-    \mathrm e^{-\lambda n (\bar x - \eta)}
+    e^{-\lambda n (\bar x - \eta)}
     \mathbf 1_{(\eta, \infty)}(x_{(1)})
 \end{align*}
 
@@ -61,11 +61,11 @@ We calculate the MLE $\hat \lambda$ of $\lambda$.
     \frac{\partial}{\partial \lambda}
         L(\mathbf x \mid \hat \lambda, \eta) \\
     & =
-    n \hat \lambda^{n-1} \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+    n \hat \lambda^{n-1} e^{-\hat \lambda n (\bar x - \eta)}
     -
-    \hat \lambda^n n (\bar x - \eta) \mathrm e^{-\hat \lambda n (\bar x - \eta)} \\
+    \hat \lambda^n n (\bar x - \eta) e^{-\hat \lambda n (\bar x - \eta)} \\
     & =
-    n \hat \lambda^{n-1} \mathrm e^{\hat \lambda n (\bar x - \eta)} (1 - \hat \lambda (\bar x - \eta)) \\
+    n \hat \lambda^{n-1} e^{\hat \lambda n (\bar x - \eta)} (1 - \hat \lambda (\bar x - \eta)) \\
     \iff
     \hat \lambda & = \frac{1}{\bar x - \eta} \\
     0
@@ -75,15 +75,15 @@ We calculate the MLE $\hat \lambda$ of $\lambda$.
     & =
     \pbraces
     {
-        n (n - 1) \hat \lambda^{n-2} \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+        n (n - 1) \hat \lambda^{n-2} e^{-\hat \lambda n (\bar x - \eta)}
         -
-        n \hat \lambda^{n-1} n (\bar x - \eta) \mathrm e^{-\hat \lambda n (\bar x - \eta)}
+        n \hat \lambda^{n-1} n (\bar x - \eta) e^{-\hat \lambda n (\bar x - \eta)}
     }
     \underbrace{(1 - \hat \lambda (\bar x - \eta))}_0
     -
-    n \hat \lambda^{n-1} \mathrm e^{-\hat \lambda n (\bar x - \eta)} (\bar x - \eta) \\
+    n \hat \lambda^{n-1} e^{-\hat \lambda n (\bar x - \eta)} (\bar x - \eta) \\
     & =
-    -n \frac{1}{(\bar x - \eta)^{n-2}} \mathrm e^{-n}
+    -n \frac{1}{(\bar x - \eta)^{n-2}} e^{-n}
 \end{align*}
 
 Now for the CI.
