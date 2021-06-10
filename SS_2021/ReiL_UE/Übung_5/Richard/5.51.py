@@ -2,8 +2,74 @@
 
 import gym
 import random
+import itertools
 
 import numpy as np
+
+# ---------------------------------------------------------------- #
+
+def get_space_list(space):
+
+    """
+    Converts gym `space`, constructed from `types`, to list `space_list`
+    """
+
+    # -------------------------------- #
+
+    types = [
+        gym.spaces.multi_binary.MultiBinary,
+        gym.spaces.discrete.Discrete,
+        gym.spaces.multi_discrete.MultiDiscrete,
+        gym.spaces.dict.Dict,
+        gym.spaces.tuple.Tuple,
+    ]
+
+    if type(space) not in types:
+        raise ValueError(f'input space {space} is not constructed from spaces of types:' + '\n' + str(types))
+
+    # -------------------------------- #
+
+    if type(space) is gym.spaces.multi_binary.MultiBinary:
+        return [
+            np.reshape(np.array(element), space.n)
+            for element in itertools.product(
+                *[range(2)] * np.prod(space.n)
+            )
+        ]
+
+    if type(space) is gym.spaces.discrete.Discrete:
+        return list(range(space.n))
+
+    if type(space) is gym.spaces.multi_discrete.MultiDiscrete:
+        return [
+            np.array(element) for element in itertools.product(
+                *[range(n) for n in space.nvec]
+            )
+        ]
+
+    if type(space) is gym.spaces.dict.Dict:
+
+        keys = space.spaces.keys()
+        
+        values_list = itertools.product(
+            *[get_space_list(sub_space) for sub_space in space.spaces.values()]
+        )
+
+        return [
+            {key: value for key, value in zip(keys, values)}
+            for values in values_list
+        ]
+
+        return space_list
+
+    if type(space) is gym.spaces.tuple.Tuple:
+        return [
+            list(element) for element in itertools.product(
+                *[get_space_list(sub_space) for sub_space in space.spaces]
+            )
+        ]
+
+    # -------------------------------- #
 
 # ---------------------------------------------------------------- #
 
@@ -52,7 +118,7 @@ class Policy:
         """
 
         if actions is None:
-            actions = list(self.action_space)
+            actions = get_space_list(self.action_space)
 
         h_array = np.array([self.h(state, action, theta) for action in actions])
         e_array = np.exp(h_array)
@@ -63,7 +129,7 @@ class Policy:
 
     def get_probability(self, state, theta, action):
 
-        actions = list(self.action_space)
+        actions = get_space_list(self.action_space)
         probabilities = self.get_probabilities(state, theta, actions)
 
         index = actions.index(action)
@@ -73,7 +139,7 @@ class Policy:
 
     def get_action(self, state, theta):
 
-        actions = list(self.action_space)
+        actions = get_space_list(self.action_space)
         probabilities = self.get_probabilities(state, theta, actions)
 
         return random.choices(population=actions, weights=probabilities)[0]
@@ -84,7 +150,8 @@ class Policy:
         Reinforecment Learning (An Introduction) - second edition - Richard S. Sutton and Andrew G. Barto
         Exercise 13.3
         """
-        actions = list(self.action_space)
+
+        actions = get_space_list(self.action_space)
 
         probabilities = self.get_probabilities(state, theta, actions)
         features_at_state = np.array([self.features(state, action) for action in actions])
