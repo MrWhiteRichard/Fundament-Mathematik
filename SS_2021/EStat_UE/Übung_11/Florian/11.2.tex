@@ -34,7 +34,43 @@
 
 \begin{solution}
 
-\phantom{}
+We mindlessly choose our significance level $\alpha = 0.05$.
+
+Let $\mu_0$ and $\mu_0$ denote the average test shocks of the two competitors.
+We want to test $H_0: \mu_0 - \mu_1 = 0$ versus $H_1: \mu_0 - \mu_1 \neq 0$.
+
+We consider the population of differences, define $\mu_d := \mu_0 - \mu_1$ and denote by $\bar{d}$ the sample mean
+and by $s_d$ the sample standard deviation. Our test statistic then reads
+
+\begin{align*}
+    t = \frac{\bar{d} - \mu_d}{s_d/\sqrt{n}} \approx_{H_0} t_{n-1}
+\end{align*}
+
+Plugging in the given data, we obtain
+
+\begin{align*}
+    \bar{d} &= \frac{0.4 + 0.4 + 0.5 + 0.4 + 0.6 + 0.2}{6} = \frac{5}{12}, \\
+    s_d &\approx 0.132916
+\end{align*}
+
+We reject the null if
+
+\begin{align*}
+    |\bar{d}| > \frac{s_d}{\sqrt{n}}t_{\alpha/2, 5} 
+    \approx \frac{0.132916}{\sqrt{6}} \cdot 2.570582 \approx 0.139487.
+\end{align*}
+
+Since $5/12 \approx 0.4167 > 0.139487$ we conclude that 
+there is a difference in the mean strength of the two types of shocks.
+
+We can also compute the $p$-value:
+
+\begin{align*}
+    p &= \P(|t| \geq \frac{5/12}{0.132916 / \sqrt{6}}) 
+    = 2\left(1 - F_t\left(\frac{5/12}{0.132916 / \sqrt{6}}\right)\right) \\
+    &\approx 0.0005970639.
+\end{align*}
+
 
 \end{solution}
 

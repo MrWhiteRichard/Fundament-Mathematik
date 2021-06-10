@@ -20,6 +20,28 @@ and $H_0: \mu = \mu_0$.
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+    \item The alternative hypothesis reads $H_1: \mu > \mu_0$.
+    
+    We calculate the test power
+
+    \begin{align*}
+        \pi(\mu_0, \mu, \sigma, n, \alpha) 
+        &= \P(\text{accept } H_1 | H_1 \text{ is true}) \\
+        &= \P_{\mu}\left(\frac{\bar{X}_n - \mu_0}{\sigma/\sqrt{n}} > z_\alpha\right) \\
+        &= \P_{\mu}\left(\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} > z_\alpha - \frac{\mu - \mu_0}{\sigma/ \sqrt{n}}\right) \\
+        &= 1 - \Phi\left(z_\alpha - \frac{\mu - \mu_0}{\sigma/ \sqrt{n}}\right) \\
+        &= \Phi\left(\frac{\mu - \mu_0}{\sigma/ \sqrt{n}} - z_\alpha\right)
+    \end{align*}
+
+    \item The test power is monotonically increasing in $(\mu - \mu_0)$ and in $n$,
+    but decreasing in $\sigma$ and $\alpha$.
+
+    Hence the larger the actual effect size $\frac{\mu - \mu_0}{\sigma}$ 
+    and the larger the sample size $n$ the more powerful the test,
+    whilst a lower significance level hinders the power of the test.
+\end{enumerate}
+
 \end{solution}
 
 % -------------------------------------------------------------------------------- %
