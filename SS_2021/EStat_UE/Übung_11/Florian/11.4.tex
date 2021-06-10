@@ -34,6 +34,57 @@ of 400 observations are selected from each population, with the following result
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+    \item Since the mean of the differences is equal to the difference of the means and
+
+    \begin{align*}
+        s_d^2 &= \frac{1}{n-1}\sum_{i=1}^n ((X_i - Y_i) - \bar{d})^2 \\
+        &= \frac{1}{n-1}\sum_{i=1}^n ((X_i - \bar{X}) -  (Y_i - \bar{Y}))^2 \\
+        &= s_1^2 + s_2^2 - \frac{2}{n-1}\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y}).
+    \end{align*}
+
+    Since $\E[(X_i - \bar{X})(Y_i - \bar{Y})] = 0$ we can use $s_1^2 - s_2^2$ as an unbiased estimator of $s_d^2$.
+
+    the 95\% confidence interval reads
+    
+    \begin{align*}
+        \bar{d} \pm z_{\alpha/2}\frac{s_d}{\sqrt{n}}
+        &\approx 35 \pm z_{\alpha/2}\frac{\sqrt{s_1^2 + s_2^2}}{\sqrt{n}} \\
+        &\approx 35 \pm 1.96 \cdot\frac{250}{\sqrt{400}} \\
+        &= 35 \pm 24.5.
+    \end{align*}
+
+    \item 
+
+    \begin{align*}
+        p &= \P\left( \left| \frac{\bar{d}}{s_d/\sqrt{n}} \right| > \frac{35 \cdot 20}{250} \right) \\
+        &= 2\Phi\left(-\frac{14}{5}\right) \approx 0.005110261.
+    \end{align*}
+
+    We reject the null.
+
+    \item 
+
+    \begin{align*}
+        p &= \P\left( \frac{\bar{d}}{s_d/\sqrt{n}} > \frac{35 \cdot 20}{250} \right) \\
+        &= \Phi\left(-\frac{14}{5}\right) \approx 0.00255513.
+    \end{align*}
+
+    We reject the null even more convincingly.
+
+    \item 
+
+    \begin{align*}
+        p &= \P\left( \left|\frac{\bar{d} - 25}{s_d/\sqrt{n}}\right| > \frac{10 \cdot 20}{250} \right) \\
+        &= 2\Phi\left(-\frac{2}{5}\right) \approx 0.6891565.
+    \end{align*}
+
+    We cannot reject the null.
+
+    \item Do only one test per data set. Choose test before data is observed.
+
+\end{enumerate}
+
 \end{solution}
 
 % -------------------------------------------------------------------------------- %
