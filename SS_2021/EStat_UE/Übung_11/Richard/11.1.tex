@@ -21,6 +21,77 @@ Let $X_1, \dots, X_n$ be i.i.d. random variables with $X_1 \sim N(\mu, \sigma^2)
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+
+    \item The test reads
+
+    \begin{align*}
+        H_0: \mu = \mu_0
+        \quad
+        \textit{vs}
+        \quad
+        H_1: \mu > \mu_0,
+    \end{align*}
+    
+    with test statistic
+    
+    \begin{align*}
+        T = \frac{\bar X_n - \mu}{\sigma / \sqrt n} \sim N(0, 1).
+    \end{align*}
+    
+    According to \cite[lecture 9, slide 27]{EStat}, the
+    
+    \begin{align*}
+        \text{$p$-value}
+        =
+        P(Z \geq T)
+        =
+        1 - P(Z \leq T)
+        =
+        1 - \Phi(T).
+    \end{align*}
+    
+    Thus, we get the power
+    
+    \begin{align*}
+        \pi(\mu_0, \mu, \sigma, n, \alpha) 
+        & =
+        P(\text{accept}~ H_1 \mid H_1 ~\text{is true}) \\
+        & =
+        P(\text{$p$-value} < \alpha \mid H_1 ~\text{is true}) \\
+        & =
+        P(1 - \alpha < \Phi(T) \mid H_1 ~\text{is true}) \\
+        & =
+        P_\mu(T > z_\alpha) \\
+        & \stackrel{!}{\approx}
+        P_{\mu_0}\pbraces{T > z_\alpha - \frac{\mu - \mu_0}{\sigma/ \sqrt n}} \\
+        & =
+        1 - \Phi\pbraces{z_\alpha - \frac{\mu - \mu_0}{\sigma/ \sqrt n}} \\
+        & =
+        \Phi\pbraces{\frac{\mu - \mu_0}{\sigma/ \sqrt n} - z_\alpha}.
+    \end{align*}
+    
+    For \enquote ! we used \cite[lecture 9, slide 46]{EStat}.
+
+    \item Because $\Phi$ is a cdf, it is monotonically increasing.
+    The same goes for the \enquote{inverse-cdf} (i.e. quantile function) and thus $\alpha \mapsto z_\alpha = \Phi^{-1}(1 - \alpha)$ is monotonically decreasing.
+    Overall, $\pi$
+
+    \begin{itemize}
+        \item increases in $\mu$, $n$ and $\alpha$, and
+        \item decreases in $\mu_0$ and $\sigma$.
+    \end{itemize}
+
+    In order to make the test more powerful, one should increase the
+
+    \begin{itemize}
+        \item actual effect size $\frac{\mu - \mu_0}{\sigma}$,
+        \item sample size $n$, and
+        \item significance level $\alpha$.
+    \end{itemize}
+
+\end{enumerate}
+
 \end{solution}
 
 % ---------------------------------------------------------------- %

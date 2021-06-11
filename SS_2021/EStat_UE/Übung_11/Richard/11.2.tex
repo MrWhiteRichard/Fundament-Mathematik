@@ -33,7 +33,69 @@ Do these data present sufficient evidence to conclude there is a difference in t
 
 \begin{solution}
 
-\phantom{}
+Let $\mu_\mathrm{M}$ and $\mu_\mathrm{C}$ denote the average shock of the the manufacturer and competitor respectively.
+$\mu = \mu_\mathrm{M} - \mu_\mathrm{C}$ is then the \enquote{difference in the mean strenth}.
+Moreover, let $X_{\mathrm M, i}, X_{\mathrm C, i}$, be the respective shock samples and $X_i = X_{\mathrm M, i} - X_{\mathrm C, i}$ their differences, for $i = 1, \dots, 6$.
+
+One concludes whether \enquote{there is a difference in the mean strenth} or not, by testing the Two-Tailed Test
+
+\begin{align*}
+    H_0: \mu = 0
+    \quad
+    \textit{vs}
+    \quad
+    H_1: \mu \neq 0.
+\end{align*}
+
+We use the test statistic
+
+\begin{align*}
+    T = \frac{\bar X_n - \mu}{S_n / \sqrt n} \sim t(n-1),
+\end{align*}
+
+with the sample average
+
+\begin{align*}
+    \bar X_n = \frac{1}{n} \sum_{i=1}^n X_i,
+\end{align*}
+
+and sample standard deviation
+
+\begin{align*}
+    S_n = \frac{1}{n-1} \sum_{i=1}^n (\bar X_n - X_i)^2.
+\end{align*}
+
+For our data, we get
+
+\begin{align*}
+    n = 6,
+    \quad
+    \bar x = \frac{5}{12}
+    \quad
+    \text{and}
+    \quad
+    s \approx 0.132916,
+\end{align*}
+
+and hence, under the $H_0$, the test statistic gets instanciated with
+
+\begin{align*}
+    t = \frac{\bar x - \mu}{s / \sqrt n} \approx \frac{\frac{5}{12} - 0}{0.132916 / \sqrt 6}
+\end{align*}
+
+According to \cite[lecture 9, slide 35]{EStat}, we can compute the
+
+\begin{align*}
+    \text{$p$-value}
+    =
+    2 P_0(T \geq |t|)
+    \approx
+    2 (1 - F_T(t))
+    \approx
+    0.0005970639.
+\end{align*}
+
+Since the $p$-value is pretty small, we should probably reject the $H_0$, i.e. conclude that there is indeed \enquote{a difference in the mean strenth}.
 
 \end{solution}
 

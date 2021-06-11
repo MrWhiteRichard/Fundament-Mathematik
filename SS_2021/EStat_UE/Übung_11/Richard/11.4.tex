@@ -45,6 +45,158 @@ In order to compare the means of two populations, independent random samples of 
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+    \item Let $\alpha = 0.05$, then $95 \% = 100 (1 - \alpha) \%$.
+    We want to use teh CI from \cite[lecture 9, slide 10]{EStat}.
+    Let $X_{1, i}$ and $X_{2, i}$ denote the samples of the populations respectively, and $X_i = X_{1, i} - X_{2, i}$, for $i = 1, \dots, 400 =: n$.
+
+    \begin{align*}
+        \bar X
+        =
+        \frac{1}{n} \sum_{i=1}^n X_i
+        =
+        \frac{1}{n} \sum_{i=1}^n X_{1, i} - X_{2, i}
+        =
+        \frac{1}{n} \sum_{i=1}^n X_{1, i}
+        -
+        \frac{1}{n} \sum_{i=1}^n X_{2, i}
+        =
+        \bar X_1 - \bar X_2
+    \end{align*}
+
+    \begin{align*}
+        C := \frac{2}{n-1} \sum_{i=1}^n (\bar X_1 - X_{1, i}) (\bar X_2 - X_{2, i})
+    \end{align*}
+
+    \begin{align*}
+        S^2
+        & =
+        \frac{1}{n-1}
+        \sum_{i=1}^n
+            (\bar X - X_i)^2 \\
+        & =
+        \frac{1}{n-1}
+        \sum_{i=1}^n
+            ((\bar X_1 - \bar X_2) - (X_{1, i} - X_{2, i}))^2 \\
+        & =
+        \frac{1}{n-1}
+        \sum_{i=1}^n
+            ((\bar X_1 - X_{1, i}) - (\bar X_2 - X_{2, i}))^2 \\
+        & =
+        \frac{1}{n-1}
+        \sum_{i=1}^n
+            (\bar X_1 - X_{1, i})^2
+        -
+        \frac{2}{n-1}
+        \sum_{i=1}^n
+            (\bar X_1 - X_{1, i}) (\bar X_2 - X_{2, i})
+        +
+        \sum_{i=1}^n
+            (\bar X_2 - X_{2, i})^2 \\
+        & =
+        S_1^2 + S_2^2 - C
+    \end{align*}
+
+    \begin{align*}
+        \E((\bar X_1 - X_{1, i}) (\bar X_2 - X_{2, i}))
+        & =
+        \E(\bar X_1 \bar X_2 - \bar X_1 X_{2, i} - X_{1, i} \bar X_2 + X_{1, i} X_{2, i}) \\
+        & \stackrel{!}{=}
+        \E \bar X_1 \E \bar X_2 - \E \bar X_1 \E X_{2, i} - \E X_{1, i} \E \bar X_2 + \E X_{1, i} \E X_{2, i}) \\
+        & \stackrel{!!}{=}
+        0
+    \end{align*}
+
+    For \enquote ! we used that the samples are independent.
+    For \enquote{!!} we used that the sample mean is an unbiased estimator of the expected value.
+
+    Thus, $\E C = 0$ and by the LLN, $C \to 0$.
+    Hence, $\E S^2 = \E(S_1^2 + S_2^2)$ and $|S_1^2 + S_2^2 - S^2| \to 0$.
+    Therefore, we can use $S_1^2 + S_2^2$ instead of $S^2$.
+
+    The bounds of our CI read
+
+    \begin{align*}
+        \bar X \pm z_{\alpha / 2} \frac{S}{\sqrt n}
+        \approx
+        \bar X \pm z_{\alpha / 2} \frac{\sqrt{S_1^2 + S_2^2}}{\sqrt n}
+        \approx
+        (5275 - 5240) \pm 1.96 \frac{\sqrt{150^2 + 200^2}}{\sqrt{400}}
+        =
+        35 \pm 1.96 \frac{250}{20}
+        =
+        35 \pm 24.5.
+    \end{align*}
+
+    With $95 \%$ (coverage) probability will (all of) the data lie within the CI.
+
+    \item We have a two-tailed test.
+    Let $\mu := \mu_1 - \mu_2$ and the test statistic be
+
+    \begin{align*}
+        Z = \frac{\bar X - \mu}{\sqrt{S_1^2 + S_2^2} / \sqrt n} \approx N(0, 1),
+    \end{align*}
+
+    then our realization is
+
+    \begin{align*}
+        z = \frac{35 - \mu}{250 / 20},
+    \end{align*}
+
+    and hence, the
+
+    \begin{align*}
+        \text{$p$-value}
+        =
+        P_0(|Z| \geq |z|)
+        =
+        2 P_0(Z \geq |z|)
+        =
+        2 \pbraces{1 - \Phi \pbraces{\frac{35 - 0}{250 / 20}}}
+        =
+        2 \Phi \pbraces{-\frac{35 \cdot 2}{25}}
+        \approx
+        0.005110261.
+    \end{align*}
+
+    Because the $p$-value is low, we reject the $H_0$.
+
+    \item We ahve an uppper-tailed test.
+    
+    \begin{align*}
+        \text{$p$-value}
+        =
+        P_0(Z \geq z)
+        =
+        P_0(Z \geq |z|)
+        =
+        \cdots
+        \approx
+        \frac{1}{2} 0.005110261.
+    \end{align*}
+
+    Because the $p$-value is (even) low(er), we (still) reject the $H_0$.
+
+    \item We proceed analogously to (b).
+
+    \begin{align*}
+        \text{$p$-value}
+        =
+        P_{25}(|Z| \geq |z|)
+        =
+        2 P_{25}(Z \geq |z|)
+        =
+        2 \pbraces{1 - \Phi \pbraces{\frac{35 - 25}{250 / 20}}}
+        =
+        2 \Phi \pbraces{-\frac{10 \cdot 2}{25}}
+        \approx
+        0.6891565.
+    \end{align*}
+
+    Because (now) the $p$-value is high, we do not reject (i.e. accept) the $H_0$.
+
+\end{enumerate}
+
 \end{solution}
 
 % ---------------------------------------------------------------- %
