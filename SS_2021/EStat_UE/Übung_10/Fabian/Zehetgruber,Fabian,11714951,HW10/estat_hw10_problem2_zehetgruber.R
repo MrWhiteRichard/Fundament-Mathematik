@@ -23,10 +23,11 @@ calories <-
   )
 
 mu <- mean(calories)
-sigma <- sd(calories)
+n <- length(calories)
+sigma <- sqrt(1/ (n - 1) * sum((calories - mu)^2))
 alpha <- 1/10
 
-delta <- qnorm((2 - alpha)/2, mean = mu, sd = sigma) - mu
+delta <- - sigma / sqrt(n) * qnorm(alpha/2)
 
 mu - delta
 mu + delta

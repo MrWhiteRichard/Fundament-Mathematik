@@ -5,6 +5,6 @@ boxplot(
   runningtimes,
   ylab = "runningtime",
   main = "runningtimes of two algorithms",
-  col = "green",
+  col = c("lightgray", "bisque"),
   border = "blue"
 )
