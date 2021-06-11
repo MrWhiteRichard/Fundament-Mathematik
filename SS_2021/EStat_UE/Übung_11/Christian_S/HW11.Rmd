@@ -209,7 +209,7 @@ n = 400
 
 z_alphah = qnorm(1-0.05/2)
 
-paste("100(1-0.05)% CI = [",x_1 - x_2 - z_alphah*sqrt((s_1+s_2)/n), ","
+paste("100(1-0.05)% CI = [",x_1 - x_2 - z_alphah*sqrt((s_1^2+s_2^2)/n), ","
       ,x_1 - x_2 + z_alphah*sqrt((s_1+s_2)/n) , "]")
 ```
 This random interval contains the true difference between the means with the specified confidence level.
@@ -217,7 +217,7 @@ This random interval contains the true difference between the means with the spe
 (b) On the same page we can also find a test statistic we can use for this test, to calculate the p-value we will again use \texttt{R}
 
 ```{r}
-z = (x_1-x_2)/sqrt((s_1+s_2)/n)
+z = (x_1-x_2)/sqrt((s_1^2+s_2^2)/n)
 
 paste("p-value = ", 2*pnorm(-abs(z)))
 ```
@@ -232,11 +232,11 @@ This p-value is still rather large and again supports the null, which is still t
 
 (d)
 ```{r}
-z_new = (x_1-x_2 - 25)/sqrt((s_1+s_2)/n)
+z_new = (x_1-x_2 - 25)/sqrt((s_1^2+s_2^2)/n)
 
 paste("p-value = ", 2*pnorm(-abs(z_new)))
 ```
-Here we see that the p-value is, unsurprisingly, very small so we will reject the null in favor of the alternative.
+Here we see that the p-value is rather small, so we will likely (e.g. in the standard $\alpha = 5\%$ case) reject the null in favor of the alternative.
 
 (e) The assumption that the samples are independent and that the sample size is large ($n > 30$) for both populations.
 
