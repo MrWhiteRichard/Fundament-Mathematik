@@ -330,6 +330,27 @@ class StateValueParameterization(Parameterization):
 
 # ---------------------------------------------------------------- #
 
+class StepSize:
+
+    def __init__(self, expression):
+        self.expression = str(expression)
+
+    def __call__(self, n, a=None):
+
+        self.step_size_current = None
+
+        expression_exec = 'self.step_size_current = ' + self.expression.replace('n', str(n)).replace('a', str(a))
+        assert str(None) not in expression_exec
+        exec(expression_exec)
+
+        assert self.step_size_current is not None
+        return self.step_size_current
+
+    def __str__(self):
+        return self.expression
+
+# ---------------------------------------------------------------- #
+
 class Agent:
 
     """
@@ -382,7 +403,7 @@ class Agent:
         if self.learning_method == 'REINFORCE':
 
             # 1: Algorithm parameter: step sizes alpha > 0
-            self.alpha = alpha
+            self.alpha = StepSize(alpha)
 
             # 1: Initialize poliy parameter theta in R^{d'} (e.g., to 0)
             d_prime = self.pi.feature_amount
@@ -391,8 +412,8 @@ class Agent:
         elif self.learning_method in ['REINFORCE with Baseline', 'One-step Actor-Critic']:
 
             # 2 / 3: Algorithm parameter / Parameter: step sizes alpha_theta > 0, alpha_w > 0
-            self.alpha_theta = alpha_theta
-            self.alpha_w = alpha_w
+            self.alpha_theta = StepSize(alpha_theta)
+            self.alpha_w = StepSize(alpha_w)
 
             # Initialize poliy parameter theta in R^{d'} and state-value weights w \in \R^d (e.g., to 0)
 
@@ -404,6 +425,9 @@ class Agent:
 
         else:
             raise NotImplementedError
+
+        # steps learned
+        self.n = 0
 
     def generate_episode(self):
 
@@ -439,6 +463,8 @@ class Agent:
             # 1, 2: Loop for each step of the episode t = 0, 1, ..., T-1:
             for t in range(T):
 
+                self.n += 1
+
                 # 1, 2: G <- sum_{k=t+1}^T gamma^{k-t-1} R_k
                 G = sum([
                     self.gamma ** (k-t-1) * R[k-1] # we are using R[k-1] instead of R[k] because, when indexing R, we start counting at 0
@@ -447,33 +473,24 @@ class Agent:
 
                 if self.learning_method == 'REINFORCE':
 
-                    if self.alpha is not None:
-
-                        raise warnings.warn('step size alpha is None, using alpha_theta instead')
-                        assert self.alpha_theta is not None
-                        self.alpha = self.alpha_theta
+                    assert self.alpha is not None
 
                     # 1: theta <- theta + alpha gamma^t G nabla ln pi(A_t|S_t, theta)
-                    self.theta += self.alpha * self.gamma ** t * G * self.pi.elegibility_vector(S[t], self.theta, A[t])
+                    self.theta += self.alpha(self.n, A[t]) * self.gamma ** t * G * self.pi.elegibility_vector(S[t], self.theta, A[t])
 
                 else: # self.learning_method == 'REINFORCE with Baseline':
 
-                    if self.alpha_theta is not None:
-
-                        raise warnings.warn('step size alpha_theta is None, using alpha instead')
-                        assert self.alpha is not None
-                        self.alpha_theta = self.alpha
-                    
+                    assert self.alpha_theta is not None
                     assert self.alpha_w is not None
 
                     # 2: delta <- G - v_hat(S_t, w)
                     delta = G - self.v_hat(S[t], self.w)
 
                     # 2: w <- w + alpha_w delta nabla v_hat(S_t, w)
-                    self.w += self.alpha_w * delta * self.v_hat.gradient(S[t], self.w)
+                    self.w += self.alpha_w(self.n, A[t]) * delta * self.v_hat.gradient(S[t], self.w)
 
                     # 2: theta <- theta + alpha_theta gamma^t delta nabla ln pi(A_t|S_t, theta)
-                    self.theta += self.alpha_theta * self.gamma ** t * delta * self.pi.elegibility_vector(S[t], self.theta, A[t])
+                    self.theta += self.alpha_theta(self.n, A[t]) * self.gamma ** t * delta * self.pi.elegibility_vector(S[t], self.theta, A[t])
 
         elif self.learning_method == 'One-step Actor-Critic':
             
@@ -492,6 +509,8 @@ class Agent:
 
             # 3: Loop while S is not terminal (for each time step):
             while not done:
+
+                self.n += 1
 
                 # 3: A ~ pi(.|S, theta)
                 A = self.pi.get_action(S, self.theta)
@@ -516,10 +535,10 @@ class Agent:
                     delta = R - self.v_hat(S, self.w)
 
                 # 3: w <- w + alpha_w delta nabla v_hat(S, w)
-                self.w += self.alpha_w * delta * self.v_hat.gradient(S, self.w)
+                self.w += self.alpha_w(self.n, A) * delta * self.v_hat.gradient(S, self.w)
 
                 # 3: theta <- theta + alpha_theta I delta nabla ln pi(A|S, theta)
-                self.theta += self.alpha_theta * I * delta * self.pi.elegibility_vector(S, self.theta, A)
+                self.theta += self.alpha_theta(self.n, A) * I * delta * self.pi.elegibility_vector(S, self.theta, A)
 
                 # 3: I <- gamma I
                 I *= self.gamma
@@ -541,6 +560,14 @@ class Agent:
         self.env.close()
         self.pi.close()
         self.v_hat.close()
+
+    def reset(self):
+
+        self.__init__(
+            self.env, self.gamma, self.feature_info, self.learning_method,
+            alpha=self.alpha,
+            alpha_theta=self.alpha_theta, alpha_w=self.alpha_w
+        )
 
 # ---------------------------------------------------------------- #
 
@@ -610,10 +637,21 @@ def measure(parameters):
     # -------------------------------- #
 
 # ---------------------------------------------------------------- #
+# Work Horse:
 
-parameters_index = 4
+# -------------------------------- #
 
-for _ in range(40):
+# index of `parameters_array`
+parameters_index = None # please fill out
+
+# how many runs should be learned additionally
+runs = None # please fill out
+
+# -------------------------------- #
+
+for _ in range(runs):
     measure(parameters_index)
+
+# -------------------------------- #
 
 # ---------------------------------------------------------------- #
