@@ -4,24 +4,35 @@ import random
 import time
 from itertools import product
 
+from numpy.core.fromnumeric import prod
+
 env = gym.make('CartPole-v0')
 
 
 def x(state, action):
     # Fourier Basis order-1
-    c_array = product([0,1], repeat = 5)
-    return np.array([np.cos(np.dot(c,np.concatenate((state, [action])))) for c in c_array])
+    # c_array = product([0,1], repeat = 5)
+    # features = np.array([np.cos(np.dot(c,np.concatenate((state, [action])))) for c in c_array])
 
-def pi(state, action, theta, env):
-    normalize_factor = sum([np.exp(np.dot(theta, x(state,a))) for a in range(env.action_space.n)])
-    return np.exp(np.dot(theta, x(state,action)))/normalize_factor
+    # Polynomial Basis order-1
+    c_array = product([0,1], repeat = 5)
+    features = np.array([np.prod(np.concatenate((state, [action + 1]))**np.array(c)) for c in c_array])
+    return features
+
+def pi(state, theta, env):
+    # print(theta)
+    # print(np.exp(theta @ x(state,0)))
+    # print(np.exp(theta @ x(state,1)))
+    p_array = np.array([np.exp(np.dot(theta, x(state,action))) for action in range(env.action_space.n)])
+    return p_array/np.sum(p_array)
 
 def choose_action(state, actions, theta, env):
-    weights = [pi(state,action,theta, env) for action in actions]
-    return random.choices(actions, weights = weights)[0]
+    weights = pi(state, theta, env)
+    #print(weights)
+    return random.choices(population = actions, weights = weights)[0]
 
 
-def REINFORCE(alpha, max_episodes, env, dim):
+def REINFORCE(alpha, gamma, max_episodes, env, dim):
     theta = np.zeros(dim)
     actions = [i for i in range(env.action_space.n)]
     episode_length_array = np.zeros(100)
@@ -35,7 +46,7 @@ def REINFORCE(alpha, max_episodes, env, dim):
         R = [0]
 
         
-        t = 0
+        T = 0
         while not done:
             #print("Observation: ", observation)
             action = choose_action(observation, actions, theta, env)
@@ -45,28 +56,32 @@ def REINFORCE(alpha, max_episodes, env, dim):
             A.append(action)
             R.append(reward)
 
-            t += 1
+            T += 1
             if done:
-                episode_length_array[i%100] = t
+                episode_length_array[i%100] = T
                 if i%20 == 0:
-                    print(f"Episode {i} finished after {t} timesteps")
+                    print(f"Episode {i} finished after {T} timesteps")
                     
-                    print("Average length (last 100): ", np.mean(episode_length_array))
+                    if T < 100:
+                        mean = np.mean(episode_length_array[:T])
+                    else:
+                        mean = np.mean(episode_length_array)
+                    print("Average length (last 100): ", mean)
                 break
-        T = t
-        
         for t in range(T):
-            G = sum([R[k] for k in range(t+1,T+1)])
-            gradient = x(S[t],A[t]) - sum([pi(S[t], action, theta, env)*x(S[t],action) for action in actions])
-            #print("Gradient: ", gradient)
-            theta += alpha*G*gradient
+            G = sum([gamma**(k-t-1)*R[k] for k in range(t+1,T+1)])
+            probabilities = pi(S[t], theta, env)
+            features = np.array([x(S[t],action) for action in actions])
+            gradient = x(S[t],A[t]) - probabilities @ features
+            theta += alpha*gamma**t*(G-10)*gradient
         
         #print("Theta: ", theta)
     
+    print(episode_length_array)
     return theta
 
-theta = REINFORCE(2e-10, 500, env, 2**5)
-
+theta = REINFORCE(0.1, 1, 100, env, 2**5)
+print(theta)
 observation = env.reset()
 actions = [i for i in range(env.action_space.n)]
 for t in range(100):
@@ -74,8 +89,11 @@ for t in range(100):
     action = choose_action(observation, actions, theta, env)
     observation, reward, done, info = env.step(action)
     if done:
-        time.sleep(2)
+        time.sleep(1)
         print("Episode finished after {} timesteps".format(t+1))
         break
+
+state = env.reset()
+
 
 env.close()

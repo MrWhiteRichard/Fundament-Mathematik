@@ -74,22 +74,27 @@
 \section{Wiederholung}
 
 \begin{frame}{Wiederholung - Problemstellung}
-  Wir wollen in einem Flussnetzwerk $N = (G,c,s,t)$ einen maximalen Fluss 
-  von der Quelle $s$ zur Senke $t$ finden, der folgenden Bedingungen genügt:
 
-  \begin{enumerate}
-    \item $0 \leq f(e) \leq c(e)$ für jede Kante $e$; \quad (Kapazitätsbeschränkung)
-    \item $\sum_{e^+ = v} f(e) = \sum_{e^- = v} f(e)$ für jeden Knoten $v \neq s,t$.
-    \quad (Flusserhaltung)
-  \end{enumerate}
+  \begin{problem*}[Maximum flow]
+    Finde maximalen Fluss von $s$ nach $t$ in Netzwerk $N = (G,c,s,t)$, 
+    der folgenden Bedingungen genügt:
 
+    \begin{enumerate}
+      \item $0 \leq f(e) \leq c(e)$ für jede Kante $e$; \quad (Kapazitätsbeschränkung)
+      \item $\sum_{e^+ = v} f(e) = \sum_{e^- = v} f(e)$ für jeden Knoten $v \neq s,t$.
+      \quad (Flusserhaltung)
+    \end{enumerate}
 
+    \vspace{0.2cm}
 
-  Der Wert eines Flusses ist gegeben durch
+    Wert eines Flusses:
 
-  \begin{align*}
-    w(f) := \sum_{e^- = s}f(e) - \sum_{e^+ = s} f(e) = \sum_{e^+ = t}f(e) - \sum_{e^- = t} f(e).
-  \end{align*}
+    \begin{align*}
+      w(f) := \sum_{e^- = s}f(e) - \sum_{e^+ = s} f(e) = \sum_{e^+ = t}f(e) - \sum_{e^- = t} f(e).
+    \end{align*}
+    
+  \end{problem*}
+  
 
 \end{frame}
 
@@ -99,8 +104,7 @@
   \begin{algorithmus*}
     \begin{itemize}
       \item Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
-      \item Finde einen erweiternden Pfad $P$.
-      \item Berechne
+      \item Finde einen erweiternden Pfad $P$ und berechne
       \begin{align*}
         d := \min[&\{c(e) - f(e): e \text{ Vorwärts-Kante } \in P\} \ \cup \\
         &\{f(e): e \text{ Rückwärts-Kante } \in P\} ].
@@ -121,39 +125,37 @@
 
 \section{Blocking Flows}
 
-\begin{frame}{Blocking Flows}
+\begin{frame}{Hilfsnetzwerke}
 
-\begin{definition}
-  Ein \textit{Flow} $f$ heißt \textit{Blocking Flow}, wenn
-  es keine erweiternden Pfade bezüglich $f$, welche nur aus
-  Vorwärtskanten bestehen, gibt.
-\end{definition}
+  Sei $N = ((V,E), c, s, t)$ ein Flussnetzwerk.
 
-\begin{definition}
-  Zu einem bestehenden Flussnetzwerk $N = ((V,E), c, s, t)$
-  definieren wir das Hilfsnetzwerk $N' = ((V,E'), c', s, t)$.
+  \begin{definition}[Hilfsnetzwerk $N' = ((V,E'), c', s, t)$]  
+  
+    \begin{itemize}
+      \item{\makebox[5cm][l]{$e = uv \in E$ mit $f(e) < c(e)$} $\rightarrow \quad e' = uv \in E'$ mit $c(e') = c(e) - f(e)$.}
+      \item{\makebox[5cm][l]{$e = uv, f(e) > 0$} $\rightarrow \quad e'' = vu \in E''$ mit $c'(e'') = f(e)$.}
+    \end{itemize}
+  \end{definition}
 
-
-  Für jede Kante $e = uv \in E$ mit $f(e) < c(e)$
-  fügen wir eine Kante $e' = uv$ mit $c(e') = c(e) - f(e)$ zu $E'$ dazu.
-
-
-  Ebenso für jede Kante $e = uv, f(e) \neq 0$ fügen wir eine Kante
-  $e'' = vu, c'(e'') = f(e)$ zu $E'$ hinzu.
-\end{definition}
+  \begin{itemize}
+    \item Effizientere Implementierung: Weglassen überflüssiger Information
+    \item Hilfsnetzwerk $N' \rightarrow$ Schichtnetzwerk $N''$
+    \item Schichtlevel eines Knoten $v$ = Distanz zur Quelle $s: d(s,v)$
+    \item Entferne alle Knoten $v \neq t: d(s,v) \geq d(s,t)$.
+    \item Entferne alle Kanten, welche von einer höheren in eine niedrigere Schicht führen.
+  \end{itemize}
 
 \end{frame}
 
 
 \begin{frame}{Algorithmus - Skizze}
 
-  Für eine effizientere Implementierung ersetzen wir das
-  Hilfsnetzwerk $N'$ durch ein Schichtnetzwerk $N''$, in
-  dem wir möglichst viel überflüssige Information weglassen.
+  \begin{definition}
+    Ein \textit{Flow} $f$ heißt \textit{Blocking Flow}, wenn
+    es bezüglich $f$ keine erweiternden Pfade alleine aus
+    Vorwärtskanten gibt.
+  \end{definition}
   
-  Das Schichtlevel eines Knoten entspricht dabei der Distanz zur Quelle $s$.
-
-
   \begin{algorithmus*}[Blocking Flows]
     \begin{itemize}
       \item Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
@@ -217,7 +219,7 @@
               \State{
               \While{$v \neq t \land b(v) \neq 0$}
                 {
-                  \State{Wähle Kante $e = uv; \quad m \leftarrow \min\{c(e),b(v)\}$}
+                  \State{Wähle Kante $e = vu; \quad m \leftarrow \min\{c(e),b(v)\}$}
                   \State{$c(e) \leftarrow c(e) - m; \quad g(e) \leftarrow g(e) + m$}
                   \State{$p^+(u) \leftarrow p^+(u) - m; \quad b(u) \leftarrow b(u) +  m$}
                   \State{$p^-(v) \leftarrow p^-(v) - m; \quad b(v) \leftarrow b(v) - m$}
@@ -302,8 +304,8 @@
         node distance=0.5cm and 1.0cm
         ]
         \node[mycircle] (s) {$s$};
-        \node[mycircle,above right=of s] (v1) {$v_{1,1}$};
-        \node[mycircle,below right=of s] (v2) {$v_{2,1}$};
+        \node[newcircle,above right=of s] (v1) {$v_{1,1}$};
+        \node[newcircle,below right=of s] (v2) {$v_{2,1}$};
         \node[newcircle,right=of v1] (v3) {$v_{1,2}$};
         \node[newcircle,right=of v2] (v4) {$v_{2,2}$};
         \node[mycircle,above right=of v4] (t) {$t$};
@@ -540,10 +542,9 @@
 
 \section{Algorithmus: Goldberg-Tarjan}
 
-\begin{frame}{Algorithmus von Goldberg und Tarjan (1/5)}
+\begin{frame}{Algorithmus von Goldberg und Tarjan (1/4)}
 
-  Wir initialisieren den Algorithmus von Goldberg und Tarjan mit einem
-  geeigneten Preflow und Labelling wie folgt:
+  Initialisierung:
 
   \begin{algorithmus*}[Goldberg und Tarjan]
     \begin{algorithm}[H]
@@ -560,7 +561,7 @@
   
 \end{frame}
 
-\begin{frame}{Algorithmus von Goldberg und Tarjan (2/5)}
+\begin{frame}{Algorithmus von Goldberg und Tarjan (2/4)}
 
   \begin{algorithmus*}[Goldberg und Tarjan]
     \begin{algorithm}[H]
@@ -583,13 +584,13 @@
   
 \end{frame}
 
-\begin{frame}{Algorithmus von Goldberg und Tarjan (3/5)}
+\begin{frame}{Algorithmus von Goldberg und Tarjan (3/4)}
 
   \begin{algorithmus*}[Goldberg und Tarjan]
     \begin{algorithm}[H]
       \begin{algorithmic}[1]
           \Procedure{Relabel}{$N,f,v,d$}
-          \State{$\delta \leftarrow \min \{ d(w) + 1: r_f(v,w) > 0$}
+          \State{$d(v) \leftarrow \min \{ d(w) + 1: r_f(v,w) > 0\}$}
           \EndProcedure
       \end{algorithmic}
       \textbf{Voraussetzungen:} 
@@ -602,48 +603,28 @@
   
 \end{frame}
 
-\begin{frame}{Algorithmus von Goldberg und Tarjan (4/5)}
+\begin{frame}{Algorithmus von Goldberg und Tarjan (4/4)}
 
-  Bereits ohne besondere Wahl der Reihenfolge
-  der Operationen wird garantiert, dass der Algorithmus
-  nach maximal $\mathcal{O}(|V|^2|E|)$ Operationen terminiert.
-
-  Durch geschickte Strategie bei der Wahl der Reihenfolge der
-  Operationen kann jedoch noch Zeit gewonnen werden.
-  Dabei liegt es nahe, solange wie möglich den momentan aktiven
-  Knoten zu bearbeiten, bis entweder
+  \begin{itemize}
+    \item Maximal $\mathcal{O}(|V|^2|E|)$ Operationen unabhängig von der Reihenfolge.
+    \item Speedup möglich durch bewusste Wahl der Reihenfolge:
+  \end{itemize}
+  
+  Der momentan aktive Knoten wird solange weiterbearbeitet, bis entweder
 
   \begin{enumerate}
     \item $e(v) = 0$ (kein Exzess mehr vorhanden) oder
     \item alle Kanten inzident mit $v$ schon für einen \texttt{Push} verwendet wurden
     und ein \texttt{Relabel} stattgefunden hat. 
   \end{enumerate}
-  
-\end{frame}
-
-
-\begin{frame}{Algorithmus von Goldberg und Tarjan (5/5)}
-
-  Die beiden vielversprechendsten Versionen unterscheiden sich
-  nur in der Wahl des neuen aktiven Knotens:
 
   \begin{itemize}
     \item \texttt{Fifoflow} (first in, first out): Laufzeit $\mathcal{O}(|V|^3)$.
-    
-    Aktive Knoten werden in einer Warteschlange abgearbeitet.
-      
-    
-
-    \item \texttt{Hlflow} (highest label): Laufzeit $\mathcal{O}(|V|^2|E|^{1/2})$.
-    
-    Aktive Knoten werden in einer Prioritätswarteschlange 
-    in der Reihenfolge des höchsten Labels $d(v)$ abgearbeitet.
-      
-    
+    \item \texttt{Hlflow} (highest label): Laufzeit $\mathcal{O}(|V|^2|E|^{1/2})$.   
   \end{itemize} 
   
-  
 \end{frame}
+
 
 \begin{frame}{Algorithmus von Goldberg und Tarjan (\texttt{Hlflow}) - Beispiel}
 
