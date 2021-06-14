@@ -17,6 +17,7 @@ points(drange, ttest(c), col="orange", xlab="", ylab="", pch=19, type="b")
 legend(3, 0.2, legend=c('n = 10, σ = 3', 'n = 20, σ = 3', 'n = 20, σ = 1'),
        col=c("blue", "red", "orange"), lty=1:1, cex=0.8)
 
-# We observe that the test power is monotonously increasing in n (for fixed σ)
+# We observe that the rejection rate is monotonously increasing in n (for fixed σ and d != 0)
 # and monotonously decreasing in σ (for fixed n).
+# For d = 0, we always reject H0 for ~ 5 % of the samples, which is exactly what we expect.
 
