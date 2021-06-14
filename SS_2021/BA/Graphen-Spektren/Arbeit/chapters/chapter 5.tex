@@ -1,0 +1,405 @@
+\chapter{Graphen-Energie}
+
+    In diesem Kapitel werden wir nur noch, so wie im zweiten Punkt von Definition \ref{def:graph}, ungewichtete ungerichtete Graphen ohne Mehrfach-Kanten oder Schleifen betrachten, d.h.
+
+    \begin{align*}
+        V & := V(G)                                            && \text{ist eine endliche Knoten-Menge,} \\
+        E & := E(G) \subseteq \Bbraces{e \subseteq V: |e| = 2} && \text{ist eine (endliche) Kanten-Menge, und} \\
+        G & := (V, E)                                          && \text{ist der Graph.}
+    \end{align*}
+
+    Außerdem benötigen wir nur noch das gewöhnliche charakteristische Polynom und Spektrum.
+    Dementsprechend sind die Begriffe \enquote{Graph}, \enquote{charakteristisches Polynom} und \enquote{Spektrum} eingeschränkt zu verstehen.
+
+    % -------------------------------------------------------------------------------------------------------------------------------- %
+
+    \section{Chemische Graphen-Theorie und topologische Indizes}
+
+        % Quelle: Introduction To Chemical Graph Theory, Seite ix
+        Die \textit{Chemische Graphen-Theorie} beschäftigt sich mit der Analyse gewisser Moleküle als \textit{molekulare Graphen}.
+        % Quelle: Introduction To Chemical Graph Theory, Seite 2
+        Aus einem Molekül erhält man einen molekularen Graphen, indem man die Atome des Moleküls als Knoten und die Bindungen zwischen den Atomen als Kanten des molekularen Graphen auffasst.
+        Dabei werden die Wasserstoff-Atome meist weggelassen (insbesondere auch in dieser Arbeit).
+        Falls mehr als eine Bindung zwischen Atomen auftritt, wird trotzdem keine Mehrfach-Kante eingeführt.
+        Darüber hinaus, sind die Kanten ungerichtet.
+        Zur Veranschaulichung soll die folgende Abbildung \ref{fig:Biphenylen} dienen.
+
+        % Inspiration: Graph Energy, Seite 12
+        \begin{figure}[h!]
+            \centering
+            \subfloat[Molekül (Struktur-Formel)]
+            {
+                \chemfig
+                {
+                    H -[:30] C_5
+                    * 6
+                    (
+                        - C_4 (-[:270] H) = C_3
+                        * 4
+                        (
+                            - C_{11}
+                            * 6
+                            (
+                                = C_{10} (-[:270] H) - C_9 (-[:330] H) = C_8 (-[:30] H) - C_7 (-[:90] H) = \phantom{C_{12}}
+                            )
+                            - C_{12} - \phantom{C_{10}}
+                        )
+                        - C_2 = C_1 (-[:90] H) - C_6 (-[:150] H) =
+                    )
+                }
+            }
+            \hspace*{1cm}
+            \subfloat[molekularer Graph]
+            {
+                \chemfig
+                {
+                    5
+                    * 6
+                    (
+                        - 4 - 3
+                        * 4
+                        (
+                            - 11
+                            * 6
+                            (
+                                - 10 - 9 - 8 - 7 - \phantom{12}
+                            )
+                            - 12 - \phantom{10}
+                        )
+                        - 2 - 1 - 6 -
+                    )
+                }
+            }
+            \hspace{0mm}
+            \caption[Lol]
+            {
+                % Quelle: https://de.wikipedia.org/wiki/Biphenylen
+                Biphenylen zählt zur Klasse der polycyclischen aromatischen Kohlenwasserstoffe\protect\footnotemark.
+                Die Kohlenstoff-Atome des Moleküls bzw. Knoten des molekularen Graphen sind von $1$ bis $12$ nummeriert.
+            }
+            \label{fig:Biphenylen}
+        \end{figure}
+
+        \footnotetext{Kohlenwasserstoffe sind Moleküle, die nur aus Kohlenstoff- und Wasserstoff-Atomen bestehen.}
+
+        % Quelle: Introduction To Chemical Graph Theory, Seite ix
+        Nun spielen \textit{topologische (chemische) Indizes} eine zentrale Rolle in der Chemischen Graphen-Theorie.
+        Das sind gewisse numerische Größen von (molekularen) Graphen.
+        Diese Indizes können verwendet werden, um Aussagen über gewisse Eigenschaften bestimmter chemischer Substanzen (Molekülen) zu treffen.
+        Beim Untersuchen eines topologischen Index stellt man sich of folgende Fragen:
+
+        \begin{itemize}
+            \item \enquote{Gibt es alternative Darstellungen zur Definition des Indexes?}
+            \item \enquote{Wie kann man den Index abschätzen?}
+            \item \enquote{Wie kann man den Index berechnen?}
+            \item \enquote{Kann man mehr über den Index erfahren, indem man die Klasse der zugrunde liegenden Graphen einschränkt?}
+            \item \enquote{Welche Graphen minimieren bzw. maximieren den Index?}
+        \end{itemize}
+
+        Drei der prominentesten topologischen Indizes sind in folgender Definition gegeben.
+
+        % Quelle: Introduction To Chemical Graph Theory
+        \begin{definition} \label{def:graph_indices}
+
+            Sei $G = (V, E)$ ein Graph mit Spektrum $\sigma$.
+            Dann lauten der \textit{Wiener Index}
+            % Siedepunkt von Alkanen
+
+            \begin{align*}
+                W(G) := \sum_{\Bbraces{u, v} \subseteq V(G)} d(u, v),
+            \end{align*}
+
+            der \textit{Randić Index} von $G$ mit $\alpha \neq 0$
+            % Siedepunkt, Bildungsenthalpie, chromatographische Retentionszeit,
+
+            \begin{align*}
+                R_\alpha(G)
+                :=
+                \sum_{\Bbraces{u, v} \in E(G)} (\deg(u) \deg(v))^\alpha
+            \end{align*}
+
+            und die \textit{(Graphen-)Energie}
+
+            \begin{align*}
+                \mathcal E(G)
+                :=
+                \sum_{\lambda \in \sigma(G)} |\lambda|.
+            \end{align*}
+
+            Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $W$, $R_\alpha$ bzw. $\mathcal E$.
+
+        \end{definition}
+
+        \begin{remark}
+
+            1947 hat Wiener mit seinem Index eine Formel aufgestellt, die den Siedepunkt von Alkanen gut beschreibt (vgl. cite{Wiener}).
+            Der Randić Index kann nicht nur für den Siedepunkt, sondern auch die Bildungsenthalpie\footnote{Die Bildungsenthalpie ist jene Energiemenge, die bei der Bildung einer Verbindung aus ihren Elementen freigesetzt (exotherme Reaktion) oder verbraucht (endotherme Reaktion) wird.} und chromatographische Retentionszeit\footnote{Die chromatographische Retentionszeit ist jene Zeit, die ein Analyt für das Passieren der Säule benötigt. Dies entspricht der Zeitdifferenz zwischen Injektion und Detektion.} verwendet werden.
+            Auf diese beiden Indizes werden wir aber nicht weiter eingehen.
+            Stattdessen widmen wir uns nun voll und ganz der Graphen-Energie.
+
+        \end{remark}
+
+    % -------------------------------------------------------------------------------------------------------------------------------- %
+
+    % Quelle: Graph Energy, 2.1 Hückel Molecular Orbital Theory
+    \section{Motivation}
+
+        Erich Hückel entwickelte in den 30ern eine Methode (Hückel molecular orbital (HMO) model), um Lösungen der Schrödinger-Gleichung
+        
+        \begin{align} \label{eq:Schrödinger}
+            \hat H \Psi = \mathcal E \Psi
+        \end{align}
+        
+        zu approximieren, für Konjugierte Kohlenwasserstoffe.
+        Sie beschreibt das Verhalten der Elektronen in einem Moleküle und deren Energie.
+        Dabei ist $\hat H$ ein gewisser \textit{Hamiltonscher Operator}, $\Psi$ die \textit{Wellenfunktion} und $\mathcal E$ die \textit{Energie} des Systems.
+        \eqref{eq:Schrödinger} beschreibt ein schwieriges Eigenwert-Problem.
+
+        Sei $G = (V, E)$ der molekulare Graph eines Kohlenwasserstoff-Moleküls mit $n = |V|$ Knoten.
+        Im HMO-Modell wird ein Ansatz für $\Psi$ als Linearkombination von gewissen $n$ orthogonalen Basis-Funktionen gewählt und mit dem Koeffizienten-Vektor der Linearkombination identifiziert.
+        Daraus ergibt sich, durch hier nicht ausgeführte Rechnungen,
+
+        \begin{align} \label{eq:Schrödinger_lite}
+            \mathbf H \Psi = \mathcal E \Psi,
+        \end{align}
+
+        wobei $\alpha$ das \textit{Coulomb-Integral}, $\beta$ das \textit{Resonanz-Integral} und $\mathbf H := \alpha \mathbf I + \beta \mathbf A$ die \textit{Hamiltonsche Matrix} sind.
+        ($\mathbf A$ ist natürlich eine Adjazenz-Matrix von $G$.)
+        \eqref{eq:Schrödinger_lite} zwar kein unbedingt triviales, aber dennoch leichteres, Eigenwert-Problem als \eqref{eq:Schrödinger}.
+        Für Biphenylen aus Abbildung \ref{fig:Biphenylen} erhalten beispielsweise
+
+        \resizebox{\linewidth}{!}
+        {
+            \begin{minipage}{\linewidth}
+                \begin{align*}
+                    \mathbf H
+                    =
+                    \alpha
+                    \pbraces
+                    {
+                        \begin{array}{cccccccccccc}
+                            1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+                        \end{array}
+                    }
+                    +
+                    \beta
+                    \pbraces
+                    {
+                        \begin{array}{cccccccccccc}
+                            0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+                            0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+                            0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+                            0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+                            0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+                            0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+                        \end{array}
+                    }.
+                \end{align*}            
+            \end{minipage}
+        }
+
+        \phantom{}
+
+        Seien $\lambda_i$ die Eigenwerte von $G$ und bezeichne mit $\mathcal E_i = \alpha + \beta \lambda_i$ die \textit{Energie-Level} der $\pi$-Elektronen, für $i = 1, \dots, n$, dann gilt
+
+        \begin{align*}
+            \det(\mathbf H - \mathcal E_i \mathbf I)
+            =
+            \det
+            (
+                (\alpha \mathbf I + \beta \mathbf A)
+                -
+                (\alpha + \beta \lambda_i) \mathbf I
+            )
+            =
+            \det(\beta \mathbf A - \beta \lambda_i \mathbf I)
+            =
+            \beta^n \det(\mathbf A - \lambda_i \mathbf I)
+            =
+            0.    
+        \end{align*}
+
+        Die Energie-Level sind also die Eigenwerte von $\mathbf H$.
+        Die Eigenvektoren $\Psi_i$ von $G$ bzw. $\mathbf H$ heißen \textit{molekulare Orbitale} der $\pi$-Elektronen.
+        Die Anzahl der Elektronen in $\Psi_i$, laut der Physik, ist $g_i = 0, 1, 2$.
+        In konjugierten\footnote{In konjugierten Kohlenwasserstoffen haben alle Kohlenstoff-Atome genau $3$ Nachbarn (Kohlenstoff- oder Wasserstoff-Atome).} Kohlenwasserstoffen ist die Anzahl der $\pi$-Elektronen insgesamt
+
+        \begin{align*}
+            \sum_{i=1}^n g_i = n.
+        \end{align*}
+
+        Die HMO Approximation der gesamten $\pi$-Elektronen-Energie lautet damit
+
+        \begin{align} \label{eq:Energy_nontrivial}
+            \mathcal E_\pi
+            :=
+            \sum_{i=1}^n g_i \mathcal E_i
+            =
+            \alpha n + \beta \sum_{i=1}^n g_i \lambda_i.
+        \end{align}
+
+        Seien $\mathcal E_i$ nichtfallend geordnet.
+        In Molekülen wird ein Zustand minimaler Energie angestrebt.
+        In den meisten interessanten chemischen Anwendungen wird das erzielt durch
+
+        \begin{align*}
+            g_i
+            =
+            \begin{cases}
+                2, & \text{wenn} ~ \lambda_i > 0, \\
+                0, & \text{wenn} ~ \lambda_i < 0.
+            \end{cases}
+        \end{align*}
+
+        Laut Theorem ref gilt TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO
+
+        \begin{align*}
+            0
+            =
+            \tr \mathbf A
+            =
+            \sum_{i=1}^n \lambda_i
+            =
+            \sum_{\lambda_i > 0} \lambda_i
+            -
+            \sum_{\lambda_i < 0} (-\lambda_i).
+        \end{align*}
+
+        Wir erhalten den dritten Teil unsere Definition \ref{def:graph_indices} der Energie des Graphen $G$, als den nicht-trivialen Teil von \eqref{eq:Energy_nontrivial}:
+
+        \begin{align*}
+            \mathcal E
+            :=
+            \mathcal E(G)
+            :=
+            \sum_{i=1}^n |\lambda_i|
+            =
+            2 \sum_{\lambda_i > 0} \lambda_i
+            =
+            \sum_{i=1}^n g_i \lambda_i.    
+        \end{align*}
+
+    % -------------------------------------------------------------------------------------------------------------------------------- %
+
+    \section{Die Coulson Integral-Formel}
+
+        \begin{theorem}
+
+            Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und charakteristischem Polynom $\chi(\lambda) := \chi(G, \lambda)$.
+            Dann ist dessen Energie
+
+            \begin{align}
+                \mathcal E(G)
+                & =
+                \frac{1}{\pi}
+                \int_0^\infty
+                    \frac{1}{x^2}
+                    \ln \pbraces{x^{2 n} \chi(i/x) \chi(-i/x)}
+                    ~ \mathrm d x
+                \label{eq:Coulson_1} \\
+                & =
+                \frac{1}{\pi}
+                \int_0^\infty
+                    \frac{1}{x^2}
+                    \pbraces
+                    {
+                        n \ln x
+                        +
+                        \ln |\chi(i/x)|
+                    }
+                    ~ \mathrm d x
+                \label{eq:Coulson_2} \\
+                & =
+                \frac{1}{\pi}
+                \int_{-\infty}^{+\infty}
+                    n - i x \frac{\chi^\prime(i x)}{\chi(i x)}
+                    ~ \mathrm d x
+                \label{eq:Coulson_3} \\
+                & =
+                \frac{1}{\pi}
+                \int_{-\infty}^{+\infty}
+                    n - x \frac{\mathrm d}{\mathrm d \lambda} \ln \chi(i x)
+                    ~ \mathrm d x.
+                \label{eq:Coulson_4}
+            \end{align}
+
+        \end{theorem}
+            
+        \begin{proof}[Beweis-Idee]
+
+            Wir verwenden zunächst die Substitution $u = |a| x$, um zu zeigen, dass für alle $a \in \R$ gilt
+
+            \begin{align} \label{eq:lemma}
+                \int_0^\infty
+                    \frac{1}{x^2}
+                    \ln(1 + a^2 x^2)
+                    ~ \mathrm d x
+                =
+                \pi |a|.
+            \end{align}
+
+            Wir stellen $\chi(\lambda)$ als Linearfaktor-Produkt dar.
+            Daraus und \eqref{eq:lemma} folgt \eqref{eq:Coulson_1}.
+            Daraus folgt wiederum \eqref{eq:Coulson_2}, wenn man beachtet, dass
+
+            \begin{align*}
+                \chi(-i/x) = \overline{\chi(i/x)}.
+            \end{align*}
+
+            Durch partielles Integrieren von \eqref{eq:Coulson_1} und der Substitution $u = -v$, erhalten wir \eqref{eq:Coulson_3}.
+            Daraus folgt unmittelbar \eqref{eq:Coulson_4}
+
+        \end{proof}
+
+        \begin{theorem}
+
+            Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und $m = |E|$ Kanten.
+            Dann ist dessen Energie
+
+            \begin{align*}
+                \mathcal E(G)
+                \leq
+                \sqrt{2 n m}.                
+            \end{align*}
+
+        \end{theorem}
+
+        \begin{proof}
+
+            Seien $\lambda_1, \dots, \lambda_n$ die Eigenwerte von $G$.
+            Dann gilt, laut der Ungleichung des Arithmetischen und Quadratischen Mittels, dass
+
+            \begin{align*}
+                \mathcal E(G)^2
+                =
+                \pbraces
+                {
+                    \sum_{i=1}^n
+                        |\lambda_i|
+                }^2
+                \leq
+                n \sum_{i=1}^n \lambda_i^2
+                =
+                n \tr \mathbf A(G)^2
+                =
+                2 n m.                
+            \end{align*}
+
+        \end{proof}
