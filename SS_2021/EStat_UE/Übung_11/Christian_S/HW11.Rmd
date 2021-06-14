@@ -201,8 +201,8 @@ $$
 so we can easily calculate our CI with \texttt{R}:
 
 ```{r}
-x_1 = 5.275
-x_2 = 5.240
+x_1 = 5275
+x_2 = 5240
 s_1 = 150
 s_2 = 200
 n = 400
@@ -210,7 +210,7 @@ n = 400
 z_alphah = qnorm(1-0.05/2)
 
 paste("100(1-0.05)% CI = [",x_1 - x_2 - z_alphah*sqrt((s_1^2+s_2^2)/n), ","
-      ,x_1 - x_2 + z_alphah*sqrt((s_1+s_2)/n) , "]")
+      ,x_1 - x_2 + z_alphah*sqrt((s_1^2+s_2^2)/n) , "]")
 ```
 This random interval contains the true difference between the means with the specified confidence level.
 
@@ -221,14 +221,14 @@ z = (x_1-x_2)/sqrt((s_1^2+s_2^2)/n)
 
 paste("p-value = ", 2*pnorm(-abs(z)))
 ```
-Since the p-value is high we will favor the null instead of the alternative hypothesis.
+Since the p-value is low we will reject the null in favor of the alternative.
 
 (c) The test does not change but our critical value does, the p-value for this test is $\mathbb{P}(Z \geq z)$ instead of $2\mathbb{P}(Z \leq - |z|)$ as it was in the two-sided test in (b). (Where $Z \sim \mathcal{N}(0,1)$).
 
 ```{r}
 paste("p-value = ", 1-pnorm(z))
 ```
-This p-value is still rather large and again supports the null, which is still the same as in (b).
+This p-value is low so we again will reject the null.
 
 (d)
 ```{r}
@@ -236,7 +236,7 @@ z_new = (x_1-x_2 - 25)/sqrt((s_1^2+s_2^2)/n)
 
 paste("p-value = ", 2*pnorm(-abs(z_new)))
 ```
-Here we see that the p-value is rather small, so we will likely (e.g. in the standard $\alpha = 5\%$ case) reject the null in favor of the alternative.
+Here we see that the p-value is rather large so we can not reject the null at a reasonable level. This is not that surprising as we have already seen in (a) + (b) that the difference in the means is larger then 0.
 
 (e) The assumption that the samples are independent and that the sample size is large ($n > 30$) for both populations.
 
