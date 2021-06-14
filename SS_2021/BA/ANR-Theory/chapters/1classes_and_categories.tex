@@ -2,7 +2,7 @@
 
 
 \begin{definition}
-	Let $\K \in \Bbraces{\R, \C}$. The tuple $\tvspace{\K}$ is said to be a \textit{topological vector space}, if and only if $\pbraces{L, +, \pbraces{\omega_\lambda}_{\lambda \in \K}}$ is a vector space with the scalar multiplication $\cdot: \K \times X \to X$ defined by $\cdot(\lambda, x) = \omega_\lambda(x)$, and $\tspace[L][O]$ is a topological space such that $+$ and $\cdot$ are continuous functions, when $\K$ is furnished with the standard toplogy and products of sets with the product toplogy.
+	Let $\K \in \Bbraces{\R, \C}$. The tuple $\tvspace{\K}$ is said to be a \textit{topological vector space}, if and only if $\pbraces{L, +, \pbraces{\omega\_\lambda}\_{\lambda \in \K}}$ is a vector space with the scalar multiplication $\cdot: \K \times X \to X$ defined by $\cdot(\lambda, x) = \omega\_\lambda(x)$, and $\tspace[L][O]$ is a topological space such that $+$ and $\cdot$ are continuous functions, when $\K$ is furnished with the standard toplogy and products of sets with the product toplogy.
 \end{definition}
 
 \begin{definition}
@@ -17,7 +17,7 @@
 
 \begin{definition}
 	We define the following separation axioms for a topological space $(X, \mathcal{T})$.
-	\begin{enumerate}[label= $(T_\arabic*)$]
+	\begin{enumerate}[label= $(T\_\arabic*)$]
 		\item \label{axiom:t1} Any two distinct points can be separated in $(X, \mathcal{T})$. 
 		
 		\item \label{axiom:t2} Any two distinct points can be separated by neighbourhoods in $(X, \mathcal{T})$. 
@@ -36,8 +36,8 @@ You might wonder why we do not simply talk about the set of all metrizable space
 	A \textit{category} $\cat$ is given by the following.
 	\begin{enumerate}
 		\item A class $\Ob\pbraces{\cat}$ of \textit{objects}.
-		\item For all $A, B$ in $\Ob\pbraces{\cat}$ there is a set $\Hom_\cat\pbraces{A, B}$ of \textit{morphisms}. All these sets have to be pairwise disjoint. For every object $A$ there is the \textit{identity} morphism $\id_A \in \Hom_\cat\pbraces{A, A}$.
-		\item For all $A, B, C$ in $\Ob\pbraces{\cat}$ there is a function $\Hom_\cat\pbraces{B, C} \times \Hom_\cat\pbraces{A, B} \to \Hom_\cat\pbraces{A, C}$ given by $\pbraces{g, f} \mapsto g \circ f$ which is called \textit{composition}. For all $A, B, C, D$ in $\Ob(\cat)$ and for all $f \in \Hom_\cat(A, B)$, $g \in \Hom_\cat(B,C)$ and $h \in \Hom_\cat(C,D)$ we have $h \circ (g \circ f) = (h \circ g) \circ f$ and $\id_B \circ f = f$ as well as $g \circ \id_B = g$. 
+		\item For all $A, B$ in $\Ob\pbraces{\cat}$ there is a set $\Hom\_\cat\pbraces{A, B}$ of \textit{morphisms}. All these sets have to be pairwise disjoint. For every object $A$ there is the \textit{identity} morphism $\id\_A \in \Hom\_\cat\pbraces{A, A}$.
+		\item For all $A, B, C$ in $\Ob\pbraces{\cat}$ there is a function $\Hom\_\cat\pbraces{B, C} \times \Hom\_\cat\pbraces{A, B} \to \Hom\_\cat\pbraces{A, C}$ given by $\pbraces{g, f} \mapsto g \circ f$ which is called \textit{composition}. For all $A, B, C, D$ in $\Ob(\cat)$ and for all $f \in \Hom\_\cat(A, B)$, $g \in \Hom\_\cat(B,C)$ and $h \in \Hom\_\cat(C,D)$ we have $h \circ (g \circ f) = (h \circ g) \circ f$ and $\id\_B \circ f = f$ as well as $g \circ \id\_B = g$. 
 	\end{enumerate}
 \end{definition}
 
@@ -63,52 +63,52 @@ You might wonder why we do not simply talk about the set of all metrizable space
 \end{example}
 
 \begin{definition}
-	Two objects $A, B$ of a category $\cat$ are said to be \textit{equivalent}, if and only if there exist $f \in \Hom_\cat(A,B)$ and $g \in \Hom_\cat(B,A)$, such that $f \circ g = \id_A$ and $g \circ f = \id_B$. 
+	Two objects $A, B$ of a category $\cat$ are said to be \textit{equivalent}, if and only if there exist $f \in \Hom\_\cat(A,B)$ and $g \in \Hom\_\cat(B,A)$, such that $f \circ g = \id\_A$ and $g \circ f = \id\_B$. 
 \end{definition}
 
 \begin{definition}
-	An object $A$ of a category $\cat$ is said to be \textit{initial}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom_\cat(A, B)$. The object $A$ is said to be \textit{terminal}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom_\cat(B, A)$.   
+	An object $A$ of a category $\cat$ is said to be \textit{initial}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom\_\cat(A, B)$. The object $A$ is said to be \textit{terminal}, if and only if for every object $B$ of $\cat$ there exists exactly one $f \in \Hom\_\cat(B, A)$.   
 \end{definition}
 
 \begin{theorem} \cite[p. 83]{Alg1&2}
 	If $A$ and $B$ are two initial or two terminal objects of a category $\cat$, then they are equivalent. 
 \end{theorem}
 \begin{proof}
-	There exists exactly one $f \in \Hom_\cat(A, B)$ and exactly one $g \in \Hom_\cat(B,A)$. Since $\id_A$ is the only morphism in $\Hom_\cat(A, A)$ and $\id_B$ is the only morphism in $\Hom_\cat(B, B)$, we have $g \circ f = \id_A$ and $f \circ g = \id_B$. Therefore, $A$ and $B$ are equivalent. 
+	There exists exactly one $f \in \Hom\_\cat(A, B)$ and exactly one $g \in \Hom\_\cat(B,A)$. Since $\id\_A$ is the only morphism in $\Hom\_\cat(A, A)$ and $\id\_B$ is the only morphism in $\Hom\_\cat(B, B)$, we have $g \circ f = \id\_A$ and $f \circ g = \id\_B$. Therefore, $A$ and $B$ are equivalent. 
 \end{proof}
 
 \begin{definition}
-	Let $\mathcal{C}$ be a category $K$ some set and $A_k$ in $\Ob\pbraces{\mathcal{C}}$ for every $k \in K$. An Object $C$ in this category together with a family $(e_k)_{k \in K}$ of morphisms $e_k: A_k \to C$ is called a \textit{coproduct} of the family $A_k$, if and only if it is an initial object in the category $\mathcal{C}^\ast$ that is given by all tuples $\pbraces{A, (\varphi_k)_{k \in K}}$, where $A$ in $Ob(\mathcal{C})$ and $\phi_k: A_k \to A$ is a morphism from $\mathcal{C}$ for every $k \in K$. The Morphisms in $\mathcal{C}^\ast$ of two objects $\pbraces{A, (\varphi_k)_{k \in K}}$ and $\pbraces{B, (\psi_k)_{k \in K}}$ are given by all triple $(A, f, B)$, where $f \in \Hom_\Top(A, B)$ such that $\psi_k = f \circ \varphi_k$. The composition is the one from the categroy $\mathcal{C}$. 
+	Let $\mathcal{C}$ be a category $K$ some set and $A\_k$ in $\Ob\pbraces{\mathcal{C}}$ for every $k \in K$. An Object $C$ in this category together with a family $(e\_k)\_{k \in K}$ of morphisms $e\_k: A\_k \to C$ is called a \textit{coproduct} of the family $A\_k$, if and only if it is an initial object in the category $\mathcal{C}^\ast$ that is given by all tuples $\pbraces{A, (\varphi\_k)\_{k \in K}}$, where $A$ in $Ob(\mathcal{C})$ and $\phi\_k: A\_k \to A$ is a morphism from $\mathcal{C}$ for every $k \in K$. The Morphisms in $\mathcal{C}^\ast$ of two objects $\pbraces{A, (\varphi\_k)\_{k \in K}}$ and $\pbraces{B, (\psi\_k)\_{k \in K}}$ are given by all triple $(A, f, B)$, where $f \in \Hom\_\Top(A, B)$ such that $\psi\_k = f \circ \varphi\_k$. The composition is the one from the categroy $\mathcal{C}$. 
 \end{definition}
 
 \begin{definition}
-	Let $I$ be an object of $\Set$ and for every $i \in I$ let $\pbraces{X_i, \Tc_i}$ be an object of $\Top$. The coproduct 
+	Let $I$ be an object of $\Set$ and for every $i \in I$ let $\pbraces{X\_i, \Tc\_i}$ be an object of $\Top$. The coproduct 
 	\begin{align*}
-	\pbraces{\tspace, \pbraces{\varphi_i}_{i \in I}} := \coprod_{i \in I} \pbraces{X_i, \Tc_i}
+	\pbraces{\tspace, \pbraces{\varphi\_i}\_{i \in I}} := \coprod\_{i \in I} \pbraces{X\_i, \Tc\_i}
 	\end{align*}
-	is called \textit{disjoint union} of the family $\pbraces{\pbraces{X_i, \Tc_i}}_{i \in I}$.
+	is called \textit{disjoint union} of the family $\pbraces{\pbraces{X\_i, \Tc\_i}}\_{i \in I}$.
 \end{definition}
 
 \begin{lemma}
-	Let $I$ be a set, for every $i \in I$ the tuple $\pbraces{X_i, \mathcal{T}_i}$ a topological space and $X := \Bbraces{\pbraces{x, i} \mid x \in X_i}$. If we define for every $i \in I$ the function $f_i: X_i \to X$ by $f_i(x) := \pbraces{x, i}$ and denote with $\mathcal{T}$ the final topology on $X$ induced by $\pbraces{f_i}_{i \in I}$, then
+	Let $I$ be a set, for every $i \in I$ the tuple $\pbraces{X\_i, \mathcal{T}\_i}$ a topological space and $X := \Bbraces{\pbraces{x, i} \mid x \in X\_i}$. If we define for every $i \in I$ the function $f\_i: X\_i \to X$ by $f\_i(x) := \pbraces{x, i}$ and denote with $\mathcal{T}$ the final topology on $X$ induced by $\pbraces{f\_i}\_{i \in I}$, then
 	\begin{align*}
-		\pbraces{\tspace, \pbraces{f_i}_{i \in I}} = \coprod_{i \in I} \pbraces{X_i, \mathcal{T}_i}.
+		\pbraces{\tspace, \pbraces{f\_i}\_{i \in I}} = \coprod\_{i \in I} \pbraces{X\_i, \mathcal{T}\_i}.
 	\end{align*}
 	in the category $\Top$. 
 \end{lemma}
 \begin{proof}
-	Let $\tspace[Y][O]$ be some topological space and for every $i \in I$ let $g_i \in \Hom_\Top\pbraces{\pbraces{X_i, \mathcal{T}_i}, \tspace[Y][O]}$. Since $\tau$ is the final topology on $X$ induced by $\pbraces{f_i}_{i \in I}$ and the function $h: X \to Y$ defined by $h\pbraces{(x,i)} := g_i(x)$ fulfills $h\pbraces{f_i(x)} = h\pbraces{(x,i)} = g_i(x)$ for every $i \in I$ and $x \in X$, we have $h \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$. 
-	If $\tilde{h} \in \Hom_\Top\pbraces{\tspace, \tspace[Y][O]}$ is another function such that for all $i \in I$ we have $g_i = \tilde{h} \circ f_i$, then we obtain for any arbitrary $(x,i) \in X$ that
+	Let $\tspace[Y][O]$ be some topological space and for every $i \in I$ let $g\_i \in \Hom\_\Top\pbraces{\pbraces{X\_i, \mathcal{T}\_i}, \tspace[Y][O]}$. Since $\tau$ is the final topology on $X$ induced by $\pbraces{f\_i}\_{i \in I}$ and the function $h: X \to Y$ defined by $h\pbraces{(x,i)} := g\_i(x)$ fulfills $h\pbraces{f\_i(x)} = h\pbraces{(x,i)} = g\_i(x)$ for every $i \in I$ and $x \in X$, we have $h \in \Hom\_\Top\pbraces{\tspace, \tspace[Y][O]}$. 
+	If $\tilde{h} \in \Hom\_\Top\pbraces{\tspace, \tspace[Y][O]}$ is another function such that for all $i \in I$ we have $g\_i = \tilde{h} \circ f\_i$, then we obtain for any arbitrary $(x,i) \in X$ that
 	\begin{align*}
-		\tilde{h}\pbraces{(x,i)} = \tilde{h}\pbraces{f_i(x)} = g_i(x) = h\pbraces{(x,i)}.
+		\tilde{h}\pbraces{(x,i)} = \tilde{h}\pbraces{f\_i(x)} = g\_i(x) = h\pbraces{(x,i)}.
 	\end{align*}
 	The observation $\tilde{h} = h$ concludes the proof.
 \end{proof}
 
-\begin{lemma}\label{lemma:disjoint_met}
-	If $I$ is any arbitrary set and $\pbraces{\tspace, \pbraces{f_i}_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}_{i \in I}$ of metrizable topological spaces, then $\tspace$ is a metrizable topological space. 
+\begin{lemma}\label{lemma:disjoint\_met}
+	If $I$ is any arbitrary set and $\pbraces{\tspace, \pbraces{f\_i}\_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}\_{i \in I}$ of metrizable topological spaces, then $\tspace$ is a metrizable topological space. 
 \end{lemma}
 
-\begin{lemma}\label{lemma:disjoint_comp}
-	If $I$ is any finite set and $\pbraces{\tspace, \pbraces{f_i}_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}_{i \in I}$ of compact topological spaces, then $\tspace$ is a compact topological space. 
+\begin{lemma}\label{lemma:disjoint\_comp}
+	If $I$ is any finite set and $\pbraces{\tspace, \pbraces{f\_i}\_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}\_{i \in I}$ of compact topological spaces, then $\tspace$ is a compact topological space. 
 \end{lemma}
