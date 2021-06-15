@@ -133,7 +133,7 @@
   
     \begin{itemize}
       \item{\makebox[5cm][l]{$e = uv \in E$ mit $f(e) < c(e)$} $\rightarrow \quad e' = uv \in E'$ mit $c(e') = c(e) - f(e)$.}
-      \item{\makebox[5cm][l]{$e = uv, f(e) > 0$} $\rightarrow \quad e'' = vu \in E''$ mit $c'(e'') = f(e)$.}
+      \item{\makebox[5cm][l]{$e = uv, f(e) > 0$} $\rightarrow \quad e'' = vu \in E'$ mit $c'(e'') = f(e)$.}
     \end{itemize}
   \end{definition}
 
@@ -159,9 +159,9 @@
   \begin{algorithmus*}[Blocking Flows]
     \begin{itemize}
       \item Starte mit dem trivialen Fluss: $f(e) = 0 , e \in E$.
-      \item Erstelle Schichtnetzwerk $N''$ bezüglich $f$.
       \item Wiederhole solange $f$ nicht maximal:
       \begin{itemize}
+        \item Erstelle Schichtnetzwerk $N''$ bezüglich $f$.
         \item Finde \textit{Blocking Flow} $g$ in $N''$
         \item Erweitere $f$ um $g$
       \end{itemize}
@@ -386,12 +386,12 @@
             \node[mycircle2,below=of b4] (b5) {};
     
     
-          \draw [myarrow] (a1) -- node[sloped,font=\footnotesize,above] {} (b1);
-          \draw [myarrow] (a2) -- node[sloped,font=\footnotesize,above] {} (b1);
-          \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {} (b2);
-          \draw [myarrow] (a3) -- node[sloped,font=\footnotesize,above] {} (b3);
-          \draw [myarrow] (a4) -- node[sloped,font=\footnotesize,above] {} (b4);
-          \draw [myarrow] (a5) -- node[sloped,font=\footnotesize,above] {} (b5);
+          \draw (a1) -- node[sloped,font=\footnotesize,above] {} (b1);
+          \draw (a2) -- node[sloped,font=\footnotesize,above] {} (b1);
+          \draw (a3) -- node[sloped,font=\footnotesize,above] {} (b2);
+          \draw (a3) -- node[sloped,font=\footnotesize,above] {} (b3);
+          \draw (a4) -- node[sloped,font=\footnotesize,above] {} (b4);
+          \draw (a5) -- node[sloped,font=\footnotesize,above] {} (b5);
     
         \end{tikzpicture}
       }

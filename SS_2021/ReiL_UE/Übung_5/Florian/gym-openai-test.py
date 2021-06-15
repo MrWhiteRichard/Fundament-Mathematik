@@ -11,12 +11,12 @@ env = gym.make('CartPole-v0')
 
 def x(state, action):
     # Fourier Basis order-1
-    # c_array = product([0,1], repeat = 5)
-    # features = np.array([np.cos(np.dot(c,np.concatenate((state, [action])))) for c in c_array])
+    c_array = product([0,1], repeat = 5)
+    features = np.array([np.cos(np.dot(c,np.concatenate((state, [action])))) for c in c_array])
 
     # Polynomial Basis order-1
-    c_array = product([0,1], repeat = 5)
-    features = np.array([np.prod(np.concatenate((state, [action + 1]))**np.array(c)) for c in c_array])
+    # c_array = product([0,1], repeat = 5)
+    # features = np.array([np.prod(np.concatenate((state, [action + 1]))**np.array(c)) for c in c_array])
     return features
 
 def pi(state, theta, env):
@@ -80,7 +80,7 @@ def REINFORCE(alpha, gamma, max_episodes, env, dim):
     print(episode_length_array)
     return theta
 
-theta = REINFORCE(0.1, 1, 100, env, 2**5)
+theta = REINFORCE(0.01, 1, 500, env, 2**5)
 print(theta)
 observation = env.reset()
 actions = [i for i in range(env.action_space.n)]
