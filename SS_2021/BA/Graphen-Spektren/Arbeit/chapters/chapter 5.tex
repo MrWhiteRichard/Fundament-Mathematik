@@ -11,8 +11,6 @@
     Außerdem benötigen wir nur noch das gewöhnliche charakteristische Polynom und Spektrum.
     Dementsprechend sind die Begriffe \enquote{Graph}, \enquote{charakteristisches Polynom} und \enquote{Spektrum} eingeschränkt zu verstehen.
 
-    % -------------------------------------------------------------------------------------------------------------------------------- %
-
     \section{Chemische Graphen-Theorie und topologische Indizes}
 
         % Quelle: Introduction To Chemical Graph Theory, Seite ix
@@ -106,7 +104,7 @@
             % Siedepunkt von Alkanen
 
             \begin{align*}
-                W(G) := \sum_{\Bbraces{u, v} \subseteq V(G)} d(u, v),
+                W(G) := \sum_{\Bbraces{u, v} \subseteq V(G)} d(u, v), % TODO
             \end{align*}
 
             der \textit{Randić Index} von $G$ mit $\alpha \neq 0$
@@ -120,11 +118,11 @@
 
             und die \textit{(Graphen-)Energie}
 
-            \begin{align*}
+            \begin{align} \label{eq:graph_energy}
                 \mathcal E(G)
                 :=
                 \sum_{\lambda \in \sigma(G)} |\lambda|.
-            \end{align*}
+            \end{align}
 
             Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $W$, $R_\alpha$ bzw. $\mathcal E$.
 
@@ -139,17 +137,15 @@
 
         \end{remark}
 
-    % -------------------------------------------------------------------------------------------------------------------------------- %
-
     % Quelle: Graph Energy, 2.1 Hückel Molecular Orbital Theory
     \section{Motivation}
 
         Erich Hückel entwickelte in den 30ern eine Methode (Hückel molecular orbital (HMO) model), um Lösungen der Schrödinger-Gleichung
-        
+
         \begin{align} \label{eq:Schrödinger}
             \hat H \Psi = \mathcal E \Psi
         \end{align}
-        
+
         zu approximieren, für Konjugierte Kohlenwasserstoffe.
         Sie beschreibt das Verhalten der Elektronen in einem Moleküle und deren Energie.
         Dabei ist $\hat H$ ein gewisser \textit{Hamiltonscher Operator}, $\Psi$ die \textit{Wellenfunktion} und $\mathcal E$ die \textit{Energie} des Systems.
@@ -160,7 +156,7 @@
         Daraus ergibt sich, durch hier nicht ausgeführte Rechnungen,
 
         \begin{align} \label{eq:Schrödinger_lite}
-            \mathbf H \Psi = \mathcal E \Psi,
+            \mathbf H \mathbf \Psi = \mathcal E \mathbf \Psi,
         \end{align}
 
         wobei $\alpha$ das \textit{Coulomb-Integral}, $\beta$ das \textit{Resonanz-Integral} und $\mathbf H := \alpha \mathbf I + \beta \mathbf A$ die \textit{Hamiltonsche Matrix} sind.
@@ -211,7 +207,7 @@
                             0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
                         \end{array}
                     }.
-                \end{align*}            
+                \end{align*}
             \end{minipage}
         }
 
@@ -233,12 +229,12 @@
             =
             \beta^n \det(\mathbf A - \lambda_i \mathbf I)
             =
-            0.    
+            0.
         \end{align*}
 
         Die Energie-Level sind also die Eigenwerte von $\mathbf H$.
-        Die Eigenvektoren $\Psi_i$ von $G$ bzw. $\mathbf H$ heißen \textit{molekulare Orbitale} der $\pi$-Elektronen.
-        Die Anzahl der Elektronen in $\Psi_i$, laut der Physik, ist $g_i = 0, 1, 2$.
+        Die Eigenvektoren $\mathbf \Psi_i$ von $G$ bzw. $\mathbf H$ heißen \textit{molekulare Orbitale} der $\pi$-Elektronen.
+        Die Anzahl der Elektronen in $\mathbf \Psi_i$, laut der Physik, ist $g_i = 0, 1, 2$.
         In konjugierten\footnote{In konjugierten Kohlenwasserstoffen haben alle Kohlenstoff-Atome genau $3$ Nachbarn (Kohlenstoff- oder Wasserstoff-Atome).} Kohlenwasserstoffen ist die Anzahl der $\pi$-Elektronen insgesamt
 
         \begin{align*}
@@ -268,7 +264,7 @@
             \end{cases}
         \end{align*}
 
-        Laut Theorem ref gilt TODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODOTODO
+        Laut Korollar \ref{cor:number_of_paths_closed} gilt
 
         \begin{align*}
             0
@@ -282,23 +278,23 @@
             \sum_{\lambda_i < 0} (-\lambda_i).
         \end{align*}
 
-        Wir erhalten den dritten Teil unsere Definition \ref{def:graph_indices} der Energie des Graphen $G$, als den nicht-trivialen Teil von \eqref{eq:Energy_nontrivial}:
+        Wir erhalten damit \eqref{eq:graph_energy}, die Energie des Graphen $G$, aus Definition \ref{def:graph_indices}, als den nicht-trivialen Teil von \eqref{eq:Energy_nontrivial}:
 
         \begin{align*}
-            \mathcal E
-            :=
             \mathcal E(G)
             :=
             \sum_{i=1}^n |\lambda_i|
             =
             2 \sum_{\lambda_i > 0} \lambda_i
             =
-            \sum_{i=1}^n g_i \lambda_i.    
+            \sum_{i=1}^n g_i \lambda_i.
         \end{align*}
 
-    % -------------------------------------------------------------------------------------------------------------------------------- %
+        \section{Triviale Resultate (Titel ändern)}
 
-    \section{Die Coulson Integral-Formel}
+        % theorem: Die Energie vom gesamten Graphen ist Energie seiner Zusammenhangskomponenten
+
+        \section{Die Coulson Integral-Formel}
 
         \begin{theorem}
 
@@ -341,7 +337,7 @@
             \end{align}
 
         \end{theorem}
-            
+
         \begin{proof}[Beweis-Idee]
 
             Wir verwenden zunächst die Substitution $u = |a| x$, um zu zeigen, dass für alle $a \in \R$ gilt
@@ -368,6 +364,10 @@
 
         \end{proof}
 
+    % -------------------------------------------------------------------------------------------------------------------------------- %
+
+    \section{Abschätzungen}
+
         \begin{theorem}
 
             Sei $G = (V, E)$ ein Graph mit $n = |V|$ Knoten und $m = |E|$ Kanten.
@@ -376,7 +376,7 @@
             \begin{align*}
                 \mathcal E(G)
                 \leq
-                \sqrt{2 n m}.                
+                \sqrt{2 n m}.
             \end{align*}
 
         \end{theorem}
@@ -399,7 +399,18 @@
                 =
                 n \tr \mathbf A(G)^2
                 =
-                2 n m.                
+                2 n m.
             \end{align*}
 
         \end{proof}
+
+    % -------------------------------------------------------------------------------------------------------------------------------- %
+
+    \section{Beispiele}
+
+    \section{Eine Anwendung}
+
+        Wir wollen nun chemische Reaktionen zwischen Molekülen durch Graphen-Operationen aus Kapitel \ref{chap:operations} modellieren.
+        Die dort vorgestellten Werkzeugen sollen verwendet werden, um die Energie der Produkte aus derer der Edukte zu erlangen.
+
+        \section{Aktuelles aus der Forschung}

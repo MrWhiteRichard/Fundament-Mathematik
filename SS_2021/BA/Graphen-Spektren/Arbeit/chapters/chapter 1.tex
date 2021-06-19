@@ -1,25 +1,25 @@
-\chapter{Einleitung}
-
-    % -------------------------------------------------------------------------------------------------------------------------------- %
+\chapter{Einleitung} \label{chap:introduction}
 
     \section{Allgemeines}
 
         In diesem Kapitel sollen Notationen festgelegt und bekannte Definitionen sowie Ergebnisse in Erinnerung gerufen werden.
         Nachdem Letztere nicht das zentrale Thema dieser Arbeit sind, werden die Beweise größtenteils zitiert. \\
 
-        Wir lassen $0$ als natürliche Zahl zu.
-        Das \textit{Kronecker-Delta} für $i, j \in \N$, sei notiert als
+        Wir lassen $0 \in \N$ als \textit{natürliche Zahl} zu.
+        Wenn es nicht wichtig ist, ob konkret von den \textit{reellen Zahlen} $\R$ oder \textit{komplexen Zahlen} $\C$ die Rede ist, schreiben wir $\K$\footnote{$\K$ steht für \enquote{Körper}.}.
+
+        Das \textit{Kronecker-Delta}, sei notiert als
 
         \begin{align*}
             \delta_{i, j}
             :=
             \begin{cases}
                 1, & \text{wenn} ~ i = j, \\
-                0, & \text{sonst}.
+                0, & \text{sonst},
             \end{cases}
         \end{align*}
 
-        % ---------------------------------------------------------------- %
+        wobei nicht unbedingt $i, j \in \N$ gelten muss.
 
         \subsection{Multi-Mengen}
 
@@ -35,7 +35,7 @@
                 Für $x \in \dom M$, nennen wir $M(x)$ dessen \textit{Vielfachheit}.
                 $M$ ist eine \textit{echte} Multimenge, wenn ihre Werte-Menge $\ran M$ ein Element mit Vielfachheit ungleich $1$ hat.
                 Der \textit{Träger} $\supp M$ von $M$ sei die Menge aller Elemente aus $\dom M$, mit positiver Vielfachheit, i.Z.
-                
+
                 \begin{align*}
                     \supp M
                     :=
@@ -55,30 +55,85 @@
             Wir wollen mit Multi-Mengen aber möglichst so, wie mit Mengen arbeiten können.
             Dazu treffen wir folgende Vereinbarungen:
 
-            \begin{itemize}
-
+            \begin{enumerate}[label = \arabic*.]
                 \item Für $x \in \supp M$ schreiben wir auch $x \in M$.
-
-                \item Multi-Mengen werden wir mit eckigen Klammern notieren.
-                Ein Beispiel wäre die Multi-Menge
-                
-                \begin{align*}
-                    \Bbraces{(x, 0), (y, 1), (z, 2)}
-                    & =
-                    M \\
-                    & =
-                    [y, z, z] = [z, y, z] = [z, y, y] \\
-                    & \neq
-                    [y, z].
-                \end{align*}
-
-                \item Um Fallunterscheidungen zu vermeiden, werden wir Mengen gelegentlich auch mit eckigen statt geschweiften Klammen schreiben.
-                
+                \item Wenn es klar ist, dass $M$ eine Multi-Mengen ist, werden wir diese auch mit geschweiften Klammern notieren, wobei Elemente, die mehrmals vorkommen dementsprechende Vielfachheit haben.
                 \item Sollten wir $M$ jemals als Funktion, d.h. als Menge von Paaren betrachten, wird darauf explizit hingewiesen.
+                \item Die Vereinigung von zwei (oder mehr) Multi-Mengen $M_1$ und $M_2$ ist deren Komponenten-weise Summe $M_1 + M_2$, wobei für $x \in \dom M_1 \setminus \dom M_2$ gilt $M_2(x) = 0$.
+                \item Für eine Multi-Menge $M$ und einer Funktion $P$ auf $M$, ist das Bild $P(M) = \Bbraces{P(x): x \in M}$ stets wieder eine Multi-Menge, wobei $P(x)$ dieselbe Vielfachheit wie $x \in M$ hat.
+                \item Für eine Multi-Menge $M$, ist $\sum_{x \in M} P(x)$ so zu verstehen, dass $P(x)$ geanau so oft als Summand auftritt, wie die Vielfachheit von $x \in M$.
+            \end{enumerate}
 
-            \end{itemize}
+        % Quelle: Lineare Algebra für Technische Mathematiker: 13.1
+        \subsection{Permutationen}
 
-        % ---------------------------------------------------------------- %
+            Wir schreiben
+
+            \begin{align*}
+                S_n       & := \Bbraces{\pi: \Bbraces{0, \dots, n} \to \Bbraces{0, \dots, n}: \pi ~ \text{bijektiv}}, \\
+                \inv \pi  & := \Bbraces{(i, j): i, j = 1, \dots, n, ~ i < j, ~ \pi(i) > \pi(j)}, \\
+                p(\pi)    & := |\inv \pi|, \\
+                \supp \pi & := \Bbraces{i = 1, \dots, n: \pi(i) \neq i},
+            \end{align*}
+
+            für die Menge der \textit{Permutationen}, der \textit{Fehlstände} einer Permutation $\pi \in S_n$, deren Anzahl, bzw. den \textit{Träger} von $\pi$.
+            Wir nennen Permutationen \textit{disjunkt}, wenn deren Träger es sind.
+            Als \textit{$k$-Zyklus}, mit $k \in \N \setminus \Bbraces{0}$, bezeichnen wir eine Permutation $\pi$, wenn es paarweise verschiedene $i_1, \dots, i_k \in \Bbraces{1, \dots, n}$ gibt mit
+
+            \begin{align*}
+                \supp \pi = \Bbraces{i_1, \dots, i_k}
+                \quad
+                \text{und}
+                \quad
+                \pi(i_k) = i_1,
+                \quad
+                \Forall j = 1, \dots, k-1:
+                    \pi(i_j) = i_{j+1}.
+            \end{align*}
+
+            Der $1$-Zyklus ist die Identität;
+            $2$-Zyklen nennen wir auch \textit{Transpositionen}.
+
+            % Laut \cite{Havliceck} gilt folgendes Lemma.
+
+            \begin{lemma} \label{lem:permutations}
+
+                \begin{enumerate}[
+                    label = \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
+
+                    \item $(S_n, \circ)$ ist eine Gruppe, die \textit{Symmetrische Gruppe}.
+
+                    \item Jede Permutation lässt sich eindeutig als Produkt von paarweise disjunkten Zyklen darstellen.
+
+                    \item Jeder $k$-Zyklus lässt sich eindeutig als Produkt von $k-1$ Transpositionen darstellen.
+
+                    \item Jede Permutation lässt sich als Produkt von Transpositionen darstellen.
+                    Dieses ist zwar i.A. nicht eindeutig, die Parität deren Anzahl aber schon.
+
+                    \item Die \textit{Signum-Funktion}
+
+                    \begin{align*}
+                        \sgn:
+                            (S_n, \circ) \to (\Bbraces{0, 1}, \cdot):
+                            \pi
+                            \mapsto
+                            (-1)^{p(\pi)}
+                            =
+                            \prod_{\substack{i,j=1 \\ i<j}}^n
+                                \frac{\pi(j) - \pi(i)}{j - i}
+                            =
+                            (-1)^{k_\pi},
+                    \end{align*}
+
+                    ist ein Gruppen-Homomorphismus.
+                    Dabei ist $k_\pi$ eine beliebige Anzahl von Transpositionen von $\pi$.
+
+                \end{enumerate}
+
+            \end{lemma}
 
         \subsection{Vektoren und Matrizen}
 
@@ -94,72 +149,418 @@
 
             Falls $n = m$, so schreiben wir auch $(x_{i, j})_{i, j = 1}^n$.
             Vektoren und Matrizen sind immer \textbf{fett} gedruckt.
-            Die \textit{Einheits-Matrix} und \textit{(konstante) Eins-Matrix}, jeweils der Größe $n \in \N \setminus \Bbraces{0}$, schreiben wir als
+
+            Sei $\mathbf X := (x_{i, j})_{i, j = 1}^n \in \C^{n \times n}$, so notieren wir die \textit{transponierte}, \textit{konjugierte} und \textit{adjungierte} Matrix von $\mathbf X$ als
 
             \begin{align*}
-                \mathbf I_n := (\delta_{i, j})_{i, j = 1}^n \in \R^{n \times n}
+                \mathbf X^\top = (x_{j, i})_{i, j = 1}^n,
+                \quad
+                \overline {\mathbf X} = (\overline x_{i, j})_{i, j = 1}^n,
+                \quad
+                \text{und}
+                \quad
+                \mathbf X^\ast = \overline {\mathbf X}^\top,
+            \end{align*}
+
+            wobei $\overline \cdot$ die \textit{komplexe Konjugation} ist.
+
+            Den \textit{$i$-ten kanonischen Basis-Vektor}, den \textit{Null-Vektor} und \textit{Eins-Vektor}, sowie die \textit{Einheits-Matrix}, die \textit{Null-Matrix} und die \textit{Eins-Matrix}, jeweils der Größe $n \in \N \setminus \Bbraces{0}$ (und $i = 1, \dots, n)$, schreiben wir als
+
+            \begin{gather*}
+                \mathbf e_i := (\delta_{i, j})_{j=1}^n \in \R^n,
+                \quad
+                \mathbf 0 := (0)_{i=1}^n \in \R^n,
+                \quad
+                \mathbf 1 := (1)_{i=1}^n \in \R^n, \\
+                \mathbf I_n := (\delta_{i, j})_{i, j = 1}^n \in \R^{n \times n},
+                \quad
+                \mathbf Z_n := (0)_{i, j = 1}^n \in \R^{n \times n}.
                 \quad
                 \text{bzw.}
                 \quad
                 \mathbf J_n := (1)_{i, j = 1}^n \in \R^{n \times n}.
+            \end{gather*}
+
+            Wenn es aus dem Kontext heraus klar ist, was $n$ ist, lassen wir den Index weg, schreiben also $\mathbf I$, $\mathbf Z$ bzw. $\mathbf J$.
+
+            Die Gruppen der \textit{invertierbaren}, \textit{orthogonalen} und \textit{unitären} Matrizen schreiben wir als
+
+            \begin{align*}
+                \operatorname{GL}_n(\K) & = \Bbraces{\mathbf A \in \R^{n \times n}: \Exists A^{-1}: \mathbf A^{-1} \mathbf A = \mathbf I}, \\
+                \operatorname O_n(\K)   & = \Bbraces{\mathbf A \in \operatorname{GL}_n(\K): \mathbf A^{-1} = \mathbf A^\top},
+                \quad
+                \text{bzw.} \\
+                \operatorname U_n(\C)   & = \Bbraces{\mathbf A \in \operatorname{GL}_n(\C): \mathbf A^{-1} = \mathbf A^\ast}.
             \end{align*}
 
-            Wenn es aus dem Kontext heraus klar ist, was $n$ ist, lassen wir den Index weg, schreiben also $\mathbf I$ bzw. $\mathbf J$.
+            $\mathbf A \in \K$ ist \textit{normal}, wenn
 
-            \begin{lemma}
+            \begin{align*}
+                \mathbf A^\ast \mathbf A
+                =
+                \mathbf A \mathbf A^\ast.
+            \end{align*}
 
-                Sei $\mathbf A \in \R^{n \times n}$ eine symmetrische Matrix, d.h. $\mathbf A = \mathbf A^\top$.
-                Dann enthält deren Spektrum $\sigma(\mathbf A) \subseteq \R$ nur reelle Zahlen.
+            Man erinnere sich an die Determinanten-Formel von Leibnitz (vgl. \cite[Kapitel 7.1]{LinAG1&2}).
+
+            \begin{lemma} \label{lem:leibnitz}
+
+                Sei $\mathbf A = (a_{i,j})_{i,j=1}^n \in \K^{n \times n}$.
+                Dann gilt
+
+                \begin{align*}
+                    \det \mathbf A
+                    =
+                    \sum_{\pi \in S_n}
+                        \sgn \pi
+                        \prod_{i=1}^n
+                            a_{i, \pi(i)}.
+                \end{align*}
+
+            \end{lemma}
+
+            Für $\mathbf A \in \K^{n \times n}$ schreiben wir $\chi(A; \lambda)$ und $\sigma(A)$ für dessen charakteristisches Polynom bzw. Spektrum.
+            Letzteres sei eine Multi-Menge, wobei die Eigenwerte ihrer Vielfachheit nach oft enthalten sind.
+
+            \begin{definition} \label{def:principal_minors}
+
+                Sei $\mathbf A \in \R^{n \times n}$ und
+
+                \begin{align*}
+                    I
+                    :=
+                    \Bbraces{i_1, \dots, i_m}
+                    \subseteq
+                    \Bbraces{1, \dots, n},
+                \end{align*}
+
+                Sei $\mathbf A_I \in \R^{(n-m) \times (n-m)}$, ein \textit{$(n-m)$-Hauptminor}, jene Teil-Matrix von $\mathrm A$, die durch simultanes Löschen der $i_1$-ten bis $i_m$-ten Zeilen und Spalten entsteht.
+
+            \end{definition}
+
+            \begin{lemma} \label{lem:characteristic_coefficints}
+
+                Sei $\mathbf A \in \R^{n \times n}$ und dessen charakteristisches Polynom
+
+                \begin{align*}
+                    \chi(\mathbf A; \lambda)
+                    =
+                    \lambda^n + a_1 \lambda^{n-1} + \cdots + a_n.
+                \end{align*}
+
+                Dann gilt
+
+                \begin{align*}
+                    a_i
+                    =
+                    (-1)^i
+                    \sum_{\substack{I \subseteq \Bbraces{1, \dots, n} \\ |I| = i}}
+                        \det \mathbf A_I
+                    \quad
+                    \text{für}
+                    \quad
+                    i = 1, \dots, n.
+                \end{align*}
+
+            \end{lemma}
+
+            Für $A \in \K^{n \times n}$ notiere deren die \textit{Kofaktor-Matrix} als $\cof \mathbf A$.
+            Für folgendes Lemma siehe \cite[Kapitel 7.5]{LinAG1&2}.
+
+            \begin{lemma} \label{lem:cofactor_inverse}
+
+                Sei $\mathbf A \in \operatorname{GL}_n(\K)$ invertierbar.
+                Dann gilt
+
+                \begin{align*}
+                    \mathbf A^{-1} = (\det \mathbf A)^{-1} \cof \mathbf A.
+                \end{align*}
+
+            \end{lemma}
+
+            Für $\mathbf A = (a_{i,j})_{i,j=1}^n \in \K^{n \times n}$ sei die Summe aller Komponenten
+
+            \begin{align*}
+                \sum \mathbf A
+                :=
+                \sum_{i,j=1}^n a_{i,j}.
+            \end{align*}
+
+            \begin{lemma} \label{lem:cofactor_sum}
+
+                Sei $\mathbf A \in \K^{n \times n}$ und $x \in \K$.
+                Dann gilt
+
+                \begin{align*}
+                    \det(\mathbf A + x \mathbf J)
+                    =
+                    \det \mathbf A + x \sum \cof \mathbf A.
+                \end{align*}
 
             \end{lemma}
 
             \begin{proof}
 
-                Sei $\lambda \in \sigma(\mathbf A)$ ein Eigenwert von $\mathbf A$, mit zugehörigem Eigenvektor $x \in \R^n \setminus \Bbraces{0}$.
-                $\lambda$ ist zunächst bloß eine Nullstelle des charakteristischen Polynoms $P(\mu) = \det(\mathbf A - \mu \mathbf I_n)$, also $\lambda \in \C$.
+                Formal müsste man Induktion verwenden.
+                Nachdem das sehr technisch wäre, deuten wir die Rechenschritte bloß an.
 
-                Das Eigenpaar $(\lambda, \mathbf x) \in \C \times \R^n \setminus \Bbraces{0}$ erfüllt aber auch die Gleichung $\mathbf A \mathbf x = \lambda \mathbf x$.
-                Weil $\mathbf A$ symmetrisch ist, folgt daraus
+                Sei $\mathbf A = (\mathbf a_1, \dots, \mathbf a_n)$ und $\mathbf x = x \mathbf 1$.
+                Wir berechnen
 
-                \begin{multline*}
-                    \lambda |\mathbf x|^2
-                    =
-                    \lambda (\mathbf x, \mathbf x)
-                    =
-                    (\lambda \mathbf x, \mathbf x)
-                    =
-                    (\mathbf A \mathbf x, \mathbf x)
-                    =
-                    (\mathbf x, \mathbf A^\top \mathbf x) \\
-                    =
-                    (\mathbf x, \mathbf A \mathbf x)
-                    =
-                    (\mathbf x, \lambda \mathbf x)
-                    =
-                    \overline{(\lambda \mathbf x, \mathbf x)}
-                    =
-                    \overline \lambda \overline{(\mathbf x, \mathbf x)}
-                    =
-                    \overline \lambda \overline{|\mathbf x|^2}.
-                \end{multline*}
+                \begin{align*}
+                    \det(\mathbf A + x \mathbf J)
+                    & =
+                    \det(\mathbf x + \mathbf a_1, \dots, \mathbf x + \mathbf a_n) \\
+                    & =
+                    \det(\mathbf x, \mathbf x + \mathbf a_2, \dots, \mathbf x + \mathbf a_n)
+                     +
+                    \det(\mathbf a_1, \mathbf x + \mathbf a_2, \dots, \mathbf x + \mathbf a_n) \\
+                    & =
+                    \det(\mathbf x, \mathbf x + \mathbf a_2, \dots, \mathbf x + \mathbf a_n)
+                    +
+                    \det(\mathbf a_1, \mathbf x, \mathbf x + \mathbf a_3, \dots, \mathbf x + \mathbf a_n) \\
+                    & \quad +
+                    \det(\mathbf a_1, \mathbf a_2, \mathbf x + \mathbf a_3, \dots, \mathbf x + \mathbf a_n) \\
+                    & \cdots \\
+                    & =
+                    \det(\mathbf x, \mathbf x + \mathbf a_2, \dots, \mathbf x + \mathbf a_n)
+                    +
+                    \det(\mathbf a_1, \mathbf x, \mathbf x + \mathbf a_3, \dots, \mathbf x + \mathbf a_n) \\
+                    & \quad +
+                    \cdots
+                    +
+                    \det(\mathbf a_1, \dots, \mathbf a_{n-1}, \mathbf x)
+                    +
+                    \det(\mathbf a_1, \dots, \mathbf a_n) \\
+                    & =
+                    \det \mathbf A
+                    +
+                    \sum_{i=1}^n
+                        \det(\mathbf a_1, \dots, \mathbf a_{i-1}, \mathbf x, \mathbf a_{i+1}, \dots, \mathbf a_n) \\
+                    & =
+                    \det \mathbf A
+                    +
+                    x
+                    \sum_{i=1}^n
+                        \det(\mathbf a_1, \dots, \mathbf a_{i-1}, \mathbf 1, \mathbf a_{i+1}, \dots, \mathbf a_n) \\
+                    & =
+                    \det \mathbf A + x \sum \cof \mathbf A.
+                \end{align*}
 
-                Dabei bezeichne $|\cdot|$ die Euklidsche Norm und $(\cdot, \cdot)$ das Euklidsche Skalarprodukt.
-                Weil $x \neq 0$ als Eigenvektor, ist $|x|^2 \in \R \setminus \Bbraces{0}$ und wir erhalten $\lambda = \overline \lambda$.
-                Das geht aber nur für $\lambda \in \R$.
+                Dabei haben wir die multilinearität von $\det$, dessen Invarianz unter Addition von Vielfachen von Spalten, sowie Spalten-Entwicklung verwendet.
 
             \end{proof}
 
-            % -------------------------------- %
+            \begin{definition} \label{def:trace}
+
+                Sei $\mathbf A = (a_{i,j})_{i,j}^n \in \R^{n \times n}$.
+                Dann sei die \textit{Spur} von $\mathbf A$ definiert als
+
+                \begin{align*}
+                    \tr \mathbf A := \sum_{i=1}^n a_{i, i}.
+                \end{align*}
+
+            \end{definition}
+
+            Von der Spur werden wir folgende Eigenschaften verwenden.
+
+            \begin{lemma} \label{lem:trace}
+
+                Seien $\mathbf A, \mathbf B \in \R^{n \times n}$.
+                Dann gelten
+
+                \begin{align*}
+                    \tr(\mathbf A \mathbf B) = \tr(\mathbf B \mathbf A),
+                    \quad
+                    \text{und}
+                    \quad
+                    \tr \mathbf A = \sum_{\lambda \in \sigma(\mathbf A)} \lambda.
+                \end{align*}
+
+            \end{lemma}
+
+            \begin{proof}
+
+                Seien $\mathbf A = (a_{i,j})_{i,j=1}^n$ und $\mathbf B = (b_{i,j})_{i,j=1}^n$, dann gilt
+
+                \begin{align*}
+                    \tr(\mathbf A \mathbf B)
+                    =
+                    \sum_{i=1}^n
+                        \sum_{j=1}^n
+                            a_{i,j} b_{j,i}
+                    =
+                    \sum_{i=1}^n
+                        \sum_{j=1}^n
+                            b_{j,i} a_{i,j}
+                    =
+                    \tr(\mathbf B \mathbf A).
+                \end{align*}
+
+                Sei nun $\mathbf A = \mathbf X \mathbf J \mathbf X^{-1}$, wobei $\mathbf X$ die Jordan-Normalform von $\mathbf A$ ist (vgl. \cite[Kapitel 8.7]{LinAG1&2}), und $\mathbf X$ die zugehörige Transformations-Matrix.
+                In der Diagonale von $\mathbf J$ ist ganz $\sigma(\mathbf A) = \sigma(\mathbf J)$ aufgelistet, d.h. darin stehen die Eigenwerte von $\mathbf A$ gemäß ihrer Vielfachheit gezählt.
+                Schließlich gilt
+
+                \begin{align*}
+                    \tr \mathbf A
+                    =
+                    \tr((\mathbf X \mathbf J) \mathbf X^{-1})
+                    =
+                    \tr(\mathbf X^{-1} (\mathbf X \mathbf J))
+                    =
+                    \tr \mathbf J
+                    =
+                    \sum_{\lambda \in \sigma(\mathbf A)} \lambda.
+                \end{align*}
+
+            \end{proof}
+
+            Wir werden eine Version vom Spektral-Abbildungs-Satz für Polynome brauchen.
+
+            \begin{theorem} \label{thm:spectral_mapping_theorem}
+
+                Sei $\mathbf A \in \K^{n \times n}$ und $p$ ein Polynom.
+                Dann gilt
+
+                \begin{align*}
+                    \sigma(p(\mathbf A))
+                    =
+                    p(\sigma(\mathbf A)).
+                \end{align*}
+
+            \end{theorem}
+
+            \begin{proof}
+
+                Sei $\mathbf A = \mathbf X \mathbf J \mathbf X^{-1}$, wobei $\mathbf X$ die Jordan-Normalform von $\mathbf A$ ist (vgl. \cite[Kapitel 8.7]{LinAG1&2}), und $\mathbf X$ die zugehörige Transformations-Matrix.
+                Durch vollständiges Ausschreiben von $p$ und Induktion sieht man
+
+                \begin{align*}
+                    p(\mathbf A)
+                    =
+                    p(\mathbf X \mathbf J \mathbf X^{-1})
+                    =
+                    \mathbf X p(\mathbf J) \mathbf X^{-1}.
+                \end{align*}
+
+                Wieder durch Ausschreiben von $p$ und Induktion sieht man, dass auf der Diagonale von $p(\mathrm J)$, $p$ komponentenweise auf die Diagonale von $J$ angewendet wurde.
+                Weil $p(\mathbf J)$ ebenfalls eine obere Dreiecks-Matrix ist, die Eigenwerte also in der Diagonale stehen, folgt schließlich
+
+                \begin{align*}
+                    \sigma(p(\mathbf A))
+                    =
+                    \sigma(p(\mathbf J))
+                    =
+                    p(\sigma(\mathbf J))
+                    =
+                    p(\sigma(\mathbf A)).
+                \end{align*}
+
+            \end{proof}
+
+            Folgende Spektral-Sätze sind auch vonnöten.
+
+            \begin{theorem} \label{thm:spectral_theorem}
+
+                Es sei $\mathbf A \in \C^{n \times n}$.
+                Seien weiters $\lambda_1, \dots, \lambda_n \in \C$ die Eigenwerte von $\mathbf A$, der Vielfachheit nach gezählt, und
+
+                \begin{align*}
+                    \mathbf \Lambda
+                    :=
+                    \diag(\lambda_1, \dots, \lambda_n).
+                \end{align*}
+
+                \begin{enumerate}[
+                    label = \texttt{ad} \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
+
+                    \item Die Matrix $\mathbf A$ ist genau dann normal, wenn es eine unitäre Matrix $\mathbf X \in \operatorname U_n(\C)$ gibt, sodass
+
+                    \begin{align*}
+                        \mathbf \Lambda
+                        =
+                        \mathbf X^{-1} \mathbf A \mathbf X.
+                    \end{align*}
+
+                    \item Die Matrix $\mathbf A$ ist genau dann symmetrisch, wenn es eine orthogonale Matrix $\mathbf X \in \operatorname O_n(\R)$ gibt, sodass
+
+                    \begin{align*}
+                        \mathbf \Lambda
+                        =
+                        \mathbf X^{-1} \mathbf A \mathbf X.
+                    \end{align*}                    
+                    
+                    Weiters ist $\sigma(\mathbf A) \subseteq \R$.
+
+                \end{enumerate}
+
+            \end{theorem}
+
+            \begin{proof}
+
+                \phantom{}
+
+                \begin{enumerate}[
+                    label = \texttt{ad} \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
+
+                    \item Das ist genau \enquote{Der Spektralsatz für normale Matrizen} (vgl. \cite[Kapitel 17.7]{brokate2015grundwissen}).
+
+                    \item Das ist wiederum genau \enquote{Der Spektralsatz für symmetrische Matrizen} (vgl. \cite[Kapitel 17.7]{brokate2015grundwissen}).
+
+                    Sei nun $\lambda \in \sigma(\mathbf A)$ ein Eigenwert von $\mathbf A$, mit zugehörigem Eigenvektor $\mathbf x \in \C^n \setminus \Bbraces{\mathbf 0}$.
+                    $\lambda$ ist zunächst bloß eine Nullstelle des charakteristischen Polynoms $\chi(\mu) = \det(\mu \mathbf I - \mathbf A)$, also $\lambda \in \C$.
+
+                    Das Eigenpaar $(\lambda, \mathbf x) \in \C \times \C^n \setminus \Bbraces{\mathbf 0}$ erfüllt aber auch die Gleichung $\mathbf A \mathbf x = \lambda \mathbf x$.
+                    Weil $\mathbf A$ symmetrisch ist, folgt daraus
+
+                    \begin{multline*}
+                        \lambda |\mathbf x|^2
+                        =
+                        \lambda (\mathbf x, \mathbf x)
+                        =
+                        (\lambda \mathbf x, \mathbf x)
+                        =
+                        (\mathbf A \mathbf x, \mathbf x)
+                        =
+                        (\mathbf x, \mathbf A^\top \mathbf x) \\
+                        =
+                        (\mathbf x, \mathbf A \mathbf x)
+                        =
+                        (\mathbf x, \lambda \mathbf x)
+                        =
+                        \overline{(\lambda \mathbf x, \mathbf x)}
+                        =
+                        \overline \lambda \overline{(\mathbf x, \mathbf x)}
+                        =
+                        \overline \lambda \overline{|\mathbf x|^2}.
+                    \end{multline*}
+
+                    Dabei bezeichne $|\cdot|$ die Euklidsche Norm und $(\cdot, \cdot)$ das Euklidsche Skalarprodukt.
+                    Weil $\mathbf x \neq \mathbf 0$ als Eigenvektor, ist $|\mathbf x|^2 \in \R \setminus \Bbraces{0}$ und wir erhalten $\lambda = \overline \lambda$.
+                    Das geht aber nur für $\lambda \in \R$.
+
+                \end{enumerate}
+            \end{proof}
 
             \subsubsection{Permutations-Matrizen}
 
                 \begin{definition}
-                    
-                    Sei $S_n$ die \textit{Symmetrische Gruppe} auf $\Bbraces{1, \dots, n}$.
+
                     Für eine \textit{Permutation} $\pi \in S_n$ sei $\mathbf P_\pi := (\delta_{\pi(i), j})_{i, j = 1}^n$ die zugehörige \textit{Permutations-Matrix}.
-                    Sei $\mathbb P_n := \Bbraces{\mathbf P_\pi: \pi \in S_n}$ die Menge aller Permutations-Matrizen der Größe $n$.
-                    Zwei Matrizen $\mathbf A, \mathbf B \in \R^{n \times n}$ heißen \textit{permutations-ähnlich}, wenn es eine Permutations-Matrix $\mathbf P \in \mathbb P_n$ gibt, sodass $\mathbf A = \mathbf P^{-1} \mathbf B \mathbf P$.
-                    Die dadurch definierte Relation $\sim_{\mathbb P}$ auf $\R^{n \times n}$ nennen wir \textit{Permutations-Ähnlichkeit}.
+                    Sei $\P_n := \Bbraces{\mathbf P_\pi: \pi \in S_n}$ die Menge aller Permutations-Matrizen der Größe $n$.
+                    Zwei Matrizen $\mathbf A, \mathbf B \in \R^{n \times n}$ heißen \textit{permutations-ähnlich}, wenn es eine Permutations-Matrix $\mathbf P \in \P_n$ gibt, sodass
+
+                    \begin{align*}
+                        \mathbf A = \mathbf P^{-1} \mathbf B \mathbf P.
+                    \end{align*}
+
+                    Die dadurch definierte Relation $\sim_{\P}$ auf $\R^{n \times n}$ nennen wir \textit{Permutations-Ähnlichkeit}.
 
                 \end{definition}
 
@@ -171,7 +572,7 @@
                         labelindent = 0pt
                     ]
 
-                        \item Seien $\pi \in S_n$ und $(x_1, \dots, x_n)^\top \mathbf x \in \R^n$, so gilt
+                        \item Seien $\pi \in S_n$ und $(x_1, \dots, x_n)^\top = \mathbf x \in \R^n$, so gilt
 
                         \begin{align*}
                             \mathbf P_\pi \mathbf x
@@ -187,12 +588,19 @@
                             (x_{\pi^{-1}(1)}, \dots, x_{\pi^{-1}(n)}).
                         \end{align*}
 
-                        $\mathbb P_n$ ist eine Untergruppe der orthogonalen Matrizen $\operatorname O_n(\R)$ der Größe $n$.
-                        $S_n$ ist anti-isomorph zu $\mathbb P_n$, vermöge $\pi \mapsto \mathbf P_\pi$.
+                        $\P_n$ ist eine Untergruppe der orthogonalen Matrizen $\operatorname O_n(\R)$ der Größe $n$.
+                        $S_n$ ist anti-isomorph zu $\P_n$, vermöge $\pi \mapsto \mathbf P_\pi$.
+                        D.h. für $\pi_1, \pi_2 \in S_n$ gilt stets
+
+                        \begin{align*}
+                            \mathbf P_{\pi_1 \circ \pi_2}
+                            =
+                            \mathbf P_{\pi_2} \mathbf P_{\pi_1}.
+                        \end{align*}
 
                         \item Die Permutations-Ähnlichkeit ist eine Teil-Äquivalenz-Relation der herkömmlichen \\ Ähnlichkeit $\sim$.
                         Permutations-ähnliche Matrizen haben dasselbe charakteristische Polynom und dieselben Eigenwerte.
-                    
+
                     \end{enumerate}
 
                 \end{lemma}
@@ -200,84 +608,102 @@
                 \begin{proof}
 
                     \begin{enumerate}[
-                        label = {\texttt{ad} \arabic*.},
+                        label = \texttt{ad} \arabic*.,
                         wide,
                         labelindent = 0pt
                     ]
 
                         \item Die ersten beiden Aussagen sind elementare Rechnungen.
-                        Man kann sie benutzen, um die Homomorphie von $\pi \mapsto \mathbf P_\pi$ nachzuweisen, indem man die Permutations-Matrizen mit $\mathbf x$ testet.
-                        Weil $\mathbb P_n$ ein homomorphes Bild der Gruppe $S_n$ folgt, dass es auch eine Gruppe sein muss.
+                        Man kann sie benutzen, um die Anti-Homomorphie von $\pi \mapsto \mathbf P_\pi$ nachzuweisen, indem man die Permutations-Matrizen mit $\mathbf x$ testet.
+                        Weil $\P_n$ ein homomorphes Bild der Gruppe $S_n$ folgt, dass es auch eine Gruppe sein muss.
                         Dass Permutations-Matrizen orthogonal sind, d.h. ihre Transponierten sind jeweils ihre Inversen, weist man auch rasch durch testen mit $\mathbf x$ nach.
 
-                        \item Dass $\sim_{\mathbb P}$ eine Äquivalenz-Relation ist, sieht man analog zu $\sim$.
-                        Die Reflexivität folgt daraus, dass $\mathbb P_n$ ein neutrales Element hat;
-                        die Symmetrie daraus, dass $\mathbb P_n$ unter Inversen-Bildung abgeschlossen ist;
-                        und die Transitivität gilt, weil $\mathbb P_n$ unter Verknüpfung abgeschlossen ist.
+                        \item Dass $\sim_{\P}$ eine Äquivalenz-Relation ist, sieht man analog zu $\sim$.
+                        Die Reflexivität folgt daraus, dass $\P_n$ ein neutrales Element hat;
+                        die Symmetrie daraus, dass $\P_n$ unter Inversen-Bildung abgeschlossen ist;
+                        und die Transitivität gilt, weil $\P_n$ unter Verknüpfung abgeschlossen ist.
                         Die letzte Aussage folgt aus der vorletzten und der Tatsache, dass sie für ähnliche Matrizen gilt.
 
-                    \end{enumerate}    
+                    \end{enumerate}
 
                 \end{proof}
 
-                \begin{remark} \label{rem:congruent_sums}
-                    
-                    Obere letztere Aussage lässt sich noch verfeinern.
-                    Seien $\mathbf A_1, \dots, \mathbf A_m \in \R^{n \times n}$ jeweils kongruent zu $\mathbf B_1, \dots, \mathbf B_m \in \R^{n \times n}$ vermöge einer orthogonalen Matrix $\mathbf P \in \operatorname O_n(\R)$.
-                    Dann sind auch deren Summen kongruent vermöge $\mathbf P$, denn
+                \begin{remark} \label{rem:permutation_matrices}
 
-                    \begin{align*}
-                        \sum_{i=1}^m \mathbf A_i
-                        =
-                        \sum_{i=1}^m \mathbf P^\top \mathbf B_i \mathbf P
-                        =
-                        \mathbf P^\top \sum_{i=1}^m \mathbf B_i \mathbf P.
-                    \end{align*}
+                    Lemma \ref{lem:permutation_matrices} wollen wir noch ein paar Anmerkungen hinzufügen.
 
-                    Sei nun $\mathbf P = \mathbf P_\pi \in \mathbb P$ sogar eine Permutations-Matrix zur Permutation $\pi \in S_n$.
-                    Mit Lemma \ref{lem:permutation_matrices} sieht man, dass
+                    \begin{enumerate}[
+                        label = \arabic*.,
+                        wide,
+                        labelindent = 0pt
+                    ]
 
-                    \begin{align*}
-                        \mathbf P_\pi^\top \mathbf I \mathbf P_\pi = \mathbf I,
-                        \quad
-                        \text{und}
-                        \quad
-                        \mathbf P_\pi^\top \mathbf J \mathbf P_\pi = \mathbf J.
-                    \end{align*}
+                        \item Sei $\tau \in S_n$ eine Transposition.
+                        $\tau$ ist involutorisch, d.h. $\tau = \tau^{-1}$, also gilt
 
-                    Seien nun weiters $m_\mathbf{I}, m_\mathbf{J} \in \N \setminus \Bbraces{0}$ und $\lambda_1, \dots, \lambda_{m_\mathbf{I}}, \mu_1, \dots, \mu_{m_\mathbf{J}} \in \R$, so gilt
+                        \begin{align*}
+                            \mathbf P_\tau
+                            =
+                            \mathbf P_{\tau^{-1}}
+                            =
+                            \mathbf P_\tau^{-1}
+                            =
+                            \mathbf P_\tau^\top.
+                        \end{align*}
 
-                    \begin{align*}
-                        \sum_{i=1}^m \mathbf A_i
-                        +
-                        \sum_{i=1}^{m_\mathbf{I}} \lambda_i \mathbf I
-                        +
-                        \sum_{i=1}^{m_\mathbf{J}} \mu_i \mathbf J
-                        & =
-                        \sum_{i=1}^m \mathbf P_\pi^\top \mathbf B_i \mathbf P_\pi
-                        +
-                        \sum_{i=1}^{m_\mathbf{I}} \lambda_i \mathbf P_\pi^\top \mathbf I \mathbf P_\pi
-                        +
-                        \sum_{i=1}^{m_\mathbf{J}} \mu_i \mathbf P_\pi^\top \mathbf J \mathbf P_\pi \\
-                        & =
-                        \mathbf P_\pi^\top
-                        \pbraces{
-                            \sum_{i=1}^m \mathbf B_i
-                            +
-                            \sum_{i=1}^{m_\mathbf{I}} \lambda_i \mathbf I
-                            +
-                            \sum_{i=1}^{m_\mathbf{J}} \mu_i \mathbf J
-                        }
-                        \mathbf P_\pi.
-                    \end{align*}
+                        Die Multiplikation von $\mathbf P_\tau$ von links entspricht also einer Zeilen-, und die von rechts einer Spalten-Vertauschung.
+                        Laut Lemma \ref{lem:permutations}, können wir $\pi \in S_n$ als Produkt von Transpositionen $\pi_1, \dots, \pi_m \in S_n$ darstellen.
+                        Permutations-Matrizen können also dazu verwendet werden, um die Zeilen und Spalten einer Matrix $\mathbf M \in \R^{n \times n}$ beliebig oft \enquote{gleichzeitig} zu vertauschen, i.Z.
+
+                        \begin{multline*}
+                            \mathbf M
+                            \mapsto
+                            \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1}
+                            \mapsto
+                            \cdots
+                            \mapsto
+                            \mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m} \\
+                            =
+                            (\mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top) \mathbf M (\mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m})
+                            =
+                            \mathbf P_\pi^\top \mathbf M \mathbf P_\pi.
+                        \end{multline*}
+
+                        Umgekehrt sind aber auch Matrizen, die sich bis auf \enquote{gleichzeitige} Zeilen- und Spalten-Vertauschungen (enkodiert in einer Permutation) unterscheiden, ähnlich bzgl. der entsprechenden Permutations-Matrix.
+
+                        \item Seien $\mathbf A_1, \dots, \mathbf A_m \in \R^{n \times n}$ jeweils permutations-ähnlich zu $\mathbf B_1, \dots, \mathbf B_m \in \R^{n \times n}$ vermöge einer Permutations-Matrix $\mathbf P \in \P_n$.
+                        Seien weiters $c_1, \dots, c_m \in \R$, dann sind die Linearkombinationen dieser Matrizen und Koeffizienten auch permutations-ähnlich bzgl. $\mathbf P$, d.h.
+
+                        \begin{align*}
+                            \sum_{i=1}^m c_i \mathbf A_i
+                            =
+                            \sum_{i=1}^m c_i \mathbf P^\top \mathbf B_i \mathbf P
+                            =
+                            \mathbf P^\top \sum_{i=1}^m c_i \mathbf B_i \mathbf P.
+                        \end{align*}
+
+                        \item Für jede beliebige Permutations-Matrix $\mathbf P \in \P_n$, sind $\mathbf I$ und $\mathbf J$ permutations-ähnlich zu sich selbst bzgl. $\mathbf P$.
+                        Es gilt nämlich
+
+                        \begin{align*}
+                            \mathbf I \mathbf P_\pi = \mathbf P_\pi \mathbf I
+                            \quad
+                            \text{und}
+                            \quad
+                            \mathbf J \mathbf P_\pi = \mathbf P_\pi \mathbf J,
+                            \quad
+                            \text{also}
+                            \quad
+                            \mathbf P_\pi^\top \mathbf I \mathbf P_\pi = \mathbf I
+                            \quad
+                            \text{bzw.}
+                            \quad
+                            \mathbf P_\pi^\top \mathbf J \mathbf P_\pi = \mathbf J.
+                        \end{align*}
+
+                    \end{enumerate}
 
                 \end{remark}
-
-            % -------------------------------- %
-
-        % ---------------------------------------------------------------- %
-
-    % -------------------------------------------------------------------------------------------------------------------------------- %
 
     \section{Graphen}
 
@@ -287,7 +713,7 @@
             $V$ sei stets endlich, $G$ also ein \textit{endlicher} Graph.
             $E$ kann Elemente, eines der folgenden Typen, enthalten:
 
-            \begin{enumerate}
+            \begin{enumerate}[label = \arabic*.]
 
                 \item $E$ kann aus Paaren $(v, w)$, mit $v, w \in V$, bestehen.
                 $G$ nennen wir dann \textit{gerichtet}.
@@ -296,9 +722,10 @@
                 \item $E$ kann auch aus Paar-Mengen $\Bbraces{v, w}$, mit $v, w \in V$, wobei $v \neq w$, bestehen.
                 $G$ nennen wir dann \textit{ungerichtet}.
 
-                \item $E$ kann aber auch aus Multi-Mengen $[v, w]$, für $v, w \in V$, bestehen.
+                \item $E$ kann aber auch aus Multi-Mengen $\Bbraces{v, w}$, für $v, w \in V$, bestehen.
                 In diesem Fall heißt $G$ ebenfalls \textit{ungerichtet}.
-                \textit{(Ungerichtete) Schleifen} seien nun echte Multi-Mengen $[v, v]$ mit $v \in V$.
+                \textit{(Ungerichtete) Schleifen} seien nun Multi-Mengen $\Bbraces{v, v}$ mit $v \in V$, welches Vielfachheit $2$ hat.
+                Wir vereinbaren, dass $E$ aus Paar-Mengen besteht, wenn es keine ungerichtete Schleifen gibt.
 
             \end{enumerate}
 
@@ -310,9 +737,40 @@
             Typischerweise bezeichnen wir mit $V(G)$ und $E(G)$ die Ecken bzw. Kanten von $G$.
             Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $V$ bzw. $E$.
 
+            Die Mächtigkeit $|G|$ eines Graphen $G$ sei die von $V$, also $|V|$.
+            $G$ heißt \textit{(un)gerade} wenn $|E|$ es ist.
+            Zwei Graphen $G_1$ und $G_2$ heißen disjunkt, wenn ihre jeweiligen Knoten-Mengen $V(G_1)$ und $V(G_2)$ es sind.
+
         \end{definition}
 
-        \begin{definition}
+        \begin{definition} \label{def:sub_graphs}
+
+            Ein graph $G^\prime = (V^\prime, E^\prime)$ ist \textit{Teil-Graph} des Graphen $G = (V, E)$, i.Z. $G^\prime \subseteq G$, wenn $V^\prime \subseteq V$ und $E^\prime \subseteq E$.
+            $G^\prime$ heißt dann auch \textit{Ober-Graph} von $G$, i.Z. $G^\prime \supseteq G$.
+
+            $G^\prime$ \textit{spannt} $G$ auf, wenn $V^\prime = V$.
+            Wenn $E^\prime$ genau aus jenen Kanten aus $E$ besteht, die Knoten aus $V^\prime$ verbinden, so ist $G^\prime$ ein \textit{induzierter} Teil-Graph.
+
+        \end{definition}
+
+        \begin{definition} \label{def:graph_components}
+
+            Ein (Multi-)Graph $G = (V, E)$ heißt \textit{zusammenhängend}, wenn alle seine Knoten durch Pfade verbunden sind.
+            $G^\prime = (V^\prime, E^\prime)$ heißt \textit{Zusammenhangskomponente} von $G$ wenn
+
+            \begin{enumerate}[label = \arabic*.]
+                \item $V^\prime \subseteq V$,
+                \item $G^\prime$ durch $V^\prime$ induziert wird,
+                \item $G^\prime$ zusammenhängend ist und
+                \item für alle $V^\primeprime$ mit $V^\prime \subsetneq V^\primeprime \subseteq V$ gilt, dass der durch $V^\primeprime$ in $G$ induzierte Graph nicht zusammenhängend ist.
+            \end{enumerate}
+
+            Mit $p(G)$ bezeichnen wir die Anzahl aller Zusammenhangskomponenten von $G$.
+            Seien $\varepsilon(G)$ und $\omega(G)$ seien die Mengen der geraden bzw. ungeraden Zusammenhangskomponenten von $G$ sowie $e(G)$ bzw. $o(G)$ deren Mächtigkeit.
+
+        \end{definition}
+
+        \begin{definition} \label{def:adjacent_incident}
 
             Sei $G$ ein (Multi-)Graph.
             Zwei Ecken $v, w \in V(G)$ heißen \textit{adjazent}, wenn sie durch eine Kante $e \in E(G)$ verbunden werden, i.Z.
@@ -323,7 +781,7 @@
                 \Exists e \in E(G):
                     \begin{cases}
                         e = (v, w) \lor e = (w, v), & \text{wenn} ~ G ~ \text{gerichtet},   \\
-                        e = [v, w],                 & \text{wenn} ~ G ~ \text{ungerichtet}. \\
+                        e = \Bbraces{v, w},         & \text{wenn} ~ G ~ \text{ungerichtet}. \\
                     \end{cases}
             \end{align*}
 
@@ -340,7 +798,7 @@
 
         \end{definition}
 
-        \begin{definition}
+        \begin{definition} \label{def:adjacency_degree_incidence}
 
             Sei $G$ (Multi-)Graph.
 
@@ -351,23 +809,23 @@
 
                 \item Sei $G$ weiters gerichtet.
                 Die \textit{Adjazenz} zwischen zwei Ecken $v, w \in V(G)$ ist die Vielfachheit der Kanten $e \in E(G)$, die von $v$ nach $w$ führen, i.Z.
-        
+
                 \begin{align*}
-                    \operatorname{adj}(v, w)
+                    \adj(v, w)
                     :=
                     |\Bbraces{e \in E(G): e = (v, w)}|.
                 \end{align*}
-        
+
                 Der \textit{Eingangs-Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die in $v$ hineinführen, i.Z.
-        
+
                 \begin{align*}
                     \deg^- v
                     :=
                     |\Bbraces{e \in E(G): \Exists w \in V(G): (w, v) = e}|.
                 \end{align*}
-        
+
                 Der \textit{(Ausgangs-)Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die aus $v$ herausführen, i.Z.
-        
+
                 \begin{align*}
                     \deg v
                     :=
@@ -375,64 +833,142 @@
                     :=
                     |\Bbraces{e \in E(G): \Exists w \in V(G): (v, w) = e}|.
                 \end{align*}
-        
+
                 Die \textit{Inzidenz} eines Knotens $v \in V(G)$ und einer Kante $e \in E(G)$ ist
-        
+
                 \begin{align*}
-                    \operatorname{inc}(v, e)
+                    \inc(v, e)
                     :=
                     \begin{cases}
-                        1, & \text{wenn}~ \Exists w \in V(G): (v, w) = e, \\
+                        1,  & \text{wenn}~ \Exists w \in V(G): (v, w) = e, \\
                         -1, & \text{wenn}~ \Exists w \in V(G): (w, v) = e, \\
-                        0, & \text{sonst}.
+                        0,  & \text{sonst}.
                     \end{cases}
                 \end{align*}
-        
+
                 \item Sei $G$ nun ungerichtet.
-                Die \textit{Adjazenz} zwischen zwei Ecken $v, w \in V(G)$ ist die Vielfachheit der Kanten $e \in E(G)$, die diese Verbindet, i.Z.
-        
+                Die \textit{Adjazenz} zwischen zwei Ecken $v, w \in V(G)$ ist die Vielfachheit der Kanten $e \in E(G)$, die diese Verbindet, wobei (ungerichtete) Schleifen doppelt zählen, i.Z.
+
                 \begin{align*}
-                    \operatorname{adj}(v, w)
+                    \adj(v, w)
                     :=
-                    |\Bbraces{e \in E(G): e = [v, w]}|.
+                    |\Bbraces{e \in E(G): e = \Bbraces{v, w}}| \cdot (1 + \delta_{v, w}).
                 \end{align*}
-        
-                Der \textit{Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die auf ihm liegen, i.Z.
-        
+
+                Der \textit{Grad} eines Knotens $v \in V(G)$ ist die Anzahl aller Kanten $e \in E(G)$, die auf ihm liegen, wobei (ungerichtete) Schleifen doppelt zählen, i.Z.
+
                 \begin{align*}
                     \deg v
                     :=
-                    |\Bbraces{e \in E(G): v \in e}|.
+                    |\Bbraces{e \in E(G): v \in e}|
+                    +
+                    |\Bbraces{\Bbraces{x, x} \in E(G): x \in V(G)}|.
                 \end{align*}
-        
+
                 Die \textit{Inzidenz} eines Knotens $v \in V(G)$ und einer Kante $e \in E(G)$ ist
-        
+
                 \begin{align*}
-                    \operatorname{inc}(v, e)
+                    \inc(v, e)
                     :=
                     \begin{cases}
                         1, & \text{wenn}~ v \in e, \\
                         0, & \text{sonst}.
                     \end{cases}
-                \end{align*}    
+                \end{align*}
 
             \end{enumerate}
 
-            Unabhängig davon, ob $G$ gerichtet oder ungerichtet ist, sei die \textit{Seidel-Adjazenz} zweier Ecken $v, w \in V(G)$
-        
+        \end{definition}
+
+        \begin{definition} \label{def:path}
+
+            Sei $G = (V, E)$ ein (Multi-)Graph mit $V = \Bbraces{v_1, \dots, v_n}$.
+            Seien weiters $i_1, \dots, i_m \in \Bbraces{1, \dots, n}$, mit $m \in \N \setminus \Bbraces{0}$, d.h. $m > n$ ist erlaubt.
+            Wir nennen den String $v_{i_1} \cdots v_{i_m}$ einen \textit{Pfad} in $G$ der \textit{Länge} $m$ von $v_{i_1}$ nach $v_{i_m}$, wenn
+
             \begin{align*}
-                \operatorname{adj}^\text{Seidel}(v, w)
-                =
+                E
+                \supseteq
                 \begin{cases}
-                        1, & \text{wenn}~ v \neq w, ~\text{und}~ v, w ~\text{adjazent}, \\
-                    -1, & \text{wenn}~ v \neq w, ~\text{und}~ v, w ~\text{nicht adjazent}, \\
-                        0, & \text{sonst}.
+                    \Bbraces{(v_{i_1}, v_{i_2}), \dots, (v_{i_{m-1}}, v_{i_m})}
+                    & \text{für} ~ G ~ \text{gerichtet}, \\
+                    \Bbraces
+                    {
+                        \Bbraces{v_{i_1}, v_{i_2}},
+                        \dots,
+                        \Bbraces{v_{i_{m-1}}, v_{i_m}}
+                    }
+                    & \text{für} ~ G ~ \text{ungerichtet}.
                 \end{cases}
             \end{align*}
 
+            Für $m = 0$ sei oberer Pfad das \textit{leere Wort} $\varepsilon$.
+            Er heißt \textit{geschlossen}, wenn $i_1 = i_m$.
+
+            Bezeichne $N_k(G; v, w)$, für $k \in \N$ und $v, w \in G$, die Anzahl der Pfade in $G$ von $v$ nach $w$.
+            Seien weiters
+
+            \begin{align*}
+                N_k(G) := \sum_{v, w \in V} N_k(G; v, w)
+                \quad
+                \text{und}
+                \quad
+                N_k^\prime(G) := \sum_{v \in V} N_k(G; v, v),
+            \end{align*}
+
+            die Anzahl der (geschlossenen) Pfade in $G$ der Länge $k$.
+
         \end{definition}
 
-    % -------------------------------------------------------------------------------------------------------------------------------- %
+        \begin{definition} \label{def:special_graphs}
+
+            Den Graphen $G = (V, E)$ nennen wir \textit{vollständig} mit $n = |V|$ Knoten, wenn
+
+            \begin{align*}
+                E
+                =
+                \begin{cases}
+                    \Bbraces{\pbraces{v, w}: v, w \in V, ~ v \neq w},
+                    & G ~ \text{gerichtet}, \\
+                    \Bbraces{\Bbraces{v, w}: v, w \in V, ~ v \neq w},
+                    & G ~ \text{ungerichtet}.
+                \end{cases}
+            \end{align*}
+
+            Der Graph $G = (V, E)$ heißt \textit{Strecke}\footnote{Oft wird auch das Wort \enquote{Pfad} verwendet. Nachdem dieses aber bei uns schon vergeben ist, werden wir das nicht tun.} der \textit{Länge} $|E|$, wenn er folgende Darstellung hat:
+
+            \begin{align*}
+                V = \Bbraces{v_1, \dots, v_n},
+                \quad
+                E
+                =
+                \begin{cases}
+                    \Bbraces{(v_1, v_2), \dots, (v_{n-1}, v_n)},
+                    & G ~ \text{gerichtet}, \\
+                    \Bbraces
+                    {
+                        \Bbraces{v_1, v_2},
+                        \dots,
+                        \Bbraces{v_{n-1}, v_n}
+                    },
+                    & G ~ \text{ungerichtet}.
+                \end{cases}
+            \end{align*}
+
+            Wenn $E$ darüber hinaus auch $(v_n, v_1)$ bzw. $\Bbraces{v_n, v_1}$ enthält, dann heißt $G$ \textit{Zyklus} oder\footnote{Oft ist die Begriffsbildung davon abhängig, ob $G$ gerichtet oder ungerichtet ist. Wir lassen hier beide Begriffe für beide Sorten von Graph zu.} \textit{Schaltkreis} der \textit{Länge} $|E|$.
+            Dabei ist $n = 1$ auch erlaubt, wodurch $V$ dann nur aus einem Knoten und $E$ aus einer Schleife besteht.
+
+            $U$ heißt \textit{einfache Figur}, wenn alle dessen Zusammenhangskomponenten, die \textit{elementaren Figuren}, jeweils entweder vollständig mit $2$ Knoten, oder ein Zyklus sind.
+            Die Menge aller einfachen Teil-Figuren von $G$ mit Mächtigkeit $i$, für $i \in \N$, schreiben wir als $\mathcal U_i(G)$.
+
+            Ein (Multi-)Graph $G$ heißt \textit{regulär} mit Grad $\deg G$, wenn alle Knoten denselben (Ausgangs- und Eingangs-)Grad $\deg G$ haben.
+            Wenn darüber hinaus auch $\deg G = 1$ ist, sämtliche Zusammenhangskomponenten von $G$ also Zyklen sind, so heißt er \textit{linear}.
+            Die Menge aller linearen Teil-Graphen von $G$ mit Mächtigkeit $i$, für $i \in \N$, schreiben wir als $\mathcal L_i(G)$.
+
+            Wenn ein regulärer (Multi-)Graph $G$ mit Grad $s$ einen Ober-Graphen aufspannt, dann heißt er dessen \textit{$s$-Faktor}.
+            Ein $1$-Faktor heißt auch \textit{Linear-Faktor}.
+
+        \end{definition}
 
     \section{Graphen-Spektren}
 
@@ -440,7 +976,7 @@
 
             Sei $G$ ein (Multi-)Graph.
             Mögen
-            
+
             \begin{align*}
                 n = |V(G)|
                 \quad
@@ -448,7 +984,7 @@
                 \quad
                 m = |E(G)|
             \end{align*}
-            
+
             die Anzahl der Knoten bzw. Kanten von $G$ bezeichnen.
             Seien
 
@@ -459,10 +995,10 @@
                 \quad
                 g: \Bbraces{1, \dots, m} \to E(G)
             \end{align*}
-            
+
             Bijektionen und $v_i = f(i)$ sowie $e_k = g(k)$, für $i = 1, \dots, n$ bzw. $k = 1, \dots, m$.
             Als \textit{Auflistung} von $V(G)$ bzw. $E(G)$, bezeichnen wir
-            
+
             \begin{align*}
                 (v_1, \dots, v_n)
                 \quad
@@ -473,21 +1009,20 @@
 
         \end{definition}
 
-        \begin{definition}
+        \begin{definition} \label{def:graph_matrices}
 
             Wir schließen an Definition \ref{def:listing} direkt an und nennen
 
             \begin{align*}
-                \mathbf A(G, f)    & := (\operatorname{adj}(v_i, v_j))_{i, j = 1}^n               & \text{eine} & ~ \textit{Adjazenz-Matrix,}              \\
-                \mathbf D(G, f)    & := \diag (\deg v_i)_{i=1}^n                                  & \text{eine} & ~ \textit{Grad-Matrix,}                  \\
-                \mathbf L(G, f)    & := \mathbf D(G, f) - \mathbf A(G, f)                         & \text{eine} & ~ \textit{Laplace-Matrix,}               \\
-                \mathbf B(G, f, g) & := (\operatorname{inc}(v_i, e_k))_{i, k = 1}^{n, m}          & \text{eine} & ~ \textit{Inzidenz-Matrix,} ~ \text{und} \\
-                \mathbf S(G, f)    & := (\operatorname{adj}^\text{Seidel}(v_i, v_j))_{i, j = 1}^n & \text{eine} & ~ \textit{Seidel-Matrix}
+                \mathbf A_f(G)      & := (\adj(v_i, v_j))_{i, j = 1}^n      & \text{die} & ~ \textit{Adjazenz-Matrix,}             \\
+                \mathbf D_f(G)      & := \diag (\deg v_i)_{i=1}^n           & \text{die} & ~ \textit{Grad-Matrix,}                 \\
+                \mathbf L_f(G)      & := \mathbf D_f(G) - \mathbf A_f(G)    & \text{die} & ~ \textit{Laplace-Matrix,} ~ \text{und} \\
+                \mathbf B_{f, g}(G) & := (\inc(v_i, e_j))_{i, j = 1}^{n, m} & \text{die} & ~ \textit{Inzidenz-Matrix,}             \\
             \end{align*}
 
-            von $G$ unter der(n) Abzählung(en) $f$ (und $g$).
+            von $G$ unter der(n) Auflistung(en) $f$ (und $g$).
 
-            Die durch die Abzählungen indizierten Familien all jener genannten \textit{Graphen-Matrizen}, bezeichnen wir mit $\mathcal A(G)$, $\mathcal D(G)$, $\mathcal L(G)$, $\mathcal B(G)$, bzw. $\mathcal S(G)$.
+            Die durch die Auflistungen indizierten Familien all jener genannten \textit{Graphen-Matrizen}, bezeichnen wir mit $\mathcal A(G)$, $\mathcal D(G)$, $\mathcal L(G)$ bzw. $\mathcal B(G)$.
             Gelegentlich werden wir diese aber als Mengen auffassen und auf die Indizierung verzichten.
 
         \end{definition}
@@ -501,11 +1036,11 @@
             Betrachte die Adjazenz-Matrizen,
 
             \begin{align*}
-                \mathbf A_1 := \mathbf A(G, f_1) \in \mathcal A(G)
+                \mathbf A_1 := \mathbf A_{f_1}(G) \in \mathcal A(G)
                 \quad
                 \text{und}
                 \quad
-                \mathbf A_2 :=  \mathbf A(G, f_2) \in \mathcal A(G).
+                \mathbf A_2 :=  \mathbf A_{f_2}(G) \in \mathcal A(G).
             \end{align*}
 
             Solche sind immer permutations-ähnlich, vermöge jener Permutations-Matrix $\mathbf P_\pi$, die zur Permutation $\pi$ gehört, die die eine Aufzählung $f_1$ in die andere Aufzählung $f_2$ überführt, i.Z.
@@ -513,45 +1048,152 @@
             \begin{align*}
                 \mathbf A_1 = \mathbf P_\pi^{-1} \mathbf A_2 \mathbf P_\pi,
                 \quad
-                \pi = f_2 \circ f_1^{-1} \in S_n.
+                \pi = f_1 \circ f_2^{-1} \in S_n.
             \end{align*}
 
             Analoges gilt auch für die übrigen Graphen-Matrizen.
 
         \end{remark}
 
-        \begin{definition} \label{def:graph_matrices}
+        \begin{remark} \label{rem:motivation}
 
-            Sei $G$ ein (Multi-)Graph, $\mathbf A \in \mathcal A(G)$, $\mathbf D \in \mathcal D(G)$, und $\mathbf S \in \mathcal S(G)$ beliebige Adjazenz-, Grad-, bzw. Seidel-Matrizen.
-            Wir definieren die \textit{charakteristischen Polynome}
+            Bevor wir direkt zu Definition \ref{def:graph_characteristic_polynomials_and_spectra} kommen, wollen wir diese durch ein paar geometrische Überlegungen motivieren.
+            Sei dazu $G = (V, E)$ ein (Multi-)Graph mit $V = \Bbraces{v_1, \dots, v_n}$ sowie zugehöriger Adjazenz-Matrix $\mathbf A$, Grad-Matrix $\mathbf D$, und Laplace-Matrix $\mathbf L$.
 
-            \begin{gather*}
-                \chi_P(G, \lambda) := \det(\lambda \mathbf I - \mathbf A),
+            Wir wollen nun wissen, ob es für jeden Knoten $v_i$ einen Wert $x_i \in \C$ gibt, sodass es eine Konstante gibt, bezüglich derer $x_i$ proportional zur Summe der $x_j$, wo $v_j$ nach $v_i$ führt, gewichtet nach ihrer Adjazenz ist, wobei $i, j = 1, \dots, n$.
+            Damit das Problem nicht trivial ist, dürfen nicht alle Werte gleich Null sein.
+            Als System von linearen Gleichungen lautet dies i.Z.
+
+            \begin{multline*}
+                \Exists x_1, \dots, x_n \in \C,
+                \Exists \lambda \in \C: \\
+                    \Forall i = 1, \dots, n:
+                        \lambda x_i
+                        =
+                        \sum_{j=1}^n \adj(v_i, v_j) x_j,
+                    \quad
+                    \Exists i = 1, \dots, n:
+                        x_i \neq 0.
+            \end{multline*}
+
+            Wenn wir nun die Werte in einen Vektor $\mathbf x = (x_1, \dots, x_n)^\top \in \C^n \setminus \Bbraces{\mathbf 0}$ zusammenfassen, können wir auch Folgendes schreiben:
+
+            \begin{align*}
+                \Exists (\lambda, \mathbf x) \in \C \times \C^n \setminus \Bbraces{\mathbf 0}:
+                    \lambda \mathbf x
+                    =
+                    \mathbf A \mathbf x.
+            \end{align*}
+
+            Nachdem es sich hierbei nun eindeutig um ein Eigenwertproblem handelt, können auch $\mathbf x$ weglassen und schreiben, dass
+
+            \begin{align*}
+                \Exists \lambda \in \C:
+                    \chi_P(\lambda) := \det(\lambda \mathbf I - \mathbf A) = 0.
+            \end{align*}
+
+            Wenn wir nun anstelle der Summe einen Durchschnitt nehmen, erhalten wir
+
+            \begin{align*}
+                \lambda x_i
+                =
+                \frac{1}{\deg v_i}
+                \sum_{j=1}^n \adj(v_i, v_j) x_j,
                 \quad
-                \chi_Q(G, \lambda) := \frac{1}{\det \mathbf D} \det(\lambda \mathbf D - \mathbf A), \\
-                \chi_R(G, \lambda) := \det(\lambda \mathbf I - \mathbf D - \mathbf A),
+                \text{bzw.}
+                \quad
+                \lambda \mathbf D \mathbf x = \mathbf A \mathbf x.
+            \end{align*}
+
+            Für $\det \mathbf D \neq 0$ können wir, um $\lambda$ zu finden auch nach Nullstellen des folgenden monischen Polynoms suchen:
+
+            \begin{align*}
+                \chi_Q(\lambda) := \frac{1}{\det \mathbf D} \det(\lambda \mathbf D - \mathbf A).
+            \end{align*}
+
+            Dasselbe kann man nun auch machen mit
+
+            \begin{align*}
+                \lambda x_i = \deg(v_i) x_i \pm \sum_{j=1}^n \adj(v_i, v_j) x_j
+                \quad
+                \text{bzw.}
+                \quad
+                \lambda \mathbf x = \mathbf D \mathbf x \pm \mathbf A \mathbf x,
+            \end{align*}
+
+            und den Polynomen
+
+            \begin{align*}
+                \chi_R(\lambda) := \det(\lambda \mathbf I - \mathbf D - \mathbf A)
                 \quad
                 \text{und}
                 \quad
-                \chi_S(G, \lambda) := \det(\lambda \mathbf I - \mathbf S).
+                \chi_L(\lambda) := \det(\lambda \mathbf I - \mathbf D + \mathbf A) = \det(\lambda \mathbf I - \mathbf L).
+            \end{align*}
+
+            Die eben erwähnten Polynome lassen sich alle mithilfe des Folgenden konstruieren:
+
+            \begin{align*}
+                \chi(\lambda, \mu)
+                :=
+                \det(\lambda \mathbf I + \mu \mathbf D - \mathbf A).
+            \end{align*}
+
+            Damit erhalt man
+
+            \begin{gather*}
+                \chi_P(\lambda) = \chi(\lambda, 0),
+                \quad
+                \chi_Q(\lambda) = \frac{1}{\det \mathbf D} \chi(0, \lambda), \\
+                \chi_R(\lambda) = \chi(\lambda, 1),
+                \quad
+                \text{und}
+                \quad
+                \chi_L(\lambda) = (-1)^n \chi(-\lambda, 1).
             \end{gather*}
 
-            Deren Nullstellen-Mengen $\sigma_P(G)$, $\sigma_Q(G)$, $\sigma_R(G)$, bzw. $\sigma_S(G)$ nennen wir \textit{(Graphen-)Spektren} von $G$.
-            $P_G$ und $\sigma_P(G)$ bekommen die Namen \textit{gewönliches} charakteristisches Polynom bzw. Spektrum;
-            $P_S$ und $\sigma_S(G)$ die Namen \textit{charakteristisches Seidel-Polynom} bzw. \textit{Seidel-Spektrum}.
+            Man beachte, dass wegen Bemerkungen \ref{rem:graph_matrix_similarity} und \ref{rem:permutation_matrices}, $\chi$ und damit auch die übrigen Polynome, nicht von der Auflistung $(v_1, \dots, v_n)$ abhängen.
+            Ähnliche Matrizen haben schließlich dieselbe Determinante.
+
+            Man beachte ebenfalls, dass für einen regulären Graphen $G$ mit Grad $d$ gilt, dass
+
+            \begin{align*}
+                \chi(\lambda, \mu)
+                =
+                \det(\lambda \mathbf I + \mu \mathbf D - \mathbf A)
+                =
+                \det((\lambda + \mu d) \mathbf I - \mathbf A)
+                =
+                \chi_P(\lambda + \mu d, 0).
+            \end{align*}
+
+            Die verschiedenen Polynome enthalten also die selbe Menge an \enquote{Information} über $G$.
+
+        \end{remark}
+
+        Fassen wir nun diese Ergebnisse in einer Definition zusammen.
+
+        \begin{definition} \label{def:graph_characteristic_polynomials_and_spectra}
+
+            Sei $G = (V, E)$ ein (Multi-)Graph und $\mathbf A \in \mathcal A(G)$, $\mathbf D \in \mathcal D(G)$ und $\mathbf L \in \mathcal L(G)$ beliebige Adjazenz-, Grad- bzw. Laplace-Matrizen einer einzigen beliebigen Auflistung von $V = \Bbraces{v_1, \dots, v_n}$.
+            Wir definieren die \textit{charakteristischen Polynome}
+
+            \begin{gather*}
+                \chi_P(G; \lambda) := \det(\lambda \mathbf I - \mathbf A),
+                \quad
+                \chi_Q(G; \lambda) := \frac{1}{\det \mathbf D} \det(\lambda \mathbf D - \mathbf A), \\
+                \chi_R(G; \lambda) := \det(\lambda \mathbf I - \mathbf D - \mathbf A),
+                \quad
+                \text{und}
+                \quad
+                \chi_L(G; \lambda) := \det(\lambda \mathbf I - \mathbf L).
+            \end{gather*}
+
+            Deren Nullstellen-Mengen $\sigma_P(G)$, $\sigma_Q(G)$, $\sigma_R(G)$, bzw. $\sigma_L(G)$ nennen wir \textit{(Graphen-)Spektren} von $G$.
+            $\chi_P(G, \lambda)$ und $\sigma_P(G)$ heißen \textit{gewönliches} charakteristisches Polynom bzw. Spektrum.
             Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $\chi_P(\lambda)$, $\chi_Q(\lambda)$, $\chi_R(\lambda)$ bzw. $\chi_S(\lambda)$.
 
-            Bei der Definition von $Q_G$ setzen wir voraus, dass $\det \mathbf D \neq 0$.
-            Laut Bemerkungen \ref{rem:congruent_sums} und \ref{rem:graph_matrix_similarity}, sind diese charakteristischen Polynome damit auch wohldefiniert. 
+            Bei der Definition von $\chi_Q(G, \lambda)$ setzen wir voraus, dass $\det \mathbf D \neq 0$.
 
         \end{definition}
 
-        % ---------------------------------------------------------------- %
-
-        \subsection{Motivation}
-
-            Die Definition \ref{def:graph_matrices} kann man, durch eine geometrische Überlegung, motivieren.
-
-        % ---------------------------------------------------------------- %
-
-    % -------------------------------------------------------------------------------------------------------------------------------- %

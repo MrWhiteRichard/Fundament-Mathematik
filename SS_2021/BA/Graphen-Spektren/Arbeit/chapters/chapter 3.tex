@@ -1,0 +1,84 @@
+\chapter{Charakteristische Polynome} \label{chap:characteristic_polynomials}
+
+    % Quelle: Spectra of Graphs - Theory an Application: The coefficints of P_G(lambda), Seite 31
+    \section{Die Koeffizienten von $\chi_P(\lambda)$}
+
+        \begin{theorem}
+
+            Sei $G = (V, E)$ ein (Multi-)Graph mit (gewöhnlichem) charakteristischem Polynom
+
+            \begin{align*}
+                \chi_P(\lambda)
+                =
+                \lambda^n + a_1 \lambda^{n-1} + \cdots + a_n.
+            \end{align*}
+
+            Dann gilt für alle $i = 1, \dots, n$, dass
+
+            \begin{align} \label{eq:characteristic_coefficints_directed}
+                a_i = \sum_{L \in \mathcal L_i} (-1)^{p(L)},
+            \end{align}
+
+            wenn $G$ gerichtet und
+
+            \begin{align} \label{eq:characteristic_coefficints_undirected}
+                a_i = \sum_{U \in \mathcal U_i} (-1)^{p(U)} \cdot 2^{c(U)},
+            \end{align}
+
+            wenn $G$ ungerichtet ist.
+
+        \end{theorem}
+
+        \begin{proof}
+
+            Laut Lemma \ref{lem:characteristic_coefficints}, lassen sich die Koeffizienten $a_i$, für $i = 1, \dots, n$, des gewöhnlichen charakteristischen Polynoms als $(-1)^i$ mal der Summe der $i$-Hauptminoren darstellen.
+            Also erhalten wir
+
+            \begin{align*}
+                a_i
+                =
+                (-1)^i
+                \sum_{\substack{I \subseteq \Bbraces{1, \dots, n} \\ |I| = i}}
+                    \det \mathbf A_I.
+            \end{align*}
+
+            Laut Bemerkung \ref{rem:induced_sub_graphs}, sind die $i$-Hauptminoren die Adjazenz-Matrizen der induzierten Teil-Graphen $G_I$ von $G$ mit $i = n - |I|$ Knoten.
+            Laut Satz \ref{thm:det} und Korollar \ref{cor:det}, kann man die $i$-Hauptminoren als Summe über lineare Teil-Graphen bzw. einfachen Teil-Figuren von $G$ schreiben.
+            Wir erhalten weiters
+
+            \begin{align*}
+                =
+                (-1)^i
+                \sum_{\substack{I \subseteq \Bbraces{1, \dots, n} \\ |I| = i}}
+                    \sum_{L \in \mathcal L_i(G_I)}
+                        (-1)^{p(L) + i}
+                =
+                \sum_{L \in \mathcal L_i(G)} (-1)^{p(L)},
+            \end{align*}
+
+            bzw.
+
+            \begin{align*}
+                =
+                (-1)^i
+                \sum_{\substack{I \subseteq \Bbraces{1, \dots, n} \\ |I| = i}}
+                    \sum_{U \in \mathcal U_i(G_I)}
+                        (-1)^{p(L) + i} \cdot 2^{c(U)}
+                =
+                \sum_{U \in \mathcal U_i(G)} (-1)^{p(U)} \cdot 2^{c(U)}.
+            \end{align*}
+
+        \end{proof}
+
+    % Quelle: Spectra of Graphs - Theory an Application: The coefficints of C_G(lambda), Seite 37
+    \section{Die Koeffizienten von $\chi_L(\lambda)$}
+
+    % Quelle: Spectra of Graphs - Theory an Application: The coefficints of Q_G(lambda), Seite 40
+    \section{Die Koeffizienten von $\chi_Q(\lambda)$}
+
+    % Quelle: Spectra of Graphs - Theory an Application: Reduction procedures for calculating the characteristic polynomial, Seite 59
+    \section{Die Berechnung der charakteristischen Polynome}
+
+        \subsection{Implementierung}
+
+            Wir wollen nun einige der eben angedeuteten Algorithmen in konkretem Python-Code umsetzen.
