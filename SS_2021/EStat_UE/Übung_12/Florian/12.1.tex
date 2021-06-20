@@ -40,8 +40,43 @@ and 49 normal individuals yielded the following results:
 
 \begin{solution}
 
-\phantom{}
+Since we work with large sample sizes ($n_1 = 41 \geq 30$ and $n_2 = 49 \geq 30$),
+we can use a normal-based test for independent samples.
 
+The parameter of interest are the sample means $\bar{X}_1 = 104.23, \bar{X}_2 = 62.24$,
+as well as the sample standard deviations $s_{1} = 62.24, s_{2} = 16.34$.
+
+Let $\mu_1, \mu_2$ denote the true means of the respective populations.
+Our null hypothesis thus states that there is no difference in the means,
+i.e. $\mu_1 - \mu_2 = 0$.
+For the alternative, we use the one-sided hypothesis $\mu_1 - \mu_2 > 0$.
+
+Our test statistic then reads
+
+\begin{align*}
+    Z = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+    \approx_{H_0} \mathcal{N}(0,1)
+\end{align*}
+
+Using $\alpha = 0.01$ as our significance level, we can safely reject the null, since $0.001 < \alpha$.
+
+
+Plugging in the given values we obtain 
+
+\begin{align*}
+    \text{p-value} = \P\left(Z \geq \frac{41.99}{\sqrt{\frac{62.24^2}{41} + \frac{16.34^2}{49}}}\right)
+    \approx 0.0000133 \neq .001 ?
+\end{align*}
+
+Furthermore, the 99\% confidence interval for our target parameter $\mu_1 - \mu_2$ reads
+
+\begin{align*}
+    41.99 \pm z_{\alpha/2} \frac{41.99}{\sqrt{\frac{62.24^2}{41} + \frac{16.34^2}{49}}}
+    \approx 41.99 \pm 10.8196.
+\end{align*}
+
+Since $0$ is significantly lower than the lower bound of our confidence interval,
+our conclusions agree with the previous part.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %

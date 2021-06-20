@@ -16,7 +16,7 @@ The frequencies are given in the following table:
         \hline
         algebra & 10 & 20 & 10 \\
         \hline
-        probability & 20 & 5 & 
+        probability & 20 & 5 & 15
     \end{tabular}
 \end{center}
 
@@ -44,7 +44,39 @@ from the university, on a 5\% significance level.
 
 \begin{solution}
 
-\phantom{}
+We apply the Chi-square Goodness-of-Fit Test with corresponding test statistic
+
+\begin{align*}
+    X^2 = \sum_{i=9}^3 \frac{(o_i - e_i)^2}{e_i} \approx_{H_0} \chi^2(8),
+\end{align*}
+
+where the $o_i$ denote the observed preferences for the 
+respective lectures in the respective universities, while the $e_i$
+denote the expected preference for the lecture if we average the
+preference probabilities across all three universities.
+
+\begin{align*}
+    p_1 &= (1/4 + 1/6 + 1/6)/3 = 7/36 \\
+    p_2 &= (1/4 + 4/6 + 2/6)/3 = 15/36 \\
+    p_3 &= (1/2 + 1/6 + 3/2)/3 = 14/36.
+\end{align*}
+Since
+
+\begin{align*}
+    X^2 &= \frac{(10 - 40* 7/36)^2}{40* 7/36}
+    + \frac{(5 - 30* 7/36)^2}{30* 7/36}
+    + \frac{(5 - 30* 7/36)^2}{30* 7/36} \\
+    &+ \frac{(10 - 40* 15/36)^2}{40* 15/36}
+    + \frac{(20 - 30* 15/36)^2}{30* 15/36}
+    + \frac{(10 - 30* 15/36)^2}{30* 15/36} \\
+    &+ \frac{(20 - 40* 14/36)^2}{40* 14/36}
+    + \frac{(5 - 30* 14/36)^2}{30* 14/36}
+    + \frac{(15 - 30* 14/36)^2}{30* 14/36} \\
+    &= \frac{102}{7} \approx 14.5714 < 15.51
+\end{align*}
+
+we cannot reject the null that the preference for a lecture is independent
+from the university.
 
 \end{solution}
 

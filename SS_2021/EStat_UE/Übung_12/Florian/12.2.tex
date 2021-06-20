@@ -11,12 +11,9 @@ All 22 children are taught by qualified instructors under similar
 conditions for the designated six-month period. The results of the reading
 test at the end of this period are given below.
 
-\begin{align*}
-    &\text{New Method:} 80, 76, 70, 80, 66, 85, 79, 71, 81, 76.
-    &\text{Standard Method:} 79, 73, 72, 62, 76, 68, 70, 86, 75, 68, 73, 66.
-\end{align*}
-
 \begin{enumerate}[label = (\alph*)]
+    \item[] New Method: 80, 76, 70, 80, 66, 85, 79, 71, 81, 76.
+    \item[] Standard Method: 79, 73, 72, 62, 76, 68, 70, 86, 75, 68, 73, 66.
     \item Use the data in the table to estimate the true mean difference
     between the test scores for the new method and the standard method.
     Use a 95\% confidence interval.
@@ -31,8 +28,29 @@ test at the end of this period are given below.
 
 \begin{solution}
 
-\phantom{}
+We are given small sample sizes (10 and 12) of two independent populations
+with sample means $\bar{X}_1 = 76.4$ and $\bar{X}_2 = 72.333$ and sample
+variances $s_1^2 = 34.044$ and $s_2^2 = 40.242$.
 
+The 95\%-confidence interval thus reads
+
+\begin{align*}
+    (76.4 - 72.333) \pm t_{\alpha/2}(\nu)\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n}}
+    \approx 4.067 \pm 5.427.
+\end{align*}
+
+with 
+
+\begin{align*}
+    \nu = \frac{\left(\frac{s_1^2}{n_1} +  \frac{s_2^2}{n_2}\right)^2}
+            {\frac{(s_1^2/n_1)^2}{n_1 - 1} + \frac{(s_2^2/n_2)^2}{n_2 - 1}}
+\end{align*}
+
+Since $0$ is part of our confidence interval, we cannot reject the null
+at significance level $\alpha = 0.05$.
+
+Necessary assumptions are that the true mean and variance of the compared
+populations need be finite, which seems to be satisfied.
 \end{solution}
 
 % -------------------------------------------------------------------------------- %
