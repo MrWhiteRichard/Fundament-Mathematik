@@ -1,0 +1,357 @@
+\documentclass[aspectratio=169]{beamer}
+
+
+
+\mode<presentation>
+{
+ \usetheme[reversetitle,notitle,noauthor]{Wien}
+%    \usetheme[noauthor]{Wien}
+}
+
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{{./}{./Figures/}}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{algorithm2e}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{positioning}
+\usetikzlibrary{overlay-beamer-styles}
+
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} % \pgfkeysalso doesn't change the path
+}}
+\tikzset{temporal/.code args={<#1>#2#3#4}{%
+  \temporal<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}{\pgfkeysalso{#4}} % \pgfkeysalso doesn't change the path
+}}
+
+\tikzstyle{highlight}=[red,ultra thick]
+
+% To avoid a warning from the hyperref package:
+\pdfstringdefDisableCommands{%
+    \def\translate{}%
+}
+
+% To make sure, that the footnote is placed above and outside the
+% footline (but it only works for one footnote per frame):
+%
+% \addtobeamertemplate{footnote}{}{\vspace{4ex}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Zelluläre Automaten]{Design und Analyse eines Spiels \newline mithilfe von Zellulären Automaten}
+
+
+\subtitle{Bachelorarbeit aus Diskreter Mathematik}
+
+\author[C. Göth]{Christian Göth}
+
+\institute[TU Wien]{TU Wien, Vienna, Austria}
+
+\date{21. Juni 2021}
+
+\input{packages.tex}
+\input{macros.tex}
+\input{environments.tex}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+  \begin{frame}{Wiederholung 1/2}
+    \begin{block}{Definitionen (Bestandteile eines ZA)}
+      \begin{itemize}
+        \item \textit{Zellularraum} $\mathbb{Z}^{d}$: $d$-dimensionales unendliches Gitter
+        \item \textit{Zustandsmenge} $S$: endliche Menge
+        \item \textit{Nachbarschaft}: Vektor $N = (y_1,y_2,\dots,y_n)$ aus $n$ paarweise verschiedenen Elementen
+        \item \textit{Lokale Update-Regel} $f: S^n \to S$
+      \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{definition*}
+      \begin{itemize}
+        \item \textit{Konfiguration}: Abbildung $c: \mathbb{Z}^{d} \to S$
+        \item Die Menge $S^{\mathbb{Z}^{d}}$ aller Konfigurationen heißt $\mathcal{C}(d,S) = \mathcal{C}$
+      \end{itemize}
+    \end{definition*}
+  \end{frame}
+
+
+  \begin{frame}{Eigenschaften des Spiels 1/3}
+    \begin{block}{Zustandsmenge}
+      Jeder Zustand besteht aus $4$ Komponenten $(\uparrow, \rightarrow, \downarrow, \leftarrow)$, die einer (theoretischen) Mehrfach-Belegung entsprechen:
+      \begin{align*}
+        & S := \{0,1\}^4 \cup \{0,2,3\}^{4} \\
+        \Rightarrow & |S| = 2^4 + 3^4 -1 = 96
+      \end{align*}
+
+    \end{block}
+
+    \pause
+
+    \begin{block}{Nachbarschaft ($n=9$)}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width = 0.2 \textheight]{neighborhood.png}
+      \end{figure}
+
+    \end{block}
+  \end{frame}
+
+
+  \begin{frame}{Eigenschaften des Spiels 2/3}
+    \begin{block}{Lokale Update-Regel}
+      Sehr komplex ($f: S^n \to S$ mit $|S^n| = 96^9$) und diverse Fallunterscheidungen. \\
+      Daher nur zwei Beispiele.
+    \end{block}
+
+    \pause
+
+    \begin{multicols*}{3}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example1n_1.png}
+      \end{figure}
+
+      \vfill\null
+
+      \pause
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example1n_2.png}
+      \end{figure}
+
+      \vfill\null
+
+      \pause
+
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example1_3.png}
+      \end{figure}
+
+    \end{multicols*}
+
+  \end{frame}
+
+  \begin{frame}{Eigenschaften des Spiels 3/3}
+    \begin{block}{Lokale Update-Regel}
+      Sehr komplex ($f: S^n \to S$ mit $|S^n| = 96^9$) und diverse Fallunterscheidungen. \\
+      Daher nur zwei Beispiele.
+    \end{block}
+
+    \begin{multicols*}{3}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example2n_1.png}
+      \end{figure}
+
+      \vfill\null
+
+      \pause
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example2n_2.png}
+      \end{figure}
+
+      \vfill\null
+
+      \pause
+
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.39 \textheight]{example2_3.png}
+      \end{figure}
+
+    \end{multicols*}
+
+  \end{frame}
+
+
+
+  \begin{frame}{Eigenschaften des Spiels (Ausblick)}
+    Erweiterung von $S, N$ und $f$ bei Eingreifen des\slash der Spieler\textunderscore in.
+
+    \vfill\null
+
+    \begin{multicols*}{2}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.5 \textheight]{example3n_1.png}
+      \end{figure}
+
+
+      \pause
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.5 \textheight]{example3n_2.png}
+      \end{figure}
+
+    \end{multicols*}
+
+  \end{frame}
+
+  \begin{frame}{Wiederholung 2/2}
+    \begin{definition*}
+      Wir identifizieren einen zellulären Automaten $(S,N,f)$ mit seiner \textit{Globalen Überführungsfunktion} $G: \mathcal{C} \to \mathcal{C}$ und sprechen vom ZA $G$.
+    \end{definition*}
+
+    \pause
+
+    \begin{definition*}
+      Ein ZA $G$ heißt bijektiv, falls $G$ als Funktion bijektiv ist.
+    \end{definition*}
+
+    \begin{definition*}
+      Ein ZA $G$ heißt reversibel, falls ein ZA $H$ existiert mit $G \circ H = H \circ G = id$.
+    \end{definition*}
+  \end{frame}
+
+
+  \begin{frame}{Definitionen}
+    \begin{definition*}
+      Auf der Menge $\mathcal{C} = S^{\mathbb{Z}^d}$ der Konfigurationen definieren wir nun eine Metrik. Für $c, e \in \mathcal{C}$ sei
+      \begin{align*}
+        d(c, e) = \begin{cases}
+          0, & c = e \\
+          2^{- \min \{ \|x\|_\infty: c(x) \neq e(x)\} }& \, c \neq e
+        \end{cases}
+      \end{align*}
+    \end{definition*}
+
+    \pause
+
+    \begin{remark*}
+      Es ist $d$ tatsächlich eine Metrik. Die induzierte Topologie entspricht der Produkt- topologie der diskreten Topologie von $S$ und macht $\mathcal{C}$ zu einem kompakten Raum.
+    \end{remark*}
+
+    \pause
+
+    \begin{definition*}
+      Für $y \in \mathbb{Z}^d$ definieren wir den ZA $\tau_{y} = (S, (-y), id)$ und nennen ihn \textit{Translation} um den Vektor $y$.
+    \end{definition*}
+
+  \end{frame}
+
+  \begin{frame}{Curtis-Hedlund-Lyndon Theorem}
+    \begin{theorem*}[Curtis-Hedlund-Lyndon]
+      Eine Funktion $G: S^{\mathcal{Z}^d} \to S^{\mathcal{Z}^d}$ ist die Globale Überführungsfunktion eines ZA genau dann, wenn $G$ stetig ist und mit Translationen kommutiert.
+    \end{theorem*}
+
+    \pause
+
+    \begin{corollary*}
+      Ein ZA $G$ ist reversibel genau dann, wenn er bijektiv ist.
+    \end{corollary*}
+
+    \begin{proof}
+      Definitionsgemäß folgt aus der Reversibilität die Bijektivität.
+      Sie $G$ ein bijektiver ZA. Die Inverse $G^{-1}$ einer stetigen Bijektion zwischen zwei kompakten metrischen Räumen ist wieder stetig. Offensichtlich kommutiert $G^{-1}$ mit Translationen. Somit ist $G^{-1}$ die Funktion eines ZA.
+    \end{proof}
+  \end{frame}
+
+
+  \begin{frame}{Injektivität in Zellulären Automaten}
+    \begin{corollary*}
+      Ein ZA $G$ ist reversibel genau dann, wenn er bijektiv ist.
+    \end{corollary*}
+
+    \pause
+
+    \begin{theorem*}[Garden-of-Eden/ Moore and Myhill]
+      Ein ZA $G$ ist surjektiv genau dann, wenn die Einschränkung auf endliche Konfigurationen $G_F$ injektiv ist.
+    \end{theorem*}
+
+    \pause
+
+    Es gilt also für Zelluläre Automaten:
+    \begin{align*}
+      \text{Injektivität} \Leftrightarrow \text{Reversibilität}.
+    \end{align*}
+  \end{frame}
+
+
+  \begin{frame}{\sout{Injektivität}}
+
+    \begin{multicols*}{5}
+
+      \onslide<1->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.35 \textheight]{example2_2.png}
+      \end{figure}
+
+      \vfill\null
+
+      \onslide<2->\centering{\Huge $\rightarrow$ \par}
+
+      \vfill\null
+
+      \onslide<2->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.35 \textheight]{example2_3.png}
+      \end{figure}
+
+      \vfill\null
+
+
+
+      \onslide<3->\centering{\Huge $\leftarrow$ \par}
+      \vfill\null
+
+      \onslide<3->\begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.35 \textheight]{example4_2.png}
+      \end{figure}
+
+    \end{multicols*}
+  \end{frame}
+
+
+  \begin{frame}{Garden of Eden-Konfigurationen}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width = 0.55 \textheight]{example5.png}
+    \end{figure}
+  \end{frame}
+
+
+  \begin{frame}{}
+    \begin{block}{}
+
+      {
+          \centering
+          \huge
+          Bei Interesse am Spiel gerne melden!
+      }
+
+    \end{block}
+
+  \end{frame}
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
