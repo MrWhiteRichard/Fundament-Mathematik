@@ -35,6 +35,129 @@ A summary of the results is provided in the following table.
 
 \phantom{}
 
+\begin{enumerate}[label = (\alph*)]
+
+    \item It is dangerous to draw a statistical inference from the sumamrized data, becuase approimately $3/4$-ths of the samples were whites, while blacks represent only $1/4$-ths.
+    Moreover, matters of skin color are inherently delicate.
+
+    \item Our (one-tailed) test reads
+    
+    \begin{align*}
+        H_0: \mu_1 - \mu_2 = 0
+        \quad
+        \textit{vs.}
+        \quad
+        H_1: \mu_2 - \mu_1 > 0,
+    \end{align*}
+
+    with test statistic
+
+    \begin{align*}
+        Z = \frac{\bar X_1 - \bar X_2}{\sqrt{S_1^2 / n_1 - S_2^2 / n_2}} \approx_{H_0} N(0, 1).
+    \end{align*}
+
+    We reject $H_0$, iff
+
+    \begin{multline*}
+        0.05
+        =
+        \alpha
+        \stackrel{!}{>}
+        \text{$p$-value}
+        =
+        P(Z > z \mid H_0)
+        >
+        P \pbraces{Z \geq \frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}} \mid H_0} \\
+        =
+        1 - \Phi \pbraces{\frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}}}
+        =
+        \Phi \pbraces{\frac{\bar x_2 - \bar x_1}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}}}
+        =
+        \Phi \pbraces{\frac{6.9 - 8.2}{\sqrt{s_1^2 / 55 + s_2^2 / 159}}},
+    \end{multline*}
+
+    iff
+
+    \begin{align*}
+        -1.64
+        \approx
+        \Phi^{-1}(0.05)
+        >
+        \frac{-1.3}{\sqrt{s_1^2 / 55 + s_2^2 / 159}}
+    \end{align*}
+
+    (approximately) iff
+
+    \begin{align*}
+        \sqrt{s_1^2 / 55 + s_2^2 / 159}
+        <
+        \frac{1.3}{1.64}.
+    \end{align*}
+
+    \item Our (two-tailed) test reads
+    
+    \begin{align*}
+        H_0: \mu_1 - \mu_2 = 0
+        \quad
+        \textit{vs.}
+        \quad
+        H_1: \mu_2 - \mu_1 \neq 0,
+    \end{align*}
+
+    with test statistic
+
+    \begin{align*}
+        Z = \frac{\bar X_1 - \bar X_2}{\sqrt{S_1^2 / n_1 - S_2^2 / n_2}} \approx_{H_0} N(0, 1).
+    \end{align*}
+
+    We reject $H_0$, iff
+
+    \begin{align*}
+        0.05
+        =
+        \alpha
+        \stackrel{!}{>}
+        \text{$p$-value}
+        =
+        P(|Z| > |z| \mid H_0)
+        =
+        2 P(Z > |z| \mid H_0),
+    \end{align*}
+
+    iff
+
+    \begin{multline*}
+        0.025
+        >
+        P \pbraces{Z \geq \frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}} \mid H_0}
+        =
+        1 - \Phi \pbraces{\frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}}} \\
+        =
+        \Phi \pbraces{\frac{\bar x_2 - \bar x_1}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}}}
+        =
+        \Phi \pbraces{\frac{6.9 - 8.2}{\sqrt{s_1^2 / 55 + s_2^2 / 159}}},
+    \end{multline*}
+
+    iff
+
+    \begin{align*}
+        -1.96
+        \approx
+        \Phi^{-1}(0.025)
+        >
+        \frac{-1.3}{\sqrt{s_1^2 / 55 + s_2^2 / 159}}
+    \end{align*}
+
+    (approximately) iff
+
+    \begin{align*}
+        \sqrt{s_1^2 / 55 + s_2^2 / 159}
+        <
+        \frac{1.3}{1.96}.
+    \end{align*}
+
+\end{enumerate}
+
 \end{solution}
 
 % ---------------------------------------------------------------- %
