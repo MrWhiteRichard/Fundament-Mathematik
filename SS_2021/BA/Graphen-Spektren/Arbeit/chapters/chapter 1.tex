@@ -164,24 +164,25 @@
 
             wobei $\overline \cdot$ die \textit{komplexe Konjugation} ist.
 
-            Den \textit{$i$-ten kanonischen Basis-Vektor}, den \textit{Null-Vektor} und \textit{Eins-Vektor}, sowie die \textit{Einheits-Matrix}, die \textit{Null-Matrix} und die \textit{Eins-Matrix}, jeweils der Größe $n \in \N \setminus \Bbraces{0}$ (und $i = 1, \dots, n)$, schreiben wir als
+            Den \textit{$i$-ten kanonischen Basis-Vektor}, den \textit{Null-Vektor} und \textit{Eins-Vektor}, sowie die \textit{Einheits-Matrix}, die \textit{Null-Matrix} und die \textit{Eins-Matrix}, jeweils der Größe(n) $n, m \in \N \setminus \Bbraces{0}$, mit $i = 1, \dots, n$, schreiben wir als
 
             \begin{gather*}
-                \mathbf e_i := (\delta_{i, j})_{j=1}^n \in \R^n,
+                \mathbf e_i := (\delta_{i,j})_{j=1}^n \in \R^n,
                 \quad
                 \mathbf 0 := (0)_{i=1}^n \in \R^n,
                 \quad
                 \mathbf 1 := (1)_{i=1}^n \in \R^n, \\
-                \mathbf I_n := (\delta_{i, j})_{i, j = 1}^n \in \R^{n \times n},
+                \mathbf I_n := (\delta_{i, j})_{i,j=1}^n \in \R^{n \times n},
                 \quad
-                \mathbf Z_n := (0)_{i, j = 1}^n \in \R^{n \times n}.
+                \mathbf O_{n \times m} := (0)_{i,j=1}^{n,m} \in \R^{n \times n}.
                 \quad
                 \text{bzw.}
                 \quad
-                \mathbf J_n := (1)_{i, j = 1}^n \in \R^{n \times n}.
+                \mathbf J_{n \times m} := (1)_{i,j=1}^{n,m} \in \R^{n \times n}.
             \end{gather*}
 
-            Wenn es aus dem Kontext heraus klar ist, was $n$ ist, lassen wir den Index weg, schreiben also $\mathbf I$, $\mathbf Z$ bzw. $\mathbf J$.
+            Für $m = n$ schreiben wir auch $\mathbf O_n = \mathbf O_{n \times m}$ und $\mathbf J_n = \mathbf J_{n \times m}$.
+            Wenn es aus dem Kontext heraus klar ist, was $n$ ist, lassen wir den Index weg, schreiben also $\mathbf I$, $\mathbf O$ bzw. $\mathbf J$.
 
             Die Gruppen der \textit{invertierbaren}, \textit{orthogonalen} und \textit{unitären} Matrizen schreiben wir als
 
@@ -722,14 +723,12 @@
                 \item $E$ kann auch aus Paar-Mengen $\Bbraces{v, w}$, mit $v, w \in V$, wobei $v \neq w$, bestehen.
                 $G$ nennen wir dann \textit{ungerichtet}.
 
-                \item $E$ kann aber auch aus Multi-Mengen $\Bbraces{v, w}$, für $v, w \in V$, bestehen.
-                In diesem Fall heißt $G$ ebenfalls \textit{ungerichtet}.
-                \textit{(Ungerichtete) Schleifen} seien nun Multi-Mengen $\Bbraces{v, v}$ mit $v \in V$, welches Vielfachheit $2$ hat.
-                Wir vereinbaren, dass $E$ aus Paar-Mengen besteht, wenn es keine ungerichtete Schleifen gibt.
-
             \end{enumerate}
 
-            Solche Graphen nennen wir auch \textit{schlicht}.
+            $E$ kann aber auch aus Multi-Mengen $\Bbraces{v, w}$, für $v, w \in V$, bestehen.
+            In diesem Fall heißt $G$ ebenfalls \textit{ungerichtet}, aber mit \textit{(ungerichteten) Schleifen}.
+            Diese seien nun Multi-Mengen $\Bbraces{v, v}$ mit $v \in V$.
+
             $E$ kann eine Multi-Menge sein.
             $G$ ist dann ein (nicht mehr schlichter) \textit{Multi-Graph} und ein Element $e \in E$ eine \textit{Mehrfach-Kante} (oder, wenn $e$ eine Schleife ist, sogar eine \textit{Mehrfach-Schleife}).
             Allgemeiner sei, für eine Funktion $w: E \to M$ in eine Menge $M$ (z.B. $M = \N$), das Tripel $G = (V, E, w)$ ein \textit{gewichteter} Graph mit \textit{Gewichts-Funktion} $w$.
@@ -1058,9 +1057,10 @@
         \begin{remark} \label{rem:motivation}
 
             Bevor wir direkt zu Definition \ref{def:graph_characteristic_polynomials_and_spectra} kommen, wollen wir diese durch ein paar geometrische Überlegungen motivieren.
-            Sei dazu $G = (V, E)$ ein (Multi-)Graph mit $V = \Bbraces{v_1, \dots, v_n}$ sowie zugehöriger Adjazenz-Matrix $\mathbf A$, Grad-Matrix $\mathbf D$, und Laplace-Matrix $\mathbf L$.
+            Seien $\mathbf A$, $\mathbf D$ und $\mathbf L$ die Adjazenz-, Grad- bzw. Laplace-Matrix eines (Multi-)Graphen $G = (V, E)$ zur Auflistung $(v_1, \dots, v_n)$ von $V$.
 
-            Wir wollen nun wissen, ob es für jeden Knoten $v_i$ einen Wert $x_i \in \C$ gibt, sodass es eine Konstante gibt, bezüglich derer $x_i$ proportional zur Summe der $x_j$, wo $v_j$ nach $v_i$ führt, gewichtet nach ihrer Adjazenz ist, wobei $i, j = 1, \dots, n$.
+            Wir suchen für jeden Knoten $v_i$, mit $i = 1, \dots, n$, einen Wert $x_i \in \C$ und eine (gleichmäßige) Konstante $\lambda$.
+            Es soll gelten, dass $x_i$ proportional zur gewichteten Summe der $x_j$ und $\adj(v_i, v_j)$ ist, wobei $v_i$ nach $v_j$ führt, mit Konstante $\lambda$, für $i, j = 1, \dots, n$.
             Damit das Problem nicht trivial ist, dürfen nicht alle Werte gleich Null sein.
             Als System von linearen Gleichungen lautet dies i.Z.
 
