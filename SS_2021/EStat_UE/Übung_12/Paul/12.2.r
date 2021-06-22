@@ -17,3 +17,5 @@ upper = m1 - m2 + dist
 print(lower)
 print(upper)
 
+hist(old)
+hist(new)

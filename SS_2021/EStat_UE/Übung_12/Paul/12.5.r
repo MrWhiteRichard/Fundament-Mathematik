@@ -11,3 +11,5 @@ zz = qt(0.05, n-1)
 print(z)
 print(zz)
 
+hist(before)
+hist(after)
