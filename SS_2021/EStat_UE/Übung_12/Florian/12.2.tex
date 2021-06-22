@@ -35,7 +35,7 @@ variances $s_1^2 = 34.044$ and $s_2^2 = 40.242$.
 The 95\%-confidence interval thus reads
 
 \begin{align*}
-    (76.4 - 72.333) \pm t_{\alpha/2}(\nu)\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n}}
+    (76.4 - 72.333) \pm t_{\alpha/2}(\nu)\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
     \approx 4.067 \pm 5.427.
 \end{align*}
 
@@ -51,6 +51,52 @@ at significance level $\alpha = 0.05$.
 
 Necessary assumptions are that the true mean and variance of the compared
 populations need be finite, which seems to be satisfied.
+Furthermore, we suppose that the population samples are normally distributed and independent.
+
+If we cannot suppose a normal distribution, we can use the Wilcoxon Signed-Rank test.
+For that purpose we first rank the observations:
+\vspace{10pt}
+
+\begin{center}
+    
+    \begin{tabular}{c|c||c|c}
+        Standard Method & Rank & New Method & Rank \\
+        \hline
+        86 & 1 & 85 & 2 \\
+        79 & 6.5 & 81 & 3 \\
+        76 & 9 & 80 & 4.5 \\
+        75 & 11 & 80 & 4.5 \\
+        73 & 12.5 & 79 & 6.5 \\
+        73 & 12.5 & 76 & 9 \\
+        72 & 14 & 76 & 9 \\
+        70 & 16.5 & 71 & 15 \\
+        68 & 18.5 & 70 & 16.5 \\
+        68 & 18.5 & 66 & 20.5 \\
+        66 & 20.5 & & \\
+        62 & 22 & &
+    \end{tabular}
+
+\end{center}
+
+We define the random variable $W_n = \sum_{i=1}^{n_1+n_2}iZ_i$,
+where $Z_i = 1$ iff the $i$-th ranked random variable is sampled from the $X$-population and $0$ otherwise.
+
+Since we are dealing with large samples $n_1, n_2 \geq 0$, we can use a normal approximation to determine the rejection region:
+
+\begin{align*}
+    W_n \geq \frac{n_1(n+1)}{2} + 0.5 + z_{\alpha}\sqrt{\frac{n_1n_2(n+1)}{12}}
+    \approx  140.4454.
+\end{align*}
+
+Plugging in the given data we obtain
+
+\begin{align*}
+    W_n = 1 + 6.5 + 9 + 11 + 12.5 + 12.5 + 14 + 16.5 + 18.5 + 18.5 + 20.5 + 22 
+    = 162.5 > 140.4454,
+\end{align*}
+
+which means we can reject the null and conclude that the new method offers indeed an advantage.
+
 \end{solution}
 
 % -------------------------------------------------------------------------------- %
