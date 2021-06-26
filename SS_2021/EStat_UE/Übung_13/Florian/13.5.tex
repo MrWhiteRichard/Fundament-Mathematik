@@ -1,0 +1,32 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[\textbf{CD players}]
+
+A manufacturer of compact disk (CD) players has established that the
+median time to failure for its players is 5250 hours of utilization.
+A sample of 20 CDs from a competitor is obtained, and they are continuously
+tested until each fails. The 20 failure times range from five hours
+(a defective player) to 6575 hours, and 14 of the 20 exceed 5250 hours.
+Is there evidence that the median failure time of the competitor differs
+from 5250 hours? Use $\alpha = 0.1$. 
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Again we can use the Sign test, where $X \sim_{H_0} \text{Bin}(n, 0.5)$
+denotes the number of observation exceeding the median $M_0 := 5250$.
+We calculate the
+
+\begin{align*}
+    p-\text{value} = \P(X \geq 14) = \sum_{k=14}^{20} \binom{20}{k}\frac{1}{2^{20}}
+    \approx 0.05765915,
+\end{align*}
+
+which means we reject the null at significance level $\alpha = 0.05$.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

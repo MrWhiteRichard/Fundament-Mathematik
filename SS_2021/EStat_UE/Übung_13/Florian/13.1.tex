@@ -1,0 +1,47 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[\textbf{Unemployment and a reduced workweek}]
+
+In an effort to increase employment, France mandated in February 2000 that
+all companies with 20 or more employees reduce the workweek to 35 hours.
+The economic of the shortened workweek was analyzed in \textit{Economic Policy}
+(2008). The researchers focused on several key variables such as hourly
+wages, dual job holdings and level of unemployment. Assume that in the
+year prior to the 35-hour workweek law, unemployment in France was 12\%.
+Suppose that in a random sample of 500 French citizens (eligible workers)
+taken several years after the law was enacted, 53 were unemployed.
+Determine if the French unemployment rate dropped after the enactment
+of the 35-hour workweek law.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+We want to test the null hypothesis $H_0: \mu = 0.12$, where $\mu$
+denotes the unemployment rate after the enactment of the 35-hour workweek law
+against the alternative $H_1: \mu < 0.12$.
+
+Let $X$ denote the random variable that counts the number of unemployed
+people from a population of 300 samples. Because each individual person
+has a chance of $\mu_0 = 0.12$ to be unemployed under the null we have
+$X \sim_{H_0} \text{Bin}(500, 0.12)$.
+
+Since $n \cdot p = \frac{500 \cdot 12}{100} = 60 > 15$
+and $n \cdot (1 - p) = \frac{500 \cdot 88}{ 100} = 440 > 15$
+we can use a normal approximation: $X \sim_{H_0} \mathcal{N}(60, 264/5)$.
+
+Now we can use a regular one sided $z$-value test.
+We calculate
+
+\begin{align*}
+    p-\text{value} = \P(X \leq 53) = \Phi\left(-7\sqrt{\frac{5}{264}}\right)
+    \approx 0.1677
+\end{align*}
+
+At a standard significance level $\alpha = 0.05$ this means we cannot
+reject the null that the unemployment rate stayed unchanged.
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

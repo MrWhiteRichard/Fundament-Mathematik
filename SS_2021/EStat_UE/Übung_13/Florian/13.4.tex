@@ -1,0 +1,51 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}[\textbf{MBA students}]
+
+One way to assess the benefits of an MBA degree is to investigate the salaries
+received by MBA students several years after graduation.
+In 1998, the Graduate Management Admission Council estimated that the
+median earnings of graduates of full-time, highly ranked MBA programs
+four years after graduating was \$96000 (Selections, Winter 1999).
+A random sample of 50 graduates from the class of 1996 of a particularly
+highly ranked MBA program were mailed a questionnaire and asked to report
+their earnings for 2000. Fifteen useable responses were received;
+9 indicated earnings greater than \$96000 and 6 indicated earnings below
+\$96000.
+
+\begin{enumerate}[label = (\alph*)]
+    \item Specify the null and alternative hypotheses that should be
+    used in testing whether the median income of graduates of the MBA
+    program was more than \$96000 in 2000.
+    \item Conduct the test of the previous part using $\alpha = 0.05$ and
+    draw your conclusions in the context of the problem. 
+\end{enumerate}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+    \begin{enumerate}[label = (\alph*)]
+        \item The null hypothesis states that the median income is given by $H_0: M_0 := 96000$,
+        while the alternative states $H_1: M > M_0$.
+        For our purpose the Sign test is the most fitting test, where our
+        test statistic $X \sim_{H_0} \text{Bin}(n, 0.5)$ counts the number
+         of observations exceeding $M_0$.
+        \item Plugging in the given data we obtain $X = 9, n = 15$.
+        Calculating the $p$-value yields
+
+        \begin{align*}
+            p-\text{value} = \P(X \geq 9) = \sum_{k=9}^{15}\binom{15}{k}\frac{1}{2^{15}}
+            \approx 0.3036194.
+        \end{align*}
+
+        Based on these results we cannot reject the null.
+    \end{enumerate}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
