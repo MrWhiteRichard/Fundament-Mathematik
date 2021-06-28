@@ -4,8 +4,6 @@ import random
 import time
 from itertools import product
 
-from numpy.core.fromnumeric import prod
-
 env = gym.make('CartPole-v0')
 
 
@@ -80,6 +78,11 @@ def REINFORCE(alpha, gamma, max_episodes, env, dim):
     print(episode_length_array)
     return theta
 
+def REINFORCE_BASELINE(alpha, gamma, max_episodes, env, dim):
+
+    pass
+
+
 theta = REINFORCE(0.01, 1, 500, env, 2**5)
 print(theta)
 observation = env.reset()
@@ -93,7 +96,6 @@ for t in range(100):
         print("Episode finished after {} timesteps".format(t+1))
         break
 
-state = env.reset()
 
 
 env.close()
