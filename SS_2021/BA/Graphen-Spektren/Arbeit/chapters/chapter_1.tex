@@ -5,10 +5,10 @@
         In diesem Kapitel sollen Notationen festgelegt und bekannte Definitionen sowie Ergebnisse in Erinnerung gerufen werden.
         Nachdem Letztere nicht das zentrale Thema dieser Arbeit sind, werden die Beweise größtenteils zitiert. \\
 
-        Wir lassen $0 \in \N$ als \textit{natürliche Zahl} zu.
-        Wenn es nicht wichtig ist, ob konkret von den \textit{reellen Zahlen} $\R$ oder \textit{komplexen Zahlen} $\C$ die Rede ist, schreiben wir $\K$\footnote{$\K$ steht für \enquote{Körper}.}.
+        Die $0$ gehört hier zu den \glsakkusativeplural{glos:natural_number} \gls{symb:natural_numbers} dazu.
+        Wenn es nicht wichtig ist, ob konkret von den \glsakkusativeplural{glos:real_number} \gls{symb:real_numbers} oder \glsakkusativeplural{glos:complex_number} \gls{symb:complex_numbers} die Rede ist, schreiben wir \gls{symb:real_or_complex_numbers}.
 
-        Das \textit{Kronecker-Delta}, sei notiert als
+        Das \glsnominativesingular{glos:kronecker_delta}, sei notiert als
 
         \begin{align*}
             \delta_{i, j}
@@ -25,76 +25,160 @@
 
             \begin{definition}
 
-                Sei $\dom M$ eine endliche Menge.
-                Eine \textit{Multimenge} $M$ auf $\dom M$ ist eine Funktion von $\dom M$ in die Natürlichen Zahlen $\N$,
+                Sei $D$ eine endliche Menge.
+                Eine \glsnominativesingular{glos:multi_set} $M$ auf $D$ ist eine Funktion von $D$ in die Natürlichen Zahlen ohne die Null $\N \setminus \Bbraces{0}$:
 
                 \begin{align*}
-                    M: \dom M \to \N.
-                \end{align*}
-
-                Für $x \in \dom M$, nennen wir $M(x)$ dessen \textit{Vielfachheit}.
-                $M$ ist eine \textit{echte} Multimenge, wenn ihre Werte-Menge $\ran M$ ein Element mit Vielfachheit ungleich $1$ hat.
-                Der \textit{Träger} $\supp M$ von $M$ sei die Menge aller Elemente aus $\dom M$, mit positiver Vielfachheit, i.Z.
-
-                \begin{align*}
-                    \supp M
-                    :=
-                    \Bbraces{x \in \dom M: M(x) > 0}.
-                \end{align*}
-
-                Die \textit{Mächtigkeit} $|M|$ von $M$ sei die Summe aller Vielfachheiten,
-
-                \begin{align*}
-                    |M| := \sum_{x \in \dom M} M(x).
+                    M: D \to \N \setminus \Bbraces{0}.
                 \end{align*}
 
             \end{definition}
-
-            Der Hauptzweck hinter Multi-Mengen soll darin bestehen, einen Kompromiss zwischen Mengen und Tupeln zu machen.
-            D.h. deren Elemente sollen ungeordnet sein, es muss aber klar sein, wie oft die Elemente vorkommen.
-            Wir wollen mit Multi-Mengen aber möglichst so, wie mit Mengen arbeiten können.
-            Dazu treffen wir folgende Vereinbarungen:
+            
+            Wir schreiben $\dom M$ für die Definitions-Menge\footnote{Die Werte-Menge wäre an der Stelle $\ran M = \N \setminus \Bbraces{0}$.} $D$ von $M$
+            Um mit Multi-Mengen möglichst so, wie mit Mengen umzugehen, definieren wir, analog zu Mengen:
 
             \begin{enumerate}[label = \arabic*.]
-                \item Für $x \in \supp M$ schreiben wir auch $x \in M$.
-                \item Wenn es klar ist, dass $M$ eine Multi-Mengen ist, werden wir diese auch mit geschweiften Klammern notieren, wobei Elemente, die mehrmals vorkommen dementsprechende Vielfachheit haben.
-                \item Sollten wir $M$ jemals als Funktion, d.h. als Menge von Paaren betrachten, wird darauf explizit hingewiesen.
-                \item Die Vereinigung von zwei (oder mehr) Multi-Mengen $M_1$ und $M_2$ ist deren Komponenten-weise Summe $M_1 + M_2$, wobei für $x \in \dom M_1 \setminus \dom M_2$ gilt $M_2(x) = 0$.
-                \item Für eine Multi-Menge $M$ und einer Funktion $P$ auf $M$, ist das Bild $P(M) = \Bbraces{P(x): x \in M}$ stets wieder eine Multi-Menge, wobei $P(x)$ dieselbe Vielfachheit wie $x \in M$ hat.
-                \item Für eine Multi-Menge $M$, ist $\sum_{x \in M} P(x)$ so zu verstehen, dass $P(x)$ geanau so oft als Summand auftritt, wie die Vielfachheit von $x \in M$.
+
+                \item Die \glsnominativesingular{glos:indicator_function} \gls{symb:indicator_function} von $M$ sei definiert als
+
+                \begin{align*}
+                    \chi_M(x)
+                    =
+                    \begin{cases}
+                        M(x), & \text{wenn} ~ x \in \dom M, \\
+                        0,    & \text{sonst}.
+                    \end{cases}
+                \end{align*}
+
+                Wir nennen $\chi_M(x)$ die \glsnominativesingular{glos:multiplicity} von $x$ (in $M$).
+
+                \item Die \glsnominativesingular{glos:cardinality} \gls{symb:cardinality} von $M$ sei die Summe aller Vielfachheiten:
+
+                \begin{align*}
+                    |M| := \sum_{x \in \dom M} \chi_M(x).
+                \end{align*}
+
+                \item Seien $M_1$ und $M_2$ Multi-Mengen.
+                Deren \glsnominativesingular{glos:unification} \gls{symb:unification} sei definiert als ihre komponentenweise Summe
+
+                \begin{align*}
+                    M_1 \cup M_2 \to \N \setminus \Bbraces{0}:
+                        \dom M_1 \cup \dom M_2:
+                            x \mapsto \chi_{M_1}(x) + \chi_{M_2}(x).
+                \end{align*}
+
+                Analoges gelte für mehr als $2$ Multi-Mengen.
+
+                \item Sei $M$ eine Multi-Menge und $f: \dom M \to \K$.
+                Wenn wir über $M$ summieren, dann entsprechend der Vielfachheit der Elemente von $M$, i.Z.
+
+                \begin{align*}
+                    \sum_{x \in M} f(x)
+                    :=
+                    \sum_{x \in \dom M} f(x) \chi_M(x).
+                \end{align*}
+
+                \item Für $x \in \dom M$ schreiben wir auch (abgesehen vom vorherigen Punkt) $x \in M$.
+
+                \item Wenn es klar ist, dass $M$ eine Multi-Mengen ist, werden wir diese auch mit geschweiften Klammern notieren.
+                Die Elemente, die mehrmals vorkommen, haben entsprechende Vielfachheiten.
+                Z.B.
+
+                \begin{align*}
+                    \Bbraces{x, y, y, z, z, z}
+                    ~ \text{Multi-Mengen-Notation}
+                    & \hateq
+                    \Bbraces{(x, 1), (y, 2), (z, 3)}
+                    ~ \text{Mengen-Notation} \\
+                    & \hateq
+                    \begin{cases}
+                        x \mapsto 1, \\
+                        y \mapsto 2, \\
+                        z \mapsto 3, \\
+                    \end{cases}
+                    ~ \text{Funktionen-Notation}.
+                \end{align*}
+
+                Sollten wir $M$ jemals als Funktion, d.h. als Menge von Paaren betrachten, wird darauf explizit hingewiesen.
+
+                \item Wenn wir \enquote{eine Funktion $f$ auf einer Multi-Menge $M$} betrachten, dann sei dabei der Definitions-Bereich von $f$ stets
+
+                \begin{align*}
+                    \dom f
+                    =
+                    \bigcup_{x \in \dom M} \Bbraces{(x, 1), \dots, (x, \chi_M(x))}
+                    \supset
+                    \Bbraces{(x, M(x)): x \in \dom M}
+                    =
+                    M.
+                \end{align*}
+
+                \item Für eine Multi-Menge $M$ seien Ausdrücke der Form $\Bbraces{P(x): x \in M}$ ebenfalls Multi-Mengen, sodass $P(x)$ darin dieselbe Vielfachheit wie $x$ in $M$ hat.
+
             \end{enumerate}
 
         % Quelle: Lineare Algebra für Technische Mathematiker: 13.1
         \subsection{Permutationen}
 
-            Wir schreiben
+            Zunächst ein paar Definitionen:
 
-            \begin{align*}
-                S_n       & := \Bbraces{\pi: \Bbraces{0, \dots, n} \to \Bbraces{0, \dots, n}: \pi ~ \text{bijektiv}}, \\
-                \inv \pi  & := \Bbraces{(i, j): i, j = 1, \dots, n, ~ i < j, ~ \pi(i) > \pi(j)}, \\
-                p(\pi)    & := |\inv \pi|, \\
-                \supp \pi & := \Bbraces{i = 1, \dots, n: \pi(i) \neq i},
-            \end{align*}
+            \begin{definition} \label{def:permutations}
+                
+                \begin{enumerate}[label = \arabic*.]
+    
+                    \item Wir schreiben
+    
+                    \begin{align*}
+                        \gls{symb:symmetric_group} := \Bbraces{\pi: \Bbraces{1, \dots, n} \to \Bbraces{1, \dots, n}: \pi ~ \text{bijektiv}}
+                    \end{align*}
+        
+                    für die Menge der \glsgenetiveplural{glos:permutation} auf $\Bbraces{1, \dots, n}$.
+    
+                    \item Es bezeichnen
 
-            für die Menge der \textit{Permutationen}, der \textit{Fehlstände} einer Permutation $\pi \in S_n$, deren Anzahl, bzw. den \textit{Träger} von $\pi$.
-            Wir nennen Permutationen \textit{disjunkt}, wenn deren Träger es sind.
-            Als \textit{$k$-Zyklus}, mit $k \in \N \setminus \Bbraces{0}$, bezeichnen wir eine Permutation $\pi$, wenn es paarweise verschiedene $i_1, \dots, i_k \in \Bbraces{1, \dots, n}$ gibt mit
+                    \begin{multline*}
+                        \gls{symb:set_of_inversions} := \Bbraces{(i, j): i, j = 1, \dots, n, ~ i < j, ~ \pi(i) > \pi(j)}, \\
+                        \gls{symb:number_of_inversions} := |\inv \pi|
+                        \quad
+                        \text{und}
+                        \quad
+                        \gls{symb:pairity} := I(\pi) \mod 2
+                    \end{multline*}
 
-            \begin{align*}
-                \supp \pi = \Bbraces{i_1, \dots, i_k}
-                \quad
-                \text{und}
-                \quad
-                \pi(i_k) = i_1,
-                \quad
-                \Forall j = 1, \dots, k-1:
-                    \pi(i_j) = i_{j+1}.
-            \end{align*}
+                    die Menge der \glsgenetiveplural{glos:inversion}, die Anzahl der Fehlstände bzw. die \glsakkusativesingular{glos:pairity} einer Permutation $\pi \in S_n$.
 
-            Der $1$-Zyklus ist die Identität;
-            $2$-Zyklen nennen wir auch \textit{Transpositionen}.
+                    \item Es bezeichne
 
-            % Laut \cite{Havliceck} gilt folgendes Lemma.
+                    \begin{align*}
+                        \gls{symb:support} := \Bbraces{i = 1, \dots, n: \pi(i) \neq i}
+                    \end{align*}
+       
+                    \glsakkusativesingular{glos:support} den Träger einer Permutation $\pi \in S_n$.
+                    \Glspl{glos:disjoint_permutation} $\pi_1, \pi_2 \in S_n$ haben disjunkte Träger $\supp \pi_1$ und $\supp \pi_1$.
+        
+                    \item Ein \glsnominativesingular{glos:k_cycle}, mit $k \in \N \setminus \Bbraces{0}$, sei eine Permutation $\pi$, sodass es paarweise verschiedene $i_1, \dots, i_k \in \Bbraces{1, \dots, n}$ gibt mit
+        
+                    \begin{align*}
+                        \supp \pi = \Bbraces{i_1, \dots, i_k}
+                        \quad
+                        \text{und}
+                        \quad
+                        \pi(i_k) = i_1
+                        \quad
+                        \text{sowie}
+                        \quad
+                        \Forall j = 1, \dots, k-1:
+                            \pi(i_j) = i_{j+1}.
+                    \end{align*}
+        
+                    Der $1$-Zyklus ist die Identität;
+                    $2$-Zyklen nennen wir auch \glsnominativesingular{glos:transposition}.
+    
+                \end{enumerate}
+
+            \end{definition}
+
+            Wir sammeln bekannte Eigenschaften von Permutationen in dem folgenden Lemma \ref{lem:permutations}, vgl. \cite[Kapitel 1.13]{LinAG1&2}.
 
             \begin{lemma} \label{lem:permutations}
 
@@ -104,16 +188,17 @@
                     labelindent = 0pt
                 ]
 
-                    \item $(S_n, \circ)$ ist eine Gruppe, die \textit{Symmetrische Gruppe}.
+                    \item $(S_n, \circ)$, wobei \gls{symb:composition} die \glsnominativesingular{glos:composition} für Funktionen bezeichnet, ist eine Gruppe, die \Glsnominativesingular{glos:symmetric_group}.
+                    Wir schreiben auch einfach nur $S_n$ dafür.
 
                     \item Jede Permutation lässt sich eindeutig als Produkt von paarweise disjunkten Zyklen darstellen.
 
-                    \item Jeder $k$-Zyklus lässt sich eindeutig als Produkt von $k-1$ Transpositionen darstellen.
+                    \item Jeder $k$-Zyklus lässt sich eindeutig als Produkt von $k - 1$ Transpositionen darstellen.
 
                     \item Jede Permutation lässt sich als Produkt von Transpositionen darstellen.
                     Dieses ist zwar i.A. nicht eindeutig, die Parität deren Anzahl aber schon.
 
-                    \item Die \textit{Signum-Funktion}
+                    \item Die \glsnominativesingular{glos:signum_function}
 
                     \begin{align*}
                         \sgn:
@@ -122,14 +207,13 @@
                             \mapsto
                             (-1)^{p(\pi)}
                             =
+                            (-1)^{I(\pi)}
+                            =
                             \prod_{\substack{i,j=1 \\ i<j}}^n
                                 \frac{\pi(j) - \pi(i)}{j - i}
-                            =
-                            (-1)^{k_\pi},
                     \end{align*}
 
                     ist ein Gruppen-Homomorphismus.
-                    Dabei ist $k_\pi$ eine beliebige Anzahl von Transpositionen von $\pi$.
 
                 \end{enumerate}
 
@@ -265,7 +349,7 @@
 
             \end{lemma}
 
-            Für $A \in \K^{n \times n}$ notiere deren die \textit{Kofaktor-Matrix} als $\cof \mathbf A$.
+            Für $\mathbf A \in \K^{n \times n}$ notiere deren die \textit{Kofaktor-Matrix} als $\cof \mathbf A$.
             Für folgendes Lemma siehe \cite[Kapitel 7.5]{LinAG1&2}.
 
             \begin{lemma} \label{lem:cofactor_inverse}
@@ -473,7 +557,7 @@
                 \end{align*}
 
                 \begin{enumerate}[
-                    label = \texttt{ad} \arabic*.,
+                    label = \arabic*.,
                     wide,
                     labelindent = 0pt
                 ]
@@ -501,8 +585,6 @@
             \end{theorem}
 
             \begin{proof}
-
-                \phantom{}
 
                 \begin{enumerate}[
                     label = \texttt{ad} \arabic*.,
@@ -549,162 +631,162 @@
                 \end{enumerate}
             \end{proof}
 
-            \subsubsection{Permutations-Matrizen}
+        \subsection{Permutations-Matrizen}
 
-                \begin{definition}
+            \begin{definition}
 
-                    Für eine \textit{Permutation} $\pi \in S_n$ sei $\mathbf P_\pi := (\delta_{\pi(i), j})_{i, j = 1}^n$ die zugehörige \textit{Permutations-Matrix}.
-                    Sei $\P_n := \Bbraces{\mathbf P_\pi: \pi \in S_n}$ die Menge aller Permutations-Matrizen der Größe $n$.
-                    Zwei Matrizen $\mathbf A, \mathbf B \in \R^{n \times n}$ heißen \textit{permutations-ähnlich}, wenn es eine Permutations-Matrix $\mathbf P \in \P_n$ gibt, sodass
+                Für eine \textit{Permutation} $\pi \in S_n$ sei $\mathbf P_\pi := (\delta_{\pi(i), j})_{i, j = 1}^n$ die zugehörige \textit{Permutations-Matrix}.
+                Sei $\P_n := \Bbraces{\mathbf P_\pi: \pi \in S_n}$ die Menge aller Permutations-Matrizen der Größe $n$.
+                Zwei Matrizen $\mathbf A, \mathbf B \in \R^{n \times n}$ heißen \textit{permutations-ähnlich}, wenn es eine Permutations-Matrix $\mathbf P \in \P_n$ gibt, sodass
+
+                \begin{align*}
+                    \mathbf A = \mathbf P^{-1} \mathbf B \mathbf P.
+                \end{align*}
+
+                Die dadurch definierte Relation $\sim_{\P}$ auf $\R^{n \times n}$ nennen wir \textit{Permutations-Ähnlichkeit}.
+
+            \end{definition}
+
+            \begin{lemma} \label{lem:permutation_matrices}
+
+                \begin{enumerate}[
+                    label = \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
+
+                    \item Seien $\pi \in S_n$ und $(x_1, \dots, x_n)^\top = \mathbf x \in \R^n$, so gilt
 
                     \begin{align*}
-                        \mathbf A = \mathbf P^{-1} \mathbf B \mathbf P.
+                        \mathbf P_\pi \mathbf x
+                        =
+                        \begin{pmatrix}
+                            x_{\pi(1)} \\ \vdots \\ x_{\pi(n)}
+                        \end{pmatrix},
+                        \quad
+                        \text{und}
+                        \quad
+                        \mathbf x^\top \mathbf P_\pi
+                        =
+                        (x_{\pi^{-1}(1)}, \dots, x_{\pi^{-1}(n)}).
                     \end{align*}
 
-                    Die dadurch definierte Relation $\sim_{\P}$ auf $\R^{n \times n}$ nennen wir \textit{Permutations-Ähnlichkeit}.
+                    $\P_n$ ist eine Untergruppe der orthogonalen Matrizen $\operatorname O_n(\R)$ der Größe $n$.
+                    $S_n$ ist anti-isomorph zu $\P_n$, vermöge $\pi \mapsto \mathbf P_\pi$.
+                    D.h. für $\pi_1, \pi_2 \in S_n$ gilt stets
 
-                \end{definition}
+                    \begin{align*}
+                        \mathbf P_{\pi_1 \circ \pi_2}
+                        =
+                        \mathbf P_{\pi_2} \mathbf P_{\pi_1}.
+                    \end{align*}
 
-                \begin{lemma} \label{lem:permutation_matrices}
+                    \item Die Permutations-Ähnlichkeit ist eine Teil-Äquivalenz-Relation der herkömmlichen \\ Ähnlichkeit $\sim$.
+                    Permutations-ähnliche Matrizen haben dasselbe charakteristische Polynom und dieselben Eigenwerte.
 
-                    \begin{enumerate}[
-                        label = \arabic*.,
-                        wide,
-                        labelindent = 0pt
-                    ]
+                \end{enumerate}
 
-                        \item Seien $\pi \in S_n$ und $(x_1, \dots, x_n)^\top = \mathbf x \in \R^n$, so gilt
+            \end{lemma}
 
-                        \begin{align*}
-                            \mathbf P_\pi \mathbf x
-                            =
-                            \begin{pmatrix}
-                                x_{\pi(1)} \\ \vdots \\ x_{\pi(n)}
-                            \end{pmatrix},
-                            \quad
-                            \text{und}
-                            \quad
-                            \mathbf x^\top \mathbf P_\pi
-                            =
-                            (x_{\pi^{-1}(1)}, \dots, x_{\pi^{-1}(n)}).
-                        \end{align*}
+            \begin{proof}
 
-                        $\P_n$ ist eine Untergruppe der orthogonalen Matrizen $\operatorname O_n(\R)$ der Größe $n$.
-                        $S_n$ ist anti-isomorph zu $\P_n$, vermöge $\pi \mapsto \mathbf P_\pi$.
-                        D.h. für $\pi_1, \pi_2 \in S_n$ gilt stets
+                \begin{enumerate}[
+                    label = \texttt{ad} \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
 
-                        \begin{align*}
-                            \mathbf P_{\pi_1 \circ \pi_2}
-                            =
-                            \mathbf P_{\pi_2} \mathbf P_{\pi_1}.
-                        \end{align*}
+                    \item Die ersten beiden Aussagen sind elementare Rechnungen.
+                    Man kann sie benutzen, um die Anti-Homomorphie von $\pi \mapsto \mathbf P_\pi$ nachzuweisen, indem man die Permutations-Matrizen mit $\mathbf x$ testet.
+                    Weil $\P_n$ ein homomorphes Bild der Gruppe $S_n$ folgt, dass es auch eine Gruppe sein muss.
+                    Dass Permutations-Matrizen orthogonal sind, d.h. ihre Transponierten sind jeweils ihre Inversen, weist man auch rasch durch testen mit $\mathbf x$ nach.
 
-                        \item Die Permutations-Ähnlichkeit ist eine Teil-Äquivalenz-Relation der herkömmlichen \\ Ähnlichkeit $\sim$.
-                        Permutations-ähnliche Matrizen haben dasselbe charakteristische Polynom und dieselben Eigenwerte.
+                    \item Dass $\sim_{\P}$ eine Äquivalenz-Relation ist, sieht man analog zu $\sim$.
+                    Die Reflexivität folgt daraus, dass $\P_n$ ein neutrales Element hat;
+                    die Symmetrie daraus, dass $\P_n$ unter Inversen-Bildung abgeschlossen ist;
+                    und die Transitivität gilt, weil $\P_n$ unter Verknüpfung abgeschlossen ist.
+                    Die letzte Aussage folgt aus der vorletzten und der Tatsache, dass sie für ähnliche Matrizen gilt.
 
-                    \end{enumerate}
+                \end{enumerate}
 
-                \end{lemma}
+            \end{proof}
 
-                \begin{proof}
+            \begin{remark} \label{rem:permutation_matrices}
 
-                    \begin{enumerate}[
-                        label = \texttt{ad} \arabic*.,
-                        wide,
-                        labelindent = 0pt
-                    ]
+                Lemma \ref{lem:permutation_matrices} wollen wir noch ein paar Anmerkungen hinzufügen:
 
-                        \item Die ersten beiden Aussagen sind elementare Rechnungen.
-                        Man kann sie benutzen, um die Anti-Homomorphie von $\pi \mapsto \mathbf P_\pi$ nachzuweisen, indem man die Permutations-Matrizen mit $\mathbf x$ testet.
-                        Weil $\P_n$ ein homomorphes Bild der Gruppe $S_n$ folgt, dass es auch eine Gruppe sein muss.
-                        Dass Permutations-Matrizen orthogonal sind, d.h. ihre Transponierten sind jeweils ihre Inversen, weist man auch rasch durch testen mit $\mathbf x$ nach.
+                \begin{enumerate}[
+                    label = \arabic*.,
+                    wide,
+                    labelindent = 0pt
+                ]
 
-                        \item Dass $\sim_{\P}$ eine Äquivalenz-Relation ist, sieht man analog zu $\sim$.
-                        Die Reflexivität folgt daraus, dass $\P_n$ ein neutrales Element hat;
-                        die Symmetrie daraus, dass $\P_n$ unter Inversen-Bildung abgeschlossen ist;
-                        und die Transitivität gilt, weil $\P_n$ unter Verknüpfung abgeschlossen ist.
-                        Die letzte Aussage folgt aus der vorletzten und der Tatsache, dass sie für ähnliche Matrizen gilt.
+                    \item Sei $\tau \in S_n$ eine Transposition.
+                    $\tau$ ist involutorisch, d.h. $\tau = \tau^{-1}$, also gilt
 
-                    \end{enumerate}
+                    \begin{align*}
+                        \mathbf P_\tau
+                        =
+                        \mathbf P_{\tau^{-1}}
+                        =
+                        \mathbf P_\tau^{-1}
+                        =
+                        \mathbf P_\tau^\top.
+                    \end{align*}
 
-                \end{proof}
+                    Die Multiplikation von $\mathbf P_\tau$ von links entspricht also einer Zeilen-, und die von rechts einer Spalten-Vertauschung.
+                    Laut Lemma \ref{lem:permutations}, können wir $\pi \in S_n$ als Produkt von Transpositionen $\pi_1, \dots, \pi_m \in S_n$ darstellen.
+                    Permutations-Matrizen können also dazu verwendet werden, um die Zeilen und Spalten einer Matrix $\mathbf M \in \R^{n \times n}$ beliebig oft \enquote{gleichzeitig} zu vertauschen, i.Z.
 
-                \begin{remark} \label{rem:permutation_matrices}
+                    \begin{multline*}
+                        \mathbf M
+                        \mapsto
+                        \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1}
+                        \mapsto
+                        \cdots
+                        \mapsto
+                        \mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m} \\
+                        =
+                        (\mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top) \mathbf M (\mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m})
+                        =
+                        \mathbf P_\pi^\top \mathbf M \mathbf P_\pi.
+                    \end{multline*}
 
-                    Lemma \ref{lem:permutation_matrices} wollen wir noch ein paar Anmerkungen hinzufügen.
+                    Umgekehrt sind aber auch Matrizen, die sich bis auf \enquote{gleichzeitige} Zeilen- und Spalten-Vertauschungen (enkodiert in einer Permutation) unterscheiden, ähnlich bzgl. der entsprechenden Permutations-Matrix.
 
-                    \begin{enumerate}[
-                        label = \arabic*.,
-                        wide,
-                        labelindent = 0pt
-                    ]
+                    \item Seien $\mathbf A_1, \dots, \mathbf A_m \in \R^{n \times n}$ jeweils permutations-ähnlich zu $\mathbf B_1, \dots, \mathbf B_m \in \R^{n \times n}$ vermöge einer Permutations-Matrix $\mathbf P \in \P_n$.
+                    Seien weiters $c_1, \dots, c_m \in \R$, dann sind die Linearkombinationen dieser Matrizen und Koeffizienten auch permutations-ähnlich bzgl. $\mathbf P$, d.h.
 
-                        \item Sei $\tau \in S_n$ eine Transposition.
-                        $\tau$ ist involutorisch, d.h. $\tau = \tau^{-1}$, also gilt
+                    \begin{align*}
+                        \sum_{i=1}^m c_i \mathbf A_i
+                        =
+                        \sum_{i=1}^m c_i \mathbf P^\top \mathbf B_i \mathbf P
+                        =
+                        \mathbf P^\top \sum_{i=1}^m c_i \mathbf B_i \mathbf P.
+                    \end{align*}
 
-                        \begin{align*}
-                            \mathbf P_\tau
-                            =
-                            \mathbf P_{\tau^{-1}}
-                            =
-                            \mathbf P_\tau^{-1}
-                            =
-                            \mathbf P_\tau^\top.
-                        \end{align*}
+                    \item Für jede beliebige Permutations-Matrix $\mathbf P \in \P_n$, sind $\mathbf I$ und $\mathbf J$ permutations-ähnlich zu sich selbst bzgl. $\mathbf P$.
+                    Es gilt nämlich
 
-                        Die Multiplikation von $\mathbf P_\tau$ von links entspricht also einer Zeilen-, und die von rechts einer Spalten-Vertauschung.
-                        Laut Lemma \ref{lem:permutations}, können wir $\pi \in S_n$ als Produkt von Transpositionen $\pi_1, \dots, \pi_m \in S_n$ darstellen.
-                        Permutations-Matrizen können also dazu verwendet werden, um die Zeilen und Spalten einer Matrix $\mathbf M \in \R^{n \times n}$ beliebig oft \enquote{gleichzeitig} zu vertauschen, i.Z.
+                    \begin{align*}
+                        \mathbf I \mathbf P_\pi = \mathbf P_\pi \mathbf I
+                        \quad
+                        \text{und}
+                        \quad
+                        \mathbf J \mathbf P_\pi = \mathbf P_\pi \mathbf J,
+                        \quad
+                        \text{also}
+                        \quad
+                        \mathbf P_\pi^\top \mathbf I \mathbf P_\pi = \mathbf I
+                        \quad
+                        \text{bzw.}
+                        \quad
+                        \mathbf P_\pi^\top \mathbf J \mathbf P_\pi = \mathbf J.
+                    \end{align*}
 
-                        \begin{multline*}
-                            \mathbf M
-                            \mapsto
-                            \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1}
-                            \mapsto
-                            \cdots
-                            \mapsto
-                            \mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top \mathbf M \mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m} \\
-                            =
-                            (\mathbf P_{\pi_m}^\top \cdots \mathbf P_{\pi_1}^\top) \mathbf M (\mathbf P_{\pi_1} \cdots \mathbf P_{\pi_m})
-                            =
-                            \mathbf P_\pi^\top \mathbf M \mathbf P_\pi.
-                        \end{multline*}
+                \end{enumerate}
 
-                        Umgekehrt sind aber auch Matrizen, die sich bis auf \enquote{gleichzeitige} Zeilen- und Spalten-Vertauschungen (enkodiert in einer Permutation) unterscheiden, ähnlich bzgl. der entsprechenden Permutations-Matrix.
-
-                        \item Seien $\mathbf A_1, \dots, \mathbf A_m \in \R^{n \times n}$ jeweils permutations-ähnlich zu $\mathbf B_1, \dots, \mathbf B_m \in \R^{n \times n}$ vermöge einer Permutations-Matrix $\mathbf P \in \P_n$.
-                        Seien weiters $c_1, \dots, c_m \in \R$, dann sind die Linearkombinationen dieser Matrizen und Koeffizienten auch permutations-ähnlich bzgl. $\mathbf P$, d.h.
-
-                        \begin{align*}
-                            \sum_{i=1}^m c_i \mathbf A_i
-                            =
-                            \sum_{i=1}^m c_i \mathbf P^\top \mathbf B_i \mathbf P
-                            =
-                            \mathbf P^\top \sum_{i=1}^m c_i \mathbf B_i \mathbf P.
-                        \end{align*}
-
-                        \item Für jede beliebige Permutations-Matrix $\mathbf P \in \P_n$, sind $\mathbf I$ und $\mathbf J$ permutations-ähnlich zu sich selbst bzgl. $\mathbf P$.
-                        Es gilt nämlich
-
-                        \begin{align*}
-                            \mathbf I \mathbf P_\pi = \mathbf P_\pi \mathbf I
-                            \quad
-                            \text{und}
-                            \quad
-                            \mathbf J \mathbf P_\pi = \mathbf P_\pi \mathbf J,
-                            \quad
-                            \text{also}
-                            \quad
-                            \mathbf P_\pi^\top \mathbf I \mathbf P_\pi = \mathbf I
-                            \quad
-                            \text{bzw.}
-                            \quad
-                            \mathbf P_\pi^\top \mathbf J \mathbf P_\pi = \mathbf J.
-                        \end{align*}
-
-                    \end{enumerate}
-
-                \end{remark}
+            \end{remark}
 
     \section{Graphen}
 
@@ -719,26 +801,25 @@
                 \item $E$ kann aus Paaren $(v, w)$, mit $v, w \in V$, bestehen.
                 $G$ nennen wir dann \textit{gerichtet}.
                 Kanten der Form $(v, v)$, wobei $v \in V$, sind \textit{(gerichtete) Schleifen}.
-
+                
                 \item $E$ kann auch aus Paar-Mengen $\Bbraces{v, w}$, mit $v, w \in V$, wobei $v \neq w$, bestehen.
                 $G$ nennen wir dann \textit{ungerichtet}.
 
+                $E$ darf auch Singletons $\Bbraces{v}$, mit $v \in V$, enthalten.
+                Dann ist $G$ aber ein \textit{ungerichteter Graph mit Schleifen}, wobei jene Singletons \textit{(ungerichtete) Schleifen} heißen.
+
             \end{enumerate}
-
-            $E$ kann aber auch aus Multi-Mengen $\Bbraces{v, w}$, für $v, w \in V$, bestehen.
-            In diesem Fall heißt $G$ ebenfalls \textit{ungerichtet}, aber mit \textit{(ungerichteten) Schleifen}.
-            Diese seien nun Multi-Mengen $\Bbraces{v, v}$ mit $v \in V$.
-
+            
             $E$ kann eine Multi-Menge sein.
-            $G$ ist dann ein (nicht mehr schlichter) \textit{Multi-Graph} und ein Element $e \in E$ eine \textit{Mehrfach-Kante} (oder, wenn $e$ eine Schleife ist, sogar eine \textit{Mehrfach-Schleife}).
-            Allgemeiner sei, für eine Funktion $w: E \to M$ in eine Menge $M$ (z.B. $M = \N$), das Tripel $G = (V, E, w)$ ein \textit{gewichteter} Graph mit \textit{Gewichts-Funktion} $w$.
-
-            Typischerweise bezeichnen wir mit $V(G)$ und $E(G)$ die Ecken bzw. Kanten von $G$.
-            Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $V$ bzw. $E$.
+            $G$ ist dann ein \textit{Multi-Graph} und ein Element $e \in E$, mit $\chi_E(e) > 1$, eine \textit{Mehrfach-Kante} (oder, wenn $e$ eine Schleife ist, sogar eine \textit{Mehrfach-Schleife}).
+            Allgemeiner sei, für eine Funktion $w: E \to M$ in eine Menge $M$ (z.B. $M = \N$), das Tripel $G = (V, E, w)$ ein \textit{gewichteter Graph mit Gewichts-Funktion $w$}.
 
             Die Mächtigkeit $|G|$ eines Graphen $G$ sei die von $V$, also $|V|$.
             $G$ heißt \textit{(un)gerade} wenn $|E|$ es ist.
             Zwei Graphen $G_1$ und $G_2$ heißen disjunkt, wenn ihre jeweiligen Knoten-Mengen $V(G_1)$ und $V(G_2)$ es sind.
+
+            Typischerweise bezeichnen wir mit $V(G)$ und $E(G)$ die Ecken bzw. Kanten von $G$.
+            Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $V$ bzw. $E$.
 
         \end{definition}
 
@@ -870,7 +951,8 @@
                     \inc(v, e)
                     :=
                     \begin{cases}
-                        1, & \text{wenn}~ v \in e, \\
+                        2, & \text{wenn}~ v \in e, ~ |e| = 1, \\
+                        1, & \text{wenn}~ v \in e, ~ |e| = 2, \\
                         0, & \text{sonst}.
                     \end{cases}
                 \end{align*}
@@ -1191,9 +1273,8 @@
 
             Deren Nullstellen-Mengen $\sigma_P(G)$, $\sigma_Q(G)$, $\sigma_R(G)$, bzw. $\sigma_L(G)$ nennen wir \textit{(Graphen-)Spektren} von $G$.
             $\chi_P(G, \lambda)$ und $\sigma_P(G)$ heißen \textit{gewönliches} charakteristisches Polynom bzw. Spektrum.
-            Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $\chi_P(\lambda)$, $\chi_Q(\lambda)$, $\chi_R(\lambda)$ bzw. $\chi_S(\lambda)$.
+            Falls keine Verwechslungsgefahr besteht, lassen wir $G$ gelegentlich auch weg, schreiben also $\chi_P(\lambda)$, $\chi_Q(\lambda)$, $\chi_R(\lambda)$ bzw. $\chi_L(\lambda)$.
 
             Bei der Definition von $\chi_Q(G, \lambda)$ setzen wir voraus, dass $\det \mathbf D \neq 0$.
 
         \end{definition}
-
