@@ -1,0 +1,54 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Box with coins]
+
+A box contains three coins with a head on each side, two coins with a tail on each side, and four fair coins.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item One of these nine coins is selected at random and tossed once.
+    What is the probability of getting a tail?
+
+    \item If we get a tail, what is the probability that the selected coin has a tail on both side?
+    If we get a tail, what is the probability that it is a fair coin?
+
+    \item If the first toss is tail, and another coin is selected at random from the remaining eight coins and tossed once, what is the probability of getting a tail again?
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+Let $X_i$ denote the type of the $i$-th selected coin (head, tail, or fair) and $Y_i$ the yield of the $i$-th toss (head or tail).
+Furthermore, to ease notation, let $X := X_1$ and $Y := Y_1$.
+
+\begin{enumerate}[label = (\alph*)]
+
+\item
+\begin{align*}
+  \P(\text{tail}) = 0\cdot\frac{3}{9} + \frac{1}{2}\cdot\frac{4}{9} + 1\cdot\frac{2}{9} = \frac{4}{9}.
+\end{align*}
+\item
+\begin{align*}
+  \P(\text{tail-coin}|\text{tail}) &=
+  \frac{\P(\text{tail-coin} \cap \text{tail})}{\P(\text{tail})} \\
+  &= \frac{2/9}{4/9} = \frac{1}{2}.
+\end{align*}
+\begin{align*}
+  \P(\text{fair-coin}|\text{tail}) &= 1 - \frac{1}{2} = \frac{1}{2}.
+\end{align*}
+\item
+\begin{align*}
+  \P(\text{second tail}|\text{first tail})
+  &= \frac{\P(\text{first and second tail})}{\P(\text{first tail})} \\
+  &= \frac{1/2\cdot4/9[1/2\cdot3/8 + 2/8] + 2/9[1/2\cdot4/8 + 1/8]}{4/9}
+  = \frac{7/72 + 1/12}{4/9} = \frac{13}{32}.
+\end{align*}
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

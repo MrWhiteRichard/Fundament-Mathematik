@@ -1,0 +1,73 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Cumulative distribution function]
+
+Let a cumulative distribution function (cdf) $F$ of a continuous random variable $Y$ be given by
+
+\begin{align*}
+    F(y)
+    =
+    \begin{cases}
+        0,             & y \leq 0     \\
+        \frac{2}{5} y, & 0 < y \leq 1 \\
+        a y - b,       & 1 < y \leq 2 \\
+        1,             & y > 2
+    \end{cases},
+\end{align*}
+
+where $a$ and $b$ are real constants.
+
+\begin{enumerate}[label = (\alph*)]
+    \item Find out the values of $a$ and $b$.
+    \item Write down the probability density function (pdf) of $Y$.
+    \item What is the probability that an observed random variable $Y$ is greater than $1.8$, given that it is greater than $1$?
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+
+\item By the right-continuity of $F$ we obtain
+
+\begin{align*}
+  \frac{2}{5} = F(1) = \lim_{y \to 1^+} F(y) =
+  \lim_{y \to 1^+} ay - b = a - b
+\end{align*}
+and
+\begin{align*}
+  1 = \lim_{y \to 2^+} F(y) = F(2) = 2a - b.
+\end{align*}
+Thus, we infer $a = \frac{3}{5}, b = \frac{1}{5}$.
+
+\item
+
+\begin{align*}
+  f_Y(x) = \frac{\mathrm{d}}{\mathrm{d}x}F_Y(x)
+  = \begin{cases}
+    0, & y \leq 0 \\
+    \frac{2}{5}, & 0 < y \leq 1 \\
+    \frac{3}{5}, & 1 < y \leq 2 \\
+    0, & y > 2.
+  \end{cases}
+\end{align*}
+
+\item
+
+\begin{align*}
+  \P(Y > 1.8 | Y > 1) = \frac{\P(Y > 1.8)}{\P(Y > 1)}
+  = \frac{1 - F(1.8)}{1 - F(1)}
+  = \frac{1 - 9/5\cdot3/5 + 1/5}{3/5}
+  = \frac{1}{5}.
+\end{align*}
+
+\end{enumerate}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

@@ -1,0 +1,65 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Independence]
+
+Let $A$ and $B$ be two independent events.
+
+\begin{enumerate}[label = (\alph*)]
+
+    \item Prove that $A^c$ and $B^c$ are also independent.
+
+    \item If we additionally know that $P(A | B) = 0.6$ and $P(B | A) = 0.3$, compute the probabilities of the following two events
+
+    \begin{enumerate}[label = (\roman*)]
+        \item at most one of $A$ or $B$
+        \item either $A$ or $B$ but not both.
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+  \item
+  We have to show $\P(A^c \cap B^c) = \P(A^c)\cdot\P(B^c)$:
+
+  \begin{align*}
+    \P(A^c \cap B^c) &= \P([A \cup B]^c) =
+    1 - \P(A \cup B) = 1 - [\P(A) + \P(B) - \P(A \cap B)] \\
+    &= 1 - \P(A) - \P(B) + \P(A)\cdot\P(B)
+    = (1 - \P(A))(1 - \P(B))
+    = \P(A^c)\cdot\P(B^c).
+  \end{align*}
+
+  \item
+  \begin{enumerate}[label = (\roman*)]
+      \item Since
+      \begin{align*}
+        \P(A|B) = \frac{\P(A\cap B)}{\P(B)} = \P(A) \text{ and} \\
+        \P(B|A) = \frac{\P(A\cap B)}{\P(A)} = \P(B), \\
+      \end{align*}
+      we obtain $\P(A) = 0.6$ and $\P(B) = 0.3$. Therefore it holds
+      \begin{align*}
+        \P([A \cap B]^c) = 1 - \P(A \cap B) = 1 - \P(A)\P(B)
+        = 1 - 0.18 = 0.82.
+      \end{align*}
+      \item
+      \begin{align*}
+        \P([A \cup B]\setminus [A \cap B])
+        = \P(A) + \P(B) - 2\P(A \cap B)
+        = 0.6 + 0.3 - 0.36 = 0.54.
+      \end{align*}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\end{solution}
+
+% --------------------------------------------------------------------------------

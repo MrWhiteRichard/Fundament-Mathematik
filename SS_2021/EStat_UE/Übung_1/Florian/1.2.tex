@@ -1,0 +1,33 @@
+% --------------------------------------------------------------------------------
+
+\begin{exercise}[Coin game]
+
+Two players, $A$ and $B$, alternately and independently flip a coin and the first player to obtain a head wins.
+Assume player $A$ flips first.
+Suppose that $P(\text{head}) = p$, not necessarily $\frac{1}{2}$.
+What is the probability that the player $B$ wins?
+
+\end{exercise}
+
+% --------------------------------------------------------------------------------
+
+\begin{solution}
+
+The probability that player $B$ wins can be equivalently stated as the probability
+that the first head is thrown on an odd turn. Therefore
+
+\begin{align*}
+  \P(B \text{ wins}) &= (1-p)p + (1-p)^2p + (1-p)^4p + \cdots \\
+  &= (1-p)p\cdot \sum_{k=1}^{\infty}[(1-p)^2]^k = \frac{(1-p)p}{1 - (1-p)^2}
+  = \frac{1-p}{2-p}.
+\end{align*}
+
+For a fair coin ($p = 1/2$) we obtain
+
+\begin{align*}
+  \P(B \text{ wins}) = \frac{1/2}{3/2} = \frac{1}{3}.
+\end{align*}
+
+\end{solution}
+
+% --------------------------------------------------------------------------------
