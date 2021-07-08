@@ -1,0 +1,436 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Zelluläre Automaten}
+\label{chapter:CAs}
+
+
+\section{Definitionen und grundlegende Eigenschaften}
+\label{section:definitions}
+
+Im folgenden Abschnitt sollen zunächst einige aus der Topologie bekannte Definition und Resultate wiederholt und anschließend die für die Beschreibung eines Zellulären Automaten benötigten Notationen und Definitionen eingeführt werden. Darauf aufbauend werden einige einfach Eigenschaften von Zellulären Automaten genannt und analysiert.
+
+\subsection{Topologische Grundlagen}
+\label{subsection:topos}
+
+Um die nötigen Grundlagen zu schaffen für die Aussagen, welche in \ref{section:results} aus den topologischen Eigenschaften der Konfigurationsmenge eines Zellulären Automaten folgen werden, wiederholen wir zunächst grundlegende Definitionen und Resultate der Topologie.
+
+\begin{theorem}[Tychonoff]
+  Sei $(X_i, \mathcal{T}_i), i \in I$, eine Familie topologischer Räume und sei $X := \prod_{i \in I} X_i$ mit der Produkttopologie  $\mathcal{T} := \prod_{i \in I} \mathcal{T}_i$ versehen. Dann ist $(X, \mathcal{T})$ genau dann kompakt, wenn alle Räume $(X_i, \mathcal{T}_i), i \in I$, kompakt sind.
+\end{theorem}
+
+\begin{theorem}
+  Jede stetige Funktion $f: X \to Y$ mit einem kompakten Raum $X$ und einem Hausdorff-Raum $Y$ ist abgeschlossen. Das Bild abgeschlossener Teilmengen von $X$ ist also wieder abgeschlossen in $Y$.
+\end{theorem}
+
+\subsection{Definitionen und Eigenschaften Zellulärer Automaten}
+
+Die folgenden Definitionen betreffend Zellulärer Automaten (ZA) orientieren sich notationell zu einem großen Teil an denjenigen in [Kari, Theory].
+
+Wir werden im Folgenden für $d \in \N$ einen ZA jeweils über einem undendlichen $d$-dimensionalen Gitter betrachten und dessen Zellen als Elemente in $\Z^d$ auffassen. Wir bezeichnen diesen dann als \textit{$d$-dimensionalen ZA}. Viele Aussagen können für beliebige Dimensionen getroffen werden, es wird sich jedoch zeigen, dass $1$-dimensionale ZA oftmals eine Sonderrolle einnehmen.
+- evtl Grafik mit den üblichen 1,2,3-dim -
+
+Wir definieren nun die Bestandteile, welche für einen ZA nötig sind.
+
+\begin{definition}
+  Sei $S$ eine endliche \textit{Zustandsmenge}.
+
+  Eine Abbildung $c: \mathbb{Z}^d \to S$  heißt $Konfiguration$. Die Menge $S^{\mathbb{Z}^d}$ aller Konfigurationen bezeichnen wir mit $\mathcal{C}(d, S) = \mathcal{C}$.
+
+  Eine Konfiguration $c$ heißt \textit{homogen}, falls sie eine konstante Abbildung ist
+
+  Wir bezeichnen einen Vektor $N = (y_1, y_2, \dots, y_n)$ aus $n$ paarweise verschiedenen Elementen aus $\mathbb{Z}^d$ als \textit{Nachbarschaft}. Die \textit{Nachbarn} einer beliebigen Zelle $x \in \mathbb{Z}^d$ sind dann genau die Zellen $(x + y_1, x + y_2, \dots, x + y_n)$.
+
+  Sei $n$ die Größe der Nachbarschaft. Die \textit{Lokale Update-Regel} ist eine Funktion $f: S^n \to S$.
+\end{definition}
+
+Damit ist ein ZA nun schon eindeutig definiert.
+
+\begin{definition}
+  Für $d \in \N$ ist ein Zellulärer Automat gegeben durch das Tripel $(S, N, f)$, wobei $S$ eine Zustandsmenge, $N = (y_1, y_2, \dots, y_n)$ eine Nachbarschaft und $f$ eine Lokale Update-Regel bezeichnen.
+  Die Globale Überführungsfunktion eines ZA ist gegeben durch die Funktion $G: \mathcal{C} \to \mathcal{C}$, welche
+  \begin{align*}
+    \Forall c \in \mathcal{C}, x \in \Z^d: G(c)(x) = f \big(c(x+y_1), c(x+y_2), \dots, c(x+y_n)\big)
+  \end{align*}
+  erfüllt.
+\end{definition}
+
+\begin{example}
+  \begin{itemize}
+    \item[(i)] Sei $e_i$ der $i$-te Einheitsvektor für $i = 1,\dots,d$. Die \textit{Shift-Funktionen} $\sigma_i$ sind sehr einfach Zelluläre Automaten, welche gegeben sind durch das Tripel $(S,(e_i), \id)$ für eine beliebige Zustandsmenge $S$. Eine Konfiguration wird durch eine Shift-Funktion also lediglich um den negativen Einheitsvektor verschoben.
+    \item[(ii)] Kompositionen von Shift-Funktionen werden \textit{Translationen} genannt. Die Translation $\tau_y$ um das Element $y \in \Z^d$ bezeichnet den ZA $(S, (-y), id)$ und verschiebt Konfigurationen genau um $y$.
+  \end{itemize}
+\end{example}
+
+Für zwei ZA $G_1 = (S,N_1,f_1)$ und $G_2 = (S,N_2,f_2)$ mit gleicher Dimension $d$ und Zustandsmenge $S$ können wir in natürlicher Weise die \textit{Komposition} $G_1 \circ G_2$ definieren. Man sieht leicht, dass die Komposition wiederum die Globale Überführungsfunktion eines ZA mit Nachbarschaft $N_1+N_2$ ist.
+
+\begin{theorem}\label{commute}
+  Sei $G = (S,N,f)$ ein ZA, dann kommutiert dieser mit Translationen. Das heißt, für beliebiges $z \in \Z^d$ gilt $G \circ \tau_z = \tau_z \circ G$.
+\end{theorem}
+
+\begin{proof}
+  Sei die Nachbarschaft gegeben durch $N = (y_1, \dots, y_n)$. Seien $c \in \mathcal{C}$ und $x \in \Z^d$ beliebig . Dann gilt
+  \begin{align*}
+    G\big(\tau_z(c)\big)(x) =& f \big(\tau_z(c)(x+y_1), \tau_z(c)(x+y_2), \dots, \tau_z(c)(x+y_n)\big)\\
+     =& f \big(c(x+y_1-z), c(x+y_2-z), \dots, c(x+y_n-z)\big) = G(c)(x-z) = \tau_z\big(G(c)\big)(x)
+  \end{align*}
+  woraus $(G \circ \tau_z)(c) = (\tau_z \circ G)(c)$ und damit die Aussage folgt. \footnote{Man beachte, dass die im Beweis gezeigte Gleichheit aus einer zentralen Eigenschaft Zellulärer Automaten folgt: Für jede Zelle aus $\Z^d$ wird die gleiche Lokale Update-Regel $f$ angewendet, um die neue Konfiguration zu ermitteln.}
+\end{proof}
+
+Wir wollen nun noch zwei spezielle Teilmengen von $\mathcal{C}$ und die Einschränkungen von einem ZA $G$ auf diese Mengen genauer betrachten.
+
+\begin{definition}
+  Eine Konfiguration $c \in \mathcal{C}$ heißt endlich, wenn der Träger
+  \begin{align*}
+    \supp(c) := \{x \in \Z^d | c(x) \neq \# \}
+  \end{align*}
+  endlich ist.
+  Es sei $\mathcal{C}_F$ die Menge aller endlichen Konfigurationen und $G_F$ die Einschränkung von $G$ auf diese.
+
+  Eine Konfiguration $c \in \mathcal{C}$ heißt (räumlich) periodisch, wenn es $m_1, \dots, m_d \in \N^{\times}$ gibt, für die
+  \begin{align*}
+    c = \sigma_i^{m_i}(c), \quad i = 1,\dots,d
+  \end{align*}
+  gilt. Es sei $\mathcal{C}_P$ die Menge aller periodischen Konfigurationen und $G_P$ die Einschränkung von $G$ auf diese.
+\end{definition}
+
+Aufgrund der Stabilität von $\#$ wird eine endliche Konfiguration unter $G$ wieder auf eine endliche Konfiguration abgebildet. Daher ist $G_F$ sogar eine Funktion $\mathcal{C}_F \to \mathcal{C}_F$.
+
+Da ZA mit Translationen kommutieren, gilt für eine räumlich periodische Konfiguration $c \in \mathcal{C}_P$ wegen
+\begin{align*}
+  \sigma_i^{m_i}(G(c)) = G(\sigma_i^{m_i}(c)) = G(c), \quad i = 1,\dots,d,
+\end{align*}
+dass $G(c)$ auch räumlich periodisch ist. Daher ist $G_P$ sogar eine Funktion $\mathcal{C}_P \to \mathcal{C}_P$.
+
+Eine weitere wichtige Klasse von Konfigurationen ist die der zeitlich periodischen. Diese müssen von den räumlich periodischen unterschieden werden und stellen ein spannendes Analyse-Tool für ZA dar.
+
+\begin{definition}
+  Eine Konfiguration $c \in \mathcal{C}$ heißt \textit{zeitlich periodisch} für einen ZA G, wenn es ein $k \geq 1$ gibt, mit $G^k(c) = c$.\footnote{$G^k := \underbrace{G \circ G \circ \dots \circ G}_{k-\text{mal}}$} Das minimale $k$, welches diese Gleichung erfüllt, werden wir als \textit{Periode} bezeichnen. Im Fall $k=1$ nennen wir $c$ einen Fixpunkt.
+\end{definition}
+
+
+Jeder ZA besitzt eine zeitlich periodische homogene Konfiguration $p$. Dies folgt aus der Tatsache, dass es nur endlich viele ($\leq |S|$) homogene Konfigurationen gibt und durch $G$ jeweils wieder in eine homogene Konfiguration überführt werden. Die Periode von $p$ ist also auch maximal $|S|$.
+
+
+\section{Zusammenhänge zwischen Injektivität, Surjektivität und Reversibilität in Zellulären Automaten}
+\label{section:results}
+
+Nach den allgemeinen Definitionen und Resultaten des vorangegangenen Abschnitts wollen wir uns nun einem speziellen Konzept genauer widmen. Die Reversibilität in Zellulären Automaten ist eine für die Praxis sehr relevante Eigenschaft, die bereits eingehend studiert wurde. Besonders im Hinblick auf die Anwendung Zellulärer Automaten zur Simulierung physikalischer oder biologischer Systeme ist es oftmals von großem Interesse, ein in der Realität .....
+
+\subsection{Curtis-Hedlund-Lyndon-theorem}
+\label{section:hedlund}
+
+Zu Beginn und zur Motivation der folgenden Überlegungen werden zunächst zwei Begriffe definiert, welche offensichtlich einen Zusammenhang haben, deren Äquivalenz jedoch a priori noch nicht gegeben ist.
+
+\begin{definition}
+  Ein ZA $G$ heißt \textit{bijektiv}, falls $G$ als Funktion bijektiv ist.
+
+  Ein ZA $G$ heißt \textit{reversibel}, falls ein ZA $H$ existiert mit $G \circ H = H \circ G = \id$.
+\end{definition}
+
+Für einen reversiblen ZA $G$ existiert also mit $H$ eine Inverse und somit ist $G$ auch bijektiv. Umgekehrt folgt jedoch aus der Bijektivität von $G$ nur die Existenz einer Inverse $F$. Dass $F$ wiederum die Globale Überführungsfunktion eines ZA ist, wollen wir zeigen. Daraus würde die Äquivalenz beider Begriffe folgen.
+
+Zunächst definieren wir auf der Menge $\mathcal{C} = S^{\Z^d}$ eine Metrik.
+
+\begin{definition}\label{definition:metricdef}
+  Für $c,e \in \mathcal{C}$ sei eine Funktion $d$ durch
+  \begin{align*}
+    d(c, e) = \begin{cases}
+      0, & c = e \\
+      2^{- \min \{ \|x\|_\infty \text{~}|\text{~} x \in \Z^d: c(x) \neq e(x)\} }& \, c \neq e
+    \end{cases}
+  \end{align*}
+  gegeben.
+\end{definition}
+
+\begin{lemma}
+  Die Funktion $d$ aus Definition \ref{definition:metricdef} ist tatsächlich eine Metrik auf $\mathcal{C}$.
+\end{lemma}
+\begin{proof}
+  Wir überprüfen die Bedingungen für eine Metrik
+  \begin{itemize}
+    \item[(M1)] Für alle $c,e \in \mathcal{C}$ ist nach Definition $d(c,e) \geq 0$. Dabei gilt außerdem $d(c,e) = 0$ genau dann, wenn $c = e$.
+
+    \item[(M2)] Für alle $c,e \in \mathcal{C}$ gilt nach Definition $d(c,e) = d(e,c)$.
+
+    \item[(M3)] Seien $c,e,f \in \mathcal{C}$, o.B.d.A. $c \neq f$. Sei $m(c,f) := \min \{ \|x\|_\infty \text{~}| \text{~}x \in \Z^d: c(x) \neq f(x)\}$. Man definiere $m(c,e)$ und $m(e,f)$ analog und nehme an, dass $m(c,e), m(e,f) > m(c,f)$. Daraus folgt jedoch
+    \begin{align*}
+      \Forall x \in \Z^d, \|x\|_{\infty} \leq m(c,f): c(x) = e(x) = f(x)
+    \end{align*}
+    und damit sofort ein Widerspruch zur Definition von $m(c,f)$.
+    Insgesamt ist also mit
+    \begin{align*}
+      d(c,f) = 2^{-m(c,f)} \leq 2^{-m(c,e)} + 2^{-m(e,f)} = d(c,e) + d(e,f)
+    \end{align*}
+    die Dreiecksungleichung gezeigt.
+
+  \end{itemize}
+
+\end{proof}
+
+Anschaulich gesprochen haben zwei Konfigurationen unter dieser Metrik einen geringen Abstand, wenn sie auf einem großen Gebiet um den Ursprung übereinstimmen. Betrachten wir nun die von der Metrik $d$ induzierte Topologie. Der \textit{Zylinder} mit Radius $r$ um die Konfiguration $c$ sei die Menge
+\begin{align*}
+  Cyl(c,r) := \{e \in \mathcal{C} \text{~}|\text{~}\Forall x \in \Z^d, \|x\|_\infty \leq r: e(x) = c(x) \}.
+\end{align*}
+Nach Definition gilt
+\begin{align*}
+  \Forall e \in \mathcal{C}: e \in \text{Cyl}(c,r) \Leftrightarrow d(e,c) < 2^{-r},
+\end{align*}
+also sind die Zylinder genau die offenen Kugeln in der Metrik $d$ - diese bilden bekanntlich eine Basis der induzierten Topologie. Für ein festes $r$ gibt es nur endlich viele Zylinder mit Radius $r$, welche eine Partition der Menge $\mathcal{C}$ aller Konfigurationen bilden. Somit ist ein Zylinder als Komplement der Vereinigung aller anderen offenen Zylinder mit dem gleichen Radius auch abgeschlossen in der Topologie. Wir haben mit den Zylindern also eine abgeschloffene \footnote{engl. clopen} Basis gefunden.
+
+Sei $(S, \mathcal{T})$ die Zustandsmenge versehen mit der diskreten Topologie. Da $S$ endlich ist, handelt es sich um einen kompakten topologischen Raum. Versehen wir nun $\mathcal{C} = S^{\Z^d} \cong \prod_{x \in \Z^d}S$ mit der Produkttopologie $\prod_{x \in \Z^d}\mathcal{T}$, erhalten wir eine Basis aus den Mengen
+\begin{align*}
+  \prod_{x \in \Z^d}O_x, \quad \Forall x \in \Z^d: O_x \in \mathcal{T} \text{~und~} \Forall^{\infty} x \in \Z^d: O_x = S.
+\end{align*}
+
+Da man alle diese Mengen aus (endlichen) Vereinigungen unser Zylinder-Basis konstruieren kann, stimmen die von beiden Basen erzeugten Topologien überein. Insbesondere können wir aus dieser Konstruktion mithilfe der Produkttopologie schließen, dass nach dem Satz von Tychonoff der Topologische Raum kompakt ist. Dies können wir in nachfolgendem Resultat festhalten.
+
+\begin{proposition}
+  Die Menge $\mathcal{C} = S^{\Z^d}$ mit der Metrik $d$ ist ein kompakter metrischer Raum. Die Zylinder bilden eine abzählbare abgeschloffene Basis.
+\end{proposition}
+
+Die folgenden Resultate wurden in dem Paper von [Hedlund] in ähnlicher Form für \textit{shift dynamical systems} gezeigt. Hier werden wir sie etwas komplizierter konkret für Zelluläre Automaten  beliebiger Dimension beweisen.
+
+\begin{lemma}\label{continuous}
+  Jede ZA Funktion $G: \mathcal{C} \to \mathcal{C}$ ist stetig.
+\end{lemma}
+
+\begin{proof}
+  Es bezeichne $m := \max \{\|y\|_\infty \text{~}| \text{~} y \in N\}$ für die Nachbarschaft $N$ von $G$. Sei $c \in \mathcal{C}$ und $e := G(c)$. Sei $\epsilon > 0$ und $k \in \N$, sodass $2^{-k} < \epsilon$. Wähle nun $\delta > 0$, sodass $\delta < 2^{-(k+m)}$ und sei $u \in \mathcal{C}$ mit $d(c,u) < \delta$ und sei $v := G(u)$. Dann gilt also $c(x) = u(x)$ für alle $x$ mit $\|x\|_\infty < k+m$. Nach Anwendung der lokalen Update-Regel (unter Einbeziehung der Nachbarschaft im Radius $m$) gilt also für die Bilder immer noch $e(x) = v(x)$ für alle $x$ mit $\|x\|_\infty < k$ und somit $d(e,v) < \epsilon$. Also ist $G$ stetig.
+\end{proof}
+
+Wir haben also mit Lemma \ref{commute} und Lemma \ref{continuous} zwei zentrale Eigenschaften für ZA gezeigt. Tatsächlich sind ZA dadurch auch schon eindeutig charakterisiert, wie der folgende Satz zeigt.
+
+\begin{theorem}\label{hedlund}
+  Eine Funktion $G: S^{\Z^d} \to S^{\Z^d}$ ist die Globale Überführungsfunktion eines ZA genau dann, wenn $G$ stetig ist und mit Translationen kommutiert.
+\end{theorem}
+
+\begin{proof}
+  Wir müssen nur noch die Rückrichtung zeigen. Sei $G: S^{\Z^d} \to S^{\Z^d}$ eine stetige Funktion, die mit Translationen kommutiert. Im Folgenden nehmen wir an, dass die Zustandsmenge von der Form $S = \{0, \dots, |S|-1\}$ ist. Für jedes $i \in S$ sei $U_i := \{c \text{~}|\text{~} c \in \mathcal{C}, c(0) = i\}$, was offensichtlich dem Zylinder mit Radius $1$, der die konstante Konfiguration mit Wert $i$ enthält, entspricht. Somit bilden die so definierten $U_i$ eine Partition von $\mathcal{C}$ aus abgeschloffenen Mengen. Da $G$ stetig ist, sind die jeweiligen $V_i := G^{-1}(U_i)$ auch offen und abgeschlossen - auch hier gilt $V_i \cap V_j = \emptyset$ für $i \neq j$ und $\bigcup_{i = 0}^{|S|-1} = \mathcal{C}$.
+
+
+  -- Hier evtl noch ein Lemma draus machen--
+  Da die $V_i$ als abgeschlossene Mengen eines kompakten Raumes eine kompakte Partition bilden, gilt
+  \begin{align*}
+    \exists k \in \N: \Forall i,j \in S, i \neq j, \forall x \in V_i, y\in V_j: d(x,y) > 2^{-k}.
+  \end{align*}
+  Es bezeichne für $c \in \mathcal{C}$ und $k \in \N_{0}$ der \textit{zentrale $k$-Block von $c$} den Block \footnote{Das Wort $k$-Block bezeichnet hier den $d$-dimensionalen Hyperwürfel der Länge $2k+1$.} der Zustände aller Zellen $x$ mit $\|x\|_\infty \leq k$ in der Konfiguration $c$. \footnote{Im 1-dimensionalen Fall entspricht das dem Block $c(-k) \dots c(-1)c(0)c(1) \dots c(k)$.} Für jedes $i \in S$ definieren wir nun die Menge $\mathcal{B}_i$ aller $k$-Blöcke $B$ über der Menge $S$, für die es ein $c_i \in V_i$ gibt, sodass $B$ der zentrale $k$-Block von $c_I$ ist.
+
+  Angenommen, die $\mathcal{B}_i$ wären nicht paarweise disjunkt, dann gäbe es $i \neq j \in S$ und $B \in \mathcal{B}_i \cap \mathcal{B}_j$. Das heißt, es gäbe $c_i \in V_i$ und $c_j \in V_j$ jeweils mit zentralem $k$-Block $B$. Insbesondere stimmen sie auf diesem Gebiet um den Ursprung überein und es gilt $d(c_i, c_j) < 2^{-k}$ im Widerspruch zu der Wahl von $k$. Es kommt also jeder $k$-Block in genau einem $\mathcal{B}_i$ vor. Wenn wir die Menge aller $k$-Blöcke über $S$ nun mit $S^{(2k+1)^d}$ identifizieren, gilt also
+  \begin{align*}
+    \bigcup_{i = 0}^{|S|-1} \mathcal{B}_i = S^{(2k+1)^d}.
+  \end{align*}
+
+  Wir können nun eine Funktion $f: S^{(2k+1)^d} \to S$ definieren durch $f(B) = i$, falls $B \in \mathcal{B}_i$ ($B \in S^{(2k+1)^d}$ aufgefasst als $d$-dimensionaler $k$-Block über $S$).
+
+  Definiert man nun $N := (y \text{~}|\text{~} \|y\|_\infty \leq k)$ ($k$ Moore-Nachbarschaft) und $F$ als die Globale Überführungsfunktion des ZA $(S,N,f)$, so kann man schon zeigen, dass $G = F$.
+  Seien dafür $c \in \mathcal{C}$ beliebig, wir zeigen zunächst die Gleichheit der Bilder von $c$ im Ursprung. Es gibt ein eindeutiges $i \in S$, sodass $c \in V_i$ und somit gilt $B \in \mathcal{B}_i$ für den zentralen $k$-Block von $c$. Also ist $F(c)(0) = f(c(y_1), \dots, c(y_n)) = f(B) = i$ und da $c \in V_i = G^{-1}(U_i)$, ist $G(c) \in U_i$ und nach Definition der $U_i$ auch $G(c)(0) = i$.
+
+  Sei nun $x \in \Z^d$ beliebig, dann nutzen wir die Tatsache aus, dass $G$ nach Voraussetzung mit Translationen kommutiert (ebenso tut dies $F$ als ZA) und zeigen
+  \begin{align*}
+    F(c)(x) = \tau_{-x}\big(F(c)\big)(0) = F\big(\tau_{-x}(c)\big) (0) = G\big(\tau_{-x}(c)\big) (0) = \tau_{-x}\big(G(c)\big)(0) = G(c)(x).
+  \end{align*}
+
+  Es ist also tatsächlich $G$ schon die Globale Überführungsfunktion eines ZA und die Äquivalenz ist gezeigt.
+\end{proof}
+
+Mit diesem Resultat lässt sich nun leicht die zu Beginn des Unterabschnittes erwähnte Äquivalenz der Begriffe bijektiv und reversibel zeigen.
+
+\begin{corollary}
+  Ein Zellulärer Automat $G$ ist reversibel genau dann, wenn er bijektiv ist.
+\end{corollary}
+
+\begin{proof}
+  Definitionsgemäß folgt aus der Reversibilität die Bijektivität.
+  Sie $G$ ein bijektiver ZA. Die Inverse $G^{-1}$ einer stetigen Bijektion zwischen zwei kompakten metrischen Räumen ist wieder stetig. Außerdem kommutiert $G^{-1}$ mit Translationen:
+  \begin{align*}
+    G^{-1} \circ \tau_{z} = G^{-1} \circ \tau_{z} \circ G \circ G^{-1} = G^{-1} \circ G \circ \tau_{z} \circ G^{-1} = \tau_{z} \circ G^{-1}.
+  \end{align*}
+   Somit ist $G^{-1}$ nach Satz \ref{hedlund} die Funktion eines ZA.
+\end{proof}
+
+In [paper Hedlund] wird im weiteren Verlauf sogar noch gezeigt, dass aus der Injektivität schon die Bijektivität folgt. Auf eine Auseinandersetzung mit dieser Argumentation soll an dieser Stelle verzichtet werden und stattdessen im nächsten Unterabschnitt sogar eine stärkere Aussage gezeigt werden.
+
+
+\subsection{Garden-of-Eden-Theorem}
+\label{subsection:gardenofeden}
+
+In dem folgenden Unterabschnitt widmen wir uns der Theorie der \textit{Garden-of-Eden-Konfigurationen} in Zellulären Automaten. Hierbei handelt es sich um Konfigurationen, welche keinen \textit{Vorgänger} haben bzw. deren Urbild unter der ZA-Funktion $G$ die leere Menge ist. Ein ZA ist nicht surjektiv genau dann, wenn es Garden-of-Eden-Konfigurationen gibt. Wir wollen nun den Begriff eines \textit{Waisen} definieren, in der folgenden Notation ein endliches Muster, welches in keiner Konfiguration auftreten kann, die durch Anwendung des ZA entstanden ist.
+
+\begin{definition}
+  Ein \textit{Muster} $\rho = (D,g)$ ist eine partielle Konfiguration bestehend aus dem \textit{Domain} $D \subseteq \Z^d$ und einer Funktion $g: D \to S$. Das Muster heißt \textit{endlich}, falls $D$ eine endliche Menge ist.
+\end{definition}
+
+Wir können das Konzept der Zylinder auf allgemeine Mengen verallgemeinern und definieren für ein Muser $\rho = (D,g)$
+\begin{align*}
+  \text{Cyl}(g,D):= \{e \in \mathcal{C} \text{~}| \text{~} \Forall x \in D: e(x) = g(x) \}.
+\end{align*}
+Man beachte, dass bisher Zylinder nur für Mengen der Form $D = \{x \in \Z^d \text{~}| \text{~} \|x\|_\infty \leq r\}$ definiert waren.
+
+Für den Nachbarschaftsvektor $N = (y_1, \dots, y_n)$ definieren wir für $D \subseteq \Z^d$
+\begin{align*}
+  N(D) := \{x + y_i \text{~} | \text{~} x \in D, i = 1, \dots , n\}
+\end{align*}
+die Menge aller Nachbar-Elemente von $D$.
+
+Für einen ZA $G = (S,N,f)$ und ein Muster $q = (E,h)$ sei nun $D \subseteq \Z^d$ ein Domain mit $N(D) \subseteq E$. Die Anwendung der lokalen Update-Regel $f$ auf das Muster $q$ bestimmt nun die neuen Zustände aller Zellen in $D$. Daraus ergibt sich das Muster $p = (D,g)$, wobei für alle $x \in D$ gilt
+\begin{align*}
+  g(x) = f \big(h(x+y_1), \dots, h(x+y_n) \big).
+\end{align*}
+Die Abbildung, welche in diesem Sinne $q \mapsto p$ leistet, werde $G^{(E \to D)}$ genannt, falls $E$ und $D$ bekannt sind, einfach nur $G$.
+
+\begin{definition}
+  Eine endliches Muster $p = (D,g)$ heißt \textit{Waise}, falls es kein endliches Muster $q$ mit Domain $N(D)$ gibt, sodass $G^{(N(D) \to D)}$.
+\end{definition}
+
+\begin{proposition}
+  Ein ZA ist nicht surjektiv genau dann, wenn ein Waise existiert.
+\end{proposition}
+
+\begin{proof}
+  Existiert ein Waisen so können wir diesen als endliche Konfiguration auffassen, welche nach Definition eine Garden-of-Eden-Konfiguration ist - somit ist der ZA nicht surjektiv. Zeigen wir nun also, dass die Existenz einer Garden-of-Eden-Konfiguration schon die eines Waisen impliziert.
+
+  Dafür beschreiben wir die Menge der Konfigurationen, die nicht Garden-of-Eden sind, als $G(\mathcal{C})$. Da $G$ nach dem Lemma der abgeschlossenen Abbildung abgeschlossen ist, ist diese Menge abgeschlossen. Die Menge der Garden-of-Eden-Konfigurationen ist als Komplement damit offen und nach Voraussetzung nicht-leer. Da die Zylinder eine Basis bilden, können wir diese Menge als Vereinigung von Zylindern darstellen. Insbesondere gibt es einen Zylinder Cyl$(g,D)$, welcher nur aus Garden-of-Eden-Konfigurationen besteht. Das Muster $(D,g)$, welches diesen Zylinder definiert, ist offensichtlich ein Waise (man betrachte zum Beispiel die Konfiguration $c \in \text{Cyl}(g,D)$, welche dem Muster eingebettet in eine homogene Konfiguration entspricht).
+\end{proof}
+
+Wir wollen beide Implikationen des Garden-of-Eden-Theorems zeigen, welches besagt, dass Surjektivität eines ZA $G$ äquivalent zur Injektivität von $G_F$ - der Einschränkung auf endliche Konfigurationen - ist. Das folgende technische Lemma wird dafür von Nutzen sein.
+
+\begin{lemma}
+  Für beliebige $d, m, s, r \in  \N$ gilt die Ungleichung
+  \begin{align*}
+    (s^{n^d}-1)^{k^d} < s ^{(kn-2r)^d}
+  \end{align*}
+  für $k \in \N$ hinreichend groß.
+\end{lemma}
+
+\begin{proof}
+  Zunächst der Beweis (wie in [Moore]) für den Fall $d = 2$:
+  Wir stellen zuerst fest, dass wegen $s>1$ und $n>1$ gilt, dass $s^{n^2} > s^{n^2} -1 > 0$ und daher $\log_s (s^{n^2}/(s^{n^2}-1)) > 0$. Für $k \in \N$ hinreichend groß gilt also die Ungleichung
+  \begin{align*}
+    k > \frac{4rn-\frac{4r^2}{k}}{\log_s (s^{n^2}/(s^{n^2}-1))},
+  \end{align*}
+
+  woraus
+  \begin{align*}
+    \log_s (s^{n^2}/(s^{n^2}-1)) > \frac{4rn}{k} - \frac{4r^2}{k^2}
+  \end{align*}
+
+  folgt und damit
+  \begin{align*}
+    \log_s ((s^{n^2}-1)/s^{n^2}) < - \frac{4rn}{k} + \frac{4r^2}{k^2}.
+  \end{align*}
+
+  Potenzieren wir nun $s$ mit beiden Seiten der Ungleichung, so gilt
+  \begin{align*}
+    (s^{n^2}-1)/s^{n^2} < s^{- 4rn/k + 4r^2/k^2}
+  \end{align*}
+  und
+  \begin{align*}
+    s^{n^2}-1 < s^{n^2 - 4rn/k + 4r^2/k^2}.
+  \end{align*}
+  Potenzieren mit $k^2$ liefert schlussendlich
+  \begin{align*}
+    (s^{n^2}-1)^{k^2} < s^{k^2 n^2 - 4rkn + 4r^2} = s^{(kn-2r)^2}.
+  \end{align*}
+
+  Für den allgemeinen Fall $d \in \N$ beachte man zuerst, dass
+  \begin{align*}
+    -\left(\frac{(kn-2r)^d}{k^d}-n^d\right) \cdot k = c_0 + \frac{c_1}{k} + \frac{c_2}{k^2} + \dots + \frac{c_d}{k^d}
+  \end{align*}
+  eine derartige rationale Funktion in $k$ ist, wobei die $c_i \in \Z$ nur von $d, m$ und $r$ abhängen.
+
+  Wir können also wieder ein hinreichend großes $k \in \N$ finden, welches die Ungleichung
+  \begin{align*}
+    k > \frac{-\left(\frac{(kn-2r)^d}{k^d}-n^d \right) \cdot k}{\log_s (s^{n^d}/(s^{n^d}-1))}
+  \end{align*}
+  erfüllt.
+
+  Analog zum Fall $d=2$ kann man durch Umformungen wieder auf die zu beweisende Ungleichung schließen.
+\end{proof}
+
+Mit diesen Mitteln zeigen wir nun den ersten Teil des Garden-of-Eden-Theorems.
+
+\begin{theorem}
+ Aus der Surjektivität von $G$ folgt die Injektivität von $G_F$.
+\end{theorem}
+
+\begin{proof}
+  Angenommen, $G_F$ wäre nicht injektiv, dann gibt es zwei verschiedene Muster/ endliche Konfigurationen $p_1$ und $p_2$ mit gleichem Bild. Sei in diesem Fall $r := 2 \max \{\|y\|_\infty \text{~}| \text{~} y \in N\}$ der doppelte Radius der Nachbarschaft $N$ von $G$. Es gibt dann ein $n \in \N$, sodass $\supp(p_1) \subseteq [-n/2+r, n/2 - r]^d$ und $\supp(p_2) \subseteq [-n/2+r, n/2 - r]^d$.
+
+  Betrachten wir nun den Domain $E = [-kn/2, kn/2]^d$ bestehend aus $k^d$ Kopien des kleineren Hyperwürfels. Da jeder der kleineren Hyperwürfel maximal $s^{n^d} - 1$ Bilder besitzt, hat $E$ höchstens $(s^{n^d} - 1)^{k^d}$ unterschiedliche Bilder. Auf der anderen Seite gibt es jedoch $s^{(kn-2r)^d}$ Muster mit Domain $D = [-kn/2 + r, kn/2- r]^d$, auf welche Muster mit Domain $E = N(D)$ abgebildet werden können. Für $k \in \N$ hinreichend groß gilt jedoch
+  \begin{align*}
+    s^{(kn-2r)^d} > (s^{n^d} - 1)^{k^d}
+  \end{align*}
+  und somit gibt es mindestens ein Muster, welches kein Urbild hat. $G$ ist also nicht surjektiv.
+\end{proof}
+
+
+
+
+Nun zum der anderen Richtung.
+
+\begin{theorem}[Myhill]
+  Aus der Injektivität von $G_F$ folgt die Surjektivität von $G$.
+\end{theorem}
+
+\begin{proof}
+  Angenommen, $G$ wäre nicht surjektiv, dann gibt es einen Waisen $p = (D,g)$ und ein $n \in \N$ mit $D = [-n/2, n/2]^d$. Der Domain ist also ein $d$-dimensionaler Hyperwürfel der Größe $n^d$. Für beliebiges $k \in \N$ betrachten wir nun den Domain $E = [-kn/2, kn/2]^d$ bestehend aus $k^d$ Kopien des kleineren Hyperwürfels. Da man jeden der kleinen Hyperwürfel nur mit maximal $s^{n^d} - 1$ nicht-Waisen besetzen kann, existieren in $E$ höchstens $(s^{n^d} - 1)^{k^d}$ nicht-Waisen.
+
+  Bezeichne nun $r := \max \{\|y\|_\infty \text{~}| \text{~} y \in N\}$ den Radius Nachbarschaft $N$ von $G$. Dann erzeugt jede Konfiguration $c$ mit $\supp(c) \subseteq [-kn/2+r, kn/2-r]^d$ eine Konfiguration mit $supp(G(c)) \subseteq [-kn/2, kn/2]^d$. es gibt genau $s^{(kn-2r)^d}$ solcher Konfigurationen. Für $k$ hinreichend groß gilt jedoch nach Lemma []
+  \begin{align*}
+    s^{(kn-2r)^d} > (s^{n^d} - 1)^{k^d}
+  \end{align*}
+  und daher müssen mindestens zwei dieser endlichen Konfigurationen das gleiche Bild unter $G$ bzw. $G_F$ haben, $G_F$ ist also nicht injektiv.
+\end{proof}
+
+
+Da die Injektivität von $G$ sofort die Injektivität von $G_F$ impliziert, kommen wir mithilfe des letzten Satzes und des Korollars [Nummer] auf folgendes Resultat.
+
+\begin{corollary}
+  Für einen ZA $G$ folgt aus der Injektivität bereits die Surjektivität. Es ist also Injektivität äquivalent zur Bijektivität bzw. Reversibilität.
+\end{corollary}
+
+\begin{remark}
+  Die Implikation gilt nicht in die andere Richtung. So gibt es ZA, welche surjektiv (und somit injektiv auch endlichen Konfigurationen), jedoch nicht injektiv sind. Ein Beispiel dafür ist \textit{Rule 90}, der ein-dimensionale binäre ZA, welcher den Zustand jeder Zelle durch Addition $\mod 2$ der beiden Nachbarn berechnet. % [GF_not_G]
+\end{remark}
+
+
+\subsection{Konstruktion reversibler ZA und Entscheidbarkeit}
+\label{subsection:construction}
+
+In dieser Unterabschnitt sollen zunächst einige Fragen bezüglich der Entscheidbarkeit von Injektivität und Surjektivität beantwortet werden. Hier nehmen ein-dimensionale Zelluläre Automaten eine Sonderrolle ein im Vergleich zu höheren Dimensionen.
+
+\begin{theorem}[Amoroso and Patt 1972]
+  Es existiert ein Algorithmus, der für einen gegebenen ein-dimensionalen ZA bestimmen kann, ob dieser injektiv (surjektiv) ist oder nicht.
+\end{theorem}
+
+\begin{proof}
+  Mal schauen...
+\end{proof}
+
+Es wurde sogar einige Jahre später unter Zuhilfenahme von \textit{de Bruijn Graphen} ein Algorithmus von Sutner gefunden, welcher diese Probleme in quadratischer Zeit entscheiden kann. [Sutner 1991]
+
+Dass diese Fragen für zwei-dimensionale (und somit auch für höhere Dimensionen) nicht algorithmisch zu beantworten sind, wurde von [Kari 1994] durch Reduzierung auf das unentscheidbare \textit{tiling problem} [Berger 1966 ] gezeigt.
+
+\begin{theorem}
+  Das Problem, ob ein gegebener zwei-dimensionaler ZA injektiv (surjektiv) ist, ist unentscheidbar.
+\end{theorem}
+
+Dennoch gibt es diverse Strategien, injektive (und damit reversible) ZA zu konstruieren. Einige davon werden in [Handbook 7] aufgezählt.
+
+Die Konstruktion reversibler Zellulärer Automaten mit \textit{Block Regeln} basiert auf der Idee, die lokale Update-Regel selbst schon injektiv zu machen. Dies ist für eine gewöhnliche Update-Regel $f : S^n \to S$ außer im trivialen Fall $n = 1$ nicht möglich. Daher erweitert man dieses Konzept auf Funktionen $f: S^n \to S^n$, welche für einen Block von $n$ Zellen die neuen Zustände aller Zellen bestimmt. Eine Konfiguration wird nun in derartige Blöcke partitioniert und die Funktion $f$ auf alle diese Blöcke gleichzeitig angewendet. Um jedoch auch Interaktion zwischen den Blöcken zu ermöglichen, muss im nächsten Schritt die Partitionierung verändert werden.
+
+Ein Beispiel für solch einen Block ZA ist der \textit{billiard-ball computer} von Margolus [Margolus, 1984], welcher die sogenannte \textit{Margolus Nachbarschaft} verwendet. (siehe Abbildung)
+
+Man beachte, dass es sich bei diesem Konzept grundsätzlich nicht um einen ZA im herkömmlichen Sinne handeln. In [Margolus u. Toffoli Buch] wurde allerdings gezeigt, dass ein solcher Block ZA durch einen konventionellen ZA simuliert werden kann (unter Verwendung von mehr Zuständen und einer erweiterten Nachbarschaft).
+
+Eine ähnliche Möglichkeit zur Konstruktion reversibler ZA sind partitionierte Zelluläre Automaten (PZA). Bei einer Nachbarschaft aus $n$ Zellen gibt es hier Zustandsmengen $S_i, i = 1, \dots, n$, welche zum \textit{$i$-ten Teil} einer Zelle gehören. Konkret ist die Zustandsmenge einer Zelle gegeben durch $S = S_1 \times S_2 \times \dots \times S_n$ und die Lokale Update-Regel $f: Q \to Q$. Wenn $p_i: S \to S_i, i = 1, \dots, n$ die Projektionen bezeichnen, ist die globale Überführungsfunktion $G$ definiert durch die Funktion $G: S^{\Z^d} \to S^{\Z^d}$, welche folgendes leistet:
+\begin{align*}
+  \Forall c \in S^{\Z^d}, x \in \Z^d: G(c)(x) = f(p_1(c(x+y_1)), \dots p_n(x+y_n)).
+\end{align*}
+Für eine injektive Funktion $f$ wird auch $G$ injektiv und man kann zeigen, dass einem PZA stets ein konventioneller ZA mit gleicher Globaler Überführungsfunktion entspricht.
+
+Eine letzte Variante sei an dieser Stelle nur kurz genannt. Bei ZA zweiter Ordnung werden zur Bestimmung des Zustands einer Zelle zum Zeitpunkt $t+1$ nicht nur die Zustände der Nachbarzellen zum Zeitpunkt $t$, sondern auch der Zustand der Zelle zum Zeitpunkt $t-1$ verwendet.
+
+
+
+% end

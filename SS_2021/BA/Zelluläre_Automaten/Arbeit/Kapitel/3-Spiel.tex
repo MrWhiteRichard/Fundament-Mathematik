@@ -1,0 +1,165 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Design und Analyse eines Spiels}
+\label{chapter:game}
+
+\section{Game of Life}
+
+mal schauen...
+
+\section{Design und Implementierung}
+
+\subsection{Spielidee}
+
+Wie in Abbildung (Abbildung) zu sehen, gibt es in dem Spiel drei verschiedene Tiere - einen Frosch, einen Storch und mehrere Fliegen dargestellt als schwarze Punkte. Das Ziel des\_der Spieler\_in besteht darin, durch Steuerung der Zunge des Frosches alle Fliegen zu fangen und gleichzeitig dem Storch zu entkommen. Es stehen hierfür durch Drücken der jeweiligen Taste der Tastatur folgende Aktionen zur Verfügung
+\begin{itemize}
+  \item Pfeiltaste oben: Ausstrecken der Zunge nach oben
+  \item Pfeiltaste rechts: Ausstrecken der Zunge nach rechts
+  \item Pfeiltaste unten: Ausstrecken der Zunge nach unten
+  \item Pfeiltaste links: Ausstrecken der Zunge nach links
+  \item Leertaste: Untertauchen für eine gewisse Zeit zur Vermeidung einer Kollision mit dem Storch.
+\end{itemize}
+
+Zur Erhöhung der Schwierigkeit und Vermeidung von stupidem Drücken der Tasten benötigen die einzelnen Aktionen jeweils eine gewisse Energie, welche dem Frosch nur begrenzt zur Verfügung steht. Konkret verbraucht das Ausstrecken der Zunge in eine beliebige Richtung $3$ Energiepunkte und das Untertauchen $5$ Energiepunkte. Zu Beginn des Spiels ist die Energie stets bei $30$, durch aktives Fangen einer Fliege erhöht sie sich jeweils um $10$ Punkte.
+
+Die genannten Aktionen sind außerdem die einzigen, die ein\_e Spieler\_in ausführen kann. Insbesondere kann die Richtung des Frosches selbst nicht gesteuert werden, sondern dieser bewegt sich für eine gewisse Zeit in eine Richtung, bevor er nach einer vorgegebenen Dauer $t_1$ in eine zufällige der $4$ möglichen Richtungen übergeht. Für die Bewegung des Storches gelten die selben Vorschriften, jedoch mit einer anderen Dauer $t_2$. \footnote{So gewählt, dass $\ggT (t_1,t_2) = 1$, damit möglichst selten eine Bewegungsänderung beider Tiere zum gleichen Zeitpunkt erfolgt.}
+
+Die Bewegung der Fliegen erfolgt stets in die gleiche Richtung und ändert sich nur dann (um $180^{\circ}$), wenn es zu einer \textit{aktiven} Kollision mit einem größeren Tier kommt. Bei einer \textit{passiven} Kollision verschwindet die Fliege jedoch, ohne dass der\_die Spieler\_in dafür neue Energie erhält. Die genaue Definition der beiden Arten von Kollisionen wird im Abschnitt (...) folgen.
+
+Sollte es auf dem Spielfeld zu einer Kollision zwischen Frosch und Storch kommen oder die Energie des Frosches auf weniger als $0$ sinken, verliert der Frosch eines von drei Leben und das Spiel wird unterbrochen. Falls kein Leben mehr zur Verfügung steht, gilt die Runde als verloren. Im anderen Fall wird die Energie des Frosches auf das Maximum von $30$ und der Energie zum Zeitpunkt der Unterbrechung gesetzt. Das Spiel wird mit dem neuen Leben durch Drücken der Leertaste wieder gestartet und der Frosch taucht zunächst unter, um dem Gefahrenbereich des Storches zu entkommen.
+
+Im ersten Level des Spiels sind dies die Regeln des Spiels. Gelingt es dem\_der Spieler\_in, alle Fliegen zu eliminieren, beginnt das zweite Level des Spiels. Die einzige Änderung besteht darin, dass zwei sich kreuzende Fliegen eine dritte Fliegen produzieren. Dies mag zunächst als ein Vorteil erscheinen, da der\_die Spieler\_in damit mehr Möglichkeiten hat, die Energiepunkte auf einem hohen Niveau zu halten. Die Schwierigkeit liegt jedoch darin, zu verhindern, dass sich die Fliegen ungebremst fortpflanzen. Ab einem gewissen Punkt lässt sich das dadurch simulierte exponentielle Wachstum der Fliegen äußerst schwierig aufhalten, weshalb bei einem Stand von $50$ Fliegen das Wachstum gestoppt wird und wieder die Regeln des ersten Levels gelten. Sollte der\textunderscore die Spieler\textunderscore in es nicht schaffen, diese Situation zu verhindern, verliert der Frosch jedoch zur Strafe ein Leben.
+
+Eine Besonderheit des Spiels besteht darin, dass das zwei-dimensionale Spielfeld einen periodischen Rand besitzt. Konkret bedeutet dies, dass sich Tiere beispielsweise aus dem rechten Rand des Spielfeldes hinausbewegen und am linken Rand wieder erscheinen. Das gleiche gilt für den oberen und unteren Rand, weshalb das Spielfeld anschaulich als die Oberfläche eines drei-dimensionalen Torus interpretiert werden kann. Diese Eigenheit macht das Spielen des Spiels anspruchsvoller, kann jedoch auch die Fähigkeit des räumlichen Denkens fordern und fördern.
+
+\subsection{Implementierung}
+
+Implementierung in Python, pygame etc. blablabla. Mithilfe von default-dicts usw (evtl erst als Anmerkung nach der genauen Erklärung der Regeln?)
+
+Tutorial zur Installation bzw. Zugriff.
+
+
+
+
+\section{Analyse}
+
+Im folgenden Abschnitt soll die Umsetzung des Spiels im Kontext der Zellulären Automaten genauer untersucht werden. Nach der Beschreibung des ZA, welcher die Umsetzung der Spielidee realisiert, wird dieser im Hinblick auf bereits in Abschnitt (section) behandelte Konzepte analysiert. Im Anschluss folgt eine statistische Analyse gewisser nicht-deterministischer Eigenschaften des Spiels.
+
+\subsection{Beschreibung der Komponenten des ZA}
+
+Wie in der Beschreibung der Spielidee bereits erklärt, ändern sich zu gewissen Zeitpunkten des Spiels die Bewegungsrichtungen von Frosch und Storch zufällig. Da solch ein Verhalten nicht mit unserer Definition (deterministischer) Zellulärer Automaten vereinbar ist, betrachten wir das Spiel als einen stückweise deterministischen ZA. Insbesondere widmen wir uns zunächst bei der Beschreibung und der Analyse nur einem jeweiligen Zeitabschnitt, in dem rein deterministische Regeln gelten.
+
+Wir definieren zunächst einige Begriffe, welche im Folgenden verwendet werden.
+
+\begin{definition}
+  Alle im Spiel auftretenden Einheiten und deren Bestandteile bezeichnen wir als \textit{Tier}. Die Menge aller Tiere im Spiel ist die disjunkte Vereinigung aller \textit{Fliegen} (entsprechen der Zahl $1$), aller Bestandteile von \textit{Fröschen} (entsprechen der Zahl $2$) und aller Bestandteile von \textit{Störchen} (entsprechen der Zahl $3$).
+\end{definition}
+
+Es handelt sich hierbei offensichtlich um einen zwei-dimensionalen ZA. Für die Zustandsmenge sei angemerkt, dass sich in einer beliebigen Zelle mehrere Tiere (bzw. Bestandteile von Tieren) befinden dürfen - jedoch nicht mehr als ein Tier, welches sich in die selbe Richtung bewegt. Es gibt jedoch noch die Einschränkung, dass zu keinem Zeitpunkt eine Fliege in einer Zelle sein darf, in der sich bereits ein größeres Tier befindet. Hinsichtlich der gleichzeitigen Besetzung von Frosch und Storch gibt es theoretisch keine Einschränkung, in der Praxis ist hier natürlich der Punkt, an dem es zu einer Kollision gekommen ist und der Frosch ein Leben verliert.
+
+Beschreiben wir den Zustand einer Zelle durch ein vier-elementiges Tupel $(t_o, t_r, t_u, t_l)$, in dem jede Komponente die Information beinhaltet, ob und welche Art von Tier sich in der Zelle befindet, das sich in die jeweilige Richtung bewegt. So beschreibt zum Beispiel der Zustand
+\begin{align*}
+  (1,1,0,0),
+\end{align*}
+\begin{quote} in der Zelle befindet sich eine Fliege, die sich nach oben bewegt und eine, die sich nach rechts bewegt. Es gibt keine sich nach unten oder links bewegenden Tiere. \end{quote}
+
+Erinnern wir uns an die zuvor gemachten Einschränkungen, ergibt sich daraus für die Zustandsmenge des ZA
+\begin{align*}
+  S := \{0,1\}^4 \cup \{0,2,3\}^{4}.
+\end{align*}
+Daraus folgt direkt, dass $|S| = 2^4 + 3^4 -1 = 96$ die Anzahl der (theoretisch) möglichen Zustände einer Zelle ist.
+
+Als Nachbarschaft sei $N := ((0,0), (0,1), (0,2), (0,-1), (0,-2), (1,0), (2,0), (-1,0), (-2,0))$ mit $n = 9$ gewählt. Dies entspricht der Einschränkung einer von-Neumann-Nachbarschaft vom Radius $2$.
+
+Der wesentliche Teil ist nun die Lokale Update-Regel $f:S^n \to S$ des ZA. Die Beschreibung gestaltet sich jedoch als Herausforderung aufgrund von zwei Punkten: Einerseits ist die Definitionsmenge $S^n$ mit $96^9$ zu groß, um die Funktion ohne Verwendung von Fallunterscheidungen anzugeben, andererseits erlaubt die bisherige Notation keine gut lesbare und kompakte Darstellung. Als Beispiel sei folgender Fall genannt, in dem eine leere Zelle von unten durch einen sich nach oben bewegenden Frosch besetzt wird, alle anderen Nachbarzellen seien leer. Die Funktion leistet in diesem Fall also
+\begin{align*}
+  f\left( (0,0,0,0), (0,0,0,0), (0,0,0,0), (2,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0) \right) \\
+  = (2,0,0,0).
+\end{align*}
+
+Es ist in dieser Notation nicht auf Anhieb ersichtlich, dass
+\begin{align*}
+  \left( (0,0,0,0), (1,0,0,0), (0,0,0,0), (2,0,0,0), (0,0,0,0), (0,3,0,0), (0,0,0,0), (0,0,0,2), (0,0,0,0) \right)
+\end{align*}
+unter $f$ den gleichen Wert annimmt.
+
+Um eine Fallunterscheidung für $f$ zu bestimmen, seien zunächst die Regeln (in Worten) für die Bewegungen der Tiere und die Interaktionen zwischen Fliegen und Frösche/ Störche folgendermaßen gegeben:
+
+\begin{itemize}
+  \item Frösche und Störche können sich zu jedem Zeitpunkt in die jeweilige Richtung bewegen und haben stets Vorrang vor Fliegen.
+  \item Eine Fliege kann sich ungehindert in die nächste Zelle bewegen, falls sich dort kein größeres Tier befindet und befinden wird.
+  \item Kommt es zu einer \textit{aktiven} Kollision einer Fliege mit einem größeren Tier, wechselt die Fliege ihre Richtung um $180^{\circ}$. Wir unterscheiden die drei Fälle einer aktiven Kollision:
+  \begin{enumerate}
+    \item In der nächsten Zelle befindet sich ein größeres Tier mit einer Richtung, die senkrecht zu der Richtung der Fliege steht. Dann bleibt die Fliege in der Zelle und wechselt lediglich die Richtung.
+    \item In der nächsten Zelle befindet sich ein größeres Tier mit einer Richtung, die genau entgegengesetzt zu der Richtung der Fliege ist. Dann wechselt die Fliege die Richtung und macht sogar direkt einen Schritt in diese Richtung.
+    \item In der übernächsten Zelle befindet sich ein größeres Tier mit einer Richtung, die genau entgegengesetzt zu der Richtung der Fliege ist. Dann bleibt die Fliege in der Zelle und wechselt lediglich die Richtung.
+  \end{enumerate}
+  \item Kommt es zu einer \textit{passiven} Kollision einer Fliege mit einem größeren Tier, verschwindet die Fliege aus dem Spiel. Dieses Verhalten kann interpretiert werden als (schlechtes Wort haha) \textbf{plattmachen} der Fliege. Wir unterscheiden die zwei Fälle einer passiven Kollision:
+  \begin{enumerate}
+    \item In der nächsten Zelle wird sich ein größeres Tier befinden mit einer Richtung, die senkrecht zu der Richtung der Fliege steht.
+    \item Der Fall einer aktiven Kollision, nach welcher sich die Fliege in einer Zelle aufhalten will, die jedoch schon von einem größeren Tier (oder einer anderen Fliege, die sich auch in die neue Richtung bewegt) besetzt werden wird.
+  \end{enumerate}
+\end{itemize}
+
+Um diese gewünschten Verhalten mithilfe einer anschaulichen Fallunterscheidung realisieren zu können, benötigen wir noch gewisse Änderungen der Notation. Dazu definieren wir zunächst die Menge der Richtungen
+\begin{align*}
+  R := \{ up, right, down, left \}.
+\end{align*}
+
+Zur Vereinfachung und um einen Bezug zur tatsächlichen Implementierung zu schaffen, nehmen wir nun an, dass wir auf die Komponenten eines Zustandes im Sinne von \textit{dictionaries} als Datenstrukturen zugreifen können. Ein Zustand $s = (t_u, t_r, t_d, t_l) \in S$ soll also nun dem dictionary $\{up: t_o, right: t_r, down: t_u, left: t_l \}$ entsprechen, was insbesondere beispielsweise ermöglichen soll, $s[up]$ statt $s_1$ zu schreiben, um auf die Komponente $t_u$ des sich nach oben bewegenden Tieres zugreifen zu können.
+
+Zusätzlich benennen wir die Komponenten des Inputs $\textbf{s} \in S^{9}$ für die Funktion $f$ in sehr natürlicher Weise in Anlehnung an die Komponenten des Nachbarschaftsvektors $N$ mit
+\begin{align*}
+  \left( selbst, oben_1, oben_2, unten_1, unten_2, rechts_1, rechts_2, links_1, links_2 \right).
+\end{align*}
+
+Der Übersichtlichkeit halber folgt nun die vollständige Fallunterscheidung für den Funktionswert der Funktion $f$ auf algorithmische Weise in Form von Pseudocode.
+
+\begin{algorithm}
+  \caption{Bestimme Funktionswert $r := f\left( selbst, oben_1, oben_2, unten_1, unten_2, rechts_1, rechts_2, links_1, links_2 \right) \in S$}
+  \begin{algorithmic}[1]
+    \Procedure{$f$}{$selbst, oben_1, oben_2, unten_1, unten_2, rechts_1, rechts_2, links_1, links_2$}
+    \State $r := \{up: 0, right: 0, down: 0, left: 0 \}$
+    \State $voll := \textbf{falsch}$
+
+    \If{$1 \notin selbst.Werte()$} % Zelle leer oder von Frosch/ Storch besetzt
+      \For{richtung $\in R$}
+        \If{$richtung_1[-richtung] \in \{2,3\}$} % Frosch oder Storch kommt aus einer direkt benachbarten Zelle
+          \State{$r[-richtung] := richtung_1[-richtung]$}
+          \State{$voll := \textbf{falsch}$}
+        \EndIf
+      \EndFor
+      \If{\textbf{not} voll} % Falls kein Frosch/ Storch in die Zelle kommt
+        \For{richtung $\in R$}
+          \If{$richtung_1[-richtung] == 1$} % Fliege kommt aus einer direkt benachbarten Zelle
+            \State{$r[-richtung] := 1$}
+          \Else
+            \If{$richtung_1[richtung] == 1 \And richtung_2[-richtung] \in \{2,3\}$} % entspricht der aktiven Kollision mit 'Sprung'
+              \State{$r[-richtung] := 1$}
+            \EndIf
+          \EndIf
+        \EndFor
+      \EndIf
+    \Else % Es befindet sich mindestens eine Fliege in der Zelle
+
+
+
+    \EndIf
+
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+
+\subsection{... Analyse}
+
+
+\subsection{Statistische Analyse}
+
+
+
+
+
+
+
+% end
