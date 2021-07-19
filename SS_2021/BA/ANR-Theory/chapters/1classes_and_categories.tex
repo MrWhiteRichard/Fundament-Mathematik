@@ -1,18 +1,17 @@
-\section{The category of topological spaces}
+\chapter{Preliminaries}
 
+\section{Topological spaces}
 
-\begin{definition}
-	Let $\K \in \Bbraces{\R, \C}$. The tuple $\tvspace{\K}$ is said to be a \textit{topological vector space}, if and only if $\pbraces{L, +, \pbraces{\omega_\lambda}_{\lambda \in \K}}$ is a vector space with the scalar multiplication $\cdot: \K \times X \to X$ defined by $\cdot(\lambda, x) = \omega_\lambda(x)$, and $\tspace[L][O]$ is a topological space such that $+$ and $\cdot$ are continuous functions, when $\K$ is furnished with the standard toplogy and products of sets with the product toplogy.
-\end{definition}
+Topological spaces are the most the most important mathematical structures in this bachelor thesis. It is assumed that the reader already has some knowledge about topological spaces. Most of the properties of topological spaces which are assumed to be known can be found in \cite{Ana1&2}.
 
 \begin{definition}
 	Let $(X, \mathcal{T})$ be a topological space. 
 	
 	Two subsets $A,B \subseteq X$ are said to be \textit{separated} in $(X, \mathcal{T})$, if and only if each is disjoint from the others closure in $(X, \mathcal{T})$. Two points $x,y \in X$ are said to be separated in $(X, \mathcal{T})$, if and only if the sets $\{x\}$ and $\{y\}$ can be separated in $(X, \mathcal{T})$.
 	
-	A subset $U$ of $X$ is called a \textit{neighbourhood} of a subset $A$ of $X$ in $\tspace$ if and only if there exists a set $O \in \mathcal{T}$ with $A \subseteq O \subseteq U$. The neighbourhoods of a point $x \in X$ in $(X, \mathcal{T})$ are the neighbourhoods of the set $\{x\}$ in $(X, \mathcal{T})$.
+	A subset $U$ of $X$ is called a \textit{neighborhood} of a subset $A$ of $X$ in $\tspace$ if and only if there exists a set $O \in \mathcal{T}$ with $A \subseteq O \subseteq U$. The neighborhoods of a point $x \in X$ in $(X, \mathcal{T})$ are the neighborhoods of the set $\{x\}$ in $(X, \mathcal{T})$.
 	
-	Two subsets $A$ and $B$ of $X$ are said to be \textit{separated by neighbourhoods} in $(X, \mathcal{T})$, if and only if there are disjoint neighbourhoods of the two sets. 
+	Two subsets $A$ and $B$ of $X$ are said to be \textit{separated by neighborhoods} in $(X, \mathcal{T})$, if and only if there are disjoint neighbourhoods of the two sets. 
 \end{definition}
 
 \begin{definition}
@@ -28,18 +27,282 @@
 	\end{enumerate}
 \end{definition}
 
+\begin{definition}
+	Let $\K \in \Bbraces{\R, \C}$. The tuple $\tvspace{\K}$ is said to be a \textit{topological vector space} over $\K$, if and only if $\pbraces{L, +, \pbraces{\omega_\lambda}_{\lambda \in \K}}$ is a vector space over $\K$ with the scalar multiplication $\cdot: \K \times X \to X$ defined by $\cdot(\lambda, x) = \omega_\lambda(x)$, and $\tspace[L][O]$ is a topological space such that $+$ and $\cdot$ are continuous functions, when $\K$ is furnished with the standard toplogy and products of sets with the product toplogy.
+	
+	The topological vector space is called \textit{locally convex}, if and only if for every neighborhood $U$ of $0$ in $\tspace[L][O]$ there exists a convex neighborhood $V$ of $0$ in $\tspace[L][O]$ such that $V \subseteq U$.  
+\end{definition}
+
+\begin{lemma} \label{lemma:set_is_open}
+	If $A$ is a closed subspace of a topological space $\tspace$, the set $U$ is an open subset of $\tspace$ and $V$ is an open subspace of $\reltspace$ such that $V \subseteq U$, then $V \cup \pbraces{U \setminus A}$ is open in $\tspace$. 
+\end{lemma}
+\begin{proof}
+	By definition of the subspace topology, there exists an open subset $W$ of $\tspace$ such that $W \cap A = V$. Hence, we obtain
+	\begin{align*}
+	V \cup \pbraces{U \setminus A} &= \pbraces{W \cap A} \cup \pbraces{U \setminus A} = \pbraces{W \cap A \cap U} \cup \pbraces{U \setminus A} \\
+	&= \pbraces{W \cup \pbraces{U \setminus A}} \cap \pbraces{A \cup \pbraces{U \setminus A}} \cap \pbraces{U \cup \pbraces{U \setminus A}} \\
+	&= \pbraces{W \cup \pbraces{U \setminus A}} \cap \pbraces{U \cup A} \cap U = \pbraces{W \cup \pbraces{U \setminus A}} \cap U.
+	\end{align*}
+	Since $W$, $U \setminus A$ and $U$ are open in $\tspace$, so is $\pbraces{W \cup \pbraces{U \setminus A}}$ and therefore $V \cup \pbraces{U \setminus A}$. 
+\end{proof}
+
+\begin{lemma}
+	Let $A$ and $X^\prime$ be closed subsets of a topological space $\tspace$ that satisfies \ref{axiom:t4} and $A^\prime := X^\prime \cap A$. If $B^\prime$ is a neighborhood of $A^\prime$ in $\reltspace[X^\prime]$, then there exists a closed neighborhood $B$ of $A$ in $\tspace$ such that $B^\prime = X^\prime \cap B$. 
+\end{lemma}
+\begin{proof}
+	Since $B^\prime$ is a neighborhood of $A^\prime$ in $\reltspace[X^\prime]$, there exists an open subset $U^\prime$ of $\reltspace[X^\prime]$ such that $A^\prime \subseteq U^\prime \subseteq B^\prime$. There exists an open subset $U$ of $\tspace$ such that $U \cap X^\prime = U^\prime$. We obtain $X^\prime \setminus U^\prime = X^\prime \setminus \pbraces{U \cap X^\prime} = X^\prime \setminus U$. Therefore, $X^\prime \setminus U^\prime$ is closed in $\tspace$. Since $X^\prime \setminus U^\prime$ and $A$ are two disjoint and closed subsets of $\tspace$, that satisfies \ref{axiom:t4}, there exists a closed neighborhood $C$ of $A$ in $\tspace$ such that $C \cap \pbraces{X^\prime \setminus U^\prime} = \emptyset$. Hence, $X^\prime \cap C \subseteq U^\prime \subseteq B^\prime$. 
+	
+	Since $B^\prime$ and $C$ are closed subsets of $\tspace$, so is $B := B^\prime \cup C$. Since $C$ is a neighborhood of $A$ in $\tspace$, so is $B$. We have
+	\begin{align*}
+		X^\prime \cap B = X^\prime \cap \pbraces{B^\prime \cup C} = (X^\prime \cap B^\prime) \cup \pbraces{X^\prime \cap C} = B^\prime \cup \pbraces{X^\prime \cap C} = B^\prime.
+	\end{align*}
+\end{proof}
+
+For any $n \in \N$ and $A$ homeomorphic to a subset of $\C^n$ we write $\eucl[A]$ for the set $A$ endowed with the euclidean topology, i.e. induced by the norm $\norm[2]{\cdot}: A \to [0, \infty)$ defined by
+\begin{align*}
+	\norm[2]{x} := \pbraces{\sum_{i = 1}^n x_i^\ast x_i}^{\frac{1}{2}}.
+\end{align*}
+
+
+\subsection{Covers of topological spaces}
+
+The following Lemma \ref{lemma:urysohn} is a well known result in topology which can be found in \cite[p. 445]{Ana1&2}.
+
+\begin{lemma}[Urysohn's Lemma] \label{lemma:urysohn} 
+	If $A$ and $B$ are two closed and disjoint sets of a topological space $\tspace$ that satisfies \ref{axiom:t4}, then there exists an $f \in \Hom\pbraces{\tspace, \eucl}$ such that $f\bbraces{A} \subseteq \{0\}$ and $f\bbraces{B} \subseteq \{1\}$. 
+\end{lemma}
+
+
+\begin{definition}
+	Let $\tspace$ be a topological space. A set $\cover$ of subsets of $X$ is called \textit{locally finite}, if and only if for every $x \in X$ there exists a neighborhood $W$ of $x$ in $\tspace$ such that the set $\Bbraces{U \in \cover\mid U \cap W \neq \emptyset}$ is finite. Another set $\cover[V]$ of subsets of $X$ is called a \textit{refinement} of $\cover$, if and only if for every $V \in \cover[V]$ there exists a $U \in \cover$, such that $V \subseteq U$. The set $\cover$ is called a \textit{cover} of $X$, if and only if $\bigcup \cover = X$. The cover $\cover$ of $X$ is said to be an \textit{open cover} of $\tspace$, if and only if $\cover \subseteq \mathcal{T}$. 
+\end{definition}
+
+\begin{definition}
+	Let $X \neq \emptyset$ be a set. For $M \subseteq X$ and $\cover[A] \subseteq \powset$ we call $\St\pbraces{M, \cover[A]}$ the \textit{star} of $M$ with respect to $\mathcal{A}$, if and only if 
+	\begin{align*}
+	\St\pbraces{M, \mathcal{A}} = \bigcup \Bbraces{A \in \mathcal{A} \mid A \cap M \neq \emptyset}.
+	\end{align*}
+	A set $\mathcal{B} \subseteq \powset$ is called a \textit{star refinement} of $\mathcal{A}$, if and only if the set $\Bbraces{\St\pbraces{A, \mathcal{A}} \mid A \in \mathcal{A}}$ is a refinement of $\mathcal{B}$. 
+\end{definition}
+
+\begin{definition}
+	A topological space $\tspace$ is called \textit{paracompact}, if and only if every open cover of $\tspace$ has a locally finite, open refinement that covers $\tspace$. It is said to be \textit{fully} $T_4$ , if and only if every open cover of $\tspace$ has an open star refinement that covers $\tspace$. 
+\end{definition}
+
+\begin{lemma}
+	If $A$ is a closed subspace of a fully $T_4$ topological space $\tspace$ and $\cover$ is a locally finite, open cover of $\reltspace$, then there exists a locally finite open cover $\cover[V] = \Bbraces{V_U \mid U \in \cover}$ such that for every $U \in \cover$ the equality $V_U \cap A = U$ is satisfied. 
+\end{lemma}
+\begin{proof}
+	For every $x \in A$ there exists an open subset $\tilde{W}_x$ of $\reltspace$ that contains $x$ and for which the set $\cover_x := \Bbraces{U \in \cover \mid U \cap \tilde{W}_x \neq \emptyset}$ is finite. There exists an open subset $W_x$ of $\tspace$ such that $W_x \cap A = \tilde{W}_x$. Since the set $\hat{\cover[W]} := \Bbraces{W_x \mid x \in A} \cup \Bbraces{X \setminus A}$ is clearly an open cover of the fully $T_4$ space $\tspace$, it has a star refinement $\cover[W]$ that is an open cover of $\tspace$. 
+	
+	Fix some $\tilde{U} \in \cover$ and define $V_{\tilde{U}} := \tilde{U} \cup \pbraces{X \setminus A}$, which is clearly open in $\tspace$. For all $U \in \cover\setminus \Bbraces{\tilde{U}}$, the set $V_U := U \cup \pbraces{\St \pbraces{U, \cover[W]} \setminus A}$ is open in $\tspace$ by Lemma \ref{lemma:set_is_open}. Therefore, the set $\cover[V] := \Bbraces{V_U \mid U \in \cover}$ is an open cover of $\tspace$. We clearly have for all $U \in \cover$ that $V_U \cap A = U$. 
+	
+	It remains to show that $\cover[V]$ is locally finite. In order to show this, let $x \in X$ be a given point. Since $\cover[W]$ is a cover of $X$, there exists $W \in \cover[W]$ such that $x \in W$. For any given $U \in \cover \setminus \Bbraces{\tilde{U}}$ the inclusion $U \subseteq \St\pbraces{U, \cover[W]}$ is satisfied. Therefore, if $V_U \cap W \neq \emptyset$, then $W \cap \St\pbraces{U, \cover[W]} \neq \emptyset$. We can equivalently say that there exists $W^\prime \in \cover[W]$ such that $W \cap W^\prime \neq \emptyset$ and $W^\prime \cap U \neq \emptyset$, which we can equivalently write as $U \cap \St\pbraces{W, \cover[W]} \neq \emptyset$. By definition of $\cover[W]$ there exists $\hat{W} \in \hat{\cover[W]}$ such that $\St\pbraces{W, \cover[W]} \subseteq \hat{W}$. We obtain $U \cap \hat{W} \subseteq U \cap \St\pbraces{W, \cover[W]} \neq \emptyset$. Since $U \cap \pbraces{X \setminus A} = \emptyset$, there exists $z \in A$ such that $\hat{W} = W_z$. Hence, $U \in \cover_z$ which concludes the proof, because $\Bbraces{V_U \in \cover[V] \mid U \in \cover_z \cup \Bbraces{\tilde{U}}}$ is clearly finite.  
+\end{proof}
+
+
+
+
+\begin{theorem}\label{theorem:stone}
+	Every metrizable space is paracompact. \cite{Top}
+\end{theorem}
+
+\begin{lemma} \label{lemma:locally_finite_system} \cite[p. 63]{Top}
+	If $\mathcal{A}$ is a locally finite set-system of some topological space $\tspace$, then
+	\begin{align*}
+	\cl{\bigcup \mathcal{A}} = \bigcup \clo{\mathcal{A}}.
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Consider $x \in \cl{\bigcup \mathcal{A}}$. Hence there exists a neighborhood $U$ of $x$ in $\tspace$ such that the set $\mathcal{B} := \Bbraces{A \in \mathcal{A} \mid A \cap U \neq \emptyset}$ is finite. Since $U \cap \pbraces{\bigcup \pbraces{\mathcal{A} \setminus \mathcal{B}}} = \emptyset$, we have $x \notin \cl{\bigcap\pbraces{\mathcal{A} \setminus \mathcal{B}}}$. Since
+	\begin{align*}
+	x \in \cl{\bigcup \mathcal{A}} = \cl{\bigcup\pbraces{\mathcal{A} \setminus \mathcal{B}}} \cup \cl{\bigcup \mathcal{B}}
+	\end{align*}
+	we obtain
+	\begin{align*}
+	x \in \cl{\bigcup \mathcal{B}} = \bigcup \clo{\mathcal{B}} \subseteq \bigcup \clo{\mathcal{A}}.
+	\end{align*}
+	
+	Let on the other hand $x \in \bigcup\clo{\mathcal{A}}$ be a given point. There exists $B \in \mathcal{A}$ such that $x \in \cl{B}$. Since for any given neighborhood $U$ of $x$ in $\tspace$ we have $B \cap U \neq \emptyset$, we obtain $U \cap \pbraces{\bigcup \mathcal{A}} \neq \emptyset$ and therefore $x \in \cl{\bigcup \mathcal{A}}$. 
+\end{proof}
+
+\begin{lemma} \label{lemma:para_separation} \cite[p. 71]{Top}
+	Let $\tspace$ be a paracompact topological space and $A$ and $B$ two closed subspaces of $\tspace$. If 
+	\begin{align*}
+	\forall x \in B\exists U_x, V_x \in \mathcal{T}: \pbraces{A \subseteq U_x \land x \in V_x \land U_x \cap V_x = \emptyset},
+	\end{align*}
+	then $A$ and $B$ are separated by neighbourhoods. 
+\end{lemma}
+\begin{proof}
+	Since $\tspace$ is paracompact and $\cover[V] := \Bbraces{V_x \mid x \in B} \cup \pbraces{X \setminus B}$ is an open cover of $\tspace$, there exists an open cover $\tilde{\cover[W]}$ of $\tspace$ which is a refinement  of $\cover[V]$. We define the set $\cover[W] := \Bbraces{W \in \tilde{\cover[W]} \mid W \nsubseteq X \setminus B}$. By definition of the set, we have that for every $W \in \cover[W]$ there exists $x \in B$ such that $W \subseteq V_x$. Since $V_x \cap U_x = \emptyset$ and $U_x \in \mathcal{T}$, we obtain $\cl{W} \subseteq X \setminus U_x \subseteq X \setminus A$. Therefore $\cl{W} \cap A = \emptyset$ and since $W$ was arbitrary, we have $A \cap \pbraces{\bigcup \clo{\cover[W]}} = \emptyset$. Defining $V := \bigcup \cover[W]$ and applying Lemma \ref{lemma:locally_finite_system} we obtain $A  \cap \cl{V} \neq \emptyset$, and hence $A \subseteq X \setminus \cl{V} =: U$. Since $\tilde{\cover[W]}$ is a cover of $X$, we clearly have $B \subseteq V$. The observation that $U \cap V = \emptyset$ concludes the proof. 
+	
+	
+\end{proof}
+
+\begin{lemma}
+	If $\cover$ is a locally finite, open cover of a topological space $\tspace$ 
+\end{lemma}
+
+\begin{corollary} \label{corollary:para_is_normal} \cite[p. 72]{Top}
+	Every paracompact Hausdorff space satisfies \ref{axiom:t4}. 
+\end{corollary}
+\begin{proof}
+	We start the proof by showing that $\tspace$ satisfies \ref{axiom:t3}. In order to do this, we consider an arbitrary closes subset $B$ of $\tspace$ and $z \in X \setminus B$. Since $\tspace$ is Hausdorff, we find for every $x \in B$ a neighborhood $V_x$ of $x$ and a neighborhood $U_x$ of $z$ such that $V_x \cap U_x = \emptyset$. Therefore, we can apply Lemma \ref{lemma:para_separation} and obtain immediately that $\tspace$ satisfies \ref{axiom:t3}. 
+	
+	Let $A$ and $B$ be two given disjoint and closed subsets of $\tspace$. Since we already know that $\tspace$ satisfies \ref{axiom:t3}, we can easily convince ourselves that all preconditions of Lemma \ref{lemma:para_separation} are met, hence we obtain that $A$ and $B$ are separated by neighborhoods. Therefore, $\tspace$ satisfies \ref{axiom:t4}. 
+\end{proof}
+
+\begin{lemma}\label{lemma:shrinking}
+	If $\cover$ is a locally finite, open cover of a topological space $\tspace$ that satisfies \ref{axiom:t4}, then there exists an open cover $\cover[V] = \Bbraces{V_U \mid U \in \cover}$ of $\tspace$ such for all $U \in \cover$ the inclusion $\cl{V_U} \subseteq U$ holds true. 
+\end{lemma}
+\begin{proof}
+	\cite{shrinking_lemma}
+\end{proof}
+
+\begin{lemma} \label{lemma:special_cover}
+	If $\cover$ is a locally finite, open cover of a Hausdorff space $\tspace$ which is paracompact, then for every $U \in \cover$ there exists $V_U \in \mathcal{T}$ such that $\cl{V_U} \subseteq U$ and $\cover[V] := \Bbraces{V_U \mid U \in \cover}$ is a cover of $X$.  
+\end{lemma}
+\begin{proof}
+	Let $\cover[W]$ be the set of all open sets in $\tspace$ meeting only finitely many elements of $\cover$ and whose closure in $\tspace$ is contained in some element of $\cover$.
+	
+	We claim that $\cover[W]$ is an open cover of $\tspace$. Consider any point $x \in X$. Since $\cover$ is a locally finite cover of $\tspace$, there exists $V \in \mathcal{T}$ containing $x$ that meets only finitely many elements of $\cover$ and there exists $U^\prime \in \cover$, such that $x \in U^\prime$. The topological space $\tspace$ satisfies \ref{axiom:t4}, hence by Corollary \ref{corollary:para_is_normal} and since $\tspace$ is a Hausdorff space, we find $U \in \mathcal{T}$ such that $x \in U$ and $\cl{U} \subseteq U^\prime$. The set $W := U \cap V$ contains $x$ and is contained in $\cover[W]$. Therefore, $\cover[W]$ is an open cover of $\tspace$. 
+	
+	Since $\tspace$ is paracompact, there exists a locally finite, open refinement $\cover[W]^\prime$ of $\cover[W]$ that covers $\tspace$. For every $U \in \cover$, we define
+	\begin{align*}
+	V_U := \bigcup \Bbraces{W^\prime \in \cover[W]^\prime \mid \cl{W^\prime} \subseteq U}.
+	\end{align*}
+	
+	We will show that the set $\cover[V] := \Bbraces{V_U \mid U \in \cover}$ is as desired. In order to prove this we consider any arbitrary point $x \in X$. Since $\cover[W]^\prime$ is a cover of $X$, there exists $W^\prime \in \cover[W]^\prime$ such that $x \in W^\prime$. Since $\cover[W]^\prime$ is a refinement of $\cover[W]$, there is $W \in \cover[W]$ such that $W^\prime \subseteq W$. By definition of $\cover[W]$, there exists $U \in \cover$ such that $\cl{W} \subseteq U$. We obtain $\cl{W^\prime} \subseteq \cl{W} \subseteq U$, hence $x \in V_U$. Therefore, $\cover[V]$ is a cover of $X$. We also observe that $\cover[V] \subseteq \mathcal{T}$. 
+	
+	Since $\cover[W]^\prime$ is locally finite, we can apply \ref{lemma:locally_finite_system} and obtain
+	\begin{align*}
+	\cl{V_U} = \bigcup \Bbraces{\cl{W^\prime} \mid W^\prime \in \cover[W] \land \cl{W^\prime} \subseteq U} \subseteq U.
+	\end{align*}
+	This concludes the proof.
+\end{proof}
+
+\begin{theorem}[Stone's coincidence thoerem] \label{theorem:stone_coi} \cite[p. 77]{Top}
+	If $\tspace$ is an object of $\Top$ that fulfills \ref{axiom:t1}, then the following statements are equivalent.
+	\begin{enumerate}
+		\item The topological space $\tspace$ is an object of $\Haus$ and is paracompact.
+		
+		\item Every open cover of $\tspace$ has an open star refinement that covers $X$. 
+	\end{enumerate}
+\end{theorem}
+
+Our next goal is to extend \ref{theorem:stone_coi} by one more equivalence. This will be achieved by \ref{theorem:para_part}.
+
+\begin{definition}
+	Let $\tspace$ be a topological space. A set $\partition \subseteq \Hom\pbraces{\tspace, \eucl}$ is called a \textit{partition of unity}, if and only if for every $x \in X$ the equality $\sum_{f \in \partition} f(x) = 1$ holds true in the sens of unconditional convergence. This partition of unity $\partition$ is said to be \textit{subordinate} to a cover $\cover$ of $X$, if and only if for every $f \in \partition$ there is a $U \in \cover$ such that $\supp f \subseteq U$. The partition of unity $\partition$ is called \textit{locally finite}, if and only if for every $x \in X$ there exists a neighborhood $V$ of $x$ such that the set $\Bbraces{f \in \partition \mid V \cap f^{-1}\pbraces{(0, 1]} \neq \emptyset}$ is finite.
+\end{definition}
+
+\begin{lemma}\label{lemma:part_to_para}
+	If $\partition$ is a locally finite partition of unity of a topological space $\tspace$, then $\cover := \Bbraces{f^{-1}\pbraces{(0,1]} \mid f \in \partition}$ is a locally finite, open cover of $\tspace$. 
+\end{lemma}
+\begin{proof}
+	We first show that $\partition$ consists of open sets. The set $(0,1]$ is an open set in $\eucl$. Since for any $f \in \partition$ we have $f \in \Hom\pbraces{\tspace, \eucl}$, the set $\partition$ consists of open sets. 
+	
+	In order to show that $\partition$ is a cover of $X$, consider any arbitrary $x \in X$. Since 
+	\begin{align*}
+	\sum_{f \in \partition} f(x) = 1,
+	\end{align*}
+	there exists $g \in \partition$ such that $g(x) > 0$. Therefore, $x \in g^{-1}\pbraces{(0,1]}$ and by definition we have $\supp g \in \cover$. 
+	
+	Finally, we want to show that $\cover$ is locally finite. Consider some $x \in X$. Since $\partition$ is a locally finite partition of unity, there is a neighborhood $V$ of $x$, such that $\Bbraces{f \in \partition \mid V \cap f^{-1}\pbraces{(0,1]} \neq \emptyset}$ is finite. Hence, $V$ only meets a finite number of elements of $\cover$. 
+\end{proof}
+
+\begin{lemma}
+	If $\tspace$ is a topological space that satisfies \ref{axiom:t4} and $\cover$ is an open, locally finite cover of $\tspace$, then there exists a partition of unity which is subordinate to $\cover$. 
+\end{lemma}
+\begin{proof}
+	\colorbox{red}{muss noch überarbeitet werden!}
+	We claim that for any $U \in \cover[V]$ the function
+	\begin{align*}
+	g_U := f_U \pbraces{\sum_{V \in \cover[V]} f_V}^{-1}
+	\end{align*}
+	is well defined. In order to prove this statement, consider any arbitrary point $x \in X$.  Since $\cover[V]$ is locally finite, there exists a neighborhood $N$ of $x$ such that $\cover[V]^\prime := \Bbraces{V \in \cover[V] \mid N \cap V \neq \emptyset}$ is a finite set.  We obtain for any arbitrary $y \in N$ that
+	\begin{align*}
+	\sum_{V \in \cover[V]} f_V(y) = \sum_{V \in \cover[V]^\prime} f_V(y) \in [0, \infty).
+	\end{align*}
+	The function $\sum_{V \in \cover[V]} f_V$ restricted to $N$ is continuous, because it is a finite sum of continuous functions. Since $N$ is a neighborhood of $x$, the sum is also continuous on $X$.
+	
+	Since $\cover[W]$ is a cover of $X$, there is $\tilde{V} \in \cover[V]$ such that $x \in W_{\tilde{V}}$. Therefore, $0 < f_{\tilde{V}}(x) \leq \sum_{V \in \cover[V]} f_V(x)$. In total we have shown that for every $x \in X$ we have $\sum_{V \in \cover[V]} f_V(x) \in (0, \infty)$. Therefore $g_U$ is well defined.
+	
+	We easily observe that for every $x \in X$ we have $\sum_{U \in \cover[V]} g_U(x) = 1$. 
+\end{proof}
+
+\begin{theorem}\label{theorem:para_part}
+	An object $\tspace$ of $\Haus$ is paracompact, if and only if every open cover $\cover$ of $\tspace$ admits a locally finite partition of unity which is subordinate to $\cover$.  
+\end{theorem}
+\begin{proof}
+	First we will proof sufficiency. Let $\cover$ be any open cover of a paracompact Hausdorff space $\tspace$ and $\cover[V]$ a locally finite open refinement of $\cover$ that covers $\tspace$. By \ref{lemma:special_cover}, for every $V \in \cover[V]$ there exists $W_V \in \mathcal{T}$ such that $\cl{W_V} \subseteq V$ and $\cover[W] := \Bbraces{W_V \mid V \in \cover[V]}$ is a cover of $X$. 
+	
+	\colorbox{red}{argument einfügen! (auf vorheriges Lemma verweisen)}
+	
+	The topological space $\tspace$ is an object of $\Normal$ by \ref{corollary:para_is_normal}. Hence, we can pick any $V \in \cover[V]$ and apply \ref{lemma:urysohn} in order to obtain $f_V \in \Hom_\Top\pbraces{\tspace, \eucl}$ such that $f_V\bbraces{\cl{W_V}} \subseteq \{1\}$ and $\supp f_V \subseteq V$.
+		
+	Let us now show necessity in the theorem. In order to do this, consider any open cover $\cover$ of $\tspace$. By assumption, there exists a locally finite partition of unity $\partition$ which is subordinate to $\cover$. The set $\cover[V] := \Bbraces{\supp f \mid f \in \partition}$ is by \ref{lemma:part_to_para} a locally finite, open cover of $\tspace$. Since $\partition$ is a partition of unity subordinate to $\cover$, we conclude the proof with the observation that $\cover[V]$ is a refinement of $\cover$. 
+\end{proof}
+
+\begin{lemma}\label{lemma:loc_fin_nbhd}
+	If $\cover[A]$ is a locally finite, closed cover of a topological space $\tspace$, then every point $x \in X$ has a neighborhood $U$ in $\tspace$ such that for all $A \in \cover[A]$ the implication $A \cap U \neq \emptyset \Rightarrow x \in A$ is satisfied.
+\end{lemma}
+\begin{proof}
+	Let $x \in X$ be a given point. Since $\cover[A]$ is locally finite, there exists a neighborhood $V$ of $x$ in $\tspace$ such that the set $\cover[A]_V := \Bbraces{A \in \cover[A] \mid A \cap V \neq \emptyset}$ is finite. Let $\cover[A]_x := \Bbraces{A \in \cover[A] \mid x \in A}$ and $\cover[A]^\prime := \cover[A]_V \setminus \cover[A]_x$. Since all sets contained in the finite set $\cover[A]_V$ are closed in $\tspace$, so are all sets contained in $\cover[A]^\prime$ and therefore also $\bigcup \cover[A]^\prime$. Hence, the set $U := V \setminus \pbraces{\bigcup \cover[A]^\prime}$ is open in $\tspace$. 
+	
+	If $A \in \cover[A]$ is a given set and $A \cap U \neq \emptyset$, then $A \cap V \neq \emptyset$ and hence, $A \in \cover[A]_V$. Furthermore, $A \notin \cover[A]^\prime$ and therefore $A \in \cover[A]_x$, which implies $x \in A$. 
+\end{proof}
+
+\begin{lemma}
+	Let $A$ be a closed subspace of a topological space $\tspace$ that satisfies \ref{axiom:t4}. If $\cover$ is a locally finite, open cover of $\reltspace$ and $\cover[V] := \Bbraces{V_U \mid U \in \cover}$ is a locally finite, open cover of $\tspace$ such that for all $U \in \cover$ the inclusion $V_U \cap A \subseteq U$ is satisfied, then there exists a closed neighborhood $B$ of $A$ in $\tspace$ and a locally finite, closed cover $\cover[W] = \Bbraces{W_U \mid U \in \cover}$ of $\reltspace[B]$ such that for all $U \in \cover$ the inclusion $W_U \cap A \subseteq U$ holds true and for all subsets $\cover^\prime$ of $\cover$ with $\card{\cover^\prime} \in \N$ we have
+	\begin{align*}
+	\bigcap \cover^\prime = \emptyset \Rightarrow \bigcap \Bbraces{W_U \mid U \in \cover^\prime} = \emptyset. 
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	Since $\cover[V]$ is a locally finite of a topological space that satisfies \ref{axiom:t4}, there exists by Lemma \ref{lemma:shrinking} an open, locally finite cover $\cover[V]^\prime = \Bbraces{V^\prime_U \mid U \in \cover}$ of $\tspace$ such that for all $U \in \cover$ the inclusion $\cl{V^\prime_U} \subseteq V_U$ holds true. Clearly, the set $\overline{\cover[V]} := \Bbraces{\cl{V^\prime_U} \mid U \in \cover}$ is a closed, locally finite cover of $\tspace$. Hence, by Lemma \ref{lemma:loc_fin_nbhd}, there exists for every $x \in X$ a neighborhood $N_x$ of $x$ in $\tspace$, such that for all $U \in \cover$ we have that $\cl{V_U^\prime} \cap N_x \neq \emptyset$ implies $x \in \cl{V^\prime_U}$. 
+	
+	We define for every $x \in X$ the set $\cover_x := \Bbraces{U \in \cover \mid x \in \cl{V^\prime_U}}$ and claim that the set $O := \Bbraces{x \in X \mid \bigcap \cover_x \neq \emptyset}$ is open in $\tspace$. In order to show the first property, let $x \in O$ be any given point. Consider an arbitrary point $z \in N_x$. For any given $U \in \cover_z$ we have $y \in N_x \cap \cl{V^\prime_U}$, hence $\cl{V^\prime_U} \cap N_x \neq \emptyset$. This implies that $x \in \cl{V^\prime_U}$, which means $U \in \cover_x$. Therefore, $\cover_z \subseteq \cover_x$ and since $\bigcap \cover_x \neq \emptyset$, we clearly have $\bigcap \cover_z \neq \emptyset$. Hence, $z \in O$ and since $z$ was arbitrary in $N_x$ we have $N_x \subseteq O$ and therefore we conclude that $O$ is open in $\tspace$. 
+	
+	We also claim that $A \subseteq O$. Given any $x \in A$ we have for every $U \in \cover_x$ that $U \supseteq V_U \cap A \supseteq \cl{V^\prime_U} \cap A$ and $x \in \cl{V^\prime_U}$. Hence, 
+	\begin{align*}
+	\bigcap \cover_x \supseteq \bigcap \Bbraces{V_U \cap A \mid U \in \cover_x} \supseteq \bigcap \Bbraces{\cl{V^\prime_U} \cap A \mid U \in \cover_x} \supseteq \Bbraces{x} \neq \emptyset. 
+	\end{align*}
+	Therefore, $x \in O$ and since $x$ was an arbitrary element of $A$ we have $A \subseteq O$. 
+	
+	Since $\tspace$ satisfies \ref{axiom:t4}, there exists a closed subset $B$ of $\tspace$ such that $A \subseteq B \subseteq O$. For every $U \in \cover$ we define $W_U := B \cap \cl{V^\prime_U}$ and the set $\cover[W] := \Bbraces{W_U \mid U \in \cover}$. Since $\overline{\cover[V]}$ is a locally finite, closed cover of $\tspace$, we have that $\cover[W]$ is a locally finite, closed cover of $\reltspace[B]$. Furthermore, we obtain for every $U \in \cover$ that $W_U \cap A \subseteq V_U \cap A \subseteq U$. 
+	
+	It remains to show the second property of $\cover[W]$ that was claimed in the statement of the Lemma. In order to do this, consider $\cover^\prime \subseteq \cover$ with $\card{\cover^\prime} \in \N$ and $\bigcap \Bbraces{W_U \mid U \in \cover^\prime} \neq \emptyset$. Hence, there exists $x \in \bigcap \Bbraces{W_U \mid U \in \cover^\prime} \subseteq B$. For a given $U \in \cover^\prime$ we have $x \in W_U = B \cap \cl{V^\prime_U}$ and therefore $x \in \cl{V^\prime_U}$, which implies $U \in \cover_x$. Hence, we have $\cover^\prime \subseteq \cover_x$. Since $x \in B$ we obtain $\emptyset \neq \bigcap \cover_x \subseteq \bigcap \cover^\prime$. 
+\end{proof}
+
+\begin{lemma}
+	Let $A$ be a subspace of a topological space $\tspace$ and $\cover[B]$ a locally finite, closed cover of $\tspace$. If for all $B \in \cover[B]$ the set $U_B$ is a neighborhood of $B \cap A$ in $\reltspace[B]$, then $U := \bigcup \Bbraces{U_B \mid B \in \cover[B]}$ is a neighborhood of $A$ in $\tspace$. 
+\end{lemma}
+\begin{proof}
+	Let $x \in A$ be a given point. Since $\cover[B]$ is a locally finite cover of $\tspace$, there exists a neighborhood $N_x$ of $x$ in $\tspace$ such that the set $\cover[B]_x := \Bbraces{B \in \cover[B] \mid N_x \cap B \neq \emptyset}$ is finite. By Lemma \ref{lemma:loc_fin_nbhd} there exists a neighborhood $V_x$ of  $x$ in $\tspace$ such that for all $B \in \cover[B]$ with $B \cap V_x \neq \emptyset$ we have $x \in B$. There exists an open subset $O$ of $\tspace$ such that $x \in O$ and $O \subseteq N_x \cap V_x$. We define $\cover[B]_x^\prime := \Bbraces{B \in \cover[B]_x \mid B \cap O \neq \emptyset}$. For a given $B \in \cover[B]_x^\prime$ we have $B \cap V_x \neq \emptyset$ and therefore $x \in B$, which implies $x \in B \cap A \subseteq U_B$. Hence, $U_B$ is an open neighborhood of $x$ in $\reltspace[B]$. Therefore, there exists an open subset $W_B$ of $\tspace$ such that $W_B \cap B \subseteq U_B$. 
+	
+	Since $\cover[B]_x^\prime$ is clearly finite, we obtain that the set $W_x := O \cap \pbraces{\bigcap \Bbraces{W_B \mid B \in \cover[B]^\prime_x}}$ is open in $\tspace$. Let $z \in W_x$ be given. Since $\cover[B]$ is a cover of $\tspace$, there exists a $\tilde{B} \in \cover[B]$ such that $z \in \tilde{B}$. Since $z \in O$, we have $z \in O \cap \tilde{B}$ which implies $\tilde{B} \cap O \neq \emptyset$. Hence, $\tilde{B} \in \cover[B]^\prime_x$ and therefore $z \in \tilde{B} \cap W_{\tilde{B}} \subseteq U_{\tilde{B}} \subseteq U$. We conclude that $z \in U$, hence $W_x \subseteq U$.
+	
+	The set $W := \bigcup \Bbraces{W_x \mid x \in A}$ is clearly open in $\tspace$ and $A \subseteq W \subseteq U$, therefore $U$ is a neighborhood of $A$ in $\tspace$. 
+\end{proof}
+
+
+\section{Categories}
+
 We want to use the notion of a \textit{class} in this bachelor thesis. Since the whole bachelor thesis is based on the ZFC-axioms, we can not define classes as objects, because they do not exist in this axiomatic system. We can think of a class as a property, written down as a mathematical formula. An object, which is always a set in our axiomatic system, is said to be in the class $\mathcal{C}$, if and only if it has the property that characterizes $\mathcal{C}$. We will for example talk about the class of all metrizable spaces. 
 
-You might wonder why we do not simply talk about the set of all metrizable spaces. The answer is simple. This set does not exist. Since the discrete metric induces the discrete Toplogy on any arbitrary set \cite[p.414]{Ana1&2}, there is a metric space for every set. Since the set of all sets does not exist due to Russel's paradox, the set of all metric spaces with the discrete Toplogy does also not exist. Therefore, every class that contains all these topological spaces, for example the class of all metrizable spaces, is a \textit{proper class} as well, meaning it is not a set.
+%You might wonder why we do not simply talk about the set of all metrizable spaces. The answer is simple. This set does not exist. Since the discrete metric induces the discrete Toplogy on any arbitrary set \cite[p.414]{Ana1&2}, there is a metric space for every set. Since the set of all sets does not exist due to Russel's paradox, the set of all metric spaces with the discrete Toplogy does also not exist. Therefore, every class that contains all these topological spaces, for example the class of all metrizable spaces, is a \textit{proper class} as well, meaning it is not a set.
 
 \begin{definition}
 	A \textit{category} $\cat$ is given by the following.
 	\begin{enumerate}
 		\item A class $\Ob\pbraces{\cat}$ of \textit{objects}.
-		\item For all $A, B$ in $\Ob\pbraces{\cat}$ there is a set $\Hom_\cat\pbraces{A, B}$ of \textit{morphisms}. All these sets have to be pairwise disjoint. For every object $A$ there is the \textit{identity} morphism $\id_A \in \Hom_\cat\pbraces{A, A}$.
+		\item For any two objects $A, B$ of $\cat$ there is a set $\Hom_\cat\pbraces{A, B}$ of \textit{morphisms}. All these sets have to be pairwise disjoint. For every object $A$ there is the \textit{identity} morphism $\id_A \in \Hom_\cat\pbraces{A, A}$.
 		\item For all $A, B, C$ in $\Ob\pbraces{\cat}$ there is a function $\Hom_\cat\pbraces{B, C} \times \Hom_\cat\pbraces{A, B} \to \Hom_\cat\pbraces{A, C}$ given by $\pbraces{g, f} \mapsto g \circ f$ which is called \textit{composition}. For all $A, B, C, D$ in $\Ob(\cat)$ and for all $f \in \Hom_\cat(A, B)$, $g \in \Hom_\cat(B,C)$ and $h \in \Hom_\cat(C,D)$ we have $h \circ (g \circ f) = (h \circ g) \circ f$ and $\id_B \circ f = f$ as well as $g \circ \id_B = g$. 
 	\end{enumerate}
 \end{definition}
+
 
 \begin{example}
 	There are various examples of categories. 
@@ -78,18 +341,19 @@ You might wonder why we do not simply talk about the set of all metrizable space
 \end{proof}
 
 \begin{definition}
-	Let $\mathcal{C}$ be a category $K$ some set and $A_k$ in $\Ob\pbraces{\mathcal{C}}$ for every $k \in K$. An Object $C$ in this category together with a family $(e_k)_{k \in K}$ of morphisms $e_k: A_k \to C$ is called a \textit{coproduct} of the family $A_k$, if and only if it is an initial object in the category $\mathcal{C}^\ast$ that is given by all tuples $\pbraces{A, (\varphi_k)_{k \in K}}$, where $A$ in $Ob(\mathcal{C})$ and $\phi_k: A_k \to A$ is a morphism from $\mathcal{C}$ for every $k \in K$. The Morphisms in $\mathcal{C}^\ast$ of two objects $\pbraces{A, (\varphi_k)_{k \in K}}$ and $\pbraces{B, (\psi_k)_{k \in K}}$ are given by all triple $(A, f, B)$, where $f \in \Hom_\class(A, B)$ such that $\psi_k = f \circ \varphi_k$. The composition is the one from the categroy $\mathcal{C}$. 
+	Let $\mathcal{C}$ be a category, $K$ some set and $A_k$ in $\Ob\pbraces{\mathcal{C}}$ for every $k \in K$. An Object $C$ in this category together with a family $(e_k)_{k \in K}$ of morphisms $\varphi_k: A_k \to C$ is called a \textit{coproduct} of the family $A_k$, if and only if it is an initial object in the category $\mathcal{C}^\ast$ that is given by all tuples $\pbraces{A, (\varphi_k)_{k \in K}}$, where $A$ in $Ob(\mathcal{C})$ and $\varphi_k: A_k \to A$ is a morphism from $\mathcal{C}$ for every $k \in K$. The Morphisms in $\mathcal{C}^\ast$ of two objects $\pbraces{A, (\varphi_k)_{k \in K}}$ and $\pbraces{B, (\psi_k)_{k \in K}}$ are given by all triple $(A, f, B)$, where $f \in \Hom_\class(A, B)$ such that for all $k \in K$ we have $\psi_k = f \circ \varphi_k$. The composition is the one from the categroy $\mathcal{C}$. 
 \end{definition}
+
 
 \begin{definition}
-	Let $I$ be an object of $\Set$ and for every $i \in I$ let $\pbraces{X_i, \Tc_i}$ be an object of $\Top$. A coproduct 
+	Let $I$ be an object of $\Set$ and for every $i \in I$ let $\pbraces{X_i, \mathcal{T}_i}$ be an object of $\Top$. A coproduct 
 	\begin{align*}
-	\pbraces{\tspace, \pbraces{\varphi_i}_{i \in I}} := \coprod_{i \in I} \pbraces{X_i, \Tc_i}
+	\pbraces{\tspace, \pbraces{\varphi_i}_{i \in I}} := \coprod_{i \in I} \pbraces{X_i, \mathcal{T}_i}
 	\end{align*}
-	is called \textit{disjoint union} of the family $\pbraces{\pbraces{X_i, \Tc_i}}_{i \in I}$.
+	is called \textit{disjoint union} of the family $\pbraces{\pbraces{X_i, \mathcal{T}_i}}_{i \in I}$.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{lemma:disj_uni_char}
 	Let $I$ be a set, for every $i \in I$ the tuple $\pbraces{X_i, \mathcal{T}_i}$ a topological space and $X := \Bbraces{\pbraces{x, i} \mid x \in X_i}$. If we define for every $i \in I$ the function $f_i: X_i \to X$ by $f_i(x) := \pbraces{x, i}$ and denote with $\mathcal{T}$ the final topology on $X$ induced by $\pbraces{f_i}_{i \in I}$, then
 	\begin{align*}
 		\pbraces{\tspace, \pbraces{f_i}_{i \in I}} = \coprod_{i \in I} \pbraces{X_i, \mathcal{T}_i}.
@@ -112,3 +376,101 @@ You might wonder why we do not simply talk about the set of all metrizable space
 \begin{lemma}\label{lemma:disjoint_comp}
 	If $I$ is any finite set and $\pbraces{\tspace, \pbraces{f_i}_{i \in I}}$ is the disjoint union of a family $\pbraces{\indtspace}_{i \in I}$ of compact topological spaces, then $\tspace$ is a compact topological space. 
 \end{lemma}
+
+
+
+\section{Nerve of a cover}
+
+\begin{definition}
+	A set $A$ is said to be an \textit{abstract simplex}, if and only if $\# A \in \Z^+$. A set $\abcom$ is said to be an \textit{abstract simplicial complex}, if and only if it contains only abstract simplices and satisfies for all $A \in \abcom$ and all sets $B \neq \emptyset$ the implication $B \subseteq A \Rightarrow B \in \abcom$. The set $I := \bigcup \abcom$ is called the \textit{vertex set} of $\abcom$ and the elements of $I$ are called \textit{vertices} of $\abcom$. 
+\end{definition}
+
+
+\begin{example}\label{example:top_on_prod}
+ 	For any nonempty set $I$ we want to construct a useful topology on $X:= \Bbraces{\pbraces{\lambda_i}_{i \in I} \in \bbraces{0,1}^I \mid \card{\Bbraces{i \in I \mid \lambda_i > 0}} \in \Z^+}$. In order to do this, let $\mathcal{F} := \Bbraces{A \subseteq S \mid \card{A} \in \Z^+}$ and define for every $A \in \mathcal{F}$ the set $C_A := \Bbraces{\pbraces{\lambda_i}_{i \in I} \mid \Bbraces{i \in I \mid \lambda_i > 0} \subseteq A}$. Let for every $A \in \mathcal{F}$ the function $\iota_{A,X}: C_A \to X$ be the inclusion and let $h_A^{-1}: \bbraces{0,1}^A \to C_A$ be defined by $h_A^{-1}\pbraces{\pbraces{\lambda_i}_{i \in I}} := \pbraces{\lambda_a}_{a \in A}$. The function $h_A^{-1}$ is clearly a homeomorphism from $\eucl[C_A]$ and $\eucl[\bbraces{0,1}^A]$, the inverse function will be denoted $h_A$. We finish our construction by defining $\mathcal{T}$ as the final topology on $X$ induced by the family $\pbraces{\iota_{A,X}}_{A \in \mathcal{F}}$ of functions. 
+\end{example} 
+
+
+\begin{example}\label{example:homeo_to_prod}
+	 We are going to define a topological space $\tspace[Y][O]$ of which we will show in Lemma \ref{lemma:homeo_of_constr} that it is homeomorphic to the topological space $\tspace$, which we constructed in Example \ref{example:top_on_prod}. All definitions from this example also apply here. We begin the construction by considering a coproduct $\pbraces{\tspace[Y][O], \pbraces{f_A}_{A \in \mathcal{F}}}$ of the family $\pbraces{\eucl[\bbraces{0,1}^A]}_{A \in \mathcal{F}}$ of topological spaces. By Lemma \ref{lemma:disj_uni_char} we can assume  that $Y = \Bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A} \mid A \in \mathcal{F}}$ and that for each $A \in \mathcal{F}$ the function $f_A: \bbraces{0,1}^A \to X$ is given by $f_A\pbraces{\pbraces{\lambda_a}_{a \in A}} = \pbraces{\pbraces{\lambda_a}_{a \in A}, A}$ and $\mathcal{O}$ is the final topology of $\pbraces{f_A}_{A \in \mathcal{F}}$. 
+
+	We continue the construction by defining for every $A,B \in \mathcal{F}$ with $A \subseteq B$ the function $g_{A,B}: \bbraces{0,1}^A \to \bbraces{0,1}^B$ by $g_{A,B}\pbraces{\pbraces{\lambda_a}_{a \in A}} := \pbraces{\mu_b}_{b \in B}$ where $\mu_b = \lambda_b$ if $b \in A$ and $\mu_b = 0$ else. These functions allow us to define an equivalence relation over the set $X$ by $\pbraces{\pbraces{\lambda_a}_{a \in A}, A} \sim \pbraces{\pbraces{\mu_b}_{b \in B}, B}$ if and only if there exists $C \in \mathcal{F}$ such that $A, B \subseteq C$ and  $g_{A,C}\pbraces{\pbraces{\lambda_a}_{a \in A}} = g_{B,C}\pbraces{\pbraces{\mu_b}_{b \in B}}$. Let $q: Y \to Y/_\sim$ be the quotient map defined by $q\pbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}} := \bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim$. The topology $\mathcal{O}/_\sim$ on $Y/_\sim$ is the final topology of the function $q$.
+	
+	For any given equivalence class $\bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim$ we can choose a special representative. In order to do this, define $A^\prime := {a \in A \mid \lambda_a > 0}$. We clearly have $g_{A^\prime, A}\pbraces{\pbraces{\pbraces{\lambda_a}_{a \in A^\prime}, A^\prime}} = g_{A,A}\pbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}$ and hence $\pbraces{\pbraces{\lambda_a}_{a \in A^\prime}, A^\prime} \sim \pbraces{\pbraces{\lambda_a}_{a \in A}, A}$. The element $\pbraces{\pbraces{\lambda_a}_{a \in A^\prime}, A^\prime}$ of $Y$ is our special representative of $\bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim$. 
+\end{example}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[node distance=1cm and 2cm]
+		\node (uniA) [] {$\eucl[\bbraces{0,1}^A]$};
+		\node (CA) [right=of uniA] {$\eucl[C_A]$};
+		\node (quotient) [below=of uniA] {$\pbraces{Y/_\sim, \mathcal{O}/_\sim}$};
+		\node (Y) [left=of quotient, xshift=-5mm] {$\tspace[Y][O]$};
+		\node (X) [right=of quotient] {$\tspace$};
+		\node (sigmaA) [above=of uniA] {$\eucl[\sigma_A]$};
+		\node (SA) [right=of sigmaA] {$\eucl[S_A]$}; 
+		\node (G) [right=of CA] {$\reltspace[G]$};
+		
+		
+		\draw [->] (sigmaA) -- node[anchor=south] {$h^\prime_A$} (SA);
+		\draw [->] (uniA) -- node[anchor=south] {$h_A$} (CA);
+		\draw [->] (quotient) -- node[anchor=south] {$h$} (X);
+		\draw [->] (sigmaA) -- node[anchor=east] {$\iota^\prime_A$} (uniA);
+		\draw [->] (SA) -- node[anchor=east] {$\iota_A$} (CA);
+		\draw [->] (CA) -- node[anchor=east] {$\iota_{A,X}$} (X);
+		\draw [->] (uniA) -- node[anchor=south] {$f_A$} (Y);
+		\draw [->] (Y) -- node[anchor=south] {$q$} (quotient);
+		\draw [->] (G) -- node[anchor=south] {$\iota$} (X);
+		\draw [->] (SA) -- node[anchor=south] {$\iota_{A,G}$} (G);
+	
+	\end{tikzpicture}
+	\caption{Diagram for $A \in \mathcal{F}$.}
+\end{figure}
+
+
+
+\begin{lemma}\label{lemma:homeo_of_constr}
+	The topological spaces $\tspace$ constructed in Example \ref{example:top_on_prod} and the topological space $\pbraces{Y/_\sim, \mathcal{O}/_\sim}$ constructed in Example \ref{example:homeo_to_prod} are homeomorphic. 
+\end{lemma}
+\begin{proof}
+	All definitions from the two examples mentioned in the statment of the Lemma shall also apply in this proof. We claim that the function $h: Y/_\sim \to X$ defined by $h\pbraces{\bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim} := \pbraces{\mu_i}_{i \in I}$, where $\mu_i = \lambda_i$ if $i \in A$ and $\mu_i = 0$ otherwise, is the desired homeomorphism. It is not hard to convince ourselves of the fact that $h$ is well defined, i.e. the value of the function does not depend on the representative of the equivalence class. 
+	
+	Let $A \in \mathcal{F}$ be given and consider an arbitrary $\pbraces{\lambda_a}_{a \in A}$. We have
+	\begin{align*}
+		h\pbraces{q\pbraces{f_A\pbraces{\pbraces{\lambda_a}_{a \in A}}}} = h\pbraces{\bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim} = h_A\pbraces{\pbraces{\lambda_a}_{a \in A}} = \iota_{A,X}\pbraces{h_A\pbraces{\pbraces{\lambda_a}_{a \in A}}}.
+	\end{align*}
+	Since $\iota_{A,X} \circ h_A \in \Hom\pbraces{\eucl[\bbraces{0,1}^A], \tspace}$, so is $h \circ q \circ f_A$. Since $A$ was arbitrary and we deal with final topologies, we obtain that $h \in \Hom\pbraces{\pbraces{Y/_\sim, \mathcal{O}/_\sim}, \tspace}$. 
+
+	
+	The inverse function $h^{-1}: X \to Y/_\sim$ of $h$ is given by $h^{-1}\pbraces{\pbraces{\lambda_i}_{i \in I}} := \bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim$, where $A := \Bbraces{i \in I \mid \lambda_i > 0}$. For a given $A \in \mathcal{F}$ and an arbitrary $\pbraces{\lambda_i}_{i \in I} \in C_A$, let $A^\prime := \Bbraces{a \in A \mid \lambda_a > 0}$. We have
+	\begin{align*}
+		h^{-1}\pbraces{\iota_{A,X}\pbraces{\pbraces{\lambda_i}_{i \in I}}} &= h^{-1}\pbraces{\pbraces{\lambda_i}_{i \in I}} = \bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A^\prime}, A^\prime}}_\sim = \bbraces{\pbraces{\pbraces{\lambda_a}_{a \in A}, A}}_\sim \\
+		&= q\pbraces{f_A\pbraces{\pbraces{\lambda_a}_{a \in A}}} =  q\pbraces{f_A\pbraces{h_A^{-1}\pbraces{\pbraces{\lambda_i}_{i \in I}}}}.
+	\end{align*}
+	Since $q \circ f_A \circ h_A^{-1} \in \Hom\pbraces{\eucl[C_A], \pbraces{Y/_\sim, \mathcal{O}/_\sim}}$, so is $h^{-1} \circ \iota_{A,X}$. Since $A$ was arbitrary and $\mathcal{T}$ is a final topology, we conclude that $h^{-1} \in \Hom\pbraces{\tspace, \pbraces{Y/_\sim, \mathcal{O}/_\sim}}$. 
+\end{proof}
+
+\begin{definition}\label{def:geom_real}
+	Let $\abcom$ be an abstract simplicial complex and $I := \bigcup \abcom$ the vertex set of $\abcom$. Define $X:= \Bbraces{\pbraces{\lambda_i}_{i \in I} \in \bbraces{0,1}^I \mid \card{\Bbraces{i \in I \mid \lambda_i > 0}} \in \Z^+}$ and let $\mathcal{T}$ be the topology on $X$ constructed in Example \ref{example:top_on_prod}. The set 
+	\begin{align*}
+		G := \Bbraces{\pbraces{\lambda_i}_{i \in I} \in X \mid A:=\Bbraces{i \in I\mid \lambda_i > 0} \in \abcom \land \sum_{a \in A} \lambda_a = 1}
+	\end{align*}
+	endowed with the subspace topology $\mathcal{T}\vert_G$ is called the \textit{geometric realization} of $\abcom$. 
+\end{definition}
+
+
+\section{Retracts}
+
+\begin{lemma}\label{lemma:haus_closed}
+	If $\tspace$ is a topological space, $\tspace[Y][O]$ is a Hausdorff spaces and $f,g \in \Hom\pbraces{\tspace, \tspace[Y][O]}$, then $A := \Bbraces{x \in X \mid f(x) = g(x)}$ is closed in $\tspace$. 
+\end{lemma}
+\begin{proof}
+	Given any point $x \in X \setminus A$, we find due to the fact that $\tspace[Y][O]$ is Hausdorff, a neighborhood $U$ of $f(x)$ and a neighborhood $V$ of $g(x)$ in $\tspace[Y][O]$ such that $U \cap V = \emptyset$. Since $f$ and $g$ are continuous, we have that $W := f^{-1}\pbraces{U} \cap f^{-1}\pbraces{V}$ is a neighborhood of $x$. The set $W$ is fully contained within $X \setminus A$, because $U$ and $V$ are disjoint. Hence, $X \setminus A$ is open and $A$ closed in $\tspace$. 
+\end{proof}
+
+\begin{lemma}
+	Every retract of a Hausdorff space $\tspace$ is closed in $\tspace$. 
+\end{lemma}
+\begin{proof}
+	Given a retract $A$ of $\tspace$ and a retraction $r \in \Hom\pbraces{\tspace, \reltspace}$, we can define the function $f \in \Hom\pbraces{\tspace, \tspace}$ by $f(x) = r(x)$. By \ref{lemma:haus_closed} we obtain that $A = \Bbraces{x \in X \mid f(x) = x}$ is closed in $\tspace$. 
+\end{proof}
