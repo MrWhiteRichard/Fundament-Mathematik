@@ -1,0 +1,54 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Es seien $p$ und $q$ Primzahlen, sodass $p = 2q + 1$ und $m$ sei eine
+natürliche Zahl, welche $1 \leq m \leq p - 2$ erfüllt.
+Zeigen Sie, dass $m$ eine Primitivwurzel modulo $p$ ist, genau dann wenn
+$m$ ein quadratischer Nichtrest modulo $p$ ist.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Sei $m$ keine Primitivwurzel. Die Ordnung von $m$ muss ein Teiler von $p - 1 = 2q$ 
+sein, die einzigen Kandidaten sind daher $1,2,q$.
+
+Für $\ord(m) = 1$ folgt sofort $m \equiv 1 \mod{p}$, was sicher ein quadratischer Rest modulo $p$ ist.
+
+Für $\ord(m) = 2$ gilt $m^2 - 1 \equiv 0 \mod{p}$.
+Das Polynom vom zweiten Grad über dem Körper $\Z_p$ kann maximal 2 Nullstellen
+haben; diese sind gegeben durch $m \equiv \pm 1 \mod{p}$.
+Dabei ist $m \equiv 1 \mod{p}$ nicht möglich, da sonst $\ord(m) = 1$ gelten würde.
+Der Fall $m \equiv -1 \mod{p}$ ist wegen der Voraussetzung 
+$1 \leq m \leq p - 2$ ebenso ausgeschlossen.
+
+Es bleibt nur noch der Fall $\ord(m) = q$.
+Hierbei wähle eine Primitivwurzel $g$ modulo $p$.
+Dann existiert ein $k \in \Z^+$, sodass $g^k \equiv m$ und
+
+\begin{align*}
+    1 \equiv m^q \equiv g^{kq} \mod{p}.
+\end{align*}
+
+Damit folgt $2q | kq$ und daher $2|k$. Also ist $k/2$ eine ganze Zahl und
+$x_0:= g^{k/2}$ erfüllt $x_0^2 \equiv g^k \equiv m \mod{p}$.
+
+Sei umgekehrt $m$ eine Primitivwurzel und angenommen, dass 
+ein $x_0$ existiert mit $x_0^2 \equiv m \mod{p}$.
+Wir finden ein $k$, sodass $x_0 \equiv m^k$. Damit gilt
+
+\begin{align*}
+    m \equiv x_0^2 \equiv m^{2k} \mod{p}
+\end{align*}
+
+und weiters $m^{2k - 1} \equiv 1 \mod{p}$.
+
+Daraus folgt $p - 1 | 2k - 1$. Das ist allerdings ein Widerspruch, da $p - 1 = 2q$
+gerade ist und $2k - 1$ ungerade ist.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

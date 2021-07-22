@@ -1,0 +1,47 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Bestimmen Sie $123456789101112\dots19781979 \mod{1980}$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+Definiere $n := 123456789101112\dots19781979$.
+Wir nutzen die Faktorisierung $1980 = 2^2\cdot 3^2\cdot 5 \cdot 11$
+und stellen mithilfe bekannter Teilbarkeitsregeln fest, dass 
+\begin{align*}
+    n &\equiv 79 \equiv 3 \mod{4}, \\
+    n &\equiv 4 \mod{5}, \\
+    n &\equiv \sum_{i=1}^{1979} i \equiv 220\sum_{i=1}^8 i \equiv 220\cdot 36 \equiv 0 \mod{9}, \\
+    n &\equiv 98\sum_{i=0}^9 i - 100\sum_{i=0}^7 i - 90(8 + 9)
+    + 100\sum_{i=1}^8 i + 80\cdot 9 - 980 \\
+    &+ 90\sum_{i=0}^4 (2i + 1 - 2i) + 90\sum_{i=0}^9(5i-5i) + 9\sum_{i=0}^9(50i - 50i)\\
+    &+ 9\sum_{i=0}^9 i - \sum_{i=1}^9 10i\\
+    &+ \sum_{i=0}^{4} (2i + 1 - 2i) \\
+    &\equiv 98 \cdot 45 - 100 \cdot 28 - 90(8 + 9) + 100 \cdot36 + 
+    80 \cdot 9 - 980 + 90 \cdot 5 -45 + 5 \equiv 3830 \equiv 2 \mod{11}.
+\end{align*}
+
+Das ist nun ein System von Kongruenzen, worauf wir den chinesischen
+Restsatz anwenden können. Wir lösen daher
+
+\begin{align*}
+    495b_1 &\equiv 1 \mod{4} \iff b_1 \equiv 3 \mod{4}, \\
+    396b_2 &\equiv 1 \mod{5} \iff b_2 \equiv 1 \mod{5}, \\
+    220b_3 &\equiv 1 \mod{9} \iff b_3 \equiv 7 \mod{9}, \\
+    180b_4 &\equiv 1 \mod{11} \iff b_4 \equiv 3 \mod{11}
+\end{align*}
+
+und erhalten die insgesamte Lösung
+
+\begin{align*}
+    n \equiv 3 \cdot 3 \cdot 495 + 1 \cdot 4 \cdot 396 
+    + 7 \cdot 0 \cdot 220 + 3 \cdot 2 \cdot 180 \equiv 1179 \mod{1980}.
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

@@ -17,10 +17,17 @@ Mal enthält.
 Die Zahl $n!$ enthält den Primfaktor $p$ genau $\sum_{i=1}^n \nu_p(i)$ Mal.
 Die Zahlen bis $n$, welche den Primfaktor $p$ mindestens einmal enthalten sind genau
 $p,2p,\dots,\left\lfloor \frac{n}{p}\right\rfloor p$.
-Ebenso gibt es genau $\left\lfloor \frac{n}{p^k}\right\rfloor$ Zahlen bis $n$,
-welche den Primfaktor $p$ mindestens $k$ Mal enthalten. \\
-Damit erhalten wir mit $\sum_{k \geq 1} \left\lfloor \frac{n}{p^k}\right\rfloor$
-genau die Anzahl, wie oft der Primfaktor $p$ in $n!$ enthalten ist.
+Allgemein gibt es demnach genau $\left\lfloor \frac{n}{p^k}\right\rfloor$ Zahlen bis $n$,
+welche den Primfaktor $p$ mindestens $k$ Mal enthalten.
+Summieren wir diese Zahlen auf, zählen wir also genau die Vielfachheit
+des Primfaktors $p$ ab.
+
+Damit gilt
+
+\begin{align*}
+  \sum_{i=1}^n \nu_p(i) = \sum_{k \geq 1}\sum_{\substack{i=1 \\ p^k | i}}^n 1
+  = \sum_{k \geq 1} \left\lfloor \frac{n}{p^k}\right\rfloor.
+\end{align*}
 
 \end{solution}
 

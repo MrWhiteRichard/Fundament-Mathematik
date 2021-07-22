@@ -1,0 +1,42 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Es seien $a$ und $b$ zwei teilerfremde natürliche Zahlen.
+Berechnen Sie $(a^3 - b^3, a^2 - b^2)$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Wir berechnen $a^3-b^3 = (a-b)(a^2 + ab + b^2)$ und $(a^2 - b^2) = (a-b)(a+b)$.
+
+Um den ggT von $a^2+ab+b^2$ und $a+b$ zu finden berechnen wir vorerst
+\begin{align*}
+    a^2 + ab + b^2 - b(a+b) &= a^2 \\
+    a^2 + ab + b^2 - a(a+b) &= b^2.
+\end{align*}
+
+Wegen der Teilerfremdheit von $a$ und $b$ 
+existieren $k,l \in \Z$ mit $ka + lb = 1$. Damit erhalten wir
+
+\begin{align*}
+    (ka + l b)^2 &= k^2a^2 + l^2b^2 + 2kalb = 1 \\
+    k^2(1 + 2lb)a^2 + l^2(1 + 2ka)b^2 &= k^2a^2 + l^2b^2 + 2kalb(ka + l b)
+    = 1
+\end{align*}
+
+und schließlich
+
+\begin{align*}
+    1 &= k^2(1 + 2lb)[a^2 + ab + b^2 - b(a+b)] + l^2(1 + 2ka)[a^2 + ab + b^2 - a(a+b)] \\
+    &=  [k^2(1 + 2lb) + l^2(1 + 2ka)](a^2 + ab + b^2) - [b k^2(1 + 2lb) + al^2(1 + 2ka)](a+b).
+\end{align*}
+
+Also folgt $(a^2 + ab + b^2, a + b) = 1$ und schließlich $(a^3 - b^3, a^2 - b^2) = a - b$.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

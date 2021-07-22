@@ -1,0 +1,82 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+    \item Zeigen Sie, dass $\lfloor x \rfloor + \lfloor y \rfloor \leq \lfloor x + y \rfloor$
+    für alle $x,y \in \R$.
+    \item Zeigen Sie mit Hilfe von (i) und Beispiel 5, dass $n!$ das Produkt von $n$
+    beliebigen aufeinanderfolgenden Zahlen teilt.
+    \item Wie kann man (ii) mit Hilfe von Binomialkoeffizienten zeigen?
+\end{enumerate}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}[label = (\alph*)]
+    \item Für alle $n,m \in \Z$ gilt:
+    
+    \begin{align*}
+        n \leq x \land m \leq y \implies n + m \leq x + y
+    \end{align*}
+
+    und somit
+
+    \begin{align*}
+        \max\{n \in \Z: n \leq x\} + \max\{m \in \Z: n \leq y\} \leq x + y.
+    \end{align*}
+
+    Also muss $\lfloor x + y \rfloor \geq \lfloor x \rfloor + \lfloor y \rfloor$ gelten.
+    \item
+    Wir können das Produkt $n$ aufeinanderfolgender Zahlen schreiben als
+
+    \begin{align*}
+        \frac{(m+n)!}{m!}.
+    \end{align*}
+
+    Weiters gilt für $n \geq m, m \geq 1$:
+
+    \begin{align*}
+        n! + m! \leq 2n! \leq (n+m)!.
+    \end{align*}
+
+    Mit Aufgabe 5 berechnen wir für beliebiges $p \in \P$
+
+    \begin{align*}
+        \nu_p(n!) + \nu_p(m!) &= \sum_{k\geq 1} 
+        \left\lfloor \frac{n!}{p^k} \right\rfloor + \left\lfloor \frac{m!}{p^k} \right\rfloor\\
+        &\leq \sum_{k\geq 1} 
+        \left\lfloor \frac{n!+m!}{p^k} \right\rfloor \\
+        &\leq \sum_{k\geq 1} 
+        \left\lfloor \frac{(n+m)!}{p^k} \right\rfloor \\
+        &= \nu_p\left((n+m)!\right).
+    \end{align*}
+
+    Damit erhalten wir
+
+    \begin{align*}
+        \nu_p(n!) \leq \nu_p\left((m+n)!\right) - \nu_p(m!) = \nu_p\left(\frac{(m+n)!}{m!}\right)
+    \end{align*}
+
+    und aufgrund $n! | \frac{(m+n)!}{m!} \iff \forall p \in \P: \nu_p(n!) \leq \nu_p\left(\frac{(m+n)!}{m!}\right)$
+    haben wir damit die Teilbarkeit nachgewiesen.
+
+    \item Direkt aus der Darstellung $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ folgt mit
+    
+    \begin{align*}
+        \frac{(m+n)!}{m!} = n!\binom{m+n}{n}
+    \end{align*}
+
+    die gewünschte Teilbarkeitseigenschaft $n! | \frac{(m+n)!}{m!}$.
+\end{enumerate}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

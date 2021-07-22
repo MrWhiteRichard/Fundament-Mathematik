@@ -1,0 +1,44 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Es sei $p$ eine ungerade Primzahl. Berechnen Sie $\left( \frac{\frac{p+1}{2}}{p} \right)$
+und $\left(\frac{\frac{p-1}{2}}{p}\right)$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Die Kongruenz $x^2 \equiv \frac{p+1}{2} \mod{p}$ ist genau dann
+lösbar, wenn $(2x)^2 \equiv 2 \mod{p}$ lösbar ist. 
+
+Also gilt nach dem zweiten Ergänzungssatz
+
+\begin{align*}
+    \left( \frac{\frac{p+1}{2}}{p} \right)
+    &= \left(\frac{2}{p}\right)
+    = \begin{cases}
+        1, & p \equiv \pm 1 \mod{8} \\
+        -1, & p \equiv \pm 3 \mod{8}
+    \end{cases}.
+\end{align*}
+
+Für den zweiten Teil berechnen wir mit beiden Ergänzungssätzen
+
+\begin{align*}
+    \left(\frac{\frac{p-1}{2}}{p}\right) =
+    \left(\frac{-1}{p}\right)\left( \frac{\frac{p+1}{2}}{p} \right) =
+    (-1)^{\frac{p-1}{2}}(-1)^{\frac{p^2-1}{8}}
+    = \begin{cases}
+        1, & p \equiv 1 \mod{8} \\
+        1, & p \equiv 3 \mod{8} \\
+        -1, & p \equiv 5 \mod{8} \\
+        -1, & p \equiv 7 \mod{8}
+    \end{cases}.
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

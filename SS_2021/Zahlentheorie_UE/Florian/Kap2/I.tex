@@ -1,0 +1,58 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Finden Sie die kleinste positive ganze Zahl, sodass $x \equiv 5 \mod{12}, 
+x \equiv 17 \mod{20}$ und $x \equiv 23 \mod{42}$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Da $(12,20) = 4 > 1$ können wir den chinesischen Restsatz nicht direkt anwenden.
+Wir können aber manuell die Moduln in ihre Primfaktoren aufteilen und erhalten das System
+
+\begin{align*}
+    x &\equiv 2 \mod{3}, \\
+    x &\equiv 1 \mod{4}, \\
+    x &\equiv 1 \mod{4}, \\
+    x &\equiv 2 \mod{5}, \\
+    x &\equiv 1 \mod{2}, \\
+    x &\equiv 2 \mod{3}, \\
+    x &\equiv 2 \mod{7}.
+\end{align*}
+
+Nach Entfernen der redundanten Kongruenzen erhalten wir ein
+System auf das sich der chinesische Restsatz anwenden lässt:
+
+\begin{align*}
+    x &\equiv 2 \mod{3}, \\
+    x &\equiv 1 \mod{4}, \\
+    x &\equiv 2 \mod{5}, \\
+    x &\equiv 2 \mod{7}.
+\end{align*}
+
+Wir lösen also
+
+\begin{align*}
+    140b_1 &\equiv 1 \mod{3} \iff b_1 \equiv 2 \mod{3}, \\
+    105b_2 &\equiv 1 \mod{4} \iff b_2 \equiv 1 \mod{4}, \\
+    84b_3 &\equiv 1 \mod{5} \iff b_3 \equiv 4 \mod{5}, \\
+    60b_4 &\equiv 1 \mod{7} \iff b_4 \equiv 2 \mod{7}.
+\end{align*}
+
+Damit erhalten wir
+
+\begin{align*}
+    x \equiv 2\cdot 2 \cdot 140 + 1 \cdot 1 \cdot 105 + 
+    4 \cdot 2 \cdot 84 + 2 \cdot 2 \cdot 60 \equiv 317 \mod{420}.
+\end{align*}
+
+Nachdem die Lösung modulo 420 eindeutig ist, muss also 317 die kleinste
+positive Lösung sein.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

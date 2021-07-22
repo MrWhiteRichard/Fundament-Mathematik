@@ -1,0 +1,30 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Es sei $p$ eine ungerade Primzahl und $g_1$ und $g_2$ zwei Primitivwurzeln
+modulo $p$. Zeigen Sie, dass $g_1g_2$ keine Primitivwurzel modulo $p$ ist.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Da $p$ ungerade ist, ist $p - 1$ gerade. Die Primitivwurzeleigenschaft garantiert
+uns die Existenz eines $k$, sodass $g_1 \equiv g_2^k \mod{p}$.
+Nun erkennt man leicht, dass $k \equiv 1 \mod{2}$ sein muss, da anderenfalls
+
+\begin{align*}
+    g_1^{(p-1)/2} \equiv \left(g_2^{p-1}\right)^{k/2} \equiv 1 \mod{p}
+\end{align*}
+
+im Widerspruch zu $\ord(g_1) = p - 1$.
+
+Nun können wir $g := g_1g_2$ modulo $p$ schreiben als 
+$g \equiv g_2^k\cdot g_2 \equiv g_2^{k+1} \mod{p}$,
+wobei $k+1 \equiv 0 \mod{2}$ und nach obiger Argumentation kann $g$ keine
+Primitivwurzel sein.
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

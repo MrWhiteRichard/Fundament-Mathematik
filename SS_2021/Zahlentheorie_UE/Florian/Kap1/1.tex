@@ -1,0 +1,74 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Zeigen Sie, dass
+
+\begin{enumerate}
+  \item $p^2 + 2$ keine Primzahl ist für $p > 3$ prim,
+  \item $n^4 + 4^n$ keine Primzahl ist für $n > 1$.
+\end{enumerate}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\phantom{}
+
+\begin{enumerate}
+  \item Wir unterscheiden zwei Fälle:
+  \begin{itemize}
+    \item[$p \equiv 1 \mod{3}$:]
+    Dann gilt
+    \begin{align*}
+      p^2 + 2 \equiv 1 \cdot 1 + 2 \equiv 0 \mod{3}
+    \end{align*}
+    und damit $3 | p^2 + 2$ und $p^2 + 2 \notin \P$.
+    \item[$p \equiv 2 \mod{3}$:]
+    Dann gilt
+    \begin{align*}
+      p^2 + 2 \equiv 2 \cdot 2 + 2 \equiv 0 \mod{3}
+    \end{align*}
+    und wieder $3 | p^2 + 2$.
+  \end{itemize}
+  \item 
+  Für gerade $n$ klarerweise auch $4^n + n^4$ gerade und sicher keine Primzahl.
+
+  Daher müssen wir nur noch ungerade $n$ betrachten.
+
+
+  Sei $n = 2k - 1$ mit $k \geq 1$:
+
+  \begin{align*}
+    n^4 + 4^n &= (n^2 + 2^n)^2 - 2n^2\cdot2^n = (n^2 + 2^n)^2 - (2^k n)^2 \\
+    &= (n^2 + 2^n - 2^k n)\underbrace{(n^2 + 2^n + 2^k n)}_{>1}.
+  \end{align*}
+
+  Es bleibt also noch zu zeigen, dass der erste Faktor nicht 1 sein kann.
+  Für $n \leq 2^{k-1}$ gilt
+
+  \begin{align*}
+    n^2 + 2^n - 2^k n \geq n^2 > 1.
+  \end{align*}
+
+  Für $n \geq 2^k$ gilt
+
+  \begin{align*}
+    n^2 + 2^n - 2^k n = 2^n + n(n - 2^k) \geq 2^n > 1.
+  \end{align*}
+
+  Für $2^{k-1} < n < 2^k$ gilt
+
+  \begin{align*}
+    n^2 + 2^n - 2^k n = 2^n + n(n - 2^k) > 2^n + (2^k-1)(2^{k-1} - 2^k)
+    = 2^n + 2^n - 2^{n+1} + 2^k - 2^{k-1} = 2^k - 2^{k-1} \geq 1.
+  \end{align*}
+
+\end{enumerate}
+
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

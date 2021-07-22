@@ -1,0 +1,41 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Zeigen Sie, dass für alle $n \geq 1$ gilt:
+$(n! + 1, (n+1)! + 1) = 1$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Um eine erste Idee zur Lösung zu erhalten, betrachten wir
+zuerst einige Beispiele für kleine $n$:
+
+\begin{align*}
+  n &= 1: (2, 3) = 1 \\
+  n &= 2: (3, 7) = 1 \\
+  n &= 3: (7, 25) = (7, 5 \cdot 5) = 1 \\
+  n &= 4: (25, 121) = (5 \cdot 5, 11 \cdot 11) = 1 \\
+  n &= 5: (121, 721) = (11 \cdot 11, 7 \cdot 103) = 1
+\end{align*}
+
+Sei nun angenommen, dass $d := (n! + 1, (n+1)! + 1)  > 1$.
+
+Da $(n+1)! + 1 - (n! + 1) = n!\cdot n$ folgt $d | n! \cdot n$.
+
+Nun unterscheiden wir zwei Fälle:
+
+\begin{itemize}
+  \item[$(d,n) = 1$:] In dem Fall erhalten wir direkt $d | n!$ und 
+  mit $d | (n! + 1 - n!) = 1$ einen Widerspruch!
+  \item[$(d,n) > 1$:] In diesem Fall folgt aus $(d,n) | d$ und $d | n! + 1$, 
+  sowie $(d,n) | n$ und $n | n!$,
+  dass $(d,n) | (n! + 1 - n!) = 1$ mit Widerspruch zu $(d,n) > 1$!
+\end{itemize}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

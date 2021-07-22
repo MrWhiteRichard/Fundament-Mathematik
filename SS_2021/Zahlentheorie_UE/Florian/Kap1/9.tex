@@ -1,0 +1,29 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Zeigen Sie, dass es unendlich viele Primzahlen der Form $4k+3$ gibt.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Angenommen, es gäbe nur endlich viele, also
+
+\begin{align*}
+    \{p \in \P: p \equiv 3 \mod{4}\} = \{p_1,\dots,p_k\}.
+\end{align*}
+
+Dann definiere $n := 4\prod_{i=1}^k p_i - 1$. Es gilt $n \equiv 3 \mod{4}$.
+
+Betrachte die eindeutige Primfaktorzerlegung $n = \prod_{i=1}^n q_i$.
+Da für alle $p_i: p_i \nmid n$ gilt und $n$ ungerade ist, folgt
+$\forall i \leq n: q_i \equiv 1 \mod{4}$.
+Daraus folgt aber $n \equiv \prod_{i=1}^n 1 \equiv 1 \mod{4}$ mit einem
+Widerspruch!
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

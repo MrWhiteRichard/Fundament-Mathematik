@@ -1,0 +1,48 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Bestimmen Sie alle Lösungen $x, y > 0$ des Gleichungssystems
+
+\begin{align*}
+    \begin{cases}
+        x + y = 5432 \\
+        \kgV(x,y) = 223020.
+    \end{cases}
+\end{align*}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+\begin{align*}
+    223020 &= 2^2\cdot 3^3 \cdot 5 \cdot 7 \cdot 59 \\
+    5432 &= 2^2 \cdot 7 (2\cdot 97).
+\end{align*}
+
+Daraus schließen wir, dass die Faktoren $3^3,5,59$ nur entweder in $x$
+oder $y$ enthalten sein können, da die Summe diese Faktoren nicht teilt,
+während die anderen Primfaktoren $2^2,7$ von $223020$ sowohl $x$ als auch $y$ teilen müssen.
+
+
+Also haben wir das reduzierte Problem
+
+\begin{align*}
+    x &= 2^2\cdot 7 n \\
+    y &= 2^2\cdot 7 m \\
+    n + m &= 194 \\
+    n\cdot m &= 7965 \\
+    (n,m) &= 1.
+\end{align*}
+
+Die einzigen Lösungskandidaten (bis auf Vertauschung von $n$ und $m$) sind dann
+$(n = 59, m = 3^3\cdot 5 = 135), (n = 59\cdot 3 = 177, m = 3^2 \cdot 5 = 45)$,
+wovon nur ersterer $n+m = 194$ erfüllt, während jede andere Aufteilung der Primfaktoren
+klarerweise die Summenbedingung verletzt.
+
+Damit sind die einzigen Lösungen $(x,y) = (1652,3780)$ und $(x,y) = (3780,1652)$.
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

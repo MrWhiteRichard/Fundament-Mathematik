@@ -1,0 +1,50 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Komet A ist alle 5 Jahre von der Erde aus sichtbar und wurde das letzte
+Mal vor einem Jahr gesehen. Komet B ist alle 8 Jahre sichtbar und wurde
+das letzte Mal vor 2 Jahren gesehen. Komet C ist alle 11 Jahre sichtbar
+und wurde das letzte Mal vor 8 Jahren gesehen. In wie vielen Jahren
+können alle Kometen frühestens gleichzeitig gesehen werden?
+Und in wie vielen Jahren darauf das nächste Mal?
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Die Lösung des unteren Systems an Kongruenzen entspricht
+genau der vergangenen Zeit zwischen der letzten gleichzeitigen Sichtung
+und jetzt. Nachdem die Moduln paarweise teilerfremd sind, ist der chinesische
+Restsatz anwendbar, welcher eine Lösung alle $5\cdot 8 \cdot 11 = 440$
+Jahre liefert.
+
+\begin{align*}
+    x \equiv 1 \mod{5} \\
+    x \equiv 2 \mod{8} \\
+    x \equiv 8 \mod{11} \\
+\end{align*}
+
+Für den chinesischen Restsatz lösen wir vorerst
+
+\begin{align*}
+    88b_1 &\equiv 1 \mod{5} \iff b_1 \equiv 2 \mod{5} \\
+    55b_2 &\equiv 1 \mod{8} \iff b_2 \equiv 7 \mod{8} \\
+    40b_3 &\equiv 1 \mod{11} \iff b_3 \equiv 8 \mod{11}
+\end{align*}
+
+und erhalten 
+
+\begin{align*}
+    x_0 \equiv 2 \cdot 1\cdot 88 + 7 \cdot 2 \cdot 55 + 8 \cdot 8 \cdot 40
+    \equiv 426 \mod{440}.
+\end{align*}
+
+Also findet die nächste gleichzeitige Sichtung in $14$ Jahren statt
+und alle zukünftigen gleichzeitigen Sichtungen in $14 + 440k$ Jahren.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

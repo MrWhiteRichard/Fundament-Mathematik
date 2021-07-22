@@ -1,0 +1,46 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Sei $\alpha \beta = \gamma^n$, wobei $\alpha, \beta, \gamma \in \Z[i]$
+und $\alpha$ und $\beta$ relativ prim zueinander sind.
+
+Zeigen Sie, dass Gaußsche Zahlen $\varepsilon \in \{\pm 1, \pm i\}$ und
+$\delta \in \Z[i]$ existieren, sodass $\alpha = \varepsilon \delta^n$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Sei $\varepsilon_1 \prod_{i=1}^n p_i^{e_i}$ die Primfaktorzerlegung 
+von $\gamma$ in $\Z[i]$ und damit
+
+\begin{align*}
+    \alpha \beta = \varepsilon_1^n \prod_{i=1}^n p_i^{n \cdot e_i}.
+\end{align*}
+
+Nachdem $\alpha$ und $\beta$ relativ prim sind, gilt für alle $p_i, i = 1,\dots,n$
+entweder $p_i | \alpha$ oder $p_i | \beta$. 
+
+Definiere 
+
+\begin{align*}
+    q_i := \begin{cases}
+        p_i, & \text{falls } p_i | \alpha \\
+        1, & \text{falls } p_i | \beta.
+    \end{cases}
+\end{align*}
+
+Dann folgt 
+
+\begin{align*}
+    \alpha = \varepsilon \prod_{i=1}^n q_i^{n e_i}
+    = \varepsilon \left(\underbrace{\prod_{i=1}^n q_i^{e_i}}_{:=\delta}\right)^n.
+\end{align*}
+
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

@@ -1,0 +1,40 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Es seien $m$ und $n$ natürliche Zahlen. Zeigen Sie, dass $\varphi(m) | \varphi(n)$, falls $m|n$.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Sei $\prod_{i=1}^n p_i^{v_{p_i}(n)}$ die eindeutige Primfaktorzerlegung von $n$.
+Es gilt 
+
+\begin{align*}
+    \varphi(n) = \prod_{i=1}^n p_i^{v_{p_i}(n) - 1}(p_i - 1).
+\end{align*}
+
+Nun gilt wegen $m|n$ für alle $p_i: v_{p_i}(m) \leq v_{p_i}(n)$.
+
+Definiere
+
+\begin{align*}
+    m_i := \begin{cases}
+        1, & \nu_{p_i}(m) = 0 \\
+        p_i^{\nu_{p_i}(m) - 1}(p_i - 1), & \nu_{p_i}(m) \geq 1.
+    \end{cases}
+\end{align*}
+
+Nun gilt für alle $m_i: m_i | p_i^{k_i - 1}(p_i - 1)$ und wegen
+$\varphi(m) = \prod_{i=1}^n m_i$ auch
+
+\begin{align*}
+    \varphi(m) | \varphi(n).
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

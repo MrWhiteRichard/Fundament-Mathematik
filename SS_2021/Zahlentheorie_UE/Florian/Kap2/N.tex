@@ -1,0 +1,42 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Finden Sie die kleinste positive ganze Zahl $x$, sodass $x$ geteilt durch
+$10,9,\dots,2$ die Reste $9,8,\dots,1$ hat.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Wir lösen also folgendes System an Kongruenzen:
+        
+\begin{align*}
+    x &\equiv -1 \mod{10} \\
+    &\vdots \\
+    x &\equiv -1 \mod{2}.
+\end{align*}
+
+Zuerst bemerken wir, dass wir dieses Problem auf ein System von
+Kongruenzen mit Moduln aus den höchsten auftretenden Primpotenzen 
+reduzieren können, da für $n = \prod_{i=1}^n p_i^{e_i}$
+
+\begin{align*}
+    (\forall i = 1,\dots,n: x \equiv -1 \mod{p_i^{e_i}}) 
+    \implies (\forall i = 1,\dots,n: p_i^{e_i} | (x + 1))
+    \implies n | (x+1)
+\end{align*}
+gilt.
+
+Leicht nachprüfbar löst $n = [2,3,4,5,6,7,8,9,10] - 1 = 2519$ die gegebenen Kongruenzen.
+Nachdem wir das Problem auf Kongruenzen mit teilerfremden Moduln reduziert haben,
+ist der chinesische Restsatz anwendbar, welcher uns eindeutige Lösbarkeit modulo $[2,3,4,5,6,7,8,9,10]$
+liefert. Demnach kann es also keine kleinere ganze, positive Lösung geben.
+
+
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

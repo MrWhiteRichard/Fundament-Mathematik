@@ -1,0 +1,33 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Auf wieviel Nuller endet $\frac{500!}{200!}$?
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Wir benutzen wieder Aufgabe 5, um die Anzahl der 5er- und 2er-Faktoren
+zu zählen:
+
+\begin{align*}
+    \nu_5\left(\frac{500!}{200!}\right)
+    &= \sum_{k\geq 1} \left\lfloor \frac{500}{5^k} \right\rfloor -
+    \sum_{k\geq 1} \left\lfloor \frac{200}{5^k} \right\rfloor \\
+    &= 100 + 20 + 4 - (40 + 8 + 1) = 124 - 49 = 75 \\
+    \nu_2\left(\frac{500!}{200!}\right)
+    &= \sum_{k\geq 1} \left\lfloor \frac{500}{2^k} \right\rfloor -
+    \sum_{k\geq 1} \left\lfloor \frac{200}{2^k} \right\rfloor \\
+    &= 250 + 125 + 62 + 31 + 15 + 7 + 3 + 1
+    - (100 + 50 + 25 + 12 + 6 + 3 + 1)
+    = 495 - 197 = 297.
+\end{align*}
+
+Also kommt der Faktor 10 genau 75 Mal in $\frac{500!}{200!}$ vor.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

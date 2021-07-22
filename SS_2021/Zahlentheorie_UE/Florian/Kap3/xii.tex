@@ -1,0 +1,44 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Geben Sie eine Zahl kleiner oder gleich 1000 an, welche dividiert
+durch 7 Rest 4, dividiert durch 9 Rest 7 und dividiert durch 10 Rest 6 ergibt.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Wir lösen also folgendes System an Kongruenzen:
+
+\begin{align*}
+    x &\equiv 4 \mod{7} \\
+    x &\equiv 7 \mod{9} \\
+    x &\equiv 6 \mod{10}.
+\end{align*}
+
+Da $7,9,10$ paarweise teilerfremd sind, ist der chinesische Restsatz anwendbar.
+Demnach lösen wir
+
+\begin{align*}
+    90b_1 &\equiv 1 \mod{7} \iff b_1 \equiv 6 \mod{7} \\
+    70b_2 &\equiv 1 \mod{9} \iff b_2 \equiv 4 \mod{9} \\
+    63b_3 &\equiv 1 \mod{10} \iff b_3 \equiv 7 \mod{10}.
+\end{align*}
+
+Mit 
+
+\begin{align*}
+    x \equiv 4\cdot 6 \cdot 90 + 4 \cdot 7 \cdot 70 + 7 \cdot 6 \cdot 63 \equiv 466 \mod{630}
+\end{align*}
+
+erhalten wir eine modulo 630 eindeutige Lösung.
+Damit ist $x_0 = 466$ die einzige positive Zahl kleiner 1000,
+welche die angegebenen Kongruenzen löst.
+
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

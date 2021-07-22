@@ -1,0 +1,29 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Finden Sie alle $n \in \Z^+$ mit $\varphi(5n) = 5\varphi(n)$.
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Fall 1: $5 \nmid n$. Dann gilt
+
+\begin{align*}
+    \varphi(5n) = \varphi(5)\cdot \varphi(n) = 4\varphi(n).
+\end{align*}
+
+Fall 2: $5 \mid n$. Dann gilt
+
+\begin{align*}
+    \varphi(5n) &= \varphi(5^{\nu_5(n) + 1})\cdot \varphi\left(\frac{n}{5^{\nu_5(n)}}\right) \\
+    &= 5^{\nu_5(n)}(5 - 1)\cdot \varphi\left(\frac{n}{5^{\nu_5(n)}}\right) \\
+    &= 5 \varphi(5^{\nu_5(n)})\cdot \varphi\left(\frac{n}{5^{\nu_5(n)}}\right) \\
+    &= 5 \varphi(n).
+\end{align*}
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

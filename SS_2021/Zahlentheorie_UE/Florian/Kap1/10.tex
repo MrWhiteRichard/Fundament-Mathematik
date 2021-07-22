@@ -1,0 +1,42 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Zeigen Sie, dass es unendlich viele Primzahlen der Form $4k+1$ gibt.
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Sei wieder angenommen, dass die Menge endlich wäre, also
+
+\begin{align*}
+    \{p \in \P: p \equiv 1 \mod{4}\} = \{p_1,\dots,p_k\},
+\end{align*}
+
+wobei $p_k$ die größte Primzahl der From $4k+1$ bezeichnet.
+
+Nun betrachte die Zahl $n := (p_k!)^2 + 1$. Jeder Primfaktor dieser Zahl ist
+größer als $p_k$. Sei $q$ der kleinste Primfaktor von $n$. Dann folgt
+
+\begin{align*}
+    (p_k!)^2 \equiv -1 \mod{q}
+\end{align*}
+
+und da $q \nmid (p_k!)$ laut dem kleinen Fermat $(p_k!)^{q-1} \equiv 1 \mod(q)$.
+
+Daraus schließen wir
+
+\begin{align*}
+    1 \equiv (p_k!)^{q-1} = ((p_k!)^2)^{\frac{q-1}{2}} \equiv (-1)^{\frac{q-1}{2}} \mod{q}
+\end{align*}
+
+und da $q > 2$ gilt sogar Gleichheit. 
+Schließlich erhalten wir mit $\frac{q-1}{2} = 2k \iff q = 4k + 1$ einen Widerspruch
+dazu, dass $p_k$ die größte Primzahl der Form $4k+1$ ist.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %

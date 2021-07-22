@@ -14,12 +14,21 @@ Wir definieren $f(n) := [1,\dots,n]$ und erhalten
 \begin{align*}
   \sum_{i=1}^n \frac{1}{i} = \frac{\sum_{i=1}^n \frac{f(n)}{i}}{f(n)}
 \end{align*}
-Wir zeigen, dass die Summe im Zähler eine ungerade Zahl sein muss und somit der
-Bruch keine ganze Zahl sein kann. Da $f(n)$ das kleinste gemeinsame Vielfache von
-$1,\dots,n$ ist sind alle Summanden im Zähler ganze Zahlen. Definiere $k := \lfloor \log_2(n) \rfloor$.
-Dann ist $\frac{f(n)}{k}$ der einzige ungerade Summand in der Summe, da
-$\nu_2(f(n)) = \lfloor \log_2(n) \rfloor$ und die Summe
-muss insgesamt ungerade sein. Alle anderen Summanden sind gerade, da $\nu_2(i) < k$
+Wir zeigen, dass die Summe im Zähler eine ungerade Zahl sein muss und 
+da der Nenner gerade ist, somit der
+Bruch keine ganze Zahl sein kann.
+
+Da $f(n)$ das kleinste gemeinsame Vielfache von
+$1,\dots,n$ ist, sind alle Summanden im Zähler ganze Zahlen. Definiere $k := \lfloor \log_2(n) \rfloor$.
+Dann ist $\frac{f(n)}{2^k}$ der einzige ungerade Summand in der Summe, da
+
+\begin{align*}
+  \nu_2(f(n)) = \max_{i=1}^n \nu(i) =  \lfloor \log_2(n) \rfloor
+\end{align*}
+
+ und die Summe
+muss insgesamt ungerade sein. Alle anderen Summanden sind gerade, da
+ $2^k$ die größte Zweierpotenz kleiner $n$ ist und somit $\nu_2(i) < k$
 für alle $i = 1,\dots,2^k-1,2^k+1,\dots,n$.
 
 \end{solution}

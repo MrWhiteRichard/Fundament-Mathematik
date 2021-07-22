@@ -1,0 +1,41 @@
+% -------------------------------------------------------------------------------- %
+
+\begin{exercise}
+
+Zeigen Sie, dass für alle $a,b,c > 0$
+
+\begin{align*}
+    [a,b,c] = \frac{abc(a,b,c)}{(a,b)(b,c)(c,a)}.
+\end{align*}
+
+\end{exercise}
+
+% -------------------------------------------------------------------------------- %
+
+\begin{solution}
+
+Wir nutzen die Tatsache, dass wir $[a,b,c]$ durch
+
+\begin{align*}
+    \forall p \in \P: \nu_p([a,b,c]) = \max\{ \nu_p(a), \nu_p(b), \nu_p(c)\}
+\end{align*}
+
+charakterisieren können.
+
+Sei dafür $p \in \P, p | abc$ beliebig. Gelte o.b.d.A $\nu_p(a) \leq \nu_p(b) \leq \nu_p(c)$.
+Dann folgt
+
+\begin{align*}
+    \nu_p\left(\frac{abc(a,b,c)}{(a,b)(b,c)(c,a)}\right)
+    &= \nu_p(a) + \nu_p(b) + \nu_p(c) + \min\{\nu_p(a), \nu_p(b), \nu_p(c)\} \\
+    &- \min\{\nu_p(a), \nu_p(b)\} - \min\{\nu_p(a), \nu_p(c)\}
+    - \min\{\nu_p(b), \nu_p(c)\} \\
+    &= \nu_p(a) + \nu_p(b) + \nu_p(c) + \nu_p(a) - \nu_p(a) - \nu_p(a) - \nu_p(b) \\
+    &= \nu_p(c) = \max\{\nu_p(a), \nu_p(b), \nu_p(c)\} = \nu_p([a,b,c]).
+\end{align*}
+
+Damit folgt mit der eindeutigen Primfaktorzerlegung $[a,b,c] = \frac{abc(a,b,c)}{(a,b)(b,c)(c,a)}$.
+
+\end{solution}
+
+% -------------------------------------------------------------------------------- %
